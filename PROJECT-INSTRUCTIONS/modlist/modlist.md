@@ -12,61 +12,79 @@
 
 | Nº | Nome oficial no CurseForge | Arquivo JAR instalado | Versão instalada | Pasta / categorias | Última edição |
 |---:|---|---|---|---|---|
-| 011 | Aeronautics Player Tilt | `aero_player_tilt-0.2.0.jar` | `0.2.0` | `Addons + Cosmetic + Create` | 18/09/2026 - 08:51 |
-| 012 | Create Aeronautics and Connected Fluid Vessel Compatability | `aeroconnectedfluidvessel-1.0.0.jar` | `1.0.0` | `Create + Utility & QoL` | 18/09/2026 - 15:31 |
-| 013 | Copycats+ aeronautics weight | `aerocopycats-1.1.1.jar` | `1.1.1` (distribuição/filename); metadata interna `1.1.0` | `Addons + Create + Utility & QoL` | 18/09/2026 - 15:31 |
-| 014 | Create Aeronautics: Compatibility | `aeronauticscompat-1.1.3.jar` | `1.1.3` | `Addons + Create + Utility & QoL` | 18/09/2026 - 15:31 |
-| 015 | Create: AeroStar Northstar Comp | `AeroStar-1.0.1.jar` | `1.0.1` | `Addons + Create` | 18/09/2026 - 15:31 |
-| 016 | Create: Aeroworks | `aeroworks-1.5.0.jar` | `1.5.0` | `Addons + Create + Technology + Utility & QoL` | 18/09/2026 - 15:31 |
-| 017 | AI Improvements: Performance Tuning | `AI-Improvements-1.21-0.5.3.jar` | `0.5.3` | `Mobs + Server Utility` | 18/09/2026 - 15:31 |
-| 018 | Create Aeronautics: Alcubierre | `alcubierre-1.2.6.jar` | `1.2.6` | `Addons + Create` | 18/09/2026 - 15:31 |
-| 019 | Alex's Caves Continued | `alexscaves-1.0.10-neoforge+1.21.1.jar` | `1.0.10` | `World Gen` | 16/09/2026 - 19:09 |
-| 020 | Alex's Delight | `alexsdelight-1.6.jar` | `1.6` | `Addons + Food` | 18/09/2026 - 15:31 |
-| 021 | Alex's Mobs Continued | `alexsmobs-2.1.13-neoforge+1.21.1.jar` | `2.1.13` | `Mobs` | 16/09/2026 - 19:09 |
-| 022 | Almost Unified | `almostunified-neoforge-1.21.1-1.4.2.jar` | `1.21.1-1.4.2` | `API and Library + KubeJS + Ores and Resources + Processing + Server Utility` | 18/09/2026 - 15:31 |
-| 023 | Alshanex's Familiars | `alshanex_familiars-1.21.1_v4.0.3.jar` | `1.21.1_v4.0.3` | `Addons + Magic + Mobs` | 18/09/2026 - 15:31 |
-| 024 | Alternate Current | `alternate_current-mc1.21-1.9.0.jar` | `1.9.0` | `Redstone + Server Utility + Technology + Utility & QoL` | 19/09/2026 - 12:06 |
-| 025 | AmbientSounds 6 | `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` | `6.3.8` | `Miscellaneous` | 19/09/2026 - 12:06 |
-| 026 | Amendments | `amendments-1.21-2.1.10-neoforge.jar` | `1.21-2.1.10` | `Cosmetic + Utility & QoL` | 19/09/2026 - 12:06 |
-| 027 | Amplified Nether | `Amplified_Nether_26.2_v1.2.16.jar` | `1.2.16` | `Biomes + Dimensions + World Gen` | 19/09/2026 - 12:06 |
-| 028 | Animal Husbandry | `AnimalHusbandry-neoforge-0.4.1.jar` | `0.4.1` | `Farming + Genetics + Mobs` | 19/09/2026 - 12:06 |
-| 029 | Create: Apokinetics | `apokinetics-1.0.6.jar` | `1.0.6` | `Addons + Automation + Create + Magic + Technology` | 19/09/2026 - 12:06 |
-| 030 | Apotheosis | `Apotheosis-1.21.1-8.8.0.jar` | `8.8.0` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 19/09/2026 - 12:06 |
-| 031 | Apotheotic Creation | `apotheoticcreation-2.0.0.jar` | `2.0.0` | `Automation + Create + Storage + Utility & QoL` | 19/09/2026 - 12:06 |
-| 032 | Apothic Category Compat | `apothic_compat-2.0.2.jar` | `2.0.2` | `Addons + Armor, Tools, and Weapons + Bug Fixes` | 19/09/2026 - 12:06 |
-| 033 | Apothic Compats | `apothic_compats-0.2.4.2.jar` | `0.2.4.2` | `Addons + Armor, Tools, and Weapons` | 19/09/2026 - 12:06 |
-| 034 | Apothic Attributes | `ApothicAttributes-1.21.1-2.10.1.jar` | `2.10.1` | `Adventure and RPG + API and Library` | 19/09/2026 - 16:04 |
-| 035 | Apothic Enchanting | `ApothicEnchanting-1.21.1-1.6.2.jar` | `1.6.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:04 |
-| 036 | Apothic Spawners | `ApothicSpawners-1.21.1-1.4.0.jar` | `1.4.0` | `Automation + Utility & QoL` | 19/09/2026 - 16:04 |
-| 037 | AppleSkin | `appleskin-neoforge-mc1.21-3.0.9.jar` | `3.0.9+mc1.21` | `Food + Map and Information` | 19/09/2026 - 16:05 |
-| 038 | Apprentice's Codex | `apprentice_codex-0.9.7.1+mc1.21.1.jar` | `0.9.7.1` | `Addons + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:05 |
-| 039 | Architectury API | `architectury-13.0.11-neoforge.jar` | `13.0.11` | `API and Library` | 19/09/2026 - 16:05 |
-| 040 | Ars Additions | `ars_additions-1.21.1-21.3.0.jar` | `1.21.1-21.3.0` | `Addons + Magic + Storage + Utility & QoL` | 19/09/2026 - 16:05 |
-| 041 | Ars Controle | `ars_controle-1.21.1-1.6.16.jar` | `1.21.1-1.6.16` | `Addons + Magic` | 19/09/2026 - 16:05 |
-| 042 | Ars Creo | `ars_creo-1.21.1-5.4.0.jar` | `5.4.0` | `Magic + Technology` | 19/09/2026 - 16:05 |
-| 043 | Ars Elemancy | `ars_elemancy-1.21.1-1.18.3.jar` | `1.18.3` | `Addons + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:06 |
-| 044 | Ars Elemental | `ars_elemental-1.21.1-0.7.10.1.jar` | `0.7.10.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 17:09 |
-| 045 | Ars Hex Unity | `ars_hex-1.21.1-5.0.4b.jar` | `5.0.4b` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 17:09 |
-| 046 | Ars 'n' Spells | `ars_n_spells-3.3.4.jar` | `3.3.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 18/09/2026 - 08:51 |
-| 047 | Ars Nouveau | `ars_nouveau-1.21.1-5.13.1.jar` | `5.13.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Mobs` | 19/09/2026 - 17:09 |
-| 048 | Ars Polymorphia | `ars_polymorphia-1.0.3.jar` | `1.0.3` | `Addons + Magic + Storage + Utility & QoL` | 19/09/2026 - 17:10 |
-| 049 | Ars Sable | `ars_sable-1.21.1-1.1.2.jar` | `1.1.2` | `Addons + API and Library + Magic + Utility & QoL` | 19/09/2026 - 17:11 |
-| 050 | Ars Technica | `ars_technica-1.21.1-2.7.6.jar` | `2.7.6` | `Armor, Tools, and Weapons + Magic + Technology + Utility & QoL` | 19/09/2026 - 17:10 |
-| 051 | Ars Nouveau: Two-Way Portals (with immersive portal support) | `ars_two_way_portals-2.0.0.jar` | `2.0.0` | `Addons` | 19/09/2026 - 17:10 |
-| 052 | Ars Zero | `ars_zero-1.21.1-2.0.2.jar` | `2.0.2` | `Addons + Cosmetic + Magic + Technology` | 19/09/2026 - 17:10 |
-| 053 | Ars Nouveau's Flavors & Delight | `arsdelight-2.2.2.jar` | `2.2.2` | `Addons + Farming + Food + Magic` | 19/09/2026 - 17:10 |
-| 054 | Sophisticated Storage: Ars Compat \| Sophisticated Storage Ars-Nouveau Compatibility | `arssophisticatedcompat-0.3.0.jar` | `0.3.0` | `Magic + Storage + Utility & QoL` | 19/09/2026 - 18:06 |
-| 055 | Artifacts | `artifacts-neoforge-13.2.5.jar` | `13.2.5` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Structures` | 19/09/2026 - 18:06 |
-| 056 | Asterism Arcanum \| Addon for Iron's Spells and Spellbooks | `asterismarcanum-1.21.1-0.1.0.jar` | `1.21.1-0.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 18:06 |
-| 057 | Athena | `athena-neoforge-1.21.1-4.0.6.jar` | `4.0.6` | `API and Library + Utility & QoL` | 19/09/2026 - 18:06 |
-| 058 | Atlas API | `atlas_api-1.21.1-1.2.0.jar` | `1.21.1-1.2.0` | `API and Library` | 19/09/2026 - 18:06 |
-| 059 | AttributeFix | `attributefix-neoforge-1.21.1-21.1.3.jar` | `21.1.3` | `Bug Fixes + Utility & QoL` | 19/09/2026 - 18:06 |
-| 060 | Azimuth API | `azimuth-1.4.8.jar` | `1.4.8` | `Addons + API and Library + Create` | 18/09/2026 - 10:38 |
-| 061 | AzureLib | `azurelib-neo-1.21.1-3.1.11.jar` | `3.1.11` | `API and Library` | 19/09/2026 - 18:06 |
-| 062 | Create: Backpack Pixel | `backpack_pixel-1.2.0-neoforge-1.21.1.jar` | `1.2.0` | `Addons + Armor, Tools, and Weapons + Create + Storage + Technology` | 19/09/2026 - 18:06 |
-| 063 | Backported Spells: Iron's Spells x Vanilla Backport | `backportedspellbooks-0.1.2.jar` | `0.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 18:23 |
-| 077 | Create: Bits 'n' Bobs | `bits_n_bobs-2.3.5.jar` | `2.3.5` | `Addons + Cosmetic + Create + Utility & QoL` | 18/09/2026 - 10:11 |
-| 080 | BlockUI | `blockui-1.0.212-1.21.1-snapshot.jar` | `1.0.212-1.21.1-snapshot` | `API and Library` | 18/09/2026 - 08:51 |
+| 010 | Aeronautics Player Tilt | `aero_player_tilt-0.2.0.jar` | `0.2.0` | `Addons + Cosmetic + Create` | 18/09/2026 - 08:51 |
+| 011 | Create Aeronautics and Connected Fluid Vessel Compatability | `aeroconnectedfluidvessel-1.0.0.jar` | `1.0.0` | `Create + Utility & QoL` | 18/09/2026 - 15:31 |
+| 012 | Copycats+ aeronautics weight | `aerocopycats-1.1.1.jar` | `1.1.1` (distribuição/filename); metadata interna `1.1.0` | `Addons + Create + Utility & QoL` | 18/09/2026 - 15:31 |
+| 013 | Create Aeronautics: Compatibility | `aeronauticscompat-1.1.3.jar` | `1.1.3` | `Addons + Create + Utility & QoL` | 18/09/2026 - 15:31 |
+| 014 | Create: AeroStar Northstar Comp | `AeroStar-1.0.1.jar` | `1.0.1` | `Addons + Create` | 18/09/2026 - 15:31 |
+| 015 | Create: Aeroworks | `aeroworks-1.5.0.jar` | `1.5.0` | `Addons + Create + Technology + Utility & QoL` | 18/09/2026 - 15:31 |
+| 016 | AI Improvements: Performance Tuning | `AI-Improvements-1.21-0.5.3.jar` | `0.5.3` | `Mobs + Server Utility` | 18/09/2026 - 15:31 |
+| 017 | Create Aeronautics: Alcubierre | `alcubierre-1.2.6.jar` | `1.2.6` | `Addons + Create` | 18/09/2026 - 15:31 |
+| 018 | Alex's Caves Continued | `alexscaves-1.0.10-neoforge+1.21.1.jar` | `1.0.10` | `World Gen` | 16/09/2026 - 19:09 |
+| 019 | Alex's Delight | `alexsdelight-1.6.jar` | `1.6` | `Addons + Food` | 18/09/2026 - 15:31 |
+| 020 | Alex's Mobs Continued | `alexsmobs-2.1.13-neoforge+1.21.1.jar` | `2.1.13` | `Mobs` | 16/09/2026 - 19:09 |
+| 021 | Almost Unified | `almostunified-neoforge-1.21.1-1.4.2.jar` | `1.21.1-1.4.2` | `API and Library + KubeJS + Ores and Resources + Processing + Server Utility` | 18/09/2026 - 15:31 |
+| 022 | Alshanex's Familiars | `alshanex_familiars-1.21.1_v4.0.3.jar` | `1.21.1_v4.0.3` | `Addons + Magic + Mobs` | 18/09/2026 - 15:31 |
+| 023 | Alternate Current | `alternate_current-mc1.21-1.9.0.jar` | `1.9.0` | `Redstone + Server Utility + Technology + Utility & QoL` | 19/09/2026 - 12:06 |
+| 024 | AmbientSounds 6 | `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` | `6.3.8` | `Miscellaneous` | 19/09/2026 - 12:06 |
+| 025 | Amendments | `amendments-1.21-2.1.10-neoforge.jar` | `1.21-2.1.10` | `Cosmetic + Utility & QoL` | 19/09/2026 - 12:06 |
+| 026 | Amplified Nether | `Amplified_Nether_26.2_v1.2.16.jar` | `1.2.16` | `Biomes + Dimensions + World Gen` | 19/09/2026 - 12:06 |
+| 027 | Animal Husbandry | `AnimalHusbandry-neoforge-0.4.1.jar` | `0.4.1` | `Farming + Genetics + Mobs` | 19/09/2026 - 12:06 |
+| 028 | Create: Apokinetics | `apokinetics-1.0.6.jar` | `1.0.6` | `Addons + Automation + Create + Magic + Technology` | 19/09/2026 - 12:06 |
+| 029 | Apotheosis | `Apotheosis-1.21.1-8.8.0.jar` | `8.8.0` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 19/09/2026 - 12:06 |
+| 030 | Apotheotic Creation | `apotheoticcreation-2.0.0.jar` | `2.0.0` | `Automation + Create + Storage + Utility & QoL` | 19/09/2026 - 12:06 |
+| 031 | Apothic Category Compat | `apothic_compat-2.0.2.jar` | `2.0.2` | `Addons + Armor, Tools, and Weapons + Bug Fixes` | 19/09/2026 - 12:06 |
+| 032 | Apothic Compats | `apothic_compats-0.2.4.2.jar` | `0.2.4.2` | `Addons + Armor, Tools, and Weapons` | 19/09/2026 - 12:06 |
+| 033 | Apothic Attributes | `ApothicAttributes-1.21.1-2.10.1.jar` | `2.10.1` | `Adventure and RPG + API and Library` | 19/09/2026 - 16:04 |
+| 034 | Apothic Enchanting | `ApothicEnchanting-1.21.1-1.6.2.jar` | `1.6.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:04 |
+| 035 | Apothic Spawners | `ApothicSpawners-1.21.1-1.4.0.jar` | `1.4.0` | `Automation + Utility & QoL` | 19/09/2026 - 16:04 |
+| 036 | AppleSkin | `appleskin-neoforge-mc1.21-3.0.9.jar` | `3.0.9+mc1.21` | `Food + Map and Information` | 19/09/2026 - 16:05 |
+| 037 | Apprentice's Codex | `apprentice_codex-0.9.7.1+mc1.21.1.jar` | `0.9.7.1` | `Addons + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:05 |
+| 038 | Architectury API | `architectury-13.0.11-neoforge.jar` | `13.0.11` | `API and Library` | 19/09/2026 - 16:05 |
+| 039 | Ars Additions | `ars_additions-1.21.1-21.3.0.jar` | `1.21.1-21.3.0` | `Addons + Magic + Storage + Utility & QoL` | 19/09/2026 - 16:05 |
+| 040 | Ars Controle | `ars_controle-1.21.1-1.6.16.jar` | `1.21.1-1.6.16` | `Addons + Magic` | 19/09/2026 - 16:05 |
+| 041 | Ars Creo | `ars_creo-1.21.1-5.4.0.jar` | `5.4.0` | `Magic + Technology` | 19/09/2026 - 16:05 |
+| 042 | Ars Elemancy | `ars_elemancy-1.21.1-1.18.3.jar` | `1.18.3` | `Addons + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:06 |
+| 043 | Ars Elemental | `ars_elemental-1.21.1-0.7.10.1.jar` | `0.7.10.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 17:09 |
+| 044 | Ars Hex Unity | `ars_hex-1.21.1-5.0.4b.jar` | `5.0.4b` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 17:09 |
+| 045 | Ars 'n' Spells | `ars_n_spells-3.3.4.jar` | `3.3.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 18/09/2026 - 08:51 |
+| 046 | Ars Nouveau | `ars_nouveau-1.21.1-5.13.1.jar` | `5.13.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Mobs` | 19/09/2026 - 17:09 |
+| 047 | Ars Polymorphia | `ars_polymorphia-1.0.3.jar` | `1.0.3` | `Addons + Magic + Storage + Utility & QoL` | 19/09/2026 - 17:10 |
+| 048 | Ars Sable | `ars_sable-1.21.1-1.1.2.jar` | `1.1.2` | `Addons + API and Library + Magic + Utility & QoL` | 19/09/2026 - 17:11 |
+| 049 | Ars Technica | `ars_technica-1.21.1-2.7.6.jar` | `2.7.6` | `Armor, Tools, and Weapons + Magic + Technology + Utility & QoL` | 19/09/2026 - 17:10 |
+| 050 | Ars Nouveau: Two-Way Portals (with immersive portal support) | `ars_two_way_portals-2.0.0.jar` | `2.0.0` | `Addons` | 19/09/2026 - 17:10 |
+| 051 | Ars Zero | `ars_zero-1.21.1-2.0.2.jar` | `2.0.2` | `Addons + Cosmetic + Magic + Technology` | 19/09/2026 - 17:10 |
+| 052 | Ars Nouveau's Flavors & Delight | `arsdelight-2.2.2.jar` | `2.2.2` | `Addons + Farming + Food + Magic` | 19/09/2026 - 17:10 |
+| 053 | Sophisticated Storage: Ars Compat \| Sophisticated Storage Ars-Nouveau Compatibility | `arssophisticatedcompat-0.3.0.jar` | `0.3.0` | `Magic + Storage + Utility & QoL` | 19/09/2026 - 18:06 |
+| 054 | Artifacts | `artifacts-neoforge-13.2.5.jar` | `13.2.5` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Structures` | 19/09/2026 - 18:06 |
+| 055 | Asterism Arcanum \| Addon for Iron's Spells and Spellbooks | `asterismarcanum-1.21.1-0.1.0.jar` | `1.21.1-0.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 18:06 |
+| 056 | Athena | `athena-neoforge-1.21.1-4.0.6.jar` | `4.0.6` | `API and Library + Utility & QoL` | 19/09/2026 - 18:06 |
+| 057 | Atlas API | `atlas_api-1.21.1-1.2.0.jar` | `1.21.1-1.2.0` | `API and Library` | 19/09/2026 - 18:06 |
+| 058 | AttributeFix | `attributefix-neoforge-1.21.1-21.1.3.jar` | `21.1.3` | `Bug Fixes + Utility & QoL` | 19/09/2026 - 18:06 |
+| 059 | Azimuth API | `azimuth-1.4.8.jar` | `1.4.8` | `Addons + API and Library + Create` | 18/09/2026 - 10:38 |
+| 060 | AzureLib | `azurelib-neo-1.21.1-3.1.11.jar` | `3.1.11` | `API and Library` | 19/09/2026 - 18:06 |
+| 061 | Create: Backpack Pixel | `backpack_pixel-1.2.0-neoforge-1.21.1.jar` | `1.2.0` | `Addons + Armor, Tools, and Weapons + Create + Storage + Technology` | 19/09/2026 - 18:06 |
+| 062 | Backported Spells: Iron's Spells x Vanilla Backport | `backportedspellbooks-0.1.2.jar` | `0.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 18:23 |
+| 063 | Balm | `balm-neoforge-1.21.1-21.0.65.jar` | `21.0.65` | `API and Library` | 19/09/2026 - 21:35 |
+| 064 | Battle Arts - API | `battle_arts_api-21.17.7-mc1.21.1-neoforge.jar` | `21.17.7` | `Addons + API and Library` | 19/09/2026 - 21:35 |
+| 065 | BCLib: New Dawn | `bclib-21.0.26.jar` | `21.0.26` | `API and Library + Biomes + Utility & QoL + World Gen` | 19/09/2026 - 21:35 |
+| 066 | Create: Bells & Whistles | `bellsandwhistles-0.4.7-1.21.1.jar` | `0.4.7-1.21.1` | `Cosmetic + Create + Player Transport + Technology + Utility & QoL` | 19/09/2026 - 21:35 |
+| 067 | Better Advanced Tooltips | `better-advanced-tooltips-2101.1.0-build.5.jar` | `2101.1.0-build.5` | `API and Library + Map and Information + Utility & QoL` | 19/09/2026 - 21:35 |
+| 068 | Better Library | `better_lib-neoforge-1.21.1-1.0.111.jar` | `1.0.111` | `API and Library + Server Utility + Utility & QoL` | 19/09/2026 - 21:35 |
+| 069 | Better Modlist | `better_modlist-21.1.1.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 19/09/2026 - 21:35 |
+| 070 | BetterEnd: New Dawn | `BetterEnd-21.0.34.jar` | `21.0.34` | `Biomes + Cosmetic + Mobs + Structures + World Gen` | 19/09/2026 - 21:35 |
+| 071 | Better Fps - Render Distance | `betterfpsdist-1.21.1-6.1.jar` | `6.1` | `Cosmetic + Miscellaneous` | 19/09/2026 - 21:46 |
+| 072 | Epic Fight - Better lock on | `betterlockon-2.0.8-neoforge.jar` | `2.0.8-neoforge` | `Addons + Adventure and RPG` | 19/09/2026 - 21:35 |
+| 073 | BetterNether: New Dawn | `BetterNether-21.0.26.jar` | `21.0.26` | `Biomes + Cosmetic + Mobs + Structures + World Gen` | 19/09/2026 - 23:37 |
+| 074 | Create: Big Contraptions | `bigcontraptions-neoforge-1.0.jar` | `1.0` | `Create + Utility & QoL` | 19/09/2026 - 23:37 |
+| 075 | Biolith | `biolith-neoforge-3.0.14.jar` | `3.0.14` | `Biomes + World Gen` | 19/09/2026 - 23:37 |
+| 076 | Create: Bits 'n' Bobs | `bits_n_bobs-2.3.5.jar` | `2.3.5` | `Addons + Cosmetic + Create + Utility & QoL` | 18/09/2026 - 10:11 |
+| 077 | BjornLib | `bjornlib-neoforge-1.0.88-1.21.1.jar` | `1.0.88` | `API and Library` | 19/09/2026 - 23:37 |
+| 078 | Bosses'Rise - Epic Souls like boss fights | `block_factorys_bosses-2.1.2-neo-1.21.1.jar` | `2.1.2` | `Adventure and RPG + Armor, Tools, and Weapons + Mobs + Structures + World Gen` | 19/09/2026 - 23:37 |
+| 079 | BlockUI | `blockui-1.0.212-1.21.1-snapshot.jar` | `1.0.212-1.21.1-snapshot` | `API and Library` | 18/09/2026 - 08:51 |
+| 080 | Bloodlines - A Vampirism Addon | `bloodlines-1.21-3.0.9.jar` | `1.21-3.0.9` | `Magic` | 19/09/2026 - 23:37 |
+| 081 | Bosses of Mass Destruction [Forge \| NeoForge] | `BOMD-NeoForge-1.21-1.3.3.jar` | `1.3.3` | `Mobs + Structures` | 19/09/2026 - 23:37 |
+| 082 | Bookshelf | `bookshelf-neoforge-1.21.1-21.1.81.jar` | `21.1.81` | `API and Library + Miscellaneous + Server Utility` | 19/09/2026 - 23:37 |
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 17/09/2026 - 23:58 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 17/09/2026 - 21:40 |
 | 123 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 16/09/2026 - 19:09 |
