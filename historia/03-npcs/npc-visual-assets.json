@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "asset_root": "historia/03-npcs/assets",
+  "policy": {
+    "portrait_master": {
+      "width": 2048,
+      "height": 2048,
+      "format": "PNG",
+      "require_native_target_resolution": true
+    },
+    "humanoid_skin": {
+      "width": 64,
+      "height": 64,
+      "format": "PNG",
+      "require_native_target_resolution": true
+    }
+  },
+  "assets": []
+}
