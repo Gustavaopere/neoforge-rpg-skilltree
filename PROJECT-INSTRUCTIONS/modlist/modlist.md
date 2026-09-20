@@ -95,7 +95,16 @@
 | 090 | CERBON's API [Forge \| Fabric \| NeoForge] | `CerbonsAPI-NeoForge-1.21-1.3.0.jar` | `1.3.0` | `API and Library` | 20/09/2026 - 02:15 |
 | 091 | Chipped | `chipped-neoforge-1.21.1-4.0.2.jar` | `4.0.2` | `Cosmetic` | 20/09/2026 - 02:15 |
 | 092 | Chunky (Forge/NeoForge) | `Chunky-NeoForge-1.4.23.jar` | `1.4.23` | `Dimensions + Server Utility + World Gen` | 20/09/2026 - 02:15 |
-| 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 17/09/2026 - 23:58 |
+| 093 | Citadel | `citadel-2.7.1-1.21.1.jar` | `2.7.1` | `API and Library + Miscellaneous` | 20/09/2026 - 02:54 |
+| 094 | Climbable Ropes for Create Aeronautics | `climbable_ropes-2.1.3.jar` | `2.1.3` | `Addons + Create` | 20/09/2026 - 02:54 |
+| 095 | Clockwork | `clockwork-neoforge-1.21.1-1.1.4.jar` | `1.1.4` | `Cosmetic + Mobs + Technology` | 20/09/2026 - 02:54 |
+| 096 | Cloth Config API (Fabric/Forge/NeoForge) | `cloth-config-15.0.140-neoforge.jar` | `15.0.140` | `API and Library` | 20/09/2026 - 02:54 |
+| 097 | Clumps | `Clumps-neoforge-1.21.1-19.0.0.1.jar` | `19.0.0.1` | `Server Utility + Storage + Utility & QoL` | 20/09/2026 - 02:54 |
+| 098 | Cobweb | `cobweb-neoforge-1.21-1.4.0.jar` | `1.4.0` | `API and Library` | 20/09/2026 - 02:55 |
+| 099 | CodeChicken Lib 1.8.+ | `CodeChickenLib-1.21.1-4.6.1.529.jar` | `4.6.1.529` | `API and Library` | 20/09/2026 - 02:55 |
+| 100 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 20/09/2026 - 02:55 |
+| 101 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 20/09/2026 - 02:55 |
+| 102 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 20/09/2026 - 02:55 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 17/09/2026 - 21:40 |
 | 123 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 16/09/2026 - 19:09 |
 | 129 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` | `1.2.0` | `Create` | 18/09/2026 - 10:38 |
