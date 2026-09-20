@@ -9,7 +9,7 @@
 - **Categoria:** Biblioteca
 - **Função:** Biblioteca tipada de configuração para mods: preferências client-side, configurações client-side por mundo, validação/defaults/recovery, listeners/migrações e configurações server-authoritative sincronizadas aos clientes.
 - **Dependências:** Minecraft 1.21.1, NeoForge e Java 21 para o runtime top-level atual. Recursos de rede da library são opcionais; a documentação oficial permite cliente com MezzConfig conectando a servidor sem MezzConfig.
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Version drift entre o top-level 0.5.9 e a cópia JarJar 0.5.6 dentro do JEI; upstream 0.5.11 ainda não instalado; watcher/reload duplicado, state stale em world/reconnect, authority client/server e dependência indevida de packages internos.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/mezzconfig
