@@ -105,7 +105,7 @@
 | 100 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 20/09/2026 - 02:55 |
 | 101 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 20/09/2026 - 02:55 |
 | 102 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 20/09/2026 - 02:55 |
-| 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 17/09/2026 - 21:40 |
+| 103 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 20/09/2026 - 09:57 |
 | 123 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 16/09/2026 - 19:09 |
 | 129 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` | `1.2.0` | `Create` | 18/09/2026 - 10:38 |
 | 137 | Create: Colony Logistics | `create_colony_logistics-1.3.3.jar` | `1.3.3` | `Addons + Create` | 16/09/2026 - 18:42 |
