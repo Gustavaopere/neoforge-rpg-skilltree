@@ -29,6 +29,7 @@
     },
     "active-npc-asset-briefs": {
       "include": [
+        "03-npcs/principais/NPC-0001-aren-asset-brief.md",
         "03-npcs/principais/NPC-0003-iren-valmor-asset-brief.md",
         "03-npcs/principais/NPC-0004-liora-asset-brief.md",
         "03-npcs/principais/NPC-0005-oren-asset-brief.md",
