@@ -55,7 +55,16 @@
 | 051 | Ars Nouveau: Two-Way Portals (with immersive portal support) | `ars_two_way_portals-2.0.0.jar` | `2.0.0` | `Addons` | 19/09/2026 - 17:10 |
 | 052 | Ars Zero | `ars_zero-1.21.1-2.0.2.jar` | `2.0.2` | `Addons + Cosmetic + Magic + Technology` | 19/09/2026 - 17:10 |
 | 053 | Ars Nouveau's Flavors & Delight | `arsdelight-2.2.2.jar` | `2.2.2` | `Addons + Farming + Food + Magic` | 19/09/2026 - 17:10 |
+| 054 | Sophisticated Storage: Ars Compat \| Sophisticated Storage Ars-Nouveau Compatibility | `arssophisticatedcompat-0.3.0.jar` | `0.3.0` | `Magic + Storage + Utility & QoL` | 19/09/2026 - 18:06 |
+| 055 | Artifacts | `artifacts-neoforge-13.2.5.jar` | `13.2.5` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Structures` | 19/09/2026 - 18:06 |
+| 056 | Asterism Arcanum \| Addon for Iron's Spells and Spellbooks | `asterismarcanum-1.21.1-0.1.0.jar` | `1.21.1-0.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 18:06 |
+| 057 | Athena | `athena-neoforge-1.21.1-4.0.6.jar` | `4.0.6` | `API and Library + Utility & QoL` | 19/09/2026 - 18:06 |
+| 058 | Atlas API | `atlas_api-1.21.1-1.2.0.jar` | `1.21.1-1.2.0` | `API and Library` | 19/09/2026 - 18:06 |
+| 059 | AttributeFix | `attributefix-neoforge-1.21.1-21.1.3.jar` | `21.1.3` | `Bug Fixes + Utility & QoL` | 19/09/2026 - 18:06 |
 | 060 | Azimuth API | `azimuth-1.4.8.jar` | `1.4.8` | `Addons + API and Library + Create` | 18/09/2026 - 10:38 |
+| 061 | AzureLib | `azurelib-neo-1.21.1-3.1.11.jar` | `3.1.11` | `API and Library` | 19/09/2026 - 18:06 |
+| 062 | Create: Backpack Pixel | `backpack_pixel-1.2.0-neoforge-1.21.1.jar` | `1.2.0` | `Addons + Armor, Tools, and Weapons + Create + Storage + Technology` | 19/09/2026 - 18:06 |
+| 063 | Backported Spells: Iron's Spells x Vanilla Backport | `backportedspellbooks-0.1.2.jar` | `0.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 18:23 |
 | 077 | Create: Bits 'n' Bobs | `bits_n_bobs-2.3.5.jar` | `2.3.5` | `Addons + Cosmetic + Create + Utility & QoL` | 18/09/2026 - 10:11 |
 | 080 | BlockUI | `blockui-1.0.212-1.21.1-snapshot.jar` | `1.0.212-1.21.1-snapshot` | `API and Library` | 18/09/2026 - 08:51 |
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 17/09/2026 - 23:58 |
