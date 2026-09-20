@@ -5,21 +5,22 @@
 - **Mod:** Create Aeronautics: FTB Chunks
 - **Arquivo JAR:** create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar
 - **Versão 1.21.1:** 1.2.0
-- **Categoria:** Compat; Tecnologia
+- **Categoria:** Compat, Tecnologia
 - **Função:** Integra subníveis/veículos físicos do Create Aeronautics com claims, permissões e force-loading do FTB Chunks/FTB Teams.
 - **Dependências:** Obrigatórias e fisicamente presentes: Create Aeronautics 1.3.2 + FTB Chunks 2101.1.22 + FTB Teams 2101.1.11.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: claim órfão/remapeado incorretamente em ship movement, force-load/physics performance, quota, ACL stale após team changes, bypass por wrench/glue/kinetic breaker e regressão de shutdown/save em sublevels. `allow_plot_chunk_force_load` e `allow_physics_force_load` vêm OFF por padrão upstream; não assumir o estado runtime sem ler a config física. A 1.2.0 atualiza para latest Sable e corrige Save & Quit stuck, tornando shutdown/restart um regression gate explícito.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-ftb-chunks
-- **Procedência:** modlist(1).txt física atual de 18/09/2026 + runtime `create_aeronautics_ftb_chunks` 1.2.0 + CurseForge oficial da release 1.2.0 de 15/09/2026. Requirements físicos permanecem Create Aeronautics 1.3.2 + FTB Chunks 2101.1.22 + FTB Teams 2101.1.11.
+- **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_aeronautics_ftb_chunks` 1.2.0 + publicação oficial 1.2.0 de 15/09/2026 já auditada. Revalidação física/documental em 20/09/2026.
 - **Observações:** JAR físico `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar`, mod id `create_aeronautics_ftb_chunks`, runtime 1.2.0. Release oficial NeoForge 1.21.1 de 15/09/2026: update to latest Sable e fix do problema de Save & Quit ficar travado. Os settings `allow_plot_chunk_force_load` e `allow_physics_force_load` permanecem relevantes; a config física do pack é authority do estado efetivo.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 18/09/2026 — runtime físico atualizado para `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` / `1.2.0`. Release oficial NeoForge 1.21.1 de 15/09/2026: update to latest Sable e correção do problema de Save & Quit ficar travado. Defaults de force-load permanecem documentados sob authority da config física.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #128: create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar / 1.2.0 confirmados; update para Sable atual e correção de save & quit preso permanecem registrados.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** 2026-09-18 — runtime físico atualizado para 1.2.0; nenhuma decisão curatorial nova.
 - **Sobreposição:** Complementa Aeronautics e FTB Chunks; não substitui nenhum deles.
 
 > 🗺️ **ESCOPO CANÔNICO.** Runtime físico: `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar`, mod id `create_aeronautics_ftb_chunks`, versão `1.2.0`. A bridge aplica claims/permissões/force-loading do FTB Chunks a ships/sublevels de Create Aeronautics. A 1.2.0 atualiza para latest Sable e corrige o problema de Save & Quit ficar travado.
+
 ## 1. Contraption Claim Block
 O bloco central é o **Contraption Claim Block** colocado no ship. Sua tela permite:
 - claim/unclaim dos chunks do ship para o FTB team;
