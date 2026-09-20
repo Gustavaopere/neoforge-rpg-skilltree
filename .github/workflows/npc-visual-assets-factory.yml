@@ -1,0 +1,45 @@
+name: NPC Visual Asset Policy
+
+on:
+  pull_request:
+    paths:
+      - 'historia/03-npcs/npc-visual-assets.json'
+      - 'historia/03-npcs/assets/**'
+      - 'historia/03-npcs/principais/*-asset-brief.md'
+      - '.github/workflows/npc-visual-assets-factory.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'historia/03-npcs/npc-visual-assets.json'
+      - 'historia/03-npcs/assets/**'
+      - 'historia/03-npcs/principais/*-asset-brief.md'
+      - '.github/workflows/npc-visual-assets-factory.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-npc-visual-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      FACTORY_SHA: 1b7c64e43e1e470c846fc4ef02fbfb9a038f2ad5
+      MANIFEST: historia/03-npcs/npc-visual-assets.json
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Checkout RPG content
+        uses: actions/checkout@v7
+
+      - name: Checkout pinned Factory art tooling
+        uses: actions/checkout@v7
+        with:
+          repository: Gustavaopere/minecraft-mod-factory
+          ref: ${{ env.FACTORY_SHA }}
+          path: .factory
+          persist-credentials: false
+
+      - name: Validate NPC visual asset manifest
+        run: >-
+          python3 .factory/art/tooling/validate_npc_visual_assets.py
+          --manifest "$MANIFEST"
+          --repo-root .
