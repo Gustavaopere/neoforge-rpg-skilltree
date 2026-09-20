@@ -85,6 +85,16 @@
 | 080 | Bloodlines - A Vampirism Addon | `bloodlines-1.21-3.0.9.jar` | `1.21-3.0.9` | `Magic` | 19/09/2026 - 23:37 |
 | 081 | Bosses of Mass Destruction [Forge \| NeoForge] | `BOMD-NeoForge-1.21-1.3.3.jar` | `1.3.3` | `Mobs + Structures` | 19/09/2026 - 23:37 |
 | 082 | Bookshelf | `bookshelf-neoforge-1.21.1-21.1.81.jar` | `21.1.81` | `API and Library + Miscellaneous + Server Utility` | 19/09/2026 - 23:37 |
+| 083 | Born in Chaos | `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar` | `1.7.6` | `Adventure and RPG + Armor, Tools, and Weapons + Mobs + Structures + World Gen` | 20/09/2026 - 02:14 |
+| 084 | Butchercraft | `butchercraft-2.6.5.jar` | `2.6.5` | `Food` | 20/09/2026 - 02:14 |
+| 085 | Caelus API | `caelus-neoforge-7.0.1+1.21.1.jar` | `7.0.1+1.21.1` | `API and Library` | 20/09/2026 - 02:14 |
+| 086 | Cataclysm: Spellbooks | `cataclysm_spellbooks-1.1.14-1.21.jar` | `1.1.14-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 20/09/2026 - 02:14 |
+| 087 | Cataclysm x YUNG's Better Nether Fortresses Compat | `cataclysmfortresses-1.21.1-NeoForge.jar` | `1.21.1` | `Addons + Bug Fixes` | 20/09/2026 - 02:14 |
+| 088 | Create Big Cannons: Advanced Technologies | `cbc_at_Neoforge_1.21.1_0.1.4c.jar` | `0.1.4c-1.21.1` | `Armor, Tools, and Weapons + Create` | 20/09/2026 - 02:15 |
+| 089 | CBC: Advanced technologies crash fix | `cbcatfix-1.21.1-neoforge-1.0.1.jar` | `1.0.0` | `Addons + Create` | 20/09/2026 - 02:15 |
+| 090 | CERBON's API [Forge \| Fabric \| NeoForge] | `CerbonsAPI-NeoForge-1.21-1.3.0.jar` | `1.3.0` | `API and Library` | 20/09/2026 - 02:15 |
+| 091 | Chipped | `chipped-neoforge-1.21.1-4.0.2.jar` | `4.0.2` | `Cosmetic` | 20/09/2026 - 02:15 |
+| 092 | Chunky (Forge/NeoForge) | `Chunky-NeoForge-1.4.23.jar` | `1.4.23` | `Dimensions + Server Utility + World Gen` | 20/09/2026 - 02:15 |
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 17/09/2026 - 23:58 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 17/09/2026 - 21:40 |
 | 123 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 16/09/2026 - 19:09 |
