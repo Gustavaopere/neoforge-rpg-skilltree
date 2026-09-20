@@ -14,7 +14,7 @@ Ambos pertencem a este repositório porque paths, headings e regras editoriais s
 ## Pin validado
 
 - Factory repository: `Gustavaopere/minecraft-mod-factory`;
-- Factory commit hardened: `55a9ad69a8316b1fa531b4c12aa88b4b70b22874`;
+- Factory commit hardened: `1b7c64e43e1e470c846fc4ef02fbfb9a038f2ad5`;
 - profile contract revision: `1`.
 
 Os workflows `.github/workflows/narrative-factory-consumer.yml` e `.github/workflows/narrative-factory-compat.yml` usam esse SHA explicitamente. Atualização do pin é uma decisão separada e revisável.
