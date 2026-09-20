@@ -1,17 +1,18 @@
 # Bookshelf
 
+> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `bookshelf-neoforge-1.21.1-21.1.81.jar`, versão `21.1.81`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81a4b909c528fd5efe4f
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
+- **Estado no pack na origem:** Integrado ao Github
+- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Auditoria de migração Notion → GitHub:** 2026-09-19
 
 ## Propriedades do banco
 
 - **Mod:** Bookshelf
-- **Arquivo JAR:** `bookshelf-neoforge-1.21.1-21.1.81.jar`
+- **Arquivo JAR:** bookshelf-neoforge-1.21.1-21.1.81.jar
 - **Versão 1.21.1:** 21.1.81
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -20,9 +21,9 @@
 - **Sobreposição:** Biblioteca técnica. Similaridade funcional com outras libraries não implica substituição binária; cada consumer determina sua necessidade.
 - **Compatibilidade/Riscos:** Riscos principais são version drift com consumidores, mixins/common lifecycle e utilidades de update/config/data sendo carregadas no lado errado. 21.1.81 corrige fallback update checker bloqueando a main thread.
 - **Observações:** 21.1.81 é release NeoForge 1.21.1 de 10/02/2026. Changelog oficial: correção do fallback update checker que podia bloquear a main thread. O projeto se define como coleção de código, frameworks, utilities e resources reutilizáveis.
-- **Procedência:** modlist.txt física atual de 08/09/2026 + CurseForge/Modrinth oficiais Bookshelf 21.1.81 + source oficial Darkhax-Minecraft/Bookshelf branch 1.21.1.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/Modrinth oficiais Bookshelf 21.1.81 + source oficial Darkhax-Minecraft/Bookshelf branch 1.21.1 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `bookshelf-neoforge-1.21.1-21.1.81.jar` / `21.1.81`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bookshelf
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — Bookshelf 21.1.81 físico/release confirmado; library/consumer contracts, lifecycle/side e fix do fallback update checker bloqueando main thread preservados. Runtime QA não executado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #83: `bookshelf-neoforge-1.21.1-21.1.81.jar` / `21.1.81` conferidos contra a modlist atual; library/consumer contracts, lifecycle/side e fix do fallback update checker preservados.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria reconfirmou Bookshelf 21.1.81 como biblioteca/framework de infraestrutura e preservou os riscos de version drift, observabilidade e classloading. A presença física não foi convertida em decisão de manter/remover.
 - **Data da última decisão:** não definida
 
@@ -136,3 +137,4 @@ Evitar mascarar causa com catch genérico em compat própria.
 - changelog 21.1.81: fix do fallback update checker bloqueando a main thread.
 
 > 📚 Exaustividade proporcional: Bookshelf é library. A ficha cataloga contracts de dependência, lifecycle, side e a regressão concreta da 21.1.81 sem fabricar gameplay ou APIs internas não auditadas.
+
