@@ -17,7 +17,7 @@
 - **Observações:** mod id `creategbd`; runtime 1.3.7.1b. Basic Turret: um hostile em alcance documentado de 17 blocos; Advanced: até 10 hostiles no mesmo raio. Beam Reactor Helmet usa beam contínuo e durability. Turret charge time depende da rotação Create.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime `creategbd` 1.3.7.1b + Modrinth/CurseForge oficiais da release 1.3.7.1b e descrição oficial já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `Create-Guardian-Beam-Defense-1.3.7.1b-1.21.1-neoforge.jar` / `1.3.7.1b`; `sable-companion-common-1.21.1-1.4.2.jar` continua embedded e não top-level.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create Guardian Beam Defense 1.3.7.1b foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #120: `Create-Guardian-Beam-Defense-1.3.7.1b-1.21.1-neoforge.jar` / `1.3.7.1b` conferidos contra a modlist atual; turret/ownership/targeting authority, kinetic charge rate, Sable behavior e XP/loot attribution preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #120: `Create-Guardian-Beam-Defense-1.3.7.1b-1.21.1-neoforge.jar` / `1.3.7.1b` reconfirmados; turret/ownership/targeting authority, kinetic charge rate, Sable behavior e XP/loot attribution permanecem atuais.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
