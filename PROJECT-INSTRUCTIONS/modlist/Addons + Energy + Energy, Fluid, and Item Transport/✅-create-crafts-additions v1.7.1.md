@@ -5,16 +5,16 @@
 - **Mod:** Create Crafts & Additions
 - **Arquivo JAR:** createaddition-1.7.1.jar
 - **Versão 1.21.1:** 1.7.1
-- **Categoria:** Tecnologia; Automação; Compat
+- **Categoria:** Tecnologia, Automação, Compat
 - **Função:** Ponte FE↔cinética Create com Electric Motor, Alternator, Servo Motor, Rolling Mill, wires/connectors, Accumulator, Portable Energy Interface e demais dispositivos elétricos próprios.
 - **Dependências:** Pack físico: NeoForge 21.1.250 + Create 6.0.10. Linha 1.7.x possui suporte Sable/Connector; pack contém Sable 2.0.5, Create Aeronautics 1.3.2, Sinytra Connector 2.0.0-beta.17 e Sable Create Addition Compat 0.1.13.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** 1.7.1 é Beta intencional. Riscos: loops FE↔kinetic, endpoint/cache stale, Accumulator split/merge, PEI dupe em contraption, Servo Motor lifecycle, Electric Pump transfer/state, hooks Sable duplicados com bridge 0.1.13 e overlap energético com Create: New Age. Release 1.6.0 permanece fallback estável documentado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/createaddition
-- **Procedência:** modlist(1).txt física atual de 18/09/2026 + runtime `createaddition` 1.7.1 + CurseForge oficial da Beta 1.7.1 para NeoForge 1.21.1, publicada em 15/09/2026, com changelog oficial.
+- **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `createaddition` 1.7.1 + CurseForge oficial da Beta 1.7.1 para NeoForge 1.21.1, publicada em 15/09/2026, com changelog oficial.
 - **Observações:** JAR/mod id/runtime 1.7.1 confirmados. Changelog oficial 1.7.1: Electric Pump block + various bug fixes. A 1.7.0 permanece baseline histórica de Servo Motor e improved Sable/Connector support.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 18/09/2026 — runtime físico atualizado para `createaddition-1.7.1.jar` / `1.7.1`. A Beta oficial NeoForge 1.21.1 de 15/09/2026 adiciona Electric Pump e registra various bug fixes. Baseline 1.7.0 de Servo Motor + suporte Sable/Connector permanece preservada.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #166: `createaddition-1.7.1.jar` / `1.7.1` confirmados. A Beta oficial NeoForge 1.21.1 de 15/09/2026 adiciona Electric Pump e various bug fixes; baseline 1.7.0 de Servo Motor + suporte Sable/Connector permanece preservada.
 - **Decisão:** Manter
 - **Histórico da decisão:** 2026-09-06 — presença e versão 1.7.0 aprovadas como escolha intencional do stack Sable/Connector. Pesquisa fechada; manter fallback 1.6.0 documentado, sem alterar versão física sem nova modlist. 2026-09-18 — runtime físico atualizado para 1.7.1; decisão `Manter` preservada. O fallback 1.6.0 continua apenas como referência estável histórica, sem downgrade automático.
 - **Sobreposição:** Create: New Age 1.2.0 cobre parte do domínio elétrico. Sable Create Addition Compat 0.1.13 também toca integração Sable; suporte nativo 1.7.0 não prova redundância total do bridge. Decisão Manter preservada.
@@ -22,6 +22,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 > ⚡ **Identidade física confirmada:** `createaddition-1.7.1.jar`, mod id `createaddition`, runtime `1.7.1`, NeoForge 1.21.1. O pack físico usa Create 6.0.10 e NeoForge 21.1.250. A release 1.7.1 foi publicada como Beta em 15/09/2026.
+
 ## 1. Papel e authority
 Create Crafts & Additions (CC&A) é uma ponte tecnológica entre **FE** e a cinética do Create. O addon owns suas máquinas elétricas, rede de wires/connectors, energy storage e itens próprios. Create continua owner da rede cinética/stress; NeoForge capabilities e os providers FE continuam owners do armazenamento/transferência elétrica que expõem.
 ## 2. Electric Motor — FE → kinetic
@@ -110,5 +111,5 @@ Todo persistent state deve convergir para uma única quantidade de energia/posi�
 - [ ] Restart/chunk unload preserva network/FE state.
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 23. Evidências e limites
-A modlist física de 18/09/2026 confirma JAR/runtime 1.7.1, NeoForge 21.1.250 e o stack Sable/Aeronautics/Connector. A publicação oficial confirma que 1.7.1 é Beta, adiciona Electric Pump e inclui various bug fixes; a 1.7.0 permanece baseline histórica de Servo Motor + improved Sable/Connector support. A documentação pública confirma as principais máquinas/superfícies; parâmetros não pinados por config/source específico permanecem sob authority do runtime.
+A modlist física de 16/09/2026 confirma JAR/runtime 1.7.1, NeoForge 21.1.250 e o stack Sable/Aeronautics/Connector. A publicação oficial confirma que 1.7.1 é Beta, adiciona Electric Pump e inclui various bug fixes; a 1.7.0 permanece baseline histórica de Servo Motor + improved Sable/Connector support. A documentação pública confirma as principais máquinas/superfícies; parâmetros não pinados por config/source específico permanecem sob authority do runtime.
 > 🔒 **Boundary canônico:** CC&A owns a ponte FE↔kinetic e sua rede elétrica; Create owns kinetics; providers FE own suas capabilities. A decisão formal **Manter** e o fallback 1.6.0 são preservados; suporte Sable nativo não torna automaticamente o bridge externo redundante.
