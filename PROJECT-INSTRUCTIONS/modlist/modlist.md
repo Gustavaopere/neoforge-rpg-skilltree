@@ -106,8 +106,17 @@
 | 101 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 20/09/2026 - 02:55 |
 | 102 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 20/09/2026 - 02:55 |
 | 103 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 20/09/2026 - 09:57 |
-| 123 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 16/09/2026 - 19:09 |
-| 129 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` | `1.2.0` | `Create` | 18/09/2026 - 10:38 |
+| 122 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 20/09/2026 - 14:29 |
+| 123 | Create: New Age | `create-new-age-1.2.0+neoforge-mc1.21.1.jar` | `1.2.0+mc1.21.1` | `Addons + Create + Technology` | 20/09/2026 - 15:42 |
+| 124 | Create Stuff 'N Additions | `create-stuff-additions1.21.1_v2.1.4b.jar` | `2.1.4b (distribuição); metadata interna 2.1.4.` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 20/09/2026 - 15:42 |
+| 125 | Create Utilities J | `Create-Utilities-J-1.21.1-0.3.4+1.21.1.jar` | `0.3.4+1.21.1` | `Automation + Create` | 20/09/2026 - 15:42 |
+| 126 | Create Aero Radars | `create_aero_radar-0.1.1-1.21.1.jar` | `0.1.1-1.21.1` | `Create + Technology` | 20/09/2026 - 15:42 |
+| 127 | Create Aeronautics: Automated Logistics | `create_aeronautics_automated_logistics-0.6.2.jar` | `0.6.2` | `Addons + Automation + Create` | 20/09/2026 - 15:42 |
+| 128 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` | `1.2.0` | `Create` | 20/09/2026 - 15:42 |
+| 129 | Create Aeronautics: Throwable Rope Connector | `create_aeronautics_throwable_rope_connector-0.4.3.jar` | `0.4.3` | `Addons + Create + Utility & QoL` | 20/09/2026 - 15:43 |
+| 130 | create aeronautics：toolgun | `create_aeronautics_toolgun-0.3.6.jar` | `0.3.6` | `Utility & QoL` | 20/09/2026 - 15:43 |
+| 131 | Create Aeronautics: Transmission & Linkage | `create_aeronautics_transmission_linkage-0.2.8.jar` | `0.2.8` | `Create + Technology` | 20/09/2026 - 15:43 |
+| 132 | Create: Aquatic Ambitions | `create_aquatic_ambitions-1.21.1-2.0.4.jar` | `2.0.4` | `Armor, Tools, and Weapons + Automation + Create + Ores and Resources` | 20/09/2026 - 15:43 |
 | 137 | Create: Colony Logistics | `create_colony_logistics-1.3.3.jar` | `1.3.3` | `Addons + Create` | 16/09/2026 - 18:42 |
 | 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 17/09/2026 - 10:58 |
 | 167 | Create Crafts & Additions | `createaddition-1.7.1.jar` | `1.7.1` | `Addons + Energy + Energy, Fluid, and Item Transport` | 18/09/2026 - 10:38 |
