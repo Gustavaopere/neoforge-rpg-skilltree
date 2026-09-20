@@ -1,6 +1,7 @@
 # Bosses'Rise
 
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `block_factorys_bosses-2.1.2-neo-1.21.1.jar`, versão `2.1.2`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+> **Ordem física atual:** #78 na `modlist(1).txt` de 586 mods top-level. O ordinal #79 embutido em `Atualização/Status` é histórico do snapshot Notion de 11/09/2026 e permanece apenas como conteúdo de paridade; para ordem do pack, a modlist física atual é a autoridade.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na origem:** Integrado ao Github

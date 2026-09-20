@@ -1,6 +1,7 @@
 # Bloodlines
 
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `bloodlines-1.21-3.0.9.jar`, versão `1.21-3.0.9`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+> **Ordem física atual:** #80 na `modlist(1).txt` de 586 mods top-level. O ordinal #81 embutido em `Atualização/Status` é histórico do snapshot Notion de 11/09/2026 e permanece apenas como conteúdo de paridade; para ordem do pack, a modlist física atual é a autoridade.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na origem:** Integrado ao Github
