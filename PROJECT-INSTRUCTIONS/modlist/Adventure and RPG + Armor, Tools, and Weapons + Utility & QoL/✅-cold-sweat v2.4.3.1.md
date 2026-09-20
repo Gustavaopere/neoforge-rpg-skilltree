@@ -1,25 +1,23 @@
 # Cold Sweat
 
-> **Reauditoria física — 17/09/2026.** Versão catalogada atual: `2.4.3.1`. O conteúdo abaixo foi reconstruído a partir da página Notion reconciliada e da autoridade física atual; a URL da própria página Notion foi deliberadamente omitida.
-
 ## Propriedades do registro
 
 - **Mod:** Cold Sweat
-- **Arquivo JAR:** ColdSweat-2.4.3.1.jar
-- **Versão 1.21.1:** 2.4.3.1
+- **Arquivo JAR:** `ColdSweat-2.4.3.1.jar`
+- **Versão 1.21.1:** `2.4.3.1`
 - **Categoria:** Clima
+- **Decisão:** Manter
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat
 - **Função:** Sistema principal de temperatura corporal do pack: calcula conforto térmico a partir de ambiente e estado do jogador, oferece insulation e dispositivos/itens térmicos como Hearth, Boiler, Icebox, Waterskin e Thermometer.
 - **Dependências:** Provider térmico principal. Create: Cold Sweat e Thirst Was Reclaimed permanecem integrations relevantes; a modlist física atual contém Create 6.0.10 e Thirst Was Reclaimed 3.0.5. Suporte upstream antigo ao external heater do Immersive Engineering não implica integração ativa se IE estiver ausente.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Authority de temperatura corporal; evitar double-application por outros providers. Riscos em insulation, block temperature emitters, dimension/death lifecycle, Create/Sable moving objects, KubeJS configs e integrations. 2.4.3 altera block-temperature internals e corrige Create tanks/pipes, Sable contraptions, build-limit e outros casos; 2.4.3.1 corrige crash sem Create.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat
-- **Procedência:** modlist física de 16/09/2026 + CurseForge/changelog oficial Cold Sweat 2.4.3 e 2.4.3.1 + dossiê Notion anterior 2.4.2. Nenhum runtime test executado.
-- **Observações:** mod id `cold_sweat`; runtime 2.4.3.1. O JAR 2.4.2 anteriormente auditado embarcava Sable Companion 1.4.2; o conteúdo jar-in-jar interno do novo JAR 2.4.3.1 não foi re-inspecionado nesta passagem, portanto essa versão interna não é promovida como fato atual.
-- **Atualização/Status:** READITADO EM 17/09/2026 — runtime físico atualizado de 2.4.2 para 2.4.3.1. Deltas 2.4.3 e hotfix 2.4.3.1 incorporados; decisão `Manter` preservada.
-- **Decisão:** Manter
-- **Histórico da decisão:** Mantido formalmente em 22/08/2026 como sistema principal de temperatura corporal. O compat antigo Cold Sweat and Aeronautics foi removido, mas Cold Sweat permanece provider térmico principal. Em 08/09/2026, a decisão foi preservada e a ficha reconciliada à build física 2.4.2 atual.
 - **Sobreposição:** Cold Sweat controla temperatura corporal. Estações, clima visual, chuva/neve e outros efeitos ambientais podem coexistir, mas não devem liquidar uma segunda temperatura corporal sem integração explícita.
+- **Observações:** mod id `cold_sweat`; runtime 2.4.3.1. O JAR 2.4.2 anteriormente auditado embarcava Sable Companion 1.4.2; o conteúdo jar-in-jar interno do novo JAR 2.4.3.1 não foi re-inspecionado nesta passagem, portanto essa versão interna não é promovida como fato atual.
+- **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge/changelog oficial Cold Sweat 2.4.3 e 2.4.3.1 + dossiê Notion anterior 2.4.2. Reconciliação final: JAR/runtime permanecem exatamente `ColdSweat-2.4.3.1.jar` / `2.4.3.1`; nenhum runtime test executado nesta auditoria documental.
+- **Histórico da decisão:** Mantido formalmente em 22/08/2026 como sistema principal de temperatura corporal. O compat antigo Cold Sweat and Aeronautics foi removido, mas Cold Sweat permanece provider térmico principal. Em 08/09/2026, a decisão foi preservada e a ficha reconciliada à build física 2.4.2 atual.
+- **Atualização/Status:** READITADO EM 20/09/2026 — reconciliação final física #101: `ColdSweat-2.4.3.1.jar` / `2.4.3.1` reconfirmados contra a modlist atual. Deltas 2.4.3 e hotfix 2.4.3.1 permanecem incorporados; decisão `Manter` preservada.
 - **Data da última decisão:** 2026-08-22
 
 # Dossiê operacional — padrão Alex's Mobs
