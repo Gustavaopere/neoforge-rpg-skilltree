@@ -3,24 +3,25 @@
 ## Propriedades do registro
 
 - **Mod:** Companions!
-- **Arquivo JAR:** companions-neoforge-1.21.1-1.3.4.jar
-- **Versão 1.21.1:** 1.3.4
+- **Arquivo JAR:** `companions-neoforge-1.21.1-1.3.4.jar`
+- **Versão 1.21.1:** `1.3.4`
 - **Categoria:** Mobs; RPG; Exploração
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/companions-mod
 - **Função:** Mod de conteúdo que adiciona criaturas domesticáveis chamadas companions, cada uma com habilidades próprias, além de mobs hostis, armas, boss e progressão/combate associados.
 - **Dependências:** NeoForge 1.21.1; KnightLib 2.0.0+ pela compatibilidade da 1.3.4. Pack físico usa KnightLib 2.0.1. JEI permanece recomendado para descoberta de recipes; nenhuma outra hard dependency foi promovida sem metadata explícita.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Interage com tame/owner AI, summons, healing, combat cooldowns, target selection, boss/spawn, animação e KnightLib. Gates herdados: cooldown infinito, hostile imps, Dinamo e Puppet Cannon. 1.3.3 corrige Demon Flesh/JER; 1.3.4 adiciona KnightLib 2.0.0+ e tenta corrigir Mutated/Holy Teddy e Golden Allay atravessando terreno.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/companions-mod
-- **Procedência:** modlist física de 17/09/2026 + CurseForge oficial Companions! 1.3.4 NeoForge 1.21.1 + changelogs 1.3.2, 1.3.3 e 1.3.4.
-- **Observações:** mod id companions; runtime 1.3.4. Pack usa KnightLib 2.0.1. A 1.3.4 é a build física atual e mantém os estados/ownership/healing/summons já documentados.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — Companions! atualizado para 1.3.4; KnightLib 2.0.x, Demon Flesh/JER e fixes de entidades atravessando terreno incorporados; regressões anteriores preservadas.
-- **Decisão:** Sem decisão
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Companions! 1.3.2 foi reconfirmado fisicamente e reconstruído ao padrão técnico. A presença do conteúdo no pack não foi convertida em decisão automática de manter/remover.
 - **Sobreposição:** Compartilha eixos de pets/mobs/RPG com outros mods, mas suas entidades, abilities, boss, weapons e healing economy são provider-owned. Integrações devem evitar double damage/heal/summon settlement.
+- **Observações:** mod id companions; runtime 1.3.4. Pack usa KnightLib 2.0.1. A 1.3.4 é a build física atual e mantém os estados/ownership/healing/summons já documentados.
+- **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Companions! 1.3.4 NeoForge 1.21.1 + changelogs 1.3.2, 1.3.3 e 1.3.4 já auditados. Reconciliação final: JAR/runtime permanecem exatamente `companions-neoforge-1.21.1-1.3.4.jar` / `1.3.4`; sem divergência física.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Companions! 1.3.2 foi reconfirmado fisicamente e reconstruído ao padrão técnico. A presença do conteúdo no pack não foi convertida em decisão automática de manter/remover.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #103: `companions-neoforge-1.21.1-1.3.4.jar` / `1.3.4` conferidos contra a modlist atual; KnightLib 2.0.x, Demon Flesh/JER, fixes de entidades atravessando terreno e regressões anteriores preservados.
+- **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
-> Versão física confirmada: `companions-neoforge-1.21.1-1.3.4.jar`, mod id `companions`, runtime `1.3.4`, NeoForge 1.21.1. Companions! é um **provider de entidades domesticáveis, summons, mobs hostis, armas e boss**, não apenas uma camada cosmética de pets.
+> 🐾 Versão física confirmada: `companions-neoforge-1.21.1-1.3.4.jar`, mod id `companions`, runtime `1.3.4`, NeoForge 1.21.1. Companions! é um **provider de entidades domesticáveis, summons, mobs hostis, armas e boss**, não apenas uma camada cosmética de pets.
 ## 1. Papel e authority
 Companions! adiciona criaturas domesticáveis com abilities próprias, mobs hostis, armas e um boss. O mod controla identidade, AI, tame/owner state, abilities, healing e lifecycle de suas entidades.
 Integrações externas de RPG/combat devem observar o resultado final do provider em vez de reaplicar damage, heal, summon ou target selection.
@@ -96,4 +97,4 @@ Owner IDs, current target, cooldown e summon references não podem ficar stale e
 - changelog 1.3.2: fixes de cooldown, imps, Dinamo e Puppet Cannon stakes;
 - changelog 1.3.3: minimum KnightLib 1.6.2 e fix de Demon Flesh/JER;
 - changelog 1.3.4: compatibilidade com KnightLib 2.0.0+ e tentativa de fix para Mutated/Holy Teddy e Golden Allay atravessando o terreno.
-> Boundary canônico: Companions! controla **entidades, ownership, AI, summons e abilities próprias**. Integrações externas devem observar esse state, não criar um segundo sistema de pet/combate concorrente.
+> 🛡️ Boundary canônico: Companions! controla **entidades, ownership, AI, summons e abilities próprias**. Integrações externas devem observar esse state, não criar um segundo sistema de pet/combate concorrente.
