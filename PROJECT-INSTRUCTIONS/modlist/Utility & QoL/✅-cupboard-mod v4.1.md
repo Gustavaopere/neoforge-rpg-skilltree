@@ -1,13 +1,11 @@
 # Cupboard mod
 
-> **Reauditoria física — 17/09/2026.** Versão catalogada atual: `4.1`. O conteúdo abaixo foi reconstruído a partir da página Notion reconciliada e da autoridade física atual; a URL da própria página Notion foi deliberadamente omitida.
-
 ## Propriedades do registro
 
 - **Mod:** Cupboard mod
-- **Arquivo JAR:** cupboard-1.21.1-4.1.jar
-- **Versão 1.21.1:** 4.1
-- **Categoria:** Biblioteca; QoL
+- **Arquivo JAR:** `cupboard-1.21.1-4.1.jar`
+- **Versão 1.21.1:** `4.1`
+- **Categoria:** Biblioteca, QoL
 - **Função:** Biblioteca/utilitário compartilhado que fornece frameworks e helpers para mods consumidores, incluindo configuração JSON e rotas de diagnóstico/proteção usadas pelo ecossistema do autor.
 - **Dependências:** Library Client & Server; sua necessidade é consumer-driven. Não remover enquanto consumidores instalados a exigirem. Nenhuma dependência externa obrigatória adicional foi inferida para a build 4.1.
 - **Estado no pack:** Integrado ao Github

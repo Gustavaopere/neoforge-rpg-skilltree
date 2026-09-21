@@ -3,9 +3,9 @@
 ## Propriedades do registro
 
 - **Mod:** Creating Space
-- **Arquivo JAR:** creatingspace-1.21.1-1.7.22.jar
-- **Versão 1.21.1:** 1.7.22
-- **Categoria:** Exploração; Tecnologia
+- **Arquivo JAR:** `creatingspace-1.21.1-1.7.22.jar`
+- **Versão 1.21.1:** `1.7.22`
+- **Categoria:** Exploração, Tecnologia
 - **Função:** Addon espacial de Create em que foguetes são construídos como contraptions e usados para viajar a outros planetas, com proposta de projeto inspirada em engenharia/ciência em vez de veículos prontos.
 - **Dependências:** Create 6.x obrigatório; pack físico usa NeoForge 21.1.248 + Create 6.0.10. Build 1.7.22 é Client & Server para NeoForge 1.21.1. Integrações/datapacks externos permanecem condicionais à presença física específica.
 - **Estado no pack:** Integrado ao Github
