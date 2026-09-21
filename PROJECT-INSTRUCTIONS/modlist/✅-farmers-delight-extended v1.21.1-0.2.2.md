@@ -27,6 +27,7 @@ Farmer's Delight: Extended é uma bridge/expansão de recipes entre Farmer's Del
 - **Farmer's Delight:** ingredients, foods, cooking/cutting/workstation semantics base.
 - **Create:** processing/kinetic automation e recipe types Create.
 - **Extended:** recipes de ponte e pequenos conteúdos necessários à integração que sua build realmente registra.
+
 O addon não deve liquidar um processamento em duas máquinas ao mesmo tempo nem redefinir o item provider.
 ## 3. Dependências físicas
 Farmer's Delight 1.3.4 e Create 6.0.10 estão presentes no pack. A metadata física do addon inclui o prefixo de Minecraft na versão (`1.21.1-0.2.2`), enquanto a release pública costuma ser apresentada como `0.2.2`; manter ambas sem normalização indevida.
@@ -59,6 +60,7 @@ Dois jogadores/automations não podem concluir a mesma recipe duas vezes. Invent
 8. output balanceado para versão anterior das bases;
 9. machine recipe type renomeado por update;
 10. classificar Extended como content mod amplo e duplicar sua função em mod próprio.
+
 ## 14. Matriz de testes
 1. Dedicated server boot com Create 6.0.10 + FD 1.3.4.
 2. Dump/JEI das recipes `farmersdelight_extended` efetivamente registradas.
@@ -70,9 +72,11 @@ Dois jogadores/automations não podem concluir a mesma recipe duas vezes. Invent
 8. `/reload` e reteste.
 9. Dois jogadores/duas máquinas concorrentes.
 10. Comparar recipes contra Central Kitchen e demais compats.
+
 **Esta catalogação não afirma que esses testes foram executados.**
 ## 15. Evidências
 - modlist física canônica: JAR/mod id/metadata version/hash + Create/FD atuais;
 - CurseForge oficial Farmer's Delight: Extended 0.2.2 para NeoForge 1.21.1: função de bridge de recipes e foco sem novos crops/mobs;
 - estado do pack para identificar overlaps concretos.
+
 > **Boundary canônico:** Extended é authority apenas das **recipes de integração que registra**; Create controla a automação/máquinas e Farmer's Delight controla o conteúdo culinário base.

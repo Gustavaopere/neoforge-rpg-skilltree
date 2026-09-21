@@ -26,6 +26,7 @@ FerriteCore é um mod de performance/memória. Ele reduz RAM através de dedupli
 ## 2. Authority / ownership
 - **Minecraft/mods de conteúdo:** continuam authority de blockstates, models, data components e gameplay data.
 - **FerriteCore:** altera representação/cache/deduplicação interna para consumir menos memória.
+
 Ele não deve mudar registry IDs, block properties, item components ou resultado de gameplay.
 ## 3. Superfícies físicas da build
 A modlist registra mixins/configs da 7.0.3 relacionados a `modelsides`, `mrl`, `dedupbakedquad`, `threaddetec`, `datacomponents`, `blockstatecache`, `dedupmultipart`, `accessors`, `fastmap` e `predicates`.
@@ -61,6 +62,7 @@ ModernFix tem interseções de lifecycle/resources, justificando regressão comb
 8. update ModernFix mudar dynamic-resource contract;
 9. corrupção visual difícil de atribuir por ser otimização transversal;
 10. remover FerriteCore sem medir impacto de RAM/startup.
+
 ## 14. Matriz de testes
 1. Dedicated server cold boot.
 2. Client cold boot com medição de tempo e heap.
@@ -72,9 +74,11 @@ ModernFix tem interseções de lifecycle/resources, justificando regressão comb
 8. Dimension change e reconnect.
 9. Comparativo A/B de memória sem FerriteCore em cópia de teste.
 10. Smoke-test após update de ModernFix/Aeronautics/Supplementaries.
+
 **Esta catalogação não afirma que esses testes foram executados.**
 ## 15. Evidências
 - modlist física canônica: JAR/mod id/version/hash e mixin configs;
 - CurseForge oficial 7.0.3: release NeoForge 1.21.1 e changelog de data-component memory + ModernFix dynamic resources;
 - issues oficiais `malte0811/FerriteCore` sobre Create: Aeronautics e Supplementaries, registrados apenas como reports a reproduzir.
+
 > **Boundary canônico:** FerriteCore otimiza a **representação/memória**, nunca deve se tornar authority do conteúdo que está deduplicando ou compactando.

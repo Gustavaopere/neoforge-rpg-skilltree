@@ -25,6 +25,7 @@ FastSuite é um mod de performance para o sistema de recipes JSON. Na linha inst
 - **Minecraft/mod provider:** define recipes, ingredients, outputs e semantics de cada recipe type.
 - **FastSuite:** otimiza a forma de procurar/matchear recipes; não altera intencionalmente o resultado correto da recipe.
 - **Recipe consumers como Create/FD/KubeJS:** continuam authority de seus recipes e processamento.
+
 Qualquer divergência de resultado é bug/regressão, não comportamento aceitável de performance.
 ## 3. Arquitetura 4.1→6.x
 O changelog oficial registra que a linha 4.1 substituiu o antigo linked-list cache por **Concurrent Recipe Matching**. A concorrência é ativada automaticamente para recipe types com mais de 100 recipes, com blacklist configurável e timeout máximo para evitar deadlock em worker threads.
@@ -41,6 +42,7 @@ A linha concorrente possui controles para blacklist de recipe types problemátic
 - **6.0.4:** corrigiu Stack Overflow por chamada incorreta de super em `getRecipeFor`;
 - **6.0.6:** corrigiu data race em `Ingredient#stackingIds`;
 - **6.0.7:** corrigiu problema severo de performance na combinação FastSuite + ModernFix + AE2JEIIntegration.
+
 A build física está no fim dessa linha de correções.
 ## 7. Relação com o pack atual
 O pack possui **ModernFix**, KubeJS e milhares de recipes de numerosos addons. AE2 foi removido do design atual, mas a correção 6.0.7 continua parte da build. KubeJS e recipes customizadas são surfaces que justificam regressão específica.
@@ -63,6 +65,7 @@ ModernFix pode tocar recipe/resources/cache lifecycle; FerriteCore mira memória
 8. combinação com ModernFix alterar timing/lifecycle;
 9. erro de matching produzir recipe incorreta — severidade maior que perda de performance;
 10. usar documentação 7.x/indexed matching como se fosse 6.0.7.
+
 ## 13. Matriz de testes
 1. Dedicated server boot com KubeJS + ModernFix.
 2. `/reload` repetido e craft antes/depois.
@@ -74,9 +77,11 @@ ModernFix pode tocar recipe/resources/cache lifecycle; FerriteCore mira memória
 8. Monitorar exceptions de worker/data race/deadlock.
 9. Comparar outputs com FastSuite temporariamente desabilitado em ambiente de teste.
 10. Medir lookup/startup sem alterar correctness.
+
 **Esta catalogação não afirma que esses testes foram executados.**
 ## 14. Evidências
 - modlist física canônica: JAR/mod id/version/hash;
 - CurseForge oficial: `FastSuite-1.21.1-6.0.7.jar`, release 1.21.1;
 - source/changelog oficial `Shadows-of-Fire/FastSuite` branch 1.21: arquitetura concorrente, thread-safe classifiers e correções 6.0.0–6.0.7.
+
 > **Boundary canônico:** FastSuite pode mudar **como** recipes são encontradas, nunca **qual recipe é válida nem qual output pertence ao provider**.

@@ -27,6 +27,7 @@ Farmer's Spell 'n Spellbooks é uma bridge/content addon entre Farmer's Delight 
 - **Farmer's Delight:** cooking framework, recipes base, feast/food semantics e estações que o addon reutiliza.
 - **Iron's Spells:** spell registry, mana, cooldown, spell container e casting pipeline.
 - **Farmer's Spell:** School of Gluttony, spells/items/foods/blocos e recipes que registra.
+
 Uma recipe mágica não cria uma terceira authority para mana/casting, e um alimento mágico não deve liquidar food/effect duas vezes.
 ## 3. Conteúdo source-confirmed da linha 1.21.1
 A árvore 1.21.1 contém blocos como `AlchemistPotBlock`, `AmethystBeetrootBlock`, `CinderousStoveBlock`, `EdenAppleTartBlock`, `GluttonHotchpotchBlock`, `IcebreakerBreadBlock`, `PumpkinSoupBlock`, `RedVelvetCakeBlock`, `SaingeziChickenBlock` e `WisewoodCabinetBlock`, além de BlockEntities para Alchemist Pot, Cinderous Stove e storage/cabinet correspondente.
@@ -65,6 +66,7 @@ A integração primária é Farmer's Delight 1.3.4 ↔ Iron's Spells 3.16.3. Out
 8. Create automation usar tag ampla e escolher ingredient errado;
 9. client particle/model divergir do state real;
 10. update de Farmer's Delight alterar feast/block semantics.
+
 ## 15. Matriz de testes
 1. Dedicated server boot com as duas bases atuais.
 2. Alchemist Pot recipe e XP exatamente uma vez.
@@ -77,10 +79,12 @@ A integração primária é Farmer's Delight 1.3.4 ↔ Iron's Spells 3.16.3. Out
 9. Dois jogadores usando a mesma estação.
 10. Create automation em recipes cruzadas relevantes.
 11. Smoke-test após update de Iron's ou Farmer's Delight.
+
 **Esta catalogação não afirma que esses testes foram executados.**
 ## 16. Evidências
 - modlist física canônica: JAR/mod id/version/hash e bases presentes;
 - CurseForge oficial 1.0.5.1: release NeoForge 1.21.1, função e correção de sticky-piston dupe;
 - source oficial `GLDYM/Farmers-Spell-n-Spellbook` branch 1.21.1: classes de blocks/BlockEntities e arquitetura do addon;
 - changelog 1.0.5.0: novos conteúdos e correção de double XP.
+
 > **Boundary canônico:** Farmer's Spell é authority do **conteúdo crossover que registra**; Farmer's Delight mantém cooking/food base e Iron's Spells mantém casting/mana/spell framework.

@@ -28,6 +28,7 @@ Farmer's Delight é a base culinária/agropecuária de dezenas de addons do pack
 - **Farmer's Delight:** workstations base, recipes próprios, crops/ingredients, foods/feasts, cabinets/baskets e regras dos seus blocos/itens.
 - **Addons FD:** apenas conteúdo e recipes adicionais que registram.
 - **Create/bridges:** automação/integração das recipes, sem assumir ownership do recipe result ou food state original.
+
 Evitar substituir IDs/recipes base sem decisão explícita de pack.
 ## 3. Workstations source-confirmed
 O registry 1.21 inclui `stove`, `cooking_pot`, `skillet`, `cutting_board`, `wooden_basket` e `bamboo_basket`. Cada estação tem semantics próprias de interação/processamento. A Cooking Pot e o Cutting Board são superfícies de integração particularmente usadas por addons e automação.
@@ -47,6 +48,7 @@ Farmer's Delight usa food/feast blocks com múltiplas porções. Esses blocos ex
 A changelog oficial 1.3.4 registra:
 - correção de comportamento quebrado ao empurrar Feasts com pistons;
 - em 1.21.1+, correção do config `generateFDChestLoot`, que não desabilitava corretamente a geração adicional de loot em baús.
+
 Esses dois pontos entram explicitamente no QA local.
 ## 11. Loot e configuração
 Farmer's Delight pode injetar loot adicional em baús quando a configuração correspondente permite. O valor efetivo de `generateFDChestLoot` deve ser lido do config da instância; não assumir default como decisão do pack. Loot tables/tags/recipes precisam ser tratados como datapack data e reavaliados após reload/update.
@@ -78,6 +80,7 @@ Dois jogadores na mesma estação não podem consumir/produzir duas vezes. Conta
 10. update 1.3.x alterar contract usado por dezenas de addons;
 11. recipe-viewer mostrar recipe que server datapack removeu;
 12. confundir addon bug com bug do mod-base.
+
 ## 19. Matriz de testes
 1. Dedicated server boot com stack FD atual.
 2. Cultivo/harvest de rice, cabbage, tomato e onion.
@@ -91,10 +94,12 @@ Dois jogadores na mesma estação não podem consumir/produzir duas vezes. Conta
 10. Dois jogadores usando mesma workstation.
 11. Recipe de dough com Expanded Delight presente.
 12. Smoke-test após qualquer update de FD ou bridge principal.
+
 **Esta catalogação não afirma que esses testes foram executados.**
 ## 20. Evidências
 - modlist física canônica: JAR/mod id/version/hash;
 - CurseForge oficial: Farmer's Delight 1.3.4 para NeoForge 1.21.1 e changelog da release;
 - source oficial `vectorwing/FarmersDelight` branch 1.21: registry de workstations, crates, cabinets e building content;
 - páginas dos addons locais apenas para identificar consumers/overlaps concretos.
+
 > **Boundary canônico:** Farmer's Delight é a **base de autoridade culinária** para seus crops, foods, workstations, recipes e storage blocks; addons devem integrar-se a esses contratos sem criar state duplicado.

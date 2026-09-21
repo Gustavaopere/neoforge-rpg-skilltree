@@ -27,6 +27,7 @@ Fantasy Armor é um content mod de equipamento RPG/visual. Ele registra armadura
 - **Fantasy Armor:** itens de armadura que registra, atributos/effects configurados e assets 3D correspondentes.
 - **Minecraft/NeoForge:** slots de equipamento, armor lifecycle e damage pipeline base.
 - **Epic Fight/Cosmetic Armor/FirstPerson:** podem alterar apresentação ou leitura do equipamento, mas não devem reescrever o state do item sem bridge explícita.
+
 ## 3. Catálogo de conjuntos source-confirmed
 O enum `FAArmorSet` da árvore NeoForge 1.21.1 lista 29 conjuntos: Eclipse Soldier, Dragonslayer, Hero, Golden Horns, Thief, Wandering Wizard, Chess Board Knight, Dark Lord, Sunset Wings, Fog Guard, Dark Cover, Spark of Dawn, Golden Execution, Forgotten Trace, Redeemer, Twinned, Gilded Hunt, Lady Maria, Crucible Knight, Evening Ghost, Ronin, Malenia, Old Knight, Silver Knight, Dead Gladiator, Flesh of the Feaster, Wind Worshipper, Grave Sentinel e Ornstein.
 O registro percorre os sets e peças de armadura; não atribuir stats numéricos universais sem ler o config efetivo.
@@ -45,6 +46,7 @@ Equip/unequip, troca rápida de peça, death/respawn, durability/break e reload 
 - **Cosmetic Armor Reworked:** separa visual de armadura funcional; validar qual slot determina aparência e qual item continua authority dos stats.
 - **FirstPerson 2.7.2:** corpo em primeira pessoa aumenta a chance de clipping de modelos 3D.
 - Player model/animation stack e resource packs também precisam de smoke-test visual.
+
 Nenhuma dessas relações implica dependência hard.
 ## 9. Client / Server
 **Servidor:** item equipado, durability, atributos, efeitos e qualquer consequência gameplay.
@@ -65,6 +67,7 @@ Outro cliente deve enxergar o set correto sem influenciar os stats do wearer. Eq
 8. set update alterar registry IDs;
 9. client/server divergirem sobre equipment state;
 10. tratar os 29 sets como mero cosmético e ignorar seus contracts gameplay.
+
 ## 13. Matriz de testes
 1. Dedicated server boot.
 2. Equip completo de amostras de sets com stats conferidos no servidor.
@@ -77,9 +80,11 @@ Outro cliente deve enxergar o set correto sem influenciar os stats do wearer. Eq
 9. Dois jogadores observando armor swap.
 10. Resource reload e shader/resource-pack stack.
 11. Alteração controlada dos dois configs e restart.
+
 **Esta catalogação não afirma que esses testes foram executados.**
 ## 14. Evidências
 - modlist física canônica: JAR/mod id/version/hash;
 - CurseForge oficial: release NeoForge 1.21.1 e natureza de armor content mod;
 - source oficial `kend1e/FANTASY-ARMOR`, árvore `appNeoForge/1.21.1`: `FAArmorSet`, `FAArmorItems`, `FAItems`, creative tab e configs de attributes/effects.
+
 > **Boundary canônico:** Fantasy Armor é authority dos **itens, stats/effects configurados e assets dos próprios sets**; outros mods podem renderizar ou consumir esse state, mas não devem criar uma segunda fonte de verdade.

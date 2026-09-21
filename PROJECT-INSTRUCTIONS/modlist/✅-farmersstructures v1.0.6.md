@@ -27,6 +27,7 @@ FarmersStructures é um content/worldgen addon tematizado em Farmer's Delight. E
 - **FarmersStructures:** templates/structure placement, loot/blocks próprios que registrar e integração temática das estruturas.
 - **Farmer's Delight:** itens, crops, foods e mechanics FD usados nas construções/loot.
 - **Minecraft/worldgen stack:** placement final por chunk/biome e coexistência com outras structures.
+
 A estrutura não deve criar uma cópia paralela das mechanics FD.
 ## 3. Escopo publicado da 1.0.6
 A changelog da 1.0.6 anuncia **40 novas estruturas** nesta atualização e cita exemplos como cat house, flower beds, pond with frogs e blacksmith workshop com mina. Materiais públicos também descrevem o projeto como um grande conjunto de estruturas Farmer's Delight.
@@ -62,6 +63,7 @@ Explorer's Compass pode localizar estruturas registradas quando compatíveis com
 8. server/client pack divergente;
 9. MCreator-generated registrations causarem conflito de ID apenas se houver evidência concreta;
 10. remover o mod deixando chunks com conteúdo órfão.
+
 ## 14. Matriz de testes
 1. Dedicated server new world.
 2. Gerar grande amostra de chunks e medir densidade.
@@ -73,9 +75,11 @@ Explorer's Compass pode localizar estruturas registradas quando compatíveis com
 8. Existing world gerando chunks novos.
 9. `/reload` e restart.
 10. Smoke-test de spacing contra outros grandes structure packs.
+
 **Esta catalogação não afirma que esses testes foram executados.**
 ## 15. Evidências
 - modlist física canônica: JAR/mod id/version/hash e marker MCreator;
 - CurseForge oficial 1.0.6: release NeoForge 1.21.1, função e changelog com 40 novas estruturas/exemplos;
 - Farmer's Delight 1.3.4 fisicamente presente como provider temático.
+
 > **Boundary canônico:** FarmersStructures controla **worldgen/structures e loot que registra**; Farmer's Delight continua authority dos foods, blocks e workstations usados nelas.

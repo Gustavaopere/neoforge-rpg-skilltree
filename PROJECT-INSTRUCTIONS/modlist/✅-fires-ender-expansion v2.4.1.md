@@ -27,6 +27,7 @@ Fire's Ender Expansion é um addon de Iron's Spells 'n Spellbooks focado em magi
 - **Iron's Spells:** spell framework, school plumbing, mana, cooldown, spell containers e casting lifecycle.
 - **Fire's Ender Expansion:** spells, effects, entities, structures, curios/armor e regras específicas que registra.
 - **Minecraft/worldgen:** lifecycle de chunks/structures.
+
 Bridges externas não devem duplicar Anchored, recasts, domain transport, projectile hits ou spell damage.
 ## 3. Contagem de spells — divergência documentada
 A descrição pública do CurseForge ainda fala em **10 Ender spells**, porém a auditoria do source pin correspondente à linha instalada identificou **11 spells ativos**, todos Ender. Pela hierarquia canônica, o source matching tem precedência sobre a descrição pública desatualizada.
@@ -44,6 +45,7 @@ A auditoria anterior do mesmo commit confirmou contratos como:
 - prison ligada a teleport boundary;
 - Binary Stars com dual debuff;
 - dash com retorno.
+
 Esses contracts são mais úteis para integração que uma lista temática de nomes.
 ## 5. Source architecture
 A árvore pinada contém `VoidDimensionManager`, `NovaBurnDamageSource`, `VoidSureHitDamageSource`, matcher de effects por dimensão, config/common + client config, compat JEI e subsistemas de spell/entities. Isso confirma que o addon possui state/transport/damage próprios além de partículas cosméticas.
@@ -53,6 +55,7 @@ No source pin:
 - **Nova Burn** é aplicado com amplifier 0 embora um cálculo de dano use amplifier diretamente, ponto a testar;
 - o blast de **Scintillating Stride** não possui filtro provider-side explícito de self/allies no trecho auditado;
 - **Infinite Void** possui fallback de retorno ao Overworld em `0,100,0` se a origem falhar.
+
 Esses pontos são riscos QA, não afirmação de bug reproduzido.
 ## 7. Conteúdo adicional publicado
 A página oficial divulga duas estruturas, três curios, um Ender Mage/NPC e um novo armor set além das spells. O registry físico/source deve ser consultado antes de codificar IDs concretos em integrações próprias.
@@ -87,6 +90,7 @@ Iron's Spells 3.16.3 é base direta. Epic Fight/animation compats podem tocar ap
 10. public docs 10 spells vs source 11 causar catálogo errado;
 11. structure/worldgen drift em chunks novos;
 12. outro compat aplicar damage/effect novamente.
+
 ## 17. Matriz de testes
 1. Dedicated server com Iron's 3.16.3.
 2. Smoke-test dos 11 spell IDs do source pin.
@@ -100,10 +104,12 @@ Iron's Spells 3.16.3 é base direta. Epic Fight/animation compats podem tocar ap
 10. Death/logout/dimension change durante state persistente.
 11. Multiplayer com dois observers e uma única liquidação por hit.
 12. Structures/loot em chunks novos.
+
 **Esta catalogação não afirma que esses testes foram executados.**
 ## 18. Evidências
 - modlist física canônica: JAR/mod id/version/hash;
 - source matching pin `5e4067e...`: registry/architecture/contracts e edge cases auditados;
 - CurseForge oficial 2.4.1: release NeoForge 1.21.1 e conteúdo divulgado;
 - Iron's Spells físico 3.16.3 para registrar version drift real.
+
 > **Boundary canônico:** Fire's Ender Expansion é authority dos **spells/contents Ender que registra**; Iron's Spells continua authority do framework de casting, mana e cooldown.

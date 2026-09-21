@@ -28,6 +28,7 @@ FirstPerson (First-person Model) renderiza o corpo/modelo de terceira pessoa do 
 - **FirstPerson:** composição/render local do player body em first-person.
 - **Not Enough Animations:** pode fornecer animações de terceira pessoa mais adequadas ao modelo visível.
 - **Epic Fight:** controla seu battle-mode/player animation framework quando ativo.
+
 FirstPerson nunca deve ser authority de hit, reach, damage ou equip state.
 ## 3. Modelo de operação
 O projeto reaproveita o third-person player model e o apresenta a partir da câmera first-person. Isso torna compatibilidade com mods de player model/render uma questão de transform/culling, não de state gameplay.
@@ -61,6 +62,7 @@ A renderização é local. O client não envia autoridade de pose/hitbox extra. 
 8. shader/culling esconder partes erradas;
 9. config/keybind reset após update;
 10. confundir posição visual da arma com hitbox/reach lógico.
+
 ## 14. Matriz de testes
 1. First-person baseline parado/caminhando/correndo.
 2. F6 on/off e Vanilla Hands.
@@ -73,10 +75,12 @@ A renderização é local. O client não envia autoridade de pose/hitbox extra. 
 9. Death/respawn e dimension change.
 10. Multiplayer: client com e sem FirstPerson.
 11. Resource pack/shader real do pack.
+
 **Esta catalogação não afirma que esses testes foram executados.**
 ## 15. Evidências
 - modlist física canônica: JAR/mod id/version/hash + JarJar internas TRender/TRansition;
 - projeto oficial First-person Model: client-only, body em first-person, F6, Vanilla Hands e recomendações de animation compat;
 - auditoria existente da interação Epic Fight 21.17.3.1 ↔ FirstPerson 2.7.2;
 - Not Enough Animations presente no pack.
+
 > **Boundary canônico:** FirstPerson controla somente a **apresentação local da câmera/player model**. O servidor e os mods de gameplay continuam authority de pose lógica, hitbox, equipamento e combate.

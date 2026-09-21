@@ -47,6 +47,7 @@ O upstream documenta que full source blocks tendem a permanecer quando o sistema
 4. **Create mismatch:** pipe/hose/water-wheel usa semântica vanilla em parte do pipeline.
 5. **Sable sublevels:** transform/unload duplica ou perde fluid state.
 6. **Performance:** grandes floods e atualização de muitos níveis ampliam custo de ticks.
+
 ## 9. Boundary para quests/perks
 Fluir água, drenar uma área ou atualizar níveis por tick não é evento de Mastery por si só. Qualquer milestone deve partir de uma ação causal deduplicável e server-authoritative, nunca da simples presença visual de fluido.
 ## 10. Matriz de testes
@@ -59,6 +60,7 @@ Fluir água, drenar uma área ou atualizar níveis por tick não é evento de Ma
 - [ ] Chunk unload/reload preserva estado coerente.
 - [ ] Sublevels Sable não duplicam/perdem fluido.
 - [ ] Restart mantém config e não reativa auto-tuning indesejado.
+
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 11. Evidências e limitação
 - Modlist física: `flowing_fluids-1.0.6-1.21-neoforge.jar`; compat Sable 1.0.2 também presente.
