@@ -11,7 +11,7 @@
 - **Estado no pack:** Integrado ao Github
 - **Fonte:** https://github.com/FTBTeam/FTB-Chunks/tree/1.21.1/main
 - **Função:** Mapa/minimapa client-facing + claims, proteção e force-loading server-authoritative. Persiste team claim data em SNBT, integra FTB Teams, aplica políticas de interação/fake players e mantém APIs/eventos para claim/map/waypoints.
-- **Dependências:** FTB Library + FTB Teams. Source 2101.1.22 usa FTB Library 2101.1.34 e FTB Teams 2101.1.9; pack instala Library 2101.1.35 e Teams 2101.1.11. Architectury é dependência de build/runtime do ecossistema conforme metadata upstream.
+- **Dependências:** FTB Library + FTB Teams. Source 2101.1.22 usa FTB Library 2101.1.34 e FTB Teams 2101.1.9; pack instala Library 2101.1.36 e Teams 2101.1.11. Architectury é dependência de build/runtime do ecossistema conforme metadata upstream.
 - **Compatibilidade/Riscos:** Force-loading pode elevar ticking/CPU; fake-player protection pode bloquear automação; double-protection com outros claim systems; stale force-load cache; concorrência client map (CME corrigida em 2101.1.22); fluid/fire boundary protection opcional tem custo upstream documentado. Bridge Create Aeronautics: FTB Chunks está presente.
 - **Sobreposição:** Sobreposição com outros sistemas de mapa/claim/chunkloading é funcional, não automaticamente redundante. FTB Chunks deve permanecer autoridade dos próprios claims/protection/force-load; evitar segunda camada autorizando ou negando a mesma ação sem política explícita.
 - **Observações:** Runtime físico confirmado: FTB Chunks 2101.1.22, corrigindo metadata antiga que ainda citava 2101.1.21. Config server/world `ftbchunks-world.snbt`; team data persistido em `<world>/ftbchunks/<team UUID>.snbt`; client/local map data usa `local/ftbchunks`.
@@ -31,7 +31,7 @@
 - **Versão instalada:** `2101.1.22`.
 - **Minecraft / loader:** 1.21.1 / NeoForge.
 - **Source pin:** branch `1.21.1/main`, exatamente 2101.1.22.
-- **Dependências upstream no source:** FTB Library `2101.1.34`, FTB Teams `2101.1.9`, Architectury `13.0.8` no ambiente de build dessa release. O pack instala FTB Library 2101.1.35 e FTB Teams 2101.1.11.
+- **Dependências upstream no source:** FTB Library `2101.1.34`, FTB Teams `2101.1.9`, Architectury `13.0.8` no ambiente de build dessa release. O pack instala FTB Library 2101.1.36 e FTB Teams 2101.1.11.
 - **Authority:** FTB Teams é autoridade de identidade/equipe; FTB Chunks é autoridade de claim, proteção, limites, force-load e dados de mapa próprios; FTB Library fornece UI/config/utilidades compartilhadas.
 
 ## 2. Papel no modpack
@@ -186,7 +186,7 @@ Claims são team-owned, não simplesmente player-owned. Testar mudança de equip
 ## 14. Integrações concretas no pack
 
 - **FTB Teams 2101.1.11:** autoridade de equipes; FTB Chunks consome `FTBTeamsAPI`.
-- **FTB Library 2101.1.35:** UI/config/math/SNBT e infraestrutura compartilhada. 2101.1.21+ de FTB Chunks exige Library 2101.1.34+ por causa do panel scrolling; o pack atende.
+- **FTB Library 2101.1.36:** UI/config/math/SNBT e infraestrutura compartilhada. 2101.1.21+ de FTB Chunks exige Library 2101.1.34+ por causa do panel scrolling; o pack atende.
 - **FTB Quests:** integração indireta por ecossistema FTB e game stages/visibility pode existir, mas não presumir regras de quest sem configuração do pack.
 - **KubeJS:** `require_game_stage` cita KubeJS/Gamestages como providers possíveis para `ftbchunks_mapping`; só atua se a opção for habilitada/configurada.
 - **Create Aeronautics: FTB Chunks 1.1.1 está instalado:** bridge específica presente no pack; deve ser documentada na ficha própria e smoke-tested com claims/contraptions.
