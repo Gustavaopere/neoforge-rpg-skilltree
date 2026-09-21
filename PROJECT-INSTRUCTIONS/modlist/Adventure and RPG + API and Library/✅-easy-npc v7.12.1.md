@@ -181,3 +181,5 @@ Wand outlines da linha 7.12.0 são restritos a holder/owner/admin; outros jogado
 - changelog 7.12.0: ID/posição de preset, owner restore, import sem cópia, sound config, vehicle blocking, skin/client settings, API/conditions e piso EME 2.4.0+;
 - changelog 7.12.1: restore/import/export/preset browser/spawn state, IDs/rate-limit, batch import e UX de presets/skins.
 > **Boundary canônico:** Easy NPC Core é authority do **NPC persistente e de suas operações**. UI, renderers, model providers e combat frameworks são consumidores/adapters, não uma segunda fonte de verdade.
+
+<!-- ci-sync-trigger -->
