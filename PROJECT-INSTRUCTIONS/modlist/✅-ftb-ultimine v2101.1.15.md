@@ -11,12 +11,12 @@
 - **Estado no pack:** Integrado ao Github
 - **Fonte:** https://github.com/FTBTeam/FTB-Ultimine/tree/1.21.1/main
 - **Função:** Vein/shape mining e colheita em múltiplos blocos, com seleção extensível, custos de exhaustion/XP/cooldown, validação de ferramenta, preview client e liquidação server-authoritative.
-- **Dependências:** FTB Library; source 2101.1.15 usa baseline FTB Library 2101.1.28, Architectury 13.0.6 e NeoForge 21.1.203. Integrações upstream incluem FTB Ranks, FTB EZ Crystals e Agricraft quando presentes.
+- **Dependências:** FTB Library; source 2101.1.15 usa baseline FTB Library 2101.1.28, Architectury 13.0.6 e NeoForge 21.1.203. Integrações upstream incluem FTB Ranks, FTB EZ Crystals e Agricraft quando presentes. O pack físico atual instala FTB Library 2101.1.36.
 - **Compatibilidade/Riscos:** Riscos: seleção client divergente do servidor, bypass de claims, custo/durability incorreto em quebra parcial, merge tags amplas, custom handlers duplicados, crop dupe e XP overflow. 2101.1.15 corrige overflow para níveis \>=15466.
 - **Sobreposição:** Pode se cruzar com outros vein miners/harvesters, mas Ultimine deve ser a única authority de sua seleção e liquidação. FTB Chunks continua authority de proteção e pode negar blocos individualmente.
 - **Observações:** Defaults auditados: max_blocks 64; exhaustion_per_block 20; experience_per_block 0; require_tool false; require_valid_tool_for_block false; cooldown 0. Client preview/shape feedback não é autoridade de quebra.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ftb-ultimine-neoforge-2101.1.15.jar`, mod id `ftbultimine`, runtime `2101.1.15` e SHA-1 `c96a7cc0b52bf919660ea61c1536cebd9d5773b3`. A versão física não mudou nesta rodada; as evidências técnicas já registradas permanecem preservadas.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #291: FTB Ultimine 2101.1.15 reconfirmado; nenhuma mudança de versão física nesta rodada.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #291: FTB Ultimine 2101.1.15 reconfirmado; referências do runtime atual reconciliadas para FTB Library 2101.1.36.
 - **Data da última decisão:** 2026-08-26
 
 <callout icon="🔎" color="blue_bg">
@@ -119,7 +119,7 @@ Em área claimada, FTB Chunks ou outro sistema de proteção pode negar parte da
 
 ## 11. Integrações concretas do pack
 
-- **FTB Library 2101.1.35:** UI/config/networking.
+- **FTB Library 2101.1.36:** UI/config/networking.
 - **FTB Teams/Chunks:** podem fornecer contexto de equipe/proteção por consumidor, mas não são ownership do algoritmo Ultimine.
 - **FTB XMod Compat 21.1.11:** bridges específicas do ecossistema; validar apenas módulos realmente aplicáveis.
 - **Farmer's Delight** está no pack; single-crop/right-click harvesting e climbing-rope fixes são regression gates relevantes.
@@ -139,7 +139,7 @@ Em área claimada, FTB Chunks ou outro sistema de proteção pode negar parte da
 
 ## 13. Matriz de testes obrigatória
 
-- [ ] Dedicated server boot com Ultimine 2101.1.15 + Library 2101.1.35.
+- [ ] Dedicated server boot com Ultimine 2101.1.15 + Library 2101.1.36.
 - [ ] Cada shape seleciona apenas blocos esperados.
 - [ ] `max_blocks=64` e modifiers/ranks respeitados.
 - [ ] Require Tool / Require Valid Tool on/off.
