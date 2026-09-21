@@ -200,6 +200,23 @@
 | 240 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 21/09/2026 - 09:23 |
 | 241 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 21/09/2026 - 02:12 |
 | 242 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 21/09/2026 - 02:12 |
+| 243 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 21/09/2026 - 09:47 |
+| 244 | Epic Fight x Iron's Spells: Enhanced Animations | `efiscompat-3.1.0.jar` | `3.1.0` | `Cosmetic + Miscellaneous` | 21/09/2026 - 09:47 |
+| 246 | EMF Compat: Core | `emf_compat_core_1.21.1_2.0.0.jar` | `2.0.0` | `API and Library + Cosmetic` | 21/09/2026 - 09:47 |
+| 247 | EMF Compat: Create | `emf_compat_create_1.21.1_2.0.0.jar` | `2.0.0` | `Bug Fixes + Cosmetic` | 21/09/2026 - 09:47 |
+| 248 | EMF Compat: Iron's Spells 'n Spellbooks | `emf_compat_iron_spells_1.21.1_2.0.0.jar` | `2.0.0` | `Addons + Bug Fixes` | 21/09/2026 - 09:47 |
+| 249 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 21/09/2026 - 09:48 |
+| 250 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 21/09/2026 - 09:48 |
+| 251 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 21/09/2026 - 09:48 |
+| 252 | Enhanced Boss Bars | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 21/09/2026 - 13:22 |
+| 254 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 21/09/2026 - 10:16 |
+| 255 | [ETF] Entity Texture Features - [Fabric & Forge] | `entity_texture_features-7.2.1-1.21-neoforge.jar` | `7.2.1` | `Cosmetic + Utility & QoL` | 21/09/2026 - 10:16 |
+| 257 | EpheroLib | `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar` | `1.2.0` | `API and Library` | 21/09/2026 - 10:16 |
+| 258 | Epic Fight: Curios Compat 2.0 | `Epic Fight x Curios Compat 2.2.jar` | `2.2 (distribuição/filename); metadata runtime 1.4` | `Addons + Bug Fixes + Cosmetic` | 21/09/2026 - 10:16 |
+| 259 | Epic Fight | `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` | `21.17.3.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 21/09/2026 - 10:17 |
+| 260 | Epic Fight - Epic-API | `epic_api-21.3.1.jar` | `21.3.1` | `API and Library` | 21/09/2026 - 10:17 |
+| 261 | Minecolonies: Epicfied (Epic Colonies) | `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar` | `21.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 21/09/2026 - 10:17 |
+| 262 | Epic Fight - Mod Compat | `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` | `1.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Mobs` | 21/09/2026 - 10:17 |
 | 266 | Euphoria Patches | `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` | `1.10.5-r5.9.3-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 18/09/2026 - 08:51 |
 | 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 16/09/2026 - 19:09 |
 | 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 18/09/2026 - 10:38 |
