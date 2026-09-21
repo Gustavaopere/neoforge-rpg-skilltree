@@ -12,11 +12,11 @@
 - **Fonte:** https://github.com/ObscuriaLithium/fragmentum/tree/legacy/1.21.1
 - **Função:** Framework/core cross-platform da Obscuria Collection: abstrações de plataforma e deferred registries, config, networking/payloads, built-in packs e client registries/tooltips; não adiciona gameplay por si só.
 - **Dependências:** Runtime NeoForge 1.21.1 / Java 21. O JAR físico incorpora YACL 3.6.6+1.21.1 NeoForge, LuaJ core/JSE e dependências transitivas internas em META-INF/jarjar; não são entradas top-level.
-- **Compatibilidade/Riscos:** Riscos principais: version drift entre consumer/framework, double registration, payload mismatch, stale state após reload, mixin collision e client classloading em dedicated server; a linha 1.21.1 já teve correção upstream específica para mixin client carregado no servidor.
+- **Compatibilidade/Riscos:** Riscos principais: version drift entre consumer/framework, double registration, payload mismatch, stale state após reload, mixin collision e client classloading em dedicated server; a linha 1.21.1 já teve correção upstream específica para mixin client carregado no servidor. Upstream 5.0.0 introduz breaking changes explícitos para dependentes; não atualizar Fragmentum isoladamente no pack.
 - **Sobreposição:** Sobreposição apenas de infraestrutura com outras bibliotecas/abstrações. Não é redundância temática; remover ou substituir exige mapear consumidores reais. Evitar registro/config/networking duplicado por APIs Fragmentum e NeoForge nativo.
-- **Observações:** Runtime físico e source coincidem em Fragmentum 2.4.4 para Minecraft 1.21.1. Framework declarado como exclusivo da arquitetura Obscuria Collection, não general-purpose. YACL/LuaJ estão embarcados e não devem virar páginas top-level.
+- **Observações:** Runtime físico confirmado em Fragmentum 2.4.4 para Minecraft 1.21.1. O source oficial da linha instalada está em `legacy/1.21.1`. Upstream publicou 5.0.0 em 19/09/2026 com migração para Modern Stonecutter + Kotlin e breaking changes para dependentes; essa release não está instalada e exige validação conjunta dos consumers antes de qualquer troca física.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `fragmentum-neoforge-1.21.1-2.4.4.jar`, mod id `fragmentum`, runtime `2.4.4` e SHA-1 `09995d8f0da787acdf5df590defc8dd38cf69884`. O source oficial foi revalidado em `legacy/1.21.1`; `gradle.properties` confirma version 2.4.4 e Minecraft 1.21.1.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #286: Fragmentum 2.4.4 reconfirmado; nenhuma mudança de versão física nesta rodada.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #286: Fragmentum 2.4.4 reconfirmado. Upstream 5.0.0 (19/09/2026) identificado como atualização disponível, não instalada, com breaking changes para mods dependentes.
 - **Data da última decisão:** 2026-08-26
 
 <callout icon="🔎" color="blue_bg">
@@ -30,7 +30,7 @@
 - **Mod id:** `fragmentum`.
 - **Versão instalada:** `2.4.4`.
 - **Minecraft / loader / Java:** 1.21.1 / NeoForge / Java 21.
-- **Source pin:** branch `1.21.1`, `gradle.properties` exatamente em 2.4.4.
+- **Source pin:** branch `legacy/1.21.1`, `gradle.properties` exatamente em 2.4.4.
 - **Papel:** core/framework compartilhado pelos mods cross-platform da Obscuria Collection.
 - **Authority:** Fragmentum é autoridade apenas sobre seus contratos de framework/abstração. Conteúdo, registries e gameplay continuam pertencendo ao mod consumidor.
 
@@ -117,10 +117,14 @@ Fragmentum deve ser relacionado apenas a mods Obscuria/consumidores realmente pr
 - [ ] Config UI/client config de consumidor baseado em YACL sem tocar classes client no server.
 - [ ] Smoke test de cada mod consumidor após atualização isolada do Fragmentum.
 
-## 14. Evidências e limites
+## 14. Upstream 5.0.0 — disponível, não instalado
+
+A release **Fragmentum 5.0.0** para NeoForge 1.21.1 foi publicada em 19/09/2026. O changelog oficial informa migração para Modern Stonecutter + Kotlin e alerta explicitamente para **breaking changes** em mods dependentes. O pack físico permanece em **2.4.4**; portanto 5.0.0 não é promovido a comportamento instalado nem ao filename. Antes de atualizar o JAR físico, é obrigatório validar todos os consumers Fragmentum/Obscuria do pack em conjunto.
+
+## 15. Evidências e limites
 
 **Canônico:** modlist física atual e metadata nela extraída: JAR, mod id, versão, mixins e JarJar.
-**Source primário:** `ObscuriaLithium/fragmentum`, branch `1.21.1`, exatamente `version=2.4.4`.
-**Distribuição oficial:** CurseForge Fragmentum NeoForge, file `8707553`, release 2.4.4 de 22/08/2026 para 1.21.1.
+**Source primário:** `ObscuriaLithium/fragmentum`, branch `legacy/1.21.1`, exatamente `version=2.4.4`.
+**Distribuição oficial:** CurseForge Fragmentum NeoForge, file `8707553`, release instalada 2.4.4 de 22/08/2026 para 1.21.1. A release mais recente para 1.21.1 é 5.0.0, file `8921953`, de 19/09/2026, mas não está instalada.
 **Limite:** o projeto declara que a biblioteca é destinada à Obscuria Collection e não é general-purpose. Não listar APIs como “usadas” por um mod específico sem confirmar o consumidor.
 **Nenhum teste de runtime foi executado nesta catalogação.**
