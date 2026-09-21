@@ -33,7 +33,7 @@ O pack possui providers publicados como suportados pelo ecossistema do projeto:
 - Mowzie's Mobs `1.8.2`;
 - L_Ender's Cataclysm `3.33`;
 - Bosses of Mass Destruction `1.3.3`;
-- Alex's Mobs Continued `2.1.11`.
+- Alex's Mobs Continued `2.1.13`.
 A lista pública também menciona outros projetos, mas ausência física impede tratá-los como integrações ativas.
 ## 4. Boss support não é boss logic
 Uma barra customizada para Frostmaw, Ignis, Voidworm ou outro boss não implica alteração de entidade. Eventos de fase, invulnerabilidade, shield ou health scaling continuam pertencendo ao mod do boss.
