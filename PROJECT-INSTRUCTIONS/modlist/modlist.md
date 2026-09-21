@@ -190,6 +190,7 @@
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 17/09/2026 - 22:51 |
 | 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 17/09/2026 - 23:58 |
 | 230 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 21/09/2026 - 01:29 |
+| 233 | Dynamic Trees Addon Lib | `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` | `0.2.0-BETA03` | `Addons + API and Library + Cosmetic` | 21/09/2026 - 02:10 |
 | 234 | Dynamic Trees | `dynamictrees-neoforge-1.21.1-1.7.2.jar` | `1.7.2` | `Biomes + Cosmetic + Farming + World Gen` | 21/09/2026 - 02:10 |
 | 235 | Dynamic Trees Plus | `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` | `1.3.2` | `Addons + Biomes + Cosmetic + Farming + World Gen` | 21/09/2026 - 02:11 |
 | 236 | Create: Dynamic Village | `dynamicvillage-0.9-1.21.1.jar` | `0.9` | `Cosmetic + Create + Structures + Technology + World Gen` | 21/09/2026 - 02:11 |
