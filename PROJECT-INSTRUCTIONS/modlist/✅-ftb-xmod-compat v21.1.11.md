@@ -11,12 +11,12 @@
 - **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ftb-xmod-compat
 - **Função:** Módulo oficial de compatibilidade cruzada do ecossistema FTB. Detecta mods FTB e não-FTB presentes e habilita integrações condicionais; sozinho não adiciona gameplay útil. Na linha 1.21.1 documentada, integra FTB Quests com KubeJS, Game Stages e JEI/REI.
-- **Dependências:** Todas as integrações são soft dependencies segundo o projeto oficial. O mod inicia mesmo sem os alvos, mas só produz efeito quando os mods correspondentes estão presentes. No pack físico atual estão presentes FTB Quests 2101.1.36, KubeJS 2101.7.2-build.374 e JEI 19.53.0.426.
+- **Dependências:** Todas as integrações são soft dependencies segundo o projeto oficial. O mod inicia mesmo sem os alvos, mas só produz efeito quando os mods correspondentes estão presentes. No pack físico atual estão presentes FTB Quests 2101.1.36, KubeJS 2101.7.2-build.377 e JEI 19.56.0.440.
 - **Compatibilidade/Riscos:** Risco principal é detecção condicional/API drift entre FTB Quests, KubeJS, JEI/REI e outros alvos. A release 21.1.11 corrige crash de startup quando TooManyRecipeViewers se apresenta como JEI, demonstrando sensibilidade à identificação de recipe viewers. Validar ausência de double-registration, eventos duplicados, stage ownership ambíguo e client/server classloading.
 - **Sobreposição:** Não substitui FTB Quests, KubeJS, Game Stages, JEI ou REI. Sua sobreposição é apenas de integração; bridges duplicadas ou mods externos que façam a mesma conexão podem causar eventos/handlers duplicados.
 - **Observações:** JAR físico: ftb-xmod-compat-neoforge-21.1.11.jar; mod id: ftbxmodcompat; versão 21.1.11. CurseForge publica exatamente a release NeoForge 1.21.1 em 15/08/2026. Não tratar o mod como provider de quests, stages ou recipes: ele apenas conecta providers existentes.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ftb-xmod-compat-neoforge-21.1.11.jar`, mod id `ftbxmodcompat`, runtime `21.1.11` e SHA-1 `06061863f24e1c0d9b2bb2646e96e07cbf0029f5`. A versão física não mudou nesta rodada; as evidências técnicas já registradas permanecem preservadas.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #292: FTB XMod Compat 21.1.11 reconfirmado; nenhuma mudança de versão física nesta rodada.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #292: FTB XMod Compat 21.1.11 reconfirmado; snapshot dos alvos atuais reconciliado para FTB Quests 2101.1.36, KubeJS 2101.7.2-build.377 e JEI 19.56.0.440.
 - **Data da última decisão:** 2026-09-06
 
 <callout icon="🔎" color="blue_bg">
@@ -52,8 +52,8 @@ A documentação oficial afirma que **todas as dependências de integração sã
 
 No snapshot físico atual estão presentes, entre outros alvos relevantes:
 - `ftb-quests-neoforge-2101.1.36.jar`;
-- `kubejs-neoforge-2101.7.2-build.374.jar`;
-- `jei-1.21.1-neoforge-19.53.0.426.jar`.
+- `kubejs-neoforge-2101.7.2-build.377.jar`;
+- `jei-1.21.1-neoforge-19.56.0.440.jar`.
 
 Não foi localizado Game Stages como top-level nesta checagem física específica, portanto o caminho KubeJS é o relevante para stages no pack atual.
 
@@ -111,8 +111,8 @@ Regression gates:
 ## 11. Integrações concretas no pack
 
 - **FTB Quests 2101.1.36:** consumer direto das integrações documentadas.
-- **KubeJS 2101.7.2-build.374:** provider de scripts e, no caminho documentado, implementação de stages usada por FTB Quests.
-- **JEI 19.53.0.426:** recipe viewer presente fisicamente e usado pela superfície de display quando detectado.
+- **KubeJS 2101.7.2-build.377:** provider de scripts e, no caminho documentado, implementação de stages usada por FTB Quests.
+- **JEI 19.56.0.440:** recipe viewer presente fisicamente e usado pela superfície de display quando detectado.
 
 Outros mods FTB podem receber integrações em versões/source além do conjunto descrito publicamente nesta página; sem pin exato do source 21.1.11, esta ficha não inventa módulos adicionais.
 
