@@ -117,7 +117,16 @@
 | 130 | create aeronautics：toolgun | `create_aeronautics_toolgun-0.3.6.jar` | `0.3.6` | `Utility & QoL` | 20/09/2026 - 15:43 |
 | 131 | Create Aeronautics: Transmission & Linkage | `create_aeronautics_transmission_linkage-0.2.8.jar` | `0.2.8` | `Create + Technology` | 20/09/2026 - 15:43 |
 | 132 | Create: Aquatic Ambitions | `create_aquatic_ambitions-1.21.1-2.0.4.jar` | `2.0.4` | `Armor, Tools, and Weapons + Automation + Create + Ores and Resources` | 20/09/2026 - 15:43 |
-| 137 | Create: Colony Logistics | `create_colony_logistics-1.3.3.jar` | `1.3.3` | `Addons + Create` | 16/09/2026 - 18:42 |
+| 133 | Create: Blocks & Bogies | `create_bb-1.0.8-1.21.1.jar` | `1.0.8` | `Addons + Create + Player Transport + Technology` | 20/09/2026 - 16:18 |
+| 134 | Create: Blaze Burner Fuels | `create_blaze_burner_fuels-1.0.2-neoforge-1.21.1.jar` | `1.0.2` | `Automation + Create + Energy + Ores and Resources + Processing` | 20/09/2026 - 16:18 |
+| 135 | Create: Cold Sweat | `create_cold_sweat-1.1.2.jar` | `1.1.2` | `Addons + Create + Utility & QoL` | 20/09/2026 - 16:18 |
+| 136 | Create: Colony Logistics | `create_colony_logistics-1.3.3.jar` | `1.3.3` | `Addons + Create` | 20/09/2026 - 16:18 |
+| 137 | Create: Connected | `create_connected-1.3.3-mc1.21.1.jar` | `1.3.3-mc1.21.1` | `Addons + Automation + Create + Utility & QoL` | 20/09/2026 - 16:19 |
+| 138 | Create: Arm-made Cuisine | `create_cuisine-1.0.0-mc1.21.1-neoforge.jar` | `1.0.0` | `Automation + Create + Food` | 20/09/2026 - 16:19 |
+| 139 | Create: Curios Backtank | `create_curios_backtank-neoforge-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Armor, Tools, and Weapons + Automation + Create` | 20/09/2026 - 16:19 |
+| 140 | Create: Deep Dark | `create_deep_dark-3.0.2-neoforge-1.21.1.jar` | `3.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Biomes + Create + Ores and Resources` | 20/09/2026 - 16:19 |
+| 141 | Create: Factory | `create_factory-0.7b-1.21.1.jar` | `0.7b-1.21.1` | `Automation + Create + Food` | 20/09/2026 - 16:19 |
+| 142 | Create: Fantasizing Again | `create_fantasizing-1.21.1-1.2.0-b3.jar` | `1.2.0-b3` | `Addons + Create + Utility & QoL` | 20/09/2026 - 16:19 |
 | 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 17/09/2026 - 10:58 |
 | 167 | Create Crafts & Additions | `createaddition-1.7.1.jar` | `1.7.1` | `Addons + Energy + Energy, Fluid, and Item Transport` | 18/09/2026 - 10:38 |
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 17/09/2026 - 22:51 |
