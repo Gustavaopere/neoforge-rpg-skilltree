@@ -3,18 +3,18 @@
 ## Propriedades do registro
 
 - **Mod:** Dynamic Trees–VanillaBackport
-- **Arquivo JAR:** dtvanillabackport-1.21.1-1.7.0.jar
-- **Versão 1.21.1:** 1.7.0
-- **Categoria:** Compat; Worldgen
+- **Arquivo JAR:** `dtvanillabackport-1.21.1-1.7.0.jar`
+- **Versão 1.21.1:** `1.7.0`
+- **Categoria:** Compat, Worldgen
 - **Função:** Bridge Dynamic Trees ↔ VanillaBackport: adapta o conteúdo arbóreo suportado do VanillaBackport à infraestrutura dinâmica de crescimento/worldgen do Dynamic Trees.
 - **Dependências:** Dynamic Trees 1.7.2 + VanillaBackport 1.1.7.10 físicos. Dynamic Trees Plus 1.3.2 está presente e habilita a superfície opcional de Cactus Flower documentada pelo projeto.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Bridge de worldgen/content. Riscos: version drift entre Dynamic Trees/VanillaBackport/DT Plus, replacement duplicado, chunks mistos, datapacks concorrentes e optional integration de Cactus Flower. A build física 1.7.0 coincide com a distribuição oficial 1.21.1.
 - **Fonte:** Modlist/JAR físico atual como autoridade de presença/versão + source público dannykim2011/DynamicTrees-VanillaBackport branch 1.21.1 apenas como contexto estrutural não exato.
-- **Procedência:** modlist física de 17/09/2026 + distribuição/documentação oficial Dynamic Trees for VanillaBackport 1.7.0 para NeoForge 1.21.1 + stack físico Dynamic Trees 1.7.2 / VanillaBackport 1.1.7.10 / Dynamic Trees Plus 1.3.2.
+- **Procedência:** modlist física atual de 21/09/2026 + distribuição/documentação oficial Dynamic Trees for VanillaBackport 1.7.0 para NeoForge 1.21.1 + stack físico Dynamic Trees 1.7.2 / VanillaBackport 1.1.7.10 / Dynamic Trees Plus 1.3.2.
 - **Observações:** Runtime físico 1.7.0. A distribuição oficial atual sustenta Pale Oak, Creaking Heart e integração opcional de Cactus Flower com Dynamic Trees Plus. O arquivo 1.7.0 não traz changelog detalhado próprio; nenhum delta extra foi inventado.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — bridge atualizado para 1.7.0; a antiga limitação de source posterior à build instalada foi encerrada para a release física atual; Pale Oak, Creaking Heart e Cactus Flower/DT Plus documentados sem inventar changelog.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 21/09/2026 — lote físico #230: bridge atualizado para 1.7.0; a antiga limitação de source posterior à build instalada foi encerrada para a release física atual; Pale Oak, Creaking Heart e Cactus Flower/DT Plus documentados sem inventar changelog.
 - **Decisão:** Manter
 - **Histórico da decisão:** Bridge mantido enquanto Dynamic Trees e VanillaBackport permanecerem ativos. Em 08/09/2026 a ficha foi reconstruída pela autoridade física 1.6.0 e a divergência com o source público 1.7.0 foi registrada sem inferência.
 - **Sobreposição:** Sobreposição intencional com o conteúdo arbóreo/worldgen do VanillaBackport; pode conflitar com outros bridges ou datapacks que adaptem os mesmos alvos. Não substitui Dynamic Trees nem VanillaBackport.
@@ -81,7 +81,7 @@ Dynamic Trees Plus é integração opcional concreta no pack atual para o suport
 9. Gerar chunks novos após atualização e comparar com chunks antigos.
 10. Testar servidor dedicado/cliente com a mesma composição.
 ## 15. Evidência e limitações
-A modlist física de 17/09/2026 confirma `dtvanillabackport-1.21.1-1.7.0.jar`, Dynamic Trees 1.7.2, VanillaBackport 1.1.7.10 e Dynamic Trees Plus 1.3.2.
+A modlist física atual de 21/09/2026 confirma `dtvanillabackport-1.21.1-1.7.0.jar`, Dynamic Trees 1.7.2, VanillaBackport 1.1.7.10 e Dynamic Trees Plus 1.3.2.
 A distribuição oficial 1.7.0 para NeoForge 1.21.1 corresponde à build instalada. A página oficial documenta Pale Oak, Creaking Heart, comportamento Dynamic Trees e Cactus Flower com DT Plus. O arquivo 1.7.0 não publica changelog detalhado próprio; por isso nenhum delta adicional é inventado.
 ## 16. Conclusão operacional
 **Manter** enquanto Dynamic Trees e VanillaBackport permanecerem ativos, mas tratar qualquer atualização como alteração de integração/worldgen. Antes de promover uma versão futura, validar em mundo novo e atualizar a ficha apenas com evidência da build correspondente.
