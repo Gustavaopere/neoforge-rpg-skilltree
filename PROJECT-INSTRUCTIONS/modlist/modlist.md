@@ -190,8 +190,16 @@
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 17/09/2026 - 22:51 |
 | 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 17/09/2026 - 23:58 |
 | 230 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 21/09/2026 - 01:29 |
-| 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 16/09/2026 - 19:09 |
-| 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 16/09/2026 - 18:41 |
+| 233 | Dynamic Trees Addon Lib | `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` | `0.2.0-BETA03` | `Addons + API and Library + Cosmetic` | 21/09/2026 - 02:10 |
+| 234 | Dynamic Trees | `dynamictrees-neoforge-1.21.1-1.7.2.jar` | `1.7.2` | `Biomes + Cosmetic + Farming + World Gen` | 21/09/2026 - 02:10 |
+| 235 | Dynamic Trees Plus | `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` | `1.3.2` | `Addons + Biomes + Cosmetic + Farming + World Gen` | 21/09/2026 - 02:11 |
+| 236 | Create: Dynamic Village | `dynamicvillage-0.9-1.21.1.jar` | `0.9` | `Cosmetic + Create + Structures + Technology + World Gen` | 21/09/2026 - 02:11 |
+| 237 | Easy Model Entities | `easy_model_entities-neoforge-1.21.1-2.4.0.jar` | `2.4.0 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library + Automation + Mobs + Utility & QoL` | 21/09/2026 - 02:11 |
+| 238 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 21/09/2026 - 09:23 |
+| 239 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 21/09/2026 - 09:23 |
+| 240 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 21/09/2026 - 09:23 |
+| 241 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 21/09/2026 - 02:12 |
+| 242 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 21/09/2026 - 02:12 |
 | 266 | Euphoria Patches | `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` | `1.10.5-r5.9.3-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 18/09/2026 - 08:51 |
 | 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 16/09/2026 - 19:09 |
 | 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 18/09/2026 - 10:38 |
@@ -224,5 +232,5 @@
 ## Divergências de metadata preservadas
 
 - **Copycats+ aeronautics weight (#013):** o artefato/publicação e o filename físico são `1.1.1`, enquanto a metadata interna auditada reporta `1.1.0`. As duas informações permanecem explícitas.
-- **Easy NPC (#239):** o JAR físico identifica a distribuição `7.12.1`, mas a metadata runtime da modlist não declara versão. O índice preserva a ausência em vez de inventar metadata.
+- **Easy NPC: Core (#238):** o JAR físico identifica a distribuição `7.12.1`, mas a metadata runtime da modlist não declara versão. O índice preserva a ausência em vez de inventar metadata.
 - **Dungeons Delight (#416):** a distribuição/JAR instalado é `1.5.1`, enquanto a metadata interna auditada reporta `1.5.0`. As duas informações permanecem explícitas.

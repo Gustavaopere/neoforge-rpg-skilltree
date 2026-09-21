@@ -7,7 +7,7 @@
 - **Versão 1.21.1:** `7.12.1`
 - **Categoria:** RPG, QoL
 - **Função:** Meta-package/bundle da família Easy NPC que declara/organiza a instalação alinhada do Core e Config UI; não implementa um segundo sistema de NPC nem substitui os módulos funcionais.
-- **Dependências:** Easy NPC Core + Easy NPC Config UI; NeoForge 1.21.1. No pack atual, Core, Bundle e Config UI existem como três JARs top-level separados e alinhados pelo filename/release 7.11.0.
+- **Dependências:** Easy NPC Core + Easy NPC Config UI; NeoForge 1.21.1. No pack atual, Core, Bundle e Config UI existem como três JARs top-level separados e alinhados pelo filename/release 7.12.1.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Risco principal é misturar versões diferentes da família ou interpretar Bundle como provider de gameplay. A arquitetura moderna evita jar-in-jar justamente para não produzir mod IDs duplicados, classloading ambíguo e dependências que enxergam apenas o Core.
