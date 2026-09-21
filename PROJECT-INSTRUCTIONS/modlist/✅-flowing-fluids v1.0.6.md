@@ -5,6 +5,7 @@
 - **Mod:** FlowingFluids
 - **Arquivo JAR:** `flowing_fluids-1.0.6-1.21-neoforge.jar`
 - **Versão 1.21.1:** `1.0.6`
+- **Categoria:** não definida
 - **Função:** Substitui a dinâmica vanilla por fluidos com física mais realista e majoritariamente finita, níveis parciais, drenagem/refill configuráveis e integração específica com pipes, hose pulleys e water wheels do Create.
 - **Dependências:** NeoForge 1.21.1. Integração comportamental relevante com Create 6.0.10 e Sable; `sable_flowing_fluids_compat-1.0.2.jar` também está fisicamente presente no pack.
 - **Estado no pack:** Integrado ao Github
