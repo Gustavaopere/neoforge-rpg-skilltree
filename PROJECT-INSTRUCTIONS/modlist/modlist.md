@@ -228,6 +228,16 @@
 | 269 | Explosive Enhancement: Reforged | `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` | `1.1.2` | `Cosmetic + Miscellaneous` | 21/09/2026 - 13:25 |
 | 270 | Create: Extra Copycats | `extra_copycats-1.0.2.jar` | `1.0.2` | `Addons + Create` | 21/09/2026 - 13:25 |
 | 272 | FamiliarsLib | `familiarslib-1.21.1-1.7.1.jar` | `1.7.1 do JAR/publicação; metadata runtime 1.21.1-1.7` | `API and Library` | 21/09/2026 - 13:25 |
+| 273 | Fantasy Armor (Medieval Series) | `fantasy_armor-neoforge-1.2.4-1.21.1.jar` | `1.2.4-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic` | 21/09/2026 - 14:32 |
+| 274 | Farmer's Spell 'n Spell Book | `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` | `1.0.5.1-1.21.1` | `Farmer's Delight + Food + Magic` | 21/09/2026 - 14:32 |
+| 275 | Farmer's Delight | `FarmersDelight-1.21.1-1.3.4.jar` | `1.3.4` | `Cosmetic + Farming + Food` | 21/09/2026 - 14:32 |
+| 276 | Farmer's Delight: Extended | `farmersdelight_extended-1.21.1-0.2.2.jar` | `1.21.1-0.2.2` | `Addons + Create + Food` | 21/09/2026 - 14:32 |
+| 277 | Farmers Structures | `FarmersStructures-1.0.6-1.21.1_neoforge.jar` | `1.0.6` | `Addons + Farming + MCreator + Structures + World Gen` | 21/09/2026 - 14:32 |
+| 278 | FastSuite | `FastSuite-1.21.1-6.0.7.jar` | `6.0.7` | `Performance` | 21/09/2026 - 14:32 |
+| 279 | FerriteCore ((Neo)Forge) | `ferritecore-7.0.3-neoforge.jar` | `7.0.3` | `Performance` | 21/09/2026 - 14:32 |
+| 280 | Fire's Ender Expansion | `firesenderexpansion-2.4.1.jar` | `2.4.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 21/09/2026 - 14:32 |
+| 281 | First-person Model | `firstperson-neoforge-2.7.2-mc1.21.1.jar` | `2.7.2` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 21/09/2026 - 14:32 |
+| 282 | Flowing Fluids | `flowing_fluids-1.0.6-1.21-neoforge.jar` | `1.0.6` | `Miscellaneous` | 21/09/2026 - 14:32 |
 | 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 16/09/2026 - 19:09 |
 | 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 18/09/2026 - 10:38 |
 | 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 18/09/2026 - 08:51 |
