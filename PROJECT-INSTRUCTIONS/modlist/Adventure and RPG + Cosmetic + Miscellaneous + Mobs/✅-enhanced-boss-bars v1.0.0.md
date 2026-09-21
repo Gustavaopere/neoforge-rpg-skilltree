@@ -7,7 +7,7 @@
 - **Versão 1.21.1:** `1.0.0`
 - **Categoria:** Visual, QoL
 - **Função:** Camada client-side de HUD que substitui/compatibiliza a apresentação de boss bars para bosses vanilla e suportados por mods, sem alterar vida, IA ou combate.
-- **Dependências:** Cliente NeoForge 1.21.1. Providers suportados fisicamente relevantes no pack incluem Mowzie's Mobs 1.8.2, L_Ender's Cataclysm 3.33, Bosses of Mass Destruction 1.3.3 e Alex's Mobs Continued 2.1.11. Jade 15.10.6 também está presente.
+- **Dependências:** Cliente NeoForge 1.21.1. Providers suportados fisicamente relevantes no pack incluem Mowzie's Mobs 1.8.2, L_Ender's Cataclysm 3.33, Bosses of Mass Destruction 1.3.3 e Alex's Mobs Continued 2.1.13. Jade 15.10.6 também está presente.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Risco estritamente visual/HUD: boss bar duplicada, deslocada ou sobreposta por Jade/resource packs/outros HUD mods, identificação incorreta de boss ou suporte incompleto a uma build modded. Não altera boss health/AI. A documentação do ecossistema recomenda ajustar Jade quando ele também mostra boss bars.
@@ -33,7 +33,7 @@ O pack possui providers publicados como suportados pelo ecossistema do projeto:
 - Mowzie's Mobs `1.8.2`;
 - L_Ender's Cataclysm `3.33`;
 - Bosses of Mass Destruction `1.3.3`;
-- Alex's Mobs Continued `2.1.11`.
+- Alex's Mobs Continued `2.1.13`.
 A lista pública também menciona outros projetos, mas ausência física impede tratá-los como integrações ativas.
 ## 4. Boss support não é boss logic
 Uma barra customizada para Frostmaw, Ignis, Voidworm ou outro boss não implica alteração de entidade. Eventos de fase, invulnerabilidade, shield ou health scaling continuam pertencendo ao mod do boss.

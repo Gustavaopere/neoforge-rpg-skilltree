@@ -7,7 +7,7 @@
 - **Versão 1.21.1:** `7.12.1`
 - **Categoria:** QoL, Visual
 - **Função:** Módulo gráfico de configuração do Easy NPC que fornece screens/controles para editar NPCs e a camada de networking necessária ao fluxo de configuração, mantendo o Core como authority do NPC state.
-- **Dependências:** Easy NPC Core; NeoForge 1.21.1. Runtime físico: Config UI 7.11.0. Bundle 7.11.0 também está instalado e declara a composição Core + Config UI.
+- **Dependências:** Easy NPC Core; NeoForge 1.21.1. Runtime físico: Config UI 7.12.1. Bundle 7.12.1 também está instalado e declara a composição Core + Config UI.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos de UI/API/network drift se Config UI e Core estiverem desalinhados, edição de state stale, double-submit sob latency, permissões insuficientes, screen client-only carregada no servidor e assumir que fechar/salvar UI já equivale a commit sem confirmação server-side.
