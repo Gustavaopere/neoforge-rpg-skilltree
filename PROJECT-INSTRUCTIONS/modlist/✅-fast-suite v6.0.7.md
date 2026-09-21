@@ -15,7 +15,6 @@
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `FastSuite-1.21.1-6.0.7.jar`, mod id `fastsuite`, runtime `6.0.7` e SHA-1 `664e62684311f727f1fac18f0de28e5317874b7e`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** 6.0.0 porta 1.21.1 com thread-safe matching da 5.1.0; 6.0.3 corrige race de shapeless, 6.0.4 StackOverflow, 6.0.6 data race em `Ingredient#stackingIds`, 6.0.7 severe performance issue com ModernFix+AE2JEIIntegration.
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #278: `FastSuite-1.21.1-6.0.7.jar` / runtime `6.0.7` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
-- **Decisão:** Sem decisão
 - **Sobreposição:** Complementa ModernFix/FerriteCore em outras superfícies; não é substituto de recipe providers. Polymorph é explicitamente considerado pela arquitetura concorrente 4.1+.
 
 # Dossiê operacional — padrão Alex's Mobs
