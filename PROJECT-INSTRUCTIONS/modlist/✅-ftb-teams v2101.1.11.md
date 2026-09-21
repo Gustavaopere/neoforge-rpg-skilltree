@@ -11,7 +11,7 @@
 - **Estado no pack:** Integrado ao Github
 - **Fonte:** https://github.com/FTBTeam/FTB-Teams/tree/1.21.1/main
 - **Função:** Autoridade de equipes/parties do ecossistema FTB: personal teams, membership, owner/officers, propriedades, convites, team chat, team stages, limited lives e persistência SNBT.
-- **Dependências:** FTB Library; source 2101.1.11 usa baseline FTB Library 2101.1.30, Architectury 13.0.8 e NeoForge 21.1.209. O pack instala FTB Library 2101.1.35.
+- **Dependências:** FTB Library; source 2101.1.11 usa baseline FTB Library 2101.1.30, Architectury 13.0.8 e NeoForge 21.1.209. O pack instala FTB Library 2101.1.36.
 - **Compatibilidade/Riscos:** Riscos: membership duplicado/cached por consumidores, races em convites/owner transfer, limited lives com death systems, edição externa de SNBT e ABI drift. FTB Chunks/Quests devem consumir a equipe efetiva da API em vez de manter ownership paralelo.
 - **Sobreposição:** Não é substituto de FTB Chunks/Quests: Teams é authority de identidade/membership; Chunks mantém claims/protection e Quests mantém quest state. Evitar uma segunda fonte de verdade de party/owner.
 - **Observações:** Persistência confirmada em `<world>/ftbteams/ftbteams.snbt` + arquivos SNBT por team/type. `max_party_size=0` e `limited_lives=0` por default. Team properties e Team Stage foram auditados no source.
@@ -30,7 +30,7 @@
 - **Mod id:** `ftbteams`.
 - **Versão:** `2101.1.11`.
 - **Source pin:** `1.21.1/main`, exatamente 2101.1.11.
-- **Baselines upstream:** Minecraft 1.21.1, NeoForge 21.1.209, Architectury 13.0.8 e FTB Library 2101.1.30. O pack usa FTB Library 2101.1.35, acima desse baseline.
+- **Baselines upstream:** Minecraft 1.21.1, NeoForge 21.1.209, Architectury 13.0.8 e FTB Library 2101.1.30. O pack usa FTB Library 2101.1.36, acima desse baseline.
 
 ## 2. Papel no modpack
 
@@ -88,9 +88,9 @@ Em multiplayer, testar convites concorrentes, owner saindo/morrendo, officer pro
 
 ## 10. Integrações concretas do pack
 
-- **FTB Library 2101.1.35:** UI/config/SNBT/networking compartilhados.
+- **FTB Library 2101.1.36:** UI/config/SNBT/networking compartilhados.
 - **FTB Chunks 2101.1.22:** usa teams como autoridade de ownership de claims/force-load.
-- **FTB Quests 2101.1.34:** pode usar team/party para compartilhamento de progresso conforme configuração própria.
+- **FTB Quests 2101.1.36:** pode usar team/party para compartilhamento de progresso conforme configuração própria.
 - **FTB XMod Compat 21.1.11:** bridges do ecossistema FTB; não altera ownership do TeamManager.
 
 Não presumir integração de qualquer outro mod apenas por exibir grupos/parties.
@@ -108,7 +108,7 @@ Não presumir integração de qualquer outro mod apenas por exibir grupos/partie
 
 ## 12. Matriz de testes obrigatória
 
-- [ ] Dedicated server boot com Teams 2101.1.11 + Library 2101.1.35.
+- [ ] Dedicated server boot com Teams 2101.1.11 + Library 2101.1.36.
 - [ ] Criação automática de personal team e persistência após restart.
 - [ ] Criar party, convidar, aceitar, sair e reconectar.
 - [ ] Owner/officer/member permissions e transferência de owner.
