@@ -219,7 +219,15 @@
 | 260 | Epic Fight - Epic-API | `epic_api-21.3.1.jar` | `21.3.1` | `API and Library` | 21/09/2026 - 10:17 |
 | 261 | Minecolonies: Epicfied (Epic Colonies) | `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar` | `21.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 21/09/2026 - 10:17 |
 | 262 | Epic Fight - Mod Compat | `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` | `1.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Mobs` | 21/09/2026 - 10:17 |
-| 266 | Euphoria Patches | `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` | `1.10.5-r5.9.3-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 18/09/2026 - 08:51 |
+| 263 | Epic Fight - Pehkui FIX | `epicfightpehkuiincompatibilityfix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 21/09/2026 - 13:24 |
+| 264 | Ender's Spells and Stuff: Requiem | `ess_requiem-0.1.7.jar` | `0.1.7` | `Addons` | 21/09/2026 - 13:24 |
+| 265 | Euphoria Patches | `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` | `1.10.5-r5.9.3-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 21/09/2026 - 13:35 |
+| 266 | ExpandAbility | `expandability-12.0.0.jar` | `12.0.0` | `API and Library` | 21/09/2026 - 13:25 |
+| 267 | Expanded Delight | `expandeddelight-0.1.4.jar` | `0.1.4` | `Addons + Farming + Food + Ores and Resources` | 21/09/2026 - 13:25 |
+| 268 | Explorer's Compass | `ExplorersCompass-1.21.1-3.4.0-neoforge.jar` | `1.21.1-3.4.0-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Map and Information + Structures` | 21/09/2026 - 13:25 |
+| 269 | Explosive Enhancement: Reforged | `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` | `1.1.2` | `Cosmetic + Miscellaneous` | 21/09/2026 - 13:25 |
+| 270 | Create: Extra Copycats | `extra_copycats-1.0.2.jar` | `1.0.2` | `Addons + Create` | 21/09/2026 - 13:25 |
+| 272 | FamiliarsLib | `familiarslib-1.21.1-1.7.1.jar` | `1.7.1 do JAR/publicação; metadata runtime 1.21.1-1.7` | `API and Library` | 21/09/2026 - 13:25 |
 | 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 16/09/2026 - 19:09 |
 | 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 18/09/2026 - 10:38 |
 | 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 18/09/2026 - 08:51 |
