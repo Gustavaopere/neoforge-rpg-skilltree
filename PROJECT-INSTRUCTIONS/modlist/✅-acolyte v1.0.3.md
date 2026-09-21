@@ -1,7 +1,6 @@
 # Acolyte
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c769db9f0db818bb27ecb761143e405
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist.txt` — 595 mods top-level
 - **Data da exportação:** 2026-09-09

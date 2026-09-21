@@ -1,7 +1,6 @@
 # AdvancedCoreInfo
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c769db9f0db814abca9e4e5888e7b88
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist.txt` — 595 mods top-level
 - **Data da exportação:** 2026-09-09
