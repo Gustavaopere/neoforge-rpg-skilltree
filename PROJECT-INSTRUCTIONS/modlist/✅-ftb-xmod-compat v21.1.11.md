@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ftb-xmod-compat
 - **Função:** Módulo oficial de compatibilidade cruzada do ecossistema FTB. Detecta mods FTB e não-FTB presentes e habilita integrações condicionais; sozinho não adiciona gameplay útil. Na linha 1.21.1 documentada, integra FTB Quests com KubeJS, Game Stages e JEI/REI.
 - **Dependências:** Todas as integrações são soft dependencies segundo o projeto oficial. O mod inicia mesmo sem os alvos, mas só produz efeito quando os mods correspondentes estão presentes. No pack físico atual estão presentes FTB Quests 2101.1.36, KubeJS 2101.7.2-build.377 e JEI 19.56.0.440.
-- **Compatibilidade/Riscos:** Risco principal é detecção condicional/API drift entre FTB Quests, KubeJS, JEI/REI e outros alvos. A release 21.1.11 corrige crash de startup quando TooManyRecipeViewers se apresenta como JEI, demonstrando sensibilidade à identificação de recipe viewers. Validar ausência de double-registration, eventos duplicados, stage ownership ambíguo e client/server classloading.
+- **Compatibilidade/Riscos:** Risco principal é detecção condicional/API drift entre FTB Quests, KubeJS, JEI/REI e outros alvos. A release 21.1.11 corrige crash de startup quando TooManyRecipeViewers se apresenta como JEI, demonstrando sensibilidade à identificação de recipe viewers. Validar ausência de double-registration, eventos duplicados, stage ownership ambíguo e client/server classloading. O pack usa JEI 19.56.0.440; upstream 21.1.12 corrige problemas específicos com JEI mais novo, então 21.1.11 deve ser smoke-tested com atenção antes de qualquer patch local.
 - **Sobreposição:** Não substitui FTB Quests, KubeJS, Game Stages, JEI ou REI. Sua sobreposição é apenas de integração; bridges duplicadas ou mods externos que façam a mesma conexão podem causar eventos/handlers duplicados.
-- **Observações:** JAR físico: ftb-xmod-compat-neoforge-21.1.11.jar; mod id: ftbxmodcompat; versão 21.1.11. CurseForge publica exatamente a release NeoForge 1.21.1 em 15/08/2026. Não tratar o mod como provider de quests, stages ou recipes: ele apenas conecta providers existentes.
+- **Observações:** JAR físico: ftb-xmod-compat-neoforge-21.1.11.jar; mod id: ftbxmodcompat; versão instalada 21.1.11. Upstream publicou 21.1.12 para NeoForge 1.21.1 em 18/09/2026; ela melhora integração com JEI e corrige crash/bookmarks/background/click handling/fluid tasks, mas não está instalada.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ftb-xmod-compat-neoforge-21.1.11.jar`, mod id `ftbxmodcompat`, runtime `21.1.11` e SHA-1 `06061863f24e1c0d9b2bb2646e96e07cbf0029f5`. A versão física não mudou nesta rodada; as evidências técnicas já registradas permanecem preservadas.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #292: FTB XMod Compat 21.1.11 reconfirmado; snapshot dos alvos atuais reconciliado para FTB Quests 2101.1.36, KubeJS 2101.7.2-build.377 e JEI 19.56.0.440.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #292: FTB XMod Compat 21.1.11 reconfirmado; stack atual reconciliado para FTB Quests 2101.1.36, KubeJS 2101.7.2-build.377 e JEI 19.56.0.440. Upstream 21.1.12 (18/09/2026) registrado como atualização disponível, não instalada.
 - **Data da última decisão:** 2026-09-06
 
 <callout icon="🔎" color="blue_bg">
@@ -125,6 +125,7 @@ Outros mods FTB podem receber integrações em versões/source além do conjunto
 - handler stale após script reload;
 - reward/task side effect duplicado após reconnect ou evento repetido;
 - version drift entre FTB Quests, KubeJS e XMod Compat.
+- **JEI atual vs XMod instalado:** o pack usa JEI 19.56.0.440, enquanto XMod Compat 21.1.11 antecede a 21.1.12, que corrige crash com versões novas de JEI, bookmarks, background/click handling de quest recipes e representação de fluid tasks.
 
 ## 13. Matriz de testes
 
@@ -132,7 +133,8 @@ Outros mods FTB podem receber integrações em versões/source além do conjunto
 - [ ] Client join/rejoin sem duplicar listeners.
 - [ ] Quest task disparando evento KubeJS exatamente uma vez.
 - [ ] Add/remove de stage refletindo corretamente em stage tasks.
-- [ ] JEI abrindo recipes a partir do painel de quest sem crash.
+- [ ] JEI 19.56.0.440 abrindo recipes a partir do painel de quest sem crash no XMod Compat 21.1.11 instalado.
+- [ ] Bookmarks, background/click handling e fluid tasks no JEI sem regressão; se houver falha, comparar com o delta oficial 21.1.12 antes de criar patch próprio.
 - [ ] Reload de scripts sem double handlers.
 - [ ] Dois jogadores/teams com progressão distinta sem vazamento de state.
 - [ ] Ausência de reward duplication após reconnect.
@@ -140,9 +142,13 @@ Outros mods FTB podem receber integrações em versões/source além do conjunto
 
 Nenhum desses testes foi marcado como executado nesta catalogação.
 
-## 14. Evidências e limites
+## 14. Upstream 21.1.12 — disponível, não instalado
+
+A release **FTB XMod Compat 21.1.12** para NeoForge 1.21.1 foi publicada em 18/09/2026. O delta oficial melhora lookups de recipes via typed recipe manager do JEI e corrige: crash com versões mais novas do JEI usando API estável de bookmarks; background/click handling ausente em JEI quest recipes; exibição de fluid tasks como fluid ingredients; e preservação de amount/components ao abrir fluid recipes no JEI no Fabric. O pack físico permanece em **21.1.11**, portanto esses fixes são referência de atualização disponível/regression comparison, não comportamento instalado.
+
+## 15. Evidências e limites
 
 **Confirmado por modlist física:** JAR, mod id, versão 21.1.11 e presença de FTB Quests, KubeJS e JEI.
-**Confirmado pela documentação/CurseForge oficial:** finalidade de bridge, soft dependencies, integrações FTB Quests↔KubeJS, Game Stages e JEI/REI, fallback de stages, ambiente Client & Server e release NeoForge 21.1.11.
+**Confirmado pela documentação/CurseForge oficial:** finalidade de bridge, soft dependencies, integrações FTB Quests↔KubeJS, Game Stages e JEI/REI, fallback de stages, ambiente Client & Server e release instalada NeoForge 21.1.11. A release mais recente para 1.21.1 é 21.1.12 (18/09/2026), não instalada.
 **Confirmado pelo changelog 21.1.11:** fix de crash quando TooManyRecipeViewers se apresenta como JEI.
 **Limite:** source/commit exato do binário 21.1.11 não foi pinado nesta auditoria; portanto não são inventadas classes, métodos, eventos internos ou integrações adicionais não sustentadas pela documentação pública.
