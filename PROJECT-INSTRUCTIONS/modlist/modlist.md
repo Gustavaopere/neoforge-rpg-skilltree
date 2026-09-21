@@ -127,8 +127,36 @@
 | 140 | Create: Deep Dark | `create_deep_dark-3.0.2-neoforge-1.21.1.jar` | `3.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Biomes + Create + Ores and Resources` | 20/09/2026 - 16:19 |
 | 141 | Create: Factory | `create_factory-0.7b-1.21.1.jar` | `0.7b-1.21.1` | `Automation + Create + Food` | 20/09/2026 - 16:19 |
 | 142 | Create: Fantasizing Again | `create_fantasizing-1.21.1-1.2.0-b3.jar` | `1.2.0-b3` | `Addons + Create + Utility & QoL` | 20/09/2026 - 16:19 |
-| 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 17/09/2026 - 10:58 |
-| 167 | Create Crafts & Additions | `createaddition-1.7.1.jar` | `1.7.1` | `Addons + Energy + Energy, Fluid, and Item Transport` | 18/09/2026 - 10:38 |
+| 143 | Create : New Furnitures | `create_furnitures-1.1.2-neoforge-1.21.1.jar` | `1.1.2` | `Addons + Cosmetic + Create + Structures + Utility & QoL` | 20/09/2026 - 18:04 |
+| 144 | Create Jetpack | `create_jetpack-forge-5.2.1.jar` | `5.2.1` | `Addons + Armor, Tools, and Weapons + Technology` | 20/09/2026 - 18:04 |
+| 145 | Create: Curios Jetpack & Backtank | `create_jetpack_curios-1.2.0-neoforge-1.21.1.jar` | `1.2.0` | `Armor, Tools, and Weapons + Create + Player Transport + Technology + Utility & QoL` | 20/09/2026 - 18:04 |
+| 146 | Create Mechanical Spawner | `create_mechanical_spawner-1.21.1-1.3.2-6.0.10.jar` | `1.3.2-6.0.10 (distribuição); metadata interna 1.3.1-6.0.10` | `Automation + Create + KubeJS + Mobs + Skyblock` | 20/09/2026 - 18:04 |
+| 147 | Create: More Features | `create_mf-0.1.3-neoforge-1.21.1.jar` | `0.1.3` | `Addons + Automation + Create + Ores and Resources` | 20/09/2026 - 18:04 |
+| 148 | Create: Mobile Packages | `create_mobile_packages-1.21.1-0.7.7.jar` | `0.7.7` | `Automation + Create + Storage` | 20/09/2026 - 18:05 |
+| 149 | Create More Automation | `create_more_automation-0.5.2-neoforge-1.21.1.jar` | `0.5.2` | `Automation + Create + Technology` | 20/09/2026 - 18:05 |
+| 150 | Create Optical | `create_optical-0.4.2.jar` | `0.4.2` | `Addons + Create + Technology` | 20/09/2026 - 18:05 |
+| 151 | Create: Pattern Schematics | `create_pattern_schematics-2.0.10.jar` | `2.0.10` | `Automation + Create + Structures + Utility & QoL` | 20/09/2026 - 18:05 |
+| 152 | Create: Pillager Arise | `create_pillagers_arise NeoForge 1.21.1-132.36.jar` | `132.36` | `Create + Mobs + Structures + World Gen` | 20/09/2026 - 18:05 |
+| 153 | Create: Radars | `create_radar-0.4.9.4-1.21.1.jar` | `0.4.9.4-1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Map and Information + Technology` | 20/09/2026 - 18:32 |
+| 154 | Create: Ratatouille | `create_ratatouille-1.21.1-1.4.0.jar` | `1.4.0` | `Addons + Automation + Create + Farming + Food` | 20/09/2026 - 18:32 |
+| 155 | Create Recycle Everything (Continued) | `create_recycle_everything-2.1.0.jar` | `2.1.0 (distribuição); metadata interna 1.1` | `Addons + Create + Ores and Resources + Processing + Utility & QoL` | 20/09/2026 - 18:32 |
+| 156 | Create: Rock & Stone | `create_rns-1.3.1-1.21.1-6.jar` | `1.3.1-1.21.1-6` | `Addons + Automation + Create + Ores and Resources + Processing` | 20/09/2026 - 18:32 |
+| 157 | Create Stuff & Additions Curios Jetpacks | `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar` | `1.2.4 (distribuição); metadata interna 1.2.22` | `Addons + Create` | 20/09/2026 - 18:32 |
+| 158 | Create Stuff & Netherite Additions | `create_sna-1.2-neoforge-1.21.1.jar` | `1.2` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Player Transport` | 20/09/2026 - 18:32 |
+| 159 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` | `1.0 (distribuição); metadata interna vazia` | `Addons + Create + Processing` | 20/09/2026 - 18:32 |
+| 160 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 20/09/2026 - 18:33 |
+| 161 | Create Deep Seas | `create_submarine-2.2.4.jar` | `2.2.4` | `Addons + Create` | 20/09/2026 - 18:33 |
+| 162 | Create : Misc & Things | `create_things_and_misc-4.1.1-neoforge-1.21.1.jar` | `4.1.1` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 20/09/2026 - 18:33 |
+| 163 | Create: Tweaked Controllers | `create_tweaked_controllers-1.21.1-1.2.7.jar` | `1.21.1-1.2.7` | `Addons + Create + Redstone + Technology` | 20/09/2026 - 19:04 |
+| 164 | Create: Ultimate Factory | `create_ultimate_factory-2.2.4-neoforge-1.21.1.jar` | `2.2.4` | `Create + Farming + Processing + Server Utility + Technology` | 20/09/2026 - 19:04 |
+| 165 | Create: Wizardry | `create_wizardry-1.21.1-0.5.1-pre1.jar` | `1.21.1-0.5.1-pre1` | `Addons + Create + Magic + Technology` | 20/09/2026 - 19:04 |
+| 166 | Create Crafts & Additions | `createaddition-1.7.1.jar` | `1.7.1` | `Addons + Energy + Energy, Fluid, and Item Transport` | 20/09/2026 - 19:04 |
+| 167 | Create: Additional Logistics | `createadditionallogistics-1.21.1-1.4.5.jar` | `1.4.5` | `Create` | 20/09/2026 - 19:04 |
+| 168 | Create: Addon Compatibility | `createaddoncompatibility-neoforge-1.21.1-1.0.0.jar` | `1.0.0` | `Addons + Bug Fixes + Create + Utility & QoL` | 20/09/2026 - 19:05 |
+| 169 | Create Aeronautics: Copycat Wing | `CreateAeronauticsCopycatWing-1.21.1-1.0.4.jar` | `1.0.4` | `Addons + API and Library + Create` | 20/09/2026 - 19:05 |
+| 170 | Create Aeronautics x Curios API Compat | `createaeronauticscurios-neoforge-1.21.1-2.2.jar` | `2.2 (distribuição); metadata interna 2.0` | `Addons + Create` | 20/09/2026 - 19:05 |
+| 171 | Create Aeronautics: Harness | `CreateAeronauticsHarness-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Create + Player Transport + Technology` | 20/09/2026 - 19:05 |
+| 172 | Create Better FPS | `createbetterfps-1.21.1-1.1.4.jar` | `1.1.4` | `Addons + Create + Performance + Utility & QoL` | 20/09/2026 - 19:05 |
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 17/09/2026 - 22:51 |
 | 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 17/09/2026 - 23:58 |
 | 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 17/09/2026 - 21:40 |
