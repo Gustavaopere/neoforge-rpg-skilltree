@@ -7,7 +7,7 @@
 - **Versão 1.21.1:** metadata runtime **não declarada**; filename/build/publicação identificam `7.12.1`
 - **Categoria:** RPG, QoL
 - **Função:** Core server-authoritative do Easy NPC para criar, persistir e controlar NPCs customizados, diálogos, ações, trading, aparência/skins, comportamento e integrações do ecossistema.
-- **Dependências:** NeoForge 1.21.1. Easy NPC Config UI 7.11.0 e Easy NPC Bundle 7.11.0 estão fisicamente presentes. O filename/publicação identifica Core 7.11.0, mas a coluna `mod version` da modlist física está vazia. Epic Fight 21.17.3.1 está presente e é uma integração suportada pela linha Easy NPC.
+- **Dependências:** NeoForge 1.21.1. Easy NPC Config UI 7.12.1 e Easy NPC Bundle 7.12.1 estão fisicamente presentes. O filename/publicação identifica Core 7.12.1, mas a coluna `mod version` da modlist física está vazia. Epic Fight 21.17.3.1 está presente e é uma integração suportada pela linha Easy NPC.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** NPC persistente é state crítico: riscos de duplicate restore, stale index/file state, backup stutter, owner-login restore, follow/look target após logout, action/trade double execution, custom model/pose interference e UI/client divergindo do servidor. A linha 7.11.0 contém correções explícitas para várias dessas superfícies.
