@@ -157,6 +157,36 @@
 | 170 | Create Aeronautics x Curios API Compat | `createaeronauticscurios-neoforge-1.21.1-2.2.jar` | `2.2 (distribuição); metadata interna 2.0` | `Addons + Create` | 20/09/2026 - 19:05 |
 | 171 | Create Aeronautics: Harness | `CreateAeronauticsHarness-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Create + Player Transport + Technology` | 20/09/2026 - 19:05 |
 | 172 | Create Better FPS | `createbetterfps-1.21.1-1.1.4.jar` | `1.1.4` | `Addons + Create + Performance + Utility & QoL` | 20/09/2026 - 19:05 |
+| 173 | Create Big Cannons | `createbigcannons-5.11.7+mc.1.21.1.jar` | `5.11.7` | `Addons + Armor, Tools, and Weapons + Create + Technology` | 20/09/2026 - 20:21 |
+| 174 | Create: Chromatic Return | `createchromaticreturn-1.0.4-neoforge-1.21.1.jar` | `1.0.4 (distribuição/filename); metadata interna 1.0.0` | `Addons + Armor, Tools, and Weapons + Create + Energy, Fluid, and Item Transport + MCreator` | 20/09/2026 - 20:21 |
+| 175 | Create Cobblestone | `createcobblestone-1.5.0+neoforge-1.21.1-153.jar` | `1.5.0+neoforge-1.21.1-153` | `Addons + Automation + Create + Performance + Technology` | 20/09/2026 - 20:21 |
+| 176 | CreateColonies | `createcolonies-2.0.6.jar` | `2.0.6` | `Addons + Adventure and RPG + Automation + Create` | 20/09/2026 - 20:21 |
+| 177 | Create Contraption Terminals | `createcontraptionterminals-1.21-1.4.0.jar` | `1.4.0` | `Create + Storage + Utility & QoL` | 20/09/2026 - 20:21 |
+| 178 | Create: Cyber Goggles | `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` | `8.6.3` | `Create + Utility & QoL` | 20/09/2026 - 20:21 |
+| 179 | Create Deco | `createdeco-2.1.3.jar` | `2.1.3` | `Addons + Cosmetic + Create` | 20/09/2026 - 20:21 |
+| 180 | Create Diesel Generators | `createdieselgenerators-1.21.1-1.3.15.jar` | `1.21.1-1.3.15` | `Addons + Create + Processing + Technology` | 20/09/2026 - 20:21 |
+| 181 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 20/09/2026 - 20:21 |
+| 182 | Create: Enchantable Machinery | `createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar` | `3.6.0` | `Addons + Create + Technology + Utility & QoL` | 20/09/2026 - 20:21 |
+| 183 | Create: Ender Transmission | `createendertransmission-2.1.1-1.21.1.jar` | `2.1.1-1.21.1` | `Addons + Technology` | 20/09/2026 - 20:46 |
+| 184 | Create: Fast SchematicCannon | `CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar` | `2.6.1-neoforge` | `Addons + Bug Fixes + Create` | 20/09/2026 - 20:46 |
+| 185 | Create: Filters Anywhere | `createfiltersanywhere-1.21.1-2.6.0.jar` | `2.6.0` | `Addons + Create` | 20/09/2026 - 20:46 |
+| 186 | Create: Fishery Industry | `createfisheryindustry-5.1.2.jar` | `5.1.2` | `Addons + Create` | 20/09/2026 - 20:46 |
+| 187 | Create: Food | `createfood-neoforge-1.21.1-2.7.1.jar` | `2.7.1` | `Automation + Create + Food` | 20/09/2026 - 20:46 |
+| 188 | Create Goggles (Create Plus) | `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar` | `6.1.1` | `Addons + Armor, Tools, and Weapons + Create` | 20/09/2026 - 20:46 |
+| 189 | Create JEI Compat | `createjeicompat-1.0.3.jar` | `1.0.3` | `Create` | 20/09/2026 - 20:46 |
+| 190 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 20/09/2026 - 20:46 |
+| 191 | Create: Liquid Fuel | `createliquidfuel-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 20/09/2026 - 20:46 |
+| 192 | Create: Mechanical Companion | `createmechanicalcompanion-1.9-neoforge-1.21.1.jar` | `1.9 (artefato/publicação); metadata runtime vazia` | `Addons + Adventure and RPG + Create + Mobs + Technology` | 20/09/2026 - 20:46 |
+| 193 | Create: Metallurgy | `createmetallurgy-1.0.3-1.21.1.jar` | `1.0.3` | `Addons + Automation + Create + Processing + Technology` | 20/09/2026 - 21:12 |
+| 194 | Create: Metalwork | `createmetalwork-2.0.0.jar` | `2.0.0` | `Automation + Create + Energy, Fluid, and Item Transport + Processing` | 20/09/2026 - 21:12 |
+| 195 | Create Missiles | `createmissiles-1.0.3+neoforge-1.21.1.jar` | `1.0.3` | `Addons + Create + Map and Information + Structures + Technology` | 20/09/2026 - 21:12 |
+| 196 | Create Nuclear | `createnuclear-1.3.2-beta.3-neoforge.jar` | `1.3.2-beta.3` | `Addons + Create + Energy + Ores and Resources + Technology` | 20/09/2026 - 21:12 |
+| 197 | Create: Ornithopter Glider | `createornithopterglider-1.2.0-1.21.1.jar` | `1.2.0-1.21.1 (runtime/filename); publicação 1.2.0+1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL` | 20/09/2026 - 21:12 |
+| 198 | Create: Prismatic Shine | `createprism-1.2.2.jar` | `1.2.2` | `Addons + Create` | 20/09/2026 - 21:12 |
+| 199 | Create Propulsion: Simulated | `createpropulsion-1.1.5.jar` | `1.1.5` | `Addons + Create + Player Transport + Technology` | 20/09/2026 - 21:12 |
+| 200 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 20/09/2026 - 21:12 |
+| 201 | Create: Schematic Checker | `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar` | `2.27.45-6.0` | `Addons + Bug Fixes + Create` | 20/09/2026 - 21:12 |
+| 202 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 20/09/2026 - 21:12 |
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 17/09/2026 - 22:51 |
 | 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 17/09/2026 - 23:58 |
 | 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 17/09/2026 - 21:40 |
