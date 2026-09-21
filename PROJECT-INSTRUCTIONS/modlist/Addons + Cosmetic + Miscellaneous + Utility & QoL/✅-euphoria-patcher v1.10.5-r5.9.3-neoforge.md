@@ -1,24 +1,21 @@
 # Euphoria Patcher
 
-> **Reauditoria física — 18/09/2026.** Versão catalogada atual: `1.10.5-r5.9.3-neoforge`. O conteúdo abaixo preserva a página Notion reconciliada; a URL da própria página Notion foi deliberadamente omitida.
-
 ## Propriedades do registro
 
 - **Mod:** Euphoria Patcher
-- **Arquivo JAR:** EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar
-- **Versão 1.21.1:** 1.10.5-r5.9.3-neoforge
+- **Arquivo JAR:** `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar`
+- **Versão 1.21.1:** `1.10.5-r5.9.3-neoforge`
 - **Categoria:** Visual
 - **Função:** Client-side patcher/installer que detecta Complementary Shaders Reimagined/Unbound compatível e gera/gerencia a variante Euphoria Patches com features e settings opcionais.
 - **Dependências:** Requer um Complementary Shaders base compatível e loader de shaders no cliente. Iris 1.8.14-beta.1 está fisicamente presente; a modlist de mods não comprova que o shaderpack Complementary esteja instalado.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** A revisão física atual é `r5.9.3`. Riscos: base Complementary de revisão errada, patched archive stale, Iris beta/render regressions, config/preset migration, modded-material properties ausentes, dimension-cache RAM e custo de features habilitadas. Não possui gameplay authority.
+- **Compatibilidade/Riscos:** O artefato físico atual é `1.10.5-r5.9.3-neoforge`. A página oficial da própria versão menciona Complementary Shaders r5.9.2 + Euphoria Patches 1.10.5, portanto o sufixo r5.9.3 não é usado sozinho como prova da revisão física do ZIP Complementary. Riscos: base incompatível, patched archive stale, Iris beta/render regressions, config/preset migration, modded-material properties ausentes, dimension-cache RAM e custo de features habilitadas. Não possui gameplay authority.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/euphoria-patches
-- **Procedência:** modlist física atual + CurseForge oficial Euphoria Patcher 1.10.5-r5.9.3-neoforge, file ID 8884680, 15/09/2026, e changelogs oficiais 1.10.1–1.10.5. A presença física do shaderpack Complementary atual continua não demonstrada pela modlist de mods.
-- **Observações:** Runtime físico 1.10.5-r5.9.3-neoforge. Deltas relevantes da linha: cache por dimensão/settings updater/wildcard Iris em 1.10.1; WindLink/Distant Horizons e damage overlay em 1.10.2; ajuste sazonal do Dappled Forest em 1.10.3; 1.10.4 intermediária; 1.10.5 atualiza para Complementary r5.9.3.
-- **Atualização/Status:** READITADO EM 18/09/2026 — runtime físico atualizado de 1.10.0-r5.9 para 1.10.5-r5.9.3-neoforge. Linha 1.10.1→1.10.5 incorporada; 1.10.5 atualiza a compatibilidade para Complementary Shaders r5.9.3.
+- **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar`, mod id `euphoria_patcher`, runtime `1.10.5-r5.9.3-neoforge` e SHA-1 `2b3f92878d6867fa0199937da25ba882b9db7902`. Modrinth/CurseForge e changelog oficial revalidados em 21/09/2026 mantêm a mesma build; a presença/versão física do shaderpack Complementary continua sendo autoridade separada.
+- **Observações:** Runtime físico 1.10.5-r5.9.3-neoforge. Deltas relevantes da linha permanecem documentados. Nuance revalidada em 21/09/2026: a página oficial da versão 1.10.5-r5.9.3-neoforge diz `Updated to Complementary Shaders r5.9.2 + Euphoria Patches 1.10.5`; por isso o catálogo não afirma a revisão do ZIP Complementary apenas a partir do sufixo do Patcher.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #265: `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` / runtime `1.10.5-r5.9.3-neoforge` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A build continua atual; a página oficial detalhada da 1.10.5 confirma atualização do shader para Complementary r5.9.3.
 - **Decisão:** Sem decisão
-- **Histórico da decisão:** 
 - **Sobreposição:** Complementa Complementary Shaders e Iris; não duplica EMF/ETF, EntityCulling ou gameplay lighting. Bugs precisam ser isolados entre shader base, patch Euphoria e loader Iris.
 - **Data da última decisão:** 2026-08-26
 
@@ -95,30 +92,3 @@ Linha de atualização herdada:
 - **1.10.4-r5.9.2:** release intermediária publicada; detalhes não são inventados sem evidência específica recuperada.
 - **1.10.5-r5.9.3:** bug-fix release atual; atualização para **Complementary Shaders r5.9.3**.
 Isso não comprova a versão física do ZIP Complementary em `shaderpacks/`; o bloqueio do catálogo de Complementary permanece separado.
-
-## Complemento técnico preservado da reauditoria GitHub anterior
-
-## 3. Linha física 1.10.5 / r5.9.3
-O JAR físico é **1.10.5-r5.9.3**. O sufixo `r5.9.3` faz parte do contrato de compatibilidade da base Complementary/Euphoria correspondente; não reutilizar um shader base de revisão diferente por suposição.
-A evolução pública desde a antiga build do pack inclui:
-- **1.10.1-r5.9.1:** melhora switching entre dimensões usando cache de shaders por dimensão, com custo de RAM configurável; melhora o settings updater quando os dois estilos são instalados; corrige wildcard de `dimensions.properties` que podia quebrar o catch-all `*` do Iris. A camada shader também publicou ajustes para reflective horses/banners, foliage shadows e Spyglass Astronomy.
-- **1.10.2-r5.9.2:** acrescenta recursos WindLink como partículas flutuantes na água, snow layers ondulando em folhas, hanging signs e interação de foliage com jogador; evita que o overlay de dano da entidade seja afetado por darkness desaturation; introduz suporte inicial de textura para Distant Horizons; adiciona suporte à linha 26.3 do jogo.
-- **1.10.3-r5.9.2:** corrige a aplicação de seasons sobre Dappled Forest.
-- **1.10.4-r5.9.2:** release intermediária publicada; nenhum detalhe adicional é atribuído aqui sem evidência específica recuperada nesta auditoria.
-- **1.10.5-r5.9.3:** bug-fix release atualmente instalada; a publicação oficial destaca a atualização para **Complementary Shaders r5.9.3**.
-Esses deltas agora pertencem à linha efetivamente instalada; deixam de ser apenas “update candidate”.
-Logo, instalar o mod não prova que Seasons, Darkness Desaturation, Soul Sand Valley Overhaul, WindLink ou qualquer outro efeito específico esteja ativo.
-O settings updater foi explicitamente trabalhado na linha 1.10.1+, então a migração do perfil visual é parte do regression gate desta atualização.
-A correção de wildcard de `dimensions.properties` da linha 1.10.1 é particularmente relevante porque afeta o catch-all `*` do Iris.
-Validar: client boot, shaderpacks directory scan, primeira geração do patched pack, shader enable/disable, resource/shader reload, mudança Reimagined↔Unbound, atualização da base, atualização do Patcher, config watcher, troca de dimensão e restauração de perfil após restart.
-1. base Complementary incompatível com `r5.9.3`;
-7. modded block property ausente produzir material incorreto;
-9. performance/RAM cair ao habilitar múltiplas features ou cache por dimensão;
-10. Distant Horizons/WindLink dependerem de versões/recursos realmente compatíveis;
-5. [ ] Preset default com opções extras desativadas.
-7. [ ] Troca repetida de dimensão com cache configurado e observação de RAM.
-11. [ ] WindLink/Distant Horizons apenas se essas features/providers forem usados.
-- modlist física canônica de 16/09/2026: JAR/mod id/runtime/SHA-1 + Iris atual;
-- arquivo oficial CurseForge 8884680: `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar`, suporte explícito a 1.21.1 e atualização para Complementary r5.9.3;
-- site/CurseForge oficiais: Euphoria como add-on de Complementary, opções default-off, Popular Settings e suporte Reimagined/Unbound;
-- changelogs oficiais 1.10.1/1.10.2/1.10.3/1.10.5; detalhes não recuperados da 1.10.4 não foram inventados.
