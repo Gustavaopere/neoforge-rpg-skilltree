@@ -167,6 +167,16 @@
 | 180 | Create Diesel Generators | `createdieselgenerators-1.21.1-1.3.15.jar` | `1.21.1-1.3.15` | `Addons + Create + Processing + Technology` | 20/09/2026 - 20:21 |
 | 181 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 20/09/2026 - 20:21 |
 | 182 | Create: Enchantable Machinery | `createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar` | `3.6.0` | `Addons + Create + Technology + Utility & QoL` | 20/09/2026 - 20:21 |
+| 183 | Create: Ender Transmission | `createendertransmission-2.1.1-1.21.1.jar` | `2.1.1-1.21.1` | `Addons + Technology` | 20/09/2026 - 20:46 |
+| 184 | Create: Fast SchematicCannon | `CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar` | `2.6.1-neoforge` | `Addons + Bug Fixes + Create` | 20/09/2026 - 20:46 |
+| 185 | Create: Filters Anywhere | `createfiltersanywhere-1.21.1-2.6.0.jar` | `2.6.0` | `Addons + Create` | 20/09/2026 - 20:46 |
+| 186 | Create: Fishery Industry | `createfisheryindustry-5.1.2.jar` | `5.1.2` | `Addons + Create` | 20/09/2026 - 20:46 |
+| 187 | Create: Food | `createfood-neoforge-1.21.1-2.7.1.jar` | `2.7.1` | `Automation + Create + Food` | 20/09/2026 - 20:46 |
+| 188 | Create Goggles (Create Plus) | `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar` | `6.1.1` | `Addons + Armor, Tools, and Weapons + Create` | 20/09/2026 - 20:46 |
+| 189 | Create JEI Compat | `createjeicompat-1.0.3.jar` | `1.0.3` | `Create` | 20/09/2026 - 20:46 |
+| 190 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 20/09/2026 - 20:46 |
+| 191 | Create: Liquid Fuel | `createliquidfuel-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 20/09/2026 - 20:46 |
+| 192 | Create: Mechanical Companion | `createmechanicalcompanion-1.9-neoforge-1.21.1.jar` | `1.9 (artefato/publicação); metadata runtime vazia` | `Addons + Adventure and RPG + Create + Mobs + Technology` | 20/09/2026 - 20:46 |
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 17/09/2026 - 22:51 |
 | 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 17/09/2026 - 23:58 |
 | 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 17/09/2026 - 21:40 |
