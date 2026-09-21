@@ -232,5 +232,5 @@
 ## Divergências de metadata preservadas
 
 - **Copycats+ aeronautics weight (#013):** o artefato/publicação e o filename físico são `1.1.1`, enquanto a metadata interna auditada reporta `1.1.0`. As duas informações permanecem explícitas.
-- **Easy NPC (#239):** o JAR físico identifica a distribuição `7.12.1`, mas a metadata runtime da modlist não declara versão. O índice preserva a ausência em vez de inventar metadata.
+- **Easy NPC: Core (#238):** o JAR físico identifica a distribuição `7.12.1`, mas a metadata runtime da modlist não declara versão. O índice preserva a ausência em vez de inventar metadata.
 - **Dungeons Delight (#416):** a distribuição/JAR instalado é `1.5.1`, enquanto a metadata interna auditada reporta `1.5.0`. As duas informações permanecem explícitas.
