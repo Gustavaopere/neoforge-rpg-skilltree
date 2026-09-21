@@ -20,6 +20,7 @@
 <callout icon="🌊" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `flowing_fluids-1.0.6-1.21-neoforge.jar`, mod id `flowing_fluids`, versão `1.0.6`. Flowing Fluids muda a semântica do próprio **fluido no mundo**: líquidos passam a fluir com níveis e volume majoritariamente finitos. Isso é distinto de storage/pipes de outros mods.
 </callout>
+
 ## 1. Física e volume
 O projeto permite que fluidos escorram por declives, formem pools, encham aquedutos e causem flooding. Source blocks deixam de ser a única unidade relevante: níveis parciais podem mover-se e conservar volume conforme as regras do mod.
 Oceans, rivers e swamps podem se comportar como grandes reservas/refill sources conforme configuração, mas não devem ser tratados como infinitos por hardcode de integração externa.
