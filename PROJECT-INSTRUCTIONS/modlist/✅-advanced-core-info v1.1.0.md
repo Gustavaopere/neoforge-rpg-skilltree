@@ -1,5 +1,6 @@
 # AdvancedCoreInfo
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#6**: `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar`, mod id `aci`, runtime `1.1.0`.
 ## Propriedades do registro
 
 - **Mod:** AdvancedCoreInfo
