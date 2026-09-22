@@ -1,5 +1,7 @@
 # Create: Big Contraptions
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#75**: JAR `bigcontraptions-neoforge-1.0.jar`, mod id `bigcontraptions`, runtime `1.0`, SHA-1 `cf1af44de7042f26fce74549130e1eb7d937ced8`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `bigcontraptions-neoforge-1.0.jar`, versão `1.0`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 > **Ordem física atual:** #74 na `modlist(1).txt` de 586 mods top-level. O ordinal #75 embutido em `Atualização/Status` é histórico do snapshot Notion de 11/09/2026 e permanece apenas como conteúdo de paridade; para ordem do pack, a modlist física atual é a autoridade.
 > **Boundary QA preservada:** a matriz de testes mantém explicitamente `>2 MB` e `<10 MB`. A propriedade Notion que descreve `~2 MB` e `~10 MB` é a formulação aproximada original e não substitui esses comparadores de teste.
