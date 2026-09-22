@@ -1,5 +1,6 @@
 # Ace's Spell Utils
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#3**: `aces_spell_utils-1.2.7.2-1.21.1.jar`, mod id `aces_spell_utils`, runtime `1.2.7.2-1.21.1`.
 ## Propriedades do registro
 
 - **Mod:** Ace's Spell Utils
