@@ -1,5 +1,6 @@
 # Aeronautics Camera Sync
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#10**: `aero_cam_sync-1.4.0.jar`, mod id `aero_cam_sync`, runtime `1.4.0`.
 ## Propriedades do registro
 
 - **Mod:** Aeronautics Camera Sync
