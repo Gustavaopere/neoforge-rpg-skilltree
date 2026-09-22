@@ -16,12 +16,12 @@
 - **Categoria:** Compat; QoL
 - **Compatibilidade/Riscos:** Patches podem ficar obsoletos após updates dos mods alvo. Alex's Caves/Mobs corrigidos upstream são ports de Raguto; o pack usa Continued de CodxIO, portanto não assumir cobertura sem validar targets. Storage Drawers mantém bug visual conhecido mesmo com fix upstream.
 - **Decisão:** Sem decisão
-- **Dependências:** Sable é o requisito técnico central; Create Aeronautics não é tecnicamente obrigatório segundo o autor. Mods alvo são condicionais. No pack atual, Create Bits 'n' Bobs 2.3.2 é alvo confirmado presente.
+- **Dependências:** Sable é o requisito técnico central; Create Aeronautics não é tecnicamente obrigatório segundo o autor. Mods alvo são condicionais. No pack atual, Create Bits 'n' Bobs 2.3.5 é alvo confirmado presente.
 - **Estado da pesquisa:** Verificado
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-compatability
 - **Função:** Pacote de mixins/patches que corrige mods incompatíveis com physics-enabled ships do Sable; cobre coordenadas, interação, áudio, pathfinding, montagem e outros casos específicos por mod alvo.
 - **Histórico da decisão:** vazio
-- **Observações:** Cobertura upstream é potencial, não prova de aplicação no pack. Para Alex's Caves/Mobs Continued, validar classes/targets e log de mixin antes de atribuir cobertura. Bits 'n' Bobs 2.3.2 permanece alvo físico confirmado.
+- **Observações:** Cobertura upstream é potencial, não prova de aplicação no pack. Para Alex's Caves/Mobs Continued, validar classes/targets e log de mixin antes de atribuir cobertura. Bits 'n' Bobs 2.3.5 permanece alvo físico confirmado.
 - **Procedência:** modlist.txt física do projeto consultada em 14/09/2026 + CurseForge oficial Create Aeronautics: Compatibility 1.1.3. Artefato `aeronauticscompat-1.1.3.jar`, runtime `1.1.3`, SHA-1 `4d1aea2d6e27705e284d4603aa3422d84464e406`, mixin `aeronauticscompat.mixins.json`.
 - **Sobreposição:** O suporte de câmera 1.1.3 mira Camera Mod de henkelmax; não é evidência de redundância com Aeronautics Camera Sync 1.4.0. Bits 'n' Bobs é cobertura efetivamente relevante no pack atual.
 - **Data da última decisão:** vazio
@@ -40,7 +40,7 @@ Pacote geral de patches para mods que não se comportam corretamente em **physic
 A página oficial lista patches para Etched, WATERFrAMES, Alex's Mobs (port não oficial de Raguto), Alex's Caves (port não oficial de Raguto), Another Furniture, Immersive Paintings, Thick Air, Create: Bits 'n' Bobs, PneumaticCraft: Repressurized, Sleep Tight, Cobblemon, Storage Drawers e Camera Mod de henkelmax. A 1.1.3 acrescentou suporte de câmera e Storage Drawers e atualizou a versão de Sable.
 
 ## Relações com o pack atual
-- `Create Bits 'n' Bobs 2.3.2` está presente e é um alvo upstream explícito; o patch documentado evita duplicação de chains ao montar/desmontar ships.
+- `Create Bits 'n' Bobs 2.3.5` está presente e é um alvo upstream explícito; como o alvo avançou desde 2.3.2, a aplicação real do patch continua exigindo validação de mixin/runtime.
 - O pack possui `Aeronautics Camera Sync 1.4.0`, mas **não foi encontrado Camera Mod de henkelmax**. Portanto o “camera support” do AeronauticsCompat não deve ser tratado como duplicata do Camera Sync: são alvos diferentes.
 - O pack usa **Alex's Caves Continued** e **Alex's Mobs Continued**, não os ports de Raguto citados pela página. Não há base suficiente para afirmar que os mixins específicos de Alex se aplicam às builds Continued; isso precisa ser validado por classe/target/runtime.
 - Não foram encontrados top-level de Storage Drawers, PneumaticCraft ou Immersive Paintings no snapshot atual.
