@@ -1,10 +1,12 @@
 # AzureLib
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#61**: `azurelib-neo-1.21.1-3.1.11.jar`, mod id `azurelib`, runtime `3.1.11`, SHA-1 `9a168688466b3f924c09a20a2d99febe4588ffa5`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `azurelib-neo-1.21.1-3.1.11.jar`, versão `3.1.11`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
