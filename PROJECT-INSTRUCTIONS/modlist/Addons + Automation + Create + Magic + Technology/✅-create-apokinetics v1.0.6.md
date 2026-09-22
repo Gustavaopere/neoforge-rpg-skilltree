@@ -1,5 +1,7 @@
 # Create: Apokinetics
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#29**: `apokinetics-1.0.6.jar`, mod id `apokinetics`, runtime `1.0.6`, SHA-1 `8af4fc7fb17f4d60ead9d0c098d0650d6fdefa68`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
