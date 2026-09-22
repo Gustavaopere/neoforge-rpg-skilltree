@@ -1,8 +1,10 @@
 # Apprentice's Codex
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#38**: `apprentice_codex-0.9.7.1+mc1.21.1.jar`, mod id `apprenticecodex`, runtime `0.9.7.1`, SHA-1 `b514315add32b93b0049c8673075627d7ef812e0`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
