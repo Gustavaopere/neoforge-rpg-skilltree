@@ -16,11 +16,11 @@
 - **Sobreposição:** Sobreposição apenas de infraestrutura com outras bibliotecas/abstrações. Não é redundância temática; remover ou substituir exige mapear consumidores reais. Evitar registro/config/networking duplicado por APIs Fragmentum e NeoForge nativo.
 - **Observações:** Runtime físico confirmado em Fragmentum 2.4.4 para Minecraft 1.21.1. O source oficial da linha instalada está em `legacy/1.21.1`. Upstream publicou 5.0.0 em 19/09/2026 com migração para Modern Stonecutter + Kotlin e breaking changes para dependentes; essa release não está instalada e exige validação conjunta dos consumers antes de qualquer troca física.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `fragmentum-neoforge-1.21.1-2.4.4.jar`, mod id `fragmentum`, runtime `2.4.4` e SHA-1 `09995d8f0da787acdf5df590defc8dd38cf69884`. O source oficial foi revalidado em `legacy/1.21.1`; `gradle.properties` confirma version 2.4.4 e Minecraft 1.21.1.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #286: Fragmentum 2.4.4 reconfirmado. Upstream 5.0.0 (19/09/2026) identificado como atualização disponível, não instalada, com breaking changes para mods dependentes.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #287: Fragmentum 2.4.4 reconfirmado. Upstream 5.0.0 (19/09/2026) identificado como atualização disponível, não instalada, com breaking changes para mods dependentes.
 - **Data da última decisão:** 2026-08-26
 
 <callout icon="🔎" color="blue_bg">
-	**ESCOPO CANÔNICO.** Runtime físico: `fragmentum-neoforge-1.21.1-2.4.4.jar`, mod id `fragmentum`. O branch oficial `ObscuriaLithium/fragmentum:1.21.1` declara exatamente `version=2.4.4`, `minecraft_version=1.21.1` e Java 21, portanto é um source pin compatível com a versão instalada. Fragmentum é framework da Obscuria Collection e **não adiciona conteúdo de gameplay por si só**.
+	**ESCOPO CANÔNICO.** Runtime físico: `fragmentum-neoforge-1.21.1-2.4.4.jar`, mod id `fragmentum`. O branch oficial `ObscuriaLithium/fragmentum:legacy/1.21.1` declara exatamente `version=2.4.4`, `minecraft_version=1.21.1` e Java 21, portanto é um source pin compatível com a versão instalada. Fragmentum é framework da Obscuria Collection e **não adiciona conteúdo de gameplay por si só**.
 </callout>
 
 ## 1. Identidade, versão e authority
