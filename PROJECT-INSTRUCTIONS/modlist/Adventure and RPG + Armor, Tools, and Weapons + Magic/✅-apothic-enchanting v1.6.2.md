@@ -1,8 +1,10 @@
 # Apothic Enchanting
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#35**: `ApothicEnchanting-1.21.1-1.6.2.jar`, mod id `apothic_enchanting`, runtime `1.6.2`, SHA-1 `2623af251d3ddeae1d8e710afa76afe753834bab`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
