@@ -2,6 +2,8 @@
 
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#60**: `azimuth-1.4.8.jar`, mod id `azimuth`, runtime `1.4.8`, SHA-1 `7f8760007e2e917a8700db42d38e785bbe9293b7`.
 
+> **Reconciliação de contagem — 22/09/2026.** Em §6, a expressão `modlist física atual de 595 top-levels` pertence ao snapshot histórico preservado do Notion e não descreve a autoridade física corrente. A autoridade atual é `modlist(1).txt` de 22/09/2026, com **587 entradas top-level incluindo o modloader**. A conclusão histórica sobre a ausência de Bits 'n' Tracks permanece preservada; qualquer inferência operacional atual deve usar a snapshot de 587.
+
 ## Propriedades do registro
 
 - **Mod:** Azimuth API
