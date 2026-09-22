@@ -1,5 +1,6 @@
 # Advanced Loot Info
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#7**: `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar`, mod id `ali`, runtime `2.1.0`.
 ## Propriedades do registro
 
 - **Mod:** Advanced Loot Info
