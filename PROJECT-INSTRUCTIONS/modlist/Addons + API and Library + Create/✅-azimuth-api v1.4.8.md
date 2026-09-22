@@ -1,5 +1,7 @@
 # Azimuth API
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#60**: `azimuth-1.4.8.jar`, mod id `azimuth`, runtime `1.4.8`, SHA-1 `7f8760007e2e917a8700db42d38e785bbe9293b7`.
+
 ## Propriedades do registro
 
 - **Mod:** Azimuth API
