@@ -1,6 +1,6 @@
 # Balm
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#64**: `balm-neoforge-1.21.1-21.0.65.jar`, mod id `balm`, runtime `21.0.65`, SHA-1 `69e0b3b69dd23c132e85b7e82310f45ae96b263`.
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#64**: `balm-neoforge-1.21.1-21.0.65.jar`, mod id `balm`, runtime `21.0.65`, SHA-1 `69e0b3b69dd23c132e85b7e82310f45ae96b263d`.
 
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `balm-neoforge-1.21.1-21.0.65.jar`, versão `21.0.65`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
