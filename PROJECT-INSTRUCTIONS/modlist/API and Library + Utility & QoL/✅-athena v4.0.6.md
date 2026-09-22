@@ -1,10 +1,12 @@
 # Athena
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#57**: `athena-neoforge-1.21.1-4.0.6.jar`, mod id `athena`, runtime `4.0.6`, SHA-1 `4bcbdf388bd5e387beca7c627224aac33584b55b`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `athena-neoforge-1.21.1-4.0.6.jar`, versão `4.0.6`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
