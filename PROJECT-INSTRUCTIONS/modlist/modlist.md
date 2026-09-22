@@ -258,6 +258,16 @@
 | 301 | GeckoLib | `geckolib-neoforge-1.21.1-4.9.2.jar` | `4.9.2` | `API and Library` | 22/09/2026 - 02:07 |
 | 302 | Global Packs | `globalpacks-neoforge-1.21.1-21.0.6.jar` | `21.0.6` | `Map and Information + Utility & QoL` | 22/09/2026 - 02:07 |
 | 303 | Glodium | `Glodium-1.21-2.2-neoforge.jar` | `1.21-2.2-neoforge` | `API and Library` | 22/09/2026 - 02:07 |
+| 304 | GroovyModLoader (GML) | `gml-6.0.2.jar` | `6.0.2` | `API and Library` | 22/09/2026 - 09:16 |
+| 305 | Goety - The Dark Arts | `goety-3.1.4.jar` | `3.1.4` | `Adventure and RPG + Magic + Mobs + Structures` | 22/09/2026 - 09:35 |
+| 306 | Goety Cataclysm | `goety_cataclysm-1.21.1-1.8.2.jar` | `1.21.1-1.8.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/09/2026 - 09:16 |
+| 307 | Goety Iron | `GoetyIron-1.21.1-NeoForge-3.1.jar` | `3.1` | `Magic + Mobs` | 22/09/2026 - 09:16 |
+| 308 | Grappling Hook Mod: Skybound | `grapplemod-1.1+1.21.1.neoforge.jar` | `1.1+1.21.1.neoforge` | `Player Transport + Skyblock + Utility & QoL` | 22/09/2026 - 09:16 |
+| 309 | GTBC's Geomancy Plus - Iron's Spells Addon | `gtbcs_geomancy_plus-1.1.0-1.21.1.jar` | `1.1.0-1.21.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/09/2026 - 09:16 |
+| 310 | GTBC's SpellLib/API | `gtbcs_spell_lib-2.2.0-1.21.1.jar` | `2.2.0-1.21.1` | `Addons + API and Library` | 22/09/2026 - 09:16 |
+| 311 | Guide-API Village and Pillage | `Guide-API-VP-1.21.1-2.3.0.jar` | `2.3.0` | `API and Library + Map and Information` | 22/09/2026 - 09:16 |
+| 312 | Hazen 'N Stuff | `hazennstuff-1.4.0.14.jar` | `1.4.0.14` | `Addons + Armor, Tools, and Weapons + Magic` | 22/09/2026 - 09:29 |
+| 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 22/09/2026 - 09:29 |
 | 331 | InsaneLib | `insanelib-2.4.33.0.jar` | `2.4.33.0` | `API and Library` | 18/09/2026 - 10:38 |
 | 332 | Integrated API | `integrated_api-neoforge-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + API and Library + Structures + World Gen` | 17/09/2026 - 21:40 |
 | 339 | Apotheosis x Iron's Spellbooks Compat | `irons_apothic-2.2.2.jar` | `2.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 17/09/2026 - 21:40 |
