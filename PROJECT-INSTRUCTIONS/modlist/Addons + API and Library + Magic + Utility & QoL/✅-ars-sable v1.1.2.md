@@ -1,10 +1,12 @@
 # Ars Sable
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#49**: `ars_sable-1.21.1-1.1.2.jar`, mod id `ars_sable`, runtime `1.1.2`, SHA-1 `df43ad58fb9ca3b7acf7f62dc97ed75fd6da3da8`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `ars_sable-1.21.1-1.1.2.jar`, versão `1.1.2`. A URL da própria página Notion foi removida; o conteúdo canônico foi preservado.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
