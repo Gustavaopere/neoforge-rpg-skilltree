@@ -1,5 +1,7 @@
 # Almost Unified
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#22**: `almostunified-neoforge-1.21.1-1.4.2.jar`, mod id `almostunified`, runtime `1.21.1-1.4.2`, SHA-1 `f9a58fa95780f4b045d30559c1fdaedaa7f0fba3`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
