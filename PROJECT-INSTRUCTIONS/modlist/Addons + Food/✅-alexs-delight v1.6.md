@@ -1,5 +1,7 @@
 # Alex's Delight
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#20**: `alexsdelight-1.6.jar`, mod id `alexsdelight`, runtime `1.6`, SHA-1 `19e8d1e255c431b706e79412be92d8448c668f4c`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
