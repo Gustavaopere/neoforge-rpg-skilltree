@@ -1,5 +1,6 @@
 # SnackPirate's Aeromancy Additions
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#9**: `aero_additions-1.2.8.jar`, mod id `aero_additions`, runtime `1.2.8`.
 ## Propriedades do registro
 
 - **Mod:** SnackPirate's Aeromancy Additions
