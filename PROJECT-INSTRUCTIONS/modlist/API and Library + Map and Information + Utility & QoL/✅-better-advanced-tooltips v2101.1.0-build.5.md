@@ -1,5 +1,7 @@
 # Better Advanced Tooltips
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#68**: `better-advanced-tooltips-2101.1.0-build.5.jar`, mod id `betteradvancedtooltips`, runtime `2101.1.0-build.5`, SHA-1 `5b73537b908764f2d3fd593a0f56a8b1b034bc50`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `better-advanced-tooltips-2101.1.0-build.5.jar`, versão `2101.1.0-build.5`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
