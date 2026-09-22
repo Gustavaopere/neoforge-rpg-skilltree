@@ -1,5 +1,7 @@
 # Create: Bells & Whistles
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#67**: `bellsandwhistles-0.4.7-1.21.1.jar`, mod id `bellsandwhistles`, runtime `0.4.7-1.21.1`, SHA-1 `85944080f8bd47dad64a8193a70662cd9ddbb200`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `bellsandwhistles-0.4.7-1.21.1.jar`, versão `0.4.7-1.21.1`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
@@ -27,7 +29,7 @@
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Create: Bells & Whistles 0.4.7-1.21.1, seu escopo ferroviário/decorativo e a authority do Create sobre trains/contraptions. Em 09/09/2026, a release e Create 6.0.10 foram revalidados; a sobreposição visual com outros addons não foi usada para inferir decisão.
 - **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `bellsandwhistles-0.4.7-1.21.1.jar`, mod id `bellsandwhistles`, runtime `0.4.7-1.21.1`. O pack usa Create `6.0.10`. O README oficial lista o conteúdo funcional/decorativo principal abaixo.
 
