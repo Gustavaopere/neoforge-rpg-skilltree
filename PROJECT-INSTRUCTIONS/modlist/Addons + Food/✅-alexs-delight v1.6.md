@@ -60,7 +60,7 @@ Não altera IA, spawn ou drops-base de Alex's Mobs fora das integrações própr
 - O inventário físico não expôs mixin config para este JAR. Isso é compatível com uma integração fortemente orientada a conteúdo/registries, mas **não prova** que toda implementação seja exclusivamente datapack/data-driven.
 - A compatibilidade relevante é semântica: os registry IDs/tags/drops esperados pelo addon precisam existir no **Alex's Mobs Continued 2.1.13** instalado.
 ## Dependências e versão cruzada
-A publicação do addon aponta para Alex's Mobs, Citadel e Farmer's Delight. No snapshot físico do pack os providers correspondentes são Alex's Mobs Continued `2.1.11` sob mod ID `alexsmobs`, Citadel `2.7.1` e Farmer's Delight `1.3.4`. O mesmo mod ID reduz a barreira de descoberta, mas **não garante** que todos os recipes/tags da bridge continuem válidos após um port/update.
+A publicação do addon aponta para Alex's Mobs, Citadel e Farmer's Delight. No snapshot físico atual do pack os providers correspondentes são Alex's Mobs Continued `2.1.13` sob mod ID `alexsmobs`, Citadel `2.7.1` e Farmer's Delight `1.3.4`. O mesmo mod ID reduz a barreira de descoberta, mas **não garante** que todos os recipes/tags da bridge continuem válidos após um port/update.
 ## Configuração, dados e reload
 A principal superfície operacional são recipes, ingredients, tags e registries. A instância deve ser testada com `/reload` e JEI/recipe viewers porque erros de data podem aparecer sem crash imediato. Não foi confirmada uma configuração de usuário própria do Alex's Delight neste lote.
 ## Client/server, lifecycle e multiplayer
