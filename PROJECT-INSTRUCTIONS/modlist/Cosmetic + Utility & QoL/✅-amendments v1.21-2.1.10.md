@@ -4,11 +4,11 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 
-## Reconciliação física atual — 19/09/2026
+## Reconciliação física atual — 22/09/2026
 O snapshot canônico do Notion, fechado em 11/09/2026, registra Moonlight `3.6.3` e Supplementaries `3.9.8`. A autoridade física atual (`modlist(1).txt`, 22/09/2026) contém `moonlight-1.21.1-3.6.4-neoforge.jar` / `1.21.1-3.6.4` e `supplementaries-1.21.1-3.9.9-neoforge.jar` / `1.21.1-3.9.9`. As referências antigas no corpo são preservadas como snapshot da origem; o runtime atual usa `3.6.4` e `3.9.9`.
 
 ## Propriedades do banco
