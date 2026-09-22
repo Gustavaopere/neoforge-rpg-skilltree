@@ -4,11 +4,11 @@
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 
-## Reconciliação física atual — 19/09/2026
+## Reconciliação física atual — 22/09/2026
 O snapshot canônico do Notion, fechado em 11/09/2026, registra CreativeCore `2.13.44`. A autoridade física atual (`modlist(1).txt`, 22/09/2026) contém `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar` / `2.13.46`. As referências a `2.13.44` abaixo são preservadas como estado histórico da origem; para o runtime atual, a dependência efetiva é `2.13.46`.
 
 ## Propriedades do banco
