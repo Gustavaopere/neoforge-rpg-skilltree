@@ -1,5 +1,7 @@
 # Better Fps - Render Distance
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#72**: JAR `betterfpsdist-1.21.1-6.1.jar`, mod id `betterfpsdist`, runtime `6.1`, SHA-1 `9c499f5133ebeed43da4ce42d48bf747cead6d24`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `betterfpsdist-1.21.1-6.1.jar`, versão `6.1`. O dossiê GitHub preexistente foi reutilizado como base e renomeado após a comparação 1:1; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
