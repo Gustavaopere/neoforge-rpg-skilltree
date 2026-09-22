@@ -1,8 +1,10 @@
 # Ars Additions
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#40**: `ars_additions-1.21.1-21.3.0.jar`, mod id `ars_additions`, runtime `1.21.1-21.3.0`, SHA-1 `ce2440b606acb20b79a42bf7c6c24d163c93241f`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
