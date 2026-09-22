@@ -17,7 +17,7 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, QoL
 - **Função:** Avionics/controle para physics ships: gyroscope, joystick, cockpit modular, control stands e servos configuráveis que transformam input em estabilização, sinais e saída rotacional.
-- **Dependências:** Documentação atual: NeoForge 21.1.225+, Create 6.0.0+, Create Aeronautics 1.0.3+; relações CurseForge também registram Create + Sable. Pack: NeoForge 21.1.248, Create 6.0.10, Aeronautics 1.3.2 e Sable 2.0.5.
+- **Dependências:** Documentação atual: NeoForge 21.1.225+, Create 6.0.0+, Create Aeronautics 1.0.3+; relações CurseForge também registram Create + Sable. Pack: NeoForge 21.1.250, Create 6.0.10, Aeronautics 1.3.2 e Sable 2.0.5.
 - **Sobreposição:** Compartilha domínio com outros addons de pilotagem, mas fornece controles modulares, gyroscope e servos próprios. Não substitui solver físico, lift ou propulsão do Aeronautics/Sable.
 - **Compatibilidade/Riscos:** Testar concorrência com outros controladores de orientação/força e sincronização de inputs. A 1.5.0 adiciona Drive-By-Sable compat; validar multiplayer, bindings e servos após schematic/mirror/wrench.
 - **Observações:** 1.5.0 adiciona Control Stand/Copycat Control Stand, variantes copper/steering wheel, terceiro pedal socket e Drive-By-Sable. Validar input cliente→servidor, gyroscopes concorrentes, servos e persistência após schematic/mirror/wrench.
@@ -37,7 +37,7 @@ Camada de **controle e estabilização de airships/physics ships** do ecossistem
 - Release oficial: `1.5.0+mc1.21.1`, NeoForge 1.21.1.
 
 ## Dependências
-A documentação atual informa **NeoForge 21.1.225+**, **Create 6.0.0+** e **Create Aeronautics 1.0.3+**. A relação do CurseForge também registra Create + Sable como required. O pack satisfaz os pisos com NeoForge `21.1.248`, Create `6.0.10`, Aeronautics `1.3.2` e Sable `2.0.5`.
+A documentação atual informa **NeoForge 21.1.225+**, **Create 6.0.0+** e **Create Aeronautics 1.0.3+**. A relação do CurseForge também registra Create + Sable como required. O pack satisfaz os pisos com NeoForge `21.1.250`, Create `6.0.10`, Aeronautics `1.3.2` e Sable `2.0.5`.
 
 ## Conteúdo funcional
 O Gyroscope estabiliza a orientação do ship e escala sua força com RPM. O sistema de cockpit permite módulos como lever, joystick, buttons, steering wheel, yoke e throttle quadrant, com configuração por canal e input de teclado/mouse/controller. Servos fornecem saída rotacional configurável. A 1.5.0 acrescenta Control Stand, Copycat Control Stand, variantes copper, steering wheels coloridos, terceiro socket de pedal e compatibilidade Drive-By-Sable.
