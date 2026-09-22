@@ -1,12 +1,7 @@
 # Advancement Plaques
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81b48a77efba5f3d2b0d
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
-
-## Propriedades do banco
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#8**: `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar`, mod id `advancementplaques`, runtime `1.6.8`.
+## Propriedades do registro
 
 - **Mod:** Advancement Plaques
 - **Arquivo JAR:** `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar`

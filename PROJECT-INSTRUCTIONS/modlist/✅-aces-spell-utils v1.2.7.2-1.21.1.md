@@ -1,12 +1,7 @@
 # Ace's Spell Utils
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db816b88f0e0b53eaf6262
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
-
-## Propriedades do banco
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#3**: `aces_spell_utils-1.2.7.2-1.21.1.jar`, mod id `aces_spell_utils`, runtime `1.2.7.2-1.21.1`.
+## Propriedades do registro
 
 - **Mod:** Ace's Spell Utils
 - **Arquivo JAR:** `aces_spell_utils-1.2.7.2-1.21.1.jar`

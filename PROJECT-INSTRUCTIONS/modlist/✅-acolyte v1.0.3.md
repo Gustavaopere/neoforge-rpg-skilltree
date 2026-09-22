@@ -1,12 +1,7 @@
 # Acolyte
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c769db9f0db818bb27ecb761143e405
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
-
-## Propriedades do banco
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#4**: `acolyte-1.0.3.jar`, mod id `acolyte`, runtime `1.0.3`.
+## Propriedades do registro
 
 - **Mod:** Acolyte
 - **Arquivo JAR:** `acolyte-1.0.3.jar`

@@ -1,12 +1,7 @@
 # Aeronautics Camera Sync
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db812e91b4ce51a98dded2
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
-
-## Propriedades do banco
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#10**: `aero_cam_sync-1.4.0.jar`, mod id `aero_cam_sync`, runtime `1.4.0`.
+## Propriedades do registro
 
 - **Mod:** Aeronautics Camera Sync
 - **Arquivo JAR:** `aero_cam_sync-1.4.0.jar`

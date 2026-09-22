@@ -1,12 +1,7 @@
 # AdvancedCoreInfo
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c769db9f0db814abca9e4e5888e7b88
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
-
-## Propriedades do banco
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#6**: `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar`, mod id `aci`, runtime `1.1.0`.
+## Propriedades do registro
 
 - **Mod:** AdvancedCoreInfo
 - **Arquivo JAR:** `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar`

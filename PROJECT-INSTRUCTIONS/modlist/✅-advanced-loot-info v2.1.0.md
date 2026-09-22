@@ -1,12 +1,7 @@
 # Advanced Loot Info
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81ae8ff0c2668b97e9ec
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
-- **Data da exportação:** 2026-09-09
-
-## Propriedades do banco
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#7**: `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar`, mod id `ali`, runtime `2.1.0`.
+## Propriedades do registro
 
 - **Mod:** Advanced Loot Info
 - **Arquivo JAR:** `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar`

@@ -1,5 +1,6 @@
 # Aeronautics Player Tilt
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#11**: `aero_player_tilt-0.2.0.jar`, mod id `aero_player_tilt`, runtime `0.2.0`.
 > **Reauditoria física — 18/09/2026.** Versão catalogada atual: `0.2.0`. O conteúdo abaixo preserva a página Notion reconciliada; a URL da própria página Notion foi deliberadamente omitida.
 
 ## Propriedades do registro
