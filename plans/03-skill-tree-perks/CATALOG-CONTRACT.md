@@ -46,11 +46,27 @@ Somente a raiz `Txxxx` conta para `N_transmutation_per_tree`.
 
 Os filhos `Txxxx.n` pertencem à mesma Ability e não entram na quota.
 
+### Unicidade por Ability
+
+Cada Ability pode possuir **uma única raiz de Transmutation em todo o catálogo**.
+
+Se Chain Lightning for `T5000`, qualquer modificação futura específica de Chain Lightning continuará sendo `T5000.n`. Ela não reaparece mais adiante como `T5050`, `T5100` ou qualquer outra raiz.
+
+Um novo inteiro, como `T5001`, é reservado para outra Ability.
+
+Perks normais e de especialização ainda podem afetar categorias gerais — por exemplo Lightning Damage, mana ou spell power — mas não devem duplicar a customização específica que pertence à raiz de Transmutation daquela Ability.
+
+### Estrutura mínima
+
 Cada raiz deve possuir inicialmente no mínimo:
 
 - 2 modificadores de potência/impacto;
 - 2 modificadores de forma/eficiência;
 - 3 metamorfoses.
+
+**O mínimo de 3 metamorfoses não é máximo.** Abilities que sustentem transformações mecanicamente distintas podem possuir 4, 5 ou mais metamorfoses.
+
+A quantidade de filhos pode variar entre Abilities. A paridade entre árvores mede raízes/Abilities `Txxxx`, não a quantidade de `Txxxx.n`.
 
 Essas três faixas são uma organização de design, não um sistema de exclusividade.
 

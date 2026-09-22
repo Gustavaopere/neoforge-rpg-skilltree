@@ -138,7 +138,7 @@ Todas as 11 árvores possuem a mesma estrutura quantitativa de especializações
 Criar primeiro intenção de gameplay, owner, sinergias e providers candidatos.
 
 ### 5B — Transmutation Perks
-Cada Ability candidata recebe uma única raiz `Txxxx`.
+Cada Ability candidata recebe **uma única raiz `Txxxx` em todo o catálogo**.
 
 Exemplo:
 
@@ -153,7 +153,9 @@ T5000 — Chain Lightning
 └── T5000.7 — Transmutação Elemental
 ```
 
-`T5001` deve representar **outra Ability**, e não outro modificador de Chain Lightning.
+A Chain Lightning não deve receber outra raiz mais tarde na árvore. Qualquer nova transformação específica dela deve continuar dentro de `T5000.n`.
+
+`T5001` representa **outra Ability**, nunca uma segunda ocorrência de Chain Lightning.
 
 Os filhos `T5000.n` são acumuláveis por padrão. Um jogador pode usar, por exemplo, `T5000.1 + T5000.2 + T5000.7` ao mesmo tempo.
 
@@ -163,6 +165,10 @@ Cada transmutação terá inicialmente no mínimo:
 - 2 modificadores de potência/impacto;
 - 2 modificadores de forma/eficiência;
 - 3 metamorfoses.
+
+**Três metamorfoses é piso, não teto.** Uma Ability pode receber 4, 5 ou mais metamorfoses quando elas criarem transformações realmente distintas e úteis. Não existe máximo global fixo.
+
+Novas metamorfoses continuam usando o mesmo namespace de filhos, por exemplo `T5000.8`, `T5000.9`, `T5000.10`, sem criar uma segunda raiz para a mesma Ability.
 
 Esses grupos organizam o design; **não são escolhas mutuamente exclusivas por padrão**.
 
@@ -176,6 +182,8 @@ Congelar somente quando as 11 árvores estiverem representadas:
 - `N_transmutation_per_tree`;
 - `K_specializations_per_tree`;
 - `M_perks_per_specialization`.
+
+A paridade de Transmutation compara **raízes/Abilities**, não quantidade de filhos. Portanto uma Ability complexa pode ter mais modificadores/metamorfoses do que outra sem alterar `N_transmutation_per_tree`.
 
 ### Gate de saída
 O catálogo conceitual inteiro pode ser revisado como sistema de builds antes de qualquer implementação específica de provider.

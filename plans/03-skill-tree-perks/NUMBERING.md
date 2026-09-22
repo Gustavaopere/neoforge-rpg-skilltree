@@ -30,7 +30,7 @@ O prefixo faz parte da identidade. `P5000`, `T5000` e `S5000` são códigos dist
 
 ## Regra fundamental das Transmutations
 
-`Txxxx` identifica **a Ability**, enquanto o sufixo identifica seus modificadores.
+`Txxxx` identifica **uma Ability única em todo o catálogo**, enquanto o sufixo identifica seus modificadores.
 
 Exemplo:
 
@@ -40,7 +40,16 @@ Exemplo:
 - ...
 - `T5000.7` — modificador 7 de Chain Lightning.
 
-`T5001` deve ser reservado para **outra Ability** de ARCANE, não para outro efeito de Chain Lightning.
+Se futuramente Chain Lightning ganhar mais metamorfoses ou outros modificadores, continuam sendo filhos da mesma raiz:
+
+- `T5000.8`;
+- `T5000.9`;
+- `T5000.10`;
+- etc.
+
+Chain Lightning **não recebe outro `Txxxx` mais adiante**.
+
+`T5001` é reservado para outra Ability de ARCANE.
 
 Logo, efeitos como “+1 alvo”, “primeiro alvo recebe bônus” e “converter afinidade” pertencem a `T5000.n` e podem ser usados juntos quando compatíveis.
 
@@ -50,7 +59,9 @@ A estrutura mínima inicial é:
 
 - `.1`, `.2` — potência/impacto;
 - `.3`, `.4` — forma/eficiência;
-- `.5`, `.6`, `.7` — metamorfoses.
+- a partir de `.5` — pelo menos 3 metamorfoses.
+
+As metamorfoses não terminam obrigatoriamente em `.7`. `.8`, `.9`, `.10` e seguintes podem continuar a mesma raiz quando houver ideias distintas que mereçam existir.
 
 A numeração organiza leitura e arquivos. Ela não cria exclusividade.
 
