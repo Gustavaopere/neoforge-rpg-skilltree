@@ -1,5 +1,7 @@
 # Artifacts
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#55**: `artifacts-neoforge-13.2.5.jar`, mod id `artifacts`, runtime `13.2.5`, SHA-1 `fb6cd3be2d034dde369ffd7558c95c6daa44189e`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física atual:** `artifacts-neoforge-13.2.5.jar`, mod id `artifacts`, versão `13.2.5`; source pin `7cf7dc42e322e13f096eea16cee17a4b400b75f7`

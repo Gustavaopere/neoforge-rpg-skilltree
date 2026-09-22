@@ -1,10 +1,12 @@
 # AttributeFix
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#59**: `attributefix-neoforge-1.21.1-21.1.3.jar`, mod id `attributefix`, runtime `21.1.3`, SHA-1 `7aae849f6d2a6cb1368227407ea5deb552e100ba`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `attributefix-neoforge-1.21.1-21.1.3.jar`, versão `21.1.3`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
