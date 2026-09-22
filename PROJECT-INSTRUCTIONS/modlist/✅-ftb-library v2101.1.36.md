@@ -16,7 +16,7 @@
 - **Sobreposição:** Infraestrutura compartilhada, não substituto de FTB Quests/Teams/Chunks/Ultimine. Pode sobrepor visualmente tooltips/sidebar/UI de outros mods; item_modname é false por default justamente porque outros mods costumam adicionar esse tooltip.
 - **Observações:** Runtime físico confirmado: 2101.1.36. A release instalada adiciona `CursorType.MOVE` e corrige tratamento de valores numéricos no NBT editor; o source detalhado anteriormente foi auditado na 2101.1.35, portanto o delta 2101.1.36 é atribuído ao changelog oficial sem projetar source não revalidado.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ftb-library-neoforge-2101.1.36.jar`, mod id `ftblibrary`, runtime `2101.1.36` e SHA-1 `07b5bf1c6ac5160a6cfe1b39ed8c1465dc151b00`. CurseForge oficial confirma File ID 8858846, release NeoForge 1.21.1 publicada em 11/09/2026.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #288: runtime atualizado de 2101.1.35 para 2101.1.36; delta oficial (`CursorType.MOVE` + correção de valores numéricos no NBT editor) incorporado.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #289: runtime atualizado de 2101.1.35 para 2101.1.36; delta oficial (`CursorType.MOVE` + correção de valores numéricos no NBT editor) incorporado.
 - **Data da última decisão:** 2026-08-26
 
 <callout icon="🔎" color="blue_bg">
