@@ -1,5 +1,7 @@
 # Better Library
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#69**: `better_lib-neoforge-1.21.1-1.0.111.jar`, mod id `better_lib`, runtime `1.0.111`, SHA-1 `92ff366f541a9df29c5744cbc647b32cb88f6802`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `better_lib-neoforge-1.21.1-1.0.111.jar`, versão `1.0.111`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
