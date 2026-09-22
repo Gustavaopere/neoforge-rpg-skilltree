@@ -1,5 +1,7 @@
 # Alex's Caves Continued — 1.0.10
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#19**: `alexscaves-1.0.10-neoforge+1.21.1.jar`, mod id `alexscaves`, runtime `1.0.10`, SHA-1 `6960b299a39a039ac8a5eb9b07be4ad0e3e0a570`.
+
 > **Reauditoria física e de migração — 16/09/2026.** A autoridade física atual é `alexscaves-1.0.10-neoforge+1.21.1.jar`, mod id `alexscaves`, runtime `1.0.10`, SHA-1 `6960b299a39a039ac8a5eb9b07be4ad0e3e0a570`, em NeoForge 1.21.1. O dossiê migrado do Notion foi preservado integralmente quanto ao conteúdo do mod e atualizado para a build efetivamente instalada. A 1.0.10 é uma release de correções/compatibilidade: corrige worldgen de lagos nas Primordial Caves, flicker/red flashes do céu no Abyssal Chasm, subida do Submarine com sprint e regressões visuais/compatibilidade. Nenhum teste de runtime foi promovido como executado.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
