@@ -44,7 +44,7 @@ O changelog oficial da 1.4.8 registra melhoria de logging em crash de class cast
 ## 6. Integração com o pack
 - Create físico: `6.0.10`.
 - Azimuth físico: `1.4.8`.
-- O snapshot anterior citava **Bits 'n' Tracks** como consumidor, mas esse mod **não está presente** na modlist física atual de 595 top-levels. A entrada de trilhos atualmente presente é `tracks_plus-1.0.6b6.jar` / Create Tracks+ 1.0.6b6; **não foi confirmada nesta auditoria como consumer de Azimuth**, portanto não será usada como substituição presumida.
+- O snapshot anterior citava **Bits 'n' Tracks** como consumidor, mas esse mod **não está presente** no snapshot físico anterior de 595 top-levels; a autoridade física atual de 22/09/2026 contém 587 entradas top-level incluindo o modloader. A entrada de trilhos atualmente presente é `tracks_plus-1.0.6b6.jar` / Create Tracks+ 1.0.6b6; **não foi confirmada nesta auditoria como consumer de Azimuth**, portanto não será usada como substituição presumida.
 - Até que o dependency graph/JAR metadata dos consumidores atuais seja verificado, **não remover Azimuth por inferência de ausência de consumer**.
 Provider-native first: addons que realmente dependam de Azimuth devem usar suas superfícies reais; não reimplementar Super Behaviours em mod próprio sem necessidade.
 ## 7. Client/server e lifecycle
