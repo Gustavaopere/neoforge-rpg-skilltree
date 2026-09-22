@@ -1,5 +1,7 @@
 # aero_copycats
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#13**: `aerocopycats-1.1.1.jar`, mod id `aerocopycats`, metadata/runtime `1.1.0`, SHA-1 `3a93862421d0a8cdae1e3a3d7f0d4bd01e049007`. A versão de distribuição/filename é `1.1.1`; a divergência com o metadata interno `1.1.0` é preservada, não normalizada.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
