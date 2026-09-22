@@ -1,5 +1,7 @@
 # BCLib: New Dawn
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#66**: `bclib-21.0.26.jar`, mod id `bclib`, runtime `21.0.26`, SHA-1 `06cc971fd149d7dae65c75792798b98be7439141`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `bclib-21.0.26.jar`, versão `21.0.26`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
