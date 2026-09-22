@@ -1,5 +1,7 @@
 # BetterEnd: New Dawn
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#71**: `BetterEnd-21.0.34.jar`, mod id `betterend`, runtime `21.0.34`, SHA-1 `149b73179ea63bf777315a7c850b2eba65c554bd`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `BetterEnd-21.0.34.jar`, versão `21.0.34`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

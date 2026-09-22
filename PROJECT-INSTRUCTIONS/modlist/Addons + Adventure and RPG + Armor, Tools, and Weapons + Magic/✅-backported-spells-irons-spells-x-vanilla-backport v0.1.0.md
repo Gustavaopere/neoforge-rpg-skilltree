@@ -1,5 +1,7 @@
 # Backported Spells: Iron's Spells x Vanilla Backport
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#63**: `backportedspellbooks-0.1.2.jar`, mod id `backportedspellbooks`, runtime `0.1.0`, SHA-1 `747847c1f38c73250ebac05ea06b41a381187850`. O filename físico permanece `0.1.2`, enquanto a metadata runtime permanece `0.1.0`; a divergência é deliberadamente preservada.
+
 > **Reauditoria física — 19/09/2026.** Arquivo físico `backportedspellbooks-0.1.2.jar` reconfirmado; metadata runtime `backportedspellbooks` / `0.1.0` preservada sem normalização fictícia. Paridade Notion → GitHub revalidada e URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

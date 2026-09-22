@@ -1,5 +1,7 @@
 # Battle Arts API
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#65**: `battle_arts_api-21.17.7-mc1.21.1-neoforge.jar`, mod id `battle_arts_api`, runtime `21.17.7`, SHA-1 `f3386cb8e67351f39cd8bda5cd0a0801bfebc732`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `battle_arts_api-21.17.7-mc1.21.1-neoforge.jar`, versão `21.17.7`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
