@@ -16,7 +16,7 @@
 - **Sobreposição:** Sobreposição com outros sistemas de mapa/claim/chunkloading é funcional, não automaticamente redundante. FTB Chunks deve permanecer autoridade dos próprios claims/protection/force-load; evitar segunda camada autorizando ou negando a mesma ação sem política explícita.
 - **Observações:** Runtime físico confirmado: FTB Chunks 2101.1.22, corrigindo metadata antiga que ainda citava 2101.1.21. Config server/world `ftbchunks-world.snbt`; team data persistido em `<world>/ftbchunks/<team UUID>.snbt`; client/local map data usa `local/ftbchunks`.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ftb-chunks-neoforge-2101.1.22.jar`, mod id `ftbchunks`, runtime `2101.1.22` e SHA-1 `a53f1bb7965c6954a348d4f321f03d3971ad503f`. A versão física não mudou nesta rodada; as evidências técnicas já registradas permanecem preservadas.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #287: FTB Chunks 2101.1.22 reconfirmado; snapshot de dependências reconciliado com FTB Library 2101.1.36 e FTB Teams 2101.1.11.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #288: FTB Chunks 2101.1.22 reconfirmado; snapshot de dependências reconciliado com FTB Library 2101.1.36 e FTB Teams 2101.1.11.
 - **Data da última decisão:** 2026-08-26
 
 <callout icon="🔎" color="blue_bg">
