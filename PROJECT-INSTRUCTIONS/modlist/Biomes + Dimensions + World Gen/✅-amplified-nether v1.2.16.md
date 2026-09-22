@@ -1,5 +1,7 @@
 # Amplified Nether
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#27**: `Amplified_Nether_26.2_v1.2.16.jar`, mod id `amplified_nether`, runtime `1.2.16`, SHA-1 `66c053e74379607c614ad252b8f838d3a2533e32`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
