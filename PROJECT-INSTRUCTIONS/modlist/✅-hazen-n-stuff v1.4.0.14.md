@@ -11,7 +11,7 @@
 - **Estado no pack:** Integrado ao Github
 - **Fonte:** https://github.com/Hazentouvel/Hazen_N_Stuff/tree/1.21.1
 - **Função:** Addon de Iron's Spells 'n Spellbooks com spells, armaduras/set bonuses, curios, staves, weapons/tools, blocos, entities/effects e integrações mágicas próprias.
-- **Dependências:** Iron's Spells 'n Spellbooks 1.21.1-3.16.3 + HazentouveLib 1.0.9. Source 1.4.0.14 declara NeoForge \[21.1.0,) e foi desenvolvido contra 21.1.224; pack usa 21.1.248.
+- **Dependências:** Iron's Spells 'n Spellbooks 1.21.1-3.16.3 + HazentouveLib 1.0.9. Source 1.4.0.14 declara NeoForge \[21.1.0,) e foi desenvolvido contra 21.1.224; pack usa 21.1.250.
 - **Compatibilidade/Riscos:** Riscos: ABI drift Iron's/HazentouveLib, set bonus/modifier duplicado, spell double-settlement, recipes/tags/ore-gen em reload, animation/attribute conflicts e client/server registry mismatch. Compats declaradas com Ars Nouveau, Malum, Obscure Tooltips e Discerning the Eldritch estão fisicamente presentes.
 - **Sobreposição:** Sobreposição temática com outros addons de Iron's/Ars/Goety/Malum; não unificar schools, mana, spell IDs ou settlement. Hazen N Stuff continua owner apenas de seu conteúdo e set bonuses.
 - **Observações:** Baseline público: 9 Pure armor sets, 37 weapons, 2 tools, 10 staves e 24 spells listados. Contagens são coverage documental, não claim de enumeração binária integral dos registries.
@@ -29,7 +29,7 @@ Hazen N Stuff é addon de **Iron's Spells 'n Spellbooks** focado em spells, equi
 
 ## 2. Dependências e matriz física
 
-O pack contém `irons_spellbooks-1.21.1-3.16.3.jar` e `hazentouvelib-1.0.9.jar`. O source 1.4.0.14 declara Minecraft 1.21.1, NeoForge range `[21.1.0,)` e foi desenvolvido contra 21.1.224; o pack usa NeoForge 21.1.248, dentro do range declarado. O source também referencia GeckoLib, JEI, Player Animator, Curios, AttributeLib, AzureLib, Better Combat/Placebo/Apotheosis em desenvolvimento; presença em build-dev não é promovida automaticamente a hard dependency runtime.
+O pack contém `irons_spellbooks-1.21.1-3.16.3.jar` e `hazentouvelib-1.0.9.jar`. O source 1.4.0.14 declara Minecraft 1.21.1, NeoForge range `[21.1.0,)` e foi desenvolvido contra 21.1.224; o pack usa NeoForge 21.1.250, dentro do range declarado. O source também referencia GeckoLib, JEI, Player Animator, Curios, AttributeLib, AzureLib, Better Combat/Placebo/Apotheosis em desenvolvimento; presença em build-dev não é promovida automaticamente a hard dependency runtime.
 
 ## 3. Superfícies de registry confirmadas no source
 
