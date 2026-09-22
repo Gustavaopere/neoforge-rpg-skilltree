@@ -1,5 +1,7 @@
 # Alex's Mobs Continued — 2.1.13
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#21**: `alexsmobs-2.1.13-neoforge+1.21.1.jar`, mod id `alexsmobs`, runtime `2.1.13`, SHA-1 `50ddafdf3d12b33331e4eecb4ab514ae451baadd`.
+
 > **Reauditoria física e de migração — 16/09/2026.** A autoridade física atual é `alexsmobs-2.1.13-neoforge+1.21.1.jar`, mod id `alexsmobs`, runtime `2.1.13`, SHA-1 `50ddafdf3d12b33331e4eecb4ab514ae451baadd`, em NeoForge 1.21.1. O catálogo benchmark migrado do Notion foi preservado integralmente e atualizado para os deltas 2.1.12/2.1.13 agora instalados. A 2.1.12 adiciona `flyTransformation` e corrige superfícies aquáticas/Dictionary/model; a 2.1.13 adiciona `mimicubeDamageMultiplier`. Nenhum teste de runtime foi promovido como executado.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
