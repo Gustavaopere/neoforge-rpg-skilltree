@@ -1,10 +1,12 @@
 # Ars Nouveau's Flavors & Delight
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#53**: `arsdelight-2.2.2.jar`, mod id `arsdelight`, runtime `2.2.2`, SHA-1 `98e98fc1f03192bb7680ef9a3ba9a99c2df625bb`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `arsdelight-2.2.2.jar`, versão `2.2.2`. A URL da própria página Notion foi removida; o conteúdo canônico foi preservado.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
