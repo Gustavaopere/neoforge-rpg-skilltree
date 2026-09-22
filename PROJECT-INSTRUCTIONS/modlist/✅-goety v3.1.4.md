@@ -118,7 +118,7 @@ Side effects devem ocorrer exatamente uma vez no owner/contexto correto.
 - **Goety Cataclysm 1.21.1-1.8.2:** bridge Goety ↔ L_Ender's Cataclysm; ficha separada.
 - **Patchouli 1.21.1-93-NEOFORGE:** presente fisicamente; o projeto documenta Black Book quando Patchouli está instalado.
 - **Curios API 9.5.1+1.21.1:** presente fisicamente e creditado como integração pelo projeto.
-- **JEI 19.53.0.426:** presente no pack e recomendado pela documentação oficial.
+- **JEI 19.56.0.440:** presente no pack e recomendado pela documentação oficial.
 
 Integrações adicionais só devem ser declaradas após prova específica.
 
