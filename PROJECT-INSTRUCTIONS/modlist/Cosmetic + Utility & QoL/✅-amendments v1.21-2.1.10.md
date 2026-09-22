@@ -9,7 +9,7 @@
 
 
 ## Reconciliação física atual — 19/09/2026
-O snapshot canônico do Notion, fechado em 11/09/2026, registra Moonlight `3.6.3` e Supplementaries `3.9.8`. A autoridade física mais recente (`modlist(1).txt`, 16/09/2026) contém `moonlight-1.21.1-3.6.4-neoforge.jar` / `1.21.1-3.6.4` e `supplementaries-1.21.1-3.9.9-neoforge.jar` / `1.21.1-3.9.9`. As referências antigas no corpo são preservadas como snapshot da origem; o runtime atual usa `3.6.4` e `3.9.9`.
+O snapshot canônico do Notion, fechado em 11/09/2026, registra Moonlight `3.6.3` e Supplementaries `3.9.8`. A autoridade física atual (`modlist(1).txt`, 22/09/2026) contém `moonlight-1.21.1-3.6.4-neoforge.jar` / `1.21.1-3.6.4` e `supplementaries-1.21.1-3.9.9-neoforge.jar` / `1.21.1-3.9.9`. As referências antigas no corpo são preservadas como snapshot da origem; o runtime atual usa `3.6.4` e `3.9.9`.
 
 ## Propriedades do banco
 
@@ -21,7 +21,7 @@ O snapshot canônico do Notion, fechado em 11/09/2026, registra Moonlight `3.6.3
 - **Decisão:** Sem decisão
 - **Categoria:** QoL
 - **Função:** Overhaul vanilla+ altamente configurável de blocos existentes: cauldrons com qualquer líquido/mixing/boiling/stews e recipes data-driven; lecterns com GUI de escrita/fontes/cores e hoppers; lanterns 3D/wall/physics; hanging signs com itens, swing e banner patterns via Supplementaries; jukeboxes visuais para qualquer disc; carpeted slabs/stairs; double cakes/rotação; lilypads suportando blocos; skull piles/candles/wax; brewing stand bottle colors; ceiling banners/pots; tripwire tool display; pixel-consistent signs; fire/snow/slime/dragon charges e UI nova de trades em 2.1.10.
-- **Dependências:** Moonlight Lib/Selene conforme release/ecossistema; o pack instala `moonlight-1.21.1-3.6.3-neoforge.jar`. Supplementaries é integração condicional para banner patterns em hanging signs e está instalado (1.21.1-3.9.8).
+- **Dependências:** Moonlight Lib/Selene conforme release/ecossistema; o pack instala `moonlight-1.21.1-3.6.4-neoforge.jar`. Supplementaries é integração condicional para banner patterns em hanging signs e está instalado (`1.21.1-3.9.9`).
 - **Sobreposição:** O próprio projeto nasceu da fusão de Carpeted Stairs, Better Lilypads, Better Jukeboxes e algumas features antigas de Supplementaries. Sobreposição com Supplementaries é deliberada/parcial; não é duplicata total.
 - **Compatibilidade/Riscos:** Toca blocos vanilla muito usados e pode cruzar com Supplementaries, resource packs/model overrides, mods de fluidos/cauldrons, jukeboxes, signs e villagers. Cauldrons aceitam qualquer líquido e recipes data-driven, portanto validar fluids modded, automation e potion effects. Moonlight generated pack/mod assets precisam ter prioridade adequada para evitar cauldron water branca/brewing stand vermelho. A UI de trades foi adicionada em 2.1.10 e deve ser testada com mods que alteram villager trades.
 - **Observações:** FAQ upstream esclarece que cauldrons não fazem brewing vanilla; fazem liquid mixing, potion/dye mixing e crafting por interação. Não confundir os dois sistemas. Prioridade do generated resource pack de Moonlight é requisito visual de troubleshooting.
@@ -90,7 +90,7 @@ Resource packs que mudam modelos de lanternas e mods de render/physics podem afe
 - hanging signs fixadas em parede balançam com physics;
 - mostram conexão visual com fences, walls e blocos semelhantes.
 
-Como **Supplementaries 1.21.1-3.9.8 está instalado**, a integração de banner patterns é relevante nesta instância.
+Como **Supplementaries 1.21.1-3.9.9 está instalado**, a integração de banner patterns é relevante nesta instância.
 
 ## 6. Jukeboxes
 - mostram visualmente o disc em reprodução;
@@ -162,7 +162,7 @@ A release instalada **2.1.10**, publicada em 06/09/2026, adiciona **nova UI para
 
 ## 17. Dependências e integrações locais
 ### Moonlight Lib
-Dependência/base do ecossistema. O pack instala `moonlight-1.21.1-3.6.3-neoforge.jar`.
+Dependência/base do ecossistema. O pack instala `moonlight-1.21.1-3.6.4-neoforge.jar`.
 
 ### Supplementaries
 Instalado. Participa explicitamente de banner patterns em hanging signs e compartilha histórico de features com Amendments.
