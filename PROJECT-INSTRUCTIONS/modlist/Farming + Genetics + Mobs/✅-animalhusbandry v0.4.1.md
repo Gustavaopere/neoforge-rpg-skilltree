@@ -1,5 +1,7 @@
 # AnimalHusbandry
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#28**: `AnimalHusbandry-neoforge-0.4.1.jar`, mod id `animalhusbandry`, runtime `0.4.1`, SHA-1 `c39e33ab568636a8f814f609eaf0e7848e5fd5ac`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
