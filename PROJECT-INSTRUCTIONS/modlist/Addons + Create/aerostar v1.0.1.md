@@ -12,16 +12,16 @@
 - **Mod:** AeroStar
 - **Arquivo JAR:** `AeroStar-1.0.1.jar`
 - **Versão 1.21.1:** `1.0.1`
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — ownership de state transfer, lifecycle, multiplayer, fingerprint SHA-1 e matriz de validação aprofundados. BLOQUEIO FAIL-CLOSED Northstar Redux 0.6.4 permanece até SHA-256 físico do JAR confirmar original vs patched.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — ownership de state transfer, lifecycle, multiplayer, fingerprint SHA-1 e matriz de validação aprofundados. BLOQUEIO FAIL-CLOSED permanece no stack atual com Northstar Redux 0.6.5+1.21.1: o SHA-256 físico do AeroStar ainda precisa identificar original vs patched, e mesmo o binário patched para 0.6.4 não prova compatibilidade com 0.6.5.
 - **Categoria:** Tecnologia; Compat
-- **Compatibilidade/Riscos:** BLOQUEIO ATUAL: patch notes registram NoClassDefFoundError no AeroStar 1.0.1 original com Northstar Redux 0.6.4 por mudança de NorthstarDimensions/API. A modlist ainda mostra `AeroStar-1.0.1.jar`; isso não prova se o binário foi patched e renomeado. Conferir SHA256 físico contra original 12d6ce... e patched 285992... antes de aprovar runtime. Continua incompatível com o antigo Northstar–Aeronautics Compatibility em paralelo.
+- **Compatibilidade/Riscos:** BLOQUEIO ATUAL: patch notes registram `NoClassDefFoundError` no AeroStar 1.0.1 original com Northstar Redux 0.6.4 por mudança de `NorthstarDimensions`/API. O pack físico atual já usa Northstar Redux `0.6.5+1.21.1`; identificar o SHA-256 do AeroStar continua necessário para provenance, mas nenhum dos fingerprints 0.6.4 aprova sozinho a compatibilidade com 0.6.5. Continua incompatível com o antigo Northstar–Aeronautics Compatibility em paralelo.
 - **Decisão:** vazio
-- **Dependências:** Obrigatórias upstream: Create, Create Aeronautics e Northstar. Pack atual: Create 6.0.10, Aeronautics 1.3.2 (bundle) e Northstar Redux 0.6.4+1.21.1 presentes.
+- **Dependências:** Obrigatórias upstream: Create, Create Aeronautics e Northstar. Pack atual: Create 6.0.10, Aeronautics 1.3.2 (bundle) e Northstar Redux 0.6.5+1.21.1 presentes.
 - **Estado da pesquisa:** Verificado
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aerostar
 - **Função:** Bridge Create Aeronautics ↔ Northstar Redux: transfere physics ships entre dimensões/planetas com Dimensional Drive, preservando block entities, passageiros, assentos e momentum; inclui Orbital Physics Assembler e ferramentas de navegação/overlay.
 - **Histórico da decisão:** vazio
-- **Observações:** Dossiê documental completo, mas runtime AeroStar↔Northstar Redux 0.6.4 não aprovado. Calcular SHA-256 do JAR instalado e comparar com os fingerprints original/patched já registrados; depois executar smoke full-pack/dedicated e transferências dimensionais.
+- **Observações:** Dossiê documental completo, mas runtime AeroStar↔Northstar Redux 0.6.5 não aprovado. Calcular SHA-256 do JAR instalado para identificar original vs patched e, independentemente do resultado, executar smoke full-pack/dedicated e transferências dimensionais no stack 0.6.5 antes de recertificar.
 - **Procedência:** modlist.txt física do projeto consultada em 14/09/2026 + CurseForge oficial AeroStar 1.0.1 + patch notes já auditadas. Artefato `AeroStar-1.0.1.jar`, runtime `1.0.1`, SHA-1 `7e5ae54b22be453dc9ff0a35111d44ae78bd2128`, mixin `aerostarcomp.mixins.json`. O SHA-1 físico não substitui a comparação SHA-256 original/patched.
 - **Sobreposição:** Substitui o antigo compatibility mod Northstar↔Aeronautics. Não substitui Northstar Redux, Aeronautics ou Sable. Nenhum segundo top-level do compat antigo foi encontrado na modlist atual.
 - **Data da última decisão:** 2026-08-27
@@ -38,7 +38,7 @@ Compatibilidade espacial entre **Create Aeronautics** e **Northstar Redux**, con
 
 ## Dependências
 - **Obrigatórias upstream:** Create, Create Aeronautics e Northstar.
-- Pack atual: Create `6.0.10`, Aeronautics bundle `1.3.2` e Northstar Redux `0.6.4+1.21.1` presentes.
+- Pack atual: Create `6.0.10`, Aeronautics bundle `1.3.2` e Northstar Redux `0.6.5+1.21.1` presentes.
 - Não foi encontrado outro top-level do antigo compatibility mod na modlist atual.
 
 ## Mecânicas relevantes
@@ -65,7 +65,7 @@ A decisão e execução da transferência dimensional devem ser server-authorita
 - Runtime: `1.0.1`
 - SHA-1 do artefato instalado: `7e5ae54b22be453dc9ff0a35111d44ae78bd2128`
 - Mixin config: `aerostarcomp.mixins.json`
-- O SHA-1 acima **não resolve** a pendência já documentada porque os fingerprints de referência original/patched disponíveis são SHA-256. Até calcular SHA-256 do JAR físico e comparar com os valores documentados, o status de compatibilidade com Northstar Redux 0.6.4 permanece fail-closed.
+- O SHA-1 acima **não resolve** a pendência já documentada porque os fingerprints de referência original/patched disponíveis são SHA-256. O SHA-256 físico ainda é necessário para identificar qual binário 1.0.1 está instalado; porém, no stack atual com Northstar Redux 0.6.5, essa identificação é apenas provenance e **não substitui** a validação runtime 0.6.5. O status permanece fail-closed.
 
 
 ## Reconciliação física atual — 18/09/2026
@@ -83,7 +83,7 @@ A modlist física mais recente (`modlist(1).txt`, 16/09/2026) mantém `AeroStar-
 - [CurseForge oficial — Create: AeroStar Northstar Comp](https://www.curseforge.com/minecraft/mc-mods/create-aerostar)
 - Modlist física atual e guia consolidado de Tecnologia.
 
-## Bloqueio atual — Northstar Redux 0.6.4
+## Origem do bloqueio — patch Northstar Redux 0.6.4; stack atual 0.6.5
 
 > ⚠️ **FAIL-CLOSED.** As patch notes do projeto registram que o AeroStar 1.0.1 original foi compilado contra a API pre-0.6 do Northstar e pode falhar com `NoClassDefFoundError` em `NorthstarDimensions` quando usado com Northstar Redux 0.6.4. O patch específico reescreve `OrbitGravitySystem.class` e `DriveTransferCommand.class` para a API 0.6.4.
 
@@ -97,8 +97,8 @@ Isso **não prova** que o binário atual está sem patch, porque um JAR patched 
 
 ### Pendência operacional
 - [ ] Calcular SHA256 do `AeroStar-1.0.1.jar` realmente instalado.
-- [ ] Se bater com o original, substituir pelo patched antes de considerar AeroStar runtime-safe com Northstar Redux 0.6.4.
-- [ ] Se bater com o patched, registrar que houve rename do artefato e manter a provenance.
-- [ ] Depois executar full-pack/dedicated-server smoke e testar transferência dimensional.
+- [ ] Se bater com o original, registrar que o JAR atual não contém o patch 0.6.4; não promover compatibilidade com 0.6.5 sem correção/validação específica.
+- [ ] Se bater com o patched, registrar que houve rename do artefato e manter a provenance; ainda assim, o patch 0.6.4 não certifica Northstar Redux 0.6.5.
+- [ ] Em ambos os casos, executar full-pack/dedicated-server smoke no stack atual Northstar Redux 0.6.5 e testar transferência dimensional antes de reaplicar `✅-`.
 
-Enquanto o hash físico não for confirmado, documentação pode ser considerada completa, mas **compatibilidade runtime AeroStar↔Northstar 0.6.4 permanece não aprovada**.
+Enquanto o hash físico e o runtime 0.6.5 não forem validados, a documentação pode ser considerada completa, mas **AeroStar permanece sem certificação operacional**.
