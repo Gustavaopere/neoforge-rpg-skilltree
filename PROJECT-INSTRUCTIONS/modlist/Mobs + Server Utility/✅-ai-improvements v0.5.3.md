@@ -1,5 +1,7 @@
 # AI-Improvements
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#17**: `AI-Improvements-1.21-0.5.3.jar`, mod id `aiimprovements`, runtime `0.5.3`, SHA-1 `b4a8e11384454bcc341043b251db7fb5afdfdf45`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
