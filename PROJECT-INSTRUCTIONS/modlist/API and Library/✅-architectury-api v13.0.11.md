@@ -1,8 +1,10 @@
 # Architectury API
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#39**: `architectury-13.0.11-neoforge.jar`, mod id `architectury`, runtime `13.0.11`, SHA-1 `008656a0702801174b8ec245ed7aad1921d6e9f1`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
