@@ -1,12 +1,12 @@
 # Índice incremental da modlist certificada e organizada
 
-> Esta tabela contém somente mods top-level cujo dossiê possui simultaneamente `✅-` e versão explícita no filename. A ordem segue a posição física real; lacunas são intencionais enquanto os demais dossiers não forem elegíveis.
+> Esta tabela contém somente mods top-level cujo dossiê possui simultaneamente `✅-` e versão explícita no filename. **Os números desta tabela ainda carregam uma deriva estrutural histórica na fronteira Camera Sync/Player Tilt e não são autoridade de ordem física até a reconciliação integral do índice.** Para a ordem atual, prevalecem `modlist(1).txt` e o bloco `Autoridade física atual` de cada dossiê revalidado.
 >
 > A pasta representa o conjunto completo das categorias temáticas atuais do projeto correspondente no CurseForge, ordenadas alfabeticamente e separadas por ` + `. Categorias de loader, versão do Minecraft e ambiente não entram no caminho.
 >
 > `Última edição` registra a última alteração documental significativa anterior à movimentação estrutural, normalizada para `America/Sao_Paulo` (UTC-03:00). A movimentação em si não altera esse histórico.
 >
-> Os ordinais atuais preservam os anchors conciliados diretamente contra a modlist física atual e foram reconciliados com o snapshot físico versionado e os deltas físicos documentados posteriores; nenhum subconjunto foi renumerado.
+> A renumeração downstream não é feita por inferência durante lotes parciais. Cada lote corrige/certifica seus dossiês contra a modlist física; o índice será renumerado somente quando a faixa correspondente puder ser conciliada sem extrapolar o escopo de auditoria.
 
 ## Mods certificados e organizados
 
