@@ -1,5 +1,6 @@
 # Additional Attributes
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#5**: `additional_attributes-1.21.1-1.2.2.jar`, mod id `additional_attributes`, runtime `1.2.2`.
 ## Propriedades do registro
 
 - **Mod:** Additional Attributes
