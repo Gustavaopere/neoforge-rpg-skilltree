@@ -1,5 +1,7 @@
 # AeronauticsCompat
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#14**: `aeronauticscompat-1.1.3.jar`, mod id `aeronauticscompat`, runtime `1.1.3`, SHA-1 `4d1aea2d6e27705e284d4603aa3422d84464e406`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
