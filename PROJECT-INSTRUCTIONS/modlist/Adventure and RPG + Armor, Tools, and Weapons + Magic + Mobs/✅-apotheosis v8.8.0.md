@@ -1,5 +1,7 @@
 # Apotheosis
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#30**: `Apotheosis-1.21.1-8.8.0.jar`, mod id `apotheosis`, runtime `8.8.0`, SHA-1 `1e4837fcaf24fe73dba1082656736d872690b303`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
