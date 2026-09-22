@@ -1,5 +1,7 @@
 # AmbientSounds 6
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#25**: `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar`, mod id `ambientsounds`, runtime `6.3.8`, SHA-1 `c79ab328b2c46068effebdcb3f26e98dc4404cb0`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
