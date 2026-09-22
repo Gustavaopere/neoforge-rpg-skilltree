@@ -161,7 +161,7 @@ A 2101.1.36 adiciona ainda `CursorType.MOVE`, ampliando a superfície de cursor/
 
 ## 11. Keymaps — correção específica 2101.1.35
 
-A versão instalada **2101.1.35** corrige no NeoForge a checagem de key modifiers para keybindings que não possuem modificador. Antes da correção, um binding sem modifier podia ser considerado ativo mesmo com uma modifier key pressionada, causando problema concreto em FTB Quests com **Tab / Shift-Tab**. A 2101.1.34 havia backportado a abstração de keymapping e suporte a modifiers.
+A release **2101.1.35** introduziu a correção, herdada pela versão instalada **2101.1.36**, para a checagem NeoForge de key modifiers em keybindings que não possuem modificador. Antes da correção, um binding sem modifier podia ser considerado ativo mesmo com uma modifier key pressionada, causando problema concreto em FTB Quests com **Tab / Shift-Tab**. A 2101.1.34 havia backportado a abstração de keymapping e suporte a modifiers.
 No pack, qualquer conflito de tecla envolvendo FTB Quests, menus ou mods de input deve ser diagnosticado considerando essa camada antes de criar patch próprio.
 
 ## 12. Delta instalado 2101.1.36
