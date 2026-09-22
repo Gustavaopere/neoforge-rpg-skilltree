@@ -1,5 +1,7 @@
 # Better ModList
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#70**: `better_modlist-21.1.1.jar`, mod id `mod_menu`, runtime `21.1.1`, SHA-1 `8dce8539dd11941ad48a0c8c8c9876b54a65f575`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `better_modlist-21.1.1.jar`, versão `21.1.1`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
