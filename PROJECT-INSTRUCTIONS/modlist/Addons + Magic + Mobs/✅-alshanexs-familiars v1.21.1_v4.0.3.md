@@ -1,5 +1,7 @@
 # Alshanex's Familiars
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#23**: `alshanex_familiars-1.21.1_v4.0.3.jar`, mod id `alshanex_familiars`, runtime `1.21.1_v4.0.3`, SHA-1 `e5051c2385a426d05bf203ba8081a23d891f6686`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
