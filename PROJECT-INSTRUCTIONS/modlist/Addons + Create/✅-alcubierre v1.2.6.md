@@ -1,5 +1,7 @@
 # Alcubierre
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#18**: `alcubierre-1.2.6.jar`, mod id `alcubierre`, runtime `1.2.6`, SHA-1 `154b0a6d9abe6fdbc76b3a09ae38d21c100a21a8`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
