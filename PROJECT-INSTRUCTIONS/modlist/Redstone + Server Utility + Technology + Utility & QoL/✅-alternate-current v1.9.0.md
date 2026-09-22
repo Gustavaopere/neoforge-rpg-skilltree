@@ -1,5 +1,7 @@
 # Alternate Current
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#24**: `alternate_current-mc1.21-1.9.0.jar`, mod id `alternate_current`, runtime `1.9.0`, SHA-1 `1201c14362f2bad7062d315f8a9b26afbabd2c9c`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
