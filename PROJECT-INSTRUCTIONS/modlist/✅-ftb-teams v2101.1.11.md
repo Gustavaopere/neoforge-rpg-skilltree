@@ -16,7 +16,7 @@
 - **Sobreposição:** Não é substituto de FTB Chunks/Quests: Teams é authority de identidade/membership; Chunks mantém claims/protection e Quests mantém quest state. Evitar uma segunda fonte de verdade de party/owner.
 - **Observações:** Persistência confirmada em `<world>/ftbteams/ftbteams.snbt` + arquivos SNBT por team/type. `max_party_size=0` e `limited_lives=0` por default. Team properties e Team Stage foram auditados no source.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ftb-teams-neoforge-2101.1.11.jar`, mod id `ftbteams`, runtime `2101.1.11` e SHA-1 `62b65f752d0326edd13244e58d5f2aec035da4e9`. A versão física não mudou nesta rodada; as evidências técnicas já registradas permanecem preservadas.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #290: FTB Teams 2101.1.11 reconfirmado; referências do stack atual reconciliadas para FTB Library 2101.1.36 e FTB Quests 2101.1.36.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #291: FTB Teams 2101.1.11 reconfirmado; referências do stack atual reconciliadas para FTB Library 2101.1.36 e FTB Quests 2101.1.36.
 - **Data da última decisão:** 2026-08-26
 
 <callout icon="🔎" color="blue_bg">
