@@ -11,7 +11,7 @@
 - **Estado no pack:** Integrado ao Github
 - **Fonte:** https://github.com/Hazentouvel/HazentouveLib
 - **Função:** Biblioteca/API do ecossistema Hazen com schools, attributes, entity/item bases, effects, particles, data attachments e helpers reutilizáveis para addons de Iron's Spells.
-- **Dependências:** NeoForge 1.21.1; Hazen N Stuff 1.4.0.14 é consumer físico confirmado. Source 1.0.9 declara NeoForge \[21.1.0,) e foi desenvolvido contra 21.1.224; pack usa 21.1.248.
+- **Dependências:** NeoForge 1.21.1; Hazen N Stuff 1.4.0.14 é consumer físico confirmado. Source 1.0.9 declara NeoForge \[21.1.0,) e foi desenvolvido contra 21.1.224; pack usa 21.1.250.
 - **Compatibilidade/Riscos:** Riscos: ABI drift com consumers/Iron's, duplicate school/attribute registration, attachments stale, Hexed/damage duplicado, modifiers Dual/Tri/Pure duplicados, client keybind sem validação e classloading side incorreto.
 - **Sobreposição:** Biblioteca específica do ecossistema Hazen; não substitui Iron's Spells, SpellLib ou outras APIs sem alterar os consumers. Schools/resources continuam provider-specific.
 - **Observações:** API pública documenta Radiance/Shadow/Cosmic, bases de Enderman spellcaster, Hexed, tiers Dormant/Pure/Ascended, Dual/Tri, maces, rarities, 5 keybinds e AbstractTaggedSpell. Não tratar essas bases como conteúdo final independente.
@@ -29,7 +29,7 @@ HazentouveLib é a biblioteca compartilhada dos mods Hazen. O projeto a descreve
 
 ## 2. Dependência física e versão
 
-Hazen N Stuff 1.4.0.14 está presente e é consumer confirmado. O source 1.0.9 declara Minecraft 1.21.1, NeoForge range `[21.1.0,)`, desenvolvimento contra 21.1.224 e dependências de desenvolvimento como GeckoLib, JEI, Player Animator, Curios, AttributeLib e AzureLib. O pack usa NeoForge 21.1.248, dentro do range.
+Hazen N Stuff 1.4.0.14 está presente e é consumer confirmado. O source 1.0.9 declara Minecraft 1.21.1, NeoForge range `[21.1.0,)`, desenvolvimento contra 21.1.224 e dependências de desenvolvimento como GeckoLib, JEI, Player Animator, Curios, AttributeLib e AzureLib. O pack usa NeoForge 21.1.250, dentro do range.
 
 ## 3. Schools compartilhadas
 
