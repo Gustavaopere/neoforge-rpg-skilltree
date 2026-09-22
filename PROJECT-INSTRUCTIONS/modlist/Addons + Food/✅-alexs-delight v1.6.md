@@ -38,7 +38,7 @@
 
 ## Dependências
 A página de relações do projeto publica como requeridos **Alex's Mobs, Citadel e Farmer's Delight**. No pack físico atual estão presentes:
-- `alexsmobs-2.1.11-neoforge+1.21.1.jar` — Alex's Mobs Continued, mantendo o mod ID `alexsmobs`;
+- `alexsmobs-2.1.13-neoforge+1.21.1.jar` — Alex's Mobs Continued, mantendo o mod ID `alexsmobs`;
 - `citadel-2.7.1-1.21.1.jar`;
 - `FarmersDelight-1.21.1-1.3.4.jar`.
 
