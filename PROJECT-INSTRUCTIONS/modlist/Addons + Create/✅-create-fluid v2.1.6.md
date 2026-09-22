@@ -16,7 +16,7 @@
 - **Sobreposição:** Sobreposição parcial com outros addons Create de transporte, interfaces, bombas e fluid logistics. Não remover por tema: comparar por endpoint/contrato. Este mod possui package logistics, promises, Fluid Atomizer e interaction points próprios.
 - **Observações:** Runtime físico confirmado: 2.1.6. Creative Fluid Tanks e Copper Sinks com água infinita anunciam supply ilimitado à logística; Quicksand recebeu loot/tag de shovel; Powder Snow/Quicksand Buckets retornam bucket vazio após drain; Logistics Junction, Atomizer, Can Filler e Pipette receberam correções/interações específicas na 2.1.6.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `fluid-2.1.6.jar`, mod id `fluid`, runtime `2.1.6` e SHA-1 `4f16ea44499ae31826fc5e3d2d12963c4a356b0d`. CurseForge oficial confirma File ID 8873260, release NeoForge 1.21.1 publicada em 13/09/2026.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #283: runtime atualizado de 2.1.5 para 2.1.6; changelog oficial 2.1.6 incorporado e reconciliado com a autoridade física atual.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #284: runtime atualizado de 2.1.5 para 2.1.6; changelog oficial 2.1.6 incorporado e reconciliado com a autoridade física atual.
 - **Data da última decisão:** 2026-08-26
 
 <callout icon="🔎" color="blue_bg">
