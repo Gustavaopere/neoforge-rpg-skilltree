@@ -1,9 +1,12 @@
 # Ars 'n' Spells
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#46**: `ars_n_spells-3.3.4.jar`, mod id `ars_n_spells`, runtime `3.3.4`, SHA-1 `53966330a468e626cd6469259af6778a5a7d9305`.
+
 > **Reauditoria física — 18/09/2026.** Versão catalogada atual: `3.3.4`. O conteúdo abaixo preserva a página Notion reconciliada; a URL da própria página Notion foi deliberadamente omitida.
 
 ## Propriedades do registro
 
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Mod:** Ars 'n' Spells
 - **Arquivo JAR:** ars_n_spells-3.3.4.jar
 - **Versão 1.21.1:** 3.3.4
