@@ -2,19 +2,24 @@
 
 - **Família:** Transmutation Perk
 - **Owner tree:** ARCANE
-- **Ability alvo:** `irons_spellbooks:chain_lightning` (binding final a confirmar na implementação)
-- **Provider:** Iron's Spells 'n Spellbooks
-- **Requisito de compra:** Chain Lightning conhecida/desbloqueada
-- **Não basta:** estar apenas equipada no spellbook/action bar
-- **Status:** piloto de arquitetura
+- **Ability alvo:** Chain Lightning
+- **Provider candidato:** Iron's Spells 'n Spellbooks
+- **Requisito conceitual:** Ability conhecida/desbloqueada
+- **Status:** piloto conceitual; auditoria técnica do provider fica para a Fase 6
 
-## Estrutura
+## Regra de identidade
 
-### Ramo esquerdo — potência
+`T5000` representa Chain Lightning como uma única Ability.
+
+Todos os efeitos abaixo são filhos `T5000.n`. Um novo inteiro, como `T5001`, será usado para outra Ability.
+
+## Modificadores
+
+### Potência/impacto
 - [T5000.1 — Cadeia Adicional](./T5000.1-cadeia-adicional.md)
 - [T5000.2 — Primeiro Impacto](./T5000.2-primeiro-impacto.md)
 
-### Ramo direito — forma/eficiência
+### Forma/eficiência
 - [T5000.3 — Alcance de Condução](./T5000.3-alcance-de-conducao.md)
 - [T5000.4 — Condução Econômica](./T5000.4-conducao-economica.md)
 
@@ -23,12 +28,16 @@
 - [T5000.6 — Fluxo de Retorno](./T5000.6-fluxo-de-retorno.md)
 - [T5000.7 — Transmutação Elemental](./T5000.7-transmutacao-elemental.md)
 
+## Stacking
+
+Os modificadores são acumuláveis por padrão.
+
+Exemplo: o jogador pode usar `T5000.1 + T5000.2 + T5000.7` simultaneamente, obtendo mais capacidade de cadeia, bônus no primeiro impacto e afinidade transmutada.
+
+Somente efeitos realmente incompatíveis recebem conflito explícito.
+
 ## Referência de design
 
-A versão atual de Diablo IV organiza Chain Lightning em grupos 2/2/3, incluindo Additional Chains, Damage Bonus e três alterações maiores: Chain Whipping, Power Flux e Chain of Cold. O nosso desenho usa a mesma ideia estrutural, mas adapta comportamento e números à Ability real do Iron's.
+A estrutura 2/2/3 serve como inspiração de organização. Comportamento e números finais serão definidos pelo design do modpack e depois auditados contra o provider instalado.
 
-A referência correta é **Chain of Cold**: em Diablo IV Chain Lightning se torna Frost/Cold, não Fire.
-
-## Integração
-
-A checagem de conhecimento deve usar `AbilityKnowledgeProvider`. Spell Codex pode ser o adapter preferencial para spells persistentes descobertos; qualquer fallback direto no Iron's precisa ser auditado contra a versão instalada. A Action Bar não é fonte de verdade de conhecimento por si só.
+A referência de metamorfose elemental permanece Chain of Cold como inspiração conceitual, sem transformar Diablo IV em authority técnica ou de balanceamento.

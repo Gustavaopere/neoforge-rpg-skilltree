@@ -1,14 +1,37 @@
-# Skill Tree Plan — New Catalog Content and Wiki Generation
+# Skill Tree Plan — fechamento do novo catálogo e wiki
 
-**Goal:** gerar conteúdo e documentação a partir do novo catálogo `I/P/T/S`, sem depender do catálogo histórico `A####`.
+Este plano é downstream do [`00-EXECUTION-ROADMAP.md`](./00-EXECUTION-ROADMAP.md).
 
-- [ ] Fechar `N_standard`, `N_transmutation` e `N_specialization` após pilotos nas 11 árvores.
-- [ ] Completar os dossiês individuais do novo catálogo.
-- [ ] Definir binding editorial → runtime ID.
-- [ ] Migrar geradores/validators para as novas famílias.
-- [ ] Gerar wiki a partir dos dados finais e manter drift gate.
-- [ ] Só então redesenhar a topologia visual final.
+## Pré-requisitos
 
-A infraestrutura concluída nos planos `✅-01` a `✅-05` deve ser reaproveitada onde for compatível. Qualquer contrato que pressuponha especificamente a antiga malha 512/A-series deve ser reavaliado durante a implementação do novo catálogo.
+- [ ] Modlist física atual reconciliada.
+- [ ] Matriz de capacidades do pack concluída, incluindo vanilla.
+- [ ] Capacidades distribuídas nas 11 árvores.
+- [ ] Especializações reconstruídas do zero.
+- [ ] Catálogo conceitual de Standard, Transmutation e Specialization Perks revisado.
 
-**Acceptance:** catálogo novo completo, quotas iguais entre árvores, runtime IDs estáveis, documentação gerável e nenhum arquivo ativo de perk dependente da identidade editorial antiga.
+## Fechamento
+
+- [ ] Congelar `N_standard_per_tree`.
+- [ ] Congelar `N_transmutation_per_tree`.
+- [ ] Congelar `K_specializations_per_tree`.
+- [ ] Congelar `M_perks_per_specialization`.
+- [ ] Auditar tecnicamente os providers das perks aprovadas.
+- [ ] Completar os dossiês individuais.
+- [ ] Definir binding editorial -> runtime ID.
+- [ ] Migrar geradores/validators.
+- [ ] Implementar e testar stacking/conflitos de `Txxxx.n`.
+- [ ] Gerar wiki e drift gate.
+- [ ] Só então desenhar a topologia visual final.
+
+A infraestrutura de `✅-01` a `✅-05` deve ser reaproveitada onde continuar compatível. Contratos específicos da antiga malha 512/A-series precisam ser reavaliados.
+
+## Acceptance
+
+- uma única authority de modlist;
+- quotas globais iguais entre as 11 árvores;
+- especializações temáticas, não derivadas automaticamente de mods;
+- modificadores de Transmutation acumuláveis por padrão;
+- runtime IDs estáveis;
+- documentação gerável;
+- nenhuma perk ativa dependente de provider removido ou identidade editorial antiga.
