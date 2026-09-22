@@ -135,7 +135,7 @@ Stage 02 concluído. `✅-01-relevant-player-level.md` fecha seleção bounded/l
 
 ### 03 — Skill Tree & Perks
 
-Schema/loaders, grafo/layout, compra/ranks, effects runtime e respec estão fechados. O runtime de efeitos agora possui precedência explícita, IDs determinísticos, publicação atômica, cleanup/reconciliação idempotente, suporte a behaviors e proteção fail-soft para providers opcionais. Permanece aberto apenas `06-content-wiki-generation.md`, responsável pela geração automática da `wiki/`.
+Schema/loaders, grafo/layout, compra/ranks, effects runtime e respec continuam fechados como infraestrutura. O catálogo editorial histórico `A####` foi retirado de `plans/03-skill-tree-perks` e substituído pelo redesenho `I/P/T/S`: atributos internos, perks normais, perks de transmutação e perks de especialização. O contrato novo fixa paridade entre as 11 árvores canônicas e usa sub-IDs `Txxxx.n` para modificadores internos de transmutação. `06-content-wiki-generation.md` permanece aberto, agora responsável por fechar o novo catálogo, migrar bindings/validators/geradores e só então regenerar a wiki. O runtime atual ainda não foi migrado para essa identidade editorial; contratos antigos específicos da malha 512/A-series devem ser reavaliados durante a implementação.
 
 ### 04 — Classes, Masteries & Specializations
 
