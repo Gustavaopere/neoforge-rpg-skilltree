@@ -1,10 +1,12 @@
 # Atlas API
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#58**: `atlas_api-1.21.1-1.2.0.jar`, mod id `atlas_api`, runtime `1.21.1-1.2.0`, SHA-1 `79487e97bd6dbbd6cfbdbcd4fbf1a7ac34fb8998`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `atlas_api-1.21.1-1.2.0.jar`, versão `1.21.1-1.2.0`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
