@@ -12,6 +12,14 @@
 
 | Nº | Nome oficial no CurseForge | Arquivo JAR instalado | Versão instalada | Pasta / categorias | Última edição |
 |---:|---|---|---|---|---|
+| 002 | A Good Place | `a_good_place-1.21-1.2.5-neoforge.jar` | `1.21-1.2.5` | `Cosmetic + Magic + Utility & QoL` | 22/09/2026 - 13:39 |
+| 003 | Ace's Spell Utils | `aces_spell_utils-1.2.7.2-1.21.1.jar` | `1.2.7.2-1.21.1` | `Addons + API and Library` | 22/09/2026 - 13:39 |
+| 004 | Acolyte : Iron's Spells 'n Spellbooks Addon | `acolyte-1.0.3.jar` | `1.0.3` | `Adventure and RPG + Magic + Mobs + Structures` | 22/09/2026 - 13:39 |
+| 005 | Additional Attributes | `additional_attributes-1.21.1-1.2.2.jar` | `1.2.2` | `Miscellaneous` | 22/09/2026 - 13:40 |
+| 006 | Advanced Core Info (ACI) | `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar` | `1.1.0` | `API and Library` | 22/09/2026 - 13:40 |
+| 007 | Advanced Loot Info (ALI) | `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar` | `2.1.0` | `Addons + API and Library + Map and Information` | 22/09/2026 - 13:40 |
+| 008 | Advancement Plaques [Neo/Forge] | `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar` | `1.6.8` | `Cosmetic + Map and Information + Miscellaneous + Utility & QoL` | 22/09/2026 - 13:40 |
+| 009 | SnackPirate's Aeromancy Additions | `aero_additions-1.2.8.jar` | `1.2.8` | `Addons + Magic` | 22/09/2026 - 13:40 |
 | 010 | Aeronautics Player Tilt | `aero_player_tilt-0.2.0.jar` | `0.2.0` | `Addons + Cosmetic + Create` | 18/09/2026 - 08:51 |
 | 011 | Create Aeronautics and Connected Fluid Vessel Compatability | `aeroconnectedfluidvessel-1.0.0.jar` | `1.0.0` | `Create + Utility & QoL` | 18/09/2026 - 15:31 |
 | 012 | Copycats+ aeronautics weight | `aerocopycats-1.1.1.jar` | `1.1.1` (distribuição/filename); metadata interna `1.1.0` | `Addons + Create + Utility & QoL` | 18/09/2026 - 15:31 |
