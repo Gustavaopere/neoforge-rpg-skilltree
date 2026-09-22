@@ -1,5 +1,6 @@
 # A Good Place
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#2**: `a_good_place-1.21-1.2.5-neoforge.jar`, mod id `a_good_place`, runtime `1.21-1.2.5`.
 ## Propriedades do registro
 
 - **Mod:** A Good Place
