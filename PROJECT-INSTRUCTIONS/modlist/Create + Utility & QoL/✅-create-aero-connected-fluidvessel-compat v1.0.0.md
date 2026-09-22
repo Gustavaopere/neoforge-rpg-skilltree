@@ -34,7 +34,7 @@ Bridge específica entre **Create: Connected** e o stack físico **Create Aerona
 - JAR físico: `aeroconnectedfluidvessel-1.0.0.jar`.
 - Mod ID: `aeroconnectedfluidvessel`.
 - Runtime: `1.0.0`.
-- Autoridade de presença/versão: modlist física atual de 595 entradas top-level.
+- Autoridade de presença/versão: modlist física atual de 587 entradas top-level incluindo o modloader.
 - Release oficial consultada: NeoForge 1.21.1, 1.0.0.
 
 ## Dependências
