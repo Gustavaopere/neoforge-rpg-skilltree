@@ -16,7 +16,7 @@
 - **Sobreposição:** É o provider de questing planejado/canônico do pack; pode coexistir com advancements e outros sistemas de progressão, mas ownership e reward settlement devem ser definidos para evitar crédito duplicado.
 - **Observações:** Runtime físico 2101.1.36. A 2101.1.35 corrige verificação de permissões em comandos `/ftbquests ...` disparados por outros mods. A 2101.1.36 adiciona hotkeys edit-mode, selection box via Alt+LMB e corrige NPE ao colar imagem e scrolling por arrow keys.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ftb-quests-neoforge-2101.1.36.jar`, mod id `ftbquests`, runtime `2101.1.36` e SHA-1 `b2ede29b98a3022c22065fbe9b1761e385a28683`. A versão física não mudou nesta rodada; as evidências técnicas já registradas permanecem preservadas.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #289: FTB Quests 2101.1.36 reconfirmado; nenhuma mudança de versão física nesta rodada.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #290: FTB Quests 2101.1.36 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-09-06
 
 <callout icon="📜" color="yellow_bg">
