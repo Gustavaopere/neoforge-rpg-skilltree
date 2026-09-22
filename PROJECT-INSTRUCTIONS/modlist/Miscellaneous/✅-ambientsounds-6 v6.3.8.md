@@ -9,7 +9,7 @@
 
 
 ## Reconciliação física atual — 19/09/2026
-O snapshot canônico do Notion, fechado em 11/09/2026, registra CreativeCore `2.13.44`. A autoridade física mais recente (`modlist(1).txt`, 16/09/2026) contém `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar` / `2.13.46`. As referências a `2.13.44` abaixo são preservadas como estado histórico da origem; para o runtime atual, a dependência efetiva é `2.13.46`.
+O snapshot canônico do Notion, fechado em 11/09/2026, registra CreativeCore `2.13.44`. A autoridade física atual (`modlist(1).txt`, 22/09/2026) contém `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar` / `2.13.46`. As referências a `2.13.44` abaixo são preservadas como estado histórico da origem; para o runtime atual, a dependência efetiva é `2.13.46`.
 
 ## Propriedades do banco
 
@@ -21,7 +21,7 @@ O snapshot canônico do Notion, fechado em 11/09/2026, registra CreativeCore `2.
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, QoL
 - **Função:** Client-side environmental soundscape engine. Detecta contexto do mundo e mistura ambience loops/sound pools por bioma, região e condições, com transições suaves, debug/configuração e suporte a packs de áudio. A build 6.3.8 adiciona a categoria de som `suspense`. Não altera spawn, clima, worldgen ou regras de gameplay.
-- **Dependências:** CreativeCore é obrigatória; o pack instala `CreativeCore_NEOFORGE_v2.13.44_mc1.21.1.jar` (2.13.44).
+- **Dependências:** CreativeCore é obrigatória; o pack instala `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar` (2.13.46).
 - **Sobreposição:** Sobreposição parcial com outros mods de ambience/soundscape. Não substitui Presence Footsteps, Sound Physics ou sistema de música; atua em outra camada de áudio.
 - **Compatibilidade/Riscos:** Risco principal é composição de áudio: outros ambience/sound mods podem tocar camadas simultâneas e elevar volume/ruído/custo. Presence Footsteps não é duplicata: trata passos/material sob o jogador, enquanto AmbientSounds trata paisagem sonora contextual. Validar cavernas, água, biomas, dimensões, weather/daytime e categoria suspense. Como é client-side, não deve ser usado como authority de eventos de servidor.
 - **Observações:** Qualquer resource/sound pack que acrescente ambience precisa ser auditado junto porque pode mudar completamente a experiência sem alterar o JAR. O mod reage ao mundo; não é fonte de verdade para biome/weather/spawn.
@@ -56,7 +56,7 @@ Quando um pack customizado de AmbientSounds estiver ativo, a origem pode ser o p
 - outros mods que emitam ambience.
 
 ## 5. Dependência
-**CreativeCore** é a dependência técnica obrigatória. O runtime físico atual contém `CreativeCore_NEOFORGE_v2.13.44_mc1.21.1.jar`, versão 2.13.44.
+**CreativeCore** é a dependência técnica obrigatória. O runtime físico atual contém `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar`, versão 2.13.46.
 
 CreativeCore fornece GUI/config/network/render/utilities compartilhadas aos mods do autor. Não substituir CreativeCore por Architectury/Balm apenas porque todas são “libraries”; consumidores foram compilados contra APIs diferentes.
 
@@ -95,7 +95,7 @@ Um processador acústico pode alterar/reverberar os sons gerados por AmbientSoun
 6. **Accessibility:** a categoria suspense pode exigir ajuste separado para usuários sensíveis a tensão/ruídos súbitos.
 
 ## 9. Matriz de validação
-1. Startup com CreativeCore 2.13.44.
+1. Startup com CreativeCore 2.13.46.
 2. Overworld: plains/forest/taiga/desert/swamp/mountain.
 3. Cave rasa vs cave profunda.
 4. Submerso e margem d'água.
