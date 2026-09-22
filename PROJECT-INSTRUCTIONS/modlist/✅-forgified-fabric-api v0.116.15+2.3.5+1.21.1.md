@@ -16,7 +16,7 @@
 - **Sobreposição:** Sobreposição de infraestrutura com NeoForge nativo e Sinytra Connector é intencional para compatibilidade, não redundância simples. Evitar implementar a mesma regra simultaneamente por evento NeoForge e hook Forgified Fabric.
 - **Observações:** Runtime host confirmado como fabric_api 0.116.15+2.3.5+1.21.1. O JAR contém 44 módulos/API jars + forgified-fabric-loader interno em META-INF/jars; não criar entradas top-level para eles. Puddles & Floods permanece registrado como consumidor confirmado no catálogo anterior.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar`, mod id `fabric_api`, runtime `0.116.15+2.3.5+1.21.1` e SHA-1 `87b28db4ef88268fbbaea2c0ca7e3dfcc27961a8`. A versão física não mudou nesta rodada; as evidências técnicas já registradas permanecem preservadas.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #285: Forgified Fabric API 0.116.15+2.3.5+1.21.1 reconfirmado; nenhuma mudança de versão física nesta rodada.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #286: Forgified Fabric API 0.116.15+2.3.5+1.21.1 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
 <callout icon="🔎" color="blue_bg">
