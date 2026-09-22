@@ -1,5 +1,7 @@
 # Create: Bits 'n' Bobs
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#77**: JAR `bits_n_bobs-2.3.5.jar`, mod id `bits_n_bobs`, runtime `2.3.5`, SHA-1 `50119ba6849f2b165ab692ab312dbe4867444ac0`.
+
 > **Reauditoria física — 18/09/2026.** Versão catalogada atual: `2.3.5`. O conteúdo abaixo preserva a página Notion reconciliada; a URL da própria página Notion foi deliberadamente omitida.
 
 ## Propriedades do registro

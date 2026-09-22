@@ -1,5 +1,7 @@
 # Epic Fight - Better Lock On
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#73**: JAR `betterlockon-2.0.8-neoforge.jar`, mod id `betterlockon`, runtime `2.0.8-neoforge`, SHA-1 `94926350c5500857097c993e64259a35c93c8eae`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `betterlockon-2.0.8-neoforge.jar`, versão `2.0.8-neoforge`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
@@ -27,7 +29,7 @@
 - **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, Better Lock On 2.0.8-neoforge foi revalidado contra o snapshot físico atual e Epic Fight 21.17.3.1; a presença continua documental e não foi convertida em decisão curatorial.
 - **Data da última decisão:** não definida
 
-## Dossiê operacional — padrão Alex's Mobs
+# Dossiê operacional — padrão Alex's Mobs
 
 > ✅ Versão física confirmada: `betterlockon-2.0.8-neoforge.jar`, mod id `betterlockon`, runtime **`2.0.8-neoforge`**. O arquivo público é apresentado como 2.0.8, mas o catálogo preserva o metadata runtime completo. O pack usa Epic Fight `21.17.3.1`.
 

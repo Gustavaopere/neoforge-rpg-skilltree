@@ -1,7 +1,9 @@
 # Bosses'Rise
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#79**: JAR `block_factorys_bosses-2.1.2-neo-1.21.1.jar`, mod id `block_factorys_bosses`, runtime `2.1.2`, SHA-1 `249a5f2ba43fd341d4a2831691c154d92aa5a12d`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `block_factorys_bosses-2.1.2-neo-1.21.1.jar`, versão `2.1.2`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
-> **Ordem física atual:** #78 na `modlist(1).txt` de 586 mods top-level. O ordinal #79 embutido em `Atualização/Status` é histórico do snapshot Notion de 11/09/2026 e permanece apenas como conteúdo de paridade; para ordem do pack, a modlist física atual é a autoridade.
+> **Registro histórico da reauditoria de 19/09/2026:** o arquivo registrava ordem #78 na contagem então usada de 586 mods top-level. A autoridade física atual está no callout acima e fixa Bosses'Rise em **#79 incluindo o modloader**. O ordinal #79 embutido em `Atualização/Status` permanece como conteúdo de paridade.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na origem:** Integrado ao Github
