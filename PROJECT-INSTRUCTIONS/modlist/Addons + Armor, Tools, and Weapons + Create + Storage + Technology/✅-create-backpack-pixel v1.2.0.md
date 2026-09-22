@@ -1,5 +1,7 @@
 # Create: Backpack Pixel
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#62**: `backpack_pixel-1.2.0-neoforge-1.21.1.jar`, mod id `backpack_pixel`, runtime `1.2.0`, SHA-1 `503a38c404cb4858655743b8ee08bb0585116fdc`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `backpack_pixel-1.2.0-neoforge-1.21.1.jar`, versão `1.2.0`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
