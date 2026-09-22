@@ -1,5 +1,6 @@
 # Acolyte
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#4**: `acolyte-1.0.3.jar`, mod id `acolyte`, runtime `1.0.3`.
 ## Propriedades do registro
 
 - **Mod:** Acolyte
