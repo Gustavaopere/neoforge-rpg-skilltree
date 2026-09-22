@@ -1,10 +1,12 @@
 # Ars Hex
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#45**: `ars_hex-1.21.1-5.0.4b.jar`, mod id `ars_hex`, runtime `5.0.4b`, SHA-1 `2354710ea312e2a6e0fbc3eb2dbafb8e06f10cf4`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `ars_hex-1.21.1-5.0.4b.jar`, versão `5.0.4b`. A URL da própria página Notion foi removida; o conteúdo canônico foi preservado.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco

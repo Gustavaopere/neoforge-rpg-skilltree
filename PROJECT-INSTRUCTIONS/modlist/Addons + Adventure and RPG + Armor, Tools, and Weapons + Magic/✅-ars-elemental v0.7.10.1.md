@@ -1,10 +1,12 @@
 # Ars Elemental
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#44**: `ars_elemental-1.21.1-0.7.10.1.jar`, mod id `ars_elemental`, runtime `0.7.10.1`, SHA-1 `a1e4021177aae0e16c1f7c6487a82f0b68bbade3`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `ars_elemental-1.21.1-0.7.10.1.jar`, versão `0.7.10.1`. A URL da própria página Notion foi removida; o conteúdo canônico foi preservado.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco

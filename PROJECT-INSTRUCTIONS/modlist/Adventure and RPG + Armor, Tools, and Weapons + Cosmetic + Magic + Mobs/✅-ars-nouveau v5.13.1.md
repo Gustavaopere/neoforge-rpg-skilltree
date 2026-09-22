@@ -1,10 +1,12 @@
 # Ars Nouveau
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#47**: `ars_nouveau-1.21.1-5.13.1.jar`, mod id `ars_nouveau`, runtime `5.13.1`, SHA-1 `02782d071ee5fab3b5c4b8ced67b7e1748277dfd`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `ars_nouveau-1.21.1-5.13.1.jar`, versão `5.13.1`. A URL da própria página Notion foi removida; o conteúdo canônico foi preservado.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
@@ -17,7 +19,7 @@
 - **Decisão:** Manter
 - **Categoria:** Magia, Automação
 - **Função:** Provider/authority central do ecossistema Ars: 85 spell parts de produção, 24 rituals, 6 familiars, 20 perks, 3 famílias de armor com perk slots, Source, Sourcelinks, relays, turrets, apparatus, storage/crafting e APIs extensíveis.
-- **Dependências:** Provider-base do ecossistema Ars. Addons físicos atuais consomem seus registries/Source/cast contracts; Ars 'n' Spells 3.3.2 integra player mana com Iron's sem substituir Source.
+- **Dependências:** Provider-base do ecossistema Ars. Addons físicos atuais consomem seus registries/Source/cast contracts; Ars 'n' Spells 3.3.4 integra player mana com Iron's sem substituir Source.
 - **Sobreposição:** Há sobreposição temática com outros mods de magia, mas o ownership técnico é próprio. Addons Ars estendem o core; Ars 'n' Spells unifica player mana com Iron's; nenhum deles substitui Source, GlyphRegistry, rituals ou cast engine do Ars Nouveau.
 - **Compatibilidade/Riscos:** Riscos centrais: double-cast, double-dip de mana/spell power, duplicação de Source em bridges, automação creditada como cast manual, coordinates incorretas em portals/sublevels, recipe conflicts no Storage Lectern e client visual tratado como authority.
 - **Observações:** mod id ars_nouveau. APIRegistry 5.13.1 registra 85 spell parts (5 methods, 13 augments, 67 effects), 24 rituals, 6 familiars, 20 perks e 3 scryers. O core mantém Source separado de player mana.
@@ -26,6 +28,8 @@
 - **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #47: `ars_nouveau-1.21.1-5.13.1.jar` / `5.13.1` conferidos contra a modlist atual; exact release checkpoint e corpo técnico preservados.
 - **Histórico da decisão:** Manter. Ficha reconstruída do zero em 07/09/2026 contra o commit exato 5.13.1. Ars Nouveau é provider central e não deve ser tratado como redundante com seus próprios addons.
 - **Data da última decisão:** 2026-09-07
+
+> **Reconciliação física — 22/09/2026.** O snapshot canônico do Notion de 11/09/2026 registrava **Ars 'n' Spells 3.3.2** na propriedade `Dependências`. A autoridade física atual instala `ars_n_spells-3.3.4.jar` / `3.3.4`; a release oficial NeoForge 1.21.1 3.3.4 (14/09/2026, file ID 8881108) confirma esse runtime. O valor 3.3.2 permanece preservado aqui como estado histórico da origem, não como versão instalada atual.
 
 > 📘 **PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Runtime físico: `ars_nouveau-1.21.1-5.13.1.jar`, mod id `ars_nouveau`, NeoForge 1.21.1. Esta ficha usa como **exact release checkpoint** o commit upstream **`112920ff774831f204031da75b4c4e73d3765157`**, commit `5.13.1`, onde `gradle.properties` muda `mod_version=5.13.0` para `5.13.1`. O snapshot posterior `d16c9398...` ainda declara 5.13.1, mas está 3 commits à frente e contém mudanças pós-release; não é tratado como equivalência exata do JAR instalado. Ars Nouveau é **provider/authority central** de spell grammar, Source, spellbooks, glyphs, rituals, familiars, perks, Source automation e grande parte da infraestrutura consumida pelos addons Ars do pack.
 

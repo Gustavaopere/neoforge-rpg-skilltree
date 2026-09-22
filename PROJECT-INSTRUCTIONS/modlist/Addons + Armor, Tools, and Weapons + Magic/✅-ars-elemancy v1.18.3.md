@@ -1,8 +1,10 @@
 # Ars Elemancy
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#43**: `ars_elemancy-1.21.1-1.18.3.jar`, mod id `ars_elemancy`, runtime `1.18.3`, SHA-1 `f7e01437c86fc74e2abb2ad93554dc20c30b214b`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco

@@ -1,10 +1,12 @@
 # Ars Nouveau: Two-Way Portals
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#51**: `ars_two_way_portals-2.0.0.jar`, mod id `ars_two_way_portals`, runtime `2.0.0`, SHA-1 `233846fc30667893c5f36a719da576d5eed43f5c`.
+
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `ars_two_way_portals-2.0.0.jar`, versão `2.0.0`. A URL da própria página Notion foi removida; o conteúdo canônico foi preservado.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` — 586 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
