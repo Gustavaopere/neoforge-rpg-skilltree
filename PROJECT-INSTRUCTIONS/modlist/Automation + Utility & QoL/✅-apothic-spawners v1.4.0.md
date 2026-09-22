@@ -1,8 +1,10 @@
 # Apothic Spawners
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#36**: `ApothicSpawners-1.21.1-1.4.0.jar`, mod id `apothic_spawners`, runtime `1.4.0`, SHA-1 `b3be29751daea738e691db8949cce079e5aae3be`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco

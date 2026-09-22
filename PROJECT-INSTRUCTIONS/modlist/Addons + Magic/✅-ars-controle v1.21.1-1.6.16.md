@@ -1,8 +1,10 @@
 # Ars Controle
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#41**: `ars_controle-1.21.1-1.6.16.jar`, mod id `ars_controle`, runtime `1.21.1-1.6.16`, SHA-1 `795567371450debec83fe634fd0114c295f7da5a`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack:** Integrado ao Github
-- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — `ars_controle-1.21.1-1.6.16.jar` / `1.21.1-1.6.16`
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco

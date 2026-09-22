@@ -1,8 +1,10 @@
 # AppleSkin
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#37**: `appleskin-neoforge-mc1.21-3.0.9.jar`, mod id `appleskin`, runtime `3.0.9+mc1.21`, SHA-1 `81cf0e668f991f83ac8820c386fbd6c9c3602246`.
+
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` de 16/09/2026 — autoridade física atual
+- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
 - **Data da exportação:** 2026-09-09
 
 ## Propriedades do banco
