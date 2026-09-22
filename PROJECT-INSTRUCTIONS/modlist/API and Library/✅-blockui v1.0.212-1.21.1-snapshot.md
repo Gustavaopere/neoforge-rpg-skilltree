@@ -1,5 +1,7 @@
 # BlockUI
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#80**: JAR `blockui-1.0.212-1.21.1-snapshot.jar`, mod id `blockui`, runtime `1.0.212-1.21.1-snapshot`, SHA-1 `b2ab39fc854baaf8eba3b95305b05e2aa2ca6e33`.
+
 > **Reauditoria física — 18/09/2026.** Versão catalogada atual: `1.0.212-1.21.1-snapshot`. O conteúdo abaixo preserva a página Notion reconciliada; a URL da própria página Notion foi deliberadamente omitida.
 
 ## Propriedades do registro
