@@ -16,7 +16,7 @@
 - **Sobreposição:** Não substitui FTB Quests, KubeJS, Game Stages, JEI ou REI. Sua sobreposição é apenas de integração; bridges duplicadas ou mods externos que façam a mesma conexão podem causar eventos/handlers duplicados.
 - **Observações:** JAR físico: ftb-xmod-compat-neoforge-21.1.11.jar; mod id: ftbxmodcompat; versão instalada 21.1.11. Upstream publicou 21.1.12 para NeoForge 1.21.1 em 18/09/2026; ela melhora integração com JEI e corrige crash/bookmarks/background/click handling/fluid tasks, mas não está instalada.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ftb-xmod-compat-neoforge-21.1.11.jar`, mod id `ftbxmodcompat`, runtime `21.1.11` e SHA-1 `06061863f24e1c0d9b2bb2646e96e07cbf0029f5`. A versão física não mudou nesta rodada; as evidências técnicas já registradas permanecem preservadas.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #292: FTB XMod Compat 21.1.11 reconfirmado; stack atual reconciliado para FTB Quests 2101.1.36, KubeJS 2101.7.2-build.377 e JEI 19.56.0.440. Upstream 21.1.12 (18/09/2026) registrado como atualização disponível, não instalada.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #293: FTB XMod Compat 21.1.11 reconfirmado; stack atual reconciliado para FTB Quests 2101.1.36, KubeJS 2101.7.2-build.377 e JEI 19.56.0.440. Upstream 21.1.12 (18/09/2026) registrado como atualização disponível, não instalada.
 - **Data da última decisão:** 2026-09-06
 
 <callout icon="🔎" color="blue_bg">
