@@ -1,5 +1,7 @@
 # Create: Stats & Power
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#161**: JAR `create_stats-1.13.1.jar`, mod id `create_stats`, runtime `1.13.1`, SHA-1 `3f088d59ffc81ddc85c8dd62cecff0ce8e7e2271`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Stats & Power
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-stats-power
 - **Procedência:** modlist física atual de 16/09/2026 + metadata física create_stats 1.13.1 + páginas oficiais CurseForge/Modrinth + source público atual Erbell9520/Create-Graphs-Additions-public revalidados em 20/09/2026. A autoridade da versão instalada permanece a modlist física.
 - **Observações:** Runtime físico atual 1.13.1. O antigo dossiê estava em 1.5.1. A página pública continua descrevendo o mesmo core funcional. O source público atual expõe LambDynamicLights required para Stage Light, GeckoLib/JEI opcionais, Sable Companion JarJar e código P1.13 de HUD/Stressometer. Não foi localizado, nas fontes oficiais acessíveis nesta auditoria, um changelog público exato e completo da build 1.13.1; nenhuma mudança específica adicional é atribuída sem evidência.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #160 na snapshot então vigente; posição física atual #161: create_stats-1.13.1.jar / 1.13.1 reconfirmados; FE-grid/PDU authority, monitoring/logistics/vehicle-control surfaces, regressões 1.5.1 preservadas e HUD/Stressometer P1.13 permanecem atuais. Changelog exato da build 1.13.1 continua não localizado; nenhuma mudança não comprovada foi inventada.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #160: create_stats-1.13.1.jar / 1.13.1 reconfirmados; FE-grid/PDU authority, monitoring/logistics/vehicle-control surfaces, regressões 1.5.1 preservadas e HUD/Stressometer P1.13 permanecem atuais. Changelog exato da build 1.13.1 continua não localizado; nenhuma mudança não comprovada foi inventada.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Stats & Power 1.5.1 foi reconfirmado como instalado; presença não foi convertida em decisão curatorial. Em 16/09/2026, a modlist física confirma create_stats-1.13.1.jar; a decisão permanece Sem decisão.
 - **Sobreposição:** Monitoring, FE e vehicle control podem cruzar outros addons, mas o mod owns seu PDU/grid, displays e controllers. Comparar topology/rates e companion integrations antes de classificar redundância.
