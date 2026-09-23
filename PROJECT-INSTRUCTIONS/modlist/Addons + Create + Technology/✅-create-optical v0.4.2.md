@@ -1,5 +1,7 @@
 # Create Optical
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#151**: JAR `create_optical-0.4.2.jar`, mod id `create_optical`, runtime `0.4.2`, SHA-1 `d39b4d193b0c326159e9e3bfa7d5113bc19384a8`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Optical
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-optical
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_optical` 0.4.2 + CurseForge oficial revalidado em 20/09/2026; 0.4.2 permanece a release mais recente para NeoForge 1.21.1.
 - **Observações:** JAR físico `create_optical-0.4.2.jar`, mod id `create_optical`, runtime 0.4.2. Branch oficial `1.21.1` declara MC 1.21.1/mod 0.4.2. Receptor é gerador cinético server-side com state persistido em NBT; Beam Focuser usa recipe óptica própria.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #150 na snapshot então vigente; posição física atual #151: create_optical-0.4.2.jar / 0.4.2 confirmados como latest NeoForge 1.21.1; grafo óptico, Source/Receptor/Sensor, Beam Focuser, recipes e regressão 0.4.2 permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #150: create_optical-0.4.2.jar / 0.4.2 confirmados como latest NeoForge 1.21.1; grafo óptico, Source/Receptor/Sensor, Beam Focuser, recipes e regressão 0.4.2 permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Integra-se à cinética, belts, redstone e recipe processing do Create. Não é duplicata de cabos/redstone: beams possuem propriedades/topologia próprias; revisar loops energéticos e rotas de processamento por comportamento real.
 
