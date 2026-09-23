@@ -1,5 +1,7 @@
 # Create: Cyber Goggles
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#179**: JAR `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar`, mod id `create_cyber_goggles`, runtime `8.6.3`, SHA-1 `7f27bcf2fa179135fcca6a5a61c8b120cba76b84`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Cyber Goggles
