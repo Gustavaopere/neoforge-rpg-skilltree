@@ -1,5 +1,7 @@
 # Create SA Curios Jetpacks
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#158**: JAR `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar`, mod id `create_sa_curios_jetpacks`, runtime `1.2.22`, SHA-1 `253c412d8d782a01f7734716d778ae4a4c1739b8`. O filename/publicação física é `1.2.4`; a metadata/runtime top-level permanece `1.2.22`, divergência preservada para troubleshooting.
+
 ## Propriedades do registro
 
 - **Mod:** Create SA Curios Jetpacks
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-stuff-additions-curios-jetpacks
 - **Procedência:** modlist.txt física atual de 16/09/2026 + metadata runtime `create_sa_curios_jetpacks` 1.2.22 + publicação oficial 1.2.4 revalidada em 20/09/2026; 1.2.4 continua a release mais recente para NeoForge 1.21.1.
 - **Observações:** JAR físico `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar`, mod id `create_sa_curios_jetpacks`, runtime metadata `1.2.22`. A versão catalogada segue filename/publicação oficial 1.2.4; a string interna 1.2.22 permanece explícita para troubleshooting. 1.2.4 corrige body-slot refill com CSA recente e adiciona suporte ao storage 2.1.4a mantendo tags legadas.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #157 na snapshot então vigente; posição física atual #158: `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar` confirmado como latest NeoForge 1.21.1; metadata interna 1.2.22 permanece explícita, com body/belt Curios, refill, storage novo/legado e armor/render boundaries atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #157: `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar` confirmado como latest NeoForge 1.21.1; metadata interna 1.2.22 permanece explícita, com body/belt Curios, refill, storage novo/legado e armor/render boundaries atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não substitui CSA nem Curios. CSA owns voo/tanks/recursos; Curios owns slots; a bridge amplia descoberta/refill/render. Testar especificamente o host físico CSA 2.1.4b, posterior ao 2.1.4a documentado na publicação.
 
