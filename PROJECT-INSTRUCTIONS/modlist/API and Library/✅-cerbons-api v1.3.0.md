@@ -1,5 +1,7 @@
 # CERBON's API
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#91**: JAR `CerbonsAPI-NeoForge-1.21-1.3.0.jar`, mod id `cerbons_api`, runtime `1.3.0`, SHA-1 `3f0d3eed4633d9ef3a713de4b39ee4e683aa9389`.
+
 ## Propriedades do registro
 
 - **Mod:** CERBON's API
