@@ -1,5 +1,7 @@
 # CraftedCore
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#113**: JAR `craftedcore-5.8.2.jar`, mod id `craftedcore`, runtime `5.8.2`, SHA-1 `4215877e2366d0be5e159470b6ecdce33d34a0fb`.
+
 ## Propriedades do registro
 
 - **Mod:** CraftedCore

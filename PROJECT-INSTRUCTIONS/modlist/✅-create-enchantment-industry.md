@@ -1,5 +1,7 @@
 # Create: Enchantment Industry
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#120**: JAR `create-enchantment-industry-2.5.3b.jar`, mod id `create_enchantment_industry`, runtime `2.5.3b`, SHA-1 `f39af237b8bff853a89e8784518bdc36ba54a32e`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Enchantment Industry

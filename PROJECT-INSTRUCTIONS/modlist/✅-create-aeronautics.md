@@ -1,5 +1,7 @@
 # Create Aeronautics
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#117**: JAR `create-aeronautics-bundled-1.21.1-1.3.2.jar`, mod id `aeronautics_bundled`, runtime `1.3.2`, SHA-1 `ddbe9cbc25e8f663218aa1e9fdfc4b99f0e11e4b`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Aeronautics

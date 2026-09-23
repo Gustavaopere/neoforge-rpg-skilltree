@@ -1,5 +1,7 @@
 # CPM OSC Compat
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#112**: JAR `cpm-osc-compat-1.7.2.jar`, mod id `cpmoscc`, runtime `1.7.2`, SHA-1 `cf1030761f1ee43ebe82d914beadfb9184fb83d7`.
+
 ## Propriedades do registro
 
 - **Mod:** CPM OSC Compat
