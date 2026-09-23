@@ -19,7 +19,7 @@
 - **Observações:** Contrato oficial: `CaelusApi.getInstance().getFallFlyingAttribute()`. Valor default 0 impede fall-flying; valor \>=1 permite. A Elytra vanilla é alterada para usar o atributo, preservando seu comportamento normal. 7.0.1 atualiza para MC 1.21.1 e adiciona es_cl.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Caelus 7.0.1+1.21.1 + source oficial TheIllusiveC4/Caelus e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `caelus-neoforge-7.0.1+1.21.1.jar` / `7.0.1+1.21.1`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Caelus API 7.0.1+1.21.1 foi reconfirmado como biblioteca estrutural do pack. A instalação atual não foi interpretada como decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #85: `caelus-neoforge-7.0.1+1.21.1.jar` / `7.0.1+1.21.1` conferidos contra a modlist atual; fall-flying attribute authority, modifier lifecycle e client/server boundary preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #85 na snapshot então vigente; posição física atual #86: `caelus-neoforge-7.0.1+1.21.1.jar` / `7.0.1+1.21.1` conferidos contra a snapshot então vigente; fall-flying attribute authority, modifier lifecycle e client/server boundary preservados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

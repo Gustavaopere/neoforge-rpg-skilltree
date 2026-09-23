@@ -19,7 +19,7 @@
 - **Observações:** mod id `codechickenlib`; runtime 4.6.1.529. Projeto oficial declara libraries de 3D math/transformations, rendering, networking, configs, colours, ASM e outras utilities. Quack 0.4.10.115 é embedded, não top-level.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial CodeChicken Lib 4.6.1.529 + source oficial TheCBProject/CodeChickenLib + registro físico do Quack 0.4.10.115 embarcado via jar-in-jar e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `CodeChickenLib-1.21.1-4.6.1.529.jar` / `4.6.1.529`; Quack continua embedded e não top-level.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CodeChicken Lib 4.6.1.529 foi reconfirmado no JAR físico e reconstruído ao padrão técnico. Sua presença como dependency library não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #99: `CodeChickenLib-1.21.1-4.6.1.529.jar` / `4.6.1.529` conferidos contra a modlist atual; math/render/network/config/ASM surfaces, consumer contracts e Quack 0.4.10.115 embarcado via jar-in-jar preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #99 na numeração então registrada; posição física atual #100: `CodeChickenLib-1.21.1-4.6.1.529.jar` / `4.6.1.529` conferidos contra a modlist então vigente; math/render/network/config/ASM surfaces, consumer contracts e Quack 0.4.10.115 embarcado via jar-in-jar preservados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

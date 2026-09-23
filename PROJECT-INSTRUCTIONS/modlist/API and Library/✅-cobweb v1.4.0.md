@@ -19,7 +19,7 @@
 - **Observações:** mod id `cobweb`; runtime 1.4.0. Changelog da linha comprova unified registering/CobwebEntry desde 1.21, fixes de tags/Holder e `DynamicBlockEntityType` em 1.4.0; APIs explicitamente restritas a 1.21.3+ permanecem fora do escopo confirmado deste JAR.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Cobweb 1.4.0 para NeoForge 1.21/1.21.1 + changelog/source oficial Crystal-Nest/cobweb branch 1.21 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `cobweb-neoforge-1.21-1.4.0.jar` / `1.4.0`; APIs marcadas para 1.21.3+ continuam fora do escopo desta build.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Cobweb 1.4.0 foi reconfirmado no JAR físico e reconstruído como Crystal Nest API. A instalação atual não foi convertida em decisão de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #98: `cobweb-neoforge-1.21-1.4.0.jar` / `1.4.0` conferidos contra a modlist atual; CobwebEntry/registry contracts, Holder/tag semantics, DynamicBlockEntityType e boundary 1.21/1.21.1 vs APIs 1.21.3+ preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #98 na numeração então registrada; posição física atual #99: `cobweb-neoforge-1.21-1.4.0.jar` / `1.4.0` conferidos contra a modlist então vigente; CobwebEntry/registry contracts, Holder/tag semantics, DynamicBlockEntityType e boundary 1.21/1.21.1 vs APIs 1.21.3+ preservados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

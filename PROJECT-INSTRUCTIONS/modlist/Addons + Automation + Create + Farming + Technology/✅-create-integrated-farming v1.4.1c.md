@@ -19,7 +19,7 @@
 - **Observações:** mod id `create_integrated_farming`; runtime 1.4.1c. A build instalada é a Release 1.4.1c para NeoForge 1.21.1 / Create 6.0.10. O fix 1.4.1b para catches de Tide continua herdado; o delta 1.4.1c é de estabilidade client-side do Vacuum Harvester.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime `create_integrated_farming` 1.4.1c + SHA-1 físico `f451d79e850e6b10f205320b614c3d91cef9e240` + CurseForge oficial File ID 8847936 da release 1.4.1c + dossiê técnico anterior. Reconciliação final: JAR/runtime permanecem exatamente `create-integrated-farming-1.4.1c.jar` / `1.4.1c`; a 1.4.1c herda o fix de Tide da 1.4.1b e acrescenta o hotfix client-side do Vacuum Harvester.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026 a ficha foi reconstruída ao padrão técnico em 1.4.1b; em 20/09/2026 a auditoria física reconciliou a instalação atual para 1.4.1c sem converter presença em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #122: `create-integrated-farming-1.4.1c.jar` / `1.4.1c` confirmados; o conteúdo 1.4.1b foi preservado e o delta oficial 1.4.1c (hotfix de crash intermitente do Vacuum Harvester no cliente) foi incorporado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #122 na numeração então registrada; posição física atual #123: `create-integrated-farming-1.4.1c.jar` / `1.4.1c` confirmados; o conteúdo 1.4.1b foi preservado e o delta oficial 1.4.1c (hotfix de crash intermitente do Vacuum Harvester no cliente) foi incorporado.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

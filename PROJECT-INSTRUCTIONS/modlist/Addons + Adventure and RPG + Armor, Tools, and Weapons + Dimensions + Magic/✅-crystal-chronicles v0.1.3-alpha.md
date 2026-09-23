@@ -1,5 +1,7 @@
 # Crystal Chronicles
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#208**: JAR `crystal_chronicles-0.1.3-alpha.jar`, runtime `0.1.3-alpha`.
+
 ## Propriedades do registro
 
 - **Mod:** Crystal Chronicles
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** 0.1.3-alpha é explicitamente WIP/Alpha: equipment recipes ainda são placeholder e a dimensão está incompleta. Worldgen/portal/progression podem mudar entre builds. Connected textures dependem de Fusion; biome/worldgen depende de Biolith; OptiFine é declarado incompatível.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/crystal-chronicles
-- **Procedência:** modlist.txt física atual de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `crystal_chronicles` 0.1.3-alpha + CurseForge oficial revalidado em 12/09/2026; `crystal_chronicles-0.1.3-alpha.jar` de 30/06/2026 continua o arquivo NeoForge 1.21.1 mais recente. Maturidade Alpha/WIP preservada.
+- **Procedência histórica:** snapshot físico de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `crystal_chronicles` 0.1.3-alpha + CurseForge oficial revalidado em 12/09/2026; `crystal_chronicles-0.1.3-alpha.jar` de 30/06/2026 continua o arquivo NeoForge 1.21.1 mais recente. Maturidade Alpha/WIP preservada.
 - **Observações:** JAR `crystal_chronicles-0.1.3-alpha.jar`; runtime 0.1.3-alpha; Client & Server. Features confirmadas: 3D armors/weapons por schools, Prismatic set, Bismuth Formations no End, Bismuth Portal Frame + Chisel + Prismatic Portal spell, cave dimension alpha e building blocks/connected textures. Recipes atuais são placeholder.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #210: crystal_chronicles-0.1.3-alpha.jar / runtime 0.1.3-alpha reconfirmados como arquivo 1.21.1 mais recente. CurseForge classifica o arquivo como Release, mas nome/projeto permanecem explicitamente Alpha/WIP; essa maturidade instável foi preservada.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #210 na snapshot então vigente: crystal_chronicles-0.1.3-alpha.jar / runtime 0.1.3-alpha reconfirmados como arquivo 1.21.1 mais recente. CurseForge classifica o arquivo como Release, mas nome/projeto permanecem explicitamente Alpha/WIP; essa maturidade instável foi preservada.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Crystal Chronicles 0.1.3-alpha foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. A antiga data 26/08 ligada a `Sem decisão` foi removida porque não havia histórico de decisão formal.
 - **Sobreposição:** Expande diretamente Iron's Spells 'n Spellbooks e pode cruzar outros addons de equipamentos/dimensões mágicas, mas possui worldgen, progression e assets próprios. Comparar escolas/equipment/worldgen concretos antes de classificar redundância.

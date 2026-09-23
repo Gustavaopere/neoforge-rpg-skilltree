@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/createaddoncompatibility
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `createaddoncompatibility` 1.0.0 + CurseForge oficial revalidado em 20/09/2026; v1.0.0 continua a release NeoForge 1.21.1 instalada. Branch oficial 1.21.1 permanece referência de rules/priorities.
 - **Observações:** JAR/mod id/runtime 1.0.0 confirmados. Branch oficial `1.21.1` declara versão 1.0.0 e dependências Create/Almost Unified. README publica prioridades default e superfícies exatas de blocks/items/fluids unificados.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #168: createaddoncompatibility-neoforge-1.21.1-1.0.0.jar / runtime 1.0.0 confirmados; Almost Unified boundary, modPriorities, copycat/gearbox/oil/fuel unification e datapack/reload risks permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #168 na snapshot então vigente; posição física atual #169: createaddoncompatibility-neoforge-1.21.1-1.0.0.jar / runtime 1.0.0 confirmados; Almost Unified boundary, modPriorities, copycat/gearbox/oil/fuel unification e datapack/reload risks permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa Almost Unified; não o substitui. Integrações ativas incluem Copycats+/Connected/DnD, Connected/Create Utilities e múltiplos providers de Crude Oil/Fuels. Regras que dependem de PneumaticCraft/IE/Ad Astra ficam apenas como upstream, não overlap ativo.
 

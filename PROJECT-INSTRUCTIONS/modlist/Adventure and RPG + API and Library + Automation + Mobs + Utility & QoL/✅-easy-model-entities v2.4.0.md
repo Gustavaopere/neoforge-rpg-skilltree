@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/8706558
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_model_entities-neoforge-1.21.1-2.4.0.jar`, mod id `easy_model_entities`, SHA-1 `f5bc1927a5b69cc0fc1ed04a9f047e12365cb9a1` e campo de versão runtime vazio. A publicação/changelog oficial 2.4.0 fornece a identidade da build e seus deltas.
 - **Observações:** Fail-closed preservado: a propriedade de versão runtime permanece sem valor porque a metadata física não declara versão. O artefato instalado é agora 2.4.0; esta build adiciona sequences de animação, `playAnimationSequence`, blend emissive, hand-item rendering/anchors e corrige clips explícitos com `body_type: static`/`animation.mode: none`.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #237: artefato físico atualizado para `easy_model_entities-neoforge-1.21.1-2.4.0.jar`. A coluna `mod version` da modlist continua vazia; `2.4.0` é identidade do filename/build/publicação, não metadata runtime inferida.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #237 na snapshot então vigente; posição física atual #238: artefato físico atualizado para `easy_model_entities-neoforge-1.21.1-2.4.0.jar`. A coluna `mod version` da modlist continua vazia; `2.4.0` é identidade do filename/build/publicação, não metadata runtime inferida.
 - **Decisão:** Manter
 - **Sobreposição:** Sobreposição visual parcial com Entity Model Features 3.3.5, Entity Texture Features 7.2.1, Customizable Player Models e outros renderers. EME é provider de suas próprias model entities/state; não deve aplicar transforms de outro provider duas vezes.
 - **Data da última decisão:** 2026-09-06

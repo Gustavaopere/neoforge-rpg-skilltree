@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-deep-seas
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_submarine` 2.2.4 + CurseForge oficial revalidado em 20/09/2026; 2.2.4 permanece a release mais recente para NeoForge 1.21.1. Source `main` ainda é 2.2.3 e continua usado apenas fail-closed para arquitetura.
 - **Observações:** JAR/mod id/runtime 2.2.4 confirmados. Release oficial NeoForge 1.21.1 de 17/06/2026. Source público `main` ainda declara 2.2.3, portanto é usado apenas para arquitetura; o JAR/changelog 2.2.4 prevalecem.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #161: create_submarine-2.2.4.jar / 2.2.4 confirmados como latest Release NeoForge 1.21.1; submarine/Abyss/water-culling architecture e os fixes críticos de dedicated server/common-packet da 2.2.4 permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #161 na snapshot então vigente; posição física atual #162: create_submarine-2.2.4.jar / 2.2.4 confirmados como latest Release NeoForge 1.21.1; submarine/Abyss/water-culling architecture e os fixes críticos de dedicated server/common-packet da 2.2.4 permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Nicho submarino sobre Aeronautics/Sable. O addon separado Create: Deep Seas - Lava Fix é potencial overlap de patch e deve ser auditado separadamente; não foi classificado aqui como redundante.
 

@@ -19,7 +19,7 @@
 - **Observações:** mod id companions; runtime 1.3.4. Pack usa KnightLib 2.0.1. A 1.3.4 é a build física atual e mantém os estados/ownership/healing/summons já documentados.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Companions! 1.3.4 NeoForge 1.21.1 + changelogs 1.3.2, 1.3.3 e 1.3.4 já auditados. Reconciliação final: JAR/runtime permanecem exatamente `companions-neoforge-1.21.1-1.3.4.jar` / `1.3.4`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Companions! 1.3.2 foi reconfirmado fisicamente e reconstruído ao padrão técnico. A presença do conteúdo no pack não foi convertida em decisão automática de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #103: `companions-neoforge-1.21.1-1.3.4.jar` / `1.3.4` conferidos contra a modlist atual; KnightLib 2.0.x, Demon Flesh/JER, fixes de entidades atravessando terreno e regressões anteriores preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #103 na numeração então registrada; posição física atual #104: `companions-neoforge-1.21.1-1.3.4.jar` / `1.3.4` conferidos contra a modlist então vigente; KnightLib 2.0.x, Demon Flesh/JER, fixes de entidades atravessando terreno e regressões anteriores preservados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

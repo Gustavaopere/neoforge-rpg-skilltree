@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-sophisticated-backpacks-compat
 - **Procedência:** modlist.txt física atual de 16/09/2026 + metadata runtime física (`create_sophback_compat`, display name incorreto, versão vazia) + CurseForge/Modrinth oficiais revalidados em 20/09/2026; publicação 1.0 permanece a única/latest release 1.21.1.
 - **Observações:** JAR físico `create_sophback_compat-1.0.jar`; mod id `create_sophback_compat`; runtime display name `Create Oh The Biomes We ve Gone Compat`; runtime version vazia. A versão catalogada usa o artefato/publicação oficial 1.0, enquanto a metadata runtime ausente permanece explicitamente registrada.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #159: `create_sophback_compat-1.0.jar` confirmado como artefato 1.0 para 1.21.1; a metadata defeituosa permanece explícita: display name incorreto `Create Oh The Biomes We ve Gone Compat` e runtime version vazia.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #159 na snapshot então vigente; posição física atual #160: `create_sophback_compat-1.0.jar` confirmado como artefato 1.0 para 1.21.1; a metadata defeituosa permanece explícita: display name incorreto `Create Oh The Biomes We ve Gone Compat` e runtime version vazia.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa `sophisticatedbackpackscreateintegration` 0.2.0: este compat adiciona recipes Create; o outro integra backpacks a contraptions. Não são duplicatas globais.
 

@@ -19,7 +19,7 @@
 - **Observações:** Superfícies oficiais: Butcher Knife, Meat Hook, Butcher Block, Meat Grinder e foods. Meathook/Butcherblock e Butcher Knife são extensíveis por JSON datapacks e loot tables. Extra Delight é optional dependency.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Butchercraft 2.6.5 + source/documentação oficial 1.21 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `butchercraft-2.6.5.jar` / `2.6.5`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, Butchercraft 2.6.5 foi revalidado contra a modlist física atual; a cadeia de processamento provider-native e Extra Delight opcional foram preservadas sem converter presença em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #84: `butchercraft-2.6.5.jar` / `2.6.5` conferidos contra a modlist atual; slaughter→carcass→Hook/Block→Grinder, datapack/loot authority, Extra Delight opcional e fixes de side/breeding 2.6.5 preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #84 na snapshot então vigente; posição física atual #85: `butchercraft-2.6.5.jar` / `2.6.5` conferidos contra a snapshot então vigente; slaughter→carcass→Hook/Block→Grinder, datapack/loot authority, Extra Delight opcional e fixes de side/breeding 2.6.5 preservados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

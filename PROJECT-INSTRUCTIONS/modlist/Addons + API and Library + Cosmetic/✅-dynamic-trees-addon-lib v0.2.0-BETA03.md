@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/dynamic-trees-addon-lib
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar`, mod id `dtaddon_lib` e runtime `0.2.0-BETA03`. Fonte oficial/changelog BETA03 permanecem a base técnica do dossiê.
 - **Observações:** BETA03 permanece current para NeoForge 1.21.1. Continua sendo library de gen features/growth logic/cell kits/custom types; não deve ser tratada como provider independente de árvores.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #233: `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` / runtime `0.2.0-BETA03` reconfirmados na modlist física atual de 587 mods incluindo o modloader; permanece a build NeoForge 1.21.1 catalogada.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #233 na snapshot então vigente; posição física atual #234: `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` / runtime `0.2.0-BETA03` reconfirmados na snapshot física então vigente de 587 mods incluindo o modloader; permanece a build NeoForge 1.21.1 catalogada.
 - **Decisão:** Dependência
 - **Histórico da decisão:** Mantido como infraestrutura do stack Dynamic Trees. Em 22/08/2026 o usuário confirmou a permanência de Dynamic Trees + addons; esta biblioteca não concorre com ArborFirmaCraft e deve ser tratada conforme os treepacks dependentes.
 - **Sobreposição:** Não substitui Dynamic Trees core nem treepacks. Seu papel é reduzir código duplicado e oferecer contratos comuns aos addons.

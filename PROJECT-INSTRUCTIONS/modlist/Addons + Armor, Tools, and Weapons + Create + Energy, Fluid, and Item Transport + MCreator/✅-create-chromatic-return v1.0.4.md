@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: Creative recipes/Multiplite trivializam progressão; Quartz Enrichment 4x empilha com outras rotas; Super Silk Touch/spawner; Creative Flight stale; recipes CC&A/CSA drift; filename 1.0.4 ↔ runtime 1.0.0; MCreator internals sem source matching.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-chromaticreturn
-- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime `createchromaticreturn` 1.0.0 + publicação oficial/filename 1.0.4 revalidados em 12/09/2026; 1.0.4 de 04/08/2026 continua a release NeoForge 1.21.1 mais recente. Divergência de versionamento mantida fail-closed.
+- **Procedência:** snapshot física de 11/09/2026 + metadata runtime `createchromaticreturn` 1.0.0 + publicação oficial/filename 1.0.4 revalidados em 12/09/2026; 1.0.4 de 04/08/2026 continua a release NeoForge 1.21.1 mais recente. Divergência de versionamento mantida fail-closed.
 - **Observações:** JAR físico `createchromaticreturn-1.0.4-neoforge-1.21.1.jar`, mod id `createchromaticreturn`, runtime metadata `1.0.0`; MCreator. Publicação/filename 1.0.4 e runtime 1.0.0 permanecem separados.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #176: createchromaticreturn-1.0.4-neoforge-1.21.1.jar permanece latest Release NeoForge 1.21.1; divergência publication/filename 1.0.4 ↔ runtime metadata 1.0.0 preservada, com Creative-item/Multiplite, charms e Quartz Enrichment 2x/4x boundaries atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #176 na snapshot então vigente; posição física atual #175: createchromaticreturn-1.0.4-neoforge-1.21.1.jar permanece latest Release NeoForge 1.21.1; divergência publication/filename 1.0.4 ↔ runtime metadata 1.0.0 preservada, com Creative-item/Multiplite, charms e Quartz Enrichment 2x/4x boundaries atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Overlap principal é econômico/progressivo com Metallurgy/Metalwork e outras rotas de ore processing/Netherite/Brass. CC&A/CSA são integrações publicadas; Mekanism não está presente no pack.
 

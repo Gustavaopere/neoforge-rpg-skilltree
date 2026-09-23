@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos em parse/persistência de configs JSON, logging de erros, chunk-load diagnostics e proteções de state inválido. A 4.1 altera apenas formatação de line breaks para legibilidade e declara compatibilidade com configs antigos.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cupboard
-- **Procedência:** modlist.txt física atual de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `cupboard` 4.1 + CurseForge oficial revalidado em 12/09/2026; `cupboard-1.21.1-4.1.jar` de 27/08/2026 continua a release NeoForge 1.21.1 mais recente.
+- **Procedência:** snapshot física de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `cupboard` 4.1 + CurseForge oficial revalidado em 12/09/2026; `cupboard-1.21.1-4.1.jar` de 27/08/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** mod id `cupboard`; runtime 4.1. Changelog 4.1: line breaks mais legíveis em config, sem afetar configs antigos. A documentação da library inclui JSON config framework, stacktraces completos, logging de command/sync chunk-load errors e proteções contra rotações inválidas de entidades.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #212: cupboard-1.21.1-4.1.jar / runtime 4.1 reconfirmados como latest Release NeoForge 1.21.1; config/logging/protection helpers e o delta 4.1 de legibilidade de line breaks permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #212 na snapshot então vigente; posição física atual #210: cupboard-1.21.1-4.1.jar / runtime 4.1 reconfirmados como latest Release NeoForge 1.21.1; config/logging/protection helpers e o delta 4.1 de legibilidade de line breaks permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Cupboard 4.1 foi reconfirmado como `Instalado` na modlist física de 595; o dossiê Alex já aplicado foi preservado e necessidade consumer-driven não foi convertida em decisão curatorial.
 - **Sobreposição:** Biblioteca técnica específica; pode coexistir com outras config/logging/core libraries. Similaridade de utilidades não autoriza substituir Cupboard sem portar seus consumidores.

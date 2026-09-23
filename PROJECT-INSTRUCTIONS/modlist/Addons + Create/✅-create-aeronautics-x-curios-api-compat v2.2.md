@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-x-curios-api-compat
 - **Procedência:** modlist.txt física atual de 16/09/2026 + metadata runtime `aeronautics_curios_compat` 2.0 + publicação oficial 2.2 revalidada em 20/09/2026; 2.2 de 31/07/2026 permanece a release física/publicada.
 - **Observações:** JAR físico `createaeronauticscurios-neoforge-1.21.1-2.2.jar`, mod id runtime `aeronautics_curios_compat`, nome runtime Create Aeronautics Curios Compat, metadata version 2.0; a versão catalogada segue a publicação/artefato oficial 2.2 de 31/07/2026. A string interna 2.0 permanece explícita para troubleshooting.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #170: `createaeronauticscurios-neoforge-1.21.1-2.2.jar` confirmado como release 2.2 para NeoForge 1.21.1; metadata interna `2.0` permanece documentada separadamente como divergência de packaging/runtime.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #170 na snapshot então vigente; posição física atual #171: `createaeronauticscurios-neoforge-1.21.1-2.2.jar` confirmado como release 2.2 para NeoForge 1.21.1; metadata interna `2.0` permanece documentada separadamente como divergência de packaging/runtime.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não duplica Create: Jetpack Curios nem Create SA Curios Jetpacks; atende itens próprios do Create Aeronautics. Também não é o mesmo JAR do projeto separado focado em Linked Typewriter.
 - **Data da última decisão:** 2026-08-26

@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-additional-logistics
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `createadditionallogistics` 1.4.5 + CurseForge oficial revalidado em 20/09/2026; changelog exato preservado para seat-height patch compatibility, Factory Logistics purchase fix/limitação de currency conversion e regex validation.
 - **Observações:** JAR físico `createadditionallogistics-1.21.1-1.4.5.jar`, mod id `createadditionallogistics`, runtime 1.4.5. Release oficial NeoForge 1.21.1 de 14/01/2026.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #167: createadditionallogistics-1.21.1-1.4.5.jar / 1.4.5 confirmados; regex/package routing, commerce, promise/additional-stock controls e fixes 1.4.5 de seat-height, Factory Logistics e regex validation permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #167 na snapshot então vigente; posição física atual #168: createadditionallogistics-1.21.1-1.4.5.jar / 1.4.5 confirmados; regex/package routing, commerce, promise/additional-stock controls e fixes 1.4.5 de seat-height, Factory Logistics e regex validation permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa logistics/packages/shops do Create; pode cruzar com outros addons de logística e commerce. Sobreposição deve ser avaliada por block/route/state concreto, não por categoria.
 

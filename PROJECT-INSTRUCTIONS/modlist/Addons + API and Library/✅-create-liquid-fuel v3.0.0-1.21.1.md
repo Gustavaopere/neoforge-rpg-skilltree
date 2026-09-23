@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: fuel definitions conflitantes, heat/duration drift, stale data map após reload, fluids processuais queimáveis indevidamente e Create API drift. 3.0.0 corrige compat JSON scanning e sincronização de fuel data.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-liquid-fuel
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createliquidfuel` 3.0.0-1.21.1 + CurseForge oficial revalidado em 12/09/2026; 3.0.0 de 05/09/2026 continua a release NeoForge 1.21.1 mais recente.
+- **Procedência:** snapshot física de 11/09/2026 + runtime `createliquidfuel` 3.0.0-1.21.1 + CurseForge oficial revalidado em 12/09/2026; 3.0.0 de 05/09/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** JAR físico `createliquidfuel-3.0.0-1.21.1.jar`, mod id `createliquidfuel`, runtime 3.0.0-1.21.1. Release oficial NeoForge 1.21.1 de 05/09/2026.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #193: createliquidfuel-3.0.0-1.21.1.jar / runtime 3.0.0-1.21.1 reconfirmados como latest Release NeoForge 1.21.1; synced Fluid data map, neoforge:conditions, compat scanning e client sync permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #193 na snapshot então vigente; posição física atual #192: createliquidfuel-3.0.0-1.21.1.jar / runtime 3.0.0-1.21.1 reconfirmados como latest Release NeoForge 1.21.1; synced Fluid data map, neoforge:conditions, compat scanning e client sync permanecem atuais.
 - **Decisão:** Manter
 - **Sobreposição:** Integra fluids ao Blaze Burner; não substitui Create heat system nem providers dos fluidos. Sobreposição relevante ocorre se mais de um addon/datapack definir o mesmo combustível.
 - **Data da última decisão:** 2026-09-06

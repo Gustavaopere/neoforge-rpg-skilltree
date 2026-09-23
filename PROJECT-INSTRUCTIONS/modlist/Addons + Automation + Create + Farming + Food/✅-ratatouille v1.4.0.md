@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-ratatouille
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `ratatouille` 1.4.0 + CurseForge oficial revalidado em 20/09/2026; 1.4.0 continua a release mais recente para NeoForge 1.21.1.
 - **Observações:** JAR físico `create_ratatouille-1.21.1-1.4.0.jar`, mod id `ratatouille`, runtime 1.4.0. Release oficial NeoForge 1.21.1, Client & Server, 10/07/2026. 1.4.0 corrige vários problemas do Squeeze Basin e melhora o Demolder para retirada manual de molds.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #154: create_ratatouille-1.21.1-1.4.0.jar / 1.4.0 confirmados como latest NeoForge 1.21.1; Squeeze Basin, Mechanical Demolder, molds, fluids/intermediários, sequenced processing e fixes 1.4.0 permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #154 na snapshot então vigente; posição física atual #155: create_ratatouille-1.21.1-1.4.0.jar / 1.4.0 confirmados como latest NeoForge 1.21.1; Squeeze Basin, Mechanical Demolder, molds, fluids/intermediários, sequenced processing e fixes 1.4.0 permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Integra concretamente Create 6.0.10 e Farmer's Delight 1.3.4. Pode criar rotas alternativas de processamento/food/farming; comparar recipes e custos reais, sem classificar o addon inteiro como duplicata.
 - **Data da última decisão:** 2026-08-26

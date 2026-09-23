@@ -19,7 +19,7 @@
 - **Observações:** mod id `collective`; runtime 8.39. Release 1.21.1-8.39, File ID 8341460. Changelog: `MessageFunctions` atualizado para melhor tratamento de mensagens client-only.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime Collective 8.39 + CurseForge oficial da release 1.21.1-8.39 e documentação Serilum já auditada. Reconciliação final: JAR/runtime permanecem exatamente `collective-1.21.1-8.39.jar` / `8.39`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Collective 8.39 foi reconfirmado na modlist física e reconstruído como library do ecossistema Serilum. A presença por dependência não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #102: `collective-1.21.1-8.39.jar` / `8.39` conferidos contra a modlist atual; contract consumer-driven, `MessageFunctions`/client-only boundary, lifecycle e version drift preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #102 na numeração então registrada; posição física atual #103: `collective-1.21.1-8.39.jar` / `8.39` conferidos contra a modlist então vigente; contract consumer-driven, `MessageFunctions`/client-only boundary, lifecycle e version drift preservados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

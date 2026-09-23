@@ -19,7 +19,7 @@
 - **Observações:** 1.7.6 NeoForge 1.21.1, Client & Server, GeckoLib required. Changelog 1.7.6 corrige breeding season do Thornshell Crab. O autor anunciou rewrite completo para 2.0 e pausa de updates da linha atual. Naughtiness/Krampus, Missionary, equipamentos e estruturas são superfícies oficialmente documentadas.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Born in Chaos 1.7.6 + documentação/changelogs oficiais + GeckoLib 4.9.2 físico e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar` / `1.7.6`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, Born in Chaos 1.7.6 foi revalidado contra a modlist física atual e GeckoLib 4.9.2; a presença instalada e o estado de manutenção da linha 1.7.6 não foram convertidos em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #83: `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar` / `1.7.6` conferidos contra a modlist atual; Naughtiness/Krampus, world-age gates, structures/equipment, GeckoLib side/lifecycle e maintenance boundary até o rewrite 2.0 preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #83 na snapshot então vigente; posição física atual #84: `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar` / `1.7.6` conferidos contra a snapshot então vigente; Naughtiness/Krampus, world-age gates, structures/equipment, GeckoLib side/lifecycle e maintenance boundary até o rewrite 2.0 preservados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

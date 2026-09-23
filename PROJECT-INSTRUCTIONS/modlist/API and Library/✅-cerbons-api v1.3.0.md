@@ -19,7 +19,7 @@
 - **Observações:** JAR físico `CerbonsAPI-NeoForge-1.21-1.3.0.jar`, mod id `cerbons_api`, runtime 1.3.0. Release oficial NeoForge 1.21/1.21.1 de 01/05/2025; 1.3.0 adiciona menu helpers, HistoricalData constructor, BlockRegistry/ItemRegistry e novos IPlatformHelper methods.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial CERBON's API 1.3.0 + relação oficial de dependência do Bosses of Mass Destruction 1.3.3 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `CerbonsAPI-NeoForge-1.21-1.3.0.jar` / `1.3.0`; decisão `Dependência` permanece inalterada.
 - **Histórico da decisão:** 2026-09-07 — novo registro; classificado como Dependência por uso de Bosses of Mass Destruction.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #90: `CerbonsAPI-NeoForge-1.21-1.3.0.jar` / `1.3.0` conferidos contra a modlist atual; consumer BOMD 1.3.3, menu/registry/platform helpers, networking/lifecycle e decisão `Dependência` preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #90 na snapshot então vigente; posição física atual #91: `CerbonsAPI-NeoForge-1.21-1.3.0.jar` / `1.3.0` conferidos contra a snapshot então vigente; consumer BOMD 1.3.3, menu/registry/platform helpers, networking/lifecycle e decisão `Dependência` preservados.
 - **Data da última decisão:** 2026-09-07
 
 > 🧩 **ESCOPO CANÔNICO.** Runtime físico: `CerbonsAPI-NeoForge-1.21-1.3.0.jar`, mod id `cerbons_api`, versão `1.3.0`, NeoForge 1.21.1. CERBON's API é uma biblioteca multiloader do ecossistema CERBON; não adiciona uma linha de gameplay própria.

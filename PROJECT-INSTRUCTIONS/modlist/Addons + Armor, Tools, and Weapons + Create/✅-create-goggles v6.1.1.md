@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: helmet durability/attributes/components lost in conversion; Crusher destructive removal; Smithing duplication; modded helmet compatibility; Armored Backtank double-count with Curios bridges; stress-impact regression; Beta crash/API drift; stale equip state.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-goggles
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `creategoggles` 6.1.1 + CurseForge oficial revalidado em 12/09/2026; 6.1.1 \[NEOFORGE\] de 16/07/2025 continua a build Beta 1.21.1 mais recente. Source oficial branch 1.21.1 permanece referência matching.
+- **Procedência:** snapshot física de 11/09/2026 + runtime `creategoggles` 6.1.1 + CurseForge oficial revalidado em 12/09/2026; 6.1.1 \[NEOFORGE\] de 16/07/2025 continua a build Beta 1.21.1 mais recente. Source oficial branch 1.21.1 permanece referência matching.
 - **Observações:** JAR literal `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar`, mod id `creategoggles`, runtime 6.1.1. Source matching branch 1.21.1 confirma tag `creategoggles:goggle` e recipe type `creategoggles:crafting_nbt`. Build oficial é Beta.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #190: creategoggles-1.21.1-6.1.1-\[NEOFORGE\].jar / runtime 6.1.1 reconfirmados como a build Beta NeoForge 1.21.1 mais recente; Goggle Helmets, Armored Backtanks, crafting_nbt/tag compatibility e fixes de durability/stress permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #190 na snapshot então vigente; posição física atual #189: creategoggles-1.21.1-6.1.1-\[NEOFORGE\].jar / runtime 6.1.1 reconfirmados como a build Beta NeoForge 1.21.1 mais recente; Goggle Helmets, Armored Backtanks, crafting_nbt/tag compatibility e fixes de durability/stress permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não duplica Cyber Goggles 8.5.3: Create Goggles adiciona equipamento físico; Cyber Goggles é assistência client-side. Armored Backtanks devem ser testados com Curios Backtank/Jetpack bridges para evitar double-count de recurso.
 - **Data da última decisão:** 2026-09-20

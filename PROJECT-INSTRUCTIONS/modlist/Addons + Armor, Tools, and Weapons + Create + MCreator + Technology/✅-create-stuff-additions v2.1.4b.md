@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-stuff-additions
 - **Procedência:** modlist.txt física atual de 16/09/2026 + metadata runtime `create_sa` `2.1.4.` + CurseForge/Modrinth oficiais da release `2.1.4.b` e changelog 2.1.3/2.1.4b + integrações Curios/Sable/Create SA já auditadas. Revalidação em 20/09/2026; filename, release e runtime permanecem evidências distintas.
 - **Observações:** mod id `create_sa`; JAR `create-stuff-additions1.21.1_v2.1.4b.jar`; runtime literal `2.1.4.`; publicação upstream `2.1.4.b`. 2.1.4.b adiciona indicador visual para enchantment desativado por config. 2.1.3 registra capacity em Jetpacks/Exoskeletons/gadgets e compatibilidade de filling com tanks/backpacks modded.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #124: create-stuff-additions1.21.1_v2.1.4b.jar reconfirmado; runtime literal 2.1.4. preservado separadamente do filename 2.1.4b e release 2.1.4.b; delta 2.1.4b permanece documentado.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #124 na numeração então registrada; posição física atual #125: create-stuff-additions1.21.1_v2.1.4b.jar reconfirmado; runtime literal 2.1.4. preservado separadamente do filename 2.1.4b e release 2.1.4.b; delta 2.1.4b permanece documentado.
 - **Decisão:** Sem decisão
 - **Sobreposição:** É provider de seus próprios equipamentos/gadgets. Curios bridges apenas mudam slot/equip behavior; Sable SA Compat adapta o conteúdo a contraptions físicas; Create Stuff & Netherite Additions estende tiers/conteúdo. Nenhuma dessas bridges substitui o host.
 

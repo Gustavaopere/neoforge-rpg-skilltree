@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: private-field/API drift do FTB Ultimine; `isPressed` não restaurado; right-click/event duplicado; Manual Application consumir/aplicar de forma não conservativa; item esgotado ainda processar posições; recipe cache stale; Wrench face/context incorreto; config/claims; drift 2101.1.15 vs 2101.1.14-dev.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-ultimine
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createultimine` 1.3.2 + CurseForge oficial/source matching revalidados em 12/09/2026; 1.3.2 de 14/05/2026 continua a release NeoForge 1.21.1 mais recente.
+- **Procedência:** snapshot física de 11/09/2026 + runtime `createultimine` 1.3.2 + CurseForge oficial/source matching revalidados em 12/09/2026; 1.3.2 de 14/05/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** JAR/mod id/runtime 1.3.2 confirmados. Source matching registra `ManualApplication` e `WrenchUse`; config server-side possui `manual_application` e `right_click_wrench`, ambos default true. 1.3.2 corrige crash por acesso inválido a private field do Ultimine.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #207: createultimine-1.21.1-neoforge-1.3.2.jar / runtime 1.3.2 reconfirmados como latest Release NeoForge 1.21.1; RightClickHandler API, Manual Application, Wrench delegation, `isPressed` restoration e private-field crash fix permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #207 na snapshot então vigente; posição física atual #205: createultimine-1.21.1-neoforge-1.3.2.jar / runtime 1.3.2 reconfirmados como latest Release NeoForge 1.21.1; RightClickHandler API, Manual Application, Wrench delegation, `isPressed` restoration e private-field crash fix permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** FTB Ultimine 2101.1.15 é provider base da seleção/shape; Create Ultimine é bridge e não duplicata. Create continua owner das Manual Application recipes e Wrench semantics.
 

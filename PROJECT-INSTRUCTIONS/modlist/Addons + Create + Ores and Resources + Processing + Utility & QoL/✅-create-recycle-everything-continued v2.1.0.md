@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-recycle-everything-continued
 - **Procedência:** modlist.txt física atual de 16/09/2026 + metadata runtime literal 1.1 + CurseForge oficial revalidado em 20/09/2026; publicação 2.1.0 continua a release mais recente para NeoForge 1.21.1.
 - **Observações:** JAR `create_recycle_everything-2.1.0.jar`; publicação/filename 2.1.0, metadata runtime literal 1.1. A versão catalogada segue o artefato físico/publicação oficial; a string interna divergente permanece explícita. Changelog 2.1.0: reorganização interna e novos crushing recipes, incluindo integração Create Stuff 'N Additions.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #155: artefato `create_recycle_everything-2.1.0.jar` e publicação oficial 2.1.0 confirmados como latest NeoForge 1.21.1; metadata interna continua `1.1` e é preservada separadamente para troubleshooting.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #155 na snapshot então vigente; posição física atual #156: artefato `create_recycle_everything-2.1.0.jar` e publicação oficial 2.1.0 confirmados como latest NeoForge 1.21.1; metadata interna continua `1.1` e é preservada separadamente para troubleshooting.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão curatorial formal. Em 20/09/2026, a identidade instalada foi reconciliada: o JAR físico e a publicação oficial são 2.1.0; a metadata runtime literal 1.1 permanece registrada separadamente para troubleshooting.
 - **Sobreposição:** Sobrepõe material recovery/recipe space de outros recycle packs, mas não Almost Unified: este mod cria rotas de reciclagem; unifiers reconciliam equivalências/outputs. Avaliar recipe-by-recipe.

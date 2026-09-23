@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: force-at-point/torque double-application; FE ou fuel parcialmente debitado com thrust integral; multiblock topology perdida em cópia/assembly; cable network processada mais de uma vez/tick; mounted-fluid dupe/loss; Tilt Adapter drift; KubeJS fuel registry stale; Sable 2.0.5 drift; overlap com Gadgets & Gizmos.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-propulsion-simulated
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createpropulsion` 1.1.5 + CurseForge/Modrinth oficiais e source matching revalidados em 12/09/2026; 1.1.5 de 23/07/2026 continua a release NeoForge 1.21.1 mais recente.
+- **Procedência:** snapshot física de 11/09/2026 + runtime `createpropulsion` 1.1.5 + CurseForge/Modrinth oficiais e source matching revalidados em 12/09/2026; 1.1.5 de 23/07/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** JAR/mod id/runtime 1.1.5 e source matching confirmados. 1.1.5 adiciona Solid Fuel Thruster, fuels data-driven/KubeJS, Advanced Tilt Adapter e Platinum Fluid Vessel; corrige FE parcial, Liquid Vector Thruster, multiblock topology/off-center thrust, cable routing e sync/render.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #201: createpropulsion-1.1.5.jar / runtime 1.1.5 reconfirmados como latest Release NeoForge 1.21.1; Solid Fuel Thruster, fuels data-driven/KubeJS, FE settlement, multiblocks, Tilt Adapter e mounted-fluid fixes permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #201 na snapshot então vigente; posição física atual #200: createpropulsion-1.1.5.jar / runtime 1.1.5 reconfirmados como latest Release NeoForge 1.21.1; Solid Fuel Thruster, fuels data-driven/KubeJS, FE settlement, multiblocks, Tilt Adapter e mounted-fluid fixes permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Interseção concreta com Create Aeronautics: Gadgets & Gizmos 1.1.3 em propulsão/controle, mas não duplicata integral. TFMG/CC&A/CDG/Northstar fornecem combustíveis/energia potenciais; Propulsion continua owner do thruster e da liquidação de thrust.
 
