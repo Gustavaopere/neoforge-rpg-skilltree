@@ -1,5 +1,7 @@
 # Create: Central Kitchen
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#118**: JAR `create-central-kitchen-2.6.0.jar`, mod id `create_central_kitchen`, runtime `2.6.0`, SHA-1 `f0dd0161de70f2177ba2e06c68ef0dbea08cdf2f`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Central Kitchen
