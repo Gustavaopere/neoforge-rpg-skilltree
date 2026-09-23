@@ -1,5 +1,7 @@
 # Create Contraption Terminals
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#178**: JAR `createcontraptionterminals-1.21-1.4.0.jar`, mod id `createcontraptionterminals`, runtime `1.4.0`, SHA-1 `ede963781ca5bf49c5117031087b8085043c7ab3`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Contraption Terminals
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: crash/API drift com Tom's 2.4.2; Vault double-count; slot/free-slot regressão; inventory reference stale após disassembly; menu em movimento/chunk unload; concurrent extract/craft dupe; contraptions antigas sem reassembly.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-contraption-terminals
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createcontraptionterminals` 1.4.0 + CurseForge oficial revalidado em 12/09/2026; 1.4.0 de 12/08/2026 continua a release NeoForge 1.21.1 mais recente. Tom's 2.4.2 permanece o provider físico atual.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createcontraptionterminals` 1.4.0 + CurseForge oficial revalidado em 12/09/2026; 1.4.0 de 12/08/2026 continua a release NeoForge 1.21.1 mais recente. Tom's 2.4.2 permanece o provider físico atual.
 - **Observações:** JAR/mod id/runtime 1.4.0 confirmados. Dependência física corrigida de Tom's 2.4.1 para **2.4.2**. Upstream exige reassembly de contraptions antigas e 1.4.0 corrige slot/free-slot counts.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #179 na snapshot então vigente; posição física atual #178: createcontraptionterminals-1.21-1.4.0.jar / 1.4.0 reconfirmados como latest Release NeoForge 1.21.1; contraption inventory authority, Storage/Crafting Terminal, Vault detection, Tom's 2.4.2 compatibility fixes, reassembly e concurrency gates permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #179: createcontraptionterminals-1.21-1.4.0.jar / 1.4.0 reconfirmados como latest Release NeoForge 1.21.1; contraption inventory authority, Storage/Crafting Terminal, Vault detection, Tom's 2.4.2 compatibility fixes, reassembly e concurrency gates permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Bridge específico Create↔Tom's para terminals em contraptions; não substitui Tom's storage nem é um sistema completo de autocrafting. Vault detector evita contagem incorreta de multiblocks.
 
