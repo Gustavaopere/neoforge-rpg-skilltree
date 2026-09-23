@@ -1,5 +1,7 @@
 # Connector Extras
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#106**: JAR `ConnectorExtras-1.12.1+1.21.1.jar`, mod id `connectorextras`, runtime `1.12.1+1.21.1`, SHA-1 `8ea07df55b26c8343d06df77936505a23e0d2140`.
+
 ## Propriedades do registro
 
 - **Mod:** Connector Extras
