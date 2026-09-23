@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-ftb-chunks
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_aeronautics_ftb_chunks` 1.2.0 + publicação oficial 1.2.0 de 15/09/2026 já auditada. Revalidação física/documental em 20/09/2026.
 - **Observações:** JAR físico `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar`, mod id `create_aeronautics_ftb_chunks`, runtime 1.2.0. Release oficial NeoForge 1.21.1 de 15/09/2026: update to latest Sable e fix do problema de Save & Quit ficar travado. Os settings `allow_plot_chunk_force_load` e `allow_physics_force_load` permanecem relevantes; a config física do pack é authority do estado efetivo.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #128 na numeração então registrada; posição física atual #129: create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar / 1.2.0 confirmados; update para Sable atual e correção de save & quit preso permanecem registrados.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #128: create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar / 1.2.0 confirmados; update para Sable atual e correção de save & quit preso permanecem registrados.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** 2026-09-18 — runtime físico atualizado para 1.2.0; nenhuma decisão curatorial nova.
 - **Sobreposição:** Complementa Aeronautics e FTB Chunks; não substitui nenhum deles.
