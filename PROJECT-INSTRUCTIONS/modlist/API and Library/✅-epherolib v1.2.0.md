@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epherolib
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar`, mod id `epherolib`, runtime 1.2.0 e SHA-1 `0ee19acd03b6f03b568b2682b7e662bfd8af73ef`. CurseForge oficial revalidado em 21/09/2026 mantém 1.2.0 como release NeoForge 1.21.1 aplicável.
 - **Observações:** Runtime físico 1.2.0. Documentação do projeto descreve Configurate para config comum, abstraction de networking, server-side translations baseadas em Gson e storage abstraction por world. O catálogo não atribui gameplay específico nem consumidor não confirmado.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #257: `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar` / runtime `1.2.0` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. 1.2.0 continua sendo a release NeoForge 1.21.1 aplicável; 1.3.0 pertence a versões posteriores do Minecraft.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #257 na snapshot então vigente; posição física atual #258: `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar` / runtime `1.2.0` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. 1.2.0 continua sendo a release NeoForge 1.21.1 aplicável; 1.3.0 pertence a versões posteriores do Minecraft.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Pode cumprir funções semelhantes a outras libs de config/network/storage, mas não é substituível por elas sem compatibilidade binária/API explícita. Nenhum gameplay deve ser duplicado na ficha da biblioteca.
 - **Data da última decisão:** 2026-08-26

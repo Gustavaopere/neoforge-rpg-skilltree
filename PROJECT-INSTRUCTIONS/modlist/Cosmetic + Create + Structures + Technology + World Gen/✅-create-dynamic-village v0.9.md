@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/dynamic-village
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `dynamicvillage-0.9-1.21.1.jar` / runtime `0.9`, Create `6.0.10` e Integrated Villages `1.3.3+1.21.1-neoforge`. O changelog 0.9 permanece a referência da build catalogada.
 - **Observações:** 0.9 permanece current para NeoForge 1.21.1. Interiores dos 20 buildings, fixes de iluminação/chests, remoção do air ring e tuning/config de village continuam os deltas principais. Integrated Villages permanece sobreposição concreta a testar em worldgen.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #236: `dynamicvillage-0.9-1.21.1.jar` / runtime `0.9` reconfirmados na modlist física atual de 587 mods incluindo o modloader.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #236 na snapshot então vigente; posição física atual #237: `dynamicvillage-0.9-1.21.1.jar` / runtime `0.9` reconfirmados na snapshot física então vigente de 587 mods incluindo o modloader.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobreposição parcial e intencional com outros mods de villages/settlements. Não substitui Create nem villagers vanilla; injeta conteúdo Create no ecossistema de aldeias. Integrated Villages 1.3.3 está presente e deve ser testado em conjunto.
 - **Data da última decisão:** 2026-08-26

@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: launch race; item/assembly duplication; target client-side inválido; missile dupe/loss em unloaded chunks/restart; double impact; async world mutation race; claims bypass; drone/structure loot duplication; dedicated-server regression; alto custo combinado com CBC.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-missiles
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createmissiles` 1.0.3 + CurseForge oficial revalidado em 12/09/2026; 1.0.3 de 14/07/2026 continua a release NeoForge 1.21.1 mais recente. Source oficial branch dev/neoforge-1.21.1 permanece matching.
+- **Procedência:** snapshot física de 11/09/2026 + runtime `createmissiles` 1.0.3 + CurseForge oficial revalidado em 12/09/2026; 1.0.3 de 14/07/2026 continua a release NeoForge 1.21.1 mais recente. Source oficial branch dev/neoforge-1.21.1 permanece matching.
 - **Observações:** JAR/mod id/runtime 1.0.3 e source matching branch dev/neoforge-1.21.1 confirmados. A release 1.0.3 corrige suporte a dedicated server; o projeto publica mais de 30 peças, Launch Pad, drones, travel em chunks descarregados e explosões assíncronas.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #197: createmissiles-1.0.3+neoforge-1.21.1.jar / runtime 1.0.3 reconfirmados como latest Release NeoForge 1.21.1 para Create 6.0.10; modular missiles, Launch Pad/panels, unloaded-chunk travel, drones, async explosions e dedicated-server fix permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #197 na snapshot então vigente; posição física atual #196: createmissiles-1.0.3+neoforge-1.21.1.jar / runtime 1.0.3 reconfirmados como latest Release NeoForge 1.21.1 para Create 6.0.10; modular missiles, Launch Pad/panels, unloaded-chunk travel, drones, async explosions e dedicated-server fix permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Overlap com Create Big Cannons é bélico/destrutivo, não equivalência: CBC fornece cannons/artilharia; Missiles fornece assemblies propulsados/guiados. Aeronautics/Sable são coexistência a testar, sem integração direta presumida.
 

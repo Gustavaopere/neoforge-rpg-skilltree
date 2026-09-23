@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/flowing-fluids
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `flowing_fluids-1.0.6-1.21-neoforge.jar`, mod id `flowing_fluids`, runtime `1.0.6` e SHA-1 `1453fbae5afe0d475e5149f60847a65e4d7185c9`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** JAR físico `flowing_fluids-1.0.6-1.21-neoforge.jar`, mod id `flowing_fluids`, runtime 1.0.6. Upstream ainda descreve o projeto como em desenvolvimento; server é necessário e cliente é recomendado para representação/interação completa.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #282: `flowing_fluids-1.0.6-1.21-neoforge.jar` / runtime `1.0.6` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #282 na snapshot então vigente; posição física atual #283: `flowing_fluids-1.0.6-1.21-neoforge.jar` / runtime `1.0.6` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
 - **Decisão:** Sem decisão
 - **Sobreposição:** É authority de comportamento/propagação de fluidos no mundo; não substitui storage/piping de Create ou outros mods. Cruza diretamente com worldgen hídrico, pumps, water wheels, agricultura e Sable.
 

@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-connected
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_connected` 1.3.3-mc1.21.1 + CurseForge oficial 1.3.3 e changelog/GitHub da linha 1.3.x revalidados em 20/09/2026.
 - **Observações:** JAR físico `create_connected-1.3.3-mc1.21.1.jar`, mod id `create_connected`, runtime 1.3.3-mc1.21.1. O texto antigo que citava runtime 1.3.2 foi corrigido. Release NeoForge 1.21.1 de 31/08/2026, Client & Server.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #137: create_connected-1.3.3-mc1.21.1.jar / 1.3.3-mc1.21.1 confirmados; Inventory Bridges/filters, Kinetic Battery, Sequenced Pulse Generator, feature toggles e package-change boundary permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #137 na snapshot então vigente; posição física atual #138: create_connected-1.3.3-mc1.21.1.jar / 1.3.3-mc1.21.1 confirmados; Inventory Bridges/filters, Kinetic Battery, Sequenced Pulse Generator, feature toggles e package-change boundary permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobrepõe parcialmente QoL/automação com Create Utilities J 0.3.4+1.21.1 e outros addons, mas deve ser comparado feature a feature. Não há base para classificar o pacote inteiro como redundante.
 

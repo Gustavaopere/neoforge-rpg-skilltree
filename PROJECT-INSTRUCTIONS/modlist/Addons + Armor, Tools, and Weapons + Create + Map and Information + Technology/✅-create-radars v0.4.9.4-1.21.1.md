@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-radars
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_radar` 0.4.9.4-1.21.1 + CurseForge oficial revalidado em 20/09/2026; 0.4.9.4 continua a release mais recente para NeoForge 1.21.1.
 - **Observações:** mod id `create_radar`; runtime 0.4.9.4-1.21.1; release NeoForge 1.21.1 Client & Server. 0.4.9.4 adiciona configs de tolerância para alvo móvel e corrige ferramentas quebrando sem Aeronautics; problemas conhecidos de cannon/Aeronautics permanecem.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #153: create_radar-0.4.9.4-1.21.1.jar / 0.4.9.4-1.21.1 confirmados como latest NeoForge 1.21.1; radar/monitor/cannon-control, moving-target tolerance e known issues Aeronautics/CBC permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #153 na snapshot então vigente; posição física atual #154: create_radar-0.4.9.4-1.21.1.jar / 0.4.9.4-1.21.1 confirmados como latest NeoForge 1.21.1; radar/monitor/cannon-control, moving-target tolerance e known issues Aeronautics/CBC permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Radars 0.4.9.4-1.21.1 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; presença e uso como infraestrutura de Create Aero Radar não foram convertidos em decisão curatorial.
 - **Sobreposição:** Radars é provider de detecção/visualização/controle; Create Aero Radar é integração que usa esse provider. Outros sensores/logic mods podem consumir os dados, mas não são duplicatas automáticas.

@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: RPL/Sable drift; shell-impact NoSuchMethodError regression; recoil duplicado em physics objects; data legado de munition/ammo containers; Schematic Printer consumption; CBC AT/CBCAT Fix API drift; projectile chunk/multiplayer desync.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-big-cannons
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createbigcannons` 5.11.7 + CurseForge oficial revalidado em 12/09/2026; 5.11.7 de 22/06/2026 continua a release mais recente para NeoForge 1.21.1/Create 6.0.7+.
+- **Procedência:** snapshot física de 11/09/2026 + runtime `createbigcannons` 5.11.7 + CurseForge oficial revalidado em 12/09/2026; 5.11.7 de 22/06/2026 continua a release mais recente para NeoForge 1.21.1/Create 6.0.7+.
 - **Observações:** JAR `createbigcannons-5.11.7+mc.1.21.1.jar`, mod id `createbigcannons`, runtime 5.11.7. 5.11.7 adiciona suporte Sable 2.0 e corrige Schematic Printer/shell-impact compat; linha 5.11.4 migrou data de munitions/containers.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #175: createbigcannons-5.11.7+mc.1.21.1.jar / 5.11.7 reconfirmados como latest Release NeoForge 1.21.1; Sable 2.0 support, Schematic Printer fix, shell-impact fix, munition migration e projectile/recoil boundaries permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #175 na snapshot então vigente; posição física atual #174: createbigcannons-5.11.7+mc.1.21.1.jar / 5.11.7 reconfirmados como latest Release NeoForge 1.21.1; Sable 2.0 support, Schematic Printer fix, shell-impact fix, munition migration e projectile/recoil boundaries permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Tema bélico se cruza com Gunsmithing/mísseis, mas CBC owns artilharia pesada/projectiles. Addons CBC e Harness são consumers/integrations; não substituem o mod-base.
 

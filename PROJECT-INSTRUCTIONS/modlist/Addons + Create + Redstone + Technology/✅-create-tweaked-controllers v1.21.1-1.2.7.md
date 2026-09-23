@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-tweaked-controllers
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_tweaked_controllers` 1.21.1-1.2.7 + CurseForge oficial revalidado em 20/09/2026 + branch oficial `dev-1.21` pin-matching.
 - **Observações:** JAR/mod id/runtime exatos. Branch oficial `dev-1.21` declara mod 1.21.1-1.2.7 e MC 1.21.1. Source confirma TweakedLecternControllerBlockEntity, ControllerData, User UUID, UseFullPrecision e surface ComputerCraft opcional.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #163: create_tweaked_controllers-1.21.1-1.2.7.jar / 1.21.1-1.2.7 confirmados; lectern/user persistence, GLFW input matrix, full precision e fix de log spam 1.2.7 permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #163 na snapshot então vigente; posição física atual #164: create_tweaked_controllers-1.21.1-1.2.7.jar / 1.21.1-1.2.7 confirmados; lectern/user persistence, GLFW input matrix, full precision e fix de log spam 1.2.7 permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa Create control/contraptions. Overlap é de input/control ownership com outros sistemas veiculares/controladores, não duplicidade global de conteúdo; CC:Tweaked upstream está inativo no pack atual pela ausência física.
 

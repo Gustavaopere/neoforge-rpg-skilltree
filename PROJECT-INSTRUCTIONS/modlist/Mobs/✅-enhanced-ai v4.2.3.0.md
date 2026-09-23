@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/enhanced-ai
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `enhancedai-4.2.3.0.jar`, mod id `enhancedai`, runtime 4.2.3.0, SHA-1 `763e60f869129a37cb7659e1a25bd3f50f6bd9ea` e InsaneLib 2.4.33.0. CurseForge oficial revalidado confirma 4.2.3.0 como latest release NeoForge 1.21.1 e mantém o changelog específico já documentado.
 - **Observações:** Runtime físico 4.2.3.0. Changelog oficial exato: mobs podem pathfind livremente sobre rails mesmo sem já estarem sobre um rail; Miner mobs podem usar main hand e off-hand para minerar via data key `offhand` (default true); corrigidos Pearler AI não aplicado quando sem pearls equipadas e Fisher AI parando ao perder line of sight do alvo.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #251: `enhancedai-4.2.3.0.jar` / runtime `4.2.3.0` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader; dependência física InsaneLib reconciliada de 2.4.32.0 para 2.4.33.0.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #251 na snapshot então vigente; posição física atual #252: `enhancedai-4.2.3.0.jar` / runtime `4.2.3.0` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader; dependência física InsaneLib reconciliada de 2.4.32.0 para 2.4.33.0.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Enhanced AI muda comportamento/IA; AI-Improvements reduz custo de processamento de IA. Epic Fight pode patchar entidades/combate. Essas superfícies se cruzam, mas não são equivalentes; validar ownership de goals e combat state.
 - **Data da última decisão:** 2026-08-30

@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-blaze-burner-fuels
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_blaze_burner_fuels` 1.0.2 + CurseForge/Modrinth oficiais 1.0.2 revalidados em 20/09/2026.
 - **Observações:** JAR físico `create_blaze_burner_fuels-1.0.2-neoforge-1.21.1.jar`, mod id `create_blaze_burner_fuels`, runtime 1.0.2. Release NeoForge 1.21.1 de 11/01/2026, Client & Server. 1.0.2 remove log recycling para evitar conflito com recipes de sawing do Create.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #134: create_blaze_burner_fuels-1.0.2-neoforge-1.21.1.jar / 1.0.2 confirmados; fuel/superheat authority preservada e remoção upstream de log recycling conflitante com Create sawing permanece regression gate.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #134 na snapshot então vigente; posição física atual #135: create_blaze_burner_fuels-1.0.2-neoforge-1.21.1.jar / 1.0.2 confirmados; fuel/superheat authority preservada e remoção upstream de log recycling conflitante com Create sawing permanece regression gate.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Amplia especificamente combustível de Blaze Burner/boiler. Cadeias de coke/peat de outros mods podem fornecer materiais semelhantes, mas a aceitação/tempo deste addon continua sendo sua superfície própria.
 

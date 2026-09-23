@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** 1.1.1 é Beta-only para NeoForge 1.21.1. Superfícies críticas: persistência de variáveis, rádio até 3000 blocos, jammer de 150 blocos, Redstone Links, áudio remoto/TTS, sensores e projeção de coordenadas em sublevels Aeronautics. 1.1.1 corrige Radars, Ponders, MP3 player e 3D gizmos.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-radiologistics
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `radiologistics` 1.1.1 + CurseForge oficial revalidado em 12/09/2026; 1.1.1 de 02/07/2026 continua a build Beta NeoForge 1.21.1 mais recente.
+- **Procedência:** snapshot física de 11/09/2026 + runtime `radiologistics` 1.1.1 + CurseForge oficial revalidado em 12/09/2026; 1.1.1 de 02/07/2026 continua a build Beta NeoForge 1.21.1 mais recente.
 - **Observações:** runtime 1.1.1; build Beta NeoForge 1.21.1. Features oficiais incluem Main Computer/node editor, Radio Transmitter/Antennas, Redstone Link Module, Memory Module, Gyroscope, Jammer, Audio Module, Pilot Helmet e Transparent Screen. 1.1.1 adiciona Smart Optical Sensor, Servo Motor, novos nodes e coding help.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #202: CreateRadiologistics-1.1.1.jar / runtime 1.1.1 reconfirmados como latest Beta NeoForge 1.21.1; Main Computer/node programs, rádio, memória, sensores/jammer/audio e integrações Radars/CBC/Aeronautics permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #202 na snapshot então vigente; posição física atual #201: CreateRadiologistics-1.1.1.jar / runtime 1.1.1 reconfirmados como latest Beta NeoForge 1.21.1; Main Computer/node programs, rádio, memória, sensores/jammer/audio e integrações Radars/CBC/Aeronautics permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Radiologistics 1.1.1 foi reconfirmado como `Instalado`; a maturidade Beta é risco técnico documentado e não foi convertida em decisão curatorial.
 - **Sobreposição:** Pode compartilhar comunicação/controle com Redstone Links, Radars e outros logic systems, mas owns sua rede, node programs, memória e módulos. Bridges consomem dados de outros providers sem substituí-los.

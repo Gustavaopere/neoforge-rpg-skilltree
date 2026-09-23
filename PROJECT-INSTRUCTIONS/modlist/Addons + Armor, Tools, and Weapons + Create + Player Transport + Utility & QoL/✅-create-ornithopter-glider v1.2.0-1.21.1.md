@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: spam de input bypassar cooldown; client/server movement divergence; equip Curios stale; cooldown config mismatch; stacking com Create Jetpack/outros movement mods; fall/glide state residual; regressão de Armor Stand/player animation; optional Curios classloading; version-label normalization errada.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-ornithopter-glider
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime físico `createornithopterglider` 1.2.0-1.21.1 + CurseForge oficial revalidado em 12/09/2026; publicação 1.2.0+1.21.1 de 03/06/2026 continua a release NeoForge 1.21.1 mais recente. A divergência de separador foi preservada fail-closed.
+- **Procedência:** snapshot física de 11/09/2026 + runtime físico `createornithopterglider` 1.2.0-1.21.1 + CurseForge oficial revalidado em 12/09/2026; publicação 1.2.0+1.21.1 de 03/06/2026 continua a release NeoForge 1.21.1 mais recente. A divergência de separador foi preservada fail-closed.
 - **Observações:** JAR `createornithopterglider-1.2.0-1.21.1.jar`, mod id `createornithopterglider`, runtime `1.2.0-1.21.1`. O arquivo público correspondente é rotulado `1.2.0+1.21.1`; a distinção foi preservada. Source matching não foi localizado.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #199: createornithopterglider-1.2.0-1.21.1.jar / runtime 1.2.0-1.21.1 reconfirmados contra a latest Release pública 1.2.0+1.21.1; divergência `+` publicação × `-` runtime preservada. Gliding/flap, cooldown config, Curios opcional e fixes de animação permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #199 na snapshot então vigente; posição física atual #198: createornithopterglider-1.2.0-1.21.1.jar / runtime 1.2.0-1.21.1 reconfirmados contra a latest Release pública 1.2.0+1.21.1; divergência `+` publicação × `-` runtime preservada. Gliding/flap, cooldown config, Curios opcional e fixes de animação permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Overlap de mobilidade aérea com Create Jetpack e outras extensões de voo, mas Ornithopter é glider com flap/cooldown, não propulsão sustentada. Comparar movimento/custo e impedir stacking abusivo.
 

@@ -12,9 +12,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: drift de mixin/category com Create/JEI; ingredientes off-page deixarem de ser pesquisáveis; layout/focus/tooltip stale; input de teclado/wheel interferir em widgets; classloading opcional EMI/JEmi. Source 1.0.3 foi desenvolvido contra Create 6.0.4 e JEI 19.27, abaixo das revisões do pack.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/createjeicompat
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createjeicompat` 1.0.3 + CurseForge oficial revalidado em 12/09/2026; arquivo 1.0.3 de 29/07/2026 continua a release NeoForge 1.21.1 mais recente. Source Starior/CreateJeiCompat matching permanece referência funcional.
+- **Procedência:** snapshot física de 11/09/2026 + runtime `createjeicompat` 1.0.3 + CurseForge oficial revalidado em 12/09/2026; arquivo 1.0.3 de 29/07/2026 continua a release NeoForge 1.21.1 mais recente. Source Starior/CreateJeiCompat matching permanece referência funcional.
 - **Observações:** JAR/mod id/runtime 1.0.3 e source matching confirmados. Mod client-side: altera apresentação/navegação de Sequenced Assembly no JEI, não recipes ou execução server-side.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #191: createjeicompat-1.0.3.jar / runtime 1.0.3 reconfirmados como latest Release NeoForge 1.21.1; paginação de Sequenced Assembly, ingredientes off-page pesquisáveis, layout refresh e boundary client-only permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #191 na snapshot então vigente; posição física atual #190: createjeicompat-1.0.3.jar / runtime 1.0.3 reconfirmados como latest Release NeoForge 1.21.1; paginação de Sequenced Assembly, ingredientes off-page pesquisáveis, layout refresh e boundary client-only permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não substitui JEI nem a integração JEI nativa do Create; adiciona paginação/navegação para recipes extensas de Sequenced Assembly.
 

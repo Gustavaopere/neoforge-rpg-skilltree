@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/fires-ender-expansion
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `firesenderexpansion-2.4.1.jar`, mod id `firesenderexpansion`, runtime `2.4.1` e SHA-1 `da87a4a0c926dd75236766584cddbae69c6aeff7`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** Hierarquia fail-closed: source matching registra 11 spells ativos; descrição pública ainda diz 10. Binary Stars tem teleport/slam AOE comentado no pin; Nova Burn/amplifier, Scintillating Stride filtering e Infinite Void fallback 0,100,0 permanecem QA gates.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #280: `firesenderexpansion-2.4.1.jar` / runtime `2.4.1` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #280 na snapshot então vigente; posição física atual #281: `firesenderexpansion-2.4.1.jar` / runtime `2.4.1` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Contracts próprios Ender/domain/teleport/damage; outros addons Ender não são substitutos por tema. Bridges devem preservar provider-native authority e não duplicar Anchored, recasts, domain transport, projectile hits ou effects.
 - **Data da última decisão:** 2026-09-06

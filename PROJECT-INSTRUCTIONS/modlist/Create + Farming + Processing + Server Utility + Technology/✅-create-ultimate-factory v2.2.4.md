@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-ultimate-factory
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_ultimate_factory` 2.2.4 + CurseForge oficial revalidado em 20/09/2026.
 - **Observações:** mod id conforme runtime do JAR; `create_ultimate_factory-2.2.4-neoforge-1.21.1.jar`, runtime 2.2.4. Projeto anuncia aproximadamente 30 recipes `reasonably balanced` para tornar recursos renováveis. A ficha registra categorias/exemplos oficiais sem inventar chances/quantidades não publicadas.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #164: create_ultimate_factory-2.2.4-neoforge-1.21.1.jar / 2.2.4 confirmados; renewable-resource recipes, Scoria nerf, coal-block compacting e Aeronautics/End Stone delta permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #164 na snapshot então vigente; posição física atual #165: create_ultimate_factory-2.2.4-neoforge-1.21.1.jar / 2.2.4 confirmados; renewable-resource recipes, Scoria nerf, coal-block compacting e Aeronautics/End Stone delta permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Ultimate Factory 2.2.4 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. A antiga data 27/08 associada a `Sem decisão` foi removida; presença e recomendação histórica não foram tratadas como decisão curatorial.
 - **Sobreposição:** Objetivo fortemente próximo de Create: More Automation e outros recipe packs. Redundância deve ser determinada recipe-by-recipe por input, processing type, chance/custo e output, não pelo nome geral de automação.

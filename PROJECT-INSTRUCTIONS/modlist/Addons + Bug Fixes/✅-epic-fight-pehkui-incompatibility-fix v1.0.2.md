@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epic-fight-pehkui-fix
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `epicfightpehkuiincompatibilityfix-1.0.2.jar`, mod id `epicfightpehkuiincompatibilityfix`, runtime 1.0.2 e SHA-1 `76eb6471698ce24d6fbdfcdd4b04397e96d401aa`. CurseForge oficial revalidado em 21/09/2026 mantém 1.0.2 como latest release NeoForge 1.21.1.
 - **Observações:** Projeto oficial descreve o problema como arm height não acompanhando corretamente dimension/scale Pehkui no Epic Fight e classifica a correção como tiny client compatibility fix. Sua necessidade deve ser reavaliada a cada update do Epic Fight.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #263: `epicfightpehkuiincompatibilityfix-1.0.2.jar` / runtime `1.0.2` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 1.0.2 como latest release NeoForge 1.21.1 e Environment Client.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #263 na snapshot então vigente; posição física atual #264: `epicfightpehkuiincompatibilityfix-1.0.2.jar` / runtime `1.0.2` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 1.0.2 como latest release NeoForge 1.21.1 e Environment Client.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa Pehkui e Epic Fight em um único transform visual. Não substitui nenhum mod-base e pode se tornar redundante apenas se o Epic Fight incorporar a mesma correção.
 - **Data da última decisão:** 2026-08-26

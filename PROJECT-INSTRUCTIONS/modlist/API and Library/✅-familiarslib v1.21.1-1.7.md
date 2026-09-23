@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/familiarslib
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `familiarslib-1.21.1-1.7.1.jar`, mod id `familiarslib`, metadata runtime `1.21.1-1.7` e SHA-1 `7fa3f3116e35c12456425ae195924ced33fcc2eb`. CurseForge oficial revalidado em 21/09/2026 mantém `familiarslib-1.21.1-1.7.1.jar` como latest release NeoForge 1.21.1.
 - **Observações:** Não normalizar `1.7.1` para `1.21.1-1.7` nem vice-versa: filename/publicação e metadata/source usam strings diferentes. O changelog oficial da 1.7.1 corrige familiar beds que não estavam curando familiars. Source continua confirmando AbstractFamiliarBed/Storage, PlayerFamiliarData, spellcasting pet bases e compat Curios.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #272: `familiarslib-1.21.1-1.7.1.jar` permanece a latest release NeoForge 1.21.1. Divergência legítima preservada: filename/publicação `1.7.1` × metadata/runtime `1.21.1-1.7`.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #272 na snapshot então vigente; posição física atual #273: `familiarslib-1.21.1-1.7.1.jar` permanece a latest release NeoForge 1.21.1. Divergência legítima preservada: filename/publicação `1.7.1` × metadata/runtime `1.21.1-1.7`.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não é duplicata do Alshanex's Familiars: é sua biblioteca/core. Iron's Spells, Curios, GeckoLib e Player Animator permanecem providers de seus próprios contratos.
 - **Data da última decisão:** 2026-08-26

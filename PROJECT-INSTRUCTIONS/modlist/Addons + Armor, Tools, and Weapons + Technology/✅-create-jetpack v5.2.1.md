@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-jetpack
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_jetpack` 5.2.1 + Flight Lib 4.0.36 jar-in-jar + CurseForge oficial revalidado em 20/09/2026; 5.2.1 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** JAR físico `create_jetpack-forge-5.2.1.jar`, mod id `create_jetpack`, runtime 5.2.1. Apesar de `forge` no filename, a file page oficial identifica Loader NeoForge 1.21.1, Release, 31/07/2026. 5.2.1 corrige client-only classes carregadas por config screen no servidor. Flight Lib 4.0.36 é filho jar-in-jar.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #144: create_jetpack-forge-5.2.1.jar / 5.2.1 confirmados como latest NeoForge 1.21.1; pressurized-air flight/hover, Flight Lib 4.0.36 jar-in-jar, Curios/Cold Sweat integration, component-preserving upgrades e server-class regression permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #144 na snapshot então vigente; posição física atual #145: create_jetpack-forge-5.2.1.jar / 5.2.1 confirmados como latest NeoForge 1.21.1; pressurized-air flight/hover, Flight Lib 4.0.36 jar-in-jar, Curios/Cold Sweat integration, component-preserving upgrades e server-class regression permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Create: Curios Jetpack & Backtank 1.2.0 é bridge de equipagem instalada e não substitui o owner de flight. Há overlap de source discovery/equip com Curios, mas Create Jetpack permanece owner do voo e consumo de ar.
 

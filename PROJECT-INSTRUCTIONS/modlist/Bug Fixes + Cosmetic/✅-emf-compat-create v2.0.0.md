@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-create
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `emf_compat_create_1.21.1_2.0.0.jar`, mod id `emf_compat_create`, runtime 2.0.0 e SHA-1 `05817fa9159a0b672bfb3667ec248ae05e7a6388`. Stack físico relevante permanece Create 6.0.10 / EMF 3.3.5 / EMF Compat Core 2.0.0.
 - **Observações:** O projeto oficial 2.0.0 é Client-only. A descrição confirma Skyhook, chain/rope riding from Aeronautics, compat com Climbable Ropes/Create Grappling Hooks e Grabbing Physics Objects. Fresh Animations: Player Extension e Detailed Animations foram usados em testes upstream; isso não prova que qualquer resource pack é compatível sem QA.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #247: `emf_compat_create_1.21.1_2.0.0.jar` / runtime `2.0.0` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #247 na snapshot então vigente; posição física atual #248: `emf_compat_create_1.21.1_2.0.0.jar` / runtime `2.0.0` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
 - **Decisão:** Manter
 - **Sobreposição:** Não substitui Create, Aeronautics ou EMF. Só arbitra a pose do player em situações específicas; outras animation compat layers podem tocar o mesmo modelo e exigem precedence.
 - **Data da última decisão:** 2026-09-06

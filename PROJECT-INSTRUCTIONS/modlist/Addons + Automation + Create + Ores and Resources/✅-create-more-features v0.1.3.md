@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-more-features
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_mf` 0.1.3 + CurseForge oficial revalidado em 20/09/2026; 0.1.3 continua a release para NeoForge 1.21.1.
 - **Observações:** mod id `create_mf`; runtime 0.1.3. Release 0.1.3 publicada em 26/06/2026. O upstream descreve cinco superfícies confirmadas: new villager professions, new mechanisms, removed items from Create, new auto farms, decor/devices. Sem changelog granular da 0.1.3 na fonte pública consultada.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #147: create_mf-0.1.3-neoforge-1.21.1.jar / 0.1.3 confirmados; villager professions, mechanisms, removed Create items, auto farms, decor/devices e limites documentais permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #147 na snapshot então vigente; posição física atual #148: create_mf-0.1.3-neoforge-1.21.1.jar / 0.1.3 confirmados; villager professions, mechanisms, removed Create items, auto farms, decor/devices e limites documentais permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: More Features 0.1.3 foi reconfirmado como `Instalado` e reconstruído proporcionalmente ao escopo que o upstream sustenta. Presença não foi convertida em decisão curatorial.
 - **Sobreposição:** Pode compartilhar features com vários addons Create, mas a amplitude do projeto não autoriza declarar redundância global. Comparar profissão, mecanismo, farm, item ou bloco concreto antes de qualquer decisão.

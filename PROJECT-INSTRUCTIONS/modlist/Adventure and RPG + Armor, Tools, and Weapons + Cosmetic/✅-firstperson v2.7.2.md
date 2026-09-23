@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/first-person-model
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `firstperson-neoforge-2.7.2-mc1.21.1.jar`, mod id `firstperson`, runtime `2.7.2` e SHA-1 `8faf96d7c3c12eaec819b4e273e58c048e8de125`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** Client-only: F6 toggle e Vanilla Hands são presentation state. Limitação Epic Fight é funcional/rendering, não incompatibilidade de startup. Não criar entradas top-level para TRansition/TRender embarcados.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #281: `firstperson-neoforge-2.7.2-mc1.21.1.jar` / runtime `2.7.2` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #281 na snapshot então vigente; posição física atual #282: `firstperson-neoforge-2.7.2-mc1.21.1.jar` / runtime `2.7.2` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Integra-se visualmente com Not Enough Animations e pode colidir com Custom Player Models, armor 3D e Epic Fight render paths. Não altera hitbox, reach ou damage.
 - **Data da última decisão:** 2026-08-26

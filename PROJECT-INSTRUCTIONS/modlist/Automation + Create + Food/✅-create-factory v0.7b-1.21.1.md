@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-factory
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_factory` 0.7b-1.21.1 + CurseForge oficial revalidado em 20/09/2026; 0.7b continua a release mais recente para 1.21.1, com source da linha 1.21.1 usado apenas como evidência não-byte-exata.
 - **Observações:** JAR físico `create_factory-0.7b-1.21.1.jar`, mod id `create_factory`, runtime metadata `0.7b-1.21.1`; a publicação oficial rotula a release como 0.7b para NeoForge 1.21.1. Changelog 0.7b corrige potions inside jars.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #141: create_factory-0.7b-1.21.1.jar / 0.7b-1.21.1 confirmados como latest NeoForge 1.21.1; foods/fluidos/jars, Jar Dipping, Confectionery integration e potion-in-jar regression permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #141 na snapshot então vigente; posição física atual #142: create_factory-0.7b-1.21.1.jar / 0.7b-1.21.1 confirmados como latest NeoForge 1.21.1; foods/fluidos/jars, Jar Dipping, Confectionery integration e potion-in-jar regression permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Compartilha espaço culinário com Create Confectionery e outros addons; integração Confectionery é concreta. Comparar recipes/inputs/outputs para detectar rotas redundantes ou loops; não classificar o mod inteiro como duplicata.
 

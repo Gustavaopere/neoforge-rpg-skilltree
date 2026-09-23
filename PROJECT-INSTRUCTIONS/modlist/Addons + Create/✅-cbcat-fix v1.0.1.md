@@ -19,7 +19,7 @@
 - **Observações:** Arquivo publicado/build 1.0.1; mod id `cbcatfix`; runtime físico 1.0.0. Changelog 1.0.1: crash fix, cluster munitions fix, Mechanical Arm rocket loading, Rocket Pod craft fix, big rocket/rails e Flak/Heavy HE/HESH/HEAT.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + metadata runtime/log atual + CurseForge oficial CBCAT Fix build 1.0.1 e changelog da release, além das fontes já auditadas. Reconciliação final: filename físico `cbcatfix-1.21.1-neoforge-1.0.1.jar` e runtime metadata `1.0.0` permanecem deliberadamente distintos; nenhuma divergência foi mascarada.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a build física `cbcatfix-1.21.1-neoforge-1.0.1.jar` foi auditada; a metadata runtime continua 1.0.0. A presença do patch não foi convertida em decisão automática de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #89: artefato `cbcatfix-1.21.1-neoforge-1.0.1.jar` reconfirmado; metadata runtime `1.0.0` preservada sem normalização fictícia. Crash/cluster fixes, rocket automation, Rocket Pod, big rockets/rails e shell scope permanecem documentados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #89 na snapshot então vigente; posição física atual #90: artefato `cbcatfix-1.21.1-neoforge-1.0.1.jar` reconfirmado; metadata runtime `1.0.0` preservada sem normalização fictícia. Crash/cluster fixes, rocket automation, Rocket Pod, big rockets/rails e shell scope permanecem documentados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

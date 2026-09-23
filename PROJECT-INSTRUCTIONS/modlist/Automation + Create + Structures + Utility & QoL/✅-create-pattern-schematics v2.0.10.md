@@ -14,7 +14,7 @@
 - **Fonte:** https://modrinth.com/mod/create-pattern-schematics/version/VSJhIkG2
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_pattern_schematics` 2.0.10 + CurseForge oficial revalidado em 20/09/2026; 2.0.10 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** mod id `create_pattern_schematics`; runtime 2.0.10. Features oficiais: Pattern Schematics para repetir schematics, printing para Schematicannon e Infinite Contraption Construction em trains, gantry carriages ou outras contraptions. NeoForge 1.21.1 é a linha principal de desenvolvimento.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #151: create_pattern_schematics-2.0.10.jar / 2.0.10 confirmados como latest NeoForge 1.21.1; pattern repetition, Schematicannon/contraption printing, resource conservation e compatibilidade Create 6.x permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #151 na snapshot então vigente; posição física atual #152: create_pattern_schematics-2.0.10.jar / 2.0.10 confirmados como latest NeoForge 1.21.1; pattern repetition, Schematicannon/contraption printing, resource conservation e compatibilidade Create 6.x permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Pattern Schematics 2.0.10 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; presença não foi convertida em decisão curatorial.
 - **Sobreposição:** Relaciona-se ao Schematicannon e a outros construction/schematic tools, mas sua função específica é gerar/repetir padrões e construir iterações em contraptions. Não é substituto geral do sistema de schematics do Create.

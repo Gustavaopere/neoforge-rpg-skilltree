@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/enchantment-descriptions
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `enchdesc-neoforge-1.21.1-21.1.11.jar`, mod id `enchdesc`, runtime 21.1.11 e SHA-1 `4d453df785ac21e0e7389cba949f4fa460c3e267`. Stack físico relevante permanece Bookshelf 21.1.81 / PrickleMC 21.1.11.
 - **Observações:** Runtime 21.1.11, release NeoForge 1.21.1 de 20/08/2026. O projeto oficial confirma suporte a enchantments modded desde que a localization key esperada exista. O mod é apresentação: não modifica enchanting math, applicability ou effect execution.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #249: `enchdesc-neoforge-1.21.1-21.1.11.jar` / runtime `21.1.11` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #249 na snapshot então vigente; posição física atual #250: `enchdesc-neoforge-1.21.1-21.1.11.jar` / runtime `21.1.11` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Pode sobrepor apenas outras soluções de descrição/tooltip de encantamentos. Apothic Enchanting continua authority da mecânica de enchanting; Enchantment Descriptions só apresenta texto.
 - **Data da última decisão:** 2026-08-26
