@@ -1,5 +1,7 @@
 # CreateBetterFps
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#173**: JAR `createbetterfps-1.21.1-1.1.4.jar`, mod id `createbetterfps`, runtime `1.1.4`, SHA-1 `c594e20659b73a67bd0b0c2de45b29b78a2eb160`.
+
 ## Propriedades do registro
 
 - **Mod:** CreateBetterFps
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-better-fps
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `createbetterfps` 1.1.4 + CurseForge oficial revalidado em 20/09/2026. A autoridade física permanece 1.1.4; upstream 1.1.5 existe desde 18/09/2026 e é registrada apenas como atualização disponível, não como versão instalada.
 - **Observações:** JAR instalado `createbetterfps-1.21.1-1.1.4.jar`; runtime 1.1.4; Environment: Client. A 1.1.4 é Release de 19/04/2026 com changelog `fix #7`. A release upstream 1.1.5, publicada em 18/09/2026, não está instalada; seu changelog informa checagem de orthographic renders via projection matrix e `fix #15`.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #172 na snapshot então vigente; posição física atual #173: createbetterfps-1.21.1-1.1.4.jar / 1.1.4 confirmados como versão instalada. Upstream publicou 1.1.5 em 18/09/2026; não está instalada. A 1.1.5 corrige a detecção de renders ortográficos usando projection matrix e registra `fix #15`.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #172: createbetterfps-1.21.1-1.1.4.jar / 1.1.4 confirmados como versão instalada. Upstream publicou 1.1.5 em 18/09/2026; não está instalada. A 1.1.5 corrige a detecção de renders ortográficos usando projection matrix e registra `fix #15`.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CreateBetterFps 1.1.4 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. Benefício potencial de performance não foi convertido automaticamente em decisão curatorial.
 - **Sobreposição:** Não duplica Create: Lazy Tick: BetterFps atua no cliente/render/FPS; Lazy Tick atua em tick scheduling/caches/sync. Conflito real exige ambos alterarem a mesma superfície concreta, não apenas a categoria Performance.
