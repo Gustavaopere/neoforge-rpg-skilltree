@@ -1,5 +1,7 @@
 # Born in Chaos
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#84**: JAR `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar`, mod id `born_in_chaos_v1`, runtime `1.7.6`, SHA-1 `73704f38ac368c03716f9cc8f537470d3b352fa2`.
+
 ## Propriedades do registro
 
 - **Mod:** Born in Chaos
