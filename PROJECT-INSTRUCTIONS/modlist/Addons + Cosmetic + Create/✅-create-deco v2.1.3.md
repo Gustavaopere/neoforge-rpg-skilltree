@@ -1,5 +1,7 @@
 # Create Deco
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#180**: JAR `createdeco-2.1.3.jar`, mod id `createdeco`, runtime `2.1.3`, SHA-1 `93d9eff58b46c6953e907d071e6be4e3ce07be38`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Deco
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: Catwalk Stair hitbox regression; Cage Lamp placement; decoration/Sable tag drift; contraption state loss; connected geometry/model reload; alto volume de variantes. Source público 1.21-Neo consultado está em 2.1.2, não 2.1.3.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-deco
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createdeco` 2.1.3 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 2.1.3 de 18/04/2026 continua a release NeoForge 1.21.1 mais recente. O branch público 1.21-Neo permanece em 2.1.2 e é usado apenas como evidência arquitetural.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createdeco` 2.1.3 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 2.1.3 de 18/04/2026 continua a release NeoForge 1.21.1 mais recente. O branch público 1.21-Neo permanece em 2.1.2 e é usado apenas como evidência arquitetural.
 - **Observações:** JAR/mod id/runtime 2.1.3 confirmados. Release 2.1.3 é Client & Server. Source branch 1.21-Neo está em 2.1.2 e foi usado apenas como evidência arquitetural, não como equivalência binária.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #181 na snapshot então vigente; posição física atual #180: createdeco-2.1.3.jar / runtime 2.1.3 reconfirmados como latest Release NeoForge 1.21.1; Cage Lamp placement, Sable/decoration tags e Catwalk Stair hitboxes permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #181: createdeco-2.1.3.jar / runtime 2.1.3 reconfirmados como latest Release NeoForge 1.21.1; Cage Lamp placement, Sable/decoration tags e Catwalk Stair hitboxes permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobreposição principalmente estética com outros addons decorativos Create; não é duplicata técnica automática. Delta 2.1.3 adiciona Sable/decoration tags e hitbox funcional em Catwalk Stairs.
 
