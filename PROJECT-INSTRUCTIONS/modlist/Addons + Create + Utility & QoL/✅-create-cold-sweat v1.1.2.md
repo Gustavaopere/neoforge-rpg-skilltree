@@ -1,5 +1,7 @@
 # Create: Cold Sweat
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#136**: JAR `create_cold_sweat-1.1.2.jar`, mod id `create_cold_sweat`, runtime `1.1.2`, SHA-1 `58326378dac966d664ae827dcc76e4b3a284d747`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Cold Sweat
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-cold-sweat
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_cold_sweat` 1.1.2 + CurseForge/Modrinth oficiais Create: Cold Sweat 1.1.2 revalidados em 20/09/2026 + stack físico Create 6.0.10 / Cold Sweat 2.4.3.1.
 - **Observações:** JAR físico `create_cold_sweat-1.1.2.jar`, mod id `create_cold_sweat`, runtime 1.1.2. Release NeoForge 1.21.1 de 12/11/2025, Client & Server. A arquitetura física atual é Create 6.0.10 ↔ Cold Sweat 2.4.2; referências históricas a TFC/TFC Cold Sweat não representam o runtime atual.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #135 na snapshot então vigente; posição física atual #136: create_cold_sweat-1.1.2.jar / 1.1.2 confirmados; fluid temperatures, pipes/boilers/fans, server patch e thermal authority permanecem atuais contra Cold Sweat 2.4.3.1.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #135: create_cold_sweat-1.1.2.jar / 1.1.2 confirmados; fluid temperatures, pipes/boilers/fans, server patch e thermal authority permanecem atuais contra Cold Sweat 2.4.3.1.
 - **Decisão:** Manter
 - **Histórico da decisão:** Escolhido como ponte do Create para o sistema térmico central Cold Sweat. A arquitetura definida foi TFC → TFC Cold Sweat → Cold Sweat → Create: Cold Sweat. Confirmado carregado em 22/08/2026 na versão 1.1.2.
 - **Sobreposição:** Complementa Cold Sweat com fórmulas/interações Create. Não é segundo sistema de temperatura; Cold Sweat permanece authority térmica. O antigo contexto TFC é histórico, não stack físico atual.

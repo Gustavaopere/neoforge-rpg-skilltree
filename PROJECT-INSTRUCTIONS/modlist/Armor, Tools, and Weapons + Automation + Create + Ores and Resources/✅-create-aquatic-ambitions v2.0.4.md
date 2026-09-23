@@ -1,5 +1,7 @@
 # Create Aquatic Ambitions
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#133**: JAR `create_aquatic_ambitions-1.21.1-2.0.4.jar`, mod id `create_aquatic_ambitions`, runtime `2.0.4`, SHA-1 `a02ce8ffc8395566c4fbe7907e721e82fd1b590b`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Aquatic Ambitions
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aquatic-ambitions
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_aquatic_ambitions` 2.0.4 + CurseForge/Modrinth oficiais 2.0.4 revalidados em 20/09/2026.
 - **Observações:** JAR físico `create_aquatic_ambitions-1.21.1-2.0.4.jar`, mod id `create_aquatic_ambitions`, runtime 2.0.4. Release oficial NeoForge 1.21.1 de 19/07/2026; 2.0.4 corrige falha de load com versões mais antigas do JEI e mantém JEI opcional.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #132 na snapshot então vigente; posição física atual #133: create_aquatic_ambitions-1.21.1-2.0.4.jar / 2.0.4 confirmados; bulk aquatic processing e fix 2.0.4 de compatibilidade/version floor mantendo JEI opcional permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #132: create_aquatic_ambitions-1.21.1-2.0.4.jar / 2.0.4 confirmados; bulk aquatic processing e fix 2.0.4 de compatibilidade/version floor mantendo JEI opcional permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Expande automação Create para recursos aquáticos. Sobreposição deve ser comparada por recipe/output com outras cadeias presentes, não por categoria ampla.
 

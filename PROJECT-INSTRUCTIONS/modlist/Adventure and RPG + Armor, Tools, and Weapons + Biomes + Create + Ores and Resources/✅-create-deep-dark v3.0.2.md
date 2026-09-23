@@ -1,5 +1,7 @@
 # Create: Deep Dark
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#141**: JAR `create_deep_dark-3.0.2-neoforge-1.21.1.jar`, mod id `create_deep_dark`, runtime `3.0.2`, SHA-1 `41a8c7f2f096555355214c55031ade1a84ef4058`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Deep Dark
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-deep-dark
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_deep_dark` 3.0.2 + CurseForge oficial revalidado em 20/09/2026; 3.0.2 continua a release mais recente para NeoForge 1.21.1.
 - **Observações:** JAR físico `create_deep_dark-3.0.2-neoforge-1.21.1.jar`, mod id `create_deep_dark`, runtime 3.0.2. Release oficial NeoForge 1.21.1 de 14/02/2026, Client & Server. 3.0.2 corrige overlap da recipe Netherite e adiciona Warden→Echo Ingot/Template.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #140 na snapshot então vigente; posição física atual #141: create_deep_dark-3.0.2-neoforge-1.21.1.jar / 3.0.2 confirmados como latest NeoForge 1.21.1; economia Echo, Warden loot, Echo Cake/superheat, Netherite overlap e Sculk/XP permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #140: create_deep_dark-3.0.2-neoforge-1.21.1.jar / 3.0.2 confirmados como latest NeoForge 1.21.1; economia Echo, Warden loot, Echo Cake/superheat, Netherite overlap e Sculk/XP permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Interage concretamente com Create: Fantasizing Again 1.2.0-b3, que possui copy recipe de Echo Shard, podendo alterar a progressão Echo. Não é duplicata integral; avaliar custo/loops por recipe real.
 

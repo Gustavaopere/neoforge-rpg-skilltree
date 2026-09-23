@@ -1,5 +1,7 @@
 # Create Colony Logistics
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#137**: JAR `create_colony_logistics-1.3.3.jar`, mod id `cclogistics`, runtime `1.3.3`, SHA-1 `0c9a72abf41f8da9343a59a458ee3bbeec180777`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Colony Logistics
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-colony-logistics
 - **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Create: Colony Logistics 1.3.3 revalidado em 20/09/2026. O conteúdo anterior do Notion foi preservado e expandido para a versão instalada; nenhum teste runtime foi executado nesta auditoria documental.
 - **Observações:** JAR físico `create_colony_logistics-1.3.3.jar`, mod id `cclogistics`, runtime 1.3.3. Release oficial NeoForge 1.21.1 de 14/09/2026, file ID 8878545. A 1.3.3 introduz Cross-Colony Logistics, Alliance system no Foremen's Hut, acesso opcional ao Create Storage por aliados e limites de déficit comercial.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #136 na snapshot então vigente; posição física atual #137: create_colony_logistics-1.3.3.jar / 1.3.3 confirmados; Cross-Colony Logistics, Alliances/Foremen's Hut, acesso opcional ao Create Storage e deficit limits incorporados, mantendo o infinite-export fix 1.3.2 como regression gate.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #136: create_colony_logistics-1.3.3.jar / 1.3.3 confirmados; Cross-Colony Logistics, Alliances/Foremen's Hut, acesso opcional ao Create Storage e deficit limits incorporados, mantendo o infinite-export fix 1.3.2 como regression gate.
 - **Decisão:** Manter
 - **Sobreposição:** Complementa MineColonies e Create. Não substitui Warehouse/Couriers, colony state, Create package/storage network ou trains; ownership permanece nos providers.
 - **Data da última decisão:** 2026-09-06
