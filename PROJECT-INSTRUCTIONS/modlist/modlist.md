@@ -133,16 +133,16 @@
 | 139 | Create: Arm-made Cuisine | `create_cuisine-1.0.0-mc1.21.1-neoforge.jar` | `1.0.0` | `Automation + Create + Food` | 23/09/2026 - 08:35 |
 | 140 | Create: Curios Backtank | `create_curios_backtank-neoforge-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Armor, Tools, and Weapons + Automation + Create` | 23/09/2026 - 08:35 |
 | 141 | Create: Deep Dark | `create_deep_dark-3.0.2-neoforge-1.21.1.jar` | `3.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Biomes + Create + Ores and Resources` | 23/09/2026 - 08:35 |
-| 142 | Create: Factory | `create_factory-0.7b-1.21.1.jar` | `0.7b-1.21.1` | `Automation + Create + Food` | 23/09/2026 - 00:58 |
-| 143 | Create: Fantasizing Again | `create_fantasizing-1.21.1-1.2.0-b3.jar` | `1.2.0-b3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 00:58 |
-| 144 | Create : New Furnitures | `create_furnitures-1.1.2-neoforge-1.21.1.jar` | `1.1.2` | `Addons + Cosmetic + Create + Structures + Utility & QoL` | 23/09/2026 - 00:58 |
-| 145 | Create Jetpack | `create_jetpack-forge-5.2.1.jar` | `5.2.1` | `Addons + Armor, Tools, and Weapons + Technology` | 23/09/2026 - 00:58 |
-| 146 | Create: Curios Jetpack & Backtank | `create_jetpack_curios-1.2.0-neoforge-1.21.1.jar` | `1.2.0` | `Armor, Tools, and Weapons + Create + Player Transport + Technology + Utility & QoL` | 23/09/2026 - 00:58 |
-| 147 | Create Mechanical Spawner | `create_mechanical_spawner-1.21.1-1.3.2-6.0.10.jar` | `1.3.2-6.0.10 (distribuição); metadata interna 1.3.1-6.0.10` | `Automation + Create + KubeJS + Mobs + Skyblock` | 23/09/2026 - 00:58 |
-| 148 | Create: More Features | `create_mf-0.1.3-neoforge-1.21.1.jar` | `0.1.3` | `Addons + Automation + Create + Ores and Resources` | 23/09/2026 - 00:58 |
-| 149 | Create: Mobile Packages | `create_mobile_packages-1.21.1-0.7.7.jar` | `0.7.7` | `Automation + Create + Storage` | 23/09/2026 - 00:58 |
-| 150 | Create More Automation | `create_more_automation-0.5.2-neoforge-1.21.1.jar` | `0.5.2` | `Automation + Create + Technology` | 23/09/2026 - 00:58 |
-| 151 | Create Optical | `create_optical-0.4.2.jar` | `0.4.2` | `Addons + Create + Technology` | 23/09/2026 - 00:58 |
+| 142 | Create: Factory | `create_factory-0.7b-1.21.1.jar` | `0.7b-1.21.1` | `Automation + Create + Food` | 23/09/2026 - 10:19 |
+| 143 | Create: Fantasizing Again | `create_fantasizing-1.21.1-1.2.0-b3.jar` | `1.2.0-b3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 10:19 |
+| 144 | Create : New Furnitures | `create_furnitures-1.1.2-neoforge-1.21.1.jar` | `1.1.2` | `Addons + Cosmetic + Create + Structures + Utility & QoL` | 23/09/2026 - 10:19 |
+| 145 | Create Jetpack | `create_jetpack-forge-5.2.1.jar` | `5.2.1` | `Addons + Armor, Tools, and Weapons + Technology` | 23/09/2026 - 10:19 |
+| 146 | Create: Curios Jetpack & Backtank | `create_jetpack_curios-1.2.0-neoforge-1.21.1.jar` | `1.2.0` | `Armor, Tools, and Weapons + Create + Player Transport + Technology + Utility & QoL` | 23/09/2026 - 10:19 |
+| 147 | Create Mechanical Spawner | `create_mechanical_spawner-1.21.1-1.3.2-6.0.10.jar` | `1.3.2-6.0.10 (distribuição); metadata interna 1.3.1-6.0.10` | `Automation + Create + KubeJS + Mobs + Skyblock` | 23/09/2026 - 10:19 |
+| 148 | Create: More Features | `create_mf-0.1.3-neoforge-1.21.1.jar` | `0.1.3` | `Addons + Automation + Create + Ores and Resources` | 23/09/2026 - 10:19 |
+| 149 | Create: Mobile Packages | `create_mobile_packages-1.21.1-0.7.7.jar` | `0.7.7` | `Automation + Create + Storage` | 23/09/2026 - 10:20 |
+| 150 | Create More Automation | `create_more_automation-0.5.2-neoforge-1.21.1.jar` | `0.5.2` | `Automation + Create + Technology` | 23/09/2026 - 10:20 |
+| 151 | Create Optical | `create_optical-0.4.2.jar` | `0.4.2` | `Addons + Create + Technology` | 23/09/2026 - 10:20 |
 | 152 | Create: Pattern Schematics | `create_pattern_schematics-2.0.10.jar` | `2.0.10` | `Automation + Create + Structures + Utility & QoL` | 23/09/2026 - 00:58 |
 | 153 | Create: Pillager Arise | `create_pillagers_arise NeoForge 1.21.1-132.36.jar` | `132.36` | `Create + Mobs + Structures + World Gen` | 23/09/2026 - 00:58 |
 | 154 | Create: Radars | `create_radar-0.4.9.4-1.21.1.jar` | `0.4.9.4-1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Map and Information + Technology` | 23/09/2026 - 00:58 |
