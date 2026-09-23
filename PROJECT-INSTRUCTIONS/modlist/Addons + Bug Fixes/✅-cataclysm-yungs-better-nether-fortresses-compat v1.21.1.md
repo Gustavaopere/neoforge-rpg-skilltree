@@ -1,5 +1,7 @@
 # Cataclysm x YUNG's Better Nether Fortresses Compat
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#88**: JAR `cataclysmfortresses-1.21.1-NeoForge.jar`, mod id `cataclysmfortresses`, runtime `1.21.1`, SHA-1 `2ed4b70cb80c47fd8b844711fa43abd3ffd14bcf`.
+
 ## Propriedades do registro
 
 - **Mod:** Cataclysm x YUNG's Better Nether Fortresses Compat

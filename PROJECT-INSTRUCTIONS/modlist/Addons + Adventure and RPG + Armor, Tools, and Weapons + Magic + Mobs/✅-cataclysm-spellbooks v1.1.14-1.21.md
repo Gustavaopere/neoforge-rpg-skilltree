@@ -1,5 +1,7 @@
 # Cataclysm: Spellbooks
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#87**: JAR `cataclysm_spellbooks-1.1.14-1.21.jar`, mod id `cataclysm_spellbooks`, runtime `1.1.14-1.21`, SHA-1 `568d798862a61a374ab1e55dcddf5b2e3326b8b5`.
+
 ## Propriedades do registro
 
 - **Mod:** Cataclysm: Spellbooks
