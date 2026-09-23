@@ -1,5 +1,7 @@
 # Cloth Config v15 API
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#97**: JAR `cloth-config-15.0.140-neoforge.jar`, mod id `cloth_config`, runtime `15.0.140`, SHA-1 `c3e5733ba4503b102589a026000fd5ce0212f6f2`.
+
 ## Propriedades do registro
 
 - **Mod:** Cloth Config v15 API
