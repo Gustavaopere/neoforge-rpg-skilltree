@@ -1,5 +1,7 @@
 # Create: Blocks & Bogies
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#134**: JAR `create_bb-1.0.8-1.21.1.jar`, mod id `create_bb`, runtime `1.0.8`, SHA-1 `59220d82cf962773e26778fc24c454e761368092`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Blocks & Bogies
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-blocks-bogies
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_bb` 1.0.8 + CurseForge/Modrinth oficiais Create: Blocks & Bogies 1.0.8 revalidados em 20/09/2026.
 - **Observações:** JAR físico `create_bb-1.0.8-1.21.1.jar`, mod id `create_bb`, runtime 1.0.8. Release NeoForge 1.21.1 de 24/08/2026, Client & Server. 1.0.8 corrige iluminação XL10S-Gearless e rotação L6S-Gearless com Flywheel backend em bogies montados.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #133 na snapshot então vigente; posição física atual #134: create_bb-1.0.8-1.21.1.jar / 1.0.8 confirmados na snapshot física então vigente; bogie families/UI, train-state boundary e regressões Flywheel XL10S lighting + L6S rotation permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #133: create_bb-1.0.8-1.21.1.jar / 1.0.8 confirmados na modlist física atual; bogie families/UI, train-state boundary e regressões Flywheel XL10S lighting + L6S rotation permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa o catálogo ferroviário do Create/Steam 'n' Rails com bogies configuráveis. Sobreposição é principalmente visual/rodados; ownership de train movement permanece no Create.
 
