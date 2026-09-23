@@ -1,5 +1,7 @@
 # Create: Misc & Things
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#163**: JAR `create_things_and_misc-4.1.1-neoforge-1.21.1.jar`, mod id `create_things_and_misc`, runtime `4.1.1`, SHA-1 `d483dc9564ec37db97dfca306e439c998a7366bb`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Misc & Things
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-misc-and-things
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_things_and_misc` 4.1.1 + CurseForge oficial revalidado em 20/09/2026; 4.1.1 continua a release mais recente para NeoForge 1.21.1 e seu changelog público permanece apenas `Fixed recipes`.
 - **Observações:** mod id `create_things_and_misc`; runtime 4.1.1. O JAR é identificado como projeto MCreator na metadata/descrição, detalhe de implementação que não constitui motivo automático de remoção. 4.1.1: changelog público `Fixed recipes`.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #162 na snapshot então vigente; posição física atual #163: create_things_and_misc-4.1.1-neoforge-1.21.1.jar / 4.1.1 confirmados como latest Release NeoForge 1.21.1; utilities/security/cards, Spout Gun, launchers, Mending Rune e regression gate de recipes permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #162: create_things_and_misc-4.1.1-neoforge-1.21.1.jar / 4.1.1 confirmados como latest Release NeoForge 1.21.1; utilities/security/cards, Spout Gun, launchers, Mending Rune e regression gate de recipes permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Misc & Things 4.1.1 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; presença e amplitude do addon não foram convertidas em decisão curatorial.
 - **Sobreposição:** Pode cruzar outros addons de ferramentas, armas, segurança, decoração e QoL do Create, mas não existe redundância global demonstrada. Comparar cada feature concreta antes de remover ou unificar.
