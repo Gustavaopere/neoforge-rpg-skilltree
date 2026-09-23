@@ -1,5 +1,7 @@
 # Create: Wizardry
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#166**: JAR `create_wizardry-1.21.1-0.5.1-pre1.jar`, mod id `create_wizardry`, runtime `1.21.1-0.5.1-pre1`, SHA-1 `5aa96dd49136ea855ccdf441b606cc26fd88b927`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Wizardry
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-wizardry
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_wizardry` 1.21.1-0.5.1-pre1 + CurseForge/Modrinth oficiais revalidados em 20/09/2026; 0.5.1-pre1 permanece o artefato físico Beta/Pre-Release, enquanto 0.5.0 permanece a Release estável anterior.
 - **Observações:** JAR `create_wizardry-1.21.1-0.5.1-pre1.jar`; runtime 1.21.1-0.5.1-pre1. Pre-Release/Beta de 28/06/2026; 0.5.0 é Release estável de 23/06/2026. Delta oficial da pre1: Mana Siphon orientável e drenagem de Mana de blocos/itens para contraparte mundane com 50% da Mana armazenada.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #165 na snapshot então vigente; posição física atual #166: create_wizardry-1.21.1-0.5.1-pre1.jar / runtime 1.21.1-0.5.1-pre1 confirmados; changelog da pre1 preservado: Mana Siphon orientável e drenagem de Mana de blocos/itens com 50% de retorno.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #165: create_wizardry-1.21.1-0.5.1-pre1.jar / runtime 1.21.1-0.5.1-pre1 confirmados; changelog da pre1 preservado: Mana Siphon orientável e drenagem de Mana de blocos/itens com 50% de retorno.
 - **Decisão:** Manter
 - **Histórico da decisão:** 2026-09-06 — pesquisa fechada em `Manter`. A presença do bridge Create↔Iron's Spells foi aprovada; a build instalada 0.5.1-pre1 permanece registrada, com 0.5.0 como fallback estável recomendado se a prerelease apresentar regressão. Em 08/09/2026, decisão e data foram preservadas e a ficha reconstruída ao padrão técnico.
 - **Sobreposição:** É bridge específico Create↔Iron's Spells, não substitui os mods-base. Pode cruzar outros addons que automatizam Arcane Essence/mana/ink; deduplicar somente recipes concretos, mantendo uma única authority por conversão.

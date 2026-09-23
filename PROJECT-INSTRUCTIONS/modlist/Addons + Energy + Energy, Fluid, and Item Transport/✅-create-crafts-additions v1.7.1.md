@@ -1,5 +1,7 @@
 # Create Crafts & Additions
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#167**: JAR `createaddition-1.7.1.jar`, mod id `createaddition`, runtime `1.7.1`, SHA-1 `779c49416643a6c5f176d5d500bf1bcbe75a5d18`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Crafts & Additions
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/createaddition
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `createaddition` 1.7.1 + CurseForge oficial da Beta 1.7.1 para NeoForge 1.21.1, publicada em 15/09/2026, com changelog oficial.
 - **Observações:** JAR/mod id/runtime 1.7.1 confirmados. Changelog oficial 1.7.1: Electric Pump block + various bug fixes. A 1.7.0 permanece baseline histórica de Servo Motor e improved Sable/Connector support.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #166 na snapshot então vigente; posição física atual #167: `createaddition-1.7.1.jar` / `1.7.1` confirmados. A Beta oficial NeoForge 1.21.1 de 15/09/2026 adiciona Electric Pump e various bug fixes; baseline 1.7.0 de Servo Motor + suporte Sable/Connector permanece preservada.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #166: `createaddition-1.7.1.jar` / `1.7.1` confirmados. A Beta oficial NeoForge 1.21.1 de 15/09/2026 adiciona Electric Pump e various bug fixes; baseline 1.7.0 de Servo Motor + suporte Sable/Connector permanece preservada.
 - **Decisão:** Manter
 - **Histórico da decisão:** 2026-09-06 — presença e versão 1.7.0 aprovadas como escolha intencional do stack Sable/Connector. Pesquisa fechada; manter fallback 1.6.0 documentado, sem alterar versão física sem nova modlist. 2026-09-18 — runtime físico atualizado para 1.7.1; decisão `Manter` preservada. O fallback 1.6.0 continua apenas como referência estável histórica, sem downgrade automático.
 - **Sobreposição:** Create: New Age 1.2.0 cobre parte do domínio elétrico. Sable Create Addition Compat 0.1.13 também toca integração Sable; suporte nativo 1.7.0 não prova redundância total do bridge. Decisão Manter preservada.

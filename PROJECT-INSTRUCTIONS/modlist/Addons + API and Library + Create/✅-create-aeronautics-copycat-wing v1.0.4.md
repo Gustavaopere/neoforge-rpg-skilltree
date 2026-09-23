@@ -1,5 +1,7 @@
 # Create Aeronautics: Copycat Wing
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#170**: JAR `CreateAeronauticsCopycatWing-1.21.1-1.0.4.jar`, mod id `copycat_wing`, runtime `1.0.4`, SHA-1 `2ee7e21782e8daabd5246921da8d19a6960468e3`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Aeronautics: Copycat Wing
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-copycat-wing
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `copycat_wing` 1.0.4 + CurseForge oficial revalidado em 20/09/2026; 1.0.4 permanece a release instalada para NeoForge 1.21.1. Source oficial matching permanece referência dos toggles de lift.
 - **Observações:** JAR `CreateAeronauticsCopycatWing-1.21.1-1.0.4.jar`, mod id `copycat_wing`, runtime 1.0.4. Source matching confirma mod 1.0.4 e `LIFT_ENABLED`; a antiga observação runtime 1.0.2 foi corrigida.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #169 na snapshot então vigente; posição física atual #170: CreateAeronauticsCopycatWing-1.21.1-1.0.4.jar / runtime 1.0.4 confirmados; lift state, Honeycomb/Axe toggles e fix 1.0.4 permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #169: CreateAeronauticsCopycatWing-1.21.1-1.0.4.jar / runtime 1.0.4 confirmados; lift state, Honeycomb/Axe toggles e fix 1.0.4 permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa Aerocopycats: Copycat Wing controla semântica de lift/toggle; Aerocopycats cobre propriedades físicas/massa. Não são duplicatas globais.
 
