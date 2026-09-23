@@ -1,5 +1,7 @@
 # Create Aeronautics: Transmission & Linkage
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#132**: JAR `create_aeronautics_transmission_linkage-0.2.8.jar`, mod id `aeronautics_utility_objects`, runtime `0.2.8`, SHA-1 `bccaf90652905ae5f28dcc7e1134099d188ca020`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Aeronautics: Transmission & Linkage
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-transmission-linkage
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `aeronautics_utility_objects` 0.2.8 + CurseForge/Modrinth oficiais Create Aeronautics: Transmission & Linkage 0.2.8 revalidados em 20/09/2026.
 - **Observações:** JAR físico `create_aeronautics_transmission_linkage-0.2.8.jar`, mod id `aeronautics_utility_objects`, runtime 0.2.8. O texto antigo que citava runtime 0.2.7 foi corrigido. Release NeoForge 1.21.1 de 02/09/2026; 0.2.8 melhora estabilidade durante vehicle unloading.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #131 na snapshot então vigente; posição física atual #132: create_aeronautics_transmission_linkage-0.2.8.jar / 0.2.8 confirmados; joints/rods/bearings, cross-body kinetics e estabilidade durante vehicle unloading permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #131: create_aeronautics_transmission_linkage-0.2.8.jar / 0.2.8 confirmados; joints/rods/bearings, cross-body kinetics e estabilidade durante vehicle unloading permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa a transmissão cinética do Create entre estruturas físicas móveis; não substitui shafts/cogwheels do Create nem a física Aeronautics.
 
