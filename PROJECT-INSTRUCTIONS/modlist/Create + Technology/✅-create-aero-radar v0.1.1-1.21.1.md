@@ -1,5 +1,7 @@
 # Create Aero Radar
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#127**: JAR `create_aero_radar-0.1.1-1.21.1.jar`, mod id `create_aero_radar`, runtime `0.1.1-1.21.1`, SHA-1 `1e06a12c5e257eebb2fef971b02d3593d8d51b52`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Aero Radar

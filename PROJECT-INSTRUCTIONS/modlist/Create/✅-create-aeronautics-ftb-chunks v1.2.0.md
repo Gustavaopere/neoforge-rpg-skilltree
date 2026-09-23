@@ -1,5 +1,7 @@
 # Create Aeronautics: FTB Chunks
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#129**: JAR `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar`, mod id `create_aeronautics_ftb_chunks`, runtime `1.2.0`, SHA-1 `d505c3675adb535a23b2abc794e034bc809098d4`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Aeronautics: FTB Chunks

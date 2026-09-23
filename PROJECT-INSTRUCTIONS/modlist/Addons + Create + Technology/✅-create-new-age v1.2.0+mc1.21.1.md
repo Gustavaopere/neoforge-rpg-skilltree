@@ -1,5 +1,7 @@
 # Create: New Age
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#124**: JAR `create-new-age-1.2.0+neoforge-mc1.21.1.jar`, mod id `create_new_age`, runtime `1.2.0+mc1.21.1`, SHA-1 `849df57070ffa75c2446b9c460d03f6b49fa089e`. O filename inclui o qualificador `+neoforge-mc1.21.1`, enquanto a metadata/runtime top-level informa **`1.2.0+mc1.21.1`**; ambos permanecem registrados sem normalização artificial.
+
 ## Propriedades do registro
 
 - **Mod:** Create: New Age

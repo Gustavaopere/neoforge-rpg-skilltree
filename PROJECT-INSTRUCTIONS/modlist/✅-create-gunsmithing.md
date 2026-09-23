@@ -1,5 +1,7 @@
 # Create: Gunsmithing
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#122**: JAR `create-gunsmithing-1.21.1-1.4.9.jar`, mod id `cgs`, runtime `1.4.9`, SHA-1 `b93931be985419f5ac021116e8fd166ce62e92de`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Gunsmithing

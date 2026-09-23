@@ -1,5 +1,7 @@
 # Create Aeronautics: Toolgun
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#131**: JAR `create_aeronautics_toolgun-0.3.6.jar`, mod id `create_aeronautics_toolgun`, runtime `0.3.6`, SHA-1 `81103160768a52a5bc7fffb5fadc1c441883d5d5`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Aeronautics: Toolgun

@@ -1,5 +1,7 @@
 # Create Aeronautics: Throwable Rope Connector
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#130**: JAR `create_aeronautics_throwable_rope_connector-0.4.3.jar`, mod id `create_aeronautics_throwable_rope_connector`, runtime `0.4.3`, SHA-1 `63fcbbc960461d42a59b417665fb938c79919514`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Aeronautics: Throwable Rope Connector
