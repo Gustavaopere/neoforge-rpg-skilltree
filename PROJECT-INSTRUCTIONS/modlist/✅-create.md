@@ -1,5 +1,7 @@
 # Create
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#116**: JAR `create-1.21.1-6.0.10.jar`, mod id `create`, runtime `6.0.10`, SHA-1 `0e97e49837bed766e6f28a4c95b04885d6acc353`.
+
 ## Propriedades do registro
 
 - **Mod:** Create
