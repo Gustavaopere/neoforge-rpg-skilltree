@@ -1,5 +1,7 @@
 # Crash Assistant
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#114**: JAR `CrashAssistant-neoforge-1.20.6-1.21.4-1.11.12.jar`, mod id `crash_assistant`, runtime `1.11.12`, SHA-1 `ec9e35065ce3a49ecec6bd6ff7fec6992476f7bb`.
+
 ## Propriedades do registro
 
 - **Mod:** Crash Assistant
