@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-throwable-rope-connector
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_aeronautics_throwable_rope_connector` 0.4.3 + CurseForge/Modrinth oficiais da release 0.4.3 revalidados em 20/09/2026.
 - **Observações:** JAR físico `create_aeronautics_throwable_rope_connector-0.4.3.jar`, mod id `create_aeronautics_throwable_rope_connector`, runtime 0.4.3. Release NeoForge 1.21.1 de 10/08/2026, Client & Server; 0.4.3 corrige aiming do Mounted Rope Launcher em contraptions Sable, especialmente ship-to-ship. Config oficial separa throwing/launcher/mounted/general/visual e suporta automação redstone opcional.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #129: create_aeronautics_throwable_rope_connector-0.4.3.jar / 0.4.3 confirmados; fix de Mounted Rope Launcher aiming, config groups e automação redstone permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #129 na numeração então registrada; posição física atual #130: create_aeronautics_throwable_rope_connector-0.4.3.jar / 0.4.3 confirmados; fix de Mounted Rope Launcher aiming, config groups e automação redstone permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Climbable Ropes trata escalada; este addon trata lançamento remoto e acoplamento de Rope Connector para veículos físicos. Funções complementares.
 

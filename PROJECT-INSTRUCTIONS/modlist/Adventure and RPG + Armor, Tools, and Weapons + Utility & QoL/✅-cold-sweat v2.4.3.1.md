@@ -19,7 +19,7 @@
 - **Observações:** mod id `cold_sweat`; runtime 2.4.3.1. O JAR 2.4.2 anteriormente auditado embarcava Sable Companion 1.4.2; o conteúdo jar-in-jar interno do novo JAR 2.4.3.1 não foi re-inspecionado nesta passagem, portanto essa versão interna não é promovida como fato atual.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge/changelog oficial Cold Sweat 2.4.3 e 2.4.3.1 + dossiê Notion anterior 2.4.2. Reconciliação final: JAR/runtime permanecem exatamente `ColdSweat-2.4.3.1.jar` / `2.4.3.1`; nenhum runtime test executado nesta auditoria documental.
 - **Histórico da decisão:** Mantido formalmente em 22/08/2026 como sistema principal de temperatura corporal. O compat antigo Cold Sweat and Aeronautics foi removido, mas Cold Sweat permanece provider térmico principal. Em 08/09/2026, a decisão foi preservada e a ficha reconciliada à build física 2.4.2 atual.
-- **Atualização/Status:** READITADO EM 20/09/2026 — reconciliação final física #101: `ColdSweat-2.4.3.1.jar` / `2.4.3.1` reconfirmados contra a modlist atual. Deltas 2.4.3 e hotfix 2.4.3.1 permanecem incorporados; decisão `Manter` preservada.
+- **Atualização/Status:** READITADO EM 20/09/2026 — registro histórico da reconciliação física #101 na numeração então registrada; posição física atual #102: `ColdSweat-2.4.3.1.jar` / `2.4.3.1` reconfirmados contra a modlist então vigente. Deltas 2.4.3 e hotfix 2.4.3.1 permanecem incorporados; decisão `Manter` preservada.
 - **Data da última decisão:** 2026-08-22
 
 # Dossiê operacional — padrão Alex's Mobs

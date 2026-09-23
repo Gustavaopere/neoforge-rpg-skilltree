@@ -19,7 +19,7 @@
 - **Observações:** mod id `chunky`; runtime 1.4.23. A release NeoForge 1.4.23 adiciona suporte a Moonrise. Tasks podem ser pausadas/salvas e continuar depois; o projeto suporta múltiplas tasks simultâneas.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Chunky NeoForge 1.4.23 + wiki/source oficial pop4959/Chunky para commands, tasks e persistência e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `Chunky-NeoForge-1.4.23.jar` / `1.4.23`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Chunky 1.4.23 foi reconfirmado no JAR físico e documentado como utilitário de pré-geração. A presença no pack não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #92: `Chunky-NeoForge-1.4.23.jar` / `1.4.23` conferidos contra a modlist atual; selection/task model, pause/resume/persistence, worldgen authority, resource pressure, trim e suporte Moonrise preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #92 na numeração então registrada; posição física atual #93: `Chunky-NeoForge-1.4.23.jar` / `1.4.23` conferidos contra a modlist então vigente; selection/task model, pause/resume/persistence, worldgen authority, resource pressure, trim e suporte Moonrise preservados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

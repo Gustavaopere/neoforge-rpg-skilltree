@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronauticstoolgun
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_aeronautics_toolgun` 0.3.6 + CurseForge/Modrinth oficiais da release 0.3.6 revalidados em 20/09/2026.
 - **Observações:** JAR físico `create_aeronautics_toolgun-0.3.6.jar`, mod id `create_aeronautics_toolgun`, runtime 0.3.6. Release oficial NeoForge 1.21.1 de 21/08/2026, Client & Server. 0.3.6 adiciona vehicle radar com scan/player direction/vehicle status e melhora query, preview e printing de veículos grandes.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #130: create_aeronautics_toolgun-0.3.6.jar / 0.3.6 confirmados; vehicle radar clicável e melhorias de query/preview/printing para veículos grandes permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #130 na numeração então registrada; posição física atual #131: create_aeronautics_toolgun-0.3.6.jar / 0.3.6 confirmados; vehicle radar clicável e melhorias de query/preview/printing para veículos grandes permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Ferramenta de engenharia específica para estruturas físicas Aeronautics; não equivale a ferramentas gerais de construção, schematic ou Carry On.
 

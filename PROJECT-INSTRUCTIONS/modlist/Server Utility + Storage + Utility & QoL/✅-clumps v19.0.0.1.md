@@ -19,7 +19,7 @@
 - **Observações:** mod id `clumps`; runtime 19.0.0.1. Objetivo oficial: clump XP orbs together to reduce lag. Release 19.0.0.1 porta para 1.21.1 e corrige/restaura suporte Forge.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Clumps 19.0.0.1 para NeoForge 1.21.1 + source oficial do projeto e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `Clumps-neoforge-1.21.1-19.0.0.1.jar` / `19.0.0.1`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Clumps 19.0.0.1 foi reconfirmado no JAR físico e reconstruído como otimização específica de XP orbs. A presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #97: `Clumps-neoforge-1.21.1-19.0.0.1.jar` / `19.0.0.1` conferidos contra a modlist atual; XP-orb merge/value authority, pickup interoperability, lifecycle/multiplayer e regressão da linha 19.0.0.1 preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #97 na numeração então registrada; posição física atual #98: `Clumps-neoforge-1.21.1-19.0.0.1.jar` / `19.0.0.1` conferidos contra a modlist então vigente; XP-orb merge/value authority, pickup interoperability, lifecycle/multiplayer e regressão da linha 19.0.0.1 preservados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs

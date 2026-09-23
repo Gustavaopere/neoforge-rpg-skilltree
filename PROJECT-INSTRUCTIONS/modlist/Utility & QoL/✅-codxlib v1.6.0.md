@@ -19,7 +19,7 @@
 - **Observações:** JAR físico atual `codxlib-1.6.0-neoforge+1.21.1.jar`, mod id `codxlib`, runtime 1.6.0. O changelog oficial 1.6.0 confirma correção dos +/- de settings numéricos, novo hook para página própria por setting e nova ordenação de settings não agrupados; Alex's Mobs Continued usa o hook no editor de spawn group size.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime `codxlib` 1.6.0 + CurseForge oficial CodxLib 1.6.0/changelog da linha multiloader + consumers Continued já auditados. Reconciliação final: JAR/runtime permanecem exatamente `codxlib-1.6.0-neoforge+1.21.1.jar` / `1.6.0`; sem divergência física.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, o dossiê havia sido reconstruído na então build 1.5.1. Em 09/09/2026, foi reconciliado à build física 1.6.0 e aos deltas oficiais da release, sem converter dependência técnica em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #100: `codxlib-1.6.0-neoforge+1.21.1.jar` / `1.6.0` conferidos contra a modlist atual; consumers Continued, fix de settings numéricos, hook de página customizada, lifecycle e version drift preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #100 na numeração então registrada; posição física atual #101: `codxlib-1.6.0-neoforge+1.21.1.jar` / `1.6.0` conferidos contra a modlist então vigente; consumers Continued, fix de settings numéricos, hook de página customizada, lifecycle e version drift preservados.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
