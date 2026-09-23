@@ -1,5 +1,7 @@
 # Create Guardian Beam Defense
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#121**: JAR `Create-Guardian-Beam-Defense-1.3.7.1b-1.21.1-neoforge.jar`, mod id `creategbd`, runtime `1.3.7.1b`, SHA-1 `186617d05b3cecf291e3659b98764ed18b0f531f`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Guardian Beam Defense
