@@ -103,7 +103,7 @@
 | 091 | CERBON's API [Forge \| Fabric \| NeoForge] | `CerbonsAPI-NeoForge-1.21-1.3.0.jar` | `1.3.0` | `API and Library` | 23/09/2026 - 00:58 |
 | 092 | Chipped | `chipped-neoforge-1.21.1-4.0.2.jar` | `4.0.2` | `Cosmetic` | 23/09/2026 - 01:02 |
 | 093 | Chunky (Forge/NeoForge) | `Chunky-NeoForge-1.4.23.jar` | `1.4.23` | `Dimensions + Server Utility + World Gen` | 23/09/2026 - 01:02 |
-| 094 | Citadel | `citadel-2.7.1-1.21.1.jar` | `2.7.1` | `API and Library + Miscellaneous` | 22/09/2026 - 21:37 |
+| 094 | Citadel | `citadel-2.7.1-1.21.1.jar` | `2.7.1` | `API and Library + Miscellaneous` | 23/09/2026 - 01:13 |
 | 095 | Climbable Ropes for Create Aeronautics | `climbable_ropes-2.1.3.jar` | `2.1.3` | `Addons + Create` | 23/09/2026 - 01:02 |
 | 096 | Clockwork | `clockwork-neoforge-1.21.1-1.1.4.jar` | `1.1.4` | `Cosmetic + Mobs + Technology` | 23/09/2026 - 01:02 |
 | 097 | Cloth Config API (Fabric/Forge/NeoForge) | `cloth-config-15.0.140-neoforge.jar` | `15.0.140` | `API and Library` | 23/09/2026 - 01:02 |
@@ -113,7 +113,7 @@
 | 101 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 23/09/2026 - 01:02 |
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 23/09/2026 - 01:02 |
 | 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 23/09/2026 - 01:02 |
-| 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 20/09/2026 - 09:57 |
+| 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 23/09/2026 - 01:13 |
 | 123 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 23/09/2026 - 01:02 |
 | 124 | Create: New Age | `create-new-age-1.2.0+neoforge-mc1.21.1.jar` | `1.2.0+mc1.21.1` | `Addons + Create + Technology` | 23/09/2026 - 01:02 |
 | 125 | Create Stuff 'N Additions | `create-stuff-additions1.21.1_v2.1.4b.jar` | `2.1.4b (distribuição); metadata interna 2.1.4.` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 01:02 |
