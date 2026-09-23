@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aero-radars
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_aero_radar` 0.1.1-1.21.1 + CurseForge/Modrinth oficiais Create Aero Radars 0.1.1 já auditados. Revalidação em 20/09/2026; divergência de maturidade CurseForge Release vs Modrinth Alpha permanece documentada.
 - **Observações:** JAR físico `create_aero_radar-0.1.1-1.21.1.jar`, mod id `create_aero_radar`, runtime 0.1.1-1.21.1. 0.1.1 adiciona return-to-origin, left/right redstone yaw, yaw deadzone e detecção automática de barrel length/round type.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #126 na numeração então registrada; posição física atual #127: create_aero_radar-0.1.1-1.21.1.jar / 0.1.1-1.21.1 confirmados; return-to-origin, redstone yaw, deadzone e barrel/round detection permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #126: create_aero_radar-0.1.1-1.21.1.jar / 0.1.1-1.21.1 confirmados; return-to-origin, redstone yaw, deadzone e barrel/round detection permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não duplica Create: Radars; consome dados/integração de radar para armamentos em veículos físicos.
 
