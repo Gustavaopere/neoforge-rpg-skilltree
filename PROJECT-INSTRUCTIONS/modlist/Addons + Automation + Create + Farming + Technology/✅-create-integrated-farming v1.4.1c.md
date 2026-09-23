@@ -1,5 +1,7 @@
 # Create: Integrated Farming
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#123**: JAR `create-integrated-farming-1.4.1c.jar`, mod id `create_integrated_farming`, runtime `1.4.1c`, SHA-1 `f451d79e850e6b10f205320b614c3d91cef9e240`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Integrated Farming
