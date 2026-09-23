@@ -1,5 +1,7 @@
 # Create Utilities J
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#126**: JAR `Create-Utilities-J-1.21.1-0.3.4+1.21.1.jar`, mod id `createutilities`, runtime `0.3.4+1.21.1`, SHA-1 `351ca0def8f1f7eb0631b270f3827f17c94d0fbf`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Utilities J
