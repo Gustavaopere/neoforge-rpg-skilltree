@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-automated-logistics
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_aeronautics_automated_logistics` 0.6.2 + CurseForge/Modrinth oficiais da release 0.6.2 já auditados. Revalidação física/documental em 20/09/2026.
 - **Observações:** JAR físico `create_aeronautics_automated_logistics-0.6.2.jar`, mod id `create_aeronautics_automated_logistics`, runtime 0.6.2. Release oficial NeoForge 1.21.1 de 17/08/2026; adiciona filtros do Logistics Terminal e opção de force-load para veículos Simurail automatizados.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #127 na numeração então registrada; posição física atual #128: create_aeronautics_automated_logistics-0.6.2.jar / 0.6.2 confirmados; filtros do terminal, force-load opcional, Restoring Vehicle e fix de scheduled routes após unloaded travel permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #127: create_aeronautics_automated_logistics-0.6.2.jar / 0.6.2 confirmados; filtros do terminal, force-load opcional, Restoring Vehicle e fix de scheduled routes após unloaded travel permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não é duplicata de Create: Advanced Logistics; este mod atua especificamente em rotas logísticas de veículos Aeronautics.
 
