@@ -1,5 +1,7 @@
 # Butchercraft
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#85**: JAR `butchercraft-2.6.5.jar`, mod id `butchercraft`, runtime `2.6.5`, SHA-1 `6e58dfdf94c997ba288dd12460d2746852147eba`.
+
 ## Propriedades do registro
 
 - **Mod:** Butchercraft
