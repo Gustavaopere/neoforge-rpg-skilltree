@@ -1,5 +1,7 @@
 # Create: Rock & Stone
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#157**: JAR `create_rns-1.3.1-1.21.1-6.jar`, mod id `create_rns`, runtime `1.3.1-1.21.1-6`, SHA-1 `20eabac84670b418b96f357eb202c1ed0cd48546`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Rock & Stone
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-rns
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_rns` 1.3.1-1.21.1-6 + CurseForge oficial revalidado em 20/09/2026; 1.3.1-1.21.1-6 continua a release mais recente para NeoForge 1.21.1.
 - **Observações:** runtime/filename 1.3.1-1.21.1-6. Deposit Scanner direciona ao depósito; Mine Head existe em tamanho normal e upgrade 3x3. O projeto oferece 4 datapack flavors de frequência e plugin KubeJS para selecionar deposits/spacing/separation.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #156 na snapshot então vigente; posição física atual #157: create_rns-1.3.1-1.21.1-6.jar / 1.3.1-1.21.1-6 confirmados como latest NeoForge 1.21.1; deposits, Miner Bearing/Mine Heads, finite depletion, KubeJS/datapacks e Aeronautics sublevel compatibility permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #156: create_rns-1.3.1-1.21.1-6.jar / 1.3.1-1.21.1-6 confirmados como latest NeoForge 1.21.1; deposits, Miner Bearing/Mine Heads, finite depletion, KubeJS/datapacks e Aeronautics sublevel compatibility permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Rock & Stone 1.3.1-1.21.1-6 foi reconfirmado como `Instalado`; contexto TFC legado foi removido e presença não foi convertida em decisão curatorial.
 - **Sobreposição:** Compartilha domínio com outros sistemas de ore excavation/mineração renovável, mas owns seus depósitos, scanner, miner contraption e regras de depletion. Comparar economia/throughput concretos antes de classificar redundância.
