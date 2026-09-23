@@ -59,7 +59,7 @@
 | 047 | Ars Nouveau | `ars_nouveau-1.21.1-5.13.1.jar` | `5.13.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Mobs` | 19/09/2026 - 17:09 |
 | 048 | Ars Polymorphia | `ars_polymorphia-1.0.3.jar` | `1.0.3` | `Addons + Magic + Storage + Utility & QoL` | 19/09/2026 - 17:10 |
 | 049 | Ars Sable | `ars_sable-1.21.1-1.1.2.jar` | `1.1.2` | `Addons + API and Library + Magic + Utility & QoL` | 19/09/2026 - 17:11 |
-| 050 | Ars Technica | `ars_technica-1.21.1-2.7.6.jar` | `2.7.6` | `Armor, Tools, and Weapons + Magic + Technology + Utility & QoL` | 23/09/2026 - 00:41 |
+| 050 | Ars Technica | `ars_technica-1.21.1-2.7.6.jar` | `2.7.6` | `Armor, Tools, and Weapons + Magic + Technology + Utility & QoL` | 23/09/2026 - 00:58 |
 | 051 | Ars Nouveau: Two-Way Portals (with immersive portal support) | `ars_two_way_portals-2.0.0.jar` | `2.0.0` | `Addons` | 19/09/2026 - 17:10 |
 | 052 | Ars Zero | `ars_zero-1.21.1-2.0.2.jar` | `2.0.2` | `Addons + Cosmetic + Magic + Technology` | 19/09/2026 - 17:10 |
 | 053 | Ars Nouveau's Flavors & Delight | `arsdelight-2.2.2.jar` | `2.2.2` | `Addons + Farming + Food + Magic` | 19/09/2026 - 17:10 |
@@ -93,167 +93,167 @@
 | 081 | Bloodlines - A Vampirism Addon | `bloodlines-1.21-3.0.9.jar` | `1.21-3.0.9` | `Magic` | 19/09/2026 - 23:37 |
 | 082 | Bosses of Mass Destruction [Forge \| NeoForge] | `BOMD-NeoForge-1.21-1.3.3.jar` | `1.3.3` | `Mobs + Structures` | 19/09/2026 - 23:37 |
 | 083 | Bookshelf | `bookshelf-neoforge-1.21.1-21.1.81.jar` | `21.1.81` | `API and Library + Miscellaneous + Server Utility` | 19/09/2026 - 23:37 |
-| 084 | Born in Chaos | `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar` | `1.7.6` | `Adventure and RPG + Armor, Tools, and Weapons + Mobs + Structures + World Gen` | 23/09/2026 - 00:41 |
-| 085 | Butchercraft | `butchercraft-2.6.5.jar` | `2.6.5` | `Food` | 23/09/2026 - 00:41 |
-| 086 | Caelus API | `caelus-neoforge-7.0.1+1.21.1.jar` | `7.0.1+1.21.1` | `API and Library` | 23/09/2026 - 00:41 |
-| 087 | Cataclysm: Spellbooks | `cataclysm_spellbooks-1.1.14-1.21.jar` | `1.1.14-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 23/09/2026 - 00:41 |
-| 088 | Cataclysm x YUNG's Better Nether Fortresses Compat | `cataclysmfortresses-1.21.1-NeoForge.jar` | `1.21.1` | `Addons + Bug Fixes` | 23/09/2026 - 00:41 |
-| 089 | Create Big Cannons: Advanced Technologies | `cbc_at_Neoforge_1.21.1_0.1.4c.jar` | `0.1.4c-1.21.1` | `Armor, Tools, and Weapons + Create` | 23/09/2026 - 00:41 |
-| 090 | CBC: Advanced technologies crash fix | `cbcatfix-1.21.1-neoforge-1.0.1.jar` | `1.0.0` | `Addons + Create` | 23/09/2026 - 00:41 |
-| 091 | CERBON's API [Forge \| Fabric \| NeoForge] | `CerbonsAPI-NeoForge-1.21-1.3.0.jar` | `1.3.0` | `API and Library` | 23/09/2026 - 00:41 |
-| 092 | Chipped | `chipped-neoforge-1.21.1-4.0.2.jar` | `4.0.2` | `Cosmetic` | 22/09/2026 - 21:37 |
-| 093 | Chunky (Forge/NeoForge) | `Chunky-NeoForge-1.4.23.jar` | `1.4.23` | `Dimensions + Server Utility + World Gen` | 22/09/2026 - 21:37 |
+| 084 | Born in Chaos | `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar` | `1.7.6` | `Adventure and RPG + Armor, Tools, and Weapons + Mobs + Structures + World Gen` | 23/09/2026 - 00:58 |
+| 085 | Butchercraft | `butchercraft-2.6.5.jar` | `2.6.5` | `Food` | 23/09/2026 - 00:58 |
+| 086 | Caelus API | `caelus-neoforge-7.0.1+1.21.1.jar` | `7.0.1+1.21.1` | `API and Library` | 23/09/2026 - 00:58 |
+| 087 | Cataclysm: Spellbooks | `cataclysm_spellbooks-1.1.14-1.21.jar` | `1.1.14-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 23/09/2026 - 00:58 |
+| 088 | Cataclysm x YUNG's Better Nether Fortresses Compat | `cataclysmfortresses-1.21.1-NeoForge.jar` | `1.21.1` | `Addons + Bug Fixes` | 23/09/2026 - 00:58 |
+| 089 | Create Big Cannons: Advanced Technologies | `cbc_at_Neoforge_1.21.1_0.1.4c.jar` | `0.1.4c-1.21.1` | `Armor, Tools, and Weapons + Create` | 23/09/2026 - 00:58 |
+| 090 | CBC: Advanced technologies crash fix | `cbcatfix-1.21.1-neoforge-1.0.1.jar` | `1.0.0` | `Addons + Create` | 23/09/2026 - 00:58 |
+| 091 | CERBON's API [Forge \| Fabric \| NeoForge] | `CerbonsAPI-NeoForge-1.21-1.3.0.jar` | `1.3.0` | `API and Library` | 23/09/2026 - 00:58 |
+| 092 | Chipped | `chipped-neoforge-1.21.1-4.0.2.jar` | `4.0.2` | `Cosmetic` | 23/09/2026 - 01:02 |
+| 093 | Chunky (Forge/NeoForge) | `Chunky-NeoForge-1.4.23.jar` | `1.4.23` | `Dimensions + Server Utility + World Gen` | 23/09/2026 - 01:02 |
 | 094 | Citadel | `citadel-2.7.1-1.21.1.jar` | `2.7.1` | `API and Library + Miscellaneous` | 22/09/2026 - 21:37 |
-| 095 | Climbable Ropes for Create Aeronautics | `climbable_ropes-2.1.3.jar` | `2.1.3` | `Addons + Create` | 22/09/2026 - 21:37 |
-| 096 | Clockwork | `clockwork-neoforge-1.21.1-1.1.4.jar` | `1.1.4` | `Cosmetic + Mobs + Technology` | 22/09/2026 - 21:37 |
-| 097 | Cloth Config API (Fabric/Forge/NeoForge) | `cloth-config-15.0.140-neoforge.jar` | `15.0.140` | `API and Library` | 22/09/2026 - 21:37 |
-| 098 | Clumps | `Clumps-neoforge-1.21.1-19.0.0.1.jar` | `19.0.0.1` | `Server Utility + Storage + Utility & QoL` | 22/09/2026 - 21:37 |
-| 099 | Cobweb | `cobweb-neoforge-1.21-1.4.0.jar` | `1.4.0` | `API and Library` | 22/09/2026 - 21:37 |
-| 100 | CodeChicken Lib 1.8.+ | `CodeChickenLib-1.21.1-4.6.1.529.jar` | `4.6.1.529` | `API and Library` | 22/09/2026 - 21:38 |
-| 101 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 22/09/2026 - 21:38 |
-| 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 22/09/2026 - 22:34 |
-| 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 22/09/2026 - 22:34 |
+| 095 | Climbable Ropes for Create Aeronautics | `climbable_ropes-2.1.3.jar` | `2.1.3` | `Addons + Create` | 23/09/2026 - 01:02 |
+| 096 | Clockwork | `clockwork-neoforge-1.21.1-1.1.4.jar` | `1.1.4` | `Cosmetic + Mobs + Technology` | 23/09/2026 - 01:02 |
+| 097 | Cloth Config API (Fabric/Forge/NeoForge) | `cloth-config-15.0.140-neoforge.jar` | `15.0.140` | `API and Library` | 23/09/2026 - 01:02 |
+| 098 | Clumps | `Clumps-neoforge-1.21.1-19.0.0.1.jar` | `19.0.0.1` | `Server Utility + Storage + Utility & QoL` | 23/09/2026 - 01:02 |
+| 099 | Cobweb | `cobweb-neoforge-1.21-1.4.0.jar` | `1.4.0` | `API and Library` | 23/09/2026 - 01:02 |
+| 100 | CodeChicken Lib 1.8.+ | `CodeChickenLib-1.21.1-4.6.1.529.jar` | `4.6.1.529` | `API and Library` | 23/09/2026 - 01:02 |
+| 101 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 23/09/2026 - 01:02 |
+| 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 23/09/2026 - 01:02 |
+| 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 23/09/2026 - 01:02 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 20/09/2026 - 09:57 |
-| 123 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 23/09/2026 - 00:34 |
-| 124 | Create: New Age | `create-new-age-1.2.0+neoforge-mc1.21.1.jar` | `1.2.0+mc1.21.1` | `Addons + Create + Technology` | 23/09/2026 - 00:35 |
-| 125 | Create Stuff 'N Additions | `create-stuff-additions1.21.1_v2.1.4b.jar` | `2.1.4b (distribuição); metadata interna 2.1.4.` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 00:35 |
-| 126 | Create Utilities J | `Create-Utilities-J-1.21.1-0.3.4+1.21.1.jar` | `0.3.4+1.21.1` | `Automation + Create` | 23/09/2026 - 00:35 |
-| 127 | Create Aero Radars | `create_aero_radar-0.1.1-1.21.1.jar` | `0.1.1-1.21.1` | `Create + Technology` | 23/09/2026 - 00:35 |
-| 128 | Create Aeronautics: Automated Logistics | `create_aeronautics_automated_logistics-0.6.2.jar` | `0.6.2` | `Addons + Automation + Create` | 23/09/2026 - 00:35 |
-| 129 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` | `1.2.0` | `Create` | 23/09/2026 - 00:35 |
-| 130 | Create Aeronautics: Throwable Rope Connector | `create_aeronautics_throwable_rope_connector-0.4.3.jar` | `0.4.3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 00:35 |
-| 131 | create aeronautics：toolgun | `create_aeronautics_toolgun-0.3.6.jar` | `0.3.6` | `Utility & QoL` | 23/09/2026 - 00:35 |
-| 132 | Create Aeronautics: Transmission & Linkage | `create_aeronautics_transmission_linkage-0.2.8.jar` | `0.2.8` | `Create + Technology` | 23/09/2026 - 00:41 |
-| 133 | Create: Aquatic Ambitions | `create_aquatic_ambitions-1.21.1-2.0.4.jar` | `2.0.4` | `Armor, Tools, and Weapons + Automation + Create + Ores and Resources` | 23/09/2026 - 00:41 |
-| 134 | Create: Blocks & Bogies | `create_bb-1.0.8-1.21.1.jar` | `1.0.8` | `Addons + Create + Player Transport + Technology` | 23/09/2026 - 00:41 |
-| 135 | Create: Blaze Burner Fuels | `create_blaze_burner_fuels-1.0.2-neoforge-1.21.1.jar` | `1.0.2` | `Automation + Create + Energy + Ores and Resources + Processing` | 23/09/2026 - 00:41 |
-| 136 | Create: Cold Sweat | `create_cold_sweat-1.1.2.jar` | `1.1.2` | `Addons + Create + Utility & QoL` | 23/09/2026 - 00:41 |
-| 137 | Create: Colony Logistics | `create_colony_logistics-1.3.3.jar` | `1.3.3` | `Addons + Create` | 23/09/2026 - 00:41 |
-| 138 | Create: Connected | `create_connected-1.3.3-mc1.21.1.jar` | `1.3.3-mc1.21.1` | `Addons + Automation + Create + Utility & QoL` | 23/09/2026 - 00:41 |
-| 139 | Create: Arm-made Cuisine | `create_cuisine-1.0.0-mc1.21.1-neoforge.jar` | `1.0.0` | `Automation + Create + Food` | 23/09/2026 - 00:41 |
-| 140 | Create: Curios Backtank | `create_curios_backtank-neoforge-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Armor, Tools, and Weapons + Automation + Create` | 23/09/2026 - 00:41 |
-| 141 | Create: Deep Dark | `create_deep_dark-3.0.2-neoforge-1.21.1.jar` | `3.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Biomes + Create + Ores and Resources` | 23/09/2026 - 00:41 |
-| 142 | Create: Factory | `create_factory-0.7b-1.21.1.jar` | `0.7b-1.21.1` | `Automation + Create + Food` | 23/09/2026 - 00:41 |
-| 143 | Create: Fantasizing Again | `create_fantasizing-1.21.1-1.2.0-b3.jar` | `1.2.0-b3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 00:41 |
-| 144 | Create : New Furnitures | `create_furnitures-1.1.2-neoforge-1.21.1.jar` | `1.1.2` | `Addons + Cosmetic + Create + Structures + Utility & QoL` | 23/09/2026 - 00:41 |
-| 145 | Create Jetpack | `create_jetpack-forge-5.2.1.jar` | `5.2.1` | `Addons + Armor, Tools, and Weapons + Technology` | 23/09/2026 - 00:41 |
-| 146 | Create: Curios Jetpack & Backtank | `create_jetpack_curios-1.2.0-neoforge-1.21.1.jar` | `1.2.0` | `Armor, Tools, and Weapons + Create + Player Transport + Technology + Utility & QoL` | 23/09/2026 - 00:41 |
-| 147 | Create Mechanical Spawner | `create_mechanical_spawner-1.21.1-1.3.2-6.0.10.jar` | `1.3.2-6.0.10 (distribuição); metadata interna 1.3.1-6.0.10` | `Automation + Create + KubeJS + Mobs + Skyblock` | 23/09/2026 - 00:41 |
-| 148 | Create: More Features | `create_mf-0.1.3-neoforge-1.21.1.jar` | `0.1.3` | `Addons + Automation + Create + Ores and Resources` | 23/09/2026 - 00:41 |
-| 149 | Create: Mobile Packages | `create_mobile_packages-1.21.1-0.7.7.jar` | `0.7.7` | `Automation + Create + Storage` | 23/09/2026 - 00:41 |
-| 150 | Create More Automation | `create_more_automation-0.5.2-neoforge-1.21.1.jar` | `0.5.2` | `Automation + Create + Technology` | 23/09/2026 - 00:41 |
-| 151 | Create Optical | `create_optical-0.4.2.jar` | `0.4.2` | `Addons + Create + Technology` | 23/09/2026 - 00:41 |
-| 152 | Create: Pattern Schematics | `create_pattern_schematics-2.0.10.jar` | `2.0.10` | `Automation + Create + Structures + Utility & QoL` | 23/09/2026 - 00:41 |
-| 153 | Create: Pillager Arise | `create_pillagers_arise NeoForge 1.21.1-132.36.jar` | `132.36` | `Create + Mobs + Structures + World Gen` | 23/09/2026 - 00:41 |
-| 154 | Create: Radars | `create_radar-0.4.9.4-1.21.1.jar` | `0.4.9.4-1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Map and Information + Technology` | 23/09/2026 - 00:41 |
-| 155 | Create: Ratatouille | `create_ratatouille-1.21.1-1.4.0.jar` | `1.4.0` | `Addons + Automation + Create + Farming + Food` | 23/09/2026 - 00:41 |
-| 156 | Create Recycle Everything (Continued) | `create_recycle_everything-2.1.0.jar` | `2.1.0 (distribuição); metadata interna 1.1` | `Addons + Create + Ores and Resources + Processing + Utility & QoL` | 23/09/2026 - 00:41 |
-| 157 | Create: Rock & Stone | `create_rns-1.3.1-1.21.1-6.jar` | `1.3.1-1.21.1-6` | `Addons + Automation + Create + Ores and Resources + Processing` | 23/09/2026 - 00:41 |
-| 158 | Create Stuff & Additions Curios Jetpacks | `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar` | `1.2.4 (distribuição); metadata interna 1.2.22` | `Addons + Create` | 23/09/2026 - 00:41 |
-| 159 | Create Stuff & Netherite Additions | `create_sna-1.2-neoforge-1.21.1.jar` | `1.2` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Player Transport` | 23/09/2026 - 00:41 |
-| 160 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` | `1.0 (distribuição); metadata interna vazia` | `Addons + Create + Processing` | 23/09/2026 - 00:41 |
-| 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 23/09/2026 - 00:41 |
-| 162 | Create Deep Seas | `create_submarine-2.2.4.jar` | `2.2.4` | `Addons + Create` | 23/09/2026 - 00:41 |
-| 163 | Create : Misc & Things | `create_things_and_misc-4.1.1-neoforge-1.21.1.jar` | `4.1.1` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 00:41 |
-| 164 | Create: Tweaked Controllers | `create_tweaked_controllers-1.21.1-1.2.7.jar` | `1.21.1-1.2.7` | `Addons + Create + Redstone + Technology` | 23/09/2026 - 00:41 |
-| 165 | Create: Ultimate Factory | `create_ultimate_factory-2.2.4-neoforge-1.21.1.jar` | `2.2.4` | `Create + Farming + Processing + Server Utility + Technology` | 23/09/2026 - 00:41 |
-| 166 | Create: Wizardry | `create_wizardry-1.21.1-0.5.1-pre1.jar` | `1.21.1-0.5.1-pre1` | `Addons + Create + Magic + Technology` | 23/09/2026 - 00:41 |
-| 167 | Create Crafts & Additions | `createaddition-1.7.1.jar` | `1.7.1` | `Addons + Energy + Energy, Fluid, and Item Transport` | 23/09/2026 - 00:41 |
-| 168 | Create: Additional Logistics | `createadditionallogistics-1.21.1-1.4.5.jar` | `1.4.5` | `Create` | 23/09/2026 - 00:41 |
-| 169 | Create: Addon Compatibility | `createaddoncompatibility-neoforge-1.21.1-1.0.0.jar` | `1.0.0` | `Addons + Bug Fixes + Create + Utility & QoL` | 23/09/2026 - 00:41 |
-| 170 | Create Aeronautics: Copycat Wing | `CreateAeronauticsCopycatWing-1.21.1-1.0.4.jar` | `1.0.4` | `Addons + API and Library + Create` | 23/09/2026 - 00:41 |
-| 171 | Create Aeronautics x Curios API Compat | `createaeronauticscurios-neoforge-1.21.1-2.2.jar` | `2.2 (distribuição); metadata interna 2.0` | `Addons + Create` | 23/09/2026 - 00:41 |
-| 172 | Create Aeronautics: Harness | `CreateAeronauticsHarness-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Create + Player Transport + Technology` | 23/09/2026 - 00:41 |
-| 173 | Create Better FPS | `createbetterfps-1.21.1-1.1.4.jar` | `1.1.4` | `Addons + Create + Performance + Utility & QoL` | 23/09/2026 - 00:41 |
-| 174 | Create Big Cannons | `createbigcannons-5.11.7+mc.1.21.1.jar` | `5.11.7` | `Addons + Armor, Tools, and Weapons + Create + Technology` | 23/09/2026 - 00:41 |
-| 175 | Create: Chromatic Return | `createchromaticreturn-1.0.4-neoforge-1.21.1.jar` | `1.0.4 (distribuição/filename); metadata interna 1.0.0` | `Addons + Armor, Tools, and Weapons + Create + Energy, Fluid, and Item Transport + MCreator` | 23/09/2026 - 00:41 |
-| 176 | Create Cobblestone | `createcobblestone-1.5.0+neoforge-1.21.1-153.jar` | `1.5.0+neoforge-1.21.1-153` | `Addons + Automation + Create + Performance + Technology` | 23/09/2026 - 00:41 |
-| 177 | CreateColonies | `createcolonies-2.0.6.jar` | `2.0.6` | `Addons + Adventure and RPG + Automation + Create` | 23/09/2026 - 00:41 |
-| 178 | Create Contraption Terminals | `createcontraptionterminals-1.21-1.4.0.jar` | `1.4.0` | `Create + Storage + Utility & QoL` | 23/09/2026 - 00:41 |
+| 123 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 23/09/2026 - 01:02 |
+| 124 | Create: New Age | `create-new-age-1.2.0+neoforge-mc1.21.1.jar` | `1.2.0+mc1.21.1` | `Addons + Create + Technology` | 23/09/2026 - 01:02 |
+| 125 | Create Stuff 'N Additions | `create-stuff-additions1.21.1_v2.1.4b.jar` | `2.1.4b (distribuição); metadata interna 2.1.4.` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 01:02 |
+| 126 | Create Utilities J | `Create-Utilities-J-1.21.1-0.3.4+1.21.1.jar` | `0.3.4+1.21.1` | `Automation + Create` | 23/09/2026 - 01:02 |
+| 127 | Create Aero Radars | `create_aero_radar-0.1.1-1.21.1.jar` | `0.1.1-1.21.1` | `Create + Technology` | 23/09/2026 - 01:02 |
+| 128 | Create Aeronautics: Automated Logistics | `create_aeronautics_automated_logistics-0.6.2.jar` | `0.6.2` | `Addons + Automation + Create` | 23/09/2026 - 01:02 |
+| 129 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` | `1.2.0` | `Create` | 23/09/2026 - 01:02 |
+| 130 | Create Aeronautics: Throwable Rope Connector | `create_aeronautics_throwable_rope_connector-0.4.3.jar` | `0.4.3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 01:02 |
+| 131 | create aeronautics：toolgun | `create_aeronautics_toolgun-0.3.6.jar` | `0.3.6` | `Utility & QoL` | 23/09/2026 - 01:02 |
+| 132 | Create Aeronautics: Transmission & Linkage | `create_aeronautics_transmission_linkage-0.2.8.jar` | `0.2.8` | `Create + Technology` | 23/09/2026 - 00:58 |
+| 133 | Create: Aquatic Ambitions | `create_aquatic_ambitions-1.21.1-2.0.4.jar` | `2.0.4` | `Armor, Tools, and Weapons + Automation + Create + Ores and Resources` | 23/09/2026 - 00:58 |
+| 134 | Create: Blocks & Bogies | `create_bb-1.0.8-1.21.1.jar` | `1.0.8` | `Addons + Create + Player Transport + Technology` | 23/09/2026 - 00:58 |
+| 135 | Create: Blaze Burner Fuels | `create_blaze_burner_fuels-1.0.2-neoforge-1.21.1.jar` | `1.0.2` | `Automation + Create + Energy + Ores and Resources + Processing` | 23/09/2026 - 00:58 |
+| 136 | Create: Cold Sweat | `create_cold_sweat-1.1.2.jar` | `1.1.2` | `Addons + Create + Utility & QoL` | 23/09/2026 - 00:58 |
+| 137 | Create: Colony Logistics | `create_colony_logistics-1.3.3.jar` | `1.3.3` | `Addons + Create` | 23/09/2026 - 00:58 |
+| 138 | Create: Connected | `create_connected-1.3.3-mc1.21.1.jar` | `1.3.3-mc1.21.1` | `Addons + Automation + Create + Utility & QoL` | 23/09/2026 - 00:58 |
+| 139 | Create: Arm-made Cuisine | `create_cuisine-1.0.0-mc1.21.1-neoforge.jar` | `1.0.0` | `Automation + Create + Food` | 23/09/2026 - 00:58 |
+| 140 | Create: Curios Backtank | `create_curios_backtank-neoforge-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Armor, Tools, and Weapons + Automation + Create` | 23/09/2026 - 00:58 |
+| 141 | Create: Deep Dark | `create_deep_dark-3.0.2-neoforge-1.21.1.jar` | `3.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Biomes + Create + Ores and Resources` | 23/09/2026 - 00:58 |
+| 142 | Create: Factory | `create_factory-0.7b-1.21.1.jar` | `0.7b-1.21.1` | `Automation + Create + Food` | 23/09/2026 - 00:58 |
+| 143 | Create: Fantasizing Again | `create_fantasizing-1.21.1-1.2.0-b3.jar` | `1.2.0-b3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 00:58 |
+| 144 | Create : New Furnitures | `create_furnitures-1.1.2-neoforge-1.21.1.jar` | `1.1.2` | `Addons + Cosmetic + Create + Structures + Utility & QoL` | 23/09/2026 - 00:58 |
+| 145 | Create Jetpack | `create_jetpack-forge-5.2.1.jar` | `5.2.1` | `Addons + Armor, Tools, and Weapons + Technology` | 23/09/2026 - 00:58 |
+| 146 | Create: Curios Jetpack & Backtank | `create_jetpack_curios-1.2.0-neoforge-1.21.1.jar` | `1.2.0` | `Armor, Tools, and Weapons + Create + Player Transport + Technology + Utility & QoL` | 23/09/2026 - 00:58 |
+| 147 | Create Mechanical Spawner | `create_mechanical_spawner-1.21.1-1.3.2-6.0.10.jar` | `1.3.2-6.0.10 (distribuição); metadata interna 1.3.1-6.0.10` | `Automation + Create + KubeJS + Mobs + Skyblock` | 23/09/2026 - 00:58 |
+| 148 | Create: More Features | `create_mf-0.1.3-neoforge-1.21.1.jar` | `0.1.3` | `Addons + Automation + Create + Ores and Resources` | 23/09/2026 - 00:58 |
+| 149 | Create: Mobile Packages | `create_mobile_packages-1.21.1-0.7.7.jar` | `0.7.7` | `Automation + Create + Storage` | 23/09/2026 - 00:58 |
+| 150 | Create More Automation | `create_more_automation-0.5.2-neoforge-1.21.1.jar` | `0.5.2` | `Automation + Create + Technology` | 23/09/2026 - 00:58 |
+| 151 | Create Optical | `create_optical-0.4.2.jar` | `0.4.2` | `Addons + Create + Technology` | 23/09/2026 - 00:58 |
+| 152 | Create: Pattern Schematics | `create_pattern_schematics-2.0.10.jar` | `2.0.10` | `Automation + Create + Structures + Utility & QoL` | 23/09/2026 - 00:58 |
+| 153 | Create: Pillager Arise | `create_pillagers_arise NeoForge 1.21.1-132.36.jar` | `132.36` | `Create + Mobs + Structures + World Gen` | 23/09/2026 - 00:58 |
+| 154 | Create: Radars | `create_radar-0.4.9.4-1.21.1.jar` | `0.4.9.4-1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Map and Information + Technology` | 23/09/2026 - 00:58 |
+| 155 | Create: Ratatouille | `create_ratatouille-1.21.1-1.4.0.jar` | `1.4.0` | `Addons + Automation + Create + Farming + Food` | 23/09/2026 - 00:58 |
+| 156 | Create Recycle Everything (Continued) | `create_recycle_everything-2.1.0.jar` | `2.1.0 (distribuição); metadata interna 1.1` | `Addons + Create + Ores and Resources + Processing + Utility & QoL` | 23/09/2026 - 00:58 |
+| 157 | Create: Rock & Stone | `create_rns-1.3.1-1.21.1-6.jar` | `1.3.1-1.21.1-6` | `Addons + Automation + Create + Ores and Resources + Processing` | 23/09/2026 - 00:58 |
+| 158 | Create Stuff & Additions Curios Jetpacks | `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar` | `1.2.4 (distribuição); metadata interna 1.2.22` | `Addons + Create` | 23/09/2026 - 00:58 |
+| 159 | Create Stuff & Netherite Additions | `create_sna-1.2-neoforge-1.21.1.jar` | `1.2` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Player Transport` | 23/09/2026 - 00:58 |
+| 160 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` | `1.0 (distribuição); metadata interna vazia` | `Addons + Create + Processing` | 23/09/2026 - 00:58 |
+| 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 23/09/2026 - 00:58 |
+| 162 | Create Deep Seas | `create_submarine-2.2.4.jar` | `2.2.4` | `Addons + Create` | 23/09/2026 - 00:58 |
+| 163 | Create : Misc & Things | `create_things_and_misc-4.1.1-neoforge-1.21.1.jar` | `4.1.1` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 00:58 |
+| 164 | Create: Tweaked Controllers | `create_tweaked_controllers-1.21.1-1.2.7.jar` | `1.21.1-1.2.7` | `Addons + Create + Redstone + Technology` | 23/09/2026 - 00:58 |
+| 165 | Create: Ultimate Factory | `create_ultimate_factory-2.2.4-neoforge-1.21.1.jar` | `2.2.4` | `Create + Farming + Processing + Server Utility + Technology` | 23/09/2026 - 00:58 |
+| 166 | Create: Wizardry | `create_wizardry-1.21.1-0.5.1-pre1.jar` | `1.21.1-0.5.1-pre1` | `Addons + Create + Magic + Technology` | 23/09/2026 - 00:58 |
+| 167 | Create Crafts & Additions | `createaddition-1.7.1.jar` | `1.7.1` | `Addons + Energy + Energy, Fluid, and Item Transport` | 23/09/2026 - 00:58 |
+| 168 | Create: Additional Logistics | `createadditionallogistics-1.21.1-1.4.5.jar` | `1.4.5` | `Create` | 23/09/2026 - 00:58 |
+| 169 | Create: Addon Compatibility | `createaddoncompatibility-neoforge-1.21.1-1.0.0.jar` | `1.0.0` | `Addons + Bug Fixes + Create + Utility & QoL` | 23/09/2026 - 00:58 |
+| 170 | Create Aeronautics: Copycat Wing | `CreateAeronauticsCopycatWing-1.21.1-1.0.4.jar` | `1.0.4` | `Addons + API and Library + Create` | 23/09/2026 - 00:58 |
+| 171 | Create Aeronautics x Curios API Compat | `createaeronauticscurios-neoforge-1.21.1-2.2.jar` | `2.2 (distribuição); metadata interna 2.0` | `Addons + Create` | 23/09/2026 - 00:58 |
+| 172 | Create Aeronautics: Harness | `CreateAeronauticsHarness-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Create + Player Transport + Technology` | 23/09/2026 - 00:58 |
+| 173 | Create Better FPS | `createbetterfps-1.21.1-1.1.4.jar` | `1.1.4` | `Addons + Create + Performance + Utility & QoL` | 23/09/2026 - 00:58 |
+| 174 | Create Big Cannons | `createbigcannons-5.11.7+mc.1.21.1.jar` | `5.11.7` | `Addons + Armor, Tools, and Weapons + Create + Technology` | 23/09/2026 - 00:58 |
+| 175 | Create: Chromatic Return | `createchromaticreturn-1.0.4-neoforge-1.21.1.jar` | `1.0.4 (distribuição/filename); metadata interna 1.0.0` | `Addons + Armor, Tools, and Weapons + Create + Energy, Fluid, and Item Transport + MCreator` | 23/09/2026 - 00:58 |
+| 176 | Create Cobblestone | `createcobblestone-1.5.0+neoforge-1.21.1-153.jar` | `1.5.0+neoforge-1.21.1-153` | `Addons + Automation + Create + Performance + Technology` | 23/09/2026 - 00:58 |
+| 177 | CreateColonies | `createcolonies-2.0.6.jar` | `2.0.6` | `Addons + Adventure and RPG + Automation + Create` | 23/09/2026 - 00:58 |
+| 178 | Create Contraption Terminals | `createcontraptionterminals-1.21-1.4.0.jar` | `1.4.0` | `Create + Storage + Utility & QoL` | 23/09/2026 - 00:58 |
 | 179 | Create: Cyber Goggles | `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` | `8.6.3` | `Create + Utility & QoL` | 20/09/2026 - 20:21 |
-| 180 | Create Deco | `createdeco-2.1.3.jar` | `2.1.3` | `Addons + Cosmetic + Create` | 23/09/2026 - 00:41 |
-| 181 | Create Diesel Generators | `createdieselgenerators-1.21.1-1.3.15.jar` | `1.21.1-1.3.15` | `Addons + Create + Processing + Technology` | 23/09/2026 - 00:41 |
-| 182 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 23/09/2026 - 00:41 |
-| 183 | Create: Enchantable Machinery | `createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar` | `3.6.0` | `Addons + Create + Technology + Utility & QoL` | 23/09/2026 - 00:41 |
-| 184 | Create: Ender Transmission | `createendertransmission-2.1.1-1.21.1.jar` | `2.1.1-1.21.1` | `Addons + Technology` | 23/09/2026 - 00:41 |
-| 185 | Create: Fast SchematicCannon | `CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar` | `2.6.1-neoforge` | `Addons + Bug Fixes + Create` | 23/09/2026 - 00:41 |
-| 186 | Create: Filters Anywhere | `createfiltersanywhere-1.21.1-2.6.0.jar` | `2.6.0` | `Addons + Create` | 23/09/2026 - 00:41 |
+| 180 | Create Deco | `createdeco-2.1.3.jar` | `2.1.3` | `Addons + Cosmetic + Create` | 23/09/2026 - 00:58 |
+| 181 | Create Diesel Generators | `createdieselgenerators-1.21.1-1.3.15.jar` | `1.21.1-1.3.15` | `Addons + Create + Processing + Technology` | 23/09/2026 - 00:58 |
+| 182 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 23/09/2026 - 00:58 |
+| 183 | Create: Enchantable Machinery | `createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar` | `3.6.0` | `Addons + Create + Technology + Utility & QoL` | 23/09/2026 - 00:58 |
+| 184 | Create: Ender Transmission | `createendertransmission-2.1.1-1.21.1.jar` | `2.1.1-1.21.1` | `Addons + Technology` | 23/09/2026 - 00:58 |
+| 185 | Create: Fast SchematicCannon | `CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar` | `2.6.1-neoforge` | `Addons + Bug Fixes + Create` | 23/09/2026 - 00:58 |
+| 186 | Create: Filters Anywhere | `createfiltersanywhere-1.21.1-2.6.0.jar` | `2.6.0` | `Addons + Create` | 23/09/2026 - 00:58 |
 | 187 | Create: Fishery Industry | `createfisheryindustry-5.1.2.jar` | `5.1.2` | `Addons + Create` | 20/09/2026 - 20:46 |
-| 188 | Create: Food | `createfood-neoforge-1.21.1-2.7.1.jar` | `2.7.1` | `Automation + Create + Food` | 23/09/2026 - 00:41 |
-| 189 | Create Goggles (Create Plus) | `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar` | `6.1.1` | `Addons + Armor, Tools, and Weapons + Create` | 23/09/2026 - 00:41 |
-| 190 | Create JEI Compat | `createjeicompat-1.0.3.jar` | `1.0.3` | `Create` | 23/09/2026 - 00:41 |
-| 191 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 23/09/2026 - 00:41 |
-| 192 | Create: Liquid Fuel | `createliquidfuel-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 23/09/2026 - 00:41 |
+| 188 | Create: Food | `createfood-neoforge-1.21.1-2.7.1.jar` | `2.7.1` | `Automation + Create + Food` | 23/09/2026 - 00:58 |
+| 189 | Create Goggles (Create Plus) | `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar` | `6.1.1` | `Addons + Armor, Tools, and Weapons + Create` | 23/09/2026 - 00:58 |
+| 190 | Create JEI Compat | `createjeicompat-1.0.3.jar` | `1.0.3` | `Create` | 23/09/2026 - 00:58 |
+| 191 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 23/09/2026 - 00:58 |
+| 192 | Create: Liquid Fuel | `createliquidfuel-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 23/09/2026 - 00:58 |
 | 193 | Create: Mechanical Companion | `createmechanicalcompanion-1.9-neoforge-1.21.1.jar` | `1.9 (artefato/publicação); metadata runtime vazia` | `Addons + Adventure and RPG + Create + Mobs + Technology` | 20/09/2026 - 20:46 |
-| 194 | Create: Metallurgy | `createmetallurgy-1.0.3-1.21.1.jar` | `1.0.3` | `Addons + Automation + Create + Processing + Technology` | 23/09/2026 - 00:41 |
-| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` | `2.0.0` | `Automation + Create + Energy, Fluid, and Item Transport + Processing` | 23/09/2026 - 00:41 |
-| 196 | Create Missiles | `createmissiles-1.0.3+neoforge-1.21.1.jar` | `1.0.3` | `Addons + Create + Map and Information + Structures + Technology` | 23/09/2026 - 00:41 |
-| 197 | Create Nuclear | `createnuclear-1.3.2-beta.3-neoforge.jar` | `1.3.2-beta.3` | `Addons + Create + Energy + Ores and Resources + Technology` | 23/09/2026 - 00:41 |
-| 198 | Create: Ornithopter Glider | `createornithopterglider-1.2.0-1.21.1.jar` | `1.2.0-1.21.1 (runtime/filename); publicação 1.2.0+1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL` | 23/09/2026 - 00:41 |
-| 199 | Create: Prismatic Shine | `createprism-1.2.2.jar` | `1.2.2` | `Addons + Create` | 23/09/2026 - 00:41 |
-| 200 | Create Propulsion: Simulated | `createpropulsion-1.1.5.jar` | `1.1.5` | `Addons + Create + Player Transport + Technology` | 23/09/2026 - 00:41 |
-| 201 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 23/09/2026 - 00:41 |
-| 202 | Create: Schematic Checker | `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar` | `2.27.45-6.0` | `Addons + Bug Fixes + Create` | 23/09/2026 - 00:41 |
-| 203 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 23/09/2026 - 00:41 |
-| 204 | Create: Transmission! | `createtransmission-1.2.2+neoforge-create6-1.21.1.jar` | `1.2.2+neoforge-create6-1.21.1` | `Addons + Cosmetic + Create + Technology + Utility & QoL` | 23/09/2026 - 00:41 |
-| 205 | Create Ultimine | `createultimine-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `Addons + Create + Utility & QoL` | 23/09/2026 - 00:41 |
+| 194 | Create: Metallurgy | `createmetallurgy-1.0.3-1.21.1.jar` | `1.0.3` | `Addons + Automation + Create + Processing + Technology` | 23/09/2026 - 00:58 |
+| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` | `2.0.0` | `Automation + Create + Energy, Fluid, and Item Transport + Processing` | 23/09/2026 - 00:58 |
+| 196 | Create Missiles | `createmissiles-1.0.3+neoforge-1.21.1.jar` | `1.0.3` | `Addons + Create + Map and Information + Structures + Technology` | 23/09/2026 - 00:58 |
+| 197 | Create Nuclear | `createnuclear-1.3.2-beta.3-neoforge.jar` | `1.3.2-beta.3` | `Addons + Create + Energy + Ores and Resources + Technology` | 23/09/2026 - 00:58 |
+| 198 | Create: Ornithopter Glider | `createornithopterglider-1.2.0-1.21.1.jar` | `1.2.0-1.21.1 (runtime/filename); publicação 1.2.0+1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL` | 23/09/2026 - 00:58 |
+| 199 | Create: Prismatic Shine | `createprism-1.2.2.jar` | `1.2.2` | `Addons + Create` | 23/09/2026 - 00:58 |
+| 200 | Create Propulsion: Simulated | `createpropulsion-1.1.5.jar` | `1.1.5` | `Addons + Create + Player Transport + Technology` | 23/09/2026 - 00:58 |
+| 201 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 23/09/2026 - 00:58 |
+| 202 | Create: Schematic Checker | `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar` | `2.27.45-6.0` | `Addons + Bug Fixes + Create` | 23/09/2026 - 00:58 |
+| 203 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 23/09/2026 - 00:58 |
+| 204 | Create: Transmission! | `createtransmission-1.2.2+neoforge-create6-1.21.1.jar` | `1.2.2+neoforge-create6-1.21.1` | `Addons + Cosmetic + Create + Technology + Utility & QoL` | 23/09/2026 - 00:58 |
+| 205 | Create Ultimine | `createultimine-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `Addons + Create + Utility & QoL` | 23/09/2026 - 00:58 |
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 17/09/2026 - 22:51 |
 | 207 | CreativeCore | `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar` | `2.13.46` | `API and Library` | 20/09/2026 - 21:33 |
-| 208 | Crystal Chronicles - Iron's Spells 'n Spellbooks | `crystal_chronicles-0.1.3-alpha.jar` | `0.1.3-alpha` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Dimensions + Magic` | 22/09/2026 - 21:52 |
-| 209 | Cuisine Delight | `cuisinedelight-1.2.10.jar` | `1.2.10` | `Food + Utility & QoL` | 22/09/2026 - 21:52 |
-| 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 23/09/2026 - 00:41 |
-| 211 | Curios API | `curios-neoforge-9.5.1+1.21.1.jar` | `9.5.1+1.21.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 22/09/2026 - 21:52 |
-| 212 | Customizable Player Models | `CustomPlayerModels-1.21-0.6.27a.jar` | `0.6.27a` | `Cosmetic` | 22/09/2026 - 21:52 |
+| 208 | Crystal Chronicles - Iron's Spells 'n Spellbooks | `crystal_chronicles-0.1.3-alpha.jar` | `0.1.3-alpha` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Dimensions + Magic` | 23/09/2026 - 00:58 |
+| 209 | Cuisine Delight | `cuisinedelight-1.2.10.jar` | `1.2.10` | `Food + Utility & QoL` | 23/09/2026 - 00:58 |
+| 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 23/09/2026 - 00:58 |
+| 211 | Curios API | `curios-neoforge-9.5.1+1.21.1.jar` | `9.5.1+1.21.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 23/09/2026 - 00:58 |
+| 212 | Customizable Player Models | `CustomPlayerModels-1.21-0.6.27a.jar` | `0.6.27a` | `Cosmetic` | 23/09/2026 - 00:58 |
 | 213 | Cyclops Core | `cyclopscore-1.21.1-neoforge-1.30.0.jar` | `1.30.0` | `API and Library + Server Utility` | 20/09/2026 - 21:33 |
 | 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 21/09/2026 - 01:29 |
-| 234 | Dynamic Trees Addon Lib | `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` | `0.2.0-BETA03` | `Addons + API and Library + Cosmetic` | 23/09/2026 - 00:41 |
+| 234 | Dynamic Trees Addon Lib | `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` | `0.2.0-BETA03` | `Addons + API and Library + Cosmetic` | 23/09/2026 - 00:58 |
 | 235 | Dynamic Trees | `dynamictrees-neoforge-1.21.1-1.7.2.jar` | `1.7.2` | `Biomes + Cosmetic + Farming + World Gen` | 21/09/2026 - 02:10 |
-| 236 | Dynamic Trees Plus | `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` | `1.3.2` | `Addons + Biomes + Cosmetic + Farming + World Gen` | 23/09/2026 - 00:41 |
-| 237 | Create: Dynamic Village | `dynamicvillage-0.9-1.21.1.jar` | `0.9` | `Cosmetic + Create + Structures + Technology + World Gen` | 23/09/2026 - 00:41 |
-| 238 | Easy Model Entities | `easy_model_entities-neoforge-1.21.1-2.4.0.jar` | `2.4.0 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library + Automation + Mobs + Utility & QoL` | 23/09/2026 - 00:41 |
-| 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 23/09/2026 - 00:41 |
-| 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 23/09/2026 - 00:41 |
-| 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 23/09/2026 - 00:41 |
-| 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 23/09/2026 - 00:41 |
-| 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 23/09/2026 - 00:41 |
+| 236 | Dynamic Trees Plus | `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` | `1.3.2` | `Addons + Biomes + Cosmetic + Farming + World Gen` | 23/09/2026 - 00:58 |
+| 237 | Create: Dynamic Village | `dynamicvillage-0.9-1.21.1.jar` | `0.9` | `Cosmetic + Create + Structures + Technology + World Gen` | 23/09/2026 - 00:58 |
+| 238 | Easy Model Entities | `easy_model_entities-neoforge-1.21.1-2.4.0.jar` | `2.4.0 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library + Automation + Mobs + Utility & QoL` | 23/09/2026 - 00:58 |
+| 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 23/09/2026 - 00:58 |
+| 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 23/09/2026 - 00:58 |
+| 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 23/09/2026 - 00:58 |
+| 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 23/09/2026 - 00:58 |
+| 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 23/09/2026 - 00:58 |
 | 244 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 21/09/2026 - 09:47 |
-| 245 | Epic Fight x Iron's Spells: Enhanced Animations | `efiscompat-3.1.0.jar` | `3.1.0` | `Cosmetic + Miscellaneous` | 23/09/2026 - 00:41 |
-| 246 | Eidolon : Repraised | `eidolon_repraised-1.21.1-0.5.0.2.jar` | `0.5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 23/09/2026 - 00:41 |
-| 247 | EMF Compat: Core | `emf_compat_core_1.21.1_2.0.0.jar` | `2.0.0` | `API and Library + Cosmetic` | 23/09/2026 - 00:41 |
-| 248 | EMF Compat: Create | `emf_compat_create_1.21.1_2.0.0.jar` | `2.0.0` | `Bug Fixes + Cosmetic` | 23/09/2026 - 00:41 |
+| 245 | Epic Fight x Iron's Spells: Enhanced Animations | `efiscompat-3.1.0.jar` | `3.1.0` | `Cosmetic + Miscellaneous` | 23/09/2026 - 00:58 |
+| 246 | Eidolon : Repraised | `eidolon_repraised-1.21.1-0.5.0.2.jar` | `0.5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 23/09/2026 - 00:58 |
+| 247 | EMF Compat: Core | `emf_compat_core_1.21.1_2.0.0.jar` | `2.0.0` | `API and Library + Cosmetic` | 23/09/2026 - 00:58 |
+| 248 | EMF Compat: Create | `emf_compat_create_1.21.1_2.0.0.jar` | `2.0.0` | `Bug Fixes + Cosmetic` | 23/09/2026 - 00:58 |
 | 249 | EMF Compat: Iron's Spells 'n Spellbooks | `emf_compat_iron_spells_1.21.1_2.0.0.jar` | `2.0.0` | `Addons + Bug Fixes` | 21/09/2026 - 09:47 |
-| 250 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 23/09/2026 - 00:41 |
-| 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 23/09/2026 - 00:41 |
-| 252 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 23/09/2026 - 00:41 |
-| 253 | Enhanced Boss Bars | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 23/09/2026 - 00:41 |
-| 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 23/09/2026 - 00:41 |
-| 255 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 23/09/2026 - 00:41 |
-| 256 | [ETF] Entity Texture Features - [Fabric & Forge] | `entity_texture_features-7.2.1-1.21-neoforge.jar` | `7.2.1` | `Cosmetic + Utility & QoL` | 23/09/2026 - 00:41 |
-| 258 | EpheroLib | `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar` | `1.2.0` | `API and Library` | 23/09/2026 - 00:41 |
-| 259 | Epic Fight: Curios Compat 2.0 | `Epic Fight x Curios Compat 2.2.jar` | `2.2 (distribuição/filename); metadata runtime 1.4` | `Addons + Bug Fixes + Cosmetic` | 23/09/2026 - 00:41 |
-| 260 | Epic Fight | `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` | `21.17.3.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 23/09/2026 - 00:41 |
-| 261 | Epic Fight - Epic-API | `epic_api-21.3.1.jar` | `21.3.1` | `API and Library` | 23/09/2026 - 00:41 |
-| 262 | Minecolonies: Epicfied (Epic Colonies) | `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar` | `21.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 23/09/2026 - 00:41 |
-| 263 | Epic Fight - Mod Compat | `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` | `1.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Mobs` | 23/09/2026 - 00:41 |
-| 264 | Epic Fight - Pehkui FIX | `epicfightpehkuiincompatibilityfix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 23/09/2026 - 00:41 |
-| 265 | Ender's Spells and Stuff: Requiem | `ess_requiem-0.1.7.jar` | `0.1.7` | `Addons` | 23/09/2026 - 00:41 |
-| 266 | Euphoria Patches | `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` | `1.10.5-r5.9.3-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 23/09/2026 - 00:41 |
-| 267 | ExpandAbility | `expandability-12.0.0.jar` | `12.0.0` | `API and Library` | 23/09/2026 - 00:41 |
-| 268 | Expanded Delight | `expandeddelight-0.1.4.jar` | `0.1.4` | `Addons + Farming + Food + Ores and Resources` | 23/09/2026 - 00:41 |
-| 269 | Explorer's Compass | `ExplorersCompass-1.21.1-3.4.0-neoforge.jar` | `1.21.1-3.4.0-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Map and Information + Structures` | 23/09/2026 - 00:41 |
-| 270 | Explosive Enhancement: Reforged | `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` | `1.1.2` | `Cosmetic + Miscellaneous` | 23/09/2026 - 00:41 |
-| 271 | Create: Extra Copycats | `extra_copycats-1.0.2.jar` | `1.0.2` | `Addons + Create` | 23/09/2026 - 00:41 |
-| 273 | FamiliarsLib | `familiarslib-1.21.1-1.7.1.jar` | `1.7.1 do JAR/publicação; metadata runtime 1.21.1-1.7` | `API and Library` | 23/09/2026 - 00:41 |
-| 274 | Fantasy Armor (Medieval Series) | `fantasy_armor-neoforge-1.2.4-1.21.1.jar` | `1.2.4-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic` | 23/09/2026 - 00:41 |
-| 275 | Farmer's Spell 'n Spell Book | `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` | `1.0.5.1-1.21.1` | `Farmer's Delight + Food + Magic` | 23/09/2026 - 00:41 |
-| 276 | Farmer's Delight | `FarmersDelight-1.21.1-1.3.4.jar` | `1.3.4` | `Cosmetic + Farming + Food` | 23/09/2026 - 00:41 |
-| 277 | Farmer's Delight: Extended | `farmersdelight_extended-1.21.1-0.2.2.jar` | `1.21.1-0.2.2` | `Addons + Create + Food` | 23/09/2026 - 00:41 |
-| 278 | Farmers Structures | `FarmersStructures-1.0.6-1.21.1_neoforge.jar` | `1.0.6` | `Addons + Farming + MCreator + Structures + World Gen` | 23/09/2026 - 00:41 |
-| 279 | FastSuite | `FastSuite-1.21.1-6.0.7.jar` | `6.0.7` | `Performance` | 23/09/2026 - 00:41 |
-| 280 | FerriteCore ((Neo)Forge) | `ferritecore-7.0.3-neoforge.jar` | `7.0.3` | `Performance` | 23/09/2026 - 00:41 |
-| 281 | Fire's Ender Expansion | `firesenderexpansion-2.4.1.jar` | `2.4.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 23/09/2026 - 00:41 |
-| 282 | First-person Model | `firstperson-neoforge-2.7.2-mc1.21.1.jar` | `2.7.2` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 23/09/2026 - 00:41 |
-| 283 | Flowing Fluids | `flowing_fluids-1.0.6-1.21-neoforge.jar` | `1.0.6` | `Miscellaneous` | 23/09/2026 - 00:41 |
+| 250 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 23/09/2026 - 00:58 |
+| 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 23/09/2026 - 00:58 |
+| 252 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 23/09/2026 - 00:58 |
+| 253 | Enhanced Boss Bars | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 23/09/2026 - 00:58 |
+| 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 23/09/2026 - 00:58 |
+| 255 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 23/09/2026 - 00:58 |
+| 256 | [ETF] Entity Texture Features - [Fabric & Forge] | `entity_texture_features-7.2.1-1.21-neoforge.jar` | `7.2.1` | `Cosmetic + Utility & QoL` | 23/09/2026 - 00:58 |
+| 258 | EpheroLib | `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar` | `1.2.0` | `API and Library` | 23/09/2026 - 00:58 |
+| 259 | Epic Fight: Curios Compat 2.0 | `Epic Fight x Curios Compat 2.2.jar` | `2.2 (distribuição/filename); metadata runtime 1.4` | `Addons + Bug Fixes + Cosmetic` | 23/09/2026 - 00:58 |
+| 260 | Epic Fight | `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` | `21.17.3.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 23/09/2026 - 00:58 |
+| 261 | Epic Fight - Epic-API | `epic_api-21.3.1.jar` | `21.3.1` | `API and Library` | 23/09/2026 - 00:58 |
+| 262 | Minecolonies: Epicfied (Epic Colonies) | `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar` | `21.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 23/09/2026 - 00:58 |
+| 263 | Epic Fight - Mod Compat | `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` | `1.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Mobs` | 23/09/2026 - 00:58 |
+| 264 | Epic Fight - Pehkui FIX | `epicfightpehkuiincompatibilityfix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 23/09/2026 - 00:58 |
+| 265 | Ender's Spells and Stuff: Requiem | `ess_requiem-0.1.7.jar` | `0.1.7` | `Addons` | 23/09/2026 - 00:58 |
+| 266 | Euphoria Patches | `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` | `1.10.5-r5.9.3-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 23/09/2026 - 00:58 |
+| 267 | ExpandAbility | `expandability-12.0.0.jar` | `12.0.0` | `API and Library` | 23/09/2026 - 00:58 |
+| 268 | Expanded Delight | `expandeddelight-0.1.4.jar` | `0.1.4` | `Addons + Farming + Food + Ores and Resources` | 23/09/2026 - 00:58 |
+| 269 | Explorer's Compass | `ExplorersCompass-1.21.1-3.4.0-neoforge.jar` | `1.21.1-3.4.0-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Map and Information + Structures` | 23/09/2026 - 00:58 |
+| 270 | Explosive Enhancement: Reforged | `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` | `1.1.2` | `Cosmetic + Miscellaneous` | 23/09/2026 - 00:58 |
+| 271 | Create: Extra Copycats | `extra_copycats-1.0.2.jar` | `1.0.2` | `Addons + Create` | 23/09/2026 - 00:58 |
+| 273 | FamiliarsLib | `familiarslib-1.21.1-1.7.1.jar` | `1.7.1 do JAR/publicação; metadata runtime 1.21.1-1.7` | `API and Library` | 23/09/2026 - 00:58 |
+| 274 | Fantasy Armor (Medieval Series) | `fantasy_armor-neoforge-1.2.4-1.21.1.jar` | `1.2.4-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic` | 23/09/2026 - 00:58 |
+| 275 | Farmer's Spell 'n Spell Book | `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` | `1.0.5.1-1.21.1` | `Farmer's Delight + Food + Magic` | 23/09/2026 - 00:58 |
+| 276 | Farmer's Delight | `FarmersDelight-1.21.1-1.3.4.jar` | `1.3.4` | `Cosmetic + Farming + Food` | 23/09/2026 - 00:58 |
+| 277 | Farmer's Delight: Extended | `farmersdelight_extended-1.21.1-0.2.2.jar` | `1.21.1-0.2.2` | `Addons + Create + Food` | 23/09/2026 - 00:58 |
+| 278 | Farmers Structures | `FarmersStructures-1.0.6-1.21.1_neoforge.jar` | `1.0.6` | `Addons + Farming + MCreator + Structures + World Gen` | 23/09/2026 - 00:58 |
+| 279 | FastSuite | `FastSuite-1.21.1-6.0.7.jar` | `6.0.7` | `Performance` | 23/09/2026 - 00:58 |
+| 280 | FerriteCore ((Neo)Forge) | `ferritecore-7.0.3-neoforge.jar` | `7.0.3` | `Performance` | 23/09/2026 - 00:58 |
+| 281 | Fire's Ender Expansion | `firesenderexpansion-2.4.1.jar` | `2.4.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 23/09/2026 - 00:58 |
+| 282 | First-person Model | `firstperson-neoforge-2.7.2-mc1.21.1.jar` | `2.7.2` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 23/09/2026 - 00:58 |
+| 283 | Flowing Fluids | `flowing_fluids-1.0.6-1.21-neoforge.jar` | `1.0.6` | `Miscellaneous` | 23/09/2026 - 00:58 |
 | 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 22/09/2026 - 01:07 |
 | 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 22/09/2026 - 01:07 |
 | 286 | Forgified Fabric API | `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar` | `0.116.15+2.3.5+1.21.1` | `API and Library` | 22/09/2026 - 01:07 |
