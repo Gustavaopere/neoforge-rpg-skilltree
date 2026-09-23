@@ -1,5 +1,7 @@
 # Cold Sweat
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#102**: JAR `ColdSweat-2.4.3.1.jar`, mod id `cold_sweat`, runtime `2.4.3.1`, SHA-1 `9605a2053e771110591da43d7e689be693f73948`.
+
 ## Propriedades do registro
 
 - **Mod:** Cold Sweat
