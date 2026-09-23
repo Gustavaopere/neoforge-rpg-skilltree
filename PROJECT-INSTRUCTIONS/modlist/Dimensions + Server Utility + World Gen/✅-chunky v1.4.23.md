@@ -1,5 +1,7 @@
 # Chunky
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#93**: JAR `Chunky-NeoForge-1.4.23.jar`, mod id `chunky`, runtime `1.4.23`, SHA-1 `ab0c74743a653020fe2dfc4986b43e893947f3e9`.
+
 ## Propriedades do registro
 
 - **Mod:** Chunky
