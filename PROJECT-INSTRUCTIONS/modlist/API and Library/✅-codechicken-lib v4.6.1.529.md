@@ -1,5 +1,7 @@
 # CodeChicken Lib
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#100**: JAR `CodeChickenLib-1.21.1-4.6.1.529.jar`, mod id `codechickenlib`, runtime `4.6.1.529`, SHA-1 `354d850ca72568b88d67e3c903efced7e62dc90f`.
+
 ## Propriedades do registro
 
 - **Mod:** CodeChicken Lib
