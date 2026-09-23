@@ -1,5 +1,7 @@
 # Clumps
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#98**: JAR `Clumps-neoforge-1.21.1-19.0.0.1.jar`, mod id `clumps`, runtime `19.0.0.1`, SHA-1 `fa2576297c7bd12b28aa7070e8141792bd66da4c`.
+
 ## Propriedades do registro
 
 - **Mod:** Clumps
