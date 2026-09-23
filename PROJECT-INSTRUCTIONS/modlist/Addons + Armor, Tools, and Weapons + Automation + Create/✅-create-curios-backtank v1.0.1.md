@@ -1,5 +1,7 @@
 # Create: Curios Backtank
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#140**: JAR `create_curios_backtank-neoforge-1.21.1-1.0.1.jar`, mod id `create_curios_backtank`, runtime `1.0.1`, SHA-1 `e15b704bf928a2e86b475fbc5d910b72a7aa8d9b`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Curios Backtank
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-curios-backtank
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_curios_backtank` 1.0.1 + CurseForge oficial revalidado em 20/09/2026; 1.0.1 permanece a release mais recente para NeoForge 1.21.1, com Create + Curios API como dependências requeridas.
 - **Observações:** mod id `create_curios_backtank`; runtime 1.0.1. JAR físico sem mixin configs listados. Release oficial NeoForge 1.21.1 de 26/04/2026; changelog: updated to neoforge 1.21.1. Não foi localizado source público versionado do próprio mod nesta auditoria.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #139 na snapshot então vigente; posição física atual #140: create_curios_backtank-neoforge-1.21.1-1.0.1.jar / 1.0.1 confirmados como latest NeoForge 1.21.1; bridge Create↔Curios, pressurized-air authority, overlap com Jetpack Curios/Create Goggles e lifecycle permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #139: create_curios_backtank-neoforge-1.21.1-1.0.1.jar / 1.0.1 confirmados como latest NeoForge 1.21.1; bridge Create↔Curios, pressurized-air authority, overlap com Jetpack Curios/Create Goggles e lifecycle permanecem atuais.
 - **Decisão:** Manter
 - **Histórico da decisão:** O mod foi recolocado em 22/08/2026 e a decisão formal permanece Manter. A justificativa histórica então registrada dizia que Curios Backtank e Jetpack Curios não eram duplicatas. Na auditoria de 09/09/2026, o upstream atual de Create: Curios Jetpack & Backtank 1.2.0 confirmou suporte também aos backtanks base do Create, portanto há overlap funcional direto. A decisão Manter foi preservada e não foi alterada automaticamente; a redundância deve ser reavaliada separadamente.
 - **Sobreposição:** Overlap funcional direto com Create: Curios Jetpack & Backtank 1.2.0 instalado, cujo upstream também habilita backtanks base em Curios. Create Goggles 6.1.1 instalado publica Backtank Support via Curios. Tratar como possível redundância/duplo hook; não como incompatibilidade provada.
