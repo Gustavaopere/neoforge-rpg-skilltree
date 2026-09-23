@@ -1,5 +1,7 @@
 # Create Big Cannons: Advanced Technologies
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#89**: JAR `cbc_at_Neoforge_1.21.1_0.1.4c.jar`, mod id `cbc_at`, runtime `0.1.4c-1.21.1`, SHA-1 `c209e451ae6830dc2cc83c3b3cc9cb0490778998`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Big Cannons: Advanced Technologies
