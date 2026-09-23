@@ -1,5 +1,7 @@
 # Create: Arm-made Cuisine
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#139**: JAR `create_cuisine-1.0.0-mc1.21.1-neoforge.jar`, mod id `create_cuisine`, runtime `1.0.0`, SHA-1 `ac22f9dbb0350ab6e43f6c4199420826e5e2e258`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Arm-made Cuisine
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-arm-made-cuisine
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_cuisine` 1.0.0 + CurseForge oficial da build NeoForge 1.21.1 revalidado em 20/09/2026 + metadata jar-in-jar; comparação explícita com stack físico NeoForge 21.1.250 / Create 6.0.10.
 - **Observações:** JAR físico `create_cuisine-1.0.0-mc1.21.1-neoforge.jar`, mod id `create_cuisine`, runtime 1.0.0. Release oficial NeoForge 1.21.1 de 17/01/2026, Client & Server. O JAR embarca L2Core/L2ModularBlocks/L2Serial internamente; não são top-levels. Upstream declara teste contra NeoForge 21.1.206 + Create 6.0.8.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #138 na snapshot então vigente; posição física atual #139: create_cuisine-1.0.0-mc1.21.1-neoforge.jar / 1.0.0 confirmados; Mechanical Arm↔Cuisine Skillet exactly-once flow preservado e pin upstream NeoForge 21.1.206/Create 6.0.8 comparado ao stack físico atual 21.1.250/6.0.10.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #138: create_cuisine-1.0.0-mc1.21.1-neoforge.jar / 1.0.0 confirmados; Mechanical Arm↔Cuisine Skillet exactly-once flow preservado e pin upstream NeoForge 21.1.206/Create 6.0.8 comparado ao stack físico atual 21.1.250/6.0.10.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Bridge específica Mechanical Arm↔Cuisine Delight. Central Kitchen e outros addons culinários automatizam outras estações/recipes; não são equivalentes integrais.
 
