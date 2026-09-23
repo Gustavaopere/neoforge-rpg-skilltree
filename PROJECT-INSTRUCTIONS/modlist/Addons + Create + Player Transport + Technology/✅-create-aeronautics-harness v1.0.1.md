@@ -1,5 +1,7 @@
 # Create Aeronautics: Harness
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#172**: JAR `CreateAeronauticsHarness-1.21.1-1.0.1.jar`, mod id `ca_harness`, runtime `1.0.1`, SHA-1 `0adc35650c48aa7327d2e0d702b8d7626209da38`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Aeronautics: Harness
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-harness
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `ca_harness` 1.0.1 + CurseForge oficial revalidado em 20/09/2026; 1.0.1 permanece a release física para NeoForge 1.21.1. Source matching permanece referência para sessions/constraints/cleanup.
 - **Observações:** JAR/mod id/runtime 1.0.1 confirmados. Source matching `mumu17-git/CreateAeronauticsHarness` confirma HarnessBlockEntity, sessions por UUID, server physics constraints, cleanup e packets.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #171 na snapshot então vigente; posição física atual #172: CreateAeronauticsHarness-1.21.1-1.0.1.jar / runtime 1.0.1 confirmados; HarnessBlockEntity, UUID sessions, Sable constraints, CBC integration e cleanup/lifecycle permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #171: CreateAeronauticsHarness-1.21.1-1.0.1.jar / runtime 1.0.1 confirmados; HarnessBlockEntity, UUID sessions, Sable constraints, CBC integration e cleanup/lifecycle permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não é jetpack nem tether de segurança genérico; é sistema de carga/constraint de objetos físicos. CBC 5.11.7 amplia a superfície com disparo/recoil enquanto carregado.
 

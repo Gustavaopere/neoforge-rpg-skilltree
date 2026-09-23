@@ -1,5 +1,7 @@
 # Create Diesel Generators
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#181**: JAR `createdieselgenerators-1.21.1-1.3.15.jar`, mod id `createdieselgenerators`, runtime `1.21.1-1.3.15`, SHA-1 `7f751dabfa83c141c1d13025cd16f06553ba459b`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Diesel Generators
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: fuel/fluid double-accounting; pumpjack state em chunk/restart; distillation scaling por heat sources; multiblock dupe/loss; fluid tag overlap; burner heat stale; contraption double-processing; Sable/Aeronautics drift.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-diesel-generators
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createdieselgenerators` 1.21.1-1.3.15 + CurseForge oficial revalidado em 12/09/2026; 1.3.15 de 30/07/2026 continua a release NeoForge 1.21.1 mais recente. Source oficial matching permanece referência funcional.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createdieselgenerators` 1.21.1-1.3.15 + CurseForge oficial revalidado em 12/09/2026; 1.3.15 de 30/07/2026 continua a release NeoForge 1.21.1 mais recente. Source oficial matching permanece referência funcional.
 - **Observações:** JAR `createdieselgenerators-1.21.1-1.3.15.jar`, mod id `createdieselgenerators`, runtime `1.21.1-1.3.15`. Source matching confirma Plant Oil, Crude Oil, Biodiesel, Diesel, Gasoline, Ethanol, concrete fluids e principais máquinas.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #182 na snapshot então vigente; posição física atual #181: createdieselgenerators-1.21.1-1.3.15.jar / runtime 1.21.1-1.3.15 reconfirmados como latest Release NeoForge 1.21.1; pumpjack, distillation scaling, burner/heat, fuel/fluid conservation e contraption boundaries permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #182: createdieselgenerators-1.21.1-1.3.15.jar / runtime 1.21.1-1.3.15 reconfirmados como latest Release NeoForge 1.21.1; pumpjack, distillation scaling, burner/heat, fuel/fluid conservation e contraption boundaries permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Overlap com outros sistemas industriais/petroquímicos deve ser comparado por fluid tags, refinery recipes e geração de energia. Não é redundância automática por compartilhar oil/diesel.
 

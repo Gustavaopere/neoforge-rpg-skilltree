@@ -1,5 +1,7 @@
 # Create Cobblestone
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#176**: JAR `createcobblestone-1.5.0+neoforge-1.21.1-153.jar`, mod id `createcobblestone`, runtime `1.5.0+neoforge-1.21.1-153`, SHA-1 `1fbb61c9b5d99fff39fa8cb1528847feb0b1a68f`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Cobblestone
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: throughput/config trivializa recursos; production double-count em speed/reload; storage overflow; generator type removido/desabilitado em mundo existente; custom datapack extremo; Create API/stress drift; ganho de performance não comprovado sem profiling.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-cobblestone
-- **Procedência:** snapshot física de 11/09/2026 + runtime completo `createcobblestone` 1.5.0+neoforge-1.21.1-153 + CurseForge oficial revalidado em 12/09/2026; build 153 de 29/08/2026 continua a release NeoForge 1.21.1 mais recente. Source branch 1.21.1-neoforge permanece referência funcional.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime completo `createcobblestone` 1.5.0+neoforge-1.21.1-153 + CurseForge oficial revalidado em 12/09/2026; build 153 de 29/08/2026 continua a release NeoForge 1.21.1 mais recente. Source branch 1.21.1-neoforge permanece referência funcional.
 - **Observações:** Runtime físico preservado integralmente: `1.5.0+neoforge-1.21.1-153`. Source branch `1.21.1-neoforge` declara mod base 1.5.0; README confirma 5 generator types, configs e datapacks custom.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #177 na snapshot então vigente; posição física atual #176: createcobblestone-1.5.0+neoforge-1.21.1-153.jar / runtime completo 1.5.0+neoforge-1.21.1-153 reconfirmados como latest Release NeoForge 1.21.1; generator types, RPM↔SU defaults, datapack types, storage/reload e performance gates permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #177: createcobblestone-1.5.0+neoforge-1.21.1-153.jar / runtime completo 1.5.0+neoforge-1.21.1-153 reconfirmados como latest Release NeoForge 1.21.1; generator types, RPM↔SU defaults, datapack types, storage/reload e performance gates permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Compartilha geração renovável de stone/cobblestone com outras rotas, mas sua superfície específica é máquina Create configurável/data-driven orientada a reduzir custo de tick. Comparar SU, throughput e MSPT real.
 - **Data da última decisão:** 2026-08-30
