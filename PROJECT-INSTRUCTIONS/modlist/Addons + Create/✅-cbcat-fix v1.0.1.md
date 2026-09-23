@@ -1,5 +1,7 @@
 # CBCAT Fix
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#90**: JAR `cbcatfix-1.21.1-neoforge-1.0.1.jar`, mod id `cbcatfix`, runtime `1.0.0`, SHA-1 `d204cbac7d11942a4e7d025e5c4e743ac329b6cd`. Filename físico `1.0.1`; metadata/runtime permanece **`1.0.0`**, divergência preservada sem normalização artificial.
+
 ## Propriedades do registro
 
 - **Mod:** CBCAT Fix
