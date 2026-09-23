@@ -1,5 +1,7 @@
 # CodxLib
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#101**: JAR `codxlib-1.6.0-neoforge+1.21.1.jar`, mod id `codxlib`, runtime `1.6.0`, SHA-1 `5934c440dd8b4633ca2465dfe94ecfdbe5ad8e89`.
+
 ## Propriedades do registro
 
 - **Mod:** CodxLib
