@@ -1,5 +1,7 @@
 # Climbable Ropes for Create Aeronautics
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#95**: JAR `climbable_ropes-2.1.3.jar`, mod id `climbable_ropes`, runtime `2.1.3`, SHA-1 `70ec457cb47e3772baf76e5e7c19872dbd4537f9`.
+
 ## Propriedades do registro
 
 - **Mod:** Climbable Ropes for Create Aeronautics
