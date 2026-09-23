@@ -1,5 +1,7 @@
 # Create Confectionery
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#119**: JAR `create-confectionery1.21.1_v1.1.3b.jar`, mod id `create_confectionery`, runtime `1.1.3.`, SHA-1 `47e235efa862c5cbea53fdf8346d4c499674defa`. Filename físico `1.1.3b`; metadata/runtime top-level atual permanece **`1.1.3.`**, divergência preservada sem normalização artificial.
+
 ## Propriedades do registro
 
 - **Mod:** Create Confectionery
