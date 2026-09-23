@@ -1,5 +1,7 @@
 # Companions!
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#104**: JAR `companions-neoforge-1.21.1-1.3.4.jar`, mod id `companions`, runtime `1.3.4`, SHA-1 `23f6e4f27a457a8d016412e495e417c0b36fdcc1`.
+
 ## Propriedades do registro
 
 - **Mod:** Companions!
