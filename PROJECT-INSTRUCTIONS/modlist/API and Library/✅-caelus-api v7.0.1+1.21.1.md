@@ -1,5 +1,7 @@
 # Caelus API
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#86**: JAR `caelus-neoforge-7.0.1+1.21.1.jar`, mod id `caelus`, runtime `7.0.1+1.21.1`, SHA-1 `e4c2e1af4e3082d68f7df75f7c8ce30116d71515`.
+
 ## Propriedades do registro
 
 - **Mod:** Caelus API
