@@ -1,5 +1,7 @@
 # Cobweb
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#99**: JAR `cobweb-neoforge-1.21-1.4.0.jar`, mod id `cobweb`, runtime `1.4.0`, SHA-1 `5ae5dbf4184a62b9ff5bd31f6f8ba62943dd197d`.
+
 ## Propriedades do registro
 
 - **Mod:** Cobweb
