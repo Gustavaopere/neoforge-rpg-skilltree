@@ -1,5 +1,7 @@
 # Clockwork
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#96**: JAR `clockwork-neoforge-1.21.1-1.1.4.jar`, mod id `clockwork`, runtime `1.1.4`, SHA-1 `df27886fb4bfc24e9751dc7b2d8cda18554caf30`.
+
 ## Propriedades do registro
 
 - **Mod:** Clockwork

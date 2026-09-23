@@ -1,5 +1,7 @@
 # Citadel
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#94**: JAR `citadel-2.7.1-1.21.1.jar`, mod id `citadel`, runtime `2.7.1`, SHA-1 `9d7873f74b418f4f83adf2ae41af75d2e8217cd6`.
+
 ## Propriedades do registro
 
 - **Mod:** Citadel
