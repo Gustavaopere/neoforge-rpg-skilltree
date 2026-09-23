@@ -1,5 +1,7 @@
 # Continuity
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#107**: JAR `continuity-3.0.0+1.21.neoforge.jar`, mod id `continuity`, runtime `3.0.0+1.21.neoforge`, SHA-1 `0aecd2d043ac25299254623fafdd9129ab2ba9c2`.
+
 ## Propriedades do registro
 
 - **Mod:** Continuity

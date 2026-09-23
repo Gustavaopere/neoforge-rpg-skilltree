@@ -1,5 +1,7 @@
 # Controlling
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#108**: JAR `Controlling-neoforge-1.21.1-19.0.5.jar`, mod id `controlling`, runtime `19.0.5`, SHA-1 `8a34424fc1428778be2fdbfa4da67b21b70bcbfe`.
+
 ## Propriedades do registro
 
 - **Mod:** Controlling

@@ -1,5 +1,7 @@
 # Sinytra Connector
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#105**: JAR `connector-2.0.0-beta.17+1.21.1-full.jar`, SHA-1 `ba08b534af7982d0bd25a25b45cb654c09ffec8f`. Na linha top-level atual, os campos de **mod id**, **mod name** e **mod version/runtime** estão vazios; por fail-closed, nenhum desses valores é inferido a partir do filename.
+
 ## Propriedades do registro
 
 - **Mod:** Sinytra Connector

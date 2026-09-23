@@ -1,5 +1,7 @@
 # Cosmetic Armor Reworked
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#111**: JAR `cosmeticarmorreworked-1.21.1-v1-neoforge.jar`, mod id `cosmeticarmorreworked`, runtime `1.21.1-v1-neoforge`, SHA-1 `5f1e699cd0888b857ec63f01adaeb3571848bfea`.
+
 ## Propriedades do registro
 
 - **Mod:** Cosmetic Armor Reworked
