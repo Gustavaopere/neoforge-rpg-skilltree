@@ -1,5 +1,7 @@
 # Create Stuff 'N Additions
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#125**: JAR `create-stuff-additions1.21.1_v2.1.4b.jar`, mod id `create_sa`, runtime `2.1.4.`, SHA-1 `246915560f74b92e0186c22da26be8995380c443`. Filename físico `2.1.4b`; metadata/runtime top-level atual permanece **`2.1.4.`**, divergência preservada sem normalização artificial.
+
 ## Propriedades do registro
 
 - **Mod:** Create Stuff 'N Additions
