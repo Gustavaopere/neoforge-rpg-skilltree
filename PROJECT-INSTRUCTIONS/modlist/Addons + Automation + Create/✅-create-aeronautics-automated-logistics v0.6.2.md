@@ -1,5 +1,7 @@
 # Create Aeronautics: Automated Logistics
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#128**: JAR `create_aeronautics_automated_logistics-0.6.2.jar`, mod id `create_aeronautics_automated_logistics`, runtime `0.6.2`, SHA-1 `1954f5c4f72620942851241bd18217197ed59b46`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Aeronautics: Automated Logistics
