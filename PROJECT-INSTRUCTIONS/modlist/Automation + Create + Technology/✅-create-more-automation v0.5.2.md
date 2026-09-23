@@ -1,5 +1,7 @@
 # Create: More Automation
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#150**: JAR `create_more_automation-0.5.2-neoforge-1.21.1.jar`, mod id `create_more_automation`, runtime `0.5.2`, SHA-1 `a184d11c11fb03619dd8940cc160b3aa0d5e96fe`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: More Automation
@@ -14,7 +16,7 @@
 - **Fonte:** https://modrinth.com/mod/create-more-automation/version/en1TN4J7
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_more_automation` 0.5.2 + CurseForge oficial revalidado em 20/09/2026; 0.5.2 continua a release mais recente para NeoForge 1.21.1.
 - **Observações:** mod id `create_more_automation`; runtime 0.5.2. Projeto: muitos recipes para automatizar Create/vanilla; JEI recomendado. 0.5.2: Ice recipe modificado novamente e Moss recipe alterado para usar stone em vez de cobblestone.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #149 na snapshot então vigente; posição física atual #150: create_more_automation-0.5.2-neoforge-1.21.1.jar / 0.5.2 confirmados como latest NeoForge 1.21.1; recipe/data authority, linha Create 6.0 e deltas 0.5.2 de Ice/Moss permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #149: create_more_automation-0.5.2-neoforge-1.21.1.jar / 0.5.2 confirmados como latest NeoForge 1.21.1; recipe/data authority, linha Create 6.0 e deltas 0.5.2 de Ice/Moss permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Houve recomendação histórica de remoção sob uma arquitetura antiga centrada em TFC. Esse fundamento não é operacional no pack atual e não constitui decisão formal vigente. Em 08/09/2026, o mod foi reconfirmado como `Instalado`; permanece `Sem decisão` e a antiga data associada foi removida.
 - **Sobreposição:** Sobrepõe objetivo de outros recipe packs de automação, mas não é redundância automática. A comparação deve ser recipe-by-recipe, considerando custo, throughput e progression gate.
