@@ -1,5 +1,7 @@
 # Create: Mechanical Spawner
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#147**: JAR `create_mechanical_spawner-1.21.1-1.3.2-6.0.10.jar`, mod id `create_mechanical_spawner`, runtime `1.3.1-6.0.10`, SHA-1 `d9a5a2ee44238e4a90f70057ba9ec8414594fe24`. O filename/publicação física é `1.3.2-6.0.10`; a metadata/runtime top-level do JAR permanece `1.3.1-6.0.10`, divergência stale preservada para troubleshooting.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Mechanical Spawner
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-mechanical-spawner/files/all
 - **Procedência:** modlist.txt física atual de 16/09/2026 + JAR `create_mechanical_spawner-1.21.1-1.3.2-6.0.10.jar` + metadata runtime `create_mechanical_spawner` 1.3.1-6.0.10 + CurseForge oficial revalidado em 20/09/2026; publicação 1.3.2-6.0.10 é a build Beta mais recente para NeoForge 1.21.1.
 - **Observações:** mod id `create_mechanical_spawner`; JAR/publicação `1.3.2-6.0.10`; runtime metadata literal `1.3.1-6.0.10`. A versão catalogada segue o artefato físico/publicação oficial; a string interna divergente é preservada como metadata stale. Projeto documenta stress/min speed/fluid capacity/range/time multiplier configuráveis, spawn fluid mixer recipes, Loot Collector, JEI/Jade/KubeJS e Ponder.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #146 na snapshot então vigente; posição física atual #147: artefato `create_mechanical_spawner-1.21.1-1.3.2-6.0.10.jar` e publicação oficial 1.3.2-6.0.10 confirmados; metadata interna ainda reporta 1.3.1-6.0.10 e é tratada como string stale do JAR, preservada para troubleshooting.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #146: artefato `create_mechanical_spawner-1.21.1-1.3.2-6.0.10.jar` e publicação oficial 1.3.2-6.0.10 confirmados; metadata interna ainda reporta 1.3.1-6.0.10 e é tratada como string stale do JAR, preservada para troubleshooting.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão curatorial formal. Em 20/09/2026, a identidade instalada foi reconciliada: o JAR físico e a publicação oficial são 1.3.2-6.0.10; a metadata runtime 1.3.1-6.0.10 foi confirmada como string stale interna e permanece registrada apenas para troubleshooting.
 - **Sobreposição:** É uma rota cinética/data-driven de geração de mobs e não uma duplicata lógica de Apothic Spawners. Conflitos devem ser avaliados por spawn economy, loot e ownership de farms, não por ambos lidarem com spawners.

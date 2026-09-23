@@ -1,5 +1,7 @@
 # Create: Fantasizing Again
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#143**: JAR `create_fantasizing-1.21.1-1.2.0-b3.jar`, mod id `create_fantasizing`, runtime `1.2.0-b3`, SHA-1 `aac8f1460d2b5d21019c8b944b26dc0c184952c0`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Fantasizing Again
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-fantasizing-again
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_fantasizing` 1.2.0-b3 + CurseForge oficial revalidado em 20/09/2026; beta3 de 06/08/2026 continua o artefato Beta 1.21.1 mais recente, enquanto 1.1.3 permanece a latest Release estável.
 - **Observações:** JAR físico `create_fantasizing-1.21.1-1.2.0-b3.jar`, mod id `create_fantasizing`, runtime 1.2.0-b3. CurseForge: CreateFantasizing 1.2.0-beta3, NeoForge 1.21.1, Client & Server, 06/08/2026. Beta3 corrige fluid duplication no Fluid Barrel e NPE do Crate.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #142 na snapshot então vigente; posição física atual #143: create_fantasizing-1.21.1-1.2.0-b3.jar / 1.2.0-b3 confirmados como latest Beta NeoForge 1.21.1; Fluid Barrel dupe fix, Crate NPE fix, engines, Block Placer, Warden capture e rare-resource recipes permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #142: create_fantasizing-1.21.1-1.2.0-b3.jar / 1.2.0-b3 confirmados como latest Beta NeoForge 1.21.1; Fluid Barrel dupe fix, Crate NPE fix, engines, Block Placer, Warden capture e rare-resource recipes permanecem atuais.
 - **Decisão:** Manter
 - **Histórico da decisão:** 2026-09-06 — decisão Manter confirmada e pesquisa fechada. A beta3 foi preferida conscientemente por fixes de duplicação/NPE; não é beta mantida apenas por ser mais nova.
 - **Sobreposição:** Sobreposição funcional parcial com outros addons Create. Interação concreta com Create: Deep Dark 3.0.2 pela copy recipe de Echo Shard e pela captura de Warden via Sculk Engine; avaliar progressão/custo real, não inferir incompatibilidade.

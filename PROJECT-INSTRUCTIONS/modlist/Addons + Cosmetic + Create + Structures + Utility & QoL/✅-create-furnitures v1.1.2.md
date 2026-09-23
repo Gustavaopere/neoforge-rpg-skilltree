@@ -1,5 +1,7 @@
 # Create: Furnitures
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#144**: JAR `create_furnitures-1.1.2-neoforge-1.21.1.jar`, mod id `create_furnitures`, runtime `1.1.2`, SHA-1 `0c10c3a0aac7b095b295d89aca6f76399d9e035f`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Furnitures
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-new-furnitures
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_furnitures` 1.1.2 + CurseForge oficial revalidado em 20/09/2026; 1.1.2 permanece a release específica para NeoForge 1.21.1.
 - **Observações:** JAR físico `create_furnitures-1.1.2-neoforge-1.21.1.jar`, mod id `create_furnitures`, runtime 1.1.2; a modlist marca o artefato como MCreator mod. Projeto upstream: Create : New Furnitures. Release 1.1.2 corrige FPS em Bridge Structures.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #143 na snapshot então vigente; posição física atual #144: create_furnitures-1.1.2-neoforge-1.21.1.jar / 1.1.2 confirmados; furniture families, seat lifecycle, Stone Cutter recipes e Bridge Structures/FPS regression permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #143: create_furnitures-1.1.2-neoforge-1.21.1.jar / 1.1.2 confirmados; furniture families, seat lifecycle, Stone Cutter recipes e Bridge Structures/FPS regression permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Compartilha espaço decorativo/assentos com Immersive Furniture 0.3.3+1.21.1 fisicamente presente. Sobreposição é por conteúdo/estética/recipes; `[Let's Do] Furniture` não está mais presente na modlist física atual.
 
