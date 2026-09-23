@@ -1,5 +1,7 @@
 # CorgiLib
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#110**: JAR `Corgilib-NeoForge-1.21.1-5.0.0.9.jar`, mod id `corgilib`, runtime `5.0.0.9`, SHA-1 `6699f876f9e10f936910055f7fe1a283d8bb9e0f`.
+
 ## Propriedades do registro
 
 - **Mod:** CorgiLib
