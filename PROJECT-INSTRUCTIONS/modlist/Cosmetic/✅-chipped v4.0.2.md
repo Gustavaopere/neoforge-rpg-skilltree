@@ -1,5 +1,7 @@
 # Chipped
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#92**: JAR `chipped-neoforge-1.21.1-4.0.2.jar`, mod id `chipped`, runtime `4.0.2`, SHA-1 `6f5395f58139802edfde7cb9170279f92f291971`.
+
 ## Propriedades do registro
 
 - **Mod:** Chipped
