@@ -1,5 +1,7 @@
 # Create Quality of Life
 
+> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#115**: JAR `Create Quality of Life-1.21.1-1.6.3-fix1.jar`, mod id `createqol`, runtime `1.6.3-fix1`, SHA-1 `bc5aa6699c5dfb2e1de40c2627c11b1751caa9db`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Quality of Life
