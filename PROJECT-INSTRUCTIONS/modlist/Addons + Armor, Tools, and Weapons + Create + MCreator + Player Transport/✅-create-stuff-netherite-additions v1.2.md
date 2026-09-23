@@ -1,5 +1,7 @@
 # Create Stuff & Netherite Additions
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#159**: JAR `create_sna-1.2-neoforge-1.21.1.jar`, mod id `create_nj`, runtime `1.2`, SHA-1 `8d7889a851ab8258bae5edf4af5f85e09d225191`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Stuff & Netherite Additions
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-netherite-additions
 - **Procedência:** modlist.txt física atual de 16/09/2026 + metadata runtime `create_nj` 1.2 + CurseForge oficial revalidado em 20/09/2026; Netherite Additions 1.2 permanece a release mais recente para NeoForge 1.21.1. Source matching público não localizado; internals continuam fail-closed.
 - **Observações:** JAR físico `create_sna-1.2-neoforge-1.21.1.jar`, mod id físico `create_nj`, runtime 1.2. Filename `create_sna` não substitui o mod id. Release 1.2 corrige itens Netherite não fireproof e compatibilidade com fueling/filling tanks.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — registro histórico do lote físico #158 na snapshot então vigente; posição física atual #159: create_sna-1.2-neoforge-1.21.1.jar / runtime 1.2 confirmados; 1.2 permanece a release NeoForge 1.21.1 mais recente. Fireproof fix e fueling/filling tank compatibility permanecem os deltas centrais.
+- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #158: create_sna-1.2-neoforge-1.21.1.jar / runtime 1.2 confirmados; 1.2 permanece a release NeoForge 1.21.1 mais recente. Fireproof fix e fueling/filling tank compatibility permanecem os deltas centrais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Extende CSA, não o substitui. Interage com a bridge Create SA Curios Jetpacks apenas se o item real for reconhecido no runtime; não atribuir IDs `create_sa:*` a este JAR sem registry/source comprobatório. Rotas externas de Netherite podem reduzir o custo do tier.
 
