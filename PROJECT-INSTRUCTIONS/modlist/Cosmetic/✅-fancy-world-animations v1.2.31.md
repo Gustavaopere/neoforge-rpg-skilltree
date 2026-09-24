@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #295: Fancy World Animations 1.2.31 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #295: JAR `fwa+1.21.1-neoforge-1.2.31.jar`, mod id `fwa`, runtime `1.2.31`, SHA-1 `a896f8442b9ffa62345b1fcfb868dd86a894d3e1`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `fwa+1.21.1-neoforge-1.2.31.jar`, mod id `fwa`, NeoForge 1.21.1. O branch oficial `maDU59/FancyWorldAnimations:neoforge-1.21.1` declara exatamente `1.2.31`. Fancy World Animations é **client-side**: anima a apresentação de blocos interagíveis sem substituir o block state autoritativo do mundo.
 </callout>

@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #300: Gaze 1.1.7.1 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #300: JAR `gaze-1.1.7.1.jar`, mod id `gaze`, runtime `1.1.7.1`, SHA-1 `a8cb3190bde157f78160ce65c202ce2d47fb2041`.
+
 <callout icon="🔬">
 	**PADRÃO ALEX'S MOBS — DOSSIÊ OPERACIONAL EXAUSTIVO.** Esta ficha documenta apenas o que pôde ser confirmado para o JAR físico `gaze-1.1.7.1.jar` e fontes públicas correspondentes. Onde o source exato da 1.1.7.1 não estava disponível para inspeção, não são inventados classes, registries, IDs ou números internos.
 </callout>

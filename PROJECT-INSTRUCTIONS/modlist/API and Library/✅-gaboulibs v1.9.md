@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #297: Gabou's Libs 1.9 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #297: JAR `gaboulibs-neoforge-1.9.jar`, mod id `gaboulibs`, runtime `1.9`, SHA-1 `aa39c5645c0479dbd7a485432e9694c78ad6082a`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `gaboulibs-neoforge-1.9.jar`, mod id `gaboulibs`. O branch oficial `xGabou/Gabou-s-Libs:1.21.1` declara exatamente `mod_version=1.9`, Minecraft 1.21.1 e NeoForge 21.1.211. A metadata antiga desta ficha citava 1.8.7/Auth; isso está obsoleto: a release 1.9 removeu o sistema de auth e o source exato não contém esse caminho.
 </callout>
