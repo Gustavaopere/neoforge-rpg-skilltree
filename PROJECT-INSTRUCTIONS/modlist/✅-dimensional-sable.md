@@ -1,5 +1,7 @@
 # Dimensional Sable
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#219**: JAR `dimensional_sable-1.0.5.jar`, mod id `dimensional_sable`, runtime `1.0.5`, SHA-1 `67e519029aa95e0b4a0694bf31190163ada0bc81`.
+
 ## Propriedades do registro
 
 - **Mod:** Dimensional Sable

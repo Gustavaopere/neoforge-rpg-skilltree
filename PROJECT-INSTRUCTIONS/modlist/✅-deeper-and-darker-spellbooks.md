@@ -1,5 +1,7 @@
 # Deeper and Darker: Spellbooks
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#214**: JAR `darkermagic-1.3.3-1.21.1-ver.b.jar`, mod id `darkermagic`, runtime `1.3.3-1.21.1`, SHA-1 `783123ae86c91c01527c10f338679caaef42eb42`.
+
 ## Propriedades do registro
 
 - **Mod:** Deeper and Darker: Spellbooks

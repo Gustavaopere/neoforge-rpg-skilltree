@@ -1,5 +1,7 @@
 # Destroy
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#218**: JAR `destroy-1.21.1-0.4.3.jar`, mod id `destroy`, runtime `0.4.3`, SHA-1 `060b4503283c768ab0433dcf6147b7ae4d8ee4a1`.
+
 ## Propriedades do registro
 
 - **Mod:** Destroy

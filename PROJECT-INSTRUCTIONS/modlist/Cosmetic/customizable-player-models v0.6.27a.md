@@ -1,6 +1,6 @@
 # Customizable Player Models
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#212**: JAR `CustomPlayerModels-1.21-0.6.27a.jar`, runtime `0.6.27a`.
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#212**: JAR `CustomPlayerModels-1.21-0.6.27a.jar`, mod id `cpm`, runtime `0.6.27a`, SHA-1 `34d57efcc56c043f89c61f169944d7b95c11f504`.
 
 ## Propriedades do registro
 
@@ -14,11 +14,11 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Interage fortemente com player rendering, animações, primeira pessoa, VR/ViveCraft e mods que substituem modelo/pose do jogador. Riscos: double-transform/double-animation, model sync divergente, asset/model inválido, lifecycle de troca de avatar e privacy/visibility em multiplayer. 0.6.27a corrige animação ao ficar em escada e crash com ViveCraft novo.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/custom-player-models/files/8375633
-- **Procedência histórica:** snapshot físico de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `cpm` 0.6.27a + CurseForge oficial revalidado em 12/09/2026; `CustomPlayerModels-1.21-0.6.27a.jar` de 05/07/2026 continua a release NeoForge compatível com 1.21.1. Ports 26.x posteriores não foram retroprojetados.
+- **Procedência:** modlist.txt física atual de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `cpm` 0.6.27a + CurseForge oficial revalidado em 12/09/2026; `CustomPlayerModels-1.21-0.6.27a.jar` de 05/07/2026 continua a release NeoForge compatível com 1.21.1. Ports 26.x posteriores não foram retroprojetados.
 - **Observações:** mod id `cpm`; runtime 0.6.27a. Changelog 0.6.27a: alphabetical sorting em file choosers, fix de standing-on-ladder animations (#985) e fix de crash com versões novas do ViveCraft (#992). Ports 26.x do mesmo changelog não são tratados como mudança funcional da build 1.21.1.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #214 na snapshot então vigente: CustomPlayerModels-1.21-0.6.27a.jar / runtime 0.6.27a reconfirmados como latest Release NeoForge para Minecraft 1.21/1.21.1. Releases 0.6.27b/c posteriores pertencem a linhas 26.x e não substituem esta build.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #214: CustomPlayerModels-1.21-0.6.27a.jar / runtime 0.6.27a reconfirmados como latest Release NeoForge para Minecraft 1.21/1.21.1. Releases 0.6.27b/c posteriores pertencem a linhas 26.x e não substituem esta build.
 - **Decisão:** Sem decisão
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Customizable Player Models 0.6.27a foi reconfirmado na modlist física e mantido como provider de avatar/model/animação. A snapshot física então vigente possuía 595 entradas totais incluindo o modloader; a presença visual no pack não foi convertida em decisão curatorial.
+- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Customizable Player Models 0.6.27a foi reconfirmado na modlist física e mantido como provider de avatar/model/animação. A modlist física atual possui 595 entradas totais incluindo o modloader; a presença visual no pack não foi convertida em decisão curatorial.
 - **Sobreposição:** Pode sobrepor visualmente outros player-model/animation mods, mas não é automaticamente redundante. CPM owns seu avatar/model/animation state; integrações devem evitar aplicar duas transforms/poses ao mesmo bone/layer sem precedence.
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -86,7 +86,7 @@ Atualização deve ser smoke-tested com CPM OSC Compat e demais render/animation
 9. Resource/model reload e client restart.
 10. Modelo inválido em cópia de teste: erro controlado, sem corrupção de mundo.
 ## 15. Evidência
-- snapshot física de 11/09/2026: CPM 0.6.27a;
+- modlist física atual: CPM 0.6.27a;
 - CurseForge oficial: custom avatar editor, Client & Server, NeoForge 1.21/1.21.1;
 - changelog 0.6.27a: file chooser sorting, ladder animation fix #985 e ViveCraft crash fix #992;
 - CPM OSC Compat 1.7.2 catalogado separadamente como bridge de input.

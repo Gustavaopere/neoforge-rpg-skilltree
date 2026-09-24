@@ -1,5 +1,7 @@
 # Cyclops Core
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#213**: JAR `cyclopscore-1.21.1-neoforge-1.30.0.jar`, mod id `cyclopscore`, runtime `1.30.0`, SHA-1 `1eab17f360da5c8523d984e51351ee35d7573699`.
+
 ## Propriedades do registro
 
 - **Mod:** Cyclops Core

@@ -1,5 +1,7 @@
 # Dis-Enchanting Table
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#221**: JAR `disenchanting_table-merged-1.21.1-5.0.2.jar`, mod id `disenchanting_table`, runtime `5.0.2`, SHA-1 `c054a8bef63addff4d4a9520ec4c7a915c3fc1d1`.
+
 ## Propriedades do registro
 
 - **Mod:** Dis-Enchanting Table

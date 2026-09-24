@@ -1,5 +1,7 @@
 # Delightful Backport
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#216**: JAR `Delightful-Backport-1.0-1.21.1-neoforge.jar`, mod id `delightfulbackport`, runtime `1.0`, SHA-1 `2ab7909dcde4adc69586ca4a6030fecaa86b2598`.
+
 ## Propriedades do registro
 
 - **Mod:** Delightful Backport
