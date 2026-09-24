@@ -1,5 +1,7 @@
 # Create Nuclear
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#197**: JAR `createnuclear-1.3.2-beta.3-neoforge.jar`, mod id `createnuclear`, runtime `1.3.2-beta.3`, SHA-1 `c4349006fd07e614b0de3c5982d7f0d0a818c98c`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Nuclear
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: reactor/rod state stale; fuel depletion/ejection replay; neutron/criticality desync; steam/fluid dupe; SU overflow/readout; Coal Dust/Reinforced Glass tag drift; HEV/Hazmat state stale; Curios meter duplication; Create API drift; loops energéticos com New Age/CC&A; retroprojeção indevida da linha V2.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/createnuclear
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createnuclear` 1.3.2-beta.3 + CurseForge oficial revalidado em 12/09/2026; 1.3.2-beta.3 de 13/12/2025 continua a build NeoForge 1.21.1 mais recente. O projeto possui Create Nuclear 2.0.0 mais novo para Minecraft 1.20.1, fora do alvo desta ficha.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createnuclear` 1.3.2-beta.3 + CurseForge oficial revalidado em 12/09/2026; 1.3.2-beta.3 de 13/12/2025 continua a build NeoForge 1.21.1 mais recente. O projeto possui Create Nuclear 2.0.0 mais novo para Minecraft 1.20.1, fora do alvo desta ficha.
 - **Observações:** JAR/mod id/runtime 1.3.2-beta.3 e source matching `Create-Nuclear-Team/CreateNuclearNeoForge` main confirmados. Deltas exatos 1.3.2: refactor de Coal Dust tags/recipes e atualização de glass tags/recipes para Reinforced Glass. Conteúdo V2 posterior não foi atribuído à build instalada.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #198 na snapshot então vigente; posição física atual #197: createnuclear-1.3.2-beta.3-neoforge.jar / runtime 1.3.2-beta.3 reconfirmados como a build Beta NeoForge 1.21.1 mais recente. A linha V2 mais nova do projeto permanece exclusiva de Minecraft 1.20.1 e não é retroprojetada nesta ficha.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #198: createnuclear-1.3.2-beta.3-neoforge.jar / runtime 1.3.2-beta.3 reconfirmados como a build Beta NeoForge 1.21.1 mais recente. A linha V2 mais nova do projeto permanece exclusiva de Minecraft 1.20.1 e não é retroprojetada nesta ficha.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Histórico: houve sugestão anterior de remoção por adicionar uma ramificação nuclear completa e por a build estar em beta; posteriormente o usuário manteve addons Create de que gosta. Esse histórico não equivale a uma decisão atual. O mod permanece instalado e sem decisão final.
 - **Sobreposição:** Create: New Age 1.2.0 e Create Crafts & Additions 1.7.0 compartilham geração/conversão de energia, mas Nuclear possui reactor/radiation/fuel chain própria. Auditar loops SU/FE e custos, não presumir redundância.
