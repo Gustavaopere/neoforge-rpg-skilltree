@@ -1,5 +1,7 @@
 # Create: Ender Transmission
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#184**: JAR `createendertransmission-2.1.1-1.21.1.jar`, mod id `createendertransmission`, runtime `2.1.1-1.21.1`, SHA-1 `fbf165d068a3a9c6d24f1bcf68fb1af380ee2603`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Ender Transmission
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: remote item/fluid/energy dupe/loss; endpoint stale; cross-dimension restart; orphan chunk tickets; kinetic-cost bypass; concurrent transfer; claims/permission bypass; Create API drift.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-ender-transmission
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createendertransmission` 2.1.1-1.21.1 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 2.1.1 de 17/11/2025 continua a release NeoForge 1.21.1 mais recente. Changelog mantém fixes #7/#9 fail-closed quanto à causa.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createendertransmission` 2.1.1-1.21.1 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 2.1.1 de 17/11/2025 continua a release NeoForge 1.21.1 mais recente. Changelog mantém fixes #7/#9 fail-closed quanto à causa.
 - **Observações:** JAR `createendertransmission-2.1.1-1.21.1.jar`, mod id `createendertransmission`, runtime 2.1.1-1.21.1. Changelog 2.1.1 cita fixes #7/#9 via PR #23 sem detalhe causal suficiente; causa permanece fail-closed.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #185 na snapshot então vigente; posição física atual #184: createendertransmission-2.1.1-1.21.1.jar / runtime 2.1.1-1.21.1 reconfirmados como latest Release NeoForge 1.21.1; Energy/Item/Fluid Transmitters, kinetic Chunk Loader, conservation e ticket lifecycle permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #185: createendertransmission-2.1.1-1.21.1.jar / runtime 2.1.1-1.21.1 reconfirmados como latest Release NeoForge 1.21.1; Energy/Item/Fluid Transmitters, kinetic Chunk Loader, conservation e ticket lifecycle permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Relacionado a outras logísticas ender/wireless, mas adiciona explicitamente transmissão de energia, itens, fluidos e chunk loading cinético. Equivalência exige cobertura concreta desses quatro domínios.
 - **Data da última decisão:** 2026-08-26
