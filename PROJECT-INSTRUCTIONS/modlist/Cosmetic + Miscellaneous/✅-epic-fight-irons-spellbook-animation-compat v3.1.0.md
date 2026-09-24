@@ -1,5 +1,7 @@
 # Epic Fight & Iron's Spellbook Animation Compat
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#245**: JAR `efiscompat-3.1.0.jar`, mod id `efiscompat`, runtime `3.1.0`, SHA-1 `4250e1c65732d70d1091cc50b84a91b6ed5b2b3f`.
+
 ## Propriedades do registro
 
 - **Mod:** Epic Fight & Iron's Spellbook Animation Compat
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epic-fight-x-irons-spells-enhanced-animations
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `efiscompat-3.1.0.jar`, mod id `efiscompat`, runtime 3.1.0 e SHA-1 `4250e1c65732d70d1091cc50b84a91b6ed5b2b3f`. O dossiê técnico/changelog 3.1.0 já registrado permanece aplicável à build física.
 - **Observações:** Projeto oficial atual: Epic Fight x Iron's Spells: Enhanced Animations. Features oficiais incluem múltiplas casting animations, variantes com staff, staff-item configuration, hide-held-item options, spell cancel ao usar skills Epic Fight como guard/roll e datapack support para customizar spell animations.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #244 na snapshot então vigente; posição física atual #245: `efiscompat-3.1.0.jar` / runtime `3.1.0` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #244: `efiscompat-3.1.0.jar` / runtime `3.1.0` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** É bridge específica de animação/cancel entre Epic Fight e Iron's Spells. Não substitui spell logic, damage, mana/cooldown ou Epic Fight core; pode sobrepor apenas outras bridges/animation layers na mesma pose.
 - **Data da última decisão:** 2026-08-26
