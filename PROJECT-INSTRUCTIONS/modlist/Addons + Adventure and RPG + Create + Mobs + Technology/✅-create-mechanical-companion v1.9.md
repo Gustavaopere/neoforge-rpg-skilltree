@@ -1,5 +1,7 @@
 # Create Mechanical Companion
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#193**: JAR `createmechanicalcompanion-1.9-neoforge-1.21.1.jar`, mod id `createmechanicalcompanion`, runtime metadata **vazia**, SHA-1 `480d35a7f926c1a2b86521be1feb75710b1c838e`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Mechanical Companion

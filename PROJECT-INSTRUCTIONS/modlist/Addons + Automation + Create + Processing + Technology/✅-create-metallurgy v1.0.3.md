@@ -1,5 +1,7 @@
 # Create Metallurgy
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#194**: JAR `createmetallurgy-1.0.3-1.21.1.jar`, mod id `createmetallurgy`, runtime `1.0.3`, SHA-1 `ece75dfa1eb907bce3ace729c0144df0b2451673`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Metallurgy
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: Faucet/Crucible server crash; heat state stale após Blaze Burner change; HeatJS overlap; melting/casting dupe/loss; Electrum duplication; worldgen crash; molten/tag overlap com Metalwork/Productive Metalworks; source 1.0.4 confundido com a build 1.0.3.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-metallurgy
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createmetallurgy` 1.0.3 + CurseForge oficial revalidado em 12/09/2026; 1.0.3 de 22/05/2026 continua a release NeoForge 1.21.1 mais recente. Source branch posterior 1.0.4 permanece usado apenas como arquitetura, não como equivalência binária.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createmetallurgy` 1.0.3 + CurseForge oficial revalidado em 12/09/2026; 1.0.3 de 22/05/2026 continua a release NeoForge 1.21.1 mais recente. Source branch posterior 1.0.4 permanece usado apenas como arquitetura, não como equivalência binária.
 - **Observações:** JAR/mod id/runtime 1.0.3 confirmados. Changelog exato 1.0.3 corrige Faucet e Crucible server-side, HeatJS melting/heat-source overlap, worldgen, Electrum duplication e refresh de Blaze Burner; source público 1.21.1 consultado já está em 1.0.4 e foi usado só como arquitetura.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #195 na snapshot então vigente; posição física atual #194: createmetallurgy-1.0.3-1.21.1.jar / runtime 1.0.3 reconfirmados como latest Release NeoForge 1.21.1 para Create 6.0.10; Faucet/Crucible server fixes, HeatJS boundaries, worldgen/Electrum fixes e heat refresh permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #195: createmetallurgy-1.0.3-1.21.1.jar / runtime 1.0.3 reconfirmados como latest Release NeoForge 1.21.1 para Create 6.0.10; Faucet/Crucible server fixes, HeatJS boundaries, worldgen/Electrum fixes e heat refresh permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Histórico não operacional: uma auditoria anterior centrada em TFC sugeriu remoção por sobreposição de fundição/processamento metálico. TFC não está na modlist atual, portanto esse motivo não sustenta decisão presente. O mod permanece instalado e sem decisão final.
 - **Sobreposição:** Overlap concreto com Create: Metalwork 2.0.0, Productive Metalworks 1.15.1 e Almost Unified 1.4.2 em molten materials/ore processing; Metallurgy distingue-se por machinery própria como Industrial Crucible/Faucet.

@@ -1,5 +1,7 @@
 # Create: Prismatic Shine
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#199**: JAR `createprism-1.2.2.jar`, mod id `createprism`, runtime `1.2.2`, SHA-1 `2c911b9b9abaac0572f0935ccfc9ae91c02eb4c7`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Prismatic Shine
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Principal superfície é block/model/render/light behavior e recipes de casing. 1.2.2 tem changelog público curto `fix server issue`; o detalhe causal não é publicado, portanto dedicated-server boot é regression gate obrigatório. Sobreposição estética com outros casing/decor addons não implica redundância binária.
 - **Fonte:** https://modrinth.com/mod/create-prismatic-shine/version/1.2.2
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createprism` 1.2.2 + Modrinth/CurseForge oficiais revalidados em 12/09/2026; 1.2.2 de 07/05/2026 continua a release NeoForge 1.21.1 mais recente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createprism` 1.2.2 + Modrinth/CurseForge oficiais revalidados em 12/09/2026; 1.2.2 de 07/05/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** mod id `createprism`; runtime 1.2.2. Projeto remake de Create: Crystal Clear para Create 6.0/NeoForge 1.21.1. Adiciona glass casings, glass scaffold e illumination casings. Fluxo documentado inclui aplicar Andesite Alloy em glass, processar clear casing via Stonecutter/Mechanical Saw e aplicar Prismarine Crystals para illumination casing.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #200 na snapshot então vigente; posição física atual #199: createprism-1.2.2.jar / runtime 1.2.2 reconfirmados como latest Release NeoForge 1.21.1; glass/clear/illumination casings, recipes, lighting boundary e regression gate `fix server issue` permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #200: createprism-1.2.2.jar / runtime 1.2.2 reconfirmados como latest Release NeoForge 1.21.1; glass/clear/illumination casings, recipes, lighting boundary e regression gate `fix server issue` permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Prismatic Shine 1.2.2 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. A natureza decorativa não foi convertida automaticamente em decisão de manter/remover.
 - **Sobreposição:** Sobreposição estética com Create Deco, Design n' Decor e outros casing/decor addons. Prismatic Shine possui sua própria linha de glass/illumination casings; redundância deve ser avaliada por bloco/recipe/uso concreto.
