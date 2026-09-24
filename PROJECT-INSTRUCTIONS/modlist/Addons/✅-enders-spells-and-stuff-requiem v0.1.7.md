@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/enders-spells-and-stuff-requiem
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ess_requiem-0.1.7.jar`, mod id `ess_requiem`, runtime 0.1.7 e SHA-1 `c4648cced4f9e96527cfa4e3f5edcdcead43abb1`. CurseForge oficial revalidado em 21/09/2026 mantém 0.1.7 como latest release NeoForge 1.21.1, publicada em 29/08/2026.
 - **Observações:** CurseForge 0.1.7 declara 16 armas e 42 spells; com Discerning The Eldritch instalado aparecem +1 arma e +2 spells. Update atual destacado: `Serious Summoning`; exemplos publicados incluem Strain, Glacial Sculpting, Lord of the Final Frost e várias spells Eldritch. Não foram inventadas fórmulas numéricas ausentes da documentação.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #264 na snapshot então vigente; posição física atual #265: `ess_requiem-0.1.7.jar` / runtime `0.1.7` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 0.1.7 como latest release NeoForge 1.21.1.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #264: `ess_requiem-0.1.7.jar` / runtime `0.1.7` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 0.1.7 como latest release NeoForge 1.21.1.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobreposição temática ampla com outros addons Iron's, mas conteúdo próprio. É explicitamente incompatível com o Ender's Spells and Stuff original; não tratar outros addons como substitutos sem comparar spell/item IDs e mechanics.
 - **Data da última decisão:** 2026-08-30
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #265: JAR `ess_requiem-0.1.7.jar`, mod id `ess_requiem`, runtime `0.1.7`, SHA-1 `c4648cced4f9e96527cfa4e3f5edcdcead43abb1`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `ess_requiem-0.1.7.jar` · mod id `ess_requiem` · versão `0.1.7` · NeoForge 1.21.1 · Client & Server. Base física: Iron's Spells `1.21.1-3.16.3`, Ace's Spell Utils `1.2.7.2-1.21.1`, Apothic Attributes `2.10.1`, GTBC's SpellLib `2.2.0-1.21.1` e Discerning The Eldritch `1.4.4-1.21` presentes.

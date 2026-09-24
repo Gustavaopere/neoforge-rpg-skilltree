@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/explosive-enhancement-reforged
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `explosiveenhancement-neoforge-1.21.1-1.1.2.jar`, mod id `explosiveenhancement`, runtime 1.1.2 e SHA-1 `fee0be3ffe494189733ceaeb7163a38b03098ea5`. CurseForge oficial revalidado em 21/09/2026 mantém a build 1.21/1.21.1 1.1.2 marcada como CLIENT ONLY.
 - **Observações:** O arquivo específico instalado corresponde à linha CLIENT ONLY publicada para 1.21/1.21.1, apesar de a página geral do projeto hoje exibir Environment Client & Server. Changelog 1.1.2 registra tempfix do crash causado pelo Creeper Head Projectile de Iron's Spells. Config publicado: `config/explosiveenhancement.toml`.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #269 na snapshot então vigente; posição física atual #270: `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` / runtime `1.1.2` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. O arquivo específico 1.21.1 continua publicado como CLIENT ONLY; o Environment genérico Client & Server da página do projeto não substitui o side do arquivo.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #269: `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` / runtime `1.1.2` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. O arquivo específico 1.21.1 continua publicado como CLIENT ONLY; o Environment genérico Client & Server da página do projeto não substitui o side do arquivo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobreposição apenas com outros replacers de partículas/efeitos de explosão. Não é duplicata de TNT, spell, weapon ou physics mods que controlam a explosão lógica.
 - **Data da última decisão:** 2026-08-26
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #270: JAR `explosiveenhancement-neoforge-1.21.1-1.1.2.jar`, mod id `explosiveenhancement`, runtime `1.1.2`, SHA-1 `fee0be3ffe494189733ceaeb7163a38b03098ea5`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` · mod id `explosiveenhancement` · versão `1.1.2` · NeoForge 1.21.1. O arquivo instalado corresponde à linha **client-only** 1.21/1.21.1 publicada pelo projeto.

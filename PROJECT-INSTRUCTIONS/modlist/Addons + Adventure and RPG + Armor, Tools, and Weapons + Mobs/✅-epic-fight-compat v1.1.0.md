@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epic-fight-compat
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar`, mod id `epicfightcompat`, runtime 1.1.0 e SHA-1 `73322bae5887cad40835bee6f7cbf425ffbb8ffb`. CurseForge oficial revalidado em 21/09/2026 mantém 1.1.0 como latest release NeoForge 1.21.1.
 - **Observações:** CompatRegistry 1.21.1 contém 17 módulos alvo. Sete targets estão fisicamente presentes neste pack: Iron's Spellbooks, Simply Swords, Simply More, Mowzie's Mobs, Quark, Supplementaries e Farmer's Delight. Módulos ausentes não são tratados como ativos.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #262 na snapshot então vigente; posição física atual #263: `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` / runtime `1.1.0` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 1.1.0 como latest release NeoForge 1.21.1.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #262: `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` / runtime `1.1.0` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 1.1.0 como latest release NeoForge 1.21.1.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Pode cruzar com patches dedicados do ecossistema Epic Fight. Bridges especializadas devem preservar ownership específico; não assumir que o compat genérico substitui EFIS, Epic Colonies, Curios Compat ou Epic ParCool.
 - **Data da última decisão:** 2026-08-26
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #263: JAR `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar`, mod id `epicfightcompat`, runtime `1.1.0`, SHA-1 `73322bae5887cad40835bee6f7cbf425ffbb8ffb`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` · mod id `epicfightcompat` · versão `1.1.0` · NeoForge 1.21.1 · Client & Server.

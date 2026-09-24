@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/expandability
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `expandability-12.0.0.jar`, mod id `expandability`, runtime 12.0.0 e SHA-1 `70cf454b1217a350f1789fabb39b6622aac8be12`. CurseForge oficial revalidado em 21/09/2026 mantém 12.0.0 como release aplicável a Minecraft 1.21/1.21.1.
 - **Observações:** Metadado antigo que descrevia genericamente step height/flight foi substituído por superfícies source-confirmed da tag 12.0.0: `PlayerSwimEvent` e `LivingFluidCollisionEvent`, com mixins de swimming/fluid collision no client e server. Outras abilities só devem ser atribuídas quando um consumer/API real for confirmado.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #266 na snapshot então vigente; posição física atual #267: `expandability-12.0.0.jar` / runtime `12.0.0` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. 12.0.0 continua sendo a release NeoForge aplicável a Minecraft 1.21/1.21.1; 13.x/14.x pertencem a linhas posteriores.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #266: `expandability-12.0.0.jar` / runtime `12.0.0` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. 12.0.0 continua sendo a release NeoForge aplicável a Minecraft 1.21/1.21.1; 13.x/14.x pertencem a linhas posteriores.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não é intercambiável com Caelus, Pehkui ou outras APIs de movement sem compatibilidade contratual explícita. Cópias JarJar internas também não tornam o top-level automaticamente removível.
 - **Data da última decisão:** 2026-08-26
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #267: JAR `expandability-12.0.0.jar`, mod id `expandability`, runtime `12.0.0`, SHA-1 `70cf454b1217a350f1789fabb39b6622aac8be12`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `expandability-12.0.0.jar` · mod id `expandability` · versão `12.0.0` · NeoForge 1.21.1. O source oficial está pinável na tag **v12.0.0**; essa versão foi a atualização para Minecraft 1.21.
