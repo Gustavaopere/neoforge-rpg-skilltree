@@ -1,5 +1,7 @@
 # Easy NPC: Config UI
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#241**: JAR `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_config_ui`, runtime `7.12.1`, SHA-1 `84eb6b0500d9be672d6999df1ff57271a573c389`.
+
 ## Propriedades do registro
 
 - **Mod:** Easy NPC: Config UI
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_config_ui` e runtime `7.12.1`; Core filename e Bundle também estão em 7.12.1. Changelogs oficiais 7.12.0/7.12.1 sustentam os deltas documentados.
 - **Observações:** Config UI 7.12.1 é o runtime físico atual. O salto 7.11.0→7.12.1 inclui mudanças relevantes nas superfícies de preset browser, import/export/restore e administração; Core/server continua authority do NPC state.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #240 na snapshot então vigente; posição física atual #241: Config UI atualizado fisicamente para `7.12.1`, alinhado a Core/Bundle da mesma linha; deltas administrativos de preset/import/export/restore reconciliados.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #240: Config UI atualizado fisicamente para `7.12.1`, alinhado a Core/Bundle da mesma linha; deltas administrativos de preset/import/export/restore reconciliados.
 - **Decisão:** Dependência
 - **Sobreposição:** Sobreposição apenas de superfície administrativa com comandos/config wand: todos editam o mesmo Core. Não deve haver duas cópias de configuração autoritativa.
 - **Data da última decisão:** 2026-09-06

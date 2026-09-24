@@ -1,5 +1,7 @@
 # Easy NPC: Bundle
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#240**: JAR `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_bundle`, runtime `7.12.1`, SHA-1 `2aaf47e6d2f586b8e7bafaf12b7c1f18eedd4d65`.
+
 ## Propriedades do registro
 
 - **Mod:** Easy NPC: Bundle
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_bundle` e runtime `7.12.1`, junto de Core/Config UI na mesma linha.
 - **Observações:** Bundle 7.12.1 está fisicamente alinhado ao Core/Config UI 7.12.1. O meta-package continua com semântica de distribuição/dependência; gameplay e persistência pertencem ao Core.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #239 na snapshot então vigente; posição física atual #240: Bundle atualizado fisicamente para `7.12.1`, alinhado a Core/Config UI da mesma linha; continua sendo meta-package/dependency aggregation, não provider de NPC state.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #239: Bundle atualizado fisicamente para `7.12.1`, alinhado a Core/Config UI da mesma linha; continua sendo meta-package/dependency aggregation, não provider de NPC state.
 - **Decisão:** Dependência
 - **Sobreposição:** Não é duplicata funcional do Easy NPC Core. A sobreposição de nome é de distribuição: Bundle agrega dependências, Core fornece NPCs, Config UI fornece a interface.
 - **Data da última decisão:** 2026-09-06

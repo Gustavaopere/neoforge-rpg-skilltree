@@ -1,20 +1,21 @@
 # Easy Model Entities
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#238**: JAR `easy_model_entities-neoforge-1.21.1-2.4.0.jar`, mod id `easy_model_entities`, runtime metadata **vazia**, SHA-1 `f5bc1927a5b69cc0fc1ed04a9f047e12365cb9a1`.
+
 ## Propriedades do registro
 
 - **Mod:** Easy Model Entities
 - **Arquivo JAR:** `easy_model_entities-neoforge-1.21.1-2.4.0.jar`
-- **Versão 1.21.1:** metadata runtime **não declarada**; filename/build/publicação identificam `2.4.0`
 - **Categoria:** Visual, QoL
 - **Função:** Framework para transformar modelos Blockbench em entidades/model entities controláveis sem Java customizado, com comandos/API de servidor para model, texture, animation, opacity, light e estado renderizado sincronizado.
-- **Dependências:** NeoForge 1.21.1. A build física é identificável como 2.3.0 pelo filename e publicação oficial, porém a coluna `mod version` da modlist física está vazia. Integra visualmente com o stack de modelos/renderers; EMF 3.3.5 e ETF 7.2.1 estão presentes.
+- **Dependências:** NeoForge 1.21.1. A build física é identificável como 2.4.0 pelo filename e publicação oficial, porém a coluna `mod version` da modlist física está vazia. Integra visualmente com o stack de modelos/renderers; EMF 3.3.5 e ETF 7.2.1 estão presentes.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos de render transform duplicado com EMF/ETF/outros model systems, culling bounds incorreto, opacity/light state stale, animation state divergente, shader hurt/death overlay, texture override inválido e confundir versão do filename com metadata runtime. 2.2.x/2.3.0 corrigem serializers, culling e overlays.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/8706558
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_model_entities-neoforge-1.21.1-2.4.0.jar`, mod id `easy_model_entities`, SHA-1 `f5bc1927a5b69cc0fc1ed04a9f047e12365cb9a1` e campo de versão runtime vazio. A publicação/changelog oficial 2.4.0 fornece a identidade da build e seus deltas.
 - **Observações:** Fail-closed preservado: a propriedade de versão runtime permanece sem valor porque a metadata física não declara versão. O artefato instalado é agora 2.4.0; esta build adiciona sequences de animação, `playAnimationSequence`, blend emissive, hand-item rendering/anchors e corrige clips explícitos com `body_type: static`/`animation.mode: none`.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #237 na snapshot então vigente; posição física atual #238: artefato físico atualizado para `easy_model_entities-neoforge-1.21.1-2.4.0.jar`. A coluna `mod version` da modlist continua vazia; `2.4.0` é identidade do filename/build/publicação, não metadata runtime inferida.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #237: artefato físico atualizado para `easy_model_entities-neoforge-1.21.1-2.4.0.jar`. A coluna `mod version` da modlist continua vazia; `2.4.0` é identidade do filename/build/publicação, não metadata runtime inferida.
 - **Decisão:** Manter
 - **Sobreposição:** Sobreposição visual parcial com Entity Model Features 3.3.5, Entity Texture Features 7.2.1, Customizable Player Models e outros renderers. EME é provider de suas próprias model entities/state; não deve aplicar transforms de outro provider duas vezes.
 - **Data da última decisão:** 2026-09-06

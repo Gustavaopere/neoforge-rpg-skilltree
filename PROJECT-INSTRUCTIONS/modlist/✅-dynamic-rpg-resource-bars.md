@@ -1,5 +1,7 @@
 # Dynamic RPG Resource Bars
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#232**: JAR `dynamic_resource_bars-neoforge-0.7.1-1.21.1.jar`, mod id `dynamic_resource_bars`, runtime `0.7.1`, SHA-1 `08512179fdd92b1be480ad16535b036bd30f2d7d`.
+
 ## Propriedades do registro
 
 - **Mod:** Dynamic RPG Resource Bars

@@ -1,5 +1,7 @@
 # Dynamic Trees
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#235**: JAR `dynamictrees-neoforge-1.21.1-1.7.2.jar`, mod id `dynamictrees`, runtime `1.7.2`, SHA-1 `c16fae939c0f305af46ad585150a33565a06129e`.
+
 ## Propriedades do registro
 
 - **Mod:** Dynamic Trees
