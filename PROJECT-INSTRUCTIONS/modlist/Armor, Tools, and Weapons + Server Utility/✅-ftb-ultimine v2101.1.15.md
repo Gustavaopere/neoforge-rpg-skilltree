@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #292: FTB Ultimine 2101.1.15 reconfirmado; referências do runtime atual reconciliadas para FTB Library 2101.1.36.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #292: JAR `ftb-ultimine-neoforge-2101.1.15.jar`, mod id `ftbultimine`, runtime `2101.1.15`, SHA-1 `c96a7cc0b52bf919660ea61c1536cebd9d5773b3`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `ftb-ultimine-neoforge-2101.1.15.jar`, mod id `ftbultimine`, Minecraft 1.21.1 / NeoForge. O branch oficial `FTBTeam/FTB-Ultimine:1.21.1/main` declara exatamente `mod_version=2101.1.15`. O servidor é authority de seleção válida, custos e quebra; preview/shape feedback client-side não decide o resultado.
 </callout>

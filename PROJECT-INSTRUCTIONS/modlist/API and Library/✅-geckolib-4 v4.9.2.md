@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #301: GeckoLib 4.9.2 reconfirmado; upstream 4.9.3 (16/09/2026) registrado como atualização disponível, não instalada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #301: JAR `geckolib-neoforge-1.21.1-4.9.2.jar`, mod id `geckolib`, runtime `4.9.2`, SHA-1 `14c64013cadee7d28f3685f94350f9a4d2ec6d86`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `geckolib-neoforge-1.21.1-4.9.2.jar`, mod id `geckolib`, versão `4.9.2`. A release 4.9.2 é confirmada pela distribuição oficial para NeoForge 1.21.1; o branch oficial `bernie-g/geckolib:1.21.1` é usado para arquitetura/API da linha, sem presumir que seu HEAD corresponda byte a byte ao JAR 4.9.2.
 </callout>

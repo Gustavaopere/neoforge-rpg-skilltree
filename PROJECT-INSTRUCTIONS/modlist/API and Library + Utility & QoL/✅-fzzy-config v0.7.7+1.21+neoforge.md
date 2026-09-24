@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #296: Fzzy Config 0.7.7+1.21+neoforge reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #296: JAR `fzzy_config-0.7.7+1.21+neoforge.jar`, mod id `fzzy_config`, runtime `0.7.7+1.21+neoforge`, SHA-1 `518eadc53c065a74a49207769209c116e77d1849`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `fzzy_config-0.7.7+1.21+neoforge.jar`, mod id `fzzy_config`, upstream core `0.7.7`. O pin `621f8ffe...` permanece como evidência histórica da auditoria 0.7.6, mas deixou de ser authority da versão instalada. Fzzy Config é framework de **configuração, validação, GUI e sync**, não content mod.
 </callout>

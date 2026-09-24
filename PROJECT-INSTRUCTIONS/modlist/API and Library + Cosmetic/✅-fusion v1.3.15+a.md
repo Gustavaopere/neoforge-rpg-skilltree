@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #294: Fusion `1.3.15+a` reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-09-07
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #294: JAR `fusion-1.3.15a-neoforge-mc1.21.1.jar`, mod id `fusion`, runtime `1.3.15+a`, SHA-1 `d29d0d1e0e7a9014fc8e0da69db8f019f458d002`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `fusion-1.3.15a-neoforge-mc1.21.1.jar`, mod id `fusion`, metadata runtime `1.3.15+a`. O filename, a release pública e o source usam `1.3.15a`; essa divergência de string é preservada sem normalização. Fusion é uma biblioteca **client-side de modelos/texturas**, não uma authority de gameplay.
 </callout>

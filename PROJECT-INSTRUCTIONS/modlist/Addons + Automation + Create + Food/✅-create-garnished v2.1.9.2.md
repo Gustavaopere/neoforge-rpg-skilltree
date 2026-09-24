@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #299: Create: Garnished 2.1.9.2 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #299: JAR `garnished-2.1.9.2+1.21.1-neoforged.jar`, mod id `garnished`, runtime `2.1.9.2`, SHA-1 `93f86f9a2e3e23c8c20761f8d7acdd625ad49a6f`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `garnished-2.1.9.2+1.21.1-neoforged.jar`, mod id `garnished`, Minecraft 1.21.1 / NeoForge. O branch oficial já avançou além da versão instalada; esta ficha usa o commit `bd5180a5a659dc6fa7cfdddd928e1a6c16776793`, que declara exatamente `mod_version=2.1.9.2`. O wiki público do projeto está explicitamente desatualizado, portanto não é usado como autoridade para contagens ou registry IDs da 2.1.9.2.
 </callout>

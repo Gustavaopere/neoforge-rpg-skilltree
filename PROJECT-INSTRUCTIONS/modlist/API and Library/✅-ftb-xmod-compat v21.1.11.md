@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #293: FTB XMod Compat 21.1.11 reconfirmado; stack atual reconciliado para FTB Quests 2101.1.36, KubeJS 2101.7.2-build.377 e JEI 19.56.0.440. Upstream 21.1.12 (18/09/2026) registrado como atualização disponível, não instalada.
 - **Data da última decisão:** 2026-09-06
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #293: JAR `ftb-xmod-compat-neoforge-21.1.11.jar`, mod id `ftbxmodcompat`, runtime `21.1.11`, SHA-1 `06061863f24e1c0d9b2bb2646e96e07cbf0029f5`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** O runtime físico é `ftb-xmod-compat-neoforge-21.1.11.jar`, mod id `ftbxmodcompat`, em NeoForge 1.21.1. FTB XMod Compat é uma bridge oficial: detecta combinações de mods e ativa integrações; não é provider de quests, stages, recipes ou progressão por si só.
 </callout>

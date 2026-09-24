@@ -18,6 +18,8 @@
 - **Procedência:** modlist(1).txt física atual de 22/09/2026 — 587 entradas top-level incluindo o modloader — confirma `gadgets-and-gizmos-bundled-V1.2.2.jar`, wrapper id `createthrusters_bundled`, runtime `1.2.2` e SHA-1 `1694bb6f99100557faf80fece178a2a4dd4892de`. CurseForge oficial confirma 1.2.4 como release NeoForge 1.21.1 mais recente em 18/09/2026, não instalada.
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #298: Gadgets & Gizmos 1.2.2 reconfirmado; upstream 1.2.4 (18/09/2026) registrado como atualização disponível, não instalada.
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #298: JAR `gadgets-and-gizmos-bundled-V1.2.2.jar`, mod id `createthrusters_bundled`, runtime `1.2.2`, SHA-1 `1694bb6f99100557faf80fece178a2a4dd4892de`.
+
 <callout icon="🎛️" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico top-level: `gadgets-and-gizmos-bundled-V1.2.2.jar`, wrapper id `createthrusters_bundled`, versão `1.2.2`; o gameplay mod embarcado é `createthrusters-1.2.2.jar`, id `createthrusters`. O metadata chama o mod **Create Gadgets & Gizmos**; o projeto público é **Create Aeronautics: Gadgets & Gizmos**. É um addon Client & Server de controle/interação com contraptions físicas.
 </callout>
