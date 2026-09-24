@@ -1,5 +1,7 @@
 # Discerning The Eldritch
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#220**: JAR `discerning_the_eldritch-1.4.4-1.21.jar`, mod id `discerning_the_eldritch`, runtime `1.4.4-1.21`, SHA-1 `cf35c225aced23b705d1e0fd1bc5c62d96540e0c`.
+
 ## Propriedades do registro
 
 - **Mod:** Discerning The Eldritch

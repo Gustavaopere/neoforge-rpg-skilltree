@@ -1,5 +1,7 @@
 # Create: Design n' Decor
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#217**: JAR `Design-n-Decor-1.21.1-2.2b.jar`, mod id `dndecor`, runtime `2.2b`, SHA-1 `ff5f0411a3d82e15d69b65617128f6d54e818e1b`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Design n' Decor

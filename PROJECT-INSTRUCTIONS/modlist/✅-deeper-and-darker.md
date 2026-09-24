@@ -1,5 +1,7 @@
 # Deeper and Darker
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#215**: JAR `deeperdarker-neoforge-1.21.1-1.4.1.jar`, mod id `deeperdarker`, runtime `1.4.1`, SHA-1 `83f7edd0a8516b2767c2cda7a3b2402f9e290d88`.
+
 ## Propriedades do registro
 
 - **Mod:** Deeper and Darker
