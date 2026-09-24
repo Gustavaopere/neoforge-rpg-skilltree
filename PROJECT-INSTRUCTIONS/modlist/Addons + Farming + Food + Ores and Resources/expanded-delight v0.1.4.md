@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/expanded-delight
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `expandeddelight-0.1.4.jar`, mod id `expandeddelight`, runtime 0.1.4 e SHA-1 `cf26fe18c3a9deec525fe0f0e7c2d3b9f4e9f484`. CurseForge oficial revalidado em 21/09/2026 mantém 0.1.4 como latest Beta NeoForge 1.21.1.
 - **Observações:** A build física 0.1.4 é publicada como Beta. Changelog oficial da própria build: adiciona novos foods e fornece tag de compatibilidade para goat cheese. O feature tracker continua podendo conter conteúdo ainda não lançado; registry/JEI do JAR instalado permanece authority final. Issue #118 continua regression gate, não bug local confirmado.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #267 na snapshot então vigente; posição física atual #268: `expandeddelight-0.1.4.jar` / runtime `0.1.4` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 0.1.4 como latest Beta NeoForge 1.21.1.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #267: `expandeddelight-0.1.4.jar` / runtime `0.1.4` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 0.1.4 como latest Beta NeoForge 1.21.1.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobreposição temática com Farmer's Delight: Extended e outros food addons não implica duplicação. Comparar recipe IDs, tags, crops, food stats e workstations. O conflito de dough #118 é um overlap técnico específico a validar.
 - **Data da última decisão:** 2026-08-26
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #268: JAR `expandeddelight-0.1.4.jar`, mod id `expandeddelight`, runtime `0.1.4`, SHA-1 `cf26fe18c3a9deec525fe0f0e7c2d3b9f4e9f484`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `expandeddelight-0.1.4.jar` · mod id `expandeddelight` · versão `0.1.4` · NeoForge 1.21.1 · Client & Server. Base física: **Farmer's Delight 1.3.4**; também existe **Farmer's Delight: Extended 0.2.2** no pack. A publicação oficial classifica esta build como **Beta**; o changelog específico da 0.1.4 registra novos foods e uma tag de compatibilidade para goat cheese.
