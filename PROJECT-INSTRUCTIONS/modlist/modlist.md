@@ -173,16 +173,16 @@
 | 179 | Create: Cyber Goggles | `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` | `8.6.3` | `Create + Utility & QoL` | 23/09/2026 - 14:27 |
 | 180 | Create Deco | `createdeco-2.1.3.jar` | `2.1.3` | `Addons + Cosmetic + Create` | 23/09/2026 - 14:27 |
 | 181 | Create Diesel Generators | `createdieselgenerators-1.21.1-1.3.15.jar` | `1.21.1-1.3.15` | `Addons + Create + Processing + Technology` | 23/09/2026 - 14:27 |
-| 182 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 23/09/2026 - 00:58 |
-| 183 | Create: Enchantable Machinery | `createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar` | `3.6.0` | `Addons + Create + Technology + Utility & QoL` | 23/09/2026 - 00:58 |
-| 184 | Create: Ender Transmission | `createendertransmission-2.1.1-1.21.1.jar` | `2.1.1-1.21.1` | `Addons + Technology` | 23/09/2026 - 00:58 |
-| 185 | Create: Fast SchematicCannon | `CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar` | `2.6.1-neoforge` | `Addons + Bug Fixes + Create` | 23/09/2026 - 00:58 |
-| 186 | Create: Filters Anywhere | `createfiltersanywhere-1.21.1-2.6.0.jar` | `2.6.0` | `Addons + Create` | 23/09/2026 - 00:58 |
-| 187 | Create: Fishery Industry | `createfisheryindustry-5.1.2.jar` | `5.1.2` | `Addons + Create` | 20/09/2026 - 20:46 |
-| 188 | Create: Food | `createfood-neoforge-1.21.1-2.7.1.jar` | `2.7.1` | `Automation + Create + Food` | 23/09/2026 - 00:58 |
-| 189 | Create Goggles (Create Plus) | `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar` | `6.1.1` | `Addons + Armor, Tools, and Weapons + Create` | 23/09/2026 - 00:58 |
-| 190 | Create JEI Compat | `createjeicompat-1.0.3.jar` | `1.0.3` | `Create` | 23/09/2026 - 00:58 |
-| 191 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 23/09/2026 - 00:58 |
+| 182 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 23/09/2026 - 23:50 |
+| 183 | Create: Enchantable Machinery | `createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar` | `3.6.0` | `Addons + Create + Technology + Utility & QoL` | 23/09/2026 - 23:51 |
+| 184 | Create: Ender Transmission | `createendertransmission-2.1.1-1.21.1.jar` | `2.1.1-1.21.1` | `Addons + Technology` | 23/09/2026 - 23:51 |
+| 185 | Create: Fast SchematicCannon | `CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar` | `2.6.1-neoforge` | `Addons + Bug Fixes + Create` | 23/09/2026 - 23:51 |
+| 186 | Create: Filters Anywhere | `createfiltersanywhere-1.21.1-2.6.0.jar` | `2.6.0` | `Addons + Create` | 23/09/2026 - 23:51 |
+| 187 | Create: Fishery Industry | `createfisheryindustry-5.1.2.jar` | `5.1.2` | `Addons + Create` | 23/09/2026 - 23:51 |
+| 188 | Create: Food | `createfood-neoforge-1.21.1-2.7.1.jar` | `2.7.1` | `Automation + Create + Food` | 23/09/2026 - 23:51 |
+| 189 | Create Goggles (Create Plus) | `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar` | `6.1.1` | `Addons + Armor, Tools, and Weapons + Create` | 23/09/2026 - 23:51 |
+| 190 | Create JEI Compat | `createjeicompat-1.0.3.jar` | `1.0.3` | `Create` | 23/09/2026 - 23:51 |
+| 191 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 23/09/2026 - 23:51 |
 | 192 | Create: Liquid Fuel | `createliquidfuel-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 23/09/2026 - 00:58 |
 | 193 | Create: Mechanical Companion | `createmechanicalcompanion-1.9-neoforge-1.21.1.jar` | `1.9 (artefato/publicação); metadata runtime vazia` | `Addons + Adventure and RPG + Create + Mobs + Technology` | 20/09/2026 - 20:46 |
 | 194 | Create: Metallurgy | `createmetallurgy-1.0.3-1.21.1.jar` | `1.0.3` | `Addons + Automation + Create + Processing + Technology` | 23/09/2026 - 00:58 |
