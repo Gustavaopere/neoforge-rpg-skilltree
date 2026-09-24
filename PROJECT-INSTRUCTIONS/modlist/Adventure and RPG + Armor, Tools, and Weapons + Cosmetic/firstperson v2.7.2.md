@@ -19,6 +19,8 @@
 - **Sobreposição:** Integra-se visualmente com Not Enough Animations e pode colidir com Custom Player Models, armor 3D e Epic Fight render paths. Não altera hitbox, reach ou damage.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #282: JAR `firstperson-neoforge-2.7.2-mc1.21.1.jar`, mod id `firstperson`, runtime `2.7.2`, SHA-1 `8faf96d7c3c12eaec819b4e273e58c048e8de125`.
+
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `firstperson-neoforge-2.7.2-mc1.21.1.jar` · mod id `firstperson` · versão `2.7.2` · NeoForge 1.21.1 · client-side. O JAR embarca `TRansition 1.0.21` e `TRender 1.0.15` sob `META-INF/jars`; são dependências internas, não top-levels.
 ## 1. Papel no modpack
