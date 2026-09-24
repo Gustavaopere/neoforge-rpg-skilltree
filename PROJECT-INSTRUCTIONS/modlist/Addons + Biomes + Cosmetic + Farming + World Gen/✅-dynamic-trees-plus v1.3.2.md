@@ -1,5 +1,7 @@
 # Dynamic Trees Plus
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#236**: JAR `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar`, mod id `dynamictreesplus`, runtime `1.3.2`, SHA-1 `9f261be4cb8f83ffbc126f7198cdbe297f2b2166`.
+
 ## Propriedades do registro
 
 - **Mod:** Dynamic Trees Plus
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/dynamictreesplus
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` / runtime `1.3.2` e Dynamic Trees `1.7.2`. A publicação/changelog 1.3.2 permanece a referência técnica do dossiê.
 - **Observações:** Runtime 1.3.2 permanece current. O changelog oficial registra prevenção de crash com DT 1.7.0; bridges BetterEnd/BetterNether continuam com baseline source DTP 1.5.0, acima do runtime, como regression gate e não incompatibilidade comprovada.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #235 na snapshot então vigente; posição física atual #236: `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` / runtime `1.3.2` reconfirmados na snapshot física então vigente de 587 mods incluindo o modloader.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #235: `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` / runtime `1.3.2` reconfirmados na modlist física atual de 587 mods incluindo o modloader.
 - **Decisão:** Manter
 - **Histórico da decisão:** Mantido como parte do stack Dynamic Trees. Em 22/08/2026 o usuário confirmou que decidiu manter Dynamic Trees + addons após a correção de que ArborFirmaCraft e Dynamic Trees não são substitutos diretos; Dynamic Trees Plus complementa o core com tipos especiais.
 - **Sobreposição:** Complementa Dynamic Trees e fornece tipos especiais; não substitui o core nem bridges específicos. Worldgen estático correspondente deve ser cancelado/adaptado pela cadeia Dynamic Trees.

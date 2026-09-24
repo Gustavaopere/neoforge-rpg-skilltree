@@ -1,10 +1,11 @@
 # Easy NPC
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#239**: JAR `easy_npc-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc`, runtime metadata **vazia**, SHA-1 `ed56854e39545cefdde1fe6695d9f52a31393bdc`.
+
 ## Propriedades do registro
 
 - **Mod:** Easy NPC
 - **Arquivo JAR:** `easy_npc-neoforge-1.21.1-7.12.1.jar`
-- **Versão 1.21.1:** metadata runtime **não declarada**; filename/build/publicação identificam `7.12.1`
 - **Categoria:** RPG, QoL
 - **Função:** Core server-authoritative do Easy NPC para criar, persistir e controlar NPCs customizados, diálogos, ações, trading, aparência/skins, comportamento e integrações do ecossistema.
 - **Dependências:** NeoForge 1.21.1. Easy NPC Config UI 7.12.1 e Easy NPC Bundle 7.12.1 estão fisicamente presentes. O filename/publicação identifica Core 7.12.1, mas a coluna `mod version` da modlist física está vazia. Epic Fight 21.17.3.1 está presente e é uma integração suportada pela linha Easy NPC.
@@ -14,7 +15,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc`, SHA-1 `ed56854e39545cefdde1fe6695d9f52a31393bdc` e campo runtime vazio; Bundle/Config UI `7.12.1` e EME `2.4.0` também estão presentes. Changelogs oficiais 7.12.0/7.12.1 sustentam os deltas documentados.
 - **Observações:** Fail-closed preservado: `7.12.1` vem do filename/build/publicação do artefato instalado, não da metadata runtime. Core, Bundle e Config UI estão fisicamente alinhados em 7.12.1; Easy Model Entities está fisicamente em 2.4.0.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #238 na snapshot então vigente; posição física atual #239: artefato físico atualizado para `easy_npc-neoforge-1.21.1-7.12.1.jar`. A coluna `mod version` da modlist continua vazia; `7.12.1` é identidade do filename/build/publicação, não metadata runtime inferida.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #238: artefato físico atualizado para `easy_npc-neoforge-1.21.1-7.12.1.jar`. A coluna `mod version` da modlist continua vazia; `7.12.1` é identidade do filename/build/publicação, não metadata runtime inferida.
 - **Decisão:** Manter
 - **Sobreposição:** Pode sobrepor funções narrativas/trading de outros sistemas de NPC/quest, mas Easy NPC é o provider direto dos NPCs criados nele. Epic Fight integra combate/animação; Config UI edita o state; nenhum deles deve duplicar ownership do NPC.
 - **Data da última decisão:** 2026-09-06

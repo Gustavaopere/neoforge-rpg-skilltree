@@ -1,5 +1,7 @@
 # Dynamic Brightness
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#233**: JAR `DynamicBrightness-neoforge-1.3.1.jar`, mod id `dynamicbrightness`, runtime `1.3.1`, SHA-1 `c0bddb2585a518a2d5a7183217c607ca3dffc56d`.
+
 ## Propriedades do registro
 
 - **Mod:** Dynamic Brightness
