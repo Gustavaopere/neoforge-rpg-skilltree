@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #287: Fragmentum 2.4.4 reconfirmado. Upstream 5.0.0 (19/09/2026) identificado como atualização disponível, não instalada, com breaking changes para mods dependentes.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #287: JAR `fragmentum-neoforge-1.21.1-2.4.4.jar`, mod id `fragmentum`, runtime `2.4.4`, SHA-1 `09995d8f0da787acdf5df590defc8dd38cf69884`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `fragmentum-neoforge-1.21.1-2.4.4.jar`, mod id `fragmentum`. O branch oficial `ObscuriaLithium/fragmentum:legacy/1.21.1` declara exatamente `version=2.4.4`, `minecraft_version=1.21.1` e Java 21, portanto é um source pin compatível com a versão instalada. Fragmentum é framework da Obscuria Collection e **não adiciona conteúdo de gameplay por si só**.
 </callout>

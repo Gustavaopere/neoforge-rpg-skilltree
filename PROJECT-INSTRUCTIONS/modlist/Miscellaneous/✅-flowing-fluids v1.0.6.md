@@ -5,7 +5,6 @@
 - **Mod:** FlowingFluids
 - **Arquivo JAR:** `flowing_fluids-1.0.6-1.21-neoforge.jar`
 - **Versão 1.21.1:** `1.0.6`
-- **Categoria:** não definida
 - **Função:** Substitui a dinâmica vanilla por fluidos com física mais realista e majoritariamente finita, níveis parciais, drenagem/refill configuráveis e integração específica com pipes, hose pulleys e water wheels do Create.
 - **Dependências:** NeoForge 1.21.1. Integração comportamental relevante com Create 6.0.10 e Sable; `sable_flowing_fluids_compat-1.0.2.jar` também está fisicamente presente no pack.
 - **Estado no pack:** Integrado ao Github
@@ -14,9 +13,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/flowing-fluids
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `flowing_fluids-1.0.6-1.21-neoforge.jar`, mod id `flowing_fluids`, runtime `1.0.6` e SHA-1 `1453fbae5afe0d475e5149f60847a65e4d7185c9`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** JAR físico `flowing_fluids-1.0.6-1.21-neoforge.jar`, mod id `flowing_fluids`, runtime 1.0.6. Upstream ainda descreve o projeto como em desenvolvimento; server é necessário e cliente é recomendado para representação/interação completa.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #282 na snapshot então vigente; posição física atual #283: `flowing_fluids-1.0.6-1.21-neoforge.jar` / runtime `1.0.6` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #282: `flowing_fluids-1.0.6-1.21-neoforge.jar` / runtime `1.0.6` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
 - **Decisão:** Sem decisão
 - **Sobreposição:** É authority de comportamento/propagação de fluidos no mundo; não substitui storage/piping de Create ou outros mods. Cruza diretamente com worldgen hídrico, pumps, water wheels, agricultura e Sable.
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #283: JAR `flowing_fluids-1.0.6-1.21-neoforge.jar`, mod id `flowing_fluids`, runtime `1.0.6`, SHA-1 `1453fbae5afe0d475e5149f60847a65e4d7185c9`.
 
 <callout icon="🌊" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `flowing_fluids-1.0.6-1.21-neoforge.jar`, mod id `flowing_fluids`, versão `1.0.6`. Flowing Fluids muda a semântica do próprio **fluido no mundo**: líquidos passam a fluir com níveis e volume majoritariamente finitos. Isso é distinto de storage/pipes de outros mods.

@@ -19,6 +19,8 @@
 - **Histórico da decisão:** 2026-09-18 — runtime físico atualizado para 1.3.0; nenhuma decisão curatorial nova.
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #285: Create FluidLogistics 1.3.0 reconfirmado; nenhuma mudança de versão física nesta rodada.
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #285: JAR `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, runtime `1.3.0`, SHA-1 `011435bbefe9ab979719fa138252d52261837d33`.
+
 <callout icon="💧" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, versão `1.3.0`, NeoForge 1.21.1. Create: FluidLogistics estende a logística do Create 6 para transporte e endereçamento de **fluidos**. A build instalada é Release oficial publicada em 16/09/2026.
 </callout>

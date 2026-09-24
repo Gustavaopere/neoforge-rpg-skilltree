@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #288: FTB Chunks 2101.1.22 reconfirmado; snapshot de dependências reconciliado com FTB Library 2101.1.36 e FTB Teams 2101.1.11.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #288: JAR `ftb-chunks-neoforge-2101.1.22.jar`, mod id `ftbchunks`, runtime `2101.1.22`, SHA-1 `a53f1bb7965c6954a348d4f321f03d3971ad503f`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `ftb-chunks-neoforge-2101.1.22.jar`, mod id `ftbchunks`. O branch oficial `FTBTeam/FTB-Chunks:1.21.1/main` declara exatamente `mod_version=2101.1.22` e Minecraft 1.21.1. Esta ficha separa três domínios: **mapa/minimapa client-facing**, **claims/proteção server-authoritative** e **force-loading server-side**.
 </callout>

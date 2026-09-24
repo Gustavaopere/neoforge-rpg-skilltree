@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #284: runtime atualizado de 2.1.5 para 2.1.6; changelog oficial 2.1.6 incorporado e reconciliado com a autoridade física atual.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #284: JAR `fluid-2.1.6.jar`, mod id `fluid`, runtime `2.1.6`, SHA-1 `4f16ea44499ae31826fc5e3d2d12963c4a356b0d`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** O runtime físico é `fluid-2.1.6.jar`, mod id `fluid`, em Minecraft 1.21.1 / NeoForge. A release oficial 2.1.6 (CurseForge File ID `8873260`, 13/09/2026) é a autoridade pública para o delta desta versão. Source público sem pin binário exato permanece usado apenas para arquitetura/nomenclatura, não como prova de equivalência integral com o JAR.
 </callout>
