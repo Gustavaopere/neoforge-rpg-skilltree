@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/explorers-compass
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ExplorersCompass-1.21.1-3.4.0-neoforge.jar`, mod id `explorerscompass`, metadata runtime `1.21.1-3.4.0-neoforge` e SHA-1 `9f62af344988a6e2d855b113e61cf0e1611c7e0f`. CurseForge oficial revalidado em 21/09/2026 mantém 3.4.0 como release NeoForge 1.21.1.
 - **Observações:** Preservada a divergência legítima entre release pública curta `3.4.0` e metadata runtime `1.21.1-3.4.0-neoforge`. Changelog 3.4.0 adiciona/backporta next-instance search, durability/repair e XP cost configuráveis, além de fixes de hidden tag e busca a oeste.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #268 na snapshot então vigente; posição física atual #269: `ExplorersCompass-1.21.1-3.4.0-neoforge.jar` / metadata runtime `1.21.1-3.4.0-neoforge` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. 3.4.0 continua sendo a release NeoForge 1.21.1 aplicável.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #268: `ExplorersCompass-1.21.1-3.4.0-neoforge.jar` / metadata runtime `1.21.1-3.4.0-neoforge` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. 3.4.0 continua sendo a release NeoForge 1.21.1 aplicável.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Nature's Compass localiza biomes; Explorer's Compass localiza structures. Mapas/quests/locators podem compartilhar objetivo de navegação, mas não são equivalentes tecnicamente.
 - **Data da última decisão:** 2026-08-26
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #269: JAR `ExplorersCompass-1.21.1-3.4.0-neoforge.jar`, mod id `explorerscompass`, runtime `1.21.1-3.4.0-neoforge`, SHA-1 `9f62af344988a6e2d855b113e61cf0e1611c7e0f`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `ExplorersCompass-1.21.1-3.4.0-neoforge.jar` · mod id `explorerscompass` · metadata version `1.21.1-3.4.0-neoforge` · release pública `3.4.0` · NeoForge 1.21.1.
