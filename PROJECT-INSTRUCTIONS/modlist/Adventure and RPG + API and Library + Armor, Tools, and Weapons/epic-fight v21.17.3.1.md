@@ -1,5 +1,7 @@
 # Epic Fight
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#260**: JAR `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar`, mod id `epicfight`, runtime `21.17.3.1`, SHA-1 `fb199b7bbea2fc402da28ab586e73f47e32f8fc0`.
+
 ## Propriedades do registro
 
 - **Mod:** Epic Fight
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epic-fight-mod
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar`, mod id `epicfight`, runtime 21.17.3.1 e SHA-1 `fb199b7bbea2fc402da28ab586e73f47e32f8fc0`. CurseForge oficial revalidado em 21/09/2026 mantém 21.17.3.1 como latest release 1.21.1; arquivo oficial foi testado contra NeoForge 21.1.219, enquanto o pack usa NeoForge 21.1.250.
 - **Observações:** Runtime físico 21.17.3.1. O changelog oficial da build física foi recuperado e incorporado ao corpo em 12/09/2026. A documentação da branch 1.21.1 continua sustentando battle mode, attributes, stamina/skills, weapon capabilities, entity patching, animations/armatures, events/API e input abstractions.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #259 na snapshot então vigente; posição física atual #260: `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` / runtime `21.17.3.1` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 21.17.3.1 como latest release NeoForge 1.21.1.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #259: `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` / runtime `21.17.3.1` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 21.17.3.1 como latest release NeoForge 1.21.1.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Epic Fight é authority do combat framework que adiciona. Addons/bridges devem estendê-lo, não reimplementar stamina, stun, player patch ou weapon capability em paralelo. Outros combat mods podem coexistir apenas com ownership/precedence claros.
 - **Data da última decisão:** 2026-08-26
