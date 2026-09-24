@@ -1,5 +1,7 @@
 # Ecliptic Seasons: Bundles
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#244**: JAR `EclipticSeasons-Bundles-0.18.0.2.jar`, mod id `eclipticseasons_bundles`, runtime `0.18.0.2`, SHA-1 `6896896a5d0619e5bd21cc8792aecb6525764f97`.
+
 ## Propriedades do registro
 
 - **Mod:** Ecliptic Seasons: Bundles

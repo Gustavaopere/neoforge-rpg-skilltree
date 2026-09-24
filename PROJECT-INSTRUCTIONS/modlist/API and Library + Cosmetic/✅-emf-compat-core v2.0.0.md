@@ -1,5 +1,7 @@
 # EMF Compat: Core
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#247**: JAR `emf_compat_core_1.21.1_2.0.0.jar`, mod id `emf_compat_core`, runtime `2.0.0`, SHA-1 `e22256acaaabc43d4043b119a748e8f52e27a451`.
+
 ## Propriedades do registro
 
 - **Mod:** EMF Compat: Core
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-core
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `emf_compat_core_1.21.1_2.0.0.jar`, mod id `emf_compat_core`, runtime 2.0.0 e SHA-1 `e22256acaaabc43d4043b119a748e8f52e27a451`. Stack físico relevante permanece EMF 3.3.5 / ETF 7.2.1.
 - **Observações:** A documentação oficial 2.0.0 define o Core como required shared library para todos os EMF Compat addons. Ele não adiciona gameplay visível; captura a pose produzida por outro mod antes da sobreposição EMF e a restaura depois, preservando a animação externa.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #246 na snapshot então vigente; posição física atual #247: `emf_compat_core_1.21.1_2.0.0.jar` / runtime `2.0.0` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #246: `emf_compat_core_1.21.1_2.0.0.jar` / runtime `2.0.0` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
 - **Decisão:** Dependência
 - **Sobreposição:** Não substitui EMF/ETF nem os consumers específicos. É infraestrutura de pose precedence; qualquer outro core de player-animation que toque os mesmos transforms precisa coexistência deliberada.
 - **Data da última decisão:** 2026-09-06

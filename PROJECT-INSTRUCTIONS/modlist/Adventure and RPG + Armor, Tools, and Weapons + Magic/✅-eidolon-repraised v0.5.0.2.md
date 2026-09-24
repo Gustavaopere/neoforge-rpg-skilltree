@@ -1,5 +1,7 @@
 # Eidolon: Repraised
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#246**: JAR `eidolon_repraised-1.21.1-0.5.0.2.jar`, mod id `eidolon_repraised`, runtime `0.5.0.2`, SHA-1 `1f05ffd2f9fa672dc2ecff3c32de092cdbcde989`.
+
 ## Propriedades do registro
 
 - **Mod:** Eidolon: Repraised
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `eidolon_repraised-1.21.1-0.5.0.2.jar`, mod id `eidolon_repraised`, runtime 0.5.0.2 e SHA-1 `1f05ffd2f9fa672dc2ecff3c32de092cdbcde989`. CurseForge oficial continua identificando 0.5.0.2 como release 1.21.1 com os fixes já documentados.
 - **Observações:** 0.5.0.2 é release NeoForge 1.21.1 de 09/05/2026. Changelog específico: partículas não deslocarem em Sable sublevel/Aeronautics e nova tentativa de corrigir book barter intermitente. O projeto 1.21 também tornou Crucible/Worktable recipes e rituals mais data-driven; altar bonuses são Data Maps.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #245 na snapshot então vigente; posição física atual #246: `eidolon_repraised-1.21.1-0.5.0.2.jar` / runtime `0.5.0.2` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #245: `eidolon_repraised-1.21.1-0.5.0.2.jar` / runtime `0.5.0.2` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobreposição temática com Ars Nouveau, Iron's Spells, Goety e outros magic mods, mas Eidolon possui progressão, rituals, theurgy, alchemy/artifice e soul mechanics próprios; não é substituto direto dos demais.
 - **Data da última decisão:** 2026-08-26
