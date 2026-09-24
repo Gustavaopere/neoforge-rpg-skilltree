@@ -1,5 +1,7 @@
 # Dynamic Trees - Oh The Biomes We've Gone
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#228**: JAR `dtbwg-1.1.0-BETA02.jar`, mod id `dtbwg`, runtime `1.1.0-BETA02`, SHA-1 `70652596042c6a74d395288d01b7e3b564661792`.
+
 ## Propriedades do registro
 
 - **Mod:** Dynamic Trees - Oh The Biomes We've Gone

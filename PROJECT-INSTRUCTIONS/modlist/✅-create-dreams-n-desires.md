@@ -1,5 +1,7 @@
 # Create: Dreams n' Desires
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#223**: JAR `DnDesires-1.21.1-2.3a-BETA.jar`, mod id `dndesires`, runtime `2.3a-BETA`, SHA-1 `72635119b4bcc49b050c50d6cbb1abb02bb3982a`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Dreams n' Desires

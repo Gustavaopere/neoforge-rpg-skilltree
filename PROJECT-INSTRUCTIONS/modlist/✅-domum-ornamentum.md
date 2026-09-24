@@ -1,5 +1,7 @@
 # Domum Ornamentum
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#224**: JAR `domum-ornamentum-1.0.236-snapshot-main.jar`, mod id `domum_ornamentum`, runtime `1.0.236-snapshot`, SHA-1 `31b16b65eb0cc26473bcd607b1c7f386aa99680f`.
+
 ## Propriedades do registro
 
 - **Mod:** Domum Ornamentum

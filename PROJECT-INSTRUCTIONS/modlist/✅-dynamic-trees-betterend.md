@@ -1,5 +1,7 @@
 # Dynamic Trees - BetterEnd
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#226**: JAR `dtbetterend-1.21.1-2.2.0.jar`, mod id `dtbetterend`, runtime `2.2.0`, SHA-1 `665bbb5b7d39917def3f02d13ecf7e1fe5876084`.
+
 ## Propriedades do registro
 
 - **Mod:** Dynamic Trees - BetterEnd
