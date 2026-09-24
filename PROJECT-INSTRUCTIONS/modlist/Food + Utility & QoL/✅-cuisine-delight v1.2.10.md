@@ -1,6 +1,6 @@
 # Cuisine Delight
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#209**: JAR `cuisinedelight-1.2.10.jar`, runtime `1.2.10`.
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#209**: JAR `cuisinedelight-1.2.10.jar`, mod id `cuisinedelight`, runtime `1.2.10`, SHA-1 `1ab3047ba436b69cce0dd0b9af57addd49b5c9e9`.
 
 ## Propriedades do registro
 
@@ -14,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Altera cálculo de comida por composição/doneness e pode cruzar outros sistemas nutricionais. Fire Aspect permite cooking sem stove; Efficiency aumenta limite de ingredientes. 1.2.10 corrige fluid rendering e atualiza idiomas; lógica alimentar deve permanecer server/common apesar do fix visual.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cuisine-delight
-- **Procedência histórica:** snapshot físico de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `cuisinedelight` 1.2.10 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 1.2.10 de 08/06/2026 continua a release NeoForge 1.21.1 mais recente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `cuisinedelight` 1.2.10 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 1.2.10 de 08/06/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** JAR `cuisinedelight-1.2.10.jar`; runtime 1.2.10; Client & Server; Farmer's Delight required. Cada ingrediente tem doneness e one-side-burn state próprios; pratos bem cozidos recebem saturation/nutrition bonuses e diversidade de carbs/meat/vegetables/seafood concede bônus. 1.2.10: fix fluid rendering + language updates.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #211 na snapshot então vigente: cuisinedelight-1.2.10.jar / runtime 1.2.10 reconfirmados como latest Release NeoForge 1.21.1; freeform skillet cooking, doneness/burn state, nutrition bonuses, enchantments e fluid-render fix permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #211: cuisinedelight-1.2.10.jar / runtime 1.2.10 reconfirmados como latest Release NeoForge 1.21.1; freeform skillet cooking, doneness/burn state, nutrition bonuses, enchantments e fluid-render fix permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Cuisine Delight 1.2.10 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. Presença no stack culinário não foi convertida em decisão curatorial.
 - **Sobreposição:** Compartilha alimentação/nutrição com outros mods, mas seu núcleo é cooking freeform por skillet e composição. Bridges como Create: Arm-made Cuisine automatizam a skillet e não substituem o provider de comida.

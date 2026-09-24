@@ -1,5 +1,7 @@
 # Create Teleporters Remastered
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#203**: JAR `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar`, mod id `createteleporters`, runtime `2.0.2`, SHA-1 `76fe16fb464351859113102477bf91f100984257`.
+
 ## Propriedades do registro
 
 - **Mod:** Create Teleporters Remastered
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: Quantum Portal órfão; base/frame divergirem em dimensão/rotation; entity/item dupe/loss em teleport; TP Link range mismatch; Sable sublevel transform duplicado; Immersive Portals facing/orientation incorreto ou rebuild marker repetido; migration legado; source master não matching.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-teleporters-remastered
-- **Procedência:** snapshot física de 11/09/2026 — runtime físico `createteleporters` 2.0.2 preservado como authority local + CurseForge oficial revalidado em 12/09/2026; publicação/arquivo 2.0.2b de 29/04/2026 continua a release NeoForge 1.21.1 mais recente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 — runtime físico `createteleporters` 2.0.2 preservado como authority local + CurseForge oficial revalidado em 12/09/2026; publicação/arquivo 2.0.2b de 29/04/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** Divergência preservada: filename/publicação `2.0.2b`, metadata runtime física `2.0.2`; `Versão 1.21.1` mantém a runtime 2.0.2. 2.0.2b adiciona validação/autolimpeza de Quantum Portal, Sable/Aeronautics compat e corrige Immersive Portals com facings diferentes.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #204 na snapshot então vigente; posição física atual #203: createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar / runtime 2.0.2 reconfirmados contra a latest Release pública 2.0.2b; divergência publicação `2.0.2b` × runtime `2.0.2` preservada. Quantum Portal validation e compats Sable/Aeronautics/Immersive Portals permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #204: createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar / runtime 2.0.2 reconfirmados contra a latest Release pública 2.0.2b; divergência publicação `2.0.2b` × runtime `2.0.2` preservada. Quantum Portal validation e compats Sable/Aeronautics/Immersive Portals permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Waystones 21.1.44/WaystonesSable 1.0.7 compartilham teleporte remoto, mas não substituem Item/Entity Teleporters ou Custom Portal multiblock. Immersive Portals é integração concreta, não duplicata; mantém authority de suas portal entities.
 

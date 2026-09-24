@@ -1,5 +1,7 @@
 # Create: Transmission!
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#204**: JAR `createtransmission-1.2.2+neoforge-create6-1.21.1.jar`, mod id `createtransmission`, runtime `1.2.2+neoforge-create6-1.21.1`, SHA-1 `60e020b39a243e4eca5d15e3c9299fcdf8ed20d2`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Transmission!
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Escopo localizado: uma peça de transmissão cinética. Riscos concentram-se em placement/connection geometry, rendering e version drift com internals do Create 6. Não foram publicados throughput, stress impact ou limites próprios; esses valores não são inventados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-transmission
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createtransmission` 1.2.2+neoforge-create6-1.21.1 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; a build 1.2.2 de 14/08/2026 continua a release NeoForge 1.21.1 mais recente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createtransmission` 1.2.2+neoforge-create6-1.21.1 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; a build 1.2.2 de 14/08/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** mod id conforme runtime do JAR; runtime completo `1.2.2+neoforge-create6-1.21.1`. O addon adiciona Transmission Chain. 1.2.2 altera textura do item e adiciona traduções russa/ucraniana; não há delta funcional publicado nessa release.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #206 na snapshot então vigente; posição física atual #204: createtransmission-1.2.2+neoforge-create6-1.21.1.jar / runtime 1.2.2+neoforge-create6-1.21.1 reconfirmados como latest Release NeoForge 1.21.1/Create 6; Transmission Chain, kinetic boundary e delta visual/traduções 1.2.2 permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #206: createtransmission-1.2.2+neoforge-create6-1.21.1.jar / runtime 1.2.2+neoforge-create6-1.21.1 reconfirmados como latest Release NeoForge 1.21.1/Create 6; Transmission Chain, kinetic boundary e delta visual/traduções 1.2.2 permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Transmission! 1.2.2 foi reconfirmado como `Instalado` e reconstruído proporcionalmente ao seu escopo mínimo; presença não foi convertida em decisão curatorial.
 - **Sobreposição:** Alternativa específica a belts/encased chain drives para transmissão de rotação. Compartilha domínio cinético com Create, mas não substitui o sistema base nem justifica remoção automática por similaridade.
