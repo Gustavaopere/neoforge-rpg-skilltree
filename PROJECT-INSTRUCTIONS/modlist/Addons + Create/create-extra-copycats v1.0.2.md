@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-extra-copycats
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `extra_copycats-1.0.2.jar`, mod id `extra_copycats`, runtime 1.0.2, SHA-1 `434eca37397ce4ed35b2826dd854cc5e2f8f67ae`, Create 6.0.10 e Copycats+ 3.0.9+mc.1.21.1-neoforge. CurseForge oficial revalidado em 21/09/2026 mantém 1.0.2 como release 1.21.1.
 - **Observações:** Release 1.0.2 adiciona Copycat Collapsible Grid. O arquivo físico NeoForge é `extra_copycats-1.0.2.jar`; algumas listagens públicas exibem naming inconsistente entre loaders, mas a identidade local/hash são autoritativos.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #270 na snapshot então vigente; posição física atual #271: `extra_copycats-1.0.2.jar` / runtime `1.0.2` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. A linha pública 1.21.1 permanece em 1.0.2; inconsistência de filename em algumas views públicas continua documentada fail-closed.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #270: `extra_copycats-1.0.2.jar` / runtime `1.0.2` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A linha pública 1.21.1 permanece em 1.0.2; inconsistência de filename em algumas views públicas continua documentada fail-closed.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Candidato a redundância parcial apenas se Copycats+ upstream incorporar os mesmos registry IDs/shapes. Aero Copycats e Copycat Wing tratam integrações aeronautics, não substituição geral de shapes.
 - **Data da última decisão:** 2026-08-26
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #271: JAR `extra_copycats-1.0.2.jar`, mod id `extra_copycats`, runtime `1.0.2`, SHA-1 `434eca37397ce4ed35b2826dd854cc5e2f8f67ae`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `extra_copycats-1.0.2.jar` · mod id `extra_copycats` · versão `1.0.2` · NeoForge 1.21.1 · Client & Server. Base física: **Create 6.0.10** + **Create: Copycats+ 3.0.9+mc.1.21.1-neoforge**.
