@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ferritecore
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ferritecore-7.0.3-neoforge.jar`, mod id `ferritecore`, runtime `7.0.3` e SHA-1 `9563692efb708b6b568df27a01ec52f6311928ef`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** 7.0.3 reduz memória de data component patches e corrige loading slowdown com ModernFix dynamic resources. Issues Aeronautics/Supplementaries ficam como regression gates, não incompatibilidades comprovadas.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #279 na snapshot então vigente; posição física atual #280: `ferritecore-7.0.3-neoforge.jar` / runtime `7.0.3` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #279: `ferritecore-7.0.3-neoforge.jar` / runtime `7.0.3` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
 - **Decisão:** Sem decisão
 - **Sobreposição:** FerriteCore mira principalmente memória/representação; não substitui EntityCulling, BetterFpsDist, CreateBetterFps ou FastSuite. ModernFix tem interseção de resources/lifecycle e deve ser testado em conjunto.
 - **Data da última decisão:** 2026-08-26
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #280: JAR `ferritecore-7.0.3-neoforge.jar`, mod id `ferritecore`, runtime `7.0.3`, SHA-1 `9563692efb708b6b568df27a01ec52f6311928ef`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `ferritecore-7.0.3-neoforge.jar` · mod id `ferritecore` · versão `7.0.3` · NeoForge 1.21.1. O mod atua transversalmente na redução de uso de memória e estruturas internas; não adiciona gameplay.

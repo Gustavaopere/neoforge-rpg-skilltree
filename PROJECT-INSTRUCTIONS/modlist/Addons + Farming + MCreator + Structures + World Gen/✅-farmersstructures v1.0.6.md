@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/farmers-structures
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `FarmersStructures-1.0.6-1.21.1_neoforge.jar`, mod id `farmers_structures`, runtime `1.0.6` e SHA-1 `94262398153d7ca5dc9ffb93e49acdbad85af223`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** Changelog oficial 1.0.6 anuncia 40 novas estruturas e cita cat house, flower beds, pond with frogs e blacksmith workshop + mine. Não converter esse delta em total absoluto sem inventário do JAR.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #277 na snapshot então vigente; posição física atual #278: `FarmersStructures-1.0.6-1.21.1_neoforge.jar` / runtime `1.0.6` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #277: `FarmersStructures-1.0.6-1.21.1_neoforge.jar` / runtime `1.0.6` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobreposição de densidade/worldgen com outros structure packs; Farmer's Delight permanece provider dos foods/blocks/workstations usados nas structures.
 - **Data da última decisão:** 2026-08-26
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #278: JAR `FarmersStructures-1.0.6-1.21.1_neoforge.jar`, mod id `farmers_structures`, runtime `1.0.6`, SHA-1 `94262398153d7ca5dc9ffb93e49acdbad85af223`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `FarmersStructures-1.0.6-1.21.1_neoforge.jar` · mod id `farmers_structures` · versão `1.0.6` · NeoForge 1.21.1 · marcado fisicamente como MCreator mod. Farmer's Delight 1.3.4 está presente.

@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/fantasy-armor/files/7850813
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `fantasy_armor-neoforge-1.2.4-1.21.1.jar`, mod id `fantasy_armor`, runtime `1.2.4-1.21.1` e SHA-1 `2b103680ca80a1d617dcae74630c4df8e93d3c55`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** Runtime físico `1.2.4-1.21.1`. O changelog oficial do arquivo NeoForge instalado registra correção do problema de Turkish i. A árvore 1.21.1 continua enumerando 29 sets e os configs `fantasy_armor-armor_attributes.toml` e `fantasy_armor-armor_effects.toml`; stats numéricos permanecem dependentes dos configs reais da instância.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #273 na snapshot então vigente; posição física atual #274: `fantasy_armor-neoforge-1.2.4-1.21.1.jar` / runtime `1.2.4-1.21.1` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #273: `fantasy_armor-neoforge-1.2.4-1.21.1.jar` / runtime `1.2.4-1.21.1` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
 - **Decisão:** Manter
 - **Sobreposição:** Sobreposição estética/equipment com outros armor mods não implica redundância: os 29 sets, assets e effects são conteúdo próprio. Cosmetic Armor altera apresentação; Epic Fight/FirstPerson alteram render/animation.
 - **Data da última decisão:** 2026-09-06
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #274: JAR `fantasy_armor-neoforge-1.2.4-1.21.1.jar`, mod id `fantasy_armor`, runtime `1.2.4-1.21.1`, SHA-1 `2b103680ca80a1d617dcae74630c4df8e93d3c55`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `fantasy_armor-neoforge-1.2.4-1.21.1.jar` · mod id `fantasy_armor` · versão `1.2.4-1.21.1` · NeoForge 1.21.1. Source 1.21.1 auditado no repositório oficial.

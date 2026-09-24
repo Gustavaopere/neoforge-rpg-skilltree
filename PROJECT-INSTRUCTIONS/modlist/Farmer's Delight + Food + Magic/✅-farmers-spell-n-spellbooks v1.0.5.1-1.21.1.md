@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/farmers-spell
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar`, mod id `farmers_spell`, runtime `1.0.5.1-1.21.1` e SHA-1 `f77355e029af39bbaba3854e10cc087a608351ff`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** Source 1.21.1 confirma Alchemist Pot, Cinderous Stove, Wisewood Cabinet, Amethyst Beetroot e vários food blocks. 1.0.5.1 especificamente corrige duplicação de block-form food causada por sticky piston.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #274 na snapshot então vigente; posição física atual #275: `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` / runtime `1.0.5.1-1.21.1` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #274: `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` / runtime `1.0.5.1-1.21.1` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Bridge temático único entre FD e Iron's. Outros addons de comida/magia podem compartilhar tags/ingredientes/spells, mas conflito deve ser medido por IDs/contracts, não por tema.
 - **Data da última decisão:** 2026-08-30
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #275: JAR `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar`, mod id `farmers_spell`, runtime `1.0.5.1-1.21.1`, SHA-1 `f77355e029af39bbaba3854e10cc087a608351ff`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` · mod id `farmers_spell` · versão `1.0.5.1-1.21.1` · NeoForge 1.21.1 · Client & Server. Bases físicas: Farmer's Delight 1.3.4 + Iron's Spells 'n Spellbooks 3.16.3.

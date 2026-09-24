@@ -14,10 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/farmersdelight-extended
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `farmersdelight_extended-1.21.1-0.2.2.jar`, mod id `farmersdelight_extended`, runtime `1.21.1-0.2.2` e SHA-1 `45200860ea91640de38abb059e950f8abed5f055`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** Preservar a diferença entre metadata `1.21.1-0.2.2` e release pública `0.2.2`. A documentação pública confirma foco em recipes Create↔Farmer's Delight e ausência de novos crops/mobs como requisito do addon.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #276 na snapshot então vigente; posição física atual #277: `farmersdelight_extended-1.21.1-0.2.2.jar` / runtime `1.21.1-0.2.2` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #276: `farmersdelight_extended-1.21.1-0.2.2.jar` / runtime `1.21.1-0.2.2` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Pode coincidir em recipes com Central Kitchen/Create Food/outros compat packs. Só classificar redundância após comparar recipe ID, type, inputs e outputs.
 - **Data da última decisão:** 2026-08-26
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #277: JAR `farmersdelight_extended-1.21.1-0.2.2.jar`, mod id `farmersdelight_extended`, runtime `1.21.1-0.2.2`, SHA-1 `45200860ea91640de38abb059e950f8abed5f055`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `farmersdelight_extended-1.21.1-0.2.2.jar` · mod id `farmersdelight_extended` · metadata version `1.21.1-0.2.2` · NeoForge 1.21.1. Bases físicas: Farmer's Delight 1.3.4 + Create 6.0.10.
