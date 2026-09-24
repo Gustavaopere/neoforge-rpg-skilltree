@@ -1,5 +1,7 @@
 # Ecliptic Seasons
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#243**: JAR `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar`, mod id `eclipticseasons`, runtime `0.15.0-rc-3-1`, SHA-1 `9eef25e33968ef56530bafa043b96da7fd4efcd3`.
+
 ## Propriedades do registro
 
 - **Mod:** Ecliptic Seasons
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar`, mod id `eclipticseasons` e runtime `0.15.0-rc-3-1`. A publicação oficial do arquivo não fornece changelog próprio.
 - **Observações:** Runtime físico atual: `0.15.0-rc-3-1`. A página oficial do arquivo declara que não há changelog; portanto a documentação mantém os deltas conhecidos da linha 0.15.0 e apenas reconcilia a identidade da build atual.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #242 na snapshot então vigente; posição física atual #243: artefato físico atualizado para `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` / runtime `0.15.0-rc-3-1`. O arquivo oficial continua sem changelog próprio; nenhum delta funcional adicional foi inventado.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #242: artefato físico atualizado para `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` / runtime `0.15.0-rc-3-1`. O arquivo oficial continua sem changelog próprio; nenhum delta funcional adicional foi inventado.
 - **Decisão:** Sem decisão
 - **Sobreposição:** É o provider de estação/clima sazonal do stack. Cold Sweat trata temperatura corporal; MultiMod Patch traduz estado sazonal; Bundles adiciona dados/recursos. Não são substitutos do core.
 - **Data da última decisão:** 2026-08-26

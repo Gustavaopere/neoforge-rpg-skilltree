@@ -1,5 +1,7 @@
 # Ecliptic Seasons: MultiMod Patch
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#242**: JAR `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar`, mod id `eclipticseasons_multimodpatch`, runtime `0.32.1`, SHA-1 `59b9e85815e53181577b7b0c7d4f72acca0f6263`.
+
 ## Propriedades do registro
 
 - **Mod:** Ecliptic Seasons: MultiMod Patch
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons-multimod-patch
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar`, mod id `eclipticseasons_multimodpatch`, runtime `0.32.1` e os providers físicos relacionados. A publicação oficial 0.32.1 permanece a referência da build.
 - **Observações:** Runtime físico confirmado: 0.32.1. A referência antiga `0.32.0-beta` estava obsoleta e foi removida. A tabela oficial 1.21.1 também lista In Control, Pretty Rain, Snowy Spirit, Haunted Harvest, Touhou Little Maid e Diagonal Blocks; eles não são tratados como integrações ativas sem presença física confirmada.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #241 na snapshot então vigente; posição física atual #242: `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` / runtime `0.32.1` reconfirmados; providers ativos reconciliados à modlist física atual de 587 mods incluindo o modloader.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #241: `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` / runtime `0.32.1` reconfirmados; providers ativos reconciliados à modlist física atual de 587 mods incluindo o modloader.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não substitui Ecliptic Seasons nem os mods-alvo. Atua somente como adapter entre o provider sazonal e sistemas externos; Bundles cobre outra camada, baseada em datapacks/resource packs.
 - **Data da última decisão:** 2026-08-26

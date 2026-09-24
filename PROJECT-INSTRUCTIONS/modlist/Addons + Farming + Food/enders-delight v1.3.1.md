@@ -1,5 +1,7 @@
 # Ender's Delight
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#251**: JAR `endersdelight-1.3.1.jar`, mod id `endersdelight`, runtime `1.3.1`, SHA-1 `a3a9f7fd621f14461d37357463dbd16c67d2badf`.
+
 ## Propriedades do registro
 
 - **Mod:** Ender's Delight
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/enders-delight
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `endersdelight-1.3.1.jar`, mod id `endersdelight`, runtime 1.3.1 e SHA-1 `a3a9f7fd621f14461d37357463dbd16c67d2badf`. Farmer's Delight 1.3.4 permanece a dependência física relevante; changelog 1.3.1 já registrado continua sendo a base do dossiê.
 - **Observações:** Conteúdo oficial atual usa recursos do End como ender pearls e chorus fruits e drops próprios como Ender Sight, Shulker Mollusk e Mite Crust. A rework 1.21.1 introduziu 4 Ender vegetables, 5 foods, uma structure e JEI info para droppable items. 1.3.1 é a release física atual.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #250 na snapshot então vigente; posição física atual #251: `endersdelight-1.3.1.jar` / runtime `1.3.1` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #250: `endersdelight-1.3.1.jar` / runtime `1.3.1` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobreposição temática/econômica com outros Farmer's Delight addons, mas os ingredientes e cadeia culinária do End são próprios. Farmer's Delight continua authority do cooking/cutting framework; Ender's Delight registra conteúdo/recipes próprios.
 - **Data da última decisão:** 2026-08-26

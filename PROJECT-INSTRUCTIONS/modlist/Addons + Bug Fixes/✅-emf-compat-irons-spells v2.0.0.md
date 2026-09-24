@@ -1,5 +1,7 @@
 # EMF Compat: Iron's Spells
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#249**: JAR `emf_compat_iron_spells_1.21.1_2.0.0.jar`, mod id `emf_compat_iron_spells`, runtime `2.0.0`, SHA-1 `515b545870fce128bbf01a0ccacdd19566ed3b22`.
+
 ## Propriedades do registro
 
 - **Mod:** EMF Compat: Iron's Spells
