@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #290: FTB Quests 2101.1.36 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-09-06
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #290: JAR `ftb-quests-neoforge-2101.1.36.jar`, mod id `ftbquests`, runtime `2101.1.36`, SHA-1 `b2ede29b98a3022c22065fbe9b1761e385a28683`.
+
 <callout icon="📜" color="yellow_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `ftb-quests-neoforge-2101.1.36.jar`, mod id `ftbquests`, versão `2101.1.36`. FTB Quests é o **framework de quests/progressão data-driven** do ecossistema FTB e o provider planejado para o quest book do pack.
 </callout>

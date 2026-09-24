@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #291: FTB Teams 2101.1.11 reconfirmado; referências do stack atual reconciliadas para FTB Library 2101.1.36 e FTB Quests 2101.1.36.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #291: JAR `ftb-teams-neoforge-2101.1.11.jar`, mod id `ftbteams`, runtime `2101.1.11`, SHA-1 `62b65f752d0326edd13244e58d5f2aec035da4e9`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `ftb-teams-neoforge-2101.1.11.jar`, mod id `ftbteams`, Minecraft 1.21.1 / NeoForge. O branch oficial `FTBTeam/FTB-Teams:1.21.1/main` declara exatamente `mod_version=2101.1.11`. FTB Teams é autoridade de **identidade, membership e propriedades de equipe/party**; FTB Chunks, Quests e outros consumidores mantêm autoridade sobre seus próprios dados.
 </callout>

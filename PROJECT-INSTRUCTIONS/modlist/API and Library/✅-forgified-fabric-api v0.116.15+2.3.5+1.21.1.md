@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #286: Forgified Fabric API 0.116.15+2.3.5+1.21.1 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #286: JAR `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar`, mod id `fabric_api`, runtime `0.116.15+2.3.5+1.21.1`, SHA-1 `87b28db4ef88268fbbaea2c0ca7e3dfcc27961a8`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar`, mod id top-level `fabric_api`, Minecraft 1.21.1 / NeoForge. O branch oficial `Sinytra/ForgifiedFabricAPI:1.21.1` declara Fabric API base version `0.116.15`; a release distribuída adiciona o sufixo Forgified `+2.3.5+1.21.1`. Os módulos internos em `META-INF/jars/` pertencem ao host e **não são entradas top-level** da modlist.
 </callout>

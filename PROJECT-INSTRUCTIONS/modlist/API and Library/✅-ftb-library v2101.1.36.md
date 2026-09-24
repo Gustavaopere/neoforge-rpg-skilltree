@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #289: runtime atualizado de 2101.1.35 para 2101.1.36; delta oficial (`CursorType.MOVE` + correção de valores numéricos no NBT editor) incorporado.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #289: JAR `ftb-library-neoforge-2101.1.36.jar`, mod id `ftblibrary`, runtime `2101.1.36`, SHA-1 `07b5bf1c6ac5160a6cfe1b39ed8c1465dc151b00`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `ftb-library-neoforge-2101.1.36.jar`, mod id `ftblibrary`, versão instalada `2101.1.36`, Minecraft 1.21.1 / NeoForge. O source detalhado foi auditado enquanto a linha 1.21.1 correspondia à 2101.1.35; o delta 2101.1.36 é atribuído ao changelog oficial, sem projetar source não revalidado. FTB Library é infraestrutura compartilhada: **não é autoridade sobre quests, teams, claims ou ultimine**; esses domínios pertencem aos mods consumidores.
 </callout>
