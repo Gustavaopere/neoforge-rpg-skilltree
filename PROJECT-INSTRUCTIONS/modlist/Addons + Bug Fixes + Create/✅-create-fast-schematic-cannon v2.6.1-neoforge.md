@@ -1,5 +1,7 @@
 # Create: Fast Schematic Cannon
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#185**: JAR `CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar`, mod id `createfastschematiccannon`, runtime `2.6.1-neoforge`, SHA-1 `ed8dbc6eb169ddf2ff5d95ed86d668f87b7e8cdc`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Fast Schematic Cannon
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: batch accelerated consumir/duplicar material; recovery de fuel/material/target usar cursor stale; chunk unload; remote schematic crash regression; Blaze Burner issue; completion duplicada; spike de MSPT; Create internals drift.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-fast-schematiccannon
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createfastschematiccannon` 2.6.1-neoforge + CurseForge oficial revalidado em 12/09/2026; 2.6.1 Beta de 01/09/2026 continua o artefato 1.21.1 mais recente, enquanto 1.4.1 permanece a Release estável de 23/02/2026.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createfastschematiccannon` 2.6.1-neoforge + CurseForge oficial revalidado em 12/09/2026; 2.6.1 Beta de 01/09/2026 continua o artefato 1.21.1 mais recente, enquanto 1.4.1 permanece a Release estável de 23/02/2026.
 - **Observações:** Runtime físico corrigido para `2.6.1-neoforge`; a observação antiga `1.4.1-neoforge` estava obsoleta. A 2.6.1 Beta garante no-progress boundary sem consumo/dupe e lazy recovery quando fuel/material/target retornam.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #186 na snapshot então vigente; posição física atual #185: CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar / runtime 2.6.1-neoforge reconfirmados como latest Beta NeoForge 1.21.1; 1.4.1 permanece a Release estável principal. No-progress boundary, lazy recovery e material-conservation gates permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #186: CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar / runtime 2.6.1-neoforge reconfirmados como latest Beta NeoForge 1.21.1; 1.4.1 permanece a Release estável principal. No-progress boundary, lazy recovery e material-conservation gates permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Patch específico do Schematicannon; não é equivalente a Pattern Schematics. Aceleração modifica throughput/lifecycle do cannon e deve preservar integralmente material requirements/placement do Create.
 
