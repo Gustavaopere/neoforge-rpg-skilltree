@@ -214,16 +214,16 @@
 | 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 24/09/2026 - 11:14 |
 | 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 24/09/2026 - 11:14 |
 | 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 24/09/2026 - 11:14 |
-| 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 23/09/2026 - 00:58 |
-| 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 23/09/2026 - 00:58 |
-| 244 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 21/09/2026 - 09:47 |
-| 245 | Epic Fight x Iron's Spells: Enhanced Animations | `efiscompat-3.1.0.jar` | `3.1.0` | `Cosmetic + Miscellaneous` | 23/09/2026 - 00:58 |
-| 246 | Eidolon : Repraised | `eidolon_repraised-1.21.1-0.5.0.2.jar` | `0.5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 23/09/2026 - 00:58 |
-| 247 | EMF Compat: Core | `emf_compat_core_1.21.1_2.0.0.jar` | `2.0.0` | `API and Library + Cosmetic` | 23/09/2026 - 00:58 |
-| 248 | EMF Compat: Create | `emf_compat_create_1.21.1_2.0.0.jar` | `2.0.0` | `Bug Fixes + Cosmetic` | 23/09/2026 - 00:58 |
-| 249 | EMF Compat: Iron's Spells 'n Spellbooks | `emf_compat_iron_spells_1.21.1_2.0.0.jar` | `2.0.0` | `Addons + Bug Fixes` | 21/09/2026 - 09:47 |
-| 250 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 23/09/2026 - 00:58 |
-| 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 23/09/2026 - 00:58 |
+| 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
+| 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 24/09/2026 - 14:02 |
+| 244 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
+| 245 | Epic Fight x Iron's Spells: Enhanced Animations | `efiscompat-3.1.0.jar` | `3.1.0` | `Cosmetic + Miscellaneous` | 24/09/2026 - 14:02 |
+| 246 | Eidolon : Repraised | `eidolon_repraised-1.21.1-0.5.0.2.jar` | `0.5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 14:02 |
+| 247 | EMF Compat: Core | `emf_compat_core_1.21.1_2.0.0.jar` | `2.0.0` | `API and Library + Cosmetic` | 24/09/2026 - 14:02 |
+| 248 | EMF Compat: Create | `emf_compat_create_1.21.1_2.0.0.jar` | `2.0.0` | `Bug Fixes + Cosmetic` | 24/09/2026 - 14:02 |
+| 249 | EMF Compat: Iron's Spells 'n Spellbooks | `emf_compat_iron_spells_1.21.1_2.0.0.jar` | `2.0.0` | `Addons + Bug Fixes` | 24/09/2026 - 14:02 |
+| 250 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 24/09/2026 - 14:02 |
+| 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 24/09/2026 - 14:02 |
 | 252 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 23/09/2026 - 00:58 |
 | 253 | Enhanced Boss Bars | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 23/09/2026 - 00:58 |
 | 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 23/09/2026 - 00:58 |
