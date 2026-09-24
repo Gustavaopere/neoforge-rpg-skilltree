@@ -1,5 +1,7 @@
 # Create: Fishery Industry
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#187**: JAR `createfisheryindustry-5.1.2.jar`, mod id `createfisheryindustry`, runtime `5.1.2`, SHA-1 `6f5cd5060ac15b53387726d5ccdc1070f5aef4fa`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Fishery Industry

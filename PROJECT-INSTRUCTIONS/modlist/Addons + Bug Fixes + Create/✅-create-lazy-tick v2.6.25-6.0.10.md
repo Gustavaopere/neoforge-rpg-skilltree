@@ -1,5 +1,7 @@
 # Create: Lazy Tick
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#191**: JAR `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar`, mod id `createlazytick`, runtime `2.6.25-6.0.10`, SHA-1 `0c95270c36bc112e5dc95c962811d3aa3946ffb5`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Lazy Tick
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Patch amplo sobre ticks/caches: risco principal é state stale, atraso de transição ou item/fluid loss/duplication quando internals do Create/addons mudam. 2.6.25 corrige CBC ammo containers com Mechanical Arm cached Deployer recipe, Basin que não retomava após full-stack extraction, regras de Mechanical Arm após resource reload e overhead da Lazy Clock sync queue.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-lazytick
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createlazytick` 2.6.25-6.0.10 + CurseForge oficial revalidado em 12/09/2026; build 2.6.25 para Create 6.0.10 de 14/08/2026 continua a release 1.21.1 mais recente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createlazytick` 2.6.25-6.0.10 + CurseForge oficial revalidado em 12/09/2026; build 2.6.25 para Create 6.0.10 de 14/08/2026 continua a release 1.21.1 mais recente.
 - **Observações:** JAR `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar`; runtime 2.6.25-6.0.10. É otimização de tick/cache, não provider de recipes ou gameplay. A linha inclui Lazy Clock/config/overlay e otimizações de componentes Create; 2.6.25 possui quatro fixes concretos catalogados.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #192 na snapshot então vigente; posição física atual #191: CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar / runtime 2.6.25-6.0.10 reconfirmados como latest Release 1.21.1 para Create 6.0.10; CBC ammo-container, Basin resume, Mechanical Arm reload e Lazy Clock sync fixes permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #192: CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar / runtime 2.6.25-6.0.10 reconfirmados como latest Release 1.21.1 para Create 6.0.10; CBC ammo-container, Basin resume, Mechanical Arm reload e Lazy Clock sync fixes permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Lazy Tick 2.6.25-6.0.10 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; benefício de performance não foi convertido automaticamente em decisão curatorial.
 - **Sobreposição:** Não duplica CreateBetterFps: Lazy Tick atua em tick scheduling/caches/sync; CreateBetterFps atua em outra superfície de performance/render. Conflito real depende de hooks concretos sobre o mesmo state Create.

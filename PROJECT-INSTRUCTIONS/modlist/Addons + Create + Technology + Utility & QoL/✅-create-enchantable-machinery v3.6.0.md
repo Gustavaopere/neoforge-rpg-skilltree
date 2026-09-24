@@ -1,5 +1,7 @@
 # Create: Enchantable Machinery
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#183**: JAR `createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar`, mod id `createenchantablemachinery`, runtime `3.6.0`, SHA-1 `ed9a5cf654235f54a3c5aced27ac654d5258e393`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Enchantable Machinery
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: enchant data loss em break/place; drop/output duplication; Mixer overstress restart; Silk Touch Plough collect-or-drop; modded enchant applicability; Apothic scaling; Jade/goggles stale display; glint/shader issues.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-enchantable-machinery
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createenchantablemachinery` 3.6.0 + Modrinth/CurseForge oficiais revalidados em 12/09/2026; 3.6.0 continua a release NeoForge 1.21.1 mais recente. Changelog exato preserva os fixes de Spout, Mixer, Jade e Silk Touch Plough.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createenchantablemachinery` 3.6.0 + Modrinth/CurseForge oficiais revalidados em 12/09/2026; 3.6.0 continua a release NeoForge 1.21.1 mais recente. Changelog exato preserva os fixes de Spout, Mixer, Jade e Silk Touch Plough.
 - **Observações:** JAR/mod id/runtime 3.6.0 confirmados. Release 3.6.0 corrige Spout sound, Mixer recovery after overstress, Jade names e Silk Touch Plough snow/collect-or-drop. Source público consultado expõe documentação, não codebase matching completa.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #184 na snapshot então vigente; posição física atual #183: createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar / runtime 3.6.0 reconfirmados como latest Release NeoForge 1.21.1; Mixer overstress recovery, Spout sound, Jade naming e Silk Touch Plough fixes permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #184: createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar / runtime 3.6.0 reconfirmados como latest Release NeoForge 1.21.1; Mixer overstress recovery, Spout sound, Jade naming e Silk Touch Plough fixes permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Diferente de Create: Enchantment Industry: Enchantable Machinery aplica enchantments às próprias máquinas; Enchantment Industry automatiza XP/enchanted-item processing. Interação com Apothic exige balanceamento, não remoção automática.
 

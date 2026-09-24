@@ -1,5 +1,7 @@
 # Create: Filters Anywhere
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#186**: JAR `createfiltersanywhere-1.21.1-2.6.0.jar`, mod id `createfiltersanywhere`, runtime `2.6.0`, SHA-1 `c55ff1beae1df75c7c3e9bd2dfc79cea965fd23a`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Filters Anywhere
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: cache stale para FE/rarity/data components; optional-mixin classloading; Tom's/Sophisticated API drift; client/server filter mismatch; reload invalidation; memory/performance tradeoff; predicate semantics divergentes entre consumers.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-filters-anywhere
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createfiltersanywhere` 2.6.0 + CurseForge oficial revalidado em 12/09/2026; 2.6.0 de 16/08/2026 continua a release NeoForge 1.21.1 mais recente. Source oficial matching permanece referência de caches/attributes/adapters.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createfiltersanywhere` 2.6.0 + CurseForge oficial revalidado em 12/09/2026; 2.6.0 de 16/08/2026 continua a release NeoForge 1.21.1 mais recente. Source oficial matching permanece referência de caches/attributes/adapters.
 - **Observações:** JAR/mod id/runtime 2.6.0 e source matching confirmados. 2.6.0 cacheia filter types por mod set/item e adiciona atributos Apotheosis rarity, FE charge, data component e item identity.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #187 na snapshot então vigente; posição física atual #186: createfiltersanywhere-1.21.1-2.6.0.jar / runtime 2.6.0 reconfirmados como latest Release NeoForge 1.21.1; caches por mod/item, Apotheosis rarity, FE/data-component/item attributes e provider adapters permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #187: createfiltersanywhere-1.21.1-2.6.0.jar / runtime 2.6.0 reconfirmados como latest Release NeoForge 1.21.1; caches por mod/item, Apotheosis rarity, FE/data-component/item attributes e provider adapters permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não duplica filtros Create; amplia sua semântica para outros providers. Tom's/Sophisticated/Apotheosis são superfícies ativas confirmadas; adapters para providers ausentes permanecem opcionais.
 

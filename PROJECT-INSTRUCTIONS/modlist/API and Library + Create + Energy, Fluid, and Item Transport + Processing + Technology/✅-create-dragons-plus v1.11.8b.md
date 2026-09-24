@@ -1,5 +1,7 @@
 # Create: Dragons Plus
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#182**: JAR `CreateDragonsPlus-1.11.8b.jar`, mod id `create_dragons_plus`, runtime `1.11.8b`, SHA-1 `d7afe1cf1c646d1bb5ce152af06e35afcb60b8dd`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Dragons Plus
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: bulk-process dupe; container remainder; conditional mixin classloading; recipe/provider drift; Fluid Hatch stale tank; config/cache reload; Sable contraption air-current double-processing. Aether/dye providers ausentes permanecem inativos.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-dragons-plus
-- **Procedência:** snapshot física de 11/09/2026 + runtime `create_dragons_plus` 1.11.8b + CurseForge oficial revalidado em 12/09/2026; 1.11.8b de 05/09/2026 continua a release NeoForge 1.21.1 mais recente para Create 6.0.10. Source oficial matching permanece referência funcional.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `create_dragons_plus` 1.11.8b + CurseForge oficial revalidado em 12/09/2026; 1.11.8b de 05/09/2026 continua a release NeoForge 1.21.1 mais recente para Create 6.0.10. Source oficial matching permanece referência funcional.
 - **Observações:** Runtime corrigido para `1.11.8b` (a ficha antiga dizia 1.11.7b). Source matching branch 1.21.1/6.0.0-dev declara mod 1.11.8b, Create 6.0.10 e conditional-mixin 0.6.4.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #183 na snapshot então vigente; posição física atual #182: CreateDragonsPlus-1.11.8b.jar / runtime 1.11.8b reconfirmados como latest Release NeoForge 1.21.1 para Create 6.0.10; bulk processes, Fluid Hatch, conditional integrations e Aether fixes permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #183: CreateDragonsPlus-1.11.8b.jar / runtime 1.11.8b reconfirmados como latest Release NeoForge 1.21.1 para Create 6.0.10; bulk processes, Fluid Hatch, conditional integrations e Aether fixes permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** É biblioteca/addon transversal de bulk processing e compats, não substituto de Ars Nouveau, Garnished, DnD ou Sable. Integrações só são runtime ativas quando o provider físico correspondente está instalado.
 

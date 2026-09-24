@@ -1,5 +1,7 @@
 # Create: Food
 
+> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#188**: JAR `createfood-neoforge-1.21.1-2.7.1.jar`, mod id `createfood`, runtime `2.7.1`, SHA-1 `e23381ca8d6e7c95bdea48d4a2b54b817a50eb5a`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Food
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: common config/registry mismatch; custom content first-launch regression; removal of registered content from worlds; plate/bowl/portion dupe; heat/dipping double-processing; effects/tooltips divergence; recipe overlap with Farmer's Delight/Central Kitchen/Ratatouille; startup/model load volume.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-food
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createfood` 2.7.1 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 2.7.1 de 08/08/2026 continua a release NeoForge 1.21.1 mais recente. Changelog confirma compat cross-mod inteiramente config-based; source head posterior 2.8.0 continua usado apenas como arquitetura.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createfood` 2.7.1 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 2.7.1 de 08/08/2026 continua a release NeoForge 1.21.1 mais recente. Changelog confirma compat cross-mod inteiramente config-based; source head posterior 2.8.0 continua usado apenas como arquitetura.
 - **Observações:** JAR/mod id/runtime 2.7.1 confirmados. Release 2.7.1 migra todo conteúdo cross-mod para listas de config common/client/server e corrige custom display blocks/fluids e registro no primeiro launch. Source head consultado está em 2.8.0.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #189 na snapshot então vigente; posição física atual #188: createfood-neoforge-1.21.1-2.7.1.jar / runtime 2.7.1 reconfirmados como latest Release NeoForge 1.21.1; cross-mod config registries, display/fluid/item lists, tooltips/effects, plates/bowls, heat cooking e food-stack overlaps permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #189: createfood-neoforge-1.21.1-2.7.1.jar / runtime 2.7.1 reconfirmados como latest Release NeoForge 1.21.1; cross-mod config registries, display/fluid/item lists, tooltips/effects, plates/bowls, heat cooking e food-stack overlaps permanecem atuais.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Stack culinário denso com Farmer's Delight 1.3.4, Central Kitchen 2.6.0, Ratatouille 1.4.0 e outros. Equivalência deve ser comparada por ingredients, fluids, tags e recipe outputs; não há duplicata global presumida.
 
