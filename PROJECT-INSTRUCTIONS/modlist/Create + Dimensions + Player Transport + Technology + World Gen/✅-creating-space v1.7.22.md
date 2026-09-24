@@ -1,5 +1,7 @@
 # Creating Space
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#206**: JAR `creatingspace-1.21.1-1.7.22.jar`, mod id `creatingspace`, runtime `1.7.22`, SHA-1 `6eca99ee07780ef8918ad6969809f15ed0b1371c`.
+
 ## Propriedades do registro
 
 - **Mod:** Creating Space

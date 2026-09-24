@@ -1,5 +1,7 @@
 # CreativeCore
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#207**: JAR `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar`, mod id `creativecore`, runtime `2.13.46`, SHA-1 `180613074e3f8df9b1e052a3abe19a1c4ac38b48`.
+
 ## Propriedades do registro
 
 - **Mod:** CreativeCore

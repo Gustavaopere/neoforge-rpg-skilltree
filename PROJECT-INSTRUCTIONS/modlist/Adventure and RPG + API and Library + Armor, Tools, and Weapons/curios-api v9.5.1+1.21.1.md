@@ -1,6 +1,6 @@
 # Curios API
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#211**: JAR `curios-neoforge-9.5.1+1.21.1.jar`, runtime `9.5.1+1.21.1`.
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#211**: JAR `curios-neoforge-9.5.1+1.21.1.jar`, mod id `curios`, runtime `9.5.1+1.21.1`, SHA-1 `418fcd42e3a7844c9bdc71c9b6401fdb3894e0c4`.
 
 ## Propriedades do registro
 
@@ -14,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Dependência transversal e stateful de equipamentos. Riscos: version drift com consumers, slot definitions divergentes após datapack/config reload, equip/unequip hooks duplicados, sync client/server e world-upgrade migrations. A 9.5.1 corrige crash ao carregar mundo após update vindo de 9.4.2+1.21.1 ou inferior.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/curios/files/6529130
-- **Procedência histórica:** snapshot físico de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `curios` 9.5.1+1.21.1 + CurseForge oficial revalidado em 12/09/2026; 9.5.1+1.21.1 permanece a release NeoForge 1.21.1 mais recente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `curios` 9.5.1+1.21.1 + CurseForge oficial revalidado em 12/09/2026; 9.5.1+1.21.1 permanece a release NeoForge 1.21.1 mais recente.
 - **Observações:** mod id `curios`; runtime 9.5.1+1.21.1. Curios é API/library Client & Server. A release 9.5.1 corrige crash em world load após atualizar de 9.4.2+1.21.1 ou abaixo (#520). Não hardcodar uma lista universal de slots: consumers definem a topologia aplicável.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #213 na snapshot então vigente: curios-neoforge-9.5.1+1.21.1.jar / runtime 9.5.1+1.21.1 reconfirmados como latest Release NeoForge 1.21.1; slot/equipment authority, consumer-defined topology, sync/migration e regressão #520 permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #213: curios-neoforge-9.5.1+1.21.1.jar / runtime 9.5.1+1.21.1 reconfirmados como latest Release NeoForge 1.21.1; slot/equipment authority, consumer-defined topology, sync/migration e regressão #520 permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Curios API 9.5.1+1.21.1 foi reconfirmado como `Instalado` na modlist física de 595; o dossiê Alex já aplicado foi preservado e necessidade técnica por consumers não foi convertida em decisão curatorial.
 - **Sobreposição:** Não substitui os equipamentos dos mods consumidores nem Curios-style systems sem port explícito. Pode coexistir com outros slot APIs; conflito real exige dois providers disputando o mesmo equipamento/state ou bridge duplicando eventos.
@@ -80,7 +80,7 @@ Itens equipados não podem sumir, duplicar ou reaparecer em slot antigo após to
 9. Multiplayer: dois jogadores com loadouts distintos sem state leak.
 10. Coexistência com outro slot system/bridge sem dupe.
 ## 15. Evidência
-- snapshot física de 11/09/2026: Curios API 9.5.1+1.21.1;
+- modlist física atual: Curios API 9.5.1+1.21.1;
 - CurseForge oficial: flexible/expandable accessory/equipment API, Client & Server;
 - release/File ID 6529130 para NeoForge 1.21.1;
 - changelog 9.5.1: fix de crash no world load ao atualizar de 9.4.2+1.21.1 ou inferior.

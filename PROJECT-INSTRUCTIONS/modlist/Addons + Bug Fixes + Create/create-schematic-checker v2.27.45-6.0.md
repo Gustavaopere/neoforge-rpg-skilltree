@@ -1,5 +1,7 @@
 # Create: Schematic Checker
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#202**: JAR `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar`, mod id `createschematicchecker`, runtime `2.27.45-6.0`, SHA-1 `e617e3740470a0ffec23d5cd4ca06acf2a876673`.
+
 ## Propriedades do registro
 
 - **Mod:** Create: Schematic Checker
@@ -12,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Interfere deliberadamente no fluxo de upload/scan/print de schematics. Regras excessivas podem remover conteúdo válido; regras frouxas podem deixar exploits. 2.27.45 desabilita por padrão o repair Quark fluidlogged-lava e corrige Copycats layers com consumed-item air para restaurar material requirement.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-schematicchecker
-- **Procedência:** snapshot física de 11/09/2026 + runtime `createschematicchecker` 2.27.45-6.0 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 2.27.45 de 25/08/2026 continua a release NeoForge 1.21.1 mais recente.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createschematicchecker` 2.27.45-6.0 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 2.27.45 de 25/08/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** JAR `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar`; runtime `2.27.45-6.0`; Client & Server. Config principal `config/CSC/config.toml`, regras locais `config/CSC/user_rule.json`; scan é assíncrono e pode manter logs/backups. 2.27.45: Quark fluidlogged-lava repair off por padrão; Copycats air consumed-item repair.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — registro histórico do lote físico #203 na snapshot então vigente; posição física atual #202: createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar / runtime 2.27.45-6.0 reconfirmados como latest Release NeoForge 1.21.1/Create 6.0; async scan, sanitization policy, Quark repair default-off e Copycats material-requirement fix permanecem atuais.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #203: createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar / runtime 2.27.45-6.0 reconfirmados como latest Release NeoForge 1.21.1/Create 6.0; async scan, sanitization policy, Quark repair default-off e Copycats material-requirement fix permanecem atuais.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Schematic Checker 2.27.45-6.0 foi reconfirmado como `Instalado` na modlist física de 595 top-levels e reconstruído ao padrão técnico. Presença/benefício de segurança não foram convertidos em decisão curatorial.
 - **Sobreposição:** Não duplica Fast Schematic Cannon ou Pattern Schematics: CSC valida/sanitiza segurança e compatibilidade dos schematics; os outros alteram velocidade, criação ou uso. Bridges/reparos devem manter uma única regra efetiva para cada exploit.
