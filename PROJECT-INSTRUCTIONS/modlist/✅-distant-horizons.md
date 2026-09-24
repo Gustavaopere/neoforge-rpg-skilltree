@@ -1,5 +1,7 @@
 # Distant Horizons
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#222**: JAR `DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar`, mod id `distanthorizons`, runtime `3.2.0-b`, SHA-1 `df25e8cfe06917963778723a1d9a60610dd21bec`.
+
 ## Propriedades do registro
 
 - **Mod:** Distant Horizons

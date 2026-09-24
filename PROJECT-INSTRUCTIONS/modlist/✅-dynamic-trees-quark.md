@@ -1,5 +1,7 @@
 # Dynamic Trees - Quark
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#229**: JAR `dtquark-2.6.1.jar`, mod id `dtquark`, runtime metadata **vazia**, SHA-1 `8d13799a1893faba90b3364c07ed7c076b41a7be`.
+
 ## Propriedades do registro
 
 - **Mod:** Dynamic Trees - Quark

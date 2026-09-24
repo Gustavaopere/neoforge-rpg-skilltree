@@ -1,5 +1,7 @@
 # Dreamless Spells
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#225**: JAR `dreamless_spells-1.1.9.jar`, mod id `dreamless_spells`, runtime `1.1.9`, SHA-1 `d51960bfb8af1aafa5d716ef9a48c3135f36b956`.
+
 ## Propriedades do registro
 
 - **Mod:** Dreamless Spells

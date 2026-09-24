@@ -1,5 +1,7 @@
 # Dynamic Trees - Terralith
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#230**: JAR `dtterralith-1.3.0.jar`, mod id `dtterralith`, runtime `1.3.0`, SHA-1 `0fb34ea2c594d6180eae9fd4cd6b416d662cf8a9`.
+
 ## Propriedades do registro
 
 - **Mod:** Dynamic Trees - Terralith

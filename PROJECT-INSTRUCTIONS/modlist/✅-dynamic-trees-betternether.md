@@ -1,5 +1,7 @@
 # Dynamic Trees - BetterNether
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#227**: JAR `dtbetternether-1.21.1-2.2.0.jar`, mod id `dtbetternether`, runtime `2.2.0`, SHA-1 `782f527007e23a172f577dcc4dc4d447a1a788cf`.
+
 ## Propriedades do registro
 
 - **Mod:** Dynamic Trees - BetterNether
