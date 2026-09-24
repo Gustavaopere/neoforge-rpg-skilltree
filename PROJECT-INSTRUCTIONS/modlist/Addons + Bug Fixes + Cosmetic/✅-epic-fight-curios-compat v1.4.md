@@ -1,5 +1,7 @@
 # Epic Fight x Curios Compat
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#259**: JAR `Epic Fight x Curios Compat 2.2.jar`, mod id `epicfight_curios_compat`, runtime `1.4`, SHA-1 `3b13ee4590d3765249419c6f320f461cbf1c8f6d`.
+
 ## Propriedades do registro
 
 - **Mod:** Epic Fight x Curios Compat
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epicfightcurioscompat
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `Epic Fight x Curios Compat 2.2.jar`, mod id `epicfight_curios_compat`, metadata runtime 1.4 e SHA-1 `3b13ee4590d3765249419c6f320f461cbf1c8f6d`. CurseForge oficial revalidado em 21/09/2026 mantém 2.2 como latest release NeoForge 1.21.1 e Environment Client & Server.
 - **Observações:** SHA-1 físico `3b13ee4590d3765249419c6f320f461cbf1c8f6d` identifica o artefato publicado como `Epic Fight x Curios Compat 2.2.jar`; metadata interna continua `1.4` e não deve ser normalizada para 2.2. CurseForge oficial revalidado em 21/09/2026 classifica o projeto como **Client & Server**.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #258 na snapshot então vigente; posição física atual #259: `Epic Fight x Curios Compat 2.2.jar` permanece instalado; filename/publicação `2.2` e metadata runtime `1.4` continuam divergência legítima. CurseForge oficial mantém 2.2 como latest release NeoForge 1.21.1.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #258: `Epic Fight x Curios Compat 2.2.jar` permanece instalado; filename/publicação `2.2` e metadata runtime `1.4` continuam divergência legítima. CurseForge oficial mantém 2.2 como latest release NeoForge 1.21.1.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não substitui Curios ou Epic Fight. Atua na camada de attachment/render de equipamentos Curios no modelo Epic Fight; outras armor/player render bridges podem tocar os mesmos transforms e exigem precedence.
 - **Data da última decisão:** 2026-08-26

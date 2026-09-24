@@ -1,5 +1,7 @@
 # EntityCulling
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#257**: JAR `entityculling-neoforge-1.10.5-mc1.21.1.jar`, mod id `entityculling`, runtime `1.10.5`, SHA-1 `420d0006dbc0a20b1c2dd0b3c7c20ddb5cc51fcf`.
+
 ## Propriedades do registro
 
 - **Mod:** EntityCulling

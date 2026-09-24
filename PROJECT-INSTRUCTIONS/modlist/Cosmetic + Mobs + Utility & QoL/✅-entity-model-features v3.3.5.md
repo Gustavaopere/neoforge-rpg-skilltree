@@ -1,5 +1,7 @@
 # Entity Model Features
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#254**: JAR `entity_model_features-3.3.5-1.21-neoforge.jar`, mod id `entity_model_features`, runtime `3.3.5`, SHA-1 `e78060b9a01bf41b5628bd45ce5ac741f68f092c`.
+
 ## Propriedades do registro
 
 - **Mod:** Entity Model Features
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/entity-model-features
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `entity_model_features-3.3.5-1.21-neoforge.jar`, mod id `entity_model_features`, runtime 3.3.5 e SHA-1 `e78060b9a01bf41b5628bd45ce5ac741f68f092c`. CurseForge oficial revalidado em 21/09/2026 mantém 3.3.5 para NeoForge 1.21.1; os fixes 3.3.5 já documentados permanecem aplicáveis.
 - **Observações:** Runtime físico 3.3.5. Changelog oficial da build instalada: corrige layer models quebrados pela 3.3.4 quando múltiplas entidades do mesmo tipo estão presentes e corrige fallbacks do wool undercoat de baby sheep em versões anteriores a 26.1. CEM/player/modded models, export e EMFAnimationApi permanecem as superfícies principais.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #253 na snapshot então vigente; posição física atual #254: `entity_model_features-3.3.5-1.21-neoforge.jar` / runtime `3.3.5` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. CurseForge oficial continua com 3.3.5 como release aplicável a NeoForge 1.21.1.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #253: `entity_model_features-3.3.5-1.21-neoforge.jar` / runtime `3.3.5` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. CurseForge oficial continua com 3.3.5 como release aplicável a NeoForge 1.21.1.
 - **Decisão:** Sem decisão
 - **Sobreposição:** EMF controla modelos/animações CEM. ETF controla texturas/regras; ESF controla sons. Fresh Animations/resource packs consomem essas capacidades. EMF Compat preserva poses de outros mods; CPM/EME são providers visuais distintos e exigem precedence.
 - **Data da última decisão:** 2026-08-26

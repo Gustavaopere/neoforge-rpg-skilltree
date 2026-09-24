@@ -1,5 +1,7 @@
 # Entity Sound Features
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#255**: JAR `entity_sound_features-0.8.2-1.21-neoforge.jar`, mod id `entity_sound_features`, runtime `0.8.2`, SHA-1 `74932e01844b2524d5d7ad958d4bc638ac5743c1`.
+
 ## Propriedades do registro
 
 - **Mod:** Entity Sound Features
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/entity-sound-features
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `entity_sound_features-0.8.2-1.21-neoforge.jar`, mod id `entity_sound_features`, runtime 0.8.2 e SHA-1 `74932e01844b2524d5d7ad958d4bc638ac5743c1`. ETF 7.2.1 e EMF 3.3.5 permanecem fisicamente presentes; CurseForge oficial revalidado em 21/09/2026 mantém 0.8.2 para 1.21.1.
 - **Observações:** Runtime físico é 0.8.2; referência antiga 0.8.1 foi removida. Projeto oficial documenta `assets/<namespace>/esf/.../*.properties`, variants JSON/OGG, `sounds.N`, `soundSuffix`, `soundRule`, `playingSound` e funções EMF como `playsound`/`playingsound`. Assinaturas exatas são version-sensitive.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #254 na snapshot então vigente; posição física atual #255: `entity_sound_features-0.8.2-1.21-neoforge.jar` / runtime `0.8.2` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader. CurseForge oficial continua com 0.8.2 como release aplicável à linha NeoForge 1.21.1.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #254: `entity_sound_features-0.8.2-1.21-neoforge.jar` / runtime `0.8.2` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. CurseForge oficial continua com 0.8.2 como release aplicável à linha NeoForge 1.21.1.
 - **Decisão:** Sem decisão
 - **Sobreposição:** ESF controla regras/variação sonora; ETF controla textura e EMF modelos/animações. Resource packs de som podem substituir os mesmos sound events e precisam de precedence, mas não constituem automaticamente outro gameplay provider.
 - **Data da última decisão:** 2026-08-26

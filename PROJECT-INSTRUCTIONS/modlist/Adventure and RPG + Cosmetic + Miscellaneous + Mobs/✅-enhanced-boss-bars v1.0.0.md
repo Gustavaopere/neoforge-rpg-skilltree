@@ -1,5 +1,7 @@
 # Enhanced Boss Bars
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#253**: JAR `enhancedbossbars-1.0.0.jar`, mod id `enhancedbossbars`, runtime `1.0.0`, SHA-1 `812fa35e45f015661e8348c96d2ccc360723583b`.
+
 ## Propriedades do registro
 
 - **Mod:** Enhanced Boss Bars
@@ -14,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `enhancedbossbars-1.0.0.jar`, mod id `enhancedbossbars`, runtime 1.0.0 e SHA-1 `812fa35e45f015661e8348c96d2ccc360723583b`. CurseForge oficial revalidado em 21/09/2026 mantém `enhancedbossbars-1.0.0.jar` como latest release NeoForge 1.21.1 e ambiente Client.
 - **Observações:** Runtime físico confirmado 1.0.0. O mod foi criado para resolver casos em que apenas o resource pack não integra corretamente boss bars de mods. O suporte publicado inclui bosses de Mowzie's Mobs, Cataclysm, Bosses of Mass Destruction, Aether, Meet Your Fight, Wither Storm e Alex's Mobs; somente providers fisicamente presentes são tratados como ativos localmente.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — registro histórico do lote físico #252 na snapshot então vigente; posição física atual #253: `enhancedbossbars-1.0.0.jar` / runtime `1.0.0` reconfirmados na snapshot física então vigente de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
+- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #252: `enhancedbossbars-1.0.0.jar` / runtime `1.0.0` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader; sem delta físico de versão neste ciclo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobrepõe apenas apresentação de boss bar. Jade e resource packs podem ocupar a mesma região de HUD; os boss mods continuam authority de HP, fases, AI e combate.
 - **Data da última decisão:** 2026-08-26
