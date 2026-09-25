@@ -19,6 +19,9 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #312: Hazen N Stuff 1.4.0.14 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #312: JAR `hazennstuff-1.4.0.14.jar`, mod id `hazennstuff`, runtime `1.4.0.14`, SHA-1 `3be20bacb44c1923348ab6f61b685eec6aacfdcd`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `hazennstuff-1.4.0.14.jar`, mod id `hazennstuff`, versão `1.4.0.14`, Minecraft 1.21.1 / NeoForge. O source oficial `Hazentouvel/Hazen_N_Stuff:1.21.1` declara exatamente `mod_version=1.4.0.14`, portanto esta ficha é source-pinned à build instalada.
 </callout>
