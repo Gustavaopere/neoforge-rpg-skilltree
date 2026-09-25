@@ -5,22 +5,26 @@
 - **Mod:** Oracle Index
 - **Arquivo JAR:** oracle_index-neoforge-1.4.0.jar
 - **Versão 1.21.1:** 1.4.0
-- **Categoria:** QoL; Biblioteca
+- **Categoria:** QoL, Biblioteca
+- **Decisão:** Opcional
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/oracle-index
 - **Função:** Viewer client-side de documentação/wiki in-game compatível com a estrutura de conteúdo do [ModdedMC.wiki](http://ModdedMC.wiki), com parsing, assets e infraestrutura local de busca/indexação.
 - **Dependências:** NeoForge 1.21.1. O JAR embute CommonMark, jsoup, LangChain4j, ONNX Runtime, OpenNLP, tokenizers/embeddings e outras libraries; não catalogar como top-level.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Viewer client-side com grande footprint embedded. Riscos: CPU/RAM de indexação, cache de imagens, parser/content drift, rendering de estruturas ricas (tables/code tabs/callouts), layout invalidation e access-widener packaging histórico. Bibliotecas NLP/embedding internas não provam uso de rede externa.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/oracle-index
-- **Procedência:** modlist.txt física atual de 16/09/2026 + CurseForge oficial da release NeoForge 1.4.0 para Minecraft 1.21.1 (14/09/2026) + metadata física dos JARs internos.
-- **Observações:** Runtime 1.4.0. A release 1.4.0 amplia significativamente o renderer documental (tables, block quotes, GitHub-style alerts, hover text, image attributes/captions, enhanced code blocks, code tabs, audio/video links e callout variants), melhora translatability e corrige image alignment, collapsible-callout invalidation e code-tab sizing/styling. O fix de NeoForge access widener da 1.3.1 permanece como regression gate histórico.
-- **Atualização/Status:** REVALIDADO EM 17/09/2026 — runtime físico atualizado para oracle_index-neoforge-1.4.0.jar / 1.4.0. Release NeoForge 1.21.1 de 14/09/2026 confirmada; adiciona suporte a tabelas, block quotes, GitHub-style alerts, hover text, image attributes/captions, enhanced code blocks, code tabs, links de áudio/vídeo e variantes adicionais de callout, além de melhorias de tradução e correções de layout/render.
-- **Decisão:** Opcional
-- **Histórico da decisão:** 
 - **Sobreposição:** Sobrepõe UX de consulta com livros/viewers específicos, mas não substitui APIs/documentação exigidas por consumers. Permanece Opcional.
+- **Observações:** Runtime 1.4.0. A release 1.4.0 amplia significativamente o renderer documental (tables, block quotes, GitHub-style alerts, hover text, image attributes/captions, enhanced code blocks, code tabs, audio/video links e callout variants), melhora translatability e corrige image alignment, collapsible-callout invalidation e code-tab sizing/styling. O fix de NeoForge access widener da 1.3.1 permanece como regression gate histórico.
+- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial da release NeoForge 1.4.0 para Minecraft 1.21.1 + metadata física dos JARs internos.
+- **Atualização/Status:** REVALIDADO EM 25/09/2026 — Oracle Index 1.4.0/JAR físico reconfirmado; renderer documental e footprint embedded da release 1.4.0 preservados no dossiê.
+- **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-06
 
-> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `oracle_index-neoforge-1.4.0.jar`, mod id `oracle_index`, versão `1.4.0`, NeoForge 1.21.1. Oracle Index é um viewer client-side de documentação compatível com a estrutura de conteúdo do [ModdedMC.wiki](http://ModdedMC.wiki). O JAR físico é grande porque embute uma pilha extensa de parsing/search/ML libraries; esses artefatos pertencem ao host e não são mods top-level.
+> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #428: JAR `oracle_index-neoforge-1.4.0.jar`, mod id `oracle_index`, runtime `1.4.0`, SHA-1 `90415e944016b45bd3791bfa3705e9e8345e1dde`.
+
+<callout icon="🔎" color="blue_bg">
+	**ESCOPO CANÔNICO.** Runtime físico: `oracle_index-neoforge-1.4.0.jar`, mod id `oracle_index`, versão `1.4.0`, NeoForge 1.21.1. Oracle Index é um viewer client-side de documentação compatível com a estrutura de conteúdo do [ModdedMC.wiki](http://ModdedMC.wiki). O JAR físico é grande porque embute uma pilha extensa de parsing/search/ML libraries; esses artefatos pertencem ao host e não são mods top-level.
+</callout>
 ## 1. Identidade e papel
 - **Mod:** Oracle Index.
 - **JAR físico:** `oracle_index-neoforge-1.4.0.jar`.
