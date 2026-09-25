@@ -21,8 +21,6 @@
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #335: JAR `integrated_stronghold-1.1.4+1.21.1-neoforge.jar`, mod id `integrated_stronghold`, runtime `1.1.4+1.21.1-neoforge`, SHA-1 `9c425610a04f04d81ce9491e886c6df3fc4feac8`.
 
-# Dossiê operacional — padrão Alex's Mobs
-
 > **ESCOPO CANÔNICO.** Runtime físico: `integrated_stronghold-1.1.4+1.21.1-neoforge.jar`, mod id `integrated_stronghold`, versão `1.1.4+1.21.1-neoforge`. A release oficial NeoForge 1.21.1 é 1.1.4. No pack atual, **YUNG's Better Strongholds não está instalado**.
 
 ## 1. Papel e authority
