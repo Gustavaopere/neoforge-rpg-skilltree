@@ -19,6 +19,9 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #313: HazentouveLib 1.0.9 reconfirmado; nenhuma mudança de versão física aplicável a Minecraft 1.21.1 nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #313: JAR `hazentouvelib-1.0.9.jar`, mod id `hazentouvelib`, runtime `1.0.9`, SHA-1 `b5d68711babb604e368b918683eb89a4d1492077`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `hazentouvelib-1.0.9.jar`, mod id `hazentouvelib`, versão `1.0.9`, Minecraft 1.21.1 / NeoForge. O source oficial `Hazentouvel/HazentouveLib:main` declara exatamente `mod_version=1.0.9`, portanto a ficha é source-pinned à build instalada.
 </callout>
