@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #311: Guide-API-VP 2.3.0 reconfirmado; nenhuma mudança de versão física aplicável a Minecraft 1.21.1 nesta rodada.
 - **Data da última decisão:** 2026-09-06
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #311: JAR `Guide-API-VP-1.21.1-2.3.0.jar`, mod id `guideapi_vp`, runtime `2.3.0`, SHA-1 `69d85cd2bccfcddf854798b53d337f6f736c85f5`.
+
 <callout icon="📖" color="green_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `Guide-API-VP-1.21.1-2.3.0.jar`, mod id `guideapi_vp`, versão `2.3.0`. Guide-API-VP fornece infraestrutura para **documentação/livros in-game**. Não adiciona progressão ou conteúdo de gameplay próprio.
 </callout>

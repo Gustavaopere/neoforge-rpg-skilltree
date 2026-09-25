@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #309: GTBC's Geomancy Plus 1.1.0-1.21.1 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #309: JAR `gtbcs_geomancy_plus-1.1.0-1.21.1.jar`, mod id `gtbcs_geomancy_plus`, runtime `1.1.0-1.21.1`, SHA-1 `67e9652799f35f1fbd09968da6f400d0229f5599`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `gtbcs_geomancy_plus-1.1.0-1.21.1.jar`, mod id `gtbcs_geomancy_plus`, versão `1.1.0-1.21.1`, NeoForge 1.21.1. A release oficial file `7041615` declara que a build 1.21.1 é um **port 100% da versão 1.20.1** da linha 1.1.0. Não foi localizado source público exato auditável; classes, registry IDs e internals permanecem fail-closed.
 </callout>

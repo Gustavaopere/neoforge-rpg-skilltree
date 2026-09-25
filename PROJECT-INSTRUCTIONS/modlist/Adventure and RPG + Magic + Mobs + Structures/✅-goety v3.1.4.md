@@ -20,6 +20,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #305: Goety 3.1.4 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-09-10
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #305: JAR `goety-3.1.4.jar`, mod id `goety`, runtime `3.1.4`, SHA-1 `a0770e180e4e8b1b87d8fa9c8356e9dbf34d82a7`.
+
 <callout icon="🔬" color="purple_bg">
 	**PADRÃO ALEX'S MOBS — ESCOPO CANÔNICO.** Runtime físico: `goety-3.1.4.jar`, mod id `goety`, NeoForge 1.21.1. A release pública **3.1.4** é pinada exatamente. A linha pública 1.21.1+ `Vivideru/Goety-3` foi auditada nos checkpoints 3.1.0 e 3.1.1, onde `ModItems.java` mantém um blob estável com **123 registros ativos de itens Focus**. A lista oficial da Wiki com 110 nomes é preservada como subconjunto documental. Não há pin público exato de source 3.1.4 estabelecido; portanto equivalência JAR↔source, reachability, mechanics, APIs e internals específicos da 3.1.4 permanecem fail-closed.
 </callout>

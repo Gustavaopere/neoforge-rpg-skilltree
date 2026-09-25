@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #304: GroovyModLoader 6.0.2 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #304: JAR `gml-6.0.2.jar`, mod id `gml`, runtime `6.0.2`, SHA-1 `29a8153c54b9b03a3b4b42be7d77fe4ac2459720`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `gml-6.0.2.jar`, mod id `gml`, versão `6.0.2`. O branch oficial `GroovyMC/GroovyModLoader:1.21.x` possui `version.properties` com `version=6.0.2`, portanto a versão está source-pinned. O JAR físico incorpora o runtime Groovy e bibliotecas auxiliares via JarJar; essas entradas pertencem ao host e não viram mods top-level.
 </callout>

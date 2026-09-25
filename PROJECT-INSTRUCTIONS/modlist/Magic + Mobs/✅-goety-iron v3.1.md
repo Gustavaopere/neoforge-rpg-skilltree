@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #307: Goety Iron 3.1 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #307: JAR `GoetyIron-1.21.1-NeoForge-3.1.jar`, mod id `goetyiron`, runtime `3.1`, SHA-1 `c8529867e798661ed01fb2948abda23735888fc6`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `GoetyIron-1.21.1-NeoForge-3.1.jar`, mod id `goetyiron`, versão `3.1`. A release oficial 3.1 para NeoForge 1.21.1 é exata e o changelog correspondente foi auditado. O mod conecta **Goety 3.1.4** a **Iron's Spells 'n Spellbooks 1.21.1-3.16.3**; não é um terceiro sistema de magia independente.
 </callout>
