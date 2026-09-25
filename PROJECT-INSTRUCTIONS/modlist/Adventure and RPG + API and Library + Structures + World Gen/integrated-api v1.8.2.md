@@ -3,24 +3,27 @@
 ## Propriedades do registro
 
 - **Mod:** Integrated API
-- **Arquivo JAR:** integrated_api-neoforge-1.21.1-1.8.2.jar
-- **Versão 1.21.1:** 1.8.2
-- **Categoria:** Biblioteca; Worldgen
+- **Arquivo JAR:** `integrated_api-neoforge-1.21.1-1.8.2.jar`
+- **Versão 1.21.1:** `1.8.2`
+- **Categoria:** Biblioteca, Worldgen
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/integrated-api/files/8636576
 - **Função:** Biblioteca/worldgen API da série Integrated Structures, fornecendo abstrações e utilitários de estruturas, jigsaw/terrain adaptation, conditional block replacement, cartographer maps e opções data-driven compartilhadas.
 - **Dependências:** NeoForge 1.21.1. Consumers físicos confirmados no pack incluem IDAS 1.13.7, Integrated Dungeons Arise 2.1.1, Integrated Mowzie's Mobs 1.3.0, Integrated Cataclysm 1.0.6, Integrated Stronghold 1.1.4 e Integrated Villages 1.3.3. Integrated Patches continua ausente fisicamente.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Infraestrutura central do cluster Integrated. Riscos: ABI/data drift entre consumers, jigsaw/terrain-placement regressions, conditional replacement com mod ausente, structure JSON incompatível, shared worldgen bugs e atualização unilateral. 1.8.2 adiciona ceiling structure type; 1.8.0 já havia adicionado upside-down terrain adaptation.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/integrated-api/files/8636576
-- **Procedência:** modlist física de 17/09/2026 + release/changelog oficial Integrated API 1.8.2 para NeoForge 1.21.1 + documentação oficial já auditada do ecossistema Integrated.
-- **Observações:** Runtime físico 1.8.2. Release 1.8.2 adiciona ceiling structure type. Upside-down terrain adaptation da 1.8.0 permanece capability herdada. Integrated Patches segue não instalado.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — Integrated API atualizado para 1.8.2; ceiling structure type incorporado; upside-down terrain adaptation preservada; Integrated Patches continua ausente e não foi promovido a dependência.
-- **Decisão:** Sem decisão
-- **Histórico da decisão:** 
 - **Sobreposição:** Não é mod de estruturas independente; centraliza infraestrutura usada por vários Integrated. Não duplicar jigsaw/terrain/data logic nos consumers sem necessidade, e não atribuir automaticamente a um consumer bugs que pertencem à API compartilhada.
+- **Observações:** Runtime físico 1.8.2. Release 1.8.2 adiciona ceiling structure type. Upside-down terrain adaptation da 1.8.0 permanece capability herdada. Integrated Patches segue não instalado.
+- **Procedência:** modlist física de 17/09/2026 + release/changelog oficial Integrated API 1.8.2 para NeoForge 1.21.1 + documentação oficial já auditada do ecossistema Integrated.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — Integrated API atualizado para 1.8.2; ceiling structure type incorporado; upside-down terrain adaptation preservada; Integrated Patches continua ausente e não foi promovido a dependência.
 - **Data da última decisão:** 2026-08-26
 
-> **ESCOPO CANÔNICO.** Runtime físico: `integrated_api-neoforge-1.21.1-1.8.2.jar`, mod id `integrated_api`, versão `1.8.2`. A distribuição física corresponde à release oficial NeoForge 1.21.1. A ficha é release-pinned para comportamento version-sensitive.
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #332: JAR `integrated_api-neoforge-1.21.1-1.8.2.jar`, mod id `integrated_api`, runtime `1.8.2`, SHA-1 `e0a0e44235b98f21a05ebbe0171fe8487319a173`.
+
+<callout icon="🏗️" color="green_bg">
+	**ESCOPO CANÔNICO.** Runtime físico: `integrated_api-neoforge-1.21.1-1.8.2.jar`, mod id `integrated_api`, versão `1.8.2`. A distribuição física corresponde à release oficial NeoForge 1.21.1. A ficha é release-pinned para comportamento version-sensitive.
+</callout>
 ## 1. Papel e authority
 Integrated API é a biblioteca de infraestrutura da série Integrated Structures. Ela não é authority dos catálogos de estruturas dos consumers; fornece contratos comuns para worldgen, jigsaw, terrain adaptation, configuração e integrações reutilizáveis.
 ## 2. Consumers físicos relevantes
