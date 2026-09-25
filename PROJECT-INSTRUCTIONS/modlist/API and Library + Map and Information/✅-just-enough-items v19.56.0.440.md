@@ -6,21 +6,25 @@
 - **Arquivo JAR:** jei-1.21.1-neoforge-19.56.0.440.jar
 - **Versão 1.21.1:** 19.56.0.440
 - **Categoria:** QoL
+- **Decisão:** Manter
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/jei/files/all?version=1.21.1
 - **Função:** Infraestrutura central de visualização e indexação de itens/ingredientes, recipes e usos, com busca/bookmarks e API de plugins usada por numerosos addons de informação/compatibilidade do pack.
 - **Dependências:** NeoForge 1.21.1; pack físico usa NeoForge 21.1.250. O pack contém múltiplas integrações/plugins JEI, portanto updates da linha Beta devem ser testados em conjunto.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Build física 19.56.0.440 é Beta oficial. Riscos: JEI plugin API drift, recipe/ingredient reload mismatch, bookmark/search UI state, plugins compilados contra builds anteriores, client/server divergence e atualização Beta isolada. 19.56.0.441 existe upstream, mas não está instalada.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/jei/files/all?version=1.21.1
-- **Procedência:** modlist física de 17/09/2026 + listagem oficial JEI/CurseForge para 19.56.0.440 e 19.56.0.441; sem atribuição de fixes específicos à .440 sem changelog.
-- **Observações:** Runtime físico 19.56.0.440. Build 19.56.0.441 Beta foi publicada em 16/09/2026 e é apenas update disponível. Nenhum changelog específico da .440 foi localizado nesta auditoria.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — JEI atualizado documentalmente para o runtime físico 19.56.0.440 / NeoForge 21.1.250; canal Beta preservado; 19.56.0.441 registrada apenas como update disponível não instalado.
-- **Decisão:** Manter
-- **Histórico da decisão:** 2026-09-06 — presença do JEI aprovada; Manter. Snapshot da época usava 19.53.0.425 Beta e registrava 19.51.0.418 como stable. 2026-09-10 — modlist física atualizada para 19.53.0.426; release oficial Beta confirmada e pesquisa revalidada contra o source line 19.53.0/NeoForge 21.1.248. Decisão Manter preservada; nenhum downgrade/troca física foi executado.
 - **Sobreposição:** Pode coexistir com viewers alternativos em alguns ambientes, mas este pack possui vários plugins especificamente JEI. Não substituir por EMI/REI sem auditorar todo o dependency/plugin graph e a paridade de recipes/categories.
+- **Observações:** Runtime físico 19.56.0.440. Build 19.56.0.441 Beta foi publicada em 16/09/2026 e é apenas update disponível. Nenhum changelog específico da .440 foi localizado nesta auditoria.
+- **Procedência:** modlist física de 17/09/2026 + listagem oficial JEI/CurseForge para 19.56.0.440 e 19.56.0.441; sem atribuição de fixes específicos à .440 sem changelog.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — JEI atualizado documentalmente para o runtime físico 19.56.0.440 / NeoForge 21.1.250; canal Beta preservado; 19.56.0.441 registrada apenas como update disponível não instalado.
+- **Histórico da decisão:** 2026-09-06 — presença do JEI aprovada; Manter. Snapshot da época usava 19.53.0.425 Beta e registrava 19.51.0.418 como stable. 2026-09-10 — modlist física atualizada para 19.53.0.426; release oficial Beta confirmada e pesquisa revalidada contra o source line 19.53.0/NeoForge 21.1.248. Decisão Manter preservada; nenhum downgrade/troca física foi executado.
 - **Data da última decisão:** 2026-09-06
 
-> **ESCOPO CANÔNICO.** Runtime físico: `jei-1.21.1-neoforge-19.56.0.440.jar`, mod id `jei`, versão `19.56.0.440`. A distribuição oficial continua no canal **Beta** para NeoForge 1.21.1. O pack usa NeoForge **21.1.250**. **Decisão ****`Manter`**** preservada.**
+> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #349: JAR `jei-1.21.1-neoforge-19.56.0.440.jar`, mod id `jei`, runtime `19.56.0.440`, SHA-1 `8f18e13b4cc84d2140642ec2411514b7f5b0883b`.
+
+<callout icon="📚" color="blue_bg">
+	**ESCOPO CANÔNICO.** Runtime físico: `jei-1.21.1-neoforge-19.56.0.440.jar`, mod id `jei`, versão `19.56.0.440`. A distribuição oficial continua no canal **Beta** para NeoForge 1.21.1. O pack usa NeoForge **21.1.250**. **Decisão ****`Manter`**** preservada.**
+</callout>
 ## 1. Papel e authority
 Just Enough Items é a infraestrutura central de descoberta de ingredientes, recipes e usos do pack. JEI indexa e apresenta dados e oferece API para plugins; não é owner da recipe de gameplay. O recipe manager/datapack/provider real continua authority sobre ingredientes, outputs, machines e condições.
 ## 2. Canal da build física
