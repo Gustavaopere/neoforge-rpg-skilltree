@@ -3,24 +3,27 @@
 ## Propriedades do registro
 
 - **Mod:** Iron's Apothic
-- **Arquivo JAR:** irons_apothic-2.2.2.jar
-- **Versão 1.21.1:** 2.2.2
-- **Categoria:** Compat; Magia; RPG
+- **Arquivo JAR:** `irons_apothic-2.2.2.jar`
+- **Versão 1.21.1:** `2.2.2`
+- **Categoria:** Compat, Magia, RPG
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://github.com/muon-rw/Apotheosis-Irons-Spells
 - **Função:** Compatibilidade bidirecional entre Apotheosis/Apothic e Iron's Spells, tornando staffs/spellbooks reforjáveis e adicionando affixes/gems ligados a escolas, spell power/level/mana e disparo de spells por eventos de combate/cura.
 - **Dependências:** Apotheosis 8.6.0+ pela linha 2.2.1; pack físico: Apotheosis 8.8.0, Apothic Enchanting 1.6.2, Apothic Spawners 1.4.0, Apothic Attributes 2.10.1, Iron's Spells 3.16.3, Iron's Lib 2.1.0 e Curios 9.5.1+1.21.1. Compat 2.2.2 toca GTBC's Geomancy, Cataclysm Spellbooks e Alshanex's Familiars, todos presentes.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Bridge profunda entre Apotheosis/Apothic e Iron's. Riscos: recursive proc loops, free-cast duplicado, cooldown/target state incorreto, school/affix stacking excessivo, optional-school registry drift, Curios/equipment lifecycle, FakePlayer/TargetEntityCastData edges e version drift dos providers.
-- **Fonte:** https://github.com/muon-rw/Apotheosis-Irons-Spells
-- **Procedência:** modlist física de 17/09/2026 + release/changelog oficial Apotheosis x Iron's Spellbooks Compat 2.2.2 + source oficial muon-rw/Apotheosis-Irons-Spells.
-- **Observações:** Runtime físico 2.2.2. Changelog 2.2.2 adiciona Geo school affixes + Quaking Jasper, remove Sand school compat e remove Harmonic após mudanças dos providers.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — Iron's Apothic atualizado para 2.2.2; deltas Geo/Quaking Jasper, Sand e Harmonic incorporados; matriz física atual dos providers preservada.
-- **Decisão:** Sem decisão
-- **Histórico da decisão:** 
 - **Sobreposição:** Não substitui Apotheosis nem Iron's; injeta o sistema Apothic de reforging/affixes no conteúdo mágico de Iron's. Pode amplificar outros sistemas de atributos/gems/Curios, portanto balance e exactly-once procs exigem validação.
+- **Observações:** Runtime físico 2.2.2. Changelog 2.2.2 adiciona Geo school affixes + Quaking Jasper, remove Sand school compat e remove Harmonic após mudanças dos providers.
+- **Procedência:** modlist física de 17/09/2026 + release/changelog oficial Apotheosis x Iron's Spellbooks Compat 2.2.2 + source oficial muon-rw/Apotheosis-Irons-Spells.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — Iron's Apothic atualizado para 2.2.2; deltas Geo/Quaking Jasper, Sand e Harmonic incorporados; matriz física atual dos providers preservada.
 - **Data da última decisão:** 2026-08-26
 
-> **ESCOPO CANÔNICO.** Runtime físico: `irons_apothic-2.2.2.jar`, mod id `irons_apothic`, versão `2.2.2`. A ficha permanece release/source-grounded na linha oficial, com os deltas 2.2.2 registrados separadamente dos comportamentos herdados de 2.2.0/2.2.1.
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #339: JAR `irons_apothic-2.2.2.jar`, mod id `irons_apothic`, runtime `2.2.2`, SHA-1 `e8d646f7aad9811ddcefed838d71d14b53573554`.
+
+<callout icon="🔮" color="purple_bg">
+	**ESCOPO CANÔNICO.** Runtime físico: `irons_apothic-2.2.2.jar`, mod id `irons_apothic`, versão `2.2.2`. A ficha permanece release/source-grounded na linha oficial, com os deltas 2.2.2 registrados separadamente dos comportamentos herdados de 2.2.0/2.2.1.
+</callout>
 ## 1. Papel e authority
 Iron's Apothic integra o sistema de reforging/affixes/gems de Apotheosis/Apothic com **Iron's Spells 'n Spellbooks**. Iron's continua authority de spells, mana, escolas e casting; Apotheosis/Apothic continuam authority de reforging, affixes e gem mechanics; a bridge é authority somente das categorias, filtros e gatilhos que conectam os dois sistemas.
 ## 2. Matriz física e version gate
