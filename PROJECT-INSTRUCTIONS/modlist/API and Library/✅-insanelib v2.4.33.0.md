@@ -3,24 +3,28 @@
 ## Propriedades do registro
 
 - **Mod:** InsaneLib
-- **Arquivo JAR:** insanelib-2.4.33.0.jar
-- **Versão 1.21.1:** 2.4.33.0
+- **Arquivo JAR:** `insanelib-2.4.33.0.jar`
+- **Versão 1.21.1:** `2.4.33.0`
 - **Categoria:** Biblioteca
-- **Função:** Biblioteca e framework compartilhado dos mods de Insane96, com módulos/config declarativos, utilitários, tags/NBT, atributos e pequenas correções/features comuns de gameplay.
-- **Dependências:** NeoForge 1.21.1; pack físico atual usa NeoForge 21.1.250. O JAR físico 2.4.33.0 embarca `EvalEx-3.6.0.jar` via JarJar como dependência interna do host. Consumers da família Insane devem ser validados antes de remover/atualizar a library.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Biblioteca com hooks comuns e features opcionais que podem alterar tempo, weather, NBT de entidades, XP e atributos. Riscos: ABI drift em consumers, tags/NBT malformadas, duplicate handlers, config divergence, mudanças em time/weather compartilhadas com outros sistemas e consumer ainda depender do Sound Overrides removido em 2.4.33.0.
-- **Fonte:** https://github.com/Insane96/InsaneLib/tree/1.21.1
-- **Procedência:** modlist(1).txt física atual de 18/09/2026 + CurseForge oficial InsaneLib 2.4.33.0, release NeoForge 1.21.1 de 15/09/2026 + changelog oficial 2.4.33.0/2.4.32.0 + inventário físico confirmando `EvalEx-3.6.0.jar` em `META-INF/jarjar`.
-- **Observações:** 2.4.33.0 remove Sound Overrides, recurso que a 2.4.32.0 havia adicionado para fuse/explosion via NBT. O JAR continua hospedando `EvalEx 3.6.0` internamente; essa biblioteca não recebe entrada top-level. As mudanças 2.4.31.0 em `insanelib:mob_detection_range`, `insanelib:push_resistance`, Grindstone XP e ModNBTData/MCUtils permanecem baseline histórica.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 18/09/2026 — runtime físico reconciliado para `insanelib-2.4.33.0.jar` / `2.4.33.0`. A release oficial de 15/09/2026 remove Sound Overrides, recurso introduzido na 2.4.32.0. `EvalEx 3.6.0` continua embarcado em `META-INF/jarjar` e permanece dependência interna, não top-level.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** 2026-09-18 — runtime físico atualizado para 2.4.33.0; nenhuma decisão curatorial nova. Sound Overrides deixa de ser feature ativa porque foi removido pelo upstream nesta release.
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://github.com/Insane96/InsaneLib/tree/1.21.1
+- **Função:** Biblioteca e framework compartilhado dos mods de Insane96, com módulos/config declarativos, utilitários, tags/NBT, atributos e pequenas correções/features comuns de gameplay.
+- **Dependências:** NeoForge 1.21.1; pack físico atual usa NeoForge 21.1.250. O JAR físico 2.4.33.0 embarca `EvalEx-3.6.0.jar` via JarJar como dependência interna do host. Consumers da família Insane devem ser validados antes de remover/atualizar a library.
+- **Compatibilidade/Riscos:** Biblioteca com hooks comuns e features opcionais que podem alterar tempo, weather, NBT de entidades, XP e atributos. Riscos: ABI drift em consumers, tags/NBT malformadas, duplicate handlers, config divergence, mudanças em time/weather compartilhadas com outros sistemas e consumer ainda depender do Sound Overrides removido em 2.4.33.0.
 - **Sobreposição:** Não substitui outras libraries. Algumas features comuns podem tocar tempo/weather, atributos, XP e entity NBT, mas a authority final deve permanecer no sistema que efetivamente aplica cada regra; evitar handlers duplicados.
+- **Observações:** 2.4.33.0 remove Sound Overrides, recurso que a 2.4.32.0 havia adicionado para fuse/explosion via NBT. O JAR continua hospedando `EvalEx 3.6.0` internamente; essa biblioteca não recebe entrada top-level. As mudanças 2.4.31.0 em `insanelib:mob_detection_range`, `insanelib:push_resistance`, Grindstone XP e ModNBTData/MCUtils permanecem baseline histórica.
+- **Procedência:** modlist(1).txt física atual de 18/09/2026 + CurseForge oficial InsaneLib 2.4.33.0, release NeoForge 1.21.1 de 15/09/2026 + changelog oficial 2.4.33.0/2.4.32.0 + inventário físico confirmando `EvalEx-3.6.0.jar` em `META-INF/jarjar`.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 18/09/2026 — runtime físico reconciliado para `insanelib-2.4.33.0.jar` / `2.4.33.0`. A release oficial de 15/09/2026 remove Sound Overrides, recurso introduzido na 2.4.32.0. `EvalEx 3.6.0` continua embarcado em `META-INF/jarjar` e permanece dependência interna, não top-level.
 - **Data da última decisão:** 2026-08-30
 
-> 🧩 **ESCOPO CANÔNICO.** Runtime físico: `insanelib-2.4.33.0.jar`, mod id `insanelib`, versão `2.4.33.0`, NeoForge 1.21.1. A release oficial 2.4.33.0 foi publicada em 15/09/2026; o pack físico atual usa NeoForge 21.1.250.
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #331: JAR `insanelib-2.4.33.0.jar`, mod id `insanelib`, runtime `2.4.33.0`, SHA-1 `97b2e0a7fea7b80cd96e250e274810b25b597b66`. `EvalEx-3.6.0.jar` permanece dependência JarJar interna e não ocupa posição top-level.
+
+<callout icon="🧩" color="blue_bg">
+	**ESCOPO CANÔNICO.** Runtime físico: `insanelib-2.4.33.0.jar`, mod id `insanelib`, versão `2.4.33.0`, NeoForge 1.21.1. A release oficial 2.4.33.0 foi publicada em 15/09/2026; o pack físico atual usa NeoForge 21.1.250.
+</callout>
 ## 1. Papel e authority
 InsaneLib é a biblioteca compartilhada dos mods de Insane96 e também contém pequenas features/fixes comuns. Ela é authority apenas das APIs, módulos e comportamentos que registra diretamente; mods consumidores continuam owners de seu gameplay específico.
 ## 2. Framework de módulos e configuração
