@@ -1,30 +1,22 @@
 # Iris
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d569db9f0db819fb4dcc4dba6cd8421
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente
-- **Data da exportação:** 2026-09-11
-
-## Propriedades do banco
+## Propriedades do registro
 
 - **Mod:** Iris
 - **Arquivo JAR:** `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar`
-- **Versão 1.21.1:** 1.8.14-beta.1+mc1.21.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Versão 1.21.1:** `1.8.14-beta.1+mc1.21.1`
 - **Estado da pesquisa:** Verificado
-- **Função:** Pipeline client-side de shaders para Minecraft moderno, compatível com shader packs do ecossistema OptiFine/ShadersMod e integrado ao Sodium; controla rendering/shadow passes, não gameplay.
-- **Dependências:** Cliente NeoForge 1.21.1. Runtime local possui Sodium 0.8.13; a build 1.8.14-beta.1 foi publicada para a linha Sodium 0.8. Distant Horizons e Euphoria Patcher são integrações/composição do stack, não hard dependencies aqui afirmadas.
-- **Sobreposição:**
-- **Compatibilidade/Riscos:** Build beta e fortemente acoplada ao renderer/Sodium. Regression gates upstream na exata beta incluem BlockEntities ausentes de shadow pass e clouds ausentes em certas combinações. Testar Sodium 0.8.13, Distant Horizons, Euphoria, GPU/driver, resource reload e dimension changes.
-- **Observações:** mod id `iris`; runtime `1.8.14-beta.1+mc1.21.1`. Client-side visual/rendering. Config local e shader pack ativo não foram lidos; não atribuir a Iris authority sobre gameplay, partículas, clima ou LOD world state.
-- **Procedência:** Runtime/JAR: modlist física canônica 08/09/2026. Release: CurseForge Iris 1.8.14-beta.1 NeoForge 1.21.1. Arquitetura/objetivos: source oficial Iris. Issues upstream usadas apenas como regression gates.
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/irisshaders ; https://github.com/IrisShaders/Iris
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — Iris 1.8.14-beta.1; shader pipeline, authority, Sodium/DH/Euphoria, lifecycle client, riscos gráficos e matriz de regressão catalogados.
-- **Histórico da decisão:**
-- **Data da última decisão:**
+- **Função:** Pipeline client-side de shaders para Minecraft moderno, compatível com shader packs do ecossistema OptiFine/ShadersMod e integrado ao Sodium; controla rendering/shadow passes, não gameplay.
+- **Dependências:** Cliente NeoForge 1.21.1. Runtime local possui Sodium 0.8.13; a build 1.8.14-beta.1 foi publicada para a linha Sodium 0.8. O JAR embarca via JarJar quatro módulos Forgified Fabric API (`fabric_api_base`, `fabric_block_view_api_v2`, `fabric_renderer_api_v1`, `fabric_rendering_data_attachment_v1`), além de `glsl-transformer 3.0.0-pre3` e `jcpp 1.4.14`. Distant Horizons/Euphoria são integrações, não hard dependencies aqui afirmadas.
+- **Compatibilidade/Riscos:** Build beta e fortemente acoplada ao renderer/Sodium. Regression gates upstream na exata beta incluem BlockEntities ausentes de shadow pass e clouds ausentes em certas combinações. Testar Sodium 0.8.13, Distant Horizons, Euphoria, GPU/driver, resource reload e dimension changes.
+- **Sobreposição:** Sobreposição somente na camada de renderização: Iris compõe-se com Sodium, Distant Horizons, Euphoria Patcher e outros renderer mods, mas não substitui suas authorities. Pode disputar shadow/depth/fog/model passes; não deve ser tratado como provider de gameplay, iluminação lógica ou world state.
+- **Observações:** mod id `iris`; runtime `1.8.14-beta.1+mc1.21.1`. Build beta e client-side. O JAR traz módulos Forgified Fabric API + GLSL Transformer/JCPP internamente; não recebem entradas top-level. A lista oficial filtrada para 1.21.1 não mostra build NeoForge posterior à 1.8.14-beta.1.
+- **Procedência:** modlist.txt física anexada e reconferida em 12/09/2026 + CurseForge oficial Iris 1.8.14 Beta 1 for NeoForge 1.21.1 file 8242804 + source oficial IrisShaders/Iris usado estruturalmente + inventário físico do JAR para dependências JarJar embarcadas.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — Iris 1.8.14-beta.1+mc1.21.1/JAR físico reconfirmado como build NeoForge 1.21.1 mais recente localizada. Correção material: módulos Forgified Fabric API, `glsl-transformer 3.0.0-pre3` e `jcpp 1.4.14` embarcados foram documentados como runtime interno, não top-level.
 
-# Dossiê operacional — padrão Alex's Mobs
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #338: JAR `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar`, mod id `iris`, runtime `1.8.14-beta.1+mc1.21.1`, SHA-1 `1bd129cf7bce65d6b1c0543045f0620c98a0f885`. O host embarca via `META-INF/jarjar` quatro módulos Forgified Fabric API (`fabric_api_base`, `fabric_block_view_api_v2`, `fabric_renderer_api_v1`, `fabric_rendering_data_attachment_v1`), `glsl-transformer-3.0.0-pre3.jar` e `jcpp-1.4.14.jar`; todos permanecem dependências internas, não itens top-level.
 
 > **ESCOPO CANÔNICO.** Runtime físico: `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar`, mod id `iris`, versão `1.8.14-beta.1+mc1.21.1`. Iris é **infraestrutura client-side de shaders/renderização**; não é authority de gameplay, mundo ou regras de servidor.
 
@@ -64,6 +56,9 @@ O projeto declara como metas: performance, correção, compatibilidade com mods,
 - Shader packs/resource packs são inputs externos do pipeline; não constituem state de servidor.
 - Não foi lido o arquivo de configuração local do usuário nem identificado qual shader pack está atualmente ativo. Portanto nenhuma opção concreta do cliente é afirmada como habilitada.
 - Alterações de shader/resource pack devem ser testadas após resource reload e troca de dimensão.
+
+### Dependências embarcadas da build NeoForge
+O JAR físico 1.8.14-beta.1 contém em `META-INF/jarjar` quatro módulos Forgified Fabric API — `fabric_api_base 0.4.42+d1308ded19`, `fabric_block_view_api_v2 1.0.10+9afaaf8c19`, `fabric_renderer_api_v1 3.4.0+acb05a3919` e `fabric_rendering_data_attachment_v1 0.3.48+73761d2e19` — além de `glsl-transformer-3.0.0-pre3.jar` e `jcpp-1.4.14.jar`. São **dependências internas do host**, não seis mods top-level adicionais. Updates de Iris podem trocar esse conjunto sem alteração visível na pasta `mods`, então mixin/shader-preprocessor regressions devem considerar o runtime embarcado da versão exata.
 
 ## 6. Client / server
 - **Client-only funcionalmente.** O servidor dedicado não depende de Iris para simular o mundo.
@@ -121,7 +116,7 @@ Não há state de gameplay por jogador. O ponto multiplayer é garantir que:
 Nenhum item foi marcado como aprovado nesta auditoria.
 
 ## 12. Evidências
-- Modlist física canônica de 08/09/2026: JAR/mod id/versão.
+- Modlist física canônica reconferida em 12/09/2026: JAR/mod id/versão e dependências JarJar embarcadas da build NeoForge.
 - CurseForge oficial: arquivo `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar`, NeoForge 1.21.1, Beta, atualização para Sodium 0.8.
 - Repositório oficial IrisShaders/Iris: objetivos e arquitetura de shader compatibility/performance.
 - Issues upstream específicas da 1.8.14-beta.1 usadas somente como regression gates para shadows/clouds/rendering.
