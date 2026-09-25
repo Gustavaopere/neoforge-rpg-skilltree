@@ -1,28 +1,30 @@
 # Petrolpark's Library
 
-> **Reauditoria física — 17/09/2026.** Versão catalogada atual: `1.5.11`. O conteúdo abaixo foi reconstruído a partir da página Notion reconciliada e da autoridade física atual; a URL da própria página Notion foi deliberadamente omitida.
-
 ## Propriedades do registro
 
 - **Mod:** Petrolpark's Library
 - **Arquivo JAR:** petrolpark-1.21.1-1.5.11.jar
 - **Versão 1.21.1:** 1.5.11
-- **Categoria:** Biblioteca; Tecnologia
+- **Categoria:** Biblioteca, Tecnologia
+- **Decisão:** Dependência
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/petrolpark-library
 - **Função:** Biblioteca/framework do ecossistema Petrolpark usada por addons Create e projetos como Destroy para recursos compartilhados.
 - **Dependências:** NeoForge 1.21.1. Consumer físico confirmado: Destroy 0.4.3, cujo manifest do port 1.21.1 exige Petrolpark `[1.5.0,1.6.0)`; a física 1.5.11 continua dentro dessa faixa formal.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** A compat estática Destroy↔Petrolpark permanece comprovada pelo range `[1.5.0,1.6.0)`, mas runtime/linkage continua QA pendente. Riscos em API/ABI, JEI, data propagation, recipe scanning, Create optional surfaces e beta churn.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/petrolpark-library
-- **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Petrolpark 1.5.11 + source read-only do port Destroy `NHblock714/Destroy@1.21.1-neo`, já auditado, com `versionRange="[1.5.0,1.6.0)"`. Nenhum runtime/linkage test executado.
-- **Observações:** JAR físico `petrolpark-1.21.1-1.5.11.jar`, mod id `petrolpark`, runtime 1.5.11. Release oficial Beta NeoForge 1.21.1 de 14/09/2026, file ID 8878365. Changelog 1.5.11: `Update to latest JEI`. JEI físico atual: 19.56.0.440.
-- **Atualização/Status:** READITADO EM 17/09/2026 — runtime físico atualizado de 1.5.10 para 1.5.11. O range formal do Destroy 0.4.3 `[1.5.0,1.6.0)` continua satisfeito; changelog 1.5.11 volta a alterar a superfície JEI.
-- **Decisão:** Dependência
-- **Histórico da decisão:** 2026-08-26 — origem/versionamento reconciliados e classificado como Dependência por Destroy instalado. 2026-09-10 — Dependência preservada; dossiê concluído para runtime 1.5.10, mas Estado da pesquisa mantido em Rever até prova source-level do range de Destroy 0.4.3. 2026-09-11 — source exato do port Destroy 0.4.3 confirmou dependência Petrolpark `[1.5.0,1.6.0)`; 1.5.10 satisfaz a faixa e Estado da pesquisa passou a Verificado, com runtime QA ainda pendente.
 - **Sobreposição:** Library específica do ecossistema Petrolpark; não substituível por libraries Create genéricas. É load-bearing enquanto Destroy permanecer.
+- **Observações:** JAR físico `petrolpark-1.21.1-1.5.11.jar`, mod id `petrolpark`, runtime 1.5.11. Release oficial Beta NeoForge 1.21.1 de 14/09/2026, file ID 8878365. Changelog 1.5.11: `Update to latest JEI`. JEI físico atual: 19.56.0.440.
+- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial Petrolpark 1.5.11 + source read-only do port Destroy `NHblock714/Destroy@1.21.1-neo`, já auditado, com `versionRange="[1.5.0,1.6.0)"`. Nenhum runtime/linkage test executado.
+- **Atualização/Status:** READITADO EM 25/09/2026 — Petrolpark 1.5.11/JAR físico reconfirmado. O range formal do Destroy 0.4.3 `[1.5.0,1.6.0)` continua satisfeito; JEI 19.56.0.440 permanece a superfície de regressão documentada.
+- **Histórico da decisão:** 2026-08-26 — origem/versionamento reconciliados e classificado como Dependência por Destroy instalado. 2026-09-10 — Dependência preservada; dossiê concluído para runtime 1.5.10, mas Estado da pesquisa mantido em Rever até prova source-level do range de Destroy 0.4.3. 2026-09-11 — source exato do port Destroy 0.4.3 confirmou dependência Petrolpark `[1.5.0,1.6.0)`; 1.5.10 satisfaz a faixa e Estado da pesquisa passou a Verificado, com runtime QA ainda pendente.
 - **Data da última decisão:** 2026-09-10
 
-> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `petrolpark-1.21.1-1.5.11.jar`, mod id `petrolpark`, versão `1.5.11`, NeoForge 1.21.1. Petrolpark's Library é framework Client & Server de APIs/data systems compartilhados pelo ecossistema Petrolpark/Create. **Destroy 0.4.3 é consumer físico confirmado**, portanto a decisão permanece **Dependência**. A build 1.5.11 é Beta e foi publicada em 14/09/2026. A compatibilidade estática com Destroy 0.4.3 permanece fechada: o source exato do port exige Petrolpark `[1.5.0,1.6.0)`, faixa satisfeita pela 1.5.11 física. O estado de pesquisa é **Verificado**; runtime/linkage continua QA pendente.
+> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #440: JAR `petrolpark-1.21.1-1.5.11.jar`, mod id `petrolpark`, runtime `1.5.11`, SHA-1 `967edc04590d24232bfe45faa8c3ee66bface203`.
+
+<callout icon="🔎" color="yellow_bg">
+	**ESCOPO CANÔNICO.** Runtime físico: `petrolpark-1.21.1-1.5.11.jar`, mod id `petrolpark`, versão `1.5.11`, NeoForge 1.21.1. Petrolpark's Library é framework Client & Server de APIs/data systems compartilhados pelo ecossistema Petrolpark/Create. **Destroy 0.4.3 é consumer físico confirmado**, portanto a decisão permanece **Dependência**. A build 1.5.11 é Beta e foi publicada em 14/09/2026. A compatibilidade estática com Destroy 0.4.3 permanece fechada: o source exato do port exige Petrolpark `[1.5.0,1.6.0)`, faixa satisfeita pela 1.5.11 física. O estado de pesquisa é **Verificado**; runtime/linkage continua QA pendente.
+</callout>
 ## 1. Identidade e papel
 - **Mod:** Petrolpark's Library.
 - **JAR físico:** `petrolpark-1.21.1-1.5.11.jar`.
@@ -150,7 +152,7 @@ A 1.5.10 foi publicada especificamente para **update ao JEI mais recente**. O pa
 - [ ] Stacktrace de qualquer falha é triado por consumer/API antes de atribuição à library.
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 16. Evidências e limites
-- Modlist física de 16/09/2026: `petrolpark-1.21.1-1.5.11.jar`, mod id/runtime e `petrolpark.mixins.json`; Destroy 0.4.3 presente.
+- Modlist física atual de 25/09/2026: `petrolpark-1.21.1-1.5.11.jar`, mod id/runtime e `petrolpark.mixins.json`; Destroy 0.4.3 presente.
 - CurseForge oficial: project 1093595, file ID 8832484, Beta NeoForge 1.21.1 de 07/09/2026; changelog 1.5.10 = update ao latest JEI.
 - Documentação oficial: APIs data-driven, Create-optional integration, shared features e dependents incluindo Destroy.
 - Evidência de catálogo anterior: Destroy 0.4.3 com baseline Petrolpark 1.5.0.
