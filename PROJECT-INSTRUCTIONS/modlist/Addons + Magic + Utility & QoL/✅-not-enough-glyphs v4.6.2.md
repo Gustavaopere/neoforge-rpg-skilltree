@@ -1,28 +1,30 @@
 # Not Enough Glyphs
 
-> **Reauditoria física — 18/09/2026.** Versão catalogada atual: `4.6.2`. O conteúdo abaixo preserva a página Notion reconciliada; a URL da própria página Notion foi deliberadamente omitida.
-
 ## Propriedades do registro
 
 - **Mod:** Not Enough Glyphs
 - **Arquivo JAR:** not_enough_glyphs-1.21.1-4.6.2.jar
 - **Versão 1.21.1:** 4.6.2
-- **Categoria:** Magia; RPG
+- **Categoria:** Magia, RPG
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/not-enough-glyphs
 - **Função:** Addon de Ars Nouveau com novos glyphs/forms/filters, Contingencies, SpellBinder para até 25 spells, Book Covers e repacks compatíveis que se desabilitam quando o addon original está presente.
 - **Dependências:** Ars Nouveau — Required Dependency oficial. A release 4.6.2 atualiza Sauce para 0.0.50+; a versão exata do JarJar interno do novo host não foi re-inspecionada nesta passagem.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Ars addon com alto potencial combinatório. Riscos: Trail/Plane multiplicando spell resolution, contingency lifecycle, SpellBinder/namespace migration, filter/rune resolution, Propagate Underfoot em veículos, repack duplication e embedded Sauce drift.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/not-enough-glyphs
-- **Procedência:** modlist física atual + CurseForge oficial Not Enough Glyphs 4.6.2, file ID 8880291, NeoForge 1.21.1, 14/09/2026. Metadata JarJar interna do novo JAR não foi re-inspecionada.
-- **Observações:** Runtime físico `not_enough_glyphs-1.21.1-4.6.2.jar`. A 4.6.2 corrige filter bloqueando resolve em runes após API update, permite Propagate Underfoot atingir o vehicle da entidade e atualiza Sauce para 0.0.50+.
-- **Atualização/Status:** READITADO EM 18/09/2026 — runtime físico atualizado de 4.6.1 para 4.6.2. Hotfix de filter/runes, Propagate Underfoot em vehicle e update de Sauce para 0.0.50+ incorporados; Sauce interno exato do novo JAR não foi re-inspecionado.
-- **Decisão:** Sem decisão
-- **Histórico da decisão:** 
 - **Sobreposição:** Pode replicar glyphs de addons antigos, mas os repacks foram projetados para auto-disable quando o original existe. Avaliar duplicação por glyph/efeito concreto, não pelo domínio Ars geral.
+- **Observações:** Runtime físico `not_enough_glyphs-1.21.1-4.6.2.jar`. A 4.6.2 corrige filter bloqueando resolve em runes após API update, permite Propagate Underfoot atingir o vehicle da entidade e atualiza Sauce para 0.0.50+.
+- **Procedência:** modlist física atual + CurseForge oficial Not Enough Glyphs 4.6.2, file ID 8880291, NeoForge 1.21.1, 14/09/2026. Metadata JarJar interna do novo JAR não foi re-inspecionada.
+- **Atualização/Status:** READITADO EM 18/09/2026 — runtime físico atualizado de 4.6.1 para 4.6.2. Hotfix de filter/runes, Propagate Underfoot em vehicle e update de Sauce para 0.0.50+ incorporados; Sauce interno exato do novo JAR não foi re-inspecionado.
+- **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-26
 
-> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `not_enough_glyphs-1.21.1-4.6.2.jar`, mod id `not_enough_glyphs`, versão `4.6.2`, NeoForge 1.21.1. Ars Nouveau é Required Dependency. A release 4.6.2 atualiza Sauce para `0.0.50+`; a versão exata do JarJar interno do novo host não foi re-inspecionada nesta passagem. O addon amplia o vocabulário de spellcraft e adiciona SpellBinder/Book Covers, exigindo atenção a persistência e migração de dados.
+> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #419: JAR `not_enough_glyphs-1.21.1-4.6.2.jar`, mod id `not_enough_glyphs`, runtime `4.6.2`, SHA-1 `32eea2c478a346ee7499f6a0db156241116f73e9`.
+
+<callout icon="🔎" color="purple_bg">
+	**ESCOPO CANÔNICO.** Runtime físico: `not_enough_glyphs-1.21.1-4.6.2.jar`, mod id `not_enough_glyphs`, versão `4.6.2`, NeoForge 1.21.1. Ars Nouveau é Required Dependency. A release 4.6.2 atualiza Sauce para `0.0.50+`; a versão exata do JarJar interno do novo host não foi re-inspecionada nesta passagem. O addon amplia o vocabulário de spellcraft e adiciona SpellBinder/Book Covers, exigindo atenção a persistência e migração de dados.
+</callout>
 ## 1. Identidade e papel
 - **Mod:** Not Enough Glyphs.
 - **JAR físico:** `not_enough_glyphs-1.21.1-4.6.2.jar`.
