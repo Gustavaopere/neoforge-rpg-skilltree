@@ -1,25 +1,30 @@
 # MRU
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Arquivo JAR:** `mru-1.0.40+1.21.1-neoforge.jar`
+## Propriedades do registro
+
+- **Mod:** MRU
+- **Arquivo JAR:** mru-1.0.40+1.21.1-neoforge.jar
 - **Versão 1.21.1:** 1.0.40+1.21.1
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
-- **Função:** Biblioteca reutilizável do ecossistema IMB11/Cassian para packed resources, helpers de configuração e abstrações comuns/multiversionadas de registro, inventário, bundles, backpacks e accessories usadas por consumers.
-- **Dependências:** NeoForge 1.21.1. A necessidade operacional depende de consumers instalados; nenhum consumer top-level inequívoco foi comprovado causalmente nesta reauditoria.
-- **Sobreposição:** Não substituível automaticamente por outra library genérica. APIs equivalentes em conceito não são contratos drop-in.
-- **Compatibilidade/Riscos:** Library multiversionada. Riscos: API/ABI drift, helper de versão incorreta, packed-resource/config drift e abstrações de inventory/backpack/accessory. O salto 1.0.33→1.0.40 exige regression dos consumers quando eles forem identificados.
-- **Observações:** Runtime físico `1.0.40+1.21.1`. A publicação oficial confirma MRU 1.0.40 para NeoForge 1.21.1 em 11/09/2026. O material upstream recuperado não expôs changelog específico suficiente para atribuir deltas internos à 1.0.40; nenhuma mudança funcional foi inventada.
-- **Procedência:** modlist física de 16/09/2026 + CurseForge oficial MRU 1.0.40 para NeoForge 1.21.1 + documentação/source previamente auditados para Packed Resources, YACL helpers e abstrações multiversionadas. Nenhum teste runtime/linkage foi executado.
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/mru
-- **Atualização/Status:** REAUDITADO EM 16/09/2026 — runtime físico atualizado de 1.0.33 para 1.0.40+1.21.1. Release 1.0.40 confirmada; delta interno não documentado nas fontes recuperadas e portanto não inferido.
-- **Histórico da decisão:**
+- **Função:** Biblioteca reutilizável do ecossistema IMB11/Cassian para packed resources, helpers de configuração e abstrações comuns/multiversionadas de registro, inventário, bundles, backpacks e accessories usadas por consumers.
+- **Dependências:** NeoForge 1.21.1. O projeto não publica hard dependency própria relevante; necessidade operacional depende de consumers instalados ainda não mapeados causalmente.
+- **Compatibilidade/Riscos:** Library multiversionada. Riscos: API/ABI drift, helper de versão incorreta, packed-resource/config drift e abstrações de inventory/backpack/accessory. Nenhum consumer físico inequívoco foi comprovado nesta passagem.
+- **Sobreposição:** Não substituível automaticamente por outra library genérica. APIs equivalentes em conceito não são contratos drop-in.
+- **Observações:** Runtime físico 1.0.40+1.21.1. A linha moderna 1.0.30+ ampliou fortemente o escopo da library; a 1.0.40 reduz o requisito de Java para 17. Presença isolada não prova necessidade; não remover até mapear manifests dos consumers.
+- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial MRU file 8858776 (`mru-1.0.40+1.21.1-neoforge.jar`, 11/09/2026) + documentação/source upstream já auditados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — runtime físico MRU 1.0.40+1.21.1 confirmado pela modlist atual; file ID oficial 8858776 para NeoForge 1.21.1, publicado em 11/09/2026. Consumer mapping e decisão Sem decisão preservados.
+- **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-26
 
-> 🔎 **ESCOPO CANÔNICO.** Runtime físico: `mru-1.0.40+1.21.1-neoforge.jar`, mod id `mru`, versão `1.0.40+1.21.1`, NeoForge 1.21.1. MRU é uma library do ecossistema IMB11/Cassian. Presença do JAR não prova necessidade; a decisão permanece **Sem decisão** até haver consumer instalado comprovado por manifest/source.
+> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #412: JAR `mru-1.0.40+1.21.1-neoforge.jar`, mod id `mru`, runtime `1.0.40+1.21.1`, SHA-1 `0991e3c589f14c73da9d3ed592c43e3ed5745fbd`.
 
+<callout icon="🔎" color="blue_bg">
+	**ESCOPO CANÔNICO.** Runtime físico: `mru-1.0.40+1.21.1-neoforge.jar`, mod id `mru`, versão `1.0.40+1.21.1`, em NeoForge 1.21.1. MRU é uma biblioteca do ecossistema IMB11/Cassian. A linha moderna ampliou o escopo além das antigas helpers de resources/YACL, mas nenhum consumer inequívoco foi comprovado na modlist física desta passagem; por isso a decisão permanece **Sem decisão** e a presença do JAR não é tratada como prova de necessidade.
+</callout>
 ## 1. Identidade e papel
 - **Mod:** MRU — Mineblocks' Repeated Utilities.
 - **JAR físico:** `mru-1.0.40+1.21.1-neoforge.jar`.
@@ -28,82 +33,68 @@
 - **Loader/jogo:** NeoForge 1.21.1.
 - **Autor/ecossistema:** IMB11 / Cassian.
 - **Ambiente publicado:** Client & Server.
-- **Papel:** centralizar infraestrutura comum reutilizável para consumers do ecossistema.
-
-MRU não recebe ownership do gameplay de seus consumers. O sistema consumidor continua authority da feature e de seu state.
-
-## 2. Packed Resources
-A documentação oficial descreve **Packed Resources** como mecanismo para um consumer distribuir resource pack padrão junto do mod e, quando suportado, externalizar/editar esse conteúdo.
-
-Consequências preservadas do dossiê do Notion:
+- **Papel:** biblioteca reutilizável que centraliza infraestrutura comum para mods do mesmo ecossistema.
+MRU não deve receber ownership do gameplay de seus consumidores. Quando um mod usa uma helper de MRU, a feature continua pertencendo ao consumer.
+## 2. Escopo histórico documentado: Packed Resources
+A documentação oficial de MRU descreve **Packed Resources** como uma forma de um consumer distribuir um resource pack padrão junto do mod e, quando suportado, permitir que esse conteúdo seja externalizado/editado.
+Consequências operacionais:
 - assets padrão podem vir empacotados pelo consumer;
-- resource reload pode ser relevante;
-- arquivo externalizado não é o asset original do JAR;
-- edição manual precisa de regression após update para evitar schema/resource drift.
-
+- resource reload pode ser relevante para consumers que usam essa camada;
+- arquivo externo gerado/editável não deve ser confundido com asset original do JAR;
+- qualquer alteração manual precisa ser testada após update do consumer/MRU para evitar schema/resource drift.
 ## 3. YACL helpers
-MRU documenta helpers para construção de telas/configurações com YACL quando um consumer opta por esse caminho. Isso é infraestrutura; não prova que todos os consumers usem YACL nem que MRU seja authority do significado das configs.
-
+A documentação também registra helpers para construir telas/configurações usando YACL em consumers que optam por esse caminho.
+Isso é infraestrutura de UI/config, não prova de que MRU imponha uma tela única a todos os seus consumers. A presença da API deve ser distinguida do uso efetivo por um mod específico.
 ## 4. Expansão da linha 1.0.30+
-A linha moderna foi expandida para reduzir código repetido em projetos como Immersive Overlays/Immersive Minimaps e concentra abstrações multiversionadas. O material previamente auditado documenta:
+A documentação/publicação moderna informa que a biblioteca foi expandida para reduzir código repetido em mods como **Immersive Overlays** e **Immersive Minimaps** e passou a concentrar abstrações multiversionadas.
+O source artifact da linha 1.0.30 documenta, entre outras áreas:
 - hooks comuns de registro;
 - consulta de inventário do jogador;
 - helpers para bundles;
 - backpacks;
 - accessory APIs;
-- helpers específicos por linha de Minecraft.
-
-A existência dessas APIs não prova uso efetivo no pack sem consumer identificado.
-
-## 5. Histórico 1.0.33 e runtime 1.0.40
-A antiga versão catalogada `1.0.33+1.21.1-neoforge` foi publicada em 10/08/2026; seu changelog registrava suporte à linha 26.3 e utilities versionadas. Isso continua contexto arquitetural útil, mas não é mais o runtime.
-
-A versão instalada atual é **1.0.40+1.21.1**, publicada oficialmente para NeoForge 1.21.1 em 11/09/2026. As fontes recuperadas nesta reauditoria confirmam arquivo/versão/plataforma, mas não forneceram changelog granular de 1.0.34→1.0.40. Por regra fail-closed, não são atribuídas features ou fixes específicos sem evidência.
-
+- helpers versionados para múltiplas linhas de Minecraft.
+Esses itens descrevem a arquitetura moderna da biblioteca. Não significam que todos estejam executando neste pack sem um consumer identificado.
+## 5. Release 1.0.40
+A versão instalada `1.0.40+1.21.1-neoforge` foi publicada em 11/09/2026 no CurseForge como file ID `8858776`. O changelog público registra redução do requisito de Java para 17 para manter compatibilidade com builds 1.20.1.
+Para este pack, a parte relevante é que a mesma codebase mantém abstrações por versão; não se deve copiar implementação/config de outra linha de Minecraft para 1.21.1 sem validar a variante correspondente.
 ## 6. Client/server e ownership
-MRU é publicada como Client & Server porque helpers podem ser consumidos nos dois lados. A library não é authority para:
+O projeto é publicado como Client & Server porque diferentes helpers podem ser consumidas em lados diferentes. A library não é authority para:
 - inventário persistente do player;
-- backpacks/accessories de terceiros;
-- HUD/minimap/overlay do consumer;
-- regras de gameplay do consumer.
-
-Mutação real continua sob validação do provider/consumer que possui o state.
-
+- backpacks/accessories fornecidos por outros mods;
+- HUD/minimap/overlay de um consumer;
+- regras de gameplay de um consumer.
+Qualquer mutação real deve continuar validada pelo sistema que possui aquele estado.
 ## 7. Consumidores na modlist atual
-O dossiê original não comprovou consumer inequívoco, e esta reauditoria não promoveu nenhum vínculo novo sem manifesto/source. Portanto:
-- não remover MRU por ausência de consumer evidente por nome;
-- não marcar `Dependência` sem prova causal;
-- manter `Sem decisão` até o mapeamento ser fechado.
-
+Nesta passagem não foi encontrado um consumer inequívoco que permita afirmar causalmente que MRU é necessária ao boot do pack. Buscas por nomes esperados do ecossistema de minimap/overlay não estabeleceram um vínculo suficiente.
+Portanto:
+- **não remover** só porque o consumer não foi encontrado por nome;
+- **não marcar Dependência** sem manifesto/source de um mod instalado declarando MRU;
+- manter `Sem decisão` até o mapeamento causal dos consumidores ser concluído.
 ## 8. Configuração, resources e dados
-A superfície concreta documentada continua sendo infraestrutura de telas/configs e packed resources. Não foi estabelecido formato específico de SavedData, capability ou protocolo de rede próprio do runtime 1.0.40; esses elementos não são inferidos.
-
+A superfície mais concreta de configuração documentada é a infraestrutura para telas/configs e packed resources usada por consumers.
+Não foi estabelecido neste lote um formato de SavedData, capability ou protocolo de rede próprio do MRU 1.0.40. Esses elementos não são inventados.
 ## 9. Compatibilidade
+Riscos relevantes para uma library multiversionada:
 1. **API/ABI drift:** consumer compilado contra outra versão pode falhar em classloading ou comportamento.
-2. **Versioned helper mismatch:** caminho de outra versão do Minecraft pode quebrar abstrações.
-3. **Packed resource drift:** consumer atualizado pode esperar assets/configs diferentes.
-4. **Inventory/accessory abstraction:** helpers devem respeitar ownership/capabilities reais.
-5. **UI/config dependency:** YACL só é requisito quando consumer/manifest comprovar.
-6. **Attribution error:** stacktrace em MRU pode ser efeito de consumer incompatível.
-7. **Delta 1.0.40 não pinado:** sem changelog granular, regression deve ser orientada pelos consumers reais.
-
+2. **Versioned helper mismatch:** chamar caminho destinado a outra versão do Minecraft pode quebrar abstrações.
+3. **Packed resource drift:** consumer atualizado pode esperar assets/configs diferentes dos externalizados anteriormente.
+4. **Inventory/accessory abstraction:** APIs de inventário/backpack/accessory precisam respeitar ownership e capabilities reais dos providers.
+5. **UI/config dependency:** YACL ou outra UI só deve ser tratada como requisito quando o consumer/manifest comprovar.
+6. **Attribution error:** stacktrace em MRU pode representar falha de integração do consumer e não bug intrínseco da biblioteca.
 ## 10. Matriz de testes
 - [ ] Cliente e dedicated server iniciam com MRU 1.0.40 na composição atual.
-- [ ] Identificar consumer real por manifest/source antes de decisão de remoção.
-- [ ] Consumer identificado carrega sem missing class/API.
-- [ ] Resource reload não quebra packed resources utilizados.
-- [ ] Externalização/edição, quando usada, persiste coerentemente.
-- [ ] Helpers de inventário/bundle/backpack/accessory, quando consumidos, não duplicam nem perdem state.
-- [ ] Atualizações futuras são regressadas com todos os consumers identificados.
-
-**Nenhum teste foi executado nesta reauditoria documental.**
-
+- [ ] Identificar ao menos um consumer real por manifest/source antes de qualquer decisão de remoção.
+- [ ] Consumer identificado abre suas telas/configurações sem missing class/API.
+- [ ] Resource reload não quebra packed resources de consumers que usem esse recurso.
+- [ ] Externalização/edição de resources, quando usada, sobrevive a restart de forma coerente.
+- [ ] Inventário/bundle/backpack/accessory helper, quando realmente consumida, não duplica nem perde estado.
+- [ ] Atualização futura de MRU é regressada com todos os consumers identificados.
+Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 11. Evidências e limites
-- Modlist física de 16/09/2026: `mru-1.0.40+1.21.1-neoforge.jar`, mod id `mru`, runtime `1.0.40+1.21.1`.
-- Publicação oficial: MRU 1.0.40 para NeoForge 1.21.1 em 11/09/2026.
-- Documentação previamente auditada: Packed Resources, YACL helpers e abstrações modernas de registro/inventário/bundles/backpacks/accessories.
+- Modlist física atual: `mru-1.0.40+1.21.1-neoforge.jar`, mod id `mru`, runtime `1.0.40+1.21.1`.
+- Publicação oficial: versão NeoForge 1.21.1 1.0.40, file ID 8858776, de 11/09/2026.
+- Documentação oficial: Packed Resources e YACL helpers.
+- Linha moderna/source artifact: expansão para abstrações de registro, inventário, bundles, backpacks, accessories e helpers multiversionados.
 - Source upstream: `IMB11-Mods/MRU`.
-- **Limite:** não foi obtido changelog granular da 1.0.40 nem comprovado consumer instalado; ambos permanecem explicitamente não inferidos.
-
-## 12. Reauditoria física — 16/09/2026
-O runtime físico mudou de `1.0.33+1.21.1` para `1.0.40+1.21.1`. A ficha preserva integralmente o escopo técnico migrado do Notion e atualiza apenas fatos comprovados para a build nova. A decisão continua **Sem decisão** e nenhum teste de boot/linkage/resource reload foi executado.
+- **Limite:** nenhum consumer instalado foi provado causalmente neste lote; a ficha permanece deliberadamente fail-closed em `Sem decisão`.

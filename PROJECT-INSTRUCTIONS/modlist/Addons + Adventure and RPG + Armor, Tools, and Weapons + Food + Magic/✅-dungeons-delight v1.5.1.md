@@ -5,22 +5,26 @@
 - **Mod:** Dungeon's Delight
 - **Arquivo JAR:** neoforge-dungeonsdelight-1.21.1-1.5.1.jar
 - **Versão 1.21.1:** 1.5.1
-- **Categoria:** Comida; RPG
+- **Categoria:** Comida, RPG
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/dungeons-delight
 - **Função:** Addon de Farmer's Delight que transforma recursos de monstros/dungeons em alimentos, efeitos, weapons/tools e cooking próprio, conectando combate/exploração à culinária.
 - **Dependências:** Farmer's Delight 1.3.4 físico; RunicLib 5.0.7 físico; NeoForge 21.1.250 físico. A linha recente requer Farmer's Delight 1.3+ / 1.3.4 para a manutenção atual, RunicLib 5.0.0+ e NeoForge 21.1.219+.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Farmer's Delight addon com RunicLib required. Riscos: combat scaling, Putrid Scent/effect overlap, XP drain do Dungeon Stove, recipe overlap, dispenser automation e ID migration Tokayaki→Takoyaki.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/dungeons-delight
-- **Procedência:** modlist física de 17/09/2026 + release oficial Dungeon's Delight 1.5.1 para NeoForge 1.21.1 + metadata interno 1.5.0 registrado como divergência conhecida.
-- **Observações:** Distribuição física/release oficial 1.5.1 (`neoforge-dungeonsdelight-1.21.1-1.5.1.jar`), mas o metadata interno reporta 1.5.0. A divergência foi reconciliada pela hierarquia canônica: arquivo/release física prevalece para a versão catalogada.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — catalogação atualizada para a distribuição 1.5.1; metadata interno 1.5.0 documentado; compat Farmer's Delight 1.3.4 e fix de Stained Scrap incorporados.
-- **Decisão:** Sem decisão
-- **Histórico da decisão:** 
 - **Sobreposição:** Compartilha domínio culinário com outros addons Farmer's Delight, mas possui loop próprio de monster-food/combat; comparar efeitos/recipes concretos antes de qualquer decisão de redundância.
+- **Observações:** Distribuição física/release oficial 1.5.1 (`neoforge-dungeonsdelight-1.21.1-1.5.1.jar`), mas o metadata interno reporta 1.5.0. A divergência foi reconciliada pela hierarquia canônica: arquivo/release física prevalece para a versão catalogada.
+- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + release oficial Dungeon's Delight 1.5.1 para NeoForge 1.21.1 + metadata interno 1.5.0 registrado como divergência conhecida.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — distribuição física 1.5.1 reconfirmada; metadata interno 1.5.0 preservado como divergência conhecida. Farmer's Delight 1.3.4, RunicLib 5.0.7 e NeoForge 21.1.250 permanecem compatíveis com os mínimos documentados.
+- **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-27
 
-> **ESCOPO CANÔNICO.** Runtime físico: `neoforge-dungeonsdelight-1.21.1-1.5.1.jar`, mod id `dungeonsdelight`, versão de distribuição `1.5.1` (o metadata interno do mod ainda declara `1.5.0`; a divergência é documentada e a autoridade física/release prevalece). A release atual exige Farmer's Delight 1.3+, NeoForge 21.1.219+ e, pelo relacionamento oficial do projeto/linha 1.4.4+, **RunicLib 5.0.0+**. O pack usa Farmer's Delight 1.3.4, NeoForge 21.1.248 e RunicLib 5.0.7, satisfazendo os mínimos conhecidos.
+> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #416: JAR `neoforge-dungeonsdelight-1.21.1-1.5.1.jar`, mod id `dungeonsdelight`, distribuição/version pin `1.5.1`, metadata interna `1.5.0`, SHA-1 `1a7fbb14c9844a2124169f0b2a3eb6fbb2b1848e`.
+
+<callout icon="🔎" color="orange_bg">
+	**ESCOPO CANÔNICO.** Runtime físico: `neoforge-dungeonsdelight-1.21.1-1.5.1.jar`, mod id `dungeonsdelight`, versão de distribuição `1.5.1` (o metadata interno do mod ainda declara `1.5.0`; a divergência é documentada e a autoridade física/release prevalece). A release atual exige Farmer's Delight 1.3+, NeoForge 21.1.219+ e, pelo relacionamento oficial do projeto/linha 1.4.4+, **RunicLib 5.0.0+**. O pack usa Farmer's Delight 1.3.4, NeoForge 21.1.248 e RunicLib 5.0.7, satisfazendo os mínimos conhecidos.
+</callout>
 ## 1. Identidade e papel
 - **Mod:** Dungeon's Delight.
 - **JAR físico:** `neoforge-dungeonsdelight-1.21.1-1.5.1.jar`.
@@ -102,7 +106,7 @@ Esse tipo de mudança é crítico para mundos existentes:
 - recipes/tags/datapacks externos podem continuar referenciando o ID antigo;
 - scripts do pack precisam usar o ID atual após confirmar a migração.
 ## 13. RunicLib como dependency
-Dungeon's Delight é o consumer causal que transforma #425 RunicLib em dependency operacional do pack.
+Dungeon's Delight é o consumer causal que transforma #417 RunicLib em dependency operacional do pack.
 Não atribuir gameplay do Dungeon's Delight à RunicLib: a library fornece APIs/utilidades compartilhadas; itens, foods, weapons, effects e stations pertencem a Dungeon's Delight.
 ## 14. Client/server, dados e lifecycle
 Server-authoritative:
@@ -118,7 +122,7 @@ Client-facing:
 - JEI presentation/tooltips.
 Lifecycle obrigatório inclui save/restart, chunk unload, item-ID migration e `/reload` de recipes/tags.
 ## 15. Riscos
-1. **Dependency drift:** RunicLib <5.0.0 é incompatível com a linha recente; pack usa 5.0.7.
+1. **Dependency drift:** RunicLib \<5.0.0 é incompatível com a linha recente; pack usa 5.0.7.
 2. **Combat scaling:** Ricochet Cleaver pode somar com atributos/perks de forma agressiva.
 3. **Effect overlap:** Putrid Scent e outros status podem interagir com mods de resistência/imunidade.
 4. **XP economy:** Dungeon Stove cria sink de experiência em área.
