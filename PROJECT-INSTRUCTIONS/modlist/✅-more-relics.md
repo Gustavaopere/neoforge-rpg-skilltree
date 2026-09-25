@@ -1,33 +1,27 @@
 # More Relics
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion histórica:** https://app.notion.com/p/3d469db9f0db81ed8169c4d8baa15151
-- **Estado no pack antes desta atualização:** Removido/desativado — o snapshot físico canônico disponível não contém More Relics top-level
-- **Autoridade física ainda verificada:** `modlist.txt` — Relics `relics-1.21.1-0.12.8.jar` está presente; More Relics está ausente do snapshot físico recebido
-- **Artefato selecionado para reintrodução:** `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` — CurseForge file ID `8859015`, Beta, NeoForge 1.21.1, publicado em 11/09/2026
-- **Versão de conteúdo upstream:** 1.7.7; **build de compatibilidade:** `forRelics-0.12.8-1.0`
-- **Data da auditoria GitHub:** 2026-09-14
-
-> **STATUS FAIL-CLOSED.** O bloqueio que motivou a remoção anterior mudou materialmente: o autor publicou uma build especial que **oficialmente suporta Relics 0.12.8**, exatamente a versão do Relics presente no snapshot físico do pack. A reintrodução é tecnicamente justificável, mas ainda não pode ser marcada como fisicamente instalada nem validada em runtime até recebermos a nova modlist/JAR após a atualização do CurseForge.
-
-## Propriedades equivalentes do catálogo
+## Propriedades do registro
 
 - **Mod:** More Relics
-- **Arquivo JAR alvo:** `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar`
-- **Mod ID:** `morerelics` — identidade histórica do projeto; confirmar novamente no JAR alvo quando o binário físico for disponibilizado
-- **Versão 1.21.1:** conteúdo 1.7.7 / build compat Relics 0.12.8 `1.0`
-- **Minecraft / loader:** Minecraft 1.21.1 / NeoForge
-- **Ambiente oficial:** Client & Server
-- **Categoria:** RPG, Magia, Addon, Equipamentos
-- **Função:** addon do framework Relics que adiciona 25+ relics próprios, incluindo linhas de evolução, efeitos passivos/ativos e loot distribuído por estruturas/biomas.
-- **Dependências oficiais:** Relics e suas dependências Curios, Octo-Lib e Architectury. O pack físico confirma Relics 0.12.8; as versões físicas das demais dependências devem continuar sendo validadas pela modlist.
-- **Estado no pack:** Reintrodução selecionada; instalação física pendente de re-fetch da modlist/JAR
-- **Estado da pesquisa:** Verificado documentalmente; binário alvo ainda não auditado localmente
-- **Decisão:** Reintroduzir usando exclusivamente a build oficial para Relics 0.12.8
-- **Sobreposição:** expande o mesmo ecossistema do Relics; não substitui o mod-base e não deve assumir ownership do framework de XP/evolução compartilhado.
-- **Compatibilidade/Riscos:** a build 8859015 é a primeira publicação desta linha que declara suporte oficial ao Relics 0.12.8. O autor adverte contra migração de mundos que ainda usam Relics 0.10.7.8 porque atualizar a dupla pode corromper dados. O pack já está em Relics 0.12.8 no snapshot físico auditado; ainda assim, save existente, dados por jogador e relic stacks precisam de regressão antes de considerar a reintrodução aprovada.
-- **Fonte principal:** CurseForge oficial do projeto e changelog oficial do arquivo 8859015.
+- **Arquivo JAR:** morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar
+- **Versão 1.21.1:** 1.7.7-forRelics-0.12.8-1.0
+- **Categoria:** RPG, Magia
+- **Tipo de conteúdo:** Mod, Addon
+- **Decisão:** Manter
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/more-relics
+- **Função:** Addon de Relics que adiciona novos relics/acessórios e efeitos próprios ao sistema de progressão de Relics.
+- **Dependências:** Relics, Curios API, Architectury API e biblioteca(s) declaradas pela release, incluindo ShatterLib/OctoLib conforme a página oficial.
+- **Compatibilidade/Riscos:** A build física atual é a variante oficial para Relics 0.12.8, portanto o antigo bloqueio de incompatibilidade com 0.12.x foi resolvido. Permanece o alerta oficial de risco de corrupção para mundos migrados de Relics 0.10.7.8 para 0.12.8, além de riscos de persistência/evolução, combat reentrancy, loot duplication e integração Curios. O pack usa Relics 0.12.8.
+- **Sobreposição:** Expansão do mesmo ecossistema Relics; não substitui o mod-base. A incompatibilidade histórica com Relics 0.12.x foi resolvida pela build física especial para 0.12.8; os gates atuais são persistência/migração, evolução, combate e loot, não redundância.
+- **Observações:** Runtime físico `1.7.7-forRelics-0.12.8-1.0`, JAR `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar`, SHA-1 `bc220ed291187c97bd1896f1fdd29b2377879ae1`. CurseForge file ID 8859015, Beta NeoForge 1.21.1 de 11/09/2026; conteúdo congelado em 1.7.7 com manutenção por bug fixes.
+- **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + CurseForge oficial More Relics file 8859015 + relations oficiais (Relics, Curios API, Architectury API, ShatterLib/OctoLib).
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — More Relics foi reintroduzido fisicamente no pack pela build especial `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar`, mod id `morerelics`, runtime `1.7.7-forRelics-0.12.8-1.0`. CurseForge file 8859015 declara suporte oficial ao Relics 0.12.8. A decisão Manter permanece válida; smoke tests de save/evolução/loot continuam obrigatórios.
+- **Histórico da decisão:** 2026-09-07 — incorporado como novo mod e decisão explícita do usuário: MANTER. 2026-09-08 — removido do snapshot físico então vigente por incompatibilidade upstream com Relics 0.12.x. 2026-09-11 — upstream publicou build especial com suporte oficial ao Relics 0.12.8. 2026-09-25 — modlist física atual confirma a reintrodução dessa build especial; decisão Manter preservada.
+- **Data da última decisão:** 2026-09-07
 
+> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #408: JAR `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar`, mod id `morerelics`, runtime `1.7.7-forRelics-0.12.8-1.0`, SHA-1 `bc220ed291187c97bd1896f1fdd29b2377879ae1`.
 ## 1. Identidade, papel e boundary de versão
 
 More Relics é um **addon de Relics**, não um framework de acessórios independente. O projeto oficial o descreve como uma expansão de relics de alta qualidade e informa ambiente Client & Server.
@@ -37,7 +31,7 @@ A publicação está dividida em duas linhas relevantes para NeoForge 1.21.1:
 1. `morerelics-1.7.7-1.21.1.jar` — release principal de 19/08/2026; a própria página oficial alerta que esta build não-beta exige Relics 0.10.7.8;
 2. `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` — Beta de 11/09/2026, file ID 8859015, criada especificamente para Relics 0.12.8.
 
-Para este pack, apenas a segunda linha é candidata válida. O autor declara que esta branch compatível permanecerá **congelada no conteúdo 1.7.7** e receberá apenas bug fixes, sem acompanhar automaticamente conteúdo futuro 1.7.8+.
+Para este pack, a segunda linha é a build fisicamente instalada e válida. O autor declara que esta branch compatível permanecerá **congelada no conteúdo 1.7.7** e receberá apenas bug fixes, sem acompanhar automaticamente conteúdo futuro 1.7.8+.
 
 Isso cria dois version gates separados:
 
@@ -169,7 +163,7 @@ Client-side/presentation:
 - renderizações/representações visuais, incluindo o comportamento visual documentado de Cyberpsychosis;
 - tooltips e feedback visual.
 
-Não há evidência nesta auditoria para declarar classes ou packets específicos da build 8859015; isso permanece pendente de inspeção do binário.
+A modlist física atual confirma o artefato, o mod id, o runtime declarado e o fingerprint SHA-1 da build 8859015. Classes, packets, mixins, configs internas e registry IDs ainda não foram auditados byte a byte.
 
 ## 8. Lifecycle e persistência
 
@@ -202,7 +196,7 @@ Superfícies mínimas de multiplayer:
 
 ### Relics 0.12.8
 
-É a integração central e agora **oficialmente suportada pela build 8859015**. Esta é a razão técnica para reconsiderar a remoção.
+É a integração central e agora **oficialmente suportada e fisicamente instalada pela build 8859015**. Esta é a razão técnica que sustentou a reintrodução confirmada no pack.
 
 ### Curios API
 
@@ -230,12 +224,12 @@ A distribuição oficial cita Bastions, Mineshafts, Strongholds, Ancient Cities,
 6. **Loot inflation/duplication:** muitos injectors de loot/estruturas coexistem no pack.
 7. **Evolution duplication:** scripts/quests que concedam formas evoluídas podem duplicar transições do provider.
 8. **Client/server desync:** indicadores e visuais são client; gameplay deve continuar server-authoritative.
-9. **Unknown binary internals:** a build 8859015 ainda não foi entregue como JAR físico para inspeção de metadata, mixins, configs ou fingerprints.
+9. **Internals não decompilados:** o JAR físico da build 8859015 está confirmado, incluindo mod id/runtime e SHA-1 na modlist; mixins, classes, configs internas e registry IDs ainda exigem inspeção direta caso sejam necessários para uma integração.
 
 ## 12. Matriz de testes obrigatória
 
-- [ ] Nova modlist física confirma `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` como top-level ativo.
-- [ ] Extrair metadata do JAR e confirmar mod id/runtime declarado, mixin configs e dependências sem inferência.
+Confirmações documentais já concluídas nesta auditoria: presença top-level do JAR, mod id `morerelics`, runtime `1.7.7-forRelics-0.12.8-1.0` e SHA-1 físico. A matriz abaixo permanece dedicada aos gates de runtime/comportamento ainda não executados.
+
 - [ ] Dedicated server inicia com Relics 0.12.8 e a build compat sem missing dependency/classloading error.
 - [ ] Cliente entra no servidor e sincroniza relics sem registry/network mismatch.
 - [ ] Equip/unequip Curios funciona e não duplica item/state.
@@ -250,7 +244,7 @@ A distribuição oficial cita Bastions, Mineshafts, Strongholds, Ancient Cities,
 - [ ] Cyberpsychosis altera apenas apresentação prevista; Iron Golem não se torna Warden server-side.
 - [ ] Loot aparece nas superfícies documentadas sem duplicação por outros mods/datapacks.
 - [ ] Client toggles dos icon indicators não alteram gameplay server-side.
-- [ ] Backup de mundo restaurável criado antes do primeiro boot da reintrodução.
+- [ ] Backup de mundo restaurável confirmado antes de qualquer boot de validação/migração relevante com a build reintroduzida.
 
 Nenhum item desta matriz foi marcado como aprovado nesta auditoria documental.
 
@@ -258,7 +252,7 @@ Nenhum item desta matriz foi marcado como aprovado nesta auditoria documental.
 
 **Evidências confirmadas:**
 
-- `modlist.txt` recebida: Relics 0.12.8 presente; More Relics ausente do snapshot físico atual.
+- `modlist(1).txt` atual: More Relics presente como top-level em `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar`, mod id `morerelics`, runtime `1.7.7-forRelics-0.12.8-1.0`, SHA-1 `bc220ed291187c97bd1896f1fdd29b2377879ae1`; Relics 0.12.8 também está presente.
 - Notion histórico: More Relics 1.7.7 havia sido removido por incompatibilidade declarada com Relics 0.12.x.
 - CurseForge oficial: projeto Client & Server; dependencies via Relics/Curios/Octo-Lib/Architectury; lista pública de 25+ relics e rotas de obtenção.
 - CurseForge file ID 8859015, 11/09/2026: build Beta `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` declara suporte oficial a Relics 0.12.8 e congela conteúdo em 1.7.7 com manutenção por bug fixes.
@@ -266,14 +260,14 @@ Nenhum item desta matriz foi marcado como aprovado nesta auditoria documental.
 
 **Ainda não confirmado:**
 
-- hash SHA-1/SHA-256 do novo JAR;
-- metadata interna exata da build 8859015;
-- mixin configs/classes/registry IDs;
+- SHA-256 e inspeção byte a byte do JAR;
+- mixin configs/classes/registry IDs internos não expostos pela modlist;
 - defaults numéricos das novas configs;
 - resultado real de boot/multiplayer/save migration no pack.
 
-## 14. Decisão operacional desta atualização
+## 14. Decisão operacional atual — 25/09/2026
 
-A incompatibilidade que sustentava a remoção **não deve mais ser tratada como atual** para o par Relics 0.12.8 + file 8859015. A build específica existe justamente para esse provider. Portanto, a decisão GitHub passa de “removido por incompatibilidade upstream” para **“reintrodução selecionada, validação física/runtime pendente”**.
+A incompatibilidade que sustentava a remoção histórica **não é mais atual** para o par Relics 0.12.8 + file 8859015. A build específica existe justamente para esse provider e a modlist física atual confirma que ela foi reintroduzida.
 
-Não atualizar o Notion nesta etapa, conforme instrução explícita do usuário. O GitHub passa a preservar a informação nova sem afirmar que o JAR já foi fisicamente instalado.
+O estado documental é **instalado / integrado ao catálogo**, com decisão **Manter** preservada. Isso não converte os testes de gameplay, persistência, multiplayer, evolução e migração em resultados aprovados: esses gates continuam explicitamente pendentes até execução própria.
+
