@@ -1,30 +1,25 @@
 # Integrated Stronghold
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81fa8a62c5005eed8c4f
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente
-- **Data da exportação:** 2026-09-11
-
-## Propriedades do banco
+## Propriedades do registro
 
 - **Mod:** Integrated Stronghold
 - **Arquivo JAR:** `integrated_stronghold-1.1.4+1.21.1-neoforge.jar`
-- **Versão 1.21.1:** 1.1.4+1.21.1-neoforge
-- **Estado no pack:** Instalado — Dossiê completo
-- **Estado da pesquisa:** Verificado
-- **Decisão:** Sem decisão
+- **Versão 1.21.1:** `1.1.4+1.21.1-neoforge`
 - **Categoria:** Worldgen, Exploração
+- **Decisão:** Sem decisão
+- **Estado da pesquisa:** Verificado
+- **Estado no pack:** Integrado ao Github
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/integrated-stronghold
 - **Função:** Substitui o stronghold vanilla por uma megaestrutura de exploração com mais de 50 salas, lore, puzzles, traps, spawners e integração de blocos/conteúdo de vários mods.
 - **Dependências:** Obrigatórias oficiais e presentes: Integrated API 1.8.0, Create 6.0.10, Supplementaries 3.9.8 e Quark 4.1-483. Integrações opcionais devem ser avaliadas por presença; Waystones e Farmer's Delight estão presentes no pack.
-- **Sobreposição:** É o overhaul de stronghold ativo identificado no pack. Não há YUNG's Better Strongholds top-level na modlist vigente. Outros worldgen mods ainda podem interferir em terrain/biomes/placement, portanto a ausência de concorrente direto não elimina regressões de geração.
 - **Compatibilidade/Riscos:** Substituição estrutural de grande escala do stronghold vanilla. Riscos: acesso ao End quebrado, structure placement/terrain collisions, spawner/loot inflation, puzzle state, optional integration drift e chunks híbridos. YUNG's Better Strongholds NÃO está instalado atualmente; não existe esse conflito top-level no pack vigente.
+- **Sobreposição:** É o overhaul de stronghold ativo identificado no pack. Não há YUNG's Better Strongholds top-level na modlist vigente. Outros worldgen mods ainda podem interferir em terrain/biomes/placement, portanto a ausência de concorrente direto não elimina regressões de geração.
 - **Observações:** Release 1.1.4 corrige advancements e music discs. O projeto documenta configuração de spacing/separation, biome tags, custom Integrated Structure Spawners e integration datapacks. A referência antiga a YUNG's Better Strongholds foi removida por ausência física.
-- **Procedência:** modlist.txt física atual + CurseForge oficial Integrated Stronghold 1.1.4 NeoForge 1.21.1 + descrição/configuração/changelog oficiais. Source exato não foi pinado como authority nesta auditoria.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/integrated-stronghold
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Integrated Stronghold 1.1.4 release-pinned; megaestrutura >50 rooms, lore/puzzles/traps, structure-set/biome/spawner data, optional integrations, End-progression authority, lifecycle/worldgen risks e testes catalogados.
-- **Histórico da decisão:**
+- **Procedência:** modlist.txt física anexada e reconferida em 12/09/2026 + CurseForge oficial Integrated Stronghold 1.1.4 NeoForge 1.21.1 + descrição/configuração/changelog oficiais já auditados. Revalidação em 12/09/2026 não encontrou build 1.21.1 posterior.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — Integrated Stronghold 1.1.4+1.21.1-neoforge/JAR físico reconfirmado; 1.1.4 permanece a release NeoForge 1.21.1 mais recente localizada. Megaestrutura \>50 rooms, lore/puzzles/traps, structure-set/biome/spawner data, optional integrations, End-progression authority, lifecycle/worldgen risks e testes preservados.
 - **Data da última decisão:** 2026-08-26
+
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #335: JAR `integrated_stronghold-1.1.4+1.21.1-neoforge.jar`, mod id `integrated_stronghold`, runtime `1.1.4+1.21.1-neoforge`, SHA-1 `9c425610a04f04d81ce9491e886c6df3fc4feac8`.
 
 # Dossiê operacional — padrão Alex's Mobs
 
