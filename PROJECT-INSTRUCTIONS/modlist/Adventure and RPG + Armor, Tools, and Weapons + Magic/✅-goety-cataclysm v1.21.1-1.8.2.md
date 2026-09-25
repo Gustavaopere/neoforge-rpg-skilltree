@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #306: Goety Cataclysm 1.21.1-1.8.2 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #306: JAR `goety_cataclysm-1.21.1-1.8.2.jar`, mod id `goety_cataclysm`, runtime `1.21.1-1.8.2`, SHA-1 `4e3052a082200371b36e1a88fdce05e294d82757`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `goety_cataclysm-1.21.1-1.8.2.jar`, mod id `goety_cataclysm`, versão `1.21.1-1.8.2`. É uma bridge Client & Server entre **Goety 3.1.4** e **L_Ender's Cataclysm 3.33**, ambos presentes fisicamente. A release 1.21.1-1.8.2 é exata; o source oficial público acessível permanece na linha 1.20, portanto internals 1.21.1 são fail-closed.
 </callout>

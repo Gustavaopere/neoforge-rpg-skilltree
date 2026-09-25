@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #302: Global Packs 21.0.6 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #302: JAR `globalpacks-neoforge-1.21.1-21.0.6.jar`, mod id `globalpacks`, runtime `21.0.6`, SHA-1 `55cf667b16b81df9b8f7fead042cf2f732b21b85`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `globalpacks-neoforge-1.21.1-21.0.6.jar`, mod id `globalpacks`, versão `21.0.6`, NeoForge 1.21.1. A release oficial 21.0.6 e sua documentação são a authority desta ficha; o source público vinculado pelo projeto não estava acessível de forma auditável nesta execução, portanto internals/classes não são inventados.
 </callout>

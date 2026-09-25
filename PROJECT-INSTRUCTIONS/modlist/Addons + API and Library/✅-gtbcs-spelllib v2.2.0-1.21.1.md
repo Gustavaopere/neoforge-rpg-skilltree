@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #310: GTBC's SpellLib 2.2.0-1.21.1 reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-30
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #310: JAR `gtbcs_spell_lib-2.2.0-1.21.1.jar`, mod id `gtbcs_spell_lib`, runtime `2.2.0-1.21.1`, SHA-1 `36cce8ab3117e89ae992a84a566d596709db2ffe`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `gtbcs_spell_lib-2.2.0-1.21.1.jar`, mod id `gtbcs_spell_lib`, versão `2.2.0-1.21.1`, NeoForge 1.21.1. A release oficial file `8824651`, publicada em 06/09/2026, é a authority da versão. Não foi localizado source público exato auditável; a ficha usa somente changelogs/documentação oficiais e mantém classes/registries internos não publicados em modo fail-closed.
 </callout>

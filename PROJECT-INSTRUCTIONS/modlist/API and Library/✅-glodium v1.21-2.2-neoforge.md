@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #303: Glodium 1.21-2.2-neoforge reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #303: JAR `Glodium-1.21-2.2-neoforge.jar`, mod id `glodium`, runtime `1.21-2.2-neoforge`, SHA-1 `9f61a3162665ad0b37f6f268339ac98097af1a87`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `Glodium-1.21-2.2-neoforge.jar`, mod id `glodium`, versão `1.21-2.2-neoforge`. A release oficial 2.2 para NeoForge 1.21.1 é a authority da versão. O branch público `GlodBlock/Glodium:neoforge-1.21` ainda declara `1.21-1.2-neoforge`; por isso ele é usado somente para arquitetura/nomenclatura da linha, não como pin exato do binário 2.2.
 </callout>

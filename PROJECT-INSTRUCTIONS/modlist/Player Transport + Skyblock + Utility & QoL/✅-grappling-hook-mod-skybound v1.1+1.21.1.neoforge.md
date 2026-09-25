@@ -19,6 +19,8 @@
 - **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #308: Grappling Hook Mod: Skybound 1.1+1.21.1.neoforge reconfirmado; nenhuma mudança de versão física nesta rodada.
 - **Data da última decisão:** 2026-08-26
 
+> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #308: JAR `grapplemod-1.1+1.21.1.neoforge.jar`, mod id `grapplemod`, runtime `1.1+1.21.1.neoforge`, SHA-1 `2b6060de273f721857d715db9a811ddaa5422683`.
+
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `grapplemod-1.1+1.21.1.neoforge.jar`, mod id `grapplemod`, versão `1.1+1.21.1.neoforge`, NeoForge 1.21.1. A release oficial NeoForge de 31/05/2026 é a authority da versão. O source público `weaversworkshop/grapplemod-skybound:1.21.1-release` confirma arquitetura e compatibilidades, mas ainda contém metadata/documentação Fabric-first e `Core/gradle.properties` em `mod_version=1.0`; por isso não é tratado como pin byte-exato da release 1.1 NeoForge.
 </callout>
