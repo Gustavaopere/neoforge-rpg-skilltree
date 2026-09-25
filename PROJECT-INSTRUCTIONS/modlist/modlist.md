@@ -233,55 +233,55 @@
 | 259 | Epic Fight: Curios Compat 2.0 | `Epic Fight x Curios Compat 2.2.jar` | `2.2 (distribuição/filename); metadata runtime 1.4` | `Addons + Bug Fixes + Cosmetic` | 24/09/2026 - 16:02 |
 | 260 | Epic Fight | `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` | `21.17.3.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 24/09/2026 - 16:02 |
 | 261 | Epic Fight - Epic-API | `epic_api-21.3.1.jar` | `21.3.1` | `API and Library` | 24/09/2026 - 16:02 |
-| 262 | Minecolonies: Epicfied (Epic Colonies) | `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar` | `21.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 23/09/2026 - 00:58 |
-| 263 | Epic Fight - Mod Compat | `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` | `1.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Mobs` | 23/09/2026 - 00:58 |
-| 264 | Epic Fight - Pehkui FIX | `epicfightpehkuiincompatibilityfix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 23/09/2026 - 00:58 |
-| 265 | Ender's Spells and Stuff: Requiem | `ess_requiem-0.1.7.jar` | `0.1.7` | `Addons` | 23/09/2026 - 00:58 |
-| 266 | Euphoria Patches | `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` | `1.10.5-r5.9.3-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 23/09/2026 - 00:58 |
-| 267 | ExpandAbility | `expandability-12.0.0.jar` | `12.0.0` | `API and Library` | 23/09/2026 - 00:58 |
-| 268 | Expanded Delight | `expandeddelight-0.1.4.jar` | `0.1.4` | `Addons + Farming + Food + Ores and Resources` | 23/09/2026 - 00:58 |
-| 269 | Explorer's Compass | `ExplorersCompass-1.21.1-3.4.0-neoforge.jar` | `1.21.1-3.4.0-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Map and Information + Structures` | 23/09/2026 - 00:58 |
-| 270 | Explosive Enhancement: Reforged | `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` | `1.1.2` | `Cosmetic + Miscellaneous` | 23/09/2026 - 00:58 |
-| 271 | Create: Extra Copycats | `extra_copycats-1.0.2.jar` | `1.0.2` | `Addons + Create` | 23/09/2026 - 00:58 |
-| 273 | FamiliarsLib | `familiarslib-1.21.1-1.7.1.jar` | `1.7.1 do JAR/publicação; metadata runtime 1.21.1-1.7` | `API and Library` | 23/09/2026 - 00:58 |
-| 274 | Fantasy Armor (Medieval Series) | `fantasy_armor-neoforge-1.2.4-1.21.1.jar` | `1.2.4-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic` | 23/09/2026 - 00:58 |
-| 275 | Farmer's Spell 'n Spell Book | `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` | `1.0.5.1-1.21.1` | `Farmer's Delight + Food + Magic` | 23/09/2026 - 00:58 |
-| 276 | Farmer's Delight | `FarmersDelight-1.21.1-1.3.4.jar` | `1.3.4` | `Cosmetic + Farming + Food` | 23/09/2026 - 00:58 |
-| 277 | Farmer's Delight: Extended | `farmersdelight_extended-1.21.1-0.2.2.jar` | `1.21.1-0.2.2` | `Addons + Create + Food` | 23/09/2026 - 00:58 |
-| 278 | Farmers Structures | `FarmersStructures-1.0.6-1.21.1_neoforge.jar` | `1.0.6` | `Addons + Farming + MCreator + Structures + World Gen` | 23/09/2026 - 00:58 |
-| 279 | FastSuite | `FastSuite-1.21.1-6.0.7.jar` | `6.0.7` | `Performance` | 23/09/2026 - 00:58 |
-| 280 | FerriteCore ((Neo)Forge) | `ferritecore-7.0.3-neoforge.jar` | `7.0.3` | `Performance` | 23/09/2026 - 00:58 |
-| 281 | Fire's Ender Expansion | `firesenderexpansion-2.4.1.jar` | `2.4.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 23/09/2026 - 00:58 |
-| 282 | First-person Model | `firstperson-neoforge-2.7.2-mc1.21.1.jar` | `2.7.2` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 23/09/2026 - 00:58 |
-| 283 | Flowing Fluids | `flowing_fluids-1.0.6-1.21-neoforge.jar` | `1.0.6` | `Miscellaneous` | 23/09/2026 - 00:58 |
-| 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 22/09/2026 - 01:07 |
-| 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 22/09/2026 - 01:07 |
-| 286 | Forgified Fabric API | `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar` | `0.116.15+2.3.5+1.21.1` | `API and Library` | 22/09/2026 - 01:07 |
-| 287 | Fragmentum [NeoForge Edition] | `fragmentum-neoforge-1.21.1-2.4.4.jar` | `2.4.4` | `API and Library` | 22/09/2026 - 01:07 |
-| 288 | FTB Chunks (NeoForge) | `ftb-chunks-neoforge-2101.1.22.jar` | `2101.1.22` | `Map and Information + Server Utility` | 22/09/2026 - 01:07 |
-| 289 | FTB Library (NeoForge) | `ftb-library-neoforge-2101.1.36.jar` | `2101.1.36` | `API and Library` | 22/09/2026 - 01:13 |
-| 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 22/09/2026 - 01:07 |
-| 291 | FTB Teams (NeoForge) | `ftb-teams-neoforge-2101.1.11.jar` | `2101.1.11` | `API and Library` | 22/09/2026 - 01:07 |
-| 292 | FTB Ultimine (NeoForge) | `ftb-ultimine-neoforge-2101.1.15.jar` | `2101.1.15` | `Armor, Tools, and Weapons + Server Utility` | 22/09/2026 - 01:07 |
-| 293 | FTB XMod Compat | `ftb-xmod-compat-neoforge-21.1.11.jar` | `21.1.11` | `API and Library` | 22/09/2026 - 01:07 |
-| 294 | Fusion (Connected Textures) | `fusion-1.3.15a-neoforge-mc1.21.1.jar` | `1.3.15+a` (metadata runtime); filename/release `1.3.15a` | `API and Library + Cosmetic` | 22/09/2026 - 02:07 |
-| 295 | Fancy World Animations | `fwa+1.21.1-neoforge-1.2.31.jar` | `1.2.31` | `Cosmetic` | 22/09/2026 - 02:07 |
-| 296 | Fzzy Config | `fzzy_config-0.7.7+1.21+neoforge.jar` | `0.7.7+1.21+neoforge` | `API and Library + Utility & QoL` | 22/09/2026 - 02:07 |
-| 297 | Gabou's Libs | `gaboulibs-neoforge-1.9.jar` | `1.9` | `API and Library` | 22/09/2026 - 02:07 |
-| 298 | Create Aeronautics: Gadgets & Gizmos | `gadgets-and-gizmos-bundled-V1.2.2.jar` | `1.2.2` | `Addons + Create` | 22/09/2026 - 02:07 |
-| 299 | Create: Garnished | `garnished-2.1.9.2+1.21.1-neoforged.jar` | `2.1.9.2` | `Addons + Automation + Create + Food` | 22/09/2026 - 02:07 |
-| 300 | Gaze - A Malum Addon | `gaze-1.1.7.1.jar` | `1.1.7.1` | `Addons + Magic` | 22/09/2026 - 02:07 |
-| 301 | GeckoLib | `geckolib-neoforge-1.21.1-4.9.2.jar` | `4.9.2` | `API and Library` | 22/09/2026 - 02:07 |
-| 302 | Global Packs | `globalpacks-neoforge-1.21.1-21.0.6.jar` | `21.0.6` | `Map and Information + Utility & QoL` | 22/09/2026 - 02:07 |
-| 303 | Glodium | `Glodium-1.21-2.2-neoforge.jar` | `1.21-2.2-neoforge` | `API and Library` | 22/09/2026 - 02:07 |
-| 304 | GroovyModLoader (GML) | `gml-6.0.2.jar` | `6.0.2` | `API and Library` | 22/09/2026 - 09:16 |
-| 305 | Goety - The Dark Arts | `goety-3.1.4.jar` | `3.1.4` | `Adventure and RPG + Magic + Mobs + Structures` | 22/09/2026 - 09:35 |
-| 306 | Goety Cataclysm | `goety_cataclysm-1.21.1-1.8.2.jar` | `1.21.1-1.8.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/09/2026 - 09:16 |
-| 307 | Goety Iron | `GoetyIron-1.21.1-NeoForge-3.1.jar` | `3.1` | `Magic + Mobs` | 22/09/2026 - 09:16 |
-| 308 | Grappling Hook Mod: Skybound | `grapplemod-1.1+1.21.1.neoforge.jar` | `1.1+1.21.1.neoforge` | `Player Transport + Skyblock + Utility & QoL` | 22/09/2026 - 09:16 |
-| 309 | GTBC's Geomancy Plus - Iron's Spells Addon | `gtbcs_geomancy_plus-1.1.0-1.21.1.jar` | `1.1.0-1.21.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/09/2026 - 09:16 |
-| 310 | GTBC's SpellLib/API | `gtbcs_spell_lib-2.2.0-1.21.1.jar` | `2.2.0-1.21.1` | `Addons + API and Library` | 22/09/2026 - 09:16 |
-| 311 | Guide-API Village and Pillage | `Guide-API-VP-1.21.1-2.3.0.jar` | `2.3.0` | `API and Library + Map and Information` | 22/09/2026 - 09:16 |
+| 262 | Minecolonies: Epicfied (Epic Colonies) | `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar` | `21.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 24/09/2026 - 16:58 |
+| 263 | Epic Fight - Mod Compat | `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` | `1.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Mobs` | 24/09/2026 - 16:58 |
+| 264 | Epic Fight - Pehkui FIX | `epicfightpehkuiincompatibilityfix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 24/09/2026 - 16:58 |
+| 265 | Ender's Spells and Stuff: Requiem | `ess_requiem-0.1.7.jar` | `0.1.7` | `Addons` | 24/09/2026 - 16:58 |
+| 266 | Euphoria Patches | `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` | `1.10.5-r5.9.3-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 24/09/2026 - 16:58 |
+| 267 | ExpandAbility | `expandability-12.0.0.jar` | `12.0.0` | `API and Library` | 24/09/2026 - 16:58 |
+| 268 | Expanded Delight | `expandeddelight-0.1.4.jar` | `0.1.4` | `Addons + Farming + Food + Ores and Resources` | 24/09/2026 - 16:58 |
+| 269 | Explorer's Compass | `ExplorersCompass-1.21.1-3.4.0-neoforge.jar` | `1.21.1-3.4.0-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Map and Information + Structures` | 24/09/2026 - 16:58 |
+| 270 | Explosive Enhancement: Reforged | `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` | `1.1.2` | `Cosmetic + Miscellaneous` | 24/09/2026 - 16:58 |
+| 271 | Create: Extra Copycats | `extra_copycats-1.0.2.jar` | `1.0.2` | `Addons + Create` | 24/09/2026 - 16:58 |
+| 273 | FamiliarsLib | `familiarslib-1.21.1-1.7.1.jar` | `1.7.1 do JAR/publicação; metadata runtime 1.21.1-1.7` | `API and Library` | 24/09/2026 - 17:35 |
+| 274 | Fantasy Armor (Medieval Series) | `fantasy_armor-neoforge-1.2.4-1.21.1.jar` | `1.2.4-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic` | 24/09/2026 - 17:35 |
+| 275 | Farmer's Spell 'n Spell Book | `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` | `1.0.5.1-1.21.1` | `Farmer's Delight + Food + Magic` | 24/09/2026 - 17:35 |
+| 276 | Farmer's Delight | `FarmersDelight-1.21.1-1.3.4.jar` | `1.3.4` | `Cosmetic + Farming + Food` | 24/09/2026 - 17:35 |
+| 277 | Farmer's Delight: Extended | `farmersdelight_extended-1.21.1-0.2.2.jar` | `1.21.1-0.2.2` | `Addons + Create + Food` | 24/09/2026 - 17:36 |
+| 278 | Farmers Structures | `FarmersStructures-1.0.6-1.21.1_neoforge.jar` | `1.0.6` | `Addons + Farming + MCreator + Structures + World Gen` | 24/09/2026 - 17:36 |
+| 279 | FastSuite | `FastSuite-1.21.1-6.0.7.jar` | `6.0.7` | `Performance` | 24/09/2026 - 17:36 |
+| 280 | FerriteCore ((Neo)Forge) | `ferritecore-7.0.3-neoforge.jar` | `7.0.3` | `Performance` | 24/09/2026 - 17:37 |
+| 281 | Fire's Ender Expansion | `firesenderexpansion-2.4.1.jar` | `2.4.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 17:37 |
+| 282 | First-person Model | `firstperson-neoforge-2.7.2-mc1.21.1.jar` | `2.7.2` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 24/09/2026 - 18:26 |
+| 283 | Flowing Fluids | `flowing_fluids-1.0.6-1.21-neoforge.jar` | `1.0.6` | `Miscellaneous` | 24/09/2026 - 18:27 |
+| 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 24/09/2026 - 18:23 |
+| 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 24/09/2026 - 18:24 |
+| 286 | Forgified Fabric API | `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar` | `0.116.15+2.3.5+1.21.1` | `Technology` | 24/09/2026 - 18:24 |
+| 287 | Fragmentum [NeoForge Edition] | `fragmentum-neoforge-1.21.1-2.4.4.jar` | `2.4.4` | `API and Library` | 24/09/2026 - 18:24 |
+| 288 | FTB Chunks (NeoForge) | `ftb-chunks-neoforge-2101.1.22.jar` | `2101.1.22` | `Map and Information + Server Utility` | 24/09/2026 - 18:24 |
+| 289 | FTB Library (NeoForge) | `ftb-library-neoforge-2101.1.36.jar` | `2101.1.36` | `API and Library` | 24/09/2026 - 18:24 |
+| 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 24/09/2026 - 18:24 |
+| 291 | FTB Teams (NeoForge) | `ftb-teams-neoforge-2101.1.11.jar` | `2101.1.11` | `API and Library` | 24/09/2026 - 18:24 |
+| 292 | FTB Ultimine (NeoForge) | `ftb-ultimine-neoforge-2101.1.15.jar` | `2101.1.15` | `Armor, Tools, and Weapons + Server Utility` | 24/09/2026 - 19:05 |
+| 293 | FTB XMod Compat | `ftb-xmod-compat-neoforge-21.1.11.jar` | `21.1.11` | `API and Library` | 24/09/2026 - 19:05 |
+| 294 | Fusion (Connected Textures) | `fusion-1.3.15a-neoforge-mc1.21.1.jar` | `1.3.15+a` (metadata runtime); filename/release `1.3.15a` | `API and Library + Cosmetic` | 24/09/2026 - 19:05 |
+| 295 | Fancy World Animations | `fwa+1.21.1-neoforge-1.2.31.jar` | `1.2.31` | `Cosmetic` | 24/09/2026 - 19:05 |
+| 296 | Fzzy Config | `fzzy_config-0.7.7+1.21+neoforge.jar` | `0.7.7+1.21+neoforge` | `API and Library + Utility & QoL` | 24/09/2026 - 19:05 |
+| 297 | Gabou's Libs | `gaboulibs-neoforge-1.9.jar` | `1.9` | `API and Library` | 24/09/2026 - 19:05 |
+| 298 | Create Aeronautics: Gadgets & Gizmos | `gadgets-and-gizmos-bundled-V1.2.2.jar` | `1.2.2` | `Addons + Create` | 24/09/2026 - 19:05 |
+| 299 | Create: Garnished | `garnished-2.1.9.2+1.21.1-neoforged.jar` | `2.1.9.2` | `Addons + Automation + Create + Food` | 24/09/2026 - 19:05 |
+| 300 | Gaze - A Malum Addon | `gaze-1.1.7.1.jar` | `1.1.7.1` | `Addons` | 24/09/2026 - 19:05 |
+| 301 | GeckoLib | `geckolib-neoforge-1.21.1-4.9.2.jar` | `4.9.2` | `API and Library` | 24/09/2026 - 19:05 |
+| 302 | Global Packs | `globalpacks-neoforge-1.21.1-21.0.6.jar` | `21.0.6` | `Map and Information + Utility & QoL` | 24/09/2026 - 21:04 |
+| 303 | Glodium | `Glodium-1.21-2.2-neoforge.jar` | `1.21-2.2-neoforge` | `API and Library` | 24/09/2026 - 21:04 |
+| 304 | GroovyModLoader (GML) | `gml-6.0.2.jar` | `6.0.2` | `API and Library` | 24/09/2026 - 21:04 |
+| 305 | Goety - The Dark Arts | `goety-3.1.4.jar` | `3.1.4` | `Adventure and RPG + Magic + Mobs + Structures` | 24/09/2026 - 21:04 |
+| 306 | Goety Cataclysm | `goety_cataclysm-1.21.1-1.8.2.jar` | `1.21.1-1.8.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 21:04 |
+| 307 | Goety Iron | `GoetyIron-1.21.1-NeoForge-3.1.jar` | `3.1` | `Magic + Mobs` | 24/09/2026 - 21:04 |
+| 308 | Grappling Hook Mod: Skybound | `grapplemod-1.1+1.21.1.neoforge.jar` | `1.1+1.21.1.neoforge` | `Player Transport + Skyblock + Utility & QoL` | 24/09/2026 - 21:04 |
+| 309 | GTBC's Geomancy Plus - Iron's Spells Addon | `gtbcs_geomancy_plus-1.1.0-1.21.1.jar` | `1.1.0-1.21.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 21:04 |
+| 310 | GTBC's SpellLib/API | `gtbcs_spell_lib-2.2.0-1.21.1.jar` | `2.2.0-1.21.1` | `Addons + API and Library` | 24/09/2026 - 21:04 |
+| 311 | Guide-API Village and Pillage | `Guide-API-VP-1.21.1-2.3.0.jar` | `2.3.0` | `API and Library + Map and Information` | 24/09/2026 - 21:04 |
 | 312 | Hazen 'N Stuff | `hazennstuff-1.4.0.14.jar` | `1.4.0.14` | `Addons + Armor, Tools, and Weapons + Magic` | 22/09/2026 - 09:29 |
 | 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 22/09/2026 - 09:29 |
 | 331 | InsaneLib | `insanelib-2.4.33.0.jar` | `2.4.33.0` | `API and Library` | 18/09/2026 - 10:38 |
