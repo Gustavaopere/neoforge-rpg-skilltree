@@ -299,6 +299,16 @@
 | 419 | Not Enough Glyphs | `not_enough_glyphs-1.21.1-4.6.2.jar` | `4.6.2` | `Addons + Magic + Utility & QoL` | 18/09/2026 - 08:51 |
 | 428 | Oracle Index | `oracle_index-neoforge-1.4.0.jar` | `1.4.0` | `API and Library + Education + Map and Information + Utility & QoL` | 17/09/2026 - 22:51 |
 | 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 17/09/2026 - 23:58 |
+| 452 | Portable Hole | `PortableHole-v21.1.0-1.21.1-NeoForge.jar` | `21.1.0` | `Armor, Tools, and Weapons + Player Transport` | 26/09/2026 - 03:23 |
+| 453 | Potentials | `potentials-neoforge-1.21-0.7.1.jar` | `0.7.1` | `API and Library + Energy, Fluid, and Item Transport + Utility & QoL` | 26/09/2026 - 03:23 |
+| 454 | Create: Power Grid | `powergrid-mc1.21.1-0.6.1.jar` | `0.6.1` | `Addons + Create + Energy + Technology` | 26/09/2026 - 03:23 |
+| 455 | Presence Footsteps (NeoForge) | `PresenceFootsteps-1.21.1-1.12.0-beta.1-1.21NeoForge.jar` | `1.21.1-1.12.0-beta.1` | `Cosmetic + Utility & QoL` | 26/09/2026 - 03:23 |
+| 456 | Prickle | `prickle-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `API and Library + Server Utility + Utility & QoL` | 26/09/2026 - 03:24 |
+| 457 | KubeJS Metalworks (KubeJS Addon for Productive Metalworks) | `productive-metalworks-kubejs-addon-1.0.0.jar` | `1.0.0` | `Addons + API and Library + KubeJS` | 26/09/2026 - 03:24 |
+| 458 | Productive Metalworks | `productivemetalworks-1.21.1-1.15.1.jar` | `1.21.1-1.15.1` | `Ores and Resources + Processing` | 26/09/2026 - 03:24 |
+| 459 | Prometheus | `prometheus-neoforge-1.21-1.2.5.jar` | `1.2.5` | `Adventure and RPG + API and Library + Cosmetic + Utility & QoL` | 26/09/2026 - 03:24 |
+| 460 | Create: Protection Pixel | `protection_pixel-2.2.1-neoforge-1.21.1.jar` | `2.2.1` | `Adventure and RPG + Armor, Tools, and Weapons + Create + MCreator` | 26/09/2026 - 03:24 |
+| 461 | Puddles & Floods | `puddleflood-1.1.5+1.21.1-neoforge.jar` | `1.1.5` | `Cosmetic` | 26/09/2026 - 03:24 |
 | 468 | Quark | `Quark-4.1-484.jar` | `4.1-484` | `Cosmetic + Ores and Resources` | 17/09/2026 - 10:58 |
 | 474 | Relics | `relics-1.21.1-0.12.8.jar` | `0.12.8` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Ores and Resources` | 17/09/2026 - 23:58 |
 | 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 17/09/2026 - 23:58 |
