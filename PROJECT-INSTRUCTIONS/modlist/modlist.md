@@ -114,24 +114,6 @@
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 23/09/2026 - 01:02 |
 | 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 23/09/2026 - 01:02 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 23/09/2026 - 01:13 |
-| 105 | Sinytra Connector | `connector-2.0.0-beta.17+1.21.1-full.jar` | `2.0.0-beta.17+1.21.1` | `Technology` | 22/09/2026 - 22:34 |
-| 106 | Connector Extras | `ConnectorExtras-1.12.1+1.21.1.jar` | `1.12.1+1.21.1` | `Addons + API and Library + Technology + Utility & QoL` | 22/09/2026 - 22:34 |
-| 107 | Continuity | `continuity-3.0.0+1.21.neoforge.jar` | `3.0.0+1.21.neoforge` | `API and Library + Cosmetic` | 22/09/2026 - 22:34 |
-| 108 | Controlling | `Controlling-neoforge-1.21.1-19.0.5.jar` | `19.0.5` | `Cosmetic + Utility & QoL` | 22/09/2026 - 22:34 |
-| 109 | Create: Copycats+ | `copycats-3.0.9+mc.1.21.1-neoforge.jar` | `3.0.9+mc.1.21.1-neoforge` | `Cosmetic + Create + Utility & QoL` | 22/09/2026 - 22:35 |
-| 110 | CorgiLib | `Corgilib-NeoForge-1.21.1-5.0.0.9.jar` | `5.0.0.9` | `API and Library` | 22/09/2026 - 22:35 |
-| 111 | Cosmetic Armor Reworked | `cosmeticarmorreworked-1.21.1-v1-neoforge.jar` | `1.21.1-v1-neoforge` | `Cosmetic` | 22/09/2026 - 22:35 |
-| 112 | Customizable Player Models OSC Compat | `cpm-osc-compat-1.7.2.jar` | `1.7.2` | `API and Library + Cosmetic` | 22/09/2026 - 23:33 |
-| 113 | CraftedCore | `craftedcore-5.8.2.jar` | `5.8.2` | `API and Library` | 22/09/2026 - 23:33 |
-| 114 | Crash Assistant | `CrashAssistant-neoforge-1.20.6-1.21.4-1.11.12.jar` | `1.11.12` | `Bug Fixes + Miscellaneous + Performance + Server Utility + Utility & QoL` | 22/09/2026 - 23:33 |
-| 115 | Create: Quality Of Life | `Create Quality of Life-1.21.1-1.6.3-fix1.jar` | `1.6.3-fix1` | `Create + Utility & QoL` | 22/09/2026 - 23:33 |
-| 116 | Create | `create-1.21.1-6.0.10.jar` | `6.0.10` | `Armor, Tools, and Weapons + Cosmetic + Redstone + Technology` | 22/09/2026 - 23:33 |
-| 117 | Create Aeronautics | `create-aeronautics-bundled-1.21.1-1.3.2.jar` | `1.3.2` | `Adventure and RPG + Automation + Player Transport + Redstone + Technology` | 22/09/2026 - 23:34 |
-| 118 | Create: Central Kitchen | `create-central-kitchen-2.6.0.jar` | `2.6.0` | `Addons + Create + Food + Technology` | 22/09/2026 - 23:34 |
-| 119 | Create Confectionery | `create-confectionery1.21.1_v1.1.3b.jar` | `1.1.3b (filename/distribuição); metadata interna 1.1.3.` | `Addons + Cosmetic + Create + Food + MCreator` | 22/09/2026 - 23:34 |
-| 120 | Create: Enchantment Industry | `create-enchantment-industry-2.5.3b.jar` | `2.5.3b` | `Addons + Create + Storage + Technology` | 22/09/2026 - 23:34 |
-| 121 | Create Guardian Beam Defense | `Create-Guardian-Beam-Defense-1.3.7.1b-1.21.1-neoforge.jar` | `1.3.7.1b` | `Addons + Armor, Tools, and Weapons + Create + Technology` | 22/09/2026 - 23:34 |
-| 122 | Create: Gunsmithing | `create-gunsmithing-1.21.1-1.4.9.jar` | `1.4.9` | `Addons + Create` | 23/09/2026 - 00:34 |
 | 123 | Create: Integrated Farming | `create-integrated-farming-1.4.1c.jar` | `1.4.1c` | `Addons + Automation + Create + Farming + Technology` | 23/09/2026 - 08:03 |
 | 124 | Create: New Age | `create-new-age-1.2.0+neoforge-mc1.21.1.jar` | `1.2.0+mc1.21.1` | `Addons + Create + Technology` | 23/09/2026 - 08:03 |
 | 125 | Create Stuff 'N Additions | `create-stuff-additions1.21.1_v2.1.4b.jar` | `2.1.4b (distribuição); metadata interna 2.1.4.` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 08:03 |
@@ -223,24 +205,7 @@
 | 211 | Curios API | `curios-neoforge-9.5.1+1.21.1.jar` | `9.5.1+1.21.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 24/09/2026 - 00:44 |
 | 212 | Customizable Player Models | `CustomPlayerModels-1.21-0.6.27a.jar` | `0.6.27a` | `Cosmetic` | 24/09/2026 - 01:22 |
 | 213 | Cyclops Core | `cyclopscore-1.21.1-neoforge-1.30.0.jar` | `1.30.0` | `API and Library + Server Utility` | 24/09/2026 - 01:22 |
-| 214 | Deeper and Darker: Spellbooks | `darkermagic-1.3.3-1.21.1-ver.b.jar` | `1.3.3-1.21.1 (runtime); artefato ver.b` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 01:22 |
-| 215 | Deeper and Darker | `deeperdarker-neoforge-1.21.1-1.4.1.jar` | `1.4.1` | `Biomes + Dimensions + Mobs + Ores and Resources + Structures` | 24/09/2026 - 01:22 |
-| 216 | VanillaBackport X Farmer's Delight Compat | `Delightful-Backport-1.0-1.21.1-neoforge.jar` | `1.0` | `Addons + Food` | 24/09/2026 - 01:22 |
-| 217 | Create: Design n' Decor | `Design-n-Decor-1.21.1-2.2b.jar` | `2.2b` | `Addons + Cosmetic + Create + Storage + Utility & QoL` | 24/09/2026 - 01:22 |
-| 220 | Discerning The Eldritch | `discerning_the_eldritch-1.4.4-1.21.jar` | `1.4.4-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 01:22 |
-| 221 | Dis-Enchanting Table | `disenchanting_table-merged-1.21.1-5.0.2.jar` | `5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Ores and Resources + Technology` | 24/09/2026 - 01:22 |
-| 222 | Distant Horizons: A Level of Detail mod | `DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar` | `3.2.0-b` | `Utility & QoL` | 24/09/2026 - 10:44 |
-| 223 | Create: Dreams n' Desires | `DnDesires-1.21.1-2.3a-BETA.jar` | `2.3a-BETA` | `Armor, Tools, and Weapons + Automation + Create + Utility & QoL + World Gen` | 24/09/2026 - 10:44 |
-| 224 | Domum Ornamentum | `domum-ornamentum-1.0.236-snapshot-main.jar` | `1.0.236-snapshot` | `API and Library + Cosmetic` | 24/09/2026 - 10:44 |
-| 225 | Dreamless Spells and Spellbooks | `dreamless_spells-1.1.9.jar` | `1.1.9` | `Addons + Armor, Tools, and Weapons + Magic + Ores and Resources` | 24/09/2026 - 10:44 |
-| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
-| 227 | Dynamic Trees - BetterNether | `dtbetternether-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
-| 228 | Dynamic Trees - Oh The Biomes We've Gone | `dtbwg-1.1.0-BETA02.jar` | `1.1.0-BETA02` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
-| 229 | Dynamic Trees - Quark | `dtquark-2.6.1.jar` | `2.6.1 (distribuição/filename); metadata runtime vazia` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
-| 230 | Dynamic Trees - Terralith | `dtterralith-1.3.0.jar` | `1.3.0` | `Addons + Biomes + World Gen` | 24/09/2026 - 10:44 |
 | 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
-| 232 | Dynamic RPG Resource Bars | `dynamic_resource_bars-neoforge-0.7.1-1.21.1.jar` | `0.7.1` | `Adventure and RPG + API and Library + Cosmetic + Magic + Utility & QoL` | 24/09/2026 - 11:14 |
-| 233 | Dynamic Brightness | `DynamicBrightness-neoforge-1.3.1.jar` | `1.3.1` | `Utility & QoL` | 24/09/2026 - 11:14 |
 | 234 | Dynamic Trees Addon Lib | `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` | `0.2.0-BETA03` | `Addons + API and Library + Cosmetic` | 24/09/2026 - 11:14 |
 | 235 | Dynamic Trees | `dynamictrees-neoforge-1.21.1-1.7.2.jar` | `1.7.2` | `Biomes + Cosmetic + Farming + World Gen` | 24/09/2026 - 11:14 |
 | 236 | Dynamic Trees Plus | `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` | `1.3.2` | `Addons + Biomes + Cosmetic + Farming + World Gen` | 24/09/2026 - 11:14 |
@@ -264,7 +229,6 @@
 | 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
 | 255 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
 | 256 | [ETF] Entity Texture Features - [Fabric & Forge] | `entity_texture_features-7.2.1-1.21-neoforge.jar` | `7.2.1` | `Cosmetic + Utility & QoL` | 24/09/2026 - 16:02 |
-| 257 | Entity Culling Fabric/Forge | `entityculling-neoforge-1.10.5-mc1.21.1.jar` | `1.10.5` | `Miscellaneous + Utility & QoL` | 24/09/2026 - 16:02 |
 | 258 | EpheroLib | `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar` | `1.2.0` | `API and Library` | 24/09/2026 - 16:02 |
 | 259 | Epic Fight: Curios Compat 2.0 | `Epic Fight x Curios Compat 2.2.jar` | `2.2 (distribuição/filename); metadata runtime 1.4` | `Addons + Bug Fixes + Cosmetic` | 24/09/2026 - 16:02 |
 | 260 | Epic Fight | `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` | `21.17.3.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 24/09/2026 - 16:02 |
@@ -320,31 +284,8 @@
 | 311 | Guide-API Village and Pillage | `Guide-API-VP-1.21.1-2.3.0.jar` | `2.3.0` | `API and Library + Map and Information` | 24/09/2026 - 21:04 |
 | 312 | Hazen 'N Stuff | `hazennstuff-1.4.0.14.jar` | `1.4.0.14` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 21:57 |
 | 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 24/09/2026 - 21:57 |
-| 314 | Hexalia | `hexalia-neoforge-1.3.7.jar` | `1.3.7` | `Adventure and RPG + Magic + Mobs + World Gen` | 24/09/2026 - 22:20 |
-| 315 | Ice And Fire: Dragon Care | `Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar` | `1.3.1 - 1.21.1v` | `Addons` | 24/09/2026 - 22:20 |
-| 316 | IceAndFire Community Edition | `iceandfire-2.1.2.jar` | `2.1.2` | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 24/09/2026 - 22:20 |
-| 317 | Ice and Fire X Epic Fight | `iceandfire-ce-epicfight-armor-compat-1.0.0.jar` | `1.0.0` | `Addons + Armor, Tools, and Weapons + Bug Fixes + Cosmetic` | 24/09/2026 - 22:20 |
-| 318 | Ice And Fire: Dread Land | `iceandfire_dreadland-0.1.2.jar` | `0.1.2` | `Addons + Adventure and RPG + Biomes + Dimensions` | 24/09/2026 - 22:20 |
-| 319 | Iceberg [Neo/Forge] | `Iceberg-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `API and Library` | 24/09/2026 - 22:20 |
-| 320 | Integrated Dungeons Arise | `IDA v2.1.1-1.21.1.jar` | `2.1.1` | `Adventure and RPG + Structures + World Gen` | 24/09/2026 - 22:20 |
-| 321 | Integrated Dungeons and Structures | `idas-1.13.7+1.21.1-neoforge.jar` | `1.13.7+1.21.1-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Create + Structures + World Gen` | 24/09/2026 - 22:20 |
-| 322 | Iglee's Library | `igleelib-1.21.1-1.2.7.jar` | `1.21.1-1.2.7` | `API and Library` | 24/09/2026 - 22:53 |
-| 323 | Cataclysm: Ignis Soulfires | `ignissoulfires-1.8.0.jar` | `1.8.0` | `Addons + Armor, Tools, and Weapons + Cosmetic + Ores and Resources` | 24/09/2026 - 22:53 |
-| 324 | Ignis Soulfires: Spellbooks | `ignissoulfires_spellbooks-1.1.0.jar` | `1.1.0` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 22:53 |
-| 325 | Integrated Mowzie's Mobs | `IMM v1.3.0-1.21.1.jar` | `1.3.0` | `Adventure and RPG + Structures + World Gen` | 24/09/2026 - 22:53 |
-| 326 | ImmediatelyFast | `ImmediatelyFast-NeoForge-1.6.14+1.21.1.jar` | `1.6.14+1.21.1` | `Performance + Utility & QoL` | 24/09/2026 - 22:53 |
-| 327 | Immersive Aeronautics - Immersive Portals + Create: Aeronautics | `Immersive-Aeronautics1.1.4-1.21.1-NeoForge.jar` | `1.1.4 (distribuição/filename); runtime top-level 6.0.7` | `Create` | 24/09/2026 - 22:53 |
-| 328 | Immersive Furniture | `immersive_furniture-neoforge-0.3.3+1.21.1.jar` | `0.3.3+1.21.1` | `Cosmetic + Storage` | 24/09/2026 - 22:53 |
-| 329 | Immersive Portal - Iron's Spells 'n Spellbooks Addon | `immersive_portal_irons_spells_n_spellbooks_addon-1.0.1.jar` | `1.0.1` | `Magic + Player Transport` | 24/09/2026 - 22:53 |
-| 330 | Immersive Portals: True Immersion | `immersive_portals_true_immersion-2.0.4.jar` | `2.0.4` | `Addons` | 24/09/2026 - 22:53 |
 | 331 | InsaneLib | `insanelib-2.4.33.0.jar` | `2.4.33.0` | `API and Library` | 24/09/2026 - 22:27 |
 | 332 | Integrated API | `integrated_api-neoforge-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + API and Library + Structures + World Gen` | 24/09/2026 - 23:17 |
-| 333 | Integrated Cataclysm | `integrated_cataclysm-1.0.6+1.21.1-neoforge.jar` | `1.0.6+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Create + World Gen` | 25/09/2026 - 00:09 |
-| 334 | Integrated Simply Swords | `integrated_simply_swords-1.4.0+1.21.1-neoforge.jar` | `1.4.0+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons` | 25/09/2026 - 00:09 |
-| 335 | Integrated Stronghold | `integrated_stronghold-1.1.4+1.21.1-neoforge.jar` | `1.1.4+1.21.1-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Create + Structures + World Gen` | 25/09/2026 - 00:43 |
-| 336 | Integrated Villages | `integrated_villages-1.3.3+1.21.1-neoforge.jar` | `1.3.3+1.21.1-neoforge` | `Adventure and RPG + Create + Magic + Structures + World Gen` | 25/09/2026 - 00:09 |
-| 337 | Inventory Sorter | `inventorysorter-1.21.1-24.0.24.jar` | `24.0.24` | `Miscellaneous` | 25/09/2026 - 00:09 |
-| 338 | Iris Shaders | `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar` | `1.8.14-beta.1+mc1.21.1` | `Cosmetic + Miscellaneous` | 25/09/2026 - 00:43 |
 | 339 | Apotheosis x Iron's Spellbooks Compat | `irons_apothic-2.2.2.jar` | `2.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 23:21 |
 | 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 25/09/2026 - 01:24 |
 | 359 | Knight Lib | `knightlib-neoforge-1.21.1-2.0.1.jar` | `2.0.1` | `API and Library` | 25/09/2026 - 02:11 |
