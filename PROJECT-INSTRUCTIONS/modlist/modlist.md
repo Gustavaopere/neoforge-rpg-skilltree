@@ -294,9 +294,15 @@
 | 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 17/09/2026 - 21:40 |
 | 407 | Moonlight Lib | `moonlight-1.21.1-3.6.4-neoforge.jar` | `1.21.1-3.6.4` | `API and Library` | 17/09/2026 - 00:06 |
 | 412 | M.R.U | `mru-1.0.40+1.21.1-neoforge.jar` | `1.0.40+1.21.1` | `API and Library` | 16/09/2026 - 18:42 |
+| 413 | Multi-Piston | `multipiston-1.2.58-1.21.1.jar` | `1.2.58-1.21.1` | `Adventure and RPG + Cosmetic + Player Transport + Redstone` | 25/09/2026 - 14:00 |
+| 414 | My Nether's Delight | `MyNethersDelight-1.21.1-1.10.4.1.jar` | `1.10.4.1` | `Cosmetic + Farming + Food` | 25/09/2026 - 14:00 |
+| 415 | Nature's Compass | `NaturesCompass-1.21.1-3.4.0-neoforge.jar` | `1.21.1-3.4.0-neoforge` | `Armor, Tools, and Weapons + Biomes + Map and Information + Technology` | 25/09/2026 - 14:00 |
 | 416 | Dungeons Delight | `neoforge-dungeonsdelight-1.21.1-1.5.1.jar` | `1.5.1 (distribuição); metadata interna 1.5.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Food + Magic` | 17/09/2026 - 21:40 |
+| 417 | RunicLib | `neoforge-runiclib-1.21.1-5.0.7.jar` | `5.0.7` | `API and Library + Magic + Utility & QoL` | 25/09/2026 - 14:00 |
 | 418 | Create: Northstar - Redux | `Northstar-0.6.5+1.21.1.jar` | `0.6.5+1.21.1` | `Addons + Create + Dimensions + KubeJS + Technology` | 16/09/2026 - 18:39 |
 | 419 | Not Enough Glyphs | `not_enough_glyphs-1.21.1-4.6.2.jar` | `4.6.2` | `Addons + Magic + Utility & QoL` | 18/09/2026 - 08:51 |
+| 420 | Not Enough Animations | `notenoughanimations-neoforge-1.12.4-mc1.21.1.jar` | `1.12.4` | `Cosmetic + Map and Information` | 25/09/2026 - 14:00 |
+| 421 | [NTGL] NukaTeam's Gun Lib | `ntgl-1.21.1-3.2.0.jar` | `3.2.0` | `API and Library + Armor, Tools, and Weapons` | 25/09/2026 - 14:00 |
 | 422 | Nutritional Balance | `nutritionalbalance-1.21.1-7.0.3.jar` | `1.21.1-7.0.3` | `Adventure and RPG + Food` | 25/09/2026 - 14:28 |
 | 423 | Nyf's Spiders | `nyfsspiders-neoforge-1.21.1-3.0.1.jar` | `3.0.1` | `Mobs` | 25/09/2026 - 14:28 |
 | 424 | Obscure Tooltips | `obscure_tooltips-neoforge-1.21.1-4.2.4.jar` | `4.2.4` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Map and Information` | 25/09/2026 - 14:28 |
