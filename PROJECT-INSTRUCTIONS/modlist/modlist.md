@@ -308,6 +308,16 @@
 | 439 | Pehkui | `Pehkui-3.8.3+1.21-neoforge.jar` | `3.8.3+1.21-neoforge` | `API and Library` | 25/09/2026 - 15:17 |
 | 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 17/09/2026 - 23:58 |
 | 441 | Presence Footsteps x Sable (Aeronautics Compat) | `pfsable-1.0.jar` | `1.0` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
+| 442 | Photon | `photon-neoforge-1.21.1-2.2.6.a-all.jar` | `2.2.6.a` | `API and Library + Magic + Technology + Utility & QoL` | 26/09/2026 - 02:32 |
+| 443 | Pickable Health Orbs | `pickable_orbs-1.21.1-1.0.0.jar` | `1.21.1-1.0.0` | `Adventure and RPG + Magic + Utility & QoL` | 26/09/2026 - 02:32 |
+| 444 | Placebo | `Placebo-1.21.1-9.9.2.jar` | `9.9.2` | `API and Library` | 26/09/2026 - 02:32 |
+| 445 | Platform | `Platform-neoforge-1.21.1-1.3.3.jar` | `1.3.3` | `API and Library` | 26/09/2026 - 02:33 |
+| 446 | playerAnimator | `player-animation-lib-forge-2.0.4+1.21.1.jar` | `2.0.4+1.21.1` | `API and Library + Cosmetic` | 26/09/2026 - 02:33 |
+| 447 | Player Animation Library | `PlayerAnimationLibNeoforge-1.1.6+mc.1.21.1.jar` | `1.1.6+mc.1.21.1` | `API and Library` | 26/09/2026 - 02:33 |
+| 448 | Polymorph+ | `polymorph_plus-neoforge-1.3.1+1.21.1.jar` | `1.3.1+1.21.1` | `Miscellaneous + Utility & QoL` | 26/09/2026 - 02:33 |
+| 449 | Polytone | `polytone-1.21-4.4.0-neoforge.jar` | `1.21-4.4.0` | `Cosmetic + Utility & QoL` | 26/09/2026 - 02:34 |
+| 450 | Pondus Inventory [Sable] | `pondus_inventory_fi-0.15-Beta.jar` | `0.15-Beta` | `Addons + API and Library + Utility & QoL` | 26/09/2026 - 02:33 |
+| 451 | Create Aeronautics: Portable Engine Liquid Fuel | `portable_engine_liquid_fuel-2.0.0-neoforge-1.21.1.jar` | `2.0.0` | `Addons + Create + MCreator + Utility & QoL` | 26/09/2026 - 02:34 |
 | 452 | Portable Hole | `PortableHole-v21.1.0-1.21.1-NeoForge.jar` | `21.1.0` | `Armor, Tools, and Weapons + Player Transport` | 26/09/2026 - 03:23 |
 | 453 | Potentials | `potentials-neoforge-1.21-0.7.1.jar` | `0.7.1` | `API and Library + Energy, Fluid, and Item Transport + Utility & QoL` | 26/09/2026 - 03:23 |
 | 454 | Create: Power Grid | `powergrid-mc1.21.1-0.6.1.jar` | `0.6.1` | `Addons + Create + Energy + Technology` | 26/09/2026 - 03:23 |
