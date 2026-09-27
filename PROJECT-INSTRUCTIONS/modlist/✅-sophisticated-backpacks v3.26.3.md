@@ -1,7 +1,7 @@
 # Sophisticated Backpacks
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #516: JAR `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`, mod id `sophisticatedbackpacks`, runtime `3.26.3`, SHA-1 `c9cef1451d73c5afef78a637c593634f55e757fc`. Esta autoridade física supersede a identidade histórica `3.26.2` / `3.26.2.2141` preservada abaixo a partir do Notion; a build `3.26.3.2158` antes registrada como update externo agora é a build efetivamente instalada.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81969230c6a657439ec8
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física:** `sophisticatedbackpacks-1.21.1-3.26.2.2141.jar`, mod id `sophisticatedbackpacks`, runtime `3.26.2`; Sophisticated Core 1.5.1 e integrações Sophisticated/Create presentes
 - **Auditoria de migração Notion → GitHub:** 2026-09-14

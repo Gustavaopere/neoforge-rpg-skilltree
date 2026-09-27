@@ -1,7 +1,7 @@
 # Rechiseled
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #471: JAR `rechiseled-1.2.6-neoforge-mc1.21.jar`, mod id `rechiseled`, runtime `1.2.6`, SHA-1 `a7ca83d2f99520233bfa9ce769a157fe05201639`. Esta autoridade física supersede a identidade histórica `1.2.5` preservada abaixo a partir do Notion.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db812e818df8e068588756
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física:** `rechiseled-1.2.5-neoforge-mc1.21.jar`, mod id `rechiseled`, runtime `1.2.5`; Fusion 1.3.15+a, SuperMartijn642's Config Library 1.1.8, Core Lib 1.1.24 e JEI presentes
 - **Auditoria de migração Notion → GitHub:** 2026-09-14
