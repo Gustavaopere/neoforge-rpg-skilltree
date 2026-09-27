@@ -1,21 +1,14 @@
 # Simply Swords: Cataclysm
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#501**: JAR `simplycataclysm-1.0.2+1.21.1+neoforge.jar`, mod id `simplycataclysm`, runtime `1.0.2+1.21.1+neoforge`, SHA-1 `a2aa0f82ae3a9be2f43a4d47b3cb2201dd4e1469`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3cc69db9f0db819d98f7e5f7de9b7c3b
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `simplycataclysm-1.0.2+1.21.1+neoforge.jar`, mod id `simplycataclysm`, runtime `1.0.2+1.21.1+neoforge`; Simply Swords 1.70.2, L_Ender's Cataclysm 3.33 e KubeJS 2101.7.2-build.374 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Simply Swords: Cataclysm 1.0.2, Simply Swords 1.70.2, L_Ender's Cataclysm 3.33 e KubeJS estão presentes; Spartan Weaponry: Cataclysm não aparece top-level. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Simply Swords: Cataclysm
 - **Arquivo JAR:** `simplycataclysm-1.0.2+1.21.1+neoforge.jar`
 - **Versão 1.21.1:** 1.0.2+1.21.1+neoforge
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Compat, RPG

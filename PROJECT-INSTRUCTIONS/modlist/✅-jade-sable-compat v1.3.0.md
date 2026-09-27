@@ -1,17 +1,14 @@
 # Jade Sable Compat
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#494**: JAR `sablejade-1.3.0.jar`, mod id `sablejade`, runtime `1.3.0`, SHA-1 `beb78d81a4d5768780c8566fa869ced5dbe08263`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db818ebdaae59248a3ec4e
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — compat e dois providers confirmados fisicamente
-- **Data da exportação:** 2026-09-11
 
 ## Propriedades do banco
 
 - **Mod:** Jade Sable Compat
 - **Arquivo JAR:** `sablejade-1.3.0.jar`
 - **Versão 1.21.1:** 1.3.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, QoL
@@ -22,11 +19,9 @@
 - **Observações:** A 1.3.0 é a Release NeoForge 1.21.1 atual localizada. Corrige título, ícone e selected block do Jade para coincidir com o bloco sob o crosshair em estruturas Sable.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Jade Sable Compat 1.3.0.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/jade-sable-compat
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Jade Sable Compat 1.3.0 reconstruído: Sable-aware retrace, targeting/tooltip ownership, movimento/rotação, client lifecycle, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Jade Sable Compat 1.3.0/JAR físico reconfirmado; 1.3.0 permanece a release NeoForge 1.21.1 mais recente localizada. Client-only retrace/targeting bridge preservada.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
-
-> **Divergência documental registrada:** a procedência do Notion menciona “modlist.txt física atual de 11/09/2026”. A modlist física mais recente efetivamente acessível nesta execução é o snapshot de 08/09/2026 com 595 entradas; ele confirma `sablejade-1.3.0.jar`, Jade `15.10.6+neoforge` e Sable `2.0.5`. O texto-fonte foi preservado sem ser promovido a autoridade física inexistente.
 
 # Dossiê operacional — padrão Alex's Mobs
 

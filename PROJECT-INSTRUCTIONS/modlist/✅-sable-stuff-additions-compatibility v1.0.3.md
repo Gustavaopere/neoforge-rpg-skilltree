@@ -1,21 +1,14 @@
 # Sable: Stuff&Additions Compatibility
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#497**: JAR `SableStuffAdditionsCompat v1.0.3-1.21.1.jar`, mod id `sable_sa_compat`, runtime `1.0.3`, SHA-1 `4fc9e4d44986cd08884dc5b170753ec40dc54287`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81e69048db18fb7baa86
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `SableStuffAdditionsCompat v1.0.3-1.21.1.jar`, mod id `sable_sa_compat`, runtime `1.0.3`, mixin `sable_sa_compat.mixins.json`; Sable 2.0.5, Create Stuff 'N Additions filename `2.1.4b` / metadata `2.1.4.` e Create Aeronautics 1.3.2 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sable: Stuff&Additions Compatibility 1.0.3, Sable 2.0.5, Create Stuff 'N Additions 2.1.4b/2.1.4. e Create Aeronautics 1.3.2 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable: Stuff&Additions Compatibility
 - **Arquivo JAR:** `SableStuffAdditionsCompat v1.0.3-1.21.1.jar`
 - **Versão 1.21.1:** 1.0.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Tecnologia
@@ -26,7 +19,7 @@
 - **Observações:** Common config pode bloquear seleção de block entities pelo Block Picker devido a risco documentado de perda de data; client config pode ocultar netherite jetpack/exoskeletons em primeira pessoa.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial do projeto 1.0.3 + changelogs 1.0.1/1.0.2 como lineage.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-stuff-n-additions-x-sable-aeronautics
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Sable: Stuff&Additions Compatibility 1.0.3 reconstruído: JetPack, Grapplin, Block Picker, configs, collision fixes, lifecycle, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable: Stuff&Additions Compatibility 1.0.3/JAR físico reconfirmado; 1.0.3 permanece a release NeoForge 1.21.1 mais recente localizada. JetPack/Grapplin/Block Picker fixes e configs preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 

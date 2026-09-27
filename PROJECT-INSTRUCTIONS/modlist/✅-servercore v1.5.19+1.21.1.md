@@ -1,21 +1,14 @@
 # ServerCore
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#499**: JAR `servercore-neoforge-1.5.19+1.21.1.jar`, mod id `servercore`, runtime `1.5.19+1.21.1`, SHA-1 `62ce692654e09271b5c55cbb3a1ef7606d067132`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d569db9f0db81aaa4bee31d28a41f1f
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `servercore-neoforge-1.5.19+1.21.1.jar`, mod id `servercore`, runtime `1.5.19+1.21.1`, mixin `servercore.common.mixins.json`; Sable 2.0.5 presente
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, ServerCore 1.5.19+1.21.1 e Sable 2.0.5 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** ServerCore
 - **Arquivo JAR:** `servercore-neoforge-1.5.19+1.21.1.jar`
 - **Versão 1.21.1:** 1.5.19+1.21.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Performance, QoL
@@ -26,7 +19,7 @@
 - **Observações:** Runtime físico revalidado em 11/09/2026. A maioria das features behavior-changing permanece configurável/desabilitada por default upstream; config local não foi lida, portanto nenhum cap/range/distância foi presumido ativo.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + Modrinth oficial ServerCore NeoForge 1.5.19+1.21.1 + README/CHANGELOG oficial 1.5.17–1.5.19.
 - **Fonte:** https://modrinth.com/mod/servercore/version/6N9hXiRa ; https://github.com/Wesley1808/ServerCore ; https://github.com/Wesley1808/ServerCore/blob/main/CHANGELOG.md
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — ServerCore 1.5.19+1.21.1 preservado e rechecado: optimizations, activation/dynamic settings, mobcaps, Sable raycast lineage, config, commands e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — ServerCore 1.5.19+1.21.1/JAR físico reconfirmado; 1.5.19 segue como release NeoForge 1.21.1 mais recente localizada. Hierarquia de libs internas registrada no corpo.
 - **Histórico da decisão:**
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -95,6 +88,8 @@ Como o pack possui Sable 2.0.5, a correção 1.5.17 é um regression gate concre
 Arquivos publicados:
 - `config/servercore/config.yml`;
 - `config/servercore/optimizations.yml`.
+
+O JAR físico também embute em `META-INF/jars` a pilha de parsing/config **DazzleConf Core 1.3.0-M2**, **DazzleConf Ext SnakeYAML 1.3.0-M2** e **SnakeYAML 2.6**. Esses componentes pertencem ao host ServerCore nesta instalação e não recebem ordinal/página top-level.
 
 A configuração efetiva do usuário **não foi lida nesta auditoria**. Portanto não são afirmados:
 - activation ranges atuais;

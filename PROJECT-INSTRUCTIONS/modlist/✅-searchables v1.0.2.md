@@ -1,21 +1,14 @@
 # Searchables
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#498**: JAR `Searchables-neoforge-1.21.1-1.0.2.jar`, mod id `searchables`, runtime `1.0.2`, SHA-1 `5b8a0b43a474c066371b2e16f9bfb88622552a74`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db811da515d777c7d5e818
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `Searchables-neoforge-1.21.1-1.0.2.jar`, mod id `searchables`, runtime `1.0.2`, mixins `searchables.neoforge.mixins.json` e `searchables.mixins.json`; `Controlling-neoforge-1.21.1-19.0.5.jar` presente como consumer causal
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Searchables 1.0.2 e Controlling 19.0.5 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Searchables
 - **Arquivo JAR:** `Searchables-neoforge-1.21.1-1.0.2.jar`
 - **Versão 1.21.1:** 1.0.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** Biblioteca, QoL
@@ -26,7 +19,7 @@
 - **Observações:** O changelog exato do arquivo 1.21.1-1.0.2 contém essencialmente localizações nl_be/nl_nl; não foram atribuídas mudanças algorítmicas maiores à build sem evidência.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Searchables 1.0.2 + dossiê Controlling 19.0.5.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/searchables
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Searchables 1.0.2 reconstruído: component search/filter, autocomplete, Controlling dependency, UI lifecycle, exact changelog, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Searchables 1.0.2/JAR físico reconfirmado; 1.0.2 permanece a release NeoForge 1.21.1 mais recente localizada. Releases posteriores do projeto pertencem a 1.21.11/26.x e não são upgrades deste pack; Controlling 19.0.5 continua consumer causal.
 - **Histórico da decisão:** 2026-08-27 — classificado como Dependência após confirmação de Controlling 19.0.5 instalado e vinculado explicitamente a Searchables no catálogo atual.
 - **Data da última decisão:** 2026-08-27
 

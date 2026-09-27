@@ -1,21 +1,14 @@
 # Shadowsz
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#500**: JAR `shadowsz-1.1.9.jar`, mod id `shadowsz`, runtime `1.1.9`, SHA-1 `f946eb3a8181e1964279f163f430ccbba6c4edcd`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c969db9f0db8126a827c6e6f636ea31
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `shadowsz-1.1.9.jar`, mod id `shadowsz`, runtime `1.1.9`, mixin `shadowsz.mixins.json`; Iron's Spells 3.16.3, Legendary Monsters, Bosses'Rise 2.1.2, Mowzie's Mobs 1.8.2 e L_Ender's Cataclysm 3.33 presentes; Monster Expansion não encontrado top-level
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, ShadowsZ 1.1.9 e as integrações físicas citadas acima estão presentes, enquanto Monster Expansion não aparece top-level. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Shadowsz
 - **Arquivo JAR:** `shadowsz-1.1.9.jar`
 - **Versão 1.21.1:** 1.1.9
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, RPG, Mobs

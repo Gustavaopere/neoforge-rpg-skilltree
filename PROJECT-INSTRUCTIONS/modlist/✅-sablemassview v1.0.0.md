@@ -1,21 +1,14 @@
 # SableMassView
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#495**: JAR `sablemassview-1.0.0.jar`, mod id `sablemassview`, runtime `1.0.0`, SHA-1 `e568ce1389bcb259483766cf35542dbc8cefb2b1`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c969db9f0db814aa1d6e79d0b315447
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sablemassview-1.0.0.jar`, mod id `sablemassview`, runtime `1.0.0`, mixin `sablemassview.mixins.json`; Sable 2.0.5 e Sable: Physics Compat 1.3.0 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, SableMassView 1.0.0, Sable 2.0.5 e Physics Compat 1.3.0 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** SableMassView
 - **Arquivo JAR:** `sablemassview-1.0.0.jar`
 - **Versão 1.21.1:** 1.0.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, QoL, Compat
@@ -26,7 +19,7 @@
 - **Observações:** Release 1.0.0 é a única build pública localizada para NeoForge 1.21.1; o projeto não publica changelog adicional além da feature central.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Sable: Mass view 1.0.0 + dossiê Sable 2.0.5 para authority de mass properties.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-sable-mass-view
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — SableMassView 1.0.0 reconstruído: mass authority, advanced tooltip, data-driven reload, client boundary, Physics Compat integration, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — SableMassView 1.0.0/JAR físico reconfirmado; 1.0.0 permanece a única release NeoForge 1.21.1 localizada. Client-only mass tooltip e boundary informacional preservados.
 - **Histórico da decisão:**
 
 # Dossiê operacional — padrão Alex's Mobs

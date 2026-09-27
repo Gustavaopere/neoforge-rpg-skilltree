@@ -1,21 +1,14 @@
 # Sable Beyond
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#493**: JAR `sablebeyond-neoforge-1.21.1-v0.5.0.jar`, mod id `sable_beyond`, runtime `0.5.0`, SHA-1 `6040db8c52ddd2fe6e9c266a52df8865107e4124`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db811390ece5685708b632
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sablebeyond-neoforge-1.21.1-v0.5.0.jar`, mod id `sable_beyond`, runtime `0.5.0`, mixins `sable_beyond.mixins.json` e `sable_beyond.neoforge.mixins.json`; Sable 2.0.5, Create 6.0.10, FlowingFluids 1.0.6 e Sable / Flowing Fluids Compat 1.0.2 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sable Beyond 0.5.0 e o stack físico citado estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable Beyond
 - **Arquivo JAR:** `sablebeyond-neoforge-1.21.1-v0.5.0.jar`
 - **Versão 1.21.1:** 0.5.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Compat, Tecnologia
@@ -26,7 +19,7 @@
 - **Observações:** 0.5.0 é Alpha e foi mantida deliberadamente pelas funções novas de fluidos/Create. A Release 0.4.2 é fallback estável, mas não cobre integralmente o delta funcional da 0.5.0.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Sable Beyond 0.5.0/0.4.x; deltas antigos usados apenas como lineage.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sable-beyond
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Sable Beyond 0.5.0 revalidado: Dynamic/Entity Mass lineage, FlowingFluid forces, fire config, Fan forces, Basin intake/escape, lifecycle, riscos e fallback 0.4.2.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable Beyond 0.5.0/JAR físico reconfirmado; 0.5.0 permanece a build Alpha NeoForge 1.21.1 mais recente localizada. Cloth Config 15.0.140 embedded documentado; 0.4.2 permanece fallback Release.
 - **Histórico da decisão:** 2026-09-06 — presença e v0.5.0 aprovadas como escolha intencional pelas melhorias de Sable/sublevels/fluidos. Pesquisa fechada; risco de Alpha preservado explicitamente.
 - **Data da última decisão:** 2026-09-06
 
@@ -43,6 +36,7 @@
 - **Canal:** Alpha.
 - **Ambiente:** Client & Server.
 - **Mixins físicos:** `sable_beyond.mixins.json` e `sable_beyond.neoforge.mixins.json`.
+- **JarJar interno:** `cloth-config-neoforge-15.0.140-neoforge.jar` — mod id `cloth_config`, versão `15.0.140`; pertence ao host Sable Beyond e não recebe ordinal/página top-level.
 - **Fallback estável conhecido:** NeoForge 0.4.2 Release.
 
 ## 2. Papel e boundary

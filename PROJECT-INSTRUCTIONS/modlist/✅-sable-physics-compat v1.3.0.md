@@ -1,21 +1,14 @@
 # Sable: Physics Compat
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#496**: JAR `sablephysicscompat-1.3.0.jar`, mod id `sablephysicscompat`, runtime `1.3.0`, SHA-1 `ca5753e923c501acf43ff0d2fcf09f32240504c3`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db8176b2beca4310569d8b
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sablephysicscompat-1.3.0.jar`, mod id `sablephysicscompat`, runtime `1.3.0`; Sable 2.0.5, Supplementaries 3.9.8, Quark 4.1-483, Ice and Fire CE 2.1.2, L_Ender's Cataclysm 3.33, Sable Beyond 0.5.0 e SableMassView 1.0.0 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Physics Compat 1.3.0 e os providers/runtime integrations citados acima estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable: Physics Compat
 - **Arquivo JAR:** `sablephysicscompat-1.3.0.jar`
 - **Versão 1.21.1:** 1.3.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Tecnologia
@@ -26,7 +19,7 @@
 - **Observações:** A 1.3.0 adiciona Architect's Palette, Macaw's e Storage Drawers, tag piston para Supplementaries Spring Launcher e amplia airtight/floating. Macaw/Storage Drawers não foram encontrados top-level no snapshot atual.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Sable: Physics Compat 1.3.0.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sable-physics-compat
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Sable: Physics Compat 1.3.0 reconstruído: tags/properties data-driven, coverage ativa, 1.3.0 deltas, reload, ownership, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable: Physics Compat 1.3.0/JAR físico reconfirmado; 1.3.0 permanece a release NeoForge 1.21.1 mais recente localizada. Tags/propriedades data-driven e cobertura ativa do stack preservadas.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 

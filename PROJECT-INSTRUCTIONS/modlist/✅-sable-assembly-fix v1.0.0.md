@@ -1,21 +1,14 @@
 # Sable Assembly Fix
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#492**: JAR `SableAssemblyFix-1.0.0.jar`, mod id `sableassemblyfix`, runtime `1.0.0`, SHA-1 `e00082bf9152d5468ae1f51e93bf3d97af99ca19`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c969db9f0db8187a5f5cbf9f648ae34
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `SableAssemblyFix-1.0.0.jar`, mod id `sableassemblyfix`, runtime `1.0.0`, mixin `sableassemblyfix.mixins.json`; NeoForge 21.1.248, Sable 2.0.5, Create Aeronautics 1.3.2 e Create 6.0.10 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física atual de 11/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sable Assembly Fix 1.0.0 e todos os requisitos físicos citados estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable Assembly Fix
 - **Arquivo JAR:** `SableAssemblyFix-1.0.0.jar`
 - **Versão 1.21.1:** 1.0.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, Compat
@@ -26,7 +19,7 @@
 - **Observações:** A ficha antiga dizia 'sem configuração'; a documentação atual descreve `config/sableassemblyfix/whitelist.json`, criado automaticamente, com reload somente após restart.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Sable Assembly Fix 1.0.0 e descrição técnica do mecanismo/whitelist.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sable-assembly-fix
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Sable Assembly Fix 1.0.0 reconstruído: causa do dupe, Clearable boundary, @Redirect/removeBlockEntity, whitelist, lifecycle, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable Assembly Fix 1.0.0/JAR físico reconfirmado; 1.0.0 permanece a release NeoForge 1.21.1 mais recente localizada. Clearable boundary, @Redirect/removeBlockEntity e whitelist com restart preservados.
 - **Histórico da decisão:**
 
 # Dossiê operacional — padrão Alex's Mobs
