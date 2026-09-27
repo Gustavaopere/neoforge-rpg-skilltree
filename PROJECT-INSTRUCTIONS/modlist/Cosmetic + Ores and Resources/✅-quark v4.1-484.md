@@ -1,9 +1,8 @@
 # Quark
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#467**: JAR `Quark-4.1-484.jar`, mod id `quark`, runtime `4.1-484`, SHA-1 `33e5f73fd94e602649c8072606e1beb59cf6e0ff`. Zeta `1.1-40`, Dynamic Trees `1.7.2`, Dynamic Trees - Quark `2.6.1` e Biolith `3.0.14` top-level permanecem presentes; a cópia Biolith `3.0.10` embarcada no JAR continua tratada separadamente como JarJar.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na origem:** Integrado ao Github
-- **Autoridade física atual:** `modlist(1).txt` anexada em 16/09/2026 — `Quark-4.1-484.jar`, mod id `quark`, runtime `4.1-484`, mixins `quark.mixins.json` e `quark_integrations.mixins.json`; Zeta 1.1-40, Dynamic Trees 1.7.2 e Dynamic Trees for Quark 2.6.1 presentes; Biolith 3.0.10 embutido e Biolith 3.0.14 também presente como JAR top-level
-- **Data da reauditoria:** 2026-09-16
 
 ## Divergências documentais reconciliadas
 
@@ -32,7 +31,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> 🔎 **ESCOPO CANÔNICO.** Runtime físico atual: `Quark-4.1-484.jar`, mod id `quark`, versão `4.1-484`, NeoForge 1.21.1. Quark é um grande mod **modular vanilla+**. O pack mantém `Dynamic Trees - Quark 2.6.1` com decisão **Manter**, e esse bridge depende de Quark; por isso Quark permanece **Dependência**. O JAR embute Biolith 3.0.10 como JarJar e a instalação também contém Biolith 3.0.14 top-level. A 4.1-484 é o hotfix de Mending/filtering que no Notion anterior ainda constava apenas como update externo.
+> 🔎 **ESCOPO CANÔNICO.** Runtime físico atual: `Quark-4.1-484.jar`, mod id `quark`, versão `4.1-484`, NeoForge 1.21.1. Quark é um grande mod **modular vanilla+**. O pack mantém `Dynamic Trees - Quark 2.6.1` com decisão **Manter**, e esse bridge depende de Quark; por isso Quark permanece **Dependência**. O JAR embute Biolith 3.0.10 como JarJar e a instalação também contém Biolith 3.0.14 top-level. A 4.1-484 é o hotfix de Mending/filtering que no estado anterior ainda constava apenas como update externo.
 
 ## 1. Identidade e papel
 - **Mod:** Quark.
@@ -160,6 +159,6 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 18. Evidências e limites
 - **Modlist física atual:** Quark 4.1-484, Zeta 1.1-40, Dynamic Trees 1.7.2, dtquark 2.6.1, Biolith 3.0.10 embedded e Biolith 3.0.14 top-level.
 - **CurseForge oficial:** Quark 4.1-484, file ID 8847564, Release NeoForge 1.21.1 de 10/09/2026; hotfix de Mending/filtering.
-- **Histórico preservado do Notion/dossiê:** 4.1-483, mudanças de Azalea/enchantments/Totem/item handlers e o antigo version gate para 4.1-484.
+- **Histórico preservado:** 4.1-483, mudanças de Azalea/enchantments/Totem/item handlers e o antigo version gate para 4.1-484.
 - **Notion/source já auditado:** Dynamic Trees - Quark 2.6.1 está `Manter` e depende de Quark.
 - **Limite:** config modular local não foi lida neste lote; nenhuma feature foi declarada ativa apenas por constar na documentação; nenhum teste de runtime acima foi executado.

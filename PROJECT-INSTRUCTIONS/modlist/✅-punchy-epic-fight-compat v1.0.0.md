@@ -1,21 +1,14 @@
 # Punchy Epic Fight Compat
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#465**: JAR `punchy_epicfight_neoforge.jar`, mod id `punchy_epicfight_compat`, runtime `1.0.0`, SHA-1 `9e760f2a8cae172b64fc1343daff29b374187a28`. As bases físicas continuam Punchy `2.7e` e Epic Fight `21.17.3.1`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81938016e460e6e58ec4
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `punchy_epicfight_neoforge.jar`, mod id `punchy_epicfight_compat`, runtime `1.0.0`; Punchy 2.7e presente e Epic Fight presente no snapshot físico
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Punchy Epic Fight Compat 1.0.0 e Punchy 2.7e estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Punchy Epic Fight Compat
 - **Arquivo JAR:** `punchy_epicfight_neoforge.jar`
 - **Versão 1.21.1:** 1.0.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Visual, RPG

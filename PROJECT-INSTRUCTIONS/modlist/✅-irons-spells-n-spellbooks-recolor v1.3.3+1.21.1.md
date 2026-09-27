@@ -1,6 +1,6 @@
 # Iron's Spells 'n Spellbooks: Recolor
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #472: JAR `recolor_tablet-1.3.3+1.21.1.jar`, mod id `recolor_tablet`, runtime `1.3.3+1.21.1`, SHA-1 `f3806de891b04d554d05c279808b057fdf7bdab5`. Esta autoridade física supersede a identidade histórica `1.3.2+1.21.1` preservada abaixo a partir do Notion; a release `1.3.3+1.21.1` antes registrada como update externo agora é o runtime efetivamente instalado.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#471**: JAR `recolor_tablet-1.3.3+1.21.1.jar`, mod id `recolor_tablet`, runtime `1.3.3+1.21.1`, SHA-1 `f3806de891b04d554d05c279808b057fdf7bdab5`. Iron's Spells 'n Spellbooks está fisicamente em `1.21.1-3.16.3`; a origem histórica 1.3.2 / Iron's 3.15.1 permanece preservada abaixo sem reescrita silenciosa.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física:** `recolor_tablet-1.3.2+1.21.1.jar`, mod id `recolor_tablet`, runtime `1.3.2+1.21.1`

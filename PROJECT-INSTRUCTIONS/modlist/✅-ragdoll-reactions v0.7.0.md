@@ -1,21 +1,14 @@
 # Ragdoll Reactions
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#468**: JAR `ragdoll_reactions-1.21.1-0.7.0.jar`, mod id `ragdoll_reactions`, runtime `0.7.0`, SHA-1 `60fd4e9695b4cc3055ef728dc1023f0a335cfc32`. NeoForge atual é `21.1.250`; Sable `2.0.5` e Sable Ragdolls `0.7.5` permanecem presentes. Isso supersede somente a referência histórica do Notion ao loader `21.1.248`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3ca69db9f0db81d19fc5e0dddc9689e7
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `ragdoll_reactions-1.21.1-0.7.0.jar`, mod id `ragdoll_reactions`, runtime `0.7.0`; stack Sable/Ragdolls presente
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Ragdoll Reactions 0.7.0 está presente. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Ragdoll Reactions
 - **Arquivo JAR:** `ragdoll_reactions-1.21.1-0.7.0.jar`
 - **Versão 1.21.1:** 0.7.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL, Compat
