@@ -21,6 +21,8 @@
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #315: JAR `Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar`, mod id `dragoncare`, runtime `1.3.1 - 1.21.1v`, SHA-1 `6366af9408839a7fc1a50d3751902f772ec62fce`.
 
+> **Reconciliação de autoridade física — 27/09/2026.** O callout histórico migrado do Notion afirma que NeoForge `21.1.248` era igual ao loader físico do pack. Essa igualdade pertence ao snapshot histórico e não é mais atual: a modlist vigente usa NeoForge `21.1.250`. O JAR de Dragon Care continua `Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar`, mod id `dragoncare`, runtime `1.3.1 - 1.21.1v`. O texto histórico permanece preservado para paridade, mas qualquer referência ao loader físico atual deve usar `21.1.250`.
+
 <callout icon="🐉" color="green_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar`, mod id `dragoncare`, versão `1.3.1 - 1.21.1v`. O source oficial `OrionTheDragon/DragonCare`, módulo `Addon`, declara exatamente essa versão e NeoForge `21.1.248`, igual ao loader físico do pack. A release 1.3.1 declara suporte explícito ao Ice and Fire CE 2.1.2 instalado.
 </callout>
