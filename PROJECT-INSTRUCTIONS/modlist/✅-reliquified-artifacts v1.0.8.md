@@ -1,21 +1,14 @@
 # Reliquified Artifacts
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#477**: JAR `reliquified_artifacts-1.21.1-1.0.8.jar`, mod id `reliquified_artifacts`, runtime `1.0.8`, SHA-1 `00ad43d5a1aa287fd0084bc3b48546821494ff80`. A autoridade física atual também confirma Artifacts `13.2.5`, Relics `0.12.8`, Curios `9.5.1+1.21.1` e Sophisticated Backpacks `3.26.3`; referências históricas a Artifacts `13.2.3` / Sophisticated Backpacks `3.26.2` permanecem preservadas abaixo como conteúdo do Notion.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81009b3eceda8fbeac99
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `reliquified_artifacts-1.21.1-1.0.8.jar`, mod id `reliquified_artifacts`, runtime `1.0.8`, mixin `reliquified_artifacts.mixins.json`; Artifacts 13.2.3, Relics 0.12.8, Curios 9.5.1, Sophisticated Backpacks 3.26.2 e Reliquified Ars Nouveau 0.8.1 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Reliquified Artifacts 1.0.8, Artifacts 13.2.3 e os integradores citados estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Reliquified Artifacts
 - **Arquivo JAR:** `reliquified_artifacts-1.21.1-1.0.8.jar`
 - **Versão 1.21.1:** 1.0.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Compat, RPG
