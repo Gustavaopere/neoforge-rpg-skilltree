@@ -1,21 +1,14 @@
 # Pufferfish's Unofficial Additions
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#462**: JAR `pufferfish_unofficial_additions-1.21.1-2.2.8.jar`, mod id `pufferfish_unofficial_additions`, runtime `2.2.8`, SHA-1 `b273ea691e027b33fb9a19fb966c5f072edfa5c0`. Pufferfish's Skills `0.19.0` permanece required consumer-base e Iron's Spells 'n Spellbooks está fisicamente em `1.21.1-3.16.3` como integração opcional presente.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c869db9f0db8182b5c4e4b38c1d3292
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `pufferfish_unofficial_additions-1.21.1-2.2.8.jar`, mod id `pufferfish_unofficial_additions`, runtime `2.2.8`; Pufferfish's Skills 0.19.0 e Iron's Spells 'n Spellbooks presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Pufferfish's Unofficial Additions 2.2.8, Pufferfish's Skills 0.19.0 e Iron's Spells 'n Spellbooks estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Pufferfish's Unofficial Additions
 - **Arquivo JAR:** `pufferfish_unofficial_additions-1.21.1-2.2.8.jar`
 - **Versão 1.21.1:** 2.2.8
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** RPG, Compat
@@ -26,7 +19,7 @@
 - **Observações:** Release 2.2.8 para NeoForge 1.21–1.21.1. Delta exato: fix de crash potencial relacionado ao carregamento de effects.
 - **Procedência:** modlist.txt física canônica atual de 10/09/2026 + publicação/documentação oficial Pufferfish's Unofficial Additions 2.2.8.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/pufferfishs-unofficial-additions
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Pufferfish's Unofficial Additions 2.2.8 reconstruído: addon de Skills, XP por harvest/spell casting, rewards/effects, Iron's Spells opcional, lifecycle, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Pufferfish's Unofficial Additions 2.2.8/JAR físico reconfirmado; 2.2.8 permanece a release NeoForge 1.21.1 mais recente localizada. Skills required, Iron's optional e effect-loading risks preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-10
 

@@ -1,6 +1,6 @@
 # Create: Steam 'n' Rails 1.21.1
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#469**: JAR `railways-0.3.0-beta.2+neoforge-mc1.21.1.jar`, mod id `railways`, runtime `0.3.0-beta.2+neoforge-mc1.21.1`, SHA-1 `82a28ce51fdbc583477d7ae7c4c94cc6d23ec2b4`. Create físico permanece `6.0.10`.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#470**: JAR `railways-0.3.0-beta.2+neoforge-mc1.21.1.jar`, mod id `railways`, runtime `0.3.0-beta.2+neoforge-mc1.21.1`, SHA-1 `82a28ce51fdbc583477d7ae7c4c94cc6d23ec2b4`. Create físico permanece `6.0.10`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco

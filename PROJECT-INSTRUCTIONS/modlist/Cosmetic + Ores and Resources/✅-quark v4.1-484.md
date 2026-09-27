@@ -1,6 +1,6 @@
 # Quark
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#467**: JAR `Quark-4.1-484.jar`, mod id `quark`, runtime `4.1-484`, SHA-1 `33e5f73fd94e602649c8072606e1beb59cf6e0ff`. Zeta `1.1-40`, Dynamic Trees `1.7.2`, Dynamic Trees - Quark `2.6.1` e Biolith `3.0.14` top-level permanecem presentes; a cópia Biolith `3.0.10` embarcada no JAR continua tratada separadamente como JarJar.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#468**: JAR `Quark-4.1-484.jar`, mod id `quark`, runtime `4.1-484`, SHA-1 `33e5f73fd94e602649c8072606e1beb59cf6e0ff`. Zeta `1.1-40`, Dynamic Trees `1.7.2`, Dynamic Trees - Quark `2.6.1` e Biolith `3.0.14` top-level permanecem presentes; a cópia Biolith `3.0.10` embarcada no JAR continua tratada separadamente como JarJar.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na origem:** Integrado ao Github
 

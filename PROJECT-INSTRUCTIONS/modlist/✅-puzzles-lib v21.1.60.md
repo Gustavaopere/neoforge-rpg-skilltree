@@ -1,6 +1,6 @@
 # Puzzles Lib
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#466**: JAR `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar`, mod id `puzzleslib`, runtime `21.1.60`, SHA-1 `319fc1ea1498920b39a318ea324f6112a7318d67`. Portable Hole `21.1.0` e Overflowing Bars `21.1.1` permanecem consumers físicos confirmados.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#467**: JAR `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar`, mod id `puzzleslib`, runtime `21.1.60`, SHA-1 `319fc1ea1498920b39a318ea324f6112a7318d67`. Portable Hole `21.1.0` e Overflowing Bars `21.1.1` permanecem consumers físicos confirmados.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco

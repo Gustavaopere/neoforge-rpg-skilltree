@@ -1,6 +1,6 @@
 # Pufferfish's Skills
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#463**: JAR `puffish_skills-0.19.0-1.21-neoforge.jar`, mod id `puffish_skills`, runtime `0.19.0`, SHA-1 `fa134a526ab2f098559b7d824269ae36aaac32b3`. `Pufferfish's Unofficial Additions 2.2.8` permanece consumer físico confirmado.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#464**: JAR `puffish_skills-0.19.0-1.21-neoforge.jar`, mod id `puffish_skills`, runtime `0.19.0`, SHA-1 `fa134a526ab2f098559b7d824269ae36aaac32b3`. `Pufferfish's Unofficial Additions 2.2.8` permanece consumer físico confirmado.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco
