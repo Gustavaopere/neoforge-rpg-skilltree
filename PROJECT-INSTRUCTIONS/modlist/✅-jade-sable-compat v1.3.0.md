@@ -23,8 +23,6 @@
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 
-> **Divergência documental registrada:** a procedência do Notion menciona “modlist.txt física atual de 11/09/2026”. A modlist física mais recente efetivamente acessível nesta execução é o snapshot de 08/09/2026 com 595 entradas; ele confirma `sablejade-1.3.0.jar`, Jade `15.10.6+neoforge` e Sable `2.0.5`. O texto-fonte foi preservado sem ser promovido a autoridade física inexistente.
-
 # Dossiê operacional — padrão Alex's Mobs
 
 > **ESCOPO CANÔNICO.** Runtime físico: `sablejade-1.3.0.jar`, mod id `sablejade`, versão `1.3.0`, NeoForge 1.21.1. É uma bridge **client-side** de targeting entre Jade e sublevels/estruturas móveis do Sable: corrige qual bloco o Jade considera estar sob o crosshair.
