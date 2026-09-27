@@ -114,6 +114,7 @@
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 23/09/2026 - 01:02 |
 | 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 23/09/2026 - 01:02 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 23/09/2026 - 01:13 |
+| 105 | Sinytra Connector | `connector-2.0.0-beta.17+1.21.1-full.jar` | `2.0.0-beta.17+1.21.1` | `Technology` | 22/09/2026 - 22:34 |
 | 106 | Connector Extras | `ConnectorExtras-1.12.1+1.21.1.jar` | `1.12.1+1.21.1` | `Addons + API and Library + Technology + Utility & QoL` | 22/09/2026 - 22:34 |
 | 107 | Continuity | `continuity-3.0.0+1.21.neoforge.jar` | `3.0.0+1.21.neoforge` | `API and Library + Cosmetic` | 22/09/2026 - 22:34 |
 | 108 | Controlling | `Controlling-neoforge-1.21.1-19.0.5.jar` | `19.0.5` | `Cosmetic + Utility & QoL` | 22/09/2026 - 22:34 |
@@ -222,9 +223,24 @@
 | 211 | Curios API | `curios-neoforge-9.5.1+1.21.1.jar` | `9.5.1+1.21.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 24/09/2026 - 00:44 |
 | 212 | Customizable Player Models | `CustomPlayerModels-1.21-0.6.27a.jar` | `0.6.27a` | `Cosmetic` | 24/09/2026 - 01:22 |
 | 213 | Cyclops Core | `cyclopscore-1.21.1-neoforge-1.30.0.jar` | `1.30.0` | `API and Library + Server Utility` | 24/09/2026 - 01:22 |
+| 214 | Deeper and Darker: Spellbooks | `darkermagic-1.3.3-1.21.1-ver.b.jar` | `1.3.3-1.21.1` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 01:22 |
+| 215 | Deeper and Darker | `deeperdarker-neoforge-1.21.1-1.4.1.jar` | `1.4.1` | `Biomes + Dimensions + Mobs + Ores and Resources + Structures` | 24/09/2026 - 01:22 |
+| 216 | VanillaBackport X Farmer's Delight Compat | `Delightful-Backport-1.0-1.21.1-neoforge.jar` | `1.0` | `Addons + Food` | 24/09/2026 - 01:22 |
 | 217 | Create: Design n' Decor | `Design-n-Decor-1.21.1-2.2b.jar` | `2.2b` | `Addons + Cosmetic + Create + Storage + Utility & QoL` | 24/09/2026 - 01:22 |
+| 220 | Discerning The Eldritch | `discerning_the_eldritch-1.4.4-1.21.jar` | `1.4.4-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 01:22 |
+| 221 | Dis-Enchanting Table | `disenchanting_table-merged-1.21.1-5.0.2.jar` | `5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Ores and Resources + Technology` | 24/09/2026 - 01:22 |
+| 222 | Distant Horizons: A Level of Detail mod | `DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar` | `3.2.0-b` | `Utility & QoL` | 24/09/2026 - 10:44 |
 | 223 | Create: Dreams n' Desires | `DnDesires-1.21.1-2.3a-BETA.jar` | `2.3a-BETA` | `Armor, Tools, and Weapons + Automation + Create + Utility & QoL + World Gen` | 24/09/2026 - 10:44 |
+| 224 | Domum Ornamentum | `domum-ornamentum-1.0.236-snapshot-main.jar` | `1.0.236-snapshot` | `API and Library + Cosmetic` | 24/09/2026 - 10:44 |
+| 225 | Dreamless Spells and Spellbooks | `dreamless_spells-1.1.9.jar` | `1.1.9` | `Addons + Armor, Tools, and Weapons + Magic + Ores and Resources` | 24/09/2026 - 10:44 |
+| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
+| 227 | Dynamic Trees - BetterNether | `dtbetternether-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
+| 228 | Dynamic Trees - Oh The Biomes We've Gone | `dtbwg-1.1.0-BETA02.jar` | `1.1.0-BETA02` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
+| 229 | Dynamic Trees - Quark | `dtquark-2.6.1.jar` | `2.6.1` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
+| 230 | Dynamic Trees - Terralith | `dtterralith-1.3.0.jar` | `1.3.0` | `Addons + Biomes + World Gen` | 24/09/2026 - 10:44 |
 | 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
+| 232 | Dynamic RPG Resource Bars | `dynamic_resource_bars-neoforge-0.7.1-1.21.1.jar` | `0.7.1` | `Adventure and RPG + API and Library + Cosmetic + Magic + Utility & QoL` | 24/09/2026 - 11:14 |
+| 233 | Dynamic Brightness | `DynamicBrightness-neoforge-1.3.1.jar` | `1.3.1` | `Utility & QoL` | 24/09/2026 - 11:14 |
 | 234 | Dynamic Trees Addon Lib | `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` | `0.2.0-BETA03` | `Addons + API and Library + Cosmetic` | 24/09/2026 - 11:14 |
 | 235 | Dynamic Trees | `dynamictrees-neoforge-1.21.1-1.7.2.jar` | `1.7.2` | `Biomes + Cosmetic + Farming + World Gen` | 24/09/2026 - 11:14 |
 | 236 | Dynamic Trees Plus | `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` | `1.3.2` | `Addons + Biomes + Cosmetic + Farming + World Gen` | 24/09/2026 - 11:14 |
@@ -311,7 +327,15 @@
 | 319 | Iceberg [Neo/Forge] | `Iceberg-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `API and Library` | 27/09/2026 - 03:14 |
 | 320 | Integrated Dungeons Arise | `IDA v2.1.1-1.21.1.jar` | `2.1.1` | `Adventure and RPG + Structures + World Gen` | 24/09/2026 - 22:20 |
 | 321 | Integrated Dungeons and Structures | `idas-1.13.7+1.21.1-neoforge.jar` | `1.13.7+1.21.1-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Create + Structures + World Gen` | 24/09/2026 - 22:20 |
+| 322 | Iglee's Library | `igleelib-1.21.1-1.2.7.jar` | `1.21.1-1.2.7` | `API and Library` | 24/09/2026 - 22:53 |
 | 323 | Cataclysm: Ignis Soulfires | `ignissoulfires-1.8.0.jar` | `1.8.0` | `Addons + Armor, Tools, and Weapons + Cosmetic + Ores and Resources` | 24/09/2026 - 22:53 |
+| 324 | Ignis Soulfires: Spellbooks | `ignissoulfires_spellbooks-1.1.0.jar` | `1.1.0` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 22:53 |
+| 325 | Integrated Mowzie's Mobs | `IMM v1.3.0-1.21.1.jar` | `1.3.0` | `Adventure and RPG + Structures + World Gen` | 24/09/2026 - 22:53 |
+| 326 | ImmediatelyFast | `ImmediatelyFast-NeoForge-1.6.14+1.21.1.jar` | `1.6.14+1.21.1` | `Performance + Utility & QoL` | 24/09/2026 - 22:53 |
+| 327 | Immersive Aeronautics - Immersive Portals + Create: Aeronautics | `Immersive-Aeronautics1.1.4-1.21.1-NeoForge.jar` | `1.1.4` | `Create` | 24/09/2026 - 22:53 |
+| 328 | Immersive Furniture | `immersive_furniture-neoforge-0.3.3+1.21.1.jar` | `0.3.3+1.21.1` | `Cosmetic + Storage` | 24/09/2026 - 22:53 |
+| 329 | Immersive Portal - Iron's Spells 'n Spellbooks Addon | `immersive_portal_irons_spells_n_spellbooks_addon-1.0.1.jar` | `1.0.1` | `Magic + Player Transport` | 24/09/2026 - 22:53 |
+| 330 | Immersive Portals: True Immersion | `immersive_portals_true_immersion-2.0.4.jar` | `2.0.4` | `Addons` | 24/09/2026 - 22:53 |
 | 331 | InsaneLib | `insanelib-2.4.33.0.jar` | `2.4.33.0` | `API and Library` | 24/09/2026 - 22:27 |
 | 332 | Integrated API | `integrated_api-neoforge-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + API and Library + Structures + World Gen` | 24/09/2026 - 23:17 |
 | 333 | Integrated Cataclysm | `integrated_cataclysm-1.0.6+1.21.1-neoforge.jar` | `1.0.6+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Create + World Gen` | 24/09/2026 - 23:17 |
@@ -443,13 +467,46 @@
 | 459 | Prometheus | `prometheus-neoforge-1.21-1.2.5.jar` | `1.2.5` | `Adventure and RPG + API and Library + Cosmetic + Utility & QoL` | 26/09/2026 - 03:24 |
 | 460 | Create: Protection Pixel | `protection_pixel-2.2.1-neoforge-1.21.1.jar` | `2.2.1` | `Adventure and RPG + Armor, Tools, and Weapons + Create + MCreator` | 26/09/2026 - 03:24 |
 | 461 | Puddles & Floods | `puddleflood-1.1.5+1.21.1-neoforge.jar` | `1.1.5` | `Cosmetic` | 26/09/2026 - 03:24 |
-| 468 | Quark | `Quark-4.1-484.jar` | `4.1-484` | `Cosmetic + Ores and Resources` | 17/09/2026 - 10:58 |
-| 474 | Relics | `relics-1.21.1-0.12.8.jar` | `0.12.8` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Ores and Resources` | 17/09/2026 - 23:58 |
+| 462 | Pufferfish's Unofficial Additions | `pufferfish_unofficial_additions-1.21.1-2.2.8.jar` | `2.2.8` | `Addons` | 27/09/2026 - 16:30 |
+| 463 | Pufferfish's Attributes [Fabric & Forge & NeoForge] | `puffish_attributes-0.8.3-1.21-neoforge.jar` | `0.8.3` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
+| 464 | Pufferfish's Skills [Fabric & Forge & NeoForge] | `puffish_skills-0.19.0-1.21-neoforge.jar` | `0.19.0` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
+| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `Cosmetic + Map and Information` | 27/09/2026 - 16:30 |
+| 466 | Epic Fight X Punchy! Neo | `punchy_epicfight_neoforge.jar` | `1.0.0` | `Addons` | 27/09/2026 - 16:30 |
+| 467 | Puzzles Lib | `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar` | `21.1.60` | `API and Library` | 27/09/2026 - 16:30 |
+| 468 | Quark | `Quark-4.1-484.jar` | `4.1-484` | `Cosmetic + Ores and Resources` | 27/09/2026 - 16:30 |
+| 469 | Ragdoll Reactions | `ragdoll_reactions-1.21.1-0.7.0.jar` | `0.7.0` | `Addons + Cosmetic` | 27/09/2026 - 16:30 |
+| 470 | Steam 'n' Rails Neoforge | `railways-0.3.0-beta.2+neoforge-mc1.21.1.jar` | `0.3.0-beta.2+neoforge-mc1.21.1` | `Addons + Cosmetic + Create + Player Transport + Technology` | 27/09/2026 - 16:30 |
+| 471 | Rechiseled | `rechiseled-1.2.6-neoforge-mc1.21.jar` | `1.2.6` | `Cosmetic` | 27/09/2026 - 16:30 |
+| 472 | Iron's Spells 'n Spellbooks: Recolor | `recolor_tablet-1.3.3+1.21.1.jar` | `1.3.3+1.21.1` | `Cosmetic + Magic` | 27/09/2026 - 16:30 |
+| 473 | Reese's Sodium Options | `reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar` | `2.2.3+mc1.21.1` | `Miscellaneous` | 27/09/2026 - 17:03 |
+| 474 | Relics | `relics-1.21.1-0.12.8.jar` | `0.12.8` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Ores and Resources` | 27/09/2026 - 17:03 |
+| 475 | Reliquified L_Ender 's Cataclysm new relics fix | `reliquified-lenders-cataclysm-new-relics-fix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes + Server Utility` | 27/09/2026 - 17:03 |
+| 476 | Reliquified Ars Nouveau | `reliquified_ars_nouveau-1.21.1-0.8.1.jar` | `0.8.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 17:03 |
+| 477 | Reliquified Artifacts | `reliquified_artifacts-1.21.1-1.0.8.jar` | `1.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 17:03 |
+| 478 | Reliquified Iron's Spells 'n Spellbooks | `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.7.jar` | `0.2.7` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 17:03 |
+| 479 | Reliquified L_Ender 's Cataclysm | `reliquified_lenders_cataclysm-1.21.1-0.1.1.jar` | `0.1.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 17:03 |
+| 480 | Resourceful Config | `resourcefulconfig-neoforge-1.21-3.0.11.jar` | `3.0.11` | `API and Library` | 27/09/2026 - 17:03 |
+| 481 | Resourceful Lib | `resourcefullib-neoforge-1.21-3.0.12.jar` | `3.0.12` | `API and Library` | 27/09/2026 - 17:03 |
+| 482 | Rhino | `rhino-2101.2.8-build.91.jar` | `2101.2.8-build.91` | `API and Library` | 27/09/2026 - 17:33 |
+| 483 | Ritchie's Projectile Library | `ritchiesprojectilelib-2.1.2-mc.1.21.1-neoforge.jar` | `2.1.2` | `API and Library` | 27/09/2026 - 17:33 |
+| 484 | Create: Rubberworks | `rubberworks-neoforge-1.21.1-1.1.4.jar` | `1.1.4` | `Addons + Create` | 27/09/2026 - 17:33 |
+| 485 | Sable Dynamic Lights (Create: Dynamic Lights fork) | `sable-dynamic-lights-1.21.1-2.0.1.jar` | `2.0.1` | `Cosmetic + Create` | 27/09/2026 - 17:33 |
+| 486 | Sable | `sable-neoforge-1.21.1-2.0.5.jar` | `2.0.5` | `API and Library` | 27/09/2026 - 17:33 |
+| 487 | sable-x-cpm | `sable-x-cpm-0.3.2+1.21.1.jar` | `0.3.2+1.21.1` | `Bug Fixes + Cosmetic + Create + Utility & QoL` | 27/09/2026 - 17:33 |
+| 488 | Create Additions - Sable Compat | `sable_createaddition_compat-0.1.13.jar` | `0.1.13` | `Addons + Create` | 27/09/2026 - 17:33 |
+| 489 | Sable & Flowing Fluids Compat | `sable_flowing_fluids_compat-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 27/09/2026 - 17:33 |
+| 490 | Sable: Ragdolls | `sable_player_ragdoll-1.21.1-0.7.5.jar` | `0.7.5` | `Addons + API and Library + Cosmetic + Create` | 27/09/2026 - 17:33 |
+| 491 | Sable: Ragdoll - Patch | `sable_player_ragdoll_patch-1.21.1-1.9.jar` | `1.9` | `Bug Fixes` | 27/09/2026 - 17:33 |
 | 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 17/09/2026 - 23:58 |
+| 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 14:39 |
+| 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 27/09/2026 - 11:53 |
 | 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 17/09/2026 - 23:58 |
+| 536 | Supplementaries | `supplementaries-1.21.1-3.9.9-neoforge.jar` | `1.21.1-3.9.9` | `Cosmetic + Miscellaneous + Redstone + Storage` | 27/09/2026 - 14:39 |
+| 537 | Tectonic | `tectonic-3.0.28-neoforge-21.1.jar` | `3.0.28` | `World Gen` | 27/09/2026 - 14:39 |
 | 541 | Create: TFMG Community Edition | `tfmg-1.21.1-1.3.1-community.jar` | `1.3.1-community` | `Addons + Armor, Tools, and Weapons + Create + Ores and Resources + Technology` | 17/09/2026 - 21:40 |
 | 543 | Thirst Was Reclaimed | `ThirstWasReclaimed-1.21.1-3.0.5.jar` | `1.21.1-3.0.5` | `Food` | 17/09/2026 - 23:58 |
 | 544 | Corail Tombstone | `tombstone-neoforge-1.21.1-9.5.6.jar` | `9.5.6` | `Adventure and RPG + Magic + Mobs + Utility & QoL` | 16/09/2026 - 18:40 |
+| 564 | Waystones | `waystones-neoforge-1.21.1-21.1.45.jar` | `21.1.45` | `Adventure and RPG + Magic + Player Transport + Server Utility` | 27/09/2026 - 14:39 |
 
 ## Divergências de metadata preservadas
 
