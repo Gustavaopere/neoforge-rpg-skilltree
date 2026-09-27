@@ -1,21 +1,14 @@
 # Reliquified L_Ender's Cataclysm
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#478**: JAR `reliquified_lenders_cataclysm-1.21.1-0.1.1.jar`, mod id `reliquified_lenders_cataclysm`, runtime `0.1.1`, SHA-1 `be89d697455f04a1531ed81b45bcc038354430c8`. L_Ender's Cataclysm `3.33`, Relics `0.12.8`, OctoLib `0.6.2` e o fix `1.0.2` permanecem presentes.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c969db9f0db815d8bdfc417ced02109
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `reliquified_lenders_cataclysm-1.21.1-0.1.1.jar`, mod id `reliquified_lenders_cataclysm`, runtime `0.1.1`, mixin `reliquified_lenders_cataclysm.mixins.json`; L_Ender's Cataclysm 3.33, Relics 0.12.8, OctoLib 0.6.2 e fix 1.0.2 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Reliquified L_Ender's Cataclysm 0.1.1, Cataclysm 3.33, Relics 0.12.8, OctoLib 0.6.2 e o New Relics Fix 1.0.2 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Reliquified L_Ender's Cataclysm
 - **Arquivo JAR:** `reliquified_lenders_cataclysm-1.21.1-0.1.1.jar`
 - **Versão 1.21.1:** 0.1.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Magia, RPG, Compat

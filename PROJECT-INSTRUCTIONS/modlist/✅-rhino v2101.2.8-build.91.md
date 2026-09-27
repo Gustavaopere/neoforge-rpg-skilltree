@@ -1,21 +1,14 @@
 # Rhino
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#481**: JAR `rhino-2101.2.8-build.91.jar`, mod id `rhino`, runtime `2101.2.8-build.91`, SHA-1 `56eab1d464ed0811c64040c64bd047df5cbc3aad`. KubeJS físico atual avançou para `2101.7.2-build.377`; KubeJS Create permanece `2101.3.1-build.18` e Iron's Spellbooks KubeJS `4.0.3`. O conteúdo histórico do Notion abaixo preserva a snapshot KubeJS build.374.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db819a9ccae83cc8e81f23
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `rhino-2101.2.8-build.91.jar`, mod id `rhino`, runtime `2101.2.8-build.91`; KubeJS 2101.7.2-build.374, KubeJS Create 2101.3.1-build.18 e Iron's Spellbooks KubeJS 4.0.3 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Rhino build.91 e os consumers KubeJS citados estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Rhino
 - **Arquivo JAR:** `rhino-2101.2.8-build.91.jar`
 - **Versão 1.21.1:** 2101.2.8-build.91
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** Biblioteca, Compat
@@ -26,7 +19,7 @@
 - **Observações:** Correção da ficha antiga: KubeJS NÃO está removido na modlist atual; `kubejs-neoforge-2101.7.2-build.374.jar` está presente e confirma Rhino build.91 como required content.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + publicação oficial Rhino build.91 + dossiê KubeJS build.374 já auditado, que confirma a dependência requerida.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/rhino
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Rhino build.91 reconstruído: runtime ES6, Java 21/Nashorn boundary, KubeJS load-bearing dependency, lifecycle/reload, side authority, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Rhino 2101.2.8-build.91/JAR físico reconfirmado; build.91 continua sendo a build Beta multiversão mais recente localizada e permanece load-bearing por KubeJS 2101.7.2-build.374. A autoridade do pack continua sendo o JAR físico 1.21.1, sem downgrade automático para releases antigas.
 - **Histórico da decisão:** 2026-09-10 — Sem decisão → Dependência. KubeJS 2101.7.2-build.374 está fisicamente presente e declara Rhino como required content; remoção isolada deixa de ser opção segura.
 - **Data da última decisão:** 2026-09-10
 

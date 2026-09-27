@@ -1,21 +1,14 @@
 # Resourceful Lib
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#480**: JAR `resourcefullib-neoforge-1.21-3.0.12.jar`, mod id `resourcefullib`, runtime `3.0.12`, SHA-1 `24389c8e48ff0e8594e4686b750c494c66a5f8df`. O JAR top-level continua contendo `bytecodecs-1.1.2.jar` e `yabn-1.0.3.jar` como componentes internos. Jade físico atual é `15.10.6`; a snapshot atual não enumera uma cópia Resourceful Lib como filha Jar-in-Jar de Jade, enquanto o conteúdo histórico do Notion preservado abaixo documenta Jade `15.10.3` com Resourceful Lib common `3.0.0` embedded.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81238b99ee1a5cee5d51
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `resourcefullib-neoforge-1.21-3.0.12.jar`, mod id `resourcefullib`, runtime `3.0.12`; Jade 15.10.3 contém Resourceful Lib common 3.0.0 embutida
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Resourceful Lib 3.0.12 está presente top-level e Jade hospeda uma cópia common 3.0.0 embutida. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Resourceful Lib
 - **Arquivo JAR:** `resourcefullib-neoforge-1.21-3.0.12.jar`
 - **Versão 1.21.1:** 3.0.12
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
@@ -23,10 +16,10 @@
 - **Dependências:** NeoForge 1.21/1.21.1. Consumidores top-level não foram causalmente enumerados nesta etapa. Jade 15.10.3 hospeda separadamente uma cópia embedded Resourceful Lib common 3.0.0.
 - **Sobreposição:** Não é duplicata de Resourceful Config. A cópia 3.0.0 embedded em Jade é dependência embarcada do host, não substituto automaticamente equivalente do top-level 3.0.12.
 - **Compatibilidade/Riscos:** Riscos: consumer graph desconhecido, binary API drift, classloading/dist leakage, stale global state/cache e lineage top-level 3.0.12 vs embedded 3.0.0 no Jade. A cópia embedded não prova conflito nem redundância segura.
-- **Observações:** Jar-in-Jar confirmado: Jade 15.10.3 contém `/META-INF/jars/resourcefullib-common-1.21-3.0.0.jar`. Essa cópia pertence ao host e não recebe entrada top-level própria. Não remover 3.0.12 sem dependency mapping/teste.
+- **Observações:** O JAR top-level 3.0.12 embute internamente bytecodecs-1.1.2.jar e yabn-1.0.3.jar; ambos permanecem sob o host e não recebem ordinal próprio.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + inventário JarJar/Jars do snapshot atual + publicação oficial Resourceful Lib 3.0.12 + repositório oficial usado apenas como contexto arquitetural.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/resourceful-lib
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Resourceful Lib 3.0.12 reconstruído: shared-library role, top-level vs Jade embedded 3.0.0, JARJAR ownership, lifecycle/classloading, risks and tests.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Resourceful Lib 3.0.12/JAR físico reconfirmado; 3.0.12 permanece a release NeoForge 1.21.1 mais recente localizada. Bytecodecs 1.1.2 e YABN 1.0.3 permanecem internos ao host; Jade mantém Resourceful Lib common 3.0.0 embedded separadamente.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-26
 
@@ -73,6 +66,7 @@ Isso **não prova redundância segura** do top-level 3.0.12. Jar-in-Jar pode exi
 Também não prova conflito automático: classloading/metadata podem tratar o componente embarcado de forma controlada. A conclusão correta é registrar o version lineage e testar.
 
 ## 6. JARJAR e regra de catalogação
+O próprio JAR top-level 3.0.12 contém dois componentes internos em `META-INF/jars`: `bytecodecs-1.1.2.jar` e `yabn-1.0.3.jar`. Ambos pertencem ao host Resourceful Lib nesta instalação, não recebem ordinal/página top-level e não devem ser atualizados isoladamente.
 A cópia 3.0.0 embarcada em Jade deve permanecer documentada como dependência do hospedeiro, não como nova linha do catálogo.
 
 Se outra cópia embarcada for encontrada em futuro snapshot, registrar o host, versão e motivo aparente sem criar página top-level automaticamente.
