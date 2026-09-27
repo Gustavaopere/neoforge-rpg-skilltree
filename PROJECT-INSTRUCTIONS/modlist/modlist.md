@@ -506,6 +506,16 @@
 | 499 | ServerCore | `servercore-neoforge-1.5.19+1.21.1.jar` | `1.5.19+1.21.1` | `Performance + Server Utility` | 27/09/2026 - 18:17 |
 | 500 | ShadowsZ | `shadowsz-1.1.9.jar` | `1.1.9` | `Addons + Magic + Mobs` | 27/09/2026 - 18:17 |
 | 501 | Simply Swords: Cataclysm | `simplycataclysm-1.0.2+1.21.1+neoforge.jar` | `1.0.2+1.21.1+neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 18:17 |
+| 502 | Simply More | `simplymore-forge-1.3.0_alpha.jar` | `1.3.0_alpha` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 19:00 |
+| 503 | Simply Swords [Fabric & Forge] | `simplyswords-neoforge-1.70.2-1.21.1.jar` | `1.70.2-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 19:00 |
+| 504 | Simply Tooltips | `SimplyTooltips-neoforge-0.1.5.jar` | `0.1.5` | `API and Library + Miscellaneous` | 27/09/2026 - 19:01 |
+| 505 | Create: Coasters Simulated | `simulatedcoasters-0.1.5.jar` | `0.1.5` | `Addons + Create` | 27/09/2026 - 19:01 |
+| 506 | Skin Layers 3D | `skinlayers3d-neoforge-1.11.2-mc1.21.1.jar` | `1.11.2` | `Adventure and RPG + Cosmetic` | 27/09/2026 - 19:01 |
+| 507 | Sky Aesthetics | `sky_aesthetics-neoforge-2.0.13-beta.jar` | `2.0.13-beta` | `API and Library + Cosmetic + Dimensions + Utility & QoL` | 27/09/2026 - 19:01 |
+| 508 | Create Slice & Dice | `sliceanddice-4.3.3-neoforge.jar` | `4.3.3` | `Addons + Farming + Technology` | 27/09/2026 - 19:01 |
+| 509 | Create: Smart Bounds | `smart_bounds-1.0.0.jar` | `1.0.0` | `Bug Fixes + Create + Performance + Technology` | 27/09/2026 - 19:02 |
+| 510 | SmartBrainLib (Forge/Fabric/Quilt) | `SmartBrainLib-neoforge-1.21.1-1.16.11.jar` | `1.16.11` | `API and Library` | 27/09/2026 - 19:02 |
+| 511 | Snow! Real Magic! ⛄ (Neo/Forge) | `SnowRealMagic-1.21.1-NeoForge-12.2.2.jar` | `12.2.2+neoforge` | `Cosmetic + Utility & QoL + World Gen` | 27/09/2026 - 19:02 |
 | 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 17/09/2026 - 23:58 |
 | 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 14:39 |
 | 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 27/09/2026 - 11:53 |
