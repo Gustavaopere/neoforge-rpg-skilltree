@@ -1,6 +1,6 @@
 # Punchy Epic Fight Compat
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#465**: JAR `punchy_epicfight_neoforge.jar`, mod id `punchy_epicfight_compat`, runtime `1.0.0`, SHA-1 `9e760f2a8cae172b64fc1343daff29b374187a28`. As bases físicas continuam Punchy `2.7e` e Epic Fight `21.17.3.1`.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#466**: JAR `punchy_epicfight_neoforge.jar`, mod id `punchy_epicfight_compat`, runtime `1.0.0`, SHA-1 `9e760f2a8cae172b64fc1343daff29b374187a28`. As bases físicas continuam Punchy `2.7e` e Epic Fight `21.17.3.1`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco
