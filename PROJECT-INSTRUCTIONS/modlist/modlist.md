@@ -289,6 +289,16 @@
 | 339 | Apotheosis x Iron's Spellbooks Compat | `irons_apothic-2.2.2.jar` | `2.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 23:21 |
 | 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 25/09/2026 - 01:24 |
 | 359 | Knight Lib | `knightlib-neoforge-1.21.1-2.0.1.jar` | `2.0.1` | `API and Library` | 25/09/2026 - 02:11 |
+| 382 | Loot Integrations: Ice and Fire | `lootintegrations_iceandfire-1.2.jar` | `1.2` | `Addons + Structures` | 25/09/2026 - 12:00 |
+| 383 | Loot Integrations: Integrated Dungeons, Villages & Strongholds & Cataclysm | `lootintegrations_integrated-1.5.jar` | `1.5 (distribuição); metadata interna 1` | `Addons + Structures` | 25/09/2026 - 12:00 |
+| 384 | Loot Integrations: Randomized Loot Compatibility | `lootintegrations_vanilla-1.7.jar` | `1.7 (distribuição); metadata interna 1` | `Addons + Structures` | 25/09/2026 - 12:00 |
+| 385 | Yung Structures Addon for Loot Integrations | `lootintegrations_yungs-1.6.jar` | `1.6 (distribuição); metadata interna 1` | `Addons + Adventure and RPG + Structures` | 25/09/2026 - 12:00 |
+| 386 | LootJS: KubeJS Addon | `lootjs-neoforge-1.21.1-3.7.0.jar` | `1.21.1-3.7.0` | `KubeJS + Map and Information + Server Utility` | 25/09/2026 - 12:00 |
+| 387 | Lootr (Forge & NeoForge) | `lootr-neoforge-1.21.1-1.11.38.125.jar` | `1.21.1-1.11.38.125` | `Server Utility + Structures` | 25/09/2026 - 12:00 |
+| 388 | Lychee (Neo/Forge) | `Lychee-1.21.1-NeoForge-6.7.0.jar` | `6.7.0+neoforge` | `Utility & QoL` | 25/09/2026 - 12:00 |
+| 389 | Malum | `malum-1.21.1-1.8.2.jar` | `1.8.2` | `Armor, Tools, and Weapons + Cosmetic + Magic + Ores and Resources + World Gen` | 25/09/2026 - 12:00 |
+| 390 | Max Health Fix | `maxhealthfix-neoforge-1.21.1-21.1.4.jar` | `21.1.4` | `Adventure and RPG + Armor, Tools, and Weapons + Bug Fixes + Server Utility + Utility & QoL` | 25/09/2026 - 12:00 |
+| 391 | MineColonies: Jade crops addon | `mcjadecrops-1.1.1300.jar` | `1.1.1300` | `Addons + Farming + Utility & QoL` | 25/09/2026 - 12:00 |
 | 392 | Mechanicals Lib | `mechanicals-1.21.1-1.1.6.jar` | `1.1.6` | `API and Library` | 25/09/2026 - 12:31 |
 | 393 | Melody | `melody_neoforge_1.0.10_MC_1.21.jar` | `1.0.10` | `API and Library` | 25/09/2026 - 12:31 |
 | 394 | MezzConfig | `mezz_config-1.21.1-neoforge-0.5.9.jar` | `0.5.9` | `API and Library` | 20/09/2026 - 01:38 |
