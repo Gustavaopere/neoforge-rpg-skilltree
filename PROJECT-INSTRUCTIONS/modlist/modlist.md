@@ -497,6 +497,7 @@
 | 489 | Sable & Flowing Fluids Compat | `sable_flowing_fluids_compat-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 27/09/2026 - 17:33 |
 | 490 | Sable: Ragdolls | `sable_player_ragdoll-1.21.1-0.7.5.jar` | `0.7.5` | `Addons + API and Library + Cosmetic + Create` | 27/09/2026 - 17:33 |
 | 491 | Sable: Ragdoll - Patch | `sable_player_ragdoll_patch-1.21.1-1.9.jar` | `1.9` | `Bug Fixes` | 27/09/2026 - 17:33 |
+| 492 | Sable Assembly Fix | `SableAssemblyFix-1.0.0.jar` | `1.0.0` | `Bug Fixes + Create + Server Utility` | 27/09/2026 - 18:15 |
 | 493 | Sable Beyond | `sablebeyond-neoforge-1.21.1-v0.5.0.jar` | `0.5.0` | `Addons + API and Library + Create + KubeJS + Utility & QoL` | 27/09/2026 - 18:16 |
 | 494 | Jade Sable Compat | `sablejade-1.3.0.jar` | `1.3.0` | `Utility & QoL` | 27/09/2026 - 18:35 |
 | 495 | Sable: Mass view (Create Aeronautics) | `sablemassview-1.0.0.jar` | `1.0.0` | `Addons` | 27/09/2026 - 18:16 |
