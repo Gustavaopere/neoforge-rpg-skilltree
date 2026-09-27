@@ -1,6 +1,6 @@
 # Ragdoll Reactions
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#468**: JAR `ragdoll_reactions-1.21.1-0.7.0.jar`, mod id `ragdoll_reactions`, runtime `0.7.0`, SHA-1 `60fd4e9695b4cc3055ef728dc1023f0a335cfc32`. NeoForge atual é `21.1.250`; Sable `2.0.5` e Sable Ragdolls `0.7.5` permanecem presentes. Isso supersede somente a referência histórica do Notion ao loader `21.1.248`.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#469**: JAR `ragdoll_reactions-1.21.1-0.7.0.jar`, mod id `ragdoll_reactions`, runtime `0.7.0`, SHA-1 `60fd4e9695b4cc3055ef728dc1023f0a335cfc32`. NeoForge atual é `21.1.250`; Sable `2.0.5` e Sable Ragdolls `0.7.5` permanecem presentes. Isso supersede somente a referência histórica do Notion ao loader `21.1.248`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco

@@ -1,6 +1,6 @@
 # Pufferfish's Attributes
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#462**: JAR `puffish_attributes-0.8.3-1.21-neoforge.jar`, mod id `puffish_attributes`, runtime `0.8.3`, SHA-1 `9e6a87f790fc9281ea2685f8d4f6435d0d7c6d1f`. NeoForge atual: `21.1.250`.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#463**: JAR `puffish_attributes-0.8.3-1.21-neoforge.jar`, mod id `puffish_attributes`, runtime `0.8.3`, SHA-1 `9e6a87f790fc9281ea2685f8d4f6435d0d7c6d1f`. NeoForge atual: `21.1.250`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco
