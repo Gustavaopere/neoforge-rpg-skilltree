@@ -1,7 +1,7 @@
 # Sophisticated JEI Index
 
+> **Autoridade física atual — 27/09/2026.** A modlist física atual contém `sophisticated_jei_index-1.2.3+1.21.1.jar`, mod id `sophisticated_jei_index`, runtime `1.2.3`, SHA-1 `0b32bc2fef551923b37356e747d6eca835e521d5`. Esta autoridade física supersede a identidade histórica `1.2.2` preservada abaixo a partir do Notion; a 1.2.3, antes registrada somente como update disponível, agora é o runtime efetivamente instalado.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81d28537c47b84722bb4
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física:** `sophisticated_jei_index-1.2.2+1.21.1.jar`, mod id `sophisticated_jei_index`, runtime `1.2.2`
 - **Auditoria de migração Notion → GitHub:** 2026-09-14

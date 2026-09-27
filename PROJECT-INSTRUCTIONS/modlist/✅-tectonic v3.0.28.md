@@ -1,7 +1,7 @@
 # Tectonic
 
+> **Autoridade física atual — 27/09/2026.** A modlist física atual contém `tectonic-3.0.28-neoforge-21.1.jar`, mod id `tectonic`, runtime `3.0.28`, SHA-1 `db15156eec4320c2997c4dd4948119472de01224`. Esta autoridade física supersede a identidade histórica `3.0.26` preservada abaixo a partir do Notion.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c969db9f0db815d8473fb92e531c761
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física:** `tectonic-3.0.26-neoforge-21.1.jar`, mod id `tectonic`, runtime `3.0.26`; Lithostitched `1.8.0+beta6` presente
 - **Auditoria de migração Notion → GitHub:** 2026-09-14

@@ -1,7 +1,7 @@
 # Waystones
 
+> **Autoridade física atual — 27/09/2026.** A modlist física atual contém `waystones-neoforge-1.21.1-21.1.45.jar`, mod id `waystones`, runtime `21.1.45`, SHA-1 `6ec1a176a102212db4f6391886db52ed103c830f`. Esta autoridade física supersede a identidade histórica `21.1.44` preservada abaixo a partir do Notion.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81a9aefbcfc95945ab22
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física:** `waystones-neoforge-1.21.1-21.1.44.jar`, mod id `waystones`, runtime `21.1.44`
 - **Auditoria de migração Notion → GitHub:** 2026-09-14
