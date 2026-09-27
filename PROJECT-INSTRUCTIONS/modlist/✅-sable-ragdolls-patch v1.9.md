@@ -1,22 +1,14 @@
 # Sable Ragdolls Patch
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#491**: JAR `sable_player_ragdoll_patch-1.21.1-1.9.jar`, mod id `sable_player_ragdoll_patch`, runtime `1.9`, SHA-1 `a1dd6aba1c4f26d5f42efa32518f2aebc026371d`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3ca69db9f0db815fa4abf8cd70b5224b
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sable_player_ragdoll_patch-1.21.1-1.9.jar`, mod id `sable_player_ragdoll_patch`, runtime `1.9`, com cinco mixin configs; Sable Ragdolls 0.7.5, Sable 2.0.5, Punchy 2.7e, Curios 9.5.1 e `mob_ragdoll_corpse` 1.1.5 presentes; `ragdoll_corpse` 0.3.0 ausente como top-level
-- **Data da exportação:** 2026-09-11
-
-## Divergências documentais detectadas na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**.
-- A publicação do Patch 1.9 exige `ragdoll_corpse 0.3.0`, mas esse provider não aparece como JAR/mod id top-level no snapshot físico acessível. O pack contém `mob_ragdoll_corpse-1.1.5.jar`, mod id `mob_ragdoll_corpse`, que permanece tratado como projeto distinto. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable Ragdolls Patch
 - **Arquivo JAR:** `sable_player_ragdoll_patch-1.21.1-1.9.jar`
 - **Versão 1.21.1:** 1.9
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, QoL
@@ -27,7 +19,7 @@
 - **Observações:** Release 1.9 NeoForge 1.21.1. Delta exato: corrige Punchy first-person arms em ragdoll, bloqueia Ender Pearls/Wind Bombs nesse state e corrige `/sable remove @e` durante ragdoll. Cinco mixin configs físicos incluem base/punchy/leawind/corpse/ruok.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + JAR/mixin configs do Patch 1.9 + CurseForge oficial do projeto/file 1.9. Discrepância `ragdoll_corpse 0.3.0` registrada sem inferir equivalência com `mob_ragdoll_corpse`.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sable-ragdoll-patch
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Sable Ragdolls Patch 1.9 reconstruído: requirements audit, render/Curios/carrying/collision fixes, Punchy/action/remove-command delta, lifecycle, discrepancy corpse, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable Ragdolls Patch 1.9/JAR físico reconfirmado; 1.9 permanece a release NeoForge 1.21.1 mais recente localizada. Punchy/action/remove-command fixes e discrepância publicada de `ragdoll_corpse 0.3.0` preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-28
 

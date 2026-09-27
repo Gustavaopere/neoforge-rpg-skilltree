@@ -1,17 +1,14 @@
 # Create: Rubberworks
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#484**: JAR `rubberworks-neoforge-1.21.1-1.1.4.jar`, mod id `rubberworks`, runtime `1.1.4`, SHA-1 `7af4ed4d3c26c84d42a9a7f3f6dd0452c5638527`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db817ea41be02cbe659d71
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — JAR confirmado fisicamente
-- **Data da exportação:** 2026-09-11
 
 ## Propriedades do banco
 
 - **Mod:** Create: Rubberworks
 - **Arquivo JAR:** `rubberworks-neoforge-1.21.1-1.1.4.jar`
 - **Versão 1.21.1:** 1.1.4
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Tecnologia, Automação
@@ -22,7 +19,7 @@
 - **Observações:** Release 1.1.4 NeoForge 1.21.1. Delta exato: hint para folhas inválidas/manual placement, config para habilitar/desabilitar exigência de folhas naturais e localização PT-BR. TFMG 1.2.4b-community está presente e deve ser comparado por IDs/recipes, não apenas por tema.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + CurseForge oficial Create: Rubberworks 1.1.4 + changelogs 1.1–1.1.2 usados como lineage de regressão.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-rubberworks
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Create: Rubberworks 1.1.4 reconstruído: Sapper/Compressor, tree validation, multi-Sapper penalty, natural-leaves config, KubeJS recipes, TFMG overlap, lifecycle, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Create: Rubberworks 1.1.4/JAR físico reconfirmado; 1.1.4 permanece a release NeoForge 1.21.1 mais recente localizada. Sapper/Compressor, config de folhas naturais, KubeJS recipes e overlap com TFMG preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 

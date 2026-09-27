@@ -1,21 +1,14 @@
 # Sable Dynamic Lights
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#485**: JAR `sable-dynamic-lights-1.21.1-2.0.1.jar`, mod id `sabledynlights`, runtime `2.0.1`, SHA-1 `d0d8d1d47078d7bb617b9665a0fb9383bf84aaea`. O JAR contém `sable-companion-common-1.21.1-1.6.0.jar` como componente embarcado.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db815e8b7cf6d985021d57
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sable-dynamic-lights-1.21.1-2.0.1.jar`, mod id `sabledynlights`, runtime `2.0.1`, mixin `sabledynlights.mixins.json`; Create 6.0.10, LambDynamicLights 4.8.11+1.21.1 e Sable 2.0.5 presentes; Sable Companion common 1.6.0 embarcado
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sable Dynamic Lights 2.0.1, Create 6.0.10, LambDynamicLights 4.8.11+1.21.1 e Sable 2.0.5 estão presentes; o JAR do addon contém Sable Companion common 1.6.0 embarcado. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable Dynamic Lights
 - **Arquivo JAR:** `sable-dynamic-lights-1.21.1-2.0.1.jar`
 - **Versão 1.21.1:** 2.0.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Visual, Compat
@@ -26,7 +19,7 @@
 - **Observações:** 2.0.1 é Beta; 1.0.0 é Release. A linha 2.x é mantida porque desde 2.0.0 world, sublevels e contraptions iluminam uns aos outros; 2.0.1 registra melhoria significativa de performance.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + CurseForge oficial Sable Dynamic Lights 2.0.1 + documentação oficial Sable Companion.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sable-dynamic-lights
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Sable Dynamic Lights 2.0.1 reconstruído: Create/Sable/LambDynamicLights ownership, world↔sublevel↔contraption lighting, Companion embedded, lifecycle, performance, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable Dynamic Lights 2.0.1/JAR físico reconfirmado; 2.0.1 permanece a build Beta 1.21.1 mais recente localizada. Create/Sable/LambDynamicLights ownership, performance delta e Sable Companion 1.6.0 embedded preservados.
 - **Histórico da decisão:** 2026-09-06 — decisão Manter confirmada; pesquisa fechada. O uso da linha 2.0.1 é justificado pelas integrações adicionais com Sable/Create, não apenas por ser mais nova.
 - **Data da última decisão:** 2026-09-06
 

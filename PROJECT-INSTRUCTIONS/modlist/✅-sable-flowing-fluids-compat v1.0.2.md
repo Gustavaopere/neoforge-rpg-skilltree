@@ -1,21 +1,14 @@
 # Sable / Flowing Fluids Compat
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#489**: JAR `sable_flowing_fluids_compat-1.0.2.jar`, mod id `sable_flowing_fluids_compat`, runtime `1.0.2`, SHA-1 `f8cdfc3ce3cb0b4c14ee5ecaab79aacf0eedffc4`. O JAR contém `sable-companion-common-1.21.1-1.6.0.jar` como componente embarcado; FlowingFluids físico permanece `1.0.6`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d569db9f0db81ca9c3ec2cac016989c
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sable_flowing_fluids_compat-1.0.2.jar`, mod id `sable_flowing_fluids_compat`, runtime `1.0.2`; Sable 2.0.5 e FlowingFluids 1.0.6 presentes; Sable Companion common 1.6.0 embarcado
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sable / Flowing Fluids Compat 1.0.2, Sable 2.0.5 e FlowingFluids 1.0.6 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable / Flowing Fluids Compat
 - **Arquivo JAR:** `sable_flowing_fluids_compat-1.0.2.jar`
 - **Versão 1.21.1:** 1.0.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Tecnologia
@@ -26,7 +19,7 @@
 - **Observações:** v1.0.2 corrige slabs/stairs/partial-height support e catch points. Projeto também documenta orientation-aware detach/attach, tilt gating e config em `sable_flowing_fluids_compat-common.toml`.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + CurseForge oficial v1.0.2 + README/source oficial Sable / Flowing Fluids Compat.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sable-flowing-fluids-compat ; https://www.curseforge.com/minecraft/mc-mods/sable-flowing-fluids-compat/files/8676265
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — dossiê 1.0.2 revalidado e ampliado: world↔sublevel fluid ownership, partial blocks, orientação/capsize, public-API scans, config, embedded Companion, lifecycle, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable / Flowing Fluids Compat 1.0.2/JAR físico reconfirmado; 1.0.2 permanece a release NeoForge 1.21.1 mais recente localizada. Partial-block/catch-point fixes, orientation-aware ownership transfer e Sable Companion 1.6.0 embedded preservados.
 - **Histórico da decisão:**
 
 # Dossiê operacional — padrão Alex's Mobs

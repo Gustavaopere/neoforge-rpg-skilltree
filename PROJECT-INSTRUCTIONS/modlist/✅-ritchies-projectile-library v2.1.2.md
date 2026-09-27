@@ -1,21 +1,14 @@
 # Ritchie's Projectile Library
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#483**: JAR `ritchiesprojectilelib-2.1.2-mc.1.21.1-neoforge.jar`, mod id `ritchiesprojectilelib`, runtime `2.1.2`, SHA-1 `ec2e4996f8bee8714173e603e379fef8a6901765`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81fdbd5ac0df058cd39f
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `ritchiesprojectilelib-2.1.2-mc.1.21.1-neoforge.jar`, mod id `ritchiesprojectilelib`, runtime `2.1.2`, mixins `ritchiesprojectilelib.mixins.json` e `ritchiesprojectilelib-forge.mixins.json`; Create Big Cannons 5.11.7 presente como consumer causal
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Ritchie's Projectile Library 2.1.2 e Create Big Cannons 5.11.7 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Ritchie's Projectile Library
 - **Arquivo JAR:** `ritchiesprojectilelib-2.1.2-mc.1.21.1-neoforge.jar`
 - **Versão 1.21.1:** 2.1.2
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** Biblioteca, RPG, Tecnologia
@@ -26,7 +19,7 @@
 - **Observações:** Release 2.1.2 NeoForge 1.21.1. Changelog exato corrige network registry e cannon shake effects no NeoForge. Mixin configs físicos: `ritchiesprojectilelib.mixins.json` e `ritchiesprojectilelib-forge.mixins.json`.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + CurseForge oficial RPL 2.1.2 + README oficial RPL + dossiê Create Big Cannons 5.11.7 já auditado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ritchies-projectile-library
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Ritchie's Projectile Library 2.1.2 reconstruído: precise motion, projectile chunkloading/bursts, screen shake, networking, CBC dependency, lifecycle, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Ritchie's Projectile Library 2.1.2/JAR físico reconfirmado; 2.1.2 permanece a release NeoForge 1.21.1 mais recente localizada. Network registry/cannon shake fixes e dependência causal de Create Big Cannons 5.11.7 preservados.
 - **Histórico da decisão:** 2026-09-10 — Sem decisão → Dependência. Create Big Cannons 5.11.7 está presente e sua ficha canônica confirma RPL 2.1.2 como dependência física do stack atual.
 - **Data da última decisão:** 2026-09-10
 

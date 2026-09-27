@@ -1,21 +1,14 @@
 # Sable Create Addition Compat
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#488**: JAR `sable_createaddition_compat-0.1.13.jar`, mod id `sable_createaddition_compat`, runtime `0.1.13`, SHA-1 `560ad8f9818f03abdbd42f18a2a27102a3de7e79`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81c690c0d528fd7e510d
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sable_createaddition_compat-0.1.13.jar`, mod id `sable_createaddition_compat`, runtime `0.1.13`, mixin `sable_createaddition_compat.mixins.json`; Sable 2.0.5, Create 6.0.10 e Create Crafts & Additions 1.7.0 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sable Create Addition Compat 0.1.13, Sable 2.0.5, Create 6.0.10 e Create Crafts & Additions 1.7.0 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable Create Addition Compat
 - **Arquivo JAR:** `sable_createaddition_compat-0.1.13.jar`
 - **Versão 1.21.1:** 0.1.13
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Tecnologia
@@ -26,7 +19,7 @@
 - **Observações:** 0.1.13 adiciona compat geral de block-entity rendering e melhora Accumulator, Motor, Portable Energy Interface, Rolling Mill e Liquid Blaze Burner, incluindo diagram/preview/contraption render path.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + CurseForge oficial Create Additions - Sable Compat 0.1.13.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-additions-sable-compat
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Sable Create Addition Compat 0.1.13 reconstruído: wires cross-sublevel/world, auto-snap, BE render, Liquid Blaze Burner, lifecycle, ownership, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable Create Addition Compat 0.1.13/JAR físico reconfirmado; 0.1.13 permanece a build Beta 1.21.1 mais recente localizada. Wires cross-sublevel/world e fixes de block-entity rendering preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 
