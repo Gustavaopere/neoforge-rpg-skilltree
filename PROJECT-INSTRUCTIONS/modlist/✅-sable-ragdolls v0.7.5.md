@@ -1,21 +1,14 @@
 # Sable Ragdolls
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#490**: JAR `sable_player_ragdoll-1.21.1-0.7.5.jar`, mod id `sable_player_ragdoll`, runtime `0.7.5`, SHA-1 `114a953a830673ebfe2af154f5a1ce535fc4d90c`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3ca69db9f0db81ef88d9d1f05beee14a
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sable_player_ragdoll-1.21.1-0.7.5.jar`, mod id `sable_player_ragdoll`, runtime `0.7.5`, mixins `sable_player_ragdoll.neoforge.mixins.json` e `sable_player_ragdoll.mixins.json`; Sable 2.0.5, Sable x CPM 0.3.2+1.21.1, Sable Ragdolls Patch 1.9 e Ragdoll Reactions 0.7.0 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sable Ragdolls 0.7.5 e as integrações físicas citadas estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable Ragdolls
 - **Arquivo JAR:** `sable_player_ragdoll-1.21.1-0.7.5.jar`
 - **Versão 1.21.1:** 0.7.5
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, QoL, Compat
@@ -26,7 +19,7 @@
 - **Observações:** Authority física e source oficial são 0.7.5. CurseForge ainda lista 0.7.2 como arquivo principal, mas `gradle.properties` oficial declara 0.7.5 e o Ragdolls Patch 1.9 exige explicitamente 0.7.5; não fazer downgrade automático.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + repositório oficial sable-player-ragdoll `main` com mod_version 0.7.5 + API source atual + CurseForge oficial + requisito publicado do Patch 1.9.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sable-ragdolls
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Sable Ragdolls 0.7.5 reconstruído contra source oficial 0.7.5: sessions/API, pose, dummies, dismember, equipment snapshots, lifecycle, integrations, distribuição CF divergente, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable Ragdolls 0.7.5/JAR físico e source oficial 0.7.5 reconfirmados; Modrinth mantém 0.7.5 como release 1.21.1 atual. CurseForge continua defasado em 0.7.2 como principal, sem justificar downgrade.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-28
 

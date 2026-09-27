@@ -1,21 +1,14 @@
 # Sable
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#486**: JAR `sable-neoforge-1.21.1-2.0.5.jar`, mod id `sable`, runtime `2.0.5`, SHA-1 `05f666e973d32baaaf405acb9bbed6615b909971`. O host contém `sable_rapier` 2.0.5, Sable Companion 1.6.0 e Veil 4.3.2; dentro do Veil permanecem `glsl-processor-0.2.3.jar` e `molang-compiler-3.1.1.19.jar`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db814399cefd33348035d2
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sable-neoforge-1.21.1-2.0.5.jar`, mod id `sable`, runtime `2.0.5`, mixins `sable.mixins.json` e `sable-neoforge.mixins.json`; `sable_rapier` 2.0.5, Sable Companion common 1.6.0 e Veil NeoForge 4.3.2 embarcados; Create 6.0.10 presente
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sable 2.0.5, seus módulos embarcados e Create 6.0.10 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable
 - **Arquivo JAR:** `sable-neoforge-1.21.1-2.0.5.jar`
 - **Versão 1.21.1:** 2.0.5
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Biblioteca, Compat
@@ -26,7 +19,7 @@
 - **Observações:** Source público `main` declara version 2.0.5 / Minecraft 1.21.1, permitindo mapear bootstrap e APIs da mesma linha instalada. Componentes embarcados pertencem ao JAR e não viram entradas top-level.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + CurseForge oficial Sable 2.0.5 + repositório/wiki oficial 2.0.5/current + changelog 2.0.0 usado apenas como lineage de regressão.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sable
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Sable 2.0.5 reconstruído extensivamente: sublevels, transforms, Rapier/Companion/Veil embedded, physics datapacks, dimension physics, save/network lifecycle, Create integration, riscos e testes.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable 2.0.5/JAR físico reconfirmado; 2.0.5 permanece a release NeoForge 1.21.1 mais recente localizada. Hierarquia embedded refinada: Sable Rapier 2.0.5, Sable Companion 1.6.0 e Veil 4.3.2; dentro do Veil, GLSL Processor 0.2.3 e Molang Compiler 3.1.1.19 permanecem internos ao host.
 - **Histórico da decisão:** Correção de auditoria em 22/08/2026: esta linha é Sable e havia recebido por engano histórico/versão de Northstar Redux. Sable 2.0.5 permanece instalado como infraestrutura do ecossistema Aeronautics/sublevels; decisões sobre Northstar, Creating Space e Stellaris pertencem a registros separados.
 - **Data da última decisão:** 2026-08-22
 
@@ -52,6 +45,7 @@ A modlist física mostra, dentro do JAR Sable 2.0.5:
 - `sable-companion-common-1.21.1-1.6.0.jar` — API leve de compatibilidade/projeção;
 - `veil-neoforge-1.21.1-4.3.2.jar` — componente render embarcado;
 - bibliotecas internas adicionais do Veil, como GLSL Processor e Molang Compiler.
+- dentro do Veil 4.3.2, a modlist física mostra ainda `/META-INF/jarjar/glsl-processor-0.2.3.jar` e `/META-INF/jarjar/molang-compiler-3.1.1.19.jar`; ambos são componentes internos transitivos do Veil/Sable e não recebem ordinal próprio.
 
 Esses componentes pertencem ao empacotamento do Sable e **não recebem entradas top-level separadas** neste catálogo.
 

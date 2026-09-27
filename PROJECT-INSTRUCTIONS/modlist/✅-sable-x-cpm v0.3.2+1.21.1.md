@@ -1,21 +1,14 @@
 # Sable x CPM
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#487**: JAR `sable-x-cpm-0.3.2+1.21.1.jar`, mod id `sablexcpm`, runtime `0.3.2+1.21.1`, SHA-1 `33725fbba3a872bb12573e901d1ff85a62c65c49`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3ca69db9f0db818dabaff2e09e6637f5
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `sable-x-cpm-0.3.2+1.21.1.jar`, mod id `sablexcpm`, runtime `0.3.2+1.21.1`, mixin `sablexcpm.mixins.json`; Customizable Player Models 0.6.27a, Kotlin for Forge 5.12.0 e Sable Ragdolls 0.7.5 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Sable x CPM 0.3.2+1.21.1 e as três dependências publicadas estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Sable x CPM
 - **Arquivo JAR:** `sable-x-cpm-0.3.2+1.21.1.jar`
 - **Versão 1.21.1:** 0.3.2+1.21.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Visual
