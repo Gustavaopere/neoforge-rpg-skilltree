@@ -21,6 +21,8 @@
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #316: JAR `iceandfire-2.1.2.jar`, mod id `iceandfire`, runtime `2.1.2`, SHA-1 `0786f4142b7cabd958688f68beef3e63e9c0ae8b`.
 
+> **Reconciliação de autoridade física — 27/09/2026.** O conteúdo histórico do Notion registra NeoForge `21.1.248` como loader físico/source-pinned da build auditada e inclui essa versão na matriz de testes. A instalação física atual usa NeoForge `21.1.250`; `iceandfire-2.1.2.jar`, mod id `iceandfire` e runtime `2.1.2` permanecem inalterados. O snapshot histórico é preservado integralmente para paridade, mas referências ao loader físico atual devem usar `21.1.250`.
+
 <callout icon="🐉" color="purple_bg">
 	**PADRÃO ALEX'S MOBS — ESCOPO CANÔNICO.** Runtime físico: `iceandfire-2.1.2.jar`, mod id `iceandfire`, versão `2.1.2`, Minecraft 1.21.1 / NeoForge **21.1.248**. O source oficial `IAFEnvoy/IceAndFire-CE:1.21.1` declara exatamente `mod_version=2.1.2` e `neo_version=21.1.248`; esta ficha está source-pinned à build e loader físicos.
 </callout>
