@@ -21,6 +21,8 @@
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #319: JAR `Iceberg-1.21.1-neoforge-1.3.2.jar`, mod id `iceberg`, runtime `1.3.2`, SHA-1 `f6014d198be9503573cd9cb41cc789d282768ad8`.
 
+> **Reconciliação de autoridade física — 27/09/2026.** O texto histórico migrado do Notion informa que o pack rodava NeoForge `21.1.248`. A modlist física vigente usa NeoForge `21.1.250`; o JAR `Iceberg-1.21.1-neoforge-1.3.2.jar`, mod id `iceberg` e runtime `1.3.2` permanecem os mesmos. O conteúdo histórico é mantido integralmente para paridade, enquanto `21.1.250` é a autoridade para o loader atualmente instalado.
+
 <callout icon="🧊" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `Iceberg-1.21.1-neoforge-1.3.2.jar`, mod id `iceberg`, versão `1.3.2`. O source oficial `AHilyard/Iceberg:1.21.1-multi` declara exatamente `modVersion=1.3.2`, Minecraft 1.21.1 e suporte NeoForge; esta ficha é source-pinned.
 </callout>
