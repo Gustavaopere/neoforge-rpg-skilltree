@@ -88,7 +88,7 @@ A separação entre portrait/concept e skin técnica continua sendo uma regra de
 Evidência técnica/proveniência:
 - `PROJECT-INSTRUCTIONS/modlist/easy-npc.md` — Easy NPC Core 7.11.0 é o provider físico dos NPCs e suporta skins de player/URL;
 - upstream Easy NPC já trata skins modernas 64×64 e preservação de alpha antes da versão física 7.11.0;
-- `PROJECT-INSTRUCTIONS/modlist/✅-3d-skin-layers v1.11.2.md` — o mod atua no renderer de player e não deve ser promovido a capability do Easy NPC sem integração comprovada.
+- `PROJECT-INSTRUCTIONS/modlist/Adventure and RPG + Cosmetic/✅-3d-skin-layers v1.11.2.md` — o mod atua no renderer de player e não deve ser promovido a capability do Easy NPC sem integração comprovada.
 
 A especificação `64×64` é do formato humanoide atual, não uma regra global de texel density para qualquer asset project-owned.
 
