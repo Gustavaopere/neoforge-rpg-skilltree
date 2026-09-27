@@ -289,6 +289,16 @@
 | 339 | Apotheosis x Iron's Spellbooks Compat | `irons_apothic-2.2.2.jar` | `2.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 23:21 |
 | 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 25/09/2026 - 01:24 |
 | 359 | Knight Lib | `knightlib-neoforge-1.21.1-2.0.1.jar` | `2.0.1` | `API and Library` | 25/09/2026 - 02:11 |
+| 362 | KubeJS Create | `kubejs-create-neoforge-2101.3.1-build.18.jar` | `2101.3.1-build.18` | `KubeJS` | 25/09/2026 - 10:33 |
+| 363 | KubeJS | `kubejs-neoforge-2101.7.2-build.377.jar` | `2101.7.2-build.377` | `API and Library + KubeJS + Map and Information + Server Utility + World Gen` | 25/09/2026 - 10:33 |
+| 364 | KubeJS Curios | `kubejs_curios_neoforge_1.21.1-1.0.4.jar` | `1.0.4` | `KubeJS` | 25/09/2026 - 10:33 |
+| 365 | KubeJS Additions | `kubejsadditions-neoforge-1.21.1-6.0.0.jar` | `1.21.1-6.0.0` | `API and Library + Energy, Fluid, and Item Transport + KubeJS + Utility & QoL` | 25/09/2026 - 10:33 |
+| 366 | KubeJS Ars Nouveau | `kubejsarsnouveau-1.3.2.jar` | `1.3.2` | `KubeJS + Magic` | 25/09/2026 - 10:33 |
+| 367 | KubeJS Delight | `kubejsdelight-1.1.6.jar` | `1.1.6` | `KubeJS` | 25/09/2026 - 10:34 |
+| 368 | L_Ender's Cataclysm | `L_Ender's Cataclysm 1.21.1-3.33.jar` | `3.33` | `Adventure and RPG + Armor, Tools, and Weapons + Mobs + Structures` | 25/09/2026 - 10:34 |
+| 369 | LambDynamicLights | `lambdynamiclights-4.8.11+1.21.1.jar` | `4.8.11+1.21.1` | `Adventure and RPG + Cosmetic` | 25/09/2026 - 10:34 |
+| 370 | LDLib | `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar` | `2.2.39.a` | `API and Library + Utility & QoL` | 25/09/2026 - 10:34 |
+| 371 | Legendary Monsters | `legendary_monsters-2.2.2 MC 1.21.1.jar` | `2.2.2 (distribuição); metadata interna 1.21.1` | `Armor, Tools, and Weapons + Mobs + Structures` | 25/09/2026 - 10:34 |
 | 372 | Legendary Spellbooks | `legendary_spellbooks-1.21.1+neo-0.3.2.jar` | `0.3.2` | `Addons + Magic` | 25/09/2026 - 11:24 |
 | 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `leylines-1.0.3.jar` | `1.0.3` | `Addons + Magic + Structures + World Gen` | 25/09/2026 - 11:24 |
 | 374 | Lionfish API | `lionfishapi-3.1.jar` | `3.1` | `API and Library` | 25/09/2026 - 11:24 |
