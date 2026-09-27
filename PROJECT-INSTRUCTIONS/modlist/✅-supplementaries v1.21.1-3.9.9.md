@@ -1,7 +1,7 @@
 # Supplementaries
 
+> **Autoridade física atual — 27/09/2026.** A modlist física atual contém `supplementaries-1.21.1-3.9.9-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.9`, SHA-1 `06ed05381a5653d90398dc6ebf3ad1154add6374`. Esta autoridade física supersede a identidade histórica `1.21.1-3.9.8` preservada abaixo a partir do Notion; `sable-companion-common-1.21.1-1.6.0.jar` permanece JarJar interno e não item top-level.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db8109ad48f13e5650602f
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física:** `supplementaries-1.21.1-3.9.8-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.8`; Moonlight Lib 3.6.3 presente
 - **Auditoria de migração Notion → GitHub:** 2026-09-14
