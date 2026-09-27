@@ -1,21 +1,14 @@
 # Reliquified Ars Nouveau
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#476**: JAR `reliquified_ars_nouveau-1.21.1-0.8.1.jar`, mod id `reliquified_ars_nouveau`, runtime `0.8.1`, SHA-1 `4be1f4b0fd7fbec6618596e2e7c3705db88a7579`. Relics `0.12.8`, Ars Nouveau `5.13.1` e Reliquified Artifacts `1.0.8` permanecem presentes.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81ef9796ce519c416152
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `reliquified_ars_nouveau-1.21.1-0.8.1.jar`, mod id `reliquified_ars_nouveau`, runtime `0.8.1`, mixin `reliquified_ars_nouveau.mixins.json`; Relics 0.12.8, Ars Nouveau 5.13.1 e Reliquified Artifacts 1.0.8 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Reliquified Ars Nouveau 0.8.1, Relics 0.12.8, Ars Nouveau 5.13.1 e Reliquified Artifacts 1.0.8 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Reliquified Ars Nouveau
 - **Arquivo JAR:** `reliquified_ars_nouveau-1.21.1-0.8.1.jar`
 - **Versão 1.21.1:** 0.8.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
 - **Categoria:** Compat, Magia, RPG

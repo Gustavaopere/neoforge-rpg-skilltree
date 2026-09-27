@@ -1,22 +1,14 @@
 # Reliquified Iron's Spells 'n Spellbooks
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#478**: JAR `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.7.jar`, mod id `reliquified_irons_spells_and_spellbooks`, runtime `0.2.7`, SHA-1 `e22fd94c87cb88b3cfa4637c48a1058260d35a9b`. Iron's Spells 'n Spellbooks está fisicamente em `1.21.1-3.16.3` e Relics em `0.12.8`; referências históricas do Notion permanecem preservadas abaixo.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81b69fdcd5b76eeea0b6
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.7.jar`, mod id `reliquified_irons_spells_and_spellbooks`, runtime `0.2.7`, mixin `reliquified_irons_spells_and_spellbooks.mixins.json`; Iron's Spells 'n Spellbooks físico atual `1.21.1-3.16.3` e Relics 0.12.8 presentes
-- **Data da exportação:** 2026-09-11
-
-## Divergências documentais detectadas na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**.
-- O dossiê-fonte cita **Iron's Spells 3.15.1** como provider físico. A modlist acessível confirma **`irons_spellbooks-1.21.1-3.16.3.jar` / runtime `1.21.1-3.16.3`**. Portanto, a combinação física atualmente demonstrada para regressão é Reliquified Iron's 0.2.7 + Iron's 3.16.3 + Relics 0.12.8. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Reliquified Iron's Spells 'n Spellbooks
 - **Arquivo JAR:** `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.7.jar`
 - **Versão 1.21.1:** 0.2.7
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Magia, RPG

@@ -1,9 +1,8 @@
 # Relics
 
-> **Reauditoria física e de migração — 16/09/2026.** A autoridade física atual permanece `relics-1.21.1-0.12.8.jar`, mod id `relics`, runtime `0.12.8`, SHA-1 `1fe7d57ebfa56ebd0aeecfed01075f8b55b94ef7`, em NeoForge 1.21.1. A build 0.12.8 continua sendo a publicação 1.21.1 mais recente identificada. O conteúdo funcional migrado do Notion permanece aplicável; referências ao estado físico de integrações foram atualizadas para a modlist de 16/09/2026. Nenhum teste de runtime foi promovido como executado.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#474**: JAR `relics-1.21.1-0.12.8.jar`, mod id `relics`, runtime `0.12.8`, SHA-1 `1fe7d57ebfa56ebd0aeecfed01075f8b55b94ef7`. Curios `9.5.1+1.21.1`, OctoLib `0.6.2`, Sophisticated Backpacks `3.26.3` e Artifacts `13.2.5` permanecem presentes. A versão do próprio Relics continua `0.12.8`.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Autoridade física usada:** modlist física atual de 16/09/2026
 - **Auditoria de migração Notion → GitHub:** 2026-09-15; reauditoria física 2026-09-16
 
 ## Propriedades do registro

@@ -1,21 +1,14 @@
 # Reese's Sodium Options
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#473**: JAR `reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar`, mod id `reeses_sodium_options`, runtime `2.2.3+mc1.21.1`, SHA-1 `904f815b1f5c48703c354d432fcbc3531022337f`. Sodium físico atual permanece `0.8.13+mc1.21.1`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81428b9de368a35d8720
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar`, mod id `reeses_sodium_options`, runtime `2.2.3+mc1.21.1`, mixin `reeses-sodium-options.mixins.json`; Sodium 0.8.13+mc1.21.1 presente
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Reese's Sodium Options 2.2.3 e Sodium 0.8.13 estão presentes. A menção da página a Sodium Options API 1.0.10 não foi confirmada por busca literal no snapshot físico acessível nesta execução; o corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Reese's Sodium Options
 - **Arquivo JAR:** `reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar`
 - **Versão 1.21.1:** 2.2.3+mc1.21.1
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** QoL, Visual, Performance
