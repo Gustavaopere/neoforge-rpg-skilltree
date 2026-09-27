@@ -1,21 +1,14 @@
 # Pufferfish's Attributes
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#462**: JAR `puffish_attributes-0.8.3-1.21-neoforge.jar`, mod id `puffish_attributes`, runtime `0.8.3`, SHA-1 `9e6a87f790fc9281ea2685f8d4f6435d0d7c6d1f`. NeoForge atual: `21.1.250`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c869db9f0db8116810bc94ca1052a29
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `puffish_attributes-0.8.3-1.21-neoforge.jar`, mod id `puffish_attributes`, runtime `0.8.3`
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Pufferfish's Attributes 0.8.3 está presente. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Pufferfish's Attributes
 - **Arquivo JAR:** `puffish_attributes-0.8.3-1.21-neoforge.jar`
 - **Versão 1.21.1:** 0.8.3
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
 - **Categoria:** RPG, Biblioteca

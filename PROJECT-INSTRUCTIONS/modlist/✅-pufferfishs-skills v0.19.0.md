@@ -1,21 +1,14 @@
 # Pufferfish's Skills
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#463**: JAR `puffish_skills-0.19.0-1.21-neoforge.jar`, mod id `puffish_skills`, runtime `0.19.0`, SHA-1 `fa134a526ab2f098559b7d824269ae36aaac32b3`. `Pufferfish's Unofficial Additions 2.2.8` permanece consumer físico confirmado.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c869db9f0db810482cbfe6008e1c259
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `puffish_skills-0.19.0-1.21-neoforge.jar`, mod id `puffish_skills`, runtime `0.19.0`; Pufferfish's Unofficial Additions 2.2.8 presente como consumer causal
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Pufferfish's Skills 0.19.0 e Pufferfish's Unofficial Additions 2.2.8 estão presentes. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Pufferfish's Skills
 - **Arquivo JAR:** `puffish_skills-0.19.0-1.21-neoforge.jar`
 - **Versão 1.21.1:** 0.19.0
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** RPG

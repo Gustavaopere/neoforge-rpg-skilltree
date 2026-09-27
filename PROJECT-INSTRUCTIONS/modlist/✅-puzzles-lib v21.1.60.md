@@ -1,21 +1,14 @@
 # Puzzles Lib
 
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#466**: JAR `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar`, mod id `puzzleslib`, runtime `21.1.60`, SHA-1 `319fc1ea1498920b39a318ea324f6112a7318d67`. Portable Hole `21.1.0` e Overflowing Bars `21.1.1` permanecem consumers físicos confirmados.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c369db9f0db81059d94cc788894991c
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist 08.09.2026.txt` / `modlist.txt` — `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar`, mod id `puzzleslib`, runtime `21.1.60`, mixins `puzzleslib.common.mixins.json` e `puzzleslib.neoforge.mixins.json`; consumers Portable Hole e Overflowing Bars já confirmados
-- **Data da exportação:** 2026-09-11
-
-## Divergência documental detectada na exportação
-
-- A página Notion declara procedência por uma “modlist.txt física canônica atual de 10/09/2026”. A autoridade física mais recente realmente acessível nesta execução permanece o snapshot de **08/09/2026 com 595 top-levels**. Nesse snapshot, Puzzles Lib 21.1.60 está presente; Portable Hole e Overflowing Bars permanecem consumers causais confirmados no catálogo. O corpo-fonte abaixo é preservado sem reescrita silenciosa.
 
 ## Propriedades do banco
 
 - **Mod:** Puzzles Lib
 - **Arquivo JAR:** `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar`
 - **Versão 1.21.1:** 21.1.60
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Dependência
 - **Categoria:** Biblioteca
