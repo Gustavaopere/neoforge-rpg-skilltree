@@ -20,6 +20,8 @@
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #314: JAR `hexalia-neoforge-1.3.7.jar`, mod id `hexalia`, runtime `1.3.7`, SHA-1 `ca90edf1664cf6d44fe7e5318c71069050499c7e`.
 
+> **Reconciliação de autoridade física — 27/09/2026.** O texto migrado do Notion abaixo preserva o snapshot histórico de 12/09/2026, no qual `hexalia-neoforge-1.3.6.jar`, metadata `1.3.5` e NeoForge `21.1.248` eram registrados. Isso **não representa a instalação física atual**: a modlist atual confirma `hexalia-neoforge-1.3.7.jar`, mod id `hexalia`, runtime `1.3.7`, e o modloader NeoForge `21.1.250`. O conteúdo histórico é mantido integralmente para paridade; para versão instalada e loader atuais, prevalece esta reconciliação junto ao bloco de autoridade física atual.
+
 <callout icon="⚠️" color="yellow_bg">
 	**VERSÃO COM DRIFT DE METADATA.** O arquivo físico é `hexalia-neoforge-1.3.6.jar` e a release/source oficial 1.21.1 declara **Hexalia 1.3.6**; porém a metadata interna exibida pela modlist reporta `1.3.5`. A divergência é real e fica preservada. Não renomear nem tratar silenciosamente o runtime como 1.3.6 sem registrar o metadata stale.
 </callout>
