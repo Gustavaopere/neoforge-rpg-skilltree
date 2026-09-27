@@ -288,7 +288,16 @@
 | 332 | Integrated API | `integrated_api-neoforge-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + API and Library + Structures + World Gen` | 24/09/2026 - 23:17 |
 | 339 | Apotheosis x Iron's Spellbooks Compat | `irons_apothic-2.2.2.jar` | `2.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 23:21 |
 | 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 25/09/2026 - 01:24 |
+| 352 | JourneyMap | `journeymap-neoforge-1.21.1-6.0.8.jar` | `1.21.1-6.0.8` | `Map and Information` | 25/09/2026 - 02:10 |
+| 353 | Jupiter | `jupiter-2.3.7-1.21.1-neoforge.jar` | `2.3.7` | `API and Library + Server Utility + Utility & QoL` | 25/09/2026 - 02:10 |
+| 354 | Just Enough Breeding (JEBr) | `justenoughbreeding-neoforge-1.21.1-3.2.1.jar` | `3.2.1` | `Addons + Map and Information + Mobs + Utility & QoL` | 25/09/2026 - 02:10 |
+| 355 | Just Enough Professions (JEP) | `JustEnoughProfessions-neoforge-1.21.1-4.0.5.jar` | `4.0.5` | `Addons + Map and Information + Utility & QoL` | 25/09/2026 - 02:10 |
+| 356 | Just Enough Resources (JER) | `JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar` | `1.6.0.17` | `Addons + Biomes + Map and Information + Mobs + Ores and Resources` | 25/09/2026 - 02:10 |
+| 357 | KilaGraph | `kilagraph-neoforge-1.21.1-21.1.0.14.jar` | `21.1.0.14` | `API and Library + Utility & QoL` | 25/09/2026 - 02:10 |
+| 358 | Kiwi 🥝 (Neo/Forge) | `Kiwi-1.21.1-NeoForge-15.8.7.jar` | `15.8.7+neoforge` | `API and Library` | 25/09/2026 - 02:11 |
 | 359 | Knight Lib | `knightlib-neoforge-1.21.1-2.0.1.jar` | `2.0.1` | `API and Library` | 25/09/2026 - 02:11 |
+| 360 | Konkrete | `konkrete_neoforge_1.9.9_MC_1.21.jar` | `1.9.9` | `API and Library` | 25/09/2026 - 02:11 |
+| 361 | Kotlin for Forge | `kotlinforforge-5.12.0-all.jar` | `5.12.0` | `API and Library` | 25/09/2026 - 02:11 |
 | 362 | KubeJS Create | `kubejs-create-neoforge-2101.3.1-build.18.jar` | `2101.3.1-build.18` | `KubeJS` | 25/09/2026 - 10:33 |
 | 363 | KubeJS | `kubejs-neoforge-2101.7.2-build.377.jar` | `2101.7.2-build.377` | `API and Library + KubeJS + Map and Information + Server Utility + World Gen` | 25/09/2026 - 10:33 |
 | 364 | KubeJS Curios | `kubejs_curios_neoforge_1.21.1-1.0.4.jar` | `1.0.4` | `KubeJS` | 25/09/2026 - 10:33 |
