@@ -497,6 +497,15 @@
 | 489 | Sable & Flowing Fluids Compat | `sable_flowing_fluids_compat-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 27/09/2026 - 17:33 |
 | 490 | Sable: Ragdolls | `sable_player_ragdoll-1.21.1-0.7.5.jar` | `0.7.5` | `Addons + API and Library + Cosmetic + Create` | 27/09/2026 - 17:33 |
 | 491 | Sable: Ragdoll - Patch | `sable_player_ragdoll_patch-1.21.1-1.9.jar` | `1.9` | `Bug Fixes` | 27/09/2026 - 17:33 |
+| 493 | Sable Beyond | `sablebeyond-neoforge-1.21.1-v0.5.0.jar` | `0.5.0` | `Addons + API and Library + Create + KubeJS + Utility & QoL` | 27/09/2026 - 18:16 |
+| 494 | Jade Sable Compat | `sablejade-1.3.0.jar` | `1.3.0` | `Utility & QoL` | 27/09/2026 - 18:35 |
+| 495 | Sable: Mass view (Create Aeronautics) | `sablemassview-1.0.0.jar` | `1.0.0` | `Addons` | 27/09/2026 - 18:16 |
+| 496 | Sable: Physics Compat | `sablephysicscompat-1.3.0.jar` | `1.3.0` | `Addons + Bug Fixes + Create` | 27/09/2026 - 18:16 |
+| 497 | Create Stuff 'N Additions x Sable & Aeronautics Compat | `SableStuffAdditionsCompat v1.0.3-1.21.1.jar` | `1.0.3` | `Addons + Automation + Bug Fixes + Create` | 27/09/2026 - 18:17 |
+| 498 | Searchables | `Searchables-neoforge-1.21.1-1.0.2.jar` | `1.0.2` | `API and Library + Cosmetic + Map and Information + Utility & QoL` | 27/09/2026 - 18:17 |
+| 499 | ServerCore | `servercore-neoforge-1.5.19+1.21.1.jar` | `1.5.19+1.21.1` | `Performance + Server Utility` | 27/09/2026 - 18:17 |
+| 500 | ShadowsZ | `shadowsz-1.1.9.jar` | `1.1.9` | `Addons + Magic + Mobs` | 27/09/2026 - 18:17 |
+| 501 | Simply Swords: Cataclysm | `simplycataclysm-1.0.2+1.21.1+neoforge.jar` | `1.0.2+1.21.1+neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 18:17 |
 | 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 17/09/2026 - 23:58 |
 | 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 14:39 |
 | 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 27/09/2026 - 11:53 |
