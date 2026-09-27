@@ -286,7 +286,15 @@
 | 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 24/09/2026 - 21:57 |
 | 331 | InsaneLib | `insanelib-2.4.33.0.jar` | `2.4.33.0` | `API and Library` | 24/09/2026 - 22:27 |
 | 332 | Integrated API | `integrated_api-neoforge-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + API and Library + Structures + World Gen` | 24/09/2026 - 23:17 |
+| 333 | Integrated Cataclysm | `integrated_cataclysm-1.0.6+1.21.1-neoforge.jar` | `1.0.6+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Create + World Gen` | 24/09/2026 - 23:17 |
+| 334 | Integrated Simply Swords | `integrated_simply_swords-1.4.0+1.21.1-neoforge.jar` | `1.4.0+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons` | 24/09/2026 - 23:18 |
+| 335 | Integrated Stronghold | `integrated_stronghold-1.1.4+1.21.1-neoforge.jar` | `1.1.4+1.21.1-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Create + Structures + World Gen` | 25/09/2026 - 00:26 |
+| 336 | Integrated Villages | `integrated_villages-1.3.3+1.21.1-neoforge.jar` | `1.3.3+1.21.1-neoforge` | `Adventure and RPG + Create + Magic + Structures + World Gen` | 24/09/2026 - 23:21 |
+| 337 | Inventory Sorter | `inventorysorter-1.21.1-24.0.24.jar` | `24.0.24` | `Miscellaneous` | 24/09/2026 - 23:21 |
+| 338 | Iris Shaders | `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar` | `1.8.14-beta.1+mc1.21.1` | `Cosmetic + Miscellaneous` | 25/09/2026 - 00:26 |
 | 339 | Apotheosis x Iron's Spellbooks Compat | `irons_apothic-2.2.2.jar` | `2.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 23:21 |
+| 340 | Iron's Gems 'n Jewelry | `irons_jewelry-1.21.1-2.0.2.jar` | `1.21.1-2.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 23:22 |
+| 341 | Iron's Lib | `irons_lib-1.21.1-2.1.0.jar` | `1.21.1-2.1.0` | `API and Library + Cosmetic` | 24/09/2026 - 23:22 |
 | 342 | Iron's Spells 'n Spellbooks | `irons_spellbooks-1.21.1-3.16.3.jar` | `1.21.1-3.16.3` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 25/09/2026 - 01:24 |
 | 343 | KubeJS Iron's Spells | `irons_spells_js-4.0.3.jar` | `4.0.3` | `Addons + Adventure and RPG + KubeJS + Magic + Utility & QoL` | 25/09/2026 - 01:24 |
 | 344 | IronSable | `ironsable-1.2.0.jar` | `1.2.0` | `Addons + Magic` | 25/09/2026 - 01:24 |
