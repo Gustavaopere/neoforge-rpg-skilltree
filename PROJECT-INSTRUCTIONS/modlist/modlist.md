@@ -359,7 +359,7 @@
 | 403 | Modern UI | `ModernUI-NeoForge-1.21.1-3.13.0.1-universal.jar` | `3.13.0.1` | `API and Library + Cosmetic + Miscellaneous + Utility & QoL` | 25/09/2026 - 13:25 |
 | 404 | Modonomicon | `modonomicon-1.21.1-neoforge-1.120.4.jar` | `1.120.4` | `Adventure and RPG + API and Library + Map and Information` | 25/09/2026 - 13:25 |
 | 405 | MonoLib | `monolib-neoforge-1.21.1-4.1.0.jar` | `4.1.0` | `API and Library + Education + Utility & QoL` | 25/09/2026 - 13:25 |
-| 406 | Monsters & Spellbooks: Iron's Spells 'n Spellbooks Addon | `monstersspellbooks-0.0.16.3.jar` | `0.0.16.3` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 25/09/2026 - 13:25 |
+| 406 | Monsters & Spellbooks: Iron's Spells 'n Spellbooks Addon | `monsterspellbooks-0.0.16.3.jar` | `0.0.16.3` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 25/09/2026 - 13:25 |
 | 407 | Moonlight Lib | `moonlight-1.21.1-3.6.4-neoforge.jar` | `1.21.1-3.6.4` | `API and Library` | 17/09/2026 - 00:06 |
 | 408 | More Relics | `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` | `1.7.7-forRelics-0.12.8-1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 13:25 |
 | 409 | Mouse Tweaks | `MouseTweaks-neoforge-mc1.21-2.26.1.jar` | `2.26.1` | `Miscellaneous + Storage + Utility & QoL` | 25/09/2026 - 13:25 |
