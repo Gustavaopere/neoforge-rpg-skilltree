@@ -13,13 +13,13 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Visual, QoL
 - **Função:** Addon de ambientação sonora para MineColonies que adiciona mais voice lines aos colonists; não adiciona AI conversacional, quests ou novas regras de colony confirmadas.
-- **Dependências:** MineColonies. O pack instala MineColonies 1.1.1381 para 1.21.1 em snapshot; validar compatibilidade por possível drift entre a snapshot atual e TownTalk 1.2.0 de 2024.
+- **Dependências:** MineColonies. O pack instala MineColonies 1.1.1387-1.21.1-snapshot; validar compatibilidade por possível drift entre a snapshot atual e TownTalk 1.2.0 de 2024.
 - **Sobreposição:** Ambientação vocal de colonists. Pode coexistir com outros addons MineColonies; não substitui tweaks, compatibilidade, jobs ou progressão.
 - **Compatibilidade/Riscos:** Principal risco é drift da snapshot MineColonies, além de missing sound resources, conflitos de resource pack e excesso de áudio em colônias densas. Gatilhos/roster individual de vozes não foram publicados de forma suficiente para catalogação exata.
 - **Observações:** mod id `towntalk`; runtime 1.2.0. Release NeoForge 1.21/1.21.1 de 22/08/2024; changelog oficial: first 1.21 release. Removida numeração de lote histórica incorreta.
-- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial TownTalk 1.2.0 revalidado em 13/09/2026 + MineColonies físico 1.1.1381 snapshot. Dossiê de 11/09 preservado; roster/gatilhos individuais de vozes permanecem não publicados em detalhe suficiente e runtime de áudio não foi testado.
+- **Procedência:** modlist(1).txt física atual de 27/09/2026 + TownTalk 1.2.0 + provider físico MineColonies 1.1.1387-1.21.1-snapshot. Dossiê e revalidações históricas de 11/13 de setembro preservados; roster/gatilhos individuais de vozes permanecem não publicados em detalhe suficiente e runtime de áudio não foi testado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/towntalk/files/5653504
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — TownTalk 1.2.0 permanece exatamente instalado e continua a release NeoForge 1.21.1 aplicável localizada; voice-line scope, MineColonies ownership, resource lifecycle, snapshot drift, riscos e testes preservados.
+- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — TownTalk 1.2.0 permanece instalado; provider atual dos colonists é MineColonies 1.1.1387-1.21.1-snapshot. Voice-line scope, MineColonies ownership, resource lifecycle, snapshot drift, riscos e testes preservados.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-09
 
@@ -45,7 +45,7 @@ O que o upstream sustenta para a 1.2.0:
 O arquivo tem porte significativamente maior que muitos addons puramente lógicos, consistente com conteúdo de áudio, mas tamanho do JAR **não é usado como contagem de linhas/vozes**.
 Não há catálogo oficial localizado nesta auditoria que permita enumerar vozes, profissões, idiomas ou gatilhos individuais.
 ## 4. Integração com MineColonies
-O pack possui MineColonies `1.1.1381-1.21.1-snapshot`. TownTalk depende funcionalmente do contexto de colonists; portanto a maior superfície de compatibilidade é **drift da snapshot do MineColonies** em relação à antiga release TownTalk 1.2.0.
+O pack possui MineColonies `1.1.1387-1.21.1-snapshot`. TownTalk depende funcionalmente do contexto de colonists; portanto a maior superfície de compatibilidade é **drift da snapshot do MineColonies** em relação à antiga release TownTalk 1.2.0.
 Validar que colonists atuais continuam produzindo as vozes esperadas sem crash, missing sound event ou spam de log.
 ## 5. Client / server
 A reprodução de som é percebida no cliente, mas a ficha não afirma que TownTalk seja estritamente client-only: ele é distribuído como mod NeoForge e opera sobre entidades MineColonies.
@@ -62,7 +62,7 @@ Voice assets são superfície de resources. Validar:
 - colonist spawn/despawn e chunk reload;
 - múltiplos colonists falando próximos sem áudio corrompido ou volume anormal.
 ## 7. Integrações e sobreposição no pack
-- **MineColonies 1.1.1381 snapshot:** provider principal dos colonists.
+- **MineColonies 1.1.1387 snapshot:** provider principal dos colonists.
 - Outros mods de diálogo/NPC podem adicionar interfaces ou conversas próprias; TownTalk não os substitui porque seu papel confirmado é voice-line ambience.
 - Resource packs podem substituir assets sonoros, mas não assumem ownership dos gatilhos do addon.
 ## 8. Riscos técnicos
@@ -90,3 +90,5 @@ O snapshot físico continua contendo exatamente `towntalk-1.2.0.jar`, mod id `to
 O risco principal continua sendo drift entre a release TownTalk de 2024 e o MineColonies snapshot atual. Nenhum gatilho individual de voz, resource reload, missing sound event ou stress de colônia densa foi testado nesta recatalogação.
 ## 12. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece `towntalk-1.2.0.jar`, versão `1.2.0`; a release NeoForge 1.21/1.21.1 localizada continua 1.2.0. MineColonies `1.1.1381-1.21.1-snapshot` permanece o provider dos colonists, mantendo como principal risco o drift entre a antiga release TownTalk e a snapshot atual. Nenhum resource reload, gatilho individual de voz, missing sound event ou stress de colônia densa foi executado nesta revalidação.
+## 13. Reconciliação física — 27/09/2026
+TownTalk permanece `towntalk-1.2.0.jar`, mod id `towntalk`, runtime `1.2.0`; o provider físico atual dos colonists passou a `minecolonies-1.1.1387-1.21.1-snapshot.jar`, mod id `minecolonies`, runtime `1.1.1387-1.21.1-snapshot`, SHA-1 `07752c101305dde5e4621cda39b5d7607f614871`. As referências operacionais atuais foram reconciliadas para 1.1.1387; as revalidações históricas permanecem preservadas. Nenhum resource reload, gatilho individual de voz, missing sound event ou stress de colônia densa foi executado nesta reconciliação.

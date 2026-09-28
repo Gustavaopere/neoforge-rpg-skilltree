@@ -13,13 +13,13 @@
 - **Decisão:** Sem decisão
 - **Categoria:** RPG, Magia
 - **Função:** Sistema RPG/alquímico Beta de Toxicity, toxinas, mutagens semipermanentes, oils para armas, monster-hunting equipment, plantas/materiais e estruturas, com integrações explícitas de JEI/Vampirism/Iron's/Curios.
-- **Dependências:** NeoForge 1.21.1. Integrações fisicamente relevantes no pack: JEI 19.53.0.426, Vampirism 1.10.13, Iron's Spells 3.16.3 e Curios 9.5.1.
+- **Dependências:** NeoForge 1.21.1. Integrações fisicamente relevantes no pack: JEI 19.56.0.440, Vampirism 1.10.13, Iron's Spells 3.16.3 e Curios 9.5.1.
 - **Sobreposição:** Sobreposição temática com alquimia/RPG, mas Toxicity, mutagens e oils são mecânicas próprias. Evitar double-spell-power/double-damage com bridges existentes.
 - **Compatibilidade/Riscos:** Beta-only. Riscos principais: persistent mutation modifiers, attribute/damage stacking com Iron's/Epic Fight/Vampirism, oils em armas modded, Curios state e densidade de worldgen. Não inventar thresholds/fórmulas de Toxicity sem source/runtime pin.
 - **Observações:** mod id `toxony`; runtime 0.10.7 Beta, atual para NeoForge 1.21.1. Lost Journal é onboarding oficial. Linha 1.21.1 permanece Beta; ausência de Release estável equivalente não é motivo para downgrade automático.
-- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge/Modrinth oficiais Toxony 0.10.7 Beta revalidados em 13/09/2026 + stack físico JEI/Vampirism/Iron's Spells/Curios. Dossiê de 11/09 preservado; Toxicity, mutagens, oils e worldgen não foram testados em runtime.
+- **Procedência:** modlist(1).txt física atual de 27/09/2026 + Toxony 0.10.7 Beta + stack físico JEI 19.56.0.440/Vampirism 1.10.13/Iron's Spells 3.16.3/Curios 9.5.1. Dossiê e revalidações históricas preservados; Toxicity, mutagens, oils e worldgen não foram testados em runtime.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/toxony
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Toxony 0.10.7 permanece exatamente instalado e continua a Beta NeoForge 1.21.1 mais recente localizada; Toxicity, mutagens, oils, gear/worldgen, JEI/Vampirism/Iron's/Curios, lifecycle, riscos e testes preservados.
+- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Toxony 0.10.7 permanece instalado; integração atual de recipes/uses deve ser validada contra JEI 19.56.0.440. Toxicity, mutagens, oils, gear/worldgen, Vampirism/Iron's/Curios, lifecycle, riscos e testes preservados.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-09
 
@@ -76,7 +76,7 @@ A linha histórica introduziu **Silver Steel**, mas recipes/stats exatos devem s
 Toxony adiciona plantas e **special structures** ao mundo. Portanto a presença do mod afeta exploração e chunk generation, não apenas inventário do jogador.
 Validar em chunks novos e contra o stack massivo de worldgen do pack. Remover/alterar o mod não reescreve estruturas já geradas.
 ## 10. Integração com JEI
-Compatibilidade com **Just Enough Items** é explicitamente publicada. O pack possui JEI `19.53.0.426`.
+Compatibilidade com **Just Enough Items** é explicitamente publicada. O pack possui JEI `19.56.0.440`.
 JEI deve exibir recipes/uses úteis, mas não substitui o Lost Journal para mechanics não-recipe. Testar categorias e recipe transfer sem assumir cobertura total de todas as transformações.
 ## 11. Integração com Vampirism
 O upstream documenta que **silver weapons causam mais dano a vampires/werewolves** de Vampirism. O pack possui Vampirism `1.10.13`.
@@ -138,3 +138,5 @@ A modlist física mantém exatamente `toxony-0.10.7.jar`, mod id `toxony`, vers�
 As bridges com JEI, Vampirism, Iron's Spells e Curios continuam tecnicamente relevantes ao stack. Nenhuma fórmula de Toxicity, mutagen modifier, oil behavior ou estrutura foi inferida além das fontes, e nenhum teste runtime foi executado nesta recatalogação.
 ## 20. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece `toxony-0.10.7.jar`, versão `0.10.7`; a Beta NeoForge 1.21.1 localizada continua 0.10.7 e seu changelog específico mantém o fix da recipe do Plaguebringer set. As integrações com JEI, Vampirism, Iron's Spells e Curios permanecem tecnicamente relevantes. Nenhuma fórmula de Toxicity, mutagen modifier, oil behavior, damage bridge ou worldgen foi testada nesta revalidação.
+## 21. Reconciliação física — 27/09/2026
+Toxony permanece `toxony-0.10.7.jar`, mod id `toxony`, runtime `0.10.7`; o provider físico atual de recipe viewing é `jei-1.21.1-neoforge-19.56.0.440.jar`, mod id `jei`, runtime `19.56.0.440`, SHA-1 `8f18e13b4cc84d2140642ec2411514b7f5b0883b`. A referência operacional de JEI foi atualizada para 19.56.0.440; as revalidações históricas permanecem preservadas. Nenhuma fórmula de Toxicity, mutagen modifier, oil behavior, damage bridge, recipe transfer ou worldgen foi testada nesta reconciliação.
