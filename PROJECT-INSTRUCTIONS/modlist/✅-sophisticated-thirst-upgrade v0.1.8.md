@@ -13,13 +13,13 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Comida, QoL
 - **Função:** Adiciona upgrades ao Sophisticated Backpacks para consumir automaticamente itens de hidratação armazenados na mochila; a versão Advanced adiciona filtragem semelhante ao Feeding Upgrade.
-- **Dependências:** Sophisticated Backpacks 3.26.2 está presente. O projeto upstream é publicado para Thirst Was Taken; o stack físico atual do pack usa Thirst Was Reclaimed 1.21.1-3.0.4. A ficha antiga trata a integração como compatível, mas esta auditoria mantém teste runtime obrigatório em vez de presumir equivalência perfeita.
+- **Dependências:** Sophisticated Backpacks 3.26.3 está presente. O projeto upstream é publicado para Thirst Was Taken; o stack físico atual do pack usa Thirst Was Reclaimed 1.21.1-3.0.5. A ficha mantém teste runtime obrigatório em vez de presumir equivalência perfeita entre Taken e Reclaimed.
 - **Sobreposição:** Não fornece barra/sistema de sede; apenas automatiza consumo a partir da mochila. Thirst Was Reclaimed continua provider da necessidade de hidratação.
-- **Compatibilidade/Riscos:** Bridge de automação de hidratação. Riscos: consumir item errado/duas vezes, filtros divergentes, provider de sede incompatível, backpack sync, cooldown/threshold stale e death/relog state. Upstream publica contra Thirst Was Taken; o pack usa Thirst Was Reclaimed 3.0.4, portanto compatibilidade funcional atual deve ser validada em runtime.
+- **Compatibilidade/Riscos:** Bridge de automação de hidratação. Riscos: consumir item errado/duas vezes, filtros divergentes, provider de sede incompatível, backpack sync, cooldown/threshold stale e death/relog state. Upstream publica contra Thirst Was Taken; o pack usa Thirst Was Reclaimed 3.0.5, portanto compatibilidade funcional atual deve ser validada em runtime.
 - **Observações:** Runtime físico 0.1.8 no JAR `sophisticated-thirst-upgrade.jar`. A publicação oficial 1.21.1 confirma Thirst Upgrade + Advanced Thirst Upgrade; o provider atual do pack é Thirst Was Reclaimed, não o nome original Thirst Was Taken usado na página upstream.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Sophisticated Thirst Upgrade 0.1.8 + páginas atuais de Sophisticated Backpacks e Thirst Was Reclaimed no catálogo.
+- **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge oficial Sophisticated Thirst Upgrade 0.1.8 + provider físico Sophisticated Backpacks 3.26.3 e Thirst Was Reclaimed 1.21.1-3.0.5.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/thirst-upgrade-for-sophisticated-backpacks-thirst
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Sophisticated Thirst Upgrade 0.1.8 reconstruído: auto-drink, Advanced Thirst Upgrade/filtering, backpack/provider boundaries, server authority, naming mismatch Thirst Was Taken↔Reclaimed, lifecycle, riscos e testes.
+- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — addon 0.1.8 mantido; providers físicos atuais reconciliados para Sophisticated Backpacks 3.26.3 e Thirst Was Reclaimed 1.21.1-3.0.5.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 
@@ -47,7 +47,7 @@ A seleção deve consumir exatamente um item por ação aceita e aplicar uma ún
 Também existe um **Advanced Thirst Upgrade**, com filtragem semelhante ao sistema avançado de alimentação.
 Filtros precisam ser server-authoritative e persistir com o upgrade/backpack. Um filtro client-only não pode permitir consumo funcional de item bloqueado pelo servidor.
 ## 5. Boundary com Sophisticated Backpacks
-O pack contém Sophisticated Backpacks `3.26.2`. O upgrade depende do lifecycle de inventário/upgrades do backpack:
+O pack contém Sophisticated Backpacks `3.26.3`. O upgrade depende do lifecycle de inventário/upgrades do backpack:
 - equipar/retirar mochila;
 - colocar como bloco quando suportado;
 - abrir/fechar inventory;
@@ -55,7 +55,7 @@ O pack contém Sophisticated Backpacks `3.26.2`. O upgrade depende do lifecycle 
 - trocar/remover upgrade.
 Remover o upgrade deve encerrar automação imediatamente, sem task/cache residual.
 ## 6. Naming mismatch do provider de sede
-A publicação upstream descreve integração com **Thirst Was Taken**. O pack atual usa **Thirst Was Reclaimed 1.21.1-3.0.4**.
+A publicação upstream descreve integração com **Thirst Was Taken**. O pack atual usa **Thirst Was Reclaimed 1.21.1-3.0.5**.
 O catálogo anterior trata este addon como funcional no stack de sede atual, mas a identidade nominal diferente é material: não se deve afirmar compatibilidade perfeita apenas pelo conceito. Boot e consumo real precisam ser testados.
 ## 7. Authority da hidratação
 O provider de sede continua responsável por:
@@ -100,8 +100,8 @@ Validar:
 - save/restart.
 Config/filtro do upgrade deve persistir; uma pending consumption não deve repetir após reconnect.
 ## 15. Integrações concretas no pack
-- **Sophisticated Backpacks 3.26.2:** provider de storage/upgrades.
-- **Thirst Was Reclaimed 3.0.4:** provider de sede atual do pack; compatibilidade requer teste por causa da nomenclatura/upstream lineage.
+- **Sophisticated Backpacks 3.26.3:** provider de storage/upgrades.
+- **Thirst Was Reclaimed 3.0.5:** provider de sede atual do pack; compatibilidade requer teste por causa da nomenclatura/upstream lineage.
 - **Thirst Was Fixed 2.1.6:** patch do stack de sede presente; qualquer mudança no consumo precisa ser triada entre provider/fix/upgrade.
 ## 16. Riscos técnicos
 1. **Provider mismatch:** addon procura API/ID de Thirst Was Taken não exposta pelo Reclaimed.
@@ -113,7 +113,7 @@ Config/filtro do upgrade deve persistir; uma pending consumption não deve repet
 7. **Threshold stale:** continua consumindo após thirst já restaurada.
 8. **Item-use bypass:** automação ignora side effects/cooldowns do item.
 ## 17. Matriz de testes
-- [ ] Dedicated server inicia com addon 0.1.8 + Sophisticated Backpacks 3.26.2 + Thirst Was Reclaimed 3.0.4.
+- [ ] Dedicated server inicia com addon 0.1.8 + Sophisticated Backpacks 3.26.3 + Thirst Was Reclaimed 3.0.5.
 - [ ] Thirst Upgrade reconhece consumível do provider atual.
 - [ ] Consome exatamente um item por trigger.
 - [ ] Restaura a quantidade/effects definidos pelo provider/item.
@@ -127,7 +127,7 @@ Config/filtro do upgrade deve persistir; uma pending consumption não deve repet
 - [ ] Thirst Was Fixed coexistente não duplica consumo/effects.
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 18. Evidências e limites
-- Modlist física atual: addon 0.1.8, Sophisticated Backpacks 3.26.2, Thirst Was Reclaimed 3.0.4 e Thirst Was Fixed 2.1.6.
+- Modlist física atual de 27/09/2026: addon 0.1.8, Sophisticated Backpacks 3.26.3, Thirst Was Reclaimed 3.0.5 e Thirst Was Fixed 2.1.6.
 - CurseForge oficial: Thirst Upgrade automático e Advanced Thirst Upgrade com filtering para a linha Thirst Was Taken.
 - Catálogo anterior: addon mantido no stack de sede atual.
 - **Limite:** compatibilidade binária/funcional com Thirst Was Reclaimed não foi provada por runtime nesta auditoria; por isso permanece teste explícito e não uma equivalência assumida.
