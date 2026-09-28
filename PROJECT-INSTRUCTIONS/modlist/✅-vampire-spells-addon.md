@@ -13,13 +13,13 @@
 - **Decisão:** 
 - **Categoria:** Magia, Compat, RPG
 - **Função:** Bridge Vampirism ↔ Iron's Spells: adapta custo de Blood spells para blood/mana, restaura blood por dano real de Ray of Siphoning/Devour e converte Holy healing/utility em consequências apropriadas para vampiros.
-- **Dependências:** NeoForge \>=21.1.200 e \<21.2; Vampirism \>=1.10.7 e \<1.11; Iron's Spells \>=1.21.1-3.14.3 e \<4. Pack atual: NeoForge 21.1.248, Vampirism 1.10.13, Iron's 3.16.3.
+- **Dependências:** NeoForge \>=21.1.200 e \<21.2; Vampirism \>=1.10.7 e \<1.11; Iron's Spells \>=1.21.1-3.14.3 e \<4. Pack atual: NeoForge 21.1.250, Vampirism 1.10.13, Iron's 3.16.3.
 - **Sobreposição:** Não cria escola/facção. É tradução entre Blood/Holy do Iron's e fisiologia/blood do Vampirism; qualquer outra bridge nesse mesmo boundary precisa de exactly-once.
 - **Compatibilidade/Riscos:** Faixas suportadas atendidas. Riscos: double payment mana+blood, double payout por damage listeners, Holy healing reaplicado por outra bridge, cooldown stacking e correlação stale após cancel/relog/death. Serverconfig real do mundo ainda precisa de QA.
 - **Observações:** Mod id `vampire_spells_addon`; runtime `1.21.1-0.0.9`. Vampirism é authority de blood/faction e Iron's de spell/mana/cooldown. Provider-specific fallback deve ser fail-closed.
-- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Vampirism Iron's Spells Compatibility 0.0.9 revalidado em 13/09/2026. As faixas continuam satisfeitas pelo runtime: NeoForge 21.1.248, Vampirism 1.10.13 e Iron's Spells 3.16.3. Serverconfig e runtime QA não foram executados.
+- **Procedência:** modlist(1).txt física atual de 27/09/2026 + Vampire Spells Addon 1.21.1-0.0.9 + NeoForge 21.1.250 + Vampirism 1.10.13 + Iron's Spells 3.16.3. As faixas publicadas continuam satisfeitas. Histórico 08/09–13/09 com NeoForge 21.1.248 preservado; serverconfig e runtime QA não foram executados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/vampirism-irons-spells-compatibility
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Vampire Spells Addon 0.0.9 permanece exatamente instalado e continua a release NeoForge 1.21.1 mais recente localizada; faixas NeoForge/Vampirism/Iron's, pagamento atômico, Blood payout, Holy inversion, riscos e testes preservados.
+- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Vampire Spells Addon 0.0.9 permanece instalado; faixa NeoForge continua satisfeita pelo loader físico atual 21.1.250. Vampirism 1.10.13 e Iron's Spells 3.16.3 permanecem os providers atuais; pagamento atômico, Blood payout, Holy inversion, riscos e testes preservados.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-09
 
@@ -33,7 +33,7 @@
 - **Vampirism suportado:** `>=1.10.7` e `<1.11`.
 - **Iron's suportado:** `>=1.21.1-3.14.3` e `<4`.
 - **NeoForge:** `>=21.1.200` e `<21.2`.
-O pack atual satisfaz essas faixas com **NeoForge 21.1.248**, **Vampirism 1.10.13** e **Iron's Spells 3.16.3**.
+O pack atual satisfaz essas faixas com **NeoForge 21.1.250**, **Vampirism 1.10.13** e **Iron's Spells 3.16.3**.
 ## 2. Blood School — custo de recurso
 Para spells Blood com custo de mana, a bridge altera a economia especificamente para casters vampiros.
 O comportamento documentado é:
@@ -116,3 +116,5 @@ O runtime físico continua exatamente `vampire_spells_addon-neoforge-1.21.1-0.0.
 As faixas declaradas continuam satisfeitas por NeoForge `21.1.248`, Vampirism `1.10.13` e Iron's Spells `3.16.3`. Nenhum serverconfig efetivo, fallback mana→blood, payout de Siphoning/Devour, Holy inversion, cooldown ou lifecycle de correlação foi testado nesta recatalogação.
 ## 14. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece `vampire_spells_addon-neoforge-1.21.1-0.0.9.jar`, versão `1.21.1-0.0.9`, e a página oficial continua listando `0.0.9` como a release NeoForge 1.21.1 mais recente. As faixas publicadas seguem atendidas por NeoForge `21.1.248`, Vampirism `1.10.13` e Iron's Spells `3.16.3`. O contrato de fallback atômico mana→blood, payout por dano real em Ray of Siphoning/Devour, Holy inversion e limpeza de estado de correlação permanece documentado. Nenhum serverconfig efetivo, payout, Holy handling, cooldown ou lifecycle de correlação foi testado nesta revalidação.
+## 15. Reconciliação física — 27/09/2026
+A autoridade física atual mantém `vampire_spells_addon-neoforge-1.21.1-0.0.9.jar`, mod id `vampire_spells_addon`, runtime `1.21.1-0.0.9`. O modloader físico atual é `neoforge-21.1.250`, enquanto Vampirism `1.10.13` e Iron's Spells `3.16.3` permanecem os providers instalados. A faixa declarada `NeoForge >=21.1.200 e <21.2` continua satisfeita. As referências de 08/09–13/09 a NeoForge 21.1.248 foram mantidas como snapshots históricos. Nenhum serverconfig efetivo, fallback mana→blood, payout, Holy handling, cooldown ou lifecycle de correlação foi testado nesta reconciliação.
