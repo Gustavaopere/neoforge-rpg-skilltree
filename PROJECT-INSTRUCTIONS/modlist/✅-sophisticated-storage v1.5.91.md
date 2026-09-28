@@ -13,13 +13,13 @@
 - **Decisão:** Manter
 - **Categoria:** Armazenamento, Automação
 - **Função:** Stationary modular storage with tiered barrels/chests/shulker boxes, capacity and functional upgrades, filters/settings, sorting/memorized slots, controller interaction and storage tools.
-- **Dependências:** Sophisticated Core 1.5.1 required and physically present. Sophisticated Storage Create Integration 0.1.21 and Ars Sophisticated Compatibility 0.3.0 are physical integration surfaces; JEI 19.53.0.426 is present.
+- **Dependências:** Sophisticated Core 1.5.1 required and physically present. Sophisticated Storage Create Integration 0.1.21 and Ars Sophisticated Compatibility 0.3.0 are physical integration surfaces; JEI 19.56.0.440 is present.
 - **Sobreposição:** Local/upgradable stationary storage. Overlaps in purpose with Tom's/AE2/RS and backpacks, but is not equivalent to a networked crafting system or portable storage.
 - **Compatibilidade/Riscos:** Stateful stationary storage. Risks: inventory/upgrades loss/dupe, compression/compacting recipe conflicts, controller routing, packed-drop duplication, filter/memory drift, network/capability sync and Create contraption serialization. Compression and compacting are mutually dangerous when combined in conflicting configurations.
 - **Observações:** JAR físico `sophisticatedstorage-1.21.1-1.5.91.2127.jar`, runtime 1.5.91. Current dossier distinguishes base storage ownership from Create bridge and from portable Backpacks.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge official Sophisticated Storage 1.5.91.2127 + official project documentation/changelog lineage for upgrades, compression, controller and tools.
+- **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge official Sophisticated Storage 1.5.91.2127 + JEI físico 19.56.0.440 + official project documentation/changelog lineage for upgrades, compression, controller and tools.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/8762100
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sophisticated Storage 1.5.91.2127 físico reconfirmado; permanece a release NeoForge 1.21.1 mais recente localizada.
+- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Sophisticated Storage 1.5.91.2127 permanece físico; dependency surface JEI reconciliada para 19.56.0.440.
 - **Histórico da decisão:** Mantido como armazenamento estacionário do stack Sophisticated. Em 11/09/2026 revalidado na versão física 1.5.91.2127 e documentado no padrão técnico completo.
 - **Data da última decisão:** 2026-08-22
 
@@ -83,7 +83,7 @@ A bridge é responsável por adaptar contexto móvel; Storage base continua owne
 **Ars Sophisticated Compatibility 0.3.0** está presente e conecta sistemas Ars ao ecossistema Sophisticated.
 Qualquer acesso externo deve respeitar capabilities/filters e não bypassar rules do container.
 ## 18. JEI e recipes
-JEI `19.53.0.426` está presente e expõe recipes/upgrades. Recipe viewing não é authority do state; server recipe manager continua decidindo craft/upgrade válido.
+JEI `19.56.0.440` está presente e expõe recipes/upgrades. Recipe viewing não é authority do state; server recipe manager continua decidindo craft/upgrade válido.
 Data reload pode mudar recipes de compression/upgrade; caches devem acompanhar.
 ## 19. Client / server
 Servidor decide:
