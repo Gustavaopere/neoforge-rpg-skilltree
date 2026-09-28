@@ -1,27 +1,32 @@
 # Somake
 
-> **Reauditoria física — 17/09/2026.** Versão catalogada atual: `1.0.9`. O conteúdo abaixo foi reconstruído a partir da página Notion reconciliada e da autoridade física atual; a URL da própria página Notion foi deliberadamente omitida.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#513**: JAR `somakespells-1.0.9-1.21.1.jar`, mod id `somakespells`, runtime `1.0.9`, SHA-1 `171841ac9f802be9309ecc166c1d972ac6d404c0`.
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** Somake
-- **Arquivo JAR:** somakespells-1.0.9-1.21.1.jar
+- **Arquivo JAR:** `somakespells-1.0.9-1.21.1.jar`
 - **Versão 1.21.1:** 1.0.9
-- **Categoria:** Magia; RPG
-- **Função:** Addon de Iron's Spells 'n Spellbooks com mais de 50 feitiços, Aqua School própria, elemental charges, equipamentos/armas e, em 1.0.9, sistema Red Soul e novos spells/progressão.
-- **Dependências:** Iron's Spells 'n Spellbooks é provider central e está presente em 3.16.3. Integrações publicadas relevantes incluem L_Ender's Cataclysm e Born in Chaos, ambos fisicamente presentes; outras addon schools só são paths ativos quando seus providers existem.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Spell/attribute API drift, charge duplication, school registration conflict, projectile/AoE double-hit, equipment modifier stacking, missing external-school IDs, grimoire/progression persistence, Red Soul lifecycle e combat-engine interaction.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon
-- **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Somake 1.0.9 para NeoForge 1.21.1 + dossiê anterior 1.0.8 preservado. Nenhum teste runtime foi executado.
-- **Observações:** JAR físico `somakespells-1.0.9-1.21.1.jar`, mod id `somakespells`, runtime 1.0.9. O antigo sufixo `-fix` pertencia ao filename 1.0.8 e não existe no JAR atual.
-- **Atualização/Status:** READITADO EM 17/09/2026 — runtime físico atualizado de `somakespells-1.0.8-1.21.1-fix.jar` / 1.0.8 para `somakespells-1.0.9-1.21.1.jar` / 1.0.9. Deltas oficiais 1.0.9 incorporados: Red Soul, novos spells/items, ajustes de Aqua/Symmetry/equipment e compatibilidade opcional.
 - **Decisão:** Sem decisão
-- **Histórico da decisão:** 
+- **Categoria:** Magia, RPG
+- **Função:** Addon de Iron's Spells 'n Spellbooks com mais de 50 feitiços, Aqua School própria, elemental charges, equipamentos/armas e, em 1.0.9, sistema Red Soul e novos spells/progressão.
+- **Dependências:** Iron's Spells 'n Spellbooks é provider central e está presente em 3.16.3. Integrações publicadas relevantes incluem L_Ender's Cataclysm e Born in Chaos, ambos fisicamente presentes; outras addon schools só são paths ativos quando seus providers existem.
 - **Sobreposição:** Amplia Iron's Spells; não substitui seu mana/casting/attribute framework. Sobreposição com outros addons de spells deve ser avaliada por school/spell IDs, effects e balanceamento, não apenas tema.
+- **Compatibilidade/Riscos:** Spell/attribute API drift, charge duplication, school registration conflict, projectile/AoE double-hit, equipment modifier stacking, missing external-school IDs, grimoire/progression persistence, Red Soul lifecycle e combat-engine interaction.
+- **Observações:** JAR físico `somakespells-1.0.9-1.21.1.jar`, mod id `somakespells`, runtime 1.0.9. O antigo sufixo `-fix` pertencia ao filename 1.0.8 e não existe no JAR atual.
+- **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Somake 1.0.9 para NeoForge 1.21.1 + dossiê anterior 1.0.8 preservado. Nenhum teste runtime foi executado.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon
+- **Atualização/Status:** READITADO EM 17/09/2026 — runtime físico atualizado de `somakespells-1.0.8-1.21.1-fix.jar` / 1.0.8 para `somakespells-1.0.9-1.21.1.jar` / 1.0.9. Deltas oficiais 1.0.9 incorporados: Red Soul, novos spells/items, ajustes de Aqua/Symmetry/equipment e compatibilidade opcional.
+- **Histórico da decisão:**
+- **Data da última decisão:**
 
-> 🌊 **ESCOPO CANÔNICO.** Runtime físico: `somakespells-1.0.9-1.21.1.jar`, mod id `somakespells`, versão `1.0.9`, NeoForge 1.21.1. Somake é um **addon de Iron's Spells 'n Spellbooks** com catálogo próprio de spells, Aqua School, elemental charges, equipamentos e progressão Red Soul.
+# Dossiê operacional — padrão Alex's Mobs
+
+> **ESCOPO CANÔNICO.** Runtime físico: `somakespells-1.0.9-1.21.1.jar`, mod id `somakespells`, versão `1.0.9`, NeoForge 1.21.1. Somake é um **addon de Iron's Spells 'n Spellbooks** com catálogo próprio de spells, Aqua School, elemental charges, equipamentos e progressão Red Soul.
+
 ## 1. Identidade e papel
 - **Mod:** Somake / Somake Spells.
 - **JAR:** `somakespells-1.0.9-1.21.1.jar`.
