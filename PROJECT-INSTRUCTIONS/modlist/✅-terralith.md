@@ -89,9 +89,9 @@ Worldgen é persistente por chunk. Validar:
 O próprio intro message 2.6.2 passou a alertar sobre uninstall; remover Terralith de mundo existente não deve ser tratado como operação neutra.
 ## 10. Integrações concretas no pack
 - **Lithostitched 1.8.0+beta6:** hard dependency física.
-- **Tectonic 3.0.26:** terrain shaper complementar; testar distribuição/terrain extrema.
+- **Tectonic 3.0.28:** terrain shaper complementar; testar distribuição/terrain extrema.
 - **Dynamic Trees - Terralith:** bridge instalada para árvores dinâmicas nos biomas Terralith.
-- **Streams Reflowing 2.13.1:** hidrologia baseada no terreno/biomas finais.
+- **Streams Reflowing 2.13.5:** hidrologia baseada no terreno/biomas finais.
 - **Ecliptic Seasons Bundles:** possui cobertura Terralith catalogada separadamente.
 - **Distant Horizons/Iris:** Skylands e relevo vertical são stress test de LOD/shader.
 - Outros structure mods: custom structures Terralith devem coexistir sem collision excessiva.

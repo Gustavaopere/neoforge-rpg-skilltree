@@ -16,21 +16,22 @@
 - **Dependências:** NeoForge 1.21.1; biblioteca consumida por outros projetos do autor. Consumidores causais específicos devem ser resolvidos antes de remoção.
 - **Sobreposição:** Não compete com outras bibliotecas em termos de gameplay; fornece infraestrutura própria exigida pelos mods que a declaram.
 - **Compatibilidade/Riscos:** Hidden dependency/API drift; animation sync e OBB server/client mismatch; parsing de assets Bedrock. A build 2.3.0.b corrige especificamente o TOML NeoForge da 2.3.0, tornando startup/mod discovery um regression gate.
-- **Observações:** mod id `tenshilib`; runtime 2.3.0.b. Sozinha não adiciona gameplay. Não inferir que toda feature da library é usada por todos os consumers.
+- **Observações:** mod id `tenshilib`; runtime metadata `1.21.1-2.3.0.b-neoforge`; release identifier `2.3.0.b`. Sozinha não adiciona gameplay. Não inferir que toda feature da library é usada por todos os consumers.
 - **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial TenshiLib 2.3.0.b File ID 8706217 revalidado em 13/09/2026. Dossiê de 11/09 preservado; consumer causal específico continua não resolvido e nenhum teste runtime foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/tenshilib
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — TenshiLib 2.3.0.b permanece exatamente instalada e continua a release NeoForge 1.21.1 mais recente localizada; animation system, Bedrock parsing, OBB hit detection, cross-loader infrastructure e fix do TOML NeoForge preservados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — JAR físico `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, runtime metadata `1.21.1-2.3.0.b-neoforge`; release identifier `2.3.0.b`, que continua a release NeoForge 1.21.1 mais recente localizada. Animation system, Bedrock parsing, OBB hit detection, cross-loader infrastructure e fix do TOML NeoForge preservados.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **ESCOPO CANÔNICO.** Runtime físico: `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, mod id `tenshilib`, versão `2.3.0.b`. TenshiLib é uma **biblioteca/core do ecossistema flemmli97**; isoladamente não adiciona gameplay ao jogador.
+> **ESCOPO CANÔNICO.** Runtime físico: `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, mod id `tenshilib`, runtime metadata `1.21.1-2.3.0.b-neoforge`, release identifier `2.3.0.b`. TenshiLib é uma **biblioteca/core do ecossistema flemmli97**; isoladamente não adiciona gameplay ao jogador.
 ## 1. Identidade e versão
 - **Mod:** TenshiLib.
 - **JAR:** `tenshilib-1.21.1-2.3.0.b-neoforge.jar`.
 - **Mod id:** `tenshilib`.
-- **Versão:** `2.3.0.b`.
+- **Runtime metadata:** `1.21.1-2.3.0.b-neoforge`.
+- **Release identifier:** `2.3.0.b`.
 - **Loader/jogo:** NeoForge 1.21.1.
 - **Release:** oficial de 22/08/2026.
 - **Changelog exato:** correção do TOML NeoForge.
@@ -96,7 +97,7 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 - Modlist física canônica 08/09/2026: JAR/mod id/versão.
 - CurseForge oficial TenshiLib: core/library, animation system client/server, Bedrock parsing, OBB hit detection, cross-loader registration, math parser; 2.3.0.b corrige NeoForge TOML.
 ## 14. Revalidação física — 11/09/2026
-O runtime físico continua exatamente `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, mod id `tenshilib`, versão `2.3.0.b`. A file list oficial mantém esta como latest release para NeoForge 1.21.1 e o delta exato continua sendo o fix do TOML NeoForge.
+O runtime físico continua exatamente `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, mod id `tenshilib`, runtime metadata `1.21.1-2.3.0.b-neoforge`; `2.3.0.b` é o release identifier público. A file list oficial mantém esta como latest release para NeoForge 1.21.1 e o delta exato continua sendo o fix do TOML NeoForge.
 Nenhum consumer causal adicional foi afirmado sem evidência. Animation sync, OBB, parsing de assets e startup continuam pendentes de teste runtime.
 ## 15. Revalidação física — 13/09/2026
-O runtime físico permanece TenshiLib 2.3.0.b e a release NeoForge 1.21.1 localizada continua nessa versão. O fix do TOML NeoForge permanece regression gate direto. Nenhum consumer causal novo foi afirmado e nenhum teste de animation sync, OBB, parsing de assets ou startup foi executado.
+O JAR físico permanece `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, com runtime metadata `1.21.1-2.3.0.b-neoforge`; a release NeoForge 1.21.1 localizada continua com identifier público `2.3.0.b`. O fix do TOML NeoForge permanece regression gate direto. Nenhum consumer causal novo foi afirmado e nenhum teste de animation sync, OBB, parsing de assets ou startup foi executado.

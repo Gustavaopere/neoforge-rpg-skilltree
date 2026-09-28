@@ -75,13 +75,13 @@ Consequências operacionais:
 - clients precisam receber regras sincronizadas do servidor;
 - desabilitar um feature-pai pode afetar features dependentes.
 A configuração física do pack não foi lida neste lote.
-## 11. Release 3.9.9
-Changelog oficial da build física 3.9.9:
-- corrige animação do **Pulley no primeiro pull**;
-- corrige **shoot range do Cannon Boat**;
-- corrige renderer do item de **Flags** ligado à config de banners;
-- altera método de load do **Hourglass**.
-Esses quatro pontos são regression gates específicos da 3.9.8.
+## 11. Release 3.9.9 e baseline 3.9.8
+A 3.9.8 já registrava como regression gates:
+- correção da animação do **Pulley no primeiro pull**;
+- correção do **shoot range do Cannon Boat**;
+- correção do renderer do item de **Flags** ligado à config de banners;
+- alteração do método de load do **Hourglass**.
+A página oficial da release física 3.9.9 também publica esses mesmos quatro itens em **What's new**. Portanto, no dossiê atual eles permanecem regression gates do runtime 3.9.9, sem inferir um delta funcional adicional não publicado entre 3.9.8 e 3.9.9.
 ## 12. Client / server e multiplayer
 - Servidor: placement, inventories, transfers, redstone, projectile/damage e state de blocks/entities.
 - Cliente: modelos, animações, GUIs e efeitos.

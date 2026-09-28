@@ -13,7 +13,7 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Worldgen, Exploração
 - **Função:** Terrain shaper do Overworld que amplia geometria macro de montanhas, vales, canyons, wetlands e transições de relevo; não é um catálogo de biomas equivalente a Terralith/BWG.
-- **Dependências:** Lithostitched é hard dependency oficial; pack instala lithostitched 1.8.0+beta6 NeoForge 21.1. Runtime Tectonic 3.0.26 para NeoForge 1.21.1.
+- **Dependências:** Lithostitched é hard dependency oficial; pack instala lithostitched 1.8.0+beta6 NeoForge 21.1. Runtime Tectonic 3.0.28 para NeoForge 1.21.1.
 - **Sobreposição:** Parcial com outros terrain shapers; não é equivalente a structure mods ou a expansões de conteúdo de biomas.
 - **Compatibilidade/Riscos:** Worldgen seams, structures em relevo extremo, custo de chunkgen e composição com Terralith/BWG/Streams Reflowing. O runtime físico 3.0.28 preserva o fix histórico de mountain jaggedness/config da 3.0.26 e adiciona como regression gate o crash ao abrir a tela de config presets.
 - **Observações:** mod id `tectonic`; runtime físico 3.0.28. O JAR contém `apollib-1.1.6-neoforge-21.1.jar` em `META-INF/jarjar`; dentro dele há `json5-java-3.0.0.jar` em `META-INF/jars`. Ambos permanecem componentes embarcados, não entradas top-level. Config física não foi lida.
