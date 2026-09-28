@@ -1,28 +1,31 @@
 # StreamsReflowing
 
-> **Reauditoria física — 17/09/2026.** Versão catalogada atual: `2.13.5`. O conteúdo abaixo foi reconstruído a partir da página Notion reconciliada e da autoridade física atual; a URL da própria página Notion foi deliberadamente omitida.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#528**: JAR `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`, mod id `streamsreflowing`, runtime `2.13.5`, SHA-1 `30b4203fee5ae9605e4c8631032910d0907e0820`.
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
-## Propriedades do registro
+## Propriedades do banco
 
 - **Mod:** StreamsReflowing
-- **Arquivo JAR:** StreamsReflowing-1.21.1-neoforge-2.13.5.jar
+- **Arquivo JAR:** `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`
 - **Versão 1.21.1:** 2.13.5
+- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** Verificado
+- **Decisão:** Sem decisão
 - **Categoria:** Worldgen
 - **Função:** Sistema de hidrologia/worldgen com streams que seguem relevo, lakes/ponds em diferentes elevações, corrente direcional opcional em rivers e organic water flow configurável.
 - **Dependências:** Standalone segundo documentação oficial; sem hard dependency central. Runtime exato 2.13.1 NeoForge 1.21.1 confirmado publicamente. Integra por comportamento com terrain/worldgen providers, Create water wheels e outros sistemas de água.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Chunkgen/presets, carving em terrain/structures, seams old/new chunks, river tags modded, competição hidrológica e carga de partículas. Os gates antigos de Create water wheel/restart e waterfall spray permanecem; 2.13.2–2.13.5 adicionam performance de watershed, structure blocking, Caves Reflowing e fixes de stalls/current.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/streams-reflowing ; https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/all?version=1.21.1
-- **Procedência:** modlist física de 16/09/2026 + CurseForge/Modrinth oficiais e changelog 2.13.2–2.13.5. Nenhum teste de seed/chunkgen/corrente/restart foi executado.
-- **Observações:** mod id `streamsreflowing`; runtime 2.13.5. Config/preset físico do pack não foi lido. Em 16/09/2026 há 2.13.7 upstream para outras linhas 1.21.x; não é promovida aqui como versão instalada nem como compat 1.21.1 validada sem arquivo específico correspondente.
-- **Atualização/Status:** READITADO EM 17/09/2026 — runtime físico atualizado de 2.13.1 para 2.13.5; dossiê reconciliado aos deltas oficiais 2.13.2–2.13.5.
-- **Decisão:** Sem decisão
-- **Histórico da decisão:** 
 - **Sobreposição:** Cruza com mods atuais de terrain/river/worldgen; incompatibilidades específicas devem ser avaliadas contra os providers realmente instalados, não contra arquitetura TFC removida.
+- **Compatibilidade/Riscos:** Chunkgen/presets, carving em terrain/structures, seams old/new chunks, river tags modded, competição hidrológica e carga de partículas. Os gates antigos de Create water wheel/restart e waterfall spray permanecem; 2.13.2–2.13.5 adicionam performance de watershed, structure blocking, Caves Reflowing e fixes de stalls/current.
+- **Observações:** mod id `streamsreflowing`; runtime 2.13.5. Config/preset físico do pack não foi lido. Em 16/09/2026 há 2.13.7 upstream para outras linhas 1.21.x; não é promovida aqui como versão instalada nem como compat 1.21.1 validada sem arquivo específico correspondente.
+- **Procedência:** modlist física de 16/09/2026 + CurseForge/Modrinth oficiais e changelog 2.13.2–2.13.5. Nenhum teste de seed/chunkgen/corrente/restart foi executado.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/streams-reflowing ; https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/all?version=1.21.1
+- **Atualização/Status:** READITADO EM 17/09/2026 — runtime físico atualizado de 2.13.1 para 2.13.5; dossiê reconciliado aos deltas oficiais 2.13.2–2.13.5.
+- **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-27
 
-> 🏞️ **ESCOPO CANÔNICO.** Runtime físico: `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`, mod id `streamsreflowing`, versão `2.13.5`. Streams Reflowing é um sistema de **hidrologia/worldgen** que gera streams e lakes dependentes do terreno e adiciona corrente direcional a corpos d'água configurados.
+# Dossiê operacional — padrão Alex's Mobs
+
+> **ESCOPO CANÔNICO.** Runtime físico: `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`, mod id `streamsreflowing`, versão `2.13.5`. Streams Reflowing é um sistema de **hidrologia/worldgen** que gera streams e lakes dependentes do terreno e adiciona corrente direcional a corpos d'água configurados.
 ## 1. Identidade, versão e papel
 - **Mod:** Streams Reflowing.
 - **JAR físico:** `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`.
