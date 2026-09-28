@@ -1,16 +1,13 @@
 # Supplementaries
 
-> **Autoridade física atual — 27/09/2026.** A modlist física atual contém `supplementaries-1.21.1-3.9.9-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.9`, SHA-1 `06ed05381a5653d90398dc6ebf3ad1154add6374`. Esta autoridade física supersede a identidade histórica `1.21.1-3.9.8` preservada abaixo a partir do Notion; `sable-companion-common-1.21.1-1.6.0.jar` permanece JarJar interno e não item top-level.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#536**: JAR `supplementaries-1.21.1-3.9.9-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.9`, SHA-1 `06ed05381a5653d90398dc6ebf3ad1154add6374`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Estado no pack:** Integrado ao Github
-- **Autoridade física:** `supplementaries-1.21.1-3.9.8-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.8`; Moonlight Lib 3.6.3 presente
-- **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
 
 - **Mod:** Supplementaries
-- **Arquivo JAR:** `supplementaries-1.21.1-3.9.8-neoforge.jar`
-- **Versão 1.21.1:** 1.21.1-3.9.8
+- **Arquivo JAR:** `supplementaries-1.21.1-3.9.9-neoforge.jar`
+- **Versão 1.21.1:** 1.21.1-3.9.9
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
@@ -18,103 +15,78 @@
 - **Função:** Grande expansão vanilla+ com storage/display, decoração, iluminação, ferramentas e mecanismos de redstone/automação como Jar, Faucet, Pulley, Cannon, Rope, Urn e Soap, amplamente configuráveis.
 - **Dependências:** Moonlight Lib é obrigatória; pack instala Moonlight 1.21.1-3.6.3. Runtime Client & Server. Integrações opcionais/data-driven dependem do stack presente.
 - **Sobreposição:** Sobreposição parcial com Amendments, Blocks You Need e outros vanilla+; Sable Physics Compat declara suporte a Supplementaries.
-- **Compatibilidade/Riscos:** Catálogo amplo e feature gates encadeados. Testar Pulley com Sable/Create, Faucet/storage com capabilities, Cannon/claims, Urn/worldgen e resource packs. 3.9.8 corrige primeiro pull do Pulley, Cannon Boat range, Flag renderer/config e Hourglass load.
-- **Observações:** mod id `supplementaries`; runtime físico 1.21.1-3.9.8. Existe 3.9.9 para NeoForge 1.21.1 publicada em 10/09/2026; registrar como atualização disponível, sem substituir a versão canônica até o JAR físico mudar. `sable-companion-common-1.21.1-1.6.0.jar` está embarcado em `META-INF/jarjar` e não é entrada top-level. Config física não foi lida.
-- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Supplementaries 3.9.8 File ID 8821187 e 3.9.9 File ID 8852720 revalidados em 13/09/2026 + inventário físico do JAR registrando Sable Companion 1.6.0 em META-INF/jarjar. Dossiê de 11/09 preservado; config local e testes runtime não foram executados.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/8821187 ; https://github.com/MehVahdJukaar/Supplementaries
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Supplementaries 3.9.8 permanece o runtime físico; atualização 3.9.9 NeoForge 1.21.1 segue disponível desde 10/09/2026. Sable Companion 1.6.0 foi confirmado como JarJar interno, sem ordinal próprio.
-- **Histórico da decisão:**
+- **Compatibilidade/Riscos:** Catálogo amplo e feature gates encadeados. Testar Pulley com Sable/Create, Faucet/storage com capabilities, Cannon/claims, Urn/worldgen e resource packs. O runtime físico 3.9.9 preserva como regression gates os fixes publicados para primeiro pull do Pulley, Cannon Boat range, Flag renderer/config e Hourglass load.
+- **Observações:** mod id `supplementaries`; runtime físico 1.21.1-3.9.9. `sable-companion-common-1.21.1-1.6.0.jar` está embarcado em `META-INF/jarjar` e não é entrada top-level. Config física não foi lida.
+- **Procedência:** modlist(1).txt física atual de 27/09/2026 + SHA-1 físico 06ed05381a5653d90398dc6ebf3ad1154add6374 + CurseForge oficial Supplementaries 3.9.9 File ID 8852720 para NeoForge 1.21.1 + inventário físico registrando Sable Companion 1.6.0 em META-INF/jarjar. Nenhum teste runtime/config migration foi executado.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/8852720
+- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — autoridade física atual é Supplementaries 1.21.1-3.9.9; release NeoForge 1.21.1 oficial confirmada. Sable Companion 1.6.0 permanece JarJar interno sem ordinal próprio; testes runtime seguem pendentes.
+- **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-07
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> 🧰 **ESCOPO CANÔNICO.** Runtime físico: `supplementaries-1.21.1-3.9.8-neoforge.jar`, mod id `supplementaries`, versão `1.21.1-3.9.8`. Supplementaries é um grande **vanilla+ funcional/decorativo**, com mais de 200 blocos/itens descritos pelo projeto e configuração granular que permite desabilitar grande parte do catálogo individualmente.
-
+> **ESCOPO CANÔNICO.** Runtime físico: `supplementaries-1.21.1-3.9.9-neoforge.jar`, mod id `supplementaries`, versão `1.21.1-3.9.9`. Supplementaries é um grande **vanilla+ funcional/decorativo**, com mais de 200 blocos/itens descritos pelo projeto e configuração granular que permite desabilitar grande parte do catálogo individualmente.
 ## 1. Identidade, versão e papel
 - **Mod:** Supplementaries.
-- **JAR físico:** `supplementaries-1.21.1-3.9.8-neoforge.jar`.
+- **JAR físico:** `supplementaries-1.21.1-3.9.9-neoforge.jar`.
 - **Mod id:** `supplementaries`.
-- **Versão:** `1.21.1-3.9.8`.
+- **Versão:** `1.21.1-3.9.9`.
 - **Loader/jogo:** NeoForge 1.21.1.
 - **Ambiente:** Client & Server.
 - **Dependência principal:** Moonlight Lib; o pack possui `moonlight-1.21.1-3.6.3-neoforge.jar`.
 - **Decisão:** Sem decisão; preservada.
-
 ## 2. Authority e ownership
 Supplementaries é authority de seus próprios blocos, itens, entidades/projéteis e mecânicas vanilla+.
-
 Moonlight fornece infraestrutura compartilhada; Amendments altera/expande comportamentos de conteúdo vanilla e não deve ser confundido com Supplementaries. Outros mods podem fornecer compats ou retexturas sem assumir ownership das mecânicas base.
-
 ## 3. Escopo funcional
 O projeto organiza o conteúdo em três grandes famílias:
 - **storage/display:** Sack, Safe/Key, Jar/Tinted Jar, Item Shelf, Book Pile, Crystal Display, Hat Stand, Quiver, Lunch Basket, presents e Urn;
 - **redstone/utilidade/automação:** Bellows, Crank, Turn Table, Faucet, Pulley, Relayer, Speaker, Redstone Illuminator, Sliding Block, Cog Block, Clock, Spring Launcher, Pedestal e Wind Vane;
 - **decoração/iluminação/ferramentas:** sconces/candelabras, Fire Pit, lamps, rope/bunting/awnings, signs, blackboards, planters, timber frames, doors/trapdoors, Cannon/Cannonball, Slingshot, bombs, Rope Arrow, Hourglass, Wrench, Flute, Soap, Antique Ink, mapas e outros utilitários.
-
 A ficha não transforma a lista pública em contagem exata de registries sem source pin da release 3.9.8.
-
 ## 4. Jars e storage interativo
 Jars/Tinted Jars armazenam diferentes conteúdos e são parte importante da identidade do mod. A documentação pública inclui uso com fluidos, cookies e pequenos mobs/objetos em contextos suportados.
-
 Testes devem cobrir inserção/extração, quebra/recuperação, NBT/components persistentes e interoperabilidade com hoppers/pipes quando exposta.
-
 ## 5. Rope, pulley e estruturas móveis
 Rope é infraestrutura interna para outras features. O source 1.21.1 mostra que desabilitar rope pode desabilitar também recursos dependentes como pulleys, buntings, rope arrows e compat blocks.
-
 A configuração de Pulley possui modo de **continuous retraction**, no qual a cadeia retrai em vários ticks usando moving-piston entities; múltiplos pulleys podem cooperar para puxar uma estrutura ampla quando configurado.
-
 No pack com Sable/Create, testar pulleys e estruturas móveis para evitar conflito de ownership físico.
-
 ## 6. Faucet e transferência
 Faucet é mecanismo de transferência/derramamento. O source expõe opções como:
 - permitir derrubar itens;
 - permitir preencher inventários de entidades abaixo.
-
 A semântica efetiva depende da config. Interações com tanks/containers de outros mods devem validar capability/transaction sem dupe/loss.
-
 ## 7. Cannon, cannon boats e projéteis
 Supplementaries possui Cannon/Cannonball e Cannon Boat. Configs publicadas controlam fuse, cooldown, fire power, recoil, TNT behavior e break radius/power scaling.
-
-A release 3.9.8 corrige especificamente **shoot range do cannon boat**, tornando este comportamento regression gate da build instalada.
-
+A release física 3.9.9 publica o fix de **shoot range do cannon boat**, tornando este comportamento regression gate da build instalada.
 ## 8. Urns, geração e loot
 Urn possui configuração própria, incluindo chance de gerar critter a partir de tag e opção de cave urns que requer world reload.
-
 Isso cria duas superfícies distintas:
 - bloco/loot em runtime;
 - geração de mundo, que não deve ser avaliada em chunks antigos como se fosse regenerada automaticamente.
-
 ## 9. Soap e limpeza data-driven
 Soap pode limpar blocos/itens e possui config para desabilitar cleaning em-world sem remover o item/recipes. O source 1.21.1 também possui blacklist e mapeamentos especiais de blocos a serem limpos.
-
 Como o pack é grande, compat data-driven deve ser testada com blocos modded para evitar transformações indevidas.
-
 ## 10. Configuração e feature gates
 A linha 1.21.1 usa config comum sincronizada baseada em Moonlight. Muitos features têm toggles independentes e subopções.
-
 Consequências operacionais:
 - “mod instalado” não significa que cada feature esteja habilitada;
 - algumas opções exigem world reload;
 - clients precisam receber regras sincronizadas do servidor;
 - desabilitar um feature-pai pode afetar features dependentes.
-
 A configuração física do pack não foi lida neste lote.
-
-## 11. Release 3.9.8
-Changelog oficial da build física:
-- corrige animação do **Pulley no primeiro pull**;
-- corrige **shoot range do Cannon Boat**;
-- corrige renderer do item de **Flags** ligado à config de banners;
-- altera método de load do **Hourglass**.
-
-Esses quatro pontos são regression gates específicos da 3.9.8.
-
+## 11. Release 3.9.9 e baseline 3.9.8
+A 3.9.8 já registrava como regression gates:
+- correção da animação do **Pulley no primeiro pull**;
+- correção do **shoot range do Cannon Boat**;
+- correção do renderer do item de **Flags** ligado à config de banners;
+- alteração do método de load do **Hourglass**.
+A página oficial da release física 3.9.9 também publica esses mesmos quatro itens em **What's new**. Portanto, no dossiê atual eles permanecem regression gates do runtime 3.9.9, sem inferir um delta funcional adicional não publicado entre 3.9.8 e 3.9.9.
 ## 12. Client / server e multiplayer
 - Servidor: placement, inventories, transfers, redstone, projectile/damage e state de blocks/entities.
 - Cliente: modelos, animações, GUIs e efeitos.
 - Config COMMON_SYNCED precisa manter feature availability consistente.
 - Dois jogadores interagindo com mesmo storage/mechanism não podem duplicar state.
-
 ## 13. Integrações concretas no pack
 - **Moonlight Lib 3.6.3:** dependency física principal.
 - **Amendments 2.1.10:** ecossistema próximo e sobreposição vanilla+ parcial; não é duplicação integral.
@@ -122,7 +94,6 @@ Esses quatro pontos são regression gates específicos da 3.9.8.
 - **Create 6.0.10:** sobreposição parcial em mecanismos e automação; testar Faucet/Pulley/Cannon próximos a contraptions sem assumir integração universal.
 - **Excalibur Supplementaries Support** e `Supplementaries Compat` estão catalogados separadamente; são camadas visual/data, não authority das mecânicas.
 - **Subtle Effects:** integração visual explícita com Enderman Head de Supplementaries em feature de shader; não altera lógica do item.
-
 ## 14. Riscos técnicos
 1. **Catálogo amplo:** maior superfície de recipe/tag/model/loot conflicts.
 2. **Feature dependency graph:** desabilitar Rope ou outro parent pode desligar recursos relacionados.
@@ -130,11 +101,10 @@ Esses quatro pontos são regression gates específicos da 3.9.8.
 4. **Transfer duplication:** Faucet/storage com capabilities externas exige teste transacional.
 5. **Projectile balance:** Cannon/Cannon Boat interagem com proteção, claims e outros sistemas de dano.
 6. **Worldgen:** urns/flax e outros recursos gerados exigem seed/chunk novo para validação.
-7. **HUD/model/config:** 3.9.8 corrige renderer de flags; resource packs e Excalibur precisam regression visual.
+7. **HUD/model/config:** 3.9.9 publica o fix de renderer de flags; resource packs e Excalibur precisam regression visual.
 8. **Performance:** muitos BlockEntities/animated mechanisms juntos podem elevar custo de render/tick.
-
 ## 15. Matriz de testes
-- [ ] Dedicated server boot com Supplementaries 3.9.8 + Moonlight 3.6.3.
+- [ ] Dedicated server boot com Supplementaries 3.9.9 + Moonlight 3.6.3.
 - [ ] Feature gates sincronizam e desabilitam apenas o escopo esperado.
 - [ ] Jar/storage preserva conteúdo após break/relog/restart.
 - [ ] Pulley anima corretamente já no primeiro pull.
@@ -146,19 +116,16 @@ Esses quatro pontos são regression gates específicos da 3.9.8.
 - [ ] Flag item renderer respeita config e resource pack Excalibur.
 - [ ] Hourglass persiste state após save/restart.
 - [ ] Sable/Create interaction em mecanismos móveis.
-
 Nenhum teste foi marcado como aprovado nesta auditoria.
-
 ## 16. Evidências
 - Modlist física canônica 08/09/2026: JAR/mod id/versão, Moonlight e stack local.
-- CurseForge oficial Supplementaries 3.9.8: release exata, ambiente e changelog.
+- CurseForge oficial Supplementaries 3.9.9, File ID 8852720: release NeoForge 1.21.1 atual, ambiente e changelog.
 - Página oficial do projeto: catálogo funcional e mais de 200 blocos/itens.
 - Source oficial branch 1.21.1: `CommonConfigs`, feature gates e parâmetros de Rope/Pulley/Faucet/Cannon/Urn/Soap. O branch é usado para arquitetura; não é tratado como commit pin exato do binário 3.9.8.
-
 ## 17. Revalidação física — 11/09/2026
 O JAR canônico continua sendo `supplementaries-1.21.1-3.9.8-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.8`, com Moonlight 3.6.3 presente. O dossiê 3.9.8 continua tecnicamente aplicável ao runtime físico.
-
 **Atualização upstream:** a file list oficial agora contém `supplementaries-1.21.1-3.9.9-neoforge.jar`, publicada em 10/09/2026. Esta auditoria não altera a versão instalada nem atribui à 3.9.9 comportamento adicional além do que a publicação suporta. Nenhum teste/config migration foi executado.
-
 ## 18. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece Supplementaries 3.9.8. A release NeoForge 1.21.1 mais recente localizada é 3.9.9, publicada em 10/09/2026; o JAR do pack não foi alterado. O inventário físico também confirma Sable Companion 1.6.0 embarcado em `META-INF/jarjar`, subordinado ao host e sem ordinal próprio. Nenhum teste de atualização, config migration, Pulley, Cannon Boat, Flags ou Hourglass foi executado nesta revalidação.
+## 19. Reconciliação física — 27/09/2026
+A autoridade física atual passou a `supplementaries-1.21.1-3.9.9-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.9`, SHA-1 `06ed05381a5653d90398dc6ebf3ad1154add6374`. A publicação oficial NeoForge 1.21.1 é o File ID 8852720, de 10/09/2026. O changelog publicado para 3.9.9 mantém como deltas explícitos os fixes de primeiro pull do Pulley, alcance do Cannon Boat, renderer de Flags ligado à configuração de banners e método de load do Hourglass. `sable-companion-common-1.21.1-1.6.0.jar` permanece JarJar interno e não recebe ordinal top-level. Nenhum teste runtime ou config migration foi executado nesta reconciliação.
