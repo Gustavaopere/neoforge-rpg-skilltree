@@ -13,13 +13,13 @@
 - **Decisão:** Manter
 - **Categoria:** Compat, Armazenamento
 - **Função:** Allows Sophisticated Storage barrels/chests/shulker boxes to function on Create contraptions while preserving content, upgrades, settings and memorized slots and adapting position-sensitive upgrades to moving storage.
-- **Dependências:** Create 6.0.10, Sophisticated Core 1.5.1 and Sophisticated Storage 1.5.91 are required and physically present; JEI 19.53.0.426 is present as an optional integration surface.
+- **Dependências:** Create 6.0.10, Sophisticated Core 1.5.1 and Sophisticated Storage 1.5.91 are required and physically present; JEI 19.56.0.440 is present as an optional integration surface.
 - **Sobreposição:** Does not create new storage; adapts existing Sophisticated Storage blocks/features to Create contraptions.
 - **Compatibilidade/Riscos:** Create↔Sophisticated Storage bridge. Riscos: content/upgrades loss/dupe on assembly, dynamic-position mistakes for pickup/magnet, stale capability after movement, packed/tier operations in motion, lock/visual-state drift and concurrent access. 0.1.21 is the physical Release.
 - **Observações:** JAR físico `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar`, runtime 0.1.21. Official docs explicitly cover dynamic positions for Pickup/Magnet, right-click upgrades, tier upgrades, Storage Tool and Paintbrush on contraption storage.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge official Sophisticated Storage Create Integration 0.1.21 + official project feature documentation.
+- **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge official Sophisticated Storage Create Integration 0.1.21 + JEI físico 19.56.0.440 + official project feature documentation.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-create-integration
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sophisticated Storage Create Integration 0.1.21.209 físico reconfirmado; permanece a release NeoForge 1.21.1 mais recente localizada.
+- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Sophisticated Storage Create Integration 0.1.21.209 permanece físico; JEI optional integration surface reconciliada para 19.56.0.440.
 - **Histórico da decisão:** Mantido para integração Sophisticated Storage ↔ Create. Em 11/09/2026 revalidado contra runtime físico 0.1.21.209 e providers atuais.
 - **Data da última decisão:** 2026-08-22
 
