@@ -1,23 +1,29 @@
 # Create: The Factory Must Grow
 
-## Propriedades do registro
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#541**: JAR `tfmg-1.21.1-1.3.1-community.jar`, mod id `tfmg`, runtime `1.3.1-community`, SHA-1 `c9047467b660bed0b7b2c87cb2d40e33946c9ae5`.
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+
+## Propriedades do banco
 
 - **Mod:** Create: The Factory Must Grow
-- **Arquivo JAR:** tfmg-1.21.1-1.3.1-community.jar
+- **Arquivo JAR:** `tfmg-1.21.1-1.3.1-community.jar`
 - **Versão 1.21.1:** 1.3.1-community
-- **Categoria:** Tecnologia; Automação
-- **Função:** TFMG Community Edition: grande expansão dieselpunk/heavy engineering para Create com petróleo e derivados, distillation, coke/blast furnaces, metalurgia, eletricidade própria, engines, electrolysis e equipamentos industriais.
-- **Dependências:** Create 6.0.10 é a base funcional; Sable 2.0.5 está presente. NeoForge 1.21.1. Create Liquid Fuels: Reburned é integração opcional: 1.3.1 corrige data generation quando ele está ausente.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Community fork com features experimentais. Gates atuais incluem Coke Oven/Blast Furnace, distillation/fluid conservation, electric network, Sable, Oil Reserves/worldgen 1.3.0, Vats/Tanks cross-type e Cable Connector disconnect não confirmados como resolvidos. 1.3.1 corrige Coke Oven multiblocks e data generation sem CLF Reburned.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/tfmg-community-edition/files/8723583 ; https://github.com/DrMango14/Create-The_Factory_Must_Grow
-- **Procedência:** modlist física de 17/09/2026 + releases/changelogs oficiais TFMG Community Edition 1.2.4b, 1.3.0 e 1.3.1 + Create 6.0.10 e Sable 2.0.5 físicos.
-- **Observações:** mod id `tfmg`; runtime físico 1.3.1-community. A 1.3.0 adicionou Ponders para engines, supersedindo o antigo known issue de ausência de Ponders. 1.3.1 traz manutenção de Coke Oven, light bulbs, Multimeter/Cable Connectors e data generation.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — TFMG Community Edition atualizado para 1.3.1-community; deltas 1.3.0/1.3.1 incorporados; Ponders de engines marcados como resolvidos e demais known issues mantidos fail-closed quando não houve fix explícito.
 - **Decisão:** Sem decisão
-- **Histórico da decisão:** 
+- **Categoria:** Tecnologia, Automação
+- **Função:** TFMG Community Edition: grande expansão dieselpunk/heavy engineering para Create com petróleo e derivados, distillation, coke/blast furnaces, metalurgia, eletricidade própria, engines, electrolysis e equipamentos industriais.
+- **Dependências:** Create 6.0.10 é a base funcional; Sable 2.0.5 está presente. NeoForge 1.21.1. Create Liquid Fuels: Reburned é integração opcional: 1.3.1 corrige data generation quando ele está ausente.
 - **Sobreposição:** Compartilha petróleo, combustíveis e geração/uso de energia com outros addons Create, porém implementa sua própria cadeia de heavy engineering e não é apenas um recipe pack.
+- **Compatibilidade/Riscos:** Community fork com features experimentais. Gates atuais incluem Coke Oven/Blast Furnace, distillation/fluid conservation, electric network, Sable, Oil Reserves/worldgen 1.3.0, Vats/Tanks cross-type e Cable Connector disconnect não confirmados como resolvidos. 1.3.1 corrige Coke Oven multiblocks e data generation sem CLF Reburned.
+- **Observações:** mod id `tfmg`; runtime físico 1.3.1-community. A 1.3.0 adicionou Ponders para engines, supersedindo o antigo known issue de ausência de Ponders. 1.3.1 traz manutenção de Coke Oven, light bulbs, Multimeter/Cable Connectors e data generation.
+- **Procedência:** modlist física de 17/09/2026 + releases/changelogs oficiais TFMG Community Edition 1.2.4b, 1.3.0 e 1.3.1 + Create 6.0.10 e Sable 2.0.5 físicos.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/tfmg-community-edition/files/8723583 ; https://github.com/DrMango14/Create-The_Factory_Must_Grow
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — TFMG Community Edition atualizado para 1.3.1-community; deltas 1.3.0/1.3.1 incorporados; Ponders de engines marcados como resolvidos e demais known issues mantidos fail-closed quando não houve fix explícito.
+- **Histórico da decisão:** 
+- **Data da última decisão:** 
+
+# Dossiê operacional — padrão Alex's Mobs
 
 > **ESCOPO CANÔNICO.** Runtime físico: `tfmg-1.21.1-1.3.1-community.jar`, mod id `tfmg`, versão `1.3.1-community`. Esta build é a **Create: TFMG Community Edition**, fork público que continua o sistema de heavy engineering/oil do TFMG e prioriza correções de bugs. O binário instalado corresponde a uma release pública oficial da Community Edition de 24/08/2026.
 ## 1. Identidade, versão e provenance
