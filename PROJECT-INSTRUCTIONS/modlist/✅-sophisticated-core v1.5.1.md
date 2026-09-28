@@ -13,13 +13,13 @@
 - **Decisão:** Manter
 - **Categoria:** Biblioteca
 - **Função:** Shared core/library for the Sophisticated ecosystem, centralizing reusable inventory/storage, upgrade, filtering/settings, serialization/sync and common infrastructure consumed by Backpacks/Storage/addons.
-- **Dependências:** Library itself is the required base for Sophisticated Backpacks 3.26.2, Sophisticated Storage 1.5.91 and their integrations currently installed. Other addons also consume Sophisticated APIs.
+- **Dependências:** Library itself is the required base for Sophisticated Backpacks 3.26.3, Sophisticated Storage 1.5.91 and their integrations currently installed. Other addons also consume Sophisticated APIs.
 - **Sobreposição:** Infrastructure library; no standalone storage system to compare. Removing it while consumers remain would break the Sophisticated stack.
-- **Compatibilidade/Riscos:** Shared library structurally required by the installed Sophisticated stack. Risks: ABI/API drift, shared serialization/config regression, upgrade registry mismatch, packet/component sync errors and consumer version skew. Direct consumers physically present include Backpacks 3.26.2, Storage 1.5.91 and both Create integrations.
+- **Compatibilidade/Riscos:** Shared library structurally required by the installed Sophisticated stack. Risks: ABI/API drift, shared serialization/config regression, upgrade registry mismatch, packet/component sync errors and consumer version skew. Direct consumers physically present include Backpacks 3.26.3, Storage 1.5.91 and both Create integrations.
 - **Observações:** JAR físico `sophisticatedcore-1.21.1-1.5.1.2341.jar`, runtime 1.5.1. It has no independent gameplay proposition; value/necessity derives from consumers. Previous 1.4.x/1.5.1.2333 references are historical.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge official Sophisticated Core 1.5.1.2341 + direct installed consumers in current modlist.
+- **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge official Sophisticated Core 1.5.1.2341 + direct installed consumers in current modlist.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/8839323
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sophisticated Core 1.5.1.2341 físico reconfirmado; permanece a release NeoForge 1.21.1 mais recente localizada.
+- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Sophisticated Core 1.5.1.2341 permanece físico; consumer Sophisticated Backpacks reconciliado para 3.26.3.
 - **Histórico da decisão:** Mantido as core estrutural do ecossistema Sophisticated. Revalidated on 11/09/2026 against physical runtime 1.5.1.2341 and direct installed consumers.
 - **Data da última decisão:** 2026-08-22
 
@@ -37,7 +37,7 @@
 - **Papel:** infraestrutura comum para os mods Sophisticated.
 ## 2. Consumers físicos comprovados
 No snapshot atual, consumers inequívocos incluem:
-- Sophisticated Backpacks `3.26.2`;
+- Sophisticated Backpacks `3.26.3`;
 - Sophisticated Storage `1.5.91`;
 - Sophisticated Backpacks Create Integration `0.2.0`;
 - Sophisticated Storage Create Integration `0.1.21`.
