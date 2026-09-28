@@ -14,12 +14,12 @@
 - **Categoria:** Armazenamento, Automação
 - **Função:** Stationary modular storage with tiered barrels/chests/shulker boxes, capacity and functional upgrades, filters/settings, sorting/memorized slots, controller interaction and storage tools.
 - **Dependências:** Sophisticated Core 1.5.1 required and physically present. Sophisticated Storage Create Integration 0.1.21 and Ars Sophisticated Compatibility 0.3.0 are physical integration surfaces; JEI 19.56.0.440 is present.
-- **Sobreposição:** Local/upgradable stationary storage. Overlaps in purpose with Tom's/AE2/RS and backpacks, but is not equivalent to a networked crafting system or portable storage.
+- **Sobreposição:** Local/upgradable stationary storage. No snapshot físico atual, Tom's Storage 2.4.2 é o provider de rede ativo relevante; AE2 e Refined Storage estão ausentes top-level e permanecem apenas comparações/integrations upstream dormentes. Backpacks continua sobreposição portátil, não equivalente a networked crafting.
 - **Compatibilidade/Riscos:** Stateful stationary storage. Risks: inventory/upgrades loss/dupe, compression/compacting recipe conflicts, controller routing, packed-drop duplication, filter/memory drift, network/capability sync and Create contraption serialization. Compression and compacting are mutually dangerous when combined in conflicting configurations.
 - **Observações:** JAR físico `sophisticatedstorage-1.21.1-1.5.91.2127.jar`, runtime 1.5.91. Current dossier distinguishes base storage ownership from Create bridge and from portable Backpacks.
 - **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge official Sophisticated Storage 1.5.91.2127 + JEI físico 19.56.0.440 + official project documentation/changelog lineage for upgrades, compression, controller and tools.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/8762100
-- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Sophisticated Storage 1.5.91.2127 permanece físico; dependency surface JEI reconciliada para 19.56.0.440.
+- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Sophisticated Storage 1.5.91.2127 permanece físico; JEI reconciliado para 19.56.0.440; sobreposição atual distingue Tom's Storage 2.4.2 ativo de AE2/Refined Storage ausentes top-level.
 - **Histórico da decisão:** Mantido como armazenamento estacionário do stack Sophisticated. Em 11/09/2026 revalidado na versão física 1.5.91.2127 e documentado no padrão técnico completo.
 - **Data da última decisão:** 2026-08-22
 
@@ -111,7 +111,7 @@ Validar:
 - Create assembly/disassembly;
 - concurrent multiplayer access.
 ## 22. Sobreposição no pack
-Tom's Storage, AE2, Refined Storage e outros providers cobrem redes/automação mais ampla; Sophisticated Storage cobre **containers locais modularmente upgradáveis**.
+No snapshot físico atual, **Tom's Storage 2.4.2** é o provider de rede ativo relevante; AE2 e Refined Storage estão ausentes top-level e permanecem apenas comparações/integrations upstream dormentes. Sophisticated Storage cobre **containers locais modularmente upgradáveis**.
 A semelhança “guardar itens” não é suficiente para remoção. Avaliar recipes, progression, network usage e papel de cada sistema.
 ## 23. Riscos técnicos
 1. **Tier/pack dupe:** container original e item packed coexistem.
