@@ -15,7 +15,7 @@
 - **Função:** Biblioteca/core do ecossistema Vazkii usada principalmente pelo Quark em versões modernas.
 - **Dependências:** Consumer físico confirmado: Quark 4.1-484. Quark requer Zeta em 1.20.1+ segundo o projeto oficial.
 - **Sobreposição:** Infraestrutura específica do ecossistema Zeta/Quark; não é substituível automaticamente por outras libraries e não deve receber attribution de gameplay do consumer.
-- **Compatibilidade/Riscos:** Dependência real de Quark. Riscos: consumer/API drift, linkage/classloading, mixin/config interaction e substituição indevida por outra library. Pack físico usa Quark 4.1-483; upstream já publicou Quark 4.1-484 em 10/09/2026, sem mudança correspondente de Zeta. Updates devem validar Zeta↔Quark em conjunto.
+- **Compatibilidade/Riscos:** Dependência real de Quark. Riscos: consumer/API drift, linkage/classloading, mixin/config interaction e substituição indevida por outra library. Pack físico atual usa Quark 4.1-484; referências a Quark 4.1-483 permanecem apenas nos snapshots históricos de 11/09–13/09. Updates devem validar Zeta↔Quark em conjunto.
 - **Observações:** Mod id `zeta`, runtime `1.1-40`. Zeta é load-bearing library/sucessora do AutoRegLib para mods modulares; não contém gameplay próprio relevante.
 - **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge oficial Zeta 1.1-40 + Quark 4.1-484 físico. Zeta 1.1-40 permanece o runtime instalado; snapshots 11/09–13/09 com Quark 4.1-483 foram preservados como histórico. Nenhum runtime linkage QA foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/zeta
