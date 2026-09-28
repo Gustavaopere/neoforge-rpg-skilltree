@@ -527,13 +527,58 @@
 | 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `1.5.91` | `Storage` | 27/09/2026 - 21:26 |
 | 520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar` | `0.1.21` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 521 | Soul fire'd | `soul-fire-d-neoforge-1.21-6.1.0.jar` | `6.1.0` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Utility & QoL` | 27/09/2026 - 20:57 |
+| 522 | Sound Physics: Aeronautics | `sound-physics-remastered-neoforge-1.4.0.1.jar` | `1.4.0.1` | `Create + Utility & QoL` | 27/09/2026 - 22:12 |
+| 523 | Sounds | `sounds-2.4.22+lts+1.21.1-neoforge.jar` | `2.4.22+lts` | `Adventure and RPG + Cosmetic + Utility & QoL` | 27/09/2026 - 22:12 |
+| 524 | spark | `spark-1.10.124-neoforge.jar` | `1.10.124` | `Server Utility` | 27/09/2026 - 22:12 |
+| 525 | Spell Codex: Iron's Spells 'n Spellbooks Addon | `specs_irons_spellbooks-1.6.5.jar` | `1.6.5` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
+| 526 | SpellActionbar | `spell_actionbar-1.1.4.jar` | `1.1.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
+| 527 | StarbuncleMania | `starbunclemania-1.21.1-1.5.8.jar` | `1.5.8` | `Addons + Automation + Energy, Fluid, and Item Transport + Magic` | 27/09/2026 - 22:12 |
 | 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 27/09/2026 - 22:12 |
+| 529 | Structurize | `structurize-1.0.833-1.21.1-snapshot.jar` | `1.0.833-1.21.1-snapshot` | `Cosmetic + Server Utility + Structures` | 27/09/2026 - 22:12 |
+| 532 | Create: Deep Seas - Lava Fix | `submarinefix-1.0.1.jar` | `1.0.1` | `Bug Fixes + Create` | 27/09/2026 - 22:58 |
 | 536 | Supplementaries | `supplementaries-1.21.1-3.9.9-neoforge.jar` | `1.21.1-3.9.9` | `Cosmetic + Miscellaneous + Redstone + Storage` | 27/09/2026 - 23:18 |
 | 537 | Tectonic | `tectonic-3.0.28-neoforge-21.1.jar` | `3.0.28` | `World Gen` | 27/09/2026 - 23:18 |
 | 541 | Create: TFMG Community Edition | `tfmg-1.21.1-1.3.1-community.jar` | `1.3.1-community` | `Addons + Armor, Tools, and Weapons + Create + Ores and Resources + Technology` | 27/09/2026 - 22:58 |
-| 543 | Thirst Was Reclaimed | `ThirstWasReclaimed-1.21.1-3.0.5.jar` | `1.21.1-3.0.5` | `Food` | 17/09/2026 - 23:58 |
-| 544 | Corail Tombstone | `tombstone-neoforge-1.21.1-9.5.6.jar` | `9.5.6` | `Adventure and RPG + Magic + Mobs + Utility & QoL` | 16/09/2026 - 18:40 |
-| 564 | Waystones | `waystones-neoforge-1.21.1-21.1.45.jar` | `21.1.45` | `Adventure and RPG + Magic + Player Transport + Server Utility` | 27/09/2026 - 14:39 |
+| 543 | Thirst Was Reclaimed | `ThirstWasReclaimed-1.21.1-3.0.5.jar` | `1.21.1-3.0.5` | `Food` | 28/09/2026 - 00:04 |
+| 544 | Corail Tombstone | `tombstone-neoforge-1.21.1-9.5.6.jar` | `9.5.6` | `Adventure and RPG + Magic + Mobs + Utility & QoL` | 28/09/2026 - 00:04 |
+| 548 | Create:Tracks+ | `tracks_plus-1.0.6b6.jar` | `1.0.6b6` | `Create` | 28/09/2026 - 00:04 |
+| 551 | Sable: True Impact (For Create: Aeronautics) | `true_impact-0.5.7-delta.jar` | `0.5.7-delta` | `Create + Technology` | 28/09/2026 - 00:04 |
+| 552 | Tunes n' Tomes: a bards journey | `tunes_n_tomes-1.1.0-HOTFIX.jar` | `1.1.0-HOTFIX` | `Addons + Magic` | 28/09/2026 - 01:09 |
+| 553 | UnChipped | `unchipped-1.21-1.2.jar` | `1.21-1.2` | `Addons + Automation + Create + Processing` | 28/09/2026 - 01:09 |
+| 554 | Underground Villages, Stoneholm (Fabric/Forge/NeoForge) | `underground_village-neoforge-1.21.1-2.0.jar` | `2.0` | `Biomes + Structures + World Gen` | 28/09/2026 - 01:09 |
+| 555 | Uranus | `uranus-3.0-beta.1.jar` | `3.0-beta.1` | `API and Library + Utility & QoL` | 28/09/2026 - 01:09 |
+| 556 | Vampirism Iron's Spells Compatibility | `vampire_spells_addon-neoforge-1.21.1-0.0.9.jar` | `1.21.1-0.0.9` | `Addons + Adventure and RPG + Food + Magic` | 28/09/2026 - 01:28 |
+| 557 | Vampiric Ageing - A Vampirism Addon | `vampiricageing-1.21-1.4.21.jar` | `1.21-1.4.21` | `Magic` | 28/09/2026 - 01:09 |
+| 558 | Vampirism - Become a vampire! | `Vampirism-1.21-1.10.13.jar` | `1.10.13` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 28/09/2026 - 01:09 |
+| 559 | Vampirism Integrations | `vampirism_integrations-1.21.1-1.10.2.jar` | `1.10.2` | `Magic + Miscellaneous` | 28/09/2026 - 01:09 |
+| 560 | Vanilla Backport | `VanillaBackport-neoforge-1.21.1-1.1.7.10.jar` | `1.1.7.10` | `Armor, Tools, and Weapons + Biomes + Mobs + Ores and Resources + World Gen` | 28/09/2026 - 01:09 |
+| 561 | Village Spawn Point | `villagespawnpoint-1.21.1-4.6.jar` | `4.6` | `Adventure and RPG + World Gen` | 28/09/2026 - 01:09 |
+| 562 | Vintage Improvenents - SSW Edition | `vintageimprovements-1.21.1-0.0.0.7.jar` | `1.21.1-0.0.0.7` | `Addons + Create` | 28/09/2026 - 02:10 |
+| 563 | VS / Sable Hose Connectors | `VS-Sable-HoseConnectors-0.1.8-1.21.1.jar` | `0.1.8` | `Addons + Create + Industrial Craft + Storage + Technology` | 28/09/2026 - 02:10 |
+| 564 | Waystones | `waystones-neoforge-1.21.1-21.1.45.jar` | `21.1.45` | `Adventure and RPG + Magic + Player Transport + Server Utility` | 28/09/2026 - 02:28 |
+| 565 | Waystones: Sable (Create Aeronautics Addon) | `waystonessable-1.0.7.jar` | `1.0.7` | `Addons + Create` | 28/09/2026 - 02:10 |
+| 566 | Wayward Attributes | `wayward_attributes-1.21.1-1.1.1.jar` | `1.1.1` | `API and Library + Cosmetic` | 28/09/2026 - 02:10 |
+| 567 | YDM's Weapon Master | `weaponmaster_ydm-1.21.1-neoforge-4.2.7.jar` | `4.2.7` | `Cosmetic` | 28/09/2026 - 02:10 |
+| 568 | Weapons of Miracles - epic fight | `WeaponsOfMiracles-2.0.178.jar` | `2.0.178` | `Addons + Adventure and RPG + Armor, Tools, and Weapons` | 28/09/2026 - 02:10 |
+| 569 | Create Aeronautics: Weight | `weight-1.2.0.jar` | `1.2.0` | `Addons + Create` | 28/09/2026 - 02:10 |
+| 570 | Werewolves - Become a Beast! | `Werewolves-1.21-2.0.3.3.jar` | `2.0.3.3` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 28/09/2026 - 02:10 |
+| 571 | Wind's Spellbooks : Iron's Spells 'n Spellbooks Addon | `wind_spellbooks-1.0.5.jar` | `1.0.5` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 28/09/2026 - 02:10 |
+| 572 | WorldWeaver: New Dawn | `worldweaver-21.0.25.jar` | `21.0.25` | `API and Library + Biomes + Utility & QoL + World Gen` | 28/09/2026 - 08:36 |
+| 573 | WunderLib: New Dawn | `wunderlib-21.0.10.jar` | `21.0.10` | `API and Library + Utility & QoL` | 28/09/2026 - 08:36 |
+| 574 | YetAnotherConfigLib | `yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar` | `3.8.2+1.21.1-neoforge` | `API and Library` | 28/09/2026 - 08:36 |
+| 575 | Fundamental Principles - Iron's Spells Addon | `ypfundamentals-1.1.7.1.jar` | `1.1.7.1` | `Addons + Adventure and RPG + Magic + Mobs` | 28/09/2026 - 08:36 |
+| 576 | YUNG's API (NeoForge) [1.20.4-1.21.1 ONLY] | `YungsApi-1.21.1-NeoForge-5.1.8.jar` | `1.21.1-NeoForge-5.1.8` | `API and Library + World Gen` | 28/09/2026 - 08:36 |
+| 577 | YUNG's Better Caves (Forge/NeoForge) | `YungsBetterCaves-1.21.1-NeoForge-3.1.6.jar` | `1.21.1-NeoForge-3.1.6` | `Adventure and RPG + Biomes + Structures + World Gen` | 28/09/2026 - 08:36 |
+| 578 | YUNG's Better Desert Temples (NeoForge) [1.20.4 - 1.21.1 ONLY] | `YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5.jar` | `1.21.1-NeoForge-4.1.5` | `Adventure and RPG + Structures + World Gen` | 28/09/2026 - 08:36 |
+| 579 | YUNG's Better Dungeons (NeoForge) [1.20.4 - 1.21.1 ONLY] | `YungsBetterDungeons-1.21.1-NeoForge-5.1.4.jar` | `1.21.1-NeoForge-5.1.4` | `Adventure and RPG + Structures + World Gen` | 28/09/2026 - 08:36 |
+| 580 | YUNG's Better End Island (NeoForge) [1.20.4 - 1.21.1 ONLY] | `YungsBetterEndIsland-1.21.1-NeoForge-3.1.2.jar` | `1.21.1-NeoForge-3.1.2` | `Adventure and RPG + Dimensions + Structures + World Gen` | 28/09/2026 - 08:36 |
+| 581 | YUNG's Better Jungle Temples (NeoForge) [1.20.4 - 1.21.1 ONLY] | `YungsBetterJungleTemples-1.21.1-NeoForge-3.1.2.jar` | `1.21.1-NeoForge-3.1.2` | `Adventure and RPG + Structures + World Gen` | 28/09/2026 - 08:36 |
+| 582 | YUNG's Better Mineshafts (NeoForge) [1.20.4 - 1.21.1 ONLY] | `YungsBetterMineshafts-1.21.1-NeoForge-5.1.1.jar` | `1.21.1-NeoForge-5.1.1` | `Adventure and RPG + Structures + World Gen` | 28/09/2026 - 09:00 |
+| 583 | YUNG's Better Nether Fortresses (NeoForge) [1.20.4 - 1.21.1 ONLY] | `YungsBetterNetherFortresses-1.21.1-NeoForge-3.1.5.jar` | `1.21.1-NeoForge-3.1.5` | `Adventure and RPG + Structures + World Gen` | 28/09/2026 - 09:00 |
+| 584 | YUNG's Better Ocean Monuments (NeoForge) [1.20.4 - 1.21.1 ONLY] | `YungsBetterOceanMonuments-1.21.1-NeoForge-4.1.2.jar` | `1.21.1-NeoForge-4.1.2` | `Adventure and RPG + Structures + World Gen` | 28/09/2026 - 09:00 |
+| 585 | YUNG's Better Witch Huts (NeoForge) [1.20.4 - 1.21.1 ONLY] | `YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1.jar` | `1.21.1-NeoForge-4.1.1` | `Adventure and RPG + Structures + World Gen` | 28/09/2026 - 09:00 |
+| 586 | YUNG's Cave Biomes (Forge/NeoForge) | `YungsCaveBiomes-1.21.1-NeoForge-3.1.1.jar` | `1.21.1-NeoForge-3.1.1` | `Adventure and RPG + Biomes + Mobs + World Gen` | 28/09/2026 - 09:00 |
+| 587 | Zeta | `Zeta-1.1-40.jar` | `1.1-40` | `API and Library` | 28/09/2026 - 09:21 |
 
 ## Divergências de metadata preservadas
 
