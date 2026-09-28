@@ -13,13 +13,13 @@
 - **Decisão:** Manter
 - **Categoria:** Compat, Armazenamento
 - **Função:** Full-featured bridge that keeps Sophisticated Backpacks storage/upgrades functional on Create moving contraptions and adds linked-storage support in the installed 0.2.0 line.
-- **Dependências:** Required stack physically satisfied: Sophisticated Backpacks 3.26.2, Sophisticated Core 1.5.1 and Create 6.0.10.
+- **Dependências:** Required stack physically satisfied: Sophisticated Backpacks 3.26.3, Sophisticated Core 1.5.1 and Create 6.0.10.
 - **Sobreposição:** Não cria storage alternativo; adapta o backpack existente a contraptions Create e linked-storage semantics.
 - **Compatibilidade/Riscos:** Bridge stateful Create↔Sophisticated Backpacks. Riscos: inventory/upgrades duplication on assembly, stale contraption capability, linked-storage split-brain, movement/position-sensitive upgrade errors, chunk unload and concurrent access. 0.2.0 exact delta adds linked storage.
 - **Observações:** JAR físico `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar`, runtime 0.2.0. Exact changelog: linked storage added to SB Create integration.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Sophisticated Backpacks Create Integration 0.2.0.168 + providers físicos Create/Backpacks/Core.
+- **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge oficial Sophisticated Backpacks Create Integration 0.2.0.168 + providers físicos Create 6.0.10 / Backpacks 3.26.3 / Core 1.5.1.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-create-integration/files/8833909
-- **Atualização/Status:** REVALIDADO EM 13/09/2026 — JAR físico e versão confirmados; sem mudança técnica.
+- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — JAR/runtime 0.2.0 mantidos; provider Sophisticated Backpacks atualizado no snapshot físico para 3.26.3.
 - **Histórico da decisão:** Mantido para integração Sophisticated Backpacks ↔ Create. Em 11/09/2026 a ficha foi corrigida para o runtime físico 0.2.0.168; referências antigas a 0.1.8 são históricas e não descrevem mais a build instalada.
 - **Data da última decisão:** 2026-08-22
 
@@ -30,7 +30,7 @@
 ## 1. Identidade e dependências
 - **Mod:** Sophisticated Backpacks Create Integration.
 - **Versão:** `0.2.0`.
-- **Required físicos:** Sophisticated Backpacks `3.26.2`, Sophisticated Core `1.5.1`, Create `6.0.10`.
+- **Required físicos:** Sophisticated Backpacks `3.26.3`, Sophisticated Core `1.5.1`, Create `6.0.10`.
 - **Decisão:** **Manter**.
 ## 2. Ownership
 Sophisticated Backpacks continua owner do conteúdo, upgrades e settings da mochila. Create continua owner de assembly/movement/contraption lifecycle. A integração adapta o acesso ao storage no contexto móvel.
@@ -82,7 +82,7 @@ Esta ficha cobre especificamente a integração oficial Sophisticated com contra
 7. Create API drift.
 8. Core/Backpacks ABI drift.
 ## 15. Matriz de testes
-- [ ] Boot com Create 6.0.10 + Backpacks 3.26.2 + Core 1.5.1 + integration 0.2.0.
+- [ ] Boot com Create 6.0.10 + Backpacks 3.26.3 + Core 1.5.1 + integration 0.2.0.
 - [ ] Backpack com conteúdo monta em contraption sem dupe/loss.
 - [ ] Upgrades/settings persistem durante movimento.
 - [ ] Disassembly restaura exatamente um storage com state íntegro.
