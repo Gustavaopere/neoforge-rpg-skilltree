@@ -1,7 +1,6 @@
 # Boss Refreshed
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db819a94a7f85ef57e55df
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
 - **Arquivo:** `boss-refreshed-v2-1.19-1.21.zip`

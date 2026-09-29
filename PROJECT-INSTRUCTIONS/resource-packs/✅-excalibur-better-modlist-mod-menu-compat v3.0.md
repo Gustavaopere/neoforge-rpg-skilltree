@@ -1,7 +1,6 @@
 # Excalibur | Better ModList & Mod Menu Compat
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81fdb405f17869a901ae
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur - Better ModList Mod Menu Compat v3.0.zip`
