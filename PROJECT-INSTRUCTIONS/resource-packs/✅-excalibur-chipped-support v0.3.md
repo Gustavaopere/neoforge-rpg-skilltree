@@ -26,7 +26,7 @@
 - **Função:** Support pack 16x WIP que adapta a maior parte dos blocks e icons do Chipped ao estilo Excalibur, incluindo workstations exibidas pelo projeto.
 - **Dependências:** Excalibur base + Chipped 4.0.2. Conteúdo client-side; recipes, workstations e block variants continuam sob authority do Chipped.
 - **Sobreposição:** Deve ficar acima do Excalibur base. Outros retextures do Chipped podem substituir assets por prioridade; ausência de visual não altera recipes/gameplay.
-- **Compatibilidade/Riscos:** WIP explícito: upstream fala em “most blocks” e “most icons”, não cobertura total. Riscos de variants novas do Chipped 4.0.2, animated metadata/model drift e load order.
+- **Compatibilidade/Riscos:** WIP explícito: upstream fala em 'most blocks' e 'most icons', não cobertura total. Riscos de variants novas do Chipped 4.0.2, animated metadata/model drift e load order.
 - **Observações:** Arquivo instalado `Excalibur_Chipped_0.3_1.21.1.zip`, release 28/05/2026. Projeto explicitamente WIP; não registrar 100% de cobertura.
 - **Procedência:** Captura CurseForge do perfil RPG em 08/09/2026 + modlist física atual + CurseForge oficial Excalibur Chipped Support 0.3 para 1.21.1.
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/excalibur-chipped-support
