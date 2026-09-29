@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Malumified Iron's Runes 1.0.1.zip`, versão `1.0.1`, Release para Minecraft 1.21.1. O stack físico contém Malum `1.8.2` e Iron's Spells 'n Spellbooks `3.16.3`.
+> **Resource pack físico confirmado:** `Malumified Iron's Runes 1.0.1.zip`, versão `1.0.1`, Release para Minecraft 1.21.1. O stack físico contém Malum `1.8.2` e Iron's Spells 'n Spellbooks `3.16.3`.
 
 ## 1. Papel e authority
 Malumified Iron's Runes altera a aparência das runas de Iron's Spells 'n Spellbooks para se aproximar da linguagem visual das runas de Malum. É uma ponte estética, não uma integração de sistemas mágicos.
