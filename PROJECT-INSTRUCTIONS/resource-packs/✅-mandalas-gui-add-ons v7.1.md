@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `MandalasGUI_AddOn+DarkModded_V7.1.zip`, versão `7.1`. A página individual do arquivo lista explicitamente Minecraft `1.21.1` entre as versões suportadas.
+> **Resource pack físico confirmado:** `MandalasGUI_AddOn+DarkModded_V7.1.zip`, versão `7.1`. A página individual do arquivo lista explicitamente Minecraft `1.21.1` entre as versões suportadas.
 
 ## 1. Papel e authority
 Mandala's GUI - Add-Ons é uma camada de **mod support/interface** para o ecossistema Mandala's GUI. Ela fornece assets de GUI, fontes e elementos visuais para mods suportados; cada mod continua authority de inventories, recipes, dados, ações e networking.
