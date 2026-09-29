@@ -1,7 +1,6 @@
 # Excalibur | Eidolon Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db815a86e2e2505697389f
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Eidolon_1.21.1_v1.zip`
@@ -38,7 +37,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_Eidolon_1.21.1_v1.zip`, versão `v1`, Release para Minecraft 1.21.1. É um compatibility pack não oficial para Eidolon:Repraised e possui escopo deliberadamente limitado.
+> **Resource pack físico confirmado:** `Excalibur_Eidolon_1.21.1_v1.zip`, versão `v1`, Release para Minecraft 1.21.1. É um compatibility pack não oficial para Eidolon:Repraised e possui escopo deliberadamente limitado.
 
 ## 1. Papel e authority
 Excalibur | Eidolon Support adapta visualmente parte de **Eidolon:Repraised** ao estilo Excalibur. Eidolon:Repraised continua authority de magia, mobs, itens, blocos, rituals, recipes e qualquer state de gameplay.

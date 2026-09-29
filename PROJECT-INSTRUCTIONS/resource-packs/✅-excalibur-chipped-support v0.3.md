@@ -1,7 +1,6 @@
 # Excalibur | Chipped Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81ec9873c5bd0880bba4
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Chipped_0.3_1.21.1.zip`
@@ -27,7 +26,7 @@
 - **Função:** Support pack 16x WIP que adapta a maior parte dos blocks e icons do Chipped ao estilo Excalibur, incluindo workstations exibidas pelo projeto.
 - **Dependências:** Excalibur base + Chipped 4.0.2. Conteúdo client-side; recipes, workstations e block variants continuam sob authority do Chipped.
 - **Sobreposição:** Deve ficar acima do Excalibur base. Outros retextures do Chipped podem substituir assets por prioridade; ausência de visual não altera recipes/gameplay.
-- **Compatibilidade/Riscos:** WIP explícito: upstream fala em “most blocks” e “most icons”, não cobertura total. Riscos de variants novas do Chipped 4.0.2, animated metadata/model drift e load order.
+- **Compatibilidade/Riscos:** WIP explícito: upstream fala em 'most blocks' e 'most icons', não cobertura total. Riscos de variants novas do Chipped 4.0.2, animated metadata/model drift e load order.
 - **Observações:** Arquivo instalado `Excalibur_Chipped_0.3_1.21.1.zip`, release 28/05/2026. Projeto explicitamente WIP; não registrar 100% de cobertura.
 - **Procedência:** Captura CurseForge do perfil RPG em 08/09/2026 + modlist física atual + CurseForge oficial Excalibur Chipped Support 0.3 para 1.21.1.
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/excalibur-chipped-support
@@ -36,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_Chipped_0.3_1.21.1.zip`, versão `0.3`, Release de 28/05/2026 para Minecraft 1.21.1. O alvo físico atual é Chipped `4.0.2`.
+> **Resource pack físico confirmado:** `Excalibur_Chipped_0.3_1.21.1.zip`, versão `0.3`, Release de 28/05/2026 para Minecraft 1.21.1. O alvo físico atual é Chipped `4.0.2`.
 
 ## 1. Papel e authority
 Excalibur | Chipped Support é um support pack visual WIP. **Chipped 4.0.2** continua authority das workstations, recipes, block variants e qualquer comportamento; o pack só altera apresentação.

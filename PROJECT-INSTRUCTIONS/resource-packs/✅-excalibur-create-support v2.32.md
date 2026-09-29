@@ -1,7 +1,6 @@
 # Excalibur | Create Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81dc834bc2819f4a19e7
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Create-6 Addon_NeoForge_v2.32.zip`
@@ -36,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_Create-6 Addon_NeoForge_v2.32.zip`, versão `2.32`, Release para Minecraft 1.21.1. O alvo físico atual é Create `6.0.10`.
+> **Resource pack físico confirmado:** `Excalibur_Create-6 Addon_NeoForge_v2.32.zip`, versão `2.32`, Release para Minecraft 1.21.1. O alvo físico atual é Create `6.0.10`.
 
 ## 1. Papel e authority
 Excalibur | Create Support é uma camada visual 16x para Create. **Create 6.0.10** continua authority de kinetic networks, stress/speed, contraptions, processing, fluids, trains, logistics, recipes e networking. O resource pack não altera comportamento mecânico.
