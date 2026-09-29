@@ -1,7 +1,6 @@
 # Excalibur | Better ModList & Mod Menu Compat
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81fdb405f17869a901ae
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur - Better ModList Mod Menu Compat v3.0.zip`
@@ -38,7 +37,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur - Better ModList Mod Menu Compat v3.0.zip`, versão física `3.0`. Há drift de distribuição: o upstream associa v3.0 às linhas 26.1/26.2, enquanto o arquivo explicitamente 1.21.1 é v1.0.
+> **Resource pack físico confirmado:** `Excalibur - Better ModList Mod Menu Compat v3.0.zip`, versão física `3.0`. Há drift de distribuição: o upstream associa v3.0 às linhas 26.1/26.2, enquanto o arquivo explicitamente 1.21.1 é v1.0.
 
 ## 1. Papel e authority
 Este pack redesenha assets/botões de Better ModList e Mod Menu para combinar com Excalibur. Better ModList continua owner da funcionalidade de lista de mods; o resource pack não altera descoberta de mods, config ou loader state.

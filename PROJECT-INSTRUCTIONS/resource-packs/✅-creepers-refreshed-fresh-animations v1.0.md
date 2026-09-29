@@ -1,7 +1,6 @@
 # Creepers Refreshed + Fresh Animations
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81b7b1c6d92936ff83b4
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `creepers-refreshed-fa-v1.0.zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `creepers-refreshed-fa-v1.0.zip`, versão `1.0`, com suporte explícito a Minecraft 1.21.1. Fresh Animations é requisito; o upstream declara que o Creepers Refreshed base não precisa estar carregado.
+> **Resource pack físico confirmado:** `creepers-refreshed-fa-v1.0.zip`, versão `1.0`, com suporte explícito a Minecraft 1.21.1. Fresh Animations é requisito; o upstream declara que o Creepers Refreshed base não precisa estar carregado.
 
 ## 1. Papel e authority
 Creepers Refreshed + Fresh Animations é uma camada visual de compatibilidade que leva os **22 variants** do projeto Creepers Refreshed ao pipeline de animação/modelo do Fresh Animations. Minecraft continua authority de AI, fuse, explosion radius/damage, spawn, drops e persistence do Creeper.

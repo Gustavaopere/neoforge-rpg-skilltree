@@ -1,7 +1,6 @@
 # Boss Refreshed
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db819a94a7f85ef57e55df
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
 - **Arquivo:** `boss-refreshed-v2-1.19-1.21.zip`
@@ -36,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `boss-refreshed-v2-1.19-1.21.zip`, versão `v2`. A release oficial `Boss Refreshed v2 1.19-1.21.1` suporta Minecraft 1.21.1.
+> **Resource pack físico confirmado:** `boss-refreshed-v2-1.19-1.21.zip`, versão `v2`. A release oficial `Boss Refreshed v2 1.19-1.21.1` suporta Minecraft 1.21.1.
 
 ## 1. Papel e authority
 Boss Refreshed é um overhaul **visual** de bosses vanilla, com modelos mais detalhados, agressivos e estilizados. Minecraft continua authority de AI, health, damage, phases, boss events, drops e progressão.

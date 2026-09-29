@@ -1,7 +1,6 @@
 # Excalibur | Apotheosis Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81bd9188e7f6e4f304fc
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Apotheosis Addon_v2.0.zip`
@@ -36,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_Apotheosis Addon_v2.0.zip`, versão `2.0`, Release para Minecraft 1.21.1. O alvo físico atual é Apotheosis `8.8.0`.
+> **Resource pack físico confirmado:** `Excalibur_Apotheosis Addon_v2.0.zip`, versão `2.0`, Release para Minecraft 1.21.1. O alvo físico atual é Apotheosis `8.8.0`.
 
 ## 1. Papel e authority
 Excalibur | Apotheosis Support é uma camada visual. Apotheosis e os módulos Apothic continuam authorities de enchanting, affixes, spawners, attributes, loot e gameplay.

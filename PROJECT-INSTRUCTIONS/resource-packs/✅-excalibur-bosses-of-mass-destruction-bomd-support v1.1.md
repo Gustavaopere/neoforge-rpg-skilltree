@@ -1,7 +1,6 @@
 # Excalibur | Bosses of Mass Destruction (BOMD) Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db815ab9a8c4b345002272
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur BOMD Support 1.1.zip`
@@ -36,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur BOMD Support 1.1.zip`, versão `1.1`, Release para Minecraft 1.21.1. O projeto aplica uma transformação visual ampla a Bosses of Mass Destruction no estilo Excalibur.
+> **Resource pack físico confirmado:** `Excalibur BOMD Support 1.1.zip`, versão `1.1`, Release para Minecraft 1.21.1. O projeto aplica uma transformação visual ampla a Bosses of Mass Destruction no estilo Excalibur.
 
 ## 1. Papel e authority
 Excalibur | Bosses of Mass Destruction (BOMD) Support altera apenas apresentação. **Bosses of Mass Destruction** continua authority de bosses, mobs, AI, combat, damage, projectiles, loot, structures e progression.

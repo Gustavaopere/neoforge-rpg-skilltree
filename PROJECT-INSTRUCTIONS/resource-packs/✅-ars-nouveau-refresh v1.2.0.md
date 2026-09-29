@@ -1,7 +1,6 @@
 # Ars Nouveau Refresh
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81d4932bdbe523022c51
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
 - **Arquivo:** `Ars Nouveau Refresh 1.2.0.zip`
@@ -38,7 +37,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Ars Nouveau Refresh 1.2.0.zip`, versão `1.2.0`, Release oficial para Minecraft 1.21.1. O alvo físico atual é Ars Nouveau `5.13.1`.
+> **Resource pack físico confirmado:** `Ars Nouveau Refresh 1.2.0.zip`, versão `1.2.0`, Release oficial para Minecraft 1.21.1. O alvo físico atual é Ars Nouveau `5.13.1`.
 
 ## 1. Papel e authority
 Ars Nouveau Refresh moderniza a apresentação de glyphs e itens do Ars Nouveau. Ars Nouveau continua authority de Source, mana, spell registry, glyph semantics, casting, recipes, entities e networking.

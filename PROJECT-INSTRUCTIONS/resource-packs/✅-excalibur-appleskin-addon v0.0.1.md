@@ -1,7 +1,6 @@
 # Excalibur x AppleSkin addon
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81319315f81dbf581c6d
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur AppleSkin Addon.zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur AppleSkin Addon.zip`. A única release oficial correspondente é `v0.0.1`; o alvo físico atual é AppleSkin `3.0.9+mc1.21`.
+> **Resource pack físico confirmado:** `Excalibur AppleSkin Addon.zip`. A única release oficial correspondente é `v0.0.1`; o alvo físico atual é AppleSkin `3.0.9+mc1.21`.
 
 ## 1. Papel e authority
 Excalibur x AppleSkin addon adapta a apresentação dos overlays do AppleSkin ao estilo Excalibur. AppleSkin continua authority da leitura/apresentação lógica de hunger, saturation e food values; Minecraft continua authority das mecânicas reais de alimentação.

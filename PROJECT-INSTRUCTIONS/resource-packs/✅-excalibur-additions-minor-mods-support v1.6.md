@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur Additions_Minor Mod Support 1.6.zip`, versão catalogada `1.6`. O projeto agrega suportes visuais menores para vários mods em uma única camada Excalibur.
+> **Resource pack físico confirmado:** `Excalibur Additions_Minor Mod Support 1.6.zip`, versão catalogada `1.6`. O projeto agrega suportes visuais menores para vários mods em uma única camada Excalibur.
 
 ## 1. Papel e authority
 Excalibur | Additions: Minor Mods Support é um pacote visual comunitário. Cada mod alvo continua authority do próprio gameplay; o pack apenas substitui assets onde possui cobertura.
