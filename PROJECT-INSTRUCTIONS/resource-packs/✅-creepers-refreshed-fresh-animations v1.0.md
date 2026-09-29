@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `creepers-refreshed-fa-v1.0.zip`, versão `1.0`, com suporte explícito a Minecraft 1.21.1. Fresh Animations é requisito; o upstream declara que o Creepers Refreshed base não precisa estar carregado.
+> **Resource pack físico confirmado:** `creepers-refreshed-fa-v1.0.zip`, versão `1.0`, com suporte explícito a Minecraft 1.21.1. Fresh Animations é requisito; o upstream declara que o Creepers Refreshed base não precisa estar carregado.
 
 ## 1. Papel e authority
 Creepers Refreshed + Fresh Animations é uma camada visual de compatibilidade que leva os **22 variants** do projeto Creepers Refreshed ao pipeline de animação/modelo do Fresh Animations. Minecraft continua authority de AI, fuse, explosion radius/damage, spawn, drops e persistence do Creeper.

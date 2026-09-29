@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `CreateSophBackpacks.zip`, sem versão semântica própria publicada. O arquivo atual inclui Minecraft `1.21.1` entre as versões suportadas.
+> **Resource pack físico confirmado:** `CreateSophBackpacks.zip`, sem versão semântica própria publicada. O arquivo atual inclui Minecraft `1.21.1` entre as versões suportadas.
 
 ## 1. Papel e authority
 Create Style Sophisticated Backpacks adapta a apresentação de **Sophisticated Backpacks** à estética industrial do Create. Sophisticated Backpacks/Core continuam authorities de inventário, slots, upgrades, filtros, persistence e demais mecânicas.

@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur Amendments 1.7.zip`, versão `1.7`, para Minecraft 1.21.1. O alvo físico é Amendments `1.21-2.1.10`.
+> **Resource pack físico confirmado:** `Excalibur Amendments 1.7.zip`, versão `1.7`, para Minecraft 1.21.1. O alvo físico é Amendments `1.21-2.1.10`.
 
 ## 1. Papel e authority
 O support pack altera assets de Amendments; o mod continua authority de blocks, interactions, cake progress, signs e demais comportamentos.
