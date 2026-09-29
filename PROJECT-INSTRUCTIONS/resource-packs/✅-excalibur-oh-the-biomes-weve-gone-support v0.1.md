@@ -1,7 +1,6 @@
 # Excalibur | Oh The Biomes We've Gone Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db819f86ecc0e469893624
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_BWG_0.1_1.21.1.zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_BWG_0.1_1.21.1.zip`, versão `0.1`, Release para Minecraft 1.21.1. O projeto é um support pack **WIP** para Oh The Biomes We've Gone.
+> **Resource pack físico confirmado:** `Excalibur_BWG_0.1_1.21.1.zip`, versão `0.1`, Release para Minecraft 1.21.1. O projeto é um support pack **WIP** para Oh The Biomes We've Gone.
 
 ## 1. Papel e authority
 Excalibur | Oh The Biomes We've Gone Support altera somente assets visuais. **Oh The Biomes We've Gone 2.6.0** continua authority de biomas, blocos, madeira, worldgen, loot e comportamento. Excalibur continua o pack visual base.

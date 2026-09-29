@@ -1,7 +1,6 @@
 # Excalibur | L_Ender's Cataclysm Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db8130ac36f5504ad58c21
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur Cataclysm 1.0 (Neoforge).zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur Cataclysm 1.0 (Neoforge).zip`, versão `1.0`, Release para Minecraft 1.21.1. É um compatibility pack 16x para L_Ender's Cataclysm.
+> **Resource pack físico confirmado:** `Excalibur Cataclysm 1.0 (Neoforge).zip`, versão `1.0`, Release para Minecraft 1.21.1. É um compatibility pack 16x para L_Ender's Cataclysm.
 
 ## 1. Papel e authority
 Excalibur | L_Ender's Cataclysm Support retexturiza o conteúdo de **L_Ender's Cataclysm** para o estilo Excalibur. Cataclysm continua authority de bosses, mobs, structures, weapons, armor, blocks, particles, AI, damage e loot.

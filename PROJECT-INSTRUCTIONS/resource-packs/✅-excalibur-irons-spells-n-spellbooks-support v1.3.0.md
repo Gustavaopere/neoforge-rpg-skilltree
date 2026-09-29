@@ -1,7 +1,6 @@
 # Excalibur | Iron's Spells 'N Spellbooks support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81aeb62dff7c21e0b6d8
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Irons_Spells_N_Spellbooks-1.3.0.zip`
@@ -38,7 +37,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_Irons_Spells_N_Spellbooks-1.3.0.zip`, versão `1.3.0`, Release para Minecraft 1.21.1. O alvo físico atual é Iron's Spells 'n Spellbooks `3.16.3`.
+> **Resource pack físico confirmado:** `Excalibur_Irons_Spells_N_Spellbooks-1.3.0.zip`, versão `1.3.0`, Release para Minecraft 1.21.1. O alvo físico atual é Iron's Spells 'n Spellbooks `3.16.3`.
 
 ## 1. Papel e authority
 Excalibur | Iron's Spells 'N Spellbooks support redesenha assets de Iron's para a estética Excalibur. **Iron's Spells** continua authority de spell registry, schools, mana, cooldowns, casting, items, stats, recipes, entities e networking.

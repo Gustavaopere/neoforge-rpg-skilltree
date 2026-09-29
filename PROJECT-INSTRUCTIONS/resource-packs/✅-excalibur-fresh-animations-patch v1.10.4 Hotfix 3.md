@@ -1,7 +1,6 @@
 # Excalibur | Fresh Animations Patch
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81bc9fbffc314ba0b5f7
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `EFA_1.10.4_Hotfix 3.zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `EFA_1.10.4_Hotfix 3.zip`, versão `1.10.4 Hotfix 3`. O projeto é o patch oficial de compatibilidade Excalibur ↔ Fresh Animations/Freshly Modded para a linha Minecraft 1.21.x.
+> **Resource pack físico confirmado:** `EFA_1.10.4_Hotfix 3.zip`, versão `1.10.4 Hotfix 3`. O projeto é o patch oficial de compatibilidade Excalibur ↔ Fresh Animations/Freshly Modded para a linha Minecraft 1.21.x.
 
 ## 1. Papel e authority
 O patch coordena models/textures necessários para manter a estética Excalibur enquanto Fresh Animations controla animações/model definitions. Ele não altera AI, hitboxes, attributes ou gameplay das entidades.

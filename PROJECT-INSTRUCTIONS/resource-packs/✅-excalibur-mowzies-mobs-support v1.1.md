@@ -1,7 +1,6 @@
 # Excalibur | Mowzie's Mobs Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81a1a7dcf82c74d4aa77
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur Mowzie's Mobs 1.1.zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur Mowzie's Mobs 1.1.zip`, versão `1.1`, para Minecraft 1.21.1. O alvo físico atual é Mowzie's Mobs `1.8.2`.
+> **Resource pack físico confirmado:** `Excalibur Mowzie's Mobs 1.1.zip`, versão `1.1`, para Minecraft 1.21.1. O alvo físico atual é Mowzie's Mobs `1.8.2`.
 
 ## 1. Papel e authority
 O support pack altera apresentação visual de Mowzie's Mobs. O mod continua authority de entidades, bosses, AI, dano, habilidades, loot, spawn e progressão.

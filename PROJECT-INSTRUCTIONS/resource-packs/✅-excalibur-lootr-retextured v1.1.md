@@ -1,7 +1,6 @@
 # Excalibur | Lootr Retextured
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81d39fadfc7b1095529b
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Lootr_v1.1.zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_Lootr_v1.1.zip`, versão `1.1`, para Minecraft 1.21.1. O alvo físico atual é Lootr `1.21.1-1.11.38.125`.
+> **Resource pack físico confirmado:** `Excalibur_Lootr_v1.1.zip`, versão `1.1`, para Minecraft 1.21.1. O alvo físico atual é Lootr `1.21.1-1.11.38.125`.
 
 ## 1. Papel e authority
 O support pack altera a aparência dos containers do Lootr. Lootr continua authority de geração de loot, disponibilidade por jogador, opened/unopened state, persistence e sincronização multiplayer.

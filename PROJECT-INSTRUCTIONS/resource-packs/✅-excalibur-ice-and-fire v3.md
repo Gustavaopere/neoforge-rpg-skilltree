@@ -1,7 +1,6 @@
 # Excalibur | Ice and Fire
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db816e8dadf5f408115f7e
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_IAFCommunityEdition3.zip`
@@ -38,7 +37,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_IAFCommunityEdition3.zip`, release `CommunityEditionVersion3` para Minecraft 1.21.1. O alvo físico atual é Ice And Fire Community Edition `2.1.2`.
+> **Resource pack físico confirmado:** `Excalibur_IAFCommunityEdition3.zip`, release `CommunityEditionVersion3` para Minecraft 1.21.1. O alvo físico atual é Ice And Fire Community Edition `2.1.2`.
 
 ## 1. Papel e authority
 Excalibur | Ice and Fire remasteriza a apresentação de Ice and Fire para a linguagem medieval/fantasy do Excalibur. **Ice and Fire CE** continua authority de entidades, AI, dragon stages, attacks, damage, taming, riding, loot, recipes e persistence.

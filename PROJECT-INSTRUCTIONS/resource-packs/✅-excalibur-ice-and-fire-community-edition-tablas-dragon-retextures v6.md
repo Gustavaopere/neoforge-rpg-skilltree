@@ -1,7 +1,6 @@
 # Excalibur | Ice and Fire: Community Edition | Tabla's Dragon Retextures
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db811aa843d0e686b06627
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `1.21.1_G's_Dragons_Retextured_I&F-CE.v6.zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `1.21.1_G's_Dragons_Retextured_I&F-CE.v6.zip`, marcador físico `v6`, para Ice and Fire: Community Edition. O alvo físico atual é Ice And Fire Community Edition `2.1.2`.
+> **Resource pack físico confirmado:** `1.21.1_G's_Dragons_Retextured_I&F-CE.v6.zip`, marcador físico `v6`, para Ice and Fire: Community Edition. O alvo físico atual é Ice And Fire Community Edition `2.1.2`.
 
 ## 1. Papel e authority
 Este pack retexturiza os dragões de Ice and Fire: Community Edition para a estética Excalibur. **Ice and Fire CE** continua authority de spawn, AI, stages, sex/variants, breath attacks, damage, taming, riding, loot e persistence.
