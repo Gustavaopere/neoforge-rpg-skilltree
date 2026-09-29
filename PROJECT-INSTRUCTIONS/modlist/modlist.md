@@ -535,13 +535,23 @@
 | 527 | StarbuncleMania | `starbunclemania-1.21.1-1.5.8.jar` | `1.5.8` | `Addons + Automation + Energy, Fluid, and Item Transport + Magic` | 27/09/2026 - 22:12 |
 | 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 27/09/2026 - 22:12 |
 | 529 | Structurize | `structurize-1.0.833-1.21.1-snapshot.jar` | `1.0.833-1.21.1-snapshot` | `Cosmetic + Server Utility + Structures` | 27/09/2026 - 22:12 |
+| 530 | Strut Your Stuff (Struts) | `struts-1.3.1.jar` | `1.3.1` | `API and Library` | 27/09/2026 - 22:12 |
+| 531 | Stylish Effects | `StylishEffects-v21.1.3-1.21.1-NeoForge.jar` | `21.1.3` | `Cosmetic + Map and Information + Utility & QoL` | 27/09/2026 - 22:12 |
 | 532 | Create: Deep Seas - Lava Fix | `submarinefix-1.0.1.jar` | `1.0.1` | `Bug Fixes + Create` | 27/09/2026 - 22:58 |
+| 533 | Subtle Effects | `SubtleEffects-neoforge-1.21.1-1.14.3.jar` | `1.14.3` | `Cosmetic + Miscellaneous` | 27/09/2026 - 22:58 |
+| 534 | SuperMartijn642's Config Lib | `supermartijn642configlib-1.1.8-neoforge-mc1.21.jar` | `1.1.8` | `API and Library` | 27/09/2026 - 22:58 |
+| 535 | SuperMartijn642's Core Lib | `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` | `1.1.24` | `API and Library` | 27/09/2026 - 22:58 |
 | 536 | Supplementaries | `supplementaries-1.21.1-3.9.9-neoforge.jar` | `1.21.1-3.9.9` | `Cosmetic + Miscellaneous + Redstone + Storage` | 27/09/2026 - 23:18 |
 | 537 | Tectonic | `tectonic-3.0.28-neoforge-21.1.jar` | `3.0.28` | `World Gen` | 27/09/2026 - 23:18 |
+| 538 | TenshiLib (Forge/NeoForge) | `tenshilib-1.21.1-2.3.0.b-neoforge.jar` | `1.21.1-2.3.0.b-neoforge` | `API and Library` | 27/09/2026 - 23:18 |
+| 539 | TerraBlender (NeoForge) | `TerraBlender-neoforge-1.21.1-4.1.0.8.jar` | `4.1.0.8` | `API and Library + Biomes + World Gen` | 27/09/2026 - 22:58 |
+| 540 | Terralith | `Terralith_1.21.x_v2.6.2.jar` | `2.6.2` | `Biomes + Structures + World Gen` | 27/09/2026 - 23:18 |
 | 541 | Create: TFMG Community Edition | `tfmg-1.21.1-1.3.1-community.jar` | `1.3.1-community` | `Addons + Armor, Tools, and Weapons + Create + Ores and Resources + Technology` | 27/09/2026 - 22:58 |
+| 542 | ThirstWasFixed | `thirstwasfixed-2.1.6.jar` | `2.1.6` | `Addons + Bug Fixes` | 28/09/2026 - 00:04 |
 | 543 | Thirst Was Reclaimed | `ThirstWasReclaimed-1.21.1-3.0.5.jar` | `1.21.1-3.0.5` | `Food` | 28/09/2026 - 00:04 |
 | 544 | Corail Tombstone | `tombstone-neoforge-1.21.1-9.5.6.jar` | `9.5.6` | `Adventure and RPG + Magic + Mobs + Utility & QoL` | 28/09/2026 - 00:04 |
 | 548 | Create:Tracks+ | `tracks_plus-1.0.6b6.jar` | `1.0.6b6` | `Create` | 28/09/2026 - 00:04 |
+| 550 | T.O Magic 'n Extras - Iron's Spells Addon | `traveloptics-4.4.0.1-1.21.1.jar` | `4.4.0.1-1.21.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 28/09/2026 - 00:04 |
 | 551 | Sable: True Impact (For Create: Aeronautics) | `true_impact-0.5.7-delta.jar` | `0.5.7-delta` | `Create + Technology` | 28/09/2026 - 00:04 |
 | 552 | Tunes n' Tomes: a bards journey | `tunes_n_tomes-1.1.0-HOTFIX.jar` | `1.1.0-HOTFIX` | `Addons + Magic` | 28/09/2026 - 01:09 |
 | 553 | UnChipped | `unchipped-1.21-1.2.jar` | `1.21-1.2` | `Addons + Automation + Create + Processing` | 28/09/2026 - 01:09 |
