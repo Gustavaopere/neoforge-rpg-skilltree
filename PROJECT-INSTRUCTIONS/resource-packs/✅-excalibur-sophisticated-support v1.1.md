@@ -10,7 +10,7 @@
 ## Autoridade e limite físico na exportação
 
 - O dossiê Notion registra `Excalibur Sophisticated v1.1.zip` como fisicamente confirmado por captura da pasta Resource Packs do perfil em 08/09/2026.
-- A modlist física acessível de 08/09/2026 confirma exatamente os três providers principais desta ficha: `sophisticatedcore-1.21.1-1.5.1.2341.jar` (mod id `sophisticatedcore`, runtime `1.5.1`), `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` (mod id `sophisticatedbackpacks`, runtime `3.26.3`) e `sophisticatedstorage-1.21.1-1.5.91.2127.jar` (mod id `sophisticatedstorage`, runtime `1.5.91`).
+- A modlist física atual confirma exatamente os três providers principais desta ficha: `sophisticatedcore-1.21.1-1.5.1.2341.jar` (mod id `sophisticatedcore`, runtime `1.5.1`), `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` (mod id `sophisticatedbackpacks`, runtime `3.26.3`) e `sophisticatedstorage-1.21.1-1.5.91.2127.jar` (mod id `sophisticatedstorage`, runtime `1.5.91`).
 - A mesma modlist contém integrações separadas de Create para Backpacks e Storage; elas não são automaticamente cobertas por este resource pack apenas por pertencerem ao ecossistema Sophisticated.
 - O Notion pode mencionar uma autoridade física posterior em outras fichas, mas o snapshot físico utilizável nesta exportação continua sendo o de 08/09/2026; essa divergência é preservada em vez de reescrever a evidência.
 
