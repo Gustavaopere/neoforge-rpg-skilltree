@@ -10,7 +10,7 @@
 ## Autoridade e limite físico na exportação
 
 - O dossiê Notion registra `Excalibur_Supplementaries_1.0_1.21.1.zip` como fisicamente confirmado por captura da pasta Resource Packs do perfil em 08/09/2026.
-- A modlist física acessível de 08/09/2026 confirma `supplementaries-1.21.1-3.9.9-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.9`.
+- A modlist física atual confirma `supplementaries-1.21.1-3.9.9-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.9`.
 - O upstream publica build 1.0 para Minecraft 1.21.1; uma 1.1 posterior pertence à linha 1.20.1 e não é tratada como atualização aplicável ao runtime 1.21.1.
 - A documentação pública mostra exemplos de cobertura, mas não um manifesto completo. A exportação preserva isso como escopo parcial comprovado, sem inferir 100% do namespace.
 
