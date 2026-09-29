@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur BOMD Support 1.1.zip`, versão `1.1`, Release para Minecraft 1.21.1. O projeto aplica uma transformação visual ampla a Bosses of Mass Destruction no estilo Excalibur.
+> **Resource pack físico confirmado:** `Excalibur BOMD Support 1.1.zip`, versão `1.1`, Release para Minecraft 1.21.1. O projeto aplica uma transformação visual ampla a Bosses of Mass Destruction no estilo Excalibur.
 
 ## 1. Papel e authority
 Excalibur | Bosses of Mass Destruction (BOMD) Support altera apenas apresentação. **Bosses of Mass Destruction** continua authority de bosses, mobs, AI, combat, damage, projectiles, loot, structures e progression.
