@@ -1,7 +1,6 @@
 # The Brazilian Localization Project [PT-BR]
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db8132b2dbe91a184b12e7
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
 - **Arquivo:** `The Brazilian Project [1.21.1-1.3.0].zip`
