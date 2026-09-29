@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `True Dovah.zip`, Release para Minecraft 1.21.1. O projeto não publica versão semântica própria; o campo de versão permanece vazio. O alvo físico é Ice And Fire Community Edition `2.1.2`.
+> **Resource pack físico confirmado:** `True Dovah.zip`, Release para Minecraft 1.21.1. O projeto não publica versão semântica própria; o campo de versão permanece vazio. O alvo físico é Ice And Fire Community Edition `2.1.2`.
 
 ## 1. Papel e authority
 True Dovah é um resource pack 16x inspirado em Skyrim para Ice and Fire. Ele muda a apresentação de dragões e conteúdo relacionado; Ice and Fire CE continua authority de entidades, variants, combat, taming, loot e persistence.

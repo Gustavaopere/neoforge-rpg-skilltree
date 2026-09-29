@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Simply Swords x Excalibur.zip`, sem versão semântica publicada. O alvo físico atual é Simply Swords `1.70.2-1.21.1`.
+> **Resource pack físico confirmado:** `Simply Swords x Excalibur.zip`, sem versão semântica publicada. O alvo físico atual é Simply Swords `1.70.2-1.21.1`.
 
 ## 1. Papel e authority
 Simply Swords x Excalibur é um compatibility pack visual não oficial que adapta texturas de Simply Swords ao estilo Excalibur. Simply Swords continua authority de weapon registry, stats, unique effects/abilities e qualquer integração de combate.

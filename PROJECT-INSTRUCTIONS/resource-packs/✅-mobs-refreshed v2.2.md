@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `mobs-refreshed-v2.2.zip`, versão `2.2`, com suporte oficial a Minecraft 1.21.1. O autor recomenda Entity Model Features para custom entity models.
+> **Resource pack físico confirmado:** `mobs-refreshed-v2.2.zip`, versão `2.2`, com suporte oficial a Minecraft 1.21.1. O autor recomenda Entity Model Features para custom entity models.
 
 ## 1. Papel e authority
 Mobs Refreshed é um overhaul visual de mobs vanilla. Minecraft continua authority de entity registry, AI, spawn, health, damage, drops e persistence.
