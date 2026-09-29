@@ -8,6 +8,16 @@
 >
 > A posição de cada linha é obtida por correspondência exata com o JAR top-level instalado na autoridade física. Dependências embarcadas em `META-INF/jarjar/` ou `META-INF/jars/` não recebem linhas próprias.
 
+## Bloqueios e lacunas atuais — 29/09/2026
+
+Os itens abaixo **não fazem parte da tabela de mods organizados**. Permanecem fail-closed até que o requisito objetivo indicado seja resolvido:
+
+- **#001 — NeoForge:** o dossier `✅-neoforge.md` possui check, mas não possui versão explícita no filename; portanto continua inelegível e permanece na raiz.
+- **#218 — Destroy 0.4.3:** o dossier `✅-destroy v0.4.3.md` é formalmente elegível, porém o artefato instalado 1.21.1 corresponde ao port `NHblock714/Destroy`. O projeto CurseForge atual de Destroy é o projeto original da Petrolpark para 1.20.1; não há prova inequívoca de que suas categorias CurseForge representem o port instalado. O dossier permanece na raiz e fora da tabela.
+- **#219 — Dimensional Sable 1.0.5:** o dossier `✅-dimensional-sable v1.0.5.md` é formalmente elegível, mas o projeto é distribuído oficialmente no Modrinth e não possui projeto CurseForge inequívoco correspondente. Como a organização exige categorias temáticas atuais do CurseForge, o dossier permanece na raiz e fora da tabela.
+- **#272 — Factory Construction Registry Probe:** a entrada física existe, mas as auditorias anteriores não localizaram dossier certificado nem página-fonte Notion correspondente. Nenhum dossier é criado retroativamente nesta etapa e nenhuma linha é adicionada ao índice.
+- **Create Enchantment Industry Plus:** `✅-create-enchantment-industry-plus.md` é um dossier histórico de item removido da modlist física atual e não possui versão explícita no filename. Permanece intocado na raiz e não corresponde a uma lacuna física atual.
+
 ## Mods certificados e organizados
 
 | Nº | Nome oficial no CurseForge | Arquivo JAR instalado | Versão instalada | Pasta / categorias | Última edição |
