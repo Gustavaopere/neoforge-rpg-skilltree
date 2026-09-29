@@ -1,7 +1,6 @@
 # Ars Nouveau Refresh
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81d4932bdbe523022c51
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
 - **Arquivo:** `Ars Nouveau Refresh 1.2.0.zip`

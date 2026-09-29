@@ -1,7 +1,6 @@
 # Excalibur | Apotheosis Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81bd9188e7f6e4f304fc
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Apotheosis Addon_v2.0.zip`

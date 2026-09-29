@@ -1,7 +1,6 @@
 # Create Style Sophisticated Backpacks
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db815b9a2bc7aba371c1d8
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `CreateSophBackpacks.zip`
@@ -25,13 +24,13 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Visual, Tecnologia, Armazenamento
 - **Função:** Resource pack que reestiliza Sophisticated Backpacks para parecer parte da linguagem visual do Create, sem alterar mecânicas de armazenamento ou upgrades.
-- **Dependências:** Sophisticated Backpacks 3.26.2 + Sophisticated Core 1.5.1 como alvo visual; Create 6.0.10 define a estética de referência. Não altera storage slots, upgrades, recipes ou lógica Create.
+- **Dependências:** Sophisticated Backpacks 3.26.3 + Sophisticated Core 1.5.1 como alvo visual; Create 6.0.10 define a estética de referência. Não altera storage slots, upgrades, recipes ou lógica Create.
 - **Sobreposição:** Conflito visual potencial com Excalibur Sophisticated Support e qualquer outro pack que altere models/textures de Sophisticated Backpacks. Mods de integração Create continuam funcionais independentemente desta camada visual.
 - **Compatibilidade/Riscos:** O arquivo `CreateSophBackpacks.zip` é listado pelo upstream como compatível com 1.21.1 e foi corrigido para updates recentes do Sophisticated Backpacks. Pode colidir com Excalibur Sophisticated Support e outros retextures de backpacks; prioridade decide os assets.
 - **Observações:** Arquivo físico `CreateSophBackpacks.zip`; o projeto não publica versão semântica própria, portanto `Versão 1.21.1` permanece vazia. O arquivo atual inclui 1.21.1 entre as versões suportadas.
-- **Procedência:** CurseForge oficial Create Style Sophisticated Backpacks, arquivo `CreateSophBackpacks.zip` + captura Resource Packs do perfil em 08/09/2026 + modlist física Sophisticated Backpacks 3.26.2/Core 1.5.1/Create 6.0.10.
+- **Procedência:** CurseForge oficial Create Style Sophisticated Backpacks, arquivo `CreateSophBackpacks.zip` + captura Resource Packs do perfil em 08/09/2026 + modlist física atual de 27/09/2026 com Sophisticated Backpacks 3.26.3/Core 1.5.1/Create 6.0.10.
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/create-sophisticated-backpacks/files/7707479
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — CreateSophBackpacks, suporte oficial 1.21.1, Sophisticated Backpacks 3.26.2 + Create 6.0.10, escopo visual, overlaps, riscos e QA catalogados.
+- **Atualização/Status:** RECONCILIADO EM 29/09/2026 — `CreateSophBackpacks.zip` permanece sem versão semântica própria; target físico Sophisticated Backpacks atualizado de 3.26.2 para 3.26.3. Sophisticated Core 1.5.1 e Create 6.0.10 permanecem atuais. Escopo visual, overlaps, riscos e QA preservados.
 - **Histórico da decisão:**
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -77,3 +76,6 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma o objetivo “Creatified”, o filename atual, suporte a 1.21.1 e correção para atualização do Sophisticated Backpacks. Não se atribui gameplay ao resource pack.
 
 > Boundary canônico: **Sophisticated Backpacks/Core controlam armazenamento e upgrades; este pack controla somente apresentação visual**.
+
+## 11. Reconciliação física — 29/09/2026
+A autoridade física atual mantém `CreateSophBackpacks.zip` como resource pack sem versão semântica própria publicada. O provider Sophisticated Backpacks avançou de `3.26.2` para `3.26.3`; Sophisticated Core permanece `1.5.1` e Create permanece `6.0.10`. O dossiê continua fail-closed quanto ao ZIP em si porque a captura física/arquivo do resource pack de 08/09/2026 não está acessível nesta execução; a presença do pack é preservada conforme a procedência registrada, sem converter a modlist JAR-centric em inventário de resource packs.
