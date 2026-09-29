@@ -1,7 +1,6 @@
 # Excalibur | FTB Suite (Library, Chunks, Teams, Quests)
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81b4a3b5e6eba2c88b32
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `excalibur_ftbsuite.zip`
@@ -11,7 +10,7 @@
 ## Autoridade e limite físico na exportação
 
 - O dossiê Notion registra `excalibur_ftbsuite.zip` como fisicamente confirmado por captura da pasta Resource Packs do perfil em 08/09/2026.
-- A modlist física de 08/09/2026 confirma exatamente os quatro alvos do resource pack: FTB Library `2101.1.35`, FTB Chunks `2101.1.22`, FTB Teams `2101.1.11` e FTB Quests `2101.1.34`.
+- A modlist física de 08/09/2026 confirma exatamente os quatro alvos do resource pack: FTB Library `2101.1.36`, FTB Chunks `2101.1.22`, FTB Teams `2101.1.11` e FTB Quests `2101.1.36`.
 - O arquivo não possui versão semântica pública própria; o campo permanece vazio em vez de inferir versão a partir da data de publicação.
 - O nome “FTB Suite” não é usado para inferir módulos FTB adicionais. O escopo desta ficha é somente Library, Chunks, Teams e Quests, conforme a publicação do pack.
 
@@ -26,7 +25,7 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat, QoL
 - **Função:** Resource pack 16x que retexturiza a suíte FTB — Library, Chunks, Teams e Quests — para combinar com a paleta e estética do Excalibur.
-- **Dependências:** Uso visual pretendido: Excalibur + FTB Library 2101.1.35 + FTB Chunks 2101.1.22 + FTB Teams 2101.1.11 + FTB Quests 2101.1.34. Não altera lógica de claims, teams ou quests.
+- **Dependências:** Uso visual pretendido: Excalibur + FTB Library 2101.1.36 + FTB Chunks 2101.1.22 + FTB Teams 2101.1.11 + FTB Quests 2101.1.36. Não altera lógica de claims, teams ou quests.
 - **Sobreposição:** Pode colidir com Mandala's GUI e outros GUI/resource packs que alterem sprites FTB. Sobreposição deve ser resolvida por asset path e prioridade, sem inferir alteração funcional.
 - **Compatibilidade/Riscos:** Sem versão semântica pública no arquivo `excalibur_ftbsuite.zip`. Riscos de drift de GUI/icons com updates FTB, assets faltantes, prioridade incorreta e conflito com outros GUI packs. Claims/teams/quest state continuam nos mods FTB.
 - **Observações:** Arquivo instalado `excalibur_ftbsuite.zip`; upstream não publica versão semântica separada, portanto `Versão 1.21.1` permanece vazia. Alvo explícito: Library, Chunks, Teams e Quests.
@@ -37,16 +36,16 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `excalibur_ftbsuite.zip`. O projeto foi publicado para retexturizar **FTB Library, FTB Chunks, FTB Teams e FTB Quests** no estilo Excalibur. Não há versão semântica pública separada para o arquivo instalado.
+> **Resource pack físico confirmado:** `excalibur_ftbsuite.zip`. O projeto foi publicado para retexturizar **FTB Library, FTB Chunks, FTB Teams e FTB Quests** no estilo Excalibur. Não há versão semântica pública separada para o arquivo instalado.
 
 ## 1. Papel e authority
 É uma camada de UI/assets. FTB Library continua provider da infraestrutura visual/comum; FTB Chunks controla map/claims/chunkloading; FTB Teams controla teams; FTB Quests controla chapters, tasks, rewards e progression.
 
 ## 2. Stack físico atual
-- FTB Library `2101.1.35`;
+- FTB Library `2101.1.36`;
 - FTB Chunks `2101.1.22`;
 - FTB Teams `2101.1.11`;
-- FTB Quests `2101.1.34`.
+- FTB Quests `2101.1.36`.
 
 O resource pack deve ser validado contra exatamente essas builds.
 
