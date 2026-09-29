@@ -30,7 +30,7 @@
 - **Compatibilidade/Riscos:** A v1.4 foi atualizada para a versão beta do JEI. Pode colidir com Mandala's GUI e outros GUI packs nos mesmos sprites/elements; addons JEI citados pelo projeto não são presumidos presentes sem confirmação física.
 - **Observações:** Arquivo instalado `Excalibur Jei Support 1.4.zip`, versão 1.4 para 1.21.1. Changelog oficial: atualização para JEI beta. Upstream descreve redesign de todas as GUIs e elementos do pacote suportado.
 - **Procedência:** CurseForge oficial Excalibur | JEI Support v1.4 + captura Resource Packs do perfil em 08/09/2026 + modlist física atual JEI 19.56.0.440.
-- **Fonte:** https://www.curseforge.com/minecraft/texture-packs/excalibur-just-enough-items-jei-support
+- **Fonte:** https://www.curseforge.com/minecraft/texture-packs/excalibur-jei-support
 - **Atualização/Status:** REAUDITADO EM 29/09/2026 — v1.4 preservada; provider físico JEI reconciliado de 19.53.0.426 para 19.56.0.440. GUI/elements, beta boundary, load order, overlap, riscos e QA permanecem catalogados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
