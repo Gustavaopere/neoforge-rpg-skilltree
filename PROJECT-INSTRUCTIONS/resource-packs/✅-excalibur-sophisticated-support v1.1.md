@@ -1,7 +1,6 @@
 # Excalibur | Sophisticated Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db814abd3dc306aff2293f
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur Sophisticated v1.1.zip`

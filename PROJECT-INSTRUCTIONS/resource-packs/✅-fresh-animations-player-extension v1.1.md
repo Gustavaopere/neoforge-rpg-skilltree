@@ -1,7 +1,6 @@
 # Fresh Animations: Player Extension
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81d3b45ce93ce1571ed6
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `FA+Player-v1.1.zip`

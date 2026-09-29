@@ -1,7 +1,6 @@
 # Excalibur | Supplementaries Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db812395f4f2d0ea14f8a7
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Supplementaries_1.0_1.21.1.zip`
