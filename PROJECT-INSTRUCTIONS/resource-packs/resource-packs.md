@@ -48,10 +48,20 @@ A coluna **Arquivo ZIP** reproduz a evidência física/canônica registrada no d
 | 38 | Fresh Animations: Extensions | `FA+All_Extensions-v1.8.1.zip` | `1.8.1` | `✅-fresh-animations-extensions v1.8.1.md` | 29/09/2026 - 17:25 |
 | 39 | Fresh Animations: Player Extension | `FA+Player-v1.1.zip` | `1.1` | `✅-fresh-animations-player-extension v1.1.md` | 29/09/2026 - 17:25 |
 | 40 | Fresh Illager Mod Compats | `4.3 FA Illager Mod Compats.zip` | `4.3` | `✅-fresh-illager-mod-compats v4.3.md` | 29/09/2026 - 17:25 |
+| 41 | Golems Refreshed + Fresh Animations | `golems-refreshed-fa-v2.1.zip` | `2.1` | `✅-golems-refreshed-fresh-animations v2.1.md` | 29/09/2026 |
+| 42 | Golems Refreshed | `golems-refreshed-v2.1.zip` | `2.1` | `✅-golems-refreshed v2.1.md` | 29/09/2026 |
+| 43 | Iron's Spells 'n Spellbooks 3D weapons Resource Pack | `3D items.zip` | sem versão semântica publicada | `✅-irons-spells-n-spellbooks-3d-weapons-resource-pack.md` | 29/09/2026 |
+| 44 | Iron's Spells 'n Spellbooks Armors Overhaul | `Armors.zip` | `V2` | `✅-irons-spells-n-spellbooks-armors-overhaul V2.md` | 29/09/2026 |
+| 45 | Just Expressions | `JustExpressions_v1.2.1.zip` | `1.2.1` | `✅-just-expressions v1.2.1.md` | 29/09/2026 |
+| 46 | Malumified Iron's Runes | `Malumified Iron's Runes 1.0.1.zip` | `1.0.1` | `✅-malumified-irons-runes v1.0.1.md` | 29/09/2026 |
+| 47 | Mandala's GUI - Add-Ons | `MandalasGUI_AddOn+DarkModded_V7.1.zip` | `7.1` | `✅-mandalas-gui-add-ons v7.1.md` | 29/09/2026 |
+| 48 | Mandala's GUI - Dark mode - Utopia extension | `Mandala Utopia.zip` | sem versão semântica própria verificável | `✅-mandalas-gui-dark-mode-utopia-extension.md` | 29/09/2026 |
+| 49 | Mandala's GUI - Dark mode | `MandalasGUI+Dakmode_1.21.8_v3.1.zip` | `3.1` | `✅-mandalas-gui-dark-mode v3.1.md` | 29/09/2026 |
+| 50 | Mobs Refreshed + Fresh Animations | `mobs-refreshed-fa-v2.2.zip` | `2.2` | `✅-mobs-refreshed-fresh-animations v2.2.md` | 29/09/2026 |
 
 ## Estado incremental
 
 - Dossiers existentes em `resource-packs/`: **58**
-- Entradas neste índice: **40**
-- Corte atual: lotes determinísticos **#1–#4**, itens **01–40**.
+- Entradas neste índice: **50**
+- Corte atual: lotes determinísticos **#1–#5**, itens **01–50**.
 - Dossiers restantes devem ser acrescentados apenas conforme a revalidação documental avance.
