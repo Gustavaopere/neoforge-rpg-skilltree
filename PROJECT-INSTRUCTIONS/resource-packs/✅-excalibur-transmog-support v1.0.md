@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_Transmog_v1.0.zip`, versão `1.0`, com suporte oficial a Minecraft 1.21.1. O alvo físico atual é Transmog `1.6.0`.
+> **Resource pack físico confirmado:** `Excalibur_Transmog_v1.0.zip`, versão `1.0`, com suporte oficial a Minecraft 1.21.1. O alvo físico atual é Transmog `1.6.0`.
 
 ## 1. Papel e authority
 Excalibur | Transmog support redesenha assets do mod Transmog para a estética Excalibur. **Transmog** continua authority do estado cosmético/aparência aplicado ao item e das regras que preservam seu comportamento real.

@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur Tom's Simple Storage 1.3.zip`, versão `1.3`. O alvo físico atual é Tom's Simple Storage `2.4.2`.
+> **Resource pack físico confirmado:** `Excalibur Tom's Simple Storage 1.3.zip`, versão `1.3`. O alvo físico atual é Tom's Simple Storage `2.4.2`.
 
 ## 1. Papel e authority
 O support pack altera exclusivamente apresentação de Tom's Simple Storage. O mod continua authority da storage network, inventories, terminals, connectors, crafting, filtering e item transfer.

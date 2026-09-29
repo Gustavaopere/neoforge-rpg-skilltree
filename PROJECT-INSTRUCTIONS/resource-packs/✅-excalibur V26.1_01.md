@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack base confirmado no dossiê de origem:** `Excalibur_V26.1_01.zip`, versão catalogada `V26.1_01`, Release oficial de 06/05/2026 e listada pelo projeto como compatível com Minecraft 1.21.1.
+> **Resource pack base confirmado:** `Excalibur_V26.1_01.zip`, versão catalogada `V26.1_01`, Release oficial de 06/05/2026 e listada pelo projeto como compatível com Minecraft 1.21.1.
 
 ## 1. Papel e authority visual
 Excalibur é a **camada visual base** do stack. Ele não altera gameplay, registries, recipes ou save; define a estética medieval/adventure sobre a qual os support packs específicos aplicam overrides.
