@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `FA+Player-v1.1.zip`, versão `1.1`. O arquivo oficial suporta explicitamente Minecraft `1.21.1` e requer EMF + ETF.
+> **Resource pack físico confirmado:** `FA+Player-v1.1.zip`, versão `1.1`. O arquivo oficial suporta explicitamente Minecraft `1.21.1` e requer EMF + ETF.
 
 ## 1. Papel e authority
 Fresh Animations: Player Extension leva a linguagem de animação do Fresh Animations ao **jogador**, incluindo primeira e terceira pessoa. Minecraft e os mods continuam authorities de movimento, combat state, inventory, attributes e networking; a extensão controla apresentação.
