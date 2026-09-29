@@ -1,7 +1,6 @@
 # Integrated Dungeons and Structures- Configuration Datapack
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81369b40f7f226f43e5f
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Arquivo:** `idasconfig-1.13.7-1.21.1.zip`

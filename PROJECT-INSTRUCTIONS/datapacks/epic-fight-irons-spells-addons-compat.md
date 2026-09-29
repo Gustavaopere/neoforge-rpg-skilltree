@@ -1,7 +1,6 @@
 # Epic Fight x Iron's Spells add-ons compat
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db8108b912efaae3dcbfd8
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Arquivo:** `epicfight_ironsspells_addons_compatibility_pack.zip`
@@ -26,7 +25,7 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Magia, RPG
 - **Função:** Data pack que fornece compatibilidade Epic Fight para armas de Somake Spells, Magic From the East, Geomancy Plus e Deeper and Darker Spellbooks.
-- **Dependências:** Epic Fight 21.17.3.1 + Iron's Spells 3.16.3 + Somake Spells 1.0.8 + Magic From The East 1.1.5 + GTBC's Geomancy Plus 1.1.0-1.21.1 + Deeper and Darker: Spellbooks 1.3.3-1.21.1.
+- **Dependências:** Epic Fight 21.17.3.1 + Iron's Spells 3.16.3 + Somake Spells 1.0.9 + Magic From The East 1.1.5 + GTBC's Geomancy Plus 1.1.0-1.21.1 + Deeper and Darker: Spellbooks 1.3.3-1.21.1.
 - **Sobreposição:** Pode se sobrepor a outros datapacks/configs Epic Fight que atribuam weapon categories/styles aos mesmos item IDs. Mods alvo continuam authorities de spells, stats e conteúdo.
 - **Compatibilidade/Riscos:** Compat depende das versões atuais de Epic Fight e dos quatro addons alvo. Mudanças em weapon IDs/categories podem quebrar mappings. Não altera spells ou stats por si só; datapack precisa recarregar no servidor/mundo.
 - **Observações:** Arquivo instalado `epicfight_ironsspells_addons_compatibility_pack.zip`, release para Minecraft 1.21.1 sem versão semântica própria. O antigo valor `1.21.1` no campo de versão era a versão do jogo, não do datapack.
@@ -46,7 +45,7 @@ Este datapack fornece definições de compatibilidade do **Epic Fight** para arm
 O projeto declara compatibilidade para armas de **Somake Spells**, **Magic From the East**, **Geomancy Plus** e **Deeper and Darker Spellbooks**. Todos os quatro alvos estão fisicamente presentes no perfil atual.
 
 ## 3. Stack físico
-A cadeia atual é Epic Fight `21.17.3.1`, Iron's Spells `3.16.3`, Somake Spells `1.0.8`, Magic From The East `1.1.5`, GTBC's Geomancy Plus `1.1.0-1.21.1` e Deeper and Darker: Spellbooks `1.3.3-1.21.1`.
+A cadeia atual é Epic Fight `21.17.3.1`, Iron's Spells `3.16.3`, Somake Spells `1.0.9`, Magic From The East `1.1.5`, GTBC's Geomancy Plus `1.1.0-1.21.1` e Deeper and Darker: Spellbooks `1.3.3-1.21.1`.
 
 ## 4. Boundary funcional
 O datapack pode mapear armas para categories/styles/configurações consumidas pelo Epic Fight, mas **não cria nem redefine por si só spells, mana, damage base, recipes ou registry ownership** dos addons.

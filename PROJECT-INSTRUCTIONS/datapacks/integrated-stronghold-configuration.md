@@ -1,7 +1,6 @@
 # Integrated Stronghold- Configuration
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db817aa85bcd19d7e8248c
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Arquivo:** `integrated_stronghold_config_neoforge-1.1.4-1.21.1.zip`

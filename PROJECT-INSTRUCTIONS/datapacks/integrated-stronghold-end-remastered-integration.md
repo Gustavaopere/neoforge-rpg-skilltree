@@ -1,7 +1,6 @@
 # Integrated Stronghold- End Remastered Integration
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81c7beb3f7b34af77d3a
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Arquivo:** `intstrong_endrem-1.0.0-1.18.2-1.19.2.zip`
