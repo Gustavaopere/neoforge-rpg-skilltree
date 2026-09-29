@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `golems-refreshed-v2.1.zip`, versão `2.1`, compatível com Minecraft 1.21.1. O autor recomenda Entity Model Features para os custom entity models.
+> **Resource pack físico confirmado:** `golems-refreshed-v2.1.zip`, versão `2.1`, compatível com Minecraft 1.21.1. O autor recomenda Entity Model Features para os custom entity models.
 
 ## 1. Papel e authority
 Golems Refreshed é um overhaul visual do Iron Golem. Minecraft continua authority de AI, targeting, health, damage, spawn, village behavior, drops e persistence.

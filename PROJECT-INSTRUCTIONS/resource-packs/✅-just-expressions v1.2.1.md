@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `JustExpressions_v1.2.1.zip`, versão `1.2.1`. O arquivo declara suporte explícito a Minecraft `1.21.1`.
+> **Resource pack físico confirmado:** `JustExpressions_v1.2.1.zip`, versão `1.2.1`. O arquivo declara suporte explícito a Minecraft `1.21.1`.
 
 ## 1. Papel e authority
 Just Expressions é um resource pack baseado em **EMF** que leva animações de olhos inspiradas no Fresh Animations para modelos de jogador. Minecraft continua authority de player state, skin, movement e gameplay; EMF/ETF e o pack controlam apenas apresentação.

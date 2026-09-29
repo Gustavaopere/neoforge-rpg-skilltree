@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `golems-refreshed-fa-v2.1.zip`, versão `2.1`, com suporte explícito a Minecraft 1.21.1. É o addon de compatibilidade entre Golems Refreshed e Fresh Animations.
+> **Resource pack físico confirmado:** `golems-refreshed-fa-v2.1.zip`, versão `2.1`, com suporte explícito a Minecraft 1.21.1. É o addon de compatibilidade entre Golems Refreshed e Fresh Animations.
 
 ## 1. Papel e authority
 O pack adapta models/resources do Golems Refreshed para coexistirem com as animações do Fresh Animations. Minecraft continua authority de Iron/Snow Golem AI, target selection, health, damage, spawn e drops.
