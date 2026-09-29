@@ -32,6 +32,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/mandala-gui-dark-mode-utopia-extension
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Utopia extension, filename sem versão conclusiva, Mandala Dark Mode obrigatório, ~110 mod GUIs, load order, riscos e QA catalogados.
 - **Histórico da decisão:**
+
 # Dossiê operacional — padrão Alex's Mobs
 
 > **Resource pack físico confirmado:** `Mandala Utopia.zip`. O filename não identifica com segurança uma versão semântica, pois foi reutilizado em múltiplas releases; `Versão 1.21.1` permanece vazia.
