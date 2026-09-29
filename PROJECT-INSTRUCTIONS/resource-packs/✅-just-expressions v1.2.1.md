@@ -1,7 +1,6 @@
 # Just Expressions
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81999beee8008debaf4d
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
 - **Arquivo:** `JustExpressions_v1.2.1.zip`
