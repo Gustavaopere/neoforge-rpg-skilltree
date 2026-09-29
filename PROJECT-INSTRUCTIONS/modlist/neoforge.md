@@ -10,7 +10,7 @@
 - **Mod:** neoforge
 - **Arquivo JAR:** `neoforge-21.1.250 (modloader)`
 - **Versão 1.21.1:** neoforge-21.1.250
-- **Estado no pack:** Instalado — Dossiê completo
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Categoria:** Biblioteca, Compat
 - **Função:** Modloader e plataforma de APIs que executa toda a instância Minecraft 1.21.1. NeoForge 21.1.250 é responsável por descoberta/metadata/dependências de mods, lifecycle, registries estáticos e datapack registries, event buses, networking/payloads, configs, capabilities, data attachments, data components, SavedData, tags/data maps/conditions, acesso a recursos/datagen, sides lógico/físico e contratos client/server consumidos por todo o pack.
@@ -312,3 +312,6 @@ Se algum mod exige build mais nova por correção concreta, essa exigência deve
 **NeoForge User Guide:** Java 21 para Minecraft 1.20.5+ e operação client/server.
 
 **Confiança:** muito alta para plataforma/API documentada e versão física. Compatibilidade de cada mod individual continua sendo propriedade do artefato/versão e será documentada em sua própria ficha.
+
+## Revalidação física final — 29/09/2026
+A autoridade física foi reconfirmada: `Mods count: 587` corresponde a **586 JARs top-level + `neoforge-21.1.250 (modloader)`**. NeoForge permanece a plataforma-base de Minecraft 1.21.1/Java 21; nenhum update de loader foi presumido sem uma matriz de compatibilidade completa dos consumers. Nenhum boot/regression suite adicional foi executado nesta revalidação.
