@@ -1,7 +1,6 @@
 # Sounds X Ars Nouveau
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81088f84f1b93e81bd7f
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Sounds x Ars Nouveau V1.5.zip`

@@ -58,10 +58,18 @@ A coluna **Arquivo ZIP** reproduz a evidência física/canônica registrada no d
 | 48 | Mandala's GUI - Dark mode - Utopia extension | `Mandala Utopia.zip` | versão instalada indeterminada | `✅-mandalas-gui-dark-mode-utopia-extension.md` | 29/09/2026 - 17:42 |
 | 49 | Mandala's GUI - Dark mode | `MandalasGUI+Dakmode_1.21.8_v3.1.zip` | `3.1` | `✅-mandalas-gui-dark-mode v3.1.md` | 29/09/2026 - 17:42 |
 | 50 | Mobs Refreshed + Fresh Animations | `mobs-refreshed-fa-v2.2.zip` | `2.2` | `✅-mobs-refreshed-fresh-animations v2.2.md` | 18/09/2026 - 11:04 |
+| 51 | Mobs Refreshed | `mobs-refreshed-v2.2.zip` | `2.2` | `✅-mobs-refreshed v2.2.md` | 29/09/2026 - 18:36 |
+| 52 | Simply More x Excalibur | `Simply More x Excalibur.zip` | sem versão semântica própria publicada | `✅-simply-more-x-excalibur.md` | 18/09/2026 - 11:04 |
+| 53 | Simply Swords x Excalibur | `Simply Swords x Excalibur.zip` | sem versão semântica própria publicada | `✅-simply-swords-x-excalibur.md` | 29/09/2026 - 18:36 |
+| 54 | Sounds X Ars Nouveau | `Sounds x Ars Nouveau V1.5.zip` | `1.5` | `✅-sounds-x-ars-nouveau v1.5.md` | 29/09/2026 - 18:36 |
+| 55 | The Brazilian Localization Project [PT-BR] | `The Brazilian Project [1.21.1-1.3.0].zip` | `1.3.0` | `✅-the-brazilian-localization-project-pt-br v1.3.0.md` | 29/09/2026 - 18:36 |
+| 56 | True Dovah | `True Dovah.zip` | sem versão semântica própria publicada | `✅-true-dovah.md` | 29/09/2026 - 18:36 |
+| 57 | (Unofficial) Mandala's GUI - Dark Mode Mod Compatibility | `Mandala's GUI - Dark Mode Compat 0.3.2.zip` | `0.3.2` | `✅-unofficial-mandalas-gui-dark-mode-mod-compatibility v0.3.2.md` | 29/09/2026 - 18:36 |
+| 58 | Villagers Refreshed | `villagers-refreshed-v2.zip` | `2` | `✅-villagers-refreshed v2.md` | 29/09/2026 - 18:36 |
 
 ## Estado incremental
 
 - Dossiers existentes em `resource-packs/`: **58**
-- Entradas neste índice: **50**
-- Corte atual: lotes determinísticos **#1–#5**, itens **01–50**.
-- Dossiers restantes devem ser acrescentados apenas conforme a revalidação documental avance.
+- Entradas neste índice: **58**
+- Corte atual: lotes determinísticos **#1–#6**, itens **01–58**.
+- Categoria integralmente revalidada e indexada: **58/58** dossiers.

@@ -1,7 +1,6 @@
 # (Unofficial) Mandala's GUI - Dark Mode Mod Compatibility
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db816e9b6eec75cc683600
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Mandala's GUI - Dark Mode Compat 0.3.2.zip`
