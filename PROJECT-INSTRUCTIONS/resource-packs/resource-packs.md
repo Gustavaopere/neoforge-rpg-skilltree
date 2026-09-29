@@ -38,10 +38,20 @@ A coluna **Arquivo ZIP** reproduz a evidência física/canônica registrada no d
 | 28 | Excalibur \| Lootr Retextured | `Excalibur_Lootr_v1.1.zip` | `1.1` | `✅-excalibur-lootr-retextured v1.1.md` | 29/09/2026 - 14:10 |
 | 29 | Excalibur \| Mowzie's Mobs Support | `Excalibur Mowzie's Mobs 1.1.zip` | `1.1` | `✅-excalibur-mowzies-mobs-support v1.1.md` | 29/09/2026 - 14:10 |
 | 30 | Excalibur \| Oh The Biomes We've Gone Support | `Excalibur_BWG_0.1_1.21.1.zip` | `0.1` | `✅-excalibur-oh-the-biomes-weve-gone-support v0.1.md` | 29/09/2026 - 14:10 |
+| 31 | Excalibur \| Sophisticated Support | `Excalibur Sophisticated v1.1.zip` | `1.1` | `✅-excalibur-sophisticated-support v1.1.md` | 29/09/2026 - 17:25 |
+| 32 | Excalibur \| Supplementaries Support | `Excalibur_Supplementaries_1.0_1.21.1.zip` | `1.0` | `✅-excalibur-supplementaries-support v1.0.md` | 29/09/2026 - 17:25 |
+| 33 | Excalibur \| Tom's Simple Storage Support | `Excalibur Tom's Simple Storage 1.3.zip` | `1.3` | `✅-excalibur-toms-simple-storage-support v1.3.md` | 29/09/2026 - 17:25 |
+| 34 | Excalibur \| Transmog support | `Excalibur_Transmog_v1.0.zip` | `1.0` | `✅-excalibur-transmog-support v1.0.md` | 29/09/2026 - 17:25 |
+| 35 | Excalibur \| Waystones Support | `Excalibur Waystones 1.1.zip` | `1.1` | `✅-excalibur-waystones-support v1.1.md` | 18/09/2026 - 11:04 |
+| 36 | Excalibur | `Excalibur_V26.1_01.zip` | `V26.1_01` | `✅-excalibur V26.1_01.md` | 29/09/2026 - 17:25 |
+| 37 | Fresh Animations | `FreshAnimations_v1.10.4.zip` | `1.10.4` | `✅-fresh-animations v1.10.4.md` | 18/09/2026 - 11:04 |
+| 38 | Fresh Animations: Extensions | `FA+All_Extensions-v1.8.1.zip` | `1.8.1` | `✅-fresh-animations-extensions v1.8.1.md` | 29/09/2026 - 17:25 |
+| 39 | Fresh Animations: Player Extension | `FA+Player-v1.1.zip` | `1.1` | `✅-fresh-animations-player-extension v1.1.md` | 29/09/2026 - 17:25 |
+| 40 | Fresh Illager Mod Compats | `4.3 FA Illager Mod Compats.zip` | `4.3` | `✅-fresh-illager-mod-compats v4.3.md` | 29/09/2026 - 17:25 |
 
 ## Estado incremental
 
 - Dossiers existentes em `resource-packs/`: **58**
-- Entradas neste índice: **30**
-- Corte atual: lotes determinísticos **#1–#3**, itens **01–30**.
+- Entradas neste índice: **40**
+- Corte atual: lotes determinísticos **#1–#4**, itens **01–40**.
 - Dossiers restantes devem ser acrescentados apenas conforme a revalidação documental avance.
