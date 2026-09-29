@@ -32,8 +32,6 @@
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/mobs-refreshed-fresh-animations/files/6723922
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Mobs Refreshed + Fresh Animations 2.2, suporte 1.21.1, Mobs Refreshed 2.2 + FA 1.10.4, bridge/load order, riscos e QA catalogados.
 - **Histórico da decisão:**
-- **Data da última decisão:** —
-
 # Dossiê operacional — padrão Alex's Mobs
 
 > **Resource pack físico confirmado:** `mobs-refreshed-fa-v2.2.zip`, versão `2.2`. A página oficial do arquivo inclui Minecraft `1.21.1` e informa compatibilidade com Mobs Refreshed v2.2.
