@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `villagers-refreshed-v2.zip`, versão `2`. O projeto é um overhaul visual de Villagers, Illagers e mobs relacionados.
+> **Resource pack físico confirmado:** `villagers-refreshed-v2.zip`, versão `2`. O projeto é um overhaul visual de Villagers, Illagers e mobs relacionados.
 
 ## 1. Papel e authority
 Villagers Refreshed altera models/textures/apresentação de villagers e illagers. Minecraft e os mods correspondentes continuam authorities de professions, trades, AI, raids, reputação, gossip, spawn e persistence.

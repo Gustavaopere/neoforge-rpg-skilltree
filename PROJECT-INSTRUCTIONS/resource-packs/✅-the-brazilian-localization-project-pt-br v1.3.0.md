@@ -29,14 +29,13 @@
 - **Compatibilidade/Riscos:** Pack de tradução amplo, mas não equivale a 100% de cobertura de todos os mods instalados. Pode sobrescrever traduções PT-BR nativas por prioridade e ficar desatualizado quando mods adicionam/renomeiam localization keys.
 - **Observações:** Arquivo instalado `The Brazilian Project [1.21.1-1.3.0].zip`, versão 1.3.0. A lista oficial 1.21.1 cobre muitos mods presentes no pack, mas não autoriza afirmar cobertura total da modlist.
 - **Procedência:** CurseForge oficial The Brazilian Localization Project 1.3.0 para 1.21.1 + captura Resource Packs do perfil em 08/09/2026 + modlist física atual.
-- **Fonte:** https://www.curseforge.com/minecraft/texture-packs/the-brazilian-localization-project
+- **Fonte:** https://www.curseforge.com/minecraft/texture-packs/brazilian-project
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Brazilian Localization Project 1.3.0, PT-BR modded, coverage boundary, language-resource priority, riscos e QA catalogados.
 - **Histórico da decisão:**
-- **Data da última decisão:** —
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `The Brazilian Project [1.21.1-1.3.0].zip`, versão `1.3.0`, publicado para Minecraft 1.21.1.
+> **Resource pack físico confirmado:** `The Brazilian Project [1.21.1-1.3.0].zip`, versão `1.3.0`, publicado para Minecraft 1.21.1.
 
 ## 1. Papel e authority
 The Brazilian Localization Project fornece localização **Português do Brasil** para mods, preenchendo traduções ausentes e revisando inconsistências, terminologia e naturalidade onde o projeto possui cobertura. Os mods continuam authorities de conteúdo e gameplay.

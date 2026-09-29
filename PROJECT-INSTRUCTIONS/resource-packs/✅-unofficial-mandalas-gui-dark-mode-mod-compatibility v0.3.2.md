@@ -35,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Mandala's GUI - Dark Mode Compat 0.3.2.zip`, versão `0.3.2`. A página individual do arquivo inclui explicitamente Minecraft `1.21.1` entre as versões suportadas.
+> **Resource pack físico confirmado:** `Mandala's GUI - Dark Mode Compat 0.3.2.zip`, versão `0.3.2`. A página individual do arquivo inclui explicitamente Minecraft `1.21.1` entre as versões suportadas.
 
 ## 1. Papel e authority
 Este projeto é um compatibility resource pack **não oficial e WIP** para Mandala's GUI - Dark mode. Ele adapta GUIs de mods suportados ao tema escuro; os mods continuam authorities de inventories, menus, recipes e dados.

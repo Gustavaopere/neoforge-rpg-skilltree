@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Pack físico confirmado no dossiê de origem:** `Sounds x Ars Nouveau V1.5.zip`, versão `1.5`, Release de 05/06/2026 para Minecraft 1.21.1. O alvo físico principal é Ars Nouveau `5.13.1`.
+> **Pack físico confirmado:** `Sounds x Ars Nouveau V1.5.zip`, versão `1.5`, Release de 05/06/2026 para Minecraft 1.21.1. O alvo físico principal é Ars Nouveau `5.13.1`.
 
 ## 1. Papel e authority
 Sounds X Ars Nouveau é uma integração de áudio para Ars Nouveau e addons, baseada em definições consumidas pelo mod **Sounds**. Ela substitui/atribui sound IDs para superfícies Ars sem alterar spell logic, mana, recipes, blocks ou networking.
