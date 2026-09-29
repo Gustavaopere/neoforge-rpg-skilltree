@@ -11,7 +11,7 @@
 
 - O dossiê Notion registra `CreateSophBackpacks.zip` como fisicamente confirmado por captura da pasta Resource Packs do perfil em 08/09/2026.
 - A busca atual na Biblioteca não recuperou diretamente esse ZIP/captura; portanto a presença do resource pack é preservada conforme a procedência do dossiê, sem converter a modlist JAR-centric em inventário de resource packs.
-- A modlist física de 08/09/2026 confirma Sophisticated Backpacks `3.26.2`, Sophisticated Core `1.5.1` e Create `6.0.10`; esses são os providers/contextos atuais do pack visual.
+- A modlist física de 08/09/2026 registrava Sophisticated Backpacks `3.26.2`; a modlist física atual de 27/09/2026 confirma Sophisticated Backpacks `3.26.3`, Sophisticated Core `1.5.1` e Create `6.0.10`; estes são os providers/contextos atuais do pack visual.
 
 ## Propriedades do banco
 
@@ -44,7 +44,7 @@ Create Style Sophisticated Backpacks adapta a apresentação de **Sophisticated 
 Embora a listagem destaque a linha 1.21.11, a página individual de `CreateSophBackpacks.zip` declara explicitamente suporte a **1.21.1**. O changelog informa correção para atualização recente do Sophisticated Backpacks.
 
 ## 3. Stack físico
-O perfil contém Sophisticated Backpacks `3.26.2`, Sophisticated Core `1.5.1` e Create `6.0.10`, além de integrações funcionais entre Create e Sophisticated. Este resource pack não substitui essas integrações; ele é somente visual.
+O perfil contém Sophisticated Backpacks `3.26.3`, Sophisticated Core `1.5.1` e Create `6.0.10`, além de integrações funcionais entre Create e Sophisticated. Este resource pack não substitui essas integrações; ele é somente visual.
 
 ## 4. Versão do pack
 O upstream não fornece número semântico próprio para `CreateSophBackpacks.zip`. `Versão 1.21.1` permanece vazia em vez de converter a versão do jogo ou data de upload em versão do pack.
