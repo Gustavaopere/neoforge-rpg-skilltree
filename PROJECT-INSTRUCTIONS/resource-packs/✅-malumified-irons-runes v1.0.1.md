@@ -1,7 +1,6 @@
 # Malumified Iron's Runes
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db8162bd82fd9afc77b2b1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
 - **Arquivo:** `Malumified Iron's Runes 1.0.1.zip`

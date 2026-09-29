@@ -1,7 +1,6 @@
 # Mandala's GUI - Dark mode
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db816ea744de38225b973b
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
 - **Arquivo:** `MandalasGUI+Dakmode_1.21.8_v3.1.zip`

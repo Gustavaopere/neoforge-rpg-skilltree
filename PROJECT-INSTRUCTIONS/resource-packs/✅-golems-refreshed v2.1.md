@@ -1,7 +1,6 @@
 # Golems Refreshed
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81e79fc8e50c746be8e0
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
 - **Arquivo:** `golems-refreshed-v2.1.zip`

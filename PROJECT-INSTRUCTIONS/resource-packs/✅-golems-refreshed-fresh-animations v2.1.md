@@ -1,7 +1,6 @@
 # Golems Refreshed + Fresh Animations
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81ceae19e02655100811
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `golems-refreshed-fa-v2.1.zip`
