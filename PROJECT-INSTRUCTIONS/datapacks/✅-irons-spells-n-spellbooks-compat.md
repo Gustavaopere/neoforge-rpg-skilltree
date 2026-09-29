@@ -1,7 +1,6 @@
 # Iron's Spells 'n Spellbooks Compat
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81ff8434d69c40823489
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Arquivo:** `Irons_Spellbooks_Compat_1.0.0.zip`
@@ -11,7 +10,7 @@
 ## Autoridade e limite físico na exportação
 
 - O dossiê Notion registra `Irons_Spellbooks_Compat_1.0.0.zip` como fisicamente confirmado por captura de Data Packs do perfil em 08/09/2026.
-- A modlist física acessível de 08/09/2026 confirma `irons_spellbooks-1.21.1-3.16.3.jar`, mod id `irons_spellbooks`, runtime `1.21.1-3.16.3`; `Quark-4.1-483.jar`, mod id `quark`, runtime `4.1-483`; e `alexscaves-1.0.9-neoforge+1.21.1.jar`, mod id `alexscaves`, runtime `1.0.9`, nome de runtime Alex's Caves Continued.
+- A modlist física acessível de 08/09/2026 confirma `irons_spellbooks-1.21.1-3.16.3.jar`, mod id `irons_spellbooks`, runtime `1.21.1-3.16.3`; `Quark-4.1-483.jar`, mod id `quark`, runtime `4.1-483`; e `alexscaves-1.0.10-neoforge+1.21.1.jar`, mod id `alexscaves`, runtime `1.0.10`, nome de runtime Alex's Caves Continued.
 - Twigs e Undergarden não aparecem na modlist física. Entradas do datapack voltadas a esses providers não são classificadas como integrações ativas.
 - O upstream nomeia Alex's Caves original. O fork Continued preserva `alexscaves`, tornando compatibilidade plausível por IDs, mas não upstream-validada; permanece fail-closed para QA.
 
@@ -26,11 +25,11 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Magia
 - **Função:** Datapack de compatibilidade para Iron's Spells 'n Spellbooks cuja função principal publicada é ampliar os blocos de chão reconhecidos pelo spell Spectral Hammer para conteúdo de mods suportados.
-- **Dependências:** Iron's Spells 'n Spellbooks 3.16.3. Dos alvos publicados, Quark 4.1-483 e Alex's Caves Continued 1.0.9 estão presentes; Twigs e Undergarden não estão presentes. O upstream nomeia Alex's Caves original, portanto o fork Continued requer QA apesar de preservar o mod id `alexscaves`.
+- **Dependências:** Iron's Spells 'n Spellbooks 3.16.3. Dos alvos publicados, Quark 4.1-483 e Alex's Caves Continued 1.0.10 estão presentes; Twigs e Undergarden não estão presentes. O upstream nomeia Alex's Caves original, portanto o fork Continued requer QA apesar de preservar o mod id `alexscaves`.
 - **Sobreposição:** Pode disputar tags/dados usados para classificar blocos válidos do Spectral Hammer com outros datapacks de compatibilidade. Iron's continua authority do spell, dano e casting; mods-alvo continuam authorities dos blocos.
 - **Compatibilidade/Riscos:** Compat depende de tags/IDs de ground blocks dos mods suportados. Quark está fisicamente presente. Alex's Caves Continued preserva `alexscaves`, mas não há validação upstream específica do fork. Entradas referentes a Twigs/Undergarden são inertes/irrelevantes enquanto esses mods estiverem ausentes.
 - **Observações:** Arquivo físico `Irons_Spellbooks_Compat_1.0.0.zip`, versão 1.0.0, publicado para 1.21.1. Upstream lista Twigs, Undergarden, Alex's Caves e Quark; apenas os alvos fisicamente presentes devem ser considerados ativos.
-- **Procedência:** CurseForge oficial Iron's Spells 'n Spellbooks Compat 1.0.0 por CyberRat2 + captura Data Packs do perfil em 08/09/2026 + modlist física Iron's 3.16.3, Quark 4.1-483 e Alex's Caves Continued 1.0.9.
+- **Procedência:** CurseForge oficial Iron's Spells 'n Spellbooks Compat 1.0.0 por CyberRat2 + captura Data Packs do perfil em 08/09/2026 + modlist física Iron's 3.16.3, Quark 4.1-483 e Alex's Caves Continued 1.0.10.
 - **Fonte:** https://www.curseforge.com/minecraft/data-packs/irons-spells-n-spellbooks-compat/files/7502025
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Iron's Spellbooks Compat 1.0.0, Spectral Hammer ground blocks, targets físicos Quark/Alex's Caves Continued, target gaps Twigs/Undergarden, fork boundary, riscos e QA catalogados.
 - **Histórico da decisão:**
@@ -46,7 +45,7 @@ Iron's Spells 'n Spellbooks Compat é um datapack de interoperabilidade. A funç
 O projeto lista **Twigs**, **Undergarden**, **Alex's Caves** e **Quark**. Essa lista descreve alvos suportados pelo datapack, não a presença no perfil.
 
 ## 3. Presença física atual
-No perfil atual, **Quark 4.1-483** está presente. **Alex's Caves Continued 1.0.9** também está presente e preserva o mod id `alexscaves`; porém o upstream nomeia Alex's Caves original, então a equivalência do fork deve ser validada em runtime. **Twigs e Undergarden não estão presentes** e não são tratados como integrações ativas.
+No perfil atual, **Quark 4.1-483** está presente. **Alex's Caves Continued 1.0.10** também está presente e preserva o mod id `alexscaves`; porém o upstream nomeia Alex's Caves original, então a equivalência do fork deve ser validada em runtime. **Twigs e Undergarden não estão presentes** e não são tratados como integrações ativas.
 
 ## 4. Boundary funcional
 O datapack pode ampliar tags/dados de blocos reconhecidos pelo Spectral Hammer. Ele não cria o spell, não altera sua escola, mana, cooldown ou damage por authority própria, e não passa a controlar os blocos dos mods-alvo.

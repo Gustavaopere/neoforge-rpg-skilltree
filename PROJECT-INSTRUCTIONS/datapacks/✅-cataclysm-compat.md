@@ -1,7 +1,6 @@
 # Cataclysm Compat
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81219f6fc0ba655f5a7a
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Data Pack, Addon
 - **Arquivo:** `CataclysmCompat1.0.zip`
@@ -36,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Data pack físico confirmado no dossiê de origem:** `CataclysmCompat1.0.zip`, versão `1.0`, Release para Minecraft 1.21.1. O alvo físico atual é L_Ender's Cataclysm `3.33`.
+> **Data pack físico confirmado:** `CataclysmCompat1.0.zip`, versão `1.0`, Release para Minecraft 1.21.1. O alvo físico atual é L_Ender's Cataclysm `3.33`.
 
 ## 1. Papel e authority
 Cataclysm Compat complementa dados de interoperabilidade de L_Ender's Cataclysm com outros mods. **Cataclysm** continua authority de bosses, AI, attacks, damage, loot, structures e demais mecânicas.
