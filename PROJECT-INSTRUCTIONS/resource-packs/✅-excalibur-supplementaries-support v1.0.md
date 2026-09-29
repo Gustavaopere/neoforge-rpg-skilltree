@@ -10,7 +10,7 @@
 ## Autoridade e limite físico na exportação
 
 - O dossiê Notion registra `Excalibur_Supplementaries_1.0_1.21.1.zip` como fisicamente confirmado por captura da pasta Resource Packs do perfil em 08/09/2026.
-- A modlist física acessível de 08/09/2026 confirma `supplementaries-1.21.1-3.9.8-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.8`.
+- A modlist física acessível de 08/09/2026 confirma `supplementaries-1.21.1-3.9.9-neoforge.jar`, mod id `supplementaries`, runtime `1.21.1-3.9.9`.
 - O upstream publica build 1.0 para Minecraft 1.21.1; uma 1.1 posterior pertence à linha 1.20.1 e não é tratada como atualização aplicável ao runtime 1.21.1.
 - A documentação pública mostra exemplos de cobertura, mas não um manifesto completo. A exportação preserva isso como escopo parcial comprovado, sem inferir 100% do namespace.
 
@@ -25,18 +25,18 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Visual, Compat
 - **Função:** Compatibility resource pack 16x que retexturiza assets de Supplementaries para combinar com Excalibur, incluindo decoração e assets animados quando presentes.
-- **Dependências:** Uso visual pretendido: Excalibur base + Supplementaries. Stack físico atual: Excalibur V26.1_01 e Supplementaries 1.21.1-3.9.8. Não é dependência de gameplay/servidor.
+- **Dependências:** Uso visual pretendido: Excalibur base + Supplementaries. Stack físico atual: Excalibur V26.1_01 e Supplementaries 1.21.1-3.9.9. Não é dependência de gameplay/servidor.
 - **Sobreposição:** Sobrepõe assets de Supplementaries; outros retextures do mesmo namespace podem vencer conforme prioridade. Operacionalmente deve ficar acima do Excalibur para seus overrides serem visíveis.
-- **Compatibilidade/Riscos:** Cobertura integral não é declarada. Riscos de fallback visual com Supplementaries 3.9.8, conflito de asset paths, animações/metadata e prioridade incorreta de resource packs.
+- **Compatibilidade/Riscos:** Cobertura integral não é declarada. Riscos de fallback visual com Supplementaries 3.9.9, conflito de asset paths, animações/metadata e prioridade incorreta de resource packs.
 - **Observações:** Arquivo instalado `Excalibur_Supplementaries_1.0_1.21.1.zip`. Gallery oficial mostra signs/signposts, candles, flowerpots, miniature ship, globe, flax bales e chalice; não há manifesto público completo.
 - **Procedência:** Captura CurseForge do perfil RPG em 08/09/2026 + modlist física atual + CurseForge oficial da build 1.0 para Minecraft 1.21.1.
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/excalibur-supplementaries-support
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — dossiê visual reconstruído; escopo Supplementaries 3.9.8, cobertura confirmada, load order, lifecycle de resource reload, riscos e QA catalogados.
+- **Atualização/Status:** REAUDITADO EM 29/09/2026 — resource pack v1.0 preservado; provider físico Supplementaries reconciliado de 1.21.1-3.9.8 para 1.21.1-3.9.9. Cobertura confirmada, load order, lifecycle de resource reload, riscos e QA preservados.
 - **Histórico da decisão:**
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_Supplementaries_1.0_1.21.1.zip`, versão `1.0`, Release para Minecraft 1.21.1. É um compatibility pack não oficial para alinhar visualmente Supplementaries ao Excalibur.
+> **Resource pack físico confirmado:** `Excalibur_Supplementaries_1.0_1.21.1.zip`, versão `1.0`, Release para Minecraft 1.21.1. É um compatibility pack não oficial para alinhar visualmente Supplementaries ao Excalibur.
 
 ## 1. Papel e authority
 Excalibur | Supplementaries Support altera somente assets visuais do mod **Supplementaries**. Supplementaries continua authority de blocos, itens, interações e lógica; Excalibur continua o pack visual base.
@@ -47,7 +47,7 @@ A página oficial descreve o projeto como pack de compatibilidade para fazer as 
 A documentação pública não fornece manifesto completo nem afirma explicitamente cobertura total da build 1.0 para 1.21.1; portanto não extrapolar esses exemplos para 100% do mod.
 
 ## 3. Stack físico atual
-A modlist mantém `supplementaries-1.21.1-3.9.8-neoforge.jar`, runtime `1.21.1-3.9.8`. O arquivo visual instalado é a build 1.0 para 1.21.1.
+A modlist mantém `supplementaries-1.21.1-3.9.9-neoforge.jar`, runtime `1.21.1-3.9.9`. O arquivo visual instalado é a build 1.0 para 1.21.1.
 O projeto teve atualização posterior 1.1 para a linha 1.20.1, mas a página oficial ainda lista **1.0 como release de 1.21.1**. Não há evidência de que o pack do usuário esteja desatualizado para Minecraft 1.21.1.
 
 ## 4. Load order
@@ -63,7 +63,7 @@ Não classificar outro pack como redundante sem comparar caminhos concretos.
 
 ## 7. Riscos
 1. Cobertura parcial deixar mistura Excalibur/default.
-2. Supplementaries 3.9.8 possuir assets posteriores à build visual 1.0.
+2. Supplementaries 3.9.9 possuir assets posteriores à build visual 1.0.
 3. Load order incorreto impedir o tema Excalibur.
 4. Collision com outro support pack de Supplementaries.
 5. Assets animados falharem por metadata incompatível.
@@ -74,7 +74,7 @@ Não classificar outro pack como redundante sem comparar caminhos concretos.
 - [ ] Conferir signs/signposts.
 - [ ] Conferir candles/skull candles e animações quando aplicáveis.
 - [ ] Conferir flowerpots, miniature ship, globe, flax bales e chalice.
-- [ ] Abrir amostra ampla do conteúdo Supplementaries 3.9.8 para procurar fallbacks visuais.
+- [ ] Abrir amostra ampla do conteúdo Supplementaries 3.9.9 para procurar fallbacks visuais.
 - [ ] Resource reload sem missing textures/models.
 - [ ] Verificar conflitos visuais com outros packs ativos que toquem Supplementaries.
 
@@ -82,7 +82,7 @@ Nenhum teste foi marcado como aprovado.
 
 ## 9. Evidências e limite
 - captura CurseForge do perfil em 08/09/2026: build instalada 1.0 para 1.21.1;
-- modlist física: Supplementaries `1.21.1-3.9.8`;
+- modlist física: Supplementaries `1.21.1-3.9.9`;
 - CurseForge oficial: support pack 16x/medieval/animated, build 1.0 para 1.21.1 e gallery com exemplos de assets.
 
 Manifesto integral do ZIP não foi auditado; completude permanece fail-closed.
