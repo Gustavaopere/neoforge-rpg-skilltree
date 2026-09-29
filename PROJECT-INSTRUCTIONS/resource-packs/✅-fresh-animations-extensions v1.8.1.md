@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `FA+All_Extensions-v1.8.1.zip`, versão `1.8.1`. O arquivo oficial inclui Minecraft `1.21.1` entre as versões suportadas.
+> **Resource pack físico confirmado:** `FA+All_Extensions-v1.8.1.zip`, versão `1.8.1`. O arquivo oficial inclui Minecraft `1.21.1` entre as versões suportadas.
 
 ## 1. Papel e authority
 Fresh Animations: Extensions é um bundle oficial de extensões visuais do ecossistema Fresh Animations. Ele amplia presentation/model resources; Minecraft continua authority de entidades, itens, AI, stats e gameplay.
