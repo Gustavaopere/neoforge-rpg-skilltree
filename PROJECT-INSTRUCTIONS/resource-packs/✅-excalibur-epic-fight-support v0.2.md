@@ -1,7 +1,6 @@
 # Excalibur | Epic Fight Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81abbe01e5df1b263371
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_EpicFight_0.2_1.21.1.zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_EpicFight_0.2_1.21.1.zip`, versão `0.2`, Release para Minecraft 1.21.1. O alvo físico é Epic Fight `21.17.3.1`.
+> **Resource pack físico confirmado:** `Excalibur_EpicFight_0.2_1.21.1.zip`, versão `0.2`, Release para Minecraft 1.21.1. O alvo físico é Epic Fight `21.17.3.1`.
 
 ## 1. Papel e authority
 O pack adapta textures/assets do Epic Fight ao estilo Excalibur. Epic Fight continua authority de combat mode, animations/movesets, stamina, skills, hit detection, damage e networking.

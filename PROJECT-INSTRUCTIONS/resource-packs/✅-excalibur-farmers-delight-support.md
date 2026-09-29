@@ -1,7 +1,6 @@
 # Excalibur | Farmer's Delight Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db816b866bd39d98f9f8c1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `FarmersDelightExcaliburSupport_1.21.1.zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `FarmersDelightExcaliburSupport_1.21.1.zip`, arquivo publicado em 27/06/2026 para Minecraft 1.21.1. O upstream publicou depois um arquivo **1.21.1 HOTFIX**, em **13/07/2026**; esse hotfix não corresponde ao arquivo atualmente registrado no perfil.
+> **Resource pack físico confirmado:** `FarmersDelightExcaliburSupport_1.21.1.zip`, arquivo publicado em 27/06/2026 para Minecraft 1.21.1. O upstream publicou depois um arquivo **1.21.1 HOTFIX**, em **13/07/2026**; esse hotfix não corresponde ao arquivo atualmente registrado no perfil.
 
 ## 1. Papel e authority
 Excalibur | Farmer's Delight Support alinha visualmente **Farmer's Delight** ao Excalibur. Farmer's Delight continua authority de crops, foods, cooking, blocks, recipes, nutrition/effects e qualquer gameplay.

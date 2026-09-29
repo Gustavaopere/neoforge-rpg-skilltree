@@ -1,7 +1,6 @@
 # Excalibur | Domum Ornamentum Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81198ac2f98c6f960e94
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Domum_Ornamentum Support_1.21.1_v1.0.zip`
@@ -37,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_Domum_Ornamentum Support_1.21.1_v1.0.zip`, versão catalogada `1.0`. Página oficial classifica a build como Release para Minecraft 1.21.1. O projeto é um support pack visual para Domum Ornamentum e permanece explicitamente **work in progress**.
+> **Resource pack físico confirmado:** `Excalibur_Domum_Ornamentum Support_1.21.1_v1.0.zip`, versão catalogada `1.0`. Página oficial classifica a build como Release para Minecraft 1.21.1. O projeto é um support pack visual para Domum Ornamentum e permanece explicitamente **work in progress**.
 
 ## 1. Papel e authority
 Excalibur | Domum Ornamentum Support não adiciona gameplay, registries, recipes ou lógica de servidor. Sua função é substituir assets visuais de **Domum Ornamentum** para aproximá-los da direção medieval 16x do **Excalibur**.

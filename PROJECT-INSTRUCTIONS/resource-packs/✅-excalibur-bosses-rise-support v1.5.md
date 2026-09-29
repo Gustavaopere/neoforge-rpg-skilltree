@@ -1,7 +1,6 @@
 # Excalibur | Bosses'Rise Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81299c56c8925ac4aa70
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur Bosses'Rise 1.5 (Neoforge).zip`
@@ -36,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur Bosses'Rise 1.5 (Neoforge).zip`, versão `1.5`, Release para Minecraft 1.21.1. O projeto é um support pack 16x/medieval para Bosses'Rise.
+> **Resource pack físico confirmado:** `Excalibur Bosses'Rise 1.5 (Neoforge).zip`, versão `1.5`, Release para Minecraft 1.21.1. O projeto é um support pack 16x/medieval para Bosses'Rise.
 
 ## 1. Papel e authority
 Excalibur | Bosses'Rise Support substitui assets visuais de **Bosses'Rise** para aproximar o mod do estilo Excalibur. Bosses'Rise continua authority de bosses, entidades, armas, armaduras, blocos, IA, dano, loot e progression.

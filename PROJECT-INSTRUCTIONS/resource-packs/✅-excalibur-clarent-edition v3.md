@@ -1,7 +1,6 @@
 # Excalibur | Clarent Edition
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81348e40c3580cf1e264
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Clarent_12110_1202+_v3.zip`
@@ -36,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Clarent_12110_1202+_v3.zip`, build `v3`. O upstream identifica esta variante como patch para **Excalibur 1.21.10** e Minecraft 1.20.2–1.21.11. O perfil atual, porém, usa **Excalibur V26.1_01**; essa combinação não é confirmada oficialmente e permanece um gate de compatibilidade visual.
+> **Resource pack físico confirmado:** `Clarent_12110_1202+_v3.zip`, build `v3`. O upstream identifica esta variante como patch para **Excalibur 1.21.10** e Minecraft 1.20.2–1.21.11. O perfil atual, porém, usa **Excalibur V26.1_01**; essa combinação não é confirmada oficialmente e permanece um gate de compatibilidade visual.
 
 ## 1. Papel e authority
 Excalibur | Clarent Edition é um patch/backport não oficial do Excalibur. Seu objetivo é preservar a experiência visual do Excalibur em várias versões de Minecraft, aplicar correções e oferecer pequenas compatibilidades de mods.

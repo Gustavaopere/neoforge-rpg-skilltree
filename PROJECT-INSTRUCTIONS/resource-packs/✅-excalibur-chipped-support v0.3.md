@@ -1,7 +1,6 @@
 # Excalibur | Chipped Support
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d669db9f0db81ec9873c5bd0880bba4
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `Excalibur_Chipped_0.3_1.21.1.zip`
@@ -36,7 +35,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Excalibur_Chipped_0.3_1.21.1.zip`, versão `0.3`, Release de 28/05/2026 para Minecraft 1.21.1. O alvo físico atual é Chipped `4.0.2`.
+> **Resource pack físico confirmado:** `Excalibur_Chipped_0.3_1.21.1.zip`, versão `0.3`, Release de 28/05/2026 para Minecraft 1.21.1. O alvo físico atual é Chipped `4.0.2`.
 
 ## 1. Papel e authority
 Excalibur | Chipped Support é um support pack visual WIP. **Chipped 4.0.2** continua authority das workstations, recipes, block variants e qualquer comportamento; o pack só altera apresentação.
