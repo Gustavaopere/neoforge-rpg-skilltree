@@ -32,11 +32,10 @@
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/mandalas-gui-dark-mode/files/8605130
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Mandala Dark Mode v3.1, suporte explícito 1.21.1–1.21.8, GUI authority, addon stack, overlap, riscos e QA catalogados.
 - **Histórico da decisão:**
-- **Data da última decisão:** —
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `MandalasGUI+Dakmode_1.21.8_v3.1.zip`, versão `3.1`. O próprio arquivo declara suporte de Minecraft **1.21.1 a 1.21.8**.
+> **Resource pack físico confirmado:** `MandalasGUI+Dakmode_1.21.8_v3.1.zip`, versão `3.1`. O próprio arquivo declara suporte de Minecraft **1.21.1 a 1.21.8**.
 
 ## 1. Papel e authority
 Mandala's GUI - Dark mode é a camada-base de interface escura do ecossistema Mandala. Ela redefine apresentação de telas, backgrounds, widgets e outros assets de GUI; Minecraft e cada mod continuam authorities da lógica das telas e dos dados exibidos.
