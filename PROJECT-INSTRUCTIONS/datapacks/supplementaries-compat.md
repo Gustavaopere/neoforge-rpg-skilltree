@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Datapack físico confirmado no dossiê de origem:** `Supplementaries Compat 1.1.zip`, versão `1.1`, release oficial para Minecraft 1.21.1.
+> **Datapack físico confirmado:** `Supplementaries Compat 1.1.zip`, versão `1.1`, release oficial para Minecraft 1.21.1.
 
 ## 1. Papel e authority
 Supplementaries Compat adiciona dados de interoperabilidade entre **Supplementaries** e mods suportados. Supplementaries continua authority de jars, bricks e demais mecânicas; os mods-alvo continuam authorities dos próprios itens.

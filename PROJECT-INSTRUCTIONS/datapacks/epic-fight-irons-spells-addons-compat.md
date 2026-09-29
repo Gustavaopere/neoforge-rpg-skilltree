@@ -36,7 +36,7 @@
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Data pack físico confirmado no dossiê de origem:** `epicfight_ironsspells_addons_compatibility_pack.zip`, publicado para Minecraft 1.21.1 e sem versão semântica própria. O valor `1.21.1` não deve ser usado como versão do datapack.
+> **Data pack físico confirmado:** `epicfight_ironsspells_addons_compatibility_pack.zip`, publicado para Minecraft 1.21.1 e sem versão semântica própria. O valor `1.21.1` não deve ser usado como versão do datapack.
 
 ## 1. Papel e authority
 Este datapack fornece definições de compatibilidade do **Epic Fight** para armas adicionadas por quatro addons de Iron's Spells. Epic Fight continua authority do sistema de estilos/animações de combate; cada addon continua authority dos próprios itens, stats e conteúdo mágico.
