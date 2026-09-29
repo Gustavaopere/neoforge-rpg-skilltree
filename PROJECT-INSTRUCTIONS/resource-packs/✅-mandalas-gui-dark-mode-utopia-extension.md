@@ -29,14 +29,13 @@
 - **Compatibilidade/Riscos:** O filename `Mandala Utopia.zip` foi reutilizado por releases diferentes; não identifica versão com segurança. Upstream exige Mandala's GUI - Dark mode. Forte overlap com outros GUI packs/compats; prioridade precisa de QA.
 - **Observações:** Arquivo instalado `Mandala Utopia.zip`; o mesmo filename aparece em múltiplas releases, incluindo 0.15 e 0.15.1, portanto `Versão 1.21.1` permanece vazia sem hash/file-id. A linha 1.21+ NeoForge foi testada pelo projeto.
 - **Procedência:** CurseForge oficial Mandala's GUI - Dark mode - Utopia extension + captura Resource Packs do perfil em 08/09/2026; filename físico preservado sem inferência de versão.
-- **Fonte:** https://www.curseforge.com/minecraft/texture-packs/mandalas-gui-dark-mode-utopia-extension
+- **Fonte:** https://www.curseforge.com/minecraft/texture-packs/mandala-gui-dark-mode-utopia-extension
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Utopia extension, filename sem versão conclusiva, Mandala Dark Mode obrigatório, ~110 mod GUIs, load order, riscos e QA catalogados.
 - **Histórico da decisão:**
-- **Data da última decisão:** —
 
 # Dossiê operacional — padrão Alex's Mobs
 
-> **Resource pack físico confirmado no dossiê de origem:** `Mandala Utopia.zip`. O filename não identifica com segurança uma versão semântica, pois foi reutilizado em múltiplas releases; `Versão 1.21.1` permanece vazia.
+> **Resource pack físico confirmado:** `Mandala Utopia.zip`. O filename não identifica com segurança uma versão semântica, pois foi reutilizado em múltiplas releases; `Versão 1.21.1` permanece vazia.
 
 ## 1. Papel e authority
 Mandala's GUI - Dark mode - Utopia extension é uma extensão visual para **Mandala's GUI - Dark mode**, criada para adaptar GUIs de muitos mods ao mesmo tema escuro. Cada mod continua authority da lógica de seus menus, inventories, recipes e dados.
