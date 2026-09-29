@@ -30,7 +30,7 @@
 - **Compatibilidade/Riscos:** O support pack toca ampla superfície visual de Ice and Fire e compete diretamente com Tabla's Dragon Retextures v6 e True Dovah em assets de dragões. Prioridade decide o resultado; não há composição automática garantida.
 - **Observações:** Arquivo instalado `Excalibur_IAFCommunityEdition3.zip`; release oficial `CommunityEditionVersion3` para 1.21.1. Changelog registra unificação com a versão 1.20.1 para corrigir texturas ausentes sem packs duplicados.
 - **Procedência:** CurseForge oficial Excalibur | Ice and Fire CommunityEditionVersion3 + captura Resource Packs do perfil em 08/09/2026 + modlist física Ice And Fire Community Edition 2.1.2.
-- **Fonte:** https://www.curseforge.com/minecraft/texture-packs/excalibur-ice-and-fire
+- **Fonte:** https://www.curseforge.com/minecraft/texture-packs/ice-and-fire-excalibur
 - **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — CommunityEditionVersion3, I&F CE 2.1.2, escopo visual, overlap Tabla/True Dovah, load order, riscos e QA catalogados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
