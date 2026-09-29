@@ -1,7 +1,6 @@
 # Fresh Animations: Extensions
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81c8a0a4e0dc4538ecdb
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `FA+All_Extensions-v1.8.1.zip`

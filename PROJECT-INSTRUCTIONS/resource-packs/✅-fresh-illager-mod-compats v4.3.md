@@ -1,7 +1,6 @@
 # Fresh Illager Mod Compats
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3d469db9f0db81299069f67aab26493e
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack, Addon
 - **Arquivo:** `4.3 FA Illager Mod Compats.zip`
@@ -55,7 +54,7 @@ No perfil atual estão **Goety 3.1.4** e **Supplementaries 3.9.8**, portanto ess
 O autor altera animações de Vindicator e Evoker porque muitos mods reutilizam esses models. Isso cria ampla superfície de overlap: uma mudança em model/animation definition pode afetar mais de um mod, mesmo quando a entidade é visualmente semelhante à vanilla.
 
 ## 6. Boundary da versão 4.3
-O arquivo físico é `4.3`. A página principal indexada atualmente pode expor `4.1` como main file, mas há evidência de distribuição do arquivo `4.3 FA Illager Mod Compats.zip`. Preservar `4.3`; changelog específico 4.3 permanece fail-closed sem publicação oficial suficientemente acessível.
+O arquivo físico é `4.3`. A página principal indexada atualmente pode exibir `4.1` como main file, mas há evidência de distribuição do arquivo `4.3 FA Illager Mod Compats.zip`. Preservar `4.3`; changelog específico 4.3 permanece fail-closed sem publicação oficial suficientemente acessível.
 
 ## 7. Riscos e overlaps
 1. Pack abaixo de Fresh Animations perder overrides.
