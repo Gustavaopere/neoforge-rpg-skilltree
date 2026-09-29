@@ -10,7 +10,7 @@
 ## Autoridade e limite físico na exportação
 
 - O dossiê Notion registra `Excalibur Jei Support 1.4.zip` como fisicamente confirmado por captura da pasta Resource Packs do perfil em 08/09/2026.
-- A modlist física de 08/09/2026 confirma `jei-1.21.1-neoforge-19.56.0.440.jar`, mod id `jei`, runtime `19.56.0.440`.
+- A modlist física atual de 29/09/2026 confirma `jei-1.21.1-neoforge-19.56.0.440.jar`, mod id `jei`, runtime `19.56.0.440`.
 - Um guia descritivo anterior ainda cita JEI `19.44.0.406`; essa referência é stale perante a modlist física e não é usada como autoridade de versão nesta exportação.
 - O projeto também menciona addons como Just Enough Resources e Just Enough Professions, mas essas menções não são convertidas em presença física por inferência.
 
