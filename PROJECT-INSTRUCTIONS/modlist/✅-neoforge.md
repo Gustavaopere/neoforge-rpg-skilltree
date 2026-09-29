@@ -1,36 +1,35 @@
 # neoforge
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Página Notion:** https://app.notion.com/p/3c969db9f0db81eabe8bc99185a1f90b
 - **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist.txt` — 595 mods top-level
+- **Autoridade física usada:** `modlist(1).txt` — 587 entradas top-level incluindo o modloader
 - **Data da exportação:** 2026-09-10
 
 ## Propriedades do banco
 
 - **Mod:** neoforge
-- **Arquivo JAR:** `neoforge-21.1.248 (modloader)`
-- **Versão 1.21.1:** neoforge-21.1.248
-- **Estado no pack:** Instalado — Dossiê completo
+- **Arquivo JAR:** `neoforge-21.1.250 (modloader)`
+- **Versão 1.21.1:** neoforge-21.1.250
+- **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Categoria:** Biblioteca, Compat
-- **Função:** Modloader e plataforma de APIs que executa toda a instância Minecraft 1.21.1. NeoForge 21.1.248 é responsável por descoberta/metadata/dependências de mods, lifecycle, registries estáticos e datapack registries, event buses, networking/payloads, configs, capabilities, data attachments, data components, SavedData, tags/data maps/conditions, acesso a recursos/datagen, sides lógico/físico e contratos client/server consumidos por todo o pack.
+- **Função:** Modloader e plataforma de APIs que executa toda a instância Minecraft 1.21.1. NeoForge 21.1.250 é responsável por descoberta/metadata/dependências de mods, lifecycle, registries estáticos e datapack registries, event buses, networking/payloads, configs, capabilities, data attachments, data components, SavedData, tags/data maps/conditions, acesso a recursos/datagen, sides lógico/físico e contratos client/server consumidos por todo o pack.
 - **Dependências:** Base: Minecraft 1.21.1 + Java 21 de 64 bits. Todos os JARs NeoForge dependem direta ou indiretamente desta plataforma; mods Fabric executados por camada de compatibilidade continuam sendo hospedados pelo runtime NeoForge. Architectury, Balm, Cloth Config, Moonlight, Puzzles Lib etc. são libraries de consumidores e NÃO substituem o loader.
 - **Sobreposição:** Nenhuma sobreposição real com libraries comuns: NeoForge é loader/runtime; Architectury/Balm/Moonlight/etc. são APIs específicas. Sinytra Connector/Forgified Fabric API, quando presentes, são camadas rodando SOBRE NeoForge. Fabric Loader/Forge não devem ser tratados como loaders simultâneos da mesma instância.
 - **Compatibilidade/Riscos:** Blast radius global. Qualquer update do loader pode afetar resolução de metadata/faixas de versão, registries, event ordering, networking, configs, capabilities, attachments/components, data reload, mixins/access transformers usados por mods, client/server dist separation e compat layers. JAR Forge/Fabric não é automaticamente válido em NeoForge. Atualizar NeoForge exige bootstrap cliente + dedicated server + mundo existente/novo + reload + smoke dos grandes stacks. Não há uma lista única de 'mods incompatíveis com NeoForge': compatibilidade é artefato/versão-dependente.
 - **Observações:** NeoForge é a maior superfície de risco de atualização do pack. Não aceitar conselho genérico do tipo 'atualize o loader' sem conferir faixas de todos os consumidores e executar regressão transversal. Java 21 é requerido para Minecraft 1.20.5+ segundo o guia oficial NeoForge.
-- **Procedência:** Modlist física 2026-09-08 + documentação oficial NeoForged 1.21–1.21.1 (registries, capabilities, data components, data maps, SavedData e demais APIs) + NeoForge User Guide para Java/runtime.
+- **Procedência:** modlist(1).txt física atual revalidada em 29/09/2026: 587 entradas top-level incluindo `neoforge-21.1.250 (modloader)`. Runtime físico reconciliado como `neoforge-21.1.250`; documentação oficial NeoForged permanece fonte técnica para lifecycle/registries/network/config/sides.
 - **Fonte:** https://docs.neoforged.net/
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 09/09/2026 — dossiê operacional completo de loader/runtime, lifecycle, registries, networking, persistence, sides, configs e validation matrix confirmado no QC global #1.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 29/09/2026 — autoridade física atual reconciliada para `neoforge-21.1.250 (modloader)`; Minecraft 1.21.1 + Java 21, loader authority e blast radius transversal preservados.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
-> 🔎 **Escopo canônico.** Runtime físico do pack: `neoforge-21.1.248 (modloader)` sobre **Minecraft 1.21.1 + Java 21**. NeoForge é a plataforma-base da instância; não é um mod de conteúdo e não deve ser comparado como substituto de libraries como Architectury, Balm ou Moonlight.
+> 🔎 **Escopo canônico.** Runtime físico do pack: `neoforge-21.1.250 (modloader)` sobre **Minecraft 1.21.1 + Java 21**. NeoForge é a plataforma-base da instância; não é um mod de conteúdo e não deve ser comparado como substituto de libraries como Architectury, Balm ou Moonlight.
 
 ## 1. Papel no pack
 NeoForge faz o bootstrap da instância, descobre os artefatos, lê metadata/dependências, constrói o ambiente de mods e expõe os contratos de modding usados por praticamente todo o restante do pack. Um problema aqui pode impedir o jogo de chegar ao menu, impedir registry freeze, quebrar payload registration, falhar no carregamento de dados ou provocar crashes muito antes de uma feature específica ser executada.
 
-O impacto de uma atualização de `21.1.248` é portanto **transversal**: não existe “atualizar só o loader” como se fosse um mod isolado.
+O impacto de uma atualização de `21.1.250` é portanto **transversal**: não existe “atualizar só o loader” como se fosse um mod isolado.
 
 ## 2. Java e ambiente de execução
 O guia oficial NeoForge exige **Java 21** para Minecraft 1.20.5 e versões posteriores, portanto Minecraft 1.21.1 deste projeto deve executar em JVM 64-bit Java 21.
@@ -257,7 +256,7 @@ Falhas de codec/registry/data parse ao carregar mundo/reload.
 
 A stacktrace completa e a **primeira causa real** devem ser preservadas; o último mod citado não é necessariamente o culpado.
 
-## 23. Política de atualização para `21.1.248`
+## 23. Política de atualização para `21.1.250`
 Não atualizar loader de produção apenas porque existe build mais nova. Antes:
 1. comparar release notes/known issues;
 2. procurar minimum/maximum NeoForge range dos mods críticos;
@@ -268,7 +267,7 @@ Não atualizar loader de produção apenas porque existe build mais nova. Antes:
 Se algum mod exige build mais nova por correção concreta, essa exigência deve ser registrada como dependência, não como recomendação vaga.
 
 ## 24. Matriz transversal de validação após update
-1. Resolver 595 entradas top-level sem missing dependency.
+1. Resolver 587 entradas top-level sem missing dependency.
 2. Cliente até menu principal.
 3. Dedicated server até `Done`.
 4. Entrar no server e completar handshake.
@@ -290,7 +289,7 @@ Se algum mod exige build mais nova por correção concreta, essa exigência deve
 20. Inspecionar logs por mixin warnings, payload errors e failed data parsing.
 
 ## 25. Regras para outros chats
-- `21.1.248` é a authority de loader enquanto a modlist física não mudar.
+- `21.1.250` é a authority de loader enquanto a modlist física não mudar.
 - Não recomendar atualizar NeoForge sem motivo/teste.
 - Não tratar library como substituta do loader.
 - Não assumir que Forge/Fabric JAR funciona em NeoForge.
@@ -299,7 +298,7 @@ Se algum mod exige build mais nova por correção concreta, essa exigência deve
 - Singleplayer não substitui dedicated-server validation.
 
 ## 26. Fontes e confiança
-**Authority física:** modlist do projeto em 08/09/2026.
+**Authority física:** `modlist(1).txt` atual, revalidada em 29/09/2026.
 
 **Documentação oficial 1.21–1.21.1:**
 - [NeoForged Docs](https://docs.neoforged.net/)
@@ -313,3 +312,6 @@ Se algum mod exige build mais nova por correção concreta, essa exigência deve
 **NeoForge User Guide:** Java 21 para Minecraft 1.20.5+ e operação client/server.
 
 **Confiança:** muito alta para plataforma/API documentada e versão física. Compatibilidade de cada mod individual continua sendo propriedade do artefato/versão e será documentada em sua própria ficha.
+
+## Revalidação física final — 29/09/2026
+A autoridade física foi reconfirmada: `Mods count: 587` corresponde a **586 JARs top-level + `neoforge-21.1.250 (modloader)`**. NeoForge permanece a plataforma-base de Minecraft 1.21.1/Java 21; nenhum update de loader foi presumido sem uma matriz de compatibilidade completa dos consumers. Nenhum boot/regression suite adicional foi executado nesta revalidação.

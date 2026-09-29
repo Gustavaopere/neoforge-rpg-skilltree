@@ -1,7 +1,6 @@
 # Create Enchantment Industry Plus
 
 > Fonte canônica desta importação: Notion — `Auditoria Mestre da Modlist — NeoForge 1.21.1`  
-> Página-fonte: https://app.notion.com/p/3c369db9f0db8150bf7ae0b9d912c41a  
 > Estado no momento da exportação: `Instalado — Dossiê completo`  
 > Autoridade física no momento da exportação: `modlist(4).txt`, 595 mods  
 > Exportado em: 2026-09-08
@@ -9,26 +8,29 @@
 ## Propriedades do registro
 
 - **Mod:** Create Enchantment Industry Plus
-- **Arquivo JAR:** `create_enchantment_industry_plus-1.1.1-1.21.1.jar`
-- **Versão 1.21.1:** `1.1.1`
+- **Arquivo JAR:** `create_enchantment_industry_plus-1.1.1-1.21.1.jar` — último artefato catalogado; ausente da modlist física atual
+- **Versão 1.21.1:** `1.1.1` — última versão catalogada; não instalada atualmente
 - **Categoria:** Tecnologia; Magia; Compat
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
-- **Estado no pack na origem:** Instalado — Dossiê completo
+- **Estado no pack:** Removido
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-enchantment-industry-plus
 - **Função:** Extensão pequena de Create: Enchantment Industry para converter leather/ink/experience em Empty Ink Sacs, Ink Sacs e Glow Ink Sacs usando processamento Create e recipes adicionais.
-- **Dependências:** Create + Create: Enchantment Industry. A build 1.1.1 é Client & Server para NeoForge 1.21.1. Não foram inferidos ranges adicionais além das dependências públicas do projeto.
+- **Dependências:** Histórico da versão 1.1.1: Create + Create: Enchantment Industry. No pack físico atual, Create 6.0.10 e Create: Enchantment Industry 2.5.3b continuam presentes, mas o addon Create Enchantment Industry Plus não possui entrada top-level.
 - **Compatibilidade/Riscos:** Sobreposição concentrada em recipes de ink/black dye/glow ink. A 1.1.1 muda recipes de ink para black dye, adiciona conversão ink sac→glow ink sac e grinding recipe. Risco principal é recipe duplication/stale datapack com outras bridges do Enchantment Industry.
 - **Sobreposição:** Complementa Create: Enchantment Industry; não o substitui. Qualquer outro addon/datapack que converta ink sacs, black dye, experience ou glow ink deve ser comparado por recipe ID/input/output para evitar rotas duplicadas.
-- **Observações:** JAR `create_enchantment_industry_plus-1.1.1-1.21.1.jar`; runtime 1.1.1. Fluxos oficiais: press Leather→Empty Ink Sac; fill Empty Ink Sac com ink→Ink Sac; drain Ink Sac→Empty Ink Sac + ink; Spout + experience pode converter Ink Sac→Glow Ink Sac. Changelog 1.1.1: recipes mudados de ink para black dye, nova conversão glow ink e grinding recipe.
-- **Procedência:** Modlist física canônica de 08/09/2026, 595 top-levels + runtime 1.1.1 + CurseForge/Modrinth oficiais da release 1.1.1 e descrição funcional do projeto.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create Enchantment Industry Plus 1.1.1 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. Presença como extensão do Enchantment Industry não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 08/09/2026 — ink-sac processing authority, press/fill/drain/spout recipe boundaries, Create Enchantment Industry integration e delta 1.1.1 catalogados.
+- **Observações:** Último artefato confirmado historicamente: `create_enchantment_industry_plus-1.1.1-1.21.1.jar`, runtime 1.1.1. A modlist física atual não contém esse addon; os fluxos press/fill/drain/spout abaixo permanecem documentação histórica da versão catalogada, não funcionalidade afirmada como ativa no pack atual.
+- **Procedência:** Última confirmação física histórica em setembro/2026 para `create_enchantment_industry_plus-1.1.1-1.21.1.jar` + CurseForge/Modrinth oficiais da 1.1.1. Reauditoria da modlist física atual em 29/09/2026, com 587 entradas top-level incluindo o modloader, encontrou zero entrada top-level do addon; presença atual = removido.
+- **Histórico da decisão:** Sem decisão curatorial formal. Em 08/09/2026, a versão 1.1.1 estava instalada e foi reconstruída ao padrão técnico. Na reauditoria física de 29/09/2026, o addon não aparece mais entre as 587 entradas top-level e passa a ser registrado como Removido.
+- **Atualização/Status:** REAUDITADO EM 29/09/2026 — o addon Create Enchantment Industry Plus não está presente na modlist física atual. A versão 1.1.1 e seus recipes ficam preservados como histórico do último artefato catalogado; Create 6.0.10 e Create: Enchantment Industry 2.5.3b permanecem no stack.
 - **Data da última decisão:** não definida.
 
 ## Dossiê operacional — padrão Alex's Mobs
 
-> 🖋️ Versão física confirmada: `create_enchantment_industry_plus-1.1.1-1.21.1.jar`, runtime `1.1.1`, NeoForge 1.21.1. É uma extensão pequena de **Create: Enchantment Industry** focada em Ink Sacs/Glow Ink Sacs.
+> 🖋️ Última versão física historicamente confirmada: `create_enchantment_industry_plus-1.1.1-1.21.1.jar`, runtime `1.1.1`, NeoForge 1.21.1. **O addon não está presente na modlist física atual**; o restante deste dossiê descreve a última versão catalogada.
+
+## Estado físico atual — removido
+A modlist física atual, com 587 entradas top-level incluindo o modloader, não contém `create_enchantment_industry_plus-1.1.1-1.21.1.jar` nem outro top-level do Create Enchantment Industry Plus. Create `6.0.10` e Create: Enchantment Industry `2.5.3b` permanecem instalados; somente este addon está ausente.
 
 ## 1. Papel e authority
 O addon adiciona recipes e itens intermediários para integrar ink sacs ao processing do Create/Enchantment Industry. Create controla as máquinas/process types; Enchantment Industry controla seu sistema de experiência/ink; este addon controla apenas suas conversões adicionais.
@@ -83,7 +85,8 @@ Validar startup, recipe/datapack reload, server restart, fluid tank/container be
 9. Multiplayer com dois jogadores usando a cadeia simultaneamente.
 
 ## 14. Evidência
-- modlist física 08/09/2026: 1.1.1;
+- modlist física histórica de 08/09/2026: 1.1.1;
+- modlist física atual de 29/09/2026: addon ausente entre 587 entradas top-level incluindo o modloader;
 - CurseForge oficial: Empty Ink Sac, fill/drain e Spout + experience;
 - changelog 1.1.1: ink→black dye recipe changes, glow ink recipe e grinding recipe;
 - Modrinth confirma build 1.1.1 Client & Server.
