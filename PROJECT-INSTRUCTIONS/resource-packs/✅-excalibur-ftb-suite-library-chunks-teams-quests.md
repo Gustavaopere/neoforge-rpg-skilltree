@@ -10,7 +10,7 @@
 ## Autoridade e limite físico na exportação
 
 - O dossiê Notion registra `excalibur_ftbsuite.zip` como fisicamente confirmado por captura da pasta Resource Packs do perfil em 08/09/2026.
-- A modlist física de 08/09/2026 confirma exatamente os quatro alvos do resource pack: FTB Library `2101.1.36`, FTB Chunks `2101.1.22`, FTB Teams `2101.1.11` e FTB Quests `2101.1.36`.
+- A modlist física atual de 29/09/2026 confirma exatamente os quatro alvos do resource pack: FTB Library `2101.1.36`, FTB Chunks `2101.1.22`, FTB Teams `2101.1.11` e FTB Quests `2101.1.36`.
 - O arquivo não possui versão semântica pública própria; o campo permanece vazio em vez de inferir versão a partir da data de publicação.
 - O nome “FTB Suite” não é usado para inferir módulos FTB adicionais. O escopo desta ficha é somente Library, Chunks, Teams e Quests, conforme a publicação do pack.
 
