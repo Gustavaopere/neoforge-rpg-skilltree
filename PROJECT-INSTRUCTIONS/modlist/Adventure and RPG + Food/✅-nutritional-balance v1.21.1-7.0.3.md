@@ -39,6 +39,19 @@
 ## 2. Modelo nutricional
 O projeto associa alimentos a nutrientes/grupos nutricionais e calcula o perfil do jogador a partir do consumo. A documentação pública descreve o objetivo como fazer uma dieta equilibrada resultar em um personagem mais forte/rápido, enquanto uma dieta ruim pode enfraquecer ou reduzir desempenho.
 O sistema não deve ser confundido com hunger/saturation vanilla. Hunger continua sendo recurso vanilla; Nutritional Balance acrescenta uma camada persistente de qualidade/variedade da dieta.
+### 2.1 Unidades, faixas e regras especiais preservadas para perks
+
+O guia de sobrevivência detalha o modelo jogável em **Nutritional Units (NUs)** distribuídas entre nutrientes. Tooltips podem exibir a contribuição nutricional de cada alimento e a GUI própria, aberta por padrão com `N`, mostra o nível atual de cada grupo, faixas-alvo e limites de malnutrition/engorgement.
+
+Manter os nutrientes dentro das faixas ideais pode conceder buffs configuráveis — exemplos editoriais incluem vida, velocidade e eficiência — enquanto permanecer abaixo ou acima dos limites pode aplicar debuffs. Esses efeitos continuam data/config-driven; a ficha não congela números que o runtime/config possa alterar.
+
+Duas exceções do guia são relevantes para design de perks:
+
+- **Sugar** é tratado como nutriente não essencial: deficiência de Sugar não recebe penalidade.
+- **Vegetables** possuem comportamento especial que não pune excesso da mesma forma que nutrientes comuns.
+
+Perks de alimentação devem consultar o estado nutricional efetivo e não transformar hunger/saturation vanilla em substituto das NUs.
+
 ## 3. Definição por item tags
 A documentação permite definir nutrientes por **item tags**. Isso é particularmente importante em modpacks grandes porque novos alimentos podem ser integrados por datapack sem alterar o código do mod.
 Consequências:

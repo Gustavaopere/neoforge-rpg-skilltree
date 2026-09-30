@@ -56,6 +56,38 @@ Alteração de material/tier por addon não transfere ownership da weapon class 
 ## 5. Weapon implicits
 A linha 1.70 introduz/expande **weapon implicits**: comportamentos intrínsecos ligados ao tipo da arma, separados de Unique abilities e Runic Powers.
 Implicits devem ser calculados uma vez por ação lógica e removidos quando a arma deixa de satisfazer o contrato. Addons da linha 1.70, como Simply More, dependem dessa infraestrutura.
+### 5.1 Matriz de Implicits nativos relevante para perks
+
+O guia temático canônico preserva uma matriz de **defaults do provider** para os Implicits da linha instalada. Esses valores são ponto de partida, não hardcode obrigatório: config/runtime efetivo continua sendo a autoridade antes de implementar qualquer perk.
+
+| Família | Implicit nativo | Faixa default documentada | Risco de integração |
+|---|---|---:|---|
+| Rapier, Spear | chance de ignorar armor | 15–35% | Evitar double-dip com armor negation/penetration externa. |
+| Cutlass | chance de loot extra on-hit | 1–3% | Tratar como capacidade econômica; deduplicar drops. |
+| Glaive, Greataxe, Halberd | chance de aplicar Bleed | 10–60% | O proc/status pertence ao Simply Swords; não recriar Bleed em paralelo. |
+| Sai, Dagger | bônus de dano por backstab | 20–40% | Depende da causalidade posicional real do provider. |
+| Claymore, Longsword | chance de defletir dano recebido | 5–15% | É defesa/incoming-damage, não proc ofensivo comum. |
+| Greathammer | armor sunder por hit | 2–10% | Exige ownership claro de stacking/debuff. |
+| Hammer | armor sunder por hit | 2–6% | Mesma família mecânica com faixa menor. |
+| Katana | chance de dano duplo | 5–15% | Multiplicador de alto risco; não empilhar outro double-damage sem regra explícita. |
+| Chakram, Twinblade | chance de ganhar attack speed on-hit | 5–25% | Interage diretamente com cadência/Epic Fight. |
+| Scythe | chance de executar alvo com vida baixa | 5–15% | Execute deve permanecer provider-native. |
+| Warglaive | chance de atacar duas vezes | 5–15% | Alto risco de duplicar on-hit, enchant, gem e outros procs. |
+
+### 5.2 API pública documentada para integração de Implicits
+
+O capítulo de perks do ecossistema Simply Swords registra as seguintes superfícies públicas da linha 1.70:
+
+- `SimplySwordsAPI.registerWeaponType(item, type)`;
+- `SimplySwordsAPI.registerWeaponType(tag, type)`;
+- `SimplySwordsAPI.getOrCreateWeaponImplicit(stack)`;
+- `SimplySwordsAPI.appendWeaponImplicitTooltip(...)`;
+- `SimplySwordsAPI.applyWeaponImplicitDamage(...)`;
+- `SimplySwordsAPI.applyWeaponImplicitOnHit(...)`;
+- `SimplySwordsAPI.registerWeaponImplicit(definition)`.
+
+Esses nomes são evidência de que integração não precisa inferir tipo de arma pelo display name. Como a referência técnica do guia foi cruzada contra a linha 1.70, qualquer implementação deve confirmar assinatura/ABI no JAR físico `1.70.2` antes de compilar; não importar API exclusiva de linha posterior por semelhança.
+
 ## 6. Runic Powers
 Runic Powers são modificadores de combate que podem ser passivos, trigger-based ou ativos. A documentação atual separa o power da arma base e permite que tablets/powers sejam identificados e gerenciados pelo sistema Runic.
 Não confundir Runic Power com enchantment vanilla: persistence, reroll e sockets pertencem ao sistema do mod.

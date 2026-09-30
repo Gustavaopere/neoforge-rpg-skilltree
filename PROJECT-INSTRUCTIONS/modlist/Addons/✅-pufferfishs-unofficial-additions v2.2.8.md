@@ -48,15 +48,33 @@ O projeto adiciona fontes que podem alimentar árvores de skills. Um exemplo doc
 
 A quantidade e a árvore que recebe XP dependem da configuração; não foram inferidas do simples fato de o addon estar instalado.
 
+### 3.1 Fishing como fonte de experiência
+
+Além de harvest de crops, o guia detalhado registra **fishing** como fonte configurável de experiência. A fórmula pode considerar o item efetivamente pescado; portanto uma integração de perk deve liquidar XP a partir do evento/resultado autoritativo de pesca, não de animação de vara ou tentativa sem captura.
+
 ## 4. Integração com Iron's Spells
 Iron's Spells 'n Spellbooks é integração opcional publicada e está presente fisicamente no pack. O addon oferece fonte de experiência por **spell casting**.
 
 Spells contínuos podem disparar por tick; a configuração inclui conceito de `expected_ticks` para normalizar/ponderar esse comportamento. Esse ponto é crítico para evitar farm de XP por spells canalizados.
 
+A fórmula de XP por casting pode receber dimensões do cast como **escola, spell, nível, raridade, mana cost, duração e cooldown**, entre outros dados expostos pela integração. Esses inputs são contexto de cálculo; não autorizam uma segunda liquidação de mana/cooldown nem ownership da spell pelo addon.
+
+
 ## 5. Recompensas e operações
 O addon acrescenta operações/recompensas complementares ao sistema de Skills. Elas permanecem data/config-driven: a API existir não significa que uma árvore concreta do pack esteja usando cada operação.
 
 Toda árvore custom deve ser auditada por ID de reward/source e custo real.
+
+### 5.1 Rewards concretas documentadas
+
+O guia de progressão preserva exemplos de rewards disponíveis ao sistema:
+
+- aplicar **efeitos permanentes**;
+- conceder **imunidade a efeito até determinado amplifier**;
+- alterar **duração e/ou amplifier** de efeitos recebidos;
+- permitir **caminhar sobre powder snow**.
+
+A existência dessas operações não prova que a árvore do pack use todas elas. Para perks futuras, primeiro conferir o ID/config da reward na árvore concreta e manter o servidor como authority do efeito.
 
 ## 6. Attributes movidos para outro projeto
 A documentação oficial informa que atributos próprios antigos do addon foram movidos para **Additional Attributes**.
