@@ -42,6 +42,8 @@ Migrado para `✅-simply-swords v1.70.2-1.21.1.md`:
 - semântica de `WeaponImplicitDefinition` (damage/hit/incoming-damage/tooltip), persistência do roll e regra top-10% para `UniqueWeaponItem`;
 - regra exactly-once de Awakening e gem scaling — `scaleAbilityDamage`/`scaleAbilityValue` e helpers de gem não devem receber scaling duplicado;
 - pipeline de `UniqueWeaponActiveAbility`, hits delegados e `applyAbilityBoltDamage`, incluindo suppression de Implicits no ability-bolt;
+- contrato público de gem sockets: `AdditionalGemSocketApi`, hooks `inventoryTickGemSocketLogic`, `onClickedGemSocketLogic`, `postHitGemSocketLogic`, `appendTooltipGemSocketLogic` e `onWeaponSwing`;
+- `GemPowerRegistry` com IDs namespaced sincronizados e persistência de `GemPowerComponent` por ID, evitando estado paralelo incompatível em perks/itens customizados;
 - gate para confirmar assinatura/ABI no JAR físico antes de implementação.
 
 ### 3.2 Fundamental Principles
@@ -51,7 +53,9 @@ Migrado para `✅-fundamental-principles-irons-spells-addon v1.1.7.1.md`:
 - semântica das 13 Principles;
 - exemplos de passivos/progressão 0–20;
 - Spell Exhaustion;
-- **Remedium's Law** e sua relação com food/saturation em healing spells.
+- **Remedium's Law** e sua relação com food/saturation em healing spells;
+- progressão própria de spellbooks por tiers/covers, incluindo aumento de slots e poder;
+- boundary de Mana Reinforcement como mecânica provider-native até existir hook específico auditado.
 
 ### 3.3 Nutritional Balance
 
@@ -149,7 +153,7 @@ Antes de criar/fechar uma perk:
 ## 9. Estado após esta auditoria
 
 - Cobertura estrutural dos guias foi reconciliada contra a modlist física atual.
-- As cinco lacunas perk-relevantes confirmadas foram incorporadas às fichas individuais.
+- As cinco lacunas perk-relevantes confirmadas foram incorporadas às fichas individuais, incluindo os follow-ups de review para gem sockets do Simply Swords e progressão de spellbooks do Fundamental Principles.
 - Snapshots antigos dos guias foram reclassificados explicitamente como históricos.
 - Conteúdo transversal dos projetos próprios permanece separado e obrigatório.
 - O único bloqueio estrutural sem dossier continua sendo #272.
