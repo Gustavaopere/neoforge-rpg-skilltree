@@ -1,8 +1,8 @@
-# Reconciliação atual da modlist — Gameplay e Sistemas
+# Snapshot histórico da modlist — Gameplay e Sistemas — 08/09/2026
 
-> **AUTORIDADE DE PRESENÇA/JAR/VERSÃO — 2026-09-08.** O estado físico atual é o [`MODLIST-SNAPSHOT-2026-09-08.md`](../../modlist/MODLIST-SNAPSHOT-2026-09-08.md), extraído da modlist física com **595 entradas top-level**, incluindo o modloader **NeoForge 21.1.248**. Dependências `jarjar` embutidas não contam como mods top-level.
+> **SNAPSHOT HISTÓRICO — 2026-09-08.** Este arquivo congela a modlist daquele checkpoint, com **595 entradas top-level** incluindo **NeoForge 21.1.248**. Para presença, posição, JAR e versão **atuais**, use `../../modlist/modlist.md`; para mecânicas/hooks de um provider, use o dossier individual atual. Dependências `jarjar` embutidas não contam como mods top-level.
 
-A autoridade corrente é: **NeoForge 21.1.248 + 594 JARs top-level = 595 entradas**. O arquivo-fonte físico usado no snapshot possui SHA-256 `7c0a23d6013101383d196526e4b6ba6940fb54a0fed10eaed5956ab015cfcc00`.
+Naquele checkpoint físico: **NeoForge 21.1.248 + 594 JARs top-level = 595 entradas**. O arquivo-fonte físico usado no snapshot possui SHA-256 `7c0a23d6013101383d196526e4b6ba6940fb54a0fed10eaed5956ab015cfcc00`.
 
 ## Inventário auditável de 08/09
 
@@ -16,11 +16,11 @@ Os campos `mod_id`, `mod_name` e `mod_version` são copiados da fonte física. C
 
 ## Estado do Notion neste checkpoint
 
-O snapshot físico de 08/09 **não reutiliza** os fechamentos quantitativos do Notion de 07/09 como se fossem atuais. Os números históricos `612 Instalado`, `613/613 Verificado`, `605/605 modVersion` e `7/7 sem modVersion` permanecem evidência do checkpoint anterior e exigem reconciliação própria contra a authority de 595 antes de qualquer nova declaração global.
+O snapshot físico de 08/09 **não reutiliza** os fechamentos quantitativos do Notion de 07/09 como se fossem atuais. Os números históricos `612 Instalado`, `613/613 Verificado`, `605/605 modVersion` e `7/7 sem modVersion` permanecem evidência do checkpoint anterior e exigem reconciliação própria contra o snapshot de 595 antes de qualquer nova declaração global.
 
 ## Histórico congelado — checkpoint de 07/09/2026
 
-> Tudo nesta seção descreve o checkpoint anterior e **não** prevalece sobre o snapshot físico de 08/09 para presença, JAR ou versão.
+> Tudo nesta seção descreve o checkpoint anterior e **não** prevalece sobre `../../modlist/modlist.md` atual; nem o snapshot 08/09 substitui a authority física vigente.
 
 O estado de 07/09 era definido pelo snapshot auditável de 06/09/2026 mais o `MODLIST-DELTA-2026-09-07.md`, totalizando **612 entradas top-level** naquele checkpoint.
 
@@ -38,7 +38,7 @@ O estado de 07/09 era definido pelo snapshot auditável de 06/09/2026 mais o `MO
 
 ### Snapshot temático de 06/09
 
-As sete páginas abaixo são o baseline temático congelado de 06/09 e servem apenas como histórico descritivo quando divergirem da authority de 08/09:
+As sete páginas abaixo são o baseline temático congelado de 06/09 e servem apenas como histórico descritivo; qualquer divergência atual é resolvida por `../../modlist/modlist.md` + dossier individual:
 
 - [Registros 001-050 — baseline 06/09](CURRENT-MODLIST-001-050.md)
 - [Registros 051-100 — baseline 06/09](CURRENT-MODLIST-051-100.md)
@@ -61,21 +61,21 @@ Naquele checkpoint foram registradas como removidas fisicamente:
 - `spore_1.21.1_2.2.0j_neo.jar`;
 - `Infnexus-2.0.4-1.21.1.jar`.
 
-Essas observações continuam úteis como histórico causal, mas a presença física atual deve sempre ser resolvida no inventário de 08/09.
+Essas observações continuam úteis como histórico causal, mas a presença física atual deve sempre ser resolvida em `../../modlist/modlist.md`.
 
 ## Authority de curadoria
 
 Presença física e decisão curatorial são estados distintos. Os arquivos de decisões curatoriais continuam preservando o histórico de escolha; uma decisão `Manter` ou `Tirar` não altera sozinha a presença comprovada pelo snapshot físico.
 
-- **Create: Bits 'n' Bobs — `Manter`.** Conflitos visuais documentados continuam riscos a validar; presença e versão atuais devem ser consultadas no snapshot 08/09.
-- **More Relics — `Manter`.** Desvios de compatibilidade documentados continuam fail-closed até teste real; presença e versão atuais devem ser consultadas no snapshot 08/09.
-- **Integrated Mowzie's Mobs — `Manter`.** A decisão permanece curatorial; identidade runtime deve ser lida do snapshot 08/09.
+- **Create: Bits 'n' Bobs — `Manter`.** Conflitos visuais documentados continuam riscos a validar; presença e versão atuais devem ser consultadas em `../../modlist/modlist.md`.
+- **More Relics — `Manter`.** Desvios de compatibilidade documentados continuam fail-closed até teste real; presença e versão atuais devem ser consultadas em `../../modlist/modlist.md`.
+- **Integrated Mowzie's Mobs — `Manter`.** A decisão permanece curatorial; identidade runtime atual deve ser lida de `../../modlist/modlist.md`.
 
 ## Regra operacional
 
-- [`MODLIST-SNAPSHOT-2026-09-08.md`](../../modlist/MODLIST-SNAPSHOT-2026-09-08.md) + suas quatro partes TSV são a **authority atual de presença/JAR/versão**.
-- O snapshot 06/09 e o delta 07/09 são históricos e não podem sobrepor a authority de 08/09.
-- Os capítulos continuam authority descritiva de função, integração, riscos e classificação provider/bridge/library/presentation quando não contradizem a presença/JAR/versão atual.
+- [`MODLIST-SNAPSHOT-2026-09-08.md`](../../modlist/MODLIST-SNAPSHOT-2026-09-08.md) + suas partes TSV são **evidência histórica** do checkpoint 08/09; não são authority atual.
+- Os snapshots 06/09, 07/09 e 08/09 são históricos e não podem sobrepor `../../modlist/modlist.md` atual.
+- Os capítulos permanecem contexto editorial; o dossier individual atual é authority por provider para mecânicas, integração, riscos, hooks e limites.
 - Biblioteca, UI, visual, compat ou scripting não deve ser promovido automaticamente a provider mecânico.
 - Um update de versão não revalida automaticamente hooks/APIs usados por perks.
-- Quando um capítulo histórico contradizer explicitamente o snapshot de 08/09 sobre presença, JAR ou runtime, **o snapshot de 08/09 prevalece** até o capítulo ser atualizado.
+- Quando qualquer snapshot/capítulo histórico contradizer o estado vigente, **`../../modlist/modlist.md` + dossier individual atual prevalecem**.
