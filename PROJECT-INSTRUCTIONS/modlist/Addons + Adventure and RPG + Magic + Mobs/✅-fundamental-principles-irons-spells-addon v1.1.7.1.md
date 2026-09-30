@@ -53,6 +53,12 @@ Além da progressão por Principle, o guia registra **Spell Exhaustion**: casts 
 
 Para perks de cura, mana, alimentação ou redução de custo, essa cadeia deve ser tratada como uma única causalidade autoritativa. Não reembolsar/consumir food ou saturation em paralelo sem um hook comprovado do provider.
 
+### 3.3 Progressão própria de spellbooks
+
+Fundamental Principles também possui **progressão própria de spellbooks por tiers/covers**. Essa progressão aumenta a capacidade do spellbook, incluindo **mais slots e maior poder** conforme o livro evolui. Ela pertence ao addon e é separada tanto do unlock base de spells do Iron's quanto de qualquer progressão do RPG Skill Tree.
+
+Consequência para perks: bônus de spell slots, spellbook tier ou spell power precisam compor com o estado real desse sistema sem conceder novamente os mesmos ganhos. Não inferir tier apenas pelo item visual, não contornar requisitos/custos do provider e não tratar um aumento de slots/poder do spellbook como se fosse XP de Principle. `Mana Reinforcement`, quando presente na linha instalada, pertence ao mesmo domínio de progressão do addon e deve permanecer provider-native até existir hook específico auditado.
+
 ### 4. Lifecycle crítico
 Validar login/relog, death/respawn, dimension change, server restart, spell registry reload, troca de spellbook, cast interrompido e concorrência multiplayer. State persistente de Principles deve sobreviver apenas conforme contrato do addon; modifiers/passivas não podem ficar órfãos após mudança de condição.
 ### 5. Riscos source-level já conhecidos
