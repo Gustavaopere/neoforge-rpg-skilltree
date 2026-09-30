@@ -1,8 +1,8 @@
-# Reconciliação atual da modlist — Mods de Tecnologia
+# Snapshot histórico da modlist — Mods de Tecnologia — 07/09/2026
 
-> **AUTORIDADE DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** O estado físico atual do pack é o snapshot de 06/09/2026 mais o [`MODLIST-DELTA-2026-09-07.md`](../MODLIST-DELTA-2026-09-07.md). O delta prevalece para qualquer artefato alterado em 07/09. Decisões curatoriais revistas em 07/09 seguem [`../gameplay/CURATION-DECISIONS-2026-09-07.md`](../gameplay/CURATION-DECISIONS-2026-09-07.md).
+> **SNAPSHOT HISTÓRICO — 2026-09-07.** Este arquivo preserva o snapshot de 06/09/2026 mais o delta de 07/09. Para presença/JAR/runtime atuais, use `../../modlist/modlist.md`; para contrato mecânico, use o dossier individual atual. Decisões curatoriais abaixo pertencem ao checkpoint histórico correspondente.
 
-A modlist atual contém **612 entradas top-level**, incluindo NeoForge. O recorte Tecnologia permanece com **200 JARs tecnológicos/cross-domain**: o delta de 07/09 não adicionou nem removeu um provider tecnológico do recorte, mas atualizou cinco artefatos já classificados.
+Naquele checkpoint, a modlist continha **612 entradas top-level**, incluindo NeoForge. O recorte Tecnologia permanece com **200 JARs tecnológicos/cross-domain**: o delta de 07/09 não adicionou nem removeu um provider tecnológico do recorte, mas atualizou cinco artefatos já classificados.
 
 ## Updates tecnológicos
 
@@ -22,7 +22,7 @@ O conflito visual com os Thermochemical Cogwheels de Create: Sulfuric Resonance 
 
 ## Baseline tecnológico
 
-A tabela completa de **200 IDs/JARs** reconciliada em 06/09 permanece auditável no histórico Git imediatamente anterior a este delta. Para módulos não alterados em 07/09, esse baseline continua válido. Para os cinco updates acima, prevalece o delta atual.
+A tabela completa de **200 IDs/JARs** reconciliada em 06/09 permanece auditável no histórico Git imediatamente anterior a este delta. Dentro daquele checkpoint, o baseline descreve módulos não alterados e o delta 07/09 descreve os cinco updates; ambos são históricos frente à modlist vigente.
 
 ## Boundaries de novos mods cross-domain
 
@@ -31,7 +31,7 @@ A tabela completa de **200 IDs/JARs** reconciliada em 06/09 permanece auditável
 
 ## Regra operacional
 
-- Este arquivo + [`../MODLIST-DELTA-2026-09-07.md`](../MODLIST-DELTA-2026-09-07.md) fixam a presença/JAR/runtime atual do recorte tecnológico.
+- Este arquivo + o delta 07/09 fixam presença/JAR/runtime apenas para aquele checkpoint histórico; o estado atual vem de `../../modlist/modlist.md`.
 - [`../gameplay/CURATION-DECISIONS-2026-09-07.md`](../gameplay/CURATION-DECISIONS-2026-09-07.md) prevalece para decisões explicitamente revistas em 07/09.
 - Descrições funcionais permanecem nos capítulos do guia.
 - Update de versão não autoriza inferir API, hook ou compatibilidade sem inspeção.

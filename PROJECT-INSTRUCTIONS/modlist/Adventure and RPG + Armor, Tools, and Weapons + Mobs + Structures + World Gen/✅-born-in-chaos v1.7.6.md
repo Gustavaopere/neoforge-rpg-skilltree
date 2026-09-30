@@ -43,6 +43,12 @@ Regras:
 - reload não deve recontar dias;
 - spawn gate temporal deve considerar o mundo/servidor correto;
 - mods de scaling externos não devem duplicar a progressão temporal nativa.
+### 3.1 Nightmare Stalker — progressão por idade do mundo
+
+O guia de fauna preserva **Nightmare Stalker** como exemplo explícito de criatura cuja ameaça depende da idade/progressão temporal do mundo e que ganha capacidades adicionais em estágios posteriores. Isso é uma condição do encounter/provider, não um simples scaling genérico de vida/dano.
+
+Perks que reajam a boss/miniboss, world age ou dificuldade devem observar a entidade/estado final do Born in Chaos e não reconstruir externamente a progressão do Nightmare Stalker sem hook comprovado.
+
 ## 4. Naughtiness Mechanics
 Sistema oficial inspirado em DST:
 - ações consideradas ruins aumentam Naughtiness, especialmente matar animais/villagers e, com peso maior, babies/creatures sem benefício prático;

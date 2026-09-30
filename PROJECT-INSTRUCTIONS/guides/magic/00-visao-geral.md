@@ -1,12 +1,12 @@
-<!-- Guia temático canônico versionado no GitHub | referência atual de presença/JAR/versão: modlist.txt reconciliada em 2026-09-06 -->
+<!-- Guia temático canônico versionado no GitHub | snapshot histórico de presença/JAR/versão: 2026-09-06; authority atual: ../../modlist/modlist.md + dossier individual -->
 
 [← Índice do guia](README.md)
 
 # Visão geral e escopo
 
-> **RECONCILIADO COM A MODLIST ATUAL — 2026-09-06:** a fonte canônica possui **607 entradas top-level** e este eixo cobre **101 JARs mágicos/cross-domain**. A reconciliação adicionou sete módulos que faltavam na cobertura, incorporou oito drifts de JAR/runtime e confirmou que nenhum dos 94 mod IDs anteriormente cobertos foi removido. [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md) é a autoridade de presença/versão; [`21-fontes-e-referencias-tecnicas.md`](21-fontes-e-referencias-tecnicas.md) é o índice de fontes externas.
+> **SNAPSHOT HISTÓRICO — 2026-09-06:** naquele checkpoint havia **607 entradas top-level** e este eixo cobria **101 JARs mágicos/cross-domain**. [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md) preserva esse snapshot; presença/JAR/versão atuais vêm de `../../modlist/modlist.md`, e o dossier individual atual é authority para mecânicas/hooks por provider.
 
-> Este guia é um **catálogo descritivo** dos mods ligados à magia que aparecem na modlist atual. O foco é explicar o que cada um acrescenta ao jogo, como sua mecânica funciona e a qual ecossistema mágico ele pertence. Compatibilidade, biblioteca ou UI não são promovidas automaticamente a provider mecânico de perk.
+> Este guia é um **catálogo descritivo** dos mods ligados à magia documentados naquele snapshot. O foco é explicar o que cada um acrescenta ao jogo, como sua mecânica funciona e a qual ecossistema mágico ele pertence. Compatibilidade, biblioteca ou UI não são promovidas automaticamente a provider mecânico de perk.
 
 ---
 

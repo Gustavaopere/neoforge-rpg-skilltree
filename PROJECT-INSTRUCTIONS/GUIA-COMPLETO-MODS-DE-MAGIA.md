@@ -4,13 +4,13 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 
 **Fonte canônica:** diretório versionado no GitHub.
 
-**Snapshot consolidado deste anexo:** **2026-09-07**, modlist física com **612 entradas top-level incluindo NeoForge**. O recorte mágico possui **103 referências temáticas** após o delta atual.
+**Snapshot histórico consolidado deste anexo:** **2026-09-07**, então com **612 entradas top-level incluindo NeoForge** e **103 referências temáticas** no recorte mágico. Esse inventário é histórico, não a authority física atual.
 
-> `CURRENT-MODLIST.md` + delta 07/09 prevalecem sobre versões históricas embutidas nos capítulos. Update de versão não prova que um hook antigo continua válido.
+> **Authority operacional atual para perks — 29/09/2026:** presença, posição, JAR e versão vêm de `modlist/modlist.md` (**587/587 posições**); mecânicas, schools, ownership/authority, lifecycle, riscos, hooks e limites de cada provider externo vêm do **dossier individual atual** em `modlist/<categorias>/✅-*.md`. `CURRENT-MODLIST.md` + delta 07/09 abaixo permanecem como snapshots históricos. Se uma mecânica relevante existir somente neste guia, **reconciliar o dossier antes de fechar a perk**. Update de versão não prova que um hook antigo continua válido.
 
 ## Índice operacional
 
-- Reconciliação atual da modlist
+- Snapshot histórico da modlist
 - 00–18. Corpo histórico consolidado
 - 19A. Atualização da modlist mágica — 07/09
 - 19B. Ecossistema Apothic e compats
@@ -20,6 +20,8 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 ## Regras de manutenção
 
 - provider-native first;
+- `modlist/modlist.md` atual fixa presença/JAR/runtime e o dossier individual atual fixa o contrato mecânico por provider;
+- snapshots `CURRENT-MODLIST*` embutidos abaixo são históricos;
 - bridge não vira escola;
 - UI/VFX não vira authority de cast;
 - More Relics permanece `Manter`, mas provider-specific fail-closed até validação com Relics 0.12.8;
@@ -29,11 +31,11 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 
 <!-- ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/magic/CURRENT-MODLIST.md -->
 
-# Reconciliação atual da modlist — Mods de Magia
+# Snapshot histórico da modlist — Mods de Magia — 07/09/2026
 
-> **AUTORIDADE DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** O estado físico atual do pack é o snapshot de 06/09/2026 mais o delta de 07/09.
+> **SNAPSHOT HISTÓRICO DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** Naquele checkpoint, o estado físico era o snapshot de 06/09/2026 mais o delta de 07/09. Para o estado atual, use `modlist/modlist.md` e o dossier individual correspondente.
 
-A modlist física atual contém **612 entradas top-level**, incluindo NeoForge. O recorte mágico do snapshot de 06/09 tinha **101 JARs**; em 07/09 entram dois módulos mágicos/cross-domain novos, totalizando **103 referências temáticas** antes de sobreposições com outros guias.
+Naquele snapshot, a modlist física continha **612 entradas top-level**, incluindo NeoForge. O recorte mágico de 06/09 tinha **101 JARs**; em 07/09 entraram dois módulos mágicos/cross-domain novos, totalizando **103 referências temáticas** antes de sobreposições com outros guias.
 
 ## Updates mágicos
 
@@ -58,7 +60,7 @@ A documentação upstream para NeoForge 1.21.1 não declara suporte a Relics 0.1
 
 ## Regra operacional
 
-- Este fechamento + o delta físico de 07/09 fixam a identidade física atual do domínio mágico.
+- Este fechamento + o delta físico de 07/09 fixam apenas a identidade física daquele checkpoint histórico; o estado vigente vem de `modlist/modlist.md`.
 - Bridge, biblioteca, UI ou compatibilidade não vira provider apenas por estar no recorte mágico.
 - `Manter` More Relics não autoriza contrato provider-specific sem validação contra Relics 0.12.8.
 
@@ -66,15 +68,15 @@ A documentação upstream para NeoForge 1.21.1 não declara suporte a Relics 0.1
 
 <!-- ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/magic/00-visao-geral.md -->
 
-<!-- Guia temático canônico versionado no GitHub | referência atual de presença/JAR/versão: modlist.txt reconciliada em 2026-08-30 -->
+<!-- Guia temático canônico versionado no GitHub | snapshot histórico de presença/JAR/versão: 2026-08-30; authority atual: modlist/modlist.md + dossier individual -->
 
 [← Índice do guia](README.md)
 
 # Visão geral e escopo
 
-> **RECONCILIADO COM A MODLIST ATUAL — 2026-08-30:** presença, JARs e versões do eixo mágico foram revalidados contra a `modlist.txt` atual. [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md) registra **94 JARs mágicos/cross-domain** e prevalece quando um capítulo histórico ainda cita uma versão anterior. Entre os drifts incorporados estão Ars 'n' Spells `3.2.2`, Iron's Spells 'n Spellbooks `3.16.3`, Immersive Portal - Iron's Spells Addon `1.0.1`, Recolor `1.2.5+1.21.1`, GTBC's SpellLib `2.1.0-1.21.1`, Apprentice's Codex `0.9.7.1` e Create: Enchantment Industry `2.5.3b`.
+> **SNAPSHOT HISTÓRICO — 2026-08-30:** naquele checkpoint, presença, JARs e versões do eixo mágico foram revalidados e `CURRENT-MODLIST.md` registrava **94 JARs mágicos/cross-domain**. Para o estado vigente use `modlist/modlist.md`; para mecânicas/hooks use o dossier individual atual. Entre os drifts então incorporados estavam Ars 'n' Spells `3.2.2`, Iron's Spells 'n Spellbooks `3.16.3`, Immersive Portal - Iron's Spells Addon `1.0.1`, Recolor `1.2.5+1.21.1`, GTBC's SpellLib `2.1.0-1.21.1`, Apprentice's Codex `0.9.7.1` e Create: Enchantment Industry `2.5.3b`.
 
-> Este guia é um **catálogo descritivo** dos mods ligados à magia que aparecem na modlist atual. O foco é explicar o que cada um acrescenta ao jogo, como sua mecânica funciona e a qual ecossistema mágico ele pertence. Compatibilidade, biblioteca ou UI não são promovidas automaticamente a provider mecânico de perk.
+> Este guia é um **catálogo descritivo** dos mods ligados à magia documentados naquele snapshot. O foco é explicar o que cada um acrescenta ao jogo, como sua mecânica funciona e a qual ecossistema mágico ele pertence. Compatibilidade, biblioteca ou UI não são promovidas automaticamente a provider mecânico de perk.
 
 ---
 
@@ -1072,7 +1074,7 @@ A revisão corrente mantém índices A–C, D–I, J–R e S–Z no GitHub. Link
 
 # Delta físico da modlist — 2026-09-07
 
-> **AUTORIDADE OPERACIONAL DO SNAPSHOT:** a modlist física atual possui **612 entradas top-level**, incluindo NeoForge + **611 JARs**. Dependências `jarjar` embutidas não contam como mods top-level.
+> **SNAPSHOT HISTÓRICO:** naquele fechamento, a modlist física possuía **612 entradas top-level**, incluindo NeoForge + **611 JARs**. O estado atual está em `modlist/modlist.md`. Dependências `jarjar` embutidas não contam como mods top-level.
 
 ## Fechamento quantitativo
 
@@ -1081,7 +1083,7 @@ A revisão corrente mantém índices A–C, D–I, J–R e S–Z no GitHub. Link
 - adições reais: **9**;
 - remoções físicas reais: **4**;
 - saldo líquido: **+5**;
-- estado físico atual: **612** entradas top-level;
+- estado físico naquele snapshot: **612** entradas top-level;
 - Notion reconciliado: **612 `Instalado`**, **612 JARs físicos distintos** e **613/613 registros `Verificado`**;
 - runtime version audit: **605/605** JARs que declaram `modVersion` batem exatamente com `Versão 1.21.1` no Notion;
 - **7/7** JARs sem `modVersion` físico permanecem sem runtime version inferida no Notion.

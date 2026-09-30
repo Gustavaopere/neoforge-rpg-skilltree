@@ -1,6 +1,8 @@
-# ATUALIZAÇÃO OPERACIONAL — 2026-09-07
+# ATUALIZAÇÃO OPERACIONAL — 2026-09-29
 
-> Esta camada de freshness prevalece quando um snapshot histórico abaixo divergir do estado operacional atual.
+> **Regra de leitura para perks:** este guia consolidado continua obrigatório para **RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana**, porque seus contratos transversais não pertencem a um dossier de mod externo. Para qualquer provider externo citado nas integrações, presença/JAR/runtime atuais vêm de `modlist/modlist.md` e o contrato mecânico vem do dossier individual atual em `modlist/<categorias>/✅-*.md`. Snapshots antigos abaixo continuam como proveniência histórica e não podem reativar provider removido, versão antiga ou hook não confirmado.
+
+> A camada de freshness de projetos próprios abaixo prevalece quando um snapshot histórico divergir do estado operacional atual; ainda assim, cada novo lote precisa fazer fetch fresco das fontes operacionais conforme as regras deste guia.
 
 ## Topologia atual dos projetos próprios
 
@@ -1466,7 +1468,7 @@ Checkpoint especial reconciliado em 01/09 para a faixa A0200–A0299. Não imple
 
 # Delta físico da modlist — 2026-09-07
 
-> **AUTORIDADE OPERACIONAL DO SNAPSHOT:** a modlist física atual possui **612 entradas top-level**, incluindo NeoForge + **611 JARs**. Dependências `jarjar` embutidas não contam como mods top-level.
+> **SNAPSHOT HISTÓRICO:** naquele fechamento, a modlist física possuía **612 entradas top-level**, incluindo NeoForge + **611 JARs**. Para providers externos atuais, use `modlist/modlist.md` + dossier individual. Dependências `jarjar` embutidas não contam como mods top-level.
 
 ## Fechamento quantitativo
 
@@ -1475,7 +1477,7 @@ Checkpoint especial reconciliado em 01/09 para a faixa A0200–A0299. Não imple
 - adições reais: **9**;
 - remoções físicas reais: **4**;
 - saldo líquido: **+5**;
-- estado físico atual: **612** entradas top-level;
+- estado físico naquele snapshot: **612** entradas top-level;
 - Notion reconciliado: **612 `Instalado`**, **612 JARs físicos distintos** e **613/613 registros `Verificado`**;
 - runtime version audit: **605/605** JARs que declaram `modVersion` batem exatamente com `Versão 1.21.1` no Notion;
 - **7/7** JARs sem `modVersion` físico permanecem sem runtime version inferida no Notion.

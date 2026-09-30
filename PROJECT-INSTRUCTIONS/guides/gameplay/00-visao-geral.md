@@ -4,9 +4,9 @@
 
 # Visão geral e escopo
 
-> **RECONCILIADO COM A MODLIST ATUAL — 2026-09-06:** a referência corrente possui **607 entradas top-level incluindo NeoForge**. O recorte Gameplay/Sistemas contém **342 JARs atuais** e a cobertura descritiva fecha em **342/342**. Presença, filename, mod ID, runtime name e runtime version são fixados por [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md). O snapshot remove Medieval Buildings: The Nether Edition, incorpora 22 módulos novos e fecha 21 lacunas documentais históricas.
+> **SNAPSHOT HISTÓRICO — 2026-09-06:** naquele checkpoint havia **607 entradas top-level incluindo NeoForge** e o recorte Gameplay/Sistemas cobria **342 JARs**. [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md) preserva esse snapshot; presença/JAR/versão atuais vêm de `../../modlist/modlist.md`, e mecânicas/hooks de cada provider vêm do dossier individual atual.
 
-## Stack atual de sobrevivência
+## Stack documentado naquele snapshot
 
 - **Cold Sweat 2.4.2:** temperatura corporal.
 - **Create: Cold Sweat 1.1.2:** bridge Create↔Cold Sweat, não segundo sistema térmico.
@@ -20,7 +20,7 @@
 
 ## Bloqueios atuais de startup por mod ID duplicado
 
-A decisão de provider foi fechada em 2026-09-06, mas a `modlist.txt` atual ainda contém os quatro JARs conflitantes; portanto o bloqueio físico de startup permanece até a remoção dos dois rejeitados.
+Naquele checkpoint de 2026-09-06, a `modlist.txt` ainda continha os quatro JARs conflitantes; essa observação é histórica e não deve ser usada para inferir o estado físico atual.
 
 - `alexscaves`: **manter Alex's Caves Continued 1.0.9** (`alexscaves-1.0.9-neoforge+1.21.1.jar`) e **retirar Alex's Caves 2.0.2** (`alexscaves-2.0.2.jar`).
 - `alexsmobs`: **manter Alex's Mobs Continued 2.1.9** (`alexsmobs-2.1.9-neoforge+1.21.1.jar`) e **retirar Alex's Mobs 1.22.9** (`alexsmobs-1.22.9.jar`).

@@ -4,7 +4,7 @@ Create e addons, energia, indústria, logística, automação, transporte, compu
 
 **Fonte canônica:** este diretório versionado no GitHub.
 
-**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-09-06, com **607 entradas top-level incluindo NeoForge** e **200 JARs tecnológicos/cross-domain** neste recorte. Consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md); ele prevalece quando um capítulo histórico ainda cita versão anterior.
+**Snapshot editorial histórico:** o `CURRENT-MODLIST.md` deste guia preserva a reconciliação antiga descrita abaixo. Para presença/JAR/versão atuais use primeiro `../../modlist/modlist.md` e, para mecânicas de um provider individual, o dossier `../../modlist/<categorias>/✅-*.md`. O snapshot do guia não substitui a autoridade física atual.
 
 **Delta 2026-09-06:** os 190 IDs efetivamente cobertos pelo snapshot anterior permanecem presentes; o guia incorpora 10 módulos novos e corrige a antiga inconsistência de contagem que deixava LowDragLib2 fora dos 189 declarados.
 
@@ -16,7 +16,7 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 
 ## Índice
 
-- [Reconciliação atual da modlist — autoridade de presença/JAR/versão](CURRENT-MODLIST.md)
+- [Snapshot histórico da modlist — referência editorial](CURRENT-MODLIST.md)
 - [Visão geral e escopo](00-visao-geral.md)
 - [1. Sistemas tecnológicos principais](01-sistemas-tecnologicos-principais.md)
 - [2. Applied Energistics 2 e automação digital](02-applied-energistics-2-e-automacao-digital.md)
@@ -39,12 +39,14 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 - [19. Projetos próprios do modpack — integração tecnológica canônica](19-projetos-proprios-do-modpack.md)
 - [20. Mobstein — boundary: não é provider tecnológico](20-mobstein-boundary.md)
 
+> **Gate para perks:** uma mecânica de mod externo só pode ser usada quando estiver coberta pelo dossier individual atual. Se existir apenas neste guia, reconciliar o dossier antes de fechar a perk. Conteúdo de mod removido ou versão antiga permanece histórico, não authority runtime.
+
 ## Regras de manutenção
 
 - Nunca dividir um capítulo por quantidade de caracteres.
 - Nunca deixar um `#`/`##` no meio de um parágrafo.
 - Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
-- `CURRENT-MODLIST.md` é a autoridade de presença, JAR, mod ID, runtime name e runtime version do estado instalado atual.
+- `CURRENT-MODLIST.md` é snapshot editorial histórico. Presença/JAR/versão atuais vêm de `../../modlist/modlist.md`; mecânicas e contracts por provider vêm do dossier individual atual em `../../modlist/`.
 - Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
 - Novos mods adicionados ou atualizados na modlist devem ser classificados no guia pertinente; estética ou nome tecnológico não criam contrato tecnológico.
 - O GitHub é a fonte canônica deste guia; não manter cópia editorial concorrente no Notion.

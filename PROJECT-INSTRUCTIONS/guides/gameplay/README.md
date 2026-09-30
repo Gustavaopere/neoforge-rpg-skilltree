@@ -4,7 +4,7 @@ Combate, movimento, progressão, sobrevivência, fauna, exploração, interface 
 
 **Fonte canônica:** este diretório versionado no GitHub.
 
-**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-09-06, com **607 entradas top-level incluindo NeoForge**. O recorte Gameplay/Sistemas cobre **342 JARs atuais**; consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md).
+**Snapshot editorial histórico:** o `CURRENT-MODLIST.md` deste guia preserva a reconciliação antiga descrita abaixo. Para presença/JAR/versão atuais use primeiro `../../modlist/modlist.md` e, para mecânicas de um provider individual, o dossier `../../modlist/<categorias>/✅-*.md`. O snapshot do guia não substitui a autoridade física atual.
 
 ## Como este guia está organizado
 
@@ -16,7 +16,7 @@ Para perks de combate/armas que possam tocar **Simply Swords, Simply More, Integ
 
 ## Índice
 
-- [Reconciliação atual da modlist — autoridade de presença/JAR/versão](CURRENT-MODLIST.md)
+- [Snapshot histórico da modlist — referência editorial](CURRENT-MODLIST.md)
 - [Visão geral e escopo](00-visao-geral.md)
 - [1. Combate, movimento e ação](01-combate-movimento-e-acao.md)
 - [2. Progressão RPG, identidades e atributos](02-progressao-rpg-identidades-e-atributos.md)
@@ -37,12 +37,14 @@ Para perks de combate/armas que possam tocar **Simply Swords, Simply More, Integ
 - [17. Lacunas históricas de documentação fechadas](17-lacunas-historicas-de-documentacao.md)
 - [18. Fontes e referências técnicas — 342/342](18-fontes-e-referencias-tecnicas.md)
 
+> **Gate para perks:** uma mecânica de mod externo só pode ser usada quando estiver coberta pelo dossier individual atual. Se existir apenas neste guia, reconciliar o dossier antes de fechar a perk. Conteúdo de mod removido ou versão antiga permanece histórico, não authority runtime.
+
 ## Regras de manutenção
 
 - Nunca dividir um capítulo por quantidade de caracteres.
 - Nunca deixar um `#`/`##` no meio de um parágrafo.
 - Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
-- `CURRENT-MODLIST.md` é a autoridade de presença, JAR e versão do estado instalado atual.
+- `CURRENT-MODLIST.md` é snapshot editorial histórico. Presença/JAR/versão atuais vêm de `../../modlist/modlist.md`; mecânicas e contracts por provider vêm do dossier individual atual em `../../modlist/`.
 - Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
 - Mods adicionados ou atualizados na modlist devem ser incorporados antes do próximo fechamento de lote do Chat 1.
 - Cada JAR do recorte Gameplay deve possuir ficha descritiva e entrada no índice de fontes; a revisão de 06/09/2026 fecha ambos em **342/342**.

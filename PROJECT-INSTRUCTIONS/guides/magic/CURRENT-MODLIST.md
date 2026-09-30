@@ -1,12 +1,12 @@
-# Reconciliação atual da modlist — Mods de Magia
+# Snapshot histórico da modlist — Mods de Magia — 07/09/2026
 
-> **AUTORIDADE DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** O estado físico atual do pack é o snapshot de 06/09/2026 mais o [`MODLIST-DELTA-2026-09-07.md`](../MODLIST-DELTA-2026-09-07.md). O delta prevalece quando qualquer JAR/versão divergir do snapshot anterior.
+> **SNAPSHOT HISTÓRICO — 2026-09-07.** Este arquivo preserva o snapshot de 06/09/2026 mais o delta de 07/09. Para presença/JAR/versão atuais, use `../../modlist/modlist.md`; para contrato mecânico, use o dossier individual atual.
 
-A modlist física atual contém **612 entradas top-level**, incluindo NeoForge. O recorte mágico do snapshot de 06/09 tinha **101 JARs**; em 07/09 entram dois módulos mágicos/cross-domain novos, totalizando **103 referências temáticas** antes de sobreposições com outros guias.
+Naquele checkpoint, a modlist física continha **612 entradas top-level**, incluindo NeoForge. O recorte mágico do snapshot de 06/09 tinha **101 JARs**; em 07/09 entram dois módulos mágicos/cross-domain novos, totalizando **103 referências temáticas** antes de sobreposições com outros guias.
 
 ## Baseline preservado
 
-A tabela completa de 101 JARs reconciliada em 06/09 permanece auditável no histórico Git da `main` imediatamente anterior a este delta. O estado atual não exige reescrever linhas não afetadas: para elas, o baseline permanece válido; para os artefatos abaixo, prevalece o delta de 07/09.
+A tabela completa de 101 JARs reconciliada em 06/09 permanece auditável no histórico Git da `main` imediatamente anterior a este delta. Dentro daquele checkpoint histórico, linhas não afetadas continuam descritas pelo baseline e os artefatos abaixo pelo delta de 07/09; nenhum deles substitui a modlist atual.
 
 ## Updates mágicos
 
@@ -35,8 +35,8 @@ A descrição, dependências e gates estão em [`19-atualizacao-modlist-2026-09-
 
 ## Regra operacional
 
-- Este arquivo + [`../MODLIST-DELTA-2026-09-07.md`](../MODLIST-DELTA-2026-09-07.md) fixam a identidade física atual do domínio mágico.
-- Para itens não alterados em 07/09, o snapshot de 06/09 continua válido.
+- Este arquivo + o delta 07/09 fixam apenas a identidade física **daquele checkpoint histórico**; o estado atual vem de `../../modlist/modlist.md`.
+- Para itens não alterados em 07/09, o snapshot de 06/09 continua válido apenas como histórico daquele checkpoint.
 - Descrições funcionais permanecem nos capítulos temáticos.
 - Bridge, biblioteca, UI ou compatibilidade não vira provider apenas por estar no recorte mágico.
 - `Manter` More Relics não autoriza contrato provider-specific sem validação do comportamento necessário contra Relics `0.12.8`.

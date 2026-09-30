@@ -103,7 +103,7 @@
 | 081 | Bloodlines - A Vampirism Addon | `bloodlines-1.21-3.0.9.jar` | `1.21-3.0.9` | `Magic` | 19/09/2026 - 23:37 |
 | 082 | Bosses of Mass Destruction [Forge \| NeoForge] | `BOMD-NeoForge-1.21-1.3.3.jar` | `1.3.3` | `Mobs + Structures` | 19/09/2026 - 23:37 |
 | 083 | Bookshelf | `bookshelf-neoforge-1.21.1-21.1.81.jar` | `21.1.81` | `API and Library + Miscellaneous + Server Utility` | 19/09/2026 - 23:37 |
-| 084 | Born in Chaos | `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar` | `1.7.6` | `Adventure and RPG + Armor, Tools, and Weapons + Mobs + Structures + World Gen` | 23/09/2026 - 00:58 |
+| 084 | Born in Chaos | `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar` | `1.7.6` | `Adventure and RPG + Armor, Tools, and Weapons + Mobs + Structures + World Gen` | 29/09/2026 - 23:37 |
 | 085 | Butchercraft | `butchercraft-2.6.5.jar` | `2.6.5` | `Food` | 23/09/2026 - 00:58 |
 | 086 | Caelus API | `caelus-neoforge-7.0.1+1.21.1.jar` | `7.0.1+1.21.1` | `API and Library` | 23/09/2026 - 00:58 |
 | 087 | Cataclysm: Spellbooks | `cataclysm_spellbooks-1.1.14-1.21.jar` | `1.1.14-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 23/09/2026 - 00:58 |
@@ -441,7 +441,7 @@
 | 419 | Not Enough Glyphs | `not_enough_glyphs-1.21.1-4.6.2.jar` | `4.6.2` | `Addons + Magic + Utility & QoL` | 18/09/2026 - 08:51 |
 | 420 | Not Enough Animations | `notenoughanimations-neoforge-1.12.4-mc1.21.1.jar` | `1.12.4` | `Cosmetic + Map and Information` | 25/09/2026 - 14:00 |
 | 421 | [NTGL] NukaTeam's Gun Lib | `ntgl-1.21.1-3.2.0.jar` | `3.2.0` | `API and Library + Armor, Tools, and Weapons` | 25/09/2026 - 14:00 |
-| 422 | Nutritional Balance | `nutritionalbalance-1.21.1-7.0.3.jar` | `1.21.1-7.0.3` | `Adventure and RPG + Food` | 25/09/2026 - 14:28 |
+| 422 | Nutritional Balance | `nutritionalbalance-1.21.1-7.0.3.jar` | `1.21.1-7.0.3` | `Adventure and RPG + Food` | 29/09/2026 - 23:37 |
 | 423 | Nyf's Spiders | `nyfsspiders-neoforge-1.21.1-3.0.1.jar` | `3.0.1` | `Mobs` | 25/09/2026 - 14:28 |
 | 424 | Obscure Tooltips | `obscure_tooltips-neoforge-1.21.1-4.2.4.jar` | `4.2.4` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Map and Information` | 25/09/2026 - 14:28 |
 | 425 | ShatterLib \| OctoLib | `OctoLib-NEOFORGE-0.6.2+1.21.jar` | `0.6.2` | `API and Library` | 25/09/2026 - 14:28 |
@@ -481,7 +481,7 @@
 | 459 | Prometheus | `prometheus-neoforge-1.21-1.2.5.jar` | `1.2.5` | `Adventure and RPG + API and Library + Cosmetic + Utility & QoL` | 26/09/2026 - 03:24 |
 | 460 | Create: Protection Pixel | `protection_pixel-2.2.1-neoforge-1.21.1.jar` | `2.2.1` | `Adventure and RPG + Armor, Tools, and Weapons + Create + MCreator` | 26/09/2026 - 03:24 |
 | 461 | Puddles & Floods | `puddleflood-1.1.5+1.21.1-neoforge.jar` | `1.1.5` | `Cosmetic` | 26/09/2026 - 03:24 |
-| 462 | Pufferfish's Unofficial Additions | `pufferfish_unofficial_additions-1.21.1-2.2.8.jar` | `2.2.8` | `Addons` | 27/09/2026 - 16:30 |
+| 462 | Pufferfish's Unofficial Additions | `pufferfish_unofficial_additions-1.21.1-2.2.8.jar` | `2.2.8` | `Addons` | 29/09/2026 - 23:37 |
 | 463 | Pufferfish's Attributes [Fabric & Forge & NeoForge] | `puffish_attributes-0.8.3-1.21-neoforge.jar` | `0.8.3` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
 | 464 | Pufferfish's Skills [Fabric & Forge & NeoForge] | `puffish_skills-0.19.0-1.21-neoforge.jar` | `0.19.0` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
 | 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `Cosmetic + Map and Information` | 27/09/2026 - 16:30 |
@@ -522,7 +522,7 @@
 | 500 | ShadowsZ | `shadowsz-1.1.9.jar` | `1.1.9` | `Addons + Magic + Mobs` | 27/09/2026 - 18:17 |
 | 501 | Simply Swords: Cataclysm | `simplycataclysm-1.0.2+1.21.1+neoforge.jar` | `1.0.2+1.21.1+neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 18:17 |
 | 502 | Simply More | `simplymore-forge-1.3.0_alpha.jar` | `1.3.0_alpha` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 19:00 |
-| 503 | Simply Swords [Fabric & Forge] | `simplyswords-neoforge-1.70.2-1.21.1.jar` | `1.70.2-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 19:00 |
+| 503 | Simply Swords [Fabric & Forge] | `simplyswords-neoforge-1.70.2-1.21.1.jar` | `1.70.2-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 30/09/2026 - 10:20 |
 | 504 | Simply Tooltips | `SimplyTooltips-neoforge-0.1.5.jar` | `0.1.5` | `API and Library + Miscellaneous` | 27/09/2026 - 19:01 |
 | 505 | Create: Coasters Simulated | `simulatedcoasters-0.1.5.jar` | `0.1.5` | `Addons + Create` | 27/09/2026 - 19:01 |
 | 506 | Skin Layers 3D | `skinlayers3d-neoforge-1.11.2-mc1.21.1.jar` | `1.11.2` | `Adventure and RPG + Cosmetic` | 27/09/2026 - 19:01 |
@@ -594,7 +594,7 @@
 | 572 | WorldWeaver: New Dawn | `worldweaver-21.0.25.jar` | `21.0.25` | `API and Library + Biomes + Utility & QoL + World Gen` | 28/09/2026 - 08:36 |
 | 573 | WunderLib: New Dawn | `wunderlib-21.0.10.jar` | `21.0.10` | `API and Library + Utility & QoL` | 28/09/2026 - 08:36 |
 | 574 | YetAnotherConfigLib | `yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar` | `3.8.2+1.21.1-neoforge` | `API and Library` | 28/09/2026 - 08:36 |
-| 575 | Fundamental Principles - Iron's Spells Addon | `ypfundamentals-1.1.7.1.jar` | `1.1.7.1` | `Addons + Adventure and RPG + Magic + Mobs` | 28/09/2026 - 08:36 |
+| 575 | Fundamental Principles - Iron's Spells Addon | `ypfundamentals-1.1.7.1.jar` | `1.1.7.1` | `Addons + Adventure and RPG + Magic + Mobs` | 30/09/2026 - 10:20 |
 | 576 | YUNG's API (NeoForge) [1.20.4-1.21.1 ONLY] | `YungsApi-1.21.1-NeoForge-5.1.8.jar` | `1.21.1-NeoForge-5.1.8` | `API and Library + World Gen` | 28/09/2026 - 08:36 |
 | 577 | YUNG's Better Caves (Forge/NeoForge) | `YungsBetterCaves-1.21.1-NeoForge-3.1.6.jar` | `1.21.1-NeoForge-3.1.6` | `Adventure and RPG + Biomes + Structures + World Gen` | 28/09/2026 - 08:36 |
 | 578 | YUNG's Better Desert Temples (NeoForge) [1.20.4 - 1.21.1 ONLY] | `YungsBetterDesertTemples-1.21.1-NeoForge-4.1.5.jar` | `1.21.1-NeoForge-4.1.5` | `Adventure and RPG + Structures + World Gen` | 28/09/2026 - 08:36 |

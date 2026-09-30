@@ -1,10 +1,10 @@
-<!-- Guia temático canônico versionado no GitHub | referência atual de presença/JAR/versão: modlist.txt reconciliada em 2026-09-06 -->
+<!-- Guia temático canônico versionado no GitHub | snapshot histórico de presença/JAR/versão: 2026-09-06; authority atual: ../../modlist/modlist.md + dossier individual -->
 
 [← Índice do guia](README.md)
 
 # Visão geral e escopo
 
-> **RECONCILIADO COM A MODLIST ATUAL — 2026-09-06:** a fonte canônica contém **607 entradas top-level** e o recorte tecnológico atual cobre **200 JARs/IDs únicos**. Os 190 IDs efetivamente cobertos pelo snapshot anterior continuam presentes; 10 módulos novos foram incorporados. [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md) registra JAR, mod ID, runtime name e runtime version exatos e prevalece sobre referências históricas.
+> **SNAPSHOT HISTÓRICO — 2026-09-06:** naquele checkpoint havia **607 entradas top-level** e o recorte tecnológico cobria **200 JARs/IDs únicos**. [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md) preserva esse snapshot; presença/JAR/runtime atuais vêm de `../../modlist/modlist.md`, e o dossier individual atual prevalece para mecânicas/hooks do provider.
 
 > Este guia é um **catálogo descritivo dos mods de tecnologia** instalados no pack. O foco é explicar o que cada sistema acrescenta, como sua tecnologia funciona e como os addons se encaixam no ecossistema principal. Bibliotecas, UI e bridges são classificadas pelo papel técnico real e não tratadas como sistemas tecnológicos independentes sem contrato mecânico correspondente.
 

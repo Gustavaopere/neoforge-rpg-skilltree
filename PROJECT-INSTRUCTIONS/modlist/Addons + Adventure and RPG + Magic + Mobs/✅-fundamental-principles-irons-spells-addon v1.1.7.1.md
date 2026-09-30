@@ -41,6 +41,24 @@ A modlist física vigente confirma `ypfundamentals-1.1.7.1.jar`, mod id `ypfunda
 Não criar ledger paralelo de Principle XP, não reaplicar passivas e não usar animação/VFX como prova causal de cast bem-sucedido.
 ### 3. Boundary para RPG Skill Tree / Black Arcana
 A classificação automática por ASM atravessa spells de outros providers. Logo, uma spell de outro addon pode participar da progressão de Principles sem deixar de pertencer ao provider original. Mastery externa deve tratar o cast como **uma única cadeia causal**: cast provider → classificação Principle → settlement provider. Não contabilizar novamente cada projectile, recast, tick de exhaustion ou passive pulse.
+### 3.1 Taxonomia das 13 Principles e efeitos de progressão
+
+O guia mágico detalhado preserva o significado mecânico das **13 Principles** usadas pela classificação automática: concentração de mana, projéteis, summons, percepção, targeting, repetição de casts, teleporte, status effects, área (AoE), movimento, cura, imbuement e estabilidade estrutural.
+
+A progressão 0–20 por Principle pode liberar/modificar passivos ligados, entre outros, a **mana máxima, precisão de projéteis, cooldown de summons, distância de targeting, chance de cargas extras, duração de efeitos, área, velocidade de movimento durante cast e bônus ligados a armas**. Esses efeitos pertencem ao settlement do Fundamental Principles; uma perk externa deve compor com o resultado do provider, não reproduzir o mesmo bônus por observar a mesma spell.
+
+### 3.2 Spell Exhaustion e Remedium's Law
+
+Além da progressão por Principle, o guia registra **Spell Exhaustion**: casts acumulam fadiga e níveis altos reduzem eficiência mágica até recuperação. A **Remedium's Law** altera especificamente a economia de healing spells: cura pode consumir recursos naturais do corpo, como food/saturation, em vez de ser tratada como conversão direta apenas de mana.
+
+Para perks de cura, mana, alimentação ou redução de custo, essa cadeia deve ser tratada como uma única causalidade autoritativa. Não reembolsar/consumir food ou saturation em paralelo sem um hook comprovado do provider.
+
+### 3.3 Progressão própria de spellbooks
+
+Fundamental Principles também possui **progressão própria de spellbooks por tiers/covers**. Essa progressão aumenta a capacidade do spellbook, incluindo **mais slots e maior poder** conforme o livro evolui. Ela pertence ao addon e é separada tanto do unlock base de spells do Iron's quanto de qualquer progressão do RPG Skill Tree.
+
+Consequência para perks: bônus de spell slots, spellbook tier ou spell power precisam compor com o estado real desse sistema sem conceder novamente os mesmos ganhos. Não inferir tier apenas pelo item visual, não contornar requisitos/custos do provider e não tratar um aumento de slots/poder do spellbook como se fosse XP de Principle. `Mana Reinforcement`, quando presente na linha instalada, pertence ao mesmo domínio de progressão do addon e deve permanecer provider-native até existir hook específico auditado.
+
 ### 4. Lifecycle crítico
 Validar login/relog, death/respawn, dimension change, server restart, spell registry reload, troca de spellbook, cast interrompido e concorrência multiplayer. State persistente de Principles deve sobreviver apenas conforme contrato do addon; modifiers/passivas não podem ficar órfãos após mudança de condição.
 ### 5. Riscos source-level já conhecidos

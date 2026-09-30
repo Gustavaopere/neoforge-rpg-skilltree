@@ -11,11 +11,24 @@ Para execução operacional de perks, o ponto de entrada canônico são os arqui
 
 A árvore abaixo continua sendo a fonte editorial detalhada. Ela não cria uma segunda autoridade operacional concorrente.
 
+## Autoridade por mod para criação futura de perks
+
+A auditoria de cobertura de **29/09/2026** mudou a regra operacional para leitura por provider externo:
+
+1. **Presença, posição, JAR e versão atuais:** `../modlist/modlist.md`.
+2. **Mecânicas, authority, lifecycle, riscos, hooks e limites de um mod individual:** dossier atual correspondente em `../modlist/<categorias>/✅-*.md`.
+3. **Contexto transversal, relações entre providers e histórico editorial:** estes guias.
+4. **RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana:** `projects/` continua obrigatório; esses contratos não devem ser copiados artificialmente para dossiers de mods externos.
+
+Os arquivos `CURRENT-MODLIST*.md` desta árvore são **snapshots editoriais históricos**. Eles não substituem a modlist física atual nem autorizam usar um mod removido, uma versão antiga ou um hook não confirmado. Se um guia contiver uma mecânica perk-relevante que não esteja no dossier individual atual, o lote de perks deve **parar e reconciliar a lacuna primeiro**.
+
+Relatório da reconciliação: [GUIDE-TO-MOD-DOSSIER-COVERAGE-AUDIT-2026-09-29.md](GUIDE-TO-MOD-DOSSIER-COVERAGE-AUDIT-2026-09-29.md).
+
 ## Guias temáticos
 
-1. [Gameplay e Sistemas](gameplay/README.md) — [inventário atual da modlist](gameplay/CURRENT-MODLIST.md)
-2. [Mods de Magia](magic/README.md) — [inventário atual da modlist](magic/CURRENT-MODLIST.md)
-3. [Mods de Tecnologia](technology/README.md) — [inventário atual da modlist](technology/CURRENT-MODLIST.md)
+1. [Gameplay e Sistemas](gameplay/README.md) — [snapshot histórico da modlist](gameplay/CURRENT-MODLIST.md)
+2. [Mods de Magia](magic/README.md) — [snapshot histórico da modlist](magic/CURRENT-MODLIST.md)
+3. [Mods de Tecnologia](technology/README.md) — [snapshot histórico da modlist](technology/CURRENT-MODLIST.md)
 
 ## Projetos próprios — leitura obrigatória para o Chat 1
 
@@ -35,7 +48,7 @@ Ela é a fonte transversal para decidir se um projeto próprio deve aparecer em 
 
 ## Autoridade de modlist
 
-O snapshot físico reconciliado em **2026-09-07** contém **612 entradas top-level incluindo NeoForge**, isto é, NeoForge + **611 JARs top-level**. Dependências `jarjar` embutidas não contam como mods top-level.
+O snapshot de **2026-09-07** abaixo é histórico. A autoridade física atual da auditoria de 29/09/2026 é `../modlist/modlist.md`, com **587 entradas top-level incluindo o modloader**. Dependências `jarjar` embutidas não contam como mods top-level.
 
 A modlist física mais recente continua sendo a authority de presença, filename JAR e versão runtime. Cada guia possui um `CURRENT-MODLIST.md`; esses inventários e seus deltas registram a reconciliação editorial do snapshot, mas não substituem um snapshot físico posterior.
 
@@ -47,7 +60,7 @@ No fechamento de 2026-09-07:
 - 605/605 JARs que declaram `modVersion` reconciliados com versão runtime exata;
 - 7/7 JARs sem `modVersion` preservados sem inferência.
 
-Quando um capítulo histórico ainda citar versão anterior, `CURRENT-MODLIST.md` + delta mais recente prevalecem para identidade instalada. Update físico não autoriza inferir mudança de API/hook.
+Quando um capítulo histórico citar versão/JAR diferente do estado vigente, `../modlist/modlist.md` prevalece para identidade física e o dossier individual atual prevalece para mecânicas/hooks. `CURRENT-MODLIST*.md` e deltas antigos permanecem evidência histórica. Update físico não autoriza inferir mudança de API/hook.
 
 ## Regra estrutural
 
@@ -63,7 +76,7 @@ A navegação de cada guia está no `README.md` de sua própria pasta. A coleç�
 - Similaridade temática não cria bridge. Shroud, Corruption, Atmosphere, pressão, temperatura e Arcane Resistance permanecem authorities distintas salvo contrato explícito.
 - O Chat 1 deve ler `projects/README.md`, os quatro dossiês, a matriz cruzada, a reconciliação e `projects/12-capability-delta-coverage.md` antes de fechar qualquer lote.
 - O Chat 1 deve fazer fetch fresco das fontes operacionais dos quatro sistemas de primeira classe por lote para detectar capacidades novas ou alteradas mesmo que nenhuma perk já as mencione.
-- Mods adicionados ou atualizados na modlist devem ser reconciliados nos `CURRENT-MODLIST.md` antes do próximo fechamento de lote.
+- Mods adicionados ou atualizados devem ser reconciliados primeiro em `../modlist/modlist.md` e no dossier individual atual; snapshots históricos dos guias só são atualizados quando houver motivo editorial explícito.
 - Biblioteca, bridge, UI, visual ou compatibilidade não vira provider mecânico automaticamente.
 
 ## Integridade da organização
