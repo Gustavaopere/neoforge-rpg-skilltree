@@ -33,9 +33,9 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 
 # Reconciliação atual da modlist — Mods de Magia
 
-> **AUTORIDADE DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** O estado físico atual do pack é o snapshot de 06/09/2026 mais o delta de 07/09.
+> **SNAPSHOT HISTÓRICO DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** Naquele checkpoint, o estado físico era o snapshot de 06/09/2026 mais o delta de 07/09. Para o estado atual, use `modlist/modlist.md` e o dossier individual correspondente.
 
-A modlist física atual contém **612 entradas top-level**, incluindo NeoForge. O recorte mágico do snapshot de 06/09 tinha **101 JARs**; em 07/09 entram dois módulos mágicos/cross-domain novos, totalizando **103 referências temáticas** antes de sobreposições com outros guias.
+Naquele snapshot, a modlist física continha **612 entradas top-level**, incluindo NeoForge. O recorte mágico de 06/09 tinha **101 JARs**; em 07/09 entraram dois módulos mágicos/cross-domain novos, totalizando **103 referências temáticas** antes de sobreposições com outros guias.
 
 ## Updates mágicos
 
@@ -1074,7 +1074,7 @@ A revisão corrente mantém índices A–C, D–I, J–R e S–Z no GitHub. Link
 
 # Delta físico da modlist — 2026-09-07
 
-> **AUTORIDADE OPERACIONAL DO SNAPSHOT:** a modlist física atual possui **612 entradas top-level**, incluindo NeoForge + **611 JARs**. Dependências `jarjar` embutidas não contam como mods top-level.
+> **SNAPSHOT HISTÓRICO:** naquele fechamento, a modlist física possuía **612 entradas top-level**, incluindo NeoForge + **611 JARs**. O estado atual está em `modlist/modlist.md`. Dependências `jarjar` embutidas não contam como mods top-level.
 
 ## Fechamento quantitativo
 
@@ -1083,7 +1083,7 @@ A revisão corrente mantém índices A–C, D–I, J–R e S–Z no GitHub. Link
 - adições reais: **9**;
 - remoções físicas reais: **4**;
 - saldo líquido: **+5**;
-- estado físico atual: **612** entradas top-level;
+- estado físico naquele snapshot: **612** entradas top-level;
 - Notion reconciliado: **612 `Instalado`**, **612 JARs físicos distintos** e **613/613 registros `Verificado`**;
 - runtime version audit: **605/605** JARs que declaram `modVersion` batem exatamente com `Versão 1.21.1` no Notion;
 - **7/7** JARs sem `modVersion` físico permanecem sem runtime version inferida no Notion.

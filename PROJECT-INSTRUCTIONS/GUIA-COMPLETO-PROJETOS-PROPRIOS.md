@@ -1468,7 +1468,7 @@ Checkpoint especial reconciliado em 01/09 para a faixa A0200–A0299. Não imple
 
 # Delta físico da modlist — 2026-09-07
 
-> **AUTORIDADE OPERACIONAL DO SNAPSHOT:** a modlist física atual possui **612 entradas top-level**, incluindo NeoForge + **611 JARs**. Dependências `jarjar` embutidas não contam como mods top-level.
+> **SNAPSHOT HISTÓRICO:** naquele fechamento, a modlist física possuía **612 entradas top-level**, incluindo NeoForge + **611 JARs**. Para providers externos atuais, use `modlist/modlist.md` + dossier individual. Dependências `jarjar` embutidas não contam como mods top-level.
 
 ## Fechamento quantitativo
 
@@ -1477,7 +1477,7 @@ Checkpoint especial reconciliado em 01/09 para a faixa A0200–A0299. Não imple
 - adições reais: **9**;
 - remoções físicas reais: **4**;
 - saldo líquido: **+5**;
-- estado físico atual: **612** entradas top-level;
+- estado físico naquele snapshot: **612** entradas top-level;
 - Notion reconciliado: **612 `Instalado`**, **612 JARs físicos distintos** e **613/613 registros `Verificado`**;
 - runtime version audit: **605/605** JARs que declaram `modVersion` batem exatamente com `Versão 1.21.1` no Notion;
 - **7/7** JARs sem `modVersion` físico permanecem sem runtime version inferida no Notion.

@@ -30,13 +30,13 @@ Create e addons, energia, indústria, logística, automação, transporte, compu
 
 # Reconciliação atual da modlist — Mods de Tecnologia
 
-> **AUTORIDADE DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** O estado físico atual do pack é o snapshot de 06/09/2026 mais o delta de 07/09. Decisões curatoriais explicitamente revistas em 07/09 prevalecem sobre as de 06/09.
+> **SNAPSHOT HISTÓRICO DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** Naquele checkpoint, o estado físico era o snapshot de 06/09/2026 mais o delta de 07/09. Decisões curatoriais revisadas em 07/09 prevalecem apenas dentro daquele snapshot; para o estado atual use `modlist/modlist.md` e o dossier individual correspondente.
 
 A modlist atual contém **612 entradas top-level**, incluindo NeoForge. O recorte Tecnologia permanece com **200 JARs tecnológicos/cross-domain**: o delta de 07/09 não adicionou nem removeu provider tecnológico do recorte, mas atualizou cinco artefatos já classificados.
 
 ### Authority corrente adicional
 
-- **Oritech — `1.2.12`**: `oritech-neoforge-1.21.1-1.2.12.jar`. Esta é a identidade física/runtime atual e prevalece sobre referências históricas `1.2.10/1.2.11` preservadas em snapshots anteriores.
+- **Oritech — `1.2.12`**: `oritech-neoforge-1.21.1-1.2.12.jar`. Esta era a identidade física/runtime daquele snapshot e prevalecia sobre referências históricas `1.2.10/1.2.11`; o runtime atual deve ser lido em `modlist/modlist.md`.
 
 ## Updates tecnológicos
 
@@ -59,7 +59,7 @@ O conflito visual com os Thermochemical Cogwheels de Create: Sulfuric Resonance 
 
 ## Regra operacional
 
-- Este fechamento + o delta físico de 07/09 fixam presença/JAR/runtime atual do recorte tecnológico.
+- Este fechamento + o delta físico de 07/09 fixam presença/JAR/runtime apenas para aquele checkpoint histórico do recorte tecnológico.
 - Update de versão não autoriza inferir API, hook ou compatibilidade sem inspeção.
 - Biblioteca, bridge, UI ou compatibilidade não se torna provider mecânico apenas por participar do stack tecnológico.
 
@@ -73,7 +73,7 @@ O conflito visual com os Thermochemical Cogwheels de Create: Sulfuric Resonance 
 
 # Visão geral e escopo
 
-> **SNAPSHOT HISTÓRICO — 2026-08-30:** presença, JARs e versões do eixo tecnológico foram revalidados naquele snapshot. [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md) fixa o estado instalado atual e prevalece sobre esta seção. Naquele checkpoint, entre os drifts incorporados estavam Oritech `1.2.11`, Aeronautics Camera Sync `1.4.0`, AE2 Import Export Card `1.6.0`, Create Cobblestone `1.5.0+neoforge-1.21.1-153`, Create Stats `1.4.1`, Cyber Goggles `8.3.15`, KilaGraph `21.1.0.12` e Sound Physics Aeronautics `1.4.0.1`. Sophisticated JEI Index `1.2.2` também entra formalmente na cobertura tecnológica atual.
+> **SNAPSHOT HISTÓRICO — 2026-08-30:** presença, JARs e versões do eixo tecnológico foram revalidados naquele checkpoint. [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md) preserva esse estado histórico; o estado instalado atual vem de `modlist/modlist.md`. Naquele checkpoint, entre os drifts incorporados estavam Oritech `1.2.11`, Aeronautics Camera Sync `1.4.0`, AE2 Import Export Card `1.6.0`, Create Cobblestone `1.5.0+neoforge-1.21.1-153`, Create Stats `1.4.1`, Cyber Goggles `8.3.15`, KilaGraph `21.1.0.12` e Sound Physics Aeronautics `1.4.0.1`. Sophisticated JEI Index `1.2.2` também entrou formalmente naquela cobertura tecnológica.
 
 > Este guia é um **catálogo descritivo dos mods de tecnologia** instalados no pack. O foco é explicar o que cada sistema acrescenta, como sua tecnologia funciona e como os addons se encaixam no ecossistema principal. Bibliotecas, UI e bridges são classificadas pelo papel técnico real e não tratadas como sistemas tecnológicos independentes sem contrato mecânico correspondente.
 
@@ -1630,7 +1630,7 @@ Update físico não autoriza inferir mudança de API/hook. Para Bits 'n' Bobs, `
 
 # Delta físico da modlist — 2026-09-07
 
-> **AUTORIDADE OPERACIONAL DO SNAPSHOT:** a modlist física atual possui **612 entradas top-level**, incluindo NeoForge + **611 JARs**. Dependências `jarjar` embutidas não contam como mods top-level.
+> **SNAPSHOT HISTÓRICO:** naquele fechamento, a modlist física possuía **612 entradas top-level**, incluindo NeoForge + **611 JARs**. O estado atual está em `modlist/modlist.md`. Dependências `jarjar` embutidas não contam como mods top-level.
 
 ## Fechamento quantitativo
 
@@ -1639,7 +1639,7 @@ Update físico não autoriza inferir mudança de API/hook. Para Bits 'n' Bobs, `
 - adições reais: **9**;
 - remoções físicas reais: **4**;
 - saldo líquido: **+5**;
-- estado físico atual: **612** entradas top-level;
+- estado físico naquele snapshot: **612** entradas top-level;
 - Notion reconciliado: **612 `Instalado`**, **612 JARs físicos distintos** e **613/613 registros `Verificado`**;
 - runtime version audit: **605/605** JARs que declaram `modVersion` batem exatamente com `Versão 1.21.1` no Notion;
 - **7/7** JARs sem `modVersion` físico permanecem sem runtime version inferida no Notion.
