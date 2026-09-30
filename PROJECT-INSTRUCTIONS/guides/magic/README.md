@@ -4,7 +4,7 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 
 **Fonte canônica:** este diretório versionado no GitHub.
 
-**Referência atual de presença/JAR/versão:** `modlist.txt` reconciliada em 2026-09-06, com **607 entradas top-level incluindo NeoForge** e **101 JARs mágicos/cross-domain cobertos**. Consulte primeiro [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md); ele prevalece quando um capítulo histórico ainda cita versão anterior.
+**Snapshot editorial histórico:** o `CURRENT-MODLIST.md` deste guia preserva a reconciliação antiga descrita abaixo. Para presença/JAR/versão atuais use primeiro `../../modlist/modlist.md` e, para mecânicas de um provider individual, o dossier `../../modlist/<categorias>/✅-*.md`. O snapshot do guia não substitui a autoridade física atual.
 
 ## Como este guia está organizado
 
@@ -38,12 +38,14 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 - [20. Scripting e compatibilidade técnica — KubeJS e EMF](20-scripting-e-compatibilidade-tecnica.md)
 - [21. Fontes e referências técnicas por mod](21-fontes-e-referencias-tecnicas.md)
 
+> **Gate para perks:** uma mecânica de mod externo só pode ser usada quando estiver coberta pelo dossier individual atual. Se existir apenas neste guia, reconciliar o dossier antes de fechar a perk. Conteúdo de mod removido ou versão antiga permanece histórico, não authority runtime.
+
 ## Regras de manutenção
 
 - Nunca dividir um capítulo por quantidade de caracteres.
 - Nunca deixar um `#`/`##` no meio de um parágrafo.
 - Alterações futuras devem preservar uma seção inteira no mesmo arquivo.
-- `CURRENT-MODLIST.md` é a autoridade de presença, JAR e versão do estado instalado atual.
+- `CURRENT-MODLIST.md` é snapshot editorial histórico. Presença/JAR/versão atuais vêm de `../../modlist/modlist.md`; mecânicas e contracts por provider vêm do dossier individual atual em `../../modlist/`.
 - `21-fontes-e-referencias-tecnicas.md` é o índice de navegação para CurseForge, Modrinth, wiki/docs e código-fonte. Links de busca são usados como fallback quando um projeto direto não foi verificado, para evitar inventar URLs.
 - Não promover `PLANEJADO`, `PREPARATÓRIO / NÃO CANÔNICO` ou `BLOQUEADO / FAIL-CLOSED` dos projetos próprios a hook disponível sem nova evidência em `main`.
 - Mods adicionados ou atualizados na modlist devem ser incorporados antes do próximo fechamento de lote do Chat 1.
