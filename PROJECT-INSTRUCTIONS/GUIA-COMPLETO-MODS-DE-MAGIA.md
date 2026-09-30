@@ -4,9 +4,9 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 
 **Fonte canônica:** diretório versionado no GitHub.
 
-**Snapshot consolidado deste anexo:** **2026-09-07**, modlist física com **612 entradas top-level incluindo NeoForge**. O recorte mágico possui **103 referências temáticas** após o delta atual.
+**Snapshot histórico consolidado deste anexo:** **2026-09-07**, então com **612 entradas top-level incluindo NeoForge** e **103 referências temáticas** no recorte mágico. Esse inventário é histórico, não a authority física atual.
 
-> `CURRENT-MODLIST.md` + delta 07/09 prevalecem sobre versões históricas embutidas nos capítulos. Update de versão não prova que um hook antigo continua válido.
+> **Authority operacional atual para perks — 29/09/2026:** presença, posição, JAR e versão vêm de `modlist/modlist.md` (**587/587 posições**); mecânicas, schools, ownership/authority, lifecycle, riscos, hooks e limites de cada provider externo vêm do **dossier individual atual** em `modlist/<categorias>/✅-*.md`. `CURRENT-MODLIST.md` + delta 07/09 abaixo permanecem como snapshots históricos. Se uma mecânica relevante existir somente neste guia, **reconciliar o dossier antes de fechar a perk**. Update de versão não prova que um hook antigo continua válido.
 
 ## Índice operacional
 
@@ -20,6 +20,8 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 ## Regras de manutenção
 
 - provider-native first;
+- `modlist/modlist.md` atual fixa presença/JAR/runtime e o dossier individual atual fixa o contrato mecânico por provider;
+- snapshots `CURRENT-MODLIST*` embutidos abaixo são históricos;
 - bridge não vira escola;
 - UI/VFX não vira authority de cast;
 - More Relics permanece `Manter`, mas provider-specific fail-closed até validação com Relics 0.12.8;

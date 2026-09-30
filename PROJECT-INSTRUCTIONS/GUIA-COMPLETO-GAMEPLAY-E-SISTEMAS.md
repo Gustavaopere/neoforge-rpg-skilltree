@@ -4,9 +4,9 @@ Combate, movimento, progressão, sobrevivência, fauna, exploração, interface 
 
 **Fonte canônica:** diretório versionado no GitHub.
 
-**Snapshot consolidado deste anexo:** **2026-09-07**, modlist física com **612 entradas top-level incluindo NeoForge**. Para presença/JAR/runtime, `CURRENT-MODLIST.md` + delta 07/09 prevalecem sobre qualquer capítulo histórico.
+**Snapshot histórico consolidado deste anexo:** **2026-09-07**, então com **612 entradas top-level incluindo NeoForge**. Esse inventário permanece preservado como evidência editorial histórica; ele **não** é a authority física atual.
 
-> Este anexo preserva os capítulos históricos já consolidados e acrescenta uma camada de freshness 07/09. Quando uma versão antiga aparecer dentro de um capítulo descritivo, use a reconciliação atual como authority de identidade instalada.
+> **Authority operacional atual para perks — 29/09/2026:** presença, posição física, JAR e versão instalada vêm de `modlist/modlist.md` (**587/587 posições**); mecânicas, ownership/authority, lifecycle, multiplayer, riscos, hooks e limites de um provider externo vêm do **dossier individual atual** em `modlist/<categorias>/✅-*.md`. `CURRENT-MODLIST.md` e o delta 07/09 abaixo são snapshots históricos. Se uma mecânica perk-relevante aparecer neste guia mas não no dossier individual atual, **parar o fechamento da perk e reconciliar o dossier primeiro**.
 
 ## Índice operacional
 
@@ -34,7 +34,9 @@ Combate, movimento, progressão, sobrevivência, fauna, exploração, interface 
 
 ## Regras de manutenção
 
-- modlist física atual = authority de presença/JAR/runtime;
+- `modlist/modlist.md` atual = authority de presença/posição/JAR/runtime;
+- dossier individual atual = authority por provider externo para mecânicas, hooks, limites e riscos;
+- snapshots `CURRENT-MODLIST*` embutidos abaixo são históricos e não podem reativar provider removido nem versão antiga;
 - bibliotecas/UI/visual/compat não viram provider automaticamente;
 - updates de versão não revalidam hooks por si;
 - projetos próprios exigem delta provider→árvore e perk→provider;
