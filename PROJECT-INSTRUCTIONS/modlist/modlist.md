@@ -1,27 +1,26 @@
 # Índice incremental da modlist certificada e organizada
 
-> Esta tabela contém somente mods top-level cujo dossiê possui simultaneamente `✅-` e versão explícita no filename. **A numeração foi reconciliada em 22/09/2026 pelo nome exato do JAR contra `modlist(1).txt`, com 587 entradas top-level incluindo o modloader.** Lacunas são intencionais enquanto os mods das posições correspondentes não forem elegíveis e organizados.
+> Esta tabela representa **todas as 587 entradas top-level** da autoridade física `modlist(1).txt`, incluindo o modloader. A numeração continua sendo a posição física real. Entradas sem dossier ou sem projeto CurseForge correspondente permanecem explícitas como exceções, em vez de serem omitidas ou receberem categoria inventada.
 >
-> A pasta representa o conjunto completo das categorias temáticas atuais do projeto correspondente no CurseForge, ordenadas alfabeticamente e separadas por ` + `. Categorias de loader, versão do Minecraft e ambiente não entram no caminho.
+> Para projetos CurseForge confirmados, a pasta representa o conjunto completo das categorias temáticas atuais, ordenadas alfabeticamente e separadas por ` + `. Categorias de loader, versão do Minecraft e ambiente não entram no caminho. Quando o artefato físico não possui projeto CurseForge inequívoco, usa-se a pasta estrutural `Sem projeto CurseForge confirmado`, que **não** equivale a uma categoria temática oficial.
 >
 > `Última edição` registra a última alteração documental significativa anterior à movimentação estrutural, normalizada para `America/Sao_Paulo` (UTC-03:00). A movimentação em si não altera esse histórico.
 >
 > A posição de cada linha é obtida por correspondência exata com o JAR top-level instalado na autoridade física. Dependências embarcadas em `META-INF/jarjar/` ou `META-INF/jars/` não recebem linhas próprias.
 
-## Bloqueios e lacunas atuais — 29/09/2026
+## Exceções estruturais e bloqueios — 29/09/2026
 
-Os itens abaixo **não fazem parte da tabela de mods organizados**. Permanecem fail-closed até que o requisito objetivo indicado seja resolvido:
+- **#001 — NeoForge:** entrada física atual `neoforge-21.1.250 (modloader)`. O loader não possui projeto CurseForge de mod correspondente; o dossier é mantido em `Sem projeto CurseForge confirmado/✅-neoforge.md`.
+- **#218 — Destroy 0.4.3:** o binário 1.21.1 é o port `NHblock714/Destroy`; o projeto CurseForge localizado corresponde ao original da Petrolpark e não é tratado como equivalente ao port. O dossier é mantido em `Sem projeto CurseForge confirmado/✅-destroy v0.4.3.md`.
+- **#219 — Dimensional Sable 1.0.5:** o projeto oficial é distribuído no Modrinth e projetos CurseForge dependentes apontam para essa distribuição externa. O dossier é mantido em `Sem projeto CurseForge confirmado/✅-dimensional-sable v1.0.5.md`.
+- **#272 — Factory Construction Registry Probe:** a autoridade física confirma `factory_construction_registry_probe-0.1.0.jar`, mod id `factory_construction_registry_probe`, runtime `0.1.0`. Não existe dossier certificado correspondente; a entrada permanece na tabela física com dossier ausente, sem criação retroativa de documentação.
+- **Create Enchantment Industry Plus:** não está na modlist física atual. O dossier histórico permanece documentado e é organizado separadamente em `Create + Technology/✅-create-enchantment-industry-plus.md`, conforme as categorias atuais do projeto correto no CurseForge.
 
-- **#001 — NeoForge:** o dossier `✅-neoforge.md` possui check, mas não possui versão explícita no filename; portanto continua inelegível e permanece na raiz.
-- **#218 — Destroy 0.4.3:** o dossier `✅-destroy v0.4.3.md` é formalmente elegível, porém o artefato instalado 1.21.1 corresponde ao port `NHblock714/Destroy`. O projeto CurseForge atual de Destroy é o projeto original da Petrolpark para 1.20.1; não há prova inequívoca de que suas categorias CurseForge representem o port instalado. O dossier permanece na raiz e fora da tabela.
-- **#219 — Dimensional Sable 1.0.5:** o dossier `✅-dimensional-sable v1.0.5.md` é formalmente elegível, mas o projeto é distribuído oficialmente no Modrinth e não possui projeto CurseForge inequívoco correspondente. Como a organização exige categorias temáticas atuais do CurseForge, o dossier permanece na raiz e fora da tabela.
-- **#272 — Factory Construction Registry Probe:** a entrada física existe, mas as auditorias anteriores não localizaram dossier certificado nem página-fonte Notion correspondente. Nenhum dossier é criado retroativamente nesta etapa e nenhuma linha é adicionada ao índice.
-- **Create Enchantment Industry Plus:** `✅-create-enchantment-industry-plus.md` é um dossier histórico de item removido da modlist física atual e não possui versão explícita no filename. Permanece intocado na raiz e não corresponde a uma lacuna física atual.
+## Modlist física completa e organização documental
 
-## Mods certificados e organizados
-
-| Nº | Nome oficial no CurseForge | Arquivo JAR instalado | Versão instalada | Pasta / categorias | Última edição |
+| Nº | Nome / projeto | Arquivo JAR instalado | Versão instalada | Pasta / categorias | Última edição |
 |---:|---|---|---|---|---|
+| 001 | NeoForge | `neoforge-21.1.250 (modloader)` | `21.1.250` | `Sem projeto CurseForge confirmado` | 29/09/2026 - 02:33 |
 | 002 | A Good Place | `a_good_place-1.21-1.2.5-neoforge.jar` | `1.21-1.2.5` | `Cosmetic + Magic + Utility & QoL` | 22/09/2026 - 13:39 |
 | 003 | Ace's Spell Utils | `aces_spell_utils-1.2.7.2-1.21.1.jar` | `1.2.7.2-1.21.1` | `Addons + API and Library` | 22/09/2026 - 13:39 |
 | 004 | Acolyte : Iron's Spells 'n Spellbooks Addon | `acolyte-1.0.3.jar` | `1.0.3` | `Adventure and RPG + Magic + Mobs + Structures` | 22/09/2026 - 13:39 |
@@ -238,6 +237,8 @@ Os itens abaixo **não fazem parte da tabela de mods organizados**. Permanecem f
 | 215 | Deeper and Darker | `deeperdarker-neoforge-1.21.1-1.4.1.jar` | `1.4.1` | `Biomes + Dimensions + Mobs + Ores and Resources + Structures` | 24/09/2026 - 01:22 |
 | 216 | VanillaBackport X Farmer's Delight Compat | `Delightful-Backport-1.0-1.21.1-neoforge.jar` | `1.0` | `Addons + Food` | 24/09/2026 - 01:22 |
 | 217 | Create: Design n' Decor | `Design-n-Decor-1.21.1-2.2b.jar` | `2.2b` | `Addons + Cosmetic + Create + Storage + Utility & QoL` | 24/09/2026 - 01:22 |
+| 218 | Destroy | `destroy-1.21.1-0.4.3.jar` | `0.4.3` | `Sem projeto CurseForge confirmado` | 20/09/2026 - 22:25 |
+| 219 | Dimensional Sable | `dimensional_sable-1.0.5.jar` | `1.0.5` | `Sem projeto CurseForge confirmado` | 20/09/2026 - 22:25 |
 | 220 | Discerning The Eldritch | `discerning_the_eldritch-1.4.4-1.21.jar` | `1.4.4-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 01:22 |
 | 221 | Dis-Enchanting Table | `disenchanting_table-merged-1.21.1-5.0.2.jar` | `5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Ores and Resources + Technology` | 24/09/2026 - 01:22 |
 | 222 | Distant Horizons: A Level of Detail mod | `DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar` | `3.2.0-b` | `Utility & QoL` | 24/09/2026 - 10:44 |
@@ -290,6 +291,7 @@ Os itens abaixo **não fazem parte da tabela de mods organizados**. Permanecem f
 | 269 | Explorer's Compass | `ExplorersCompass-1.21.1-3.4.0-neoforge.jar` | `1.21.1-3.4.0-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Map and Information + Structures` | 24/09/2026 - 16:58 |
 | 270 | Explosive Enhancement: Reforged | `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` | `1.1.2` | `Cosmetic + Miscellaneous` | 24/09/2026 - 16:58 |
 | 271 | Create: Extra Copycats | `extra_copycats-1.0.2.jar` | `1.0.2` | `Addons + Create` | 24/09/2026 - 16:58 |
+| 272 | Factory Construction Registry Probe | `factory_construction_registry_probe-0.1.0.jar` | `0.1.0` | `— (dossier ausente; categoria não atribuída)` | — |
 | 273 | FamiliarsLib | `familiarslib-1.21.1-1.7.1.jar` | `1.7.1 do JAR/publicação; metadata runtime 1.21.1-1.7` | `API and Library` | 24/09/2026 - 17:35 |
 | 274 | Fantasy Armor (Medieval Series) | `fantasy_armor-neoforge-1.2.4-1.21.1.jar` | `1.2.4-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic` | 24/09/2026 - 17:35 |
 | 275 | Farmer's Spell 'n Spell Book | `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` | `1.0.5.1-1.21.1` | `Farmer's Delight + Food + Magic` | 24/09/2026 - 17:35 |
@@ -605,6 +607,14 @@ Os itens abaixo **não fazem parte da tabela de mods organizados**. Permanecem f
 | 585 | YUNG's Better Witch Huts (NeoForge) [1.20.4 - 1.21.1 ONLY] | `YungsBetterWitchHuts-1.21.1-NeoForge-4.1.1.jar` | `1.21.1-NeoForge-4.1.1` | `Adventure and RPG + Structures + World Gen` | 28/09/2026 - 09:00 |
 | 586 | YUNG's Cave Biomes (Forge/NeoForge) | `YungsCaveBiomes-1.21.1-NeoForge-3.1.1.jar` | `1.21.1-NeoForge-3.1.1` | `Adventure and RPG + Biomes + Mobs + World Gen` | 28/09/2026 - 09:00 |
 | 587 | Zeta | `Zeta-1.1-40.jar` | `1.1-40` | `API and Library` | 28/09/2026 - 09:21 |
+
+## Dossiers históricos/removidos organizados
+
+Estes dossiers existem no catálogo documental, mas **não correspondem a entradas top-level da modlist física atual**. Eles não recebem número físico.
+
+| Nome | Último JAR catalogado | Última versão catalogada | Estado físico atual | Pasta / categorias | Dossier | Última edição |
+|---|---|---|---|---|---|---|
+| Create Enchantment Industry Plus | `create_enchantment_industry_plus-1.1.1-1.21.1.jar` | `1.1.1` | removido da modlist física atual | `Create + Technology` | `Create + Technology/✅-create-enchantment-industry-plus.md` | 29/09/2026 - 02:33 |
 
 ## Divergências de metadata preservadas
 
