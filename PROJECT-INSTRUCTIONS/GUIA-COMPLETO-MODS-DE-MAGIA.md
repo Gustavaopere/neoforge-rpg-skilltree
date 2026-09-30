@@ -10,7 +10,7 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 
 ## Índice operacional
 
-- Reconciliação atual da modlist
+- Snapshot histórico da modlist
 - 00–18. Corpo histórico consolidado
 - 19A. Atualização da modlist mágica — 07/09
 - 19B. Ecossistema Apothic e compats
@@ -31,7 +31,7 @@ Sistemas mágicos, recursos arcanos/ocultos, escolas, summons, rituais, equipame
 
 <!-- ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/magic/CURRENT-MODLIST.md -->
 
-# Reconciliação atual da modlist — Mods de Magia
+# Snapshot histórico da modlist — Mods de Magia — 07/09/2026
 
 > **SNAPSHOT HISTÓRICO DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** Naquele checkpoint, o estado físico era o snapshot de 06/09/2026 mais o delta de 07/09. Para o estado atual, use `modlist/modlist.md` e o dossier individual correspondente.
 
@@ -60,7 +60,7 @@ A documentação upstream para NeoForge 1.21.1 não declara suporte a Relics 0.1
 
 ## Regra operacional
 
-- Este fechamento + o delta físico de 07/09 fixam a identidade física atual do domínio mágico.
+- Este fechamento + o delta físico de 07/09 fixam apenas a identidade física daquele checkpoint histórico; o estado vigente vem de `modlist/modlist.md`.
 - Bridge, biblioteca, UI ou compatibilidade não vira provider apenas por estar no recorte mágico.
 - `Manter` More Relics não autoriza contrato provider-specific sem validação contra Relics 0.12.8.
 
@@ -68,15 +68,15 @@ A documentação upstream para NeoForge 1.21.1 não declara suporte a Relics 0.1
 
 <!-- ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/magic/00-visao-geral.md -->
 
-<!-- Guia temático canônico versionado no GitHub | referência atual de presença/JAR/versão: modlist.txt reconciliada em 2026-08-30 -->
+<!-- Guia temático canônico versionado no GitHub | snapshot histórico de presença/JAR/versão: 2026-08-30; authority atual: modlist/modlist.md + dossier individual -->
 
 [← Índice do guia](README.md)
 
 # Visão geral e escopo
 
-> **RECONCILIADO COM A MODLIST ATUAL — 2026-08-30:** presença, JARs e versões do eixo mágico foram revalidados contra a `modlist.txt` atual. [`CURRENT-MODLIST.md`](CURRENT-MODLIST.md) registra **94 JARs mágicos/cross-domain** e prevalece quando um capítulo histórico ainda cita uma versão anterior. Entre os drifts incorporados estão Ars 'n' Spells `3.2.2`, Iron's Spells 'n Spellbooks `3.16.3`, Immersive Portal - Iron's Spells Addon `1.0.1`, Recolor `1.2.5+1.21.1`, GTBC's SpellLib `2.1.0-1.21.1`, Apprentice's Codex `0.9.7.1` e Create: Enchantment Industry `2.5.3b`.
+> **SNAPSHOT HISTÓRICO — 2026-08-30:** naquele checkpoint, presença, JARs e versões do eixo mágico foram revalidados e `CURRENT-MODLIST.md` registrava **94 JARs mágicos/cross-domain**. Para o estado vigente use `modlist/modlist.md`; para mecânicas/hooks use o dossier individual atual. Entre os drifts então incorporados estavam Ars 'n' Spells `3.2.2`, Iron's Spells 'n Spellbooks `3.16.3`, Immersive Portal - Iron's Spells Addon `1.0.1`, Recolor `1.2.5+1.21.1`, GTBC's SpellLib `2.1.0-1.21.1`, Apprentice's Codex `0.9.7.1` e Create: Enchantment Industry `2.5.3b`.
 
-> Este guia é um **catálogo descritivo** dos mods ligados à magia que aparecem na modlist atual. O foco é explicar o que cada um acrescenta ao jogo, como sua mecânica funciona e a qual ecossistema mágico ele pertence. Compatibilidade, biblioteca ou UI não são promovidas automaticamente a provider mecânico de perk.
+> Este guia é um **catálogo descritivo** dos mods ligados à magia documentados naquele snapshot. O foco é explicar o que cada um acrescenta ao jogo, como sua mecânica funciona e a qual ecossistema mágico ele pertence. Compatibilidade, biblioteca ou UI não são promovidas automaticamente a provider mecânico de perk.
 
 ---
 

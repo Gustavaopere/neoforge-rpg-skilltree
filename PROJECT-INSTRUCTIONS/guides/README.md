@@ -26,9 +26,9 @@ Relatório da reconciliação: [GUIDE-TO-MOD-DOSSIER-COVERAGE-AUDIT-2026-09-29.m
 
 ## Guias temáticos
 
-1. [Gameplay e Sistemas](gameplay/README.md) — [inventário atual da modlist](gameplay/CURRENT-MODLIST.md)
-2. [Mods de Magia](magic/README.md) — [inventário atual da modlist](magic/CURRENT-MODLIST.md)
-3. [Mods de Tecnologia](technology/README.md) — [inventário atual da modlist](technology/CURRENT-MODLIST.md)
+1. [Gameplay e Sistemas](gameplay/README.md) — [snapshot histórico da modlist](gameplay/CURRENT-MODLIST.md)
+2. [Mods de Magia](magic/README.md) — [snapshot histórico da modlist](magic/CURRENT-MODLIST.md)
+3. [Mods de Tecnologia](technology/README.md) — [snapshot histórico da modlist](technology/CURRENT-MODLIST.md)
 
 ## Projetos próprios — leitura obrigatória para o Chat 1
 
@@ -60,7 +60,7 @@ No fechamento de 2026-09-07:
 - 605/605 JARs que declaram `modVersion` reconciliados com versão runtime exata;
 - 7/7 JARs sem `modVersion` preservados sem inferência.
 
-Quando um capítulo histórico ainda citar versão anterior, `CURRENT-MODLIST.md` + delta mais recente prevalecem para identidade instalada. Update físico não autoriza inferir mudança de API/hook.
+Quando um capítulo histórico citar versão/JAR diferente do estado vigente, `../modlist/modlist.md` prevalece para identidade física e o dossier individual atual prevalece para mecânicas/hooks. `CURRENT-MODLIST*.md` e deltas antigos permanecem evidência histórica. Update físico não autoriza inferir mudança de API/hook.
 
 ## Regra estrutural
 
@@ -76,7 +76,7 @@ A navegação de cada guia está no `README.md` de sua própria pasta. A coleç�
 - Similaridade temática não cria bridge. Shroud, Corruption, Atmosphere, pressão, temperatura e Arcane Resistance permanecem authorities distintas salvo contrato explícito.
 - O Chat 1 deve ler `projects/README.md`, os quatro dossiês, a matriz cruzada, a reconciliação e `projects/12-capability-delta-coverage.md` antes de fechar qualquer lote.
 - O Chat 1 deve fazer fetch fresco das fontes operacionais dos quatro sistemas de primeira classe por lote para detectar capacidades novas ou alteradas mesmo que nenhuma perk já as mencione.
-- Mods adicionados ou atualizados na modlist devem ser reconciliados nos `CURRENT-MODLIST.md` antes do próximo fechamento de lote.
+- Mods adicionados ou atualizados devem ser reconciliados primeiro em `../modlist/modlist.md` e no dossier individual atual; snapshots históricos dos guias só são atualizados quando houver motivo editorial explícito.
 - Biblioteca, bridge, UI, visual ou compatibilidade não vira provider mecânico automaticamente.
 
 ## Integridade da organização

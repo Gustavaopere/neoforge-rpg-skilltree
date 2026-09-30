@@ -10,7 +10,7 @@ Create e addons, energia, indústria, logística, automação, transporte, compu
 
 ## Índice operacional
 
-- Reconciliação atual da modlist
+- Snapshot histórico da modlist
 - 00–20. Corpo histórico consolidado
 - 21. Atualização da modlist tecnológica — 07/09
 
@@ -28,13 +28,13 @@ Create e addons, energia, indústria, logística, automação, transporte, compu
 
 <!-- ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/technology/CURRENT-MODLIST.md -->
 
-# Reconciliação atual da modlist — Mods de Tecnologia
+# Snapshot histórico da modlist — Mods de Tecnologia — 07/09/2026
 
 > **SNAPSHOT HISTÓRICO DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** Naquele checkpoint, o estado físico era o snapshot de 06/09/2026 mais o delta de 07/09. Decisões curatoriais revisadas em 07/09 prevalecem apenas dentro daquele snapshot; para o estado atual use `modlist/modlist.md` e o dossier individual correspondente.
 
-A modlist atual contém **612 entradas top-level**, incluindo NeoForge. O recorte Tecnologia permanece com **200 JARs tecnológicos/cross-domain**: o delta de 07/09 não adicionou nem removeu provider tecnológico do recorte, mas atualizou cinco artefatos já classificados.
+Naquele checkpoint, a modlist continha **612 entradas top-level**, incluindo NeoForge. O recorte Tecnologia permanece com **200 JARs tecnológicos/cross-domain**: o delta de 07/09 não adicionou nem removeu provider tecnológico do recorte, mas atualizou cinco artefatos já classificados.
 
-### Authority corrente adicional
+### Authority registrada naquele checkpoint
 
 - **Oritech — `1.2.12`**: `oritech-neoforge-1.21.1-1.2.12.jar`. Esta era a identidade física/runtime daquele snapshot e prevalecia sobre referências históricas `1.2.10/1.2.11`; o runtime atual deve ser lido em `modlist/modlist.md`.
 
@@ -67,7 +67,7 @@ O conflito visual com os Thermochemical Cogwheels de Create: Sulfuric Resonance 
 
 <!-- ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/technology/00-visao-geral.md -->
 
-<!-- Guia temático canônico versionado no GitHub | referência atual de presença/JAR/versão: modlist.txt reconciliada em 2026-08-30 -->
+<!-- Guia temático canônico versionado no GitHub | snapshot histórico de presença/JAR/versão: 2026-08-30; authority atual: modlist/modlist.md + dossier individual -->
 
 [← Índice do guia](README.md)
 

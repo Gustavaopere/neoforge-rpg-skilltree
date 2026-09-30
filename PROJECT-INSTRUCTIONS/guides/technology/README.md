@@ -16,7 +16,7 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 
 ## Índice
 
-- [Reconciliação atual da modlist — autoridade de presença/JAR/versão](CURRENT-MODLIST.md)
+- [Snapshot histórico da modlist — referência editorial](CURRENT-MODLIST.md)
 - [Visão geral e escopo](00-visao-geral.md)
 - [1. Sistemas tecnológicos principais](01-sistemas-tecnologicos-principais.md)
 - [2. Applied Energistics 2 e automação digital](02-applied-energistics-2-e-automacao-digital.md)

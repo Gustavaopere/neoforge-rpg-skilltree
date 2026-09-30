@@ -14,7 +14,7 @@ Os quatro projetos próprios do modpack possuem uma coleção transversal obriga
 
 ## Índice
 
-- [Reconciliação atual da modlist — autoridade de presença/JAR/versão](CURRENT-MODLIST.md)
+- [Snapshot histórico da modlist — referência editorial](CURRENT-MODLIST.md)
 - [Visão geral e escopo](00-visao-geral.md)
 - [1. Sistemas mágicos principais](01-sistemas-magicos-principais.md)
 - [2. Ecossistema Ars Nouveau](02-ecossistema-ars-nouveau.md)

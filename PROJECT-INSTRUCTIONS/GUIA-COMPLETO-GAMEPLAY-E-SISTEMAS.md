@@ -10,7 +10,7 @@ Combate, movimento, progressão, sobrevivência, fauna, exploração, interface 
 
 ## Índice operacional
 
-- Reconciliação atual da modlist (`CURRENT-MODLIST.md`)
+- Snapshot histórico da modlist (`CURRENT-MODLIST.md`)
 - 00. Visão geral e escopo
 - 01. Combate, movimento e ação
 - 02. Progressão RPG, identidades e atributos
@@ -47,11 +47,11 @@ Combate, movimento, progressão, sobrevivência, fauna, exploração, interface 
 
 <!-- ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/gameplay/CURRENT-MODLIST.md -->
 
-# Reconciliação atual da modlist — Gameplay e Sistemas
+# Snapshot histórico da modlist — Gameplay e Sistemas — 07/09/2026
 
 > **SNAPSHOT HISTÓRICO DE PRESENÇA/JAR/VERSÃO — 2026-09-07.** Naquele checkpoint, o estado físico era definido pelo snapshot auditável de 06/09/2026 mais o delta de 07/09. Para o estado atual, use `modlist/modlist.md` e o dossier individual correspondente. Dependências `jarjar` embutidas não contam como mods top-level.
 
-A `modlist.txt` atual contém **612 entradas top-level**, incluindo o NeoForge modloader: NeoForge + **611 JARs**.
+Naquele checkpoint, a `modlist.txt` continha **612 entradas top-level**, incluindo o NeoForge modloader: NeoForge + **611 JARs**.
 
 ## Fechamento da reconciliação
 
@@ -60,7 +60,7 @@ A `modlist.txt` atual contém **612 entradas top-level**, incluindo o NeoForge m
 - **9** adições reais;
 - **4** remoções físicas reais;
 - saldo: **+5**;
-- estado atual: **612** entradas top-level;
+- estado físico naquele snapshot: **612** entradas top-level;
 - Notion reconciliado: **612 `Instalado`**, **612 JARs físicos distintos** e **613/613 registros `Verificado`**;
 - auditoria de versão runtime fechada: **605/605 JARs que declaram `modVersion` batem exatamente com `Versão 1.21.1` no Notion**;
 - **7/7 JARs sem `modVersion` físico** permanecem com `Versão 1.21.1` vazia no Notion.
@@ -84,7 +84,7 @@ Os dois bloqueios por IDs duplicados `alexscaves` e `alexsmobs` estão **fisicam
 ## Regra operacional
 
 - Este fechamento + o delta físico de 07/09 formam apenas a authority histórica daquele checkpoint; não substituem `modlist/modlist.md` atual.
-- Os capítulos permanecem authority descritiva de função, integração, riscos e classificação.
+- Os capítulos preservam contexto editorial; para provider externo, o dossier individual atual é authority de mecânicas, integração, riscos, hooks e limites.
 - Biblioteca, UI, visual, compat ou scripting não deve ser promovido automaticamente a provider mecânico.
 - Um update de versão não revalida automaticamente hooks/APIs usados por perks.
 
@@ -92,7 +92,7 @@ Os dois bloqueios por IDs duplicados `alexscaves` e `alexsmobs` estão **fisicam
 
 <!-- ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/gameplay/00-visao-geral.md -->
 
-<!-- Guia temático canônico versionado no GitHub | referência atual de presença/JAR/versão: modlist.txt reconciliada em 2026-08-30 -->
+<!-- Guia temático canônico versionado no GitHub | snapshot histórico de presença/JAR/versão: 2026-08-30; authority atual: modlist/modlist.md + dossier individual -->
 
 [← Índice do guia](README.md)
 
@@ -100,7 +100,7 @@ Os dois bloqueios por IDs duplicados `alexscaves` e `alexsmobs` estão **fisicam
 
 > **SNAPSHOT HISTÓRICO RECONCILIADO — 2026-08-30:** naquele checkpoint havia **573 entradas top-level incluindo NeoForge**. `CURRENT-MODLIST.md` abaixo preserva esse estado histórico; presença/JAR/versão atuais vêm de `modlist/modlist.md`. A reconciliação histórica incorporou o conjunto **Simply Swords / Simply More / Integrated Simply Swords / Simply Swords: Cataclysm**, **Simply Tooltips**, **Oracle Index**, novas bibliotecas/infraestruturas e os drifts então detectados desde 28/08.
 
-## Stack atual de sobrevivência
+## Stack documentado naquele snapshot
 
 - **Cold Sweat 2.4.2:** temperatura corporal.
 - **Create: Cold Sweat 1.1.2:** bridge Create↔Cold Sweat, não segundo sistema térmico.

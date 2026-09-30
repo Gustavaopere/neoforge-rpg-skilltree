@@ -16,7 +16,7 @@ Para perks de combate/armas que possam tocar **Simply Swords, Simply More, Integ
 
 ## Índice
 
-- [Reconciliação atual da modlist — autoridade de presença/JAR/versão](CURRENT-MODLIST.md)
+- [Snapshot histórico da modlist — referência editorial](CURRENT-MODLIST.md)
 - [Visão geral e escopo](00-visao-geral.md)
 - [1. Combate, movimento e ação](01-combate-movimento-e-acao.md)
 - [2. Progressão RPG, identidades e atributos](02-progressao-rpg-identidades-e-atributos.md)

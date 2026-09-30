@@ -39,6 +39,9 @@ Migrado para `✅-simply-swords v1.70.2-1.21.1.md`:
 - matriz de Implicits por família com faixas default;
 - riscos de double-dip para armor penetration, bleed, execute, multi-hit, attack speed etc.;
 - nomes das superfícies públicas `SimplySwordsAPI` documentadas pelo guia;
+- semântica de `WeaponImplicitDefinition` (damage/hit/incoming-damage/tooltip), persistência do roll e regra top-10% para `UniqueWeaponItem`;
+- regra exactly-once de Awakening e gem scaling — `scaleAbilityDamage`/`scaleAbilityValue` e helpers de gem não devem receber scaling duplicado;
+- pipeline de `UniqueWeaponActiveAbility`, hits delegados e `applyAbilityBoltDamage`, incluindo suppression de Implicits no ability-bolt;
 - gate para confirmar assinatura/ABI no JAR físico antes de implementação.
 
 ### 3.2 Fundamental Principles
@@ -74,6 +77,8 @@ Migrado para `✅-pufferfishs-unofficial-additions v2.2.8.md`:
 Migrado para `✅-born-in-chaos v1.7.6.md`:
 
 - Nightmare Stalker como exemplo explícito de ameaça com progressão dependente da idade do mundo.
+
+A segunda revisão da PR também reclassificou `CURRENT-MODLIST*.md`, capítulos `00-visao-geral.md` e os trechos equivalentes dos guias consolidados como **snapshots históricos**, para impedir que inventários 595/607/612 sejam tratados como authority física atual.
 
 ## 4. Conteúdo dos guias que não deve ser copiado como authority atual
 
