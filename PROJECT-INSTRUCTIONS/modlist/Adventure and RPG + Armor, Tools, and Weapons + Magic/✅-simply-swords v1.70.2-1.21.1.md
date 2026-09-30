@@ -138,6 +138,20 @@ Troca de gem deve preservar exatamente um item em cada origem/destino e recomput
 
 Helpers de gem power como `gemPowerScaledDamage` / `gemPowerScaledValue` já escolhem o caminho físico/fixo versus spell scaling e aplicam o scaling de Awakening da gem **uma vez**. Uma perk não deve escalar novamente o resultado.
 
+### 12.1 Contrato público de gem sockets para integrações
+
+Além dos sockets nativos de Unique Weapons, a linha documentada expõe `AdditionalGemSocketApi` para conceder sockets a itens externos por item ID ou `#tag`. Para bases customizadas, os caminhos públicos de lifecycle são:
+
+- `SimplySwordsAPI.inventoryTickGemSocketLogic(...)` — tick das gem powers equipadas;
+- `SimplySwordsAPI.onClickedGemSocketLogic(...)` — inserção/substituição por inventory click;
+- `SimplySwordsAPI.postHitGemSocketLogic(...)` — processamento pós-hit;
+- `SimplySwordsAPI.appendTooltipGemSocketLogic(...)` — apresentação dos sockets/powers;
+- `SimplySwordsAPI.onWeaponSwing(...)` — integração de swing quando a base customizada precisa do pipeline Simply Swords.
+
+As powers públicas derivam de contratos como `RunicGemPower`, `RunefusedGemPower`, `NetherGemPower` e `GemPower`. O `GemPowerRegistry` usa **IDs namespaced sincronizados** entre servidor e cliente. Desde a linha 1.70, `GemPowerComponent` persiste **IDs**, e não identidade efêmera de registry entry; esse detalhe existe para manter stacks reconstruídos por storage/automation compatíveis e não deve ser substituído por estado paralelo da skill tree.
+
+Para perks ou itens customizados, a regra é provider-native first: usar esses hooks para tick/click/post-hit/tooltip/swing e persistir o mesmo contrato de IDs. Não reimplementar socketing por NBT/attachment próprio nem armazenar uma segunda referência de gem power. O scaling continua exactly-once pelos helpers já documentados acima.
+
 ## 13. Unique loot e abilities
 Unique Weapons combinam item próprio, state de Awakening e abilities específicas. Tooltips avançados podem mostrar informações adicionais via Simply Tooltips.
 Uma Unique desabilitada/configurada não deve continuar entrando no loot apenas porque o registry ainda existe; loot config e item registration são boundaries distintas.
