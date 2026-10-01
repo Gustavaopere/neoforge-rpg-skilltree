@@ -10,11 +10,11 @@
 - **Dependências:** Consumer direto confirmado: Alshanex's Familiars 1.21.1_v4.0.3. Source baseline da lib: Iron's Spells 3.15.5, GeckoLib 4.7.5.1, Curios 9.2.2 e Player Animator 2.0.1. Runtime físico atual: Iron's Spells 3.16.3, GeckoLib 4.9.2, Curios 9.5.1+1.21.1 e Player Animator 2.0.4+1.21.1; há regression gate de API por version drift.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Library transversal de familiar state/storage/casting. Riscos: API drift, stale PlayerFamiliarData, storage dupe, owner loss em dimension change, double spell settlement e client classloading. Filename/publicação 1.7.1 e metadata/source `1.21.1-1.7` são divergência real preservada.
+- **Compatibilidade/Riscos:** Biblioteca central de familiars; riscos em owner/familiar state, storage, beds, tame limits, sync e consumers compilados contra API antiga. Upstream **1.8** reworka o familiar storing system e aumenta o limite configurável para até 50; o autor recomenda backup de mundo antes de atualizar.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/familiarslib
-- **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `familiarslib-1.21.1-1.7.1.jar`, mod id `familiarslib`, metadata runtime `1.21.1-1.7` e SHA-1 `7fa3f3116e35c12456425ae195924ced33fcc2eb`. CurseForge oficial revalidado em 21/09/2026 mantém `familiarslib-1.21.1-1.7.1.jar` como latest release NeoForge 1.21.1.
-- **Observações:** Não normalizar `1.7.1` para `1.21.1-1.7` nem vice-versa: filename/publicação e metadata/source usam strings diferentes. O changelog oficial da 1.7.1 corrige familiar beds que não estavam curando familiars. Source continua confirmando AbstractFamiliarBed/Storage, PlayerFamiliarData, spellcasting pet bases e compat Curios.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #272: `familiarslib-1.21.1-1.7.1.jar` permanece a latest release NeoForge 1.21.1. Divergência legítima preservada: filename/publicação `1.7.1` × metadata/runtime `1.21.1-1.7`.
+- **Procedência:** modlist física atual + CurseForge FamiliarsLib 1.7.1/1.8. A autoridade física continua filename 1.7.1 / metadata `1.21.1-1.7`; 1.8 é apenas upstream disponível.
+- **Observações:** JAR físico `familiarslib-1.21.1-1.7.1.jar`; metadata/runtime `1.21.1-1.7`, divergência legítima já preservada. Upstream publicou **familiarslib-1.21.1-1.8.jar** em 24/09/2026; não está instalado.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — FamiliarsLib físico permanece `familiarslib-1.21.1-1.7.1.jar` / runtime `1.21.1-1.7`. CurseForge publicou **1.8** em 24/09/2026; o rework de storage/limite foi registrado abaixo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não é duplicata do Alshanex's Familiars: é sua biblioteca/core. Iron's Spells, Curios, GeckoLib e Player Animator permanecem providers de seus próprios contratos.
 - **Data da última decisão:** 2026-08-26
@@ -86,3 +86,17 @@ Cada familiar precisa manter owner correto. Dois jogadores não podem reivindica
 - source oficial `Alshanex/FamiliarsLib`: árvore 1.21.1, abstrações de bed/storage/pets, `PlayerFamiliarData`, compat Curios e gradle properties;
 - CurseForge oficial: release `familiarslib-1.21.1-1.7.1.jar` e papel de utility library.
 > **Boundary canônico:** FamiliarsLib fornece **infraestrutura**; o conteúdo concreto permanece authority do mod consumidor e as spells permanecem authority do framework de magia correspondente.
+
+
+## Atualização upstream 1.8 — não instalada
+A autoridade física continua em **FamiliarsLib 1.7.1** no filename, com metadata/runtime **1.21.1-1.7**.
+
+A release **1.8** traz um aviso explícito do autor para **fazer backup do mundo antes de atualizar**.
+
+Delta funcional: o **familiar storing system foi refeito** para permitir tame/storage de mais de 10 familiars, chegando a **até 50**, com o limite configurável em uma nova config da FamiliarsLib.
+
+Isso é a infraestrutura correspondente ao mesmo boundary observado no update de Alshanex's Familiars 4.0.4. O limite/storage pertence à FamiliarsLib; consumers não devem manter arrays/UI/validation hardcoded em 10.
+
+Gate de promoção 1.7.1→1.8: backup/migração de storage existente; config 10/25/50; tame acima de 10; beds/storage blocks; relog/restart; death/respawn; dimension transfer; chunk unload; dois jogadores com coleções grandes; consumer Alshanex Familiars 4.0.4 compatível; ausência de perda/duplicação ao migrar slots.
+
+Fonte upstream: CurseForge file ID 8966334, `familiarslib-1.21.1-1.8.jar`.
