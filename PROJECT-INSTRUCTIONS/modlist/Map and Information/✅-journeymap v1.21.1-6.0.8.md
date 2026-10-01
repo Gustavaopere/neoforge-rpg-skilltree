@@ -12,11 +12,11 @@
 - **Fonte:** https://modrinth.com/plugin/journeymap/version/IAVJBO0C
 - **Função:** Sistema de mapa/minimapa client-side com exploração automática, mapa em tela cheia, waypoints e API v2 para overlays/integrações; o servidor pode controlar permissões de recursos como teleport.
 - **Dependências:** Java 21, Minecraft 1.21.1 e NeoForge 21.1.228+ segundo a linha 6.0.x. Pack usa NeoForge 21.1.250. O JAR físico 6.0.8 embarca via JarJar Common Networking 1.0.21-1.21.1, JourneyMap API 2.0.0-1.21.1 e PNGJ 2.1.0; nenhum é entrada top-level separada.
-- **Compatibilidade/Riscos:** Mapa de alta integração. Riscos: dados locais stale, waypoint/dimension mismatch, API plugin drift, radar/teleport divergente das permissões server-side, tile cache após mudanças de mundo e addons sobrepondo overlays. 6.0.7 corrige dois bugs de teleport admin/creative.
+- **Compatibilidade/Riscos:** Mapa de alta integração. Riscos: dados locais stale, waypoint/dimension mismatch, API plugin drift, radar/teleport divergente das permissões server-side, tile cache após mudanças de mundo e addons sobrepondo overlays. 6.0.7 corrige bugs de teleport; upstream 6.0.9 corrige render com Dynamic Surroundings biome fog e dois problemas de minimap preset/config.
 - **Sobreposição:** É o mapa/minimapa completo identificado no pack. JourneyMap Integration e outros addons ampliam seus overlays/API; não são mapas concorrentes. Não confundir informação descoberta no mapa com worldgen authority.
-- **Observações:** Runtime físico atual é 6.0.8. A release oficial JourneyMap 6.0.8 NeoForge 1.21.1 foi publicada em 09/09/2026 e está instalada. O changelog específico da 6.0.8 não foi pinado nesta auditoria, portanto nenhum fix novo foi inventado.
+- **Observações:** Runtime físico atual é 6.0.8. Upstream publicou **JourneyMap 6.0.9 NeoForge 1.21.1 em 19/09/2026**; ela não está instalada. API permanece v2.0.0-1.21.1 e o requirement publicado continua Java 21 / NeoForge 21.1.228+.
 - **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + JourneyMap 6.0.8 NeoForge 1.21.1 físico + documentação 6.0.x + inventário físico JarJar do host confirmando Common Networking 1.0.21, JourneyMap API 2.0.0 e PNGJ 2.1.0.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — JourneyMap 1.21.1-6.0.8/JAR físico reconfirmado; o antigo gap 6.0.7→6.0.8 foi encerrado pela modlist atual. JarJar físico completo preservado: Common Networking 1.0.21, JourneyMap API 2.0.0 e PNGJ 2.1.0.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — JourneyMap físico permanece 6.0.8; **6.0.9** é a latest NeoForge 1.21.1 localizada e seu changelog foi incorporado abaixo.
 - **Data da última decisão:** 2026-08-30
 
 > **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #352: JAR `journeymap-neoforge-1.21.1-6.0.8.jar`, mod id `journeymap`, runtime `1.21.1-6.0.8`, SHA-1 `e964f91ee6319bb1d789a7011e30772907962b90`.
@@ -77,3 +77,18 @@ Validar cold boot, join/reconnect, first mapping, chunk exploration, dimension c
 - **Documentação 6.0.x:** minimap, full-screen map, waypoints e integração por API.
 - **Limite:** configurações locais, radar policy e dados de mapa do usuário não foram inspecionados.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+
+## 15. Atualização upstream 6.0.9 — não instalada
+A autoridade física continua em **JourneyMap 6.0.8**. A release **6.0.9** para NeoForge 1.21.1 foi publicada em 19/09/2026.
+
+Changelog oficial:
+- corrige o mapa não renderizando quando **Dynamic Surroundings biome fog** está habilitado;
+- corrige o slider de **cave layer do Minimap Preset 2** ficando habilitado somente quando o Preset 1 estava em Underground;
+- corrige o simples ato de abrir/visualizar opções de minimap preset **mudando o preset ativo e reescrevendo arquivos de configuração**.
+
+Impacto: 6.0.9 endurece exclusivamente render/config state, mas a terceira correção é importante para integridade de configuração: tela de opções deve ser leitura até o usuário aplicar uma mudança, não mutation side effect.
+
+Gate de promoção 6.0.8→6.0.9: Dynamic Surroundings biome fog on/off; Preset 1/2 independentes; cave layer slider; abrir/fechar opções sem salvar; diff do config antes/depois; minimap/fullscreen map; dimension change; JMI overlays; waypoints e server teleport permissions.
+
+Fonte upstream: JourneyMap 6.0.9 NeoForge 1.21.1; requirements Java 21, NeoForge 21.1.228 e API v2.0.0-1.21.1.
