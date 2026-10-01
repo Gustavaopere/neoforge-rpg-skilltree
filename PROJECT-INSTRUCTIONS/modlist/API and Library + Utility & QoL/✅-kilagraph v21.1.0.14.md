@@ -12,11 +12,11 @@
 - **Fonte:** https://github.com/Low-Drag-MC/KilaGraph/tree/1.21
 - **Função:** Toolkit de node graphs e shader graphs construído sobre o ecossistema LDLib2, oferecendo grafos programáveis, RenderType/Shader Function graphs e editor visual para mods consumidores.
 - **Dependências:** Source exato 21.1.0.14 requer NeoForge \>=21.1.217 e LDLib2 \>=2.2.33. Pack físico: NeoForge 21.1.250 e LowDragLib2 2.2.39.a, satisfazendo os ranges. Photon 2.2.6.a também embute KilaGraph 21.1.0.14 como JarJar.
-- **Compatibilidade/Riscos:** Build 21.1.0.14 é source-pinned e Beta. Riscos: LDLib2 ABI drift, graph serialization/schema drift, shader compilation/render-state errors, duplicate nested/top-level resolution e consumers usando nodes/graphs incompatíveis. Top-level e JarJar de Photon estão atualmente na mesma versão.
+- **Compatibilidade/Riscos:** Build física 21.1.0.14 é source-pinned e Beta. Riscos: LDLib2 ABI drift, graph serialization/schema drift, shader compilation/render-state errors, duplicate nested/top-level resolution e consumers usando nodes/graphs incompatíveis. Upstream 21.1.0.15 adiciona novos tipos/nodes e execução off-thread declarativa; uma atualização pode quebrar serialized pins/ports e exige auditoria de thread-safety dos consumers. Top-level e JarJar de Photon estão atualmente 0.14, portanto atualizar apenas um lado criaria version divergence.
 - **Sobreposição:** Não é shaderpack nem renderer standalone. É framework/editor consumido por outros mods. A cópia embutida em Photon é nested dependency do host e não mod top-level adicional; a igualdade de versão reduz, mas não elimina, necessidade de validar resolução do loader.
-- **Observações:** A linha 1.21.1 permanece em 21.1.0.14 Beta. Builds 26.1.x pertencem a Minecraft 26.1 e não substituem o JAR físico. A cópia KilaGraph 21.1.0.14 embarcada no Photon continua sendo JarJar do host, não entrada top-level adicional.
-- **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + source oficial Low-Drag-MC/KilaGraph branch 1.21 com `mod_version=21.1.0.14` + listagem atual de releases 1.21.1, que mantém 21.1.0.14 como build mais recente + boundary JarJar do Photon já auditado.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — KilaGraph 21.1.0.14/JAR físico reconfirmado; NeoForge físico reconciliado para 21.1.250. Graph/shader architecture, LDLib2 2.2.39.a, Photon nested same-version boundary, lifecycle, riscos e testes preservados.
+- **Observações:** Runtime físico/top-level permanece 21.1.0.14, com cópia JarJar 21.1.0.14 dentro de Photon. Upstream publicou **21.1.0.15** para NeoForge 1.21.1 em 21/09/2026; ela não está instalada.
+- **Procedência:** modlist física atual + source oficial Low-Drag-MC/KilaGraph branch 1.21 para a baseline 21.1.0.14 + CurseForge 21.1.0.15 + boundary JarJar do Photon. A autoridade física continua 21.1.0.14.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — KilaGraph físico permanece 21.1.0.14. A release **21.1.0.15** para NeoForge 1.21.1 foi revisada integralmente e está registrada abaixo.
 - **Data da última decisão:** 2026-08-30
 
 > **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #357: JAR `kilagraph-neoforge-1.21.1-21.1.0.14.jar`, mod id `kilagraph`, runtime `21.1.0.14`, SHA-1 `9a349840268ab8d06f69f2f1edab6704f59f78aa`.
@@ -71,3 +71,29 @@ Validar registry/bootstrap, carregamento de graph resources, editor open/save, r
 - **Documentação pública:** Blueprint/RenderType/Shader Function graphs e LDLib2 editor/toolkit.
 - **Limite:** changelog específico da 21.1.0.14 não foi localizado; mudanças version-specific permanecem fail-closed.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+
+## 15. Atualização upstream 21.1.0.15 — não instalada
+A autoridade física continua em **KilaGraph 21.1.0.14**. A release **21.1.0.15** Beta foi publicada em 21/09/2026.
+
+### Novos tipos e nodes
+- adiciona tipo **quaternion** e nodes de rotação: axis-angle, Euler, from-to, compose, inverse, slerp, rotate-vector, angle-between e bridge Vec4;
+- adiciona vector nodes: direction-to, set-length, slerp, perpendicular, wrap e conversões Vec2/Vec3/Vec4;
+- adiciona math nodes: wrap, snap, step, smoothstep, inverse lerp, delta angle, move-towards, nearly-equal e wave.
+
+### Execução e APIs
+- cada node pode declarar se o graph pode executá-lo **fora da game thread**;
+- adiciona **variable store access API**;
+- `Set Var` passa a referenciar a **declaração da variável**, em vez de depender do nome escrito;
+- adiciona `setSampler`, vinculando parâmetros de um `Sampler2D` além da texture.
+
+### Correções de editor/schema
+- corrige declared ports aparecendo abaixo de ports dinâmicos;
+- corrige port sem accessor perdendo o editor registrado para seu próprio tipo;
+- corrige constant de pin carregado mantendo o tipo salvo antigo em vez do **tipo declarado pelo pin**.
+
+Impacto: a 0.15 amplia fortemente a superfície de graph schema e adiciona potencial execução off-thread. Nodes de consumers não podem ser executados off-thread sem thread-safety explícita; game state/render state não deve ser tocado de worker threads. As correções de pin type/variable declaration também são migration-sensitive para graphs persistidos.
+
+Gate de promoção 0.14→0.15: abrir/salvar graphs antigos; pins com tipo alterado; dynamic+declared ports; Set Var após rename; quaternion/vector/math nodes; sampler params; off-thread node em graph puro; bloquear off-thread para node que toca game state; resource reload; shader compilation; LDLib2 compat; loader resolution com o JarJar 0.14 do Photon.
+
+Fonte upstream: CurseForge file ID 8941172, `kilagraph-neoforge-1.21.1-21.1.0.15.jar`.
