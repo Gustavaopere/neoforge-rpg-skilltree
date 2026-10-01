@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/polytone
 - **Função:** Framework resource-pack driven para personalizar aspectos visuais e ambientais como colormaps, propriedades de blocos/itens, partículas, sons e biomas.
 - **Dependências:** NeoForge 1.21.1. Utilidade depende de resource packs/consumers. Embedded no JAR físico atual: CodecUI 1.21.1-1.4.3, exp4j 0.4.8 e Nexp 1.2.0; não catalogar como top-level.
-- **Compatibilidade/Riscos:** Resource-pack driven. Riscos: pack/schema drift, water-fog + shaders, GPU particle force spawn + culling/overdraw, tooltip/GUI composition, biome cache e embedded-library ambiguity.
+- **Compatibilidade/Riscos:** Riscos em resource-pack drift, water fog/shaders, GPU particles, GUI/tooltips, biome caches, expressions e embedded libraries. Upstream 4.5.0–4.5.3 altera parsing de colormaps/resource locations, tag loading, fluid-mod compatibility e color expressions; atualizar exige resource reload amplo.
 - **Sobreposição:** Framework amplo de extensions de resource packs; não é equivalente a Fusion/Continuity nem shader pack. Redundância só pode ser avaliada por feature/resource pack concreto.
-- **Observações:** Runtime físico 1.21-4.4.0, Release NeoForge 1.21.1 de 11/09/2026. A documentação de 4.2.0 permanece como lineage para GPU particle force spawn e water fog; o JAR atual embute Nexp 1.2.0 no lugar da referência antiga a MVEL. Releases 4.5.x posteriores existem upstream e não estão instaladas.
-- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial Polytone 4.4.0 + hierarquia física das libraries embutidas.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — Polytone físico corrigido de 4.2.0 para 4.4.0; JAR/runtime e dependências embutidas reconciliados. Releases 4.5.x posteriores existem upstream e não estão instaladas.
+- **Observações:** Runtime físico permanece `1.21-4.4.0`. O upstream 1.21.1 avançou por **4.5.0 → 4.5.1 → 4.5.2 → 4.5.3** entre 19 e 26/09/2026; nenhuma dessas releases está instalada.
+- **Procedência:** modlist física atual + CurseForge oficial Polytone 4.4.0 e releases 4.5.0–4.5.3 + source branch `1.21.1`. Embedded CodecUI/exp4j/Nexp permanecem documentados conforme o JAR físico 4.4.0.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Polytone físico permanece 4.4.0. Todas as releases **4.5.0, 4.5.1, 4.5.2 e 4.5.3** foram revisadas; 4.5.3 é a latest NeoForge 1.21.1.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-10
 
@@ -134,3 +134,29 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Hierarquia física 4.4.0: CodecUI 1.21.1-1.4.3, exp4j 0.4.8 e Nexp 1.2.0 estão embutidos sob o host.
 - Descrição oficial: sounds, colors/lightmaps/colormaps, post shaders, item models, biome textures, GUI/tooltips, particles, creative tabs e OptiFine format support.
 - **Limite:** resource packs ativos/consumers concretos não foram enumerados neste passe; decisão permanece Sem decisão.
+
+
+## 16. Histórico upstream 4.5.0 → 4.5.3 — não instalado
+A autoridade física continua em **Polytone 4.4.0**.
+
+### 4.5.0 — 19/09/2026
+- torna as definições de **colormap mais tolerantes/lenient**.
+
+### 4.5.1 — 24/09/2026
+- backporta diversas mudanças da linha 26.1 para 1.21.1;
+- adiciona **sanity checks para resource locations**.
+
+O changelog público é deliberadamente amplo sobre os backports; não atribuo individualmente cada commit 26.1 ao runtime 1.21.1 sem prova de inclusão.
+
+### 4.5.2 — 25/09/2026
+- corrige problemas de **tag loading**;
+- corrige um bug envolvendo **mods de fluidos**.
+
+### 4.5.3 — 26/09/2026
+- adiciona **mais color expressions**.
+
+Impacto: esta sequência afeta parsing/data-driven resources e compatibilidade de packs. Colormaps inválidos precisam degradar diagnosticavelmente; tag/fluid resolution não pode ficar stale após reload; novas color expressions devem permanecer presentation-only.
+
+Gate de promoção 4.4.0→4.5.3: packs com colormaps antigos/lenient; resource location inválida; tags NeoForge; fluid colors com mods de fluidos; color expressions novas; water fog/shaders; GUI modifiers; resource reload; pack enable/disable; dedicated server sem classloading client-only.
+
+Fontes upstream: CurseForge files 8920477 (4.5.0), 8965719 (4.5.1), 8974918 (4.5.2) e 8981069 (4.5.3).
