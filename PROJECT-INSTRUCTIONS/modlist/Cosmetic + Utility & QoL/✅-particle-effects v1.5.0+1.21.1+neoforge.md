@@ -14,9 +14,9 @@
 - **Dependências:** Cliente NeoForge 1.21.1. Não foi confirmada hard dependency externa para a build física 1.5.0. O mod funciona em multiplayer como camada visual local.
 - **Compatibilidade/Riscos:** PartiCull pode cullar partículas dinamicamente; Iris/shaders alteram rendering; Particle Rain/Particular aumentam carga de partículas. Ausência visual não deve ser tratada como ausência do efeito lógico. Testar cleanup, dimension changes e stress.
 - **Sobreposição:** Complementa o feedback visual de MobEffects; sobrepõe carga de rendering com Particle Rain/Particular e pode ser cullado por PartiCull, mas não duplica a lógica dos efeitos.
-- **Observações:** mod id `particle_effects`; runtime `1.5.0+1.21.1+neoforge`. Client-only. O upstream não publicou inventário textual completo dos particle registry IDs nesta release; nenhuma contagem foi inventada.
-- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial da build NeoForge 1.21.1 v1.5.0 e documentação oficial de multiplayer/resource packs.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — Particle Effects 1.5.0/JAR físico reconfirmado; boundary client-only e riscos VFX preservados.
+- **Observações:** mod id `particle_effects`; runtime físico `1.5.0+1.21.1+neoforge`. Client-only. Upstream publicou **1.6.0** para NeoForge 1.21.1 em 22/09/2026; o changelog compartilhado menciona port para 26.3 e minor rendering fixes. Somente os rendering fixes são tratados como delta funcional potencial do artefato 1.21.1.
+- **Procedência:** modlist física atual + CurseForge oficial das builds NeoForge 1.21.1 v1.5.0/v1.6.0 e documentação oficial de multiplayer/resource packs.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Particle Effects físico permanece 1.5.0. A release **1.6.0** para NeoForge 1.21.1 foi revisada; não há release intermediária posterior a 1.5.0.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-10
 
@@ -88,3 +88,15 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 - CurseForge oficial: ambiente Client, build NeoForge 1.21.1 1.5.0 e descrição de partículas únicas para efeitos vanilla.
 - Página oficial: suporte a multiplayer e resource packs visuais.
 - **Limite:** o upstream não publica inventário textual completo de particle registry IDs para esta build; quantidade/IDs e resource-pack overrides locais não foram inventados.
+
+
+## 12. Atualização upstream 1.6.0 — não instalada
+A autoridade física continua em **1.5.0+1.21.1+neoforge**. A próxima release publicada para 1.21.1 é **1.6.0**, de 22/09/2026.
+
+O changelog compartilhado da 1.6.0 contém:
+- port para Minecraft **26.3** — informação de manutenção multi-version, não comportamento atribuído ao JAR 1.21.1;
+- **minor rendering fixes** — aplicável como delta visual potencial da build 1.21.1.
+
+Como o upstream não discrimina quais rendering fixes afetam especificamente 1.21.1, não invento bugs ou partículas concretas. O regression gate permanece visual: blending/depth, cleanup de partículas, resource packs, shaders Iris, PartiCull, invisibility e dimension/relog.
+
+Fonte upstream: CurseForge file ID 8948428, `ParticleEffects-1.6.0+1.21.1+neoforge.jar`.
