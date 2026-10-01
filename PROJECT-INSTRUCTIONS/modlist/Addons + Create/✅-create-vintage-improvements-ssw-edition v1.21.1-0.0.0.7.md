@@ -19,7 +19,7 @@
 - **Observações:** Mod id `vintageimprovements`, runtime `1.21.1-0.0.0.7`. Não confundir com o projeto original 1.20.1; scripts/recipes devem usar schemas da SSW atual.
 - **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge oficial Vintage Improvenents - SSW Edition + `vintageimprovements-1.21.1-0.0.0.7.jar` + Create 6.0.10 + NeoForge 21.1.250. Snapshots 08/09–13/09 com NeoForge 21.1.248 foram preservados como histórico. Não confundir com o projeto original nem com o port Create: Vintage. Nenhum runtime QA executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-vintage-improvements-ssw-edition
-- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Create: Vintage Improvements — SSW Edition 1.21.1-0.0.0.7 permanece instalada; stack físico atual Create 6.0.10/NeoForge 21.1.250. Schemas KubeJS, Compressor fluids e contraption fixes permanecem documentados; snapshots 08/09–13/09 com NeoForge 21.1.248 preservados como histórico.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.21.1-0.0.0.7. CurseForge publicou **0.0.0.8** para NeoForge 1.21.1 em 21/09/2026; o delta de performance do Vibrating Table foi revisado e registrado abaixo.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-09
 
@@ -125,3 +125,16 @@ Os fixes específicos desta build para schemas/KubeJS, secondary fluid I/O do Co
 O runtime físico permanece `vintageimprovements-1.21.1-0.0.0.7.jar`, versão `1.21.1-0.0.0.7`, com Create `6.0.10` e NeoForge `21.1.248`. A página oficial da **Vintage Improvenents - SSW Edition** continua expondo esta build como Main File/Latest release NeoForge 1.21.1; o projeto permanece explicitamente um port não oficial e não deve ser confundido com o Vintage Improvements original ou com outro port. Os fixes da 0.0.0.7 para schemas/KubeJS, fluid I/O do Compressor e contraptions permanecem regression gates. Nenhum recipe, KubeJS script, fluid path, machine lifecycle ou assemble/disassemble foi testado nesta revalidação.
 ## 16. Reconciliação física — 27/09/2026
 A autoridade física atual mantém `vintageimprovements-1.21.1-0.0.0.7.jar`, mod id `vintageimprovements`, runtime `1.21.1-0.0.0.7`, com Create `6.0.10` e NeoForge `21.1.250`. A exigência publicada de NeoForge `21.1.228+` continua satisfeita. As referências de 08/09–13/09 a NeoForge `21.1.248` permanecem preservadas como snapshots históricos; nenhum recipe, KubeJS script, fluid path, machine lifecycle ou assemble/disassemble foi testado nesta reconciliação.
+
+## 17. Atualização upstream 0.0.0.8 — não instalada
+A autoridade física continua em **Create: Vintage Improvements — SSW Edition 0.0.0.7**. A release seguinte para NeoForge 1.21.1 é **0.0.0.8**, publicada em 21/09/2026.
+
+O changelog é específico e relevante para performance:
+- corrige o renderer da **Vibrating Table** executando lookups caros de recipe **a cada frame** no render thread;
+- o resultado de `haveRecipe()` passa a ser **cacheado por input stack / speed / recipe manager**.
+
+Impacto para o pack: o fix reduz custo client-side de render em áreas com Vibrating Tables. Como o cache depende de input, speed e recipe manager, reload de recipes/KubeJS/datapacks e mudança de velocidade precisam invalidar/recalcular corretamente o resultado para não produzir UI/render stale.
+
+Gate de promoção 0.0.0.7→0.0.0.8: Vibrating Table sem recipe e com recipe válido; troca de input; alteração de speed; `/reload`/KubeJS recipe reload; múltiplas mesas no mesmo chunk; resource reload; comparação de frametime/render-thread profile; garantir que o cache não altere execução server-side nem inventário/processamento real.
+
+Fonte upstream: CurseForge file ID 8941692, `vintageimprovements-1.21.1-0.0.0.8.jar`.
