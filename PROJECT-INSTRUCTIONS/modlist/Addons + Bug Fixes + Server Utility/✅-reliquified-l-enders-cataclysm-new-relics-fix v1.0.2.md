@@ -19,7 +19,7 @@
 - **Observações:** Revalidado sem reescrever o corpo já completo. A bridge continua separada do addon-base e não assume ownership de relic gameplay; adapta Reliquified Cataclysm 0.1.1 ao Relics 0.12.x.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + JAR/mixins do fix 1.0.2 + publicação oficial do fix + stack físico atual de Relics/Curios/OctoLib/Cataclysm/Reliquified Cataclysm.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/reliquified-l-ender-s-cataclysm-new-relics-fix
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — bridge 1.0.2 revalidada contra o stack físico atual: Relics 0.12.8, Curios 9.5.1, OctoLib 0.6.2, Cataclysm 3.33 e Reliquified Cataclysm 0.1.1; corpo técnico preservado.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.0.2. CurseForge publicou **1.0.3** para NeoForge 1.21.1 em 21/09/2026; o delta de Scouring Eye/Void Cloak foi revisado integralmente e está registrado abaixo.
 - **Histórico da decisão:**
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -127,3 +127,17 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 ## 12. Evidências
 - Modlist física canônica de 10/09/2026: JARs e versões do stack.
 - CurseForge oficial do fix 1.0.2: propósito, API 0.10→0.12, técnicas Mixins/bytecode, oito famílias de correção, cinco relics e requisitos.
+
+## 13. Atualização upstream 1.0.3 — não instalada
+A autoridade física continua em **1.0.2**. A próxima release pública para NeoForge 1.21.1 é **1.0.3**, publicada em 21/09/2026.
+
+O changelog oficial corrige três problemas diretamente ligados a state persistente/teleporte:
+- corrige a habilidade **Pursuit do Scouring Eye** ficando permanentemente inutilizável depois da primeira ativação;
+- corrige o **Void Cloak** fazendo o jogador cair indefinidamente no void;
+- o Void Cloak passa a resgatar o usuário para a **última posição segura**, usando o spawn do Overworld como fallback quando necessário.
+
+Impacto para o pack: Pursuit precisa limpar/reconstruir cooldown/activation state corretamente; Void Cloak passa a depender de uma referência de posição segura, portanto dimension change, relog, death e chunk unload são superfícies críticas. O fallback de spawn deve executar uma única vez e não criar loop de teleport/rubber-band.
+
+Gate de promoção 1.0.2→1.0.3: Pursuit repetido em várias ativações; cooldown + relog; Void Cloak sobre void, em outra dimensão e sem posição segura válida; fallback ao spawn do Overworld; multiplayer remoto; death/respawn; Curios equip/unequip; ausência de double teleport; persistência de XP/rank/cooldown das demais relics.
+
+Fonte upstream: CurseForge file ID 8936348, `reliquified-lenders-cataclysm-new-relics-fix-1.0.3.jar`.
