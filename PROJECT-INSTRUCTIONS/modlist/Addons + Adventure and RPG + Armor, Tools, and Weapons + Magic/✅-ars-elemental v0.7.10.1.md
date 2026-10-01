@@ -21,11 +21,11 @@
 - **Função:** Expansão elemental de Ars Nouveau com 39 glyphs/spell parts normais na build 0.7.10.1, 8 rituals, 3 familiars, 3 perks, 12 armor sets, casters e mappings de resistências Air/Earth/Fire/Water.
 - **Dependências:** Ars Nouveau 5.13.1. Sauce permanece jarjar/embedded; Ars Elemancy 1.18.3 consome a base elemental sem transferir authority.
 - **Sobreposição:** Complementa Ars Nouveau e fornece a base elemental consumida por Ars Elemancy. Não duplicar schools/perks/resistances em integração própria.
-- **Compatibilidade/Riscos:** Riscos: double-dip de school power/resistance, perks/turrets processados duas vezes, perda de perk slots de armor e drift de patch. A branch upstream já está em 0.7.10.2; features exclusivas da .2 não pertencem ao runtime 0.7.10.1.
-- **Observações:** mod id ars_elemental. Release normal registra 39 spell parts; MethodCarianPhalanx é dev-only e foi excluído. 8 rituals, 3 familiars, 3 perks e 12 armor sets confirmados no source 0.7.10.1.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + source oficial Ars-Elemental commit `a5bdb39567ee39bde2210203cf051f709d06e08a` (0.7.10.1) e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_elemental-1.21.1-0.7.10.1.jar` / `0.7.10.1`; sem divergência física.
+- **Compatibilidade/Riscos:** Addon de Ars Nouveau com schools, glyphs, familiars, perks, armor e rituals. Riscos: school power/resistance double-dip, perk duplication, spell/turret causalidade, Sauce jarjar drift e source/publication skew. Upstream público chegou a 0.7.10.3; o source passou por 0.7.10.2 intermediário e 0.7.10.3 exige Ars Nouveau atualizado.
+- **Observações:** Runtime físico permanece 0.7.10.1. O branch oficial 1.21 passou por **0.7.10.2** no source e chegou a **0.7.10.3**; o CurseForge publica 0.7.10.3 diretamente após 0.7.10.1, sem artefato público 0.7.10.2 localizado.
+- **Procedência:** modlist física atual + source oficial `Alexthw46/Ars-Elemental` branch 1.21 para 0.7.10.1→0.7.10.2→0.7.10.3 + CurseForge oficial 0.7.10.3. A autoridade instalada permanece 0.7.10.1.
 - **Fonte:** https://github.com/Alexthw46/Ars-Elemental
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #44: `ars_elemental-1.21.1-0.7.10.1.jar` / `0.7.10.1` conferidos contra a modlist atual; source pin 0.7.10.1 e boundary contra 0.7.10.2 preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Ars Elemental físico permanece 0.7.10.1. O estado intermediário de source **0.7.10.2** e a release pública **0.7.10.3** foram auditados separadamente; 0.7.10.3 não deve ser promovido isoladamente sem reconciliar Ars Nouveau.
 - **Histórico da decisão:** Manter. Ficha reconstruída em 07/09/2026 contra o commit exato da build 0.7.10.1 para impedir contaminação por features da 0.7.10.2 upstream.
 - **Data da última decisão:** 2026-09-07
 
@@ -191,3 +191,30 @@ A branch upstream atual já está em `0.7.10.2`. Conteúdo posterior, como os gl
 - Modlist física do projeto, 07/09/2026.
 - Source oficial `Alexthw46/Ars-Elemental`, commit exato `a5bdb39567ee39bde2210203cf051f709d06e08a` (0.7.10.1).
 - Guia consolidado de Magia do projeto.
+
+
+## 18. Histórico upstream 0.7.10.2 → 0.7.10.3 — não instalado
+A autoridade física continua em **Ars Elemental 0.7.10.1**.
+
+### 0.7.10.2 — estado intermediário no source, sem artefato público localizado
+O branch oficial altera `mod_version` para **0.7.10.2**, atualiza Ars Nouveau de 5.12.0.1368 para **5.13.0.1390** e Sauce de 0.0.47.92 para **0.0.50.96**.
+
+Deltas confirmados no source 0.7.10.2:
+- reordena checks de world height/distance para evitar **out-of-range block checks**;
+- adiciona spawn eggs de **Siren** e **Flashjack**;
+- corrige **Enderference** que não funcionava porque o subscriber estava registrado no event bus/mod id de Ars Nouveau em vez do próprio Ars Elemental;
+- remove color data não intencional dos **Mermaid Tokens**.
+
+O branch também contém mudanças recentes já citadas no dossiê histórico, incluindo features posteriores à 0.7.10.1; elas não devem ser tratadas como instaladas.
+
+### 0.7.10.3 — release pública de 28/09/2026
+A release 0.7.10.3:
+- corrige a **Prism API** quebrada;
+- corrige problemas de **Oxidize AoE**;
+- atualiza a build contra **Ars Nouveau 5.13.2.1418** e mantém Sauce 0.0.50.96.
+
+O próprio changelog da release exige **latest Ars Nouveau**. O pack físico está em Ars Nouveau 5.13.1; portanto a promoção de Ars Elemental 0.7.10.3 deve ser tratada como bloqueada até Ars Nouveau também ser reconciliado para a linha 5.13.2 compatível.
+
+Gate de promoção: Ars Nouveau 5.13.2; Sauce jarjar; Prism API consumers; Oxidize com single/AoE targets; Enderference teleport blocking; Siren/Flashjack eggs; Mermaid Tokens; worldgen near min build height; turrets; school power/resistance; Ars Elemancy sem double-dip.
+
+Fontes upstream: source oficial branch `1.21` — commits `d86b5202...`, `3c377816...`, `93d80bc7...`, `8c0bdff2...`; CurseForge file ID 8999174 para 0.7.10.3.
