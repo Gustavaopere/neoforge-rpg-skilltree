@@ -19,7 +19,7 @@
 - **Observações:** Release 21.1.60 NeoForge 1.21.1 de 07/09/2026. Changelog da família backporta ColorCollection, VariantUtils, ProjectileHelper e helpers de gift/shearing loot.
 - **Procedência:** modlist.txt física canônica atual de 10/09/2026 + CurseForge oficial Puzzles Lib 21.1.60 + consumers Portable Hole/Overflowing Bars já auditados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/puzzles-lib
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Puzzles Lib 21.1.60 reconstruída; pesquisa Rever→Verificado: shared code/config/networking, consumers Portable Hole/Overflowing Bars, backports 21.1.60, version coupling, riscos e testes.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 21.1.60. A linha NeoForge 1.21.1 avançou por 21.1.61 até 21.1.62 em 29/09/2026; ambos os deltas intermediários foram revisados.
 - **Histórico da decisão:** 2026-08-26 — classificado como Dependência por consumer confirmado. 2026-09-10 — runtime 21.1.60 e relações revalidados; Estado da pesquisa fechado de Rever para Verificado.
 - **Data da última decisão:** 2026-09-10
 
@@ -150,3 +150,22 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Consumers confirmados no catálogo/runtime: Portable Hole e Overflowing Bars.
 - Changelog 21.1.60: backports de ColorCollection, VariantUtils, ProjectileHelper e loot helpers.
 - **Limite:** não foi enumerado cada consumer de Puzzles Lib entre todos os JARs; consumers causais já confirmados bastam para a classificação `Dependência`.
+
+## 17. Histórico upstream 21.1.60 → 21.1.62 — não instalado
+A authority física continua em **21.1.60**. A release mais recente do CurseForge para NeoForge 1.21.1 é **21.1.62**, publicada em 29/09/2026. O changelog oficial do branch 1.21.1 também registra a versão intermediária **21.1.61**.
+
+### 21.1.61 — 13/09/2026
+- backport de `MutableBakedQuad`;
+- backport de `QuadCollection`;
+- adição dos helpers necessários de `QuadUtils`.
+
+São superfícies de API/render compartilhadas para consumers; não representam gameplay próprio da library.
+
+### 21.1.62 — 29/09/2026
+- corrige **desync de mutable capability components** fazendo rebind desses componentes sempre que são recuperados.
+
+Esse fix é operacionalmente relevante porque capability/component state pode atravessar inventários, entidades, menus ou outros consumers da library. Não se assume que Portable Hole ou Overflowing Bars reproduzem o bug; a correção é registrada como risco genérico do provider até teste.
+
+Gate de regressão: client + dedicated server, reconnect, save/restart, component/capability sync, menus/configs, Portable Hole 21.1.0 e Overflowing Bars 21.1.1, além de qualquer consumer que use as novas quad utilities.
+
+Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/puzzles-lib/files/all?page=1&version=1.21.1 ; https://github.com/Fuzss/puzzles-lib/blob/1.21.1/CHANGELOG.md
