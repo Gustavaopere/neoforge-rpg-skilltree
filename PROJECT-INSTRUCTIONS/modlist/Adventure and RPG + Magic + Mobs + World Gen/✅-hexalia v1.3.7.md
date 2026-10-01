@@ -3,19 +3,19 @@
 ## Propriedades do registro
 
 - **Mod:** Hexalia
-- **Arquivo JAR:** `hexalia-neoforge-1.3.6.jar`
-- **Versão 1.21.1:** `1.3.6 (metadata: 1.3.5)`
+- **Arquivo JAR:** `hexalia-neoforge-1.3.7.jar`
+- **Versão 1.21.1:** `1.3.7`
 - **Categoria:** Magia, RPG, Worldgen, Mobs
 - **Estado da pesquisa:** Verificado
 - **Estado no pack:** Integrado ao Github
 - **Fonte:** https://github.com/AstralyaStudios/Hexalia/tree/hexalia-1.21.1
 - **Função:** Magia natural/bruxaria com herbal alchemy, rituals, brewing, mutations/transmutations, enchanted flora, idols, mobs, worldgen e data components próprios.
-- **Dependências:** NeoForge 1.21.1; source 1.3.6 usa Architectury API 13.0.8, GeckoLib 4.7.6 e Patchouli 92. Pack contém Architectury 13.0.11, GeckoLib 4.9.2 e Patchouli 93.
-- **Compatibilidade/Riscos:** Drift real: filename/release/source 1.3.6, metadata interna 1.3.5. Outros riscos: ABI Architectury/GeckoLib, recipe serializer drift, ritual/mutation double settlement, data-component/set-bonus duplication, projectile ownership e worldgen collision.
+- **Dependências:** NeoForge 1.21.1. Pack físico atual usa NeoForge 21.1.250, Architectury 13.0.11, GeckoLib 4.9.2 e Patchouli 93. As versões de desenvolvimento citadas nas seções 1.3.6 abaixo são snapshot histórico, não authority atual.
+- **Compatibilidade/Riscos:** Runtime atual 1.3.7. Riscos: ABI Architectury/GeckoLib/Patchouli, recipe serializer drift, ritual/mutation double settlement, data-component/set-bonus duplication, projectile ownership e worldgen collision. O antigo drift filename 1.3.6 × metadata 1.3.5 pertence ao snapshot histórico e não deve ser aplicado ao JAR físico atual 1.3.7.
 - **Sobreposição:** Sobreposição temática com Ars/Goety/Malum em rituais/alquimia/nature magic, mas recipes, data components, entities e settlement são provider-specific; não unificar por semelhança temática.
-- **Observações:** Source 1.3.6 confirma recipe types celestial_infusion/natures_ritual/small_cauldron/mortar_and_pestle/mutation, 10 entity types e componentes persistentes/sincronizados para tether, moth, magic resist e armor-set state.
-- **Procedência:** modlist.txt física anexada e reconferida em 12/09/2026 + CurseForge oficial Hexalia 1.3.6 NeoForge 1.21.1 + source oficial AstralyaStudios/Hexalia branch hexalia-1.21.1 em mod_version 1.3.6 + changelog oficial 1.3.6 + metadata física 1.3.5 preservada como divergência.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — filename/release/source 1.3.6 e metadata interna 1.3.5 reconfirmados como drift real; 1.3.6 permanece a release NeoForge 1.21.1 mais recente localizada. Adicionada a configuração 1.3.6 do Nature's Ritual: 0–32 crops próximos, padrão 8.
+- **Observações:** Runtime físico 1.3.7. A release 1.3.7 overhaul Nature's Ritual com braziers livres/ofertas variáveis, adiciona soul-sacrifice rituals, Herb Jar, Heartseed, Gravebloom Brew, Cinderhew, novos relics/accessories, novos enchanted-plant behaviors/herb propagation e artwork atualizado.
+- **Procedência:** modlist física atual confirma `hexalia-neoforge-1.3.7.jar` / runtime `1.3.7`; CurseForge file ID 8875587 confirma a release NeoForge 1.21.1. O snapshot 1.3.6/metadata 1.3.5 permanece preservado abaixo como histórico de migração, não como state atual.
+- **Atualização/Status:** RECONCILIAÇÃO FÍSICA + UPSTREAM REVALIDADA EM 01/10/2026 — Hexalia físico e upstream 1.21.1 estão ambos em **1.3.7**. O header foi reconciliado para a autoridade atual; o antigo drift 1.3.6/1.3.5 permanece explicitamente histórico.
 - **Data da última decisão:** 2026-08-28
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #314: JAR `hexalia-neoforge-1.3.7.jar`, mod id `hexalia`, runtime `1.3.7`, SHA-1 `ca90edf1664cf6d44fe7e5318c71069050499c7e`.
@@ -23,14 +23,14 @@
 > **Reconciliação de autoridade física — 27/09/2026.** O texto migrado do Notion abaixo preserva o snapshot histórico de 12/09/2026, no qual `hexalia-neoforge-1.3.6.jar`, metadata `1.3.5` e NeoForge `21.1.248` eram registrados. Isso **não representa a instalação física atual**: a modlist atual confirma `hexalia-neoforge-1.3.7.jar`, mod id `hexalia`, runtime `1.3.7`, e o modloader NeoForge `21.1.250`. O conteúdo histórico é mantido integralmente para paridade; para versão instalada e loader atuais, prevalece esta reconciliação junto ao bloco de autoridade física atual.
 
 <callout icon="⚠️" color="yellow_bg">
-	**VERSÃO COM DRIFT DE METADATA.** O arquivo físico é `hexalia-neoforge-1.3.6.jar` e a release/source oficial 1.21.1 declara **Hexalia 1.3.6**; porém a metadata interna exibida pela modlist reporta `1.3.5`. A divergência é real e fica preservada. Não renomear nem tratar silenciosamente o runtime como 1.3.6 sem registrar o metadata stale.
+	**DRIFT HISTÓRICO — SNAPSHOT 12/09/2026.** Naquele snapshot, o arquivo era `hexalia-neoforge-1.3.6.jar` enquanto a metadata interna reportava `1.3.5`. Essa divergência histórica é preservada para paridade, mas **não representa o JAR atual**, que a modlist confirma como `hexalia-neoforge-1.3.7.jar` / runtime `1.3.7`.
 </callout>
 ## 1. Identidade e papel
-Hexalia é um mod de magia natural/bruxaria centrado em **rituais, herbal alchemy, flora viva, brewing, transmutação e exploração**. O source oficial `AstralyaStudios/Hexalia:hexalia-1.21.1` declara `mod_version=1.3.6`, Minecraft 1.21.1 e suporte Fabric/NeoForge, correspondendo ao filename/release instalado.
+Hexalia é um mod de magia natural/bruxaria centrado em **rituais, herbal alchemy, flora viva, brewing, transmutação e exploração**. A análise de source 1.3.6 abaixo pertence ao snapshot histórico que originou o dossiê; a autoridade física atual é a release **1.3.7**.
 ## 2. Authority
 Hexalia é authority de seus próprios herbs/crops, recipes de processamento, rituals, brews, enchanted plants, idols, mutations/transmutations, mobs e state de itens/componentes. Outros sistemas mágicos do pack podem observar ou integrar esses estados, mas não devem duplicar ritual settlement, mutation outcome ou data components.
 ## 3. Dependências físicas e build line
-O source 1.3.6 foi desenvolvido contra NeoForge 21.1.215, Architectury API 13.0.8, GeckoLib 4.7.6 e Patchouli 92. O pack contém NeoForge 21.1.248, Architectury 13.0.11, GeckoLib 4.9.2 e Patchouli 93. Isso é compatibilidade por faixa/linha, não prova de ausência de regressão; as versões físicas atuais são a matriz de teste real.
+O source 1.3.6 histórico foi desenvolvido contra NeoForge 21.1.215, Architectury API 13.0.8, GeckoLib 4.7.6 e Patchouli 92. O pack físico atual usa **NeoForge 21.1.250**, Architectury 13.0.11, GeckoLib 4.9.2 e Patchouli 93. As diferenças são regression gates; a baseline instalada atual é Hexalia 1.3.7.
 ## 4. Registries confirmados no source 1.3.6
 A linha exata registra blocks, items, entities, effects, sounds, particles, menus, block entities, recipe serializers/types, data components, worldgen features/tree decorators e creative tabs. O mod também usa mixin NeoForge próprio. Essas superfícies devem ser consideradas em startup, registry sync e reload.
 ## 5. Recipe systems
@@ -68,7 +68,7 @@ Hexalia se sobrepõe tematicamente a Ars Nouveau, Goety, Malum e outros provider
 - client/server registry mismatch;
 - source/release 1.3.6 ser confundido com metadata runtime 1.3.5.
 ## 17. Matriz de testes obrigatória
-- [ ] Dedicated server boot com filename 1.3.6 / metadata 1.3.5 sem dependency warning inesperado.
+- [ ] Dedicated server boot com **Hexalia 1.3.7**; manter o antigo caso filename 1.3.6/metadata 1.3.5 apenas como regressão histórica.
 - [ ] Registry sync das entities/recipes/components atuais.
 - [ ] `natures_ritual` success/failure/retry/chunk unload sem dupe/loss.
 - [ ] `celestial_infusion`, cauldron, mortar e mutation recipes sobrevivem a `/reload`.
@@ -79,8 +79,24 @@ Hexalia se sobrepõe tematicamente a Ars Nouveau, Goety, Malum e outros provider
 - [ ] Mundo novo gera features/structures esperadas sem colisão crítica.
 - [ ] GeckoLib/resource reload não deixa render cache stale.
 ## 18. Evidências e limites
-- **Modlist/JAR metadata:** filename 1.3.6, mod id `hexalia`, metadata reportada `1.3.5`.
-- **CurseForge:** release NeoForge 1.3.6 para 1.21.1 em 16/08/2026.
+- **Modlist/JAR atual:** `hexalia-neoforge-1.3.7.jar`, mod id `hexalia`, runtime `1.3.7`; o filename 1.3.6 / metadata 1.3.5 é evidência histórica do snapshot anterior.
+- **CurseForge:** release NeoForge **1.3.7** para 1.21.1 (file ID 8875587); a 1.3.6 permanece referência histórica.
 - **Source oficial:** branch `hexalia-1.21.1`, `mod_version=1.3.6`; recipe types, entities e data components acima confirmados diretamente.
 - **Limite:** a causa do metadata stale não foi determinada nesta auditoria; defaults/configs e spawn tables não lidos não são inventados.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+
+## 19. Reconciliação atual e release 1.3.7
+A modlist física atual e a distribuição oficial convergem em **Hexalia 1.3.7**. Portanto não há update upstream pendente neste item.
+
+Changelog 1.3.7:
+- overhaul do **Nature's Ritual**, com colocação livre de braziers e quantidades variáveis de offering;
+- novos **soul-sacrifice rituals** para summon de Silk Moths e Cacofey;
+- adiciona **Herb Jar, Heartseed, Gravebloom Brew e Cinderhew**;
+- expande o accessory system com novos magical relics;
+- adiciona novos enchanted-plant behaviors e melhora herb propagation;
+- atualiza artwork do conteúdo 1.3.7 e sprites de brews, salves e spawn eggs.
+
+Boundary: os registries/source descritos em detalhe nas seções antigas foram pinados na 1.3.6 e não são automaticamente declarados idênticos na 1.3.7 sem nova leitura integral do source. A versão instalada, porém, é inequivocamente 1.3.7.
+
+Fonte upstream: CurseForge file ID 8875587, `hexalia-neoforge-1.3.7.jar`.
