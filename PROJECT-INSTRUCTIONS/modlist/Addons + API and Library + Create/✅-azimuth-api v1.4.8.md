@@ -18,7 +18,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/azimuth-api
 - **Procedência:** modlist.txt física atual de 11/09/2026 + documentação/source Azimuth 1.4.8 + reconciliação física de consumers já auditada. Reconciliação final: JAR/runtime permanecem exatamente `azimuth-1.4.8.jar` / `1.4.8`; display name físico `Azimuth` e título editorial `Azimuth API` são a mesma entrada documentada, sem divergência binária.
 - **Observações:** Runtime físico `azimuth-1.4.8.jar`, display `Azimuth`, mod id `azimuth`; a página editorial permanece `Azimuth API`. Consumer atual não foi inferido por semelhança de nome.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Azimuth 1.4.8. CurseForge publicou 1.4.9 para NeoForge 1.21.1 em 18/09/2026; o changelog é documental e registra incompatibilidade do Tracks+ com versões inferiores, sem mudança funcional publicada para a API.
+- **Atualização/Status:** GITHUB-ONLY REVALIDADO EM 01/10/2026 — catálogo permanece em Azimuth 1.4.8; o source oficial está em 1.4.9. O changelog 1.4.9 registra primeiro uma incompatibilidade documentada com Tracks+, mas a revisão final da mesma versão remove essa incompatibilidade e mantém apenas um aviso em log.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Azimuth 1.4.8 como API de infraestrutura do ecossistema Create. Em 09/09/2026, o consumer anteriormente citado Bits 'n' Tracks foi reconciliado como ausente da modlist física atual; nenhum consumer substituto foi presumido. A necessidade de Azimuth permanece dependente de dependency graph/JAR metadata, sem converter presença física em decisão.
 - **Sobreposição:** Biblioteca de infraestrutura; não é conteúdo tecnológico redundante.
@@ -73,15 +73,16 @@ Provider-native first: addons que realmente dependam de Azimuth devem usar suas 
 - logs locais do pack confirmando o mixin de `SmartBlockEntity` e buscas de behaviours.
 > 🧩 Exaustividade proporcional: Azimuth é biblioteca, então a ficha cataloga seus contratos de extensão, lifecycle, side e riscos em vez de inventar blocos ou máquinas próprias.
 
-## 11. Atualização upstream 1.4.9 — não instalada
-A versão física continua **1.4.8**. A release **1.4.9** para NeoForge 1.21.1 foi publicada em 18/09/2026.
+## 11. Atualização upstream GitHub 1.4.9 — não instalada
+O catálogo atual permanece em **1.4.8**. O repositório oficial `Aztech-Modding/Azimuth` está em **1.4.9** (`gradle.properties`) e o commit de versão é `beb45055665cc5fa53b143b3541f332cbce48d70`.
 
-O changelog oficial contém um único delta: **documentação da incompatibilidade do Tracks+ com versões inferiores**. A publicação não descreve alteração de runtime, registry, Super Block Entity Behaviours, advancement helpers ou outlines/Ponder.
+O `CHANGELOG.md` possui **duas entradas consecutivas 1.4.9**:
+1. a primeira registrou uma incompatibilidade documentada com Tracks+ em versões inferiores;
+2. a segunda, que representa a revisão final, diz explicitamente que essa incompatibilidade foi **removida**, porque normal tracks e Tracks+ usam o mesmo ID nesse caminho, e que a informação passou a ser apenas um **aviso em logs**.
 
-Portanto, não se projeta comportamento novo da 1.4.9 sobre o runtime 1.4.8. O valor da atualização é principalmente deixar explícito o version coupling do consumer Tracks+. No pack, `Create Tracks+ 1.0.6b6` está presente, mas não foi provado neste dossiê como consumer direto de Azimuth; manter esse vínculo fail-closed até metadata/source confirmar.
+Portanto, sob verificação GitHub-only, **não há base para manter um bloqueio de compatibilidade Tracks+** atribuído à 1.4.9. Também não há mudança funcional publicada de registry, Super Block Entity Behaviours, advancement helpers ou outlines/Ponder nessa release.
 
-Gate de promoção: boot com Create 6.0.10 e Tracks+, consumer graph real, place/break/reload de SmartBlockEntities, Ponder/outlines e ausência de class cast/double tick.
+Gate de promoção: boot com Create, consumer graph real, place/break/reload de SmartBlockEntities, Ponder/outlines e inspeção do aviso de log sem inferir incompatibilidade funcional inexistente.
 
-Fonte upstream: CurseForge Azimuth 1.4.9, file ID 8911024.
-
+**Fonte GitHub upstream:** `Aztech-Modding/Azimuth`, `gradle.properties`, `CHANGELOG.md`, commits `bf23abe40322072efe6cacddb93d9f9362d26c73` e `beb45055665cc5fa53b143b3541f332cbce48d70`.
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #60: `azimuth-1.4.8.jar` / `1.4.8` conferidos contra a modlist atual; display físico `Azimuth`, título editorial `Azimuth API` e consumer graph pendente preservados.

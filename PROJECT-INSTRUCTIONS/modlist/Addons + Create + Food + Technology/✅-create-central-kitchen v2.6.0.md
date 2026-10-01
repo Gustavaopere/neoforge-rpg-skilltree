@@ -19,7 +19,7 @@
 - **Observações:** mod id `create_central_kitchen`; runtime 2.6.0. A build física contém mixins separados para Brewin' and Chewin', Miner's Delight, Dungeons Delight, Extra Delight e Farmer's Delight, além do mixin base; presença do mixin confirma superfície de compatibilidade, não comportamento além do que as fontes documentam.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime `create_central_kitchen` 2.6.0 + Create 6.0.10 / Create: Dragons Plus 1.11.8b / Farmer's Delight 1.3.4 + release oficial 2.6.0 já auditados. Reconciliação final: JAR/runtime permanecem exatamente `create-central-kitchen-2.6.0.jar` / `2.6.0`; requirements físicos permanecem satisfeitos.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Central Kitchen 2.6.0 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.6.0. CurseForge publicou 2.6.1 e 2.6.2; ambas exigem Create: Dragons Plus 1.11.9+, mas o pack físico está em 1.11.8b. Atualização bloqueada até promoção coordenada do provider.
+- **Atualização/Status:** GITHUB-ONLY REVALIDADO EM 01/10/2026 — catálogo permanece em 2.6.0; o branch oficial 1.21.1/6.0.0-dev está em 2.6.2. Os commits 2.6.1/2.6.2 corrigem Spout lag/cache/Ponder e adicionam batch/refill unpacking; `gradle.properties` exige Create: Dragons Plus 1.11.9+.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -113,6 +113,6 @@ As releases 2.6.1 e 2.6.2 exigem **Create: Dragons Plus 1.11.9+**. A modlist fí
 
 Gate de regressão após reconciliar Dragons Plus: Spout+Depot sob carga, Keg fallback/native Create priority, recipe/tag reload, single/multi-serving package refill, repeated ingredients, component-aware stack limits, overflow rejection, todos os kitchenwares opcionais presentes, Mechanical Arm Ponder e dedicated-server tick profile.
 
-Fontes upstream: CurseForge Central Kitchen 2.6.1 (file ID 8900585) e 2.6.2 (file ID 8944879).
+**Fontes GitHub upstream:** `DragonsPlusMinecraft/CreateCentralKitchen`, branch `1.21.1/6.0.0-dev`; commits `4b95e8e508df8b18aede19ccf1e3b6878c36419b` (2.6.1) e `7e1610a66e4cecd68b20c2c4a19e20c9f1f45523` (2.6.2); `gradle.properties` declara `mod_version = 2.6.2` e `create_dragons_plus_version_range = [1.11.9,)`.
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #117: `create-central-kitchen-2.6.0.jar` / `2.6.0` conferidos contra a modlist atual; cooking automation, Packager/Arm conversions, recipe priority/cache e integrações físicas preservados.

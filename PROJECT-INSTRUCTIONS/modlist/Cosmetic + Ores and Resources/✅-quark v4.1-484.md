@@ -25,7 +25,7 @@
 - **Observações:** Runtime instalado `4.1-484`. Em 10/09/2026, 4.1-484 foi publicada como hotfix para Mending/filtering e agora está confirmada na instalação física. A 4.1-483 permanece relevante como release-base imediatamente anterior, responsável pelas mudanças de Azalea Wood, Golden Tools Have Fortune, Totem of Holding/Oddities e item-handler capabilities documentadas no dossiê.
 - **Procedência:** modlist física atual anexada em 16/09/2026 + CurseForge oficial Quark 4.1-484 file ID 8847564 + dossiê/source já auditado da 4.1-483 + Dynamic Trees - Quark 2.6.1 e dependências físicas atuais.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/quark | https://www.curseforge.com/minecraft/mc-mods/quark/files/8847564
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Quark 4.1-484. CurseForge publicou 4.1-485 para NeoForge 1.21.1 em 16/09/2026 com fixes de recipes/tags e nova opção do módulo Azalea Wood.
+- **Atualização/Status:** GITHUB-ONLY REVALIDADO EM 01/10/2026 — catálogo permanece em Quark 4.1-484; o `changelog.md` oficial na branch master registra Quark 4.1-485 para NeoForge 1.21.1 com fixes de recipes/tags/Azalea e nova opção do módulo Azalea Wood.
 - **Histórico da decisão:** 2026-09-10 — reclassificado de Sem decisão para Dependência porque Dynamic Trees - Quark 2.6.1 está Mantido/Integrado ao Github e exige Quark como base funcional. 2026-09-11 — Notion registrava 4.1-483 instalada e 4.1-484 como update externo. 2026-09-16 — modlist física confirma 4.1-484 instalada; decisão Dependência preservada.
 - **Data da última decisão:** 2026-09-10
 
@@ -170,7 +170,7 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 > **Observações — valor histórico da origem:** Runtime instalado 4.1-484. Em 10/09/2026, 4.1-484 foi publicada como hotfix para Mending/filtering e agora está confirmada na instalação física. A 4.1-483 permanece relevante como release-base imediatamente anterior, responsável pelas mudanças de Azalea Wood, Golden Tools Have Fortune, Totem of Holding/Oddities e item-handler capabilities documentadas no dossiê.
 
 ## 21. Atualização upstream 4.1-485 — não instalada
-A versão instalada continua **4.1-484**. A release **4.1-485** para NeoForge 1.21.1 foi publicada em 16/09/2026.
+O catálogo atual continua em **4.1-484**. O `changelog.md` do repositório oficial `VazkiiMods/Quark` registra **Quark 4.1-485 For Neoforge 1.21.1**.
 
 ### Fixes
 - corrige a recipe de **Ashen Vertical Planks**, que estava apontando para a recipe de Azalea Vertical Planks (#5646);
@@ -185,6 +185,6 @@ Impacto no pack: há Dynamic Trees - Quark e worldgen/compat dependentes de Quar
 
 Gate de regressão: recipes Ashen/Azalea Vertical Planks, stone-tool-material tags, Azalea worldgen/log replacement on/off, Dynamic Trees - Quark, save de config, JEI e scripts de recipe/tag.
 
-Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/quark/files/8895753
+**Fonte GitHub upstream:** `VazkiiMods/Quark`, `changelog.md`; commits relevantes incluem `ce4f99e1c4dc2b353b504292fc0dd54ed63991da` (Azalea), `33bb3db8c6dafbc00bc782d41bdd294fc85d0dcf` (small fixes) e `6862316c881f48b792eec4cb0277d92dc1534f32` (changelog).
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 16/09/2026 — Quark 4.1-484 físico confirmado e decisão Dependência preservada: modularidade, Zeta, DT-Quark consumer mantido, Azalea/enchants/item handlers, Biolith embedded + top-level coexistente, hotfix de Mending, riscos e testes.
