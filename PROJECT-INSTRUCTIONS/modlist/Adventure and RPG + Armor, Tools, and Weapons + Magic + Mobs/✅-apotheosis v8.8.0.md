@@ -23,7 +23,7 @@
 - **Observações:** World Tier e affix/gem data são contratos centrais para perks/economia. Não usar raridade pelo nome de exibição como ID; ler JSON/registry/data. Qualquer clonagem custom deve checar `apotheosis:cannot_be_duplicated`.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/changelog oficiais Apotheosis 8.8.0 + Placebo 9.9.2/Apothic Attributes 2.10.1/Enchanting 1.6.2/Spawners 1.4.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `Apotheosis-1.21.1-8.8.0.jar` / `8.8.0`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apotheosis
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #30: `Apotheosis-1.21.1-8.8.0.jar` / `8.8.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Apotheosis 8.8.0. CurseForge publicou **8.9.0** para NeoForge 1.21.1 em 27/09/2026; o changelog oficial 1.21 foi revisado integralmente e está registrado abaixo.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
@@ -348,3 +348,25 @@ Confirmado no changelog oficial 1.21:
 **Fonte interna:** guia completo gameplay/sistemas; usado para arquitetura geral, corrigido pela modlist física onde o guia ainda apontava 8.7.0.
 
 **Confiança:** alta para arquitetura, 8.8.0 changelog e systems documentados. Pesos/IDs/recipes/criteria concretos são data-driven e devem ser lidos dos stock data/config/runtime antes de implementação.
+
+## 35. Atualização upstream 8.9.0 — não instalada
+A autoridade física permanece em **Apotheosis 8.8.0**. A release **8.9.0** é a próxima release 1.21.1 após 8.8.0; não há versão intermediária pública entre ambas.
+
+Changelog oficial 8.9.0:
+- corrige crash no **Gateway of Apothic Invaders**;
+- adiciona display no **JEI** para affixes do tipo **stoneforming**;
+- adiciona affix de flecha **anti-gravity**;
+- atualiza o item pool **`chase`**;
+- adiciona affixes de **Protection Pierce / Protection Shred**;
+- adiciona affixes de clamp para **Speed** e **Step Height**;
+- torna **Spawner Chains** imunes a fogo e explosões;
+- faz o inventário de materiais de upgrade da **Gem Case** persistir; a própria nota upstream informa que automação ainda não o enxerga;
+- atualiza o **Sigil of Malice** para avisar explicitamente quando o item atingiu o máximo;
+- corrige diversos pontos da **Chronicle of Shadows**;
+- atualiza traduções brasileira e chinesa.
+
+Impacto para o pack: Protection Pierce/Shred e clamps de Speed/Step Height tocam o mesmo domínio de atributos/combat balance usado por Apothic Attributes, Epic Fight e RPG Skill Tree; não somar/remapear esses efeitos em camada externa sem contrato explícito. A persistência da Gem Case é save-sensitive e precisa ser testada separadamente da visibilidade por automação.
+
+Gate de promoção 8.8.0→8.9.0: Gateway boot/combat, JEI stoneforming, anti-gravity arrow, chase pool, protection pierce/shred, speed/step-height clamps em valores extremos, Spawner Chains sob fire/explosion, Gem Case save/restart com materiais de upgrade, ausência esperada de acesso por automação, Sigil of Malice max-state e reload de stock data/datapacks.
+
+Fontes upstream: CurseForge file ID 8993983 e `Shadows-of-Fire/Apotheosis` branch `1.21`, `changelog.md` seção 8.9.0.
