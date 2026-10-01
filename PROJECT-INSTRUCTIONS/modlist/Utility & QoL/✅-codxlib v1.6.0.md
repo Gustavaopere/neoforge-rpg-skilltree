@@ -14,12 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/codxlib
 - **Função:** Biblioteca compartilhada do ecossistema Codx, com serviços comuns e infraestrutura de settings/menu usada por mods consumidores; no pack atual, Alex's Mobs Continued e Alex's Caves Continued são consumers confirmados.
 - **Dependências:** Biblioteca Client & Server; necessidade consumer-driven. Consumers físicos confirmados: Alex's Mobs Continued 2.1.11 (exige CodxLib 1.6.0+ no catálogo auditado) e Alex's Caves Continued 1.0.9. Não substituir por Citadel/AzureLib/GeckoLib por similaridade.
-- **Compatibilidade/Riscos:** Riscos principais: remover com consumer ativo, version/ABI drift, classloading lateral e regressões de shared services/menu. Na 1.6.0, validar especialmente settings numéricos via +/- e o novo hook de páginas customizadas usado por consumers; atualização deve ser testada com Alex's Mobs Continued e demais consumers Codx.
+- **Compatibilidade/Riscos:** Library consumer-driven; riscos de API/ABI drift, linkage, classloading client-only, shared handlers e settings/menu contracts. As notas upstream 1.6.1 afirmam explicitamente que, fora da nova linha Minecraft 26.3, os demais artefatos são byte-for-byte iguais à 1.6.0.
 - **Sobreposição:** Library própria do ecossistema Codx. Coexistência com Citadel, AzureLib, GeckoLib e outras APIs não implica redundância; cada consumer compila contra contratos específicos.
-- **Observações:** JAR físico atual `codxlib-1.6.0-neoforge+1.21.1.jar`, mod id `codxlib`, runtime 1.6.0. O changelog oficial 1.6.0 confirma correção dos +/- de settings numéricos, novo hook para página própria por setting e nova ordenação de settings não agrupados; Alex's Mobs Continued usa o hook no editor de spawn group size.
-- **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime `codxlib` 1.6.0 + CurseForge oficial CodxLib 1.6.0/changelog da linha multiloader + consumers Continued já auditados. Reconciliação final: JAR/runtime permanecem exatamente `codxlib-1.6.0-neoforge+1.21.1.jar` / `1.6.0`; sem divergência física.
+- **Observações:** Runtime físico permanece CodxLib 1.6.0. A release line 1.6.1 adiciona suporte Minecraft 26.3; para as demais versões, o autor declara zero mudanças de API/comportamento e artefatos byte-for-byte idênticos à 1.6.0.
+- **Procedência:** modlist física atual + CurseForge oficial CodxLib 1.6.0 + release notes upstream 1.6.1. Consumers Continued permanecem o regression graph real do pack.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, o dossiê havia sido reconstruído na então build 1.5.1. Em 09/09/2026, foi reconciliado à build física 1.6.0 e aos deltas oficiais da release, sem converter dependência técnica em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #100 na numeração então registrada; posição física atual #101: `codxlib-1.6.0-neoforge+1.21.1.jar` / `1.6.0` conferidos contra a modlist então vigente; consumers Continued, fix de settings numéricos, hook de página customizada, lifecycle e version drift preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — CodxLib físico permanece 1.6.0. A upstream 1.6.1 foi comparada: para a linha deste pack não há delta funcional/API; as notas oficiais dizem que versões não-26.3 são byte-for-byte idênticas à 1.6.0.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -79,3 +79,13 @@ Sintomas possíveis de incompatibilidade incluem linkage errors, missing classes
 - changelog oficial 1.6.0: fix de settings numéricos no chest menu, novo hook para página própria de setting e nova ordenação de settings não agrupados;
 - catálogo atual: Alex's Mobs Continued 2.1.11 e Alex's Caves Continued 1.0.9 como consumers confirmados.
 > 📚 Boundary canônico: CodxLib fornece **infraestrutura**. Gameplay e registries finais permanecem sob authority dos mods Codx consumidores.
+
+
+## 12. Upstream 1.6.1 — sem delta funcional para 1.21.1
+As notas oficiais de **CodxLib 1.6.1** informam que a release adiciona suporte ao **Minecraft 26.3**.
+
+O próprio autor registra que **todas as outras versões são byte-for-byte iguais à 1.6.0**, sem mudanças de API nem de comportamento, e que não há motivo para atualizar quando não se joga em 26.3.
+
+Consequência para este pack: a autoridade física continua **CodxLib 1.6.0** e não existe mudança funcional a incorporar no runtime Minecraft 1.21.1. O único gate de atualização permanece compatibilidade binária com Alex's Mobs Continued/Alex's Caves Continued e demais consumers reais.
+
+Fonte upstream: release notes oficiais CodxLib 1.6.1.
