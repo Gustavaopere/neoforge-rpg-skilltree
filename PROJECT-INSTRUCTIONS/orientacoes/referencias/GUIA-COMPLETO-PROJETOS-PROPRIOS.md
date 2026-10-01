@@ -19,9 +19,9 @@ A consolidação muda o local do código, **não a authority semântica**: progr
 
 ## Suplementos de delta existentes na `main`
 
-- `13-capability-delta-a0071-a0080.md`;
-- `14-capability-delta-a0081-a0090.md`;
-- `15-capability-delta-a0200-a0209.md`;
+- `../projetos/referencias/13-capability-delta-a0071-a0080.md`;
+- `../projetos/referencias/14-capability-delta-a0081-a0090.md`;
+- `../projetos/referencias/15-capability-delta-a0200-a0209.md`;
 - `16-capability-delta-a0200-a0299.md`.
 
 O Chat 1 deve usar sempre o suplemento mais recente pertinente e ainda fazer fetch fresco antes do lote seguinte. Baseline é checkpoint de comparação, não prova de ausência de mudanças posteriores.

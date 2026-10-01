@@ -4,7 +4,7 @@ Use este checklist depois de auditar o efeito da perk e antes de fechar `Provide
 
 ## Gate 0 — delta dos projetos próprios
 
-Antes de avaliar a primeira perk do lote, fazer fetch fresco de `main` e `plans/STATUS.md` de RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana e executar [`12-capability-delta-coverage.md`](12-capability-delta-coverage.md).
+Antes de avaliar a primeira perk do lote, fazer fetch fresco de `main` e `plans/STATUS.md` de RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana e executar [`12-capability-delta-coverage.md`](../referencias/12-capability-delta-coverage.md).
 
 Se qualquer projeto avançou desde o baseline:
 
@@ -47,4 +47,4 @@ A resposta deste checklist deve ser incorporada ao dossiê individual da perk qu
 
 ## Novos mods externos
 
-Se a modlist ganhou um provider depois do snapshot dos guias, esse mod também deve ser incorporado ao guia pertinente e entrar no eixo 2.9 de cobertura antes do fechamento do lote. Exemplo atual: **Mobstein 5.4.4**, adicionado em 2026-08-30 aos guias de Gameplay e Magia.
+Se a modlist ganhou um provider externo novo, confirme-o em `PROJECT-INSTRUCTIONS/modlist/modlist.md` e use o dossier individual atual como authority técnica. Se o dossier não existir ou estiver incompleto para a perk, mantenha fail-closed e reabra a auditoria do provider antes do fechamento do lote.

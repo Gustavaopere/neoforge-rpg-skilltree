@@ -23,7 +23,7 @@ Não fixe o intervalo manualmente neste prompt. Antes de iniciar cada ciclo, det
 
 Leia integralmente o arquivo anexado à **descrição do projeto**:
 
-`CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
+`PROJECT-INSTRUCTIONS/orientacoes/ia/CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
 
 Não é necessário buscar rotineiramente a cópia equivalente no GitHub. Se o arquivo anexado não estiver acessível no chat, **pare e informe o bloqueio**.
 
@@ -72,7 +72,7 @@ Implemente o contrato registrado nos dossiês das perks e na auditoria do lote. 
 
 - `PROJECT-INSTRUCTIONS/modlist/modlist.md` para presença/JAR/versão;
 - o dossier individual atual em `PROJECT-INSTRUCTIONS/modlist/<categorias>/✅-*.md` para mecânicas, hooks, authority, lifecycle, multiplayer, persistência, riscos e limites;
-- `GUIA-COMPLETO-PROJETOS-PROPRIOS.md` ou `guides/projects/` quando a integração envolver RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
+- `PROJECT-INSTRUCTIONS/orientacoes/referencias/GUIA-COMPLETO-PROJETOS-PROPRIOS.md` ou `PROJECT-INSTRUCTIONS/orientacoes/projetos/` quando a integração envolver RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
 
 Se durante a implementação a API/código real do provider contradizer o dossiê:
 
