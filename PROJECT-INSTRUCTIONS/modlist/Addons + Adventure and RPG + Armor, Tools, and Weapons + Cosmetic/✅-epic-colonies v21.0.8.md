@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epic-colonies
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar`, mod id `epic_colonies`, runtime 21.0.8, SHA-1 `82a9727afd01fac255ac399ec97b4504440e9a70`, Epic Fight 21.17.3.1 e MineColonies 1.1.1387 snapshot. CurseForge oficial revalidado em 21/09/2026 mantém 21.0.8 como latest release 1.21.1.
 - **Observações:** O sufixo `EFM-21.16.4` é parte do artefato oficial e identifica a linha Epic Fight usada na build, não uma versão a ser reescrita para 21.17.3.1. Projeto oficial enfatiza 80+ modelos MineColonies adaptados, job accessories e facial expressions.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #261: `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar` / runtime `21.0.8` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. CurseForge oficial mantém 21.0.8 como latest release NeoForge 1.21.1; compile target EFM-21.16.4 continua separado do runtime Epic Fight 21.17.3.1.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 21.0.8. CurseForge publicou **21.0.9** para NeoForge 1.21.1 em 29/09/2026; o delta foi revisado integralmente e está registrado abaixo. O filename upstream continua compilado contra `EFM-21.16.4`, portanto o drift para o Epic Fight físico 21.17.3.1 segue como regression gate.
 - **Decisão:** Manter
 - **Histórico da decisão:** 2026-09-06 — Manter após inspeção do source 1.21.1: release 21.0.8 é a linha NeoForge 1.21.1 disponível e o sufixo EFM-21.16.4 não era loader constraint. 2026-09-09 — dossier refeito contra a modlist física de 595 mods; risco 21.16.4→21.17.3.1 mantido como regression gate comportamental.
 - **Sobreposição:** Especializado em MineColonies↔Epic Fight; pode cruzar com Epic Fight Compat geral, mas não é substituto equivalente. Precedence deve impedir dois patches/renderers para a mesma entidade.
@@ -78,3 +78,26 @@ Dois clientes devem observar o mesmo cidadão/raider com combat state coerente. 
 - página oficial Epic Colonies: dependências, modelos de cidadãos preservados, 80+ model types e facial expressions;
 - inspeção anterior do source 1.21.1: ranges de dependência amplos, distinguindo compile target de loader constraint.
 > **Boundary canônico:** MineColonies continua authority do **cidadão e da colônia**; Epic Fight do **combat/animation framework**; Epic Colonies apenas integra essas duas superfícies.
+
+## 14. Atualização upstream 21.0.9 — não instalada
+A autoridade física permanece em **Epic Colonies 21.0.8**. A release **21.0.9** para NeoForge 1.21.1 foi publicada em 29/09/2026; não há release intermediária posterior a 21.0.8 antes dela.
+
+### Correções
+- corrige a **animação de mineração repetindo** mesmo depois de o cidadão deixar de minerar;
+- corrige a **animação de sentar repetindo** mesmo depois de o cidadão deixar de estar sentado;
+- corrige textura quebrada de **Aristocrat**;
+- corrige textura quebrada de **Settler**;
+- corrige o display name do mod em `mods.toml`.
+
+### Adições
+- adiciona compatibilidade de movesets para **EpicFight-Nightfall + EpicFight-Extra**, exigindo **os dois** instalados para ativar os novos movesets;
+- adiciona meshes de Settler que estavam faltando.
+
+### Remoção
+- remove logs de debug desnecessários.
+
+Impacto para o pack: as correções de mining/sitting atingem exatamente state visual derivado de AI/job state de MineColonies e precisam permanecer apresentação-only; elas não podem alterar o state canônico do cidadão. A nova compat Nightfall+Extra é condicional e não deve ser tratada como ativa se ambos os providers não estiverem presentes.
+
+Gate de promoção 21.0.8→21.0.9: mining start/stop, sit/stand, job change, Aristocrat/Settler textures e meshes, guard/raider combat, resource reload, coexistência com Epic Fight 21.17.3.1 e verificação condicional de Nightfall+Extra somente quando os dois estiverem instalados.
+
+Fonte upstream: CurseForge file ID 9005453, `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.9.jar`.
