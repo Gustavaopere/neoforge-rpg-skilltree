@@ -11,13 +11,13 @@
 - **Decisão:** Sem decisão
 - **Categoria:** QoL
 - **Função:** Plugin informacional para JEI/EMI/REI que interpreta loot tables e villager trades em estrutura navegável, exibindo loot entries, conditions, functions, number providers e categorias. Suporta LootJS de forma nativa e possui plugin API para tipos customizados. Não altera loot, probabilidades nem trades; é observabilidade. A linha 2.1.0 também adiciona cores configuráveis de tooltip, enum values traduzíveis e loot entries embutidas em tooltips.
-- **Dependências:** Advanced Core Info (ACI) é REQUIRED desde a linha 2.0.1 e está instalado em 1.1.0. ALI não é standalone: precisa de um recipe viewer suportado — JEI, EMI ou REI. No pack, JEI 19.53.0.425 é o viewer efetivo; EMI/REI não aparecem top-level. Suporte built-in a mods externos foi reduzido na linha 1.11.0: LootJS permanece suportado, enquanto outros mods devem fornecer plugins próprios quando usam tipos customizados.
+- **Dependências:** Advanced Core Info (ACI) é REQUIRED desde a linha 2.0.1 e está instalado em 1.1.0. ALI não é standalone: precisa de um recipe viewer suportado — JEI, EMI ou REI. No pack, a modlist física atual confirma **JEI 19.56.0.440** como viewer efetivo; EMI/REI não aparecem top-level. Suporte built-in a mods externos foi reduzido na linha 1.11.0: LootJS permanece suportado, enquanto outros mods devem fornecer plugins próprios quando usam tipos customizados.
 - **Sobreposição:** Sobreposição informacional parcial com Just Enough Resources e outros viewers/tooltips de loot. ALI diferencia-se por representar a estrutura genérica da loot table/trade e por expor plugin API. Lootr/Loot Integrations modificam comportamento/distribuição de loot e não são substitutos. JEI é host de UI, não concorrente.
-- **Compatibilidade/Riscos:** A build 2.1.0 é beta. Tabelas vanilla/data-driven são observáveis, mas loot entries/conditions/functions/number providers proprietários de outros mods podem aparecer incompletos ou como erro sem plugin do provider. ACI↔ALI↔JEI forma um pipeline version-sensitive; dedicated server/reload devem validar payloads e cache. Sobreposição visual com JER/outros JEI addons pode duplicar páginas, sem alterar loot real. Não inferir drop chance final se conditions/contexto custom não forem interpretados.
-- **Observações:** Mudança arquitetural importante: desde 1.11.0 o projeto deixou de manter built-in support para a maioria dos mods, exceto LootJS; suporte a tipos próprios deve vir do mod owner/plugin. Portanto “ALI instalado” NÃO garante interpretação completa de toda loot table modded. Falhas de exibição não equivalem a falhas de loot.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Advanced Loot Info 2.1.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar` / `2.1.0`; sem divergência física.
+- **Compatibilidade/Riscos:** A build 2.1.0 é beta. Tabelas vanilla/data-driven são observáveis, mas loot entries/conditions/functions/number providers proprietários de outros mods podem aparecer incompletos ou como erro sem plugin do provider. ACI↔ALI↔JEI forma um pipeline version-sensitive; dedicated server/reload devem validar payloads e cache. Sobreposição visual com JER/outros JEI addons pode duplicar páginas, sem alterar loot real. Não inferir drop chance final se conditions/contexto custom não forem interpretados. Upstream 2.2.0/2.3.0 altera plugin registration, GLM filtering/scanning, trade UI/registration, custom ingredients e detecção de count/chance.
+- **Observações:** Mudança arquitetural importante: desde 1.11.0 o projeto deixou de manter built-in support para a maioria dos mods, exceto LootJS; suporte a tipos próprios deve vir do mod owner/plugin. Portanto “ALI instalado” NÃO garante interpretação completa de toda loot table modded. Falhas de exibição não equivalem a falhas de loot. Na 2.2.0, o suporte Farmer's Delight foi movido para o mod separado **ALI Compat**; na 2.3.0, a linha ganhou custom ingredients fora da hierarquia `Ingredient`, informação de spawn natural de entidades e melhorias de memória/scan.
+- **Procedência:** modlist.txt física atual + CurseForge oficial Advanced Loot Info 2.1.0/2.2.0/2.3.0 e fontes já auditadas no dossiê. Reconciliação física: JAR/runtime permanecem exatamente `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar` / `2.1.0`; 2.2.0 e 2.3.0 são apenas updates upstream disponíveis. JEI físico foi revalidado em 19.56.0.440.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/advanced-loot-info
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #7: `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar` / `2.1.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.1.0. CurseForge publicou **2.2.0** em 17/09/2026 e **2.3.0** em 28/09/2026 para 1.21.1; ambos os changelogs foram revisados e registrados abaixo.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
@@ -30,7 +30,7 @@ O pipeline correto desta instância é:
 3. **Advanced Core Info (ACI)** fornece plugin discovery, tooltip trees e transporte servidor→cliente;
 4. **JEI** apresenta as categorias/tooltips ao usuário.
 
-O pack usa ACI 1.1.0 e JEI 19.53.0.425. EMI/REI são viewers suportados upstream, mas não aparecem top-level no snapshot físico atual.
+O pack usa ACI 1.1.0 e JEI 19.56.0.440. EMI/REI são viewers suportados upstream, mas não aparecem top-level no snapshot físico atual.
 
 ## 2. Loot tables
 ALI expõe loot tables de forma estruturada para responder perguntas como:
@@ -238,3 +238,53 @@ A loot table/provider é authority; ALI é representação. Investigar custom ty
 **Fonte interna:** guia Gameplay/Sistemas, preservado como referência conceitual, mas sua versão 2.0.1 foi substituída pela versão física 2.1.0.
 
 **Confiança:** alta para arquitetura, viewers, LootJS, plugin categories, ACI requirement e mudanças publicadas. Para tipos customizados de mods específicos, a confiança só é alta depois de confirmar plugin/runtime correspondente.
+## 24. Histórico upstream 2.1.0 → 2.3.0 — não instalado
+A autoridade física continua em **Advanced Loot Info 2.1.0**. Para Minecraft 1.21.1, o CurseForge publicou depois **2.2.0** e **2.3.0**, ambas ainda marcadas como Beta e não instaladas neste pack.
+
+### 2.2.0 — 17/09/2026
+O changelog oficial registra:
+- nova API `IServerRegistry.registerTrades`, permitindo que um plugin liste trades do próprio trader;
+- a quantidade de seleções de trade passa a vir do amount do próprio trade set, em vez de ser assumida;
+- corrige erros do JEI quando a integração/plugin REI é usada;
+- **Global Loot Modifiers** só são exibidos em loot tables nas quais todas as suas conditions podem passar;
+- loot tables de entity/gameplay passam a ter ordenação estável;
+- job sites de profissões modded passam a ser resolvidos pelo **POI registry**;
+- uma loot table referenciada por outra loot table deixa de disparar entity scan indevido;
+- plugins de Global Loot Modifier passam a usar `IGlobalLootModifierPlugin` de forma uniforme entre loaders;
+- corrige plugins de Global Loot Modifier de outros mods sendo ignorados no **NeoForge**;
+- o suporte built-in de **Farmer's Delight** é removido do ALI principal e movido para o mod separado **ALI Compat**.
+
+Impacto para o pack: a mudança de GLM é material para loot modificado por NeoForge/addons, porque reduz falsos positivos e corrige plugins externos ignorados. A migração de Farmer's Delight para ALI Compat significa que atualizar ALI sem revisar esse companion pode reduzir cobertura informacional mesmo sem alterar loot real.
+
+### 2.3.0 — 28/09/2026
+O changelog da 2.3.0 adiciona e corrige:
+- suporte a **custom ingredients que não são subclasses de `Ingredient`**;
+- melhoria na detecção de **count e chance**;
+- correção de crash de servidor no Forge quando um GLM não consegue fornecer seu codec — relevante como hardening cross-loader, embora o runtime deste pack seja NeoForge;
+- rework da **trades UI**, agora exibindo o spawn egg do trader;
+- correção de tooltip ausente em block loot no **JEI e REI**;
+- melhoria no registro de trades;
+- entity loot passa a mostrar **onde a entidade nasce naturalmente**: dimensões, biomas, estruturas, weight e group size;
+- nova config `showEntitiesWithoutLoot` para também listar entidades que spawnam mas não dropam nada;
+- menor uso de memória no cliente com **JEI e EMI**;
+- scan de loot mais rápido com **Global Loot Modifiers**;
+- correção de maximum count aleatório incorreto para **binomial count**;
+- atualização de tradução chinesa.
+
+Impacto para este pack: o JEI físico está em **19.56.0.440**, então tooltip/UI/memory paths são diretamente relevantes. Natural-spawn metadata amplia ALI de 'de onde vem o loot' para contexto de spawn da entidade, mas continua sendo observabilidade: biome/structure/weight exibidos não substituem o provider de spawn/worldgen. Count/chance melhorados também não transformam ALI em simulador authoritative quando há conditions ou código custom fora do contrato compreendido.
+
+### Gate de promoção 2.1.0 → 2.3.0
+1. client + dedicated server com ACI 1.1.0 e JEI 19.56.0.440;
+2. loot vanilla, entity e block loot com tooltips;
+3. Global Loot Modifiers condicionais: mostrar apenas onde conditions podem passar;
+4. plugin externo de GLM em NeoForge;
+5. LootJS e custom ingredient não-`Ingredient`;
+6. villager/modded trader UI, seleção de trades e POI job site;
+7. entity natural-spawn metadata em dimension/biome/structure;
+8. `showEntitiesWithoutLoot` on/off;
+9. binomial count e comparação com loot real controlado;
+10. Farmer's Delight com/sem ALI Compat para confirmar perda/ganho de cobertura;
+11. `/reload`, reconnect e reabertura de JEI sem stale cache;
+12. perfil de memória/scan em conjunto representativo de loot tables do pack.
+
+Fontes upstream: CurseForge Advanced Loot Info 2.2.0 e 2.3.0 para Minecraft 1.21.1; changelogs oficiais da linha 2.x.
