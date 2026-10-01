@@ -161,3 +161,5 @@ O snapshot físico já possui Sable 2.0.5 e Create Stuff 'N Additions 2.1.4b, po
 Gate de regressão: Netherite Exoskeleton em primeira pessoa, interação com `hide armor first person hand`, config específica da bridge, JetPack/Grapplin/Block Picker em sublevels e coexistência com Punchy/First-person Model/Epic Fight.
 
 Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/create-stuff-n-additions-x-sable-aeronautics/files/9000433
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable: Stuff&Additions Compatibility 1.0.3/JAR físico reconfirmado; 1.0.3 permanece a release NeoForge 1.21.1 mais recente localizada. JetPack/Grapplin/Block Picker fixes e configs preservados.
