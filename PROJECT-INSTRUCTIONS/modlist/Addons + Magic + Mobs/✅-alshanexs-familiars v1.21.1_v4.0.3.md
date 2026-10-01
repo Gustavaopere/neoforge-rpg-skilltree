@@ -20,10 +20,10 @@
 - **Dependências:** Iron's Spells 'n Spellbooks é base funcional obrigatória do spellcasting; FamiliarsLib fornece a infraestrutura técnica de familiars/storage/beds e está instalada no pack (`familiarslib-1.21.1-1.7.1.jar`, metadata runtime `1.21.1-1.7`).
 - **Sobreposição:** Sobreposição temática com summons/companions de outros addons mágicos, porém identidade própria: familiars permanentes com progressão individual, habilidades utilitárias e infraestrutura FamiliarsLib. Sound School cruza a fantasia de Bard/Melodic, mas não deve ser tratada como a mesma escola sem conferir IDs.
 - **Compatibilidade/Riscos:** Companions persistentes, múltiplos summons e resurrect-at-mana-cost podem cruzar balanceamento com outras invocações do Iron's/RPG Skill Tree. A Sound school deve ser distinguida da escola Melodic de Tunes 'n Tomes antes de criar perks por ID. Curios adicionados competem por slots com muitos acessórios do pack. Há inconsistência upstream na grafia da tag de tame (`familiar_taming` vs `familiar_tamming` em documentação); verificar namespace/tag real do JAR 4.0.3 antes de datapack. Testar owner death/dimension, storage, multi-familiar, mana drain e dedicated server.
-- **Observações:** A documentação pública alterna a grafia da tag usada para itens de tame. Não automatizar datapacks até conferir o tag path dentro do runtime. Tratar FamiliarsLib como provider técnico e esta entrada como conteúdo jogável.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/wiki/documentação oficiais Alshanex's Familiars 4.0.3/FamiliarsLib e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `alshanex_familiars-1.21.1_v4.0.3.jar` / `1.21.1_v4.0.3`; sem divergência física.
+- **Observações:** A documentação pública alterna a grafia da tag usada para itens de tame. Não automatizar datapacks até conferir o tag path dentro do runtime. Tratar FamiliarsLib como provider técnico e esta entrada como conteúdo jogável. Upstream 4.0.4 não está instalado e altera a arquitetura de armazenamento/limite de familiars.
+- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/wiki/documentação oficiais Alshanex's Familiars 4.0.3/4.0.4 e FamiliarsLib + fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `alshanex_familiars-1.21.1_v4.0.3.jar` / `1.21.1_v4.0.3`; v4.0.4 é registrada apenas como atualização upstream disponível.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/alshanexs-familiars
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #23: `alshanex_familiars-1.21.1_v4.0.3.jar` / `1.21.1_v4.0.3` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece `1.21.1_v4.0.3`. CurseForge publicou **v4.0.4** para NeoForge 1.21.1 em 24/09/2026; a release reworka o familiar storing system e eleva o limite de tame/storage para até 50 via nova config da FamiliarsLib. Não atribuir esse comportamento ao runtime 4.0.3.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
@@ -304,3 +304,26 @@ Vários acessórios adicionam max mana, cast time, spell resistance e passivos d
 **Fonte interna do projeto:** guia completo de mods de magia, que classifica Alshanex's Familiars como camada jogável de companions e FamiliarsLib como infraestrutura.
 
 **Confiança:** alta para roster, sistema geral, release 4.0.3 e funcionalidades documentadas. Para IDs, tag path de taming e qualquer hook usado em implementação, exigir verificação direta do JAR/source antes de codificar.
+
+## 20. Atualização upstream v4.0.4 — não instalada
+A autoridade física continua em **`alshanex_familiars-1.21.1_v4.0.3.jar`**. A release **v4.0.4** para NeoForge 1.21.1 foi publicada em 24/09/2026; não há release intermediária entre 4.0.3 e 4.0.4 na linha aplicável.
+
+O próprio autor inclui um aviso explícito para **fazer backup do mundo antes de atualizar**.
+
+O delta publicado é estrutural: o **familiar storing system foi refeito** para permitir domesticar/armazenar mais de 10 familiars, chegando a **até 50**, com o valor controlado por uma **nova configuração na FamiliarsLib**.
+
+Isso altera uma premissa importante da build instalada 4.0.3: as seções deste dossiê que descrevem Pandora's Box/Familiar Storage no contexto de até 10 familiars continuam corretas para o runtime físico atual, mas **não devem ser projetadas sobre 4.0.4**. Uma promoção muda escala de AI, ownership, storage, sync, mana-based death prevention e performance.
+
+Gate de promoção 4.0.3→4.0.4:
+1. backup de mundo e teste de migração de todos os familiars já armazenados;
+2. config nova da FamiliarsLib em valores 10, acima de 10 e máximo 50;
+3. summon/unsummon, Store/Wander e owner-only management;
+4. relog, dimension transfer, death/respawn e server restart com coleção >10;
+5. Pandora's Box e UI/selection com mais de 10 entradas;
+6. Tome of Alignment com coleção maior, verificando ausência de multiplicação indevida;
+7. mana-based death prevention com vários familiars recebendo dano simultâneo;
+8. chunk unload/reload e storage blocks sem perda/duplicação;
+9. desempenho/AI com 10, 25 e 50 familiars;
+10. compatibilidade com addons/consumers que assumam limite antigo de 10.
+
+Fonte upstream: CurseForge Alshanex's Familiars file ID 8966342, release v4.0.4 para NeoForge 1.21.1.
