@@ -19,7 +19,7 @@
 - **Observações:** Mod id `yungsapi`, runtime `1.21.1-NeoForge-5.1.8`. A 5.1.8 reverte regressões da 5.1.7 e corrige Moog's Structure Lib. Family YUNG atual depende da API; não remover isoladamente.
 - **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge/Modrinth oficiais YUNG's API 5.1.8 + família YUNG física atual. Decisão Dependência preservada; nenhum boot conjunto, registry/data load, chunkgen ou linkage test foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/yungs-api-neoforge
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — YUNG's API 5.1.8 permanece exatamente instalada e continua a latest release NeoForge 1.21.1; consumers, revert 5.1.7 e fix Moog's Structure Lib preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.21.1-NeoForge-5.1.8; o projeto separado `YUNG's API (NeoForge) [1.20.4-1.21.1 ONLY]` publicou 5.1.9 para NeoForge 1.21.1 em 16/09/2026.
 - **Histórico da decisão:** 2026-08-27 — atualizado de 5.1.7 para 5.1.8 e classificado como Dependência após confirmação de consumidor YUNG atual na modlist.
 - **Data da última decisão:** 2026-09-09
 
@@ -64,3 +64,16 @@ A modlist física mantém exatamente `YungsApi-1.21.1-NeoForge-5.1.8.jar`, mod i
 O changelog exato permanece: revert de mudanças da 5.1.7 que causaram incompatibilidades, especialmente com Villages & Pillages, e fix de incompatibilidade com Moog's Structure Lib. A decisão **Dependência** e o estado **Integrado ao Github** foram preservados. Nenhum boot conjunto da família YUNG, registry/data load, chunkgen ou linkage test foi executado nesta recatalogação.
 ## 12. Revalidação — 13/09/2026
 YUNG's API 5.1.8 permanece atual para NeoForge 1.21.1. O revert das regressões 5.1.7 e o fix de compatibilidade com Moog's Structure Lib continuam sendo os deltas relevantes. Decisão Dependência preservada. Nenhum teste runtime foi executado.
+
+## 13. Atualização upstream 5.1.9 — não instalada
+A versão instalada continua **5.1.8**. Para NeoForge 1.21.1, a release correta está no projeto específico **YUNG's API (NeoForge) [1.20.4-1.21.1 ONLY]** e foi publicada como **5.1.9** em 16/09/2026.
+
+Deltas publicados:
+- adiciona uma API para **substituir estruturas vanilla em utilidades de localização de estruturas**, como o comando `/locate`;
+- corrige chamada insegura a `ServiceLoader#load`.
+
+A nova API é particularmente relevante para mods YUNG que substituem estruturas vanilla: consumers podem informar a substituição também à camada de localização, reduzindo discrepância entre worldgen real e resultados de `/locate`/utilities.
+
+Gate de regressão: `/locate` em estruturas substituídas, boot/reload com todos os YUNG consumers instalados, ServiceLoader em dedicated server e ausência de regressão nas integrações já documentadas com Moog's Structure Lib.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/yungs-api-neoforge/files/8894736
