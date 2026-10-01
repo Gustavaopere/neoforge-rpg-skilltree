@@ -12,11 +12,11 @@
 - **Dependências:** Create 6.0.10 é dependência central e a build física é explicitamente alinhada a essa versão; pack usa NeoForge 21.1.248. Integrações com addons como Create Big Cannons são superfícies de compatibilidade, não dependências-base universais.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Patch amplo sobre ticks/caches: risco principal é state stale, atraso de transição ou item/fluid loss/duplication quando internals do Create/addons mudam. 2.6.25 corrige CBC ammo containers com Mechanical Arm cached Deployer recipe, Basin que não retomava após full-stack extraction, regras de Mechanical Arm após resource reload e overhead da Lazy Clock sync queue.
+- **Compatibilidade/Riscos:** Otimizações alteram cadência de tick/cache em componentes Create; riscos incluem stale recipe/cache, machine wakeup atrasado, redstone timing, fluid state, addon subclass incompatível e regressão de exactly-once. Upstream 2.7.29/2.7.30 amplia a superfície para Factory Gauges, funnels/redstone, belts/passengers, Central Kitchen saw cache e bounded Redstone Link refresh.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-lazytick
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createlazytick` 2.6.25-6.0.10 + CurseForge oficial revalidado em 12/09/2026; build 2.6.25 para Create 6.0.10 de 14/08/2026 continua a release 1.21.1 mais recente.
-- **Observações:** JAR `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar`; runtime 2.6.25-6.0.10. É otimização de tick/cache, não provider de recipes ou gameplay. A linha inclui Lazy Clock/config/overlay e otimizações de componentes Create; 2.6.25 possui quatro fixes concretos catalogados.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #192: CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar / runtime 2.6.25-6.0.10 reconfirmados como latest Release 1.21.1 para Create 6.0.10; CBC ammo-container, Basin resume, Mechanical Arm reload e Lazy Clock sync fixes permanecem atuais.
+- **Procedência:** modlist física atual + CurseForge oficial 2.6.25/2.7.29/2.7.30 + source oficial `duckgun13476/Create-LazyTick` branch `CLT-combined`. A versão instalada continua 2.6.25-6.0.10.
+- **Observações:** Runtime físico permanece `2.6.25-6.0.10`. No CurseForge, as próximas releases publicadas localizadas para 1.21.1/Create 6.0.10 são **2.7.29** (25/09/2026) e **2.7.30** (28/09/2026). O source contém preparação de 2.6.27, mas não foi localizado artefato CurseForge 1.21.1 correspondente; por isso não é tratado como release distribuída.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Create:LazyTick físico permanece 2.6.25-6.0.10. Foram revisadas as releases publicadas **2.7.29 → 2.7.30**; 2.7.30 é a latest 1.21.1/Create 6.0.10 no CurseForge.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Lazy Tick 2.6.25-6.0.10 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; benefício de performance não foi convertido automaticamente em decisão curatorial.
 - **Sobreposição:** Não duplica CreateBetterFps: Lazy Tick atua em tick scheduling/caches/sync; CreateBetterFps atua em outra superfície de performance/render. Conflito real depende de hooks concretos sobre o mesmo state Create.
@@ -76,3 +76,27 @@ Validar startup, chunk unload/reload, server restart, datapack/resource reload, 
 - release oficial 2.6.25: CBC ammo container/Mechanical Arm cached Deployer fix, Basin resume fix, Mechanical Arm rules após resource reload e menor overhead da Lazy Clock sync queue;
 - documentação da linha: otimizações de ticks/caches para componentes Create e Lazy Clock/config/overlay.
 > 🔒 Boundary canônico: **Lazy Tick pode reduzir trabalho, mas não pode mudar o resultado lógico do Create**. Cada otimização deve ser validada por invariância de state antes de considerar o ganho de performance seguro.
+
+
+## Atualizações upstream 2.7.29 → 2.7.30 — não instaladas
+A autoridade física continua em **2.6.25 para Create 6.0.10**.
+
+### 2.7.29 — 25/09/2026
+- corrige Basins ignorando um **segundo fluid input** ao avaliar recipes;
+- reduz overhead de monitoramento passivo de **Factory Gauges** em Create 6.x;
+- corrige cache de recipe de **Mechanical Saw com Central Kitchen**;
+- corrige progresso de cache de **sequenced Deployer**;
+- corrige carregamento de Mixins no NeoForge e restaura a recipe do **Lazy Tick Clock** em 1.21.1;
+- corrige funnels voltando a funcionar após pausa por redstone, incluindo **belt funnels**;
+- adiciona **funnel redstone overclocking** opcional, desabilitado por padrão porque pode aumentar lag;
+- reduz overhead de passageiros `LivingEntity` travados/parados sobre belts.
+
+### 2.7.30 — 28/09/2026
+- adiciona suporte Fabric 1.20.1/Create Fabric 6.0.8.1 — manutenção de outra plataforma, não projetada sobre este runtime NeoForge;
+- restaura **bounded Redstone Link refreshes para sinais inalterados**, sem interceptar transmissões explícitas.
+
+Impacto: 2.7.29 toca recipe correctness e wakeup/timing em componentes centrais do pack; 2.7.30 ajusta a fronteira de otimização de wireless redstone para manter refresh periódico mesmo sem mudança de sinal. Ambos precisam ser testados contra factories reais, Central Kitchen e addons que subclassificam Create machines.
+
+Gate de promoção: Basin com dois fluid inputs; Factory Gauge estável/mutável; Saw + Central Kitchen; sequenced Deployer; Lazy Tick Clock recipe/UI; funnel e belt funnel pausados por redstone; overclock off/on sob carga; living passengers parados em belts; Redstone Links com sinal estável e mudança explícita; `/reload`; restart; CBC ammo/deployer regressions de 2.6.25.
+
+Fontes upstream: CurseForge file IDs 8970326 (2.7.29) e 8995867 (2.7.30); source `duckgun13476/Create-LazyTick`.
