@@ -134,3 +134,5 @@ Não se atribui esse comportamento ao runtime 1.5.1 instalado. Uma promoção de
 Gate de regressão: linked storage entre Backpacks/Storage, Create integrations, save/restart, chunk unload/reload, multiplayer sync, filtros/upgrades sobre storage compartilhado e abertura de inventories montados.
 
 Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/all?page=1&pageSize=20&version=1.21.1 ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/f5ec6fb7636a867f87e37cc388077be20221abfe
+
+> **Atualização/Status — valor histórico preservado do Notion:** RECONCILIADO EM 27/09/2026 — Sophisticated Core 1.5.1.2341 permanece físico; consumer Sophisticated Backpacks reconciliado para 3.26.3.
