@@ -13,11 +13,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/cataclysm-ignis-soulfires
 - **Função:** Expansão de Cataclysm centrada em Souled Ignitium: materiais, ferramentas arremessáveis, upgrades, armas, armor, horse armor, Bulwark defensivo e abilities/configuração próprias.
 - **Dependências:** L_Ender's Cataclysm + Lionfish API + Curios API, conforme página oficial da linha 1.8.0. Ignis Soulfires: Spellbooks é expansão separada, não hard dependency.
-- **Compatibilidade/Riscos:** Ability/equipment addon sensível a double-proc com combat bridges, tree-felling/prospecting overlap, Bulwark reach, temporary input state e modifier cleanup. 1.8.0 amplia configs e corrige state do Bulwark após disconnect.
+- **Compatibilidade/Riscos:** Addon stateful de tools/armor/abilities com configs client/common; riscos de double ability/damage, Tree Cap/prospecting overlap, Bulwark input state, horse armor lifecycle e client-classloading em dedicated server. Upstream 1.8.1 corrige precisamente crashes de servidor por client-only code.
 - **Sobreposição:** Complementa Cataclysm com conteúdo `ignissoulfires`; não substitui Cataclysm. Pode cruzar Epic Fight/combat bridges, tree-felling e prospecting providers, exigindo exactly-once behavior.
-- **Observações:** 1.8.0 adiciona Netherite/Ignitium/Souled Ignitium Horse Armor, config ampla, client config/screen, advancement tree e thrown-tool particles; melhora Bulwark placement e corrige temporary input state após disconnect.
-- **Procedência:** modlist.txt física anexada e reconferida em 12/09/2026 + CurseForge oficial Cataclysm: Ignis Soulfires 1.8.0 NeoForge 1.21.1 + changelog da release já auditado. Revalidação em 12/09/2026 não encontrou release 1.21.1 posterior.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — Cataclysm: Ignis Soulfires 1.8.0/JAR físico reconfirmado; 1.8.0 permanece a release NeoForge 1.21.1 mais recente localizada. Souled Ignitium progression, tools/weapons/armor/horse armor, Bulwark, configs, lifecycle e regressões 1.8.0 preservados.
+- **Observações:** Runtime físico permanece 1.8.0. Upstream publicou **1.8.1** para NeoForge 1.21.1 em 15/09/2026; ela não está instalada.
+- **Procedência:** modlist física atual + CurseForge/Modrinth Ignis Soulfires 1.8.0/1.8.1. A autoridade física continua `ignissoulfires-1.8.0.jar`.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Ignis Soulfires físico permanece 1.8.0. A release **1.8.1** foi revisada integralmente e registrada abaixo.
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #323: JAR `ignissoulfires-1.8.0.jar`, mod id `ignissoulfires`, runtime `1.8.0`, SHA-1 `a6f1c8cfe673aaff17f081ee9546e3600b4c72f1`.
 
@@ -109,3 +109,17 @@ Validar equip/unequip, mount/dismount, lava enter/exit, thrown tool spawn/despaw
 <callout icon="🔥" color="blue_bg">
 	Boundary canônico: Cataclysm fornece a base temática/original; Ignis Soulfires controla **seus** materiais/equipamentos/abilities. Integrações devem observar o state final do provider, não duplicar efeitos pelo tema Ignitium.
 </callout>
+
+
+## 18. Atualização upstream 1.8.1 — não instalada
+A autoridade física continua em **Ignis Soulfires 1.8.0**. A release **1.8.1** foi publicada em 15/09/2026.
+
+Fixes oficiais:
+- corrige **dedicated server crashes** causados por código client-only sendo carregado no servidor;
+- refatora client access de **config screens, keybinds e tooltip input**.
+
+Impacto: é um fix de classloading/side boundary de alta prioridade para servidor dedicado. Nenhuma das superfícies de config/keybind/tooltip deve ser referenciada em common/server paths durante bootstrap.
+
+Gate de promoção 1.8.0→1.8.1: dedicated server cold boot; sem cliente conectado; config load; join/reconnect; keybinds/tooltip no cliente; Bulwark input; Tree Cap/prospecting; thrown tools; armor/horse armor; resource reload.
+
+Fonte upstream: CurseForge file ID 8890501, `ignissoulfires-1.8.1.jar`.
