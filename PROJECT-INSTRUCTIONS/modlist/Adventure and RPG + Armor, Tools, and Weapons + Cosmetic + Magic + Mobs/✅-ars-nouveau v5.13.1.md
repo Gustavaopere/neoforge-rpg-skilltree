@@ -25,7 +25,7 @@
 - **Observações:** mod id ars_nouveau. APIRegistry 5.13.1 registra 85 spell parts (5 methods, 13 augments, 67 effects), 24 rituals, 6 familiars, 20 perks e 3 scryers. O core mantém Source separado de player mana.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + source Ars Nouveau exact release commit `112920ff774831f204031da75b4c4e73d3765157` (5.13.1) e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ars_nouveau-1.21.1-5.13.1.jar` / `5.13.1`; sem divergência física.
 - **Fonte:** https://github.com/baileyholl/Ars-Nouveau
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #47: `ars_nouveau-1.21.1-5.13.1.jar` / `5.13.1` conferidos contra a modlist atual; exact release checkpoint e corpo técnico preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece ars_nouveau-1.21.1-5.13.1.jar / 5.13.1. CurseForge publicou 5.13.2 para NeoForge 1.21.1 em 27/09/2026; os cinco fixes publicados estão registrados abaixo sem atribuí-los ao runtime instalado.
 - **Histórico da decisão:** Manter. Ficha reconstruída do zero em 07/09/2026 contra o commit exato 5.13.1. Ars Nouveau é provider central e não deve ser tratado como redundante com seus próprios addons.
 - **Data da última decisão:** 2026-09-07
 
@@ -437,3 +437,17 @@ Quando Ars 'n' Spells está ativo, mana do jogador pode ser unificada com Iron's
 - Guia consolidado de Magia do projeto, snapshot 07/09/2026.
 - Source oficial `baileyholl/Ars-Nouveau`, commit exato `d16c939835ec9eae27d2eece42d19c572b46389c` (5.13.1).
 - `APIRegistry`, `BlockRegistry` e `changelog.md` da build version-pinned.
+
+
+## 34. Atualização upstream 5.13.2 — não instalada
+O runtime físico continua **5.13.1**. A release **5.13.2** para NeoForge 1.21.1 foi publicada em 27/09/2026 e contém cinco correções posteriores ao checkpoint instalado:
+
+1. corrige a impossibilidade de remover **itens não empilháveis do Storage Lectern** quando ele está conectado por um Repository Catalog;
+2. corrige a pesquisa da documentação para idiomas **chinês, japonês e coreano**;
+3. corrige o efeito **Break** para usar uma picareta como ferramenta fallback, evitando que blocos como **Waystones ou Iron Doors** sejam apagados/deletados quando a ferramenta apropriada não era selecionada;
+4. corrige configs de custo **augment → effect** que não eram aplicadas corretamente;
+5. corrige crash ao pré-visualizar **partículas de lava** na tela de preview de spell styles.
+
+Para este pack, os gates prioritários numa promoção são Storage Lectern/Repository, spell Break sobre blocos modded, custo de augments/effects e preview de spell styles. A 5.13.2 não altera a autoridade física atual: até o JAR ser realmente substituído, todo o inventário/registry detalhado acima continua pinado à 5.13.1.
+
+**Fonte upstream:** CurseForge file ID 8993194, ars_nouveau-1.21.1-5.13.2.jar.
