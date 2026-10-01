@@ -16,7 +16,7 @@
 - **Sobreposição:** Não é particle pack decorativo comum; fornece infraestrutura/editor para VFX consumidos por outros mods. Sobreposição principal é custo/rendering com outros VFX, não gameplay.
 - **Observações:** Runtime 2.2.6.a, file ID 8824095, Release 06/09/2026. Delta exato: bump da versão de LDLib e fix do glTF loader. Referências antigas a 2.2.4/2.2.5 são históricas.
 - **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial Photon 2.2.6.a + documentação oficial do framework/editor VFX + hierarquia JarJar física.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — Photon 2.2.6.a/JAR físico reconfirmado; KilaGraph 21.1.0.14 permanece JarJar interno; decisão Manter preservada.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Photon físico permanece 2.2.6.a; CurseForge publicou 2.2.7 para NeoForge 1.21.1 em 21/09/2026 com animated glTF e dynamic mesh injection.
 - **Histórico da decisão:** 2026-09-06 — decisão Manter confirmada; pesquisa fechada. Detectada atualização direta para Photon 2.2.6.a Release. Não alterar `Arquivo JAR`/versão no Notion até a pasta de mods e uma nova modlist confirmarem a atualização.
 - **Data da última decisão:** 2026-09-06
 
@@ -123,3 +123,16 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Changelog 2.2.6.a: bump de LDLib e fix do glTF loader.
 - Documentação oficial: framework/editor VFX com particle/trail systems para consumers.
 - **Limite:** consumers específicos, graphs/nodes concretos e assets VFX do pack não foram atribuídos sem dependency graph/resource audit individual.
+
+## 15. Atualização upstream 2.2.7 — não instalada
+O runtime físico continua **2.2.6.a**. A release **2.2.7** para NeoForge 1.21.1 foi publicada em 21/09/2026.
+
+Novidades publicadas:
+- suporte a **modelos glTF animados**, incluindo import de GLB rigged, seletor de animação, fase de animação por partícula e frame blend opcional;
+- **dynamic mesh injection**, permitindo que outros mods forneçam geometria que muda enquanto é desenhada.
+
+Essas duas superfícies ampliam significativamente o papel de Photon como framework VFX. Dynamic mesh injection também aumenta o risco de integração com consumers que atualizem geometria por frame; validar lifecycle, descarte de buffers/caches e comportamento em reload/dimension change.
+
+Gate de regressão: import/preview de GLB rigged, seleção de animation clips, partículas com fases distintas, frame blending, meshes dinâmicas e coexistência com KilaGraph/Lodestone/Iris quando aplicável.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/photon/files/8941291
