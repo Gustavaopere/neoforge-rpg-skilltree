@@ -20,7 +20,7 @@ Para perks futuras:
 
 1. `modlist/modlist.md` decide **presença, posição física, JAR e versão instalada**.
 2. O dossier individual atual do mod decide **mecânicas, ownership/authority, lifecycle, multiplayer, riscos, hooks e limites conhecidos**.
-3. Os guias temáticos fornecem **contexto transversal**, relações entre mods e histórico editorial.
+3. Os guias temáticos foram usados como **corpus de comparação** para detectar lacunas e preservar contexto durante a auditoria; depois da reconciliação, não são necessários como authority operacional.
 4. `guides/projects/` continua fonte obrigatória dos quatro sistemas próprios — RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana — e de suas regras de capability delta, authority e fail-closed.
 5. Se uma mecânica perk-relevante aparecer no guia e não no dossier individual atual, a perk não deve ser fechada até a lacuna ser reconciliada.
 
@@ -143,12 +143,10 @@ Antes de criar/fechar uma perk:
 
 1. confirmar provider atual em `modlist.md`;
 2. ler o dossier individual da versão instalada;
-3. usar os guias para contexto cross-mod e para detectar termos históricos ainda relevantes;
-4. consultar `guides/projects/` quando houver sistema próprio envolvido;
-5. se guide e dossier divergirem em versão, o dossier/modlist físico prevalece para identidade instalada;
-6. se o guia possuir mecânica não presente no dossier, **não inferir**: reconciliar a ficha primeiro;
-7. se o provider foi removido, não usar a seção histórica do guia como provider atual;
-8. manter exactly-once, ownership e fail-closed quando múltiplos sistemas tocarem o mesmo evento.
+3. consultar `guides/projects/` quando houver sistema próprio envolvido;
+4. se uma informação necessária ao design não estiver no dossier individual, **não inferir**: reabrir a auditoria do provider e reconciliar a ficha primeiro;
+5. se o provider foi removido, não recuperá-lo de documentação histórica como provider atual;
+6. manter exactly-once, ownership e fail-closed quando múltiplos sistemas tocarem o mesmo evento.
 
 ## 9. Estado após esta auditoria
 
@@ -158,4 +156,10 @@ Antes de criar/fechar uma perk:
 - Conteúdo transversal dos projetos próprios permanece separado e obrigatório.
 - O único bloqueio estrutural sem dossier continua sendo #272.
 
-A próxima auditoria de perks deve partir dos dossiers individuais atuais, usando os guias como contexto e detector de regressões — não como inventário físico concorrente.
+A próxima auditoria de perks deve partir de `modlist/modlist.md`, dos dossiers individuais atuais e, quando aplicável, de `guides/projects/`.
+
+## 10. Retirada da camada temática agregada — 01/10/2026
+
+Depois desta auditoria comprovar que as informações perk-relevantes dos providers atuais estavam cobertas pelos dossiers individuais e migrar as cinco lacunas encontradas, os diretórios `guides/gameplay/`, `guides/magic/` e `guides/technology/` e os três consolidados temáticos correspondentes foram retirados da árvore ativa.
+
+A remoção não altera os dossiers nem `guides/projects/`. O conteúdo histórico continua recuperável pelo histórico Git. Para provider externo, ausência de informação no dossier passa a exigir reauditoria do próprio provider em vez de consulta silenciosa ao guia retirado.

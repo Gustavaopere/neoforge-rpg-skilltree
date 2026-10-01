@@ -64,22 +64,15 @@ Leia-o integralmente antes de implementar.
 
 ---
 
-# SOBRE OS QUATRO GUIAS
+# FONTES TÉCNICAS DOS PROVIDERS
 
-Os quatro guias completos também estão anexados à **descrição do projeto**:
+Os antigos guias consolidados de Gameplay, Magia e Tecnologia foram retirados após a auditoria de cobertura. O Chat 2 **não deve depender deles nem recriá-los**.
 
-- `GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md`
-- `GUIA-COMPLETO-MODS-DE-MAGIA.md`
-- `GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md`
-- `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
+Implemente o contrato registrado nos dossiês das perks e na auditoria do lote. Quando precisar confirmar um provider externo, use:
 
-O **Chat 1 é responsável por ler integralmente esses quatro guias, fazer a auditoria completa e transformar as integrações relevantes em contrato nos dossiês**.
-
-Portanto o Chat 2 **não deve refazer toda a auditoria dos quatro guias em cada lote** e não precisa abrir rotineiramente as versões partidas no GitHub. O guia de Projetos Próprios deve ser consultado pontualmente se uma divergência técnica envolver RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
-
-Implemente o contrato registrado nos dossiês e na auditoria.
-
-Exceção:
+- `PROJECT-INSTRUCTIONS/modlist/modlist.md` para presença/JAR/versão;
+- o dossier individual atual em `PROJECT-INSTRUCTIONS/modlist/<categorias>/✅-*.md` para mecânicas, hooks, authority, lifecycle, multiplayer, persistência, riscos e limites;
+- `GUIA-COMPLETO-PROJETOS-PROPRIOS.md` ou `guides/projects/` quando a integração envolver RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana.
 
 Se durante a implementação a API/código real do provider contradizer o dossiê:
 

@@ -27,31 +27,28 @@ Leia integralmente:
 
 Este arquivo contém a cópia consolidada dos critérios obrigatórios. Os critérios devem ser aplicados integralmente. Não considere uma perk fechada apenas porque já foi marcada assim por outro chat.
 
-### 2. Os quatro guias completos — arquivos anexados ao projeto
+### 2. Providers externos e projetos próprios
 
-Leia integralmente, do início ao fim:
+Os antigos guias consolidados de Gameplay, Magia e Tecnologia foram retirados depois da auditoria de cobertura de 29/09/2026. **Não dependa deles e não os recrie.**
 
-- `GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md`
-- `GUIA-COMPLETO-MODS-DE-MAGIA.md`
-- `GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md`
+Para cada provider externo envolvido no lote:
+
+1. confirme presença, posição, JAR e versão em `PROJECT-INSTRUCTIONS/modlist/modlist.md`;
+2. localize e leia integralmente o dossier individual atual em `PROJECT-INSTRUCTIONS/modlist/<categorias>/✅-*.md`;
+3. trate esse dossier como authority para mecânicas, ownership/authority, lifecycle, multiplayer, persistência, riscos, hooks e limites conhecidos;
+4. se uma informação necessária não estiver sustentada pelo dossier, mantenha a perk fail-closed e reabra a auditoria do provider antes de fechar o design.
+
+Leia integralmente:
+
 - `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
 
-Esses quatro guias são as versões consolidadas dos capítulos que existem separados no GitHub. Para a auditoria normal do lote, **não é necessário reabrir todos os arquivos partidos do GitHub**.
+Esse consolidado permanece obrigatório porque seus contratos transversais não pertencem a dossiers de mods externos.
 
-Se qualquer um desses cinco arquivos anexados não estiver acessível no chat, **pare e informe o bloqueio** em vez de fingir que realizou a leitura.
+### 2.1 Regra de atualização das fontes
 
-### 2.1 Regra de atualização dos arquivos consolidados
+Quando houver mudança de versão, API, hook ou comportamento de provider externo, atualize/reconcilie o **dossier individual do mod**, não um guia temático agregado.
 
-Use os cinco arquivos anexados como referência operacional padrão para velocidade e consistência.
-
-Só volte às versões separadas no GitHub/Notion quando:
-
-- houver evidência de que foram atualizadas depois do snapshot anexado;
-- o usuário pedir reconciliação/atualização;
-- surgir contradição entre o dossiê, provider real e o conteúdo consolidado;
-- for necessário verificar uma mudança recente não refletida nos anexos.
-
-Nesse caso, reconcilie a diferença e registre qual fonte mais nova foi utilizada.
+Quando houver mudança em RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana, use `guides/projects/` e reconcilie `GUIA-COMPLETO-PROJETOS-PROPRIOS.md` quando aplicável.
 
 ### 2.2 Regra obrigatória — projetos próprios do modpack
 
@@ -117,11 +114,12 @@ Use o arquivo que cobre o lote atual. Se ainda não existir, crie um.
 ### 7. Modlist atual
 
 **Antes da primeira perk do lote**, confira:
-1. a modlist mais recente na Biblioteca/arquivos do projeto;
-2. a Auditoria Mestre da Modlist no Notion;
-3. os `CURRENT-MODLIST.md`/deltas incorporados nos guias consolidados.
+1. a modlist física mais recente na Biblioteca/arquivos do projeto;
+2. `PROJECT-INSTRUCTIONS/modlist/modlist.md`;
+3. os dossiers individuais atuais dos providers usados pelas 10 perks;
+4. a Auditoria Mestre da Modlist no Notion quando necessária para reconciliação.
 
-A modlist física é authority de presença/JAR/runtime. O Notion deve ser reconciliado quando divergir. Não contar dependências `jarjar` como mods top-level.
+A modlist física/`modlist.md` fixa presença, posição, JAR e versão instalada; o dossier individual fixa o contrato técnico do provider. Não contar dependências `jarjar` como mods top-level.
 
 **Checkpoint reconciliado — 2026-09-07:** 612 entradas top-level, 21 updates, 9 adições e 4 remoções desde 06/09; 612 `Instalado`, 613/613 `Verificado`, 605/605 `modVersion` exatos e 7/7 JARs sem runtime version mantidos sem inferência.
 
