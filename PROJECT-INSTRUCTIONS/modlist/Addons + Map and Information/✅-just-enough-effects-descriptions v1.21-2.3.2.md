@@ -15,7 +15,7 @@
 - **Sobreposição:** Não cria/modifica efeitos e não substitui JEI. Complementa o viewer com documentação de status effects; qualquer valor real de duração/amplifier/mecânica continua pertencendo ao mod que registra o efeito.
 - **Observações:** 2.3.2 continua a build NeoForge correta para 1.21.1. O projeto possui linhas 2.4/2.5 mais novas em Minecraft 1.21.11/26.x, mas elas não constituem atualização aplicável ao pack atual.
 - **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + CurseForge oficial JEED file 7346553 `jeed-1.21-2.3.2.jar`, Release NeoForge para 1.21/1.21.1 + listagem atual de arquivos. Integração física reconciliada com JEI 19.56.0.440; versões 2.4.x/2.5.x pertencem a outras linhas de Minecraft.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — JEED 1.21-2.3.2/JAR físico reconfirmado; viewer/display-only authority, integração concreta com JEI 19.56.0.440, fix de legibilidade EMI 2.3.2, localization/data risks e testes preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece JEED 2.3.2. A linha NeoForge 1.21.1 avançou por 2.3.3 até 2.3.4; os commits/release intermediários foram revisados.
 
 > **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #348: JAR `jeed-1.21-2.3.2.jar`, mod id `jeed`, runtime `1.21-2.3.2`, SHA-1 `144ffaf459b58db14614a7e1ef3425c2594e30b6`.
 
@@ -62,3 +62,23 @@ Validar client boot, viewer/plugin registration, resource reload, language chang
 - **CurseForge oficial:** file 7346553, Release NeoForge 1.21.1, função JEI/REI/EMI e changelog 2.3.2.
 - **Limite:** cobertura exata de cada efeito modded depende dos dados/localizações carregados; não foi inventado catálogo de descrições.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+## 15. Histórico upstream 2.3.2 → 2.3.4 — não instalado
+A authority física continua em **JEED 2.3.2**. O CurseForge publica **2.3.4** para NeoForge 1.21.1 em 17/09/2026; o source oficial mostra a release intermediária **2.3.3** em 24/07/2026.
+
+### 2.3.3
+- adiciona null checks nos caminhos de clique/integração com JEI (`JEI_RUNTIME` / `JEI_HELPERS`), reduzindo risco de crash quando a runtime/helper ainda não está inicializada ou quando integrações assíncronas alteram o timing;
+- adiciona tradução japonesa e atualiza traduções es_ar, ru_ru e zh_cn;
+- corrige a URL do Maven do NeoForged no setup de build.
+
+### 2.3.4
+- corrige **renderização de tooltips no NeoForge 1.21.1**, movendo o tooltip para depois do render da screen; o changelog final resume isso como `fixed tooltip rendering`;
+- o mesmo ciclo migra/moderniza o setup Gradle; isso é build-time, não comportamento de gameplay.
+
+Impacto no pack: JEED é display-only, mas está ligado a JEI e a outros HUD/effect mods. O fix de ordem de render pode alterar z-order/visibilidade de tooltips e deve ser testado com Stylish Effects, JEI overlays e telas modded.
+
+Gate de regressão: abrir lista de effects no JEI, clicar efeitos com runtime/helper em diferentes estados, tooltips após screen render, overlays concorrentes, localizações e ausência de crash em reload/entrada de mundo.
+
+Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/just-enough-effect-descriptions-jeed/files/all ; https://github.com/MehVahdJukaar/JustEnoughEffectDescriptions/commits/1.21 ; https://github.com/MehVahdJukaar/JustEnoughEffectDescriptions/blob/1.21/changelog.md
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — JEED 1.21-2.3.2/JAR físico reconfirmado; viewer/display-only authority, integração concreta com JEI 19.56.0.440, fix de legibilidade EMI 2.3.2, localization/data risks e testes preservados.
