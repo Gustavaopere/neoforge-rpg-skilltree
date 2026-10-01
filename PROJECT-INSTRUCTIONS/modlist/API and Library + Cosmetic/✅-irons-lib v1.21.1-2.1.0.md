@@ -16,7 +16,7 @@
 - **Sobreposição:** Não substitui Apothic Attributes ou outras libraries. Possui compatibilidade nativa de remapeamento com Apothic Attributes, mas cada provider continua owner de seus atributos; evitar manter duas regras equivalentes de remap/modifier.
 - **Observações:** A linha 1.21.1 permanece em 2.1.0. Builds 2.1.0.1–2.1.0.3 localizadas são da linha Minecraft 26.1.2 e não substituem o JAR físico deste pack.
 - **Procedência:** modlist.txt física anexada e reconferida em 12/09/2026 + CurseForge oficial Iron's Lib: `irons_lib-1.21.1-2.1.0.jar` continua a release 1.21.1 mais recente; builds 2.1.0.x posteriores pertencem a Minecraft 26.1.2 + documentação oficial já auditada.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — Iron's Lib 1.21.1-2.1.0/JAR físico reconfirmado; 2.1.0 permanece a release NeoForge 1.21.1 mais recente localizada. Atributos RPG, Attribute Remapper, transmogs, statues/multiblocks, Apothic boundary, lifecycle, riscos e testes preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Iron's Lib 2.1.0. A linha NeoForge 1.21.1 avançou por 2.1.1 até 2.2.0; 2.2.0 introduz kinetic weapons, Soul Fire visuals e um novo Projectile Damage attribute, com impacto potencial sobre combate/animações/atributos do pack.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #341: JAR `irons_lib-1.21.1-2.1.0.jar`, mod id `irons_lib`, runtime `1.21.1-2.1.0`, SHA-1 `70fba64d12b6ff9553580e52101d989c89297797`.
@@ -71,3 +71,33 @@ Validar construction/registry, data load/reload, equip/unequip, modifier recalcu
 - **Documentação oficial:** atributos, Attribute Remapper, transmogs, statues e Patreon Integration.
 - **Limite:** source code exato da build 2.1.0 não foi localizado; classes/registries além dos publicamente documentados não foram inventados.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+## 15. Histórico upstream 2.1.0 → 2.2.0 — não instalado
+A authority física continua em **Iron's Lib 2.1.0**. Foram revisadas as duas releases posteriores publicadas para NeoForge 1.21.1.
+
+### 2.1.1 — 21/09/2026
+O changelog publicado registra:
+- **Improved Logging**;
+- **Optimized Memory**.
+
+Há também um **bug report público upstream** aberto no mesmo ciclo alegando que a build 2.1.1 teria sido publicada sem reobfuscation e poderia falhar no carregamento com `NoSuchFieldError: STRUCTURE_PROCESSOR`. Isso é tratado como relato upstream, não como reprodução local confirmada. Como a 2.2.0 já é posterior, não há razão documental para promover 2.1.1 isoladamente sem reproduzir/validar esse artefato.
+
+### 2.2.0 — 25/09/2026
+Adiciona um **Kinetic Weapon System** compartilhado:
+- charge attacks;
+- data components `kinetic_weapon`, `use_effects` e `attack_range`;
+- animações de spear;
+- client animation registry;
+- qualquer stack com `kinetic_weapon` pode carregar ao usar, sem exigir override específico do item.
+
+Também adiciona:
+- visual de **Soul Fire burning** via `SoulFireHelper`; a próxima queima pode usar aparência azul/soul fire e o estado visual é resetado por outro fire/burnout;
+- novo atributo **Projectile Damage**, aplicável genericamente a projéteis, mantendo **Arrow Damage** como atributo separado.
+
+Impacto no pack: Iron's Spells, Iron's Gems 'n Jewelry, Iron's Apothic, Spell Actionbar e vários addons consomem Iron's Lib; além disso, Epic Fight/Punchy/First-person Model/NotEnoughAnimations e o RPG Skill Tree tornam kinetic weapons/animations e o novo atributo surfaces de compatibilidade reais. Não mapear automaticamente `Projectile Damage` para `Arrow Damage` nem somar os dois sem contrato explícito.
+
+Gate de regressão: dedicated-server boot, kinetic charge/cancel/release, spear animations em primeira/terceira pessoa, data-component serialization, Soul Fire visual state, projectile damage de arrows e não-arrows, Apothic attributes/remapper, multiplayer sync e todos os consumers Iron's instalados.
+
+Fontes upstream: CurseForge Iron's Lib 2.1.1 e 2.2.0 para NeoForge 1.21.1; issue pública `iron431/Irons-Spells-n-Spellbooks#1270` usada apenas como evidência do relato sobre a 2.1.1.
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — Iron's Lib 1.21.1-2.1.0/JAR físico reconfirmado; 2.1.0 permanece a release NeoForge 1.21.1 mais recente localizada. Atributos RPG, Attribute Remapper, transmogs, statues/multiblocks, Apothic boundary, lifecycle, riscos e testes preservados.
