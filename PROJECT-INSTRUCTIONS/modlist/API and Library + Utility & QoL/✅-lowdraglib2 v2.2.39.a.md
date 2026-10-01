@@ -12,11 +12,11 @@
 - **Fonte:** https://github.com/Low-Drag-MC/LDLib2
 - **Função:** Framework/biblioteca para Modular UI, data binding, persistência/sincronização, RPC, node graphs, editores in-game, rendering e integrações de consumers.
 - **Dependências:** Runtime físico NeoForge 1.21.1. Bundle contém Taffy 1.1.4, Yoga 1.0.0 e Kotlin stdlib 2.4.20-RC3 como JarJar internos; integrações adicionais do source não são hard dependencies presumidas.
-- **Compatibilidade/Riscos:** Rewrite para 1.21+, não assumir compatibilidade drop-in com LDLib antiga. Riscos: API/ABI e schema drift, RPC authority leakage, duplicate plugins/listeners, graph persistence e JarJar skew.
+- **Compatibilidade/Riscos:** Rewrite para 1.21+, não assumir compatibilidade drop-in com LDLib antiga. Riscos: API/ABI e schema drift, RPC authority leakage, duplicate plugins/listeners, graph persistence e JarJar skew. Upstream 2.2.40/2.2.41 amplia diretamente editor/keymap e graph layout; consumers que persistem graphs ou interceptam input devem ser regressados.
 - **Sobreposição:** Infraestrutura, não sistema de gameplay. Pode compartilhar superfícies de UI/render/data com outras libraries, mas ownership funcional permanece nos consumers.
-- **Observações:** Release oficial 2.2.39.a continua atual para 1.21.1. O changelog 2.2.39 inclui correções de UI/gizmo/interação/testes e corrige JEI vazando para o POM publicado; os JarJar físicos do bundle permanecem Taffy 1.1.4, Yoga 1.0.0 e Kotlin stdlib 2.4.20-RC3.
-- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial LDLib2 file 8813684/listagem 1.21.1 confirmando 2.2.39.a como release NeoForge atual + source oficial branch 1.21 commit d30e86b56b2a31982063ef907a335d36371b0bc4 + JarJar físico do host.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — LowDragLib2 2.2.39.a/JAR físico reconfirmado; 2.2.39.a permanece a release NeoForge 1.21.1 mais recente localizada. JarJar Taffy 1.1.4, Yoga 1.0.0 e Kotlin stdlib 2.4.20-RC3 preservados como internos.
+- **Observações:** Runtime físico permanece 2.2.39.a. O upstream NeoForge 1.21.1 avançou depois por **2.2.40** e **2.2.41**; os JarJar físicos do bundle instalado permanecem Taffy 1.1.4, Yoga 1.0.0 e Kotlin stdlib 2.4.20-RC3.
+- **Procedência:** modlist.txt física reconferida + CurseForge oficial LDLib2 2.2.39.a/2.2.40/2.2.41 para NeoForge 1.21.1 + source oficial branch 1.21 + JarJar físico do host. A autoridade instalada continua 2.2.39.a.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece LowDragLib2 2.2.39.a. CurseForge publicou **2.2.40** em 12/09/2026 e **2.2.41** em 21/09/2026 para NeoForge 1.21.1; ambas foram revisadas e registradas abaixo.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #370: JAR `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`, mod id `ldlib2`, runtime `2.2.39.a`, SHA-1 `628c9cd7f63f217c554673925854800643948b6a`.
@@ -70,3 +70,35 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - source oficial branch `1.21`, commit `d30e86b…`: versão 2.2.39.a, MC 1.21.1, NeoForge 21.1.x e contratos públicos do framework;
 - README oficial do mesmo commit: Modular UI, persist/sync, graph toolkit, editor, rendering e plugin model.
 Não foi inferido quais consumers do pack utilizam cada API específica; isso exige auditoria das dependências/imports desses mods.
+
+## 15. Histórico upstream 2.2.39.a → 2.2.41 — não instalado
+A autoridade física continua em **LowDragLib2 2.2.39.a**. Existem duas releases posteriores na linha NeoForge 1.21.1.
+
+### 2.2.40 — 12/09/2026
+- adiciona framework configurável de **keymaps para o editor**;
+- permite chords rebindáveis;
+- adiciona **key contexts**;
+- adiciona uma página de settings para configuração desses atalhos.
+
+Impacto: consumers/editor tooling que interceptem teclado podem mudar comportamento de input mesmo sem alteração de gameplay. Rebind/context devem ser client-side e não disparar RPC/mutation duas vezes.
+
+### 2.2.41 — 21/09/2026
+- adiciona **auto layout** ao menu contextual de graphs;
+- algoritmos disponíveis: **layered, grid e force-directed**;
+- placemats podem ser organizados como uma única caixa ou de dentro para fora.
+
+Impacto: a 2.2.41 atua na organização/editor de graph, mas graphs são assets persistíveis em vários consumers. Auto-layout não deve alterar IDs, connections, variables, blackboards ou semântica de execução; somente geometria/layout visual quando aplicado.
+
+### Gate de promoção
+1. keybind default e rebind;
+2. conflito de chords entre contextos;
+3. salvar/reabrir settings de keymap;
+4. graph existente antes/depois de layered/grid/force-directed layout;
+5. placemats e nested/subgraphs;
+6. undo/redo após auto-layout;
+7. persistência sem alteração de node IDs/wires;
+8. RPC exatamente uma vez para atalhos que executem ações;
+9. UIs dos consumers atuais;
+10. dedicated-server boot e ausência de classloading de editor client-only.
+
+Fontes upstream: CurseForge files 8866144 (`2.2.40`) e 8940836 (`2.2.41`) para NeoForge 1.21.1.
