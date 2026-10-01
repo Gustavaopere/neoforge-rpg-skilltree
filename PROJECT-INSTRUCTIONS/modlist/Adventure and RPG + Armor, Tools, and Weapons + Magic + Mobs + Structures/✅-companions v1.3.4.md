@@ -14,12 +14,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/companions-mod
 - **Função:** Mod de conteúdo que adiciona criaturas domesticáveis chamadas companions, cada uma com habilidades próprias, além de mobs hostis, armas, boss e progressão/combate associados.
 - **Dependências:** NeoForge 1.21.1; KnightLib 2.0.0+ pela compatibilidade da 1.3.4. Pack físico usa KnightLib 2.0.1. JEI permanece recomendado para descoberta de recipes; nenhuma outra hard dependency foi promovida sem metadata explícita.
-- **Compatibilidade/Riscos:** Interage com tame/owner AI, summons, healing, combat cooldowns, target selection, boss/spawn, animação e KnightLib. Gates herdados: cooldown infinito, hostile imps, Dinamo e Puppet Cannon. 1.3.3 corrige Demon Flesh/JER; 1.3.4 adiciona KnightLib 2.0.0+ e tenta corrigir Mutated/Holy Teddy e Golden Allay atravessando terreno.
+- **Compatibilidade/Riscos:** Interage com tame/owner AI, summons, healing, combat cooldowns, target selection, boss/spawn, animação e KnightLib. Gates herdados: cooldown infinito, hostile imps, Dinamo e Puppet Cannon. 1.3.3 corrige Demon Flesh/JER; 1.3.4 adiciona KnightLib 2.0.0+ e tenta corrigir Mutated/Holy Teddy e Golden Allay atravessando terreno. Upstream 1.3.5 altera o Heal Book e cancela fall damage do Tamed Minion, exigindo regressão de healing/damage attribution.
 - **Sobreposição:** Compartilha eixos de pets/mobs/RPG com outros mods, mas suas entidades, abilities, boss, weapons e healing economy são provider-owned. Integrações devem evitar double damage/heal/summon settlement.
-- **Observações:** mod id companions; runtime 1.3.4. Pack usa KnightLib 2.0.1. A 1.3.4 é a build física atual e mantém os estados/ownership/healing/summons já documentados.
-- **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Companions! 1.3.4 NeoForge 1.21.1 + changelogs 1.3.2, 1.3.3 e 1.3.4 já auditados. Reconciliação final: JAR/runtime permanecem exatamente `companions-neoforge-1.21.1-1.3.4.jar` / `1.3.4`; sem divergência física.
+- **Observações:** mod id companions; runtime físico 1.3.4. Pack usa KnightLib 2.0.1. A 1.3.4 é a build física atual e mantém os estados/ownership/healing/summons já documentados. Upstream NeoForge 1.21.1 avançou para 1.3.5 em 24/09/2026; essa build não está instalada.
+- **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Companions! 1.3.4/1.3.5 NeoForge 1.21.1 + changelogs 1.3.2–1.3.5 revisados. Reconciliação final: JAR/runtime permanecem exatamente `companions-neoforge-1.21.1-1.3.4.jar` / `1.3.4`; 1.3.5 é somente atualização upstream disponível.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Companions! 1.3.2 foi reconfirmado fisicamente e reconstruído ao padrão técnico. A presença do conteúdo no pack não foi convertida em decisão automática de manter/remover.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #103 na numeração então registrada; posição física atual #104: `companions-neoforge-1.21.1-1.3.4.jar` / `1.3.4` conferidos contra a modlist então vigente; KnightLib 2.0.x, Demon Flesh/JER, fixes de entidades atravessando terreno e regressões anteriores preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.3.4. CurseForge publicou **1.3.5** para NeoForge 1.21.1 em 24/09/2026; o delta foi revisado integralmente e registrado abaixo.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -102,3 +102,16 @@ Owner IDs, current target, cooldown e summon references não podem ficar stale e
 > 🛡️ Boundary canônico: Companions! controla **entidades, ownership, AI, summons e abilities próprias**. Integrações externas devem observar esse state, não criar um segundo sistema de pet/combate concorrente.
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #103: `companions-neoforge-1.21.1-1.3.4.jar` / `1.3.4` conferidos contra a modlist atual; KnightLib 2.0.x, Demon Flesh/JER, fixes de entidades atravessando terreno e regressões anteriores preservados.
+
+## 16. Atualização upstream 1.3.5 — não instalada
+A autoridade física continua em **Companions! 1.3.4**. A release **1.3.5** para NeoForge 1.21.1 foi publicada em 24/09/2026; não há release intermediária entre 1.3.4 e 1.3.5 na linha aplicável.
+
+O changelog oficial contém dois deltas funcionais:
+- o **Heal Book** passa a curar corretamente mobs **tamed** e **passive**, e a causar dano corretamente em inimigos **undead**;
+- o **Tamed Minion companion** deixa de receber **fall damage**.
+
+Essas mudanças são relevantes para o pack porque alteram diretamente settlement de cura/dano e um caso de dano ambiental de companion. Uma integração externa de RPG/healing não deve aplicar cura adicional sobre o mesmo evento do Heal Book nem reintroduzir fall damage por listener genérico.
+
+Gate de promoção 1.3.4→1.3.5: Heal Book em companion domesticado, mob passivo e undead hostil; owner/target attribution; múltiplos alvos sem double-heal/double-damage; Tamed Minion em quedas de alturas variadas; death/respawn/relog; KnightLib 2.0.1; regressões herdadas de cooldown, Dinamo, Puppet Cannon e phasing de Teddy/Golden Allay.
+
+Fonte upstream: CurseForge Companions! file ID 8962932, release 1.3.5 para NeoForge 1.21.1.
