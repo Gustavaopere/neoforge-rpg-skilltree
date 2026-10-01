@@ -168,3 +168,30 @@ O catálogo de gameplay acima cruza a descrição oficial do Continued — que d
 - [Source original — AlexModGuy/AlexsCaves](https://github.com/AlexModGuy/AlexsCaves) — usado somente para conteúdo/ownership que o Continued declara preservar; não para assumir assinaturas internas NeoForge 1.21.1.
 - [Alex's Caves Wiki — Mobs](https://alexscaves.wiki.gg/wiki/Mobs) e páginas de bioma — fonte secundária para agrupamento de roster/estruturas e para a distinção Golden Frog=`minecraft:frog`.
 - `modlist.txt` física do projeto — autoridade para presença, order, filename, runtime, mixin config e SHA-1 do artefato instalado.
+
+## Preservação do snapshot histórico do Notion — runtime 1.0.9
+> **Nota de proveniência.** Os valores abaixo preservam o estado histórico da origem Notion antes da atualização física real para 1.0.10. Eles não substituem a authority atual: \`alexscaves-1.0.10-neoforge+1.21.1.jar\` / runtime \`1.0.10\`.
+
+### Propriedades históricas preservadas
+
+- **Arquivo JAR — valor histórico da origem:** alexscaves-1.0.9-neoforge+1.21.1.jar
+- **Atualização/Status — valor histórico da origem:** PADRÃO ALEX'S MOBS APLICADO EM 14/09/2026 — dossiê operacional ampliado: 43 mobs próprios + Golden Frog vanilla variant reconciliados, seis biomas, progressão Tablet→Codex→Map/Compendium, \`/acc\` admin/config, client/server, lifecycle, integrações e fingerprint físico.
+- **Histórico da decisão — valor histórico da origem:** 2026-09-06 — escolhida como implementação canônica após conferir a modlist atual e a release 1.0.9 para NeoForge 1.21.1. O projeto Continued é mantido ativamente e declara preservar o conteúdo original sem redesign.
+- **Observações — valor histórico da origem:** Continued declara 43 mobs próprios e \~350 blocos; a wiki original tem 44 páginas de mobs porque Golden Frog usa \`minecraft:frog\` e é variante vanilla, reconciliando a contagem. \`/acc menu\` expõe 39 settings em sete páginas e a superfície herdada tem \~200 opções; valores efetivos desta instância permanecem não auditados/fail-closed.
+- **Procedência — valor histórico da origem:** modlist.txt física do projeto consultada em 14/09/2026 + CurseForge/Modrinth oficiais Alex's Caves Continued 1.0.9 + documentação/source do Alex's Caves original usado somente para conteúdo que o Continued declara preservar sem alterações. Artefato instalado \`alexscaves-1.0.9-neoforge+1.21.1.jar\`, runtime \`1.0.9\`, SHA-1 \`64e4c99e9bac948731ffde5f6639401bdba47072\`, mixin \`alexscaves.mixins.json\`.
+
+### Trechos históricos preservados literalmente
+
+~~~text
+- JAR físico: \`alexscaves-1.0.9-neoforge+1.21.1.jar\`.
+- Runtime: \`1.0.9\`.
+- Presença/JAR/runtime vêm da modlist física de 595 top-level; builds upstream posteriores para outras versões não substituem essa autoridade.
+- JAR: \`alexscaves-1.0.9-neoforge+1.21.1.jar\`
+- Runtime: \`1.0.9\`
+- SHA-1: \`64e4c99e9bac948731ffde5f6639401bdba47072\`
+6. Se mobs/blocos forem usados em physics ships, testar explicitamente Sable/Aeronautics em vez de presumir cobertura do AeronauticsCompat.
+- [CurseForge oficial — Alex's Caves Continued](https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued) — autoridade para escopo do port, 43 mobs próprios, conteúdo preservado, CodxLib, Citadel embutido, \`/acc\` e client+server.
+- \`modlist.txt\` física do projeto — autoridade para presença, ordem, filename, runtime, mixin config e SHA-1 do artefato instalado.
+~~~
+
+> **Reconciliação:** qualquer referência acima a 1.0.9 como runtime/JAR instalado é histórica. A authority física atual deste dossiê permanece 1.0.10.
