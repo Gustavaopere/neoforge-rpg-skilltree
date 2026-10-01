@@ -23,7 +23,7 @@
 - **Observações:** mod id: apothic_attributes; runtime 2.10.1. A linha 2.10.x inclui sistema unificado de cooldown/cooldown_reduction e JEI exclusion zones da Attributes GUI. O corpo da página registra mudanças relevantes, boundaries e testes.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/source/changelog oficiais Apothic Attributes 2.10.1 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `ApothicAttributes-1.21.1-2.10.1.jar` / `2.10.1`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-attributes
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #34: `ApothicAttributes-1.21.1-2.10.1.jar` / `2.10.1` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.10.1. CurseForge publicou Apothic Attributes 2.11.0 para NeoForge 1.21.1 em 29/09/2026; o release corrige Overheal/absorption, Ancient Knowledge, tooltip crashes e reduz o teto de Protection Shred para 90%.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita com changelog 1.21 da versão instalada. A presença de outros mods de atributos não torna Apothic Attributes redundante: ele é dependência estrutural e provider do pipeline Apothic.
 - **Data da última decisão:** 2026-09-07
 
@@ -234,3 +234,22 @@ Fonte de modifiers/equipment slots quando a integração está presente.
 - Changelog oficial da linha 1.21.
 - CurseForge oficial do Apothic Attributes.
 - Modlist física do projeto — authority de JAR/runtime instalado.
+
+## 19. Atualização upstream 2.11.0 — não instalada
+A authority física continua em **Apothic Attributes 2.10.1**. A release **2.11.0** para NeoForge 1.21.1 foi publicada em 29/09/2026.
+
+Changelog oficial 2.11.0:
+- corrige a **absorption concedida por Overheal** sendo apagada ao receber dano ou quando o efeito Absorption é aplicado/expira; o upstream adicionou tracking auxiliar separado para preservar esse estado;
+- reduz o valor máximo de **Protection Shred para 90%**, antes 100%;
+- corrige o multiplicador de **Ancient Knowledge**, que estava off-by-one: 5x/9x/17x em vez de 4x/8x/16x;
+- corrige crash quando outro mod altera tooltips da tela de efeitos/potions;
+- desabilita o fake modifier de **Entity Interaction Range** quando o item não possui modifier real de interaction range;
+- atualiza traduções coreano, chinês, português brasileiro, russo e ucraniano.
+
+Impacto para este pack: Protection Shred, crit/damage pipeline, Overheal/absorption e attribute tooltip surfaces são diretamente relevantes porque há Apotheosis/Apothic, Iron's Apothic, Additional Attributes, Pufferfish's Attributes e perks próprios. A mudança do teto de shred não deve ser mascarada por scripts/config que assumam 100%.
+
+Gate de regressão: Overheal antes/depois de dano e efeito Absorption, Protection Shred próximo do cap, Ancient Knowledge nos níveis documentados, Attributes GUI/Curios, effect screen com outros mods de HUD/tooltips, Entity Interaction Range em itens com e sem modifier, multiplayer sync e save/restart.
+
+Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/apothic-attributes/files/9006294 ; https://github.com/Shadows-of-Fire/Apothic-Attributes/blob/1.21/changelog.md
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #34: `ApothicAttributes-1.21.1-2.10.1.jar` / `2.10.1` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
