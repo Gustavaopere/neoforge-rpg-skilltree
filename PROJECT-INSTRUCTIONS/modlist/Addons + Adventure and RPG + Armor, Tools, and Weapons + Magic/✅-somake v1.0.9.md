@@ -15,11 +15,11 @@
 - **Função:** Addon de Iron's Spells 'n Spellbooks com mais de 50 feitiços, Aqua School própria, elemental charges, equipamentos/armas e, em 1.0.9, sistema Red Soul e novos spells/progressão.
 - **Dependências:** Iron's Spells 'n Spellbooks é provider central e está presente em 3.16.3. Integrações publicadas relevantes incluem L_Ender's Cataclysm e Born in Chaos, ambos fisicamente presentes; outras addon schools só são paths ativos quando seus providers existem.
 - **Sobreposição:** Amplia Iron's Spells; não substitui seu mana/casting/attribute framework. Sobreposição com outros addons de spells deve ser avaliada por school/spell IDs, effects e balanceamento, não apenas tema.
-- **Compatibilidade/Riscos:** Spell/attribute API drift, charge duplication, school registration conflict, projectile/AoE double-hit, equipment modifier stacking, missing external-school IDs, grimoire/progression persistence, Red Soul lifecycle e combat-engine interaction.
-- **Observações:** JAR físico `somakespells-1.0.9-1.21.1.jar`, mod id `somakespells`, runtime 1.0.9. O antigo sufixo `-fix` pertencia ao filename 1.0.8 e não existe no JAR atual.
-- **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Somake 1.0.9 para NeoForge 1.21.1 + dossiê anterior 1.0.8 preservado. Nenhum teste runtime foi executado.
+- **Compatibilidade/Riscos:** Addon profundo de Iron's Spells com Red Soul, charges, equipment, optional integrations e muitos spell effects. Riscos: double damage/cast, mana/cooldown duplicado, attribute stacking, optional-mod classloading, projectile ownership e state persistente de Red Soul. O artefato upstream `1.0.9-fix` corrige precisamente attributes/config, optional integrations e Red Soul Lantern progression.
+- **Observações:** Runtime físico permanece `somakespells-1.0.9-1.21.1.jar` / 1.0.9. Depois dele, o autor publicou `somakespells-1.0.9-fix.jar` em 23/09/2026, ainda semanticamente 1.0.9, mas com correções adicionais; esse artefato não está instalado.
+- **Procedência:** modlist física atual + CurseForge oficial Somake 1.0.9 base e artefato posterior `1.0.9-fix` + histórico técnico já preservado. A autoridade instalada continua o JAR base `somakespells-1.0.9-1.21.1.jar`.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon
-- **Atualização/Status:** READITADO EM 17/09/2026 — runtime físico atualizado de `somakespells-1.0.8-1.21.1-fix.jar` / 1.0.8 para `somakespells-1.0.9-1.21.1.jar` / 1.0.9. Deltas oficiais 1.0.9 incorporados: Red Soul, novos spells/items, ajustes de Aqua/Symmetry/equipment e compatibilidade opcional.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Somake 1.0.9 base. O artefato posterior **`somakespells-1.0.9-fix.jar`** foi revisado integralmente e registrado abaixo sem alterar a versão física.
 - **Histórico da decisão:**
 - **Data da última decisão:**
 
@@ -162,3 +162,22 @@ Nenhum teste de casting, Red Soul, charges, equipment ou integrations foi execut
 - [ ] Kill attribution de Red Soul não duplica em multiplayer.
 - [ ] Novos spells 1.0.9 limpam effects após death/relog.
 - [ ] Optional-mod fallbacks não quebram registro quando Legendary Monsters/Cataclysm/Born in Chaos estiverem ausentes ou presentes.
+
+
+## 24. Artefato upstream 1.0.9-fix — não instalado
+A autoridade física continua em **`somakespells-1.0.9-1.21.1.jar`**. Em 23/09/2026 foi publicado um segundo artefato para a mesma versão semântica, **`somakespells-1.0.9-fix.jar`**.
+
+Correções oficiais do fix:
+- corrige **attributes configurados** de staffs, spellbooks, weapons e armor que não eram aplicados/somados corretamente;
+- corrige staff attributes no **off-hand** após alteração por config;
+- corrige possível crash ao atacar **Missioners de Born in Chaos**;
+- corrige incompatibilidades quando **Legendary Monsters, Magic From the East ou Born in Chaos** não estão instalados;
+- corrige a progressão da **Red Soul Lantern** aceitando spells incorretos;
+- corrige compatibilidade recente com **L_Ender's Cataclysm**;
+- inclui pequenos fixes de **JEI e visuais**.
+
+Impacto para o pack: este artefato toca attributes, optional-mod gating e progressão Red Soul. A promoção deve verificar que modifiers configurados são aplicados exatamente uma vez, off-hand não duplica atributos e ausência de mods opcionais não altera bootstrap/registry.
+
+Gate de promoção: staffs/spellbooks/weapons/armor com config default e alterada; main/off-hand; Red Soul Lantern com spells válidos e inválidos; Born in Chaos Missioner combat; Cataclysm integration; boot com optional providers presentes/ausentes; JEI; relog/restart; ausência de duplicate attribute modifiers.
+
+Fonte upstream: CurseForge file ID 8952876, `somakespells-1.0.9-fix.jar`, NeoForge 1.21.1.
