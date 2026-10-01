@@ -16,7 +16,7 @@
 - **Sobreposição:** Não adiciona mobs novos nem substitui um overhaul geral de IA. Intersecta apenas a navigation/mobilidade de spiders; conflitos devem ser reproduzidos por entidade/path específico.
 - **Observações:** Runtime 3.0.1, file ID 7445048. 3.0.0 migrou para AWC API; 3.0.1 corrige especificamente Fabric. Mixin físico `nyfsspiders.mixins.json`.
 - **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial 3.0.1/lineage 3.0.0 + metadata física do JarJar AWC API 1.0.2.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Nyf's Spiders 3.0.1. CurseForge publicou a build 3.0.2 para NeoForge 1.21.1 em 29/09/2026; o changelog compartilhado 3.0.2 corrige edge-sticking, suaviza climbing e atualiza Advanced Wall Climber API.
+- **Atualização/Status:** GITHUB-ONLY REVALIDADO EM 01/10/2026 — catálogo e branch oficial `Nyfaria/NyfsSpiders@1.21` estão ambos em 3.0.1. Nenhuma versão 3.0.2 é verificável no GitHub oficial consultado; o registro externo anterior foi removido desta atualização.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-10
 
@@ -119,20 +119,17 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Histórico oficial 2.1.1: correção de crash quando outros mods alteravam spider navigation cedo no lifecycle.
 - **Limite:** algoritmo interno, cobertura de mobs modded e cada superfície escalável não foram inventados sem source/JAR exato.
 
-## 15. Atualização upstream 3.0.2 — não instalada
-A versão física continua **3.0.1**. O índice atual do CurseForge lista **Nyf's Spiders-1.21.1-[NeoForge]-3.0.2** em 29/09/2026.
+## 15. Revalidação GitHub-only — nenhuma atualização além de 3.0.1 confirmada
+O catálogo atual registra **Nyf's Spiders 3.0.1**. No repositório oficial `Nyfaria/NyfsSpiders`, branch `1.21`:
 
-O changelog 3.0.2 publicado pelo próprio projeto para a linha da versão registra:
-- spiders deixam de ficar **presas em bordas de blocos**;
-- climbing em **paredes e tetos** fica mais suave;
-- atualização da **Advanced Wall Climber API**.
+- `gradle.properties` declara **version=3.0.1** e Minecraft 1.21.1;
+- `Common/changelog.md` termina em **3.0.1 — Fix for Fabric**;
+- a entrada imediatamente anterior é **3.0.0 — Now uses Advanced Wall Climber API**;
+- não há release/tag/changelog GitHub oficial 3.0.2 disponível nessa linha na consulta atual.
 
-O source público da branch `1.21` ainda expõe `version=3.0.1` no `gradle.properties` no snapshot consultado, enquanto o CurseForge já distribui 3.0.2 para 1.21.1. Portanto, a existência da release 3.0.2 é authority de distribuição; detalhes internos que não estejam no changelog público permanecem fail-closed até o source correspondente ficar alinhado.
+Por isso, sob a regra **usar somente GitHub**, 3.0.2 não é tratada como versão upstream confirmada e nenhum comportamento atribuído a ela é mantido como fato verificado.
 
-Impacto no pack: Nyf's Spiders altera navigation/render orientation e já embute AWC API. O update de AWC API pode afetar compatibilidade com qualquer outro consumer de wall-climbing; não criar top-level AWC duplicado sem verificar JarJar/metadata da 3.0.2.
+O regression gate permanece: spiders em quinas, transição floor→wall→ceiling, pathfinding em geometrias estreitas/modded, chunk unload/reload, multiplayer e coexistência com a Advanced Wall Climber API embutida.
 
-Gate de regressão: spiders em quinas, transição floor→wall→ceiling, pathfinding em geometrias estreitas/modded, chunk unload/reload, multiplayer, performance com muitos spiders e confirmação de que AWC continua embedded sem duplicação de classe/mod id.
-
-Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/nyfs-spiders/files/all ; changelog 3.0.2 publicado em https://www.curseforge.com/minecraft/mc-mods/nyfs-spiders/files/9013691 ; https://github.com/Nyfaria/NyfsSpiders/tree/1.21
-
+**Fonte GitHub upstream:** `Nyfaria/NyfsSpiders`, branch `1.21`, `gradle.properties` e `Common/changelog.md`.
 > **Atualização/Status — valor histórico preservado do Notion:** REVALIDADO EM 25/09/2026 — Nyf's Spiders 3.0.1/JAR físico reconfirmado; AWC API 1.0.2 permanece embedded via JarJar, não top-level.
