@@ -19,7 +19,7 @@
 - **Observações:** JAR físico `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar`, runtime 0.2.0. Exact changelog: linked storage added to SB Create integration.
 - **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge oficial Sophisticated Backpacks Create Integration 0.2.0.168 + providers físicos Create 6.0.10 / Backpacks 3.26.3 / Core 1.5.1.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-create-integration/files/8833909
-- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — JAR/runtime 0.2.0 mantidos; provider Sophisticated Backpacks atualizado no snapshot físico para 3.26.3.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 0.2.0; CurseForge publicou 0.2.1.171 para NeoForge 1.21.1 em 27/09/2026, atualizando a integração de linked storage para o Core mais recente.
 - **Histórico da decisão:** Mantido para integração Sophisticated Backpacks ↔ Create. Em 11/09/2026 a ficha foi corrigida para o runtime físico 0.2.0.168; referências antigas a 0.1.8 são históricas e não descrevem mais a build instalada.
 - **Data da última decisão:** 2026-08-22
 
@@ -97,3 +97,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Modlist física atual: integration 0.2.0.168 + providers exatos.
 - CurseForge oficial: full-featured integration com moving contraptions e exact delta linked storage.
 - **Limite:** detalhes internos de cada upgrade não foram presumidos sem teste/source; o contrato funcional foi documentado no nível publicado pelo projeto.
+
+## 17. Atualização upstream 0.2.1.171 — não instalada
+O pack continua em **0.2.0.168 / runtime 0.2.0**. A release **0.2.1.171** para NeoForge 1.21.1 foi publicada em 27/09/2026.
+
+O changelog contém uma mudança funcional: **updated linked storage integration for latest Core**.
+
+Isso é relevante porque linked storage atravessa estado de inventário/backpack e APIs do Sophisticated Core. Uma promoção deve ser coordenada com a versão de **Sophisticated Core** instalada/atualizada, evitando misturar uma bridge nova com contratos antigos do Core.
+
+Gate de regressão: backpack em contraption, linked storage, unload/reload da contraption, transferência de itens, save/restart e upgrades que consultam storage compartilhado.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-create-integration/files/8985949
