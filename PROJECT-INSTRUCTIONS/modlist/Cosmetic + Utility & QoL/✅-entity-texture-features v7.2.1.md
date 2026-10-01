@@ -12,11 +12,11 @@
 - **Dependências:** Cliente NeoForge 1.21.1. Runtime local integra com Entity Model Features 3.3.5 e Entity Sound Features 0.8.2; Iris 1.8.14-beta.1 e Sodium 0.8.13 estão presentes e são superfícies de render/shader relevantes.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Riscos em resource-pack precedence, shader emissives/PBR, random property state, player-skin transparency/cosmetics, render-layer overrides e modded entities com renderers não vanilla. EMF é compatível e usa ETF; OptiFine/OptiFabric não devem compor o mesmo stack. Shader support varia por shader.
+- **Compatibilidade/Riscos:** Riscos em resource-pack precedence, shader emissives/PBR, random property state, player-skin transparency/cosmetics, render-layer overrides e modded entities com renderers não vanilla. EMF é compatível e usa ETF; OptiFine/OptiFabric não devem compor o mesmo stack. Shader support varia por shader. Upstream 7.2.3 corrige state leakage quando mixins de terceiros cancelam renders; 7.2.4 adiciona properties dependentes de shader/resource pack, ampliando o risco de cache stale após reload/toggle.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/entity-texture-features-fabric
-- **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `entity_texture_features-7.2.1-1.21-neoforge.jar`, mod id `entity_texture_features`, runtime 7.2.1 e SHA-1 `908d09263709193b918fdc9ca0d79c9d90c4a531`. CurseForge oficial revalidado em 21/09/2026 mantém 7.2.1 para 1.21.1; o changelog pontual de crash em 26.1 não é projetado sobre o runtime 1.21.1.
-- **Observações:** Runtime físico 7.2.1. A publicação oficial 7.2.1 continua sendo a release aplicável a 1.21.1; seu changelog público pontual menciona correção de crash em 26.1. Esse fix não é tratado como mudança comportamental comprovada do artefato 1.21.1. Config oficial: `config/entity_texture_features.json`; EMF permanece owner de CEM/modelos.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #255: `entity_texture_features-7.2.1-1.21-neoforge.jar` / runtime `7.2.1` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. CurseForge oficial continua com 7.2.1 como release aplicável a NeoForge 1.21.1.
+- **Procedência:** modlist física atual confirma `entity_texture_features-7.2.1-1.21-neoforge.jar`, mod id `entity_texture_features`, runtime 7.2.1 e SHA-1 `908d09263709193b918fdc9ca0d79c9d90c4a531`. CurseForge + `Traben-0/Entity_Texture_Features` `CHANGELOG.MD` foram revisados para **7.2.2 → 7.2.3 → 7.2.4**; a autoridade física permanece 7.2.1.
+- **Observações:** Runtime físico 7.2.1. Upstream NeoForge/Forge 1.21.1 avançou por 7.2.2, 7.2.3 e **7.2.4**. Mudanças exclusivas de outras versões de Minecraft, como o port/update para 26.3, não são projetadas como comportamento do artefato 1.21.1.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece ETF 7.2.1. O histórico **7.2.2 → 7.2.3 → 7.2.4** foi revisado integralmente; 7.2.4 é a latest publicada para a linha 1.21.1.
 - **Decisão:** Sem decisão
 - **Sobreposição:** ETF é authority da variação/textura client-side. EMF controla CEM/modelos e ESF sons. Resource packs e shaders podem sobrepor apresentação; o entity provider continua authority do state gameplay.
 - **Data da última decisão:** 2026-08-26
@@ -103,3 +103,29 @@ Random texture selection pode depender de dados disponíveis no cliente, mas nã
 - CurseForge/GitHub oficiais ETF: random/custom/emissive textures, player skin features, blinking, config e compatibilities;
 - RANDOM_GUIDE/changelog oficial: properties, directories, render overrides e update semantics.
 > **Boundary canônico:** ETF controla **textura/apresentação client-side**. Modelos pertencem ao EMF; sons ao ESF; gameplay permanece no entity provider.
+
+
+## 19. Histórico upstream 7.2.2 → 7.2.4 — não instalado
+A autoridade física continua em **ETF 7.2.1**. A linha 1.21.1 recebeu três releases posteriores.
+
+### 7.2.2
+- reintroduz o campo `id` em todas as leituras de property baseadas em **NBT**; o changelog observa que esse campo normalmente não existe no NBT de entidade já carregada;
+- corrige captures que quebravam **EMF texture overrides** em versões Minecraft 1.21.9–26.1; esse recorte não é retroprojetado como bug confirmado do runtime 1.21.1;
+- inclui manutenção de port para 26.3, sem efeito funcional atribuído ao artefato 1.21.1.
+
+### 7.2.3
+- corrige vários casos em que **mixins de terceiros cancelando um render** deixavam estado que corrompia renders subsequentes;
+- corrige localization francesa.
+
+O primeiro ponto é material neste pack: ETF/EMF compartilham uma pipeline de render com muitos mods. Cancelamento por outro mod não deve contaminar a próxima entidade, textura, emissive layer ou model render.
+
+### 7.2.4
+- corrige problema de **shoulder parrots** que também afetava EMF;
+- adiciona a property **`usingShaders`**, permitindo variar texturas ETF e modelos EMF conforme shaders do Iris estejam ativos;
+- adiciona a property **`resourcepack`**, permitindo variar texturas ETF e modelos EMF conforme resource packs carregados.
+
+Impacto: `usingShaders` e `resourcepack` tornam seleção de asset dependente do estado visual carregado. Toggle/reload de shader ou resource pack precisa invalidar/reavaliar caches sem alterar entity state no servidor.
+
+Gate de promoção 7.2.1→7.2.4: NBT property `id`; render cancelado por terceiro seguido por outra entidade; shoulder parrot; EMF overrides; `usingShaders` com Iris on/off; `resourcepack` com troca de packs; resource reload; reconnect; emissives/blinking/random variants sem state leakage.
+
+Fonte upstream: `Traben-0/Entity_Texture_Features`, `CHANGELOG.MD` oficial; CurseForge confirma 7.2.2, 7.2.3 e 7.2.4 para 1.21.1.
