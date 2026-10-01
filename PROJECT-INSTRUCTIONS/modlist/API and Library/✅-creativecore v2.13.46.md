@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/creativecore
 - **Procedência:** modlist física atual de 20/09/2026 + runtime `creativecore` 2.13.46 + CurseForge oficial: 2.13.45 Release NeoForge 1.21.1 de 10/09/2026 e 2.13.46 Release NeoForge 1.21.1 de 11/09/2026. A modlist permanece authority da versão instalada.
 - **Observações:** JAR físico `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar`, mod id `creativecore`, runtime 2.13.46. A sequência instalada agora incorpora 2.13.45 (ChunkLayerMap index method; VecOrigin/partialTick client) e 2.13.46 (fixes de empty box list em item rendering, animation rotations como radians e item-box offset held/in-ground).
-- **Atualização/Status:** REATUALIZADO EM 20/09/2026 — runtime físico CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar / 2.13.46 confirmado. A build instalada é a latest Release NeoForge 1.21.1 de 11/09/2026. O delta 2.13.45 adiciona index method ao ChunkLayerMap e reworka VecOrigin para melhor suporte a partialTick no client; 2.13.46 corrige empty-box item rendering, rotation values de animation tratados como radians e item-box offset held/in-ground.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.13.46. CurseForge avançou a linha NeoForge 1.21.1 por 2.13.47 até 2.13.48; o fix de 2.13.47 para origins como Sable é diretamente relevante ao pack.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. CreativeCore 2.13.44 havia sido reconfirmado em 08/09/2026; a modlist física atual de 20/09/2026 confirma a atualização instalada para 2.13.46. A presença continua técnica/dependencial e não foi convertida em decisão curatorial.
 - **Sobreposição:** Core específica da CreativeMD; coexistência com outras GUI/config/network/render libraries não implica redundância binária. Consumers compilam contra contratos próprios.
@@ -88,3 +88,23 @@ A documentação pública confirma as superfícies gerais da core library e o ch
 - changelog 2.13.44 preservado como lineage: rework de block/item models e fix de multiple filters;
 - LittleTiles/LittleFrames citados explicitamente pelo upstream como afetados pela linha anterior.
 > 🔧 Boundary canônico: CreativeCore fornece **infraestrutura comum**; cada consumer permanece authority de seu conteúdo e gameplay.
+
+## 21. Histórico upstream 2.13.46 → 2.13.48 — não instalado
+A authority física continua em **CreativeCore 2.13.46**. Foram revisadas as releases públicas posteriores para NeoForge 1.21.1 até a mais recente localizada no CurseForge em 01/10/2026.
+
+### 2.13.47 — 22/09/2026
+- adiciona sistema para garantir que **child origins sejam atualizadas quando a parent origin muda**;
+- corrige `center` com origins como **Sable**, que podia gerar **bounding boxes muito grandes**.
+
+Esse segundo fix é material para este modpack: Sable 2.0.5 está fisicamente instalado e CreativeCore já oferece suporte a origins/voxel shapes transformadas. Portanto, a atualização deve ser testada em ships/sublevels, não tratada como simples library bump.
+
+### 2.13.48 — 22/09/2026
+- adiciona `onItemToos` ao CreativeLoader, conforme grafia do changelog upstream.
+
+O source da branch 1.21 contém commits posteriores 2.13.49/2.13.50, mas eles **não foram tratados aqui como releases CurseForge 1.21.1** porque a comparação pedida usa a publicação atual do CurseForge como teto de promoção.
+
+Gate de regressão: Sable parent/child origins, bounding boxes em moving structures, LittleTiles/LittleFrames/AmbientSounds consumers, item rendering, rotations/animations, save/reload e client/dedicated-server boot.
+
+Fontes upstream: CurseForge CreativeCore 2.13.47/2.13.48 para NeoForge 1.21.1; `CreativeMD/CreativeCore` branch `1.21`, `changelog.txt`.
+
+> **Atualização/Status — valor histórico preservado do Notion:** REATUALIZADO EM 20/09/2026 — runtime físico CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar / 2.13.46 confirmado. A build instalada é a latest Release NeoForge 1.21.1 de 11/09/2026. O delta 2.13.45 adiciona index method ao ChunkLayerMap e reworka VecOrigin para melhor suporte a partialTick no client; 2.13.46 corrige empty-box item rendering, rotation values de animation tratados como radians e item-box offset held/in-ground.
