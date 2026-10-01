@@ -12,11 +12,11 @@
 - **Dependências:** Create + Structurize/MineColonies. Build 2.0.6 é Client & Server para NeoForge 1.21.1; o mod continua limitado ao bridge de blueprint/construção e não adiciona citizen train travel nem workers operando máquinas Create.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Atua na interpretação/construção de blueprints: material requirements, rotação/mirror, rail geometry, belts, bogeys, deployers e stations. Bridges similares podem disputar o mesmo placement. O upstream declara train signals ainda problemáticos e explicitamente não oferece citizen train travel/Create-machine worker.
+- **Compatibilidade/Riscos:** Atua na interpretação/construção de blueprints: material requirements, rotação/mirror, rail geometry, belts, bogeys, deployers, stations e multiblocks Create. Bridges similares podem disputar o mesmo placement. Upstream 2.0.7 corrige Item Vault durante construção e conversão de schematics de local packs; train signals continuam boundary de regressão.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/createcolonies
-- **Procedência:** modlist.txt física atual de 11/09/2026 — 595 entradas totais incluindo NeoForge modloader + runtime `createcolonies` 2.0.6 + CurseForge oficial revalidado em 12/09/2026; `CreateColonies-1.21.1-2.0.6.jar` de 13/07/2026 continua a release NeoForge 1.21.1 mais recente. O filename físico simplificado `createcolonies-2.0.6.jar` permanece authority local.
-- **Observações:** JAR físico `createcolonies-2.0.6.jar`; runtime 2.0.6. Publicação oficial usa filename `CreateColonies-1.21.1-2.0.6.jar`; a diferença de nome do arquivo empacotado é preservada pela autoridade física. Features oficiais: repairs Rails/Belts/Bogeys/Deployers/Train Stations, clipboard↔Builder's Hut e Schematic Workbench bidirecional.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #178: createcolonies-2.0.6.jar / runtime 2.0.6 reconfirmados como latest Release NeoForge 1.21.1; blueprint requirements/placement, rail/belt/bogey/deployer/station repairs, clipboard interoperability e schematic↔blueprint conversion permanecem atuais.
+- **Procedência:** modlist física atual + CurseForge oficial CreateColonies 2.0.6/2.0.7. O filename físico simplificado `createcolonies-2.0.6.jar` permanece authority local; a publicação 2.0.7 usa `createcolonies-2.0.7.jar`.
+- **Observações:** JAR físico `createcolonies-2.0.6.jar`; runtime 2.0.6. Upstream publicou **2.0.7** para NeoForge 1.21.1 em 23/09/2026; ela não está instalada.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — CreateColonies físico permanece 2.0.6. A release **2.0.7** foi revisada integralmente e está registrada abaixo.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, CreateColonies 2.0.6 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. A utilidade do bridge não foi convertida automaticamente em decisão curatorial.
 - **Sobreposição:** Comparar com outros bridges Create↔MineColonies somente por feature concreta. CreateColonies owns repairs de blueprint/requirements e suas ferramentas de conversão; não é um sistema de logística completa ou citizen automation.
@@ -79,3 +79,17 @@ Validar blueprint load, rotation/mirror, builder restart, chunk unload, server r
 - documentação oficial: Rails, Belts, Bogeys, Deployers, Train Stations, clipboard e Schematic Workbench;
 - upstream lista explicitamente citizens-on-trains, Create-machine citizens e train-signal placement como não implementados/problema conhecido.
 > 🔒 Boundary canônico: **CreateColonies traduz requirements/placement e formatos; Create e MineColonies/Structurize continuam donos do state final e do processo de construção**.
+
+
+## 13. Atualização upstream 2.0.7 — não instalada
+A autoridade física continua em **CreateColonies 2.0.6**. A release **2.0.7** foi publicada em 23/09/2026.
+
+Patch changes:
+- corrige o **Item Vault** para não crashar o jogo e formar corretamente seu multiblock quando construído por blueprint;
+- corrige o **Schematic Workbench** para permitir converter uma schematic existente em **local pack** para uma Create schematic.
+
+Impacto: ambos os fixes atingem o core da bridge Structurize↔Create. Item Vault precisa ser construído com block states/multiblock assembly válidos e sem consumo duplicado. Local-pack conversion precisa preservar conteúdo/transform e não criar arquivo parcialmente convertido.
+
+Gate de promoção 2.0.6→2.0.7: Item Vault 1×/multiblock em blueprint, rotation/mirror, builder restart, chunk unload, local-pack schematic→Create schematic, clipboard/Builder's Hut, rails/belts/bogeys/deployers/stations e known train-signal regressions.
+
+Fonte upstream: CurseForge file ID 8956260, `createcolonies-2.0.7.jar`.
