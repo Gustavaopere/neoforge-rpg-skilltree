@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/jei/files/all?version=1.21.1
 - **Função:** Infraestrutura central de visualização e indexação de itens/ingredientes, recipes e usos, com busca/bookmarks e API de plugins usada por numerosos addons de informação/compatibilidade do pack.
 - **Dependências:** NeoForge 1.21.1; pack físico usa NeoForge 21.1.250. O pack contém múltiplas integrações/plugins JEI, portanto updates da linha Beta devem ser testados em conjunto.
-- **Compatibilidade/Riscos:** Build física 19.56.0.440 é Beta oficial. Riscos: JEI plugin API drift, recipe/ingredient reload mismatch, bookmark/search UI state, plugins compilados contra builds anteriores, client/server divergence e atualização Beta isolada. 19.56.0.441 existe upstream, mas não está instalada.
+- **Compatibilidade/Riscos:** Build física 19.56.0.440 é Beta oficial. Riscos: JEI plugin API drift, recipe/ingredient reload mismatch, bookmark/search UI state, plugins compilados contra builds anteriores, client/server divergence e atualização Beta isolada. Upstream avançou até 19.57.0.450 com MezzConfig GUI integration, bookmark/focus fixes, tooltip lazy caching, proxy refresh e outras mudanças de UI/config.
 - **Sobreposição:** Pode coexistir com viewers alternativos em alguns ambientes, mas este pack possui vários plugins especificamente JEI. Não substituir por EMI/REI sem auditorar todo o dependency/plugin graph e a paridade de recipes/categories.
-- **Observações:** Runtime físico 19.56.0.440. Build 19.56.0.441 Beta foi publicada em 16/09/2026 e é apenas update disponível. Nenhum changelog específico da .440 foi localizado nesta auditoria.
-- **Procedência:** modlist física de 17/09/2026 + listagem oficial JEI/CurseForge para 19.56.0.440 e 19.56.0.441; sem atribuição de fixes específicos à .440 sem changelog.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — JEI atualizado documentalmente para o runtime físico 19.56.0.440 / NeoForge 21.1.250; canal Beta preservado; 19.56.0.441 registrada apenas como update disponível não instalado.
+- **Observações:** Runtime físico 19.56.0.440. A sequência publicada depois é **19.56.0.441 → 19.57.0.444 → .445 → .446 → .447 → .448 → .449 → .450**; não há builds públicas .442/.443 na lista 1.21.1. A .450 é a latest NeoForge 1.21.1 em 29/09/2026.
+- **Procedência:** modlist física atual + CurseForge/Modrinth oficiais JEI 19.56.0.441 e 19.57.0.444–450 + source `mezz/JustEnoughItems` branch 1.21.1. A autoridade instalada permanece 19.56.0.440.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — JEI físico permanece 19.56.0.440 / NeoForge 21.1.250. Todas as builds publicadas posteriores até **19.57.0.450** foram enumeradas e os deltas materiais registrados abaixo.
 - **Histórico da decisão:** 2026-09-06 — presença do JEI aprovada; Manter. Snapshot da época usava 19.53.0.425 Beta e registrava 19.51.0.418 como stable. 2026-09-10 — modlist física atualizada para 19.53.0.426; release oficial Beta confirmada e pesquisa revalidada contra o source line 19.53.0/NeoForge 21.1.248. Decisão Manter preservada; nenhum downgrade/troca física foi executado.
 - **Data da última decisão:** 2026-09-06
 
@@ -81,3 +81,55 @@ A build **19.56.0.441** é numericamente posterior e oficial, porém não está 
 - **Distribuição oficial:** 19.56.0.440 Beta para NeoForge 1.21.1; 19.56.0.441 Beta foi publicada depois e não está instalada.
 - **Limite:** changelog específico da .440 não foi localizado; não foram inventadas diferenças funcionais.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+
+## 17. Histórico upstream 19.56.0.441 → 19.57.0.450 — não instalado
+A autoridade física continua em **JEI 19.56.0.440**. Não existem builds públicas 1.21.1 `.442` ou `.443` na sequência consultada.
+
+### 19.56.0.441 — 16/09/2026
+- adiciona damage-bar ingredients ao debug plugin;
+- corrige item decorations renderizando **atrás de tooltips** (#4479);
+- corrige crash de **client config registration durante datagen** (#4491).
+
+### 19.57.0.444 — 20/09/2026
+- atualiza MezzConfig/MezzConfig GUI e adiciona integração opcional com a GUI;
+- mostra key mappings, runtime toggles e sorting orders na config screen;
+- adiciona controles combinados de grid alignment;
+- lê mod icons da loader metadata;
+- passa a rastrear plugins que registram ingredient types;
+- compartilha controles entre ingredient/bookmark lists;
+- atualiza tooling/development dependencies e ForgeGradle 7.
+
+### 19.57.0.445 — 20/09/2026
+Mudanças materiais publicadas incluem:
+- corrige typing da **search focus key**;
+- corrige traduções de bookmark-output config e **legacy config migration**;
+- corrige controles JEI escurecidos na recipe screen;
+- mantém paths de configuração de Realms estáveis;
+- prepara/cacha tooltip slot candidates de modo **lazy conforme ficam visíveis**, reduzindo trabalho de UIs grandes;
+- prioriza input no transfer de recipe bookmark (#4490);
+- migra assets de UI para o GUI atlas do Minecraft;
+- preserva ordem de focused ingredients e corrige recipes focus-linked escondidas;
+- adiciona recipes de **fireworks**;
+- atualiza recipes após **proxy server switch** (#4478).
+
+### 19.57.0.446 — 21/09/2026
+- declara metadata compatível para **MezzConfigGui opcional**;
+- atualiza release notifier tooling;
+- corrige **drag de bookmarks entre páginas** (#4193/#4493).
+
+### 19.57.0.447 — 22/09/2026
+- passa a **sugerir MezzConfig GUI** para configuração in-game.
+
+### 19.57.0.448 e 19.57.0.449 — 24/09/2026
+As duas builds são publicadas na linha 1.21.1. O source/release lineage entre elas é predominantemente tooling de publicação: update do Jenkins release notifier para 0.3.0 e depois **0.3.1**. Não projeto isso como mudança de recipe/gameplay. A .449 registra explicitamente o notifier 0.3.1.
+
+### 19.57.0.450 — 29/09/2026
+A alteração de source que leva à .450 corrige **abertura da MezzConfig GUI no Fabric sem Mod Menu**. Como a build NeoForge recebe o mesmo número, ela continua sendo o teto distribuído para 1.21.1, mas esse fix específico é platform-scoped e não é tratado como regressão NeoForge comprovada.
+
+### Impacto para o pack
+O salto 19.56.0.440→19.57.0.450 é principalmente UI/config/index lifecycle, mas JEI tem grande fan-out de plugins. Os fixes de proxy refresh, focus/bookmarks e lazy tooltip preparation são particularmente relevantes em modpack grande. A integração MezzConfigGui precisa coexistir com MezzConfig 0.5.9+ já documentado sem criar duas authorities de config.
+
+Gate de promoção: client + dedicated server; todos os plugins JEI principais; search focus key; bookmark drag/transfer e várias páginas; legacy config migration; MezzConfigGui presente/ausente; recipe focus order; proxy/reconnect recipe refresh; `/reload`; KubeJS/datapacks; large-tooltip stress; fireworks recipes; GUI/resource reload.
+
+Fontes upstream: CurseForge 19.56.0.441 e file list 19.57.0.444–450; Modrinth release notes 19.57.0.444–449; source `mezz/JustEnoughItems` branch 1.21.1.
