@@ -16,7 +16,7 @@
 - **Sobreposição:** Compartilha presentation layer com Epic Fight, First Person Model, CPM, Punchy e animation APIs, mas não é equivalente a esses sistemas. Conflitos devem ser tratados por pose/feature específica.
 - **Observações:** Runtime 1.12.4, file ID 8274908, Release NeoForge 1.21.1 de 18/06/2026. Embedded: TRansition 1.0.21 + TRender 1.0.15. Não altera authority server-side de gameplay.
 - **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial confirmando `notenoughanimations-neoforge-1.12.4-mc1.21.1.jar` para NeoForge 1.21.1 + metadata física dos embedded TRansition 1.0.21/TRender 1.0.15.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — NotEnoughAnimations 1.12.4/JAR físico reconfirmado; 1.12.4 permanece a release NeoForge aplicável a Minecraft 1.21.1 mais recente localizada. TRansition 1.0.21 e TRender 1.0.15 permanecem embedded, não top-level.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.12.4; CurseForge publicou 1.12.5 e o hotfix 1.12.6 para NeoForge 1.21.1 em 19/09/2026.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-26
 
@@ -134,3 +134,18 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial: project 433760, file ID 8274908, Release NeoForge 1.21.1 de 18/06/2026, Environment Client.
 - Documentação oficial: eating/drinking, maps, shield, offhand bow/crossbow, boats, horse reins, compass/clock e config individual.
 - **Limite:** nenhuma animação é tratada como authority de gameplay; transforms/classes internas não foram inventados sem necessidade.
+
+## 18. Atualizações upstream 1.12.5 e 1.12.6 — não instaladas
+A autoridade física continua em **1.12.4**. Para NeoForge 1.21.1, o upstream publicou **1.12.5** e, no mesmo dia, **1.12.6**.
+
+### 1.12.5
+- resolve problemas na matemática/física de lanternas;
+- corrige spear/trident sendo ocultados quando uma crossbow carregada está na offhand;
+- inclui atualização de localização `uk_ua`; mudanças de suporte a versões 26.x não alteram o runtime 1.21.1.
+
+### 1.12.6
+- hotfix para **crash causado por crawling**.
+
+Para este pack, o regression gate deve priorizar crawling/poses, lanternas, spear/trident + offhand crossbow e coexistência com FirstPerson, Punchy, Epic Fight e demais layers de player animation/render.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/not-enough-animations/files/8925075
