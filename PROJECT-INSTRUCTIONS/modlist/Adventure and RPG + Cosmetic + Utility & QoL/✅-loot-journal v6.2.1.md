@@ -17,7 +17,7 @@
 - **Sobreposição:** Sobrepõe apenas apresentação de pickups/HUD. Não injeta loot, não altera loot tables e não deve ser tratado como authority de inventário; geração/ownership permanecem no servidor e nos mods de loot.
 - **Observações:** Release exata `loot_journal-neoforge-1.21.1-6.2.1.jar`, publicada em 25/05/2026; changelog da build: port para Minecraft 1.21.1. Projeto oficial classifica o mod como Client.
 - **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial Loot Journal 6.2.1 NeoForge 1.21.1, ainda a release aplicável mais recente + dependências oficiais Fragmentum/YACL + source atual tratado como drift para linha posterior.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Loot Journal 6.2.1/JAR físico reconfirmado; 6.2.1 permanece a release NeoForge 1.21.1 mais recente localizada. Client-only pickup HUD, YACL/Fragmentum dependencies, source drift e performance/privacy risks preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 6.2.1. CurseForge publicou Loot Journal 6.2.2 para NeoForge 1.21.1 em 19/09/2026; a release migra para Fragmentum 5.0.0 e deve ser coordenada com os demais mods Obscuria.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #379: JAR `loot_journal-neoforge-1.21.1-6.2.1.jar`, mod id `loot_journal`, runtime `6.2.1`, SHA-1 `064bac2f8aa2c02c71b8bf8af298f096c8790bac`.
@@ -101,3 +101,16 @@ Nenhuma integração de código específica com esses mods foi presumida sem evi
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 16. Evidências e limites
 Evidências usadas: modlist física atual; release oficial CurseForge `6.2.1` para NeoForge 1.21.1; changelog da build; ambiente publicado **Client**; página/README oficial do projeto; dependências publicadas e runtime físico de Fragmentum/YACL. O repositório atual está em Minecraft 1.21.11, portanto classes/config internals dessa linha não foram transplantados para esta ficha como se fossem da build 1.21.1.
+
+## 17. Atualização upstream 6.2.2 — não instalada
+O pack continua fisicamente em **Loot Journal 6.2.1**. A release **6.2.2** para NeoForge 1.21.1 foi publicada em 19/09/2026, file ID **8922056**.
+
+O changelog possui dois deltas:
+- atualização para **Fragmentum 5.0.0**; o próprio autor orienta atualizar também os demais mods Obscuria que usam Fragmentum para suas versões mais recentes;
+- migração da Obscuria Collection para um setup multi-version unificado, permitindo manutenção conjunta de 1.20.1, 1.21.1 e 26+.
+
+No snapshot físico atual, Fragmentum permanece **2.4.4**. Portanto, Loot Journal 6.2.2 **não deve ser promovido isoladamente**. O mesmo gate já aparece em Obscure Tooltips 4.2.5, reforçando que a migração para Fragmentum 5.x é uma atualização coordenada do stack Obscuria.
+
+Gate de regressão: client boot, HUD de pickups, smart stacking, filtros/YACL, resource reload, pickups massivos, multiplayer nearby pickups e coexistência com outros HUDs após a migração de Fragmentum.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/loot-journal-neoforge/files/8922056
