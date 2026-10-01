@@ -16,7 +16,7 @@
 - **Sobreposição:** Complementa JEI com dados de reprodução. Não substitui Animal Husbandry, Animal Wellness ou qualquer sistema de genética/reprodução; estes continuam determinando gameplay e podem expor dados que o viewer não compreenda integralmente.
 - **Observações:** 3.2.1 continua a build NeoForge correta para 1.21.1. Há linha 3.3.0 para Minecraft 1.21.11, que não é update aplicável ao pack atual.
 - **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + CurseForge/Modrinth oficiais Just Enough Breeding 3.2.1 NeoForge 1.21.1 de 30/07/2026 + changelog exato já auditado + JEI físico 19.56.0.440.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — Just Enough Breeding 3.2.1/JAR físico reconfirmado; JEI físico reconciliado para 19.56.0.440. Breeding viewer/data authority, modded-entity boundaries, creaturecraft fix, lifecycle, riscos e testes preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece JEBr 3.2.1. CurseForge publicou **3.3.0** para NeoForge 1.21.1 em 30/09/2026; o delta funcional da linha 3.3.0 foi revisado e registrado abaixo.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #354: JAR `justenoughbreeding-neoforge-1.21.1-3.2.1.jar`, mod id `justenoughbreeding`, runtime `3.2.1`, SHA-1 `9b2bfac5e7aa0952dfb3da18936c0ece4beeae21`.
@@ -65,3 +65,26 @@ Validar client boot, JEI plugin registration, world join, recipe reload, languag
 - **Changelog 3.2.1:** fix de duas creaturecraft recipes.
 - **Limite:** catálogo exato de todas as entidades/receitas carregadas não foi extraído; compat de cada mob modded permanece runtime-dependent.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+## 12. Atualização upstream 3.3.0 — não instalada
+A autoridade física continua em **Just Enough Breeding 3.2.1**. Para NeoForge 1.21.1, a próxima release pública é **3.3.0**, publicada em 30/09/2026; não há release 3.2.x intermediária posterior a 3.2.1 nessa linha.
+
+A linha 3.3.0 amplia substancialmente o viewer:
+- **Cat** e **Wolf** passam a aparecer como domesticados com owner na breeding category;
+- adiciona **Zombie Horse** à temper category;
+- transformation recipes passam a aceitar `input_entity` vazio;
+- adiciona tingimento de collar de **Cat** e **Wolf** à transformation category;
+- adiciona variantes com chest de **Donkey, Llama e Mule** à transformation category;
+- adiciona **Copper Golem deoxidation**;
+- adiciona **shearing recipes** e seus outputs;
+- adiciona equip de **armor e saddle** à transformation category;
+- adiciona criação de **Happy Ghast**;
+- adiciona montagem do **Happy Ghast Harness**;
+- ajusta scaling/movimento do mob com botões de offset;
+- permite habilitar/desabilitar os **offset buttons** em `justenougbreeding.json`; por padrão permanecem habilitados.
+
+Impacto para o pack: 3.3.0 expande JEBr além de breeding estrito para transformations/temper/equipment de entidades. Isso continua sendo **observabilidade/UI**, não authority de tame, shearing, oxidation, saddle/armor ou transformação real. O servidor/provider de cada entidade continua decidindo o resultado.
+
+Gate de promoção: JEI 19.56.0.440; Cat/Wolf owner display; transformation com input vazio; collar dye; chested donkey/llama/mule; shearing outputs; armor/saddle; offset buttons on/off; reload de config/JEI; ausência de recipe duplicada; comparação com gameplay real de uma amostra de providers.
+
+Fonte upstream: CurseForge file ID 9019426, `justenoughbreeding-neoforge-1.21.1-3.3.0.jar`. O changelog da mesma release 3.3.0 explicita os deltas acima.
