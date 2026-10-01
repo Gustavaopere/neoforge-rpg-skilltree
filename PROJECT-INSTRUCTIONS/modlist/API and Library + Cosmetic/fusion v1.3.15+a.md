@@ -12,11 +12,11 @@
 - **Fonte:** https://github.com/SuperMartijn642/Fusion/tree/neoforge-1.21
 - **Função:** Biblioteca visual client-side para connected textures, scrolling/continuous textures, block overlays, custom entity/player models e modifiers condicionais de recursos/modelos.
 - **Dependências:** Client-side NeoForge 1.21/1.21.1, Java 21. Não fornece lógica server-side; consumidores são resource packs/mods que usam seus loaders e formatos.
-- **Compatibilidade/Riscos:** Conflitos de model loader/resource priority, stale cache após reload, lighting/render layer, custom entity/player model collision e classloading indevido por consumidor. 1.3.15a corrige IDs de modelo NeoForge em data generation.
+- **Compatibilidade/Riscos:** Conflitos de model loader/resource priority, stale cache após reload, lighting/render layer, custom entity/player model collision e classloading indevido por consumidor. Correção factual em 01/10/2026: o changelog oficial 1.3.15a corrige frame index de texturas animadas não sequenciais; 1.3.15b adiciona fixes para connected texture sem world context/empty tile e item translúcido invisível em Fabulous.
 - **Sobreposição:** Pode cruzar EMF/ETF/Fresh Animations e outros loaders/resource packs apenas na apresentação visual. Não tratar adjacency visual como conexão lógica de gameplay nem criar dependência server-side.
 - **Observações:** Divergência física preservada: `fusion-1.3.15a-neoforge-mc1.21.1.jar` e release/source identificam 1.3.15a, enquanto a metadata runtime da modlist declara `1.3.15+a`. Fusion continua client-side de modelos/texturas; não converter uma string na outra sem evidência do JAR.
 - **Procedência:** modlist(1).txt física atual de 22/09/2026 — 587 entradas top-level incluindo o modloader — confirma `fusion-1.3.15a-neoforge-mc1.21.1.jar`, mod id `fusion`, metadata runtime `1.3.15+a` e SHA-1 `d29d0d1e0e7a9014fc8e0da69db8f019f458d002`. A divergência textual entre filename/release `1.3.15a` e metadata `1.3.15+a` permanece preservada.
-- **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #294: Fusion `1.3.15+a` reconfirmado; nenhuma mudança de versão física nesta rodada.
+- **Atualização/Status:** CORREÇÃO FACTUAL + UPSTREAM EM 01/10/2026 — runtime físico permanece 1.3.15+a / JAR 1.3.15a. O changelog oficial contradiz uma descrição histórica migrada para 1.3.15a; o texto foi reconciliado com source oficial e a 1.3.15b foi registrada como atualização disponível. Como o Notion histórico permanece com o dado antigo, o `✅-` deve ser removido até reconciliação da origem.
 - **Data da última decisão:** 2026-09-07
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #294: JAR `fusion-1.3.15a-neoforge-mc1.21.1.jar`, mod id `fusion`, runtime `1.3.15+a`, SHA-1 `d29d0d1e0e7a9014fc8e0da69db8f019f458d002`.
@@ -55,15 +55,19 @@ Overlays permitem compor textura/modelo adicional sobre blocos. A prioridade de 
 
 Fusion suporta modelos customizados de entidades e modificadores condicionais. Condições documentadas incluem altitude, biome, dimension e age. A linha 1.3.15 acrescenta suporte a custom player models com skin textures. Essas condições são client render logic; o servidor continua authority da entidade, idade real, dimensão e demais dados sincronizados.
 
-## 7. Evolução 1.3.13–1.3.15a
+## 7. Evolução 1.3.13–1.3.15a — correção factual pós-migração
 
-Mudanças relevantes da linha instalada:
-- **1.3.15a:** corrige model IDs NeoForge incorretos em data generation;
-- **1.3.15:** custom player models com skin textures;
-- **1.3.14:** corrige light level incorreto em model parts emitidas e render layer de entity model;
-- **1.3.13:** enhanced model parts com baked textures, `insert` e `textureOverride`, além de correções de cache, outline e continuous textures.
+> **Correção factual de 01/10/2026.** A versão migrada do dossiê atribuía à **1.3.15a** um fix de IDs de modelo NeoForge em data generation e descrevia 1.3.15/1.3.14 de forma incompatível com o changelog oficial atual. O arquivo changelog.md da branch oficial neoforge-1.21 e o CurseForge da release 1.3.15b confirmam a sequência abaixo. O registro antigo não é mantido como fato técnico.
 
-Esses fixes tornam model cache, lighting e resource reload regression gates diretos.
+Mudanças oficiais relevantes da linha instalada:
+
+- **1.3.15a:** corrige **animated textures** usando frame index incorreto quando os frames não estão em ordem sequencial;
+- **1.3.15:** corrige ambientocclusion, shade e emissive que nem sempre eram aplicados a texture types com subtextures como connecting e random; corrige o predicate is_biome sempre avaliando false em chunk geometry;
+- **1.3.14a:** corrige render_type de modelos NeoForge tornando modelos invisíveis sem outro custom render type e corrige custom geometry NeoForge sendo bakeada como modelo regular;
+- **1.3.14:** adiciona DefaultModelTypes#BLOCK_ENTITY_MARKER, corrige parent minecraft:builtin/entity não marcado como custom item renderer, registra DefaultModelTypes#ITEM_MODEL_GENERATOR e corrige crash com Iris PBR quando empty tiles produzem número diferente de sprites;
+- **1.3.13:** adiciona consulta de render types por texture type, integração com Iris para normal/specular maps e vários fixes de missing model, subtextures, is_face_visible em item model, minimaps e world context.
+
+Esses fixes tornam model cache, lighting, render layer, PBR/Iris, predicates e resource reload regression gates diretos.
 
 ## 8. Client / server
 
@@ -111,3 +115,15 @@ Fusion pode coexistir com EMF/ETF, resource packs de connected textures, Fresh A
 **Documentação oficial:** descrição/FAQ do projeto e changelog 1.3.13–1.3.15a.
 **Limite:** Fusion é framework visual; a presença de uma feature não prova que o resource pack atual do usuário a utiliza. Consumers devem ser confirmados individualmente.
 **Nenhum teste de runtime foi executado nesta catalogação.**
+
+
+## 14. Atualização upstream 1.3.15b — não instalada
+O pack continua fisicamente em fusion-1.3.15a-neoforge-mc1.21.1.jar / metadata 1.3.15+a. O CurseForge publicou **Fusion 1.3.15b para NeoForge 1.21.1** em 21/09/2026 (file ID 8942891).
+
+A 1.3.15b contém dois fixes:
+- corrige erro quando uma **connecting texture é renderizada sem world context** e uma empty tile é escolhida;
+- corrige **item models translúcidos invisíveis** quando os gráficos estão em **Fabulous**.
+
+Para promoção, testar connected textures em UI/item contexts sem world, modelos translúcidos em Fabulous, Iris/PBR, resource reload e os loaders visuais concorrentes já listados nesta ficha.
+
+**Fontes upstream:** SuperMartijn642/Fusion branch neoforge-1.21, changelog.md; CurseForge file ID 8942891.

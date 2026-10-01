@@ -16,7 +16,7 @@
 - **Sobreposição:** Sobreposição de presentation layer com Better Advanced Tooltips e Simply Tooltips; não é duplicação de atributos/gameplay. Avaliar por layout/renderer concreto.
 - **Observações:** Runtime 4.2.4. A descrição oficial o trata como client-side; CurseForge marca Client & Server. 4.2.4 corrige injeção quando `HIDE_TOOLTIP` está presente.
 - **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial da release 4.2.4 + documentação oficial de rendering/config/data-driven styling.
-- **Atualização/Status:** REVALIDADO EM 25/09/2026 — Obscure Tooltips 4.2.4/JAR físico reconfirmado; dossiê preservado.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 4.2.4. CurseForge publicou 4.2.5 para NeoForge 1.21.1 em 19/09/2026; a promoção não deve ser feita isoladamente porque 4.2.5 migra para Fragmentum 5.0.0, que introduz breaking changes para dependentes.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-10
 
@@ -95,3 +95,13 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 - Modlist física canônica atual de 25/09/2026: JAR, mod id e versão.
 - CurseForge oficial Obscure Tooltips 4.2.4: release NeoForge 1.21.1 e fix `HIDE_TOOLTIP`.
 - Página oficial do projeto: animated tooltips, 3D models, smooth scrolling, line wrapping, styling/conditions data-driven e config integrada 1.21.1.
+
+
+## 12. Atualização upstream 4.2.5 — não instalada
+A versão física do pack continua **4.2.4**. O CurseForge publicou **Obscure Tooltips 4.2.5** para NeoForge 1.21.1 em 19/09/2026 (file ID 8922038).
+
+O changelog 4.2.5 tem um único delta funcional de dependência: **migração para Fragmentum 5.0.0**. A própria publicação pede que outros mods Obscuria que usam Fragmentum sejam atualizados em conjunto. Isso é relevante porque Fragmentum 5.0.0 declara **breaking changes** para mods dependentes.
+
+Na modlist física desta auditoria, Fragmentum ainda está em **2.4.4**. Portanto, **não promover Obscure Tooltips 4.2.5 isoladamente**. O gate de atualização é revisar em conjunto Fragmentum 5.0.0 e os demais mods Obscuria dependentes, depois repetir boot/client resource reload e regressão de tooltips.
+
+**Fontes upstream:** CurseForge Obscure Tooltips file 8922038; CurseForge Fragmentum NeoForge file 8921953.

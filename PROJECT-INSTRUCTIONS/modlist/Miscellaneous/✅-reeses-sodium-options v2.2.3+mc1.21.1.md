@@ -19,7 +19,7 @@
 - **Observações:** Build 2.2.3 para NeoForge 1.21.1. Delta confirmado inclui melhorias de search/highlight/scroll, navegação Enter/Shift+Enter, limite de resultados, Always Show Action Buttons e fix relacionado a Controlify.
 - **Procedência:** modlist.txt física canônica de 10/09/2026 + metadata do JAR + publicação/changelog oficial Reese's Sodium Options 2.2.3.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/reeses-sodium-options
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Reese's Sodium Options 2.2.3 reconstruído: UI/search/tabs, delta exato 2.2.3, ownership Sodium, client lifecycle, riscos e testes.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.2.3+mc1.21.1. Reese's Sodium Options 2.2.4 existe para NeoForge 1.21.1; o único delta publicado é visual, substituindo os ícones de undo/reset.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-26
 
@@ -125,3 +125,13 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Publicação oficial da 2.2.3: NeoForge 1.21.1, ambiente Client e changelog específico.
 - Documentação oficial do projeto: arquitetura de navegação/search/groups.
 - **Limite:** não foi feita inspeção de source pin exato para inventariar classes ou mixins internos; nenhum ganho de performance foi atribuído ao mod sem benchmark.
+
+
+## 14. Atualização upstream 2.2.4 — não instalada
+O pack continua fisicamente em **2.2.3+mc1.21.1**. O CurseForge publica **2.2.4** para NeoForge 1.21.1 em 16/09/2026.
+
+Entre 2.2.3 e 2.2.4 há uma única mudança publicada: **substituição dos ícones de undo e reset** (upstream PR #182). Não há mudança documentada de ownership, settings do Sodium, algoritmo de renderização ou ganho de performance.
+
+Impacto para o catálogo: atualização disponível, **baixa criticidade e somente UI**. Ao promover, o regression gate é abrir a tela de opções do Sodium e validar os botões de undo/reset, busca, tabs e persistência normal das configurações.
+
+**Fontes upstream:** CurseForge Reese's Sodium Options 2.2.4 para NeoForge 1.21.1; release/tag upstream 2.2.4 / PR #182.
