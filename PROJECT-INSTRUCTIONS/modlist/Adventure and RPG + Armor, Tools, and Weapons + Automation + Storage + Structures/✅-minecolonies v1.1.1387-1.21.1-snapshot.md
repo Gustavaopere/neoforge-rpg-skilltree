@@ -13,11 +13,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/minecolonies
 - **Função:** Provider central de simulação colonial: colônias persistentes, cidadãos, jobs, buildings/módulos, construção e WorkOrders, request/logística, research, permissões, IA e sincronização Model/View server-authoritative. Addons devem estender essas surfaces sem duplicar authority.
 - **Dependências:** Release 1.1.1387 exige Structurize \>=1.0.832, Multi-Piston \>=1.2.51, BlockUI \>=1.0.199 e Domum Ornamentum \>=1.0.223. Pack físico atual: 1.0.833 / 1.2.58 / 1.0.212 / 1.0.236, todos acima dos mínimos. Opcionais publicados: JEI \>=19.19.6.235, JourneyMap \>=1.21.1-6.0.0-beta.29 e Dynamic Trees \>=1.5.0-BETA07; pack usa 19.56.0.440 / 1.21.1-6.0.8 / 1.7.2.
-- **Compatibilidade/Riscos:** Snapshot central de colônias. Riscos: churn de API, requests/logística, drift com Structurize/BlockUI/Domum/Multi-Piston e addons Compatibility 3.57/Tweaks 3.33/Jade crops 1.1.1300, colony-data migration, chunk/entity lifecycle, performance/pathfinding, permission bypass e View stale. Há gap atual 1.1.1387→1.1.1392; upstream 1.1.1392 não é o runtime instalado.
+- **Compatibilidade/Riscos:** Snapshot central de colônias. Riscos: churn de API, requests/logística, drift com Structurize/BlockUI/Domum/Multi-Piston e addons Compatibility 3.57/Tweaks 3.33/Jade crops 1.1.1300, colony-data migration, chunk/entity lifecycle, performance/pathfinding, permission bypass e View stale. Há gap atual 1.1.1387→1.1.1403; upstream 1.1.1403 não é o runtime instalado.
 - **Sobreposição:** MineColonies é authority da colônia. Structurize/BlockUI/Domum/Multi-Piston fornecem infraestrutura especializada. Jade crops apenas apresenta crops; Compatibility/Tweaks estendem comportamento/integrações. O bridge Let's Do está ausente da modlist física atual. Sistemas próprios de RPG/quests não devem espelhar colony research/job/permission como authority paralela.
-- **Observações:** Runtime físico/tag auditada `v1.21.1-1.1.1387-snapshot`, publicada em 13/09/2026, commit `495c35113698c2a48c58fcbd0cfbd5568b23a67e`, CurseForge file 8872247. Em 16/09/2026 upstream publicou `1.1.1392-1.21.1-snapshot`; atualização não aplicada. Regressão deve cobrir Compatibility 3.57, Tweaks 3.33 e Jade crops 1.1.1300. O bridge Let's Do não está presente na modlist física atual.
-- **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + release/tag oficial GitHub `v1.21.1-1.1.1387-snapshot` commit `495c35113698c2a48c58fcbd0cfbd5568b23a67e` + CurseForge oficial file 8872247 + gate upstream 1.1.1392 publicado em 16/09/2026.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — MineColonies 1.1.1387-snapshot/JAR físico reconfirmado. Upstream 1.21.1 avançou para 1.1.1392-snapshot em 16/09/2026; gap de versão registrado sem alterar a modlist. A 1.1.1387 mantém os mínimos publicados e registra Cavalry 4of4 port.
+- **Observações:** Runtime físico/tag auditada `v1.21.1-1.1.1387-snapshot`, publicada em 13/09/2026, commit `495c35113698c2a48c58fcbd0cfbd5568b23a67e`, CurseForge file 8872247. Em 01/10/2026 upstream/CurseForge publicou `1.1.1403-1.21.1-snapshot`; atualização não aplicada. As snapshots públicas intermediárias 1392, 1393, 1394, 1395, 1396, 1397, 1399 e 1402 foram revisadas; regressão deve cobrir Compatibility 3.57, Tweaks 3.33 e Jade crops 1.1.1300. O bridge Let's Do não está presente na modlist física atual.
+- **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + release/tag oficial GitHub `v1.21.1-1.1.1387-snapshot` commit `495c35113698c2a48c58fcbd0cfbd5568b23a67e` + CurseForge oficial file 8872247 + sequência upstream 1.1.1392→1.1.1403 revisada em 01/10/2026.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.1.1387-snapshot. CurseForge chegou a 1.1.1403-snapshot; todas as snapshots públicas intermediárias desde 1.1.1387 foram revisadas e os deltas operacionais foram registrados sem alterar a versão instalada.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-30
 
@@ -38,7 +38,7 @@
 - **Release oficial GitHub:** tag `v1.21.1-1.1.1387-snapshot`, commit `495c35113698c2a48c58fcbd0cfbd5568b23a67e`; CurseForge file ID `8872247`.
 - **Natureza da build:** snapshot/beta; não tratar como release estável final.
 O changelog da release 1.1.1387 registra **Cavalry 4of4 port (#11823)**. Isso não reduz o escopo do mod: a snapshot carrega o sistema completo de colônias acumulado pela linha 1.21.1.
-**Version gate atual (25/09/2026):** upstream publicou `minecolonies-1.1.1392-1.21.1-snapshot.jar` em 16/09/2026. O changelog oficial da 1.1.1392 inclui `fix port compile error`, `correct fix`, `Cavalry 4of4 port` e `fix 11808`. O pack permanece em 1.1.1387; a atualização não foi aplicada e deve ser regressada junto de Compatibility 3.57, Tweaks 3.33 e Jade crops 1.1.1300 antes de promoção. O bridge Let's Do não está presente na modlist física atual.
+**Version gate atual (01/10/2026):** upstream/CurseForge publicou `minecolonies-1.1.1403-1.21.1-snapshot.jar`. O pack permanece em 1.1.1387; a atualização não foi aplicada. Entre as duas versões existem mudanças de persistência/request system, alimentação do Dining Hall, graveyard, pathing/água, prevenção de loop potencialmente infinito e novos stables, detalhadas na seção 20. A promoção deve ser regressada junto de Compatibility 3.57, Tweaks 3.33 e Jade crops 1.1.1300. O bridge Let's Do não está presente na modlist física atual.
 ## 2. Papel funcional no pack
 MineColonies é o provider central de **simulação de colônia** do pack. Ele mantém colônias persistentes, cidadãos, empregos, edifícios, construção/upgrade, pedidos e logística, pesquisas, permissões, interação do jogador, tarefas/AI, raids/defesa e interfaces de administração.
 A autoridade deve permanecer nele para:
@@ -184,3 +184,25 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 <callout icon="⚠️" color="yellow_bg">
 	**Limite de evidência:** MineColonies é grande e a ficha documenta subsistemas/contratos operacionais, não uma enumeração de cada registry ID, building, job ou recipe. Detalhes de comportamento não demonstrados pela tag/release não foram inferidos. A build é snapshot e exige regressão de runtime antes de upgrades.
 </callout>
+
+
+## 20. Histórico completo de atualização upstream — 1.1.1387 → 1.1.1403
+A versão instalada continua **1.1.1387-1.21.1-snapshot**. Foram conferidas todas as snapshots públicas 1.21.1 posteriores até a versão mais recente disponível em 01/10/2026:
+
+| Release | Data | Delta publicado relevante |
+|---|---|---|
+| **1.1.1392** | 16/09/2026 | Fixes de port/compile, port final de Cavalry/datagen e **fix #11808**. O #11808 tratava falha de serialização de requests com quantidades acima do limite do ItemStack durante save, com risco de request/logística não persistir corretamente. |
+| **1.1.1393** | 20/09/2026 | Graveyard QoL: **min-stock** e indicação do número de posições de túmulo em uso na janela do módulo. |
+| **1.1.1394** | 20/09/2026 | Fix #11827: cidadãos fora do restaurante passam a lidar melhor com alimentação eventual/leftovers sem consumir essa rota indefinidamente. |
+| **1.1.1395** | 20/09/2026 | Port de **música da Tavern**. |
+| **1.1.1396** | 21/09/2026 | Melhoria de **node reference e debug tracking**. |
+| **1.1.1397** | 23/09/2026 | Corrige **slabs impedindo drift/subida na água**. |
+| **1.1.1399** | 27/09/2026 | Hotfix #11834: Dining Hall/Waiter deixa de pedir o alimento já cozido quando deveria solicitar o ingrediente cru e cozinhar localmente; relevante para request system, warehouse e crafting. |
+| **1.1.1402** | 29/09/2026 | Atalho para **potencial infinite loop** e eliminação de spam de tentativas de burial que falharam. |
+| **1.1.1403** | 01/10/2026 | Adiciona **stables** aos estilos Fortress e Desert Oasis na linha 1.21.1. |
+
+Os mínimos publicados de dependências continuam, na 1.1.1403, em Structurize 1.0.832+, MultiPiston 1.2.51+, BlockUI 1.0.199+ e Domum Ornamentum 1.0.223+; os opcionais publicados continuam JEI 19.19.6.235+, JourneyMap 6.0.0-beta.29+ e Dynamic Trees 1.5.0-BETA07+.
+
+**Gates de regressão prioritários para promoção 1387→1403:** save/restart com requests grandes; Dining Hall + Warehouse + Courier; graveyard; citizens com alimentação fora do restaurante; pathing/drift em água com slabs; cenários capazes de formar loops no work/request graph; Tavern; Cavalry; Compatibility 3.57; Tweaks 3.33; Jade crops 1.1.1300.
+
+**Fontes upstream:** releases oficiais ldtteam/minecolonies 1.1.1392–1.1.1403 e CurseForge file ID 9023811 para minecolonies-1.1.1403-1.21.1-snapshot.jar.
