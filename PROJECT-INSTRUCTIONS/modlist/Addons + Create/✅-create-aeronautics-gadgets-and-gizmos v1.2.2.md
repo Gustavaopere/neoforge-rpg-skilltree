@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos
 - **Função:** Addon de Create Aeronautics que adiciona gadgets, controles e componentes para interagir com contraptions físicas, incluindo recursos de propulsão e controle de veículos.
 - **Dependências:** Pack físico: Create 6.0.10 + Create Aeronautics 1.3.2/Sable stack atual. Wrapper top-level createthrusters_bundled 1.2.2 contém createthrusters 1.2.2 e gadgetsngizmos 1.2.2. CC:Tweaked e Propulsion Simulated permanecem superfícies de integração/regressão, não hard dependencies universais.
-- **Compatibilidade/Riscos:** Riscos: node UUID/state stale, graph persistence, cross-controller feedback, multiplayer joystick ownership, schematic migration, Sable/Aeronautics drift, Propulsion Simulated e regressões de dedicated server ao desabilitar blocos por JSON/registry gating. A 1.2.4 existe upstream, corrige regressão/performance de Physics Gantry, belt wheel simultâneo e remove portas perigosas de Set Data, mas não está instalada.
+- **Compatibilidade/Riscos:** Riscos: node UUID/state stale, graph persistence, cross-controller feedback, multiplayer joystick ownership, schematic migration, Sable/Aeronautics drift, Propulsion Simulated e regressões de dedicated server ao desabilitar blocos por JSON/registry gating. As releases 1.2.3–1.2.5 não estão instaladas; 1.2.4 endurece Physics Gantry/Set Data e 1.2.5 corrige runtime de node graphs, Contraption Network Linker, Physics Staff, lazy chunk loading e lifecycle visual dos Smart Glasses.
 - **Sobreposição:** Interseção parcial com Create Propulsion: Simulated e outros addons de thrusters/controle. Funções devem ser comparadas componente por componente; não há base para exclusão como duplicata integral.
-- **Observações:** JAR físico top-level `gadgets-and-gizmos-bundled-V1.2.2.jar`; wrapper id `createthrusters_bundled` 1.2.2; gameplay mod embarcado `createthrusters` 1.2.2. Upstream publicou 1.2.4 em 18/09/2026; ela não está instalada.
-- **Procedência:** modlist(1).txt física atual de 22/09/2026 — 587 entradas top-level incluindo o modloader — confirma `gadgets-and-gizmos-bundled-V1.2.2.jar`, wrapper id `createthrusters_bundled`, runtime `1.2.2` e SHA-1 `1694bb6f99100557faf80fece178a2a4dd4892de`. CurseForge oficial confirma 1.2.4 como release NeoForge 1.21.1 mais recente em 18/09/2026, não instalada.
-- **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #298: Gadgets & Gizmos 1.2.2 reconfirmado; upstream 1.2.4 (18/09/2026) registrado como atualização disponível, não instalada.
+- **Observações:** JAR físico top-level `gadgets-and-gizmos-bundled-V1.2.2.jar`; wrapper id `createthrusters_bundled` 1.2.2; gameplay mod embarcado `createthrusters` 1.2.2. Upstream avançou por 1.2.3, 1.2.4 e **1.2.5**; nenhuma dessas releases posteriores está instalada.
+- **Procedência:** modlist(1).txt física atual de 22/09/2026 — 587 entradas top-level incluindo o modloader — confirma `gadgets-and-gizmos-bundled-V1.2.2.jar`, wrapper id `createthrusters_bundled`, runtime `1.2.2` e SHA-1 `1694bb6f99100557faf80fece178a2a4dd4892de`. CurseForge oficial foi revisado de 1.2.3 até **1.2.5**, latest NeoForge 1.21.1 em 26/09/2026; nenhuma dessas versões posteriores está instalada.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.2.2. O histórico posterior **1.2.3 → 1.2.4 → 1.2.5** foi revisado; 1.2.5 é a release NeoForge 1.21.1 mais recente localizada no CurseForge, publicada em 26/09/2026.
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #298: JAR `gadgets-and-gizmos-bundled-V1.2.2.jar`, mod id `createthrusters_bundled`, runtime `1.2.2`, SHA-1 `1694bb6f99100557faf80fece178a2a4dd4892de`.
 
@@ -98,5 +98,27 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Changelog 1.2.0: novos controles/componentes, graph sharing, Ship Control Module, RCS Thruster, materiais/recipes/renames e correções de thrusters/CC:Tweaked.
 - Hotfix 1.2.1: block breaking em dedicated server quando bloco era desabilitado.
 - Hotfix 1.2.2: crash de dedicated server durante startup registry gating com blocos desabilitados.
-- Upstream 1.2.3 foi publicado em 17/09/2026 e 1.2.4 em 18/09/2026; ambas não estão instaladas. A 1.2.4 corrige Physics Gantry/sub-level e performance, Physics Gantry Belt Wheel simultâneo, adiciona recipe de ION Thruster e advancements e remove portas inseguras de Set Data.
+- Upstream 1.2.3 foi publicado em 17/09/2026, 1.2.4 em 18/09/2026 e 1.2.5 em 26/09/2026; nenhuma está instalada. A 1.2.4 corrige Physics Gantry/sub-level e performance, Physics Gantry Belt Wheel simultâneo, adiciona recipe de ION Thruster e advancements e remove portas inseguras de Set Data. A 1.2.5 adiciona novo hardening de Physics Staff/sublevels, controller graph/network links, lazy chunk loading e Smart Glasses.
 - A ficha prioriza control surfaces, persistence, authority e regressions relevantes à build física 1.2.2.
+
+## 12. Atualização upstream 1.2.5 — não instalada
+A authority física continua em **1.2.2**. Depois das releases 1.2.3 e 1.2.4 já registradas acima, o CurseForge publicou **Create Aeronautics: Gadgets & Gizmos 1.2.5** para NeoForge 1.21.1 em 26/09/2026.
+
+Changelog 1.2.5:
+- corrige **Smart Glasses** deixando widgets de GUI na tela mesmo depois de o jogador remover os óculos;
+- altera o **Physics Staff** para permitir lock/unlock do sub-level em que o jogador está;
+- adiciona verificação de child sub-level para impedir o Physics Staff de pegar/mover o sub-level atual do jogador ou um child dele;
+- corrige a interação de mob haunting do **Haunting Upgrade**;
+- o **Ship Control Module** passa a iniciar `lazy chunk loading` assim que o Advanced Control Module é colocado, antes da inicialização completa do SCM;
+- **Supporter Mannequins** passam a aceitar skins customizadas de jogador pelo poser GUI;
+- **Physics Gantry Carriage** passa a usar attachment de rigid joint real e deixa de sofrer influência indevida de inércia;
+- corrige regressão do **Contraption Network Linker** que parava de acompanhar blocos vinculados após assembly/disassembly;
+- corrige runtime do **Advanced Contraption Controller** que podia produzir outputs inconsistentes e pular nodes quando encadeados;
+- corrige links quebrados em schematic builds usando o mod **Toolgun**;
+- corrige falha no primeiro save do node graph de um Advanced Contraption Controller recém-criado.
+
+Impacto no pack: 1.2.5 toca exatamente superfícies de alto risco já documentadas — sublevels, assembly/disassembly, graph persistence, chunk loading, links e ownership visual. A mudança do Physics Staff precisa ser testada em parent/child sublevels para evitar movimentar a própria estrutura que contém o jogador. O lazy chunk loading do SCM também merece teste de cleanup para não deixar chunks carregados após desmontagem/desconexão.
+
+Gate de promoção 1.2.2→1.2.5: aplicar primeiro os regressions 1.2.3/1.2.4 já documentados e acrescentar Smart Glasses equip/unequip, Physics Staff em parent/child sublevels, Haunting Upgrade, SCM lazy chunk loading + cleanup, rigid joint do Gantry Carriage, Network Linker através de assembly/disassembly, controller graph encadeado sem node skip, Toolgun schematic links e primeiro save de controller novo.
+
+Fonte upstream: CurseForge file ID 8983532, `gadgets-and-gizmos-bundled-V1.2.5.jar`, release NeoForge 1.21.1.
