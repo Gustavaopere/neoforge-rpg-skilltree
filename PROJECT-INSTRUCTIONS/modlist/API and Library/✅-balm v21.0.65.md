@@ -21,11 +21,11 @@
 - **Função:** Camada de abstração multiplataforma para eventos, networking, configurações, registries e superfícies de dados usadas por mods consumidores.
 - **Dependências:** Biblioteca estrutural; KumaAPI 21.0.8 está embarcado em META-INF/jarjar dentro do Balm e não é mod top-level.
 - **Sobreposição:** Biblioteca técnica; não substitui nem é substituída automaticamente por Architectury, Moonlight ou APIs semelhantes.
-- **Compatibilidade/Riscos:** Riscos de registro duplicado common/platform, packet sem server authority, attachment/capability órfão, registry stale após reload e classloading client-only. Não substituir por outra abstraction library por similaridade.
-- **Observações:** KumaAPI 21.0.8 é dependência embarcada. Changelog 21.0.65 corrige ChunkTrackingEvent na camada Fabric; tracking de chunk é superfície real da API.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + JAR/jarjar físico + CurseForge/documentação/changelog oficial Balm 21.0.65 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `balm-neoforge-1.21.1-21.0.65.jar` / `21.0.65`; KumaAPI 21.0.8 continua embarcado, não top-level.
+- **Compatibilidade/Riscos:** Infrastructure cross-loader/cross-side com networking, config, registries, data/events e JarJar KumaAPI. Riscos: duplicate registration, packet authority, stale holders/attachments e client classloading. Upstream 21.0.66 corrige memory leak em `BlockEntityOnLoadCallback`, tornando block-entity lifecycle um regression gate explícito.
+- **Observações:** Runtime físico permanece Balm 21.0.65. Upstream publicou **21.0.66** para NeoForge 1.21.1 em 25/09/2026; ela não está instalada.
+- **Procedência:** modlist física atual + CurseForge oficial Balm 21.0.65/21.0.66 + KumaAPI 21.0.8 JarJar do JAR físico. A autoridade instalada permanece 21.0.65.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/balm
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #64: `balm-neoforge-1.21.1-21.0.65.jar` / `21.0.65` conferidos contra a modlist atual; networking/config/registries/data/events lifecycle e KumaAPI 21.0.8 jarjar preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Balm físico permanece 21.0.65. A release **21.0.66** corrige memory leak no `BlockEntityOnLoadCallback` e foi registrada abaixo.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou Balm 21.0.65 e registrou KumaAPI 21.0.8 como biblioteca embarcada em `META-INF/jarjar`, não top-level. Em 09/09/2026, ambos foram revalidados no snapshot físico atual; a necessidade funcional continua dependente dos consumidores reais, sem decisão curatorial inferida.
 - **Data da última decisão:** não definida
 
@@ -108,3 +108,15 @@ Architectury, Moonlight e outras abstraction libraries podem coexistir. Não sã
 
 > 🧱 Exaustividade proporcional: Balm é infraestrutura. A ficha cobre networking, config, registries, dados, eventos, side e dependência embarcada sem atribuir conteúdo jogável à biblioteca.
 
+
+
+## 13. Atualização upstream 21.0.66 — não instalada
+A autoridade física continua em **Balm 21.0.65**.
+
+A release **21.0.66** corrige um **memory leak em `BlockEntityOnLoadCallback`**.
+
+Impacto: consumidores que registram ou observam block entities por Balm podem manter referências indevidas após unload/reload. O fix é infrastructure-level e precisa ser validado com consumers reais, especialmente em exploração/chunk cycling prolongado.
+
+Gate de promoção 21.0.65→21.0.66: dedicated server; carregar/descarregar repetidamente chunks com block entities de consumers Balm; dimension change; restart; heap/reference observation; garantir callback exatamente uma vez e ausência de stale references/duplicate handlers.
+
+Fonte upstream: CurseForge file ID 8969738, Balm 21.0.66 para NeoForge 1.21.1.
