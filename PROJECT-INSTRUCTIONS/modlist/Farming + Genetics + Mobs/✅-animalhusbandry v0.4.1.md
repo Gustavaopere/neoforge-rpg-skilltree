@@ -19,11 +19,11 @@
 - **Função:** Sistema completo de manejo de livestock: domesticação por alimento preferido, happiness, sickness, hunger, dehydration, grooming, Brush, Animal Medicine, Magnifying Glass, Farm Ledger, Feeding Troughs, Fertility Potion, genética hereditária (traits, color, pattern, yield, fertility, growth, constitution), personalities e comportamentos por espécie como truffle hunting de pigs. Não há evidência suficiente nas fontes auditadas para afirmar um sistema separado de gestação por espécie; a ficha anterior foi corrigida para não inventar isso.
 - **Dependências:** Architectury API é requisito declarado; o pack instala `architectury-13.0.11-neoforge.jar`. Minecraft 1.21.1 e Java 21 são requisitos upstream.
 - **Sobreposição:** Aprofunda os animais de fazenda existentes em vez de adicionar apenas nova fauna. Sobrepõe qualquer mod que altere breeding/genética/necessidades de livestock, mas não é equivalente a grandes mob packs como Alex's Mobs.
-- **Compatibilidade/Riscos:** Early Access. A 0.4.1 adiciona config para desabilitar custom animal textures quando o usuário prefere outros texture mods. O pack usa Fresh Animations; o projeto oferece compatibilidade/resource-pack específico para custom coats/eyes/face animations e a prioridade deve ser validada. Se o compat pack não estiver ativo, a alternativa é desabilitar custom textures via config. Sistemas externos que alteram breeding, animal AI, food tags ou textures podem sobrepor funcionalmente.
-- **Observações:** Fonte upstream não sustenta a afirmação antiga de 'gestação específica por espécie'; removida do contrato até evidência direta. O mod está em Early Access e deve ser validado com Fresh Animations e resource packs de animais.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Animal Husbandry 0.4.1 + Architectury 13.0.11 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AnimalHusbandry-neoforge-0.4.1.jar` / `0.4.1`; sem divergência física.
+- **Compatibilidade/Riscos:** Early Access e state persistente de care/genetics. Riscos: double breeding, AI contention, texture conflict, herd performance, genetics economy, terrain modification e lifecycle. Upstream 0.4.2 transforma sickness em production/economy state, adiciona contagion/recovery/immunity e corrige Fertility Potion pairing.
+- **Observações:** Runtime físico permanece 0.4.1. Upstream publicou **Animal Husbandry 0.4.2 — Sickday** para NeoForge 1.21.1 em 19/09/2026; a release não está instalada.
+- **Procedência:** modlist física atual + CurseForge Animal Husbandry 0.4.1/0.4.2. A autoridade instalada permanece `AnimalHusbandry-neoforge-0.4.1.jar`.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/animal-husbandry
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #28: `AnimalHusbandry-neoforge-0.4.1.jar` / `0.4.1` conferidos contra a modlist atual; versão 0.4.1 preservada como autoridade física, sem regressão para referências antigas 0.4.0; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Animal Husbandry físico permanece 0.4.1. O changelog completo da **0.4.2 Sickday** foi incorporado abaixo.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
@@ -225,3 +225,32 @@ A versão física atual é 0.4.1. A antiga observação da página que dizia run
 **Upstream:** [CurseForge — Animal Husbandry](https://www.curseforge.com/minecraft/mc-mods/animal-husbandry) e release [0.4.1 NeoForge](https://www.curseforge.com/minecraft/mc-mods/animal-husbandry/files/8798239).
 
 **Confiança:** alta para care system, genetics categories, tools, trough, Fertility Potion, personalities, pig truffles, requirements e texture toggle. Fórmulas internas e espécie exata suportada precisam de source/runtime antes de se tornarem contratos técnicos.
+
+
+## 24. Atualização upstream 0.4.2 — Sickday — não instalada
+A autoridade física continua em **Animal Husbandry 0.4.1**. A 0.4.2 NeoForge 1.21.1 foi publicada em 19/09/2026.
+
+### Sickness System Overhaul
+- sickness deixa de ser principalmente um killer rápido e passa a ser um **production block severo**: animais doentes param imediatamente de produzir **milk, eggs e wool**;
+- starvation damage menor só começa depois de **5 dias consecutivos doente**;
+- contagion dinâmica em currais lotados: **10% de chance diária** de infectar animais próximos;
+- chance diária de recuperação natural baseada no atributo **constitution**;
+- Animal Medicine concede período de vacinação com **100% immunity** por vários dias;
+- trait **Hardy** torna o animal imune ao starvation damage da sickness;
+- trait **Iron Stomach** impede a disseminação por contagion;
+- animais doentes recebem **Slowness** e emitem smoke particles.
+
+### Fertility Potion
+- corrige bug de consumo por meio de pairing direcionado em **dois cliques**;
+- a potion só é consumida quando dois mates válidos são vinculados com sucesso;
+- right-click no ar cancela o boost de animais próximos que estavam aguardando pairing.
+
+### Magnifying Glass
+- substitui texto no chat por **hologram acima do animal**;
+- hologram desaparece automaticamente após **5 segundos**.
+
+Impacto: 0.4.2 muda economia de produção, transmissão de doença, traits e fluxo de breeding. Nenhum perk/automation externo deve ignorar o production block, curar sickness por duplicação ou consumir Fertility Potion em paralelo. A chance de contagion deve liquidar no provider exatamente uma vez por ciclo diário.
+
+Gate de promoção 0.4.1→0.4.2: milk/egg/wool durante sickness; 5 sick days; contagion em pen lotado; constitution recovery; medicine immunity; Hardy/Iron Stomach; Slowness/particles; two-click pairing válido/inválido/cancel; item consumption exactly-once; hologram 5 s; relog/restart/chunk unload; herd stress; genetics e custom textures.
+
+Fonte upstream: CurseForge file ID 8919786, `AnimalHusbandry-neoforge-0.4.2.jar`.
