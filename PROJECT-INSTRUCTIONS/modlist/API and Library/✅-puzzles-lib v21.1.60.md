@@ -169,3 +169,5 @@ Esse fix é operacionalmente relevante porque capability/component state pode at
 Gate de regressão: client + dedicated server, reconnect, save/restart, component/capability sync, menus/configs, Portable Hole 21.1.0 e Overflowing Bars 21.1.1, além de qualquer consumer que use as novas quad utilities.
 
 Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/puzzles-lib/files/all?page=1&version=1.21.1 ; https://github.com/Fuzss/puzzles-lib/blob/1.21.1/CHANGELOG.md
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Puzzles Lib 21.1.60 reconstruída; pesquisa Rever→Verificado: shared code/config/networking, consumers Portable Hole/Overflowing Bars, backports 21.1.60, version coupling, riscos e testes.
