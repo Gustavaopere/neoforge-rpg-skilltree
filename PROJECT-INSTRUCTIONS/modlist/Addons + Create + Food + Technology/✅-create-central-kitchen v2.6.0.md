@@ -19,7 +19,7 @@
 - **Observações:** mod id `create_central_kitchen`; runtime 2.6.0. A build física contém mixins separados para Brewin' and Chewin', Miner's Delight, Dungeons Delight, Extra Delight e Farmer's Delight, além do mixin base; presença do mixin confirma superfície de compatibilidade, não comportamento além do que as fontes documentam.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime `create_central_kitchen` 2.6.0 + Create 6.0.10 / Create: Dragons Plus 1.11.8b / Farmer's Delight 1.3.4 + release oficial 2.6.0 já auditados. Reconciliação final: JAR/runtime permanecem exatamente `create-central-kitchen-2.6.0.jar` / `2.6.0`; requirements físicos permanecem satisfeitos.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Central Kitchen 2.6.0 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; presença não foi convertida em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #117: `create-central-kitchen-2.6.0.jar` / `2.6.0` conferidos contra a modlist atual; cooking automation, Packager/Arm conversions, recipe priority/cache e integrações físicas preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.6.0. CurseForge publicou 2.6.1 e 2.6.2; ambas exigem Create: Dragons Plus 1.11.9+, mas o pack físico está em 1.11.8b. Atualização bloqueada até promoção coordenada do provider.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -89,3 +89,30 @@ Validar datapack/recipe reload, server restart, chunk unload e optional-mod pres
 - release oficial 2.6.0: requirements, integrations e fixes;
 - documentação 2.x: foco em cooking automation e conversions Create↔kitchenware.
 > 🔒 Boundary canônico: **Central Kitchen adapta automação; não possui os recipes/comida que automatiza**. O provider culinário mantém a semântica do recipe e Create mantém a logística/processamento.
+
+## 19. Histórico upstream 2.6.0 → 2.6.2 — não instalado
+A versão física continua **2.6.0**. Foram revisadas as releases públicas **2.6.1** (17/09/2026) e **2.6.2** (22/09/2026).
+
+### 2.6.1
+- corrige **server tick lag severo** causado por Spouts verificando repetidamente itens em Depots, inclusive buckets vazios/cheios;
+- Brewin' and Chewin' Filling/Emptying fallbacks passam a **cachear a seleção completa de recipe** e renovar o cache após recipe/tag reload;
+- recipes nativos do Create continuam tendo prioridade sobre fallback de Keg;
+- Mechanical Arm Ponder agrupa food variants com grouped tag cards de Dragons Plus, mantendo foods parcialmente servidos como entradas individuais;
+- corrige demonstrações Ponder de Cultural Delights, Rustic Delight, Festive Delight e Hearth and Harvest.
+
+### 2.6.2
+- Packagers passam a poder **reabastecer máquinas que já processam o mesmo recipe**, usando pacotes completos de uma ou múltiplas porções;
+- batch unpacking para Cooking Pots, Kegs, Copper Pots, Monster Pots, Extra Delight Ovens/Chillers e Hearth and Harvest Casks;
+- ingredientes repetidos permanecem em slots separados conforme o recipe; slots/componentes existentes são preservados;
+- inputs mistos, incompletos ou desbalanceados são rejeitados;
+- capacidade é validada contra slot limit e item stack limit real, inclusive component overrides; se houver overflow, o pacote inteiro é rejeitado;
+- candidates de recipe são cacheados e renovados após recipe/tag reload; fuel/fluid/container/mold/output permanecem sob seus contracts normais.
+
+### Bloqueio físico de promoção
+As releases 2.6.1 e 2.6.2 exigem **Create: Dragons Plus 1.11.9+**. A modlist física desta auditoria contém **CreateDragonsPlus-1.11.8b.jar**. Logo, Central Kitchen 2.6.1/2.6.2 **não deve ser instalado isoladamente**. Primeiro é necessário atualizar/revalidar Dragons Plus; versão divergente da dependência = promoção bloqueada.
+
+Gate de regressão após reconciliar Dragons Plus: Spout+Depot sob carga, Keg fallback/native Create priority, recipe/tag reload, single/multi-serving package refill, repeated ingredients, component-aware stack limits, overflow rejection, todos os kitchenwares opcionais presentes, Mechanical Arm Ponder e dedicated-server tick profile.
+
+Fontes upstream: CurseForge Central Kitchen 2.6.1 (file ID 8900585) e 2.6.2 (file ID 8944879).
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #117: `create-central-kitchen-2.6.0.jar` / `2.6.0` conferidos contra a modlist atual; cooking automation, Packager/Arm conversions, recipe priority/cache e integrações físicas preservados.
