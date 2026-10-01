@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-schematicchecker
 - **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createschematicchecker` 2.27.45-6.0 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 2.27.45 de 25/08/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** JAR `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar`; runtime `2.27.45-6.0`; Client & Server. Config principal `config/CSC/config.toml`, regras locais `config/CSC/user_rule.json`; scan é assíncrono e pode manter logs/backups. 2.27.45: Quark fluidlogged-lava repair off por padrão; Copycats air consumed-item repair.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #203: createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar / runtime 2.27.45-6.0 reconfirmados como latest Release NeoForge 1.21.1/Create 6.0; async scan, sanitization policy, Quark repair default-off e Copycats material-requirement fix permanecem atuais.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.27.45-6.0. CurseForge publicou Create: Schematic Checker 2.27.47 para NeoForge 1.21.1 em 27/09/2026; o histórico oficial desde 2.27.45 adiciona hardening relevante contra schematics truncados/malformados e amplia regras de validação.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Schematic Checker 2.27.45-6.0 foi reconfirmado como `Instalado` na modlist física de 595 top-levels e reconstruído ao padrão técnico. Presença/benefício de segurança não foram convertidos em decisão curatorial.
 - **Sobreposição:** Não duplica Fast Schematic Cannon ou Pattern Schematics: CSC valida/sanitiza segurança e compatibilidade dos schematics; os outros alteram velocidade, criação ou uso. Bridges/reparos devem manter uma única regra efetiva para cada exploit.
@@ -78,3 +78,26 @@ Validar startup, `/csc reload`, upload simultâneo, server shutdown durante scan
 - CurseForge/Modrinth oficiais: security scan/sanitization, async scan, configs, rules e auditing;
 - changelog 2.27.45: Quark repair disabled by default e Copycats material-requirement repair.
 > 🔒 Boundary canônico: **Create define o schematic/printing; CSC decide se o payload é seguro o bastante para prosseguir**. Nenhum upload cliente deve contornar a decisão server-side.
+
+## 14. Atualização upstream 2.27.47 — não instalada
+A versão instalada continua **2.27.45-6.0**. A publicação atual para NeoForge 1.21.1 é **2.27.47**. Não foi localizada uma release pública CurseForge 2.27.46 na sequência consultada; por isso o delta público é tratado como 2.27.45→2.27.47, sem inventar uma release intermediária.
+
+Entre o release commit de 2.27.45 e 2.27.47, o source oficial registra hardening importante:
+- sanitização de **Super Glue sem endpoints**;
+- restauração da inicialização standalone do **Torque scanner**;
+- sanitização de entradas vazias de bloco em schematics;
+- aceitação segura de schematics sem block-entity data de belts;
+- parsing de posições NBT em **IntArray**;
+- normalização de track palettes com `shape` ausente;
+- remoção segura de belts malformados;
+- suporte a **wildcard IDs** nas listas de regras de schematic;
+- detecção explícita de **schematic data truncado**;
+- uso do limite de distância do próprio Create para **chain conveyors**.
+
+Commits do mesmo intervalo que são exclusivamente Fabric/build packaging não são projetados sobre a build NeoForge. A função central continua sendo validar/sanitizar uploads antes de dados perigosos chegarem ao fluxo de schematic do servidor.
+
+Gate de regressão: uploads truncados, NBT malformado, belts, super glue, tracks, chain conveyors, wildcard allow/deny lists, Copycats, Quark fix default-off, async scanning, backups/logs e schematic cannon/placement após sanitização.
+
+Fontes upstream: CurseForge Create: Schematic Checker 2.27.47 para NeoForge 1.21.1; repositório oficial `duckgun13476/Create-SchematicChecker`, histórico entre `afda387...` e `cf50bdc...`.
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #203: createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar / runtime 2.27.45-6.0 reconfirmados como latest Release NeoForge 1.21.1/Create 6.0; async scan, sanitization policy, Quark repair default-off e Copycats material-requirement fix permanecem atuais.

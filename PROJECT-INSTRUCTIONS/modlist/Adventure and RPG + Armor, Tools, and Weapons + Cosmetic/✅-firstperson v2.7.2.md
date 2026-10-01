@@ -14,7 +14,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/first-person-model
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `firstperson-neoforge-2.7.2-mc1.21.1.jar`, mod id `firstperson`, runtime `2.7.2` e SHA-1 `8faf96d7c3c12eaec819b4e273e58c048e8de125`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
 - **Observações:** Client-only: F6 toggle e Vanilla Hands são presentation state. Limitação Epic Fight é funcional/rendering, não incompatibilidade de startup. Não criar entradas top-level para TRansition/TRender embarcados.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #281: `firstperson-neoforge-2.7.2-mc1.21.1.jar` / runtime `2.7.2` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece First-person Model 2.7.2. CurseForge publicou 2.7.3 para NeoForge 1.21.1 em 27/09/2026; o delta funcional relevante confirmado no source corrige a animação de troca de item/mão.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Integra-se visualmente com Not Enough Animations e pode colidir com Custom Player Models, armor 3D e Epic Fight render paths. Não altera hitbox, reach ou damage.
 - **Data da última decisão:** 2026-08-26
@@ -86,3 +86,16 @@ A renderização é local. O client não envia autoridade de pose/hitbox extra. 
 - Not Enough Animations presente no pack.
 
 > **Boundary canônico:** FirstPerson controla somente a **apresentação local da câmera/player model**. O servidor e os mods de gameplay continuam authority de pose lógica, hitbox, equipamento e combate.
+
+## 17. Atualização upstream 2.7.3 — não instalada
+A versão instalada continua **2.7.2**. A release **2.7.3** para NeoForge 1.21.1 foi publicada em 27/09/2026.
+
+No source oficial, o delta funcional relevante para a linha compartilhada corrige **item swapping que não reproduzia a animação esperada**. A mudança preserva o `inverseArmHeight` já em andamento usando o maior valor durante a transição, evitando que a lógica de first-person substitua/achate a animação de troca.
+
+O mesmo ciclo upstream também contém manutenção de documentação/formatação e localização ucraniana. Há ainda alterações de render-state/YSM voltadas a linhas modernas 26.x; elas **não são projetadas sobre 1.21.1 sem evidência específica**.
+
+Para este pack, o regression gate é especialmente importante porque First-person Model coexiste com Punchy, NotEnoughAnimations, Epic Fight, Skin Layers 3D, EMF/ETF e outras camadas de player render. Testar troca rápida main/offhand, item use, sprint/sneak/swim, equipamento/armadura, camera toggle e render de mãos/modelo sem double animation ou clipping.
+
+Fontes upstream: CurseForge First-person Model 2.7.3 para NeoForge 1.21.1; repositório oficial `tr7zw/FirstPersonModel`, commit `f49e99d273d0efdd7f1573785548357857b440e1`.
+
+> **Atualização/Status — valor histórico preservado do Notion:** REAUDITADO EM 21/09/2026 — lote físico #281: `firstperson-neoforge-2.7.2-mc1.21.1.jar` / runtime `2.7.2` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
