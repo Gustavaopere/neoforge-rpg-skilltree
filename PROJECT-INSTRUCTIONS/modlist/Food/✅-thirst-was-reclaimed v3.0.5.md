@@ -19,7 +19,7 @@
 - **Observações:** Runtime físico `ThirstWasReclaimed-1.21.1-3.0.5.jar`, mod id `thirst`, metadata `1.21.1-3.0.5`; versão semântica 3.0.5. A 3.0.5 corrige incompatibilidade com CreateCyberGoggle, adiciona cooldown para beber água diretamente, corrige perda de purity em container do Supplementaries e erro de parsing de loot table.
 - **Procedência:** modlist física de 16/09/2026 + CurseForge oficial Thirst Was Reclaimed 3.0.5 (file ID 8852248, 10/09/2026) + dossiê anterior 3.0.4 preservado. Nenhum teste runtime foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/thirst-was-reclaimed/files/8391910 ; https://github.com/mlus-asuka/Thirst-Was-Reclaimed
-- **Atualização/Status:** READITADO EM 17/09/2026 — runtime físico atualizado para ThirstWasReclaimed-1.21.1-3.0.5.jar / metadata 1.21.1-3.0.5. Release 3.0.5 de 10/09/2026 adiciona cooldown ao direct drinking e corrige CreateCyberGoggle, perda de purity em containers do Supplementaries e erro de parsing de loot table. Histórico 3.0.4 preservado.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece ThirstWasReclaimed-1.21.1-3.0.5.jar / metadata 1.21.1-3.0.5. CurseForge atualmente lista 3.0.6 para NeoForge 1.21.1; bucket stacking, default purity e dripstone mudaram nessa release e ainda não estão ativos no pack.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-27
 
@@ -155,5 +155,17 @@ Nenhum teste de drinking, purity, loot, Supplementaries, CreateCyberGoggle ou Co
 - [ ] Loot tables carregam sem erro de parsing.
 - [ ] CreateCyberGoggle coexiste sem incompatibilidade reproduzível.
 - [ ] Dedicated server inicia com Thirst 3.0.5 e Cold Sweat 2.4.3.1.
-## 21. Upstream posterior observado
-Em 16/09/2026 foi observada uma publicação `3.0.6` cujo filename sugere Minecraft 1.21.1, porém a listagem recuperada do CurseForge apresenta metadata de game version inconsistente. Pela regra fail-closed e pela autoridade física do pack, essa publicação **não** substitui o runtime instalado `3.0.5` nesta auditoria. Uma atualização futura exige confirmar o artefato físico realmente instalado e a compatibilidade correspondente.
+## 21. Atualização upstream 3.0.6 — não instalada
+A versão física continua **3.0.5**. O índice atual do CurseForge confirma ThirstWasReclaimed-1.21.1-3.0.6.jar como release **NeoForge 1.21.1**, publicada em 16/09/2026.
+
+O changelog 3.0.6 registra três mudanças:
+
+- correção de **buckets que não podiam ser empilhados**;
+- **reversão da mudança de default purity** introduzida anteriormente;
+- **dripstone deixa de fornecer água com purity**.
+
+Esses deltas são relevantes para o contrato de purity e containers descrito nas seções anteriores. Em especial, uma promoção para 3.0.6 precisa regressar bucket stacking, geração/coleta de água por dripstone, propagação de purity e addons que assumam o default de purity.
+
+Há uma inconsistência de metadata na página individual do file ID 8893710, que exibe 1.20.1 em um campo apesar do filename 1.21.1. O **índice atual de arquivos do projeto**, porém, lista explicitamente ThirstWasReclaimed-1.21.1-3.0.6.jar sob **1.21.1 / NeoForge**. Portanto a existência da build 3.0.6 para 1.21.1 está confirmada; ela apenas **não é a versão fisicamente instalada**.
+
+**Fontes upstream:** CurseForge Thirst Was Reclaimed files index e file ID 8893710.
