@@ -16,7 +16,7 @@
 - **Sobreposição:** Não substituível por outras libraries genéricas sem adaptação dos consumers; APIs/registries são contratos específicos.
 - **Observações:** Runtime físico 1.21.1-3.6.4. A release 3.6.4 NeoForge 1.21.1, file 8850087, foi publicada em 10/09/2026 e corrige um problema de concorrência. CodecUI 1.3.6 permanece JarJar interno do JAR instalado.
 - **Procedência:** modlist física atual anexada em 16/09/2026 + CurseForge oficial Moonlight 3.6.4 NeoForge 1.21.1 (file 8850087, 10/09/2026) + source oficial já auditado + consumers físicos. O version gate 3.6.3→3.6.4 registrado em 13/09 foi resolvido pela troca física.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 16/09/2026 — Moonlight físico 1.21.1-3.6.4 confirmado; o update que em 13/09 constava apenas como disponível agora está efetivamente instalado. APIs dinâmicas, resources/data/registries, consumers, mixins, CodecUI JarJar, changelogs 3.6.3/3.6.4, riscos e testes permanecem catalogados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Moonlight físico permanece 1.21.1-3.6.4. Foram revisadas as releases **3.6.5 → 3.6.6 → 3.6.7 → 3.6.8**; 3.6.8 é a latest NeoForge 1.21.1 localizada no CurseForge.
 - **Histórico da decisão:** 2026-08-26 — atualizado de 3.4.1 para runtime 1.21.1-3.5.0 e classificado como Dependência após confirmação de Supplementaries instalado como consumidor. 2026-08-28 — atualizado para 1.21.1-3.5.2. 2026-09-06 — atualizado para 1.21.1-3.6.1. 2026-09-07 — atualizado para 1.21.1-3.6.3; decisão Dependência preservada. 2026-09-13 — upstream 3.6.4 registrado como atualização disponível. 2026-09-16 — modlist física confirma 1.21.1-3.6.4; version gate encerrado e decisão Dependência preservada.
 - **Data da última decisão:** 2026-09-10
 
@@ -130,3 +130,26 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Source oficial:** `MehVahdJukaar/Moonlight`.
 - **Consumers físicos:** Supplementaries 3.9.9; Amendments 2.1.10 também está presente no ecossistema.
 - **Limite:** source exato byte-equivalente do JAR 3.6.4 não foi pinado nesta etapa; internals não são inferidos além das APIs publicamente documentadas e do changelog oficial.
+
+## 15. Histórico upstream 3.6.4 → 3.6.8 — não instalado
+A autoridade física continua em **Moonlight Lib 3.6.4**. Foram publicadas quatro releases posteriores para NeoForge 1.21.1.
+
+### 3.6.5 — 17/09/2026
+- adiciona `Burnt` à blacklist da **automatic wood detection**;
+- amplia suporte para **Codec config screen**.
+
+### 3.6.6 — 20/09/2026
+- corrige um **rare concurrency issue**;
+- corrige um problema com **fluid buckets**.
+
+### 3.6.7 — 21/09/2026
+- corrige outro **concurrency issue**.
+
+### 3.6.8 — 21/09/2026
+- corrige uma interação específica entre **No Man's Land + ModernFix**.
+
+Impacto para o pack: 3.6.5 pode alterar auto-discovery de famílias de madeira em consumers; 3.6.6/3.6.7 reforçam paths concorrentes já classificados como risco; 3.6.6 toca fluid-container semantics; 3.6.8 é compat específica e só deve ser tratada como relevante se ambos os providers estiverem presentes.
+
+Gate de promoção 3.6.4→3.6.8: Supplementaries/Amendments boot, automatic wood detection, config screens/CodecUI, fluid buckets, `/reload`, resource reload, dois clientes concorrentes, dynamic packs, reconnect, e cenário No Man's Land + ModernFix apenas quando essa combinação existir fisicamente.
+
+Fontes upstream: CurseForge files 8905916 (3.6.5), 8929425 (3.6.6), 8940361 (3.6.7) e 8941470 (3.6.8), NeoForge 1.21.1.
