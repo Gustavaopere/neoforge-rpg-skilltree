@@ -15,7 +15,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc`, SHA-1 `ed56854e39545cefdde1fe6695d9f52a31393bdc` e campo runtime vazio; Bundle/Config UI `7.12.1` e EME `2.4.0` também estão presentes. Changelogs oficiais 7.12.0/7.12.1 sustentam os deltas documentados.
 - **Observações:** Fail-closed preservado: `7.12.1` vem do filename/build/publicação do artefato instalado, não da metadata runtime. Core, Bundle e Config UI estão fisicamente alinhados em 7.12.1; Easy Model Entities está fisicamente em 2.4.0.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #238: artefato físico atualizado para `easy_npc-neoforge-1.21.1-7.12.1.jar`. A coluna `mod version` da modlist continua vazia; `7.12.1` é identidade do filename/build/publicação, não metadata runtime inferida.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — artefato físico permanece `easy_npc-neoforge-1.21.1-7.12.1.jar`; CurseForge publicou Easy NPC: Core 7.13.0 para NeoForge 1.21.1 em 29/09/2026. A promoção exige atualização coordenada do conjunto Easy NPC porque 7.13.0 altera a versão do protocolo de rede.
 - **Decisão:** Manter
 - **Sobreposição:** Pode sobrepor funções narrativas/trading de outros sistemas de NPC/quest, mas Easy NPC é o provider direto dos NPCs criados nele. Epic Fight integra combate/animação; Config UI edita o state; nenhum deles deve duplicar ownership do NPC.
 - **Data da última decisão:** 2026-09-06
@@ -182,3 +182,24 @@ Wand outlines da linha 7.12.0 são restritos a holder/owner/admin; outros jogado
 - changelog 7.12.0: ID/posição de preset, owner restore, import sem cópia, sound config, vehicle blocking, skin/client settings, API/conditions e piso EME 2.4.0+;
 - changelog 7.12.1: restore/import/export/preset browser/spawn state, IDs/rate-limit, batch import e UX de presets/skins.
 > **Boundary canônico:** Easy NPC Core é authority do **NPC persistente e de suas operações**. UI, renderers, model providers e combat frameworks são consumidores/adapters, não uma segunda fonte de verdade.
+
+## 24. Atualização upstream 7.13.0 — não instalada
+A versão física do pack continua em **7.12.1**. O projeto oficial Easy NPC: Core publicou **7.13.0 para NeoForge 1.21.1** em 29/09/2026.
+
+Mudanças relevantes da 7.13.0:
+- corrige tags de cor/formatação aparecendo como texto literal em nomes de botões de diálogo;
+- corrige preview do editor exibindo nomes minúsculos como translation key crua;
+- corrige o item **Move EasyNPC** para owners fora do creative;
+- corrige `/easy_npc owner set` reportando sucesso quando a troca de owner falhava;
+- corrige crash na tela de URL/player skin quando ocorre erro de download da skin;
+- corrige pesquisa do preset browser após scroll;
+- adiciona `@initiator`, `@npc` e `@score()` em nomes de botões de diálogo;
+- corrige sorting/filter/layout do preset browser, imports sem posição, leaks no spawn rate limit, IDs instáveis e `Spawn New` empilhando NPCs;
+- adiciona sorting, match count, reload, auto-close, NPC ID/tooltips e batch import por pattern;
+- faz refatoração interna e adiciona testes automáticos de client.
+
+**Mudança operacional crítica:** o changelog declara alteração da **network protocol version**; cliente e servidor precisam usar a **mesma versão do mod**. Como a modlist física também contém `easy_npc_bundle` 7.12.1 e `easy_npc_config_ui` 7.12.1, a promoção para 7.13.0 deve ser coordenada entre Core/Bundle/Config UI, sem atualizar apenas um componente.
+
+Gate de regressão: dedicated server + client 7.13.0 alinhados, diálogo/macros, owner commands, preset import/restore/spawn, skin error handling e integração com Easy Model Entities.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/9013889
