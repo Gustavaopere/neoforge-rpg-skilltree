@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/mru
 - **Função:** Biblioteca reutilizável do ecossistema IMB11/Cassian para packed resources, helpers de configuração e abstrações comuns/multiversionadas de registro, inventário, bundles, backpacks e accessories usadas por consumers.
 - **Dependências:** NeoForge 1.21.1. O projeto não publica hard dependency própria relevante; necessidade operacional depende de consumers instalados ainda não mapeados causalmente.
-- **Compatibilidade/Riscos:** Library multiversionada. Riscos: API/ABI drift, helper de versão incorreta, packed-resource/config drift e abstrações de inventory/backpack/accessory. Nenhum consumer físico inequívoco foi comprovado nesta passagem.
+- **Compatibilidade/Riscos:** Library multiversionada; riscos incluem API/ABI drift, versioned helper mismatch, packed resources, inventory/accessory abstractions e interface injection metadata. Upstream 1.0.41 corrige publicação dos dados de interface injection no NeoForge/OldForge.
 - **Sobreposição:** Não substituível automaticamente por outra library genérica. APIs equivalentes em conceito não são contratos drop-in.
-- **Observações:** Runtime físico 1.0.40+1.21.1. A linha moderna 1.0.30+ ampliou fortemente o escopo da library; a 1.0.40 reduz o requisito de Java para 17. Presença isolada não prova necessidade; não remover até mapear manifests dos consumers.
-- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial MRU file 8858776 (`mru-1.0.40+1.21.1-neoforge.jar`, 11/09/2026) + documentação/source upstream já auditados.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — runtime físico MRU 1.0.40+1.21.1 confirmado pela modlist atual; file ID oficial 8858776 para NeoForge 1.21.1, publicado em 11/09/2026. Consumer mapping e decisão Sem decisão preservados.
+- **Observações:** Runtime físico `1.0.40+1.21.1`. Upstream publicou **MRU 1.0.41 para 1.21.1 NeoForge** em 28/09/2026; a mesma release também adiciona suporte NeoForge 26.3, que não é projetado como comportamento do runtime 1.21.1.
+- **Procedência:** modlist física atual + CurseForge MRU 1.0.40/1.0.41 + source oficial `IMB11-Mods/MRU` commit `471dee747a11ea6925c9bfef35ba16635d5820bd`. A versão instalada permanece 1.0.40+1.21.1.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — MRU físico permanece 1.0.40+1.21.1. A release **1.0.41** para NeoForge 1.21.1 foi confirmada e seu fix relevante está registrado abaixo.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-26
 
@@ -98,3 +98,17 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Linha moderna/source artifact: expansão para abstrações de registro, inventário, bundles, backpacks, accessories e helpers multiversionados.
 - Source upstream: `IMB11-Mods/MRU`.
 - **Limite:** nenhum consumer instalado foi provado causalmente neste lote; a ficha permanece deliberadamente fail-closed em `Sem decisão`.
+
+
+## 12. Atualização upstream 1.0.41 — não instalada
+A autoridade física continua em **MRU 1.0.40+1.21.1**. CurseForge lista **MRU 1.0.41 para 1.21.1 NeoForge**, publicada em 28/09/2026.
+
+Changelog oficial 1.0.41:
+- adiciona suporte a **NeoForge 26.3** — manutenção de outra linha de Minecraft, não atribuída ao artefato 1.21.1;
+- corrige a publicação dos **interface injection data** em **NeoForge e OldForge**.
+
+O segundo ponto é material para consumers: interface injection metadata precisa acompanhar o artefato publicado para que interfaces/mixins esperados pelo consumer existam no runtime. Falha pode se manifestar como linkage/missing-method em vez de erro explícito de MRU.
+
+Gate de promoção 1.0.40→1.0.41: client/dedicated-server boot; consumer real de MRU; verificar interface injection no JAR publicado; config/packed resources; inventory/accessory helpers; resource reload; update conjunto dos consumers identificados.
+
+Fonte upstream: CurseForge MRU 1.0.41 para 1.21.1 NeoForge; source commit `471dee747a11ea6925c9bfef35ba16635d5820bd`.
