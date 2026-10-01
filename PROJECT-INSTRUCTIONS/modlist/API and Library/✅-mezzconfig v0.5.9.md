@@ -93,7 +93,7 @@ Regression gates para 0.5.9:
 - [ ] reload preserva validação e defaults;
 - [ ] listener do consumer executa uma única vez por mudança efetiva.
 ## 8. Atualizações upstream — 0.5.10 → 0.6.6 — não instaladas
-A modlist física usada por este catálogo continua em **0.5.9**. O CurseForge publicou para **NeoForge 1.21.1** uma sequência posterior que chegou a **0.6.6 em 30/09/2026**. Todas as releases intermediárias publicadas nessa linha foram revisadas; somente deltas com impacto técnico para consumers/configuração são promovidos a requisitos operacionais abaixo.
+A modlist física usada por este catálogo continua em **0.5.9**. O CurseForge publicou para **NeoForge 1.21.1** uma sequência posterior que chegou a **0.6.6 em 30/09/2026**. Foi revisado o histórico intermediário exposto pelos changelogs oficiais entre 0.5.9 e 0.6.6; alguns headings de versão aparecem de forma cumulativa no changelog de um artefato posterior e não são tratados aqui como prova de que existiu um arquivo 1.21.1 separado para cada heading. Somente deltas com impacto técnico para consumers/configuração são promovidos a requisitos operacionais abaixo.
 
 | Release | Delta relevante para o catálogo |
 |---|---|
