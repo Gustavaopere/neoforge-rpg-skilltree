@@ -307,3 +307,9 @@ Não duplicar Source, physics state, target coordinates nem position index em ou
 - Guia consolidado de Magia do projeto.
 - Source oficial `baileyholl/ars-sable`, commit exato `1fd83f3a998e3a41b5a21d0d6529140a0b0a55ba` (1.1.2).
 - `gradle.properties`, `neoforge.mods.toml`, `ars_sable.mixins.json`, `SourceJarMixin`, `SableSourceProvider`, `StorageLecternTileMixin`, `PortalTileMixin`, `changelog.md` e suites GameTest da release.
+
+## Preservação literal de serialização do Notion
+
+- metadata aceita **Sable ****`[1.0,)`**;
+
+> A linha acima é preservada literalmente para paridade de migração. A formulação técnica equivalente já existente no corpo principal permanece válida.
