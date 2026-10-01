@@ -100,3 +100,5 @@ Owner IDs, current target, cooldown e summon references não podem ficar stale e
 - changelog 1.3.3: minimum KnightLib 1.6.2 e fix de Demon Flesh/JER;
 - changelog 1.3.4: compatibilidade com KnightLib 2.0.0+ e tentativa de fix para Mutated/Holy Teddy e Golden Allay atravessando o terreno.
 > 🛡️ Boundary canônico: Companions! controla **entidades, ownership, AI, summons e abilities próprias**. Integrações externas devem observar esse state, não criar um segundo sistema de pet/combate concorrente.
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #103: `companions-neoforge-1.21.1-1.3.4.jar` / `1.3.4` conferidos contra a modlist atual; KnightLib 2.0.x, Demon Flesh/JER, fixes de entidades atravessando terreno e regressões anteriores preservados.
