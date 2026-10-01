@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/power-grid
 - **Função:** Sistema de eletricidade inspirado em engenharia real para o ecossistema Create, com geração, distribuição, circuitos e componentes elétricos.
 - **Dependências:** Create/NeoForge 1.21.1 conforme projeto. JAR embute EJML 0.44.0 e Sable Companion 1.6.0 sob o host.
-- **Compatibilidade/Riscos:** Riscos: sobrecarga/voltagem, loops FE, TFMG integration drift, Sable fast-contraption regression, state persistence, redes grandes e convergência entre Sable Companion embedded 1.6.0 e outras versões internas. Nenhum conflito embedded foi assumido sem teste.
+- **Compatibilidade/Riscos:** Riscos: sobrecarga/voltagem, loops FE, TFMG integration drift, Sable fast-contraption regression, state persistence, redes grandes e convergência entre Sable Companion embedded 1.6.0 e outras versões internas. Nenhum conflito embedded foi assumido sem teste. Upstream 0.6.2 acrescenta novos componentes/circuitos e corrige stack overflow em windings, portanto uma promoção exige regression de redes existentes e do range de TFMG.
 - **Sobreposição:** Sobreposição parcial com outros sistemas elétricos/industriais, mas Power Grid possui modelo próprio de tensão/circuitos/dispositivos; não é substituto automático de Crafts & Additions/TFMG/Oritech.
-- **Observações:** Runtime 0.6.1, Release 26/08/2026. Changelog 0.6.1 inclui fixes de custom expression, switch state, TFMG Community Edition, hanging wires e crash em contraptions Sable rápidas.
-- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial Create: Power Grid 0.6.1 + hierarquia física JarJar.
-- **Atualização/Status:** REVALIDADO EM 25/09/2026 — Create: Power Grid 0.6.1/JAR físico reconfirmado; EJML 0.44.0 e Sable Companion 1.6.0 permanecem embutidos sob o host.
+- **Observações:** Runtime físico 0.6.1, Release 26/08/2026. Changelog 0.6.1 inclui fixes de custom expression, switch state, TFMG Community Edition, hanging wires e crash em contraptions Sable rápidas. Upstream NeoForge 1.21.1 avançou para 0.6.2 em 14/09/2026; essa release não está instalada.
+- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial Create: Power Grid 0.6.1/0.6.2 + hierarquia física JarJar. A versão física permanece 0.6.1; 0.6.2 é registrada apenas como atualização upstream disponível.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Create: Power Grid físico permanece 0.6.1. CurseForge publicou **0.6.2** para NeoForge 1.21.1 em 14/09/2026; o changelog completo foi revisado e está registrado abaixo, sem atribuí-lo ao runtime instalado.
 - **Histórico da decisão:** A revisão sugeriu remover Create: Power Grid para simplificar a infraestrutura energética ao redor de Create/TFMG. O usuário posteriormente informou que manteve alguns addons Create sugeridos porque gosta deles. Confirmado carregado como 0.6.0.1 em 22/08/2026; sem decisão final individual.
 - **Data da última decisão:** 2026-09-10
 
@@ -100,3 +100,23 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial: Release 0.6.1 NeoForge 1.21.1 de 26/08/2026, Client & Server.
 - Descrição/changelog oficiais: modelo elétrico, dispositivos, FE compat e fixes 0.6.1.
 - **Limite:** config local, topologia real das redes e resolução efetiva entre versões embedded de Sable Companion não foram testadas; não foi declarado conflito sem evidência.
+
+## 15. Atualização upstream 0.6.2 — não instalada
+A autoridade física continua em **0.6.1**. A release **0.6.2** para NeoForge 1.21.1 foi publicada em 14/09/2026; não há release intermediária entre 0.6.1 e 0.6.2 na linha aplicável.
+
+O changelog oficial registra:
+- novos componentes **Thyratron** e **Pentode**;
+- **Triode** separado em item próprio;
+- integração permitindo ao **Farmer's Delight** usar o **Basin Heater** como fonte de calor;
+- correção do advancement de **transformer**;
+- correção do formato de propriedades `float`;
+- adição de **through-board vias**;
+- adição de **biome overrides** para solar panels;
+- correção de **stack overflow em windings**;
+- ampliação do **range de versão do TFMG** na linha 1.21.1.
+
+Impacto para o pack: os novos componentes alteram a superfície de circuit design; o fix de windings é um hardening relevante para redes complexas; biome overrides podem mudar rendimento/comportamento de solar panels por ambiente; e a mudança de range TFMG exige validar especificamente a coexistência com a versão física do TFMG Community Edition.
+
+Gate de promoção 0.6.1→0.6.2: circuit boards antigos; Triode/Thyratron/Pentode; transformer advancement; windings em redes grandes; solar panels em biomas distintos; Basin Heater + Farmer's Delight; TFMG integration; FE bridge; Sable contraptions; save/restart/chunk unload sem alterar state elétrico.
+
+Fonte upstream: CurseForge Create: Power Grid file ID 8880715, release 0.6.2 para NeoForge 1.21.1.
