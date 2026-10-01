@@ -12,11 +12,11 @@
 - **Fonte:** https://github.com/muon-rw/Apotheosis-Irons-Spells
 - **Função:** Compatibilidade bidirecional entre Apotheosis/Apothic e Iron's Spells, tornando staffs/spellbooks reforjáveis e adicionando affixes/gems ligados a escolas, spell power/level/mana e disparo de spells por eventos de combate/cura.
 - **Dependências:** Apotheosis 8.6.0+ pela linha 2.2.1; pack físico: Apotheosis 8.8.0, Apothic Enchanting 1.6.2, Apothic Spawners 1.4.0, Apothic Attributes 2.10.1, Iron's Spells 3.16.3, Iron's Lib 2.1.0 e Curios 9.5.1+1.21.1. Compat 2.2.2 toca GTBC's Geomancy, Cataclysm Spellbooks e Alshanex's Familiars, todos presentes.
-- **Compatibilidade/Riscos:** Bridge profunda entre Apotheosis/Apothic e Iron's. Riscos: recursive proc loops, free-cast duplicado, cooldown/target state incorreto, school/affix stacking excessivo, optional-school registry drift, Curios/equipment lifecycle, FakePlayer/TargetEntityCastData edges e version drift dos providers.
+- **Compatibilidade/Riscos:** Bridge profunda entre Apotheosis/Apothic e Iron's. Riscos: recursive proc loops, free-cast duplicado, cooldown/target state incorreto, school/affix stacking excessivo, optional-school registry drift, Curios/equipment lifecycle, FakePlayer/TargetEntityCastData edges e version drift dos providers. Upstream 2.2.5 corrige precisamente doublecast/cooldown/mana em spell-trigger affixes; 2.2.6 restringe affixes genéricos a gear que já possua atributos mágicos.
 - **Sobreposição:** Não substitui Apotheosis nem Iron's; injeta o sistema Apothic de reforging/affixes no conteúdo mágico de Iron's. Pode amplificar outros sistemas de atributos/gems/Curios, portanto balance e exactly-once procs exigem validação.
-- **Observações:** Runtime físico 2.2.2. Changelog 2.2.2 adiciona Geo school affixes + Quaking Jasper, remove Sand school compat e remove Harmonic após mudanças dos providers.
-- **Procedência:** modlist física de 17/09/2026 + release/changelog oficial Apotheosis x Iron's Spellbooks Compat 2.2.2 + source oficial muon-rw/Apotheosis-Irons-Spells.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — Iron's Apothic atualizado para 2.2.2; deltas Geo/Quaking Jasper, Sand e Harmonic incorporados; matriz física atual dos providers preservada.
+- **Observações:** Runtime físico 2.2.2. Upstream avançou depois por **2.2.3, 2.2.4, 2.2.5 e 2.2.6**; nenhuma dessas releases está instalada. A linha posterior corrige rarity/log de rotten spellbook, remove compat T.O Magic alpha, endurece spell triggers e restringe all-school affixes.
+- **Procedência:** modlist física atual + CurseForge/release changelog oficial Apotheosis x Iron's Spellbooks Compat 2.2.2→2.2.6 + source oficial muon-rw/Apotheosis-Irons-Spells.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Iron's Apothic físico permanece 2.2.2. O histórico **2.2.3 → 2.2.4 → 2.2.5 → 2.2.6** foi revisado integralmente; 2.2.6 é a latest NeoForge 1.21.1.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #339: JAR `irons_apothic-2.2.2.jar`, mod id `irons_apothic`, runtime `2.2.2`, SHA-1 `e8d646f7aad9811ddcefed838d71d14b53573554`.
@@ -87,3 +87,32 @@ Validar reforging, equip/unequip, gem insertion/removal quando aplicável, cast 
 - **Linha 2.2.1:** requirement Apotheosis 8.6.0+ e funcionalidades acumuladas 2.2.0 usadas como provenance da linha.
 - **Limite:** valores numéricos de affixes/gems e tabelas completas de registries não foram inventados quando não pinados.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+
+## 18. Histórico upstream 2.2.3 → 2.2.6 — não instalado
+A autoridade física continua em **Iron's Apothic 2.2.2**.
+
+### 2.2.3
+- corrige erros de log e **rarity ausente** quando um rare-tier rotten spellbook é dropado por mob;
+- remove totalmente a compatibilidade com a versão alpha de **T.O Magic**, descrita pelo upstream como inalcançável.
+
+### 2.2.4
+- atualização da tradução chinesa (`zh_cn`); sem delta mecânico publicado.
+
+### 2.2.5
+- durante **channeling**, affix spell triggers passam a **pular** em vez de interromper o spell;
+- durante **charging**, triggers ainda podem prosseguir e force-complete a carga, mas agora drenam mana corretamente e aplicam cooldown ao spell completado à força;
+- spell-trigger affixes deixam de entrar em cooldown quando o spell **falha ao castar**;
+- corrige caso potencial de **doublecast** em que um spell-triggered affix podia castar duas vezes o spell que o acionou.
+
+Esse é o delta mais crítico da sequência: altera exatamente settlement, mana e cooldown. Integrações externas não devem compensar esses valores em paralelo.
+
+### 2.2.6
+- affixes **all-school** de Spell Level, Spell Power e Mana Cost deixam de rolar em gear sem qualquer atributo mágico;
+- o item precisa possuir atributo genérico relevante, como spell power, mana, mana regen, cooldown reduction etc.
+
+Impacto: melhora elegibilidade de reforging/loot e impede affixes mágicos semanticamente inúteis em equipamento sem superfície mágica. A condição deve ser verificada pelo attribute state real do item, não pelo nome/categoria visual.
+
+Gate de promoção 2.2.2→2.2.6: rotten spellbook rare-tier; ausência da compat T.O Magic alpha; channeling trigger sem interrupção; charging force-complete com mana+cooldown exatamente uma vez; failed cast sem cooldown; cenário de doublecast; all-school affix em gear mágico e não-mágico; reforging/loot; Curios lifecycle; multiplayer; provider versions Apotheosis/Iron's atuais.
+
+Fonte upstream: CurseForge cumulative changelog da release 2.2.6, file ID 8984247, cobrindo 2.2.3–2.2.6.
