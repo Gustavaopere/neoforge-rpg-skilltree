@@ -12,11 +12,11 @@
 - **Fonte:** https://github.com/ObscuriaLithium/fragmentum/tree/legacy/1.21.1
 - **Função:** Framework/core cross-platform da Obscuria Collection: abstrações de plataforma e deferred registries, config, networking/payloads, built-in packs e client registries/tooltips; não adiciona gameplay por si só.
 - **Dependências:** Runtime NeoForge 1.21.1 / Java 21. O JAR físico incorpora YACL 3.6.6+1.21.1 NeoForge, LuaJ core/JSE e dependências transitivas internas em META-INF/jarjar; não são entradas top-level.
-- **Compatibilidade/Riscos:** Riscos principais: version drift entre consumer/framework, double registration, payload mismatch, stale state após reload, mixin collision e client classloading em dedicated server; a linha 1.21.1 já teve correção upstream específica para mixin client carregado no servidor. Upstream 5.0.0 introduz breaking changes explícitos para dependentes; não atualizar Fragmentum isoladamente no pack.
+- **Compatibilidade/Riscos:** Riscos principais: version drift entre consumer/framework, double registration, payload mismatch, stale state após reload, mixin collision e client classloading em dedicated server. Upstream 5.0.0 introduz breaking changes explícitos para dependentes; **5.1.1** acrescenta `buttonOption` ao `ConfigScreenFactory`. Não atualizar Fragmentum isoladamente no pack.
 - **Sobreposição:** Sobreposição apenas de infraestrutura com outras bibliotecas/abstrações. Não é redundância temática; remover ou substituir exige mapear consumidores reais. Evitar registro/config/networking duplicado por APIs Fragmentum e NeoForge nativo.
-- **Observações:** Runtime físico confirmado em Fragmentum 2.4.4 para Minecraft 1.21.1. O source oficial da linha instalada está em `legacy/1.21.1`. Upstream publicou 5.0.0 em 19/09/2026 com migração para Modern Stonecutter + Kotlin e breaking changes para dependentes; essa release não está instalada e exige validação conjunta dos consumers antes de qualquer troca física.
+- **Observações:** Runtime físico confirmado em Fragmentum 2.4.4 para Minecraft 1.21.1. O source oficial da linha instalada está em `legacy/1.21.1`. Upstream publicou 5.0.0 em 19/09/2026 com Modern Stonecutter + Kotlin/breaking changes e **5.1.1 em 30/09/2026** com suporte a `buttonOption` no `ConfigScreenFactory`; nenhuma está instalada.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `fragmentum-neoforge-1.21.1-2.4.4.jar`, mod id `fragmentum`, runtime `2.4.4` e SHA-1 `09995d8f0da787acdf5df590defc8dd38cf69884`. O source oficial foi revalidado em `legacy/1.21.1`; `gradle.properties` confirma version 2.4.4 e Minecraft 1.21.1.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #287: Fragmentum 2.4.4 reconfirmado. Upstream 5.0.0 (19/09/2026) identificado como atualização disponível, não instalada, com breaking changes para mods dependentes.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Fragmentum físico permanece 2.4.4. O histórico posterior confirmado é **5.0.0 → 5.1.1**; 5.1.1 é a latest NeoForge 1.21.1 no CurseForge.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #287: JAR `fragmentum-neoforge-1.21.1-2.4.4.jar`, mod id `fragmentum`, runtime `2.4.4`, SHA-1 `09995d8f0da787acdf5df590defc8dd38cf69884`.
@@ -130,3 +130,17 @@ A release **Fragmentum 5.0.0** para NeoForge 1.21.1 foi publicada em 19/09/2026.
 **Distribuição oficial:** CurseForge Fragmentum NeoForge, file `8707553`, release instalada 2.4.4 de 22/08/2026 para 1.21.1. A release mais recente para 1.21.1 é 5.0.0, file `8921953`, de 19/09/2026, mas não está instalada.
 **Limite:** o projeto declara que a biblioteca é destinada à Obscuria Collection e não é general-purpose. Não listar APIs como “usadas” por um mod específico sem confirmar o consumidor.
 **Nenhum teste de runtime foi executado nesta catalogação.**
+
+
+## 16. Upstream 5.1.1 — disponível, não instalado
+Depois da breaking release 5.0.0 já registrada, a linha 1.21.1 avançou para **5.1.1** em 30/09/2026.
+
+Delta oficial: suporte a **`buttonOption` em `ConfigScreenFactory`**.
+
+Não foi localizada release pública 5.1.0 na sequência CurseForge 1.21.1 entre 5.0.0 e 5.1.1. A ausência de 5.1.0 não é preenchida por inferência.
+
+Impacto: o novo option type afeta consumers que constroem config screens pelo Fragmentum. A migração 2.4.4→5.1.1 continua dominada pelo breaking boundary da 5.0.0; `buttonOption` não torna a troca isolada segura.
+
+Gate de promoção: atualizar todos os consumers Obscuria/Fragmentum compatíveis com 5.x; dedicated server boot; config UI com `buttonOption`; YACL/config screens; resource/datapack reload; payload/registry bootstrap; confirmar ausência de API calls 2.x removidas.
+
+Fonte upstream: CurseForge Fragmentum [NeoForge Edition] file ID 9022824, `fragmentum-5.1.1+1.21.1-neoforge.jar`.
