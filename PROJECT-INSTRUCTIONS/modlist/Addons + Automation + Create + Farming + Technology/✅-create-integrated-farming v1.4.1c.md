@@ -19,7 +19,7 @@
 - **Observações:** mod id `create_integrated_farming`; runtime 1.4.1c. A build instalada é a Release 1.4.1c para NeoForge 1.21.1 / Create 6.0.10. O fix 1.4.1b para catches de Tide continua herdado; o delta 1.4.1c é de estabilidade client-side do Vacuum Harvester.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime `create_integrated_farming` 1.4.1c + SHA-1 físico `f451d79e850e6b10f205320b614c3d91cef9e240` + CurseForge oficial File ID 8847936 da release 1.4.1c + dossiê técnico anterior. Reconciliação final: JAR/runtime permanecem exatamente `create-integrated-farming-1.4.1c.jar` / `1.4.1c`; a 1.4.1c herda o fix de Tide da 1.4.1b e acrescenta o hotfix client-side do Vacuum Harvester.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026 a ficha foi reconstruída ao padrão técnico em 1.4.1b; em 20/09/2026 a auditoria física reconciliou a instalação atual para 1.4.1c sem converter presença em decisão curatorial.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.4.1c. CurseForge publicou 1.4.2 em 17/09 e 1.4.3 em 21/09/2026; ambos os changelogs intermediários foram revisados e documentados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.4.1c. CurseForge publicou 1.4.2 e 1.4.3; ambos foram revisados. A 1.4.3 exige Create: Dragons Plus 1.11.9+, enquanto o pack físico está em 1.11.8b; promoção bloqueada até atualização coordenada do provider.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -101,6 +101,8 @@ A versão física continua **1.4.1c**. Foram revisadas todas as releases públic
 - corrige crashes e harvesting de **Cultural Delights 0.18.1+ corn**: Vacuum/Mechanical Harvesters coletam a planta de três blocos por qualquer altura, limpam seções superiores e consomem um corn kernel ao replantar.
 
 Impacto no pack: Supplementaries está presente; várias integrações opcionais listadas devem ser ativadas apenas quando o provider correspondente realmente existir. O comportamento de replanting e consumo de seed/kernel deve ser validado para impedir dupes ou remoção de água.
+
+**Bloqueio físico de promoção para 1.4.3:** a release exige **Create: Dragons Plus 1.11.9+**. A modlist física atual contém **CreateDragonsPlus-1.11.8b.jar**. Portanto, 1.4.3 não pode ser promovida isoladamente; primeiro é necessário atualizar e revalidar Dragons Plus. Esse bloqueio não altera a authority instalada de Integrated Farming 1.4.1c.
 
 Gate de regressão: rice submerso, multipart crops, mint/powdery crops, Leteos Compost em dimensão ultra-warm, Roost/Mechanical Arm, Cultural Delights corn, Vacuum + Mechanical Harvester, save/reload e JEI/Ponder.
 
