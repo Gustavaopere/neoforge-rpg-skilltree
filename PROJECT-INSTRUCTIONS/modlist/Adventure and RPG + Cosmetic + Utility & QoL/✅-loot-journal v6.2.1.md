@@ -114,3 +114,5 @@ No snapshot físico atual, Fragmentum permanece **2.4.4**. Portanto, Loot Journa
 Gate de regressão: client boot, HUD de pickups, smart stacking, filtros/YACL, resource reload, pickups massivos, multiplayer nearby pickups e coexistência com outros HUDs após a migração de Fragmentum.
 
 Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/loot-journal-neoforge/files/8922056
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Loot Journal 6.2.1/JAR físico reconfirmado; 6.2.1 permanece a release NeoForge 1.21.1 mais recente localizada. Client-only pickup HUD, YACL/Fragmentum dependencies, source drift e performance/privacy risks preservados.
