@@ -19,7 +19,7 @@
 - **Observações:** Common config pode bloquear seleção de block entities pelo Block Picker devido a risco documentado de perda de data; client config pode ocultar netherite jetpack/exoskeletons em primeira pessoa.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial do projeto 1.0.3 + changelogs 1.0.1/1.0.2 como lineage.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-stuff-n-additions-x-sable-aeronautics
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable: Stuff&Additions Compatibility 1.0.3/JAR físico reconfirmado; 1.0.3 permanece a release NeoForge 1.21.1 mais recente localizada. JetPack/Grapplin/Block Picker fixes e configs preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.0.3. CurseForge publicou 1.0.4 para NeoForge 1.21.1 em 28/09/2026, alinhando dependências a Sable 2.0.5 / Create Stuff 'N Additions 2.1.4b e adicionando modelo de braço do Netherite Exoskeleton em primeira pessoa.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 
@@ -146,3 +146,18 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial atual: JetPack/Grapplin/Block Picker, configs e crash fixes; requisitos Sable >=1.2.2 e Stuff 'N Additions >=2.1.3.
 - Changelogs oficiais 1.0.1/1.0.2 usados como lineage de regressão.
 - **Limite:** a página do arquivo 1.0.3 não expôs delta textual específico além do estado atual do projeto; não foram inventadas mudanças exclusivas dessa build.
+
+## 18. Atualização upstream 1.0.4 — não instalada
+O pack continua em **1.0.3**. A release **1.0.4** foi publicada em 28/09/2026 (file ID **9000433**).
+
+Changelog publicado:
+- dependências atualizadas explicitamente para **Sable 2.0.5** e **Create Stuff 'N Additions 2.1.4b**;
+- adicionado **modelo de braço em primeira pessoa do Netherite Exoskeleton**, alinhado aos demais exoskeletons;
+- nova opção de config para desabilitar esse modelo;
+- o modelo também não é exibido quando a opção geral de esconder armaduras na mão/primeira pessoa está ativa.
+
+O snapshot físico já possui Sable 2.0.5 e Create Stuff 'N Additions 2.1.4b, portanto os providers atuais satisfazem exatamente o alvo declarado pela 1.0.4. A atualização ainda não é atribuída ao runtime até o JAR da bridge ser substituído.
+
+Gate de regressão: Netherite Exoskeleton em primeira pessoa, interação com `hide armor first person hand`, config específica da bridge, JetPack/Grapplin/Block Picker em sublevels e coexistência com Punchy/First-person Model/Epic Fight.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/create-stuff-n-additions-x-sable-aeronautics/files/9000433
