@@ -25,7 +25,7 @@
 - **Observações:** Runtime instalado `4.1-484`. Em 10/09/2026, 4.1-484 foi publicada como hotfix para Mending/filtering e agora está confirmada na instalação física. A 4.1-483 permanece relevante como release-base imediatamente anterior, responsável pelas mudanças de Azalea Wood, Golden Tools Have Fortune, Totem of Holding/Oddities e item-handler capabilities documentadas no dossiê.
 - **Procedência:** modlist física atual anexada em 16/09/2026 + CurseForge oficial Quark 4.1-484 file ID 8847564 + dossiê/source já auditado da 4.1-483 + Dynamic Trees - Quark 2.6.1 e dependências físicas atuais.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/quark | https://www.curseforge.com/minecraft/mc-mods/quark/files/8847564
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 16/09/2026 — Quark 4.1-484 físico confirmado e decisão Dependência preservada: modularidade, Zeta, DT-Quark consumer mantido, Azalea/enchants/item handlers, Biolith embedded + top-level coexistente, hotfix de Mending, riscos e testes.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Quark 4.1-484. CurseForge publicou 4.1-485 para NeoForge 1.21.1 em 16/09/2026 com fixes de recipes/tags e nova opção do módulo Azalea Wood.
 - **Histórico da decisão:** 2026-09-10 — reclassificado de Sem decisão para Dependência porque Dynamic Trees - Quark 2.6.1 está Mantido/Integrado ao Github e exige Quark como base funcional. 2026-09-11 — Notion registrava 4.1-483 instalada e 4.1-484 como update externo. 2026-09-16 — modlist física confirma 4.1-484 instalada; decisão Dependência preservada.
 - **Data da última decisão:** 2026-09-10
 
@@ -168,3 +168,23 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 > **Dependências — valor histórico da origem:** Zeta 1.1-40 é required dependency. Consumer/bridge causal mantido no pack: Dynamic Trees - Quark 2.6.1, que depende de Quark + Dynamic Trees; Dynamic Trees físico está em 1.7.2. Biolith 3.0.10 permanece embedded no JAR; Biolith 3.0.14 também existe fisicamente como top-level separado.
 
 > **Observações — valor histórico da origem:** Runtime instalado 4.1-484. Em 10/09/2026, 4.1-484 foi publicada como hotfix para Mending/filtering e agora está confirmada na instalação física. A 4.1-483 permanece relevante como release-base imediatamente anterior, responsável pelas mudanças de Azalea Wood, Golden Tools Have Fortune, Totem of Holding/Oddities e item-handler capabilities documentadas no dossiê.
+
+## 21. Atualização upstream 4.1-485 — não instalada
+A versão instalada continua **4.1-484**. A release **4.1-485** para NeoForge 1.21.1 foi publicada em 16/09/2026.
+
+### Fixes
+- corrige a recipe de **Ashen Vertical Planks**, que estava apontando para a recipe de Azalea Vertical Planks (#5646);
+- corrige a tag de **stone tool materials** (#5640);
+- remove hard-code da transformação de Azalea Tree (#5647).
+
+### Mudanças e configuração
+- Polished Quark stones e Infested Cobblestone deixam de poder fabricar stone tools;
+- o módulo **Azalea Wood** ganha opção separada para desabilitar a substituição de Oak logs por Quark Azalea logs. O próprio upstream observa que isso deixa Quark Azalea Wood habilitado porém não obtível naturalmente e é destinado a modpack developers.
+
+Impacto no pack: há Dynamic Trees - Quark e worldgen/compat dependentes de Quark; qualquer alteração na substituição de Azalea logs deve ser testada junto de Dynamic Trees, Integrated structures e datapacks/worldgen. O fix de tag/recipe pode alterar crafting observável por JEI e scripts que usam tags amplas.
+
+Gate de regressão: recipes Ashen/Azalea Vertical Planks, stone-tool-material tags, Azalea worldgen/log replacement on/off, Dynamic Trees - Quark, save de config, JEI e scripts de recipe/tag.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/quark/files/8895753
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 16/09/2026 — Quark 4.1-484 físico confirmado e decisão Dependência preservada: modularidade, Zeta, DT-Quark consumer mantido, Azalea/enchants/item handlers, Biolith embedded + top-level coexistente, hotfix de Mending, riscos e testes.
