@@ -15,11 +15,11 @@
 - **Função:** Addon de automação para Ars Nouveau: liquified Source, conversão Source↔fluidos, Place/Drain Fluid Glyph e novos jobs/acessórios de Starbuncles para item/fluid/energy transport, void e mount.
 - **Dependências:** Ars Nouveau é dependência funcional principal. O addon integra com handlers externos de inventário/fluidos/energia. A feature de gas transport é específica de Mekanism e não implica necessidade local quando Mekanism não está presente.
 - **Sobreposição:** Sobreposição parcial com automação de itens/fluidos de Ars/Create, mas por uma rota mágica distinta.
-- **Compatibilidade/Riscos:** Riscos: dupe/loss em handlers cross-mod, sided inventory incorreto, chunk/job state stale, competição entre rotas de automação e mount experimental. 1.5.8 corrige Void Starby ignorando filtros e Starbuncles não indo à cama atribuída; ambos são regression gates.
-- **Observações:** mod id `starbunclemania`; runtime 1.5.8. Fighter/Healer jobs e integrações culinárias listadas como planned upstream não foram tratadas como conteúdo existente. Decisão Sem decisão preservada.
-- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Starbunclemania 1.5.8 revalidado em 13/09/2026 + Ars Nouveau físico atual. Dossiê de 11/09 preservado; config local e jobs não foram testados em runtime.
+- **Compatibilidade/Riscos:** Jobs item/fluid/energy e liquified Source são transaction-sensitive. Riscos: dupe/loss, sided handler mismatch, stale jobs/chunks, filter errors e cross-mod handlers. Upstream 1.5.9 corrige o Starby Placer ignorando item metadata e sempre usando blockstate default.
+- **Observações:** Runtime físico permanece 1.5.8. Upstream publicou **1.5.9** para NeoForge 1.21.1 em 24/09/2026; ela não está instalada.
+- **Procedência:** modlist física atual + CurseForge oficial StarbuncleMania 1.5.8/1.5.9. A autoridade instalada permanece `starbunclemania-1.21.1-1.5.8.jar`.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/starbunclemania ; https://www.curseforge.com/minecraft/mc-mods/starbunclemania/files/8778598
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Starbunclemania 1.5.8 permanece a release NeoForge 1.21.1 mais recente localizada; liquified Source, jobs item/fluid/energy, fixes de Void Starby/filter e assigned bed, authority e testes preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — StarbuncleMania físico permanece 1.5.8. A release **1.5.9** foi revisada e o fix de metadata/blockstate do Starby Placer foi incorporado abaixo.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-27
 
@@ -132,3 +132,15 @@ O runtime físico continua exatamente `starbunclemania-1.21.1-1.5.8.jar`, mod id
 Os fixes 1.5.8 de **Void Starby respeitar filtros** e **Starbuncles retornarem à cama atribuída** continuam sendo regression gates diretos. Fighter/Healer e outras planned features continuam fora do escopo factual. Nenhum teste runtime foi executado.
 ## 16. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece `starbunclemania-1.21.1-1.5.8.jar`, versão `1.5.8`, e a release 1.21.1 localizada mais recente continua 1.5.8. Os fixes de Void Starby respeitando filtros e de Starbuncles retornando à cama atribuída permanecem regression gates diretos; Fighter/Healer e demais planned features continuam excluídos do escopo factual. A decisão **Sem decisão** foi preservada. Nenhum job, conversão Source↔fluid ou teste de multiplayer foi executado nesta revalidação.
+
+
+## 17. Atualização upstream 1.5.9 — não instalada
+A autoridade física continua em **StarbuncleMania 1.5.8**.
+
+A release **1.5.9** corrige o **Starby Placer** ignorando metadata do item e sempre colocando o **blockstate padrão**.
+
+Impacto: itens que codificam variante/state precisam resultar no blockstate correspondente. O fix é relevante para automação porque perder metadata pode transformar um placement válido em variante incorreta sem necessariamente causar crash.
+
+Gate de promoção 1.5.8→1.5.9: Starby Placer com blocos default e variantes; orientation/state properties; items com metadata/data components; refill/loop de placement; chunk unload/reload; multiplayer; confirmar consumo exactly-once e state final correto.
+
+Fonte upstream: CurseForge file ID 8964554, StarbuncleMania 1.5.9 para NeoForge 1.21.1.
