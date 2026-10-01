@@ -13,11 +13,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/lootr
 - **Função:** Instancia e persiste loot de containers por jogador/UUID, com regras de conversão, refresh/decay, filtros por dimensão/loot table e controles específicos de multiplayer.
 - **Dependências:** Minecraft 1.21.1 e NeoForge. A build analisada é autossuficiente quanto ao domínio Lootr; integrações com estruturas/loot tables são configuráveis e não equivalem a dependências obrigatórias de outros mods do pack.
-- **Compatibilidade/Riscos:** Em multiplayer, cada UUID pode receber inventário próprio do mesmo container, multiplicando a oferta econômica de loot raro. SavedData por container/jogador pode crescer em servidores grandes; testar containers modded, blacklists, piecewise check, fake players e interação com LootJS/Loot Integrations.
+- **Compatibilidade/Riscos:** Persistência por jogador/equipe e conversão de containers tornam updates save/network-sensitive. Riscos: economia multiplayer, refresh/decay sync, team resolver state, problematic containers, fake players, stale block/entity visuals e integration order com LootJS/Loot Integrations. Upstream 1.11.38.126–127 altera problematic chest resolution e sync de refresh/decay.
 - **Sobreposição:** Complementar a LootJS/Loot Integrations. Esses mods alteram conteúdo/condições de loot tables; Lootr controla conversão de containers e inventários individualizados por jogador.
-- **Observações:** A branch mdg-1.21.1 já avançou para 1.11.38.126; o dossiê foi pinado à release 1.11.38.125 para evitar projeção de código posterior. Lootr não substitui LootJS/Loot Integrations: ele controla instância/acesso/persistência do loot por jogador.
-- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial Lootr confirmando `lootr-neoforge-1.21.1-1.11.38.125` como latest release 1.21.1 + source oficial pinado à release 1.11.38.125 já auditado.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Lootr 1.21.1-1.11.38.125/JAR físico reconfirmado; 1.11.38.125 permanece a release NeoForge 1.21.1 mais recente publicada. A branch source pode estar adiante, mas não há artefato 1.21.1 posterior publicado localizado; persistência por UUID, multiplayer/economia e lifecycle preservados.
+- **Observações:** Runtime físico permanece 1.21.1-1.11.38.125. Upstream NeoForge 1.21.1 publicou **1.11.38.126** em 20/09/2026 e **1.11.38.127** em 25/09/2026; ambas não estão instaladas.
+- **Procedência:** modlist física atual + CurseForge oficial Lootr 1.11.38.125/126/127 + source `LootrMinecraft/Lootr` branch 1.21.1 para contexto dos commits de release. A autoridade física permanece .125.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Lootr físico permanece 1.11.38.125. As releases **1.11.38.126 → 1.11.38.127** foram revisadas e registradas abaixo.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #387: JAR `lootr-neoforge-1.21.1-1.11.38.125.jar`, mod id `lootr`, runtime `1.21.1-1.11.38.125`, SHA-1 `ad56869af94247d39f4364cba6403b115b3100b8`.
@@ -133,3 +133,25 @@ Essas mudanças pertencem à build instalada e devem ser mantidas como referênc
 <callout icon="⚠️" color="yellow_bg">
 	**Limite de evidência:** a branch `mdg-1.21.1` já está em 1.11.38.126. Esta ficha evita atribuir à 1.11.38.125 mudanças posteriores e usa o commit de release como authority de código.
 </callout>
+
+
+## 13. Histórico upstream 1.11.38.126 → 1.11.38.127 — não instalado
+A autoridade física continua em **Lootr 1.11.38.125**.
+
+### 1.11.38.126 — 20/09/2026
+O changelog publicado destaca a implementação de **service-based problematic loot chests**, criada para permitir que integrações tratem containers problemáticos por serviço em vez de hardcode central.
+
+No intervalo de source que desemboca nessa release também aparecem correções de team resolver/open-state e o retorno do identificador `lootr_minecart`; esses pontos são preservados como contexto de release, sem substituir o changelog distribuído.
+
+Impacto: a nova extensão para problematic chests pode mudar quais containers são convertidos/ignorados. Providers externos devem registrar uma única regra e não duplicar conversion/fill.
+
+### 1.11.38.127 — 25/09/2026
+O changelog oficial corrige **refresh/decay sync para entities**.
+
+No intervalo 126→127, o source também contém trabalho de sincronização de teams, inicialização de resolvers, refresh de sections/block entities e sistema de notifications/toasts. O fix publicado de 127 é tratado como autoridade mínima; essas mudanças de intervalo são regression surfaces, não claims independentes de API estável.
+
+Impacto: refresh/decay de entity containers precisa convergir entre servidor e todos os clientes sem endless loop, ghost-open state ou loot refeito duas vezes.
+
+Gate de promoção .125→.127: problematic chest service; minecart/entity containers; team join/leave; refresh e decay de blocks/entities; dois jogadores; reconnect; restart; LootJS/Loot Integrations; fake player; notification/toast; packet volume e ausência de sync loops.
+
+Fontes upstream: CurseForge files 8927571 (.126) e 8968561 (.127), além do source oficial Lootr para os intervalos de commits.
