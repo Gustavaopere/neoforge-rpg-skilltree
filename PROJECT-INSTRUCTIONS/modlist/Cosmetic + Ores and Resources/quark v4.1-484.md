@@ -162,3 +162,9 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Histórico preservado:** 4.1-483, mudanças de Azalea/enchantments/Totem/item handlers e o antigo version gate para 4.1-484.
 - **Notion/source já auditado:** Dynamic Trees - Quark 2.6.1 está `Manter` e depende de Quark.
 - **Limite:** config modular local não foi lida neste lote; nenhuma feature foi declarada ativa apenas por constar na documentação; nenhum teste de runtime acima foi executado.
+
+## Preservação de propriedades históricas do Notion
+
+> **Dependências — valor histórico da origem:** Zeta 1.1-40 é required dependency. Consumer/bridge causal mantido no pack: Dynamic Trees - Quark 2.6.1, que depende de Quark + Dynamic Trees; Dynamic Trees físico está em 1.7.2. Biolith 3.0.10 permanece embedded no JAR; Biolith 3.0.14 também existe fisicamente como top-level separado.
+
+> **Observações — valor histórico da origem:** Runtime instalado 4.1-484. Em 10/09/2026, 4.1-484 foi publicada como hotfix para Mending/filtering e agora está confirmada na instalação física. A 4.1-483 permanece relevante como release-base imediatamente anterior, responsável pelas mudanças de Azalea Wood, Golden Tools Have Fortune, Totem of Holding/Oddities e item-handler capabilities documentadas no dossiê.
