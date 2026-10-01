@@ -16,10 +16,10 @@
 - **Dependências:** Required physical: Kiwi 15.8.7+neoforge. Cloth Config 15.0.140 também está presente como optional/config support. Ecliptic Seasons 0.15.0-rc-3 + MultiMod Patch estão presentes; `integration.accumulationWinterOnly` existe, mas config local não foi lida.
 - **Sobreposição:** Interseção com Ecliptic Seasons é intencional: Seasons decide ciclo/clima; Snow Real Magic modifica representation/accumulation/melting. Config `accumulationWinterOnly` pode alinhar os sistemas. Não são substitutos integrais.
 - **Compatibilidade/Riscos:** Stateful snow/world decoration system. Riscos: contained-block state loss, unlimited-layer regression, fence/wall connection, wrong plant snow variant, random-tick overlay loss, falling-snow water conversion, season double-control e performance de accumulation/melting. Clean removal exige restoreOriginalBlocks workflow.
-- **Observações:** Runtime metadata local `12.2.2+neoforge`; arquivo `SnowRealMagic-1.21.1-NeoForge-12.2.2.jar`. Release NeoForge 1.21.1 de 26/06/2026. Delta 12.2.2 corrige unlimited max layers, snowy fence/wall connection, wrong plant snow variants, grass random-tick sem overlay e issue #461 novamente.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + Modrinth/CurseForge oficiais Snow! Real Magic! 12.2.2 + documentação oficial de features/config/tags.
+- **Observações:** Runtime metadata local `12.2.2+neoforge`; arquivo `SnowRealMagic-1.21.1-NeoForge-12.2.2.jar`. Upstream publicou **12.2.3** para NeoForge 1.21.1 em 27/09/2026; ela corrige spam de log de DUMMY block entities e não está instalada.
+- **Procedência:** modlist física atual + Modrinth/CurseForge oficiais Snow! Real Magic! 12.2.2/12.2.3 + documentação oficial de features/config/tags. A autoridade física permanece 12.2.2+neoforge.
 - **Fonte:** https://modrinth.com/mod/snow-real-magic/version/12.2.2%2Bneoforge
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Snow! Real Magic! 12.2.2+neoforge/JAR físico reconfirmado; 12.2.2 permanece a release NeoForge 1.21.1 mais recente localizada. Forgified Fabric APIs/loader internos foram documentados; contained-state/accumulation/season boundaries preservadas.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Snow! Real Magic! físico permanece 12.2.2+neoforge. CurseForge publicou **12.2.3** para NeoForge 1.21.1 em 27/09/2026; o único delta publicado foi incorporado abaixo.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 
@@ -174,3 +174,15 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Changelog 12.2.2 compartilhado pela linha 1.21.1: fence/wall, plant variant, random-tick overlay e issue #461 fixes.
 - Documentação oficial: snow gravity, covered blocks, accumulation/melting, configs, gamerules, tags, model variants e restore workflow.
 - **Limite:** config local não foi lida; defaults upstream e integration toggles não são tratados como configuração efetiva do pack.
+
+
+## 31. Atualização upstream 12.2.3 — não instalada
+A autoridade física continua em **12.2.2+neoforge**. A release **12.2.3** para NeoForge 1.21.1 foi publicada em 27/09/2026.
+
+Delta oficial: corrige **spam de log causado por DUMMY block entities** (issue #482).
+
+Impacto: é um hardening de observabilidade/performance de log, não uma mudança declarada da semântica de snow accumulation. Em áreas com muitos covered/snow proxy states, confirmar que o fix reduz spam sem ocultar erro real de block entity lifecycle.
+
+Gate de promoção 12.2.2→12.2.3: world load em área nevada; chunk unload/reload; restart; covered blocks com block entities; observar `latest.log` sem spam DUMMY; confirmar contained-state restore, accumulation/melting, fence/wall e Ecliptic integration sem regressão.
+
+Fonte upstream: CurseForge file ID 8988910, `SnowRealMagic-1.21.1-NeoForge-12.2.3.jar`.
