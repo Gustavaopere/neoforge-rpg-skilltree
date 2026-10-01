@@ -86,3 +86,8 @@ Validar startup com versões físicas de CBC/CBC:AT, resource/datapack reload, r
 - changelog oficial: crash fix, cluster munitions, Mechanical Arm rocket loading, Rocket Pod recipe, big rocket/rails e quatro shells;
 - página CBC:AT do catálogo usada apenas para ownership/contexto, sem fundir os dois top-levels.
 > 🛠️ Boundary canônico: CBCAT Fix é um patch/addon **separado** de CBC:AT. Conteúdo e fixes devem ser processados uma vez; não duplicar registries/recipes por tratar o patch como um segundo CBC:AT.
+
+## Preservação de propriedade histórica do Notion
+> **Atualização/Status — valor histórico da origem:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #89: artefato \`cbcatfix-1.21.1-neoforge-1.0.1.jar\` reconfirmado; metadata runtime \`1.0.0\` preservada sem normalização fictícia. Crash/cluster fixes, rocket automation, Rocket Pod, big rockets/rails e shell scope permanecem documentados.
+
+O registro acima é mantido literalmente para paridade de migração. O cabeçalho atual do arquivo continua sendo a authority temporal mais recente para posição física e estado vigente.
