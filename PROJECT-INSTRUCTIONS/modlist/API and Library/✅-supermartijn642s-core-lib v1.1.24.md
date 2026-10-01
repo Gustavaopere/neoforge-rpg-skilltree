@@ -19,7 +19,7 @@
 - **Observações:** mod id `supermartijn642corelib`; runtime 1.1.24; Client & Server. Sem gameplay autônomo. Decisão Sem decisão preservada até mapear consumers reais.
 - **Procedência:** modlist.txt física atual consultada em 13/09/2026 + Modrinth oficial Core Lib 1.1.24 revalidado em 13/09/2026 + ImmediatelyFast 1.6.13 físico. Nenhum teste runtime foi executado.
 - **Fonte:** https://modrinth.com/mod/supermartijn642s-core-lib/version/1.1.24-neoforge-mc1.21 ; https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Core Lib 1.1.24 permanece exatamente instalada e aplicável ao NeoForge 1.21.1; UI, BlockEntities, networking e workaround para ImmediatelyFast preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.1.24; CurseForge publicou Core Lib 1.1.24a para NeoForge 1.21/1.21.1 em 21/09/2026.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-27
 
@@ -108,3 +108,12 @@ A modlist atual mantém `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar`, mod
 Nenhum consumer adicional foi promovido a dependência causal sem evidência direta. GUI, networking e BlockEntity lifecycle continuam sem teste runtime nesta recatalogação.
 ## 15. Revalidação física — 13/09/2026
 Runtime físico preservado em SuperMartijn642's Core Lib 1.1.24 para NeoForge 1.21.1. A publicação aplicável localizada permanece 1.1.24. O fix de área de hover de CustomSlot e o workaround para GUIs com ImmediatelyFast continuam regression gates; nenhum teste runtime foi executado.
+
+## 16. Atualização upstream 1.1.24a — não instalada
+A modlist física continua em **1.1.24**. A release **1.1.24a** para NeoForge 1.21/1.21.1 foi publicada em 21/09/2026.
+
+Delta publicado: `TextComponents#block` passa a permitir que o próprio bloco crie o text component, em vez de sempre derivar o texto da translation key.
+
+É uma mudança de API/biblioteca, não uma feature de gameplay. Consumers que dependam de labels/text components de blocos podem apresentar texto diferente após a atualização; o regression gate deve cobrir GUIs, tooltips, nomes de blocos e qualquer consumer que use essa helper.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib/files/8943316

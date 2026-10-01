@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-teleporters-remastered
 - **Procedência:** modlist.txt física atual de 11/09/2026 — runtime físico `createteleporters` 2.0.2 preservado como authority local + CurseForge oficial revalidado em 12/09/2026; publicação/arquivo 2.0.2b de 29/04/2026 continua a release NeoForge 1.21.1 mais recente.
 - **Observações:** Divergência preservada: filename/publicação `2.0.2b`, metadata runtime física `2.0.2`; `Versão 1.21.1` mantém a runtime 2.0.2. 2.0.2b adiciona validação/autolimpeza de Quantum Portal, Sable/Aeronautics compat e corrige Immersive Portals com facings diferentes.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #204: createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar / runtime 2.0.2 reconfirmados contra a latest Release pública 2.0.2b; divergência publicação `2.0.2b` × runtime `2.0.2` preservada. Quantum Portal validation e compats Sable/Aeronautics/Immersive Portals permanecem atuais.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico continua 2.0.2 no JAR público 2.0.2b; CurseForge publicou Create: Teleporters 3.0 para NeoForge 1.21.1 em 29/09/2026. A 3.0 é uma atualização funcional grande, especialmente para trains e Sable.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Waystones 21.1.44/WaystonesSable 1.0.7 compartilham teleporte remoto, mas não substituem Item/Entity Teleporters ou Custom Portal multiblock. Immersive Portals é integração concreta, não duplicata; mantém authority de suas portal entities.
 
@@ -96,3 +96,26 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 24. Evidências e limites
 A modlist física confirma filename, mod id e runtime `2.0.2`. A release oficial exata 2.0.2b confirma validação/autolimpeza de Quantum Portals, uso de dimensões/rotation da base, centro por interior real, compat Sable/Aeronautics e correções Immersive Portals. A documentação Remastered confirma Entity/Item Teleporters, Custom Portal multiblock, TP Links e mudanças de migration/recursos removidos. Internals não pinados permanecem fail-closed.
 > 🔒 **Boundary canônico:** Custom Portal Base é a âncora lógica do multiblock; portal blocks e teleports são derivados de state validado no servidor. Cada transferência deve ocorrer exatamente uma vez entre origem e destino.
+
+## 25. Atualização upstream 3.0 — não instalada
+O pack permanece fisicamente em **2.0.2b** (metadata runtime 2.0.2). A release **3.0** para NeoForge 1.21.1 foi publicada em 29/09/2026.
+
+### Novas funcionalidades
+- custom portals passam a funcionar com **trains**;
+- teleporte passa a funcionar em **Sable ships**;
+- novos efeitos de portal;
+- portais se tornam **dyeable** por interação com corantes;
+- a GUI ganha toggle entre **portal-to-portal** e **portal-to-coordinates**, removendo a necessidade de mudar essa opção apenas por config;
+- Quantum Casings ganham nova rota de produção: **spouting Telejuice sobre Train Casings**, evitando buckets.
+
+### Correções
+- corrige erro KubeJS ligado a fluid stacks incorretas;
+- corrige connected textures do Quantum Casing e a 3.0 **não precisa mais de Fusion** para essa superfície;
+- corrige bugs de alinhamento de portal;
+- corrige compatibilidade com Sable.
+
+Impacto específico neste pack: Sable e Create Aeronautics estão ativos, então a compatibilidade de ships não é teórica. Trains também são uma superfície central do Create. A remoção da necessidade de Fusion para Quantum Casing reduz uma dependência visual dessa feature, mas não elimina Fusion do pack porque outros consumers continuam usando-o.
+
+Gate de regressão: trains atravessando custom portals, player/items/entities em Sable ships, portal-to-coordinates vs portal-to-portal, dye state persistente, Telejuice spouting recipe, KubeJS fluid stacks, portal alignment e save/restart.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/create-teleporters/files/9010655
