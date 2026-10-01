@@ -19,7 +19,7 @@
 - **Observações:** mod id `create_integrated_farming`; runtime 1.4.1c. A build instalada é a Release 1.4.1c para NeoForge 1.21.1 / Create 6.0.10. O fix 1.4.1b para catches de Tide continua herdado; o delta 1.4.1c é de estabilidade client-side do Vacuum Harvester.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime `create_integrated_farming` 1.4.1c + SHA-1 físico `f451d79e850e6b10f205320b614c3d91cef9e240` + CurseForge oficial File ID 8847936 da release 1.4.1c + dossiê técnico anterior. Reconciliação final: JAR/runtime permanecem exatamente `create-integrated-farming-1.4.1c.jar` / `1.4.1c`; a 1.4.1c herda o fix de Tide da 1.4.1b e acrescenta o hotfix client-side do Vacuum Harvester.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026 a ficha foi reconstruída ao padrão técnico em 1.4.1b; em 20/09/2026 a auditoria física reconciliou a instalação atual para 1.4.1c sem converter presença em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #122: `create-integrated-farming-1.4.1c.jar` / `1.4.1c` confirmados; o conteúdo 1.4.1b foi preservado e o delta oficial 1.4.1c (hotfix de crash intermitente do Vacuum Harvester no cliente) foi incorporado.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.4.1c. CurseForge publicou 1.4.2 e 1.4.3; ambos foram revisados. A 1.4.3 exige Create: Dragons Plus 1.11.9+, enquanto o pack físico está em 1.11.8b; promoção bloqueada até atualização coordenada do provider.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -82,3 +82,30 @@ A 1.4.1c adiciona um regression gate client-side específico: abrir o cliente re
 - release 1.4.1b: fix de crash de catches com Tide 2.1.1;
 - release 1.4.1c: fix do crash intermitente client-side ao colocar/visualizar Vacuum Harvester após startup.
 > 🔒 Boundary canônico: **Integrated Farming automatiza a interação; o crop, loot, entidade ou container original continua decidindo seu state e conteúdo**.
+
+## 20. Histórico upstream 1.4.1c → 1.4.3 — não instalado
+A versão física continua **1.4.1c**. Foram revisadas todas as releases públicas posteriores para NeoForge 1.21.1/Create 6.0.10 até **1.4.3**.
+
+### 1.4.2 — 17/09/2026
+- Vacuum Harvester deixa de remover água e de colher rice do Farmer's Delight antes de os panicles amadurecerem; preserva a planta submersa;
+- corrige colheita prematura/incompleta de **Supplementaries flax, Haunted Harvest corn, Autumnity foul berries, Atmospheric aloe e Jaden's Nether Expansion warped wart**; multi-part crops passam a ser tratados como uma única planta e consomem planting material quando a replantação exige destruir o crop;
+- Neapolitan mint passa a fornecer folhas sem ser arrancada nem gerar sprouts extras;
+- My Nether's Delight powdery crops passam a colher ripe peppers em vez de arrancar a planta;
+- Spout passa a catalisar **Leteos Compost** de My Nether's Delight: em dimensões ultra-warm, cada 250 mB de lava avança um estágio e a décima aplicação finaliza fresh compost; fluid insuficiente/target inválido não consome fluido; catalysts custom usam `#mynethersdelight:leteos_booster`;
+- corrige model-loading errors de Confluence duck roost quando Confluence não está instalado;
+- adiciona integrações opcionais para Neapolitan 6.0.1+, Atmospheric 7.0.1+, Supplementaries 3.9.9+, Haunted Harvest 3.5.0+ e Jaden's Nether Expansion 2.4.1+.
+
+### 1.4.3 — 21/09/2026
+- reúne Ponders de crop farming, animal husbandry e fishing em **Farming Appliances**;
+- agrupa occupied Roost variants nas categorias farming e Mechanical Arm targets, com seleção por scroll e tutorials de ducks compatíveis;
+- corrige crashes e harvesting de **Cultural Delights 0.18.1+ corn**: Vacuum/Mechanical Harvesters coletam a planta de três blocos por qualquer altura, limpam seções superiores e consomem um corn kernel ao replantar.
+
+Impacto no pack: Supplementaries está presente; várias integrações opcionais listadas devem ser ativadas apenas quando o provider correspondente realmente existir. O comportamento de replanting e consumo de seed/kernel deve ser validado para impedir dupes ou remoção de água.
+
+**Bloqueio físico de promoção para 1.4.3:** a release exige **Create: Dragons Plus 1.11.9+**. A modlist física atual contém **CreateDragonsPlus-1.11.8b.jar**. Portanto, 1.4.3 não pode ser promovida isoladamente; primeiro é necessário atualizar e revalidar Dragons Plus. Esse bloqueio não altera a authority instalada de Integrated Farming 1.4.1c.
+
+Gate de regressão: rice submerso, multipart crops, mint/powdery crops, Leteos Compost em dimensão ultra-warm, Roost/Mechanical Arm, Cultural Delights corn, Vacuum + Mechanical Harvester, save/reload e JEI/Ponder.
+
+Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming/files/8899993 ; https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming/files/8937623
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #122: `create-integrated-farming-1.4.1c.jar` / `1.4.1c` confirmados; o conteúdo 1.4.1b foi preservado e o delta oficial 1.4.1c (hotfix de crash intermitente do Vacuum Harvester no cliente) foi incorporado.

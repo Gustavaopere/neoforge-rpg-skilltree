@@ -19,7 +19,7 @@
 - **Observações:** A ficha antiga tratava Farmer's Delight como hard dependency; relações atuais do projeto o listam como optional, embora seja o principal ecossistema funcional. 4.3.3 é Release NeoForge 1.21.1 de 31/07/2026.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Slice & Dice 4.3.3, relações de dependência e documentação oficial de Slicer/Cooking/Sprinkler.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/slice-and-dice/files/8547315
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Create Slice & Dice 4.3.3/JAR físico reconfirmado; 4.3.3 permanece a release NeoForge 1.21.1 mais recente localizada. Atmosphere 1.0.17, Ponder 1.0.87+mc1.21.1 e Sable Companion 1.6.0 embedded documentados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 4.3.3. CurseForge publicou Slice & Dice 4.3.4 para NeoForge 1.21.1 em 20/09/2026; a release corrige crashes/intermitências de sprinklers, compat de harvester com Create: Enchantable Machinery e atualiza Atmosphere.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-08-27
 
@@ -148,3 +148,20 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge relações: Create/KFF required; Farmer's Delight/Enchantment Industry/Overweight Farming optional.
 - Documentação oficial: Slicer, automatic Cooking Pot→heated mixing, Sprinkler effects, tags e compats.
 - **Limite:** configs locais, recipes KubeJS/datapacks e recipe conflicts efetivos não foram inspecionados neste lote.
+
+## 27. Atualização upstream 4.3.4 — não instalada
+A versão física continua **4.3.3**. A release **4.3.4** para NeoForge 1.21.1 foi publicada em 20/09/2026.
+
+Deltas publicados:
+- corrige **crash server-side com Sprinklers montados em contraptions**;
+- corrige **Potion Sprinklers que em alguns casos não funcionavam**;
+- adiciona suporte para harvesters do **Create: Enchantable Machinery** soltarem drops como knives no pipeline correspondente;
+- atualiza **Atmosphere** para corrigir Endermen sofrendo dano na neve.
+
+Para este pack, os dois primeiros itens são diretamente relevantes porque o dossiê já trata sprinklers em physics contraptions como regression gate. A compatibilidade com Enchantable Machinery deve ser avaliada somente quando a superfície correspondente estiver ativa, sem inferir ownership de drops fora do addon.
+
+Gate de promoção: sprinkler em contraption/Sable, potion duration/amplifier, server-side tick sem crash, knife/drop behavior, resource reload e coexistência com Farmer's Delight, Central Kitchen e Enchantment Industry.
+
+Fonte upstream: CurseForge Slice & Dice file ID 8929365 (`sliceanddice-4.3.4-neoforge.jar`).
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Create Slice & Dice 4.3.3/JAR físico reconfirmado; 4.3.3 permanece a release NeoForge 1.21.1 mais recente localizada. Atmosphere 1.0.17, Ponder 1.0.87+mc1.21.1 e Sable Companion 1.6.0 embedded documentados.

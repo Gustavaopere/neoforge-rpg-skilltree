@@ -25,7 +25,7 @@
 - **Observações:** mod id ars_sable. Release 1.1.2 possui 24 mixins common + 5 client-only e GameTests para Planarium, Storage Lectern, tracked positions e Warp Portal. Não registra gameplay blocks próprios na build auditada; é bridge de infraestrutura.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + source ars-sable commit `1fd83f3a998e3a41b5a21d0d6529140a0b0a55ba` (1.1.2) + Sable 2.0.5 físico e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime do addon permanecem exatamente `ars_sable-1.21.1-1.1.2.jar` / `1.1.2`; compatibilidade comportamental com Sable 2.0.5 continua pendente de runtime QA.
 - **Fonte:** https://github.com/baileyholl/ars-sable
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #49: `ars_sable-1.21.1-1.1.2.jar` / `1.1.2` conferidos contra a modlist atual; risco Sable build-target 1.2.2 → runtime 2.0.5 preservado, sem aprovação automática de compatibilidade.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Ars Sable 1.1.2. CurseForge/GitHub avançaram por 1.1.3 até 1.1.4; os fixes cobrem Scryer camera em sublevels, Starbuncle pathing e crash com force-loaded sublevels.
 - **Histórico da decisão:** Manter com risco aceito/validação obrigatória. Em 07/09/2026 a ficha foi reconstruída contra o commit exato 1.1.2; metadata aceita Sable \>=1.0, mas o salto do build target 1.2.2 para runtime físico 2.0.5 não foi tratado como prova automática de compatibilidade.
 - **Data da última decisão:** 2026-09-07
 
@@ -307,3 +307,27 @@ Não duplicar Source, physics state, target coordinates nem position index em ou
 - Guia consolidado de Magia do projeto.
 - Source oficial `baileyholl/ars-sable`, commit exato `1fd83f3a998e3a41b5a21d0d6529140a0b0a55ba` (1.1.2).
 - `gradle.properties`, `neoforge.mods.toml`, `ars_sable.mixins.json`, `SourceJarMixin`, `SableSourceProvider`, `StorageLecternTileMixin`, `PortalTileMixin`, `changelog.md` e suites GameTest da release.
+
+## Preservação literal de serialização do Notion
+
+- metadata aceita **Sable ****`[1.0,)`**;
+
+> A linha acima é preservada literalmente para paridade de migração. A formulação técnica equivalente já existente no corpo principal permanece válida.
+
+## 28. Histórico upstream 1.1.2 → 1.1.4 — não instalado
+A authority física continua em **1.1.2**. O source oficial mostra as releases **1.1.3** em 27/09/2026 e **1.1.4** em 28/09/2026.
+
+### 1.1.3
+- corrige **Scryer camera rotation em sublevel**.
+
+### 1.1.4
+- corrige pathing/movimento quando **Starbuncles ficam presos próximos a sublevels** (`moveAwayFromXYZ`);
+- corrige **crash com force-loaded sublevels**.
+
+Esses fixes atacam exatamente surfaces já classificadas como de alto risco no dossiê 1.1.2: câmera/scrying, Starbuncle pathfinding, sublevel observer e lifecycle. Eles não provam compatibilidade total com Sable 2.0.5; o runtime físico continua sendo uma bridge compilada originalmente contra uma linha Sable anterior, e a atualização só deve ser promovida após runtime QA.
+
+Gate de promoção: Scryer camera em ship/sublevel e mundo, Starbuncle próximo a bordas/sublevels, force-load/unload/reload, Source/storage/warp, Planarium, projectiles, assembly/disassembly, dedicated server e restart com objetos montados.
+
+Fontes upstream: repositório oficial `baileyholl/ars-sable`, commits `b3ecf39b8bdb24b14e8fad6f0daf0c352ab3261e`, `ff50aa1423285029b23e56a948de29181ad379a7` e `f72c2e745c11f0a6edde78975f989d1d7e153604`; CurseForge Ars Sable 1.1.3/1.1.4.
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #49: `ars_sable-1.21.1-1.1.2.jar` / `1.1.2` conferidos contra a modlist atual; risco Sable build-target 1.2.2 → runtime 2.0.5 preservado, sem aprovação automática de compatibilidade.
