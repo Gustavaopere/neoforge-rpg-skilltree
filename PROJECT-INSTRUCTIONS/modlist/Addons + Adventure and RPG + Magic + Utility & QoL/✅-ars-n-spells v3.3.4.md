@@ -19,7 +19,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-n-spells
 - **Procedência:** modlist física atual + CurseForge oficial Ars 'n Spells 3.3.1–3.3.4; release 3.3.4 NeoForge 1.21.1 file ID 8881108, 14/09/2026; source-level audit da baseline 3.3.0 já documentada.
 - **Observações:** Runtime físico 3.3.4. Baseline técnica 3.3.0 preservada, com deltas oficiais 3.3.1–3.3.4. A 3.3.4 consolida payment/cast lifecycle, recovery debit/refund, protocolo 7, carrier revisions, Curios mirroring toggle e restaura blank-scroll drops.
-- **Atualização/Status:** READITADO EM 18/09/2026 — runtime físico atualizado de 3.3.2 para 3.3.4; deltas 3.3.3/3.3.4 incorporados, incluindo binding/Spell Loom e ownership consolidado de payment/cast lifecycle.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 3.3.4; CurseForge publicou Ars 'n Spells 3.3.5 para NeoForge 1.21.1 em 29/09/2026 com correção crítica no ponto de débito de mana do Iron's.
 - **Decisão:** Manter
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi reconstruída contra a 3.3.0 real; corrigida definitivamente a hipótese de redundância genérica: esta bridge possui cross-cast, spell wheel, mana/scaling/progression e contracts próprios entre Ars e Iron's.
 - **Sobreposição:** Toca mana/scaling/progression que outras bridges podem tentar unificar. Enquanto ativa, não duplicar esses domínios em integração própria nem confundi-la com Ars Polymorphia/Ars Hex, que têm responsabilidades diferentes.
@@ -353,3 +353,16 @@ Nenhum teste foi marcado como executado nesta auditoria documental. Os regressio
 - Releases oficiais 3.3.1, 3.3.2, 3.3.3 e 3.3.4 para os deltas específicos.
 - README/registries baseline `ModItemsRegistry`/`ModBlocksRegistry`, `ManaUnificationMode` e ritual registry.
 > **Boundary canônico:** Ars 'n' Spells é authority da **bridge** entre Ars e Iron's, inclusive payment/cast lifecycle onde explicitamente substitui o fluxo nativo. Os dois mods-base continuam authority de seus sistemas nativos fora desse contrato.
+
+## 26. Atualização upstream 3.3.5 — não instalada
+A versão instalada continua **3.3.4**. A release **3.3.5** para NeoForge 1.21.1 foi publicada em 29/09/2026.
+
+A correção muda o ponto em que Ars 'n Spells assume o débito de mana durante casts do Iron's. Na 3.3.4 o custo era retirado assim que o evento final de custo terminava, antes da checagem/escrita de mana do próprio Iron's. Se outro mod consultasse affordability nesse intervalo, ele podia ver o pool já debitado, cancelar o cast e provocar refund/log `Effect boundary not reached`; spells custando mais de metade do mana restante podiam falhar nesse cenário.
+
+Na 3.3.5 o addon intercepta o ponto em que o Iron's faria a própria escrita de débito e substitui essa escrita. Assim, checagens intermediárias observam o pool no estado esperado pelo Iron's. O evento de custo passa a declarar o que Ars 'n Spells efetivamente retirará: valor convertido em `ars_primary`, a parcela Iron's de custos divididos, ou 0 para Ars spells vinculados e casts pagos por LP.
+
+O upstream cita **Animus** como exemplo de mod que expunha o problema em NeoForge 1.21.1; Animus não aparece na modlist física desta auditoria. Ainda assim, a correção é relevante para qualquer integração que consulte mana no mesmo boundary.
+
+Gate de regressão: spells Iron's com custo >50% do mana restante, dual-cost, bound Ars spells, LP-paid casts, top-up no boundary de pagamento, refund/cancel e ausência de double debit.
+
+Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9009833
