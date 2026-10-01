@@ -12,11 +12,11 @@
 - **Dependências:** NeoForge + Create obrigatórios; pack físico atual usa Create 6.0.10. O source público atual também declara LambDynamicLights como required dependency para Stage Light; GeckoLib e JEI como integrações opcionais; Sable Companion embarcado via JarJar; integrações com Simulated/Create Aeronautics condicionais à presença real.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Adiciona grid FE próprio, PDU, vehicle control e monitoramento; pode sobrepor energy bridges e control systems. Preservar regression gates 1.5.1 de PDU/cables/UI. Na linha física 1.13.1, ampliar testes para Stage Light/LambDynamicLights, optional JEI/GeckoLib, Sable Companion embarcado e HUD/Stressometer.
+- **Compatibilidade/Riscos:** Adiciona grid FE próprio, PDU, vehicle control e monitoramento; pode sobrepor energy bridges e control systems. Preservar regression gates 1.5.1 de PDU/cables/UI. Upstream 1.14.5 adiciona Portable Power Interface e capacitor banks ativos em trens, além de fixes de routing, FE conservation, security/contraptions, freight sync e render caching.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-stats-power
-- **Procedência:** modlist física atual de 16/09/2026 + metadata física create_stats 1.13.1 + páginas oficiais CurseForge/Modrinth + source público atual Erbell9520/Create-Graphs-Additions-public revalidados em 20/09/2026. A autoridade da versão instalada permanece a modlist física.
-- **Observações:** Runtime físico atual 1.13.1. O antigo dossiê estava em 1.5.1. A página pública continua descrevendo o mesmo core funcional. O source público atual expõe LambDynamicLights required para Stage Light, GeckoLib/JEI opcionais, Sable Companion JarJar e código P1.13 de HUD/Stressometer. Não foi localizado, nas fontes oficiais acessíveis nesta auditoria, um changelog público exato e completo da build 1.13.1; nenhuma mudança específica adicional é atribuída sem evidência.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #160: create_stats-1.13.1.jar / 1.13.1 reconfirmados; FE-grid/PDU authority, monitoring/logistics/vehicle-control surfaces, regressões 1.5.1 preservadas e HUD/Stressometer P1.13 permanecem atuais. Changelog exato da build 1.13.1 continua não localizado; nenhuma mudança não comprovada foi inventada.
+- **Procedência:** modlist física atual + CurseForge oficial Create: Stats & Power 1.13.1/1.14.5 + source público Erbell9520/Create-Graphs-Additions-public. A autoridade instalada permanece `create_stats-1.13.1.jar`.
+- **Observações:** Runtime físico atual 1.13.1. Na listagem oficial, a próxima release publicada após 1.13.1 é diretamente **1.14.5** em 17/09/2026; não há artefatos públicos intermediários 1.13.2/1.14.0–1.14.4 localizados. A 1.14.5 não está instalada.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.13.1. A sequência pública foi conferida: o próximo artefato é diretamente **1.14.5**, sem releases públicas intermediárias localizadas; o changelog 1.14.5 foi incorporado integralmente abaixo.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Stats & Power 1.5.1 foi reconfirmado como instalado; presença não foi convertida em decisão curatorial. Em 16/09/2026, a modlist física confirma create_stats-1.13.1.jar; a decisão permanece Sem decisão.
 - **Sobreposição:** Monitoring, FE e vehicle control podem cruzar outros addons, mas o mod owns seu PDU/grid, displays e controllers. Comparar topology/rates e companion integrations antes de classificar redundância.
@@ -99,3 +99,62 @@ Esses fatos descrevem o source público atual e a instalação; não são aprese
 - **Histórico 1.5.1:** changelog oficial preservado para board chaining, chain page, Indoor Cable corners, outlets/Smart Home Panel, Bread Slicer/Toaster e correções de PDU/cables/UI.
 - **Limite:** não foi localizado, nas fontes oficiais acessíveis nesta auditoria, um changelog público exato e completo da build `1.13.1`. Por isso o catálogo atualiza a autoridade física e registra somente deltas verificáveis no source público, sem atribuir à 1.13.1 mudanças não comprovadas.
 > 🔒 Boundary canônico: **Stats & Power controla seu grid/telemetria/controllers; Create e companion mods continuam controlando a máquina/física subjacente**. Medir ou comandar não deve duplicar energia, movimento ou produção.
+
+
+## 20. Atualização upstream 1.14.5 — não instalada
+A autoridade física continua em **Create: Stats & Power 1.13.1**. A listagem oficial salta diretamente para **1.14.5**; não foram localizadas releases públicas 1.13.2, 1.14.0, 1.14.1, 1.14.2, 1.14.3 ou 1.14.4.
+
+### Portable Power Interface e energia em trens
+- adiciona **Portable Power Interface**, permitindo dockar um trem e carregar/drenar seus Capacitor Banks de forma análoga às Portable Storage/Fluid Interfaces do Create;
+- inclui dial de taxa de transferência, **charge floor** e status lamp;
+- adiciona schedule condition **Train Charge**;
+- Capacitor Banks em trem passam a permanecer **ativos durante movimento**;
+- gauges/FE/t exibem carga real dos banks em trem;
+- goggles passam a funcionar em blocos do trem e exibem resumo de **Train Charge**.
+
+Essas mudanças transformam trens em parte ativa do grid FE do addon. O settlement deve conservar energia exatamente uma vez entre rede estacionária, interface e storage móvel.
+
+### Montagem e displays
+- cables, switches, wall plates e **Cable Diagnostic Junctions** podem ser montados em Create girders;
+- Stats Display Mk III recebe charts com Y-axis **Auto** ou **Fixed**.
+
+### Correções de routing e energia
+- corrige PDU deixando de reconhecer Battery Controller atrás de múltiplos Power Connectors;
+- terminal ports passam a reportar corretamente a rede em vez de `carries nothing`;
+- corrige bugs de routing envolvendo PDU, Battery Controller e Power Limiter;
+- corrige Portable Power Interface **apagando energia** quando o dial configurado excedia a capacidade do wire.
+
+O último fix é um regression gate de conservação: limitar throughput nunca pode destruir FE excedente.
+
+### Segurança e contraptions
+- corrige bypass de **redstone** em doors governadas;
+- corrige security blocks podendo ser **roubados via contraptions**;
+- adiciona operação **Household Remove** para owner/admin.
+
+Security state precisa continuar server-authoritative durante assembly/disassembly; mover um block não pode apagar ownership/permission.
+
+### Freight / Dispatch Board
+- melhora clareza de Freight Manifest e Dispatch Board;
+- corrige orders presos;
+- corrige chart freeze;
+- corrige **sync drift**.
+
+### Rendering e performance
+- corrige faces de Battery Controller, PDU e Capacitor Bank aparecendo com noise/blank;
+- caches de display de Battery Controller/PDU/Capacitor Bank passam a evitar redraw a cada frame.
+
+### Gate de promoção 1.13.1 → 1.14.5
+1. PPI dock/undock com trem parado e em movimento;
+2. charge/drain, dial acima/abaixo da capacidade do wire e conservation exata de FE;
+3. charge floor e Train Charge schedule condition;
+4. Capacitor Bank móvel, gauges e goggles;
+5. cables/switches/wall plates/CDJ em girders;
+6. PDU→Power Connectors→Battery Controller em cadeia;
+7. Power Limiter e priority/load shedding;
+8. governed doors sob redstone e contraption movement;
+9. security block assembly/disassembly + Household Remove;
+10. Freight Manifest/Dispatch Board, stuck order, chart e multiplayer sync;
+11. displays em long-running client para verificar cache/render;
+12. restart/chunk unload, Sable/Aeronautics/Simulated integrations e exactly-once FE settlement.
+
+Fonte upstream: CurseForge file ID 8906784, `create_stats-1.14.5.jar`, release NeoForge 1.21.1.
