@@ -15,11 +15,11 @@
 - **Função:** Rede persistente de destinos de teleporte descobertos/construídos, com activation, visibility, costs/cooldowns/restrições configuráveis e worldgen opcional.
 - **Dependências:** Balm 21.0.65 no pack. Bridges atuais: Waystones:Sable 1.0.7; JourneyMap Integration 1.9 com JourneyMap 6.0.8.
 - **Sobreposição:** Compartilha finalidade com outros teleports/portais, mas sua rede persistente é própria. JourneyMap/JMI e Waystones:Sable são bridges/UI, não sistemas concorrentes.
-- **Compatibilidade/Riscos:** Validar config real de costs/cooldowns/visibility/worldgen, teleport permissions, break/Silk Touch index, multiplayer e coordinate transforms Sable. 21.1.44 corrige visibility/index e feature-cycle worldgen. Marker JourneyMap não é teleport authority.
-- **Observações:** Mod id `waystones`, runtime 21.1.45. Waystones é authority da rede/destinos; Waystones:Sable traduz sublevels e JMI apenas apresenta markers. Referências 21.1.41/21.1.42/21.1.44 são históricas.
-- **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge oficial Waystones 21.1.45 NeoForge 1.21.1 + Balm 21.0.65, Waystones:Sable 1.0.7, JourneyMap 6.0.8/JMI 1.9 físicos. A 21.1.45 corrige crash ao ativar waystone em multiplayer; 21.1.46 existe upstream, mas não está instalada. Nenhum config/teleport/worldgen/Sable/multiplayer test foi executado.
+- **Compatibilidade/Riscos:** Rede persistente de teleporte com riscos de destination state, visibility, costs/cooldowns, permission gates, worldgen, cross-dimension e bridges Sable/JourneyMap. Upstream 21.1.46 adiciona comandos administrativos de cooldown e corrige três regressões de warp scroll, portanto atualizar exige testar custo/requisito/activation state de scrolls e comandos.
+- **Observações:** Runtime físico permanece Waystones 21.1.45. A release **21.1.46** para NeoForge 1.21.1 foi publicada em 25/09/2026 e não está instalada.
+- **Procedência:** modlist física atual + CurseForge oficial Waystones 21.1.45/21.1.46 + histórico 21.1.44 já preservado. A autoridade física continua `waystones-neoforge-1.21.1-21.1.45.jar`.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/waystones
-- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Waystones 21.1.45 é o runtime físico instalado. A 21.1.45 corrige crash ao ativar waystone em multiplayer; a 21.1.46 já existe upstream, mas não está instalada. Histórico 21.1.44 preservado.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Waystones físico permanece 21.1.45. A release **21.1.46** foi revisada integralmente e registrada abaixo.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-09
 
@@ -138,3 +138,20 @@ Os fixes exatos de 21.1.44 — activation visibility com default global, índice
 O runtime físico permanece `waystones-neoforge-1.21.1-21.1.44.jar`, versão `21.1.44`, e esta continua a latest release NeoForge 1.21.1 localizada. Permanecem confirmados os fixes da 21.1.44 para visibility/activation com default global, índices global/team após Silk Touch, waystones unseen/unnamed, registro repetido de worldgen features causando feature-cycle e animações choppy. Balm `21.0.65`, Waystones:Sable `1.0.7`, JourneyMap `6.0.7` e JMI `1.9` continuam presentes. Nenhum config, teleport, worldgen, Sable ou multiplayer test foi executado nesta revalidação.
 ## 17. Reconciliação física e upstream — 27/09/2026
 A autoridade física atual contém `waystones-neoforge-1.21.1-21.1.45.jar`, mod id `waystones`, runtime `21.1.45`, com Balm `21.0.65`, Waystones:Sable `1.0.7`, JourneyMap `6.0.8` e JourneyMap Integration `1.9`. A release oficial 21.1.45, publicada em 13/09/2026, corrige crash ao ativar waystone em multiplayer. A 21.1.46 foi publicada posteriormente e existe upstream, mas não está instalada; por hierarquia de autoridade, o dossiê operacional permanece pinado ao runtime físico 21.1.45. As seções de 08/09–13/09 sobre Waystones 21.1.44 e JourneyMap 6.0.7 permanecem como histórico datado. Nenhum config, teleport, worldgen, Sable ou multiplayer test foi executado nesta reconciliação.
+
+
+## 18. Atualização upstream 21.1.46 — não instalada
+A autoridade física continua em **Waystones 21.1.45**. A próxima release 1.21.1 é **21.1.46**, publicada em 25/09/2026.
+
+Changelog oficial:
+- adiciona `/waystones cooldown <targets> add <identifier> <seconds>`;
+- adiciona `/waystones cooldown <targets> set <identifier> <seconds>`;
+- corrige bound scrolls aparecendo como **invalid** para jogadores que ainda não ativaram o destino;
+- adiciona a mensagem de erro ausente quando um **warp requirement** impede teleport por scroll;
+- corrige scrolls cobrando **XP quando não deveriam**.
+
+Impacto: os comandos novos permitem mutação administrativa explícita de cooldown; integrações externas devem observar o state final do provider, não manter um segundo cooldown paralelo. Os fixes de scroll tocam activation/requirements/cost settlement e precisam permanecer exactly-once no servidor.
+
+Gate de promoção 21.1.45→21.1.46: cooldown add/set em um e vários jogadores; identifiers simultâneos; relog/restart; bound scroll para destino ativado e não ativado; warp requirement permitido/bloqueado com mensagem; XP cost zero/não-zero; cross-dimension; Waystones:Sable; JourneyMap marker sem alterar authority.
+
+Fonte upstream: CurseForge file ID 8969751, `waystones-neoforge-1.21.1-21.1.46.jar`.
