@@ -16,7 +16,7 @@
 - **Sobreposição:** Sobrepõe-se funcionalmente a outros mods de bosses/worldgen apenas em domínio, não em ownership. Bridges/quests devem reagir ao provider em vez de duplicar spawn, damage ou loot.
 - **Observações:** JAR/publicação oficial confirmam 2.2.2, enquanto a metadata runtime exposta na modlist registra `1.21.1`; o campo de versão foi corrigido para a release efetivamente instalada, preservando a discrepância como evidência.
 - **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial Legendary Monsters file 8715533 confirmando release 2.2.2 NeoForge 1.21.1 + source oficial público predecessor 2.1.15, usado somente dentro dos limites já documentados.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Legendary Monsters 2.2.2/JAR físico reconfirmado; 2.2.2 permanece a release NeoForge 1.21.1 mais recente localizada. Discrepância metadata interna `1.21.1` vs release/JAR 2.2.2 e source gap 2.1.15 continuam explicitamente preservados.
+- **Atualização/Status:** GITHUB-ONLY REVALIDADO EM 01/10/2026 — o dossiê do repositório permanece em 2.2.2, mas o upstream GitHub público `Miauczel/Legendary-Monsters-1.21.1-NeoForge` ainda declara `mod_version=2.1.15 MC 1.21.1`. Não foi localizada no GitHub uma release/tag/source 2.2.2 ou versão posterior; portanto GitHub sozinho não revalida esse número nem sustenta atualização acima dele.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #371: JAR `legendary_monsters-2.2.2 MC 1.21.1.jar`, mod id `legendary_monsters`, metadata runtime `1.21.1`; a release/filename instalada é `2.2.2`, conforme discrepância preservada no dossiê; SHA-1 `8910859ba94190dd8cbc8c2c1e2f07562db729b4`.
@@ -67,3 +67,13 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial: release 2.2.2 NeoForge 1.21.1 e changelog da versão;
 - source oficial público predecessor: commit `f412a3e…`, versão 2.1.15, usado apenas para contratos que podem ser confirmados sem fingir equivalência com 2.2.2.
 A ausência de source público exato da 2.2.2 fica registrada como limite de verificabilidade, não preenchida por suposição.
+## 14. Revalidação GitHub-only — source gap
+Sob a regra atual de usar **somente GitHub**, o repositório upstream público `Miauczel/Legendary-Monsters-1.21.1-NeoForge` permanece no source que declara **`mod_version=2.1.15 MC 1.21.1`** em `gradle.properties`.
+
+Não há release GitHub publicada no repositório e não foi localizado source/tag GitHub correspondente a **2.2.2** ou superior. Assim:
+- o valor **2.2.2** permanece como estado já registrado neste dossiê do repositório do modpack;
+- ele **não é independentemente revalidado pelo upstream GitHub**;
+- não existe atualização posterior que possa ser confirmada exclusivamente pelo GitHub neste momento;
+- qualquer detalhe exclusivo de 2.2.2 continua fora do alcance da verificação GitHub-only enquanto o source oficial público permanecer em 2.1.15.
+
+Fonte upstream GitHub: https://github.com/Miauczel/Legendary-Monsters-1.21.1-NeoForge/blob/main/gradle.properties

@@ -19,7 +19,7 @@
 - **Observações:** mod id `create_integrated_farming`; runtime 1.4.1c. A build instalada é a Release 1.4.1c para NeoForge 1.21.1 / Create 6.0.10. O fix 1.4.1b para catches de Tide continua herdado; o delta 1.4.1c é de estabilidade client-side do Vacuum Harvester.
 - **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime `create_integrated_farming` 1.4.1c + SHA-1 físico `f451d79e850e6b10f205320b614c3d91cef9e240` + CurseForge oficial File ID 8847936 da release 1.4.1c + dossiê técnico anterior. Reconciliação final: JAR/runtime permanecem exatamente `create-integrated-farming-1.4.1c.jar` / `1.4.1c`; a 1.4.1c herda o fix de Tide da 1.4.1b e acrescenta o hotfix client-side do Vacuum Harvester.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026 a ficha foi reconstruída ao padrão técnico em 1.4.1b; em 20/09/2026 a auditoria física reconciliou a instalação atual para 1.4.1c sem converter presença em decisão curatorial.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.4.1c. CurseForge publicou 1.4.2 e 1.4.3; ambos foram revisados. A 1.4.3 exige Create: Dragons Plus 1.11.9+, enquanto o pack físico está em 1.11.8b; promoção bloqueada até atualização coordenada do provider.
+- **Atualização/Status:** GITHUB-ONLY REVALIDADO EM 01/10/2026 — versão registrada no dossiê permanece 1.4.1c. O GitHub oficial registra 1.4.2 no commit `0ff12d2...` e 1.4.3 no commit `1f63780...`; `gradle.properties` atual declara 1.4.3 e Create: Dragons Plus 1.11.9+.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -106,6 +106,6 @@ Impacto no pack: Supplementaries está presente; várias integrações opcionais
 
 Gate de regressão: rice submerso, multipart crops, mint/powdery crops, Leteos Compost em dimensão ultra-warm, Roost/Mechanical Arm, Cultural Delights corn, Vacuum + Mechanical Harvester, save/reload e JEI/Ponder.
 
-Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming/files/8899993 ; https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming/files/8937623
+Fontes upstream GitHub: https://github.com/DragonsPlusMinecraft/CreateIntegratedFarming/commit/0ff12d225518d2e3ca136a4e23ca57529d51616d ; https://github.com/DragonsPlusMinecraft/CreateIntegratedFarming/commit/1f63780108d1d51f3b2c9ebdf4bb0cd5cb3f5906 ; branch `1.21.1/6.0.0-dev`.
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #122: `create-integrated-farming-1.4.1c.jar` / `1.4.1c` confirmados; o conteúdo 1.4.1b foi preservado e o delta oficial 1.4.1c (hotfix de crash intermitente do Vacuum Harvester no cliente) foi incorporado.
