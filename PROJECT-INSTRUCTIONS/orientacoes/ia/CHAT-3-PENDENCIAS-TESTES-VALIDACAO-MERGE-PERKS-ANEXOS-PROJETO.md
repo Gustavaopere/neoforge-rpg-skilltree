@@ -23,7 +23,7 @@ Não fixe o intervalo manualmente neste prompt. Antes de iniciar cada ciclo, det
 
 Leia integralmente:
 
-`CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
+`PROJECT-INSTRUCTIONS/orientacoes/ia/CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
 
 Respeite especialmente:
 
@@ -72,7 +72,7 @@ Quando uma pendência técnica, falha de teste ou divergência de provider exigi
 
 - use `PROJECT-INSTRUCTIONS/modlist/modlist.md` para presença/JAR/versão;
 - use o dossier individual atual em `PROJECT-INSTRUCTIONS/modlist/<categorias>/✅-*.md` para o contrato técnico do provider externo;
-- use `GUIA-COMPLETO-PROJETOS-PROPRIOS.md` ou `guides/projects/` para RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana.
+- use `PROJECT-INSTRUCTIONS/orientacoes/referencias/GUIA-COMPLETO-PROJETOS-PROPRIOS.md` ou `PROJECT-INSTRUCTIONS/orientacoes/projetos/` para RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana.
 
 Se a evidência técnica mostrar que o contrato do dossiê está errado de forma que a correção alteraria identidade, efeito, provider, gate, dependência, topologia, autoridade ou semântica essencial da perk:
 

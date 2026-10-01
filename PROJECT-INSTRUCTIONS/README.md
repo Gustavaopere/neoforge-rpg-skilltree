@@ -38,18 +38,19 @@ O contrato editorial local preserva as regras específicas desta campanha para a
 
 Os cinco arquivos abaixo formam o pacote operacional estável para o fluxo de perks do RPG Skill Tree:
 
-1. `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
-2. `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
-3. `CHAT-1-AUDITORIA-DESIGN-PERKS-ANEXOS-PROJETO.md`
-4. `CHAT-2-IMPLEMENTACAO-PERKS-ANEXOS-PROJETO.md`
-5. `CHAT-3-PENDENCIAS-TESTES-VALIDACAO-MERGE-PERKS-ANEXOS-PROJETO.md`
+1. `orientacoes/ia/CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
+2. `orientacoes/referencias/GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
+3. `orientacoes/ia/CHAT-1-AUDITORIA-DESIGN-PERKS-ANEXOS-PROJETO.md`
+4. `orientacoes/ia/CHAT-2-IMPLEMENTACAO-PERKS-ANEXOS-PROJETO.md`
+5. `orientacoes/ia/CHAT-3-PENDENCIAS-TESTES-VALIDACAO-MERGE-PERKS-ANEXOS-PROJETO.md`
 
-Para providers externos, a autoridade operacional não é mais um guia temático consolidado: `modlist/modlist.md` fixa presença, posição, JAR e versão instalada, e o dossier individual atual em `modlist/<categorias>/✅-*.md` fixa mecânicas, ownership/authority, lifecycle, multiplayer, riscos, hooks e limites conhecidos. `GUIA-COMPLETO-PROJETOS-PROPRIOS.md` permanece obrigatório para RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana.
+Para providers externos, a autoridade operacional não é mais um guia temático consolidado: `modlist/modlist.md` fixa presença, posição, JAR e versão instalada, e o dossier individual atual em `modlist/<categorias>/✅-*.md` fixa mecânicas, ownership/authority, lifecycle, multiplayer, riscos, hooks e limites conhecidos. `orientacoes/referencias/GUIA-COMPLETO-PROJETOS-PROPRIOS.md` permanece obrigatório para RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana.
 
 ## Estrutura de suporte
 
 - Os contratos operacionais de engenharia do RPG ficam na raiz do repositório: `/ENGINEERING.md`, `/AGENT-WORKFLOW.md`, `/TESTING.md`, `/DIAGNOSTICS.md` e `/REPO-ROUTING.md`.
-- `guides/` contém os contratos transversais de `projects/` e o relatório histórico da auditoria que reconciliou os antigos guias temáticos com os dossiers individuais.
+- `orientacoes/` é o ponto de entrada das orientações de perks: `ia/` contém instruções executáveis, `referencias/` contém material explicativo/auditoria e `projetos/` contém contratos transversais dos projetos próprios.
+- `orientacoes/projetos/regras-ia/` contém regras específicas para agentes; `orientacoes/projetos/referencias/` contém dossiês, matrizes, snapshots e deltas.
 - `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
 - A antiga árvore `skills/`, o antigo catálogo/tooling I2 compartilhado e a antiga subárvore `engineering/` foram retirados da árvore ativa depois de migração/reconciliação ou realocação do conteúdo RPG necessário.
 
@@ -73,6 +74,6 @@ O conteúdo removido continua recuperável pelo histórico Git, mas não é auth
 
 ## Regra de manutenção
 
-Atualizações de provider externo devem ocorrer no dossier individual correspondente em `modlist/`. Contratos dos quatro projetos próprios e integrações transversais continuam em `guides/projects/` e no consolidado `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`.
+Atualizações de provider externo devem ocorrer no dossier individual correspondente em `modlist/`. Contratos dos quatro projetos próprios e integrações transversais ficam em `orientacoes/projetos/` e no consolidado `orientacoes/referencias/GUIA-COMPLETO-PROJETOS-PROPRIOS.md`.
 
 Novas skills, contracts, validators, templates, tooling, catálogos e automações **genéricos de produção de mods** pertencem à Minecraft Mod Factory. Este repositório só deve receber alterações desse tipo quando forem necessárias para o próprio runtime RPG ou para preservar/migrar trabalho histórico.

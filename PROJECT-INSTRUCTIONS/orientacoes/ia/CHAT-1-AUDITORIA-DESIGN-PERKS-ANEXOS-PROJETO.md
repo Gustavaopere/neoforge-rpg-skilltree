@@ -23,7 +23,7 @@ ANTES de auditar qualquer perk do lote, leia integralmente os arquivos consolida
 
 Leia integralmente:
 
-`CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
+`PROJECT-INSTRUCTIONS/orientacoes/ia/CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
 
 Este arquivo contém a cópia consolidada dos critérios obrigatórios. Os critérios devem ser aplicados integralmente. Não considere uma perk fechada apenas porque já foi marcada assim por outro chat.
 
@@ -40,7 +40,7 @@ Para cada provider externo envolvido no lote:
 
 Leia integralmente:
 
-- `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
+- `PROJECT-INSTRUCTIONS/orientacoes/referencias/GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
 
 Esse consolidado permanece obrigatório porque seus contratos transversais não pertencem a dossiers de mods externos.
 
@@ -48,11 +48,11 @@ Esse consolidado permanece obrigatório porque seus contratos transversais não 
 
 Quando houver mudança de versão, API, hook ou comportamento de provider externo, atualize/reconcilie o **dossier individual do mod**, não um guia temático agregado.
 
-Quando houver mudança em RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana, use `guides/projects/` e reconcilie `GUIA-COMPLETO-PROJETOS-PROPRIOS.md` quando aplicável.
+Quando houver mudança em RPG Skill Tree, Volcanoes, Enshrouded ou Black Arcana, use `PROJECT-INSTRUCTIONS/orientacoes/projetos/` e reconcilie `PROJECT-INSTRUCTIONS/orientacoes/referencias/GUIA-COMPLETO-PROJETOS-PROPRIOS.md` quando aplicável.
 
 ### 2.2 Regra obrigatória — projetos próprios do modpack
 
-`GUIA-COMPLETO-PROJETOS-PROPRIOS.md` é leitura integral obrigatória, incluindo os dossiês de **RPG Skill Tree, Volcanoes, Enshrouded, Black Arcana** e a **Matriz de Integração Cruzada**.
+`PROJECT-INSTRUCTIONS/orientacoes/referencias/GUIA-COMPLETO-PROJETOS-PROPRIOS.md` é leitura integral obrigatória, incluindo os dossiês de **RPG Skill Tree, Volcanoes, Enshrouded, Black Arcana** e a **Matriz de Integração Cruzada**.
 
 Para cada projeto próprio pertinente à perk, o Chat 1 deve registrar explicitamente:
 
@@ -74,7 +74,7 @@ Como **RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana continuam sendo cons
 Antes de auditar a primeira perk de cada lote o Chat 1 deve:
 
 1. fazer fetch fresco das fontes operacionais: `neoforge-rpg-skilltree/main` + `plans/STATUS.md` para o RPG; a mesma `main`, filtrando as superfícies Volcanoes, + `docs/archive/volcanoes/STATUS.md` para Volcanoes; e `main` + `plans/STATUS.md` de Enshrouded e Black Arcana;
-2. comparar os SHAs/heads atuais com o baseline mais recente registrado em `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`;
+2. comparar os SHAs/heads atuais com o baseline mais recente registrado em `PROJECT-INSTRUCTIONS/orientacoes/referencias/GUIA-COMPLETO-PROJETOS-PROPRIOS.md`;
 3. registrar `SEM DELTA RELEVANTE` quando nada pertinente mudou;
 4. se houver avanço, inspecionar os planos/subsistemas alterados e, quando necessário, código/testes/CI;
 5. identificar **toda capacidade jogável nova ou semanticamente alterada**, mesmo que nenhuma perk atual já a mencione;
@@ -142,7 +142,7 @@ Para **cada perk do lote**:
 
 1. Faça fetch fresco da perk no Notion.
 2. Aplique todos os critérios obrigatórios.
-3. Cruze a perk com os quatro guias completos.
+3. Cruze a perk com os dossiers individuais atuais dos providers externos e, quando aplicável, com os contratos dos projetos próprios.
 4. Identifique todos os mods/providers relevantes, incluindo os quatro projetos próprios e qualquer delta externo da modlist ainda não refletido no catálogo.
 5. Para cada projeto próprio pertinente, defina provider/authority/boundary/evidência/causalidade/deduplicação/fallback/fail-closed e o pipeline que não pode ser duplicado.
 6. Verifique bridges e integrações entre mods.
@@ -211,7 +211,7 @@ O dossiê precisa registrar claramente, conforme aplicável:
 
 Não deixe decisões de design para o Chat 2 descobrir durante a implementação.
 
-O resultado do Chat 1 deve ser uma **especificação executável como contrato**, não código de gameplay. Para cada perk, o arquivo `.md` deve permitir que o Chat 2 implemente sem consultar o Notion para reinterpretar intenção e sem refazer a auditoria dos guias.
+O resultado do Chat 1 deve ser uma **especificação executável como contrato**, não código de gameplay. Para cada perk, o arquivo `.md` deve permitir que o Chat 2 implemente sem consultar o Notion para reinterpretar intenção e sem refazer a auditoria das fontes técnicas já materializadas nos dossiers e contratos.
 
 ## Limites do Chat 1
 

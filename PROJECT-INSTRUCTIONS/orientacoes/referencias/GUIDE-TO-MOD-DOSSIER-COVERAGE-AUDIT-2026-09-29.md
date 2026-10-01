@@ -12,7 +12,7 @@ Foram inventariados:
 - **587** dossiers Markdown em `PROJECT-INSTRUCTIONS/modlist/`;
 - **645 associações seção/JAR** extraídas dos capítulos temáticos de Gameplay, Magia e Tecnologia que descrevem mods ou integrações concretas.
 
-README, índices de fontes, snapshots `CURRENT-MODLIST*.md`, decisões históricas e os dossiês de `guides/projects/` foram tratados conforme sua função própria, não como fichas individuais de mod.
+README, índices de fontes, snapshots `CURRENT-MODLIST*.md`, decisões históricas e os então dossiês de `guides/projects/` (hoje em `orientacoes/projetos/`) foram tratados conforme sua função própria, não como fichas individuais de mod.
 
 ## 2. Regra de authority resultante
 
@@ -21,7 +21,7 @@ Para perks futuras:
 1. `modlist/modlist.md` decide **presença, posição física, JAR e versão instalada**.
 2. O dossier individual atual do mod decide **mecânicas, ownership/authority, lifecycle, multiplayer, riscos, hooks e limites conhecidos**.
 3. Os guias temáticos foram usados como **corpus de comparação** para detectar lacunas e preservar contexto durante a auditoria; depois da reconciliação, não são necessários como authority operacional.
-4. `guides/projects/` continua fonte obrigatória dos quatro sistemas próprios — RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana — e de suas regras de capability delta, authority e fail-closed.
+4. `orientacoes/projetos/` continua fonte obrigatória dos quatro sistemas próprios — RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana — e de suas regras de capability delta, authority e fail-closed.
 5. Se uma mecânica perk-relevante aparecer no guia e não no dossier individual atual, a perk não deve ser fechada até a lacuna ser reconciliada.
 
 ## 3. Resultado da comparação
@@ -118,7 +118,7 @@ Não concentrar artificialmente todos esses contratos no mod-base.
 
 ## 6. Projetos próprios — exceção obrigatória
 
-`guides/projects/` não é uma duplicata dos dossiers de mods externos. Ele continua obrigatório porque documenta sistemas próprios e contratos transversais que não pertencem a um único mod da modlist:
+`orientacoes/projetos/` não é uma duplicata dos dossiers de mods externos. Ele continua obrigatório porque documenta sistemas próprios e contratos transversais que não pertencem a um único mod da modlist:
 
 - RPG Skill Tree;
 - Volcanoes;
@@ -143,7 +143,7 @@ Antes de criar/fechar uma perk:
 
 1. confirmar provider atual em `modlist.md`;
 2. ler o dossier individual da versão instalada;
-3. consultar `guides/projects/` quando houver sistema próprio envolvido;
+3. consultar `orientacoes/projetos/` quando houver sistema próprio envolvido;
 4. se uma informação necessária ao design não estiver no dossier individual, **não inferir**: reabrir a auditoria do provider e reconciliar a ficha primeiro;
 5. se o provider foi removido, não recuperá-lo de documentação histórica como provider atual;
 6. manter exactly-once, ownership e fail-closed quando múltiplos sistemas tocarem o mesmo evento.
@@ -156,10 +156,10 @@ Antes de criar/fechar uma perk:
 - Conteúdo transversal dos projetos próprios permanece separado e obrigatório.
 - O único bloqueio estrutural sem dossier continua sendo #272.
 
-A próxima auditoria de perks deve partir de `modlist/modlist.md`, dos dossiers individuais atuais e, quando aplicável, de `guides/projects/`.
+A próxima auditoria de perks deve partir de `modlist/modlist.md`, dos dossiers individuais atuais e, quando aplicável, de `orientacoes/projetos/`.
 
 ## 10. Retirada da camada temática agregada — 01/10/2026
 
 Depois desta auditoria comprovar que as informações perk-relevantes dos providers atuais estavam cobertas pelos dossiers individuais e migrar as cinco lacunas encontradas, os diretórios `guides/gameplay/`, `guides/magic/` e `guides/technology/` e os três consolidados temáticos correspondentes foram retirados da árvore ativa.
 
-A remoção não altera os dossiers nem `guides/projects/`. O conteúdo histórico continua recuperável pelo histórico Git. Para provider externo, ausência de informação no dossier passa a exigir reauditoria do próprio provider em vez de consulta silenciosa ao guia retirado.
+A remoção não altera os dossiers; os contratos antes em `guides/projects/` foram posteriormente reorganizados em `orientacoes/projetos/`. O conteúdo histórico continua recuperável pelo histórico Git. Para provider externo, ausência de informação no dossier passa a exigir reauditoria do próprio provider em vez de consulta silenciosa ao guia retirado.
