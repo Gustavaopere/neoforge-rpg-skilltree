@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-metalwork
 - **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createmetalwork` 2.0.0 + CurseForge oficial revalidado em 12/09/2026; 2.0.0 de 03/12/2025 continua a release NeoForge 1.21.1 mais recente. Source público antigo não é tratado como implementação binária da 2.0.0.
 - **Observações:** JAR/mod id/runtime 2.0.0 confirmados. Release exata NeoForge 1.21.1 corrige crash com Lithium. O repositório público localizado permanece na linha antiga 1.20.1/1.0.0 e não foi usado como implementação binária da 2.0.0.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #196: createmetalwork-2.0.0.jar / runtime 2.0.0 reconfirmados como latest Release NeoForge 1.21.1; crushed/molten ore processing, Almost Unified boundary, CBC/DnD/Northstar overlaps e Lithium crash fix permanecem atuais.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.0.0. CurseForge publicou Create: Metalwork 3.0.0 para NeoForge 1.21.1 em 28/09/2026; trata-se de nova linha major e o changelog público não fornece um diff granular 2.0.0→3.0.0, portanto a atualização deve ser validada por comportamento/config e não por inferência.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Histórico não operacional: uma auditoria anterior centrada em TFC sugeriu remoção por criar rota metálica concorrente. TFC não está na modlist atual, portanto esse fundamento não é aplicável à decisão presente. O mod permanece instalado e sem decisão final.
 - **Sobreposição:** Forte overlap econômico/material com Create Metallurgy 1.0.3 e Productive Metalworks 1.15.1. Não há duplicata automática: comparar crushed ores, molten forms, recipe ratios e máquinas; Almost Unified pode unificar variantes sem resolver rendimento.
@@ -80,3 +80,16 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 19. Evidências e limites
 A modlist física confirma JAR/mod id/runtime 2.0.0. A release oficial confirma NeoForge 1.21.1 Client & Server e fix de Lithium. A documentação oficial confirma novos fluids/crushed ores, maior rendimento e intenção de coexistência com outros molten-metal mods, incluindo recomendação de Almost Unified. O source público disponível não corresponde à linha 2.0.0 e não foi usado para inventar internals.
 > 🔒 **Boundary canônico:** Metalwork amplia forms e recipes de minério; o Recipe Manager do servidor decide rendimento. Unificação de variantes nunca deve criar conversão lucrativa ou alterar conservation.
+
+## 17. Atualização upstream 3.0.0 — não instalada
+A versão física do pack continua **2.0.0**. A release **3.0.0** para NeoForge 1.21.1 foi publicada em 28/09/2026.
+
+O changelog oficial da branch 1.21.1 rotula 3.0.0 como **Initial Release** da linha atual e aponta documentação separada para conteúdo, compatibilidade, opções de configuração e processing. Ele **não publica uma lista granular de alterações desde 2.0.0**. Por isso, este dossiê não inventa migrações internas, recipes removidas/adicionadas ou mudanças de IDs sem evidência versionada.
+
+A descrição atual mantém o objetivo de interoperabilidade entre mods de metais fundidos: preencher lacunas para que molten metals possam ser processados em máquinas suportadas, com estágios de processamento que podem aumentar yield. O stack recomendado pelo projeto inclui AllTheOres, Create Metallurgy, Create Big Cannons e TFMG; vários desses domínios se sobrepõem ao pack atual.
+
+**Gate de promoção 2.0.0→3.0.0:** comparar registries/IDs e configs entre os dois JARs; revisar recipes de crushed ores, dusts e molten fluids; verificar deduplicação com Almost Unified; regressar Create Metallurgy, CBC, TFMG, Dreams & Desires/Northstar e qualquer script KubeJS que dependa de IDs da 2.0.0; validar save/reload e recipe viewers.
+
+Fontes upstream: CurseForge Create: Metalwork 3.0.0 para NeoForge 1.21.1; repositório oficial `AverageAnime/create-metalwork-multiloader`, branch `1.21.1`, `CHANGELOG.md`.
+
+> **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #196: createmetalwork-2.0.0.jar / runtime 2.0.0 reconfirmados como latest Release NeoForge 1.21.1; crushed/molten ore processing, Almost Unified boundary, CBC/DnD/Northstar overlaps e Lithium crash fix permanecem atuais.
