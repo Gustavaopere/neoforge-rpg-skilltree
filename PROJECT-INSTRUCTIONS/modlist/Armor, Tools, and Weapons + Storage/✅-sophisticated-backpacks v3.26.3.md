@@ -17,9 +17,9 @@
 - **Sobreposição:** É o storage portátil modular do stack Sophisticated. Cruza em conveniência com outros backpacks e com redes estacionárias, mas não equivale a Tom's/Sophisticated Storage nem aos addons Create.
 - **Compatibilidade/Riscos:** Core de storage portátil stateful. Riscos: inventory/upgrades dupe ou loss em place/pickup/death, nested storage recursion, filter/settings drift, automation double-processing, capability sync e Create contraption/linked-storage state. A 3.26.3 corrige stack overflow quando Create Packagers acessam Inception backpacks; linked storage introduzido na linha 3.26.2 continua regression gate.
 - **Observações:** JAR físico `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`, runtime 3.26.3. O delta oficial da build atual corrige stack overflow quando Create Packagers acessam Inception backpacks.
-- **Procedência:** modlist(1).txt física atual de 27/09/2026 + SHA-1 físico + CurseForge File ID 8845926 (Sophisticated Backpacks 3.26.3.2158 para NeoForge 1.21.1) + integrações Sophisticated atuais do pack.
+- **Procedência:** modlist(1).txt física atual de 27/09/2026 + SHA-1 físico + CurseForge File ID 8845926 (runtime 3.26.3.2158) + releases oficiais 3.26.4.2162, 3.26.5.2171 e 3.26.6.2174 + source oficial `P3pp3rF1y/SophisticatedBackpacks` para o delta 3.26.4 + integrações Sophisticated atuais do pack.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/8845926
-- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — autoridade física atual é Sophisticated Backpacks 3.26.3.2158. CurseForge File ID 8845926 confirma a release NeoForge 1.21.1; delta exato: fix de stack overflow quando Create Packagers acessam Inception backpacks.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — autoridade física permanece Sophisticated Backpacks 3.26.3.2158. As releases 3.26.4.2162, 3.26.5.2171 e 3.26.6.2174 foram revisadas em sequência; os deltas de duplicate reporting em linked backpacks, perda de dados após chunk reload e render branco após chunk load foram incorporados abaixo sem alterar a versão instalada.
 - **Histórico da decisão:** Mantido como núcleo de armazenamento portátil. Confirmado carregado em 22/08/2026 na versão 3.25.78. A revisão separou o mod-base de addons que apenas facilitam upgrades ou fornecem kits gratuitos.
 - **Data da última decisão:** 2026-08-22
 
@@ -162,3 +162,59 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge File ID 8845926: build física 3.26.3.2158 e fix exato de stack overflow quando Create Packagers acessam Inception backpacks; linked-storage integration permanece lineage documentada da 3.26.2.
 - Catálogo do pack: JEI Index, Thirst Upgrade e Create Integration presentes.
 - **Limite:** configs locais e cada upgrade individual não foram testados; comportamento fino deve seguir a build/config efetivamente carregada.
+
+
+## 26. Atualizações upstream 3.26.4 → 3.26.6 — não instaladas
+A autoridade física continua em **Sophisticated Backpacks 3.26.3.2158** (`sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`). As três releases públicas seguintes para NeoForge 1.21.1 foram verificadas em ordem e não alteram o runtime instalado enquanto o JAR físico não for substituído.
+
+### 3.26.4.2162 — linked backpacks em controller multiblock
+O source oficial corrige **duplicate reporting of linked backpack contents in controller multiblock**.
+
+Impacto: o mesmo inventário lógico não deve ser contabilizado/exposto duas vezes quando um linked backpack participa de um controller multiblock. Embora o bug seja de reporting, ele é relevante para integrações que consultam disponibilidade agregada porque double-counting pode induzir decisões incorretas de extração, crafting ou automação.
+
+Gate de promoção:
+- [ ] linked backpack conectado ao controller multiblock aparece exatamente uma vez no conteúdo agregado;
+- [ ] link/unlink e place/pickup não deixam referência duplicada;
+- [ ] chunk unload/reload e restart preservam a identity do link sem double reporting;
+- [ ] dois players consultando o mesmo controller recebem o mesmo estado autoritativo.
+
+Evidência upstream: commit oficial `8005657e4ce1caa05ba2feea123d8d036ed1790b` no branch 1.21.x de `P3pp3rF1y/SophisticatedBackpacks`.
+
+### 3.26.5.2171 — persistência após chunk reload
+A release corrige **placed backpacks perdendo seus dados após chunk reload**.
+
+Este é um delta de alta relevância para o pack porque afeta diretamente o invariant de persistência do storage colocado. Conteúdo, upgrades, settings, filtros e demais dados serializados precisam sobreviver ao ciclo unload→reload sem reset, perda ou reconstrução parcial.
+
+Gate de promoção:
+- [ ] backpack colocado com itens, upgrades e settings preserva todos os dados após unload/reload do chunk;
+- [ ] restart do servidor após o unload não produz backpack vazio ou state parcial;
+- [ ] place→chunk unload→reload→pickup preserva exatamente uma cópia do inventário;
+- [ ] linked storage e Create Integration continuam apontando para a identity correta após reload;
+- [ ] acesso multiplayer após reload não reintroduz state stale ou lost update.
+
+Fonte upstream: CurseForge File ID **8992926**, Sophisticated Backpacks 3.26.5.2171 para NeoForge 1.21.1.
+
+### 3.26.6.2174 — render após chunk load
+A release corrige **placed backpacks aparecendo brancas após chunk loading**.
+
+O delta é client/rendering, mas cruza metadata visual persistente: cor/modelo/material do backpack deve ser reconstituído corretamente após o chunk voltar ao cliente, sem alterar o inventário autoritativo no servidor.
+
+Gate de promoção:
+- [ ] backpack colocado mantém cor/modelo correto após chunk load/reload;
+- [ ] relog e mudança de distância de renderização não produzem modelo branco;
+- [ ] multiplayer mostra a mesma aparência aos observadores após o chunk ser recarregado;
+- [ ] o fix visual não altera conteúdo, upgrades ou settings persistidos.
+
+Fonte upstream: CurseForge File ID **9008234**, Sophisticated Backpacks 3.26.6.2174 para NeoForge 1.21.1.
+
+### Gate consolidado de promoção 3.26.3 → 3.26.6
+Antes de substituir o runtime físico, validar conjuntamente:
+1. fix já instalado da 3.26.3 para Create Packager + Inception backpack;
+2. linked contents reportados uma única vez em controller multiblock;
+3. placed backpack preservando conteúdo/upgrades/settings após chunk reload e restart;
+4. aparência correta após chunk load;
+5. place/pickup sem dupe/loss;
+6. linked storage, controller, Create assembly/disassembly e multiplayer sem references stale;
+7. dedicated server boot com Sophisticated Core e addons Sophisticated atuais do pack.
+
+Nenhum desses testes upstream foi marcado como executado nesta atualização documental.
