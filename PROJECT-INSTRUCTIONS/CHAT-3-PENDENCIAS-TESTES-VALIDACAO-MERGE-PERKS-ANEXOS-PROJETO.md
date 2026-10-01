@@ -64,18 +64,15 @@ Leia o diff completo do lote antes de alterar código.
 
 ---
 
-# SOBRE OS QUATRO GUIAS
+# FONTES TÉCNICAS DOS PROVIDERS
 
-Os guias completos anexados ao projeto são:
+Os antigos guias consolidados de Gameplay, Magia e Tecnologia foram retirados após a auditoria de cobertura. O Chat 3 **não deve depender deles nem recriá-los**.
 
-- `GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md`
-- `GUIA-COMPLETO-MODS-DE-MAGIA.md`
-- `GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md`
-- `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
+Quando uma pendência técnica, falha de teste ou divergência de provider exigir confirmação adicional:
 
-A auditoria integral e a descoberta de providers pertencem ao Chat 1.
-
-O Chat 3 **não deve repetir automaticamente a leitura integral dos quatro guias em cada lote**. Consulte trechos pertinentes quando uma pendência técnica, falha de teste ou divergência de provider exigir confirmação adicional.
+- use `PROJECT-INSTRUCTIONS/modlist/modlist.md` para presença/JAR/versão;
+- use o dossier individual atual em `PROJECT-INSTRUCTIONS/modlist/<categorias>/✅-*.md` para o contrato técnico do provider externo;
+- use `GUIA-COMPLETO-PROJETOS-PROPRIOS.md` ou `guides/projects/` para RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana.
 
 Se a evidência técnica mostrar que o contrato do dossiê está errado de forma que a correção alteraria identidade, efeito, provider, gate, dependência, topologia, autoridade ou semântica essencial da perk:
 

@@ -36,23 +36,20 @@ O contrato editorial local preserva as regras específicas desta campanha para a
 
 ## Autoridade operacional dos perks
 
-Os oito arquivos abaixo continuam sendo o pacote consolidado para o fluxo de perks do RPG Skill Tree:
+Os cinco arquivos abaixo formam o pacote operacional estável para o fluxo de perks do RPG Skill Tree:
 
 1. `CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`
-2. `GUIA-COMPLETO-GAMEPLAY-E-SISTEMAS.md`
-3. `GUIA-COMPLETO-MODS-DE-MAGIA.md`
-4. `GUIA-COMPLETO-MODS-DE-TECNOLOGIA.md`
-5. `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
-6. `CHAT-1-AUDITORIA-DESIGN-PERKS-ANEXOS-PROJETO.md`
-7. `CHAT-2-IMPLEMENTACAO-PERKS-ANEXOS-PROJETO.md`
-8. `CHAT-3-PENDENCIAS-TESTES-VALIDACAO-MERGE-PERKS-ANEXOS-PROJETO.md`
+2. `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`
+3. `CHAT-1-AUDITORIA-DESIGN-PERKS-ANEXOS-PROJETO.md`
+4. `CHAT-2-IMPLEMENTACAO-PERKS-ANEXOS-PROJETO.md`
+5. `CHAT-3-PENDENCIAS-TESTES-VALIDACAO-MERGE-PERKS-ANEXOS-PROJETO.md`
 
-Para execução operacional de Chat 1/2/3, esses arquivos consolidados continuam sendo o ponto de entrada do conteúdo RPG. A modlist física mais recente continua sendo a autoridade de presença/JAR/runtime; documentação editorial deve ser reconciliada quando houver divergência.
+Para providers externos, a autoridade operacional não é mais um guia temático consolidado: `modlist/modlist.md` fixa presença, posição, JAR e versão instalada, e o dossier individual atual em `modlist/<categorias>/✅-*.md` fixa mecânicas, ownership/authority, lifecycle, multiplayer, riscos, hooks e limites conhecidos. `GUIA-COMPLETO-PROJETOS-PROPRIOS.md` permanece obrigatório para RPG Skill Tree, Volcanoes, Enshrouded e Black Arcana.
 
 ## Estrutura de suporte
 
 - Os contratos operacionais de engenharia do RPG ficam na raiz do repositório: `/ENGINEERING.md`, `/AGENT-WORKFLOW.md`, `/TESTING.md`, `/DIAGNOSTICS.md` e `/REPO-ROUTING.md`.
-- `guides/` contém a árvore detalhada e particionada dos quatro guias para manutenção editorial, proveniência, matrizes e deltas técnicos do RPG.
+- `guides/` contém os contratos transversais de `projects/` e o relatório histórico da auditoria que reconciliou os antigos guias temáticos com os dossiers individuais.
 - `modlist/` preserva material de auditoria/delta da modlist já consolidado no repositório.
 - A antiga árvore `skills/`, o antigo catálogo/tooling I2 compartilhado e a antiga subárvore `engineering/` foram retirados da árvore ativa depois de migração/reconciliação ou realocação do conteúdo RPG necessário.
 
@@ -68,16 +65,14 @@ Alguns arquivos precisam permanecer fora deste diretório porque sua localizaç�
 
 Documentação cujo papel principal seja código, configuração ou workflow executável deve permanecer no domínio correspondente. Não recriar uma árvore local de infraestrutura comum somente para conservar caminhos históricos.
 
-## Migração dos guias
+## Migração e retirada dos guias temáticos
 
-A árvore detalhada foi movida de `plans/03-skill-tree-perks/guides/` para `PROJECT-INSTRUCTIONS/guides/`; o delta de modlist correspondente está em `PROJECT-INSTRUCTIONS/modlist/`.
+Os antigos guias temáticos de Gameplay, Magia e Tecnologia foram reconciliados contra os dossiers individuais na auditoria de 29/09/2026. As lacunas perk-relevantes encontradas foram migradas para os dossiers correspondentes. Depois dessa reconciliação, a camada temática agregada foi retirada da árvore ativa para evitar duplicação e drift.
 
-Referências operacionais dentro de `plans/03-skill-tree-perks/perks/` devem apontar para a nova localização. Documentos históricos em `docs/superpowers/` podem conservar caminhos antigos porque registram a arquitetura existente na data em que foram escritos.
-
-Os comentários `ARQUIVO-FONTE: plans/03-skill-tree-perks/guides/...` presentes dentro dos quatro guias consolidados são marcadores históricos de proveniência do snapshot consolidado, não caminhos vivos nem uma segunda authority.
+O conteúdo removido continua recuperável pelo histórico Git, mas não é authority operacional. Não recriar `guides/gameplay/`, `guides/magic/`, `guides/technology/` nem os três antigos `GUIA-COMPLETO-*` temáticos como fontes paralelas.
 
 ## Regra de manutenção
 
-Novas atualizações editoriais dos guias detalhados do RPG devem ocorrer em `PROJECT-INSTRUCTIONS/guides/`. Quando uma mudança precisar ser refletida nos quatro arquivos consolidados, ela deve ser reconciliada conscientemente e validada como novo snapshot; não recriar a árvore legada em `plans/03-skill-tree-perks/guides/`.
+Atualizações de provider externo devem ocorrer no dossier individual correspondente em `modlist/`. Contratos dos quatro projetos próprios e integrações transversais continuam em `guides/projects/` e no consolidado `GUIA-COMPLETO-PROJETOS-PROPRIOS.md`.
 
 Novas skills, contracts, validators, templates, tooling, catálogos e automações **genéricos de produção de mods** pertencem à Minecraft Mod Factory. Este repositório só deve receber alterações desse tipo quando forem necessárias para o próprio runtime RPG ou para preservar/migrar trabalho histórico.
