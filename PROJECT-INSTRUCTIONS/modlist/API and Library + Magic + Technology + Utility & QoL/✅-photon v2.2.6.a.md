@@ -16,7 +16,7 @@
 - **Sobreposição:** Não é particle pack decorativo comum; fornece infraestrutura/editor para VFX consumidos por outros mods. Sobreposição principal é custo/rendering com outros VFX, não gameplay.
 - **Observações:** Runtime 2.2.6.a, file ID 8824095, Release 06/09/2026. Delta exato: bump da versão de LDLib e fix do glTF loader. Referências antigas a 2.2.4/2.2.5 são históricas.
 - **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial Photon 2.2.6.a + documentação oficial do framework/editor VFX + hierarquia JarJar física.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Photon físico permanece 2.2.6.a; CurseForge publicou 2.2.7 para NeoForge 1.21.1 em 21/09/2026 com animated glTF e dynamic mesh injection.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Photon físico permanece 2.2.6.a; CurseForge publicou 2.2.7 para NeoForge 1.21.1 em 21/09/2026. O changelog completo foi revisado: animated glTF, dynamic mesh injection, soft particles, mesh facing, playback rate/editor transport e três correções de GPU instancing/model transform.
 - **Histórico da decisão:** 2026-09-06 — decisão Manter confirmada; pesquisa fechada. Detectada atualização direta para Photon 2.2.6.a Release. Não alterar `Arquivo JAR`/versão no Notion até a pasta de mods e uma nova modlist confirmarem a atualização.
 - **Data da última decisão:** 2026-09-06
 
@@ -125,14 +125,22 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Limite:** consumers específicos, graphs/nodes concretos e assets VFX do pack não foram atribuídos sem dependency graph/resource audit individual.
 
 ## 15. Atualização upstream 2.2.7 — não instalada
-O runtime físico continua **2.2.6.a**. A release **2.2.7** para NeoForge 1.21.1 foi publicada em 21/09/2026.
+O runtime físico continua **2.2.6.a**. A release **2.2.7** para NeoForge 1.21.1 foi publicada em 21/09/2026; não há release intermediária entre 2.2.6.a e 2.2.7 na linha aplicável.
 
-Novidades publicadas:
-- suporte a **modelos glTF animados**, incluindo import de GLB rigged, seletor de animação, fase de animação por partícula e frame blend opcional;
-- **dynamic mesh injection**, permitindo que outros mods forneçam geometria que muda enquanto é desenhada.
+Changelog publicado completo:
+- adiciona **modelos glTF animados**, com import de GLB rigged, seletor de animação, fase de animação por partícula e frame blend opcional;
+- adiciona **dynamic mesh injection**, permitindo que outros mods forneçam geometria que muda enquanto é desenhada;
+- adiciona **soft particles opcionais** aos materiais de texture e sprite;
+- adiciona modos de **mesh facing** ao Model render mode, alinhados ao conceito `RenderAlignment` do Unity;
+- adiciona atalhos de teclado no editor para gizmo, scene-view toggles e timeline transport;
+- adiciona **playback rate** ao `FXRuntime`, escalando objetos e o relógio da timeline em conjunto;
+- melhora o timeline transport com botões por ícone, step e jump-to-end;
+- corrige GPU instancing abortando o processo em contexto **OpenGL 3.2**;
+- corrige material ausente fazendo modelos serem desenhados sem transform sob GPU instancing;
+- corrige model particles ignorando a rotação do parent e usando ordem Euler XYZ em vez de ZXY.
 
-Essas duas superfícies ampliam significativamente o papel de Photon como framework VFX. Dynamic mesh injection também aumenta o risco de integração com consumers que atualizem geometria por frame; validar lifecycle, descarte de buffers/caches e comportamento em reload/dimension change.
+Impacto para este pack: animated glTF, dynamic meshes, soft particles e mesh-facing ampliam diretamente a superfície de rendering do framework; playback rate/timeline alteram a semântica temporal dos efeitos. As correções de instancing e transform são especialmente relevantes em hardware/contextos gráficos diferentes e para efeitos anexados a entidades/contraptions.
 
-Gate de regressão: import/preview de GLB rigged, seleção de animation clips, partículas com fases distintas, frame blending, meshes dinâmicas e coexistência com KilaGraph/Lodestone/Iris quando aplicável.
+Gate de regressão numa promoção: import/preview de GLB rigged; animation clips/fases/frame blend; soft particles com shaders; mesh-facing; playback rate; resource reload; GPU instancing em contexto compatível/mais antigo; parent rotation; meshes dinâmicas; coexistência com KilaGraph, LDLib, PartiCull, Iris/shaders e Sable/SubLevels quando aplicável.
 
-Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/photon/files/8941291
+Fonte upstream: CurseForge Photon file ID 8941291, changelog v2.2.7.
