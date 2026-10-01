@@ -19,7 +19,7 @@
 - **Observações:** JAR físico `sophisticatedcore-1.21.1-1.5.1.2341.jar`, runtime 1.5.1. It has no independent gameplay proposition; value/necessity derives from consumers. Previous 1.4.x/1.5.1.2333 references are historical.
 - **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge official Sophisticated Core 1.5.1.2341 + direct installed consumers in current modlist.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/8839323
-- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Sophisticated Core 1.5.1.2341 permanece físico; consumer Sophisticated Backpacks reconciliado para 3.26.3.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.5.1 / build 2341. CurseForge publicou Sophisticated Core 1.5.2.2343 para NeoForge 1.21.1 em 27/09/2026; o delta principal confirmado no source é shared linked storage support.
 - **Histórico da decisão:** Mantido as core estrutural do ecossistema Sophisticated. Revalidated on 11/09/2026 against physical runtime 1.5.1.2341 and direct installed consumers.
 - **Data da última decisão:** 2026-08-22
 
@@ -123,3 +123,16 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial: Sophisticated Core é a library dos mods Sophisticated e a build física é Release 1.21.1.
 - Catálogo atual: Backpacks, Storage e bridges Create dependem explicitamente do Core.
 - **Limite:** classes/APIs internas específicas não foram inventadas sem source exato; o dossiê documenta o contrato compartilhado observado/publicado e mantém runtime tests pendentes.
+
+## 21. Atualização upstream 1.5.2.2343 — não instalada
+A versão física continua **1.5.1.2341**. O CurseForge lista **sophisticatedcore-1.21.1-1.5.2.2343.jar** como release NeoForge 1.21.1 de 27/09/2026.
+
+Entre a build física 2341 e a release 2343, o source oficial registra como mudança funcional principal **shared linked storage support**. Esse contrato compartilhado é relevante porque Backpacks, Storage e as integrações Create consomem infraestrutura do Core; a bridge Sophisticated Backpacks Create Integration 0.2.1.171 publicada no mesmo ciclo declara atualização de sua integração de linked storage para o Core mais recente.
+
+Não se atribui esse comportamento ao runtime 1.5.1 instalado. Uma promoção deve ser feita de forma coordenada com os consumers Sophisticated para evitar version skew de API/serialization/link state.
+
+Gate de regressão: linked storage entre Backpacks/Storage, Create integrations, save/restart, chunk unload/reload, multiplayer sync, filtros/upgrades sobre storage compartilhado e abertura de inventories montados.
+
+Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/all?page=1&pageSize=20&version=1.21.1 ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/f5ec6fb7636a867f87e37cc388077be20221abfe
+
+> **Atualização/Status — valor histórico preservado do Notion:** RECONCILIADO EM 27/09/2026 — Sophisticated Core 1.5.1.2341 permanece físico; consumer Sophisticated Backpacks reconciliado para 3.26.3.
