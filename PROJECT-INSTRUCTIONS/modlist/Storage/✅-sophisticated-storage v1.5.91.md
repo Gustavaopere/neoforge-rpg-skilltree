@@ -13,13 +13,13 @@
 - **Decisão:** Manter
 - **Categoria:** Armazenamento, Automação
 - **Função:** Stationary modular storage with tiered barrels/chests/shulker boxes, capacity and functional upgrades, filters/settings, sorting/memorized slots, controller interaction and storage tools.
-- **Dependências:** Sophisticated Core 1.5.1 required and physically present. Sophisticated Storage Create Integration 0.1.21 and Ars Sophisticated Compatibility 0.3.0 are physical integration surfaces; JEI 19.56.0.440 is present.
+- **Dependências:** Sophisticated Core 1.5.1 está fisicamente presente. Sophisticated Storage Create Integration 0.1.21 e Ars Sophisticated Compatibility 0.3.0 permanecem integrações físicas. A upstream Storage 1.6.0 exige Sophisticated Core >=1.5.2, portanto a promoção não é compatível com o Core físico atual.
 - **Sobreposição:** Local/upgradable stationary storage. No snapshot físico atual, Tom's Storage 2.4.2 é o provider de rede ativo relevante; AE2 e Refined Storage estão ausentes top-level e permanecem apenas comparações/integrations upstream dormentes. Backpacks continua sobreposição portátil, não equivalente a networked crafting.
 - **Compatibilidade/Riscos:** Stateful stationary storage. Risks: inventory/upgrades loss/dupe, compression/compacting recipe conflicts, controller routing, packed-drop duplication, filter/memory drift, network/capability sync and Create contraption serialization. Compression and compacting are mutually dangerous when combined in conflicting configurations.
-- **Observações:** JAR físico `sophisticatedstorage-1.21.1-1.5.91.2127.jar`, runtime 1.5.91. Current dossier distinguishes base storage ownership from Create bridge and from portable Backpacks.
-- **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge official Sophisticated Storage 1.5.91.2127 + JEI físico 19.56.0.440 + official project documentation/changelog lineage for upgrades, compression, controller and tools.
+- **Observações:** Runtime físico permanece 1.5.91. Upstream 1.6.0 adiciona Linked Storage por Ender Linker, com inventário/settings/upgrades compartilhados; somente o storage principal executa upgrades por tick e recebe tier upgrade. Linked storages não podem ser packed.
+- **Procedência:** modlist física atual confirma Storage 1.5.91.2127 + Core 1.5.1. CurseForge oficial e source `P3pp3rF1y/SophisticatedStorage` branch `1.21.x` revalidados em 02/10/2026 confirmam Storage 1.6.0 e requisito Core >=1.5.2.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/8762100
-- **Atualização/Status:** RECONCILIADO EM 27/09/2026 — Sophisticated Storage 1.5.91.2127 permanece físico; JEI reconciliado para 19.56.0.440; sobreposição atual distingue Tom's Storage 2.4.2 ativo de AE2/Refined Storage ausentes top-level.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 02/10/2026 — Storage físico permanece 1.5.91. A 1.6.0 foi documentada como não instalada e exige atualização coordenada de Sophisticated Core.
 - **Histórico da decisão:** Mantido como armazenamento estacionário do stack Sophisticated. Em 11/09/2026 revalidado na versão física 1.5.91.2127 e documentado no padrão técnico completo.
 - **Data da última decisão:** 2026-08-22
 
@@ -143,3 +143,22 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial: storage tiers/types e functional upgrades.
 - Documentação/changelog oficial da linha: sorting, compression/compacting constraints, controller/deposit, packed drops e refresh por recipe changes.
 - **Limite:** config local e inventories do mundo não foram inspecionados; o dossiê documenta contratos/riscos do runtime, não afirma quais upgrades estão efetivamente instalados em cada storage.
+
+
+## 26. Atualização upstream 1.6.0 — não instalada
+
+A autoridade física continua em **Sophisticated Storage 1.5.91.2127** com **Sophisticated Core 1.5.1**.
+
+A 1.6.0 adiciona **Linked Storage**. Barrels, limited barrels, chests e shulker boxes elegíveis podem ser ligados com **Ender Linker** e passam a compartilhar inventory, settings e upgrades. Upgrades orientados por tick executam somente no storage principal; linked storages não podem ser packed; somente o principal pode receber tier upgrade.
+
+O source 1.21.x da 1.6.0 declara Sophisticated Core **>=1.5.2**. Como o pack físico está em Core 1.5.1, a atualização de Storage fica bloqueada até promoção coordenada do Core.
+
+### Gate de promoção
+- [ ] Atualizar Sophisticated Core para >=1.5.2 e revalidar o ecossistema Sophisticated.
+- [ ] Confirmar uma única shared inventory entre storages ligados.
+- [ ] Confirmar que upgrades por tick executam somente no storage principal.
+- [ ] Confirmar tier upgrade apenas no principal e proibição de packing em linked storage.
+- [ ] Validar save/restart, unload/reload e acesso simultâneo.
+- [ ] Validar Controller e Create Integration para que storages ligados não sejam tratados como inventários independentes.
+
+Fonte upstream: Sophisticated Storage 1.6.0; source oficial 1.21.x, commit de Linked Storage `05d24d4...`. Nenhum teste acima foi executado nesta atualização documental.
