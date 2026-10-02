@@ -12,11 +12,11 @@
 - **Dependências:** InsaneLib 2.4.33.0 está fisicamente presente e é a biblioteca exigida pela linha publicada do Enhanced AI. Runtime físico: Enhanced AI 4.2.3.0 / NeoForge 1.21.1.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Altera goals/comportamentos e pode aumentar dificuldade e custo de CPU. Modded mobs não devem ser assumidos como afetados automaticamente; a documentação atual orienta opt-in por Entity Type Tags quando aplicável. Cruzar com Epic Fight/entity patches, Alex's Mobs e outros AI mods por goal duplication, pathfinding excessivo, block interaction inesperado e double-processing. AI-Improvements 0.5.3 é otimização, não duplicata funcional.
+- **Compatibilidade/Riscos:** Altera goals/comportamentos e pode aumentar dificuldade e custo de CPU. Modded mobs não devem ser assumidos como afetados automaticamente; cruzar com Epic Fight/entity patches e outros AI mods por goal duplication, pathfinding excessivo, block interaction inesperado e double-processing. A upstream 4.2.4.0 altera probabilidades do MPR Data Pack conforme profundidade/lua cheia e corrige módulos de combat/targeting/swimming, portanto merece regressão de dificuldade e AI state.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/enhanced-ai
-- **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `enhancedai-4.2.3.0.jar`, mod id `enhancedai`, runtime 4.2.3.0, SHA-1 `763e60f869129a37cb7659e1a25bd3f50f6bd9ea` e InsaneLib 2.4.33.0. CurseForge oficial revalidado confirma 4.2.3.0 como latest release NeoForge 1.21.1 e mantém o changelog específico já documentado.
-- **Observações:** Runtime físico 4.2.3.0. Changelog oficial exato: mobs podem pathfind livremente sobre rails mesmo sem já estarem sobre um rail; Miner mobs podem usar main hand e off-hand para minerar via data key `offhand` (default true); corrigidos Pearler AI não aplicado quando sem pearls equipadas e Fisher AI parando ao perder line of sight do alvo.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #251: `enhancedai-4.2.3.0.jar` / runtime `4.2.3.0` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader; dependência física InsaneLib reconciliada de 2.4.32.0 para 2.4.33.0.
+- **Procedência:** modlist física atual confirma `enhancedai-4.2.3.0.jar`, mod id `enhancedai`, runtime 4.2.3.0, SHA-1 `763e60f869129a37cb7659e1a25bd3f50f6bd9ea` e InsaneLib físico. CurseForge oficial revalidado em 01/10/2026 mostra 4.2.4.0 como única release 1.21.1 posterior a 4.2.3.0.
+- **Observações:** Runtime físico 4.2.3.0. A upstream 4.2.4.0 corrige Blow up on death, Fisher e Better Drowning Swimming Up, limita teleport de targets por Enderman ao follow range e muda o MPR Data Pack para equipment/enchants escalarem com profundidade e lua cheia; não está instalada.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Enhanced AI 4.2.3.0. A única release posterior 4.2.4.0 foi comparada e seus deltas relevantes foram incorporados abaixo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Enhanced AI muda comportamento/IA; AI-Improvements reduz custo de processamento de IA. Epic Fight pode patchar entidades/combate. Essas superfícies se cruzam, mas não são equivalentes; validar ownership de goals e combat state.
 - **Data da última decisão:** 2026-08-30
@@ -116,3 +116,34 @@ Testar dois jogadores atraindo o mesmo mob, logout do alvo, distância extrema e
 - CurseForge/GitHub oficiais do Enhanced AI: objetivo, feature set e configuração;
 - wiki/projeto: foco vanilla desde v3 e opt-in de mobs modded via Entity Type Tags.
 > **Boundary canônico:** Enhanced AI é authority apenas dos **comportamentos que injeta**. O entity provider mantém a entidade-base e Epic Fight mantém seu próprio combat framework quando aplicável.
+
+## 17. Atualização upstream 4.2.4.0 — não instalada
+
+A autoridade física continua em **Enhanced AI 4.2.3.0**. O CurseForge oficial publica **4.2.4.0** para NeoForge 1.21.1 em 22/09/2026, sem release intermediária 1.21.1 entre 4.2.3.0 e 4.2.4.0.
+
+### Deltas oficiais
+- corrige **Blow up on death** que não funcionava corretamente (issue #250);
+- no **MPR Data Pack**, chance de mobs equiparem armor — tentativa de full set e chance por peça — passa a escalar com profundidade até **+20%** no fundo do mundo, substituindo o bônus fixo abaixo de light level 12;
+- bônus de full moon para essa chance sobe de **+10% para +20%**;
+- a mesma escala de profundidade e lua cheia passa a valer para chance de equipment (weapons/tools/armor) vir **enchanted**;
+- Iron e Diamond armor ficam relativamente mais prováveis que materiais fracos no subterrâneo ou full moon;
+- Enderman deixa de teleportar targets para além do próprio **follow range**;
+- corrige Fisher mobs que deixavam de atacar e passavam a ignorar line of sight;
+- corrige **Better Drowning Swimming Up** que não fazia o mob nadar para cima.
+
+### Impacto para o pack
+As alterações do MPR Data Pack mudam a curva efetiva de dificuldade por profundidade e ciclo lunar; isso precisa ser tratado como mudança de balanceamento, não apenas bugfix. Os fixes de Fisher/Enderman/drowning tocam targeting/navigation e podem cruzar Epic Fight, mob patches e otimizações de IA presentes no pack.
+
+### Gate de promoção 4.2.3.0 → 4.2.4.0
+- [ ] Blow up on death dispara exatamente uma vez e não duplica damage/explosion hooks.
+- [ ] Equipment chance é amostrada em superfície, profundidades intermediárias e fundo do mundo.
+- [ ] Full moon aplica o bônus esperado sem double-count com depth scaling.
+- [ ] Enchantment chance segue a mesma regra documentada.
+- [ ] Iron/Diamond distribution é comparada em cenário underground/full moon.
+- [ ] Enderman não move target além do follow range e não deixa target/navigation stale.
+- [ ] Fisher mobs respeitam line of sight e retomam/cessam ataque corretamente.
+- [ ] Better Drowning Swimming Up produz deslocamento vertical correto.
+- [ ] Epic Fight + Enhanced AI não duplicam attack/target state nos mobs afetados.
+- [ ] TPS/CPU é comparado com AI-Improvements durante cenário multi-mob.
+
+Fonte upstream: CurseForge Enhanced AI 4.2.4.0, file ID 8946964, NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.
