@@ -17,7 +17,7 @@
 - **Observações:** JAR físico `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, runtime 1.3.0. Release oficial NeoForge 1.21.1 de 16/09/2026. Delta 1.3.0: optimize package fluid rendering; Mechanical Fluid Gun processa itens em paralelo; fix do disable blaze cooler conversion; fix de empty bucket extra no bulk cooling.
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, runtime `1.3.0` e SHA-1 `011435bbefe9ab979719fa138252d52261837d33`. A versão física não mudou nesta rodada; as evidências técnicas já registradas permanecem preservadas.
 - **Histórico da decisão:** 2026-09-18 — runtime físico atualizado para 1.3.0; nenhuma decisão curatorial nova.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #285: Create FluidLogistics 1.3.0 reconfirmado; nenhuma mudança de versão física nesta rodada.
+- **Atualização/Status:** UPSTREAM REVALIDADO EM 02/10/2026 — runtime físico permanece 1.3.0 e a 1.3.0 continua sendo a release NeoForge 1.21.1 mais recente no CurseForge; não há release posterior a percorrer.
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #285: JAR `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, runtime `1.3.0`, SHA-1 `011435bbefe9ab979719fa138252d52261837d33`.
 
@@ -87,3 +87,9 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Modlist física de 18/09/2026: `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, runtime 1.3.0.
 - CurseForge oficial: release 1.3.0 para NeoForge 1.21.1 de 16/09/2026, com os quatro deltas documentados acima.
 - Não foram decompilados handlers, packet IDs ou schemas internos da 1.3.0; hooks programáticos exigem inspeção do JAR/source antes de depender de internals.
+
+## 10. Revalidação upstream — 02/10/2026
+
+O arquivo físico continua em `fluidlogistics-1.3.0-mc1.21.1.jar` / `1.3.0`. A listagem oficial do CurseForge para Minecraft 1.21.1 continua apontando **1.3.0** como release mais recente (file ID `8894053`), portanto não existe sequência intermediária posterior à versão já documentada para incorporar neste ciclo.
+
+Os quatro deltas da 1.3.0 permanecem os mesmos já registrados no dossiê: otimização do render de fluid packages, processamento paralelo no Mechanical Fluid Gun, correção do toggle de Blaze Cooler conversion e correção do empty bucket extra em bulk cooling. Nenhum teste runtime adicional foi executado nesta revalidação documental.
