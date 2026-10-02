@@ -9,14 +9,14 @@
 - **Versão 1.21.1:** `3.3.5`
 - **Categoria:** Visual
 - **Função:** Implementa Custom Entity Models no formato OptiFine/CEM para resource packs, incluindo modelos `.jem`/`.jpm`, animações, random models, player models e suporte a entidades/block entities compatíveis.
-- **Dependências:** Entity Texture Features 7.2.1 é dependência funcional requerida pelo projeto e está instalada. Runtime local também inclui Entity Sound Features 0.8.2, EntityCulling 1.10.5 e EMF Compat Core/Create/Iron's Spells 2.0.0.
+- **Dependências:** Entity Texture Features 7.2.1 é a dependência física requerida; runtime também inclui Entity Sound Features 0.8.2, EntityCulling 1.10.5 e EMF Compat Core/Create/Iron's Spells 2.0.0. Para os fixes completos da linha EMF 3.3.7–3.3.8, o upstream pede ETF atualizado; ETF 7.2.4 é a latest 1.21.1 localizada, enquanto o pack permanece em 7.2.1.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Client-only e sensível ao render/model pipeline. Incompatível com OptiFine/OptiFabric e dorianpb's CEM; recursos de Physics/Enhanced Block Entities têm apenas compatibilidade limitada/workarounds. Riscos locais: pose ownership com CPM/Easy Model Entities/EMF Compat, model part drift após update de mods, resource-pack errors, animation conflicts e custo de packs pesados.
+- **Compatibilidade/Riscos:** Client-only e sensível ao render/model pipeline. Runtime físico 3.3.5; upstream avançou 3.3.6→3.3.7→3.3.8→3.3.9. 3.3.8 introduziu um launch issue específico em 1.21.1/1.20.1, corrigido em 3.3.9; não promover para 3.3.8 isoladamente. Fixes de third-party render cancellation e shoulder parrots pedem ETF atualizado para cobertura completa.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/entity-model-features
-- **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `entity_model_features-3.3.5-1.21-neoforge.jar`, mod id `entity_model_features`, runtime 3.3.5 e SHA-1 `e78060b9a01bf41b5628bd45ce5ac741f68f092c`. CurseForge oficial revalidado em 21/09/2026 mantém 3.3.5 para NeoForge 1.21.1; os fixes 3.3.5 já documentados permanecem aplicáveis.
-- **Observações:** Runtime físico 3.3.5. Changelog oficial da build instalada: corrige layer models quebrados pela 3.3.4 quando múltiplas entidades do mesmo tipo estão presentes e corrige fallbacks do wool undercoat de baby sheep em versões anteriores a 26.1. CEM/player/modded models, export e EMFAnimationApi permanecem as superfícies principais.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #253: `entity_model_features-3.3.5-1.21-neoforge.jar` / runtime `3.3.5` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. CurseForge oficial continua com 3.3.5 como release aplicável a NeoForge 1.21.1.
+- **Procedência:** modlist física atual confirma EMF 3.3.5 + ETF 7.2.1. CurseForge oficial revalidado em 02/10/2026 confirma a cadeia NeoForge 1.21.1 3.3.6, 3.3.7, 3.3.8 e 3.3.9; ETF 7.2.4 é a latest 1.21.1 e corrige shoulder parrots afetando EMF.
+- **Observações:** Runtime físico permanece EMF 3.3.5. A promotion baseline segura da cadeia posterior é 3.3.9, não 3.3.8. Os deltas relevantes incluem limits de animation compilation, model variation/render-state fixes, texture overrides, arrow/trident ground state, player shoulder-parrot attachment/animation e launch fix para 1.21.1.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 02/10/2026 — EMF físico permanece 3.3.5. Releases 3.3.6→3.3.9 foram percorridas em ordem; 3.3.9 é o baseline mínimo da cadeia por corrigir o launch regression introduzido pela 3.3.8 em 1.21.1.
 - **Decisão:** Sem decisão
 - **Sobreposição:** EMF controla modelos/animações CEM. ETF controla texturas/regras; ESF controla sons. Fresh Animations/resource packs consomem essas capacidades. EMF Compat preserva poses de outros mods; CPM/EME são providers visuais distintos e exigem precedence.
 - **Data da última decisão:** 2026-08-26
@@ -119,3 +119,50 @@ Clientes podem usar resource packs diferentes e ainda compartilhar o mesmo gamep
 - GitHub oficial `Entity_Model_Features` / `FEATURES.md`: CEM, formats, player/modded support, export, animation variables/functions, API e incompatibilidades;
 - CurseForge/Modrinth oficiais: client-side e requirement ETF.
 > **Boundary canônico:** EMF é authority da **representação CEM/model animation**. Ele não possui authority sobre AI, combate, spell cast ou entity state do servidor.
+
+## 20. Atualizações upstream 3.3.6 → 3.3.9 — não instaladas
+
+A autoridade física continua em **EMF 3.3.5**. Para NeoForge 1.21.1, a sequência posterior é **3.3.6 → 3.3.7 → 3.3.8 → 3.3.9**.
+
+### 3.3.6
+- corrige o limite superior da matemática compilada por ASM para animações grandes, evitando `MethodTooLargeException`;
+- corrige caso em que a primeira model variation de cada frame podia quebrar;
+- corrige export de modelos de villagers.
+
+### 3.3.7
+- corrige texture override quando o model não declara todas as parts ou usa `attach=true` com o mesmo override nas parts declaradas;
+- corrige third-party mixins que cancelavam certos renders e contaminavam animation values de renders seguintes; o upstream pede ETF atualizado para o fix completo;
+- corrige `is_in_ground` para arrows/tridents no chão, antes funcionando apenas em paredes/tetos;
+- corrige localização Spanish Argentina.
+
+O changelog geral também cita variáveis quebradas apenas em **1.21.9+**; esse subitem não é atribuído ao runtime Minecraft 1.21.1.
+
+### 3.3.8
+- adiciona attachment points `parrot_left` e `parrot_right` para controlar shoulder parrots no player model, inclusive por animação;
+- adiciona opção de ajuste automático dos parrots à posição do shoulder em custom player animations;
+- variável `id` dos parrots passa a retornar `0` no ombro esquerdo e `1` no direito;
+- corrige `head_yaw` e `head_pitch` dos shoulder parrots, também exigindo ETF atualizado para cobertura completa.
+
+O fix `is_on_shoulder` descrito pelo upstream é específico de **1.21.9+** e não é promovido como delta de 1.21.1.
+
+### 3.3.9 — baseline obrigatório
+- corrige um **launch issue em Minecraft 1.21.1 e 1.20.1 introduzido pela 3.3.8**.
+
+Consequência operacional: **não atualizar o pack para EMF 3.3.8**. Se esta cadeia for promovida, usar no mínimo 3.3.9.
+
+### ETF coordenado
+O pack possui ETF **7.2.1**. A linha 1.21.1 já possui ETF **7.2.4**, cujo changelog corrige shoulder parrots que afetavam EMF e adiciona properties `usingShaders` e `resourcepack`. Como EMF 3.3.7/3.3.8 explicitamente pedem ETF atualizado para fixes completos, testar a promoção como par EMF+ETF, não EMF isolado.
+
+### Gate de promoção 3.3.5 → 3.3.9
+- [ ] EMF 3.3.9 + ETF compatível iniciam sem o launch regression da 3.3.8.
+- [ ] Resource packs CEM/Fresh Animations reais carregam após resource reload.
+- [ ] Model variations não contaminam a primeira entidade/frame.
+- [ ] Third-party render cancellation não deixa animation values stale no render seguinte.
+- [ ] Texture overrides com `attach=true` e parts incompletas funcionam.
+- [ ] Arrow/trident no chão reporta `is_in_ground` corretamente.
+- [ ] Shoulder parrots acompanham custom player model/animation; left/right `id` permanece determinístico.
+- [ ] `head_yaw`/`head_pitch` dos parrots funcionam com ETF atualizado.
+- [ ] EMF Compat Create/Iron's Spells e EntityCulling continuam sem model/pose conflict.
+- [ ] Shader profile real do pack é testado junto ao novo ETF.
+
+Fontes upstream: CurseForge EMF NeoForge 1.21.1 releases 3.3.6–3.3.9; 3.3.9 file ID 8909425. ETF 7.2.4 NeoForge 1.21.1 file ID 8908931. Nenhum teste acima foi executado nesta atualização documental.
