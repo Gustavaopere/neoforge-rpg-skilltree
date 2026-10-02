@@ -21,11 +21,11 @@
 - **Função:** Melhora a tela de mods do NeoForge com visual inspirado em Mod Menu, ocultação/organização de entradas, badges e acesso mais claro a informações/configuração dos mods.
 - **Dependências:** NeoForge 1.21.1. A linha 21.1.1 é o port NeoForge do conceito Mod Menu; não foi confirmada hard dependency externa obrigatória para esta build física.
 - **Sobreposição:** Pode sobrepor apenas a apresentação/navegação da tela de mods e outras UI mods; não substitui bibliotecas/config backends dos mods listados.
-- **Compatibilidade/Riscos:** QoL de interface. Riscos principais: mod ocultado dificultar diagnóstico, config-screen provider ausente/incompatível, UI conflitante com outras alterações de Mods screen e confusão entre display name e mod id. Não altera gameplay authority.
-- **Observações:** JAR físico `better_modlist-21.1.1.jar`, mod id físico `mod_menu`, nome runtime Better ModList, versão 21.1.1. É um port não oficial de Mod Menu para NeoForge; não confundir o mod id `mod_menu` com o loader Fabric.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Better ModList 21.1.1 para NeoForge 1.21.1 e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `better_modlist-21.1.1.jar` / `21.1.1`; mod id `mod_menu` continua documentado sem confusão com o Mod Menu original/Fabric.
+- **Compatibilidade/Riscos:** QoL de interface. Riscos principais: mod ocultado dificultar diagnóstico, config-screen provider ausente/incompatível, UI conflitante com outras alterações de Mods screen, animação/list entry inconsistente e confusão entre display name e mod id. Não altera gameplay authority.
+- **Observações:** JAR físico `better_modlist-21.1.1.jar`, mod id físico `mod_menu`, nome runtime Better ModList, versão 21.1.1. Upstream publicou 21.1.2 para NeoForge 1.21.1 em 30/09/2026; commits oficiais imediatamente anteriores à release registram port de dummy animation, fix de single icon e traduções para novas opções.
+- **Procedência:** modlist física atual + CurseForge oficial Better ModList 21.1.1 instalada e 21.1.2 publicada para NeoForge 1.21.1 + source oficial `1foxy2/neo_mod_menu`. Commits upstream de 29–30/09/2026 foram usados para caracterizar o delta quando a página do arquivo não expôs changelog detalhado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/better-modlist-neoforge
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #70: `better_modlist-21.1.1.jar` / `21.1.1` conferidos contra a modlist atual; mod id físico `mod_menu`, UI authority, hiding/filtering, badges e config-screen boundary preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Better ModList 21.1.1. A release 21.1.2 foi localizada e os deltas de UI observáveis no source imediatamente anterior à publicação foram incorporados abaixo.
 - **Histórico da decisão:** Sem decisão formal. Em 09/09/2026, a auditoria confirmou `better_modlist-21.1.1.jar`, mod id físico `mod_menu`, runtime Better ModList 21.1.1 e o papel exclusivamente UI/QoL do port NeoForge. A presença física não foi convertida automaticamente em decisão de manter/remover.
 - **Data da última decisão:** não definida
 
@@ -72,3 +72,27 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial: Release 21.1.1 para NeoForge 1.21.1 e objetivo de melhorar a mod list como port de Mod Menu.
 - Config interna e lista exata de badges/toggles da build não foram decompiladas; a ficha não inventa opções além das publicamente documentadas.
 
+
+## 10. Atualização upstream 21.1.2 — não instalada
+
+A autoridade física continua em **Better ModList 21.1.1**. O CurseForge oficial lista **21.1.2** como release posterior para NeoForge 1.21.1, publicada em 30/09/2026.
+
+### Evidência do delta
+A página pública do arquivo 21.1.2 não expôs release notes detalhadas na consulta. Para não inventar changelog, a caracterização abaixo usa commits do repositório oficial `1foxy2/neo_mod_menu` imediatamente anteriores à publicação:
+- `4576db5` — **Port dummy animation**: altera ModsScreen, ModListWidget, entries, config, branding e handling de ícones/parent entries;
+- `341c62e` — **Fix single icon**: corrige handling/render de entrada com ícone único;
+- `e7989e9` — **add translations to new options**: adiciona localization para opções novas e ajusta config/list entry.
+
+Esses commits comprovam mudanças na superfície de UI/config na janela da 21.1.2; não são usados aqui para afirmar efeitos de gameplay ou dependências novas.
+
+### Gate de promoção 21.1.1 → 21.1.2
+- [ ] Mods screen abre sem crash com a modlist grande atual.
+- [ ] Parent/child/dummy entries animam sem layout jump ou seleção incorreta.
+- [ ] Mods com um único ícone renderizam corretamente.
+- [ ] Novas opções têm strings legíveis em inglês e não exibem translation keys cruas.
+- [ ] Busca, hide/filter e badges continuam funcionando.
+- [ ] Config buttons continuam roteando somente para screens realmente disponíveis.
+- [ ] Reinício preserva preferências de UI esperadas.
+- [ ] Excalibur Better ModList/Mod Menu Compat é revalidado visualmente porque altera a mesma superfície de apresentação.
+
+Fontes upstream: CurseForge Better ModList 21.1.2 e repositório oficial `1foxy2/neo_mod_menu`, commits `4576db5`, `341c62e` e `e7989e9`. Nenhum teste acima foi executado nesta atualização documental.
