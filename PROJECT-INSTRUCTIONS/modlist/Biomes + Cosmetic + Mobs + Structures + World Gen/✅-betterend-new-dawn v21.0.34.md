@@ -21,11 +21,11 @@
 - **Função:** Grande expansão do End no stack BetterX/New Dawn: biomas, flora, materiais, mobs, estruturas, embarcações, worldgen e progressão/equipamentos próprios.
 - **Dependências:** BCLib: New Dawn + WorldWeaver: New Dawn + WunderLib: New Dawn. No pack: BCLib 21.0.26, WorldWeaver 21.0.25 e WunderLib 21.0.10 estão fisicamente presentes.
 - **Sobreposição:** Provider amplo do End. Pode coexistir com estruturas/expansões adicionais, mas conflitos devem ser avaliados por biome/structure/feature concreta; não é substituível por uma library de worldgen.
-- **Compatibilidade/Riscos:** Worldgen amplo do End. Riscos: conflito de biome/feature/structure placement, registry/holder stale, transição de versões em mundos existentes, render/particle client-side e sobreposição de End com YUNG's Better End Island/outros mods. 21.0.34 corrige crash de partículas server-side.
-- **Observações:** 21.0.34 NeoForge 1.21.1. Dependências oficiais: BCLib, WorldWeaver e WunderLib. Conteúdo New Dawn inclui Flower Islets, Waterfall Ponds, Ruined End Bridges, Dragon-Helix, Amaranita, End lakes reworked, boats/chest boats, End Lotus Raft, chiseled bookshelves e Resonance I/II.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime + Modrinth/CurseForge oficiais BetterEnd: New Dawn 21.0.34 + stack New Dawn e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `BetterEnd-21.0.34.jar` / `21.0.34`; decisão `Manter` e dependências físicas permanecem inalteradas.
+- **Compatibilidade/Riscos:** Worldgen amplo do End. Riscos: conflito de biome/feature/structure placement, registry/holder stale, transição de versões em mundos existentes, render/particle client-side e sobreposição de End com YUNG's Better End Island/outros mods. 21.0.34 corrige crash de partículas server-side; a upstream 21.0.35 corrige cave-biome generation e adiciona configs ausentes para desativar dois biomas novos.
+- **Observações:** Runtime físico 21.0.34 NeoForge 1.21.1. Upstream publicou 21.0.35 em 16/09/2026 com fix de geração de cave biomes e opções de configuração ausentes para desativar dois biomas novos; não está instalada.
+- **Procedência:** modlist física atual + metadata runtime + Modrinth/CurseForge oficiais BetterEnd: New Dawn 21.0.34 instalada e 21.0.35 posterior + stack New Dawn já auditado. Revalidado em 01/10/2026; JAR/runtime permanecem `BetterEnd-21.0.34.jar` / `21.0.34`.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/betterend-new-dawn
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #71: `BetterEnd-21.0.34.jar` / `21.0.34` conferidos contra a modlist atual; stack BCLib 21.0.26 + WorldWeaver 21.0.25 + WunderLib 21.0.10, worldgen boundaries e decisão histórica `Manter` preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — BetterEnd físico permanece 21.0.34. A release 21.0.35 foi comparada e os deltas de cave-biome generation/config foram incorporados abaixo.
 - **Histórico da decisão:** Em 22/08/2026, BetterEnd foi desativado temporariamente apenas para isolamento junto de WorldWeaver e BetterNether. Após identificar e remover FirmaTerrain 1.0.0, o stack BetterX/New Dawn foi reativado e funcionou. Decisão final desta investigação: MANTER BetterEnd; a desativação anterior foi apenas diagnóstica.
 - **Data da última decisão:** 2026-08-22
 
@@ -161,3 +161,27 @@ Não usar reload para tentar regenerar chunks existentes.
 
 > 🌌 Authority canônica: BetterEnd = conteúdo e geração do End; BCLib/WorldWeaver/WunderLib = infraestrutura New Dawn. A ficha não transforma libraries em providers de conteúdo nem mascara a diferença entre chunks antigos e novos.
 
+
+## 16. Atualização upstream 21.0.35 — não instalada
+
+A autoridade física continua em **BetterEnd: New Dawn 21.0.34**. A release **21.0.35** para NeoForge 1.21.1 foi publicada em 16/09/2026.
+
+### Deltas oficiais
+- adiciona **opções de configuração que estavam faltando para desabilitar dois dos novos biomas**;
+- corrige **geração de cave biomes**.
+
+### Impacto para o pack
+Os dois pontos afetam diretamente worldgen do End. Config de biome deve controlar apenas geração futura conforme a arquitetura do provider; não deve ser interpretada como remoção retroativa de chunks existentes. O fix de cave biomes precisa ser validado em chunks novos, inclusive depois de restart e em coexistência com os demais providers do End.
+
+### Gate de promoção 21.0.34 → 21.0.35
+- [ ] Dedicated server boot com BCLib/WorldWeaver/WunderLib físicos atuais.
+- [ ] Mundo novo entra no End e gera biomas/estruturas sem registry/codec errors.
+- [ ] Cave biomes aparecem em geração nova sem ausência sistemática ou placement incorreto.
+- [ ] As duas novas opções de config existem, persistem e realmente desabilitam os biomas correspondentes em chunks novos.
+- [ ] Chunks antigos continuam carregando quando as opções são alteradas.
+- [ ] Fronteira old/new chunks não apresenta corrupção ou transições críticas.
+- [ ] Flower Islets, Waterfall Ponds, Ruined End Bridges e lakes continuam gerando conforme esperado.
+- [ ] YUNG's Better End Island e outros providers do End continuam coexistindo sem double placement evidente.
+- [ ] Particle crash corrigido em 21.0.34 não regride.
+
+Fonte upstream: CurseForge BetterEnd: New Dawn 21.0.35, file ID 8896285, NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.

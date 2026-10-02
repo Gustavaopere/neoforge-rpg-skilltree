@@ -13,11 +13,11 @@
 - **Função:** Core/API compartilhado da família Advanced Info. Centraliza plugin discovery, tooltip trees hierárquicas, serialização/transferência servidor→cliente e infraestrutura genérica usada por Advanced Loot Info (ALI) e Advanced Worldgen Info (AWI). Não exibe loot/worldgen sozinho: o conteúdo final pertence aos consumers.
 - **Dependências:** Nenhuma hard dependency externa adicional foi localizada além da plataforma compatível. Relações reversas: Advanced Loot Info (ALI) e Advanced Worldgen Info (AWI) requerem ACI. No pack físico atual, ALI 2.1.0 está instalado; AWI não aparece top-level. ACI 1.1.0 é o runtime atual.
 - **Sobreposição:** Sobreposição apenas de infraestrutura com outras tooltip/network/plugin libraries. Não é outro recipe viewer, não altera loot tables e não altera worldgen. O conflito operacional possível é congestão de tooltip/UI quando muitos consumers apresentam dados no mesmo viewer, não duplicação funcional do core.
-- **Compatibilidade/Riscos:** Risco principal é version coupling entre core e consumers: plugin API, tooltip nodes e payload/serialization podem mudar em conjunto. Como transporta dados servidor→cliente, mismatch pode causar falha de payload, desconexão ou UI vazia. Não substitui JEI/EMI/REI; estes são viewers consumidos por ALI/AWI. Não há incompatibilidade formal upstream específica localizada.
-- **Observações:** Upstream define ACI como required por ALI/AWI e 'does nothing on its own'. Não atribuir a ACI categorias/loot/worldgen que pertencem aos consumers. Ausência física de AWI no pack deve ser preservada; não inventar consumer só porque a library suporta.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Advanced Core Info 1.1.0 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar` / `1.1.0`; sem divergência física.
+- **Compatibilidade/Riscos:** Risco principal é version coupling entre core e consumers: plugin API, tooltip nodes e payload/serialization podem mudar em conjunto. Como transporta dados servidor→cliente, mismatch pode causar falha de payload, desconexão ou UI vazia. Upstream 1.2.0 amplia ManagedRegistry/reporting e 1.3.0 adiciona natural mob spawn collection + mudanças de tooltip-tree handling; atualizar ACI e consumers como conjunto.
+- **Observações:** Runtime físico ACI 1.1.0; ALI 2.1.0 está instalado e AWI não aparece top-level. Upstream posterior: 1.2.0 adiciona registry enumeration/class-key reporting e dedup de reports; 1.3.0 adiciona tratamento seguro de unbound Holder, coleta de natural mob spawns por dimensão/bioma/estrutura e build mais rápida de tooltip trees.
+- **Procedência:** modlist física atual + CurseForge oficial Advanced Core Info 1.1.0 instalada, 1.2.0 e 1.3.0 posteriores + source oficial `yanny7/AdvancedLootInfo` branch 1.21.1, arquivo `aci/CHANGELOG.md`, revalidado em 01/10/2026. JAR/runtime físico permanecem `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar` / `1.1.0`.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/advanced-core-info
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #6: `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar` / `1.1.0` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — ACI físico permanece 1.1.0. As releases 1.2.0 e 1.3.0 foram comparadas em sequência pelo changelog oficial e os deltas de registry/plugin reporting, Holder handling, spawn collection e tooltip performance foram incorporados abaixo.
 - **Histórico da decisão:** Ficha original curta foi substituída em 07/09/2026 por dossiê operacional completo no padrão adotado após o feedback sobre Alex's Mobs. Sem mudança de decisão curatorial.
 - **Data da última decisão:** 2026-09-07
 
@@ -207,3 +207,39 @@ Não pode inferir:
 **Fonte interna:** guia completo de gameplay/sistemas, usado como referência histórica; onde ele ainda cita ACI 1.0.0, a modlist física e o Notion reconciliado prevalecem para runtime 1.1.0.
 
 **Confiança:** alta para identidade, versão, consumers e quatro responsabilidades publicadas. Detalhes de API não expostos publicamente permanecem propositalmente não inventados.
+## 17. Atualizações upstream 1.2.0 → 1.3.0 — não instaladas
+
+A autoridade física continua em **Advanced Core Info 1.1.0**. O upstream 1.21.1 publicou as releases **1.2.0** e **1.3.0** depois da build instalada.
+
+### 1.2.0 — ManagedRegistry e reporting
+O changelog oficial do módulo ACI registra:
+- adiciona `ManagedRegistry.entries`, permitindo ler de volta o conteúdo completo de um registry;
+- adiciona `ManagedRegistry.classKeyName`, fazendo classes lambda serem reportadas sob a classe host em vez do endereço/runtime name;
+- missing class-keyed entries passam a ser reportadas uma vez por class name, evitando uma linha separada para cada implementação lambda;
+- mergeable tooltip key passa a ser reportada uma vez por scan, em vez de uma vez por ocorrência.
+
+Essas mudanças reduzem ruído de diagnostics e ampliam a superfície de introspecção de registry para consumers/plugins.
+
+### 1.3.0 — Holder safety, natural spawns e tooltip performance
+O changelog oficial registra:
+- **Unbound Holder** passa a ser renderizado pela registry key em vez de lançar exceção;
+- adiciona coleta de **natural mob spawns por dimensão, biome e structure**;
+- construção de tooltip trees fica mais rápida;
+- atualização da tradução chinesa.
+
+### Impacto para o pack
+ACI não fornece UI final sozinho, mas ALI está instalado e consome o core. `ManagedRegistry`/tooltip-tree changes podem afetar plugins e diagnostics; a natural-spawn collection amplia o tipo de informação que consumers podem transportar/mostrar. O handling de unbound Holder reduz um path de exception relevante em datapacks/registries modded.
+
+### Gate de promoção 1.1.0 → 1.3.0
+- [ ] ACI e ALI são promovidos/testados como conjunto compatível; não assumir ABI estável entre versões.
+- [ ] Dedicated server e client registram payloads sem disconnect/codec errors.
+- [ ] ALI continua consultando loot/trades e construindo tooltip trees corretas.
+- [ ] `ManagedRegistry.entries` não produz duplicate/stale entries após `/reload`.
+- [ ] Lambda/class-key diagnostics não geram log explosion.
+- [ ] Unbound Holder conhecido é exibido pela registry key sem crash.
+- [ ] Natural mob spawn collection diferencia corretamente dimensão, biome e structure.
+- [ ] Tooltip trees grandes não perdem branches/values apesar da otimização.
+- [ ] Datapack reload invalida/reconstrói caches necessários.
+- [ ] AWI continua tratado como consumer ausente enquanto não existir top-level no pack.
+
+Fontes upstream: CurseForge Advanced Core Info 1.2.0/1.3.0 e `yanny7/AdvancedLootInfo` branch `1.21.1`, `aci/CHANGELOG.md`. Nenhum teste acima foi executado nesta atualização documental.

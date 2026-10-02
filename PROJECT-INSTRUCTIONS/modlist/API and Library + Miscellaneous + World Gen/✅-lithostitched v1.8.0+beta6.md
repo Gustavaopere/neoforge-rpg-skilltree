@@ -13,11 +13,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/lithostitched
 - **Função:** Biblioteca/framework de worldgen que adiciona modificadores, predicates, density/placement tooling e mecanismos de compatibilidade/configurabilidade para datapacks e mods geradores de mundo.
 - **Dependências:** A release não lista projeto externo obrigatório. No JAR físico, Apollib 1.2.0 está embarcado diretamente em Lithostitched e, dentro dele, json5-java 3.0.0 aparece como biblioteca aninhada; nenhum dos dois é mod top-level separado. Runtime também contém Tectonic 3.0.28, WorldWeaver 21.0.25, BetterEnd 21.0.34 e BetterNether 21.0.26.
-- **Compatibilidade/Riscos:** Build beta e infraestrutura de alto fan-out. Riscos: worldgen modifier/order drift, density caching, biome/surface-rule interop, chunk-border divergence, nested-library skew e mudanças de schema. Há relato upstream aberto de crash do botão View Presets do Tectonic com beta6 NeoForge 1.21.1; não confirmado neste pack.
+- **Compatibilidade/Riscos:** Build física beta e infraestrutura de alto fan-out. Riscos: worldgen modifier/order drift, density caching, biome/surface-rule interop, chunk-border divergence, nested-library skew e mudanças de schema. A release estável upstream 1.8.0 corrige um caso crítico em que mundos com surface-rule injections podiam corromper sob certas combinações, além de fixes de modifiers/density bounds; por isso qualquer promoção exige backup e regressão de mundo/chunks.
 - **Sobreposição:** Infraestrutura de worldgen; não substitui Tectonic/WorldWeaver/BetterEnd/BetterNether. Esses mods/datapacks continuam authority de seu terrain/biomes/features, enquanto Lithostitched fornece mecanismos de composição/modificação.
-- **Observações:** Build física `1.8.0+beta6-neoforge-21.1`. Hierarquia física: Lithostitched → Apollib 1.2.0 → json5-java 3.0.0. O issue upstream Tectonic #529 sobre View Presets + beta6 NeoForge 1.21.1 continua aberto em 13/09/2026; não foi reproduzido neste pack.
-- **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + CurseForge oficial Lithostitched 1.8.0+beta6 NeoForge 21.1 + changelogs oficiais da linha 1.8.0 + hierarquia JarJar física do host; consumidor Tectonic físico atual 3.0.28.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — Lithostitched 1.8.0+beta6/JAR físico reconfirmado; consumidor físico Tectonic reconciliado para 3.0.28. Hierarquia JarJar preservada: Apollib 1.2.0 é filho direto do host e contém json5-java 3.0.0 internamente. O relato upstream Tectonic #529 permanece registrado como risco histórico não reproduzido no pack.
+- **Observações:** Build física `1.8.0+beta6-neoforge-21.1`. Hierarquia física: Lithostitched → Apollib 1.2.0 → json5-java 3.0.0. Upstream posterior publicou a release estável `1.8.0` para NeoForge 21.1 em 22/09/2026; o delta está documentado abaixo e não altera a versão instalada.
+- **Procedência:** modlist(1).txt física anexada + CurseForge oficial Lithostitched 1.8.0+beta6 e release estável 1.8.0 NeoForge 21.1 + changelog oficial da linha 1.8.0 + hierarquia JarJar física do host; consumidor Tectonic físico atual 3.0.28. Upstream revalidado em 01/10/2026.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Lithostitched 1.8.0+beta6. A release estável 1.8.0 para NeoForge 1.21.1 foi comparada com a beta6; deltas de surface-rule safety, modifiers e density caching/bounds foram incorporados abaixo.
 - **Histórico da decisão:** Durante o diagnóstico de 22/08/2026, Lithostitched apareceu como possível ponto de interação por tocar em regras de worldgen semelhantes às do WorldWeaver/BCLib, mas nunca foi o primeiro erro fatal. Após remover FirmaTerrain 1.0.0 e reativar WorldWeaver + BetterEnd + BetterNether, o stack funcionou com Lithostitched presente. Conclusão: MANTER; não houve necessidade de downgrade ou remoção.
 - **Data da última decisão:** 2026-08-26
 
@@ -73,3 +73,37 @@ Mudanças de worldgen afetam principalmente **chunks novos**. Atualizar/remover 
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 15. Evidências e limites
 Foram usados o JAR físico, a release oficial beta6 NeoForge 21.1, changelogs oficiais da linha 1.8.0, o repositório upstream e o histórico real de diagnóstico do pack. A branch pública antiga 1.21 não representa a beta6, portanto não foi usada para inventar registry/classes dessa build. O relato de Tectonic permanece explicitamente classificado como issue upstream aberta, não como bug reproduzido neste pack.
+
+## 16. Atualização upstream 1.8.0 estável — não instalada
+
+A autoridade física continua em **Lithostitched 1.8.0+beta6**. O CurseForge oficial publicou **1.8.0** estável para NeoForge 21.1/Minecraft 1.21.1 em 22/09/2026, depois da beta6 instalada.
+
+### Deltas oficiais relevantes
+A 1.8.0 é descrita como contendo principalmente mudanças de backend e separação do codebase por versão, mas o changelog também consolida alterações funcionais importantes da família:
+- adiciona worldgen modifier `add_spawn_costs`;
+- adiciona `set_tree_decorators`;
+- adiciona foliage placers `branched_mega_jungle` e `branched_mega_pine`;
+- adiciona root placer `large_mangrove`;
+- adiciona density function `cellular`;
+- otimiza o caching de density functions;
+- corrige `offset` placement modifier com fields que não deviam ser opcionais;
+- corrige o feature type `dungeon`;
+- corrige mensagens de log inofensivas quando World Weaver está instalado;
+- corrige cálculo/assunção de minimum value em density functions, incluindo casos como `sample_density` que usavam 0 em vez de um mínimo numérico efetivo;
+- **corrige um problema crítico em que mundos com surface rule injections podiam corromper sob determinadas condições**, com exemplo upstream envolvendo Regions Unexplored + TerraBlender.
+
+### Impacto para o pack
+O último fix é material porque o pack usa um stack de worldgen amplo e Lithostitched tem fan-out alto. A ausência de Regions Unexplored no exemplo não elimina o risco: a causa publicada envolve surface-rule injections, portanto o gate deve focar integridade de worldgen e não um mod específico.
+
+### Gate de promoção beta6 → 1.8.0
+- [ ] Backup/cópia de mundo antes da promoção.
+- [ ] Dedicated server inicia com Tectonic, WorldWeaver, BetterEnd e BetterNether atuais.
+- [ ] Mundo novo gera Overworld/End/Nether sem registry/surface-rule errors.
+- [ ] Mundo existente abre e gera chunks novos sem corrupção ou fronteiras anormais.
+- [ ] Biome/surface-rule injections aplicam no NeoForge sem perda de terrain/surface.
+- [ ] Density caching produz resultado determinístico entre restart e ordem de geração.
+- [ ] Modifiers `add_spawn_costs`, `set_tree_decorators` e placement `offset` não quebram datapacks consumidores.
+- [ ] Tectonic View Presets é revalidado; o relato histórico da beta6 não é presumido corrigido sem reprodução.
+- [ ] WorldWeaver não emite regressões funcionais apesar do fix de logging.
+
+Fonte upstream: CurseForge Lithostitched 1.8.0 para NeoForge 21.1, file ID 8944659, e changelog oficial da release. Nenhum teste acima foi executado nesta atualização documental.

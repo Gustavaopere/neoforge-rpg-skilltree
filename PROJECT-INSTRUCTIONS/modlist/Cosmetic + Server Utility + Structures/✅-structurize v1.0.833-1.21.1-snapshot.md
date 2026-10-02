@@ -15,11 +15,11 @@
 - **Função:** Infraestrutura de blueprints/scans/preview/placement estrutural usada pelo MineColonies, com Scan Tool, Build Tool, blueprint packs, sincronização client-server e load balancing de operações.
 - **Dependências:** Release 1.0.833 exige BlockUI 1.0.191-snapshot+ e Domum Ornamentum 1.0.203-snapshot+. Runtime físico: BlockUI 1.0.211, Domum 1.0.236, MineColonies 1.1.1381 e Structurize 1.0.833, todos 1.21.1 snapshots compatíveis com os mínimos publicados.
 - **Sobreposição:** Tem ferramentas de construção/schematic, mas sua função de biblioteca para MineColonies é distinta do Schematicannon do Create.
-- **Compatibilidade/Riscos:** Build Beta/snapshot. Riscos: drift entre MineColonies/Structurize/BlockUI/Domum, large scans, placement permissions, operações parciais em unload/restart, missing mod blocks e diferenças preview↔placement. Atualizar o stack de forma coordenada.
-- **Observações:** mod id `structurize`; runtime `1.0.833-1.21.1-snapshot`; canal Beta/snapshot de 07/09/2026. Decisão Dependência preservada por consumidor físico MineColonies 1.1.1381. Config real de operações por tick não foi lida.
-- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Structurize 1.0.833 snapshot revalidado em 13/09/2026 + stack físico MineColonies 1.1.1381, BlockUI 1.0.211 e Domum Ornamentum 1.0.236. Dossiê de 11/09 preservado; config de operações por tick e testes runtime não foram executados.
+- **Compatibilidade/Riscos:** Build Beta/snapshot. Riscos: drift entre MineColonies/Structurize/BlockUI/Domum, large scans, placement permissions, operações parciais em unload/restart, missing mod blocks e diferenças preview↔placement. Upstream 1.0.835 inclui fix de event e alinha handling com solid substitution block; atualizar o stack de forma coordenada.
+- **Observações:** mod id `structurize`; runtime físico `1.0.833-1.21.1-snapshot`. Upstream publicou `1.0.835-1.21.1-snapshot` em 30/09/2026; não há artefato 1.21.1 1.0.834 visível na listagem atual. Changelog 1.0.835 contém `fix event (#855)` e `use same handle as solid substitution block (#847)`.
+- **Procedência:** modlist física atual + CurseForge oficial Structurize 1.0.833 instalada e 1.0.835 snapshot publicada para NeoForge 1.21.1 + stack físico MineColonies/BlockUI/Domum. Revalidado em 01/10/2026; config de operações por tick e testes runtime continuam não executados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/structurize ; https://www.curseforge.com/minecraft/mc-mods/structurize/files/8829722
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Structurize 1.0.833 snapshot permanece o runtime físico e a build 1.21.1 snapshot mais recente localizada; stack MineColonies/BlockUI/Domum, blueprint authority, sync/load balancing, lifecycle e riscos preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Structurize físico permanece 1.0.833 snapshot. A release 1.0.835 foi comparada; os dois fixes publicados foram registrados fail-closed, sem ampliar seu significado além do changelog upstream.
 - **Histórico da decisão:** 2026-08-27 — classificado como Dependência após confirmação do requisito Structurize \>=1.0.832 pelo MineColonies atualmente instalado.
 - **Data da última decisão:** 2026-08-27
 
@@ -145,3 +145,30 @@ O runtime físico continua exatamente `structurize-1.0.833-1.21.1-snapshot.jar`,
 A build continua snapshot/Beta; nenhuma operação de scan/placement/link session foi executada nesta recatalogação e a configuração real de operações por tick permanece não lida.
 ## 19. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece `structurize-1.0.833-1.21.1-snapshot.jar`. A 1.0.833 continua sendo a snapshot/Beta 1.21.1 mais recente localizada; a release estável 1.0.832 permanece linha separada e não é um “downgrade recomendado”. O stack físico MineColonies `1.1.1381`, BlockUI `1.0.211` e Domum Ornamentum `1.0.236` continua acima dos mínimos publicados. A decisão **Dependência** permanece sustentada pelo MineColonies instalado. Nenhum scan, placement, link session ou teste de restart foi executado nesta revalidação.
+
+## 20. Atualização upstream 1.0.835 — não instalada
+
+A autoridade física continua em **Structurize 1.0.833-1.21.1-snapshot**. O CurseForge oficial publica **1.0.835-1.21.1-snapshot** como Beta para NeoForge 1.21.1 em 30/09/2026. A listagem pública atual não mostra um artefato 1.21.1 1.0.834 entre as duas versões.
+
+### Changelog publicado
+A release registra dois commits/fixes:
+- **`fix event (#855)`**;
+- **`use same handle as solid substitution block (#847)`**.
+
+O texto público não especifica, por si só, qual evento foi corrigido nem toda a semântica do handle alterado. Por isso esta ficha não inventa classes, lifecycle ou bugs específicos adicionais. O segundo delta é tratado como mudança na superfície de substitution/placement handling, relevante para blueprint placement, sem afirmar comportamento não documentado.
+
+### Impacto para o pack
+Structurize é dependência direta do MineColonies e manipula blueprints/placement. Mesmo um delta curto pode ter fan-out alto quando toca eventos ou substitution handling. A promoção deve ser coordenada com MineColonies, BlockUI e Domum Ornamentum, preservando blueprints existentes.
+
+### Gate de promoção 1.0.833 → 1.0.835
+- [ ] Dedicated server boot com MineColonies/BlockUI/Domum físicos atuais.
+- [ ] Scan Tool salva/reabre blueprint pequeno e grande.
+- [ ] Build Tool preview e placement preservam rotate/mirror/substitutions.
+- [ ] Solid substitution blocks e o handling relacionado não divergem entre preview e placement.
+- [ ] Event-driven placement/cancel/reload não executa ação duas vezes.
+- [ ] Chunk unload/reload durante operação grande não duplica nem perde blocos.
+- [ ] Server restart após placement parcial não reexecuta operação concluída.
+- [ ] Blueprint packs existentes do MineColonies continuam resolvendo buildings/upgrades.
+- [ ] Link sessions multiplayer continuam sincronizando preview/ownership.
+
+Fonte upstream: CurseForge Structurize 1.0.835-1.21.1-snapshot, file ID 9017852, changelog com PRs #855 e #847. Nenhum teste acima foi executado nesta atualização documental.
