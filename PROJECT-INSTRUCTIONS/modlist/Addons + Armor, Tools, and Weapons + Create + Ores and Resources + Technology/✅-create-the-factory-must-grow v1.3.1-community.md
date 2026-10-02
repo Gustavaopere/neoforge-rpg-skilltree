@@ -15,11 +15,11 @@
 - **Função:** TFMG Community Edition: grande expansão dieselpunk/heavy engineering para Create com petróleo e derivados, distillation, coke/blast furnaces, metalurgia, eletricidade própria, engines, electrolysis e equipamentos industriais.
 - **Dependências:** Create 6.0.10 é a base funcional; Sable 2.0.5 está presente. NeoForge 1.21.1. Create Liquid Fuels: Reburned é integração opcional: 1.3.1 corrige data generation quando ele está ausente.
 - **Sobreposição:** Compartilha petróleo, combustíveis e geração/uso de energia com outros addons Create, porém implementa sua própria cadeia de heavy engineering e não é apenas um recipe pack.
-- **Compatibilidade/Riscos:** Community fork com features experimentais. Gates atuais incluem Coke Oven/Blast Furnace, distillation/fluid conservation, electric network, Sable, Oil Reserves/worldgen 1.3.0, Vats/Tanks cross-type e Cable Connector disconnect não confirmados como resolvidos. 1.3.1 corrige Coke Oven multiblocks e data generation sem CLF Reburned.
-- **Observações:** mod id `tfmg`; runtime físico 1.3.1-community. A 1.3.0 adicionou Ponders para engines, supersedindo o antigo known issue de ausência de Ponders. 1.3.1 traz manutenção de Coke Oven, light bulbs, Multimeter/Cable Connectors e data generation.
-- **Procedência:** modlist física de 17/09/2026 + releases/changelogs oficiais TFMG Community Edition 1.2.4b, 1.3.0 e 1.3.1 + Create 6.0.10 e Sable 2.0.5 físicos.
+- **Compatibilidade/Riscos:** Community fork com features experimentais. Runtime físico 1.3.1-community; upstream 1.3.2/1.3.2a alteram recipes/fluid units, distillation, oil worldgen, electrical loop handling e API. Gates críticos incluem anti-duplication de Rebar, preservação de contents, recipe namespace/load order, 90mB por ingot e API removida/alterada.
+- **Observações:** Runtime físico permanece 1.3.1-community. Upstream publicou 1.3.2 e hotfix 1.3.2a em 29/09/2026; 1.3.2a corrige load order que impedia alguns recipe overrides. A promoção deve usar 1.3.2a.
+- **Procedência:** modlist física atual confirma TFMG Community 1.3.1-community + Create 6.0.10 + Sable 2.0.5. CurseForge oficial 1.3.2 (file ID 9013173) e 1.3.2a (file ID 9013465) revalidado em 02/10/2026.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/tfmg-community-edition/files/8723583 ; https://github.com/DrMango14/Create-The_Factory_Must_Grow
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — TFMG Community Edition atualizado para 1.3.1-community; deltas 1.3.0/1.3.1 incorporados; Ponders de engines marcados como resolvidos e demais known issues mantidos fail-closed quando não houve fix explícito.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 02/10/2026 — runtime físico permanece 1.3.1-community. Releases 1.3.2→1.3.2a comparadas; 1.3.2a é o baseline de promoção.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 
 
@@ -185,3 +185,53 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 ## 19. Revalidação física — 17/09/2026
 A modlist atual confirma **TFMG Community Edition 1.3.1-community** para NeoForge 1.21.1, com Create 6.0.10 e Sable 2.0.5. A antiga build 1.2.4b é somente histórico de regressão.
 O inventário físico continua distinguindo dependências top-level de bibliotecas embarcadas. Os processos industriais, redes elétricas e multiblocks não foram executados nesta auditoria documental; por isso os regression gates acima permanecem pendentes de runtime QA.
+
+
+## 20. Atualizações upstream 1.3.2 → 1.3.2a — não instaladas
+
+A autoridade física continua em **TFMG Community Edition 1.3.1-community**. O upstream publicou **1.3.2** e o hotfix **1.3.2a** em 29/09/2026.
+
+### 1.3.2 — correções materiais
+- corrige raro `ConcurrentModificationException` em `ElectricalNetwork#checkForLoops`;
+- corrige tags de mineable em `TFMGTiers`;
+- Rebar passa de 4 para 2 por ingot para eliminar uma rota de duplicação;
+- Cooling Fluid Bottles e Oil Cans deixam de perder contents instantaneamente;
+- top hatches do Blast Furnace deixam de perder itens;
+- Copycat Cable Blocks passam a funcionar como copycats;
+- Blast Stove recebe correção de duração e recipe checking;
+- corrige render de dyed pipes com Bits n Bobs.
+
+### 1.3.2 — recipes, fluidos e máquinas
+- padroniza recipes em **90 mB = 1 ingot**;
+- Blast Stove capacity passa a escalar com volume e max height 5;
+- Surface Scanner passa de 5×5 para 7×7 e recebe melhor comportamento em sublevels/redstone;
+- Chemical Vat JEI passa a alternar entre vat types válidos;
+- Distillation ganha duração por recipe, progress dependente do heat e porcentagem em goggles;
+- Exhaust/Smokestack recebem novas capacities e drain rates;
+- Engine Piping passa a extrair de qualquer fluid handler adjacente;
+- recipes passam a usar corretamente o namespace `tfmg`;
+- Lead/Nickel/Lithium e integração CBC recebem revisão de recipes.
+
+### 1.3.2 — worldgen e API
+- Oil Deposits deixam de substituir air, restringem fossilstone a stone-type blocks e passam a depender de bedrock/origem no fundo do mundo;
+- remove `ILockablePipe`, `PipeAttachmentModelMixin` e `ItemFluidTank`;
+- pipe locking migra para data attachment `tfmg:locked_pipe`;
+- `FluidContainingItem` passa a usar `Predicate<FluidStack>` como validator;
+- adiciona condition `tfmg:tag_filled` e helpers de listas dyed.
+
+### 1.3.2a
+- corrige **load orders que impediam alguns recipe overrides de funcionar**.
+
+### Gate de promoção
+- [ ] Rebar e demais recipes conservam recursos com a nova convenção de 90 mB por ingot.
+- [ ] Containers/hatches corrigidos preservam contents após use, unload e restart.
+- [ ] Electrical network suporta criação/remoção de loops sem exception/state stale.
+- [ ] Recipe overrides funcionam sob a load order real do pack.
+- [ ] Distillation conserva input/output e respeita heat/duration novos.
+- [ ] Engine Piping com handlers modded não duplica nem perde fluido.
+- [ ] Oil worldgen é validado somente em chunks novos.
+- [ ] KubeJS/addons próprios não dependem das APIs removidas ou assinaturas antigas.
+- [ ] `tfmg:locked_pipe` persiste corretamente em save/restart.
+- [ ] CBC/JEI não exibem rotas duplicadas ou recipes antigas residuais.
+
+Fontes upstream: CurseForge TFMG Community Edition 1.3.2 file ID 9013173 e 1.3.2a file ID 9013465. Nenhum teste acima foi executado nesta atualização documental.
