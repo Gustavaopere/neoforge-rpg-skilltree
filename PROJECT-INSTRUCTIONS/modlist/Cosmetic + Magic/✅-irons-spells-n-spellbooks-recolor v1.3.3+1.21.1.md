@@ -1,10 +1,10 @@
 # Iron's Spells 'n Spellbooks: Recolor
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#472**: JAR `recolor_tablet-1.3.3+1.21.1.jar`, mod id `recolor_tablet`, runtime `1.3.3+1.21.1`, SHA-1 `f3806de891b04d554d05c279808b057fdf7bdab5`. Iron's Spells 'n Spellbooks está fisicamente em `1.21.1-3.16.3`; a origem histórica 1.3.2 / Iron's 3.15.1 permanece preservada abaixo sem reescrita silenciosa.
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#472**: JAR `recolor_tablet-1.3.3+1.21.1.jar`, mod id `recolor_tablet`, runtime `1.3.3+1.21.1`, SHA-1 `f3806de891b04d554d05c279808b057fdf7bdab5`. Iron's Spells 'n Spellbooks está fisicamente em `1.21.1-3.16.3`; referências históricas da auditoria anterior foram reconciliadas nas seções operacionais.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack:** Integrado ao Github
 - **Autoridade física:** `recolor_tablet-1.3.3+1.21.1.jar`, mod id `recolor_tablet`, runtime `1.3.3+1.21.1`
-- **Nota de autoridade física externa:** Iron's Spells 'n Spellbooks está em `1.21.1-3.16.3` na modlist atual; a página-fonte abaixo preserva referências históricas a 3.15.1 sem reescrevê-las silenciosamente.
+- **Nota de autoridade física externa:** Iron's Spells 'n Spellbooks está em `1.21.1-3.16.3` na modlist atual; referências históricas a 3.15.1 não prevalecem sobre a autoridade física.
 - **Auditoria de migração Notion → GitHub:** 2026-09-14
 
 ## Propriedades do banco
@@ -63,10 +63,10 @@ A documentação oficial descreve a seleção de cor como individual por jogador
 Isso cria duas responsabilidades distintas:
 - persistir/obter a seleção de cor do jogador certo;
 - aplicar essa seleção apenas ao render/efeito visual compatível.
-Não foi presumido o formato interno de persistência sem source exato da 1.3.2.
+Não foi presumido o formato interno de persistência sem source exato da build 1.3.3 instalada.
 
 ## 6. Escolas, grupos e administração
-A documentação upstream atual expõe operações administrativas de recolor, consulta, reset, banimento de recolor e grupos. Como a documentação acompanha uma release mais nova que o JAR instalado, esta ficha **não declara que cada comando atual existe necessariamente na 1.3.2**. O que deve ser validado no runtime é a superfície efetivamente registrada por essa build.
+A documentação upstream atual expõe operações administrativas de recolor, consulta, reset, banimento de recolor e grupos. A build instalada agora coincide com a release 1.3.3; comandos ainda precisam ser validados no runtime antes de virar contrato de integração.
 
 ## 7. Integrações concretas no pack
 - **Iron's Spells 3.16.3:** dependência funcional principal e autoridade do sistema de magia.
@@ -93,7 +93,7 @@ A seleção não deve migrar para jogador incorreto nem duplicar listeners após
 ## 10. Multiplayer
 Dois jogadores com cores diferentes devem poder lançar o mesmo spell simultaneamente sem vazamento de estado entre casters. Um cliente recém-conectado deve receber a representação correta de jogadores já configurados. O servidor deve continuar authority do cast e de qualquer efeito funcional.
 
-## 11. Version drift
+## 11. Reconciliação de versão
 A modlist física atual instala **1.3.3+1.21.1**, que coincide com a release oficial NeoForge 1.21.1 de 10/09/2026. O version drift histórico 1.3.2→1.3.3 está resolvido fisicamente.
 O delta físico agora ativo é: correções de alguns crash cases, recolor da variante Gyro Slash do Infernal Devastator e recolor do Ichor de Golden Shower.
 
@@ -103,7 +103,7 @@ O delta físico agora ativo é: correções de alguns crash cases, recolor da va
 3. **Addon drift:** escola/spell adicional muda IDs ou renderer hooks.
 4. **Mixin conflict:** outro visual mod intercepta a mesma superfície de spell rendering.
 5. **Gameplay leakage:** recolor não pode alterar damage/mana/cooldown por acidente.
-6. **Version drift:** documentação corrente pode descrever comandos/integrações posteriores à 1.3.2.
+6. **Documentation/API drift:** documentação corrente pode evoluir além da build 1.3.3; não assumir comandos futuros sem verificação.
 7. **Reset/persistence:** cor antiga reaparece ou é perdida após relog/restart.
 
 ## 13. Matriz de testes
@@ -125,7 +125,7 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Publicação oficial: build 1.3.3 para NeoForge 1.21.1, file ID 8852186; changelog com crash fixes, Gyro Slash e Golden Shower/Ichor.
 - Projeto oficial atual: comportamento de color wheel/visibilidade por jogador e lista de compatibilidades.
 - A build 1.3.3 coincide com o runtime físico atual.
-- **Limite:** source/tag exato da 1.3.2 não foi usado para inventariar classes, packets ou formato de save; comandos da documentação atual não foram atribuídos automaticamente ao binário 1.3.2.
+- **Limite:** source/tag exato da 1.3.3 não foi decompilado nesta rodada para inventariar classes, packets ou formato de save; o changelog oficial e a modlist física sustentam a reconciliação.
 ## 15. Reconciliação física 1.3.3 — 01/10/2026
 
 A modlist física atual confirma `recolor_tablet-1.3.3+1.21.1.jar`, versão `1.3.3+1.21.1`, SHA-1 `f3806de891b04d554d05c279808b057fdf7bdab5`. Portanto o filename GitHub já estava correto, mas o corpo ainda estava ancorado na antiga 1.3.2 e foi reconciliado.
