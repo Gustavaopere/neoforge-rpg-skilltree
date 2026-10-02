@@ -17,13 +17,13 @@
 - **Decisão:** Manter
 - **Categoria:** Compat, RPG
 - **Função:** Pacote data-driven de compatibilidade para o ecossistema Apotheosis/Apothic: adiciona, conforme o mod-alvo, affixed loot entries, gear sets, invaders, affixes, gems, loot categories, enchanting stats e regras específicas de affixability. Não é um segundo provider de affixes/gems.
-- **Dependências:** Stack Apotheosis/Apothic correspondente; cada compat efetiva exige o mod-alvo presente. Ancient Reforging é suporte opcional upstream. Validar providers individualmente após updates.
+- **Dependências:** Stack Apotheosis/Apothic correspondente; cada compat efetiva exige o mod-alvo presente. O pack físico está em Apotheosis 8.8.0, enquanto Apothic Compats 0.2.4.2 foi publicada para a linha 8.6.0. Upstream 0.2.4.3 alinha o compat a 8.8.0; a linha 0.2.5.2+ já mira Apotheosis 8.9.0.
 - **Sobreposição:** Complementar ao Apothic Category Compat. Category Compat trata roteamento/categorias; Apothic Compats entrega datapacks de integração com terceiros. Também não substitui Apotheosis, Apothic Attributes, Enchanting ou Spawners.
-- **Compatibilidade/Riscos:** Risco principal é drift de datapack após updates dos mods-alvo. A 0.2.4.2 foi atualizada para Apotheosis 8.6.0 e versões recentes dos providers, mas o próprio changelog avisa que algumas integrações ainda requerem touch-up. Evitar datapacks locais que dupliquem loot categories, affixed loot, gems ou invaders já fornecidos.
-- **Observações:** mod id `apothic_compats`, runtime 0.2.4.2. O suporte upstream a AE2 permanece documentado, porém AE2 está ausente da modlist física atual; essa compat está dormente. O estado anterior `Integrado ao Github` não foi descartado: a normalização atual refere-se ao fechamento documental do dossiê.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Apothic Compats 0.2.4.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `apothic_compats-0.2.4.2.jar` / `0.2.4.2`; sem divergência física.
+- **Compatibilidade/Riscos:** Risco principal é drift data-driven entre Apothic Compats, Apotheosis e providers. Runtime físico 0.2.4.2 está atrás do base físico 8.8.0; 0.2.4.3 é a primeira release upstream alinhada a 8.8.0. A série 0.2.5 adiciona novas integrações e correções, mas 0.2.5.2+ passa a depender da linha Apotheosis 8.9.0 e deve ser promovida de forma coordenada.
+- **Observações:** Runtime físico permanece 0.2.4.2. Upstream avançou por 0.2.4.3 → 0.2.5 → 0.2.5.1 → 0.2.5.2 → 0.2.5.3 → 0.2.5.4 → 0.2.5.5. A 0.2.5.5 é o hotfix final da sequência e reverte uma mudança do caminho de detecção de mobs após regressão de spawning hostil.
+- **Procedência:** modlist física atual confirma Apothic Compats 0.2.4.2 + Apotheosis 8.8.0. CurseForge oficial e source `ianm1647/apothic-compats` branch 1.21.1 revalidados em 02/10/2026; latest 1.21.1 localizada é 0.2.5.5, file ID 8996735.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apothic-compats
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #33: `apothic_compats-0.2.4.2.jar` / `0.2.4.2` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 02/10/2026 — runtime físico permanece 0.2.4.2. A sequência 0.2.4.3→0.2.5.5 foi percorrida; 0.2.4.3 é o alinhamento direto ao Apotheosis físico 8.8.0, enquanto 0.2.5.2+ requer promoção coordenada do base para 8.9.0.
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi refeita como dossiê operacional. O pack contém vários providers cobertos explicitamente por Apothic Compats, tornando o módulo útil como camada data-driven de compatibilidade; não confundir com Apothic Category Compat.
 - **Data da última decisão:** 2026-09-07
 
@@ -116,3 +116,36 @@ A sobreposição aparente com Apothic Category Compat é apenas temática. Categ
 - [CurseForge — Apothic Compats](https://www.curseforge.com/minecraft/mc-mods/apothic-compats)
 - [Arquivo 0.2.4.2 / changelog](https://www.curseforge.com/minecraft/mc-mods/apothic-compats/files/8483936)
 - Modlist física do projeto — authority do JAR e runtime instalados.
+
+
+## 11. Atualizações upstream 0.2.4.3 → 0.2.5.5 — não instaladas
+
+A autoridade física continua em **Apothic Compats 0.2.4.2**. O pack, porém, já usa **Apotheosis 8.8.0**.
+
+### 0.2.4.3 — alinhamento ao base físico
+A release 0.2.4.3 foi publicada como atualização para **Apotheosis 8.8.0**. Portanto ela é a primeira release upstream que reconcilia diretamente o compat com a versão-base já instalada no pack.
+
+### 0.2.5 → 0.2.5.1
+A linha 0.2.5 amplia compatibilidade data-driven, incluindo providers para Iron's Artifice, com gear sets, invaders e extra gem bonuses. Iron's Artifice não foi localizado como top-level na modlist física desta rodada, então essa integração permanece dormente no pack atual.
+
+A 0.2.5.1 inclui correções no caminho dessas novas integrações e ajustes de aplicação em entidades.
+
+### 0.2.5.2 → 0.2.5.4
+A partir da 0.2.5.2, o source oficial passa a declarar **Apotheosis 8.9.0**. Essa linha também acompanha a nova geração de affixes da 8.9.0, incluindo novos arquivos data-driven e ajustes de extra gem bonuses.
+
+Consequência: **0.2.5.2+ não deve ser promovida isoladamente enquanto o pack permanecer em Apotheosis 8.8.0**.
+
+### 0.2.5.5 — hotfix final da sequência
+A 0.2.5.5 reverte uma mudança feita na detecção de mobs. O source imediatamente anterior registra correção para entidades hostis que deixavam de spawnar; por isso, se a família 0.2.5 for adotada no futuro, usar no mínimo **0.2.5.5**, não uma build intermediária.
+
+### Gate de promoção
+- [ ] Se o objetivo for apenas alinhar com o Apotheosis físico 8.8.0, validar primeiro Apothic Compats 0.2.4.3.
+- [ ] Não promover 0.2.5.2+ sem atualizar e validar o stack Apotheosis para 8.9.0.
+- [ ] Dedicated server inicia sem erros de datapack, mixin ou registry.
+- [ ] Hostile mobs continuam spawnando normalmente; regressão da linha 0.2.5 não reaparece.
+- [ ] Affix loot, gear sets, invaders e gem bonuses não são duplicados por datapacks locais.
+- [ ] Providers ausentes permanecem dormentes sem missing registry/class errors.
+- [ ] Curios e providers presentes continuam recebendo uma única classification/affix path.
+- [ ] Reload de datapacks e restart preservam o mesmo conjunto de integrações.
+
+Fontes upstream: CurseForge Apothic Compats 0.2.4.3 até 0.2.5.5; source oficial `ianm1647/apothic-compats`. Nenhum teste acima foi executado nesta atualização documental.
