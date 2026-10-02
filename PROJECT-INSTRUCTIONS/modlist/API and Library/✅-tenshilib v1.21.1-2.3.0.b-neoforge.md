@@ -15,11 +15,11 @@
 - **Função:** Core library do ecossistema flemmli97 com animation system client/server, parsing de modelos/animações Bedrock, OBB hit detection, registro cross-loader, parser matemático e utilidades compartilhadas.
 - **Dependências:** NeoForge 1.21.1; biblioteca consumida por outros projetos do autor. Consumidores causais específicos devem ser resolvidos antes de remoção.
 - **Sobreposição:** Não compete com outras bibliotecas em termos de gameplay; fornece infraestrutura própria exigida pelos mods que a declaram.
-- **Compatibilidade/Riscos:** Hidden dependency/API drift; animation sync e OBB server/client mismatch; parsing de assets Bedrock. A build 2.3.0.b corrige especificamente o TOML NeoForge da 2.3.0, tornando startup/mod discovery um regression gate.
-- **Observações:** mod id `tenshilib`; runtime metadata `1.21.1-2.3.0.b-neoforge`; release identifier `2.3.0.b`. Sozinha não adiciona gameplay. Não inferir que toda feature da library é usada por todos os consumers.
-- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial TenshiLib 2.3.0.b File ID 8706217 revalidado em 13/09/2026. Dossiê de 11/09 preservado; consumer causal específico continua não resolvido e nenhum teste runtime foi executado.
+- **Compatibilidade/Riscos:** Hidden dependency/API drift; animation sync e OBB server/client mismatch; parsing de assets Bedrock. A build física 2.3.0.b corrige o TOML NeoForge da 2.3.0. A upstream 2.3.1 altera render/model hooks, FollowEntity, Molang e entity-data sync, portanto qualquer promoção precisa ser testada contra consumers reais do pack.
+- **Observações:** mod id `tenshilib`; runtime metadata `1.21.1-2.3.0.b-neoforge`; release identifier físico `2.3.0.b`. Upstream publicou 2.3.1 para NeoForge 1.21.1 em 27/09/2026 com mudanças de render callback/model errors, FollowEntity, Molang, suggestion widgets, entity data sync e backport de MC-273361; deltas Fabric-only não são tratados como runtime NeoForge.
+- **Procedência:** modlist física atual + CurseForge oficial TenshiLib 2.3.0.b instalada e 2.3.1 para NeoForge 1.21.1, revalidado em 01/10/2026. Consumer causal específico continua não resolvido; nenhum teste runtime foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/tenshilib
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — JAR físico `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, runtime metadata `1.21.1-2.3.0.b-neoforge`; release identifier `2.3.0.b`, que continua a release NeoForge 1.21.1 mais recente localizada. Animation system, Bedrock parsing, OBB hit detection, cross-loader infrastructure e fix do TOML NeoForge preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — JAR físico permanece `tenshilib-1.21.1-2.3.0.b-neoforge.jar`. A release 2.3.1 foi comparada e os deltas relevantes para NeoForge foram incorporados abaixo.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 
 
@@ -101,3 +101,36 @@ O runtime físico continua exatamente `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, m
 Nenhum consumer causal adicional foi afirmado sem evidência. Animation sync, OBB, parsing de assets e startup continuam pendentes de teste runtime.
 ## 15. Revalidação física — 13/09/2026
 O JAR físico permanece `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, com runtime metadata `1.21.1-2.3.0.b-neoforge`; a release NeoForge 1.21.1 localizada continua com identifier público `2.3.0.b`. O fix do TOML NeoForge permanece regression gate direto. Nenhum consumer causal novo foi afirmado e nenhum teste de animation sync, OBB, parsing de assets ou startup foi executado.
+
+## 16. Atualização upstream 2.3.1 — não instalada
+
+A autoridade física continua em **TenshiLib 2.3.0.b**. A release **2.3.1** para NeoForge 1.21.1 foi publicada em 27/09/2026.
+
+### Deltas oficiais
+Relevantes para a linha compartilhada/NeoForge:
+- melhora o handling de custom vertex elements para torná-lo mais simples de usar;
+- adiciona render callback, com exemplo upstream de tooltips para suggestion widget;
+- melhora reporting/handling de erro ao carregar models e animations;
+- adiciona comportamento custom **FollowEntity**;
+- corrige valores incorretos de algumas variáveis Molang;
+- corrige seleção do suggestion widget;
+- corrige **entity data syncing** que às vezes transmitia valores errados;
+- backporta o fix vanilla **MC-273361**, relacionado a entidades invisíveis durante teleport.
+
+O changelog também cita tick event e fix de attachment loading específicos de Fabric; esses itens não são promovidos como comportamento NeoForge desta instância.
+
+### Impacto para o pack
+Como TenshiLib é biblioteca, o risco não está em gameplay próprio, mas em consumers que dependam de animation/model/render/network state. O fix de entity-data sync e o backport de invisibilidade em teleport merecem regressão multiplayer; FollowEntity pode alterar behavior de consumers que adotarem a API nova.
+
+### Gate de promoção 2.3.0.b → 2.3.1
+- [ ] NeoForge descobre a library sem regressão do TOML corrigido em 2.3.0.b.
+- [ ] Consumer causal real é identificado antes da promoção.
+- [ ] Models/animations válidos carregam; assets inválidos falham com erro controlado.
+- [ ] Animation/entity state sincroniza entre dois clientes e servidor.
+- [ ] Teleport de entidade não deixa invisibilidade stale — regressão MC-273361.
+- [ ] FollowEntity, quando usado por consumer presente, não deixa target/path state stale após unload/dimension change.
+- [ ] Molang variables usadas por models/animations produzem valores esperados.
+- [ ] Suggestion widget selection/render callback não quebra screens de consumers.
+- [ ] OBB/hit detection existente permanece alinhado ao servidor.
+
+Fonte upstream: CurseForge TenshiLib 2.3.1, file ID 8990097, NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.
