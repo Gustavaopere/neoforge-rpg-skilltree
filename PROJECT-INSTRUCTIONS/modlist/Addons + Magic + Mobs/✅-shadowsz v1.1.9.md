@@ -15,11 +15,11 @@
 - **Função:** Sistema de necromancia/Shadow Monarch integrado a Iron's Spells, com Shadow Arising, army roster/storage, commands/groups, XP/stats, progress mode, Umbral magic e compats de mobs.
 - **Dependências:** Required: Iron's Spells 'n Spellbooks, fisicamente 3.16.3. Compats presentes: Legendary Monsters, Bosses'Rise 2.1.2, Mowzie's Mobs 1.8.2 e L_Ender's Cataclysm 3.33. Monster Expansion não foi encontrado top-level.
 - **Sobreposição:** Sobreposição temática com outros sistemas de necromancia/minions do pack, mas ShadowsZ owns seu roster/progressão/storage/Umbral integration; não substituir sem decisão de gameplay.
-- **Compatibilidade/Riscos:** Stateful army system. Riscos: chunk-ticket leaks, roster/storage dupe, modded-mob AI incompat, friendly-fire/team drift, Iron's API drift, unsafe Position Swap, ghost army após relog e performance sob muitos shadows/chunks.
-- **Observações:** 1.1.9 corrige max shadows, Tyros, Maledictus/Frostmaw, transforms vanilla e adiciona semi-compats/RestrictPowers/revoke. Config local não foi lida; fusion/equipment/progress mode não são presumidos ativos.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial ShadowsZ 1.1.9, descrição completa e changelog da build.
+- **Compatibilidade/Riscos:** Stateful army system. Riscos: chunk-ticket leaks, roster/storage dupe, modded-mob AI incompat, friendly-fire/team drift, Iron's API drift, unsafe Position Swap, ghost army após relog e performance sob muitos shadows/chunks. A upstream 2.0 representa um salto major sobre 1.1.9, mas as release notes específicas da 2.0 não estão expostas na superfície pública consultada; não atribuir mudanças funcionais à 2.0 sem evidência adicional.
+- **Observações:** Runtime físico 1.1.9. O CurseForge oficial publica `shadowsz-2.0.jar` para NeoForge 1.21.1 em 23/09/2026 como release mais recente. O changelog específico da 2.0 não foi localizado/exposto nas páginas públicas consultadas; a descrição atual do projeto não é usada retroativamente para atribuir deltas à 2.0.
+- **Procedência:** modlist física atual + CurseForge oficial ShadowsZ 1.1.9 e changelog específico da build instalada. Revalidação de 01/10/2026 confirma `shadowsz-2.0.jar` como release 1.21.1/NeoForge posterior; release notes específicas da 2.0 permanecem indisponíveis nas superfícies públicas consultadas, portanto o delta funcional fica fail-closed.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/shadowsz
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — ShadowsZ 1.1.9 reconstruído: Arising, roster/storage, army commands, force-loading, progression/titles, Umbral magic, parties, compats, persistence, riscos e testes.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece ShadowsZ 1.1.9. A release 2.0 foi identificada como latest para 1.21.1/NeoForge, mas nenhuma mudança funcional é afirmada sem changelog específico verificável.
 - **Histórico da decisão:**
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -221,3 +221,30 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial do projeto: workflow completo de army, progression, storage, parties, config, server tools e compats.
 - Changelog oficial 1.1.9: deltas e fixes específicos acima.
 - **Limite:** Monster Expansion não foi encontrado na modlist; config local não foi aberta; sistemas marcados upstream como opcionais/under progress não são tratados como garantidamente ativos.
+
+## 22. Atualização upstream 2.0 — não instalada; delta funcional não verificado
+
+A autoridade física continua em **ShadowsZ 1.1.9** (`shadowsz-1.1.9.jar`). O CurseForge oficial lista **`shadowsz-2.0.jar`** como a release 1.21.1/NeoForge mais recente, publicada em **23/09/2026**.
+
+### Limite de evidência
+Na consulta de 01/10/2026, a listagem atual de arquivos confirma versão, loader, game version, data e tamanho do artefato 2.0, mas **não expõe as release notes/changelog específico da 2.0**. A página de descrição do projeto contém um feature set amplo, porém esse texto não estabelece quais funcionalidades foram introduzidas especificamente entre 1.1.9 e 2.0.
+
+Por isso, esta atualização documental não transforma a descrição atual em um changelog inferido. Nenhuma feature, fix, alteração de config, migração de save ou breaking change é atribuída à 2.0 sem fonte específica.
+
+### Consequência operacional
+O salto **1.1.9 → 2.0** deve ser tratado como atualização não reconciliada para promoção até que pelo menos uma destas evidências esteja disponível:
+- release notes oficiais da 2.0;
+- inspeção do JAR 2.0 e comparação de registries/config/network/persistence com 1.1.9;
+- source/tag/commit oficial correspondente à 2.0.
+
+### Gate mínimo de promoção 1.1.9 → 2.0
+- [ ] Comparar registries de spells/items/entities/attributes e IDs persistentes.
+- [ ] Comparar schema/config keys e defaults.
+- [ ] Validar migração de roster, shadow XP/levels, names, groups, hotkeys, storage e equipment/fusion state.
+- [ ] Validar chunk tickets após dismiss/revoke/death/relog.
+- [ ] Revalidar Iron's Spells 3.16.3 API/attributes/Umbral integration.
+- [ ] Revalidar Bosses'Rise, Mowzie's Mobs, Cataclysm e Legendary Monsters compats.
+- [ ] Testar dedicated server, multiplayer, Position Swap e party/friendly-fire.
+- [ ] Confirmar ausência de breaking network/save changes antes de abrir mundo principal.
+
+Fonte factual disponível: CurseForge ShadowsZ files — `shadowsz-2.0.jar`, Release, NeoForge 1.21.1, 23/09/2026. O conteúdo funcional da 2.0 permanece **não verificado** nesta rodada.
