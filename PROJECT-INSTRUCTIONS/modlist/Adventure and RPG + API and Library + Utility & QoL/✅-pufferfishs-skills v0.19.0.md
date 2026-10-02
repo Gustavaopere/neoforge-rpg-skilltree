@@ -15,11 +15,11 @@
 - **Função:** Framework jogável para árvores de habilidades configuráveis, com nós, conexões, requisitos, custos, recompensas, fontes de experiência e API para extensões e gerenciamento de skills.
 - **Dependências:** NeoForge 1.21.1. Consumer causal instalado: Pufferfish's Unofficial Additions 2.2.8 declara Pufferfish's Skills como Required Content.
 - **Sobreposição:** Framework configurável de skill trees; pode coexistir com outros RPG systems. Sobreposição depende das árvores/rewards efetivamente carregados.
-- **Compatibilidade/Riscos:** Framework Beta. Riscos: schema/config drift, XP farming, exclusive-root errors, IDs persistidos stale, abuso de comandos e addon/API drift. Skills não fornece automaticamente stamina/mana/atributos sem árvore/reward configurado.
-- **Observações:** Build 0.19.0 Beta NeoForge 1.21/1.21.1 publicada em 02/09/2026. Release family adiciona exchange, level command e novo point event na API.
-- **Procedência:** modlist.txt física canônica atual de 10/09/2026 + CurseForge/documentação oficial Pufferfish's Skills 0.19.0 + relação oficial do addon Unofficial Additions 2.2.8.
+- **Compatibilidade/Riscos:** Framework Beta. Riscos: schema/config drift, XP farming, exclusive-root errors, IDs persistidos stale, abuso de comandos e addon/API drift. Runtime físico 0.19.0; upstream 0.19.1 corrige experience sources que não funcionavam em players e player conditions no criterion experience source.
+- **Observações:** Build física permanece 0.19.0 Beta NeoForge 1.21/1.21.1. A única release compatível posterior localizada é 0.19.1, publicada em 21/09/2026; seus dois fixes afetam diretamente XP sources/player criteria.
+- **Procedência:** modlist física atual + Pufferfish's Skills 0.19.0 instalada + CurseForge oficial Pufferfish's Skills 0.19.1 Beta para NeoForge 1.21/1.21.1 (file ID 8941352). Revalidado em 02/10/2026.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/puffish-skills
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Pufferfish's Skills 0.19.0 reconstruído e reclassificado como Dependência: datapack skill trees, states/roots, rewards, XP sources, exchange/commands, persistência, addon consumer, riscos e testes.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 02/10/2026 — runtime físico permanece 0.19.0. A release 0.19.1 foi comparada e seus fixes de player experience sources/criterion conditions foram incorporados abaixo.
 - **Histórico da decisão:** 2026-09-10 — reclassificado de Sem decisão para Dependência após confirmação de Pufferfish's Unofficial Additions 2.2.8 instalado e declarando Pufferfish's Skills como Required Content.
 - **Data da última decisão:** 2026-09-10
 
@@ -154,3 +154,25 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Documentação oficial: arquivos de categoria/árvore, estados, roots, rewards, sources, commands e persistência.
 - Pufferfish's Unofficial Additions 2.2.8: Required Content = Pufferfish's Skills, sustentando `Dependência`.
 - **Limite:** datapacks/árvores locais efetivamente carregados não foram abertos neste lote; nenhum perk ou integração concreta foi inventado.
+
+## 19. Atualização upstream 0.19.1 — não instalada
+
+A autoridade física continua em **Pufferfish's Skills 0.19.0**. A release **0.19.1** para NeoForge 1.21/1.21.1 foi publicada em 21/09/2026; não há release compatível intermediária entre 0.19.0 e 0.19.1.
+
+### Deltas oficiais
+- corrige algumas **experience sources** que não funcionavam quando o alvo era player;
+- corrige **player conditions** no `criterion` experience source.
+
+### Impacto para o pack
+Os dois fixes tocam a origem causal de XP da árvore. Um source que antes não disparava pode passar a conceder experiência após a atualização; portanto a promoção exige revalidar anti-farming, exactly-once e qualquer datapack local que dependa de conditions/criteria de player.
+
+### Gate de promoção 0.19.0 → 0.19.1
+- [ ] Datapacks de skill tree carregam sem schema/ID errors.
+- [ ] Cada experience source direcionado a player dispara apenas no evento/critério esperado.
+- [ ] `criterion` com player conditions aceita/rejeita exatamente os players esperados.
+- [ ] Repetição do mesmo evento não cria farming fora da política configurada.
+- [ ] `/reload`, relog e restart não duplicam listeners nem recompensas.
+- [ ] Pufferfish's Unofficial Additions 2.2.8 continua funcional contra Skills 0.19.1.
+- [ ] Exchange, rewards, exclusive roots e persistência permanecem sem regressão.
+
+Fonte upstream: CurseForge Pufferfish's Skills 0.19.1, file ID 8941352. Nenhum teste acima foi executado nesta atualização documental.
