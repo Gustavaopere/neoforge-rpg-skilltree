@@ -1,0 +1,126 @@
+# Excalibur | Sophisticated Support
+
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+- **Estado no pack na exportação:** Instalado — Dossiê completo
+- **Tipo de conteúdo:** Resource Pack, Addon
+- **Arquivo:** `Excalibur Sophisticated v1.1.zip`
+- **Versão 1.21.1:** 1.1
+- **Data da exportação:** 2026-09-11
+- **Status de auditoria atual:** BLOQUEADO — a fonte canônica integral do Notion não está acessível para o re-fetch 1:1 atual; `✅-` removido até nova validação.
+
+## Autoridade e limite físico na exportação
+
+- O dossiê Notion registra `Excalibur Sophisticated v1.1.zip` como fisicamente confirmado por captura da pasta Resource Packs do perfil em 08/09/2026.
+- A modlist física atual confirma exatamente os três providers principais desta ficha: `sophisticatedcore-1.21.1-1.5.1.2341.jar` (mod id `sophisticatedcore`, runtime `1.5.1`), `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` (mod id `sophisticatedbackpacks`, runtime `3.26.3`) e `sophisticatedstorage-1.21.1-1.5.91.2127.jar` (mod id `sophisticatedstorage`, runtime `1.5.91`).
+- A mesma modlist contém integrações separadas de Create para Backpacks e Storage; elas não são automaticamente cobertas por este resource pack apenas por pertencerem ao ecossistema Sophisticated.
+- A captura de Resource Packs de 08/09/2026 continua sendo a evidência de presença do ZIP `Excalibur Sophisticated v1.1.zip`; as versões dos providers são reconciliadas separadamente pela modlist física atual.
+
+## Propriedades do banco
+
+- **Mod:** Excalibur | Sophisticated Support
+- **Arquivo JAR:** `Excalibur Sophisticated v1.1.zip`
+- **Tipo de conteúdo:** Resource Pack, Addon
+- **Versão 1.21.1:** 1.1
+- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** Verificado
+- **Decisão:** Sem decisão
+- **Categoria:** Visual, Compat, Armazenamento
+- **Função:** Support pack visual para Sophisticated Core, Backpacks e Storage, cobrindo GUIs, icons, storage blocks e upgrades no estilo Excalibur.
+- **Dependências:** Uso visual pretendido: Excalibur + Sophisticated Core 1.5.1 + Sophisticated Backpacks 3.26.3 + Sophisticated Storage 1.5.91. Conteúdo client-side; gameplay continua nos providers Sophisticated.
+- **Sobreposição:** Pode colidir com Create Style Sophisticated Backpacks e outros retextures Sophisticated por asset path. Prioridade visual deve ser testada; não há sobreposição de gameplay.
+- **Compatibilidade/Riscos:** Riscos de drift em GUIs/icons/upgrades com as versões físicas atuais, colisão com outros retextures e leitura incorreta do warning de pack_format. O autor documenta o warning como ignorável para esta distribuição, mas missing assets reais continuam erro.
+- **Observações:** Arquivo instalado `Excalibur Sophisticated v1.1.zip`. Upstream documenta retexture de todas as GUIs/icons, chests/barrels/limited barrels, upgrades e alguns itens adicionais.
+- **Procedência:** Captura CurseForge do perfil RPG em 08/09/2026 + modlist física atual + CurseForge oficial Excalibur Sophisticated Support v1.1.
+- **Fonte:** https://www.curseforge.com/minecraft/texture-packs/excalibur-sophisticated-support
+- **Atualização/Status:** REAUDITADO EM 29/09/2026 — resource pack v1.1 preservado; provider físico Sophisticated Backpacks reconciliado de 3.26.2 para 3.26.3. Core 1.5.1 e Storage 1.5.91 permanecem confirmados; cobertura, pack_format boundary, load order, riscos e QA preservados.
+- **Histórico da decisão:**
+
+# Dossiê operacional — padrão Alex's Mobs
+
+> **Resource pack físico confirmado:** `Excalibur Sophisticated v1.1.zip`, versão `1.1`, para Minecraft 1.21.1. O support pack cobre o ecossistema **Sophisticated Core + Sophisticated Backpacks + Sophisticated Storage** no estilo Excalibur.
+
+## 1. Papel e authority
+Excalibur | Sophisticated Support é uma camada visual. Sophisticated Core, Backpacks e Storage continuam authorities de slots, upgrades, inventories, filtering, automation, storage state e networking. O resource pack altera somente assets resolvidos pelo cliente.
+
+## 2. Cobertura confirmada
+O upstream da v1.1 documenta cobertura para:
+- todas as GUIs do escopo suportado;
+- todos os icons;
+- chests, barrels e limited barrels;
+- upgrades de backpacks e storage;
+- alguns itens adicionais.
+
+A expressão `some random items` do upstream não é convertida em lista completa nem em claim de 100% do ecossistema.
+
+## 3. Stack físico atual
+O pack mantém:
+- Sophisticated Core `1.5.1`;
+- Sophisticated Backpacks `3.26.3`;
+- Sophisticated Storage `1.5.91`.
+
+A build visual instalada é v1.1. Compatibilidade deve ser validada contra essas versões reais, principalmente em GUIs e icons adicionados depois da publicação do support pack.
+
+## 4. Aviso de pack format
+O autor registra que um aviso de incompatibilidade causado por `pack_format` pode ser ignorado para esta distribuição. Isso é um boundary específico do support pack: o warning documentado não deve ser confundido automaticamente com falha real de assets.
+Ao mesmo tempo, esse aviso não autoriza ignorar missing textures, models ou GUI resources verdadeiramente quebrados.
+
+## 5. Load order
+Como addon visual, deve ter prioridade acima do Excalibur base para seus overrides de Sophisticated prevalecerem. Outros retextures de Sophisticated que estiverem acima podem substituir assets individualmente.
+
+## 6. GUIs e client state
+GUIs são apresentação do state autoritativo dos mods Sophisticated. Slots, quantidades, upgrades e filtros exibidos visualmente precisam continuar refletindo o servidor/provider; uma textura nova não pode ser tratada como alteração funcional de layout ou capacidade.
+
+## 7. Client e resource reload
+Ativação, remoção ou reordenação provoca resource reload. O efeito esperado é exclusivamente visual: textures, icons, GUI sprites/models. Nenhuma operação deve mudar inventários, conteúdo de backpack/storage ou configs de upgrades.
+
+## 8. Sobreposição
+Pode se sobrepor a `Create Style Sophisticated Backpacks` e a outros packs que alterem Sophisticated Backpacks/Storage. Isso precisa ser avaliado por asset path e prioridade, não apenas pelo nome do pack.
+O support pack cobre três providers Sophisticated; não atribuir assets de addons externos ao host sem evidência.
+
+## 9. Riscos
+1. GUI nova do provider físico não existir na v1.1.
+2. Ícone de upgrade adicionado posteriormente cair no visual padrão.
+3. Outro resource pack sobrescrever chest/barrel/backpack assets.
+4. Warning de pack_format mascarar um erro visual real se for ignorado sem inspeção.
+5. GUI texture e widget layout divergirem após update do mod.
+6. Resource reload deixar cache visual stale.
+
+## 10. Matriz de testes
+- [ ] Abrir GUIs de Sophisticated Backpacks e Storage em vários tiers.
+- [ ] Conferir chests, barrels e limited barrels.
+- [ ] Conferir icons de upgrades principais.
+- [ ] Conferir upgrades equipados e tooltips sem sprite ausente.
+- [ ] Validar que o warning de pack_format não acompanha missing asset real.
+- [ ] Testar resource reload e relog.
+- [ ] Comparar prioridade com outros packs que tocam Sophisticated.
+
+Nenhum teste foi marcado como aprovado.
+
+## 11. Evidências e limite
+- captura CurseForge do perfil: `Excalibur Sophisticated v1.1.zip` instalado;
+- modlist física: Sophisticated Core 1.5.1, Backpacks 3.26.3 e Storage 1.5.91;
+- CurseForge oficial: v1.1, suporte aos três projetos, GUIs/icons/storage blocks/upgrades e aviso de pack_format documentado pelo autor.
+
+O ZIP não foi inventariado asset por asset; cobertura além do que o upstream declara permanece fail-closed.
+
+> Boundary canônico: **Sophisticated controla inventories/upgrades; Excalibur Sophisticated Support controla somente a apresentação dos assets substituídos**.
+
+## 12. Revalidação upstream — 02/10/2026
+
+- **Instalado/documentado:** `Excalibur Sophisticated v1.1.zip` / versão `1.1`.
+- **Upstream atual:** `Excalibur Sophisticated v1.1.zip`, ainda a release mais recente publicada pelo projeto em 01/06/2026.
+- Não existe release posterior a `1.1` para percorrer nesta auditoria.
+- Permanecem válidos no upstream os três alvos declarados: **Sophisticated Core**, **Sophisticated Backpacks** e **Sophisticated Storage**, além da cobertura de GUIs, icons, chests/barrels/limited barrels, upgrades e itens adicionais já registrada neste dossiê.
+- Portanto, **não há atualização de versão a aplicar** ao arquivo físico/documentado nesta rodada.
+
+Fonte upstream revalidada:
+- https://www.curseforge.com/minecraft/texture-packs/excalibur-sophisticated-support
+
+## 13. Bloqueio de certificação Notion → GitHub — 02/10/2026
+
+- A página de Notion atualmente recuperável com o título **Excalibur | Sophisticated Support** é uma ficha histórica de corpo vazio marcada como **Substituído**.
+- A própria ficha informa que foi substituída por uma ficha canônica atual reconciliada com a captura de Resource Packs de 08/09/2026.
+- A ficha canônica integral não ficou acessível à busca/fetch nesta rodada.
+- O conteúdo técnico existente foi preservado e a situação upstream foi revalidada, porém a paridade integral Notion → GitHub não pode ser demonstrada novamente.
+- Pelo protocolo fail-closed do projeto, este arquivo permanece **SEM `✅-`** até re-fetch e comparação 1:1 da ficha canônica integral.
+
