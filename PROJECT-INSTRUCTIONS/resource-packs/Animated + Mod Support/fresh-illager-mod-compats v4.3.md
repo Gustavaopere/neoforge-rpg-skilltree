@@ -6,6 +6,7 @@
 - **Arquivo:** `4.3 FA Illager Mod Compats.zip`
 - **Versão 1.21.1:** 4.3
 - **Data da exportação:** 2026-09-11
+- **Status de auditoria atual:** BLOQUEADO — a fonte canônica integral do Notion não está acessível para o re-fetch 1:1 atual; `✅-` removido até nova validação.
 
 ## Autoridade e limite físico na exportação
 
@@ -78,3 +79,48 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma requisitos, load order e lista de mods suportados. A versão `4.3` é mantida pela evidência física/distribuída; o delta exato da 4.3 não é inventado.
 
 > Boundary canônico: **o pack controla compatibilidade visual de illagers; cada mod continua controlando a entidade e seu gameplay**.
+
+## 10. Delta upstream 4.3 → 4.5 → 4.6 → 4.7 → 4.8 → 4.9 — não instalado (02/10/2026)
+
+- **Instalado/documentado:** `4.3 FA Illager Mod Compats.zip` / versão `4.3`.
+- **Upstream atual:** `4.9 FA Illager Mod Compats.zip`, publicado em 28/09/2026, CurseForge file ID `8999132`.
+- A lista oficial de arquivos mostra a sequência posterior `4.5 → 4.6 → 4.7 → 4.8 → 4.9`; **não há release 4.4 publicada** entre 4.3 e 4.5.
+
+### 4.5 — 16/09/2026 — file ID 8893691
+- Adiciona **Fresh Expression para o Royal Guard do Goety**, incluindo a villager skin correspondente.
+- É diretamente relevante ao pack porque **Goety 3.1.4** está fisicamente presente no snapshot atual.
+
+### 4.6 — 16/09/2026 — file ID 8897878
+- Corrige a **textura do horn do Royal Guard**.
+
+### 4.7 — 18/09/2026 — file ID 8912450
+- Remove a compatibilidade **Goety: Equipped**.
+- Essa remoção altera a superfície de integração que não deve mais ser presumida em builds posteriores.
+
+### 4.8 — 27/09/2026 — file ID 8987234
+- A release está confirmada na lista oficial de arquivos e é compatível com 1.21.1.
+- O changelog individual não ficou acessível pelos endpoints públicos consultados nesta auditoria; portanto **nenhuma alteração funcional da 4.8 é inferida ou inventada**.
+
+### 4.9 — 28/09/2026 — file ID 8999132
+- Corrige a **textura da boca do Hostile Royal Guard**.
+
+### Decisão de instalação
+
+- O conjunto 4.5–4.9 é material para o stack atual por afetar diretamente o Royal Guard/Goety.
+- A versão física/documentada permanece `4.3`; **não promover para 4.9** sem nova evidência do ZIP instalado no perfil.
+
+Fontes upstream:
+- https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/8893691
+- https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/8897878
+- https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/8912450
+- https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/8987234
+- https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/8999132
+- https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/all
+
+## 11. Bloqueio de certificação Notion → GitHub — 02/10/2026
+
+- A busca atual do workspace e a consulta estruturada da base não recuperaram uma ficha canônica **Fresh Illager Mod Compats** que possa ser fetched integralmente.
+- O conteúdo técnico existente foi preservado, e a sequência upstream posterior à 4.3 foi percorrida release por release.
+- Sem a origem canônica do Notion, a paridade 1:1 exigida pelo protocolo não pode ser demonstrada nesta execução.
+- Pelo protocolo fail-closed, este arquivo permanece **SEM `✅-`** até a fonte canônica estar acessível e ser revalidada integralmente.
+

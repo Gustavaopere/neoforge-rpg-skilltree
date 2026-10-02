@@ -6,6 +6,7 @@
 - **Arquivo:** `Excalibur_V26.1_01.zip`
 - **Versão 1.21.1:** V26.1_01
 - **Data da exportação:** 2026-09-11
+- **Status de auditoria atual:** BLOQUEADO — a fonte canônica integral do Notion não está acessível para o re-fetch 1:1 atual; `✅-` removido até nova validação.
 
 ## Autoridade e limite físico na exportação
 
@@ -80,3 +81,44 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma V26.1_01, compatibilidade listada com 1.21.1 e o escopo visual geral. Não foi feito inventário interno dos ~99% de assets; o percentual permanece claim do upstream.
 
 > Boundary canônico: **Excalibur é a base visual; support packs e patches só devem sobrescrever assets, nunca assumir ownership de gameplay**.
+
+## 10. Delta upstream V26.1_01 → V26.3 → V26.3_01 — não instalado (02/10/2026)
+
+- **Instalado/documentado:** `Excalibur_V26.1_01.zip` / `V26.1_01`.
+- **Upstream atual:** `Excalibur_V26.3_01.zip`, publicado em 22/09/2026, CurseForge file ID `8948603`.
+- O histórico público entre a build instalada e a atual contém exatamente duas releases posteriores: `V26.3` e `V26.3_01`; não há `V26.2` publicada na lista de arquivos.
+
+### V26.3 — 18/09/2026 — file ID 8914890
+
+Alterações materiais publicadas:
+- otimização dos carpets com cullfacing;
+- otimização dos moss carpets com menos cubos após mudanças de transparência;
+- correções de texture lateral ausente em quartz pillar e purpur pillar;
+- correção de texture ausente do armor stand;
+- correções dos modelos de camas;
+- correção de fast leaves por meio de `dark_cutout .mcmeta`;
+- correção da versionagem do mod Jade;
+- início do conteúdo **Wilderness Bound** em progresso, com cushions, straw bed, red shrub, poplar leaves e wallpapers baseados em wool double slabs.
+
+### V26.3_01 — 22/09/2026 — file ID 8948603
+
+- Corrige palettes ausentes de armor trims.
+
+### Decisão de instalação
+
+- O delta é relevante para correções visuais, especialmente pillars, armor stand, camas, folhas, Jade e armor trims.
+- **Não promover** o campo instalado nem o filename deste dossiê para `V26.3_01` sem nova evidência física do ZIP no perfil.
+
+Fontes upstream:
+- https://www.curseforge.com/minecraft/texture-packs/excalibur/files/8914890
+- https://www.curseforge.com/minecraft/texture-packs/excalibur/files/8948603
+- https://www.curseforge.com/minecraft/texture-packs/excalibur/files/all
+
+## 11. Bloqueio de certificação Notion → GitHub — 02/10/2026
+
+- A página de Notion atualmente recuperável com o título **Excalibur** é uma ficha histórica de corpo vazio marcada como **Substituído**.
+- A própria ficha registra que foi substituída pela ficha canônica atual de `Excalibur_V26.1_01.zip`, criada na reconciliação das capturas de 08/09/2026.
+- Essa ficha canônica integral não ficou acessível à busca/fetch nesta rodada.
+- O dossiê técnico existente foi preservado e todas as releases posteriores à versão documentada foram percorridas, mas a paridade integral Notion → GitHub não pode ser revalidada.
+- Pelo protocolo fail-closed, este arquivo permanece **SEM `✅-`** até a ficha canônica integral voltar a estar disponível para comparação 1:1.
+

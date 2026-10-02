@@ -6,6 +6,7 @@
 - **Arquivo:** `Excalibur Jei Support 1.4.zip`
 - **Versão 1.21.1:** 1.4
 - **Data da exportação:** 2026-09-11
+- **Status de auditoria atual:** BLOQUEADO — a fonte canônica integral do Notion não está acessível para o re-fetch 1:1 atual; `✅-` removido até nova validação.
 
 ## Autoridade e limite físico na exportação
 
@@ -76,3 +77,28 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma v1.4 para 1.21.1, o redesign das GUIs/elements e a atualização para JEI beta. A ficha não presume presença de addons JEI apenas porque são citados pelo projeto.
 
 > Boundary canônico: **JEI controla receitas e indexação; este support pack controla somente sua apresentação visual**.
+
+## 9. Delta upstream 1.4 → 1.4 Hotfix 1 — não instalado (02/10/2026)
+
+- **Instalado/documentado:** `Excalibur Jei Support 1.4.zip` / versão `1.4`.
+- **Upstream atual específico para Minecraft 1.21.1:** `Excalibur Jei Support 1.4_Hotfix1.zip`, publicado em 27/09/2026, CurseForge file ID `8995031`.
+- Não há outra release intermediária entre a 1.4 documentada e esse hotfix na lista pública para 1.21.1.
+- O changelog do autor descreve o hotfix como resposta às **diferenças de paths de textures entre versões do JEI**.
+- Isso é material para este pack porque o risco principal já documentado é justamente drift de paths/sprites entre a build visual e o JEI físico.
+
+### Decisão de instalação
+
+- Registrar o hotfix como upstream disponível, sem alterar a versão instalada.
+- **Não renomear** o dossiê para Hotfix 1 sem evidência física de `Excalibur Jei Support 1.4_Hotfix1.zip` no perfil.
+
+Fontes upstream:
+- https://www.curseforge.com/minecraft/texture-packs/excalibur-jei-support/files/8995031
+- https://www.curseforge.com/minecraft/texture-packs/excalibur-jei-support/files/all?version=1.21.1
+
+## 10. Bloqueio de certificação Notion → GitHub — 02/10/2026
+
+- A busca atual do workspace e a consulta estruturada da base não recuperaram uma ficha canônica **Excalibur | Just Enough Items (JEI) Support** que possa ser fetched integralmente.
+- O dossiê GitHub existente foi preservado, a versão física/documentada 1.4 foi mantida e o hotfix posterior foi registrado separadamente.
+- Sem a origem canônica do Notion, a paridade 1:1 exigida pelo protocolo não pode ser demonstrada nesta execução.
+- Pelo protocolo fail-closed, este arquivo permanece **SEM `✅-`** até a fonte canônica estar acessível e ser revalidada integralmente.
+

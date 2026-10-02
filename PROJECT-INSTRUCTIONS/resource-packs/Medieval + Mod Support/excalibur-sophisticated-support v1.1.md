@@ -6,6 +6,7 @@
 - **Arquivo:** `Excalibur Sophisticated v1.1.zip`
 - **Versão 1.21.1:** 1.1
 - **Data da exportação:** 2026-09-11
+- **Status de auditoria atual:** BLOQUEADO — a fonte canônica integral do Notion não está acessível para o re-fetch 1:1 atual; `✅-` removido até nova validação.
 
 ## Autoridade e limite físico na exportação
 
@@ -103,3 +104,23 @@ Nenhum teste foi marcado como aprovado.
 O ZIP não foi inventariado asset por asset; cobertura além do que o upstream declara permanece fail-closed.
 
 > Boundary canônico: **Sophisticated controla inventories/upgrades; Excalibur Sophisticated Support controla somente a apresentação dos assets substituídos**.
+
+## 12. Revalidação upstream — 02/10/2026
+
+- **Instalado/documentado:** `Excalibur Sophisticated v1.1.zip` / versão `1.1`.
+- **Upstream atual:** `Excalibur Sophisticated v1.1.zip`, ainda a release mais recente publicada pelo projeto em 01/06/2026.
+- Não existe release posterior a `1.1` para percorrer nesta auditoria.
+- Permanecem válidos no upstream os três alvos declarados: **Sophisticated Core**, **Sophisticated Backpacks** e **Sophisticated Storage**, além da cobertura de GUIs, icons, chests/barrels/limited barrels, upgrades e itens adicionais já registrada neste dossiê.
+- Portanto, **não há atualização de versão a aplicar** ao arquivo físico/documentado nesta rodada.
+
+Fonte upstream revalidada:
+- https://www.curseforge.com/minecraft/texture-packs/excalibur-sophisticated-support
+
+## 13. Bloqueio de certificação Notion → GitHub — 02/10/2026
+
+- A página de Notion atualmente recuperável com o título **Excalibur | Sophisticated Support** é uma ficha histórica de corpo vazio marcada como **Substituído**.
+- A própria ficha informa que foi substituída por uma ficha canônica atual reconciliada com a captura de Resource Packs de 08/09/2026.
+- A ficha canônica integral não ficou acessível à busca/fetch nesta rodada.
+- O conteúdo técnico existente foi preservado e a situação upstream foi revalidada, porém a paridade integral Notion → GitHub não pode ser demonstrada novamente.
+- Pelo protocolo fail-closed do projeto, este arquivo permanece **SEM `✅-`** até re-fetch e comparação 1:1 da ficha canônica integral.
+
