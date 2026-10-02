@@ -12,11 +12,11 @@
 - **Fonte:** https://github.com/Xylonity/Knight-Lib/tree/1.21.1
 - **Função:** Biblioteca multiloader de utilidades compartilhadas para networking, configs, eventos, AI, bossbars, camera shake, shaders, spawns, loot, persistent sounds, entity data e registration; bridge concreta para Companions! no pack.
 - **Dependências:** NeoForge 1.21.1. Consumer físico confirmado: Companions! 1.3.4. O changelog oficial de Companions! 1.3.4 eleva explicitamente a versão mínima requerida de Knight Lib para 2.0.1; GeckoLib permanece dependência do consumer, não da própria Knight Lib.
-- **Compatibilidade/Riscos:** Library de ampla superfície. Riscos: networking/config/event ABI drift, hot-reload inconsistente, bossbar links stale, entity persistent-data/schema drift, AI/OBB/render paths em side errado e consumer incompatível. O antigo version gate 1.6.1→2.0.1 está fisicamente atravessado e Companions! 1.3.4 requer Knight Lib ≥2.0.1. A release 2.0.1 corrige particle keyframe worldspace transform.
+- **Compatibilidade/Riscos:** Library de ampla superfície. Riscos: networking/config/event ABI drift, hot-reload, bossbar links stale, entity data/schema drift, AI/OBB/render paths e consumer incompatível. Runtime físico 2.0.1; upstream 2.0.2 corrige particle keyframe locators com shaderpacks e 2.0.3 corrige box UV espelhado com faces east/west trocadas.
 - **Sobreposição:** Não é substituível por biblioteca genérica sem adaptar consumers. Companions! 1.3.4 é dependente concreto e exige Knight Lib 2.0.1 como versão mínima. Similaridade funcional de networking/config/event APIs com outras libs não implica ABI compatível.
-- **Observações:** Runtime físico 2.0.1. O dossiê anterior foi source-pinned em 1.6.1. Em 12/09/2026 o Notion registrou 1.6.2 e 2.0.1 apenas como updates externos. A modlist atual confirma 2.0.1; Companions! também avançou para 1.3.4 e seu changelog oficial torna 2.0.1 requisito mínimo.
-- **Procedência:** modlist física atual anexada em 16/09/2026 + CurseForge oficial Knight Lib 2.0.1 NeoForge 1.21.1, file ID 8859434, publicado em 11/09/2026 + source oficial Xylonity/Knight-Lib + changelog oficial Xylonity/Companions 1.3.4 confirmando Knight Lib 2.0.1 como mínimo.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 16/09/2026 — Knight Lib físico 2.0.1 confirmado; o version gate major registrado no Notion foi encerrado pela instalação física e pela atualização concomitante de Companions! para 1.3.4, que exige Knight Lib 2.0.1. Superfícies de networking/config/events/AI/bossbar/render/data/registrar, lifecycle, riscos e testes permanecem catalogadas.
+- **Observações:** Runtime físico permanece 2.0.1 e Companions! 1.3.4 exige ≥2.0.1. Releases posteriores 2.0.2 (20/09/2026) e 2.0.3 (23/09/2026) foram verificadas; ambas são fixes de rendering/model/particle, não instaladas.
+- **Procedência:** modlist física atual + Knight Lib 2.0.1 instalada + CurseForge oficial 2.0.2 e 2.0.3 NeoForge 1.21.1 + source Xylonity/Knight-Lib + consumer Companions! 1.3.4. Revalidado em 01/10/2026.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Knight Lib 2.0.1. As releases 2.0.2 e 2.0.3 foram comparadas em sequência e registradas abaixo.
 - **Histórico da decisão:** 2026-08-26 — registro inicial com Knight Lib 1.x e consumer Companions!. 2026-09-10 — Knight Lib 1.6.1 documentada com correção de bossbar links em world reload. 2026-09-12 — Notion registrou 1.6.2 e 2.0.1 como updates externos e bloqueou promoção automática por salto major. 2026-09-16 — modlist física confirma Knight Lib 2.0.1 e Companions! 1.3.4; o changelog do consumer confirma 2.0.1 como versão mínima requerida.
 - **Data da última decisão:** 2026-08-26
 
@@ -90,3 +90,23 @@ A release oficial Knight Lib 2.0.1 para NeoForge 1.21.1 registra uma correção 
 - **Changelog oficial do consumer:** Companions! 1.3.3 adiciona compatibilidade com Knight Lib 2.0.0; 1.3.4 eleva a versão mínima para 2.0.1.
 - **Histórico preservado:** subsistemas auditados em 1.6.1, fix de bossbar links em world reload e version gate 1.6.1 → 2.0.1 registrado em 12/09/2026.
 - **Limite:** uso efetivo de cada subsystem por cada consumer não foi inferido sem source específico do consumer; nenhum dos testes de runtime acima foi executado nesta catalogação.
+
+## 18. Atualizações upstream 2.0.2 → 2.0.3 — não instaladas
+
+A autoridade física continua em **Knight Lib 2.0.1**. A sequência 1.21.1/NeoForge posterior é **2.0.2** (20/09/2026) → **2.0.3** (23/09/2026).
+
+### 2.0.2
+- corrige **particle keyframe locators** que não funcionavam com shaderpacks.
+
+### 2.0.3
+- corrige **mirrored box UVs** que atribuíam as texturas east/west às faces erradas.
+
+### Impacto e gate
+Os dois deltas são visuais/rendering, mas podem afetar qualquer consumer que use animation/model/particle APIs da library.
+- [ ] Consumer Companions! inicia e renderiza models/particles com e sem shaderpack.
+- [ ] Particle keyframe locators acompanham bones/positions corretos sob shader.
+- [ ] Mirrored boxes apresentam east/west UVs corretas em orientações e animações.
+- [ ] OBB/hitbox e gameplay authority não mudam por causa de correções visuais.
+- [ ] Dedicated server permanece livre de classloading render-only.
+
+Fontes upstream: Knight Lib 2.0.2 e 2.0.3 para NeoForge 1.21.1; 2.0.3 file ID 8958408. Nenhum teste acima foi executado nesta atualização documental.
