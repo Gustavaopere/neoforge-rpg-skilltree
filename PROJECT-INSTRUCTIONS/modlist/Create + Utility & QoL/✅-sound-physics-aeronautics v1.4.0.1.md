@@ -15,11 +15,11 @@
 - **Função:** Fork acústico de Sound Physics Remastered para Create Aeronautics/Sable: calcula oclusão/reverberação em sublevels móveis, propeller/thruster/train audio de longo alcance, Doppler e integração opcional com LODs do Distant Horizons.
 - **Dependências:** Required upstream: Create e Create: Aeronautics; pack: Create 6.0.10 e Aeronautics 1.3.2. Sable 2.0.5 é o stack físico de sublevels usado pelo ecossistema. Distant Horizons 3.2.0-b está presente e satisfaz o mínimo 3.1.2-b publicado para a integração opcional de far-sound occlusion.
 - **Sobreposição:** Substitui o Sound Physics Remastered base no pack. Sounds 2.4.22 adiciona/seleciona eventos sonoros; Sound Physics Aeronautics processa propagação/oclusão/ambiente desses sons, portanto são camadas complementares.
-- **Compatibilidade/Riscos:** Fork Beta de Sound Physics Remastered adaptado a Create Aeronautics/Sable. Não deve coexistir com o SPR original. Riscos: custo acústico em muitas fontes, transform/sublevel stale, falsos indoor↔outdoor, long-range/DH occlusion, Doppler extremo, multipath e drift de prerelease. 1.4.0.1 é hotfix explícito para Aeronautics 1.3.2, exatamente o provider físico.
-- **Observações:** Top-level físico `sound-physics-remastered-neoforge-1.4.0.1.jar`, mod id `sound_physics_remastered`, runtime name `Sound Physics Aeronautics`, versão 1.4.0.1. O filename preserva a lineage SPR, mas o provider instalado é o fork Aeronautics; não há segunda cópia top-level do SPR base.
-- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Sound Physics Aeronautics revalidado em 13/09/2026 + stack físico Create 6.0.10, Aeronautics 1.3.2, Sable 2.0.5 e Distant Horizons 3.2.0-b. Dossiê de 11/09 preservado; nenhum teste runtime executado.
+- **Compatibilidade/Riscos:** Fork Beta de Sound Physics Remastered adaptado a Create Aeronautics/Sable; não coexistir com SPR original. Runtime físico 1.4.0.1; upstream 2.0.0 é overhaul de performance/config/acústica com regeneração única da config, e 2.0.1 é latest Beta. Riscos: migração de config, custo acústico, sublevel transform stale, DH occlusion, Doppler/multipath e prerelease drift.
+- **Observações:** Runtime físico permanece 1.4.0.1. Upstream posterior: 2.0.0 (25/09/2026) é uma revisão major de performance/acoustics/config e 2.0.1 (27/09/2026) é a latest Beta 1.21.1. O changelog específico da 2.0.1 não ficou acessível nas superfícies oficiais consultadas; o delta 2.0.1 permanece fail-closed.
+- **Procedência:** modlist física atual + Sound Physics Aeronautics 1.4.0.1 instalada + CurseForge oficial 2.0.0 e listagem oficial 2.0.1 latest + source oficial `Halew3/Sound-Physics-Aeronautics`. Revalidado em 01/10/2026.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sound-physics-aeronautics
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sound Physics Aeronautics 1.4.0.1 permanece o runtime físico e a release NeoForge 1.21.1 aplicável mais recente localizada; hotfix específico para Aeronautics 1.3.2, boundary com SPR base, lifecycle, riscos e testes preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.4.0.1. O changelog 2.0.0 foi incorporado; 2.0.1 foi confirmada como latest Beta, mas seu delta específico não é inventado sem release notes verificáveis.
 - **Histórico da decisão:** Substituiu o Sound Physics Remastered base, removido em 15/08/2026. A identidade do fork Sound Physics Aeronautics foi preservada na reconciliação de 30/08/2026 mesmo com a mudança do filename top-level para `sound-physics-remastered-neoforge-1.4.0.1.jar`.
 - **Data da última decisão:** 2026-08-30
 
@@ -143,3 +143,41 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Limite:** configs acústicas locais e performance real não foram medidas; o canal permanece Beta e os testes runtime seguem pendentes.
 ## 23. Revalidação física e upstream — 13/09/2026
 A modlist física atual confirma novamente `sound-physics-remastered-neoforge-1.4.0.1.jar`, runtime `1.4.0.1`. A publicação oficial para NeoForge 1.21.1 continua na linha 1.4.0.1; não foi localizado version gate novo aplicável ao pack. O hotfix para Create Aeronautics 1.3.2 permanece diretamente relevante porque o pack usa exatamente Aeronautics 1.3.2. A regra de replacement continua: não instalar o Sound Physics Remastered base em paralelo. Nenhum teste acústico/runtime foi executado nesta revalidação; a matriz permanece desmarcada.
+
+## 24. Atualizações upstream 2.0.0 → 2.0.1 — não instaladas
+
+A autoridade física continua em **Sound Physics: Aeronautics 1.4.0.1**. O upstream publicou **2.0.0** em 25/09/2026 e **2.0.1** em 27/09/2026; 2.0.1 é a latest Beta 1.21.1.
+
+### 2.0.0 — major overhaul
+Observação de migração do próprio upstream: **a configuração é regenerada uma vez sob `sound_physics_aeronautics`**.
+
+Deltas principais:
+- performance fortemente otimizada; upstream relata cargas típicas >150% mais rápidas e melhorias de ~600% em alguns antigos worst cases;
+- configuração redesenhada e simplificada, com settings avançados ainda disponíveis no arquivo;
+- presets **Potato, Low, Medium, High, Epic**; Medium usa defaults comparáveis à linha anterior;
+- sound propagation por openings (doors/windows/hatches/holes) refeito;
+- reflexão/acústica espacial reestruturada e integrada ao multipathing;
+- propellers tratados de forma mais física, com melhor reflection/obstruction/outdoor exposure;
+- suporte a swivel-bearing/variable-pitch propellers;
+- **Sail Windrush** para sails rápidas;
+- maior estabilidade de áudio em estruturas Sable em movimento/rotação/long distance;
+- melhorias para distant machinery e **Distant Horizons** far-terrain muffling;
+- fixes amplos de modded sounds, cleanup, long sessions e interação com sound-modifying mods.
+
+Acoustic travel delay e sonic booms já existem experimentalmente, mas o upstream os mantém **off by default** e planeja estabilização para 2.1; não tratá-los como feature ativa.
+
+### 2.0.1 — latest Beta
+A existência da build `sound-physics-aeronautics-2.0.1.jar` está confirmada na listagem oficial. Na consulta desta rodada, a página específica do arquivo não expôs um changelog recuperável; portanto nenhuma mudança adicional é atribuída à 2.0.1 sem evidência.
+
+### Gate de promoção 1.4.0.1 → 2.0.1
+- [ ] Backup da config antiga e revisão manual após a regeneração one-time.
+- [ ] Comparar Medium com o baseline acústico/performance da linha 1.4.
+- [ ] Hull/openings alternam indoor/outdoor sem state stale em Sable.
+- [ ] Propellers normais e swivel-bearing mantêm posição/range/reflection corretos.
+- [ ] Sail Windrush não duplica loops e cessa ao parar/remover sail.
+- [ ] DH far-sound occlusion continua compatível com a versão DH escolhida.
+- [ ] Long session/restart não deixa leaked sources/sublevel acoustic scenes.
+- [ ] Sonic boom/travel delay permanecem off se o pack não os habilitar explicitamente.
+- [ ] Não instalar SPR original em paralelo.
+
+Fonte upstream: CurseForge Sound Physics: Aeronautics 2.0.0 (file ID 8968870) e listagem oficial 2.0.1 latest (file ID 8993925). Delta específico da 2.0.1 permanece não verificado.
