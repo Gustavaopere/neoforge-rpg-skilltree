@@ -1,12 +1,23 @@
 # Índice incremental da modlist certificada e organizada
 
-> Esta tabela representa **todas as 587 entradas top-level** da autoridade física `modlist(1).txt`, incluindo o modloader. A numeração continua sendo a posição física real. Entradas sem dossier ou sem projeto CurseForge correspondente permanecem explícitas como exceções, em vez de serem omitidas ou receberem categoria inventada.
+> A autoridade física mais recente disponível continua sendo `modlist(1).txt`, com **587 entradas top-level** incluindo o modloader. Em **02/10/2026**, o usuário confirmou duas adições posteriores a esse snapshot — **Cold Sweat: Altitude** e **Create: Bionics** — elevando o inventário conhecido do perfil para **589 mods**, enquanto um novo dump físico ainda não está disponível. A tabela numerada abaixo permanece congelada nas 587 posições físicas verificadas; as duas adições pós-snapshot ficam registradas separadamente até que JAR, metadata, SHA e ordem possam ser re-fetched. Entradas sem dossier ou sem projeto correspondente permanecem explícitas como exceções, em vez de serem omitidas ou receberem dados físicos inventados.
 >
 > Para projetos CurseForge confirmados, a pasta representa o conjunto completo das categorias temáticas atuais, ordenadas alfabeticamente e separadas por ` + `. Categorias de loader, versão do Minecraft e ambiente não entram no caminho. Quando o artefato físico não possui projeto CurseForge inequívoco, usa-se a pasta estrutural `Sem projeto CurseForge confirmado`, que **não** equivale a uma categoria temática oficial.
 >
 > `Última edição` registra a última alteração documental significativa anterior à movimentação estrutural, normalizada para `America/Sao_Paulo` (UTC-03:00). A movimentação em si não altera esse histórico.
 >
 > A posição de cada linha é obtida por correspondência exata com o JAR top-level instalado na autoridade física. Dependências embarcadas em `META-INF/jarjar/` ou `META-INF/jars/` não recebem linhas próprias.
+
+## Adições pós-snapshot físico — 02/10/2026
+
+> Estas entradas foram confirmadas pelo usuário como adicionadas **depois** de `modlist(1).txt`. Os filenames/versões abaixo são os artefatos upstream atuais usados como alvo documental; **não são promovidos a autoridade física** até novo dump do perfil. Por isso não recebem número físico nem `✅-`.
+
+| Nome / projeto | Artefato upstream atual / alvo documental | Versão | Pasta / categorias | Dossier | Estado físico |
+|---|---|---:|---|---|---|
+| Cold Sweat: Altitude | `coldsweat_altitude-0.7.0.jar` | `0.7.0` | `Addons + Adventure and RPG + Biomes + Dimensions + Utility & QoL` | `cold-sweat-altitude v0.7.0.md` | Adição confirmada pelo usuário; JAR/SHA/metadata/ordem aguardam novo snapshot |
+| Create: Bionics | `createbionics-2.5.0.jar` | `2.5.0` | `Addons + Create + Mobs + Player Transport + Utility & QoL` | `create-bionics v2.5.0.md` | Adição confirmada pelo usuário; JAR/SHA/metadata/ordem aguardam novo snapshot |
+
+**Create Aeronautics: Automated Logistics não aumenta a contagem.** Apesar de ter sido citado junto das novas adições, ele já consta na autoridade física de 16/09/2026 como `create_aeronautics_automated_logistics-0.6.2.jar` / `0.6.2` e já ocupa uma linha da tabela física de 587 entradas.
 
 ## Exceções estruturais e bloqueios — 29/09/2026
 
