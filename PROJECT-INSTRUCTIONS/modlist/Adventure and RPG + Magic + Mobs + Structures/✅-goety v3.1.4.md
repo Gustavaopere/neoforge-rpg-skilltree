@@ -12,12 +12,12 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/goety/files/8689429
 - **Função:** Provider mágico de Soul Energy, Focus casting por Wands/Staffs, servants/minions, rituals, Research, brewing/witchcraft, artifices, mobs/structures e progressão associada.
 - **Dependências:** Goety base 3.1.4. Integrações físicas relevantes: Patchouli 1.21.1-93-NEOFORGE, Curios 9.5.1+1.21.1 e JEI; addons separados Goety Iron 3.1 e Goety Cataclysm 1.21.1-1.8.2.
-- **Compatibilidade/Riscos:** Release física 3.1.4 exata. Há source público 1.21.1+ auditável em Vivideru/Goety-3 para 3.1.0/3.1.1, mas nenhum pin público exato 3.1.4 foi estabelecido. Riscos: confundir registry 3.1.0/3.1.1 com runtime 3.1.4, Soul Energy/cast duplication, servant lifecycle/ownership, ritual partial settlement, Research mirror drift, addon ABI drift e regressão Prisoner item pickup.
+- **Compatibilidade/Riscos:** Release física 3.1.4 exata. Há source público 1.21.1+ auditável em Vivideru/Goety-3 para 3.1.0/3.1.1, mas nenhum pin público exato 3.1.4 foi estabelecido. Riscos: confundir registry de outra build com runtime 3.1.4, Soul Energy/cast duplication, servant lifecycle/ownership, ritual partial settlement, Research mirror drift, addon ABI drift e regressão Prisoner item pickup. A upstream 3.1.5 introduziu uma regressão de structures não gerando, corrigida em 3.1.5.1.
 - **Sobreposição:** Cobertura forte em necromancia, summons, souls, rituals e várias escolas elementais/void. Recursos permanecem provider-specific: Goety Soul Energy não é Malum spirits, Eidolon souls, Vampirism blood nem recurso Black Arcana.
-- **Observações:** A linha pública 3.1.0/3.1.1 registra 123 itens Focus em 10 categorias: Magic 26, Necromancy 11, Geomancy 11, Frost 9, Wild 12, Wind 9, Storm 11, Abyss 9, Nether 11 e Void 14. A lista oficial Wiki de 110 nomes continua válida como subconjunto documental para coverage, não como claim de registry atual ou do JAR 3.1.4. 3.1.4 corrige principalmente crash de servidor quando Prisoner pega item.
-- **Procedência:** modlist(1).txt física atual de 22/09/2026 — 587 entradas top-level incluindo o modloader — confirma `goety-3.1.4.jar`, mod id `goety`, runtime `3.1.4` e SHA-1 `a0770e180e4e8b1b87d8fa9c8356e9dbf34d82a7`. CurseForge oficial revalidado em 22/09/2026 mantém 3.1.4 como release NeoForge 1.21.1 atual; source público permanece tratado fail-closed quanto à equivalência exata.
+- **Observações:** A linha pública 3.1.0/3.1.1 registra 123 itens Focus em 10 categorias; a lista oficial Wiki de 110 nomes continua válida como subconjunto documental, não como claim do JAR 3.1.4. O runtime físico 3.1.4 corrige principalmente crash de servidor quando Prisoner pega item. Upstream posterior: 3.1.5 é uma atualização ampla de paridade/Howling e 3.1.5.1 corrige estruturas que deixaram de gerar na 3.1.5; nenhuma das duas está instalada.
+- **Procedência:** modlist(1).txt física atual confirma `goety-3.1.4.jar`, mod id `goety`, runtime `3.1.4` e SHA-1 `a0770e180e4e8b1b87d8fa9c8356e9dbf34d82a7`. CurseForge oficial revalidado em 01/10/2026 mostra a sequência 1.21.1/NeoForge `3.1.4 → 3.1.5 → 3.1.5.1`; source público continua tratado fail-closed quanto à equivalência exata do JAR físico.
 - **Histórico da decisão:** 07/09/2026: auditoria Phase 2 avançada. Release pública exata 3.1.4 fixada; inventário oficial Wiki normalizado em 110 Focuses base/10 categorias, 12 Wands/Staffs, 13 ritual types e 10 Research lines; baseline 109→110 corrigido por Order Focus. 10/09/2026: PR #174 reconciliou a linha pública Vivideru/Goety-3 1.21.1 em checkpoints 3.1.0/3.1.1, com blob estável de `ModItems.java` e 123 registros ativos de itens Focus; os 110 nomes da Wiki passam a ser subconjunto documental. Exact 3.1.4 JAR↔source, reachability/deduplicação, mechanics/API e runtime QA permanecem pendentes/fail-closed.
-- **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #305: Goety 3.1.4 reconfirmado; nenhuma mudança de versão física nesta rodada.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Goety 3.1.4. As releases posteriores 3.1.5 e 3.1.5.1 foram comparadas em ordem e os deltas operacionais relevantes foram incorporados abaixo.
 - **Data da última decisão:** 2026-09-10
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #305: JAR `goety-3.1.4.jar`, mod id `goety`, runtime `3.1.4`, SHA-1 `a0770e180e4e8b1b87d8fa9c8356e9dbf34d82a7`.
@@ -172,3 +172,34 @@ O projeto se descreve como altamente configurável, mas esta ficha não inventa 
 - **Limite crítico:** não há pin público exato de source 3.1.4 estabelecido; JAR↔source equivalence, reachability/deduplicação, internals, custos, mechanics e APIs exatas permanecem fail-closed.
 - **Semântica:** esta reconciliação é evidence-only `+0`; o mínimo semântico estrito do catálogo permanece 796.
 - **Runtime:** nenhum teste da matriz Goety acima foi executado nesta catalogação.
+
+## 21. Atualizações upstream 3.1.5 → 3.1.5.1 — não instaladas
+
+A autoridade física continua em **Goety 3.1.4**. A listagem oficial para NeoForge 1.21.1 mostra, após a build instalada, exatamente **3.1.5** (17/09/2026) e **3.1.5.1** (18/09/2026).
+
+### 3.1.5 — atualização ampla / conclusão do Howling update
+O upstream descreve 3.1.5 como uma atualização muito grande que leva a linha 1.21.1 à paridade de conteúdo com a linha 1.20.1 Goety 2.5.58.3, acompanhada de muitos bug fixes e otimizações.
+
+O delta explicitamente detalhado na release:
+- conclusão do **Howling update** com variantes que faltavam;
+- adição do **Cerberus**, variante especial do Nether: um warg maior, com três cabeças e ataque de fogo.
+
+A declaração de “paridade” é upstream e não é usada aqui para inventar uma lista de features não enumeradas no changelog 1.21.1. Qualquer subsystem novo além do que está publicado precisa ser verificado no JAR/source correspondente antes de virar claim operacional específico.
+
+### 3.1.5.1 — hotfix de worldgen
+A release seguinte corrige um problema crítico introduzido na 3.1.5: **estruturas de Goety não estavam gerando**. O upstream também menciona outros bugs menores sem detalhá-los.
+
+Impacto: 3.1.5 não deve ser tratada como destino estável isolado para este pack. Se houver promoção, o baseline mínimo a avaliar é 3.1.5.1, com regressão explícita de structures/worldgen.
+
+### Gate de promoção 3.1.4 → 3.1.5.1
+- [ ] Dedicated server boot com Goety Iron/Goety Cataclysm e libraries atuais.
+- [ ] Estruturas Goety geram em chunks novos — regressão direta de 3.1.5 corrigida em 3.1.5.1.
+- [ ] Mundo existente continua abrindo sem registry/worldgen corruption.
+- [ ] Cerberus/variantes Howling spawnam e executam AI/ataques sem ownership ou damage duplication.
+- [ ] Soul Energy, Focus casting, servants e rituals permanecem exactly-once.
+- [ ] Research/progress persiste em relog/restart.
+- [ ] Addons Goety Iron e Goety Cataclysm não apresentam linkage/registry drift.
+- [ ] Prisoner item pickup continua sem o crash corrigido no runtime físico 3.1.4.
+- [ ] Worldgen é validado em volume suficiente para detectar ausência sistemática de structures, não apenas boot sem crash.
+
+Fontes upstream: CurseForge Goety 3.1.5 (file ID 8905184) e 3.1.5.1 (file ID 8911352), NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.
