@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/integrated-api/files/8636576
 - **Função:** Biblioteca/worldgen API da série Integrated Structures, fornecendo abstrações e utilitários de estruturas, jigsaw/terrain adaptation, conditional block replacement, cartographer maps e opções data-driven compartilhadas.
 - **Dependências:** NeoForge 1.21.1. Consumers físicos confirmados no pack incluem IDAS 1.13.7, Integrated Dungeons Arise 2.1.1, Integrated Mowzie's Mobs 1.3.0, Integrated Cataclysm 1.0.6, Integrated Stronghold 1.1.4 e Integrated Villages 1.3.3. Integrated Patches continua ausente fisicamente.
-- **Compatibilidade/Riscos:** Infraestrutura central do cluster Integrated. Riscos: ABI/data drift entre consumers, jigsaw/terrain-placement regressions, conditional replacement com mod ausente, structure JSON incompatível, shared worldgen bugs e atualização unilateral. 1.8.2 adiciona ceiling structure type; 1.8.0 já havia adicionado upside-down terrain adaptation.
+- **Compatibilidade/Riscos:** Infraestrutura central do cluster Integrated. Riscos: ABI/data drift entre consumers, jigsaw/terrain-placement regressions, processor/schema drift, conditional replacement com mod ausente, shared worldgen bugs e atualização unilateral. 1.8.2 adiciona ceiling structure type; upstream 1.9.0 adiciona Trial Spawner processor.
 - **Sobreposição:** Não é mod de estruturas independente; centraliza infraestrutura usada por vários Integrated. Não duplicar jigsaw/terrain/data logic nos consumers sem necessidade, e não atribuir automaticamente a um consumer bugs que pertencem à API compartilhada.
-- **Observações:** Runtime físico 1.8.2. Release 1.8.2 adiciona ceiling structure type. Upside-down terrain adaptation da 1.8.0 permanece capability herdada. Integrated Patches segue não instalado.
-- **Procedência:** modlist física de 17/09/2026 + release/changelog oficial Integrated API 1.8.2 para NeoForge 1.21.1 + documentação oficial já auditada do ecossistema Integrated.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 17/09/2026 — Integrated API atualizado para 1.8.2; ceiling structure type incorporado; upside-down terrain adaptation preservada; Integrated Patches continua ausente e não foi promovido a dependência.
+- **Observações:** Runtime físico permanece 1.8.2. A release 1.9.0 para NeoForge 1.21.1, publicada em 21/09/2026, adiciona Trial Spawner processor; Integrated Patches segue não instalado.
+- **Procedência:** modlist física atual + Integrated API 1.8.2 instalada + CurseForge oficial 1.9.0 (file ID 8943419) para NeoForge 1.21.1 + documentação oficial já auditada do ecossistema Integrated. Revalidado em 01/10/2026.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Integrated API 1.8.2. A única release 1.21.1 posterior localizada é 1.9.0; o novo Trial Spawner processor foi incorporado como superfície de worldgen/data não instalada.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #332: JAR `integrated_api-neoforge-1.21.1-1.8.2.jar`, mod id `integrated_api`, runtime `1.8.2`, SHA-1 `e0a0e44235b98f21a05ebbe0171fe8487319a173`.
@@ -78,3 +78,26 @@ Validar datapack load, registry setup, `/reload`, world creation, geração de c
 - **Documentação oficial:** contraption compat, conditional replacement, cartographer maps, limite 256, jigsaw manager e opções JSON.
 - **Integrated Patches:** continua ausente da modlist física atual e não é tratado como feature embutida/dependência própria da API.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+## 16. Atualização upstream 1.9.0 — não instalada
+
+A autoridade física continua em **Integrated API 1.8.2**. A release **1.9.0** para NeoForge 1.21.1 foi publicada em 21/09/2026.
+
+### Delta oficial
+- adiciona **Trial Spawner processor**.
+
+O changelog público da 1.9.0 não enumera outros deltas. Por isso esta ficha não atribui mudanças adicionais de API, terrain adaptation ou jigsaw sem evidência.
+
+### Impacto para o pack
+Processors de estrutura pertencem ao caminho server/worldgen e podem ser consumidos pelos mods Integrated. A promoção da API deve ser coordenada com consumers porque schema/processor IDs e templates data-driven podem criar erro de codec/registry ou alteração de conteúdo gerado.
+
+### Gate de promoção 1.8.2 → 1.9.0
+- [ ] Dedicated server inicia com todos os consumers Integrated físicos.
+- [ ] Datapacks/structure JSONs carregam sem missing processor/codec/registry errors.
+- [ ] Trial Spawner processor, quando usado por consumer, gera state/blocks esperados uma única vez.
+- [ ] Jigsaw, upside-down adaptation e ceiling structure type permanecem funcionais.
+- [ ] `/reload` não deixa processor/template cache stale.
+- [ ] Mundo existente continua carregando; chunks novos são comparados com baseline 1.8.2.
+- [ ] Integrated Patches continua tratado separadamente enquanto ausente do pack.
+
+Fonte upstream: CurseForge Integrated API 1.9.0, file ID 8943419. Nenhum teste acima foi executado nesta atualização documental.
