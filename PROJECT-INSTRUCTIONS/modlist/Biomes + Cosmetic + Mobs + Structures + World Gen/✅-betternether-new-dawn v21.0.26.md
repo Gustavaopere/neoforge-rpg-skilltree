@@ -22,11 +22,11 @@
 - **Função:** Grande expansão do Nether no stack BetterX/New Dawn, com biomas, flora, mobs, materiais, estruturas, equipamentos, brewing e worldgen próprio.
 - **Dependências:** BCLib: New Dawn + WorldWeaver: New Dawn + WunderLib: New Dawn. No pack: BCLib 21.0.26, WorldWeaver 21.0.25 e WunderLib 21.0.10 estão presentes.
 - **Sobreposição:** Provider amplo do Nether. Pode coexistir com outras estruturas/biomas quando placements não conflitam; BCLib/TerraBlender/Lithostitched são infraestruturas e não substitutos automáticos.
-- **Compatibilidade/Riscos:** Worldgen amplo do Nether: riscos em biome/structure placement, parallel worldgen, chunk borders, registry reload, loot e coexistência com outros mods da dimensão. 21.0.26 inclui melhorias de thread safety em cities/destruction structures.
-- **Observações:** 21.0.26 confirma Gloomwood groves/edges/trees, Bleached Gloomwood, Lumabus Vines, mega lava lakes, Gloomsculk geodes, giant Willow/Anchor growth, bookshelves de wood sets, mob spawn-egg art, gamerule de Blue Obsidian e ajustes em Fire Ruby, Obsidian Breaker, brewing e thread safety.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + metadata runtime + Modrinth/CurseForge oficiais BetterNether: New Dawn 21.0.26 + stack New Dawn e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `BetterNether-21.0.26.jar` / `21.0.26`; decisão `Manter` e dependências físicas permanecem inalteradas.
+- **Compatibilidade/Riscos:** Worldgen amplo do Nether: riscos em biome/structure placement, parallel worldgen, chunk borders, registry reload, loot e coexistência com outros mods da dimensão. 21.0.26 inclui melhorias de thread safety em cities/destruction structures. A upstream 21.0.27 adiciona a config ausente para desligar Gloomwood; mudança de config/worldgen deve ser validada apenas em geração futura/chunks novos.
+- **Observações:** 21.0.26 continua sendo o runtime físico e confirma Gloomwood, Gloomsculk, mega lava lakes, giant trees, equipamentos/brewing e thread safety já documentados. A única release NeoForge 1.21.1 posterior localizada é 21.0.27, que adiciona a opção de configuração que faltava para desabilitar Gloomwood.
+- **Procedência:** modlist física atual + metadata runtime confirmam `BetterNether-21.0.26.jar` / `21.0.26`. Modrinth/CurseForge oficiais sustentam o runtime e o stack New Dawn já documentado; CurseForge revalidado em 01/10/2026 publica 21.0.27 para NeoForge 1.21.1 como atualização posterior não instalada.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/betternether-new-dawn
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #74: `BetterNether-21.0.26.jar` / `21.0.26` conferidos contra a modlist atual; stack BCLib 21.0.26 + WorldWeaver 21.0.25 + WunderLib 21.0.10, worldgen/thread-safety boundaries e decisão histórica `Manter` preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece BetterNether 21.0.26. A release 21.0.27 foi comparada e seu novo controle de configuração para Gloomwood foi incorporado abaixo.
 - **Histórico da decisão:** Em 22/08/2026, BetterNether foi desativado temporariamente junto de WorldWeaver e BetterEnd para isolamento. Após remover FirmaTerrain 1.0.0, o stack BetterX/New Dawn foi reativado e funcionou. Decisão final desta investigação: MANTER BetterNether; sua desativação anterior foi somente diagnóstica.
 - **Data da última decisão:** 2026-08-22
 
@@ -179,3 +179,20 @@ Validar:
 
 > 🔥 Authority canônica: BetterNether = conteúdo e geração do Nether; New Dawn libraries = infraestrutura. Mudanças de config/worldgen devem ser avaliadas em chunks novos, não inferidas sobre mundo já materializado.
 
+
+## 19. Atualização upstream 21.0.27 — não instalada
+
+A autoridade física continua em **BetterNether: New Dawn 21.0.26**. A release **21.0.27** para NeoForge 1.21.1, publicada em 16/09/2026, adiciona a **opção de configuração que faltava para desabilitar Gloomwood**.
+
+O delta é pequeno em volume, mas relevante para este pack porque Gloomwood é um subsistema de worldgen documentado no dossiê. A opção deve controlar a geração futura sem ser confundida com remoção retroativa de chunks já materializados.
+
+### Gate de promoção 21.0.26 → 21.0.27
+- [ ] A nova opção de config existe, é serializada e aceita enable/disable sem erro.
+- [ ] Com Gloomwood habilitado, geração continua equivalente ao comportamento esperado da linha atual.
+- [ ] Com Gloomwood desabilitado, chunks novos deixam de gerar o conteúdo correspondente sem missing registry/codec errors.
+- [ ] Chunks antigos com Gloomwood permanecem carregáveis; config não é tratada como ferramenta de remoção retroativa.
+- [ ] Stack BCLib/WorldWeaver/WunderLib físico continua compatível.
+- [ ] Parallel worldgen/city/destruction structures mantêm os fixes de thread safety já documentados.
+- [ ] Novo mundo e mundo existente passam por smoke test no Nether.
+
+Fonte upstream: CurseForge BetterNether: New Dawn 21.0.27, file ID 8896389, NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.

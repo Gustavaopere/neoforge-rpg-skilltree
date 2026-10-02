@@ -13,13 +13,13 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Worldgen
 - **Função:** Sistema de hidrologia/worldgen com streams que seguem relevo, lakes/ponds em diferentes elevações, corrente direcional opcional em rivers e organic water flow configurável.
-- **Dependências:** Standalone segundo documentação oficial; sem hard dependency central. Runtime exato 2.13.1 NeoForge 1.21.1 confirmado publicamente. Integra por comportamento com terrain/worldgen providers, Create water wheels e outros sistemas de água.
+- **Dependências:** Standalone segundo documentação oficial; sem hard dependency central. Runtime físico 2.13.5 NeoForge 1.21.1. Integra por comportamento com terrain/worldgen providers, Create, Supplementaries, Sable e outros sistemas de água; a linha upstream 2.13.6+ contém correções explícitas para várias dessas superfícies.
 - **Sobreposição:** Cruza com mods atuais de terrain/river/worldgen; incompatibilidades específicas devem ser avaliadas contra os providers realmente instalados, não contra arquitetura TFC removida.
-- **Compatibilidade/Riscos:** Chunkgen/presets, carving em terrain/structures, seams old/new chunks, river tags modded, competição hidrológica e carga de partículas. Os gates antigos de Create water wheel/restart e waterfall spray permanecem; 2.13.2–2.13.5 adicionam performance de watershed, structure blocking, Caves Reflowing e fixes de stalls/current.
-- **Observações:** mod id `streamsreflowing`; runtime 2.13.5. Config/preset físico do pack não foi lido. Em 16/09/2026 há 2.13.7 upstream para outras linhas 1.21.x; não é promovida aqui como versão instalada nem como compat 1.21.1 validada sem arquivo específico correspondente.
-- **Procedência:** modlist física de 16/09/2026 + CurseForge/Modrinth oficiais e changelog 2.13.2–2.13.5. Nenhum teste de seed/chunkgen/corrente/restart foi executado.
+- **Compatibilidade/Riscos:** Chunkgen/presets, carving em terrain/structures, seams old/new chunks, river tags modded, competição hidrológica, Sable/current lifecycle e carga de partículas. Os gates antigos de Create water wheel/restart permanecem; upstream 2.13.6–2.14.1 adiciona correções fortes de memória, lake/stream joining, world-creation fail-safe, compatibility de fluids/Sable e uma revisão ampla de bank styling/terrain fit.
+- **Observações:** Runtime físico 2.13.5. A linha 1.21.1/NeoForge posterior foi revalidada em 01/10/2026: artefatos públicos 2.13.7, 2.13.8 e 2.14.1; o changelog cumulativo da 2.13.7 também contém o estado 2.13.6, embora não haja artefato 1.21.1 separado 2.13.6 na listagem atual.
+- **Procedência:** modlist física atual + CurseForge/Modrinth oficiais. Runtime instalado permanece `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`. A sequência posterior 2.13.6 (changelog), 2.13.7, 2.13.8 e 2.14.1 foi comparada integralmente em 01/10/2026; nenhum teste de seed/chunkgen/corrente/restart foi executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/streams-reflowing ; https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/all?version=1.21.1
-- **Atualização/Status:** READITADO EM 17/09/2026 — runtime físico atualizado de 2.13.1 para 2.13.5; dossiê reconciliado aos deltas oficiais 2.13.2–2.13.5.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.13.5. Todos os deltas posteriores disponíveis até 2.14.1 foram percorridos, incluindo 2.13.6 preservada no changelog cumulativo, e os impactos relevantes foram incorporados abaixo.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-27
 
@@ -160,3 +160,60 @@ Esses deltas são agora regression gates do runtime físico 2.13.5. A configura�
 - [ ] Mobs/items/boats seguem a corrente em NeoForge na velocidade esperada.
 - [ ] Mundo criado em 2.12.9+ preserva streams existentes após update.
 - [ ] Create water wheels continuam funcionando após server restart.
+
+## 19. Atualizações upstream 2.13.6 → 2.14.1 — não instaladas
+
+A autoridade física continua em **Streams Reflowing 2.13.5**. Para Minecraft 1.21.1/NeoForge, a listagem pública mostra artefatos **2.13.7**, **2.13.8** e **2.14.1**. O changelog cumulativo da 2.13.7 contém uma seção **2.13.6** de 15/09/2026; portanto ela é tratada como estado intermediário relevante mesmo sem um JAR 1.21.1 separado visível na listagem atual.
+
+### 2.13.6 — memória, currents e lake/stream integrity
+Mudanças relevantes:
+- reduz fortemente a retenção de memória à medida que o mundo é explorado e impede crescimento entre sessões longas/reaberturas de single-player;
+- prepara river currents várias vezes mais rápido em CPUs multicore e reduz trabalho em mundos com rios subterrâneos;
+- currents visíveis deixam de esperar terrain preparation e chegam junto com o terreno em Forge/Fabric;
+- mundos com plate size grande deixam de re-preparar todos os streams a cada server start;
+- cave streams moldam entradas sem preparar terreno vizinho;
+- jars deixam de carregar classes dos outros loaders.
+
+Correções de worldgen/fluids:
+- lake basin não fica seco, com dry patch, degrau ou área elevada;
+- streams atravessando lakes deixam de criar colunas/fountains de água;
+- stream e lake passam a se encontrar flush no nível da água;
+- lakes atravessados por river não são removidos deixando tributários suspensos;
+- fixes adicionais de banks, grass-through-water, coasts, item/mob current, Create fluid extraction, Sable removal crash e Fluidlogged join crash.
+
+### 2.13.7 — dead-end/headwater
+- corrige stream que podia começar no meio do nada em largura total sem headwater acima.
+
+### 2.13.8 — fail-safe de preparação
+- world creation deixa de ficar presa indefinidamente em black screen quando a preparação de streams falha ou não retorna; a causa é registrada e o terreno gera sem aqueles streams;
+- changelog cumulativo também registra correção de crash quando mods como XyCraft Machines enumeram todos os fluids e remoção de false-positive generation-stopped report.
+
+### 2.14.1 — bank styling e terrain fit
+A 2.14.1 é uma mudança de worldgen/config mais ampla:
+- bank styles passam a trabalhar como **rings** relativos à largura do stream: `bed`, `waterline`, `bank`, segundo bank e rings adicionais;
+- `bed` e `waterline` podem colocar scenery na própria água, incluindo seagrass/kelp/coral e lily pads;
+- materiais de banks passam a misturar em patches e os rings fazem blend mais suave;
+- styles podem variar por stream steep/fast/bending/mouth/flat e usar precedence por style marcado com `*`; beaches são starred por padrão;
+- estilos antigos permanecem backwards compatible;
+- streams passam a seguir valleys/ground ao longo de todo o percurso em todos os níveis de terrain accuracy, com novo `terrain fit` (`closest`, `lighter`, `none`);
+- lake shoreline passa a seguir terrain-accuracy; MAX usa grid mais fino e níveis altos deixam de criar excesso de tiny headwater streams;
+- novo `adaptive grid read` melhora aderência a valleys/ridges; novo `legacy stream shaping` permite manter comportamento 2.13.x para comparação/continuidade;
+- stream loops/nubs, pits/plunge pools, lake shore geometry, biome-carving gaps, confluence/dead-end cases, coast outlets e backward sea currents recebem correções;
+- config é reorganizada e watershed size vira escolha explícita de 512–8192, preservando o tamanho com que um mundo foi iniciado.
+
+### Impacto para o pack
+Este update não é apenas cosmético: toca memória, scheduling de preparação, carving, fluid/current interop, Sable, comportamento de chunks e a geometria futura de streams/lakes. A 2.14.1 também altera o resultado de worldgen em **new land** por design; comparar mundo existente e seed nova é obrigatório.
+
+### Gate de promoção 2.13.5 → 2.14.1
+- [ ] Long exploration/reopen não apresenta crescimento progressivo de memória atribuído a stream preparation.
+- [ ] Dedicated server restart com plate size grande não re-prepara toda a rede.
+- [ ] Lake/stream junctions não criam dry gaps, fountains, raised patches ou tributários suspensos.
+- [ ] Create pumps/boilers recebem plain water e water wheels continuam corretas após restart.
+- [ ] Sable physics object removido em current não causa crash.
+- [ ] World creation com preparation failure degrada para terrain sem streams e registra causa, sem black-screen infinito.
+- [ ] Config 2.13.5 migra para 2.14.1 sem perder opções relevantes; watershed size de mundo existente permanece estável.
+- [ ] `legacy stream shaping` mantém transição aceitável em mundo existente.
+- [ ] New land valida terrain fit, bank rings, lake shores, confluences e coast outlets.
+- [ ] Old/new chunk seams são inspecionadas visualmente e por hidrologia.
+
+Fontes upstream: CurseForge/Modrinth oficiais Streams Reflowing, changelogs 2.13.6, 2.13.7, 2.13.8 e 2.14.1. Nenhum teste acima foi executado nesta atualização documental.

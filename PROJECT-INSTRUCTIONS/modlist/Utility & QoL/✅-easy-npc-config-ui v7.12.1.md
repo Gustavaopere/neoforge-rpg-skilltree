@@ -12,11 +12,11 @@
 - **Dependências:** Easy NPC Core; NeoForge 1.21.1. Runtime físico: Config UI 7.12.1. Bundle 7.12.1 também está instalado e declara a composição Core + Config UI.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Riscos de UI/API/network drift se Config UI e Core estiverem desalinhados, edição de state stale, double-submit sob latency, permissões insuficientes, screen client-only carregada no servidor e assumir que fechar/salvar UI já equivale a commit sem confirmação server-side.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc
-- **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_config_ui` e runtime `7.12.1`; Core filename e Bundle também estão em 7.12.1. Changelogs oficiais 7.12.0/7.12.1 sustentam os deltas documentados.
-- **Observações:** Config UI 7.12.1 é o runtime físico atual. O salto 7.11.0→7.12.1 inclui mudanças relevantes nas superfícies de preset browser, import/export/restore e administração; Core/server continua authority do NPC state.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #240: Config UI atualizado fisicamente para `7.12.1`, alinhado a Core/Bundle da mesma linha; deltas administrativos de preset/import/export/restore reconciliados.
+- **Compatibilidade/Riscos:** Riscos de UI/API/network drift se Config UI e Core estiverem desalinhados, edição de state stale, double-submit sob latency, permissões insuficientes, screen client-only carregada no servidor e assumir que fechar/salvar UI já equivale a commit sem confirmação server-side. A upstream 7.13.0 altera o network protocol e exige cliente/servidor na mesma versão, portanto não deve ser promovida isoladamente sobre Core/Bundle 7.12.1.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui
+- **Procedência:** modlist física atual confirma `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_config_ui` e runtime `7.12.1`; Core filename e Bundle físicos também estão em 7.12.1. Changelogs oficiais 7.12.0/7.12.1 sustentam os deltas instalados; CurseForge oficial do Config UI foi revalidado em 01/10/2026 e publica 7.13.0 para NeoForge 1.21.1 como atualização posterior não instalada.
+- **Observações:** Config UI 7.12.1 permanece o runtime físico. O salto instalado 7.11.0→7.12.1 cobre preset browser/import/export/restore/administração. A release upstream 7.13.0 acrescenta correções de dialog buttons, skin error handling, preset search e altera o protocolo de rede; essa release não está instalada.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 7.12.1. A única release 1.21.1/NeoForge posterior localizada é 7.13.0; seus deltas foram incorporados abaixo sem alterar versão instalada nem filename.
 - **Decisão:** Dependência
 - **Sobreposição:** Sobreposição apenas de superfície administrativa com comandos/config wand: todos editam o mesmo Core. Não deve haver duas cópias de configuração autoritativa.
 - **Data da última decisão:** 2026-09-06
@@ -84,3 +84,34 @@ A modlist física atual de 21/09/2026 confirma Config UI/Bundle 7.12.1 e Core fi
 > **Boundary canônico:** Config UI captura e transporta **edições**. Core/server continua authority do NPC e do state persistente.
 ## 11. Reauditoria física — 16/09/2026
 Runtime Config UI atualizado para 7.12.1. Nenhum teste de Save/Cancel, preset, import/export/restore, concorrência ou dedicated server foi executado nesta passagem.
+
+## 12. Atualização upstream 7.13.0 — não instalada
+
+A autoridade física continua em **Easy NPC: Config UI 7.12.1**. O CurseForge oficial publica **7.13.0** para NeoForge 1.21.1 em 29/09/2026; não há release 1.21.1 intermediária entre 7.12.1 e 7.13.0 na listagem atual.
+
+Deltas oficiais relevantes da família 7.13.0:
+- corrige color/formatting tags em nomes de botões de diálogo que apareciam como texto literal;
+- corrige preview do editor que exibia nomes em lowercase como raw translation key;
+- corrige o item **Move EasyNPC** para owners fora do creative;
+- corrige `/easy_npc owner set` reportando sucesso quando o owner não podia ser alterado;
+- corrige crash nas telas de URL/player skin quando ocorre erro ao baixar skin;
+- corrige busca do preset browser que podia retornar nenhum resultado depois de rolar a lista;
+- adiciona `@initiator`, `@npc` e `@score()` em nomes de botões de diálogo;
+- **altera a versão do protocolo de rede**, e o changelog exige cliente e servidor executando a mesma versão do mod.
+
+### Impacto para o pack
+
+O último ponto impede tratar 7.13.0 como update isolado do módulo gráfico. O pack físico mantém Core/Config UI/Bundle na linha **7.12.1**; qualquer promoção para 7.13.0 precisa reconciliar a família Easy NPC em conjunto e validar handshake/networking antes de substituir os JARs.
+
+### Gate de promoção 7.12.1 → 7.13.0
+- [ ] Core, Config UI e Bundle aplicáveis estão versionados de forma compatível; não misturar protocolo 7.12.1/7.13.0.
+- [ ] Dedicated server + client realizam handshake e abrem a Config UI sem disconnect.
+- [ ] Save/Cancel continua exactly-once sob latency.
+- [ ] Dialog button formatting e tokens `@initiator`/`@npc`/`@score()` resolvem corretamente.
+- [ ] URL/player skin download failure não derruba o cliente.
+- [ ] Preset search continua correto após scroll/filter/reload.
+- [ ] Move EasyNPC respeita ownership fora do creative.
+- [ ] Owner command não reporta sucesso falso.
+- [ ] Relog/restart preserva NPC state e não converte preview client-side em state autoritativo.
+
+Fonte upstream: CurseForge oficial Easy NPC: Config UI, release 7.13.0 para Minecraft 1.21.1/NeoForge. Nenhum teste acima foi executado nesta atualização documental.
