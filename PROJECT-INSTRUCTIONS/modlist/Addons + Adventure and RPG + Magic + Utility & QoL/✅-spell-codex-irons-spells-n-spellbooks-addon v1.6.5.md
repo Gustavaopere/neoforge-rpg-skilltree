@@ -1,6 +1,6 @@
 # Spell Codex: Iron's Spells 'n Spellbooks Addon
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#525**: JAR `specs_irons_spellbooks-1.6.5.jar`, mod id `specs_irons_spellbooks`, runtime `1.6.5`, SHA-1 `05349ae05cf7119bf46f45621ee578b3651563e6`.
+> **Autoridade física atual — revalidada em 02/10/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#525**: JAR `specs_irons_spellbooks-1.6.5.jar`, mod id `specs_irons_spellbooks`, runtime `1.6.5`, SHA-1 `05349ae05cf7119bf46f45621ee578b3651563e6`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco
@@ -17,9 +17,9 @@
 - **Sobreposição:** Toca em progressão de magia e UI, mas não é um pacote de spells; pode coincidir com Dynamic Skill Trees/Pufferfish em objetivos de progressão.
 - **Compatibilidade/Riscos:** Riscos: double-gating com outras skill trees; school/spell addons sem custos/blacklists adequados; transformação de recipes/scrolls; slot shrink; config sync; patch drift Iron's 3.16.3. Em 1.6.5 `allowImbuedWeaponCasting` default true bypassa discovery/tier, mas respeita spell blacklist.
 - **Observações:** mod id `specs_irons_spellbooks`; runtime name `Specs: Iron's Spells 'n Spellbooks Addon`; editorialmente Spell Codex. Decisão Manter preservada. A descrição geral de casting actionbar-only é supersedida pelo changelog 1.6.5 especificamente para imbued weapons quando habilitado.
-- **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge oficial Spell Codex/Specs 1.6.5 revalidado em 13/09/2026 + stack físico Iron's Spells 3.16.3, Iron's Lib 2.1.0 e Spell Actionbar 1.1.4. Dossiê de 11/09 preservado; nenhum teste runtime executado.
+- **Procedência:** modlist física atual revalidada em 02/10/2026 confirma Spell Codex/Specs 1.6.5, Iron's Spells 3.16.3, Iron's Lib 2.1.0 e Spell Actionbar 1.1.4; CurseForge oficial revalidado em 02/10/2026 continua apontando 1.6.5 como a release NeoForge 1.21.1 mais recente. Dossiê histórico preservado; nenhum teste runtime executado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon ; https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/8710459
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Spell Codex/Specs 1.6.5 permanece a release NeoForge 1.21.1 mais recente localizada; stack Iron's 3.16.3 + Iron's Lib 2.1.0 + Spell Actionbar 1.1.4 preservado. Imbued-casting exception, recipe-null fix, gates e testes permanecem válidos.
+- **Atualização/Status:** UPSTREAM E AUTORIDADE FÍSICA REVALIDADOS EM 02/10/2026 — Spell Codex/Specs 1.6.5 continua instalado e permanece a release NeoForge 1.21.1 mais recente; não há atualização posterior a percorrer. Imbued-casting exception, recipe-null fix, gates e testes permanecem válidos.
 - **Histórico da decisão:** Confirmado instalado como Spell Codex 1.6.4. Foi identificado corretamente como sistema de descoberta/progressão/UX, e não como pacote de spells. Na comparação com Unraveling, foi recomendado escolher um dos sistemas de gating/progressão em vez de manter ambos. Em 22/08/2026 o usuário escolheu Spell Codex e removeu Unraveling. Spell Codex passa, portanto, a ser o sistema escolhido nessa comparação. Dynamic Skill Tree continua separado e em teste.
 - **Data da última decisão:** 2026-08-22
 
@@ -158,3 +158,11 @@ O snapshot físico continua exatamente em `specs_irons_spellbooks-1.6.5.jar`, mo
 A exceção de casting de armas imbued e o fix de recipe result nulo continuam sendo os deltas exatos atribuídos à 1.6.5. A decisão **Manter** e o papel do Codex como sistema escolhido de descoberta/progressão permanecem coerentes. Nenhum teste runtime foi executado nesta revalidação.
 ## 19. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece `specs_irons_spellbooks-1.6.5.jar`, versão `1.6.5`, com Iron's Spells `3.16.3`, Iron's Lib `2.1.0` e Spell Actionbar `1.1.4`. A 1.6.5 continua sendo a release 1.21.1 localizada mais recente. A exceção configurável de casting por armas imbued e o fix de recipe result nulo continuam deltas materiais; não há version gate novo. A decisão **Manter** permanece inalterada. Nenhum teste de discovery, unlock, scroll economy, imbued casting ou integração com Iron's 3.16.3 foi executado nesta revalidação.
+
+## 20. Revalidação física e upstream — 02/10/2026
+
+A autoridade física atual continua exatamente em `specs_irons_spellbooks-1.6.5.jar`, mod id `specs_irons_spellbooks`, versão `1.6.5`, na ordem física #525. O mesmo snapshot mantém Iron's Spells `1.21.1-3.16.3`, Iron's Lib `1.21.1-2.1.0` e Spell Actionbar `1.1.4`.
+
+O CurseForge oficial continua apontando **1.6.5** (file ID `8710459`) como a release NeoForge 1.21.1 mais recente, publicada em 22/08/2026. Logo, não existe release posterior à versão do GitHub/física que precise ser incorporada neste ciclo. Permanecem materiais os deltas já documentados da própria 1.6.5: `allowImbuedWeaponCasting`, keybind/HUD de spell imbued, bypass de discovery/tier para casts imbued com blacklist preservada e o fix de startup quando outro mod fornece recipe com result nulo.
+
+`Apprentice's Codex 0.9.7.1` também aparece na modlist física atual, porém é um mod distinto (`apprenticecodex`) e não altera a identidade nem a versão física de Spell Codex/Specs. Nenhum teste runtime adicional foi executado nesta revalidação documental.
