@@ -12,11 +12,11 @@
 - **Fonte:** https://github.com/FTBTeam/FTB-Library/tree/1.21.1/main
 - **Função:** Core/biblioteca do ecossistema FTB: UI/widgets/panels/sidebar, configuração e SNBT, networking/sync, NBT editor, registry/resource selectors, text/icons/math e APIs compartilhadas por FTB Chunks, Quests, Teams, Ultimine e XMod Compat.
 - **Dependências:** Ecossistema FTB/Architectury conforme consumidor. Pack instala FTB Chunks 2101.1.22, FTB Quests 2101.1.36, FTB Teams 2101.1.11, FTB Ultimine 2101.1.15 e FTB XMod Compat 21.1.11. FTB Chunks 2101.1.21+ requer Library 2101.1.34+; 2101.1.36 atende.
-- **Compatibilidade/Riscos:** Biblioteca central: risco de ABI/version skew, packet/codec mismatch, client classloading, stale KnownServerRegistries, permissões de NBT/config, shared-UI mixin collision e conflitos de key modifiers. 2101.1.35 corrigiu o bug NeoForge de Tab/Shift-Tab; 2101.1.36 adiciona `CursorType.MOVE` e corrige numeric value handling no NBT editor.
+- **Compatibilidade/Riscos:** Biblioteca central: risco de ABI/version skew, packet/codec mismatch, client classloading, registry/config permission e shared-UI drift. Runtime físico 2101.1.36; upstream 2101.1.37 eleva `SyncConfigToServerPacket` de permission level 2 para 4 e faz o item selector em JEI mode ignorar `c:hidden_from_recipe_viewers`.
 - **Sobreposição:** Infraestrutura compartilhada, não substituto de FTB Quests/Teams/Chunks/Ultimine. Pode sobrepor visualmente tooltips/sidebar/UI de outros mods; item_modname é false por default justamente porque outros mods costumam adicionar esse tooltip.
-- **Observações:** Runtime físico confirmado: 2101.1.36. A release instalada adiciona `CursorType.MOVE` e corrige tratamento de valores numéricos no NBT editor; o source detalhado anteriormente foi auditado na 2101.1.35, portanto o delta 2101.1.36 é atribuído ao changelog oficial sem projetar source não revalidado.
-- **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `ftb-library-neoforge-2101.1.36.jar`, mod id `ftblibrary`, runtime `2101.1.36` e SHA-1 `07b5bf1c6ac5160a6cfe1b39ed8c1465dc151b00`. CurseForge oficial confirma File ID 8858846, release NeoForge 1.21.1 publicada em 11/09/2026.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #289: runtime atualizado de 2101.1.35 para 2101.1.36; delta oficial (`CursorType.MOVE` + correção de valores numéricos no NBT editor) incorporado.
+- **Observações:** Runtime físico permanece 2101.1.36. A release 2101.1.37 de 29/09/2026 endurece permissão de edição de server config e corrige a superfície de seleção de itens em JEI mode.
+- **Procedência:** modlist física atual confirma FTB Library 2101.1.36. CurseForge oficial revalidado em 02/10/2026 confirma 2101.1.37 NeoForge 1.21.1, file ID 9008089, como release posterior.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 02/10/2026 — runtime físico permanece 2101.1.36. O delta 2101.1.37 foi incorporado abaixo.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #289: JAR `ftb-library-neoforge-2101.1.36.jar`, mod id `ftblibrary`, runtime `2101.1.36`, SHA-1 `07b5bf1c6ac5160a6cfe1b39ed8c1465dc151b00`.
@@ -254,3 +254,24 @@ Não inferir dependência direta de qualquer outro mod apenas por usar GUI semel
 **Changelog oficial:** releases 2101.1.35, 2101.1.36 e 2101.1.x relevantes para keymaps, GUI, NBT editing, registry sync e compatibilidade com Chunks/Quests.
 **Limite:** server/startup configs encontradas no source são marcadas `Testing only!` e só registradas em development mode; não foram promovidas a config operacional do pack.
 **Nenhum teste de runtime foi executado nesta catalogação.** A matriz acima é plano de validação.
+
+## 20. Atualização upstream 2101.1.37 — não instalada
+
+A autoridade física continua em **FTB Library 2101.1.36**. A release **2101.1.37** para NeoForge 1.21.1 foi publicada em 29/09/2026.
+
+### Deltas oficiais
+- `SyncConfigToServerPacket` passa a exigir **permission level 4**, em vez de 2; o upstream justifica que editar server configs é tarefa de administrador do servidor, não de game master;
+- o item selector GUI em modo JEI passa a ignorar itens marcados com a tag `c:hidden_from_recipe_viewers`.
+
+### Impacto para o pack
+O primeiro delta é uma mudança explícita de autorização: consumidores FTB que reutilizem o packet/config editor passam a bloquear operadores com nível inferior. O segundo muda a visibilidade/seleção de itens e deve ser validado contra quests/config GUIs que dependam do seletor.
+
+### Gate de promoção 2101.1.36 → 2101.1.37
+- [ ] Operador permission level 2 não consegue editar server config por `SyncConfigToServerPacket`.
+- [ ] Administrador permission level 4 consegue editar apenas os configs autorizados.
+- [ ] Tentativas sem permissão não aplicam mutação parcial nem deixam GUI em estado enganoso.
+- [ ] Item selector em JEI mode omite itens em `c:hidden_from_recipe_viewers`.
+- [ ] FTB Quests/Chunks/Teams/Ultimine e XMod Compat continuam sem packet/codec/UI regressions.
+- [ ] NBT editor, `CursorType.MOVE`, keymaps e registry sync da 2101.1.36 permanecem funcionais.
+
+Fonte upstream: CurseForge FTB Library 2101.1.37, file ID 9008089. Nenhum teste acima foi executado nesta atualização documental.

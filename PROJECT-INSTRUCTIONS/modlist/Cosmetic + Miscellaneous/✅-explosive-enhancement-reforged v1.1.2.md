@@ -10,11 +10,11 @@
 - **Dependências:** Cliente NeoForge 1.21.1. A release física é a variante client-only 1.21/1.21.1; Iron's Spells 3.16.3 está presente e é relevante porque 1.1.2 inclui tempfix para o Creeper Head Projectile.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Release 1.1.2 inclui tempfix para client crash ligado ao Creeper Head Projectile de Iron's Spells. Riscos: novos explosion/projectile edge cases, overlap com outros particle replacers, shader/particle performance, config drift e confundir efeito visual com raio/dano lógico.
+- **Compatibilidade/Riscos:** Runtime físico 1.1.2 é a variante client-only atual. Upstream 1.2.0 amplia configuração e corrige radius-0 explosions e o hook de substituição de partículas para não interferir no restante da explosão de outros mods. A promoção precisa revalidar side/deployment e interação com Iron's, Goety e demais providers de explosão.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/explosive-enhancement-reforged
-- **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `explosiveenhancement-neoforge-1.21.1-1.1.2.jar`, mod id `explosiveenhancement`, runtime 1.1.2 e SHA-1 `fee0be3ffe494189733ceaeb7163a38b03098ea5`. CurseForge oficial revalidado em 21/09/2026 mantém a build 1.21/1.21.1 1.1.2 marcada como CLIENT ONLY.
-- **Observações:** O arquivo específico instalado corresponde à linha CLIENT ONLY publicada para 1.21/1.21.1, apesar de a página geral do projeto hoje exibir Environment Client & Server. Changelog 1.1.2 registra tempfix do crash causado pelo Creeper Head Projectile de Iron's Spells. Config publicado: `config/explosiveenhancement.toml`.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #269: `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` / runtime `1.1.2` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. O arquivo específico 1.21.1 continua publicado como CLIENT ONLY; o Environment genérico Client & Server da página do projeto não substitui o side do arquivo.
+- **Procedência:** modlist física atual confirma `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` / 1.1.2. CurseForge oficial revalidado em 02/10/2026 confirma 1.2.0 NeoForge para 1.21.1 (file ID 8965905) como release posterior.
+- **Observações:** O runtime físico permanece 1.1.2 client-only. A upstream 1.2.0 adiciona config screen/hot reload, size-duration-opacity controls, entity blacklist e particle commands; também corrige radius-0 crashes e altera o replacement para atuar somente sobre partículas vanilla da explosão.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 02/10/2026 — runtime físico permanece 1.1.2. A release 1.2.0 foi comparada e seus deltas relevantes foram incorporados abaixo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Sobreposição apenas com outros replacers de partículas/efeitos de explosão. Não é duplicata de TNT, spell, weapon ou physics mods que controlam a explosão lógica.
 - **Data da última decisão:** 2026-08-26
@@ -76,3 +76,32 @@ Dois clients podem ver efeitos diferentes. Um client com Explosive Enhancement n
 - changelog 1.1.2: tempfix do crash ligado ao Creeper Head Projectile de Iron's Spells;
 - issue upstream do Iron's Spells: crash histórico atribuído ao particle path do Explosive Enhancement.
 > **Boundary canônico:** Explosive Enhancement controla somente a **apresentação client-side da explosão**. Damage, knockback e world destruction pertencem ao explosion provider.
+
+## 14. Atualização upstream 1.2.0 — não instalada
+
+A autoridade física continua em **Explosive Enhancement 1.1.2**. A release **1.2.0** para NeoForge 1.21.1 foi publicada em 24/09/2026.
+
+### Configuração e controle
+- adiciona tela de configuração in-game no NeoForge;
+- adiciona controles de **size, duration e opacity**;
+- permite blacklist de entities para manter partículas vanilla;
+- alterações de config passam a ser aplicadas sem restart;
+- partículas do mod podem ser geradas por comandos com parâmetros de escala/tamanho.
+
+### Correções relevantes
+- corrige crash com explosões de **radius 0**, incluindo casos associados a Iron's Spells e Goety;
+- explosões de radius 0 preservam partículas vanilla;
+- o mod passa a substituir **somente as partículas vanilla da explosão**, em vez de cancelar o restante do processamento visual/evento; o upstream cita que o comportamento anterior podia interferir na finalização de explosões de outros mods, incluindo casos em que block destruction/fire spreading deixavam de ocorrer.
+
+Esse último ponto é tratado como correção de compatibilidade upstream, não como afirmação de que o runtime físico 1.1.2 reproduz obrigatoriamente o problema em todos os providers do pack.
+
+### Gate de promoção 1.1.2 → 1.2.0
+- [ ] Confirmar a distribuição esperada da build 1.2.0 em cliente/dedicated server antes de alterar o deployment.
+- [ ] TNT/creeper e explosions de radius 0 não causam crash.
+- [ ] Iron's Creeper Head/Lob Creeper e explosões Goety mantêm resultado lógico correto.
+- [ ] Blacklist preserva partículas vanilla apenas para os entities configurados.
+- [ ] Size/duration/opacity e hot config reload não deixam particle state stale.
+- [ ] Outros mods que finalizam explosões continuam aplicando block destruction/fire conforme o provider, sem interferência do renderer.
+- [ ] Dois clientes com perfis visuais diferentes continuam vendo o mesmo damage/world state server-authoritative.
+
+Fonte upstream: CurseForge Explosive Enhancement 1.2.0 NeoForge 1.21.1, file ID 8965905. Nenhum teste acima foi executado nesta atualização documental.
