@@ -13,13 +13,13 @@
 - **Estado no pack:** Integrado ao Github
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-enchantment-industry
 - **Função:** Addon de Create para industrializar experiência e encantamentos: Liquid Experience, máquinas de enchanting/forging/grinding/printing, repair com Mending e automações/integrações de Apotheosis/Apothic Enchanting.
-- **Dependências:** Create 6.0.10 e Create: Dragons Plus para a linha 2.x. O pack físico atual possui Apothic Enchanting 1.6.2, satisfazendo o caminho 1.6.1+ corrigido pelo hotfix 2.5.3b do Infuser. O host também embarca `conditional-mixin-neoforge-0.6.4.jar`, subordinado ao mod.
-- **Compatibilidade/Riscos:** Economia sensível de XP/enchantments. Riscos em conversão de XP, hyper-enchant acima de caps, mending, salvage/affix integration, recipe reload e double-processing com outros sistemas de enchant. 2.5.3b corrige crash do Infuser com Apothic Enchanting 1.6.1+.
+- **Dependências:** Create 6.0.10 e Create: Dragons Plus para a linha 2.x. O runtime físico mantém CEI 2.5.3b; upstream 2.5.4 passa a exigir explicitamente Create: Dragons Plus 1.11.9 ou newer. O pack físico atual possui Apothic Enchanting 1.6.2 e o host embarca `conditional-mixin-neoforge-0.6.4.jar`.
+- **Compatibilidade/Riscos:** Economia sensível de XP/enchantments. Riscos em conversão de XP, hyper-enchant acima de caps, mending, salvage/affix integration, recipe reload e double-processing. 2.5.3b corrige o Infuser com Apothic Enchanting 1.6.1+; upstream 2.5.4 adiciona requisito Dragons Plus 1.11.9+, corrige Experience Hatch em níveis muito altos e crash de Ponder language datagen sem Apothic/Apotheosis.
 - **Sobreposição:** Pode cruzar Apothic Enchanting, vanilla enchanting e outras rotas de XP, mas possui processos próprios. Create continua authority das primitives de automação; CEI controla sua economia Liquid Experience/máquinas.
-- **Observações:** mod id `create_enchantment_industry`; runtime 2.5.3b. Mixin configs físicos incluem integração condicional com Apothic Enchanting, Apotheosis, Sable e Touhou Little Maid; a presença dessas configs confirma superfícies de compatibilidade, não autoriza inventar contracts além das fontes. Jar-in-jar: Conditional Mixin 0.6.4.
-- **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime 2.5.3b + Apothic Enchanting físico 1.6.2 + inventário mixin/jar-in-jar do host + CurseForge/Modrinth oficiais da build já auditados. Reconciliação final: JAR/runtime permanecem exatamente `create-enchantment-industry-2.5.3b.jar` / `2.5.3b`; `conditional-mixin-neoforge-0.6.4.jar` continua embedded e não top-level.
+- **Observações:** Runtime físico permanece 2.5.3b. A única release NeoForge 1.21.1 posterior localizada é 2.5.4, publicada em 17/09/2026; deltas relevantes de dependency gate, Experience Hatch e Ponder foram incorporados abaixo.
+- **Procedência:** modlist física atual + CEI 2.5.3b instalada + CurseForge oficial 2.5.4 (file ID 8900719) para NeoForge 1.21.1 + Apothic Enchanting físico 1.6.2 + inventário mixin/jar-in-jar do host. Revalidado em 01/10/2026.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Enchantment Industry 2.5.3b foi reconfirmado como `Instalado` e reconstruído ao padrão técnico. A antiga data sem decisão formal foi removida; presença/uso não foram convertidos em decisão curatorial.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #119: `create-enchantment-industry-2.5.3b.jar` / `2.5.3b` reconfirmados; Liquid Experience/enchant authority, máquinas, hyper-enchanting, Apothic integration, lifecycle e jar-in-jar permanecem atuais.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.5.3b. A release 2.5.4 foi comparada integralmente; seus deltas relevantes foram incorporados sem alterar filename/versão instalada.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -80,3 +80,26 @@ XP balance, fluid amounts, enchanting costs, repair, machine inventories e outpu
 - documentação oficial: Liquid Experience, Hatch, Grindstone, Enchanter, Forger, Printer, Lantern, hyper-enchanting, Mending e Apotheosis integration;
 - changelog 2.5.3b: fix de crash do Infuser com Apothic Enchanting 1.6.1+.
 > 🔒 Boundary canônico: **CEI controla a industrialização de XP/enchanting que ele adiciona**; Create executa a automação, e os providers de enchant/affix continuam decidindo a semântica dos encantamentos.
+
+## 18. Atualização upstream 2.5.4 — não instalada
+
+A autoridade física continua em **Create: Enchantment Industry 2.5.3b**. A release **2.5.4** para NeoForge 1.21.1/Create 6.0.10 foi publicada em 17/09/2026; não há release 1.21.1 intermediária entre 2.5.3b e 2.5.4.
+
+### Deltas oficiais
+- passa a exigir **Create: Dragons Plus 1.11.9 ou superior**;
+- agrupa Experience Nuggets, Experience Buckets e Blocks of Experience em uma única Ponder card, mantendo os tutoriais completos acessíveis a partir de cada item;
+- corrige o **Experience Hatch** que podia falhar ao depositar experiência quando o jogador estava em níveis muito altos (#509);
+- corrige crash de **Ponder language datagen** quando Apothic Enchanting ou Apotheosis não está instalado (#508).
+
+### Impacto para o pack
+O fix do Hatch toca conservação de XP em uma borda numérica relevante; o novo mínimo de Dragons Plus transforma a promoção em update coordenado, não isolado. O fix de datagen é relevante para perfis/modpacks onde Apothic/Apotheosis não estejam presentes, embora esta instância possua Apothic Enchanting.
+
+### Gate de promoção 2.5.3b → 2.5.4
+- [ ] Create: Dragons Plus instalado satisfaz 1.11.9+ antes de promover CEI.
+- [ ] Player XP → Liquid Experience → player conserva saldo em níveis baixos e muito altos.
+- [ ] Experience Hatch deposita XP corretamente acima das faixas que reproduziam #509.
+- [ ] Ponder/resources carregam com e sem Apothic/Apotheosis em perfil de teste.
+- [ ] Infuser continua sem o crash corrigido em 2.5.3b.
+- [ ] Hyper-enchanting, Mending on belt, salvage/affix e recipe reload permanecem exactly-once.
+
+Fonte upstream: CurseForge CEI 2.5.4, file ID 8900719. Nenhum teste acima foi executado nesta atualização documental.
