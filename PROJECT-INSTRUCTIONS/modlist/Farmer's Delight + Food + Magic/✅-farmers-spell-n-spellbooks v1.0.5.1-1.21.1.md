@@ -10,11 +10,11 @@
 - **Dependências:** Farmer's Delight 1.3.4 + Iron's Spells 'n Spellbooks 3.16.3 estão fisicamente presentes e são as duas authorities base do addon.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Regression gates: dupe de block-form food por sticky piston corrigida em 1.0.5.1, double XP/output do Alchemist Pot corrigido na 1.0.5.0, spell API drift, recipe/tag overlap, food servings desync e armor modifier stale.
+- **Compatibilidade/Riscos:** Regression gates: dupe de block-form food por sticky piston corrigida em 1.0.5.1, double XP/output do Alchemist Pot corrigido na 1.0.5.0, spell API drift, recipe/tag overlap, food servings desync e armor modifier stale. A upstream 1.0.6.0 altera spells, effects, feast servings, loot/tags, equipment e food behavior; promoção exige regressão ampla de conteúdo e balanceamento.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/farmers-spell
-- **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar`, mod id `farmers_spell`, runtime `1.0.5.1-1.21.1` e SHA-1 `f77355e029af39bbaba3854e10cc087a608351ff`. A versão física não mudou em relação à auditoria anterior; as fontes externas e evidências técnicas já registradas no dossiê permanecem preservadas.
-- **Observações:** Source 1.21.1 confirma Alchemist Pot, Cinderous Stove, Wisewood Cabinet, Amethyst Beetroot e vários food blocks. 1.0.5.1 especificamente corrige duplicação de block-form food causada por sticky piston.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #274: `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` / runtime `1.0.5.1-1.21.1` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A versão instalada não mudou nesta rodada; nenhum delta adicional de changelog foi promovido.
+- **Procedência:** modlist física atual confirma `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar`, mod id `farmers_spell`, runtime `1.0.5.1-1.21.1`. CurseForge oficial revalidado em 01/10/2026 publica 1.0.6.0 para NeoForge 1.21.1 como atualização posterior não instalada.
+- **Observações:** Source 1.21.1 confirma Alchemist Pot, Cinderous Stove, Wisewood Cabinet, Amethyst Beetroot e food blocks. Runtime físico 1.0.5.1 mantém o sticky-piston dupe fix. Upstream 1.0.6.0 adiciona novos blocks/foods/effects e Pan Spell WIP, além de reworks de Goodberry, rings, loot/tags e behavior.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Farmer's Spell 1.0.5.1. A release 1.0.6.0 foi comparada integralmente e os deltas relevantes de spells, food/effects, loot/tags e equipment foram incorporados abaixo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Bridge temático único entre FD e Iron's. Outros addons de comida/magia podem compartilhar tags/ingredientes/spells, mas conflito deve ser medido por IDs/contracts, não por tema.
 - **Data da última decisão:** 2026-08-30
@@ -90,3 +90,47 @@ A integração primária é Farmer's Delight 1.3.4 ↔ Iron's Spells 3.16.3. Out
 - changelog 1.0.5.0: novos conteúdos e correção de double XP.
 
 > **Boundary canônico:** Farmer's Spell é authority do **conteúdo crossover que registra**; Farmer's Delight mantém cooking/food base e Iron's Spells mantém casting/mana/spell framework.
+
+## 17. Atualização upstream 1.0.6.0 — não instalada
+
+A autoridade física continua em **Farmer's Spell 'n Spell Book 1.0.5.1**. O CurseForge oficial publicou **1.0.6.0** para NeoForge 1.21.1 em 29/09/2026.
+
+### Features adicionadas
+- novos variants de **Ember** block;
+- **Frosted Ice Cream Bucket** e **Fufu** em forma de bloco;
+- mais alimentos com efeitos;
+- **Holy Spirit** oil effect;
+- **Pan Spell**, marcado pelo upstream como WIP.
+
+### Mudanças de gameplay/conteúdo
+- alguns effects foram fortalecidos e efeitos de food foram ajustados;
+- Eden Apple Tart e Red Velvet Cake recebem emissive models;
+- **Foodgeist Gift** passa para Loot Table;
+- **Goodberry Spell** é refeito: custo publicado de 50 mana, cast de 5 s e resultado de 10 Goodberries ou transformação de berries;
+- rings são retrabalhados para melhorar eat speed;
+- Gospel Knife recebe +2.5 damage contra undead e perde Smite I;
+- Tiramisu Book passa a adicionar Ubiquitous I;
+- feast block serving e food-block loot são atualizados;
+- Foodgeist food tags são atualizadas;
+- Chaos Slash e Foodgeist behavior são atualizados.
+
+### Fix
+- corrige weapon repair material que era sempre iron ingot.
+
+### Impacto para o pack
+É uma atualização de conteúdo e balanceamento, não um hotfix isolado. Spells/mana, food effects, feast serving, loot tables e tags podem afetar Iron's Spells, Farmer's Delight, Create automation, JEI/recipe discovery e qualquer datapack/KubeJS que referencie IDs ou recipes do addon.
+
+### Gate de promoção 1.0.5.1 → 1.0.6.0
+- [ ] Dedicated server boot com Farmer's Delight e Iron's Spells físicos atuais.
+- [ ] Goodberry Spell cobra mana/cast uma vez e produz exatamente o resultado esperado.
+- [ ] Pan Spell WIP não causa crash/duplication em cast, reload ou multiplayer.
+- [ ] Holy Spirit oil e foods aplicam efeitos uma única vez e persistem corretamente.
+- [ ] Feast serving não duplica portions em dois jogadores/automation.
+- [ ] Foodgeist Gift usa loot table sem double-drop.
+- [ ] Foodgeist tags/behavior e Chaos Slash são smoke-tested.
+- [ ] Gospel Knife damage/repair material e Tiramisu Book enchant behavior conferem com a release.
+- [ ] Sticky-piston dupe corrigida em 1.0.5.1 continua fechada.
+- [ ] Alchemist Pot continua sem double XP/output.
+- [ ] JEI/Create/KubeJS recipes/tags não ficam stale após `/reload`.
+
+Fonte upstream: CurseForge Farmer's Spell 'n Spell Book 1.0.6.0, file ID 9008722, NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.
