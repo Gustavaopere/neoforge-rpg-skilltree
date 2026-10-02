@@ -6,6 +6,7 @@
 - **Arquivo:** `Supplementaries Compat 1.1.zip`
 - **Versão 1.21.1:** 1.1
 - **Data da exportação:** 2026-09-11
+- **Status de auditoria atual:** BLOQUEADO — a ficha canônica integral do Notion não está acessível para o re-fetch 1:1 atual; `✅-` removido até nova validação.
 
 ## Autoridade e limite físico na exportação
 
@@ -75,3 +76,28 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma v1.1, 1.21.1, natureza de datapack e as categorias de integração publicadas. A ficha permanece fail-closed para mods/itens não confirmados.
 
 > Boundary canônico: **Supplementaries e os mods-alvo controlam gameplay; o datapack controla somente os dados de compatibilidade que fornece**.
+
+
+## 9. Delta upstream 1.1 → 1.2 — não instalado (02/10/2026)
+
+- **Instalado/documentado:** `Supplementaries Compat 1.1.zip` / versão `1.1`.
+- **Upstream atual para Minecraft 1.21.1:** `Supplementaries Compat 1.2.zip`, release de 19/09/2026, CurseForge file ID `8920158`.
+- O histórico público contém apenas `1.0 → 1.1 → 1.2`; portanto **não há release intermediária entre a versão instalada 1.1 e a atual 1.2**.
+- A `1.2` adiciona suporte para:
+  - soups e stews de **End's Delight**;
+  - soups e stews de **Croptopia**;
+  - cookies de **Estrogen**.
+- Na modlist física disponível para esta auditoria, **End's Delight, Croptopia e Estrogen não aparecem**. Assim, o delta 1.2 é tecnicamente relevante como expansão de compatibilidade, mas **não possui alvo ativo confirmado no snapshot físico atual**.
+- Não promover a versão instalada/documentada para 1.2 sem nova evidência física do datapack no perfil.
+
+Fontes upstream:
+- https://www.curseforge.com/minecraft/data-packs/supplementaries-compat/files/8920158
+- https://www.curseforge.com/minecraft/data-packs/supplementaries-compat/files/all
+
+## 10. Bloqueio de certificação Notion → GitHub — 02/10/2026
+
+- A página de Notion atualmente acessível com o título **Supplementaries Compat** é uma ficha mínima, com corpo vazio e estado **Substituído**.
+- Essa própria ficha registra que é uma duplicata mínima e que existe uma **ficha canônica preservada** com função/procedência completas.
+- A busca do workspace e a consulta estruturada da base retornaram somente a ficha duplicada; a ficha canônica integral não ficou disponível para fetch nesta rodada.
+- O conteúdo técnico já presente neste arquivo foi preservado e o delta upstream 1.2 foi registrado separadamente, mas **a paridade integral Notion → GitHub não pode ser demonstrada nesta execução**.
+- Pelo protocolo fail-closed do projeto, este arquivo permanece **SEM `✅-`** até que a ficha canônica integral possa ser re-fetched e comparada 1:1.
