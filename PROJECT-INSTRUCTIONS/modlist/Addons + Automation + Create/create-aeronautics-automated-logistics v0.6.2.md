@@ -64,3 +64,21 @@ Aeronautics/Sable continuam owners do body/sublevel físico; Automated Logistics
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 12. Evidências e limite
 CurseForge/Modrinth oficiais confirmam 0.6.2, recorded routes, stations/transponders, unloaded travel, Logistics Terminal, cargo integrations, Simurail experimental e fixes de restauração. Config efetiva do servidor e rotas reais do mundo não foram lidas; não presumir que toda opção/default permaneça inalterada após configuração do pack.
+
+## Revalidação de presença e upstream — 02/10/2026
+
+- A autoridade física disponível já contém `create_aeronautics_automated_logistics-0.6.2.jar`, mod id `create_aeronautics_automated_logistics`, runtime `0.6.2`, SHA-1 `1954f5c4f72620942851241bd18217197ed59b46`.
+- Portanto, a menção do usuário a este mod entre as novas adições **não cria uma segunda entrada** e não altera a contagem física histórica de 587.
+- A listagem pública atual do CurseForge continua apontando `0.6.2` como release mais recente para Minecraft 1.21.1 / NeoForge, publicada em 17/08/2026.
+- Não existe release posterior a 0.6.2 para percorrer nesta revalidação.
+- O conteúdo operacional deste dossiê foi preservado; não houve promoção de versão nem criação de dossier duplicado.
+
+Fonte upstream revalidada:
+- https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-automated-logistics
+- https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-automated-logistics/files/all?version=1.21.1
+
+## Estado de certificação — 02/10/2026
+
+- A busca do workspace e a consulta estruturada da base Notion não recuperaram a ficha canônica correspondente a **Create Aeronautics: Automated Logistics** nesta rodada.
+- A presença/JAR/versão física está resolvida pela autoridade local e o upstream permanece em 0.6.2, mas a paridade Notion → GitHub não pode ser refeita 1:1 sem a origem.
+- Pelo protocolo fail-closed do projeto, o filename fica **SEM `✅-`** até que a ficha canônica possa ser re-fetched e comparada integralmente.
