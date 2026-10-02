@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/modonomicon | https://github.com/klikli-dev/modonomicon
 - **Função:** Framework data-driven para livros/guias in-game com categories, entries, pages, condições/progressão e preview de multiblocos.
 - **Dependências:** NeoForge 1.21.1. Necessidade depende dos consumers que registram livros. Nenhum consumer inequívoco foi comprovado na modlist física nesta passagem; Occultism não está presente. CommonMark 0.29.0 e extensões são JarJars internos do host.
-- **Compatibilidade/Riscos:** Framework data-driven. Riscos: schema/ID drift, unlock/first-read state, reload, multiblock rendering e dependency inference. Branch de release 1.120.4 possui [gradle.properties](http://gradle.properties) ainda em 1.110.0; versão exata vem do JAR/publicação, não desse campo isolado.
+- **Compatibilidade/Riscos:** Framework data-driven. Riscos: schema/ID drift, unlock/first-read/save state, reload, clientbound registry access e multiblock rendering. Runtime 1.120.4; upstream 1.120.5 corrige offset de smithing recipe page, 1.120.6 corrige registry access em clientbound packets no Forge e 1.120.7 corrige save-state errors para books unknown/unbuilt.
 - **Sobreposição:** Coexiste com Patchouli/GuideME; não são substituições drop-in porque consumers dependem de APIs/formats específicos.
-- **Observações:** Runtime 1.120.4. Branch `release/v1.21.1-1.120.4`; commit auditado `9ec9fe54...` corrige batching do multiblock preview. O [gradle.properties](http://gradle.properties) do ref acessível ainda diz 1.110.0, divergência explicitamente preservada.
-- **Procedência:** modlist.txt física canônica atual de 10/09/2026 + publicação oficial 1.120.4 + source/docs oficial klikli-dev/modonomicon; source metadata divergente tratado fail-closed.
-- **Atualização/Status:** REVALIDADO EM 13/09/2026 — release 1.21.1 e dossiê preservados.
+- **Observações:** Runtime físico permanece 1.120.4. Releases posteriores oficiais para 1.21.1: 1.120.5 (22/09), 1.120.6 (24/09) e 1.120.7 (25/09/2026). Os três deltas são fixes específicos e foram incorporados abaixo.
+- **Procedência:** modlist física atual + publicação/source oficial `klikli-dev/modonomicon`; releases GitHub `release/v1.21.1-1.120.5`, `1.120.6` e `1.120.7` foram revalidadas em 01/10/2026. Runtime físico permanece 1.120.4.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Modonomicon físico permanece 1.120.4. A cadeia 1.120.5→1.120.6→1.120.7 foi comparada em ordem e os fixes foram incorporados abaixo.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-10
 
@@ -107,3 +107,29 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Commit auditado: `9ec9fe54eb422ff519a9a4af961faf8efc11f1a3`, fix de `MultiblockPreviewRenderer` em 29/07/2026.
 - Documentação oficial 1.21.1: estrutura de livros data-driven e progress visualization.
 - **Limite:** `gradle.properties` no ref acessível reporta versão antiga 1.110.0; não há afirmação de equivalência byte-a-byte baseada nesse campo. A authority de versão é o JAR físico/publicação 1.120.4.
+
+## 14. Atualizações upstream 1.120.5 → 1.120.7 — não instaladas
+
+A autoridade física continua em **Modonomicon 1.120.4**.
+
+### 1.120.5 — smithing recipe page
+- corrige recipe pages de **smithing** para usarem o crafting Y offset correto (`418e637`, PR #390).
+
+### 1.120.6 — clientbound registry access
+- no Forge, clientbound packets passam a usar **server registry access** (`65f8247`).
+
+Este delta toca diretamente a fronteira client/server e registry serialization; é relevante para books/pages que enviem dados referenciando registries modded.
+
+### 1.120.7 — save state
+- corrige **save state errors para books unknown/unbuilt** (`5cbce6b`, PR #368).
+
+### Gate de promoção 1.120.4 → 1.120.7
+- [ ] Smithing recipe pages alinham/renderizam corretamente em múltiplas resoluções/GUI scale.
+- [ ] Dedicated server envia book/page data sem registry access/codec errors.
+- [ ] Cliente entrando após o servidor já estar ativo recebe registries/book state correto.
+- [ ] Unknown/unbuilt books não geram save-state exceptions.
+- [ ] Unlock/first-read/progress state persiste após relog e restart.
+- [ ] Datapack `/reload` não duplica entries nem deixa IDs/book references stale.
+- [ ] Multiblock preview mantém o batching fix já documentado na 1.120.4.
+
+Fontes upstream: releases oficiais `klikli-dev/modonomicon` 1.120.5, 1.120.6 e 1.120.7. Nenhum teste acima foi executado nesta atualização documental.
