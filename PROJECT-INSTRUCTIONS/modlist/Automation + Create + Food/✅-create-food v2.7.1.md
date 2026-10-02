@@ -12,11 +12,11 @@
 - **Dependências:** Create + Farmer's Delight continuam a base prática do conteúdo; pack físico usa NeoForge 21.1.248 + Create 6.0.10 + Farmer's Delight 1.3.4. Central Kitchen 2.6.0 e Ratatouille 1.4.0 permanecem integrações/overlaps culinários relevantes.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Riscos: common config/registry mismatch; custom content first-launch regression; removal of registered content from worlds; plate/bowl/portion dupe; heat/dipping double-processing; effects/tooltips divergence; recipe overlap with Farmer's Delight/Central Kitchen/Ratatouille; startup/model load volume.
+- **Compatibilidade/Riscos:** Runtime físico 2.7.1. Upstream 3.0.0 é migração de alto impacto: renomeia IDs com remoção de itens existentes (`small_bowl`, rice bowls, breakfast plates), reorganiza cross-mod compat em addons/config, altera basin fluids/interactions, effects/nutrition e muitas recipes. Riscos: perda de itens/blocos em mundo existente, common config/registry mismatch, dupe em fluid/effects/containers e overlap culinário.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-food
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createfood` 2.7.1 + CurseForge/Modrinth oficiais revalidados em 12/09/2026; 2.7.1 de 08/08/2026 continua a release NeoForge 1.21.1 mais recente. Changelog confirma compat cross-mod inteiramente config-based; source head posterior 2.8.0 continua usado apenas como arquitetura.
-- **Observações:** JAR/mod id/runtime 2.7.1 confirmados. Release 2.7.1 migra todo conteúdo cross-mod para listas de config common/client/server e corrige custom display blocks/fluids e registro no primeiro launch. Source head consultado está em 2.8.0.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #189: createfood-neoforge-1.21.1-2.7.1.jar / runtime 2.7.1 reconfirmados como latest Release NeoForge 1.21.1; cross-mod config registries, display/fluid/item lists, tooltips/effects, plates/bowls, heat cooking e food-stack overlaps permanecem atuais.
+- **Procedência:** modlist física atual confirma Create: Food 2.7.1. CurseForge oficial 1.21.1 revalidado em 01/10/2026 mostra salto direto 2.7.1→3.0.0, file ID 8995951, sem release 1.21.1 intermediária posterior à instalada.
+- **Observações:** Runtime físico permanece 2.7.1. A release 3.0.0 de 28/09/2026 altera config, IDs persistentes, recipes, nutrition/effects, basin IO, display interactions e compat content; não deve ser promovida sem plano de migração de mundo.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.7.1. A release 3.0.0 foi comparada integralmente; os deltas de migração/registry/config e os fixes de dupe/container/effects foram incorporados abaixo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Stack culinário denso com Farmer's Delight 1.3.4, Central Kitchen 2.6.0, Ratatouille 1.4.0 e outros. Equivalência deve ser comparada por ingredients, fluids, tags e recipe outputs; não há duplicata global presumida.
 
@@ -99,3 +99,59 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 26. Evidências e limites
 A modlist física confirma runtime 2.7.1 e o stack culinário instalado. A documentação oficial confirma escala de conteúdo, configurabilidade, handcrafting, plates/bowls, cloth filters, heat cooking, dipping, storage e placeable foods. A release 2.7.1 confirma a arquitetura de compat por config e fixes de registro inicial. O source head consultado está em 2.8.0; internals que podem ter mudado após 2.7.1 não são retroprojetados.
 > 🔒 **Boundary canônico:** em Create: Food 2.7.1, configuração common participa do próprio catálogo de conteúdo. Registry/config e recipe state devem ser tratados como dados de mundo, não como mero ajuste visual.
+
+## 27. Atualização upstream 3.0.0 — não instalada; migração de alto impacto
+
+A autoridade física continua em **Create: Food 2.7.1**. O CurseForge oficial publica **3.0.0** para NeoForge 1.21.1 em 28/09/2026; não há release 1.21.1 intermediária entre 2.7.1 e 3.0.0.
+
+### Mudanças de configuração e Create basin
+- `expanded_basin_fluids`: aumenta máximo de fluid inputs/outputs no basin de 2 para 4 (default true);
+- `basin_fluid_items`: permite encher/esvaziar basins manualmente com containers (default true);
+- `enable_default_effects`: permite desligar efeitos embutidos;
+- `stack_duration` e `max_stacked_duration`: controlam stacking/cap de duração de effects;
+- `addons_enabled`: cross-mod compat content passa a ser addon-based;
+- `enable_dipping` vira `enable_display_interactions`; `dipping_exclude` vira `display_interactions_exclude`.
+
+### Registry/save-impacting renames
+Estes deltas são críticos porque o upstream diz explicitamente que os itens existentes serão removidos:
+- `small_bowl` → `large_bowl`;
+- rice bowls recebem IDs novos incluindo kelp;
+- breakfast plates são migrados para linhas `toast_plate`.
+
+Antes de promover 3.0.0 em mundo principal, inventories/storage/chunks contendo esses IDs precisam ser auditados/migrados. Não tratar como simples rename cosmético.
+
+### Recipes, food/effects e content
+- displayed foods passam a aceitar item interactions baseadas em recipes; 85 recipes redundantes `create:item_application` são removidas;
+- nutrition/saturation e effects são rebalanceados; Comfort deixa de ser usado;
+- recipe chains e cross-mod compatibility recipes são atualizados;
+- fluid amounts são padronizados em 125/250/500/1000 mB (+750 mB para batch outputs);
+- novo `bottle_block`; novos small plate variants; tags para Almost Unified;
+- built-in resource packs para textures/models/item names de outros mods vêm habilitados por padrão.
+
+### Fixes relevantes
+- bowls voltam corretamente como crafting remainder;
+- cane syrup bottle retorna glass bottle, não bowl;
+- corrige **egg_whites fluid duplication**;
+- category overrides deixam de desabilitar effect quando o mod-alvo está ausente;
+- item effect overrides passam a funcionar também ao comer food em block form;
+- cakes/pies/pizzas/waffles/candle cakes/display bottles passam a aplicar compat effects quando consumidos do bloco;
+- remove duplicate generated tags;
+- ration box/cloth sack deixam de apagar returned container e passam a aplicar effects;
+- always-edible foods podem ser consumidos de storage com hunger cheia; storage respeita eating speed;
+- corrige containers/conditions/names/overlap/inputs/translations de múltiplas recipes.
+
+### Gate de promoção 2.7.1 → 3.0.0
+- [ ] Inventariar `small_bowl`, rice bowls e breakfast plates em player inventories, Sophisticated storage, containers e chunks.
+- [ ] Definir migração explícita para IDs renomeados antes de abrir o save principal.
+- [ ] Backup integral do mundo e configs.
+- [ ] Revisar novos nomes de config e defaults; não reaproveitar chaves 2.7.1 silenciosamente.
+- [ ] Basin 2→4 fluid IO não duplica/engole fluids sob Create automation.
+- [ ] Manual basin containers respeitam remainder e volumes.
+- [ ] Effect stacking respeita cap e multiplayer authority.
+- [ ] `egg_whites` duplication permanece fechada.
+- [ ] Storage eating devolve containers e aplica effects/eating speed corretamente.
+- [ ] Farmer's Delight/Central Kitchen/Ratatouille compat recipes não ficam duplicadas/ambíguas.
+- [ ] Built-in resource packs não conflitam com resource packs próprios do pack.
+- [ ] `/reload`, restart e primeiro launch mantêm registry/config consistentes.
+
+Fonte upstream: CurseForge Create: Food 3.0.0, file ID 8995951. Nenhum teste acima foi executado nesta atualização documental.
