@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/parcool
 - **Função:** Sistema de parkour/movimento avançado com ações como vault, wall movement, slides, agarrões e outras técnicas de mobilidade.
 - **Dependências:** NeoForge 1.21.1; linha upstream 1.21.1-v4 usa Curios, presente fisicamente como curios-neoforge-9.5.1+1.21.1.jar. Epic Parcool NÃO está presente na modlist física atual.
-- **Compatibilidade/Riscos:** Riscos prioritários: issue upstream aberta com Sable/Create Aeronautics, coexistência direta com Epic Fight sem bridge dedicada, wall-run edge cases, input/pose e server movement authority. Não tratar reports upstream como bug local sem reprodução.
+- **Compatibilidade/Riscos:** Riscos prioritários: issue upstream com Sable/Create Aeronautics, coexistência direta com Epic Fight sem bridge dedicada, wall-run edge cases, input/pose e server movement authority. Não tratar reports upstream como bug local sem reprodução. As upstream 4.0.0.4/4.0.0.5 ampliam movement/input/config surfaces e 4.0.0.4 corrige erro de sincronização ao mudar de dimensão.
 - **Sobreposição:** ParCool é mobility/parkour; Epic Fight é combat system. Sem bridge física atual, qualquer integração de stamina/action precisa ser comprovada em runtime.
-- **Observações:** Runtime 4.0.0.3. A publicação 1.21.1 de 30/08/2026 é Alpha. Pack físico contém Epic Fight 21.17.3.1, Sable 2.0.5 e Create Aeronautics 1.3.2, mas não contém Epic Parcool nem ParCool+ Compatibility++.
-- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + source/tracker oficial alRex-U/ParCool e documentação da linha 1.21.1-v4.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — ParCool 4.0.0.3/JAR físico reconfirmado; build Alpha e riscos de integração com Epic Fight/Sable/Create Aeronautics preservados.
+- **Observações:** Runtime físico 4.0.0.3, Alpha. Upstream posterior: 4.0.0.4 adiciona Long Jump/skilltree state e ações while-sneaking e corrige synchronization ao entrar em outras dimensões; 4.0.0.5 adiciona novos keybinds/input config/full-screen GUIs e ajustes em Dodge/Horizontal Wall Run. A latest pública 4.0.0.5 também é Alpha e não está instalada.
+- **Procedência:** modlist(1).txt física reconferida + source/tracker oficial `alRex-U/ParCool` branch `1.21.1-v4`; changelogs oficiais `v_4.0.0.4.md` e `v_4.0.0.5.md` e CurseForge 4.0.0.5 foram revalidados em 01/10/2026.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece ParCool 4.0.0.3. As versões 4.0.0.4 e 4.0.0.5 foram comparadas em sequência; deltas relevantes de movement, dimensão, keybind/config e GUI foram incorporados abaixo.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-10
 
@@ -128,3 +128,48 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Modlist atual: Curios, Epic Fight, Sable e Create Aeronautics presentes; **Epic Parcool ausente**.
 - Tracker upstream: issue aberta Sable/Create Aeronautics e report próximo à build instalada sobre vertical wall run.
 - **Limite:** reports de issue não foram promovidos a bugs locais sem reprodução; keybinds, fórmulas e lista integral de ações não foram inventados sem config/JAR auditados.
+
+## 15. Atualizações upstream 4.0.0.4 → 4.0.0.5 — não instaladas
+
+A autoridade física continua em **ParCool 4.0.0.3**. O branch oficial 1.21.1-v4 contém changelogs separados para **4.0.0.4** e **4.0.0.5**; a 4.0.0.5 foi publicada no CurseForge para NeoForge 1.21.1 como **Alpha** em 19/09/2026.
+
+### 4.0.0.4
+Novas superfícies:
+- **Long Jump**;
+- visualização do estado das abilities na Skilltree GUI;
+- **Hang On**, **Hang Down** e **Ride Zipline** passam a poder ser executados enquanto o player está agachado.
+
+Correções:
+- corrige erro de **sincronização ao entrar em outras dimensões**;
+- inclui o fix rastreado como issue #509.
+
+O fix de dimensão é prioritário porque esta ficha já trata server movement authority e dimension change como lifecycle crítico.
+
+### 4.0.0.5
+Novidades:
+- keybindings dedicados para **Fast Run / Fast Swim**;
+- keybind para **Enable / Disable ParCool**;
+- keybind para abrir a **Skilltree** sem o ParCool Guide;
+- configuração de input para action keybindings;
+- Skilltree e ParCool Guide com modo **Full Screen**.
+
+Mudanças de movimento:
+- Dodge recebe animation speed default maior e passa a ser permitido durante Fast Run;
+- Horizontal Wall Run reduz gradualmente a velocidade Y no início;
+- ajustes de comportamento de configuração.
+
+Também inclui o bugfix #511.
+
+### Gate de promoção 4.0.0.3 → 4.0.0.5
+- [ ] Dimension transfer durante/fora de ação não deixa movement/action state dessincronizado.
+- [ ] Long Jump é liquidado uma vez pelo state autoritativo e não duplica velocity sob latency.
+- [ ] Hang On/Hang Down/Ride Zipline while sneaking não conflitam com sneak de Epic Fight/outros mods.
+- [ ] Novos keybinds não colidem com Epic Fight, camera ou Create/Aeronautics controls.
+- [ ] Toggle Enable/Disable limpa action/pose state imediatamente.
+- [ ] Dodge durante Fast Run não aplica impulso/animação duas vezes.
+- [ ] Horizontal Wall Run mantém trajetória previsível e server/client convergem.
+- [ ] Full Screen Skilltree/Guide devolvem input/focus corretamente ao fechar.
+- [ ] Sable SubLevel e Create Aeronautics continuam sem teleport/rubber-band grave.
+- [ ] Config antiga 4.0.0.3 migra/carrega sem reset silencioso de regras importantes.
+
+Fontes upstream: `alRex-U/ParCool` branch `1.21.1-v4`, changelogs 4.0.0.4/4.0.0.5; CurseForge file ID 8921237 para ParCool 4.0.0.5 (Alpha, NeoForge 1.21.1). Nenhum teste acima foi executado nesta atualização documental.
