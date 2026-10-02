@@ -14,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: bulk-process dupe; container remainder; conditional mixin classloading; recipe/provider drift; Fluid Hatch stale tank; config/cache reload; Sable contraption air-current double-processing. Aether/dye providers ausentes permanecem inativos.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-dragons-plus
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `create_dragons_plus` 1.11.8b + CurseForge oficial revalidado em 12/09/2026; 1.11.8b de 05/09/2026 continua a release NeoForge 1.21.1 mais recente para Create 6.0.10. Source oficial matching permanece referência funcional.
-- **Observações:** Runtime corrigido para `1.11.8b` (a ficha antiga dizia 1.11.7b). Source matching branch 1.21.1/6.0.0-dev declara mod 1.11.8b, Create 6.0.10 e conditional-mixin 0.6.4.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #183: CreateDragonsPlus-1.11.8b.jar / runtime 1.11.8b reconfirmados como latest Release NeoForge 1.21.1 para Create 6.0.10; bulk processes, Fluid Hatch, conditional integrations e Aether fixes permanecem atuais.
+- **Procedência:** modlist física atual confirma Dragons Plus 1.11.8b + Create 6.0.10. CurseForge oficial revalidado em 02/10/2026 confirma 1.11.9 NeoForge 1.21.1, file ID 8900055.
+- **Observações:** Runtime físico permanece 1.11.8b. Upstream 1.11.9 para NeoForge 1.21.1 adiciona grouped Ponder cards/API e corrige carregamento de dados dos Fragile/Levitite Fluid Tanks quando Simulated está ausente.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 02/10/2026 — runtime físico permanece 1.11.8b; delta 1.11.9 registrado abaixo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** É biblioteca/addon transversal de bulk processing e compats, não substituto de Ars Nouveau, Garnished, DnD ou Sable. Integrações só são runtime ativas quando o provider físico correspondente está instalado.
 
@@ -85,3 +85,20 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 21. Evidências e limites
 A modlist confirma 1.11.8b e os mixins físicos. O source matching confirma versão, Create 6.0.10, integrations habilitadas e conditional-mixin 0.6.4. A documentação oficial confirma Bulk Coloring/Freezing/Ending/Sanding, Fluid Hatch e integrations. Ausências de providers foram verificadas na modlist top-level atual.
 > 🔒 **Boundary canônico:** Dragons Plus traduz recipes/fluids/fan processing entre providers; o servidor e os mods donos dos recipes permanecem authority. Conditional integration nunca transforma provider ausente em dependência implícita.
+
+
+## 22. Atualização upstream 1.11.9 — não instalada
+
+A autoridade física continua em **Create: Dragons Plus 1.11.8b**.
+
+A release **1.11.9** adiciona grouped Ponder tag cards com cycling animado e seleção por scroll, além de uma API compartilhada para contribuições condicionais de múltiplos source sets.
+
+Também corrige erros de carregamento relacionados a Fragile Fluid Tanks e Levitite Fragile Fluid Tanks quando **Simulated** não está instalado.
+
+### Gate de promoção
+- [ ] Ponder grouped cards carregam sem entries duplicadas e respondem ao scroll.
+- [ ] Contributions condicionais aparecem somente quando o provider correspondente existe.
+- [ ] Perfil sem Simulated inicia sem erros ligados aos Fragile/Levitite tanks.
+- [ ] Bulk processes, Fluid Hatch, conditional integrations e Sable continuam sem regressão.
+
+Fonte upstream: CurseForge Create: Dragons Plus 1.11.9, file ID 8900055. Nenhum teste acima foi executado nesta atualização documental.
