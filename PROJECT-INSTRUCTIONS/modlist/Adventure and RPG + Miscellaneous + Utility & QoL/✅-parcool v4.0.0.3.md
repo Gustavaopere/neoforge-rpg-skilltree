@@ -160,7 +160,16 @@ Mudanças de movimento:
 
 Também inclui o bugfix #511.
 
-### Gate de promoção 4.0.0.3 → 4.0.0.5
+### 4.0.0.6 — Beta — 02/10/2026
+
+- Adiciona **Setting UI**, aberta pela tecla de configuração.
+- **Dodge** passa a funcionar em **oito direções**, ampliando a superfície de input/movimento e animação.
+- O keybind antes descrito como **Open Skilltree** passa a **Open Setting / Skilltree**.
+- O design da Skilltree UI foi alterado e o acesso via shift-click no ParCool Guide deixou de ser o caminho usado.
+- Adiciona **verificação de registry match na conexão entre client e server**. Esse é um boundary importante para multiplayer: mismatch de registries deve ser detectado explicitamente em vez de permitir state incompatível.
+- Após a tag/release, o source recebeu ainda um bugfix para evitar envio de packet desnecessário para todos os players; esse commit está no histórico pós-version bump e não é atribuído ao JAR 4.0.0.6 sem evidência de que foi incluído no artefato publicado.
+
+### Gate de promoção 4.0.0.3 → 4.0.0.6
 - [ ] Dimension transfer durante/fora de ação não deixa movement/action state dessincronizado.
 - [ ] Long Jump é liquidado uma vez pelo state autoritativo e não duplica velocity sob latency.
 - [ ] Hang On/Hang Down/Ride Zipline while sneaking não conflitam com sneak de Epic Fight/outros mods.
