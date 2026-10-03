@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/goety-cataclysm
 - **Função:** Bridge de Goety com L_Ender's Cataclysm, adaptando criaturas/servants e spells/abilities do Cataclysm ao ecossistema Goety.
 - **Dependências:** Goety 3.1.4 + L_Ender's Cataclysm 3.33, ambos presentes fisicamente. Release do addon: 1.21.1-1.8.2 NeoForge.
-- **Compatibilidade/Riscos:** Acoplamento simultâneo a Goety e Cataclysm; riscos de registry/API drift, duplicate damage/attack hooks, servant ownership/lifecycle, config drift e client/server mismatch. Source oficial público acessível é 1.20, não authority da build 1.21.1.
+- **Compatibilidade/Riscos:** Acoplamento simultâneo a Goety e Cataclysm; riscos de registry/API drift, duplicate damage/attack hooks, servant ownership/lifecycle, config drift e client/server mismatch. A release upstream 1.9.0 corrige precisamente servants que não persistiam/healavam. Há ainda divergência entre o título da release 1.9.0 e o filename publicado `...-1.8.4.jar`, que deve ser preservada fail-closed.
 - **Sobreposição:** Complementa Goety e Cataclysm. Goety mantém Soul Energy/servant base; Cataclysm mantém entidades/conteúdo-base; o addon mantém apenas a adaptação entre ambos.
-- **Observações:** Release física `goety_cataclysm-1.21.1-1.8.2.jar`. Source 1.21.1 exato não foi localizado; detalhes internos permanecem fail-closed. Não contabilizar conteúdo do addon nos 110 Focuses base do Goety.
-- **Procedência:** modlist(1).txt física atual de 22/09/2026 — 587 entradas top-level incluindo o modloader — confirma `goety_cataclysm-1.21.1-1.8.2.jar`, mod id `goety_cataclysm`, runtime `1.21.1-1.8.2` e SHA-1 `4e3052a082200371b36e1a88fdce05e294d82757`. CurseForge oficial revalidado em 22/09/2026 mantém esta build como release NeoForge 1.21.1 atual.
-- **Atualização/Status:** REAUDITADO EM 22/09/2026 — lote físico #306: Goety Cataclysm 1.21.1-1.8.2 reconfirmado; nenhuma mudança de versão física nesta rodada.
+- **Observações:** Release física `goety_cataclysm-1.21.1-1.8.2.jar`. Upstream publicou a release intitulada `1.21.1-1.9.0` em 03/10/2026, mas o arquivo distribuído chama-se `goety_cataclysm-1.21.1-1.8.4.jar`; essa inconsistência upstream não é corrigida por inferência.
+- **Procedência:** modlist(1).txt física atual de 22/09/2026 — 587 entradas top-level incluindo o modloader — confirma `goety_cataclysm-1.21.1-1.8.2.jar`, mod id `goety_cataclysm`, runtime `1.21.1-1.8.2` e SHA-1 `4e3052a082200371b36e1a88fdce05e294d82757`. CurseForge oficial revalidado em 03/10/2026 publica como latest a release intitulada 1.21.1-1.9.0, file ID 9044817, com filename interno de distribuição 1.8.4.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 1.21.1-1.8.2. A latest upstream é apresentada como 1.21.1-1.9.0; corrige persistência/healing de servants e integra conteúdo recente da linha 1.20.1, mas o arquivo publicado usa sufixo 1.8.4.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #306: JAR `goety_cataclysm-1.21.1-1.8.2.jar`, mod id `goety_cataclysm`, runtime `1.21.1-1.8.2`, SHA-1 `4e3052a082200371b36e1a88fdce05e294d82757`.
@@ -89,7 +89,8 @@ O repositório oficial `Polarice3/Goety_Cataclysm` acessível declara atualmente
 - client/server mismatch;
 - AI/navigation de servant falhar em água/terreno/chunk boundary;
 - boss loot/flags escaparem para variante servant;
-- source 1.20 ser confundido com internals 1.21.1.
+- source 1.20 ser confundido com internals 1.21.1;
+- normalizar silenciosamente a divergência release-title `1.9.0` vs filename `1.8.4`.
 
 ## 13. Matriz de testes obrigatória
 
@@ -111,3 +112,42 @@ O repositório oficial `Polarice3/Goety_Cataclysm` acessível declara atualmente
 - **Descrição/changelogs oficiais da linha:** confirmam a natureza de servants/spells/abilities e superfícies de combat/config.
 - **Limite:** source público encontrado é da linha 1.20, não da build física 1.21.1; registries/classes/lista completa permanecem fail-closed.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+## 15. Atualização upstream 1.9.0 — não instalada
+
+A autoridade física continua em **Goety Cataclysm 1.21.1-1.8.2**.
+
+Em 03/10/2026 o CurseForge publicou uma nova release para NeoForge 1.21.1:
+- **título da release:** `Goety Cataclysm 1.21.1-1.9.0`;
+- **File ID:** `9044817`;
+- **filename efetivamente distribuído:** `goety_cataclysm-1.21.1-1.8.4.jar`.
+
+Essa divergência é upstream e é preservada literalmente. Não renomear o dossiê instalado nem afirmar que metadata runtime do artefato novo é 1.9.0 ou 1.8.4 sem inspecionar o JAR.
+
+### Changelog publicado
+- corrige **servants não persistindo**;
+- corrige **servants não healing** corretamente;
+- integra o conteúdo mais recente da linha 1.20.1.
+
+O primeiro item toca diretamente um dos boundaries mais importantes deste addon: owner/lifecycle/save. O segundo altera sustain/healing de servants. “Integra conteúdo mais recente” é uma declaração upstream ampla e **não é expandida em uma lista inventada de Focuses/servants** sem source/JAR 1.21.1 correspondente.
+
+### Compatibilidade com o stack atual
+
+O pack físico ainda usa:
+- Goety 3.1.4;
+- L_Ender's Cataclysm 3.33;
+- Goety Cataclysm 1.8.2.
+
+O catálogo já documenta Goety 3.2.0 como upstream não instalado. Portanto, antes de promover Goety Cataclysm, é obrigatório verificar se o artefato 1.9.0/filename 1.8.4 exige ou assume a nova linha de Goety.
+
+### Gate de promoção
+- [ ] Inspecionar metadata do JAR 9044817 e registrar versão real declarada.
+- [ ] Confirmar dependency ranges de Goety/Cataclysm.
+- [ ] Dedicated server boot com trio alvo.
+- [ ] Servant persistente sobre save/restart, chunk unload e owner reconnect.
+- [ ] Healing de servants ocorre uma vez e não cria loop/invulnerabilidade.
+- [ ] Death/despawn/dimension transfer não deixa servant órfão.
+- [ ] Focus/spell Cataclysm não duplica dano/custo.
+- [ ] Enumerar conteúdo novo somente após JAR/source 1.21.1 verificável.
+
+Fonte upstream: CurseForge Goety Cataclysm file ID 9044817. Nenhum teste acima foi executado nesta atualização documental.
