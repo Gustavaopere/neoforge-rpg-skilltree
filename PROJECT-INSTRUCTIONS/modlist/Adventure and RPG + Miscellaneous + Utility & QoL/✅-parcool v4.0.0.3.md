@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/parcool
 - **Função:** Sistema de parkour/movimento avançado com ações como vault, wall movement, slides, agarrões e outras técnicas de mobilidade.
 - **Dependências:** NeoForge 1.21.1; linha upstream 1.21.1-v4 usa Curios, presente fisicamente como curios-neoforge-9.5.1+1.21.1.jar. Epic Parcool NÃO está presente na modlist física atual.
-- **Compatibilidade/Riscos:** Riscos prioritários: issue upstream com Sable/Create Aeronautics, coexistência direta com Epic Fight sem bridge dedicada, wall-run edge cases, input/pose e server movement authority. Não tratar reports upstream como bug local sem reprodução. As upstream 4.0.0.4/4.0.0.5 ampliam movement/input/config surfaces e 4.0.0.4 corrige erro de sincronização ao mudar de dimensão.
+- **Compatibilidade/Riscos:** Riscos prioritários: issue upstream com Sable/Create Aeronautics, coexistência direta com Epic Fight sem bridge dedicada, wall-run edge cases, input/pose e server movement authority. Não tratar reports upstream como bug local sem reprodução. As upstream 4.0.0.4→4.0.0.6 ampliam movement/input/config/UI surfaces; 4.0.0.4 corrige erro de sincronização ao mudar de dimensão e 4.0.0.6 acrescenta dodge em oito direções e registry-match check na conexão.
 - **Sobreposição:** ParCool é mobility/parkour; Epic Fight é combat system. Sem bridge física atual, qualquer integração de stamina/action precisa ser comprovada em runtime.
-- **Observações:** Runtime físico 4.0.0.3, Alpha. Upstream posterior: 4.0.0.4 adiciona Long Jump/skilltree state e ações while-sneaking e corrige synchronization ao entrar em outras dimensões; 4.0.0.5 adiciona novos keybinds/input config/full-screen GUIs e ajustes em Dodge/Horizontal Wall Run. A latest pública 4.0.0.5 também é Alpha e não está instalada.
-- **Procedência:** modlist(1).txt física reconferida + source/tracker oficial `alRex-U/ParCool` branch `1.21.1-v4`; changelogs oficiais `v_4.0.0.4.md` e `v_4.0.0.5.md` e CurseForge 4.0.0.5 foram revalidados em 01/10/2026.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece ParCool 4.0.0.3. As versões 4.0.0.4 e 4.0.0.5 foram comparadas em sequência; deltas relevantes de movement, dimensão, keybind/config e GUI foram incorporados abaixo.
+- **Observações:** Runtime físico 4.0.0.3, Alpha. Upstream posterior: 4.0.0.4 adiciona Long Jump/skilltree state e ações while-sneaking e corrige synchronization ao entrar em outras dimensões; 4.0.0.5 adiciona novos keybinds/input config/full-screen GUIs e ajustes em Dodge/Horizontal Wall Run; 4.0.0.6 Beta adiciona Setting UI, dodge em oito direções e registry-match check client/server. A latest pública 1.21.1 localizada é 4.0.0.6 e não está instalada.
+- **Procedência:** modlist(1).txt física reconferida + source/tracker oficial `alRex-U/ParCool` branch `1.21.1-v4`; changelogs oficiais `v_4.0.0.4.md`, `v_4.0.0.5.md` e `v_4.0.0.6.md`, além da listagem CurseForge 1.21.1, foram revalidados em 03/10/2026.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece ParCool 4.0.0.3. As versões 4.0.0.4, 4.0.0.5 e 4.0.0.6 foram comparadas em sequência; deltas relevantes de movement, dimensão, keybind/config, GUI e registry-match multiplayer foram incorporados abaixo.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-10
 
@@ -129,9 +129,9 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Tracker upstream: issue aberta Sable/Create Aeronautics e report próximo à build instalada sobre vertical wall run.
 - **Limite:** reports de issue não foram promovidos a bugs locais sem reprodução; keybinds, fórmulas e lista integral de ações não foram inventados sem config/JAR auditados.
 
-## 15. Atualizações upstream 4.0.0.4 → 4.0.0.5 — não instaladas
+## 15. Atualizações upstream 4.0.0.4 → 4.0.0.6 — não instaladas
 
-A autoridade física continua em **ParCool 4.0.0.3**. O branch oficial 1.21.1-v4 contém changelogs separados para **4.0.0.4** e **4.0.0.5**; a 4.0.0.5 foi publicada no CurseForge para NeoForge 1.21.1 como **Alpha** em 19/09/2026.
+A autoridade física continua em **ParCool 4.0.0.3**. O histórico oficial foi percorrido por **4.0.0.4 → 4.0.0.5 → 4.0.0.6**; a 4.0.0.6 foi publicada no CurseForge para NeoForge 1.21.1 como **Beta** em 02/10/2026.
 
 ### 4.0.0.4
 Novas superfícies:
@@ -160,7 +160,16 @@ Mudanças de movimento:
 
 Também inclui o bugfix #511.
 
-### Gate de promoção 4.0.0.3 → 4.0.0.5
+### 4.0.0.6 — Beta — 02/10/2026
+
+- Adiciona **Setting UI**, aberta pela tecla de configuração.
+- **Dodge** passa a funcionar em **oito direções**, ampliando a superfície de input/movimento e animação.
+- O keybind antes descrito como **Open Skilltree** passa a **Open Setting / Skilltree**.
+- O design da Skilltree UI foi alterado e o acesso via shift-click no ParCool Guide deixou de ser o caminho usado.
+- Adiciona **verificação de registry match na conexão entre client e server**. Esse é um boundary importante para multiplayer: mismatch de registries deve ser detectado explicitamente em vez de permitir state incompatível.
+- Após a tag/release, o source recebeu ainda um bugfix para evitar envio de packet desnecessário para todos os players; esse commit está no histórico pós-version bump e não é atribuído ao JAR 4.0.0.6 sem evidência de que foi incluído no artefato publicado.
+
+### Gate de promoção 4.0.0.3 → 4.0.0.6
 - [ ] Dimension transfer durante/fora de ação não deixa movement/action state dessincronizado.
 - [ ] Long Jump é liquidado uma vez pelo state autoritativo e não duplica velocity sob latency.
 - [ ] Hang On/Hang Down/Ride Zipline while sneaking não conflitam com sneak de Epic Fight/outros mods.
@@ -172,4 +181,4 @@ Também inclui o bugfix #511.
 - [ ] Sable SubLevel e Create Aeronautics continuam sem teleport/rubber-band grave.
 - [ ] Config antiga 4.0.0.3 migra/carrega sem reset silencioso de regras importantes.
 
-Fontes upstream: `alRex-U/ParCool` branch `1.21.1-v4`, changelogs 4.0.0.4/4.0.0.5; CurseForge file ID 8921237 para ParCool 4.0.0.5 (Alpha, NeoForge 1.21.1). Nenhum teste acima foi executado nesta atualização documental.
+Fontes upstream: `alRex-U/ParCool`, changelogs 4.0.0.4/4.0.0.5/4.0.0.6; CurseForge confirma ParCool 4.0.0.6 Beta para NeoForge 1.21.1 em 02/10/2026. Nenhum teste acima foi executado nesta atualização documental.

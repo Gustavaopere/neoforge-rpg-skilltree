@@ -12,11 +12,11 @@
 - **Dependências:** NeoForge 1.21.1. Extensões instaladas: MultiMod Patch 0.32.1 e Bundles 0.18.0.2. Distant Horizons 3.2.0-b está presente e a linha 0.15.0 possui integração oficial de aparência sazonal em LODs.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Runtime instalado é RC/Beta. Riscos: configuração migrada de versões antigas, seasonal simulation level produzir alteração de gameplay além do desejado, snow behavior competir com outros render/world mods, crop/humidity/greenhouse drift, Distant Horizons LOD stale e dupla tradução de temperatura via adapters. Upstream 0.15.1–0.15.2.1 altera humidity placement, rainless-biome/weather-cycle logic, extra block ticks e precipitation detection.
+- **Compatibilidade/Riscos:** Runtime instalado é RC/Beta. Riscos: configuração migrada de versões antigas, seasonal simulation level produzir alteração de gameplay além do desejado, snow behavior competir com outros render/world mods, crop/humidity/greenhouse drift, Distant Horizons LOD stale e dupla tradução de temperatura via adapters. Upstream 0.15.1–0.15.3.1 altera humidity placement, rainless-biome/weather-cycle logic, extra block ticks, precipitation detection e o próprio modelo de alternância/duração de chuva e trovoada.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons
-- **Procedência:** modlist física confirma `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar`, mod id `eclipticseasons`, runtime `0.15.0-rc-3-1`. CurseForge 1.21.1 e source oficial `TeamTeaMC/Ecliptic-Seasons` branch `neoforge-1.21.x` foram revisados para **0.15.1 → 0.15.2 → 0.15.2.1**.
-- **Observações:** Runtime físico atual: `0.15.0-rc-3-1`. Para **Minecraft 1.21.1**, o CurseForge publicou depois 0.15.1, 0.15.2 e **0.15.2.1** em 26/09/2026. A source branch já contém 0.15.2.2 em 01/10/2026, mas nesta rodada não foi localizado artefato 0.15.2.2 publicado para 1.21.1 no CurseForge; portanto o teto distribuído usado aqui permanece 0.15.2.1.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 0.15.0-rc-3-1. Foram revisadas **0.15.1, 0.15.2 e 0.15.2.1**, todas publicadas para NeoForge 1.21.1; 0.15.2.1 é a latest 1.21.1 localizada no CurseForge nesta execução.
+- **Procedência:** modlist física confirma `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar`, mod id `eclipticseasons`, runtime `0.15.0-rc-3-1`. CurseForge 1.21.1 e source oficial `TeamTeaMC/Ecliptic-Seasons` branch `neoforge-1.21.x` foram revisados para **0.15.1 → 0.15.2 → 0.15.2.1 → 0.15.2.2 → 0.15.3 → 0.15.3.1**.
+- **Observações:** Runtime físico atual: `0.15.0-rc-3-1`. Para **Minecraft 1.21.1**, o CurseForge publicou depois 0.15.1, 0.15.2, 0.15.2.1, **0.15.2.2, 0.15.3 e 0.15.3.1**. Em 03/10/2026, 0.15.3.1 é o teto distribuído localizado para NeoForge 1.21.1.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 0.15.0-rc-3-1. A sequência publicada foi revalidada até **0.15.3.1**; 0.15.3 introduz um modelo de clima alternante habilitado por padrão e 0.15.3.1 ajusta o balanceamento desse modelo.
 - **Decisão:** Sem decisão
 - **Sobreposição:** É o provider de estação/clima sazonal do stack. Cold Sweat trata temperatura corporal; MultiMod Patch traduz estado sazonal; Bundles adiciona dados/recursos. Não são substitutos do core.
 - **Data da última decisão:** 2026-08-26
@@ -118,8 +118,8 @@ O servidor deve fornecer o mesmo state sazonal para todos os jogadores. Clientes
 > **Boundary canônico:** Ecliptic Seasons é a fonte de verdade do **estado sazonal**. Addons apenas traduzem esse state para conteúdo externo.
 
 
-## 20. Histórico upstream 0.15.1 → 0.15.2.1 — não instalado
-A autoridade física continua em **0.15.0-rc-3-1**. Na distribuição CurseForge para NeoForge 1.21.1, as releases seguintes são 0.15.1, 0.15.2 e 0.15.2.1.
+## 20. Histórico upstream 0.15.1 → 0.15.3.1 — não instalado
+A autoridade física continua em **0.15.0-rc-3-1**. Na distribuição CurseForge para NeoForge 1.21.1, a sequência posterior auditada é **0.15.1 → 0.15.2 → 0.15.2.1 → 0.15.2.2 → 0.15.3 → 0.15.3.1**.
 
 ### 0.15.1
 - move os controles de **crop humidity** para o simulation level **Survival**, explicitamente para reavaliar se devem permanecer;
@@ -135,9 +135,33 @@ Esse delta é gameplay/performance-sensitive: restaurar ticks extras pode mudar 
 ### 0.15.2.1
 O commit oficial 0.15.2.1 altera a detecção de biomas sem precipitação para usar **`getModifiedClimateSettings().hasPrecipitation()`** em vez do estado climático base do biome. Isso faz a regra respeitar climate settings modificados por runtime/compat, reduzindo falso tratamento de biomas cujo precipitation state foi alterado por outro provider.
 
-### Nota sobre 0.15.2.2
-A branch oficial `neoforge-1.21.x` já contém commit/version bump 0.15.2.2 em 01/10/2026, com ajuste textual do modelo de weather e tradução coreana. Porém o CurseForge consultado ainda lista **0.15.2.1 como último artefato 1.21.1**; não trato 0.15.2.2 como atualização distribuída deste pack até existir publicação 1.21.1 verificável.
+### 0.15.2.2
 
-Gate de promoção: migration de configs; simulation level Survival/humidity; rainless biomes/Sparse Savanna; `doWeatherCycle=false`; extra block ticks sob carga; precipitation alterada por outro mod/datapack; snow initialization; Cold Sweat/MultiMod Patch; Distant Horizons; restart e `/reload`.
+- Release 1.21.1 posterior à 0.15.2.1.
+- O commit de release auditado concentra-se em **localização coreana / recursos de idioma**; não foi identificado, nesse checkpoint de versão, um delta material de gameplay ou authority que justifique atribuir nova mecânica ao pack.
+- Ainda assim, a release faz parte da travessia obrigatória e não foi omitida.
 
-Fontes upstream: CurseForge 1.21.1 files 0.15.1/0.15.2/0.15.2.1; source oficial `TeamTeaMC/Ecliptic-Seasons`, branch `neoforge-1.21.x`, commits de changelog/version 26/09/2026.
+### 0.15.3 — novo modelo de clima alternante
+
+- Introduz **Alternating Weather Model**, habilitado por padrão.
+- Períodos claros e chuvosos passam a alternar, assim como períodos com e sem trovoada, reduzindo sequências excessivamente longas de chuva ou céu limpo.
+- As chances de chuva e trovoada passam a influenciar tanto **duração** quanto **intervalo** dos períodos.
+- A configuração `AlternatingWeatherModel` pode ser desabilitada para restaurar o comportamento anterior.
+- Esse delta é material para o pack porque Ecliptic Seasons é authority de clima/estações e pode afetar exposição ambiental, agricultura e qualquer integração que observe estado de chuva/trovoada.
+
+### 0.15.3.1 — ajuste de balanceamento/hotfix
+
+- Ajusta o cálculo de escalonamento de duração/intervalo do modelo alternante: a razão passa por raiz quadrada e recebe clamp mais estreito, reduzindo extremos de duração.
+- Ajusta também o valor recomendado/default exibido para `UseSolarWeather` na configuração.
+- Não altera o version pin físico: o pack continua em `0.15.0-rc-3-1`.
+
+### Gate de promoção 0.15.0-rc-3-1 → 0.15.3.1
+
+- [ ] Revalidar migração do config antigo para `AlternatingWeatherModel` sem reset silencioso.
+- [ ] Testar sequência clear → rain → clear em múltiplos solar terms.
+- [ ] Testar thunder/non-thunder e multiplicadores de chance.
+- [ ] Validar agricultura/humidity/greenhouse após a promoção.
+- [ ] Validar Distant Horizons/LOD e aparência sazonal depois de mudanças de clima.
+- [ ] Confirmar que integrações térmicas continuam tratando Ecliptic Seasons como **clima/estações**, não como temperatura corporal do Cold Sweat.
+
+Fonte: CurseForge oficial da linha 1.21.1 + source `TeamTeaMC/Ecliptic-Seasons` branch `neoforge-1.21.x`, checkpoints 0.15.2.2, 0.15.3 e 0.15.3.1.
