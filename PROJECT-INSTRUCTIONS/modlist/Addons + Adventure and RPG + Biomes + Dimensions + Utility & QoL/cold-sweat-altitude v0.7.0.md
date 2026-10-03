@@ -1,6 +1,6 @@
 # Cold Sweat: Altitude — 0.7.0
 
-> **Adição pós-snapshot físico — 02/10/2026.** O usuário confirmou que adicionou **Cold Sweat: Altitude** ao perfil. O snapshot físico disponível no projeto, `modlist(1).txt` de 16/09/2026, é anterior a essa instalação e ainda não contém o JAR. A release pública atual para Minecraft 1.21.1 / NeoForge é `coldsweat_altitude-0.7.0.jar` / `0.7.0`. Portanto esta ficha documenta **0.7.0 como build-alvo atualmente publicada e relatada como adicionada**, mas não inventa SHA-1, metadata física nem ordem de JAR antes de um novo snapshot.
+> **Adição pós-snapshot físico — 02/10/2026.** O usuário confirmou que adicionou **Cold Sweat: Altitude** ao perfil. O snapshot físico disponível no projeto, `modlist(1).txt` de 16/09/2026, é anterior a essa instalação e ainda não contém o JAR. A build relatada/documentada permanece `coldsweat_altitude-0.7.0.jar` / `0.7.0`, enquanto o upstream avançou para `0.8.1` em 01/10/2026. Portanto esta ficha mantém **0.7.0 como version pin não fisicamente revalidado** e registra 0.8.0/0.8.1 apenas como upstream não instalado; não inventa SHA-1, metadata física nem ordem de JAR antes de um novo snapshot.
 
 > **Status de certificação:** **SEM `✅-`**. Não existe ficha canônica correspondente recuperável no Notion e a nova instalação ainda não foi re-fetched por modlist/JAR físico atualizado.
 
@@ -15,13 +15,14 @@
 - **Licença publicada da release:** MIT
 - **Categoria:** Addons; Adventure and RPG; Biomes; Dimensions; Utility & QoL
 - **Estado no pack:** Adicionado pelo usuário em 02/10/2026; confirmação física detalhada pendente
-- **Estado da pesquisa:** Documentação upstream verificada; artefato físico pós-snapshot pendente
+- **Estado da pesquisa:** Documentação upstream verificada até 0.8.1; artefato físico pós-snapshot pendente
 - **Decisão:** Manter/adicionar
-- **Função:** camada configurável de temperatura por altitude para Cold Sweat, com bandas Y, gradientes, shelter/protection, mensagens de feedback e integração explícita com Create Aeronautics/Sable.
-- **Dependência funcional obrigatória:** Cold Sweat. A release pública informa **Cold Sweat 2.4.1+**; o snapshot físico do pack já contém `ColdSweat-2.4.3.1.jar`.
+- **Função:** camada configurável de temperatura por altitude para Cold Sweat, com bandas Y, gradientes, shelter e integração explícita com Create Aeronautics/Sable. A linha upstream 0.8.x adiciona wind exposure e Windproof Lining, mas essas funções não são atribuídas ao runtime 0.7.0.
+- **Dependência funcional obrigatória:** Cold Sweat. A build 0.7.0 documentava **Cold Sweat 2.4.1+**; o snapshot físico do pack contém `ColdSweat-2.4.3.1.jar`. Para 0.8.1, o changelog declara rebuild/teste contra 2.4.3.1, enquanto a descrição pública atual diz “Requires Cold Sweat 2.4.4 or newer”; essa divergência upstream deve ser tratada fail-closed em qualquer promoção.
 - **Fonte principal:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat-altitude
 - **Código-fonte:** https://github.com/sprocketaudio/Cold-Sweat-Altitude
 - **Release 0.7.0:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat-altitude/files/8754518
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — version pin documental permanece 0.7.0 sem confirmação física pós-snapshot; upstream publicou 0.8.0 e a correção 0.8.1. A 0.8.1 é a latest pública 1.21.1/NeoForge e não foi promovida como instalada.
 
 # Dossiê operacional — padrão Alex's Mobs
 
@@ -186,13 +187,56 @@ A linha pública para 1.21.1 contém 0.1.0 → 0.7.0. Entre os marcos verificáv
 
 Esta ficha não inventa detalhes de releases cujo changelog não foi necessário para descrever o baseline atual.
 
-## 13. Drift do código-fonte pós-release
+## 13. Atualizações upstream 0.8.0 → 0.8.1 — não instaladas
 
-O branch `main` do source repository já declara **0.8.1** e contém descrição/metadata de funcionalidades posteriores, incluindo wind exposure/windproof gear.
+A build documentada nesta ficha continua em **0.7.0** porque não existe novo snapshot físico confirmando qual JAR foi realmente colocado no perfil. O upstream, porém, publicou a linha 0.8.x.
 
-Isso é **desenvolvimento upstream posterior à release pública 0.7.0**. Não incorporar essas funções ao runtime instalado até existir artefato publicado/instalado correspondente.
+### 0.8.0 — wind exposure e proteção
 
-A mesma source main atualmente eleva o piso de Cold Sweat para 2.4.3.1; esse valor não é retroativamente atribuído à release 0.7.0, cuja página pública declara 2.4.1+.
+O source oficial marca a release como **“wind exposure and protection”**. Os deltas materiais são:
+
+- adiciona **wind exposure** às bandas de altitude, permitindo que zonas altas e abertas ampliem a severidade térmica;
+- adiciona o item **Windproof Lining**, costurado em armaduras pelo sistema de Sewing Table do Cold Sweat;
+- a proteção contra vento passa a ser calculada a partir dos linings realmente costurados na armadura, em vez do antigo modelo genérico de item-tag protection;
+- shelter reduz a exposição ao vento; o mesmo cálculo de enclosure pode ser usado mesmo quando a redução térmica normal de shelter da banda está desabilitada;
+- enquanto uma banda de Altitude é a owner da contribuição vertical, o addon pode tornar o **ElevationTempModifier** nativo do Cold Sweat um no-op, evitando dupla aplicação do efeito de altitude sem desabilitar biome, weather, wetness, block temperatures, insulation, hearths e outros modifiers;
+- amplia diagnósticos do comando `status` para expor wind exposure, wind protection e quantidade de linings;
+- melhora o fallback de **Hearth** em sublevels Sable/Aeronautics e corrige uma superfície de `ConcurrentModificationException` durante atualização de modifiers em transições de ship/sublevel.
+
+A build inicial 0.8.0 **não deve ser usada como destino de promoção**: o próprio autor informa que ela foi compilada acidentalmente contra uma versão de desenvolvimento ainda não publicada do Cold Sweat.
+
+### 0.8.1 — rebuild corrigido
+
+A 0.8.1, CurseForge file ID `9027134`, é a correção da 0.8.0:
+
+- recompilada/testada contra o **Cold Sweat público 2.4.3.1**;
+- compatibilidade confirmada pelo autor com **Create: Aeronautics 1.3.2** e **Sable NeoForge 2.0.5** usando JARs publicados;
+- hearth warmth confirmado dentro de ships montados de Create: Aeronautics;
+- **sem mudanças de gameplay ou balanceamento** em relação à 0.8.0.
+
+### Divergência de dependência publicada
+
+Há uma inconsistência upstream que não deve ser “resolvida” por inferência:
+- o changelog de 0.8.1 diz que a build foi reconstruída e testada contra **Cold Sweat 2.4.3.1**;
+- a descrição pública atual do projeto diz **“Requires Cold Sweat 2.4.4 or newer”**.
+
+O pack físico conhecido está em **Cold Sweat 2.4.3.1**. Portanto, antes de promover Altitude para 0.8.1, validar o `neoforge.mods.toml` do JAR realmente baixado e fazer startup real com a combinação instalada.
+
+### Gate de promoção 0.7.0 → 0.8.1
+
+- [ ] Não instalar 0.8.0; usar no mínimo a rebuild 0.8.1.
+- [ ] Confirmar metadata/dependency range do JAR 0.8.1 contra Cold Sweat 2.4.3.1/2.4.4.
+- [ ] Testar wind exposure em área aberta e em shelter.
+- [ ] Costurar/remover Windproof Lining e verificar proteção/persistência por peça.
+- [ ] Confirmar que o ElevationTempModifier nativo não duplica a contribuição vertical enquanto a banda do addon está ativa.
+- [ ] Confirmar que biome/weather/wetness/hearth/insulation do Cold Sweat continuam funcionando.
+- [ ] Revalidar hearth em ship Aeronautics montado e transição world↔Sable sublevel.
+- [ ] Executar `/coldsweat_altitude status` e conferir wind exposure/protection/lining count.
+- [ ] Dedicated-server smoke e save/reload.
+
+Fontes upstream:
+- CurseForge 0.8.1: https://www.curseforge.com/minecraft/mc-mods/cold-sweat-altitude/files/9027134
+- Source oficial: release commit 0.8.0 `613493e8760d2061022b3816e2dc11535a690887` e rebuild 0.8.1.
 
 ## 14. Compatibilidade e overlaps no pack
 
@@ -213,7 +257,8 @@ Pontos principais de interação:
 6. Config antigo migrar sem adotar defaults novos esperados.
 7. Client feedback divergir do estado real em latency/reload.
 8. Dedicated server carregar classes de integração opcionais incorretamente.
-9. Source main 0.8.x ser confundido com release instalada 0.7.0.
+9. Upstream 0.8.x ser confundido com a build instalada/documentada 0.7.0 sem novo snapshot físico.
+10. Divergência de dependency metadata/documentação entre Cold Sweat 2.4.3.1 e 2.4.4 ser ignorada durante promoção.
 
 ## 16. Matriz de validação para esta instância
 
@@ -244,14 +289,14 @@ Nenhum teste foi marcado como executado nesta auditoria documental.
 - Não usar cor da actionbar como receipt de perk.
 - Para perks, preferir adapter/query versionado do estado real.
 - Para quests, bandas e comandos podem ser usados como objetivos de exploração, mas a conclusão deve observar state/event comprovável.
-- Não documentar funcionalidades 0.8.x como presentes enquanto o JAR alvo continuar 0.7.0.
+- Não tratar funcionalidades 0.8.x como **instaladas** enquanto o version pin documental continuar 0.7.0 e não houver novo snapshot físico.
 - Atualização futura deve reconciliar primeiro JAR físico e metadata, depois source/changelog.
 
 ## 18. Evidências e grau de confiança
 
-**Alta confiança — release pública:** CurseForge confirma 0.7.0 como release atual de 1.21.1/NeoForge, file ID 8754518, ambiente client+server, categorias e dependência Cold Sweat 2.4.1+.
+**Alta confiança — linha pública:** CurseForge confirma 0.8.1 como latest 1.21.1/NeoForge, file ID 9027134; a build documentada 0.7.0 permanece sem revalidação física pós-snapshot.
 
-**Alta confiança — comportamento publicado:** página oficial/README descreve bandas, gradientes, shelter, protection, actionbar, Aeronautics/Sable, config e comandos.
+**Alta confiança — comportamento publicado:** página oficial/source descrevem bandas, gradientes, shelter, actionbar, Aeronautics/Sable, config/comandos e, na linha 0.8.x, wind exposure + Windproof Lining.
 
 **Alta confiança — pack existente:** snapshot físico anterior confirma Cold Sweat 2.4.3.1, Create Aeronautics e o ecossistema Sable já presentes.
 
