@@ -173,7 +173,7 @@ O projeto se descreve como altamente configurável, mas esta ficha não inventa 
 - **Semântica:** esta reconciliação é evidence-only `+0`; o mínimo semântico estrito do catálogo permanece 796.
 - **Runtime:** nenhum teste da matriz Goety acima foi executado nesta catalogação.
 
-## 21. Atualizações upstream 3.1.5 → 3.1.5.1 — não instaladas
+## 21. Atualizações upstream 3.1.5 → 3.2.0 — não instaladas
 
 A autoridade física continua em **Goety 3.1.4**. A listagem oficial para NeoForge 1.21.1 mostra, após a build instalada, exatamente **3.1.5** (17/09/2026) e **3.1.5.1** (18/09/2026).
 
@@ -191,9 +191,27 @@ A release seguinte corrige um problema crítico introduzido na 3.1.5: **estrutur
 
 Impacto: 3.1.5 não deve ser tratada como destino estável isolado para este pack. Se houver promoção, o baseline mínimo a avaliar é 3.1.5.1, com regressão explícita de structures/worldgen.
 
-### Gate de promoção 3.1.4 → 3.1.5.1
+### 3.2.0 — The Windy Update
+
+- Release NeoForge 1.21.1 publicada em **03/10/2026**, CurseForge file ID `9044971`.
+- **Rework global de terrain adaptation** das estruturas Goety para encaixe mais natural no terreno; isso amplia a superfície de regressão de worldgen além do hotfix 3.1.5.1.
+- **Wind Shrine** foi reconstruído em escala maior/mais alta, ganhou biome próprio ao redor e novas salas com trial spawners.
+- **Trial Chambers** recebem uma nova sala/bloco que pode invocar o boss **Hurricane**.
+- O Hurricane é o equivalente de Breeze para o papel que Wildfire exerce sobre Blaze; o changelog informa drop de **Heavy Core** e loot adicional.
+- **Breeze Servants** passam a poder ser obtidos por ritual ou `Breezing Focus` e podem ser mutados em **Hurricane Servant**.
+- O source atual confirma a entidade `goety:hurricane_servant`, recipe de conversão e tags/configs próprios do servant.
+- A atualização também incorpora as mudanças de conteúdo wind-themed e o **Ominous Crystal Ball** mencionados pelo autor.
+
+Impacto para o catálogo: é uma atualização estrutural de **worldgen + boss + servants + ritual/progressão**, não um simples hotfix. Addons Goety Iron e Goety Cataclysm precisam ser revalidados contra a nova linha antes de promover o runtime.
+
+### Gate de promoção 3.1.4 → 3.2.0
 - [ ] Dedicated server boot com Goety Iron/Goety Cataclysm e libraries atuais.
 - [ ] Estruturas Goety geram em chunks novos — regressão direta de 3.1.5 corrigida em 3.1.5.1.
+- [ ] Comparar terreno/placement de estruturas existentes e novas após o rework 3.2.0.
+- [ ] Wind Shrine novo gera com biome/rooms/trial spawners sem colisão grave com worldgen do pack.
+- [ ] Trial Chamber room do Hurricane gera e invoca o boss corretamente.
+- [ ] Breeze Servant via ritual/Breezing Focus e mutação para Hurricane Servant preservam ownership/persistência.
+- [ ] Revalidar Goety Iron e Goety Cataclysm contra Goety 3.2.0.
 - [ ] Mundo existente continua abrindo sem registry/worldgen corruption.
 - [ ] Cerberus/variantes Howling spawnam e executam AI/ataques sem ownership ou damage duplication.
 - [ ] Soul Energy, Focus casting, servants e rituals permanecem exactly-once.
