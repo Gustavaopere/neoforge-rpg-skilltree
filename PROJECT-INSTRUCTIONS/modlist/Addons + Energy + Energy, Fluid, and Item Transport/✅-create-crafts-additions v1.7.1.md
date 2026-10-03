@@ -14,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** 1.7.1 é Beta intencional. Riscos: loops FE↔kinetic, endpoint/cache stale, Accumulator split/merge, PEI dupe em contraption, Servo Motor lifecycle, Electric Pump transfer/state, hooks Sable duplicados com bridge 0.1.13 e overlap energético com Create: New Age. Release 1.6.0 permanece fallback estável documentado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/createaddition
-- **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `createaddition` 1.7.1 + CurseForge oficial da Beta 1.7.1 para NeoForge 1.21.1, publicada em 15/09/2026, com changelog oficial.
-- **Observações:** JAR/mod id/runtime 1.7.1 confirmados. Changelog oficial 1.7.1: Electric Pump block + various bug fixes. A 1.7.0 permanece baseline histórica de Servo Motor e improved Sable/Connector support.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #166: `createaddition-1.7.1.jar` / `1.7.1` confirmados. A Beta oficial NeoForge 1.21.1 de 15/09/2026 adiciona Electric Pump e various bug fixes; baseline 1.7.0 de Servo Motor + suporte Sable/Connector permanece preservada.
+- **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `createaddition` 1.7.1 + CurseForge oficial Beta 1.7.1 e 1.7.2 para NeoForge 1.21.1; 1.7.2 foi publicada em 01/10/2026, file ID 9029800.
+- **Observações:** JAR/mod id/runtime 1.7.1 confirmados. Upstream 1.7.2 Beta adiciona charging em Sequenced Assembly, Ponders extras, wrench rotation do Electric Servo e corrige Connectors em chunks unloaded, wire culling, direção do Servo e refuel do Liquid Blaze Burner.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 1.7.1. A única release 1.21.1 posterior é 1.7.2 Beta; seus deltas foram incorporados sem alterar o version pin.
 - **Decisão:** Manter
 - **Histórico da decisão:** 2026-09-06 — presença e versão 1.7.0 aprovadas como escolha intencional do stack Sable/Connector. Pesquisa fechada; manter fallback 1.6.0 documentado, sem alterar versão física sem nova modlist. 2026-09-18 — runtime físico atualizado para 1.7.1; decisão `Manter` preservada. O fallback 1.6.0 continua apenas como referência estável histórica, sem downgrade automático.
 - **Sobreposição:** Create: New Age 1.2.0 cobre parte do domínio elétrico. Sable Create Addition Compat 0.1.13 também toca integração Sable; suporte nativo 1.7.0 não prova redundância total do bridge. Decisão Manter preservada.
@@ -115,3 +115,31 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 23. Evidências e limites
 A modlist física de 16/09/2026 confirma JAR/runtime 1.7.1, NeoForge 21.1.250 e o stack Sable/Aeronautics/Connector. A publicação oficial confirma que 1.7.1 é Beta, adiciona Electric Pump e inclui various bug fixes; a 1.7.0 permanece baseline histórica de Servo Motor + improved Sable/Connector support. A documentação pública confirma as principais máquinas/superfícies; parâmetros não pinados por config/source específico permanecem sob authority do runtime.
 > 🔒 **Boundary canônico:** CC&A owns a ponte FE↔kinetic e sua rede elétrica; Create owns kinetics; providers FE own suas capabilities. A decisão formal **Manter** e o fallback 1.6.0 são preservados; suporte Sable nativo não torna automaticamente o bridge externo redundante.
+
+## 27. Atualização upstream 1.7.2 — não instalada
+
+A autoridade física continua em **Create Crafts & Additions 1.7.1 Beta**. A release **1.7.2 Beta** foi publicada para NeoForge 1.21.1 em 01/10/2026, file ID `9029800`. Não há release intermediária entre 1.7.1 e 1.7.2.
+
+### Adicionado
+- suporte a **Charging em Sequenced Assembly**, ampliando a integração do sistema elétrico com recipes sequenciais do Create;
+- novos **Ponder scenes** para Connectors, Electric Pump e Electric Servo;
+- **Electric Servo** pode ser rotacionado no próprio eixo com wrench.
+
+### Corrigido
+- Connectors retrabalhados para funcionar através de **chunks unloaded**;
+- melhoria de rendering/culling dos fios dos Connectors;
+- Servo deixava a rotação invertida ao apontar para norte, oeste e baixo;
+- **Liquid Blaze Burner** passa a refuel corretamente a partir de itens-contêiner de fluido.
+
+### Impacto no pack
+O fix de Connector em chunks unloaded é particularmente relevante para redes longas e para lifecycle de chunk. O novo charging em Sequenced Assembly também amplia a superfície de automação e precisa ser testado contra JEI/recipe sync e loops FE↔kinetic.
+
+### Gate de promoção 1.7.1 → 1.7.2
+- [ ] Connector transmite/retoma estado corretamente com chunk remoto unload/reload.
+- [ ] Nenhum ticket de chunk ou endpoint stale permanece após desconexão/restart.
+- [ ] Charging em Sequenced Assembly consome exatamente a energia prevista e não duplica progress.
+- [ ] Servo rotacionado por wrench preserva facing/state e gira corretamente em todas as faces.
+- [ ] Liquid Blaze Burner aceita/refaz refuel com fluid containers sem duplicar item/fluid.
+- [ ] Revalidar Sable native support + Sable Create Addition Compat para evitar double hooks.
+
+Fonte upstream: CurseForge Create Crafts & Additions 1.7.2, file ID 9029800. Nenhum teste acima foi executado nesta atualização documental.
