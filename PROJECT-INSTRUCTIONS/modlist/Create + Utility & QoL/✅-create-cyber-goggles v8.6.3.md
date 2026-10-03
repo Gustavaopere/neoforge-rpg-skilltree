@@ -14,8 +14,8 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Riscos: regressão de mixin com JEI (#92, corrigida em 8.6.3); overlay divergir do server state; `Image is not allocated` regression; Requester undo/recipe transfer duplicar ação; tooltip/provider conflict; shader/post-process conflicts; Aeronautics body stale; Create internals drift. A upstream 8.6.4 refatora goggle tooltips para registry extensível; 8.6.5 corrige tooltip fade e completa a navegação Aeronautics #97; 8.6.6 corrige o crash de dedicated server do issue #102 causado por carregamento de `LocalPlayer` no lado servidor.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles
-- **Procedência:** modlist física atual confirma `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` / 8.6.3. A auditoria anterior estabeleceu pin matching do branch oficial à 8.6.3 naquele momento; o branch `1.21.1/NeoForge` avançou depois para as releases 8.6.4/8.6.5 e não é mais um pin exato do JAR instalado. CurseForge 8.6.4/8.6.5 e GitHub PRs #98/#99 + issue #97 foram revalidados em 01/10/2026.
-- **Observações:** Runtime físico permanece 8.6.3 Beta. Upstream posterior publicou 8.6.4, 8.6.5 e 8.6.6 como Releases: 8.6.4 incorpora traduções e uma nova registry API para composição de goggle tooltips; 8.6.5 corrige tooltip fade e adiciona/fecha a feature #97 de distância para navigation items do Aeronautics.
+- **Procedência:** modlist física atual confirma `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` / 8.6.3. A auditoria anterior estabeleceu pin matching do branch oficial à 8.6.3 naquele momento; o branch `1.21.1/NeoForge` avançou depois para as releases 8.6.4/8.6.5 e não é mais um pin exato do JAR instalado. CurseForge 8.6.4/8.6.5/8.6.6 e GitHub PRs #98/#99 + issues #97/#102 foram revalidados em 03/10/2026.
+- **Observações:** Runtime físico permanece 8.6.3 Beta. Upstream posterior publicou 8.6.4, 8.6.5 e 8.6.6 como Releases: 8.6.4 incorpora traduções e uma nova registry API para composição de goggle tooltips; 8.6.5 corrige tooltip fade e adiciona/fecha a feature #97 de distância para navigation items do Aeronautics; 8.6.6 corrige o invalid-dist crash de dedicated server do issue #102.
 - **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 8.6.3 Beta. A sequência 8.6.4 → 8.6.5 → 8.6.6 foi auditada; 8.6.6 é a latest 1.21.1 e corrige o crash de dedicated server rastreado no issue #102.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não é equivalente a Create Goggles/equipamentos físicos: Cyber Goggles é assistência client-side. Pode sobrepor UI/overlays de Jade/JEI/outros, mas não owns gameplay state.
@@ -107,12 +107,12 @@ Dois players podem ter configs diferentes e ainda receber o mesmo state do servi
 - [ ] Desabilitar módulos remove overlays/hooks correspondentes sem state residual.
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 25. Evidências e limites
-A modlist física confirma JAR/mod id/runtime 8.6.3. Na auditoria da build instalada, o branch oficial `1.21.1/NeoForge` estava pin-matching 8.6.3 e sustentava Client-side, Java 21, NeoForge 21.1.250 e Create mínimo 6.0.10; esse branch avançou posteriormente para 8.6.4/8.6.5 e já não é usado como pin exato do JAR físico. O pack usa JEI 19.56.0.440; o fix #92 da 8.6.3 permanece lineage relevante para o mixin failure causado por atualização do JEI. Os fixes documentados na 8.5.3 para EMI/Requester/Image/tooltip permanecem como lineage herdada. Features 8.6.4/8.6.5 são registradas apenas como upstream não instalado.
+A modlist física confirma JAR/mod id/runtime 8.6.3. Na auditoria da build instalada, o branch oficial `1.21.1/NeoForge` estava pin-matching 8.6.3 e sustentava Client-side, Java 21, NeoForge 21.1.250 e Create mínimo 6.0.10; esse branch avançou posteriormente para 8.6.4/8.6.5/8.6.6 e já não é usado como pin exato do JAR físico. O pack usa JEI 19.56.0.440; o fix #92 da 8.6.3 permanece lineage relevante para o mixin failure causado por atualização do JEI. Os fixes documentados na 8.5.3 para EMI/Requester/Image/tooltip permanecem como lineage herdada. Features/fixes 8.6.4/8.6.5/8.6.6 são registrados apenas como upstream não instalado.
 > 🔒 **Boundary canônico:** Cyber Goggles owns apenas assistência/visualização/UX no cliente. Create, logistics providers e Aeronautics/Sable continuam authority do state mostrado. Se o overlay e o servidor divergem, o servidor/provider vence.
 
 ## 26. Atualizações upstream 8.6.4 → 8.6.6 — não instaladas
 
-A autoridade física continua em **Create: Cyber Goggles 8.6.3 Beta**. A listagem oficial 1.21.1/NeoForge publica depois **8.6.4** (23/09/2026) e **8.6.5** (26/09/2026), ambas como **Release**.
+A autoridade física continua em **Create: Cyber Goggles 8.6.3 Beta**. A listagem oficial 1.21.1/NeoForge publica depois **8.6.4** (23/09/2026), **8.6.5** (26/09/2026) e **8.6.6** (02/10/2026), todas como **Release**.
 
 ### 8.6.4 — composição de goggle tooltips e extensão por terceiros
 O changelog público resume a release como merge das PRs **#98** e **#99**.
@@ -160,4 +160,4 @@ A issue #97 solicita que navigation items do Aeronautics mostrem a **distância 
 - [ ] JEI 19.56.0.440 continua sem o mixin failure corrigido na 8.6.3.
 - [ ] Drafting View/resource reload/shader lifecycle continua sem `Image is not allocated`.
 
-Fontes upstream: CurseForge 8.6.4 file ID 8952040 e 8.6.5 file ID 8980429; GitHub oficial `ForgeStove/CreateCyberGoggles` PR #98, PR #99 e issue #97. Nenhum teste acima foi executado nesta atualização documental.
+Fontes upstream: CurseForge 8.6.4 file ID 8952040, 8.6.5 file ID 8980429 e 8.6.6 file ID 9034839; GitHub oficial `ForgeStove/CreateCyberGoggles` PR #98, PR #99 e issues #97/#102. Nenhum teste acima foi executado nesta atualização documental.
