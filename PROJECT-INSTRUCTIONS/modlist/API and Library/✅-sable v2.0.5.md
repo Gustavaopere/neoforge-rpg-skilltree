@@ -15,11 +15,11 @@
 - **Função:** Infraestrutura física intrusiva para sub-levels: estruturas móveis com chunks, entidades e block entities reais em pose dinâmica, base do ecossistema Aeronautics e de numerosos compats do pack.
 - **Dependências:** JAR inclui `sable_rapier` 2.0.5, Sable Companion common 1.6.0 e Veil NeoForge 4.3.2 embarcados. Create 6.0.10 é integração concreta presente; vários addons/bridges atuais dependem funcionalmente de Sable.
 - **Sobreposição:** Não é duplicata do Create. Sable owns sublevels/physics/transforms; Create owns kinetics/contraptions. Bridges e addons devem respeitar essa boundary.
-- **Compatibilidade/Riscos:** Infraestrutura altamente intrusiva com mixins extensos. Riscos: coordinate-space errors, invalid body handles, save/tracking corruption, chunk/forceload leaks, duplicate BE/gameplay ticks, networking divergence, provider API drift e physics-data migration. 2.0.5 corrige crash de server ao montar contraptions Create sem massa.
-- **Observações:** Source público `main` declara version 2.0.5 / Minecraft 1.21.1, permitindo mapear bootstrap e APIs da mesma linha instalada. Componentes embarcados pertencem ao JAR e não viram entradas top-level.
-- **Procedência:** modlist.txt física canônica de 10/09/2026 + CurseForge oficial Sable 2.0.5 + repositório/wiki oficial 2.0.5/current + changelog 2.0.0 usado apenas como lineage de regressão.
+- **Compatibilidade/Riscos:** Infraestrutura altamente intrusiva com mixins extensos. Riscos: coordinate-space errors, invalid body handles, save/tracking corruption, chunk/forceload leaks, duplicate BE/gameplay ticks, networking divergence, provider API drift, physics-data migration e entity/fluid surface handling. 2.0.5 corrige crash de server ao montar contraptions Create sem massa; 2.0.6 corrige entidades quebradas ao permanecer sobre fluidos, com Striders citados explicitamente.
+- **Observações:** A auditoria da build instalada mapeou o source 2.0.5 para bootstrap/APIs da linha física. O runtime do pack permanece 2.0.5; upstream publicou 2.0.6 em 03/10/2026 com fix de entidades sobre fluidos. Componentes embarcados pertencem ao JAR e não viram entradas top-level.
+- **Procedência:** modlist.txt física atual + CurseForge oficial Sable 2.0.5/2.0.6 + repositório/wiki oficial para a arquitetura da linha 2.x + changelog 2.0.0 usado apenas como lineage de regressão.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sable
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Sable 2.0.5/JAR físico reconfirmado; 2.0.5 permanece a release NeoForge 1.21.1 mais recente localizada. Hierarquia embedded refinada: Sable Rapier 2.0.5, Sable Companion 1.6.0 e Veil 4.3.2; dentro do Veil, GLSL Processor 0.2.3 e Molang Compiler 3.1.1.19 permanecem internos ao host.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — Sable físico permanece 2.0.5; a latest NeoForge 1.21.1 localizada é 2.0.6. A nova release corrige entity-on-fluid handling; nenhum version pin físico foi alterado.
 - **Histórico da decisão:** Correção de auditoria em 22/08/2026: esta linha é Sable e havia recebido por engano histórico/versão de Northstar Redux. Sable 2.0.5 permanece instalado como infraestrutura do ecossistema Aeronautics/sublevels; decisões sobre Northstar, Creating Space e Stellaris pertencem a registros separados.
 - **Data da última decisão:** 2026-08-22
 
@@ -241,6 +241,7 @@ Avaliar com número real de sublevels, tamanho e movimento. Uma estrutura parada
 10. **Portal/POI/entity boundary:** sistemas vanilla não transform-aware.
 11. **Provider API drift:** Create/Sodium/addons esperam outra API.
 12. **Physics data drift:** datapack de massa/gravity muda e estruturas existentes entram em state inesperado.
+13. **Entity-on-fluid regression:** Striders ou outras entidades sobre fluidos perdem posição/collision correta — alvo direto do fix 2.0.6.
 
 ## 24. Matriz de testes
 - [ ] Dedicated server inicia com Sable 2.0.5 e stack físico atual.
