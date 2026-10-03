@@ -36,7 +36,11 @@ base {
 repositories {
     mavenCentral()
     maven { url = 'https://maven.neoforged.net/releases' }
-    maven { url = 'https://maven.parchmentmc.org' }
+    maven {
+        name = 'ParchmentMC'
+        url = 'https://maven.parchmentmc.org'
+        content { includeGroup 'org.parchmentmc.data' }
+    }
     maven { url = 'https://maven.createmod.net' }
     maven { url = 'https://maven.theillusivec4.top/' }
     maven {
