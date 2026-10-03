@@ -12,11 +12,11 @@
 - **Dependências:** Client-side sobre Create 6.0.10; pack físico usa NeoForge 21.1.250 e JEI 19.56.0.440. Source branch 8.6.3 declara Create mínimo 6.0.10 e usa JEI 19.56.0.439 no ambiente de desenvolvimento.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Riscos: regressão de mixin com JEI (#92, corrigida em 8.6.3); overlay divergir do server state; `Image is not allocated` regression; Requester undo/recipe transfer duplicar ação; tooltip/provider conflict; shader/post-process conflicts; Aeronautics body stale; Create internals drift. A upstream 8.6.4 refatora goggle tooltips para registry extensível justamente para reduzir overwrite conflicts; 8.6.5 corrige tooltip fade e completa a navegação Aeronautics #97.
+- **Compatibilidade/Riscos:** Riscos: regressão de mixin com JEI (#92, corrigida em 8.6.3); overlay divergir do server state; `Image is not allocated` regression; Requester undo/recipe transfer duplicar ação; tooltip/provider conflict; shader/post-process conflicts; Aeronautics body stale; Create internals drift. A upstream 8.6.4 refatora goggle tooltips para registry extensível; 8.6.5 corrige tooltip fade e completa a navegação Aeronautics #97; 8.6.6 corrige o crash de dedicated server do issue #102 causado por carregamento de `LocalPlayer` no lado servidor.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles
 - **Procedência:** modlist física atual confirma `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` / 8.6.3. A auditoria anterior estabeleceu pin matching do branch oficial à 8.6.3 naquele momento; o branch `1.21.1/NeoForge` avançou depois para as releases 8.6.4/8.6.5 e não é mais um pin exato do JAR instalado. CurseForge 8.6.4/8.6.5 e GitHub PRs #98/#99 + issue #97 foram revalidados em 01/10/2026.
-- **Observações:** Runtime físico permanece 8.6.3 Beta. Upstream posterior publicou 8.6.4 e 8.6.5 como Releases: 8.6.4 incorpora traduções e uma nova registry API para composição de goggle tooltips; 8.6.5 corrige tooltip fade e adiciona/fecha a feature #97 de distância para navigation items do Aeronautics.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 8.6.3 Beta. As releases 8.6.4 e 8.6.5 foram auditadas em ordem e seus deltas de tooltip extensibility/compatibilidade e Aeronautics UX foram incorporados abaixo.
+- **Observações:** Runtime físico permanece 8.6.3 Beta. Upstream posterior publicou 8.6.4, 8.6.5 e 8.6.6 como Releases: 8.6.4 incorpora traduções e uma nova registry API para composição de goggle tooltips; 8.6.5 corrige tooltip fade e adiciona/fecha a feature #97 de distância para navigation items do Aeronautics.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 8.6.3 Beta. A sequência 8.6.4 → 8.6.5 → 8.6.6 foi auditada; 8.6.6 é a latest 1.21.1 e corrige o crash de dedicated server rastreado no issue #102.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não é equivalente a Create Goggles/equipamentos físicos: Cyber Goggles é assistência client-side. Pode sobrepor UI/overlays de Jade/JEI/outros, mas não owns gameplay state.
 - **Data da última decisão:** 2026-09-20
@@ -110,7 +110,7 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 A modlist física confirma JAR/mod id/runtime 8.6.3. Na auditoria da build instalada, o branch oficial `1.21.1/NeoForge` estava pin-matching 8.6.3 e sustentava Client-side, Java 21, NeoForge 21.1.250 e Create mínimo 6.0.10; esse branch avançou posteriormente para 8.6.4/8.6.5 e já não é usado como pin exato do JAR físico. O pack usa JEI 19.56.0.440; o fix #92 da 8.6.3 permanece lineage relevante para o mixin failure causado por atualização do JEI. Os fixes documentados na 8.5.3 para EMI/Requester/Image/tooltip permanecem como lineage herdada. Features 8.6.4/8.6.5 são registradas apenas como upstream não instalado.
 > 🔒 **Boundary canônico:** Cyber Goggles owns apenas assistência/visualização/UX no cliente. Create, logistics providers e Aeronautics/Sable continuam authority do state mostrado. Se o overlay e o servidor divergem, o servidor/provider vence.
 
-## 26. Atualizações upstream 8.6.4 → 8.6.5 — não instaladas
+## 26. Atualizações upstream 8.6.4 → 8.6.6 — não instaladas
 
 A autoridade física continua em **Create: Cyber Goggles 8.6.3 Beta**. A listagem oficial 1.21.1/NeoForge publica depois **8.6.4** (23/09/2026) e **8.6.5** (26/09/2026), ambas como **Release**.
 
@@ -138,8 +138,17 @@ O changelog oficial:
 
 A issue #97 solicita que navigation items do Aeronautics mostrem a **distância entre o player e o destino** no tooltip, inclusive quando vistos em containers/storage UIs. No pack, onde Aeronautics/Sable estão presentes, essa é uma integration surface concreta de UX, mas permanece presentation-only.
 
-### Gate de promoção 8.6.3 → 8.6.5
-- [ ] Cliente 8.6.5 conecta ao servidor sem transformar Cyber Goggles em requisito server-side.
+### 8.6.6 — dedicated server / issue #102
+
+- Release NeoForge 1.21.1 publicada em 02/10/2026, CurseForge file ID `9034839`.
+- O changelog oficial resume a release como **“Fix #102”**.
+- O issue #102 documenta que a 8.6.5 podia impedir o startup de dedicated server ao tentar carregar a classe client-only `net.minecraft.client.player.LocalPlayer` em dist `DEDICATED_SERVER`.
+- O fix upstream move/segrega o registro afetado para o lado apropriado, eliminando esse caminho inválido de classloading.
+- Embora Cyber Goggles continue sendo um mod de função essencialmente client-side, esta correção é relevante para pack/server hygiene porque uma instalação acidental no servidor não deve provocar esse crash específico.
+
+### Gate de promoção 8.6.3 → 8.6.6
+- [ ] Cliente 8.6.6 conecta ao servidor sem transformar Cyber Goggles em requisito server-side.
+- [ ] Dedicated server com 8.6.6 presente não reproduz o `LocalPlayer` invalid-dist crash do issue #102.
 - [ ] Tooltips internos continuam com conteúdo e ordering equivalentes aos de 8.6.3.
 - [ ] Dois providers que estendem a mesma goggle tooltip coexistem sem overwrite skip/conflict.
 - [ ] `registerBefore/After` respeitam anchors; anchor inexistente não quebra a tooltip.
