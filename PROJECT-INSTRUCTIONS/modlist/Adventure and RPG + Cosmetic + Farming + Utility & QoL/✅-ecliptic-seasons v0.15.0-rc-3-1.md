@@ -119,7 +119,7 @@ O servidor deve fornecer o mesmo state sazonal para todos os jogadores. Clientes
 
 
 ## 20. Histórico upstream 0.15.1 → 0.15.3.1 — não instalado
-A autoridade física continua em **0.15.0-rc-3-1**. Na distribuição CurseForge para NeoForge 1.21.1, as releases seguintes são 0.15.1, 0.15.2 e 0.15.2.1.
+A autoridade física continua em **0.15.0-rc-3-1**. Na distribuição CurseForge para NeoForge 1.21.1, a sequência posterior auditada é **0.15.1 → 0.15.2 → 0.15.2.1 → 0.15.2.2 → 0.15.3 → 0.15.3.1**.
 
 ### 0.15.1
 - move os controles de **crop humidity** para o simulation level **Survival**, explicitamente para reavaliar se devem permanecer;
