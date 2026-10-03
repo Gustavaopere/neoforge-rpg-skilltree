@@ -13,13 +13,13 @@
 - **Decisão:** Manter
 - **Categoria:** Armazenamento, Automação
 - **Função:** Stationary modular storage with tiered barrels/chests/shulker boxes, capacity and functional upgrades, filters/settings, sorting/memorized slots, controller interaction and storage tools.
-- **Dependências:** Sophisticated Core 1.5.1 está fisicamente presente. Sophisticated Storage Create Integration 0.1.21 e Ars Sophisticated Compatibility 0.3.0 permanecem integrações físicas. A upstream Storage 1.6.0 exige Sophisticated Core >=1.5.2, portanto a promoção não é compatível com o Core físico atual.
+- **Dependências:** Sophisticated Core 1.5.1 está fisicamente presente. Sophisticated Storage Create Integration 0.1.21 e Ars Sophisticated Compatibility 0.3.0 permanecem integrações físicas. A upstream Storage 1.6.0+ exige Sophisticated Core >=1.5.2, portanto a promoção não é compatível com o Core físico atual.
 - **Sobreposição:** Local/upgradable stationary storage. No snapshot físico atual, Tom's Storage 2.4.2 é o provider de rede ativo relevante; AE2 e Refined Storage estão ausentes top-level e permanecem apenas comparações/integrations upstream dormentes. Backpacks continua sobreposição portátil, não equivalente a networked crafting.
 - **Compatibilidade/Riscos:** Stateful stationary storage. Risks: inventory/upgrades loss/dupe, compression/compacting recipe conflicts, controller routing, packed-drop duplication, filter/memory drift, network/capability sync and Create contraption serialization. Compression and compacting are mutually dangerous when combined in conflicting configurations.
 - **Observações:** Runtime físico permanece 1.5.91. Upstream 1.6.0 adiciona Linked Storage por Ender Linker, com inventário/settings/upgrades compartilhados; somente o storage principal executa upgrades por tick e recebe tier upgrade. Linked storages não podem ser packed.
-- **Procedência:** modlist física atual confirma Storage 1.5.91.2127 + Core 1.5.1. CurseForge oficial e source `P3pp3rF1y/SophisticatedStorage` branch `1.21.x` revalidados em 02/10/2026 confirmam Storage 1.6.0 e requisito Core >=1.5.2.
+- **Procedência:** modlist física atual confirma Storage 1.5.91.2127 + Core 1.5.1. CurseForge oficial e source `P3pp3rF1y/SophisticatedStorage` branch `1.21.x` revalidados em 02/10/2026 confirmam a linha Storage 1.6.0→1.6.1 e o requisito Core >=1.5.2.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/8762100
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 02/10/2026 — Storage físico permanece 1.5.91. A 1.6.0 foi documentada como não instalada e exige atualização coordenada de Sophisticated Core.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — Storage físico permanece 1.5.91. A sequência upstream agora chega a 1.6.1.2147; 1.6.1 corrige perda de item data durante migração de mundos e continua exigindo promoção coordenada do Sophisticated Core.
 - **Histórico da decisão:** Mantido como armazenamento estacionário do stack Sophisticated. Em 11/09/2026 revalidado na versão física 1.5.91.2127 e documentado no padrão técnico completo.
 - **Data da última decisão:** 2026-08-22
 
@@ -145,7 +145,7 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Limite:** config local e inventories do mundo não foram inspecionados; o dossiê documenta contratos/riscos do runtime, não afirma quais upgrades estão efetivamente instalados em cada storage.
 
 
-## 26. Atualização upstream 1.6.0 — não instalada
+## 26. Atualizações upstream 1.6.0 → 1.6.1 — não instaladas
 
 A autoridade física continua em **Sophisticated Storage 1.5.91.2127** com **Sophisticated Core 1.5.1**.
 
@@ -153,12 +153,20 @@ A 1.6.0 adiciona **Linked Storage**. Barrels, limited barrels, chests e shulker 
 
 O source 1.21.x da 1.6.0 declara Sophisticated Core **>=1.5.2**. Como o pack físico está em Core 1.5.1, a atualização de Storage fica bloqueada até promoção coordenada do Core.
 
+### 1.6.1.2147 — migração de mundo / preservação de item data
+
+- Release NeoForge 1.21.1 publicada em 02/10/2026, CurseForge file ID `9036665`.
+- Corrige **storages perdendo item data ao migrar mundos**.
+- A correção é material para qualquer mundo persistente: conteúdo com data components/NBT precisa sobreviver à migração sem perda silenciosa.
+- O fix não elimina o gate de dependência: a linha 1.6.x continua devendo ser promovida em conjunto com Sophisticated Core compatível.
+
 ### Gate de promoção
 - [ ] Atualizar Sophisticated Core para >=1.5.2 e revalidar o ecossistema Sophisticated.
+- [ ] Migrar cópia de mundo com chests/barrels/shulkers contendo itens com data components/NBT e confirmar preservação integral — regression 1.6.1.
 - [ ] Confirmar uma única shared inventory entre storages ligados.
 - [ ] Confirmar que upgrades por tick executam somente no storage principal.
 - [ ] Confirmar tier upgrade apenas no principal e proibição de packing em linked storage.
 - [ ] Validar save/restart, unload/reload e acesso simultâneo.
 - [ ] Validar Controller e Create Integration para que storages ligados não sejam tratados como inventários independentes.
 
-Fonte upstream: Sophisticated Storage 1.6.0; source oficial 1.21.x, commit de Linked Storage `05d24d4...`. Nenhum teste acima foi executado nesta atualização documental.
+Fonte upstream: Sophisticated Storage 1.6.0 e 1.6.1; source oficial 1.21.x, commit de Linked Storage `05d24d4...`. Nenhum teste acima foi executado nesta atualização documental.
