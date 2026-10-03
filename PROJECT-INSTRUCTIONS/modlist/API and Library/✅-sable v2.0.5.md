@@ -269,3 +269,33 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - README oficial: sublevels, intrusividade/mixins e papel do Sable Companion.
 - Changelog 2.0.0: usado apenas como lineage/regression surface da série 2.x.
 - **Limite:** não foram inventados thresholds de solver, tick rate de physics, formato de save ou parâmetros de networking não publicados.
+
+## 26. Atualização upstream 2.0.6 — não instalada
+
+A autoridade física permanece em **Sable 2.0.5** (`sable-neoforge-1.21.1-2.0.5.jar`).
+
+A release **2.0.6**, publicada em 03/10/2026 para NeoForge 1.21.1 (CurseForge file ID `9043865`), traz um fix material para a camada de física/entidades:
+
+- corrige um problema em que **Sable quebrava entidades que ficam sobre fluidos**, com **Striders** citado explicitamente pelo changelog;
+- o changelog da release também menciona ajustes em mixins de networking do **Fabric**; esse segundo item não é promovido aqui como alteração funcional do runtime NeoForge.
+
+### Impacto operacional
+
+O fix de entidades sobre fluidos toca diretamente uma boundary crítica do Sable: transformação/collision de entidades em superfícies especiais. No pack, isso merece regressão tanto no world normal quanto perto/dentro de sublevels móveis.
+
+### Gate de promoção 2.0.5 → 2.0.6
+
+- [ ] Strider permanece funcional sobre lava sem queda, teleport ou state inválido.
+- [ ] Entidades standing/riding sobre fluids mantêm collision/position coerente.
+- [ ] Repetir teste em world normal e em contexto de sublevel/estrutura móvel quando aplicável.
+- [ ] Confirmar que o fix não regride player/entity tracking, velocity inheritance ou collision em Create Aeronautics.
+- [ ] Dedicated server + reconnect + save/reload com entidades próximas de fluidos.
+
+Fonte upstream: CurseForge Sable NeoForge 2.0.6 para mc1.21.1. Nenhum teste acima foi marcado como executado nesta atualização documental.
+
+## 27. Revalidação upstream — 03/10/2026
+
+- **Instalado:** 2.0.5.
+- **Latest CurseForge NeoForge 1.21.1:** 2.0.6.
+- Não existe release intermediária entre 2.0.5 e 2.0.6.
+- A versão instalada não foi alterada porque a autoridade física continua apontando 2.0.5.
