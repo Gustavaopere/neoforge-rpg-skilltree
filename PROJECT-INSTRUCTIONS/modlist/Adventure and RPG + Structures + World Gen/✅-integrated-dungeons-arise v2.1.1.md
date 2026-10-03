@@ -12,11 +12,11 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/integrated-dungeons-arise/files/8283181
 - **Função:** Server-side structure/worldgen overhaul que reinterpreta When Dungeons Arise com blocks, loot, spawners e integrações de Create, Quark, Supplementaries e outros mods via Integrated API.
 - **Dependências:** Obrigatórias e presentes: Create 6.0.10, Farmer's Delight 1.3.4, Integrated API 1.8.0, Quark 4.1-483, Supplementaries 3.9.8, Amendments 2.1.10. Opcionais presentes: Waystones, Alex's Mobs, Cataclysm, Mowzie's Mobs. IDAS 1.13.7 também está presente.
-- **Compatibilidade/Riscos:** Riscos: hard dependency missing refs, worldgen/structure-set collisions, terrain placement, loot/spawner inflation, optional-registry conditions, hybrid chunks após update, remoção de dependency após geração e performance. Upstream 2.1.2 adiciona Small Blimp/Wishing Well, corrige loot/optional Cataclysm/archeology e cria tags/optional separation que precisam de regressão de structure placement.
+- **Compatibilidade/Riscos:** Riscos: hard dependency missing refs, worldgen/structure-set collisions, terrain placement, loot/spawner inflation, optional-registry conditions, hybrid chunks após update, remoção de dependency após geração e performance. Upstream 2.1.2 adiciona Small Blimp/Wishing Well, corrige integrações/tags; 2.1.3 é hotfix de loot tables e jigsaw pools vazios/incorretos.
 - **Sobreposição:** Coexiste intencionalmente com IDAS, mas não é recomendado junto do When Dungeons Arise original sem datapack custom. Com outros structure mods, auditar structure_set/biome tags/terrain/loot por seed.
-- **Observações:** Runtime físico permanece 2.1.1. A release 2.1.2 de 18/09/2026 é a única 1.21.1 posterior localizada; adiciona Small Blimp e Wishing Well integrados, corrige Thornborn/Plague Asylum/Ceryneian Hind e adiciona tags + optional separation de Integrated Villages.
-- **Procedência:** modlist física atual + IDA 2.1.1 instalada + CurseForge oficial IDA 2.1.2 NeoForge 1.21.1 (file ID 8916110) + documentação/changelog já auditados. Revalidado em 01/10/2026.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Integrated Dungeons Arise 2.1.1. A release 2.1.2 foi comparada integralmente e seus novos structures/fixes/tags foram incorporados abaixo.
+- **Observações:** Runtime físico permanece 2.1.1. A sequência posterior auditada é 2.1.2 (18/09/2026) → 2.1.3 (30/09/2026). A 2.1.3 corrige loot tables 1.21.1/1.20.1, limpa jigsaw blocks com target pools vazios/incorretos e melhora loot de Major Dungeons.
+- **Procedência:** modlist física atual + IDA 2.1.1 instalada + CurseForge oficial IDA 2.1.2 (file ID 8916110) e 2.1.3 (file ID 9015554), NeoForge 1.21.1. Revalidado em 03/10/2026.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece Integrated Dungeons Arise 2.1.1. A travessia completa 2.1.2 → 2.1.3 foi auditada e os deltas materiais estão incorporados abaixo.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #320: JAR `IDA v2.1.1-1.21.1.jar`, mod id `integrated_dungeons_arise`, runtime `2.1.1`, SHA-1 `41717df6bc033f9c55f359ad0cb04f6c8088642f`.
@@ -92,7 +92,7 @@ O pack possui IDAS e muitos outros worldgen/structure mods. O risco não é apen
 - **Limite:** source code não é a authority desta ficha; o projeto é fortemente data-driven e os arquivos reais de structure_set/templates/processors do JAR não foram extraídos nesta execução.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
 
-## 22. Atualização upstream 2.1.2 — não instalada
+## 22. Atualizações upstream 2.1.2 → 2.1.3 — não instaladas
 
 A autoridade física continua em **Integrated Dungeons Arise 2.1.1**. A release **2.1.2** para NeoForge 1.21.1 foi publicada em 18/09/2026.
 
@@ -112,7 +112,18 @@ Novas tags de structures para integração/desenvolvimento:
 - `#dungeons_arise:minor_structures` — minor structures;
 - optional separation adicionada para **Integrated Villages**.
 
-### Gate de promoção 2.1.1 → 2.1.2
+### 2.1.3 — hotfix de loot/jigsaw
+
+A release **2.1.3** para NeoForge 1.21.1 foi publicada em 30/09/2026, file ID `9015554`.
+
+Deltas materiais:
+- corrige e atualiza **todas as loot tables** afetadas na linha 1.21.1/1.20.1 para voltarem a funcionar corretamente;
+- limpa structures que continham **jigsaw blocks não usados com target pools vazios ou incorretos**, reduzindo risco de pieces faltantes/erro de pool;
+- melhora loot tables na maioria das **Major Dungeons**.
+
+O próprio autor descreve 2.1.3 como grande hotfix principalmente voltado a loot tables. Portanto, para uma futura promoção, 2.1.2 não deve ser o destino final: avaliar diretamente 2.1.3.
+
+### Gate de promoção 2.1.1 → 2.1.3
 - [ ] Datapacks carregam sem missing registry/processor/template refs.
 - [ ] Small Blimp gera nos três formatos previstos sem pieces órfãs.
 - [ ] Wishing Well gera ores/suspicious gravel e archaeology loot corretamente.
@@ -122,5 +133,7 @@ Novas tags de structures para integração/desenvolvimento:
 - [ ] As três tags resolvem apenas structures esperadas.
 - [ ] Integrated Villages optional separation não cria overlap/void anormal.
 - [ ] Mundo existente continua carregando; validar somente chunks novos para nova geração.
+- [ ] Abrir loot de amostra em Major Dungeons e confirmar tabelas válidas, não vazias e sem inflação/duplicação.
+- [ ] Gerar structures com jigsaw e confirmar ausência de target-pool vazio/incorreto.
 
-Fonte upstream: CurseForge IDA 2.1.2, file ID 8916110. Nenhum teste acima foi executado nesta atualização documental.
+Fontes upstream: CurseForge IDA 2.1.2, file ID 8916110; IDA 2.1.3, file ID 9015554. Nenhum teste acima foi executado nesta atualização documental.

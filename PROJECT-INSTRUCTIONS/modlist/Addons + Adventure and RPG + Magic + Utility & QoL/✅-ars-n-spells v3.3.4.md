@@ -19,7 +19,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-n-spells
 - **Procedência:** modlist física atual + CurseForge oficial Ars 'n Spells 3.3.1–3.3.4; release 3.3.4 NeoForge 1.21.1 file ID 8881108, 14/09/2026; source-level audit da baseline 3.3.0 já documentada.
 - **Observações:** Runtime físico 3.3.4. Baseline técnica 3.3.0 preservada, com deltas oficiais 3.3.1–3.3.4. A 3.3.4 consolida payment/cast lifecycle, recovery debit/refund, protocolo 7, carrier revisions, Curios mirroring toggle e restaura blank-scroll drops.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 3.3.4; CurseForge publicou Ars 'n Spells 3.3.5 para NeoForge 1.21.1 em 29/09/2026 com correção crítica no ponto de débito de mana do Iron's.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 3.3.4; a release 3.3.5 continua latest NeoForge 1.21.1 e foi reaberta integralmente. Além do fix de payment boundary, foram incorporados channel payment, ars_primary regen/ceiling, cooldown cross-cast, combat-stat parity, curio discounts, blacklist e config migration.
 - **Decisão:** Manter
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi reconstruída contra a 3.3.0 real; corrigida definitivamente a hipótese de redundância genérica: esta bridge possui cross-cast, spell wheel, mana/scaling/progression e contracts próprios entre Ars e Iron's.
 - **Sobreposição:** Toca mana/scaling/progression que outras bridges podem tentar unificar. Enquanto ativa, não duplicar esses domínios em integração própria nem confundi-la com Ars Polymorphia/Ars Hex, que têm responsabilidades diferentes.
@@ -363,6 +363,62 @@ Na 3.3.5 o addon intercepta o ponto em que o Iron's faria a própria escrita de 
 
 O upstream cita **Animus** como exemplo de mod que expunha o problema em NeoForge 1.21.1; Animus não aparece na modlist física desta auditoria. Ainda assim, a correção é relevante para qualquer integração que consulte mana no mesmo boundary.
 
-Gate de regressão: spells Iron's com custo >50% do mana restante, dual-cost, bound Ars spells, LP-paid casts, top-up no boundary de pagamento, refund/cancel e ausência de double debit.
+### Outros fixes materiais da 3.3.5
+
+- **Cast cancelado antes do effect boundary:** passa a custar zero, sem warning/payment-failure falso; debug registra `stage=vetoed_before_effect`.
+- **Channelled Iron's spells:** o addon volta a verificar affordability após cada pulse pago e usa o **preço final**, incluindo modifiers. Quando o próximo pulse não pode ser pago, o channel encerra como final pulse nativo com cooldown/scroll/completion, em vez de falhar como erro de payment.
+- **`ars_primary` regen:** regeneração do Iron's não pode mais reduzir o pool Ars por clamp em um `max_mana` espelhado/rounding stale; regen só pode aumentar saldo.
+- **Shared-pool ceiling:** reconciliação de teto é adiada para o fim do player tick, depois dos modifiers reais de equipment, evitando aplicar um máximo antigo após troca de item.
+- **Ars spell via Iron's wheel:** sucesso passa a vir do resolver do Ars; cast recusado não concede advancement de first cross-cast.
+- **Cursed Ring:** shortage de LP em Iron's cast passa a ser reportado como LP, não mana.
+- **Diagnóstico:** shortages passam a informar necessário/disponível; shortages normais deixam de ser warnings; debug usa identificador pseudônimo em vez de UUID.
+- **Config migration:** somente config sem schema stamp é testada como nova; configs 3.3.0–3.3.2 stamped não são mais confundidas com fresh config, e 3.3.3/3.3.4 recebem apenas o passo 3.3.5.
+
+### Cooldown configurável de Ars spells em Iron's spellbooks
+
+Nova opção `inscribed_ars_default_cooldown_ticks` (0–12000 ticks):
+- aplica cooldown Iron's após **cast Ars bem-sucedido** disparado pelo wheel de um spellbook Iron's;
+- usa o sistema nativo de cooldown do Iron's, incluindo reduction, UI do wheel e persistência em relog;
+- cast falho/recusado/não pago não inicia cooldown;
+- configs novas usam 40 ticks (2 s); configs migradas usam 0 para preservar comportamento anterior;
+- books que reutilizam o mesmo proxy slot compartilham cooldown.
+
+### Paridade e novas bridges de combat/resource
+
+A 3.3.5 também alinha Forge/NeoForge e adiciona superfícies relevantes:
+- **cross-mod combat stats bidirecional:** Iron's spell power já escalava dano Ars; agora o perk Ars Spell Damage Bonus também pode somar flat bonus ao dano Iron's;
+- novas keys permitem ligar/desligar cross-mod combat stats e escolher política de spell multi-school;
+- **tagged-curio discount:** itens em `#ars_n_spells:curio_spell_discount` podem reduzir custos Ars/Iron's, com caps configuráveis;
+- **`#ars_n_spells:cross_cast_blacklist`**: glyphs multi-phase incompatíveis podem ser recusados em Loom/export/transcription/cross-cast;
+- `/ans info` ganha affinity levels/registered Iron's schools;
+- server stop limpa staged costs, validation scopes, in-flight cross-casts, combat diagnostics e log throttles.
+
+### GameTests upstream
+
+O release adiciona cobertura para:
+- channel exhaustion nos cinco mana modes;
+- final-cost modifiers;
+- delayed cast debit único;
+- `ars_primary` hotbar cycling/regen;
+- equipment ceiling reconciliation;
+- cooldown de inscription em success/failure/zero/reduction/shared slots;
+- cenário de affordability check estilo Animus;
+- combat bridge, curios, blacklist e resolver hooks.
+
+Esses testes são **evidência upstream**, não resultado local do pack.
+
+### Gate de promoção 3.3.4 → 3.3.5
+
+- [ ] Iron's spell custando >50% do saldo restante executa sem false cancel/double debit.
+- [ ] Dual-cost, bound Ars, LP-paid e top-up no payment boundary liquidam exatamente uma vez.
+- [ ] Channelled spell respeita final-price modifier e encerra limpo ao não poder pagar próximo pulse.
+- [ ] `ars_primary` regen nunca reduz mana Ars.
+- [ ] Troca de equipment atualiza shared ceiling somente após modifiers válidos.
+- [ ] Ars spell recusado no Iron's wheel não concede advancement/cooldown.
+- [ ] `inscribed_ars_default_cooldown_ticks` persiste e respeita cooldown reduction.
+- [ ] Cross-mod combat stats não duplicam scaling com outros bridges/perks.
+- [ ] Curio discount respeita tag/cap e não torna cast mana-cost zero indevidamente.
+- [ ] Cross-cast blacklist bloqueia glyphs incompatíveis em todos os entry points.
+- [ ] Migração de config 3.3.4→3.3.5 preserva keys antigas e aplica somente o passo novo.
 
 Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9009833

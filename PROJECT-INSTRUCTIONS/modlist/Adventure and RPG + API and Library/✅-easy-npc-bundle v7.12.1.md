@@ -12,11 +12,11 @@
 - **Dependências:** Easy NPC Core + Easy NPC Config UI; NeoForge 1.21.1. No pack atual, Core, Bundle e Config UI existem como três JARs top-level separados e alinhados pelo filename/release 7.12.1.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Risco principal é misturar versões diferentes da família ou interpretar Bundle como provider de gameplay. A arquitetura moderna evita jar-in-jar justamente para não produzir mod IDs duplicados, classloading ambíguo e dependências que enxergam apenas o Core.
+- **Compatibilidade/Riscos:** Risco principal é misturar versões diferentes da família ou interpretar Bundle como provider de gameplay. A linha 7.13.0 altera o protocolo de rede e exige client/server alinhados; 7.14.0 corrige replicação tardia no Core/UI. A arquitetura moderna evita jar-in-jar para não produzir mod IDs duplicados, classloading ambíguo e dependências que enxergam apenas o Core.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all
-- **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_bundle` e runtime `7.12.1`, junto de Core/Config UI na mesma linha.
-- **Observações:** Bundle 7.12.1 está fisicamente alinhado ao Core/Config UI 7.12.1. O meta-package continua com semântica de distribuição/dependência; gameplay e persistência pertencem ao Core.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #239: Bundle atualizado fisicamente para `7.12.1`, alinhado a Core/Config UI da mesma linha; continua sendo meta-package/dependency aggregation, não provider de NPC state.
+- **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_bundle` e runtime `7.12.1`, junto de Core/Config UI na mesma linha. CurseForge 1.21.1 foi revalidado em 03/10/2026 até Bundle 7.14.0.
+- **Observações:** Bundle 7.12.1 está fisicamente alinhado ao Core/Config UI 7.12.1. Upstream publicou Bundle 7.13.0 e 7.14.0; o meta-package continua com semântica de distribuição/dependência, enquanto gameplay/persistência pertencem ao Core.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece Bundle 7.12.1. As releases próprias posteriores 1.21.1 são 7.13.0 e 7.14.0; qualquer promoção deve manter Core/Bundle/Config UI coordenados.
 - **Decisão:** Dependência
 - **Sobreposição:** Não é duplicata funcional do Easy NPC Core. A sobreposição de nome é de distribuição: Bundle agrega dependências, Core fornece NPCs, Config UI fornece a interface.
 - **Data da última decisão:** 2026-09-06
@@ -72,3 +72,30 @@ A linha instalada 7.12.1 deve ser tratada coordenadamente: atualizar apenas o Bu
 - modlist física atual de 21/09/2026: Bundle `7.12.1` + Core build `7.12.1` + Config UI `7.12.1` como JARs top-level;
 - documentação oficial Easy NPC Bundle: pacote de conveniência, módulos separados por dependência e abandono do antigo bundle jar-in-jar.
 > **Boundary canônico:** Bundle possui **dependency/distribution semantics**. NPC gameplay pertence ao Core; edição pertence ao Config UI.
+
+## 11. Atualizações upstream 7.13.0 → 7.14.0 — não instaladas
+
+A autoridade física continua em **Easy NPC: Bundle 7.12.1**. Na listagem 1.21.1 do projeto Bundle, as releases posteriores são **7.13.0** e **7.14.0**.
+
+### 7.13.0
+O Bundle continua sendo um meta-package, portanto as mudanças funcionais pertencem principalmente aos módulos que resolve. O delta mais crítico da família é a **mudança de network protocol**, com exigência explícita de cliente e servidor na mesma versão. Também entram correções de dialog buttons, owner/move item, skin error handling, preset search e novos tokens `@initiator`, `@npc` e `@score()`.
+
+### 7.14.0
+A família corrige:
+- custom poses ausentes para jogadores que começam a observar o NPC mais tarde;
+- attribute/trading settings ausentes para late viewers;
+- max uses/XP/trading type não refletidos imediatamente nas telas;
+- `/easy_npc sound set` não sincronizando sem reload;
+- adiciona GameTests de pose/settings após respawn e para jogadores novos.
+
+### Regra de promoção
+O Bundle **não deve ser atualizado isoladamente**. Promover somente quando Core e Config UI correspondentes forem atualizados para a mesma linha e o handshake client/server for validado.
+
+Gate:
+- [ ] Core + Bundle + Config UI alinhados em 7.14.0.
+- [ ] Client/server handshake sem mismatch de protocol.
+- [ ] Presença única de cada mod id; nenhuma regressão jar-in-jar.
+- [ ] Config UI abre e altera state do Core após upgrade.
+- [ ] Late viewers e players respawnados recebem pose/settings/trading/sound state corretos.
+
+Fonte upstream: CurseForge Easy NPC Bundle 1.21.1, sequência 7.12.1 → 7.13.0 → 7.14.0. Nenhum teste acima foi executado nesta atualização documental.

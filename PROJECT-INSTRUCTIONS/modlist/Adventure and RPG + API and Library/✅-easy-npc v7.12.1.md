@@ -13,9 +13,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** NPC persistente é state crítico: riscos de duplicate restore, stale index/file state, backup stutter, owner-login restore, follow/look target após logout, action/trade double execution, custom model/pose interference e UI/client divergindo do servidor. A linha 7.11.0 contém correções explícitas para várias dessas superfícies.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all
-- **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc`, SHA-1 `ed56854e39545cefdde1fe6695d9f52a31393bdc` e campo runtime vazio; Bundle/Config UI `7.12.1` e EME `2.4.0` também estão presentes. Changelogs oficiais 7.12.0/7.12.1 documentam a baseline instalada, e 7.12.2/7.13.0 foram revisados como updates upstream não instalados.
+- **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc`, SHA-1 `ed56854e39545cefdde1fe6695d9f52a31393bdc` e campo runtime vazio; Bundle/Config UI `7.12.1` e EME `2.4.0` também estão presentes. Changelogs oficiais 7.12.0/7.12.1 documentam a baseline instalada, e 7.12.2/7.13.0/7.14.0 foram revisados como updates upstream não instalados.
 - **Observações:** Fail-closed preservado: `7.12.1` vem do filename/build/publicação do artefato instalado, não da metadata runtime. Core, Bundle e Config UI estão fisicamente alinhados em 7.12.1; Easy Model Entities está fisicamente em 2.4.0.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — artefato físico permanece `easy_npc-neoforge-1.21.1-7.12.1.jar`. Entre a versão instalada e a mais recente para NeoForge 1.21.1 existem **7.12.2** e **7.13.0**; ambas foram revisadas. As duas alteram a versão do protocolo de rede, portanto a promoção exige atualização coordenada de Core/Bundle/Config UI.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — artefato físico permanece `easy_npc-neoforge-1.21.1-7.12.1.jar`. A travessia completa posterior é **7.12.2 → 7.13.0 → 7.14.0**. 7.12.2/7.13.0 alteram protocolo/network boundaries; 7.14.0 corrige sincronização tardia de pose/settings/trading/sound. Promoção exige atualizar a família Core/Bundle/Config UI em conjunto.
 - **Decisão:** Manter
 - **Sobreposição:** Pode sobrepor funções narrativas/trading de outros sistemas de NPC/quest, mas Easy NPC é o provider direto dos NPCs criados nele. Epic Fight integra combate/animação; Config UI edita o state; nenhum deles deve duplicar ownership do NPC.
 - **Data da última decisão:** 2026-09-06
@@ -183,8 +183,8 @@ Wand outlines da linha 7.12.0 são restritos a holder/owner/admin; outros jogado
 - changelog 7.12.1: restore/import/export/preset browser/spawn state, IDs/rate-limit, batch import e UX de presets/skins.
 > **Boundary canônico:** Easy NPC Core é authority do **NPC persistente e de suas operações**. UI, renderers, model providers e combat frameworks são consumidores/adapters, não uma segunda fonte de verdade.
 
-## 24. Atualizações upstream 7.12.2 e 7.13.0 — não instaladas
-A versão física do pack continua em **7.12.1**. Entre essa build e a mais recente para NeoForge 1.21.1 há duas releases públicas: **7.12.2** e **7.13.0**, ambas revisadas.
+## 24. Atualizações upstream 7.12.2 → 7.14.0 — não instaladas
+A versão física do pack continua em **7.12.1**. A sequência pública posterior para NeoForge 1.21.1 auditada nesta rodada é **7.12.2 → 7.13.0 → 7.14.0**.
 
 ### 7.12.2
 - corrige o hitbox da **Fairy**, que era pequeno demais e fazia name tag/speech bubble ficarem dentro do corpo;
@@ -207,10 +207,19 @@ A versão física do pack continua em **7.12.1**. Entre essa build e a mais rece
 - adiciona testes automáticos de cliente com Client Runtime Interface Toolkit;
 - inclui refatoração ampla do core e cleanup interno.
 
-**Mudança operacional crítica:** tanto 7.12.2 quanto 7.13.0 alteram o protocolo de rede. O pack físico contém Core, Bundle e Config UI em 7.12.1; uma promoção direta para 7.13.0 deve atualizar o conjunto Easy NPC de forma coordenada, sem misturar versões.
+### 7.14.0
+- corrige o issue #846, preservando **custom poses para jogadores que só passam a observar o NPC depois**;
+- corrige **attribute e trading settings** ausentes para late viewers;
+- alterações de **max uses, XP e trading type** passam a aparecer nas trading screens imediatamente, sem exigir reload;
+- alterações via `/easy_npc sound set` passam a alcançar jogadores sem reload do NPC;
+- adiciona GameTests cobrindo poses/settings após respawn e para jogadores novos.
+
+Esses deltas endurecem a regra de state replication: um NPC já existente precisa apresentar o mesmo pose/attribute/trading/sound state para observadores antigos, novos e recém-respawnados. Isso é particularmente relevante para quests/NPCs persistentes do pack.
+
+**Mudança operacional crítica:** tanto 7.12.2 quanto 7.13.0 alteram o protocolo de rede. O pack físico contém Core, Bundle e Config UI em 7.12.1; uma promoção para 7.14.0 deve atualizar o conjunto Easy NPC de forma coordenada, sem misturar versões.
 
 Impactos adicionais relevantes para este pack: o ajuste de hitbox/eye level deve ser regressado junto de Epic Fight e modelos/escala customizados; os novos bounds de network data e validações de posição/escala/atributos endurecem a fronteira cliente-servidor e merecem teste em presets/imports existentes.
 
-Gate de regressão: dedicated server + client alinhados em 7.13.0; Fairy e NPCs escalados com hitbox/eye level corretos; Skeleton/Stray/Bogged; packets com dados excessivos/inválidos; diálogo/macros; owner commands; preset search; skin error handling; import/restore e integração com Easy Model Entities.
+Gate de regressão: dedicated server + client alinhados em 7.14.0; Fairy e NPCs escalados com hitbox/eye level corretos; Skeleton/Stray/Bogged; packets com dados excessivos/inválidos; diálogo/macros; owner commands; preset search; skin error handling; import/restore; integração com Easy Model Entities; late viewers/respawn preservando pose, attributes, trading settings e sound state.
 
-Fontes upstream: changelog oficial Easy NPC: Core 1.21.1 publicado no CurseForge para 7.13.0, incluindo o histórico intermediário 7.12.2; file ID 9013889.
+Fontes upstream: changelogs oficiais Easy NPC: Core; releases 1.21.1 7.12.2, 7.13.0 e 7.14.0 publicadas no CurseForge. Nenhum teste acima foi executado nesta atualização documental.
