@@ -25,7 +25,7 @@
 - **Observações:** Runtime instalado `4.1-484`. Em 10/09/2026, 4.1-484 foi publicada como hotfix para Mending/filtering e agora está confirmada na instalação física. A 4.1-483 permanece relevante como release-base imediatamente anterior, responsável pelas mudanças de Azalea Wood, Golden Tools Have Fortune, Totem of Holding/Oddities e item-handler capabilities documentadas no dossiê.
 - **Procedência:** modlist física atual anexada em 16/09/2026 + CurseForge oficial Quark 4.1-484 file ID 8847564 + dossiê/source já auditado da 4.1-483 + Dynamic Trees - Quark 2.6.1 e dependências físicas atuais.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/quark | https://www.curseforge.com/minecraft/mc-mods/quark/files/8847564
-- **Atualização/Status:** GITHUB-ONLY REVALIDADO EM 01/10/2026 — catálogo permanece em Quark 4.1-484; o `changelog.md` oficial na branch master registra Quark 4.1-485 para NeoForge 1.21.1 com fixes de recipes/tags/Azalea e nova opção do módulo Azalea Wood.
+- **Atualização/Status:** GITHUB-ONLY REVALIDADO EM 03/10/2026 — catálogo permanece em Quark 4.1-484; o `changelog.md` oficial na branch master registra Quark 4.1-485 para NeoForge 1.21.1 com fixes de recipes/tags/Azalea e nova opção do módulo Azalea Wood.
 - **Histórico da decisão:** 2026-09-10 — reclassificado de Sem decisão para Dependência porque Dynamic Trees - Quark 2.6.1 está Mantido/Integrado ao Github e exige Quark como base funcional. 2026-09-11 — Notion registrava 4.1-483 instalada e 4.1-484 como update externo. 2026-09-16 — modlist física confirma 4.1-484 instalada; decisão Dependência preservada.
 - **Data da última decisão:** 2026-09-10
 
@@ -188,3 +188,28 @@ Gate de regressão: recipes Ashen/Azalea Vertical Planks, stone-tool-material ta
 **Fonte GitHub upstream:** `VazkiiMods/Quark`, `changelog.md`; commits relevantes incluem `ce4f99e1c4dc2b353b504292fc0dd54ed63991da` (Azalea), `33bb3db8c6dafbc00bc782d41bdd294fc85d0dcf` (small fixes) e `6862316c881f48b792eec4cb0277d92dc1534f32` (changelog).
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 16/09/2026 — Quark 4.1-484 físico confirmado e decisão Dependência preservada: modularidade, Zeta, DT-Quark consumer mantido, Azalea/enchants/item handlers, Biolith embedded + top-level coexistente, hotfix de Mending, riscos e testes.
+
+## 22. Atualização upstream 4.1-486 — disponível, mas BLOQUEADA pelo NeoForge atual
+Após a 4.1-485 documentada acima, o upstream publicou **Quark 4.1-486** para NeoForge 1.21.1. Essa é a versão numericamente mais recente verificada em 03/10/2026, porém **não é compatível com o loader físico documentado do pack neste momento**.
+
+O changelog oficial da 4.1-486 informa apenas mudanças internas, com foco em melhorar diagnóstico de problemas ainda não resolvidos, especialmente worldgen. Não há fixes de gameplay listados. As duas mudanças materiais são:
+- requisito mínimo do **NeoForge atualizado para 21.1.252**;
+- Biolith embarcado via JarJar atualizado para **3.0.14**.
+
+A autoridade física do pack continua registrando **NeoForge 21.1.250**. Portanto:
+- **mais recente disponível:** Quark 4.1-486;
+- **mais recente compatível com o loader físico conhecido:** Quark 4.1-485;
+- **runtime físico documentado:** Quark 4.1-484;
+- **recomendação atual:** não promover diretamente para 4.1-486 antes de atualizar/revalidar NeoForge para ≥21.1.252.
+
+### Biolith e boundary JarJar
+O pack já contém `biolith-neoforge-3.0.14.jar` como JAR top-level. A 4.1-486 passa a embarcar Biolith **3.0.14** internamente. Isso iguala as versões, mas não autoriza remover o top-level automaticamente: a resolução entre JarJar e instalação top-level deve ser validada pelo loader e pelas dependências que consomem Biolith.
+
+### Gate de promoção 4.1-485 → 4.1-486
+1. NeoForge ≥21.1.252 confirmado fisicamente e por metadata.
+2. Boot client + dedicated server com Quark/Zeta.
+3. Confirmar resolução única/coerente de Biolith 3.0.14 entre JarJar e top-level.
+4. Worldgen novo + chunks existentes, com atenção aos problemas que motivaram as mudanças internas upstream.
+5. Dynamic Trees - Quark, Azalea replacement, recipes/tags e datapack reload.
+
+**Fonte oficial:** `VazkiiMods/Quark`, tag/branch `release-4.1-486+1.21.1`, `changelog.md`; CurseForge release 4.1-486.
