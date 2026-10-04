@@ -12,14 +12,17 @@ O fluxo canônico está em [`00-EXECUTION-ROADMAP.md`](./00-EXECUTION-ROADMAP.md
 
 `modlist física -> capacidades -> distribuição nas 11 árvores -> especializações + mecânicas assinatura -> catálogo conceitual -> auditoria técnica por provider -> implementação -> topologia visual`.
 
+Transmutation usará inicialmente **seleção fixa e curada de Abilities**, escolhida somente durante a execução da matriz de capacidades. A cobertura é obrigatoriamente transversal: magia e árvores não mágicas recebem o mesmo orçamento de raízes `Txxxx`.
+
 Não criar perks a partir de um mod apenas porque ele existe. Não escolher especializações copiando estruturas antigas do runtime. Diablo IV e outros jogos podem fornecer **padrões de decisão e inspiração**, nunca requisitos a copiar literalmente.
 
 ## Estrutura
 
 - [`01-internal-attributes/`](./01-internal-attributes/) — seis atributos fundamentais comuns.
 - [`02-standard-perks/`](./02-standard-perks/) — perks normais das 11 árvores.
-- [`03-transmutation-perks/`](./03-transmutation-perks/) — uma raiz `Txxxx` por Ability, com três grupos de escolha `Txxxx.xx`.
+- [`03-transmutation-perks/`](./03-transmutation-perks/) — uma raiz `Txxxx` por Ability selecionada, com três grupos de escolha `Txxxx.xx`.
 - [`04-specialization-perks/`](./04-specialization-perks/) — especializações reconstruídas do zero depois da matriz de capacidades.
+- [`SOURCES-AND-SELECTION-POLICY.md`](./SOURCES-AND-SELECTION-POLICY.md) — fontes obrigatórias e decisão de seleção curada das Abilities.
 - [`SPECIALIZATION-CONTRACT.md`](./SPECIALIZATION-CONTRACT.md) — contrato das mecânicas assinatura e da relação entre especialização, perks e providers.
 - [`CATALOG-CONTRACT.md`](./CATALOG-CONTRACT.md) — paridade, ownership e regras do catálogo.
 - [`NUMBERING.md`](./NUMBERING.md) — códigos editoriais e ranges.

@@ -4,7 +4,7 @@
 
 1. **Internal Attributes** — seis atributos fundamentais comuns.
 2. **Standard Perks** — passivos e regras de build que não modificam uma Ability concreta.
-3. **Transmutation Perks** — uma raiz `Txxxx` por Ability, com três grupos `Txxxx.xx`.
+3. **Transmutation Perks** — uma raiz `Txxxx` por Ability selecionada, com três grupos `Txxxx.xx`.
 4. **Specialization Perks** — perks de uma ramificação temática, ligadas a uma mecânica assinatura.
 
 ## 2. As 11 árvores
@@ -22,7 +22,7 @@ Preferencial, a congelar somente após a matriz de capacidades:
 - mesmo `K_specializations_per_tree`;
 - mesmo `M_perks_per_specialization`.
 
-A prioridade é equilíbrio sem filler. Se a simetria de K/M produzir especializações artificiais, preservamos primeiro o mesmo orçamento total de perks por árvore e redesenhamos a distribuição.
+A prioridade é equilíbrio sem filler.
 
 ## 4. Especializações
 
@@ -42,12 +42,22 @@ A forma pode variar, mas o orçamento de poder e profundidade deve ser comparáv
 
 ## 5. Transmutation Perks
 
+### Seleção
+
+O catálogo inicial usa **seleção fixa e curada** de Abilities.
+
+Nem toda Ability do pack precisa receber uma raiz. A lista concreta é escolhida somente durante a execução da matriz de capacidades.
+
+A seleção deve abranger igualmente árvores mágicas e não mágicas. `Ability` não é sinônimo de spell.
+
 Somente a raiz `Txxxx` conta para `N_transmutation_per_tree`.
 
 ### Unicidade
-Cada Ability possui uma única raiz no catálogo.
+
+Cada Ability selecionada possui uma única raiz no catálogo.
 
 ### Grupos
+
 - LEFT: `.11`–`.19`, mínimo 2, máximo 9, escolher 1.
 - RIGHT: `.21`–`.29`, mínimo 2, máximo 9, escolher 1.
 - METAMORPHOSIS: `.31`–`.39`, mínimo 3, máximo 9, escolher 1.
@@ -74,16 +84,22 @@ Vanilla faz parte da matriz.
 
 Uma raiz só fica disponível quando a Ability exigida estiver conhecida/desbloqueada segundo a authority pertinente.
 
-## 7. Referências externas
+## 7. Fontes
+
+A política detalhada está em [`SOURCES-AND-SELECTION-POLICY.md`](./SOURCES-AND-SELECTION-POLICY.md).
+
+Presença física da modlist prevalece sobre catálogos funcionais. Datapacks entram no comportamento carregado. O catálogo de providers do Black Arcana é referência canônica de capacidades mágicas já inventariadas. Resource packs e shaders são contexto visual, não authority de gameplay.
+
+## 8. Referências externas
 
 Diablo e outros jogos são fontes de padrões e perguntas de design, não specifications.
 
 Podemos adaptar uma ideia, generalizá-la, combinar padrões ou rejeitá-la completamente se não servir ao modpack.
 
-## 8. Ownership
+## 9. Ownership
 
 Toda perk possui exatamente uma árvore proprietária para contagem. Um provider pode alimentar várias árvores.
 
-## 9. Balanceamento
+## 10. Balanceamento
 
 Valores externos não são autoridade. Números finais são decididos contra Minecraft, providers instalados, sinergias do pack e testes.
