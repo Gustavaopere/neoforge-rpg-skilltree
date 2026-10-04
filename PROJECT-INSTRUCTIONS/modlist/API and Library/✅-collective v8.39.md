@@ -76,3 +76,16 @@ Não há mudança funcional, API ou gameplay publicada para esta release. Portan
 Gate de eventual promoção: boot com consumers Serilum, linkage, mensagens client-only, reconnect e callbacks; nenhum comportamento novo é esperado pela release note.
 
 Fonte upstream: CurseForge file ID 8940150, Collective 8.40.
+
+## 13. Atualização upstream 8.41 — não instalada
+Depois da 8.40 sem delta funcional, o upstream publicou **Collective 8.41** para Minecraft 1.21.1 em 02/10/2026.
+
+O changelog desta release registra atualização das **informações/metadados do mod** em `mods.toml` e `fabric.mod.json`. Não foi publicada mudança de API, callback, networking, config ou gameplay associada à 8.41.
+
+**Delta completo 8.39 → 8.41:**
+- 8.40: normalização de indentação do source para tabs;
+- 8.41: atualização de metadata do mod.
+
+A autoridade física permanece **Collective 8.39**. A 8.41 é a mais recente upstream, mas não há benefício funcional documentado que justifique tratá-la como correção obrigatória; eventual promoção ainda deve passar pelo smoke-test de consumers Serilum.
+
+Fonte upstream: CurseForge Collective 8.41, release NeoForge 1.21.1 de 02/10/2026.

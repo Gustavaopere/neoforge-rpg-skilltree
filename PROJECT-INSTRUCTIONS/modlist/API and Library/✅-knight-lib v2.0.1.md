@@ -15,8 +15,8 @@
 - **Compatibilidade/Riscos:** Library de ampla superfície. Riscos: networking/config/event ABI drift, hot-reload, bossbar links stale, entity data/schema drift, AI/OBB/render paths e consumer incompatível. Runtime físico 2.0.1; upstream 2.0.2 corrige particle keyframe locators com shaderpacks e 2.0.3 corrige box UV espelhado com faces east/west trocadas.
 - **Sobreposição:** Não é substituível por biblioteca genérica sem adaptar consumers. Companions! 1.3.4 é dependente concreto e exige Knight Lib 2.0.1 como versão mínima. Similaridade funcional de networking/config/event APIs com outras libs não implica ABI compatível.
 - **Observações:** Runtime físico permanece 2.0.1 e Companions! 1.3.4 exige ≥2.0.1. Releases posteriores 2.0.2 (20/09/2026) e 2.0.3 (23/09/2026) foram verificadas; ambas são fixes de rendering/model/particle, não instaladas.
-- **Procedência:** modlist física atual + Knight Lib 2.0.1 instalada + CurseForge oficial 2.0.2 e 2.0.3 NeoForge 1.21.1 + source Xylonity/Knight-Lib + consumer Companions! 1.3.4. Revalidado em 01/10/2026.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Knight Lib 2.0.1. As releases 2.0.2 e 2.0.3 foram comparadas em sequência e registradas abaixo.
+- **Procedência:** modlist física atual + Knight Lib 2.0.1 instalada + CurseForge oficial 2.0.2 e 2.0.3 NeoForge 1.21.1 + source Xylonity/Knight-Lib + consumer Companions! 1.3.4. Revalidado em 03/10/2026.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece Knight Lib 2.0.1. As releases 2.0.2 e 2.0.3 foram comparadas em sequência e registradas abaixo.
 - **Histórico da decisão:** 2026-08-26 — registro inicial com Knight Lib 1.x e consumer Companions!. 2026-09-10 — Knight Lib 1.6.1 documentada com correção de bossbar links em world reload. 2026-09-12 — Notion registrou 1.6.2 e 2.0.1 como updates externos e bloqueou promoção automática por salto major. 2026-09-16 — modlist física confirma Knight Lib 2.0.1 e Companions! 1.3.4; o changelog do consumer confirma 2.0.1 como versão mínima requerida.
 - **Data da última decisão:** 2026-08-26
 

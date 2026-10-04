@@ -2,6 +2,8 @@
 
 > A autoridade física mais recente disponível continua sendo `modlist(1).txt`, com **587 entradas top-level** incluindo o modloader. Em **02/10/2026**, o usuário confirmou duas adições posteriores a esse snapshot — **Cold Sweat: Altitude** e **Create: Bionics** — elevando o inventário conhecido do perfil para **589 mods**, enquanto um novo dump físico ainda não está disponível. A tabela numerada abaixo permanece congelada nas 587 posições físicas verificadas; as duas adições pós-snapshot ficam registradas separadamente até que JAR, metadata, SHA e ordem possam ser re-fetched. Entradas sem dossier ou sem projeto correspondente permanecem explícitas como exceções, em vez de serem omitidas ou receberem dados físicos inventados.
 >
+> Em **03/10/2026**, o usuário determinou uma nova alteração de estado-alvo: **adicionar Create: AeroWarptics 1.3.0 e remover Create Aeronautics: Alcubierre 1.2.6**. Como não existe dump físico posterior à ordem, a troca é registrada abaixo como **solicitada/pós-snapshot**, sem falsificar presença ou ausência física. Se ambas as ações tiverem sido executadas localmente, o efeito líquido na contagem é zero; isso só será certificado no próximo inventário.
+>
 > Para projetos CurseForge confirmados, a pasta representa o conjunto completo das categorias temáticas atuais, ordenadas alfabeticamente e separadas por ` + `. Categorias de loader, versão do Minecraft e ambiente não entram no caminho. Quando o artefato físico não possui projeto CurseForge inequívoco, usa-se a pasta estrutural `Sem projeto CurseForge confirmado`, que **não** equivale a uma categoria temática oficial.
 >
 > `Última edição` registra a última alteração documental significativa anterior à movimentação estrutural, normalizada para `America/Sao_Paulo` (UTC-03:00). A movimentação em si não altera esse histórico.
@@ -18,6 +20,21 @@
 | Create: Bionics | `createbionics-2.5.0.jar` | `2.5.0` | `Addons + Create + Mobs + Player Transport + Utility & QoL` | `create-bionics v2.5.0.md` | Adição confirmada pelo usuário; JAR/SHA/metadata/ordem aguardam novo snapshot |
 
 **Create Aeronautics: Automated Logistics não aumenta a contagem.** Apesar de ter sido citado junto das novas adições, ele já consta na autoridade física de 16/09/2026 como `create_aeronautics_automated_logistics-0.6.2.jar` / `0.6.2` e já ocupa uma linha da tabela física de 587 entradas.
+
+## Alterações solicitadas pós-snapshot — 03/10/2026
+
+> Estas mudanças representam o **estado-alvo solicitado**, não uma nova autoridade física. A tabela de 587 entradas permanece intacta como snapshot histórico até novo dump.
+
+| Ação | Nome / projeto | Artefato / versão de referência | Pasta / dossier | Estado |
+|---|---|---|---|---|
+| Adicionar | Create: AeroWarptics | `aerowarptics-1.3.0.jar` / `1.3.0` | `Create + Player Transport/create-aerowarptics v1.3.0.md` | Solicitação registrada; JAR/SHA/metadata/ordem e smoke test pendentes |
+| Remover | Create Aeronautics: Alcubierre | `alcubierre-1.2.6.jar` / `1.2.6` | `Addons + Create/✅-alcubierre v1.2.6.md` | Remoção solicitada; ausência física pendente de novo snapshot; dossier histórico preservado |
+
+### Boundary da substituição
+AeroWarptics substitui **parcialmente** Alcubierre no domínio de warp de airships. Ele não fornece a mecânica de **Antigravity Drive** documentada no Alcubierre; portanto essa capacidade é perdida com a remoção, salvo provider alternativo explícito. Não há migração 1:1 conhecida para blocks, controller destinations, configs ou state persistente.
+
+### Observação de estabilidade
+A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Create Aeronautics e GeckoLib. O source oficial já possui trabalho 1.3.1 não publicado com correções de force-loading/save hangs, launch clearance e large/multi-sub-level ships; por isso a integração permanece pendente de smoke test em cópia de mundo antes de ser tratada como segura.
 
 ## Exceções estruturais e bloqueios — 29/09/2026
 

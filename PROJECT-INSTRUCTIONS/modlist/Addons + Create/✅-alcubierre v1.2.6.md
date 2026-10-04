@@ -1,5 +1,9 @@
 # Alcubierre
 
+> **REMOÇÃO SOLICITADA — 03/10/2026.** O usuário determinou a remoção de **Create Aeronautics: Alcubierre** e a entrada de **Create: AeroWarptics**. O snapshot físico verificável mais recente ainda contém este JAR como #018; portanto esta ficha preserva a evidência histórica e **não afirma ausência física até novo dump do perfil**. O item deixa de ser provider desejado no estado-alvo do pack.
+
+> **Substituição parcial, não 1:1.** AeroWarptics cobre o domínio de **warp/transporte de airships**, mas não substitui a mecânica de **Antigravity Drive** do Alcubierre. A remoção implica perda dessa capacidade específica, salvo se outro provider do pack a assumir explicitamente. Não existe migração automática documentada de controllers, destinos ou state entre os dois mods.
+
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#18**: `alcubierre-1.2.6.jar`, mod id `alcubierre`, runtime `1.2.6`, SHA-1 `154b0a6d9abe6fdbc76b3a09ae38d21c100a21a8`.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
@@ -80,3 +84,29 @@ Aeroworks controla/estabiliza atitude; wings/propulsão produzem forças; Alcubi
 ## Evidências
 - [CurseForge oficial — Create Aeronautics: Alcubierre](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-alcubierre)
 - Modlist física atual e guia consolidado de Tecnologia.
+
+
+## Remoção solicitada — 03/10/2026
+**Estado documental:** REMOÇÃO SOLICITADA / verificação física pendente.
+
+### Motivo e substituto
+A troca solicitada é **Alcubierre → Create: AeroWarptics** para o domínio de warp de vehicles/airships. O novo addon usa Rift Drives, Warp Anchors, Rift Gates/Portals e o pipeline de sublevels/physics do ecossistema Aeronautics/Sable.
+
+### Funcionalidade que não migra
+O **Antigravity Drive** é ownership exclusivo deste mod no dossiê atual e não está descrito como feature do AeroWarptics. Logo a substituição é funcionalmente parcial: warp continua coberto por outro provider, antigravidade deixa de ser fornecida por Alcubierre.
+
+### Riscos de remoção
+- blocks/items do mod existentes em mundos podem virar missing registry entries após remoção;
+- controllers/drives colocados não possuem migração 1:1 para Rift Drives/Anchors;
+- configs e dados persistentes do Alcubierre podem permanecer órfãos no profile;
+- qualquer build/contraption que dependa do Antigravity Drive muda de comportamento;
+- Dimensional Sable não deve ser removido automaticamente: ele pode ter outros consumers e permanece item independente do pack.
+
+### Validação pós-removal
+- [ ] confirmar ausência física de `alcubierre-1.2.6.jar` em novo snapshot;
+- [ ] boot client e dedicated server sem missing required dependency;
+- [ ] abrir cópia de mundo com e sem blocos Alcubierre previamente colocados;
+- [ ] procurar recipes/quests/scripts/configs que referenciem `alcubierre:`;
+- [ ] testar AeroWarptics separadamente antes de migrar airships importantes.
+
+Nenhum desses testes foi marcado como executado nesta atualização documental.

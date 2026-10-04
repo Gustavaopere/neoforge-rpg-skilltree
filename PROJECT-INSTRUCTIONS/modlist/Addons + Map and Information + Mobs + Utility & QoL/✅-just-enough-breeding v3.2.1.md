@@ -16,7 +16,7 @@
 - **Sobreposição:** Complementa JEI com dados de reprodução. Não substitui Animal Husbandry, Animal Wellness ou qualquer sistema de genética/reprodução; estes continuam determinando gameplay e podem expor dados que o viewer não compreenda integralmente.
 - **Observações:** 3.2.1 continua a build NeoForge correta para 1.21.1. Há linha 3.3.0 para Minecraft 1.21.11, que não é update aplicável ao pack atual.
 - **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + CurseForge/Modrinth oficiais Just Enough Breeding 3.2.1 NeoForge 1.21.1 de 30/07/2026 + changelog exato já auditado + JEI físico 19.56.0.440.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece JEBr 3.2.1. CurseForge publicou **3.3.0** para NeoForge 1.21.1 em 30/09/2026; o delta funcional da linha 3.3.0 foi revisado e registrado abaixo.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece JEBr 3.2.1. CurseForge publicou **3.3.0** em 30/09/2026 e **3.3.1** em 02/10/2026 para NeoForge 1.21.1; toda a cadeia 3.2.1 → 3.3.0 → 3.3.1 foi revisada e está registrada abaixo.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #354: JAR `justenoughbreeding-neoforge-1.21.1-3.2.1.jar`, mod id `justenoughbreeding`, runtime `3.2.1`, SHA-1 `9b2bfac5e7aa0952dfb3da18936c0ece4beeae21`.
@@ -88,3 +88,12 @@ Impacto para o pack: 3.3.0 expande JEBr além de breeding estrito para transform
 Gate de promoção: JEI 19.56.0.440; Cat/Wolf owner display; transformation com input vazio; collar dye; chested donkey/llama/mule; shearing outputs; armor/saddle; offset buttons on/off; reload de config/JEI; ausência de recipe duplicada; comparação com gameplay real de uma amostra de providers.
 
 Fonte upstream: CurseForge file ID 9019426, `justenoughbreeding-neoforge-1.21.1-3.3.0.jar`. O changelog da mesma release 3.3.0 explicita os deltas acima.
+
+## 13. Atualização upstream 3.3.1 — não instalada
+A autoridade física continua em **Just Enough Breeding 3.2.1**. Depois da 3.3.0 documentada acima, o CurseForge publicou **3.3.1** para NeoForge 1.21.1 em 02/10/2026, file ID **9037421**, artefato `justenoughbreeding-neoforge-1.21.1-3.3.1.jar`.
+
+O changelog da 3.3.1 contém apenas a atualização da tradução russa (`ru_ru.json`, contribuição #73). Não há nova mecânica, recipe category, integração ou mudança de dependência publicada nessa release.
+
+**Conclusão do delta completo 3.2.1 → 3.3.1:** as mudanças funcionais relevantes estão concentradas na **3.3.0** e permanecem integralmente documentadas na seção anterior; 3.3.1 é uma atualização de localização. Se o pack for promovido, o alvo upstream mais recente é 3.3.1, mas isso não altera o gate funcional já definido para 3.3.0.
+
+Fonte upstream: CurseForge file ID 9037421, `justenoughbreeding-neoforge-1.21.1-3.3.1.jar`.
