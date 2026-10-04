@@ -5,7 +5,7 @@
 - `Ixxxx` — Internal Attribute.
 - `Pxxxx` — Standard Perk.
 - `Txxxx` — raiz de Transmutation de uma Ability.
-- `Txxxx.n` — modificador filho daquela mesma Ability.
+- `Txxxx.xx` — opção de um dos três grupos da mesma Ability.
 - `Sxxxx` — Specialization Perk.
 
 A antiga série `A####` não é reutilizada.
@@ -30,42 +30,68 @@ O prefixo faz parte da identidade. `P5000`, `T5000` e `S5000` são códigos dist
 
 ## Regra fundamental das Transmutations
 
-`Txxxx` identifica **uma Ability única em todo o catálogo**, enquanto o sufixo identifica seus modificadores.
+`Txxxx` identifica **uma Ability única em todo o catálogo**.
 
-Exemplo:
+O sufixo de dois dígitos identifica grupo e opção:
 
-- `T5000` — Chain Lightning;
-- `T5000.1` — modificador 1 de Chain Lightning;
-- `T5000.2` — modificador 2 de Chain Lightning;
+- primeiro dígito = grupo;
+- segundo dígito = índice da opção, de 1 a 9.
+
+### Grupo 1 — esquerda
+
+- `T5000.11`
+- `T5000.12`
 - ...
-- `T5000.7` — modificador 7 de Chain Lightning.
+- `T5000.19`
 
-Se futuramente Chain Lightning ganhar mais metamorfoses ou outros modificadores, continuam sendo filhos da mesma raiz:
+### Grupo 2 — direita
 
-- `T5000.8`;
-- `T5000.9`;
-- `T5000.10`;
-- etc.
+- `T5000.21`
+- `T5000.22`
+- ...
+- `T5000.29`
 
-Chain Lightning **não recebe outro `Txxxx` mais adiante**.
+### Grupo 3 — metamorfose
+
+- `T5000.31`
+- `T5000.32`
+- ...
+- `T5000.39`
+
+Os IDs `.10`, `.20` e `.30` não representam opções e ficam reservados.
+
+Não existem opções acima de 9 dentro de um grupo. Portanto `.19`, `.29` e `.39` são os limites.
+
+## Exemplo
+
+```
+T5000 — Chain Lightning
+
+LEFT
+T5000.11
+T5000.12
+
+RIGHT
+T5000.21
+T5000.22
+
+METAMORPHOSIS
+T5000.31
+T5000.32
+T5000.33
+```
+
+Uma configuração pode ter `T5000.11 + T5000.22 + T5000.33`, pois são grupos diferentes.
+
+Não pode ter `T5000.11 + T5000.12` simultaneamente.
+
+Se Chain Lightning ganhar mais opções no futuro, elas precisam ocupar slots livres do grupo correspondente. Chain Lightning **não recebe outro `Txxxx` mais adiante**.
 
 `T5001` é reservado para outra Ability de ARCANE.
 
-Logo, efeitos como “+1 alvo”, “primeiro alvo recebe bônus” e “converter afinidade” pertencem a `T5000.n` e podem ser usados juntos quando compatíveis.
+## Natureza textual do ID
 
-## Faixas editoriais dos filhos
-
-A estrutura mínima inicial é:
-
-- `.1`, `.2` — potência/impacto;
-- `.3`, `.4` — forma/eficiência;
-- a partir de `.5` — pelo menos 3 metamorfoses.
-
-As metamorfoses não terminam obrigatoriamente em `.7`. `.8`, `.9`, `.10` e seguintes podem continuar a mesma raiz quando houver ideias distintas que mereçam existir.
-
-A numeração organiza leitura e arquivos. Ela não cria exclusividade.
-
-O sufixo após o ponto é um **sub-ID textual**, não ponto flutuante. `.10` nunca equivale a `.1`.
+O sufixo é **textual**, não um decimal numérico. `T5000.11` deve ser tratado como código estruturado, não como número de ponto flutuante.
 
 ## Runtime IDs
 

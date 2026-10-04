@@ -11,33 +11,36 @@
 
 `T5000` representa Chain Lightning como uma única Ability.
 
-Todos os efeitos abaixo são filhos `T5000.n`. Um novo inteiro, como `T5001`, será usado para outra Ability.
+Ela possui uma única raiz no catálogo e três grupos de escolha.
 
-## Modificadores
+## LEFT — escolher 1
 
-### Potência/impacto
-- [T5000.1 — Cadeia Adicional](./T5000.1-cadeia-adicional.md)
-- [T5000.2 — Primeiro Impacto](./T5000.2-primeiro-impacto.md)
+- [T5000.11 — Redução de Custo](./T5000.11-reducao-de-custo.md)
+- [T5000.12 — Crítico Condutivo](./T5000.12-critico-condutivo.md)
 
-### Forma/eficiência
-- [T5000.3 — Alcance de Condução](./T5000.3-alcance-de-conducao.md)
-- [T5000.4 — Condução Econômica](./T5000.4-conducao-economica.md)
+## RIGHT — escolher 1
 
-### Metamorfoses
-- [T5000.5 — Cadeia Frenética](./T5000.5-cadeia-frenetica.md)
-- [T5000.6 — Fluxo de Retorno](./T5000.6-fluxo-de-retorno.md)
-- [T5000.7 — Transmutação Elemental](./T5000.7-transmutacao-elemental.md)
+- [T5000.21 — Cadeia Adicional](./T5000.21-cadeia-adicional.md)
+- [T5000.22 — Primeiro Impacto](./T5000.22-primeiro-impacto.md)
 
-## Stacking
+## METAMORPHOSIS — escolher 1
 
-Os modificadores são acumuláveis por padrão.
+- [T5000.31 — Cadeia Frenética](./T5000.31-cadeia-frenetica.md)
+- [T5000.32 — Fluxo de Retorno](./T5000.32-fluxo-de-retorno.md)
+- [T5000.33 — Transmutação Elemental](./T5000.33-transmutacao-elemental.md)
 
-Exemplo: o jogador pode usar `T5000.1 + T5000.2 + T5000.7` simultaneamente, obtendo mais capacidade de cadeia, bônus no primeiro impacto e afinidade transmutada.
+## Exemplo de configuração
 
-Somente efeitos realmente incompatíveis recebem conflito explícito.
+`T5000.11 + T5000.22 + T5000.33`.
+
+Isso significa: uma opção da esquerda, uma da direita e uma metamorfose ativas ao mesmo tempo.
+
+Não é permitido usar `T5000.11 + T5000.12` simultaneamente, nem duas opções RIGHT ou duas METAMORPHOSIS.
 
 ## Referência de design
 
-A estrutura 2/2/3 serve como inspiração de organização. Comportamento e números finais serão definidos pelo design do modpack e depois auditados contra o provider instalado.
+O padrão 2/2/3 do Diablo IV é uma referência útil porque produz decisões em três eixos sem exigir que a skill seja concedida pela própria árvore.
 
-A referência de metamorfose elemental permanece Chain of Cold como inspiração conceitual, sem transformar Diablo IV em authority técnica ou de balanceamento.
+As opções exatas de Diablo mudam entre patches; portanto nomes, números e efeitos externos são fonte de ideias, não contrato do RPG Skill Tree.
+
+A conversão elemental é especialmente relevante para este projeto porque permite adaptar uma Ability a uma build de outra afinidade. No nosso sistema essa conversão pode ser generalizada por ritual em vez de ficar limitada a uma única escola.

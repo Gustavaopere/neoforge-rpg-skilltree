@@ -6,7 +6,7 @@ O catálogo possui quatro famílias:
 
 1. **Internal Attributes** — seis atributos fundamentais comuns.
 2. **Standard Perks** — passivos e regras de build que não modificam uma Ability concreta.
-3. **Transmutation Perks** — uma raiz `Txxxx` associada a uma Ability conhecida/desbloqueada, com modificadores `Txxxx.n`.
+3. **Transmutation Perks** — uma raiz `Txxxx` associada a uma Ability conhecida/desbloqueada, com três grupos de escolhas `Txxxx.xx`.
 4. **Specialization Perks** — perks pertencentes a ramificações temáticas de uma árvore principal.
 
 ## 2. As 11 árvores
@@ -40,47 +40,59 @@ Exemplo: uma futura especialização Piromante pode consumir capacidades de múl
 
 A posição visual e os gateways definitivos são definidos somente depois do catálogo conceitual.
 
-## 5. O que conta como uma Transmutation Perk
+## 5. Transmutation Perks
 
 Somente a raiz `Txxxx` conta para `N_transmutation_per_tree`.
-
-Os filhos `Txxxx.n` pertencem à mesma Ability e não entram na quota.
 
 ### Unicidade por Ability
 
 Cada Ability pode possuir **uma única raiz de Transmutation em todo o catálogo**.
 
-Se Chain Lightning for `T5000`, qualquer modificação futura específica de Chain Lightning continuará sendo `T5000.n`. Ela não reaparece mais adiante como `T5050`, `T5100` ou qualquer outra raiz.
+Se Chain Lightning for `T5000`, qualquer modificação futura específica dela permanece dentro de `T5000.xx`. Ela não reaparece como `T5050`, `T5100` ou outra raiz.
 
 Um novo inteiro, como `T5001`, é reservado para outra Ability.
 
-Perks normais e de especialização ainda podem afetar categorias gerais — por exemplo Lightning Damage, mana ou spell power — mas não devem duplicar a customização específica que pertence à raiz de Transmutation daquela Ability.
+Standard Perks e Specialization Perks podem afetar categorias gerais, mas não devem duplicar uma segunda customização específica da mesma Ability.
 
-### Estrutura mínima
+### Três grupos de escolha
 
-Cada raiz deve possuir inicialmente no mínimo:
+Toda raiz possui três grupos independentes:
 
-- 2 modificadores de potência/impacto;
-- 2 modificadores de forma/eficiência;
-- 3 metamorfoses.
+- **LEFT / esquerda:** `Txxxx.11`–`Txxxx.19`;
+- **RIGHT / direita:** `Txxxx.21`–`Txxxx.29`;
+- **METAMORPHOSIS / metamorfose:** `Txxxx.31`–`Txxxx.39`.
 
-**O mínimo de 3 metamorfoses não é máximo.** Abilities que sustentem transformações mecanicamente distintas podem possuir 4, 5 ou mais metamorfoses.
+Mínimos:
 
-A quantidade de filhos pode variar entre Abilities. A paridade entre árvores mede raízes/Abilities `Txxxx`, não a quantidade de `Txxxx.n`.
+- esquerda: 2 opções;
+- direita: 2 opções;
+- metamorfose: 3 opções.
 
-Essas três faixas são uma organização de design, não um sistema de exclusividade.
+Máximo: 9 opções em cada grupo.
 
-### Stacking
+### Exclusividade e coexistência
 
-Modificadores `Txxxx.n` são **acumuláveis por padrão**.
+**Dentro de cada grupo, somente uma opção pode estar ativa.**
+
+Ao mesmo tempo, os três grupos coexistem. A configuração da Ability pode usar:
+
+`1 LEFT + 1 RIGHT + 1 METAMORPHOSIS`.
 
 Exemplo válido:
 
-`T5000.1 + T5000.2 + T5000.7` ativos simultaneamente sobre Chain Lightning.
+`T5000.11 + T5000.22 + T5000.33`.
 
-Exclusividade só pode existir quando dois efeitos forem realmente incompatíveis. Nesse caso o conflito deve ser declarado explicitamente no dossiê; não pode ser inferido pela posição esquerda/direita/metamorfose.
+Exemplo inválido:
 
-Uma escolha interna de modo também não exclui outros modificadores. Exemplo: `T5000.7` pode permitir escolher uma afinidade persistente; apenas uma afinidade fica selecionada dentro de `.7`, mas `.7` continua podendo coexistir com `.1`, `.2`, etc.
+`T5000.11 + T5000.12`, porque ambas pertencem ao grupo LEFT.
+
+A quantidade de opções pode variar entre Abilities. A paridade entre árvores mede raízes/Abilities `Txxxx`, não a quantidade de filhos.
+
+### Função dos grupos
+
+LEFT e RIGHT são dois eixos menores distintos de customização. Eles não precisam representar universalmente o mesmo atributo em todas as Abilities.
+
+METAMORPHOSIS contém mudanças profundas de identidade ou funcionamento: conversão elemental, nova geometria, novo targeting, transformação de projectile/area/stance, alteração forte de recurso ou outro comportamento que mude a forma de jogar a Ability.
 
 ## 6. Ability, não Spell
 

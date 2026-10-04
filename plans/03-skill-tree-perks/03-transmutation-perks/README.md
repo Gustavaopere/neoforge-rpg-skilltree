@@ -10,44 +10,45 @@ Uma raiz `Txxxx` representa uma Ability.
 
 **Cada Ability aparece uma única vez como raiz de Transmutation em todo o catálogo.**
 
-Os modificadores daquela Ability usam `Txxxx.n`. Se a Ability receber novos modificadores no futuro, eles continuam nessa mesma sequência. Um novo número inteiro é usado somente para outra Ability.
+Um novo número inteiro é usado somente para outra Ability.
+
+## Três grupos
+
+Cada raiz possui:
+
+### LEFT / esquerda
+- IDs `.11`–`.19`;
+- mínimo 2 opções;
+- máximo 9;
+- escolher somente 1.
+
+### RIGHT / direita
+- IDs `.21`–`.29`;
+- mínimo 2 opções;
+- máximo 9;
+- escolher somente 1.
+
+### METAMORPHOSIS / metamorfose
+- IDs `.31`–`.39`;
+- mínimo 3 opções;
+- máximo 9;
+- escolher somente 1.
+
+Os três grupos coexistem. Portanto uma configuração completa pode manter simultaneamente uma opção de cada grupo.
 
 Exemplo:
 
-```
-T5000 — Chain Lightning
-├── T5000.1
-├── ...
-├── T5000.7
-├── T5000.8
-└── T5000.9
-```
+`T5000.11 + T5000.22 + T5000.33`.
 
-Não deve existir outra raiz de Chain Lightning mais adiante.
+O máximo de 9 é por grupo, não por Ability inteira. Uma raiz pode ter até 27 opções catalogadas, embora não exista obrigação de preencher todos os slots.
 
-## Estrutura mínima inicial
+## Papel dos grupos
 
-Cada `Txxxx` terá:
+LEFT e RIGHT devem oferecer dois eixos menores de customização diferentes entre si.
 
-- raiz: requisito de Ability conhecida/desbloqueada;
-- potência/impacto: mínimo 2 modificadores;
-- forma/eficiência: mínimo 2 modificadores;
-- metamorfose: mínimo 3 modificadores;
-- um arquivo `.md` por modificador.
+METAMORPHOSIS contém transformações maiores: elemento/afinidade, geometria, trajetória, targeting, recurso, comportamento espacial, forma de entrega ou outra alteração que mude a identidade da Ability.
 
-**Metamorfose possui mínimo, não máximo.** Uma Ability pode ter 4, 5 ou mais metamorfoses se houver transformações relevantes e não redundantes.
-
-A quantidade total de filhos `Txxxx.n` não precisa ser igual entre todas as Abilities. A igualdade entre árvores é medida pela quantidade de raízes `Txxxx`.
-
-As faixas são organizacionais.
-
-## Stacking
-
-Todos os modificadores são acumuláveis por padrão.
-
-Um jogador pode adquirir/usar vários filhos da mesma raiz simultaneamente. Exclusividade deve ser excepcional e declarada apenas quando dois efeitos forem semanticamente incompatíveis.
-
-Exemplo: `T5000.1 + T5000.2 + T5000.7` podem operar juntos. Se `.7` possuir várias afinidades possíveis, a seleção de uma afinidade é uma escolha interna de `.7`, não exclusividade contra os outros modificadores.
+Esses significados podem variar conforme a natureza da Ability. O design não deve forçar “dano à esquerda” para todas as skills se isso produzir opções artificiais.
 
 ## Separação de responsabilidades
 

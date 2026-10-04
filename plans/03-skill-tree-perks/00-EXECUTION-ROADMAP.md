@@ -138,52 +138,71 @@ Todas as 11 árvores possuem a mesma estrutura quantitativa de especializações
 Criar primeiro intenção de gameplay, owner, sinergias e providers candidatos.
 
 ### 5B — Transmutation Perks
-Cada Ability candidata recebe **uma única raiz `Txxxx` em todo o catálogo**.
+
+Cada Ability candidata recebe **uma única raiz `Txxxx` em todo o catálogo**. Essa raiz é o único ponto dedicado a customizar especificamente aquela Ability.
+
+A raiz abre três grupos independentes de escolha:
+
+1. **Esquerda** — mínimo 2 e máximo 9 opções; exatamente 1 opção ativa.
+2. **Direita** — mínimo 2 e máximo 9 opções; exatamente 1 opção ativa.
+3. **Metamorfose** — mínimo 3 e máximo 9 opções; exatamente 1 opção ativa.
+
+Uma configuração completa da Ability pode ter simultaneamente **1 esquerda + 1 direita + 1 metamorfose**. O que é proibido é manter duas opções do mesmo grupo ativas ao mesmo tempo.
 
 Exemplo:
 
 ```
 T5000 — Chain Lightning
-├── T5000.1 — Cadeia Adicional
-├── T5000.2 — Primeiro Impacto
-├── T5000.3 — Alcance de Condução
-├── T5000.4 — Condução Econômica
-├── T5000.5 — Cadeia Frenética
-├── T5000.6 — Fluxo de Retorno
-└── T5000.7 — Transmutação Elemental
+├── ESQUERDA — escolher 1
+│   ├── T5000.11
+│   └── T5000.12
+├── DIREITA — escolher 1
+│   ├── T5000.21
+│   └── T5000.22
+└── METAMORFOSE — escolher 1
+    ├── T5000.31
+    ├── T5000.32
+    └── T5000.33
 ```
 
-A Chain Lightning não deve receber outra raiz mais tarde na árvore. Qualquer nova transformação específica dela deve continuar dentro de `T5000.n`.
+Exemplo de configuração válida:
+
+`T5000.11 + T5000.22 + T5000.33`.
+
+A Chain Lightning não deve receber outra raiz mais tarde na árvore. Qualquer nova opção específica dela deve continuar dentro dos ranges `T5000.1x`, `T5000.2x` ou `T5000.3x`.
 
 `T5001` representa **outra Ability**, nunca uma segunda ocorrência de Chain Lightning.
 
-Os filhos `T5000.n` são acumuláveis por padrão. Um jogador pode usar, por exemplo, `T5000.1 + T5000.2 + T5000.7` ao mesmo tempo.
+### Numeração dos grupos
 
-Exclusividade só existe quando efeitos forem semanticamente incompatíveis. Essa incompatibilidade precisa ser declarada explicitamente; ela nunca é inferida apenas porque dois modificadores estão na mesma faixa visual.
+- `.11`–`.19` = esquerda;
+- `.21`–`.29` = direita;
+- `.31`–`.39` = metamorfose.
 
-Cada transmutação terá inicialmente no mínimo:
-- 2 modificadores de potência/impacto;
-- 2 modificadores de forma/eficiência;
-- 3 metamorfoses.
+O segundo dígito é o índice da opção dentro do grupo, de 1 a 9.
 
-**Três metamorfoses é piso, não teto.** Uma Ability pode receber 4, 5 ou mais metamorfoses quando elas criarem transformações realmente distintas e úteis. Não existe máximo global fixo.
+### Papel dos grupos
 
-Novas metamorfoses continuam usando o mesmo namespace de filhos, por exemplo `T5000.8`, `T5000.9`, `T5000.10`, sem criar uma segunda raiz para a mesma Ability.
+Os grupos não precisam representar sempre exatamente os mesmos atributos em todas as Abilities. Eles devem representar dois eixos menores distintos e um eixo de transformação profunda.
 
-Esses grupos organizam o design; **não são escolhas mutuamente exclusivas por padrão**.
+Exemplos de eixos menores: custo, crítico, dano, alcance, área, duração, cadência, geração de recurso, número de alvos ou consistência.
+
+Metamorfoses podem alterar elemento, geometria, trajetória, forma de entrega, resource model, targeting, comportamento espacial ou função da Ability.
+
+### Paridade
+
+A paridade de Transmutation compara **raízes/Abilities**, não o número de opções internas. Uma Ability pode ter 2/2/3 e outra 4/3/6, desde que nenhuma ultrapasse 9 opções por grupo.
 
 ### 5C — Specialization Perks
 Criar as perks de cada especialização depois que suas fantasias e quotas estiverem fechadas.
 
-### Paridade
+### Paridade global
 Congelar somente quando as 11 árvores estiverem representadas:
 
 - `N_standard_per_tree`;
 - `N_transmutation_per_tree`;
 - `K_specializations_per_tree`;
 - `M_perks_per_specialization`.
-
-A paridade de Transmutation compara **raízes/Abilities**, não quantidade de filhos. Portanto uma Ability complexa pode ter mais modificadores/metamorfoses do que outra sem alterar `N_transmutation_per_tree`.
 
 ### Gate de saída
 O catálogo conceitual inteiro pode ser revisado como sistema de builds antes de qualquer implementação específica de provider.
@@ -200,7 +219,7 @@ Somente agora cada perk aprovada é aprofundada tecnicamente.
 - API, evento ou boundary utilizável;
 - authority server/client;
 - persistência;
-- stacking;
+- escolha ativa e troca entre opções do mesmo grupo;
 - cooldown/recurso;
 - dano/heal/ownership;
 - compatibilidade com addons;
@@ -223,7 +242,8 @@ Cada perk possui contrato implementável ou decisão explícita de bloqueio.
 - migrar schema/loaders onde necessário;
 - implementar adapters como `AbilityKnowledgeProvider`;
 - implementar efeitos sem duplicar authority dos providers;
-- adicionar testes de stacking, save/reload, multiplayer e ausência de mod opcional;
+- implementar exclusividade intragrupo e coexistência entre os três grupos;
+- adicionar testes de escolha/troca, save/reload, multiplayer e ausência de mod opcional;
 - reaproveitar a infraestrutura de `✅-01` a `✅-05` somente onde os contratos continuarem válidos.
 
 ---
