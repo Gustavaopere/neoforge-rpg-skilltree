@@ -2,7 +2,7 @@
 
 > **Adição solicitada — 03/10/2026.** O usuário determinou a entrada de **Create: AeroWarptics** como parte da substituição de Create Aeronautics: Alcubierre. O snapshot físico verificável mais recente é anterior a essa solicitação; por isso esta ficha documenta o alvo upstream **1.3.0**, mas não inventa SHA-1, metadata carregada ou ordem física antes de um novo dump do perfil.
 
-> **Status de certificação:** **SEM `✅-`**. É uma ficha nova pós-migração. Estado: **PENDENTE DE CONFIRMAÇÃO FÍSICA E SMOKE TEST**.
+> **Status documental:** `✅-` aplicado ao filename por solicitação explícita do usuário em 03/10/2026, após revalidação do dossiê e das fontes públicas. **Isso não equivale a confirmação física do JAR nem a smoke test executado**; esses pontos continuam pendentes até novo snapshot/teste.
 
 ## Propriedades do catálogo
 
@@ -324,7 +324,7 @@ Release atual do CurseForge; adiciona Rift Modulator/themes/lightning, transform
 
 **Alta confiança:** versão publicada, loader/game version, categorias e dependências CurseForge; source oficial e manifest atual.
 
-**Média/pendente:** presença física local, SHA-1, metadata runtime e posição no inventário após a solicitação de 03/10/2026.
+**Média/pendente:** presença física local, SHA-1, metadata runtime e posição no inventário após a solicitação de 03/10/2026. O prefixo `✅-` do filename é apenas o estado documental solicitado e não substitui essa evidência.
 
 **Divergência:** licença CurseForge “All Rights Reserved” vs source `LICENSE` CC BY-NC-SA 4.0.
 

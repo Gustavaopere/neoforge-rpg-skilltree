@@ -27,7 +27,7 @@
 
 | Ação | Nome / projeto | Artefato / versão de referência | Pasta / dossier | Estado |
 |---|---|---|---|---|
-| Adicionar | Create: AeroWarptics | `aerowarptics-1.3.0.jar` / `1.3.0` | `Create + Player Transport/create-aerowarptics v1.3.0.md` | Solicitação registrada; JAR/SHA/metadata/ordem e smoke test pendentes |
+| Adicionar | Create: AeroWarptics | `aerowarptics-1.3.0.jar` / `1.3.0` | `Create + Player Transport/✅-create-aerowarptics v1.3.0.md` | Solicitação registrada; JAR/SHA/metadata/ordem e smoke test pendentes |
 | Remover | Create Aeronautics: Alcubierre | `alcubierre-1.2.6.jar` / `1.2.6` | `Addons + Create/✅-alcubierre v1.2.6.md` | Remoção solicitada; ausência física pendente de novo snapshot; dossier histórico preservado |
 
 ### Boundary da substituição
