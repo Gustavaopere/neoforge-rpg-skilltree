@@ -8,19 +8,20 @@ O catálogo histórico `A####` foi aposentado desta pasta. Os documentos técnic
 
 A criação massiva de perks está **congelada até a reconciliação da modlist e da matriz de capacidades**.
 
-O fluxo canônico está em [`00-EXECUTION-ROADMAP.md`](./00-EXECUTION-ROADMAP.md). A ordem é:
+O fluxo canônico está em [`00-EXECUTION-ROADMAP.md`](./00-EXECUTION-ROADMAP.md):
 
-`modlist física -> capacidades -> distribuição nas 11 árvores -> especializações -> catálogo conceitual -> auditoria técnica por provider -> implementação -> topologia visual`.
+`modlist física -> capacidades -> distribuição nas 11 árvores -> especializações + mecânicas assinatura -> catálogo conceitual -> auditoria técnica por provider -> implementação -> topologia visual`.
 
-Não criar perks a partir de um mod apenas porque ele existe, e não escolher especializações copiando estruturas antigas do runtime.
+Não criar perks a partir de um mod apenas porque ele existe. Não escolher especializações copiando estruturas antigas do runtime. Diablo IV e outros jogos podem fornecer **padrões de decisão e inspiração**, nunca requisitos a copiar literalmente.
 
 ## Estrutura
 
 - [`01-internal-attributes/`](./01-internal-attributes/) — seis atributos fundamentais comuns.
 - [`02-standard-perks/`](./02-standard-perks/) — perks normais das 11 árvores.
-- [`03-transmutation-perks/`](./03-transmutation-perks/) — uma raiz `Txxxx` por Ability e modificadores `Txxxx.n`.
+- [`03-transmutation-perks/`](./03-transmutation-perks/) — uma raiz `Txxxx` por Ability, com três grupos de escolha `Txxxx.xx`.
 - [`04-specialization-perks/`](./04-specialization-perks/) — especializações reconstruídas do zero depois da matriz de capacidades.
-- [`CATALOG-CONTRACT.md`](./CATALOG-CONTRACT.md) — paridade, ownership, stacking e regras de catálogo.
+- [`SPECIALIZATION-CONTRACT.md`](./SPECIALIZATION-CONTRACT.md) — contrato das mecânicas assinatura e da relação entre especialização, perks e providers.
+- [`CATALOG-CONTRACT.md`](./CATALOG-CONTRACT.md) — paridade, ownership e regras do catálogo.
 - [`NUMBERING.md`](./NUMBERING.md) — códigos editoriais e ranges.
 - [`06-content-wiki-generation.md`](./06-content-wiki-generation.md) — fechamento posterior do catálogo, runtime e wiki.
 

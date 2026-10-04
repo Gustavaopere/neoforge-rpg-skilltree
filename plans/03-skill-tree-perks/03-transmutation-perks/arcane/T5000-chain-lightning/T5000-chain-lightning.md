@@ -27,20 +27,16 @@ Ela possui uma única raiz no catálogo e três grupos de escolha.
 
 - [T5000.31 — Cadeia Frenética](./T5000.31-cadeia-frenetica.md)
 - [T5000.32 — Fluxo de Retorno](./T5000.32-fluxo-de-retorno.md)
-- [T5000.33 — Transmutação Elemental](./T5000.33-transmutacao-elemental.md)
+- [T5000.33 — Transmutação de Afinidade](./T5000.33-transmutacao-de-afinidade.md)
 
 ## Exemplo de configuração
 
 `T5000.11 + T5000.22 + T5000.33`.
 
-Isso significa: uma opção da esquerda, uma da direita e uma metamorfose ativas ao mesmo tempo.
-
-Não é permitido usar `T5000.11 + T5000.12` simultaneamente, nem duas opções RIGHT ou duas METAMORPHOSIS.
+Uma opção de cada grupo fica ativa.
 
 ## Referência de design
 
-O padrão 2/2/3 do Diablo IV é uma referência útil porque produz decisões em três eixos sem exigir que a skill seja concedida pela própria árvore.
+O padrão externo 2/2/3 é apenas uma referência útil de como criar decisões em três eixos. Não obriga este projeto a copiar efeitos, números ou limites.
 
-As opções exatas de Diablo mudam entre patches; portanto nomes, números e efeitos externos são fonte de ideias, não contrato do RPG Skill Tree.
-
-A conversão elemental é especialmente relevante para este projeto porque permite adaptar uma Ability a uma build de outra afinidade. No nosso sistema essa conversão pode ser generalizada por ritual em vez de ficar limitada a uma única escola.
+A terceira metamorfose foi generalizada: em vez de converter Chain Lightning para uma escola fixa, ela permite selecionar uma **Affinity** suportada pelo ecossistema do pack. A matriz real de affinities será fechada somente após a modlist e a auditoria técnica.

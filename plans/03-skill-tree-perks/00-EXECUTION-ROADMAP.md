@@ -6,20 +6,20 @@ Reconstruir o sistema de perks a partir do modpack realmente instalado, sem herd
 
 A regra central é: **primeiro entender o que o pack oferece; depois desenhar builds; somente então aprofundar APIs/hooks e implementar.**
 
-O antigo fluxo de três chats — auditar perks existentes, implementar e corrigir pendências — é considerado legado para esta reconstrução. Ele pode inspirar ferramentas técnicas, mas não determina a ordem de design.
+Diablo IV e outros ARPGs podem ser estudados para identificar bons padrões de escolha, transformação e identidade de classe. Nenhum efeito, número, nome ou estrutura externa é obrigatório para este projeto.
 
 ---
 
 ## Fase 0 — congelamento e limpeza do legado editorial
 
 ### Trabalho
-- não expandir o catálogo de perks enquanto a modlist não estiver reconciliada;
+- não expandir o catálogo enquanto a modlist não estiver reconciliada;
 - remover especializações herdadas automaticamente do runtime antigo;
-- preservar somente infraestrutura técnica já implementada que possa ser reaproveitada;
-- marcar exemplos existentes, como Chain Lightning, como pilotos conceituais e não como auditorias técnicas concluídas.
+- preservar somente infraestrutura técnica reaproveitável;
+- tratar exemplos existentes, como Chain Lightning, como pilotos conceituais.
 
 ### Gate de saída
-Nenhuma especialização antiga é tratada como aprovada e nenhuma perk nova depende de um provider cuja presença atual não esteja confirmada.
+Nenhuma especialização antiga é tratada como aprovada e nenhuma perk nova depende de provider cuja presença atual não esteja confirmada.
 
 ---
 
@@ -29,25 +29,16 @@ Nenhuma especialização antiga é tratada como aprovada e nenhuma perk nova dep
 Criar uma única autoridade de presença, versão e identidade dos mods instalados.
 
 ### Trabalho
-1. localizar ou reconstruir a lista física de JARs que representa o pack atual;
+1. localizar ou reconstruir a lista física de JARs atual;
 2. reconciliar cada JAR com seu dossiê em `PROJECT-INSTRUCTIONS/modlist`;
 3. corrigir dossiês de mods removidos, substituídos ou atualizados;
-4. eliminar contradições entre os guias Gameplay, Magic e Technology;
+4. eliminar contradições entre Gameplay, Magic e Technology;
 5. garantir que todos apontem para a mesma authority física;
-6. separar claramente:
-   - provider de gameplay;
-   - addon;
-   - bridge/compat;
-   - biblioteca/API;
-   - UI/QoL;
-   - cosmético;
-   - worldgen/conteúdo sem superfície legítima de perk;
-7. registrar remoções explicitamente para que mods antigos não reapareçam em planos futuros.
+6. classificar cada entrada como provider de gameplay, addon, bridge/compat, biblioteca/API, UI/QoL, cosmético, worldgen ou outra função;
+7. registrar remoções explicitamente para impedir ressurgimento de mods antigos em planos futuros.
 
 ### Gate de saída
-Existe uma fonte única e auditável que responde: “este mod/JAR está ou não está no pack agora?”.
-
-Nenhum número de arquivos `.md` deve ser confundido automaticamente com quantidade de JARs instalados.
+Existe uma fonte única e auditável que responde se um mod/JAR está ou não no pack atual.
 
 ---
 
@@ -57,26 +48,23 @@ Nenhum número de arquivos `.md` deve ser confundido automaticamente com quantid
 Descobrir **o que o jogador pode fazer**, sem ainda criar perks individuais.
 
 ### Fontes
-- todos os providers reais da modlist;
+- providers reais da modlist;
 - Minecraft vanilla;
 - projetos próprios do pack;
-- addons e bridges somente quando adicionarem capacidade jogável real.
+- addons/bridges quando adicionarem capacidade jogável real.
 
-### Para cada provider/capacidade registrar
-- capacidade/fantasia;
+### Para cada capacidade registrar
+- fantasia/função;
 - tipo: spell, weapon skill, active skill, summon, stance, movement, survival mechanic, crafting/process, logistics, vehicle, ritual, pet etc.;
 - domínio(s) candidatos;
-- se a progressão é nativa e deve ser respeitada;
-- se pode receber Standard Perks;
-- se possui Abilities candidatas a Transmutation;
-- se alimenta alguma fantasia de especialização;
-- dependências e boundaries conhecidos em alto nível.
-
-### Importante
-Nesta fase não é necessário descobrir classe Java, evento, registry ou hook exato. Basta entender funcionalmente a capacidade.
+- progressão nativa que deve ser respeitada;
+- potencial para Standard Perks;
+- Abilities candidatas a Transmutation;
+- fantasias de especialização que pode alimentar;
+- boundaries conhecidos em alto nível.
 
 ### Gate de saída
-Todo provider relevante possui pelo menos uma decisão: integrar, cobrir por sistema universal, preservar progressão nativa, ou não integrar.
+Todo provider relevante possui decisão de integração, cobertura universal, preservação da progressão nativa ou não integração.
 
 ---
 
@@ -94,13 +82,14 @@ Um mod pode alimentar várias árvores. Uma árvore pode receber capacidades de 
 Cada capacidade terá um owner principal para contagem, mesmo quando existir integração cruzada.
 
 ### Gate de saída
-As 11 árvores possuem identidade mecânica clara e cobertura suficiente para começar o design sem inventar filler.
+As 11 árvores possuem identidade mecânica clara e cobertura suficiente para começar o design sem filler.
 
 ---
 
 ## Fase 4 — arquitetura das especializações
 
 ### Conceito
+
 Especialização é uma **ramificação temática da árvore principal**, não uma pasta por mod.
 
 Exemplo conceitual:
@@ -108,130 +97,135 @@ Exemplo conceitual:
 ```
 ARCANE
 ├── perks normais
-├── especialização: Piromante
-├── especialização: Criomante
+├── Piromante
+├── Criomante
 └── outras especializações aprovadas
 ```
 
-Piromante pode consumir capacidades de Iron's, Ars, vanilla e outros providers compatíveis. O provider não dá nome nem ownership automático à especialização.
+Uma especialização pode consumir capacidades de Iron's, Ars, vanilla e outros providers compatíveis. O provider não dá nome nem ownership automático à especialização.
 
-### Paridade obrigatória
-Depois da matriz de capacidades serão congelados:
+### Mecânica assinatura
 
-- `K_specializations_per_tree` — mesma quantidade de especializações em cada árvore;
-- `M_perks_per_specialization` — mesma quantidade de perks em cada especialização.
+Cada especialização deve justificar sua existência com uma **Signature Mechanic / Mecânica Assinatura**: uma camada de decisão que muda como aquela build é montada ou jogada.
 
-Assim:
+Padrões válidos incluem, sem limitar:
+- escolher afinidades/espíritos/patronos que alteram tags e bônus;
+- configurar funções de summons e trocar parte do exército por benefícios próprios;
+- caçar/capturar/selar entidades para obter poderes ou opções persistentes;
+- juramentos, posturas, contratos, escolas, doutrinas, companion roles ou outros sistemas equivalentes.
 
-`N_specialization_per_tree = K_specializations_per_tree * M_perks_per_specialization`.
+A mecânica assinatura **não deve ser uma cópia literal de Diablo**. Ela deve nascer das capacidades reais do modpack e da fantasia da especialização.
 
-Se alguma árvore não suportar `K` ou `M` sem filler, reduzimos o valor **globalmente**. Não abrimos exceção para ARCANE ou qualquer outro domínio.
+Se uma especialização não tiver identidade suficiente para sustentar uma mecânica reconhecível, ela deve ser fundida, redesenhada ou descartada.
+
+### Paridade
+
+A obrigação de equilíbrio é o mesmo **orçamento total de perks de especialização por árvore**.
+
+Como hipótese preferencial, também buscamos o mesmo número de especializações por árvore e o mesmo número de perks por especialização, mas esses dois valores só serão congelados depois da matriz de capacidades. Não criaremos filler para preservar uma simetria que prejudique o design.
+
+Cada especialização aprovada deve ter uma mecânica assinatura de peso comparável às demais, embora a forma dessa mecânica possa ser completamente diferente.
 
 ### Gate de saída
-Todas as 11 árvores possuem a mesma estrutura quantitativa de especializações e cada especialização representa uma fantasia/build distinta.
+Todas as árvores possuem especializações distintas, suportadas pela modlist, com mecânicas assinatura comparáveis e sem depender de nomes de mods.
 
 ---
 
 ## Fase 5 — catálogo conceitual completo
 
 ### 5A — Standard Perks
-Criar primeiro intenção de gameplay, owner, sinergias e providers candidatos.
+Criar intenção de gameplay, owner, sinergias e providers candidatos.
 
 ### 5B — Transmutation Perks
 
-Cada Ability candidata recebe **uma única raiz `Txxxx` em todo o catálogo**. Essa raiz é o único ponto dedicado a customizar especificamente aquela Ability.
+Cada Ability candidata recebe **uma única raiz `Txxxx` em todo o catálogo**.
 
-A raiz abre três grupos independentes de escolha:
+A raiz abre três grupos independentes:
 
-1. **Esquerda** — mínimo 2 e máximo 9 opções; exatamente 1 opção ativa.
-2. **Direita** — mínimo 2 e máximo 9 opções; exatamente 1 opção ativa.
-3. **Metamorfose** — mínimo 3 e máximo 9 opções; exatamente 1 opção ativa.
+1. **LEFT** — mínimo 2, máximo 9; exatamente 1 opção ativa.
+2. **RIGHT** — mínimo 2, máximo 9; exatamente 1 opção ativa.
+3. **METAMORPHOSIS** — mínimo 3, máximo 9; exatamente 1 opção ativa.
 
-Uma configuração completa da Ability pode ter simultaneamente **1 esquerda + 1 direita + 1 metamorfose**. O que é proibido é manter duas opções do mesmo grupo ativas ao mesmo tempo.
+Configuração completa:
 
-Exemplo:
+`1 LEFT + 1 RIGHT + 1 METAMORPHOSIS`.
 
-```
-T5000 — Chain Lightning
-├── ESQUERDA — escolher 1
-│   ├── T5000.11
-│   └── T5000.12
-├── DIREITA — escolher 1
-│   ├── T5000.21
-│   └── T5000.22
-└── METAMORFOSE — escolher 1
-    ├── T5000.31
-    ├── T5000.32
-    └── T5000.33
-```
+### Numeração
 
-Exemplo de configuração válida:
-
-`T5000.11 + T5000.22 + T5000.33`.
-
-A Chain Lightning não deve receber outra raiz mais tarde na árvore. Qualquer nova opção específica dela deve continuar dentro dos ranges `T5000.1x`, `T5000.2x` ou `T5000.3x`.
-
-`T5001` representa **outra Ability**, nunca uma segunda ocorrência de Chain Lightning.
-
-### Numeração dos grupos
-
-- `.11`–`.19` = esquerda;
-- `.21`–`.29` = direita;
-- `.31`–`.39` = metamorfose.
-
-O segundo dígito é o índice da opção dentro do grupo, de 1 a 9.
+- `.11`–`.19` = LEFT;
+- `.21`–`.29` = RIGHT;
+- `.31`–`.39` = METAMORPHOSIS.
 
 ### Papel dos grupos
 
-Os grupos não precisam representar sempre exatamente os mesmos atributos em todas as Abilities. Eles devem representar dois eixos menores distintos e um eixo de transformação profunda.
+LEFT e RIGHT representam dois eixos menores distintos, escolhidos de acordo com a Ability: custo, crítico, dano, alcance, área, duração, cadência, geração de recurso, número de alvos, consistência etc.
 
-Exemplos de eixos menores: custo, crítico, dano, alcance, área, duração, cadência, geração de recurso, número de alvos ou consistência.
+METAMORPHOSIS muda identidade ou funcionamento: afinidade/escola, geometria, trajetória, targeting, forma de entrega, resource model, comportamento espacial, papel ofensivo/defensivo ou outra transformação estrutural.
 
-Metamorfoses podem alterar elemento, geometria, trajetória, forma de entrega, resource model, targeting, comportamento espacial ou função da Ability.
+### Conversão de afinidade/escola
+
+Quando uma metamorfose permitir conversão, o conceito preferido é **afinidade/escola selecionável**, não uma conversão fixa para “gelo” ou “fogo”.
+
+Exemplo conceitual:
+
+```
+T5000.33 — Transmutação de Afinidade
+Ritual -> selecionar uma afinidade suportada
+Exemplos candidatos: Fire, Ice, Lightning, Holy, Blood, Ender...
+```
+
+A lista real só será fechada após a modlist e a auditoria dos providers. “Elemento” e “escola” não são tratados como sinônimos técnicos; o catálogo usa `Affinity` como abstração comum.
+
+A conversão, quando suportada, deve tentar trocar o conjunto semântico completo: damage type/school/tag, scaling, statuses, resistências, VFX e sinergias. Se um provider não permitir conversão coerente, a afinidade correspondente fica indisponível em vez de receber uma troca puramente cosmética.
+
+### Referências externas
+
+Diablo pode sugerir perguntas úteis — “e se esta skill orbitasse o jogador?”, “e se mudasse de escola?”, “e se sacrificasse summons por benefício próprio?” — mas a resposta deve ser construída para o nosso pack.
+
+Não copiar automaticamente:
+- números;
+- quantidade de opções;
+- elementos disponíveis;
+- custos;
+- cooldowns;
+- nomes;
+- restrições de classe;
+- mecânicas sem equivalente útil no modpack.
 
 ### Paridade
 
-A paridade de Transmutation compara **raízes/Abilities**, não o número de opções internas. Uma Ability pode ter 2/2/3 e outra 4/3/6, desde que nenhuma ultrapasse 9 opções por grupo.
+A paridade de Transmutation compara **raízes/Abilities**, não o número de opções internas.
 
 ### 5C — Specialization Perks
-Criar as perks de cada especialização depois que suas fantasias e quotas estiverem fechadas.
 
-### Paridade global
-Congelar somente quando as 11 árvores estiverem representadas:
-
-- `N_standard_per_tree`;
-- `N_transmutation_per_tree`;
-- `K_specializations_per_tree`;
-- `M_perks_per_specialization`.
+Criar perks e a mecânica assinatura de cada especialização depois que suas fantasias e quotas estiverem fechadas. As perks devem alimentar a mecânica assinatura, e não existir como uma lista paralela de bônus desconectados.
 
 ### Gate de saída
-O catálogo conceitual inteiro pode ser revisado como sistema de builds antes de qualquer implementação específica de provider.
+O catálogo conceitual inteiro pode ser revisado como sistema de builds antes da implementação específica de providers.
 
 ---
 
 ## Fase 6 — auditoria técnica por provider
 
-Somente agora cada perk aprovada é aprofundada tecnicamente.
+Somente agora cada conceito aprovado é aprofundado tecnicamente.
 
 ### Para cada integração descobrir
 - versão instalada;
 - registry/ID real;
-- API, evento ou boundary utilizável;
+- API/event/boundary;
 - authority server/client;
 - persistência;
-- escolha ativa e troca entre opções do mesmo grupo;
+- escolha/troca entre opções;
 - cooldown/recurso;
-- dano/heal/ownership;
+- damage/heal/ownership;
+- tags/schools/affinities;
 - compatibilidade com addons;
-- efeitos visuais;
-- fallback e comportamento fail-closed;
-- riscos de dupla aplicação.
+- VFX;
+- fallback/fail-closed;
+- risco de dupla aplicação.
 
 ### Regra
-A perk conceitual não deve ser redesenhada apenas para aproveitar um hook conveniente. Primeiro tentamos implementar a fantasia aprovada; se não existir boundary seguro, registramos limitação, alternativa coerente ou fail-closed.
-
-### Gate de saída
-Cada perk possui contrato implementável ou decisão explícita de bloqueio.
+Primeiro tentamos implementar a fantasia aprovada. Se não existir boundary seguro, registramos limitação, alternativa coerente ou fail-closed; não redesenhamos toda a perk só para aproveitar um hook conveniente.
 
 ---
 
@@ -240,11 +234,11 @@ Cada perk possui contrato implementável ou decisão explícita de bloqueio.
 - congelar IDs editoriais;
 - definir `ResourceLocation` runtime estável;
 - migrar schema/loaders onde necessário;
-- implementar adapters como `AbilityKnowledgeProvider`;
-- implementar efeitos sem duplicar authority dos providers;
-- implementar exclusividade intragrupo e coexistência entre os três grupos;
-- adicionar testes de escolha/troca, save/reload, multiplayer e ausência de mod opcional;
-- reaproveitar a infraestrutura de `✅-01` a `✅-05` somente onde os contratos continuarem válidos.
+- implementar adapters, inclusive conhecimento de Ability e afinidades quando necessário;
+- implementar exclusividade intragrupo e coexistência entre LEFT/RIGHT/METAMORPHOSIS;
+- implementar mecânicas assinatura sem duplicar authority dos providers;
+- testar escolha/troca, persistência, save/reload, multiplayer e ausência de mod opcional;
+- reaproveitar `✅-01` a `✅-05` onde continuarem válidos.
 
 ---
 
@@ -254,10 +248,11 @@ Somente depois do catálogo e runtime estarem estáveis:
 
 - desenhar posição visual das árvores;
 - posicionar especializações como ramificações;
-- definir conexões, gateways e leitura visual;
+- desenhar interfaces das mecânicas assinatura;
+- definir conexões/gateways;
 - gerar wiki;
 - adicionar validators de quota/IDs/links;
-- criar drift gate entre dados, runtime e documentação.
+- criar drift gate.
 
 ---
 
@@ -270,7 +265,7 @@ CAPACIDADES
   ↓
 11 ÁRVORES
   ↓
-ESPECIALIZAÇÕES
+ESPECIALIZAÇÕES + MECÂNICAS ASSINATURA
   ↓
 PERKS CONCEITUAIS
   ↓
@@ -278,7 +273,5 @@ AUDITORIA TÉCNICA DOS MODS
   ↓
 IMPLEMENTAÇÃO
   ↓
-TOPOLOGIA / WIKI
+TOPOLOGIA / UX / WIKI
 ```
-
-Pular uma fase só é permitido quando a etapa posterior não depende da informação ausente.
