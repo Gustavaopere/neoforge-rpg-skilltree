@@ -19,7 +19,7 @@
 - **Observações:** JAR físico `sophisticatedcore-1.21.1-1.5.1.2341.jar`, runtime 1.5.1. It has no independent gameplay proposition; value/necessity derives from consumers. Previous 1.4.x/1.5.1.2333 references are historical.
 - **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge official Sophisticated Core 1.5.1.2341 + direct installed consumers in current modlist.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/8839323
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.5.1 / build 2341. CurseForge publicou Sophisticated Core 1.5.2.2343 para NeoForge 1.21.1 em 27/09/2026; o delta principal confirmado no source é shared linked storage support.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 1.5.1 / build 2341. CurseForge publicou Sophisticated Core 1.5.2.2343 para NeoForge 1.21.1 em 27/09/2026; o delta principal confirmado no source é shared linked storage support.
 - **Histórico da decisão:** Mantido as core estrutural do ecossistema Sophisticated. Revalidated on 11/09/2026 against physical runtime 1.5.1.2341 and direct installed consumers.
 - **Data da última decisão:** 2026-08-22
 
@@ -136,3 +136,35 @@ Gate de regressão: linked storage entre Backpacks/Storage, Create integrations,
 Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/all?page=1&pageSize=20&version=1.21.1 ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/f5ec6fb7636a867f87e37cc388077be20221abfe
 
 > **Atualização/Status — valor histórico preservado do Notion:** RECONCILIADO EM 27/09/2026 — Sophisticated Core 1.5.1.2341 permanece físico; consumer Sophisticated Backpacks reconciliado para 3.26.3.
+
+
+## 22. Atualizações upstream 1.5.4.2356 → 1.5.5.2363 — não instaladas
+A cadeia posterior ao runtime físico `1.5.1.2341` foi revisada até a release mais recente de 03/10/2026. Para NeoForge 1.21.1, as releases relevantes são **1.5.2.2343 → 1.5.4.2356 → 1.5.5.2363**; não há release pública 1.5.3 nessa sequência do CurseForge.
+
+### 1.5.2.2343 — shared linked storage
+Já documentada acima: introduz infraestrutura compartilhada de **linked storage**, ampliando o contrato de persistência, sincronização e integração consumido por Backpacks/Storage e bridges.
+
+### 1.5.4.2356 — migração e memory settings
+O changelog/source upstream corrige problemas com impacto direto em integridade de dados:
+- **Backpacks e Storages perdendo item data ao migrar mundos**;
+- **crash nas memory settings ao desmarcar slots**.
+
+O source adiciona normalização de ItemStacks legados via DataFixer antes de reconstruir inventories, inclusive preservando contagens estendidas e custom data. Isso torna save migration um gate obrigatório para qualquer promoção do Core.
+
+### 1.5.5.2363 — links de storage
+O source oficial da 1.5.5 corrige **storage links perdendo conexões quando um barrel era quebrado**. É uma correção de consistência da malha de linked storage/controller, não apenas cosmética.
+
+### Política para este pack
+O runtime físico documentado continua **1.5.1.2341**. A 1.5.5.2363 é a mais recente disponível, mas Sophisticated Core é uma library compartilhada e não deve ser atualizada isoladamente sem validar version skew com os consumers físicos. O snapshot atual contém, entre outros, Sophisticated Backpacks 3.26.3.2158 e Sophisticated Storage 1.5.91.2127, além das integrações Create.
+
+**Recomendação:** tratar a promoção como atualização coordenada do ecossistema Sophisticated. O fato de existirem releases mais novas dos consumers não autoriza alterá-los nesta tarefa, porque eles não fazem parte do lote solicitado.
+
+### Gate de regressão adicional
+- cópia/migração de mundo antigo com inventories preenchidos;
+- nested backpack/custom data e stacks com contagem não trivial;
+- memory settings: select/unselect individual e all;
+- linked barrels: break/place/relink, chunk unload/reload e restart;
+- multiplayer container sync e absence de ghost/lost stacks;
+- Backpacks + Storage + ambas as Create integrations no mesmo runtime.
+
+Fontes upstream: CurseForge Sophisticated Core 1.5.4.2356 e 1.5.5.2363; commits oficiais `0c393553fb16a8195bb2f8a7a4b656176680734b` e `1a284cdd4445897264ff0131344ded6f1ddcacc7` em `P3pp3rF1y/SophisticatedCore`.
