@@ -27,7 +27,7 @@ O snapshot canônico do Notion, fechado em 11/09/2026, registra CreativeCore `2.
 - **Observações:** Qualquer resource/sound pack que acrescente ambience precisa ser auditado junto porque pode mudar completamente a experiência sem alterar o JAR. O mod reage ao mundo; não é fonte de verdade para biome/weather/spawn.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial AmbientSounds 6.3.8 + CreativeCore 2.13.44 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` / `6.3.8`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ambientsounds
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #25: `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` / `6.3.8` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico documentado permanece 6.3.8; CurseForge publicou 6.3.9 para NeoForge 1.21.1 em 02/10/2026. O delta de scanner/matching/performance está registrado abaixo.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
@@ -125,3 +125,25 @@ Um processador acústico pode alterar/reverberar os sons gerados por AmbientSoun
 **Projeto:** guia completo gameplay/sistemas, que o classifica corretamente como camada client-side de ambience e registra CreativeCore como dependência.
 
 **Confiança:** alta para versão, ambiente client-only, dependência e escopo. Packs de som/configuração efetivos precisam ser auditados separadamente para determinar o soundscape final da instância.
+
+
+## 12. Atualização upstream 6.3.9 — não instalada
+A autoridade física permanece **AmbientSounds 6.3.8**. Não há release 1.21.1 intermediária posterior a 6.3.8 antes da **6.3.9**, publicada em 02/10/2026 como `AmbientSounds_NEOFORGE_v6.3.9_mc1.21.1.jar` (CurseForge file ID **9037168**).
+
+O changelog oficial traz três mudanças relevantes para correção e custo do engine de detecção ambiental:
+- fecha o **air pocket scanner** assim que um novo level é carregado, evitando scanner antigo sobrevivendo à troca de mundo/level;
+- faz **cache dos matches de regex de bioma** e limita o terrain-height scan, reduzindo trabalho repetitivo;
+- compila os **patterns de nomes de dimensões uma única vez**, em vez de recompilá-los a cada tick.
+
+### Impacto no pack
+São mudanças de lifecycle/performance client-side, não novas fontes de gameplay. A primeira é especialmente relevante para login/relogin e troca de dimensão; as outras duas reduzem custo recorrente da classificação de ambiente em um pack com muitos biomas/dimensões.
+
+### Gate de promoção 6.3.8 → 6.3.9
+1. startup com CreativeCore atual;
+2. entrar/sair de mundo e trocar dimensões repetidamente, verificando ausência de ambience/scanner stale;
+3. transições rápidas entre biomas e cavernas;
+4. profiler/client frame-time em regiões com muitos biomas e sound layers;
+5. coexistência com Presence Footsteps, Sound Physics e resource/sound packs;
+6. confirmar preservação da categoria `suspense` introduzida na 6.3.8.
+
+Fonte upstream: CurseForge file ID 9037168, `AmbientSounds_NEOFORGE_v6.3.9_mc1.21.1.jar`.
