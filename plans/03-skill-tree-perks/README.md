@@ -8,24 +8,28 @@ O catálogo histórico `A####` foi aposentado desta pasta. Os documentos técnic
 
 A criação massiva de perks está **congelada até a reconciliação da modlist e da matriz de capacidades**.
 
-O fluxo canônico está em [`00-EXECUTION-ROADMAP.md`](./00-EXECUTION-ROADMAP.md):
+O plano operacional completo está em [`MASTER-EXECUTION-PLAN.md`](./MASTER-EXECUTION-PLAN.md). Ele define gates, entregáveis, ordem de execução, validações e decisões que não podem ser antecipadas.
 
-`modlist física -> capacidades -> distribuição nas 11 árvores -> especializações + mecânicas assinatura -> catálogo conceitual -> auditoria técnica por provider -> implementação -> topologia visual`.
+O fluxo é:
 
-Transmutation usará inicialmente **seleção fixa e curada de Abilities**, escolhida somente durante a execução da matriz de capacidades. A cobertura é obrigatoriamente transversal: magia e árvores não mágicas recebem o mesmo orçamento de raízes `Txxxx`.
-
-Não criar perks a partir de um mod apenas porque ele existe. Não escolher especializações copiando estruturas antigas do runtime. Diablo IV e outros jogos podem fornecer **padrões de decisão e inspiração**, nunca requisitos a copiar literalmente.
+`authority do pack -> matriz de capacidades -> identidade das 11 árvores -> budgets -> seleção curada de Abilities -> Standard Perks -> Transmutations -> especializações + Mecânicas Assinatura -> auditoria técnica -> runtime -> topologia/UX/wiki`.
 
 ## Estrutura
 
 - [`01-internal-attributes/`](./01-internal-attributes/) — seis atributos fundamentais comuns.
 - [`02-standard-perks/`](./02-standard-perks/) — perks normais das 11 árvores.
-- [`03-transmutation-perks/`](./03-transmutation-perks/) — uma raiz `Txxxx` por Ability selecionada, com três grupos de escolha `Txxxx.xx`.
-- [`04-specialization-perks/`](./04-specialization-perks/) — especializações reconstruídas do zero depois da matriz de capacidades.
-- [`SOURCES-AND-SELECTION-POLICY.md`](./SOURCES-AND-SELECTION-POLICY.md) — fontes obrigatórias e decisão de seleção curada das Abilities.
-- [`SPECIALIZATION-CONTRACT.md`](./SPECIALIZATION-CONTRACT.md) — contrato das mecânicas assinatura e da relação entre especialização, perks e providers.
-- [`CATALOG-CONTRACT.md`](./CATALOG-CONTRACT.md) — paridade, ownership e regras do catálogo.
-- [`NUMBERING.md`](./NUMBERING.md) — códigos editoriais e ranges.
-- [`06-content-wiki-generation.md`](./06-content-wiki-generation.md) — fechamento posterior do catálogo, runtime e wiki.
+- [`03-transmutation-perks/`](./03-transmutation-perks/) — uma raiz `Txxxx` por Ability selecionada, com LEFT/RIGHT/METAMORPHOSIS.
+- [`04-specialization-perks/`](./04-specialization-perks/) — especializações PURE/HYBRID organizadas pelo owner tree.
+- [`MASTER-EXECUTION-PLAN.md`](./MASTER-EXECUTION-PLAN.md) — plano mestre de execução.
+- [`DOSSIER-CONTRACT.md`](./DOSSIER-CONTRACT.md) — conteúdo obrigatório de cada P/T/S.
+- [`SOURCES-AND-SELECTION-POLICY.md`](./SOURCES-AND-SELECTION-POLICY.md) — fontes e seleção curada das Abilities.
+- [`SPECIALIZATION-CONTRACT.md`](./SPECIALIZATION-CONTRACT.md) — especializações e Mecânicas Assinatura.
+- [`CATALOG-CONTRACT.md`](./CATALOG-CONTRACT.md) — paridade e ownership.
+- [`NUMBERING.md`](./NUMBERING.md) — IDs e ranges.
+- [`06-content-wiki-generation.md`](./06-content-wiki-generation.md) — fechamento de runtime/wiki.
 
-O desenho visual/topológico definitivo não é fixado nesta etapa. Primeiro fecha-se o conteúdo e sua taxonomia; depois a topologia será construída sobre um catálogo estável.
+## Regras curtas
+
+Não criar perks porque um mod existe. Não criar especialização porque uma escola existe. Não selecionar Abilities para Transmutation antes da rubrica e quotas fecharem. Não implementar antes da auditoria técnica. Não desenhar topologia definitiva antes do runtime.
+
+Diablo IV e outros jogos podem fornecer padrões de decisão e inspiração, nunca requisitos a copiar literalmente.
