@@ -659,12 +659,12 @@ Estes dossiers existem no catálogo documental, mas **não correspondem a entrad
 
 | Nº físico | Componente | JAR no snapshot | JAR público candidato (não instalado / não validado em runtime) |
 |---:|---|---|---|
-| 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `sophisticated_jei_index-1.2.4+1.21.1.jar` |
-| 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `sophisticatedbackpacks-1.21.1-3.26.9.2195.jar` |
-| 517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `sophisticatedbackpackscreateintegration-1.21.1-0.2.2.188.jar` |
-| 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `sophisticatedcore-1.21.1-1.5.7.2381.jar` |
-| 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `sophisticatedstorage-1.21.1-1.6.2.2159.jar` |
-| 520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar` | `sophisticatedstoragecreateintegration-1.21.1-0.1.22.238.jar` |
+| #515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `sophisticated_jei_index-1.2.4+1.21.1.jar` |
+| #516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `sophisticatedbackpacks-1.21.1-3.26.9.2195.jar` |
+| #517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `sophisticatedbackpackscreateintegration-1.21.1-0.2.2.188.jar` |
+| #518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `sophisticatedcore-1.21.1-1.5.7.2381.jar` |
+| #519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `sophisticatedstorage-1.21.1-1.6.2.2159.jar` |
+| #520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar` | `sophisticatedstoragecreateintegration-1.21.1-0.1.22.238.jar` |
 
 **Identificação das fontes externas (arquivos específicos):**
 - Core: https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9083874
