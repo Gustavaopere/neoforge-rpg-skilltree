@@ -97,3 +97,17 @@ Crédito de profissão deve usar work/request concluído e citizen/job identity 
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 14. Evidências e limite
 CurseForge oficial confirma a Beta 3.57, os target baselines e o change de `knife_dig`. A modlist física de 17/09/2026 confirma Compatibility 3.57 e o stack atual MineColonies 1.1.1387 / Structurize 1.0.833 / Multi-Piston 1.2.58 / BlockUI 1.0.212 / Domum Ornamentum 1.0.236 / Tweaks 3.33. O antigo Let's Do addon for MineColonies não está mais presente. Não foi assumido que todo módulo opcional esteja ativo sem o provider correspondente.
+
+## 15. Atualização MineColonies Compatibility 3.58 — 10/10/2026
+
+**JAR físico:** `MineColonies_Compatibility-1.21.1-3.57.jar` / 3.57 (Beta), segundo último snapshot. **Mais recente NeoForge 1.21.1:** **`MineColonies_Compatibility-1.21.1-3.58.jar`**, Beta de **08/10/2026**, CurseForge **file 9099509**. É a única release pública 1.21.1 entre a versão física 3.57 e a 3.58.
+
+**Changelog oficial:** **“Fixed crash with lastest version of Cultural Delights”**. A correção é específica da integração com **Cultural Delights**; não equivale a nova função de MineColonies ou a mudança garantida de jobs/recipes. Na ausência da dependência opcional, o cenário não está necessariamente ativo. Conferir presença de Cultural Delights no pack antes de marcar o fix como diretamente relevante.
+
+**Baselines de compilação publicadas para 3.58:** MineColonies 1.1.1368-snapshot, Structurize 1.0.832-snapshot, Multi-Piston 1.2.51-snapshot, BlockUI 1.0.199-snapshot, Domum Ornamentum 1.0.223-snapshot, MineColonies Tweaks 3.33. Estes são **target versions**, não pins forçados, salvo se metadata do JAR provar contrário. O físico documentado usa MineColonies 1.1.1387, Structurize 1.0.833, Multi-Piston 1.2.58, BlockUI 1.0.212, Domum 1.0.236 e Tweaks 3.33.
+
+**Regressões:** boot client/dedicated server, optional classloading com e sem Cultural Delights, registries/jobs/recipes, Gunner/Orchardist/Fluid Manager/Butcher, chef/cooking/food culture, knife_dig, courier network requests e exactly-once item delivery, config/reload/restart, addons MineColonies Tweaks/Epic Colonies e presença de novos snapshots MineColonies sem ABI drift. Não ativar bridge Let's Do removido sem instalação comprovada.
+
+**Fonte primária:** https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility/files/9099509
+
+**Estado:** versão 3.58 apenas upstream; 3.57 permanece física; sem execução de testes de runtime.

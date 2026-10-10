@@ -100,3 +100,17 @@ A modlist física continua contendo exatamente `worldweaver-21.0.25.jar`, mod id
 O changelog exato continua cobrindo os fixes de TerraBlender/Nether Descent no preset BetterX, respeito à configuração de biomas desabilitados, preservação da distribuição BetterNether e proteção contra deslocamento completo de Warped Forest/Basalt Deltas. A decisão **Manter** e o estado **Integrado ao Github** foram preservados. Nenhum world creation, biome distribution, preset, chunkgen, reload ou dedicated-server test foi executado nesta recatalogação.
 ## 14. Revalidação — 13/09/2026
 WorldWeaver 21.0.25 permanece atual para NeoForge 1.21.1. Decisão Manter preservada. Nenhum teste runtime foi executado.
+
+## 15. Atualização upstream 21.0.26 — 10/10/2026
+
+**Última versão fisicamente documentada:** worldweaver-21.0.25.jar, mod id wover. **Última release CurseForge NeoForge Minecraft 1.21.1:** worldweaver-21.0.26.jar, publicada em 04/10/2026. Não confundir com 21.11.x ou 26.x de Minecraft diferente.
+
+**Limite:** não foi encontrado changelog técnico granular da 21.0.26 nas fontes acessíveis. A simples publicação da atualização não comprova mudança de biome distribution, bugfixes ou API específicos.
+
+WorldWeaver fornece infraestrutura para BetterEnd/BetterNether/BCLib/WunderLib. A promoção deve ser coordenada com versões/requisitos dessas bibliotecas e addons; a análise do BetterEnd 21.0.36 na rodada #38 é upstream, não uma atualização física já executada.
+
+**Gate:** worldgen BetterX/TerraBlender e biomes disabled em seed controlada; chunk boundaries de Nether/End, mistura de biomas vanilla/BetterX, startup dedicado, registry/mixin resolution, save/restart e novos chunks após atualização. Monitorar divergências de bioma e preservar configs. Não declarar testes concluídos.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/all
+
+**Estado:** candidato upstream 21.0.26; runtime físico ainda 21.0.25.

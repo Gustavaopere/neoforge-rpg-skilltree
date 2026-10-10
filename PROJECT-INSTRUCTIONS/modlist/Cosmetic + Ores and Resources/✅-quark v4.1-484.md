@@ -213,3 +213,21 @@ O pack já contém `biolith-neoforge-3.0.14.jar` como JAR top-level. A 4.1-486 p
 5. Dynamic Trees - Quark, Azalea replacement, recipes/tags e datapack reload.
 
 **Fonte oficial:** `VazkiiMods/Quark`, tag/branch `release-4.1-486+1.21.1`, `changelog.md`; CurseForge release 4.1-486.
+
+## 23. Atualização Quark 4.1-487 — 10/10/2026
+
+**Versão física preservada:** `Quark-4.1-484.jar`, NeoForge 1.21.1, com Zeta 1.1-40, Dynamic Trees Quark 2.6.1 e Biolith 3.0.14 top-level. O histórico já documenta **4.1-485** e **4.1-486**; a última release NeoForge 1.21.1 é **`Quark-4.1-487.jar` de 05/10/2026**, segundo CurseForge e tag upstream `release-4.1-487+1.21.1`.
+
+### 4.1-487 — changelog específico
+- **Fix parcial de #5667:** `NullPointerException` em `TinyPotatoModel.isCustomRenderer` durante `ModifyBakingResult`, quando `Map.compute` insere entrada null. O autor explicita **não corrigir a causa raiz**; deve prevenir o crash em setups com **Continuity + Connector**. Não classificar o bug como totalmente resolvido.
+- **Quark mobs passam a usar hats**; com Create instalado, podem usar **conductor hats**.
+- **Expanded Item Interactions** ganha opção para **inverter cliques**, efetuando a interação com clique esquerdo em vez de direito; o próprio upstream avisa que **algumas dicas JEI podem ficar incorretas** nessa configuração.
+
+### Condição de loader e JarJar
+A **4.1-486** elevou o mínimo do NeoForge a **21.1.252** e embarcou Biolith 3.0.14 (JarJar), enquanto a última autoridade do pack ainda registra **NeoForge 21.1.250**. Na ausência de verificação de metadata de 4.1-487 demonstrando mínimo menor, **mantém-se o BLOQUEIO de atualização 4.1-486/487 no loader atual**. Não promover apenas pela presença de Biolith 3.0.14 top-level. Versão publicada mais recente: 4.1-487; versão física: 4.1-484; 4.1-485 é a última previamente identificada como elegível no loader 21.1.250, ainda exigindo testes.
+
+**Gates:** obter metadata exata do JAR 4.1-487; atualizar NeoForge/validar 21.1.252+ em instância de teste se requerido; Zeta e Biolith dependency resolution com JarJar e top-level; Create conductor hats Quark mobs; UI/JEI com invert-click; resource pack/client model e Continuity+Connector somente se presentes; worldgen e Dynamic Trees Quark após restart. Preservar save antes de trocas do loader.
+
+**Fontes oficiais:** https://github.com/VazkiiMods/Quark/blob/release-4.1-487%2B1.21.1/changelog.md ; https://www.curseforge.com/minecraft/mc-mods/quark/files/all?version=1.21.1
+
+**Estado:** 4.1-487 disponível, **BLOQUEADA** promoção física até loader e dependências compatíveis; nenhum teste runtime realizado.

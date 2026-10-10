@@ -101,3 +101,15 @@ Impacto para o pack: as correções de mining/sitting atingem exatamente state v
 Gate de promoção 21.0.8→21.0.9: mining start/stop, sit/stand, job change, Aristocrat/Settler textures e meshes, guard/raider combat, resource reload, coexistência com Epic Fight 21.17.3.1 e verificação condicional de Nightfall+Extra somente quando os dois estiverem instalados.
 
 Fonte upstream: CurseForge file ID 9005453, `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.9.jar`.
+
+## 15. Revalidação upstream 21.0.9 — 10/10/2026
+
+**Físico:** EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar / 21.0.8. **Mais recente publicada** para NeoForge 1.21.1 identificada: 21.0.9 (29/09/2026), já auditada em detalhe na seção 14, sem nova release intermediária.
+
+São preservados os fixes de animações mining/sitting, texturas Aristocrat/Settler, meshes Settler e compat condicional de movesets EpicFight-Nightfall + EpicFight-Extra, apenas quando ambos estiverem presentes. O compile target EFM 21.16.4 não deve ser reescrito como Epic Fight 21.17.3.1, versão física conhecida. MineColonies físico continua snapshot 1.1.1387, com 1.1.1403 somente upstream.
+
+**Regressões para futura promoção:** stop/start mining/sitting por job, combat animation e accessories, skins/mesh, resource reload, Guard/Raider AI, dois jogadores e clash de entity patches com addons Epic Fight. Esta verificação não prova execução em runtime.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/epic-colonies/files/all
+
+**Estado:** versão upstream já registrada, sem update físico.
