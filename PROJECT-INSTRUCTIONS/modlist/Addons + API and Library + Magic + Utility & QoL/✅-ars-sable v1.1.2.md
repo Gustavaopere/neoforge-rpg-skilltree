@@ -331,3 +331,16 @@ Gate de promoção: Scryer camera em ship/sublevel e mundo, Starbuncle próximo 
 **Fontes GitHub upstream:** `baileyholl/ars-sable`, `gradle.properties` (`mod_version=1.1.4`), `changelog.md`, commits `b3ecf39b8bdb24b14e8fad6f0daf0c352ab3261e`, `f3b08118e34ad68d0f7f154050c63c551d70f873`, `ff50aa1423285029b23e56a948de29181ad379a7`, `f72c2e745c11f0a6edde78975f989d1d7e153604` e `7ab836e4beb777783b4f9b72a7c9d0e9b2f29e93`.
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #49: `ars_sable-1.21.1-1.1.2.jar` / `1.1.2` conferidos contra a modlist atual; risco Sable build-target 1.2.2 → runtime 2.0.5 preservado, sem aprovação automática de compatibilidade.
+
+## 29. Revalidação upstream — 10/10/2026
+
+O estado físico canônico permanece **`ars_sable-1.21.1-1.1.2.jar` / 1.1.2**, sobre Sable 2.0.5. Foi reconferida a linha pública NeoForge 1.21.1 de Ars Sable: **1.1.4** continua sendo a última release localizada até 10/10/2026; não foi encontrada uma 1.1.5 publicada nessa linha.
+
+O histórico entre a versão física e a mais recente já está coberto na seção 28, que deve ser preservada: **1.1.3** corrige rotação da câmera Scryer em sublevel; **1.1.4** corrige Starbuncles presos próximos a sublevels e crash com sublevels force-loaded. Não transformar a data desta revalidação em alegação de atualização nova.
+
+**QA antes de eventual promoção:** Scryer camera/observer em sublevel, mudanças de orientação e plano de referência; Starbuncles com pathing nas bordas; force-loaded/unloaded ships; Ars storage/source, assembly/disassembly, passageiros/projéteis; client e dedicated server; save e restart. O Sable do pack continua em 2.0.5 no snapshot, e qualquer upstream de Sable posterior é escopo distinto e exige validação própria.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-sable/files/all
+
+**Estado:** versão upstream já documentada; 1.1.2 segue como física. Nenhum teste executado.
+
