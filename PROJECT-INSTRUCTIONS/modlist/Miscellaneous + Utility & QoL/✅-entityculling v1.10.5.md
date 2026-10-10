@@ -126,3 +126,24 @@ A autoridade física continua em **1.10.5**. O upstream publicou **1.11.0 em 19/
 A modlist física desta auditoria não contém Create: Nowheel nem Kaleidoscope Cookery como mods top-level, então essas duas compatibilidades não constituem conflito instalado atual. O risco já documentado com **Sable/Create Aeronautics** continua sendo regression gate obrigatório e não deve ser presumido resolvido pela 1.11.2.
 
 **Fontes upstream:** release oficial tr7zw/EntityCulling tag 1.11.2 e CurseForge 1.11.2 para NeoForge 1.21.1.
+
+## 17. Atualização upstream 1.11.3 — 10/10/2026
+
+**Autoridade física:** `entityculling-neoforge-1.10.5-mc1.21.1.jar` / 1.10.5, preservada. A seção 16 já documenta integralmente a cadeia **1.11.0 → 1.11.1 → 1.11.2** e os seus fixes de thread safety, bounding boxes, freecam/local player e hotfixes. A release seguinte para NeoForge 1.21.1 é **1.11.3**, publicada em **08/10/2026**.
+
+### 1.11.3 — correções de frustum culling
+
+- Corrige **frustum culling não respeitando a whitelist**: objetos explicitamente permitidos não devem desaparecer por força desse caminho.
+- Corrige o uso de **bounding box não expandida** pelo frustum culling, issue **#341**; o efeito observado em certas condições era objeto/entidade sumir e reaparecer ao **girar a câmera**.
+- O changelog/source menciona uso de **weak entity references em TRansition** para reduzir retenção indevida de estado em cenários associados a **Fabric API**. A existência dessa mudança upstream não comprova que o mesmo leak ocorra com a instalação NeoForge 1.21.1.
+
+### Interação crítica com Sable/Aeronautics
+
+O issue já documentado **#299**, sobre players/entities desaparecendo em Sable/Create Aeronautics no multiplayer, continua um risco independente. Não há evidência suficiente para afirmar que a correção #341 da 1.11.3 soluciona #299. Não liberar downgrade de proteção nem retirar as skip/whitelist mitigations sem reprodução controlada.
+
+**QA antes da promoção:** verificar whitelist/frustum toggles, câmera girando perto de entities e block entities grandes, bounding boxes não vanilla, entidades em sublevels Sable em movimento com dois clientes, F3/debug, resource reload, renderers EMF/ETF, desempenho com muitos mobs e fallback de whitelist. Entity Culling é client-side e não deve alterar existência/tick/AI do servidor.
+
+**Fontes:** https://github.com/tr7zw/EntityCulling ; https://www.curseforge.com/minecraft/mc-mods/entityculling/files/all?version=1.21.1
+
+**Estado:** 1.11.3 registrada como release posterior; último JAR físico comprovado permanece 1.10.5.
+

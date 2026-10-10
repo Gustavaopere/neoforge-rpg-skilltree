@@ -170,3 +170,28 @@ O source 1.21.x da 1.6.0 declara Sophisticated Core **>=1.5.2**. Como o pack fí
 - [ ] Validar Controller e Create Integration para que storages ligados não sejam tratados como inventários independentes.
 
 Fonte upstream: Sophisticated Storage 1.6.0 e 1.6.1; source oficial 1.21.x, commit de Linked Storage `05d24d4...`. Nenhum teste acima foi executado nesta atualização documental.
+
+## 27. Atualizações upstream 1.6.2.2154 → 1.6.2.2159 — 10/10/2026
+
+**Autoridade física:** `sophisticatedstorage-1.21.1-1.5.91.2127.jar` / 1.5.91, mantendo **Sophisticated Core 1.5.1** como versão instalada conhecida. O dossiê já cobre o salto **1.6.0 → 1.6.1.2147** (linked storage e preservação de dados de itens na migração de mundos). A atualização posterior, ainda na linha NeoForge 1.21.1, tem duas builds da versão semântica 1.6.2:
+
+### 1.6.2.2154 — 05/10/2026
+
+- O upstream **habilitou as funcionalidades de linked storage para containers em movimento e montados**. A mudança aumenta diretamente a interação entre Sophisticated Storage, Create contraptions e estado compartilhado de inventário; não se reduz a atualização de tooltip.
+- Os links e a identidade de armazenamento precisam permanecer consistentes durante montagem/desmontagem, movimento, save, chunk unload/reload e troca de dimensão quando suportada.
+
+### 1.6.2.2159 — 06/10/2026
+
+- Publicação posterior de **1.6.2.2159** para Minecraft 1.21.1, com **atualizações de localização espanhola/chinesa**. Não atribuir a este build mecânica inédita sem documentação.
+- Este é o **artefato mais recente identificado nessa linha de distribuição**, substituindo a build 2154 como alvo publicado, sem apagar o delta funcional introduzido anteriormente.
+
+### Acoplamento e regressões
+
+**Bloqueio físico:** Core 1.5.1 não satisfaz o mínimo Core **≥1.5.2** exigido pela linha Storage 1.6.x. A atualização precisa ser coordenada com Sophisticated Core (#51), Sophisticated Backpacks (#9), Sophisticated Storage Create Integration (#3) e Sophisticated Backpacks Create Integration (#26). Os dossiês de outros itens ainda não auditados neste ciclo não devem ser presumidos atualizados.
+
+Gate: simular a migração 1.5.91→1.6.2 numa **cópia do mundo** com itens que contêm NBT/data components; linked containers com conteúdos/upgrades/settings; moving/mounted storage durante assembly/disassembly; controller, Ender Linker, breaking/relink, chunks/restart, multiplayer concorrente, tier upgrades e impossibilidade de packing de endpoints linkados. Priorizar detecção de lost/duplicated items e inconsistência de capacidades. Não realizar atualização física isolada.
+
+**Fontes upstream:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/9074514 (2154) ; https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/9083992 (2159).
+
+**Estado:** atualização documental; 1.5.91 continua sendo a última versão instalada confirmada.
+

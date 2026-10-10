@@ -161,3 +161,18 @@ A issue #97 solicita que navigation items do Aeronautics mostrem a **distância 
 - [ ] Drafting View/resource reload/shader lifecycle continua sem `Image is not allocated`.
 
 Fontes upstream: CurseForge 8.6.4 file ID 8952040, 8.6.5 file ID 8980429 e 8.6.6 file ID 9034839; GitHub oficial `ForgeStove/CreateCyberGoggles` PR #98, PR #99 e issues #97/#102. Nenhum teste acima foi executado nesta atualização documental.
+
+## 27. Atualizações upstream 8.6.7 → 8.6.9 — 10/10/2026
+
+A autoridade física continua **8.6.3**, `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar`, com Create 6.0.10. O histórico de **8.6.4 → 8.6.5 → 8.6.6** está preservado na seção 26 (tooltip registry, fade/Aeronautics navigation e fix dedicated-server).
+
+- **8.6.7 — 05/10/2026:** release pública identificada para NeoForge 1.21.1; as fontes consultadas não permitiram isolar com segurança changelog técnico próprio. Não atribuir recursos por inferência.
+- **8.6.8 — 05/10/2026 (CurseForge file 9068331):** autor registra **Fix #100** e **mudança na estrutura de configurações**. O número da issue, isoladamente, não comprova o sintoma. A modificação de config exige verificar migração de opções e defaults antigos.
+- **8.6.9 — 06/10/2026 (CurseForge file 9081110):** otimiza interação de **fill** e altera o **zoom default do preview**, afetando UI/QoL e uso client-side.
+
+**Cadeia completa:** 8.6.3 → 8.6.4 → 8.6.5 → 8.6.6 → **8.6.7 → 8.6.8 → 8.6.9**.
+
+**Regressões:** Create 6.0.10, JEI 19.56.0.440, config antiga→nova, tooltip registry, requester/fill behavior, overlays, preview zoom, tecla/click, Resource Packs, Sable/Aeronautics e dedicated server (mesmo o addon sendo client-side) sem classloading indevido. Nenhum teste foi executado aqui.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/all?version=1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9068331 ; https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9081110
+

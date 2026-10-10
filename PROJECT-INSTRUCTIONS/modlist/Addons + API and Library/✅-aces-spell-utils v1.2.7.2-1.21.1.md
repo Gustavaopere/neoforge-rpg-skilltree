@@ -388,3 +388,12 @@ Executar spellcasting mobs, phases e item abilities em dedicated server. Qualque
 **Fonte interna:** guia completo de magia.
 
 **Confiança:** alta para a lista de classes/features/attributes/schools e changelog 1.2.7.2. Fórmulas, registry IDs completos e assinaturas programáticas devem ser inspecionados no runtime/source antes de implementação.
+
+## Revalidação upstream 10/10/2026
+
+**JAR físico:** `aces_spell_utils-1.2.7.2-1.21.1.jar`, cuja distribuição/versão é **1.2.7.2**. CurseForge continua apontando **1.2.7.2** (02/09/2026) como release NeoForge 1.21.1 mais recente localizada em 10/10/2026. Não foi identificada uma sequência intermediária a documentar.
+
+**Papel:** API de mods/consumers Iron's Spells 'n Spellbooks; mudanças no mod-base ou em addons consumidores não constituem automaticamente mudanças nesta library. Permanecem os regression gates de networking, spell attributes, custom casts, entity state, dedicated server e linkage dos consumers reais. Nenhum hash/JAR novo nem teste de runtime foram confirmados.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/aces-spell-utils
+
