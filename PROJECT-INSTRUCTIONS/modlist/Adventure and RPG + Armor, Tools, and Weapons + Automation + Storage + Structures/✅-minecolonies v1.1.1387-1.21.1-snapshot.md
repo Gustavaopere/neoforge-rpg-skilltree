@@ -231,3 +231,42 @@ A cadeia integral já investigada em 01/10 permanece válida e está preservada 
 
 **Status:** release upstream identificada; promoção física **PENDENTE**.
 
+## 23. Pré-validação da Release 1.1.1403 contra o snapshot de dependências — 10/10/2026
+
+**Escopo e autoridade:** esta verificação compara as **restrições anunciadas na página oficial da Release 1.1.1403 para NeoForge 1.21.1** com as **versões presentes no último snapshot documental `modlist(1).txt`**. Isso **não** prova o estado físico atual dos JARs nem confirma compatibilidade ABI/runtime. A distribuição de referência é **`minecolonies-1.1.1403-1.21.1.jar`** (Release/R, CurseForge file **9058295**, 04/10/2026), não a build homônima `-snapshot.jar` (Beta/B, file **9023811**, 01/10/2026).
+
+### 23.1. Gate estático de versões mínimas declaradas
+
+| Dependência | Mínimo publicado pela Release 1.1.1403 | Snapshot do perfil | Comparação de versão |
+|---|---|---|---|
+| Structurize | `1.0.832-1.21.1-snapshot` ou superior | `structurize-1.0.833-1.21.1-snapshot.jar` (#529) | Mínimo numérico atendido no snapshot |
+| MultiPiston | `1.2.51-1.21.1-snapshot` ou superior | `multipiston-1.2.58-1.21.1.jar` (#413) | Mínimo numérico atendido no snapshot |
+| BlockUI | `1.0.199-1.21.1-snapshot` ou superior | `blockui-1.0.212-1.21.1-snapshot.jar` (#080) | Mínimo numérico atendido no snapshot |
+| Domum Ornamentum | `1.0.223-snapshot` ou superior | `domum-ornamentum-1.0.236-snapshot-main.jar` (#224) | Mínimo numérico atendido no snapshot |
+
+**Conclusão estritamente documental:** **4/4 mínimos publicados atendidos na modlist histórica**. O quarto campo não constitui resolução real de dependências pelo NeoForge, nem descarta APIs quebradas, remapeamento de mixins, patches de classes ou mudança de comportamento entre a 1.1.1387-snapshot física e a 1.1.1403 Release. Antes de liberar o conjunto, inspecionar os JARs e suas `neoforge.mods.toml`/metadata.
+
+**Opcionais listados na página oficial da Release:** JEI `19.19.6.235+` e JourneyMap `1.21.1-6.0.0-beta.29+`. O snapshot contém **JEI `19.56.0.440`** e **JourneyMap `6.0.8`**, mas a validade do range de versões e do comportamento de integração precisa ser confirmada em runtime. Dynamic Trees constava como opcional em metadados de snapshots anteriores; não se deve automaticamente atribuir a mesma declaração à página da Release sem evidência.
+
+### 23.2. Matriz de consumidores que precisam acompanhar o teste do mod-base
+
+| Posição no inventário | Item/versão documentada | Superfície crítica |
+|---|---|---|
+| #262 | Epic Colonies `21.0.8` (externo 21.0.9) | render/armature e patch de cidadãos/raiders via Epic Fight; target de compilação EFM 21.16.4 versus Epic Fight físico 21.17.3.1 |
+| #391 | MineColonies: Jade Crops `1.1.1300` | propriedades de crescimento/tooltip `age`, namespace e integração Jade (snapshot Jade 15.10.6) |
+| #396 | MineColonies Compatibility `3.57` (externo **3.58 Beta**, 08/10/2026) | profissões, registries, jobs, receitas, courier e interop; 3.58 contém fix específico para Cultural Delights |
+| #397 | MineColonies Tweaks `3.33` | mixins de citizen/jobs, request system, crops, config e reprodução de estados persistentes |
+
+**Cultural Delights não consta como linha top-level no snapshot ordinal 587**: o fix específico da Compatibility 3.58 não pode ser classificado como regressão ativa do pack sem confirmar a presença física nova ou dependência embarcada/indireta. Não atualizar 3.57→3.58 automaticamente nem inferir compatibilidade de 3.58 com 1.1.1403 por estar publicada.
+
+### 23.3. Gate operacional para o update coordenado
+
+1. Recuperar os **cinco JARs MineColonies/addons efetivos** e os quatro JARs de dependência; registrar SHA-256, `modId`, versão runtime, loader, dependências obrigatórias/opcionais e eventuais versões duplicadas. Conferir se MineColonies continua 1.1.1387-snapshot no perfil vivo.
+2. Em **cópia íntegra de mundo** com backup de `world`, configs e scripts, iniciar **dedicated server e cliente** com Release 1.1.1403 e conjunto de dependências que passe nos ranges **do artefato**. Não misturar `1.1.1403-snapshot` e `1.1.1403` como se fossem binários idênticos.
+3. Regressões do core: save/restart com requests grandes/data components; Dining Hall/Waiter + Warehouse/Couriers; Graveyard/min-stock; Tavern/citizen jobs; cavalaria e estábulos Fortress/Desert Oasis; pathfinding em água/slabs; raids/claims/permissions e chunks descarregados.
+4. Regressões dos consumidores: jobs e recipes da Compatibility, mixins/configs da Tweaks, Jade crops `age`, Epic Colonies com Epic Fight e render providers, client/server login-relogin, tracking, UI/reload, operações concorrentes e mudança de dimensão.
+5. Registrar logs/erros, integridade do inventário e das `colony data`, hash/config do conjunto aprovado. Somente com gate real positivo atualizar JARs, recriar modlist física, renomear os dossiês com versão física nova e refazer os links. Falha material implica rollback integral do mundo **e** dos JARs, evitando reabrir saves migrados no runtime antigo isoladamente.
+
+**Fontes primárias verificadas:** https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9058295 ; https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9023811 ; https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility/files/9099509 .
+
+**Status:** **versões mínimas documentais 4/4; compatibilidade em runtime NÃO VERIFICADA; promoção física BLOQUEADA** até recuperar os artefatos atuais e testar cópia de mundo. Este adendo não altera versão, filename, posição ou hash histórico.
