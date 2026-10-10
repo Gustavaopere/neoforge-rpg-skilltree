@@ -219,3 +219,15 @@ A cadeia integral já investigada em 01/10 permanece válida e está preservada 
 
 **Decisão:** atualização upstream revisada; promoção física **pendente** de JAR/metadata/hash novos e teste integrado.
 
+## 22. Retificação de canal de distribuição 1.1.1403 — 10/10/2026
+
+**Esta seção complementa e prevalece sobre a classificação da seção 21 apenas quanto ao canal upstream.** O CurseForge publicou **`minecolonies-1.1.1403-1.21.1.jar`** como **Release (R)** para NeoForge 1.21.1 em **04/10/2026**, file ID **9058295**. É um artefato distinto de **`minecolonies-1.1.1403-1.21.1-snapshot.jar`**, publicado em **01/10/2026** como **Beta (B)**, file ID **9023811**. Embora compartilhem 1.1.1403, **não foi verificada igualdade binária nem de comportamento** entre esses JARs, portanto não podem ser tratados como downloads intercambiáveis.
+
+**Mínimos informados na página oficial da Release:** Structurize `1.0.832-1.21.1-snapshot`+, MultiPiston `1.2.51-1.21.1-snapshot`+, BlockUI `1.0.199-1.21.1-snapshot`+, Domum Ornamentum `1.0.223-snapshot`+. Os mínimos conhecidos seguem abaixo das versões documentadas no snapshot do modpack, porém a compatibilidade efetiva dos addons MineColonies Compatibility 3.57, MineColonies Tweaks 3.33, Jade crops 1.1.1300, Epic Colonies e integrações próprias ainda exige teste.
+
+**Gates específicos:** comparar a Release com a snapshot 1.1.1403 quanto ao changelog/tag exata e metadata, verificar dependentes, e testar em cópia de mundo save/restart, request system e limites de ItemStack, Dining Hall/Waiter, graveyard, estábulos, citizen pathfinding, claims/permissions, Battle Mage, addons, servidor dedicado e multiplayer. **A versão instalada permanece 1.1.1387-1.21.1-snapshot até novo dump físico**; nenhum download, substituição ou teste de boot foi executado nesta retificação documental.
+
+**Fontes oficiais:** https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9058295 ; https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9023811
+
+**Status:** release upstream identificada; promoção física **PENDENTE**.
+
