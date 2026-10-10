@@ -217,3 +217,17 @@ Este update não é apenas cosmético: toca memória, scheduling de preparação
 - [ ] Old/new chunk seams são inspecionadas visualmente e por hidrologia.
 
 Fontes upstream: CurseForge/Modrinth oficiais Streams Reflowing, changelogs 2.13.6, 2.13.7, 2.13.8 e 2.14.1. Nenhum teste acima foi executado nesta atualização documental.
+
+## 16. Upstream Streams Reflowing 2.13.6 → 2.13.8 — 10/10/2026
+
+**Físico:** StreamsReflowing-1.21.1-neoforge-2.13.5.jar / 2.13.5. No filtro oficial Minecraft 1.21.1/NeoForge, a última build publicada é **2.13.8 de 20/09/2026**, após 2.13.7 de 16/09/2026. Builds 2.14.x pertencem a outras linhas de Minecraft e não podem ser promovidas por número.
+
+- **2.13.6 (changelog do source; JAR NeoForge 1.21.1 separado não localizado):** redução de retenção de memória durante exploração e reentrada em mundos, river current preparation acelerada para multi-core e menor atraso de current versus terrain. Diferenciar conteúdo upstream da existência de um arquivo por loader.
+- **2.13.7:** corrige streams começando sem cabeceira, repentinamente com largura máxima no meio do terreno.
+- **2.13.8:** evita tela preta infinita em criação de mundo quando a preparação de streams de uma área falha, registrando a causa e permitindo terrain sem aquela stream; evita crashes de loading quando mods como XyCraft Machines enumeram fluidos; evita relatório falso de stall ainda durante worldgen normal.
+
+**Impactos:** geração assíncrona de terreno, flood/river/structure interactions, memória e compat de registry de fluidos. Testar world creation seed fixa, chunks novos/antigos, riachos que conectam rios/lagoas, estruturas dentro de água, Create water wheels, Terralith/Tectonic/BWG, rios subterrâneos, registry fluida extensa, world save/restart, multiplayer join e exploração longa com memória/CPU monitoradas.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/all?page=1&pageSize=20&version=1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9060295 (changelog cumulativo, observar target Minecraft).
+
+**Estado:** 2.13.8 upstream não instalado; versão física 2.13.5 preservada.
