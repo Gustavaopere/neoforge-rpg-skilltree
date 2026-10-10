@@ -124,3 +124,19 @@ Fontes upstream:
 - Sem a origem canônica do Notion, a paridade 1:1 exigida pelo protocolo não pode ser demonstrada nesta execução.
 - Pelo protocolo fail-closed, este arquivo permanece **SEM `✅-`** até a fonte canônica estar acessível e ser revalidada integralmente.
 
+## 12. Atualização upstream 5.0 e certificação pendente — 10/10/2026
+
+**Última autoridade física histórica do resource pack:** `4.3 FA Illager Mod Compats.zip` (captura da pasta do perfil de 08/09/2026); nesta rodada o ZIP não foi reobtido. **O dossiê permanece sem `✅-`** porque não existe re-fetch integral da ficha Notion originária para comprovar paridade 1:1, bloqueio explicitado no §11. O simples aparecimento de uma release nova não resolve essa pendência documental.
+
+**Histórico desde o físico:** a seção 10 já registra separadamente as versões **4.5 → 4.6 → 4.7 → 4.8 → 4.9**, incluindo as correções do Hostile Royal Guard em Goety; não criar notas para versões intermediárias não publicadas que não apareçam no índice.
+
+**Nova publicação oficial:** `5.0 FA Illager Mod Compats.zip`, **03/10/2026**, CurseForge file ID **9050536**, que **inclui explicitamente Minecraft 1.21.1** entre as versões suportadas (a listagem da página mostra desde 26.3 até Minecraft 1.14, incluindo 1.21.1). O changelog oficial da 5.0 informa apenas **“Fix Friends & Foes Illusioner doesn't have animations”**. Não atribuir animações adicionais de Goety, otimizações EMF/ETF ou alterações de textures não citadas a esta release.
+
+**Boundary condicional:** a correção do Illusioner de **Friends & Foes** só é observável se o mod e a entidade correspondentes estiverem no pack. A cobertura anterior de **Goety**, Illager Invasion, Savage & Ravage, The Graveyard e outros continua pertencendo ao histórico, mas não equivale a teste visual de 5.0 em cada provider.
+
+**Teste necessário para promoção:** recuperar o ZIP físico atualizado, comparar asset-tree 4.3 vs 5.0 e `pack.mcmeta`, checar priority vs Fresh Animations e Excalibur, spawn/visualização de Friends & Foes Illusioner se disponível, Royal Guard/Goety, model CEM EMF, ETF emissives/variants, dedicated-server irrelevância do overlay, troca de resource packs e F3+T. Revalidar `✅-` apenas quando a fonte canônica Notion estiver acessível e todas as demais exigências do protocolo forem satisfeitas.
+
+**Fonte primária:** https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/9050536
+
+**Estado:** upstream 5.0 registrada; físico 4.3 na última captura; **SEM CHECK por paridade Notion não certificada**, sem testes executados.
+

@@ -74,3 +74,22 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma a versão 1.3.0 para 1.21.1, o objetivo de completar PT-BR modded e a extensa lista de mods cobertos. O catálogo não extrapola essa lista para cobertura total do perfil.
 
 > Boundary canônico: **o projeto controla somente strings/localização; cada mod continua controlando integralmente seu conteúdo e comportamento**.
+
+## 9. Atualização upstream 1.3.0 → 1.4.0 — 10/10/2026
+
+**Autoridade física histórica:** `The Brazilian Project [1.21.1-1.3.0].zip` conforme captura de Resource Packs do perfil em 08/09/2026. Essa versão não foi substituída nem certificada mediante novo ZIP nesta auditoria.
+
+**Publicação oficial:** CurseForge `The Brazilian Project [1.21.1-1.4.0].zip`, **07/10/2026**, file ID **9085941**, compatível com Minecraft 1.21.1. Não foi localizada publicação `1.3.1` para **Minecraft 1.21.1** na fonte consultada; essa numeração existe em **Minecraft 26.1.2** e não deve ser inserida artificialmente na cadeia desta linha. A sequência comprovada para 1.21.1 desde o ZIP físico é **1.3.0 → 1.4.0**.
+
+### Changelog publicado pelo autor da 1.4.0
+- **Suporte a 231 mods para Minecraft 1.21.1**, conforme declaração literal do autor. Não inferir que os 231 sejam necessariamente novos em relação à 1.3.0, porque a lista de cobertura anterior não foi comparada item a item.
+- **Mods atualizados** (traduções revisadas) e correções de **typos, bugs e ajustes diversos**.
+- A relação nominal de novos projetos anunciados inclui entradas diretamente relevantes ao pack e/ou sua documentação, como **Aeronautics Curios Compat**, **Ars Nouveau Flavors Delight**, **Create Aeronautics Gadgets & Gizmos**, **Create Nuclear**, **Just Enough Items**, **Sophisticated Backpacks**, **Sophisticated Core**, **Sable** e outros. **MineColonies não foi localizado na lista nominal da release** e não deve ser tratado como cobertura confirmada. Não garantir que todas as traduções estejam completas nem que os mods instalados tenham a mesma versão da linha-alvo da tradução.
+
+### Integração com o pack
+A alteração é de **arquivos de idioma, tooltips e textos de UI** e não modifica AI, damage, recipes, registries, configs efetivos ou persistência server-side. A última modlist física contém diversas atualizações documentais upstream não instaladas; os textos de 1.4.0 podem antecipar ou não cobrir translation keys específicas de novas versões. Em ordem de prioridade, testar pack 1.4.0 acima/abaixo de outros packs pt_BR, abrir as interfaces de Create, Ars, MineColonies, JEI, Sophisticated e quests; conferir placeholders `%s`, format arguments, JSON válido, keys cruas em inglês, texto truncado, tooltips, HUD, tela de configs e recuperação após F3+T. **Não confundir prioridade visual com autoridade de dados de gameplay.**
+
+**Fonte oficial:** https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9085941
+
+**Estado:** última publicação 1.4.0 registrada; **ZIP físico histórico 1.3.0 preservado**, testes pendentes.
+

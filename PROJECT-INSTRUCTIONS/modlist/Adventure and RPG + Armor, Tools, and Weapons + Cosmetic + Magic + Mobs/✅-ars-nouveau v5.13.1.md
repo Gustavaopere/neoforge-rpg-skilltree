@@ -451,3 +451,21 @@ O runtime físico continua **5.13.1**. A release **5.13.2** para NeoForge 1.21.1
 Para este pack, os gates prioritários numa promoção são Storage Lectern/Repository, spell Break sobre blocos modded, custo de augments/effects e preview de spell styles. A 5.13.2 não altera a autoridade física atual: até o JAR ser realmente substituído, todo o inventário/registry detalhado acima continua pinado à 5.13.1.
 
 **Fonte upstream:** CurseForge file ID 8993194, ars_nouveau-1.21.1-5.13.2.jar.
+
+## 35. Atualização upstream Ars Nouveau 5.13.3 — 10/10/2026
+
+**Autoridade física:** `ars_nouveau-1.21.1-5.13.1.jar`, mod id `ars_nouveau`, runtime `5.13.1`, SHA-1 histórico `02782d071ee5fab3b5c4b8ced67b7e1748277dfd`. A seção 34 já registra integralmente a release **5.13.2** de 27/09/2026: correções do Storage Lectern e Repository Catalog para itens não empilháveis, busca da documentação CJK, spell Break com picareta fallback para não destruir Waystones/Iron Doors, custos augment→effect e crash da prévia de partículas de lava.
+
+**Nova release para NeoForge Minecraft 1.21.1:** **`ars_nouveau-1.21.1-5.13.3.jar`**, de 03/10/2026, CurseForge file **9052154**. O changelog atual do repositório upstream `baileyholl/Ars-Nouveau`, `changelog.md`, publica três alterações:
+- Adiciona blocos aos **tags de peso e volume do Sable**, afetando classificação de massa de contraptions/sublevels, não a física vanilla de blocos fora do provider.
+- Corrige itens da documentação de receitas de glyphs que **não giravam suavemente** na interface; é mudança de apresentação de documentação.
+- Acrescenta **salvaguarda adicional no pathfinding de mobs próximos a sublevels Sable**. Não atribuir algoritmo/path AI específico sem diff de source da build.
+
+**Cadeia completa desde o físico:** 5.13.1 → **5.13.2** (cinco fixes listados no §34) → **5.13.3** (três deltas acima). Não promover diretamente sem verificar coexistência com **Ars Elemental**, **Ars Sable** e **Ars 'n Spells**, cujas versões upstream também foram documentadas nesta rodada. Os builds físicos desses addons continuam os do último inventário; a modernização parcial poderia quebrar spell API, source/transfer, integration mixins, tags Sable e custos compartilhados.
+
+**Gate de promoção:** comparar Sable weight/volume de blocos Ars antes/depois em assembly/disassembly, inclinação/movimento com Sable/Aeronautics, mob pathfinding junto a sublevels aninhados e carregamento tardio de chunks, Spell Break em Waystone e Iron Door, Storage Lectern não empilháveis, recipes e pesquisa do Patchouli/Ars documentation, casts e source consumption exatamente uma vez, server/dedicated boot, resource reload e restart. Alterações de pathfinding/config/tags exigem testes em cópia do mundo, não apenas CI documental.
+
+**Fontes primárias:** https://github.com/baileyholl/Ars-Nouveau/blob/main/changelog.md ; https://www.curseforge.com/minecraft/mc-mods/ars-nouveau/files/9052154
+
+**Estado:** upstream 5.13.3 auditada, **5.13.1 permanece física**; nenhum smoke test executado.
+
