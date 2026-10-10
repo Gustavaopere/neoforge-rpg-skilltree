@@ -89,3 +89,24 @@ O changelog desta release registra atualização das **informações/metadados d
 A autoridade física permanece **Collective 8.39**. A 8.41 é a mais recente upstream, mas não há benefício funcional documentado que justifique tratá-la como correção obrigatória; eventual promoção ainda deve passar pelo smoke-test de consumers Serilum.
 
 Fonte upstream: CurseForge Collective 8.41, release NeoForge 1.21.1 de 02/10/2026.
+
+## 14. Atualizações Collective 8.42 → 8.43 — 10/10/2026
+
+**Físico:** `collective-1.21.1-8.39.jar` / 8.39. A cadeia já documentada inclui **8.40 (21/09, alteração de indentação do source)** e **8.41 (02/10, atualização de `mods.toml`/`fabric.mod.json`)**. A listagem oficial confirma releases adicionais **8.42 (04/10)** e **8.43 (10/10)** para **Minecraft 1.21.1**, com distribuição conjunta Fabric/Forge/NeoForge; **8.43 é a última da linha verificável nesta data**.
+
+### 8.42
+Publicação do artefato 1.21.1 confirmada, porém **não foi isolada a nota técnica específica da 8.42**; não presumir ausência de alterações ou atribuir automaticamente mudanças da 8.43 à 8.42.
+
+### 8.43
+O changelog publicado pelo autor para a versão 8.43 (também veiculada em builds de outras versões de Minecraft) menciona:
+- adição de traduções do **Daily Quest**;
+- helper **`MessageFunctions.getTranslatableMessageComponent`**;
+- correção **Forge/NeoForge de packets ocasionalmente não registrados quando mods carregam simultaneamente**.
+
+**Limite de evidência:** a versão 8.43 é confirmadamente publicada para MC 1.21.1, porém as notas acima foram consultadas no texto da série 8.43 em plataforma multicarga. **Verificar correspondência no JAR/changelog exato de `collective-1.21.1-8.43.jar` antes de garantir que todos os deltas estão presentes**. O registro de packets em carregamento paralelo representa impacto de confiabilidade de network/loader, não nova mecânica de gameplay da library.
+
+**Cadeia integral:** 8.39 → 8.40 → 8.41 → 8.42 → 8.43. Testes: bootstrap NeoForge21.1.250, consumidores Serilum e seus packet handlers, handshake/multiplayer com load concorrente, mensagens traduzíveis, config/reload, client/dedicated server e regressão das mensagens client-only corrigidas na 8.39.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/collective/files/all?gameVersionTypeId=5&page=1 ; https://www.curseforge.com/minecraft/mc-mods/collective/files/9119660 (changelog 8.43 multiversão).
+
+**Estado:** upstream 8.43; físico 8.39, sem testes locais.
