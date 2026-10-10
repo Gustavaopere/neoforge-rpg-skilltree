@@ -218,3 +218,18 @@ O próprio changelog da release exige **latest Ars Nouveau**. O pack físico est
 Gate de promoção: Ars Nouveau 5.13.2; Sauce jarjar; Prism API consumers; Oxidize com single/AoE targets; Enderference teleport blocking; Siren/Flashjack eggs; Mermaid Tokens; worldgen near min build height; turrets; school power/resistance; Ars Elemancy sem double-dip.
 
 Fontes upstream: source oficial branch `1.21` — commits `d86b5202...`, `3c377816...`, `93d80bc7...`, `8c0bdff2...`; CurseForge file ID 8999174 para 0.7.10.3.
+
+## 29. Upstream 0.7.10.4 — 10/10/2026
+
+**Versão física:** `ars_elemental-1.21.1-0.7.10.1.jar` / 0.7.10.1. O histórico anteriormente registrado inclui 0.7.10.2 **no source, sem artefato publicado identificado**, e 0.7.10.3 publicada em 28/09/2026, com correções da Prism API e Oxidize AoE. A nova release **0.7.10.4**, publicada em 04/10/2026 (CurseForge file **9057244**), é a última NeoForge 1.21.1 encontrada.
+
+**Delta oficial 0.7.10.4:** aumenta o **SauceLib embarcado/referenciado para ver61**, descrito como conjunto de minor fixes, e faz limpeza de referências a código de APIs deprecated cuja remoção está prevista. Não há nova spell/glyph ou criatura anunciada na descrição dessa release. Dependências indiretas e API/ABI merecem mais atenção do que o número do patch sugere.
+
+**Bloqueio de integração:** a versão 0.7.10.3 já havia sido compilada contra Ars Nouveau 5.13.2.1418, enquanto o snapshot físico de Ars Nouveau ainda apresentava 5.13.1. É necessário reconciliar o Ars Nouveau atual (item #61 nesta rodada), além da relação com SauceLib, antes de testar e promover 0.7.10.4. A atualização física isolada pode introduzir linkage errors e behavior drift.
+
+**Regressões:** build client/dedicated server, Sauce library jarjar, Prism API consumers, Oxidize/AoE, Enderference, Siren/Flashjack eggs, Mermaid Tokens, Ars Nouveau spells e turret behavior, event bus e datapack reload; não marcar testes como executados.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/ars-elemental/files/9057244 ; https://www.curseforge.com/minecraft/mc-mods/ars-elemental/files/8999174
+
+**Decisão:** versão upstream 0.7.10.4 documentada; **não promover fisicamente** antes da reconciliação Ars Nouveau/Sauce e smoke test.
+

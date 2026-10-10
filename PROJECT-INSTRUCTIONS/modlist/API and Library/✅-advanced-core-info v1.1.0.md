@@ -243,3 +243,14 @@ ACI não fornece UI final sozinho, mas ALI está instalado e consome o core. `Ma
 - [ ] AWI continua tratado como consumer ausente enquanto não existir top-level no pack.
 
 Fontes upstream: CurseForge Advanced Core Info 1.2.0/1.3.0 e `yanny7/AdvancedLootInfo` branch `1.21.1`, `aci/CHANGELOG.md`. Nenhum teste acima foi executado nesta atualização documental.
+
+## 19. Revalidação 1.3.0 — 10/10/2026
+
+**Instalada no último snapshot:** ACI **1.1.0**, `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar`. **Release upstream NeoForge 1.21.1 mais recente verificada:** **1.3.0 Beta** de 28/09/2026. A sequência 1.1.0 → **1.2.0** → **1.3.0** e os deltas correspondentes já foram detalhados integralmente na seção anterior: ManagedRegistry.entries/class-key diagnostics/reporting em 1.2.0; Unbound Holder, natural mob spawns e aceleração de tooltip tree em 1.3.0. Não duplicar a descrição nem alegar atualização 1.3.1 sem evidência.
+
+**Acoplamento:** Advanced Loot Info (ALI) é consumer físico, Advanced Worldgen Info (AWI) não foi encontrado top-level no snapshot. Promover ACI isoladamente é desaconselhado: conferir requisitos de ALI, codecs/client-server payloads, discovery e registry reads ao longo de reload/restart.
+
+**Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/advanced-core-info/files/all
+
+**Estado:** revalidação concluída da linha pública; **versão física 1.1.0 mantida**, sem QA runtime executado.
+

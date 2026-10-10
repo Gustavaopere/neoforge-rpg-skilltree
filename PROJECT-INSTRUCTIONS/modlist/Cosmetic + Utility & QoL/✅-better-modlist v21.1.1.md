@@ -96,3 +96,20 @@ Esses commits comprovam mudanças na superfície de UI/config na janela da 21.1.
 - [ ] Excalibur Better ModList/Mod Menu Compat é revalidado visualmente porque altera a mesma superfície de apresentação.
 
 Fontes upstream: CurseForge Better ModList 21.1.2 e repositório oficial `1foxy2/neo_mod_menu`, commits `4576db5`, `341c62e` e `e7989e9`. Nenhum teste acima foi executado nesta atualização documental.
+
+## 18. Nova revalidação 21.1.1 → 21.1.4 — 10/10/2026
+
+**Instalado conforme última autoridade física:** `better_modlist-21.1.1.jar` / mod id `mod_menu` / versão 21.1.1. **Última release NeoForge Minecraft 1.21.1 no CurseForge:** **21.1.4** de 05/10/2026, file ID **9069843**. Builds `26.x` não pertencem à linha Minecraft 1.21.1.
+
+### Encadeamento de releases
+- **21.1.2 — 30/09:** já analisada na seção anterior: melhorias de ModsScreen, dummy animation, ícone único e traduções de opções novas; o upstream não publicou changelog de arquivo detalhado, de modo que commits próximos à release não provam sozinhos a inclusão no binário.
+- **21.1.3 — 01/10:** release 1.21.1 identificada no índice CurseForge; **não foi localizado changelog específico suficientemente verificável**. Não atribuir fixes ou comportamento à 21.1.3 sem evidência.
+- **21.1.4 — 05/10:** a nota oficial do artefato registra **correção de lag ao clicar no botão de filtros (issue #51)** e correções de **crash (#52, #50, #49)**. Não inferir causas internas dessas três issues sem lê-las.
+
+### Impacto e gate
+Em um pack de centenas de mods, a navegação/filtragem da ModList deve ser testada com o inventário completo. Regressão: abrir Mods Screen, clicar repetidamente em Filter, busca/ocultação, filtros ao alternar categorias, mod com single icon e entradas parent/child, opções com idiomas distintos, config screens ausentes e Resource Pack visual compatível com Better ModList. Não interpretar mudança de UI como alteração do carregamento efetivo dos mods.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/better-modlist-neoforge/files/all ; https://www.curseforge.com/minecraft/mc-mods/better-modlist-neoforge/files/9069843
+
+**Situação:** atualizado **somente o dossiê**, versão física 21.1.1 preservada; testes reais não executados.
+

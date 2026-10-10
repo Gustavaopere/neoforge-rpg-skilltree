@@ -111,3 +111,20 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Lineage 5.2–5.3: NBT v2, blockstate providers, múltiplos leaf providers, fix de wall/structure/bedrock e random rotation.
 - BWG 2.6.0: Required Dependency confirmada.
 - **Limite:** templates/IDs específicos do BWG e internals do placement não foram inventados sem dados/JAR específicos.
+
+## 14. Atualizações upstream 5.3.3 → 5.3.5 — 10/10/2026
+
+**Físico certificado pelo snapshot:** `Oh-The-Trees-Youll-Grow-neoforge-1.21.1-5.3.2.jar` / 5.3.2, usado pelo **Oh The Biomes We've Gone 2.6.0** físico. O CurseForge exibe as releases posteriores **5.3.3 (03/10), 5.3.4 (04/10) e 5.3.5 (10/10)**, esta última como **`Oh-The-Trees-Youll-Grow-NeoForge-1.21.1-5.3.5`**. Nenhuma deve ser tratada como já instalada.
+
+### Delta e limites de evidência
+- **5.3.3:** artefato público NeoForge 1.21.1 confirmado; não foi possível isolar seu changelog específico nas fontes acessíveis.
+- **5.3.4:** artefato público NeoForge 1.21.1 confirmado; changelog técnico granular não isolado com segurança.
+- **5.3.5:** artefato NeoForge 1.21.1 publicado em 10/10/2026; release confirmada, porém **descrição técnica individual não verificada**. O fato de ser publicada junto com builds de diversas versões de Minecraft **não demonstra** automaticamente uma alteração comum de algoritmo.
+
+### Risco e regressões
+A library governa NBT templates, filtros de logs `PIERCE`/`PASSTHROUGH`/`BLOCK`, folhas/copa/troncos e placement. Qualquer atualização deve ser validada conjuntamente com **BWG** (#27, também revisado neste lote) e **Dynamic Trees - BWG**, além de Terralith/Tectonic. Priorizar mundo novo vs chunks persistentes, colisão com bedrock/proteções e estruturas, geração de saplings, density e worldgen performance. Falta de changelog explícito mantém **risco não resolvido**, não indica ausência de mudança.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/oh-the-trees-youll-grow/files/all ; https://www.curseforge.com/minecraft/mc-mods/oh-the-trees-youll-grow
+
+**Situação:** informação de releases atualizada; promoção **PENDENTE DE CHANGELOG/DEPENDÊNCIAS + QA**, sem bump físico.
+
