@@ -182,3 +182,26 @@ Também inclui o bugfix #511.
 - [ ] Config antiga 4.0.0.3 migra/carrega sem reset silencioso de regras importantes.
 
 Fontes upstream: `alRex-U/ParCool`, changelogs 4.0.0.4/4.0.0.5/4.0.0.6; CurseForge confirma ParCool 4.0.0.6 Beta para NeoForge 1.21.1 em 02/10/2026. Nenhum teste acima foi executado nesta atualização documental.
+
+## 16. Atualização upstream 4.0.1.0 → 4.0.1.2 — 10/10/2026
+
+A autoridade física continua em **ParCool 4.0.0.3** (`ParCool-1.21.1-4.0.0.3.jar`). A seção 15 já registra o intervalo **4.0.0.4 → 4.0.0.5 → 4.0.0.6**. Depois, as releases oficiais **4.0.1.0, 4.0.1.1 e 4.0.1.2** para 1.21.1 foram publicadas em 04, 05 e 09/10/2026:
+
+### 4.0.1.0 (file 9059241)
+- Adiciona config de primeira pessoa para animações, **`enable_first_person_view_animation`**.
+- Corrige **Grapple** se comportando como se o jogador estivesse no ar mesmo em fluido.
+- Registra correção #520 no changelog; sem inferir a natureza da issue a partir apenas do número.
+
+### 4.0.1.1 (file 9068414)
+- Corrige **crash na inicialização de servidor dedicado** (issue #521). Correção crítica para ambiente multiplayer, independentemente de funcionalidade de movimento.
+ 
+### 4.0.1.2 (file 9106851)
+- Nova opção para **desativar learning de cada ação separadamente**.
+- Reduz **custo default de learning** das ações. Mudança que afeta progressão/balanceamento, scripts e quests que assumem o custo anterior.
+
+**Cadeia integral do runtime até latest 1.21.1:** 4.0.0.3 → .4 → .5 → .6 → **4.0.1.0 → 4.0.1.1 → 4.0.1.2**.
+
+**Gate:** boot dedicated server; migração de configs; actions learn/unlearn/cost; oito direções de Dodge e skilltree; grapple em água/lava; animation first-person com Epic Fight/First-person Model; registry match, mudança de dimensão, Sable/Aeronautics; teclado/multiplayer; abandono/retomada de mundo. Não executar promoção sem testes.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/parcool/files/9059241 ; https://www.curseforge.com/minecraft/mc-mods/parcool/files/9068414 ; https://www.curseforge.com/minecraft/mc-mods/parcool/files/9106851
+
