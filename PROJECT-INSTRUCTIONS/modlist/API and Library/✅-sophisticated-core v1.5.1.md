@@ -168,3 +168,24 @@ O runtime físico documentado continua **1.5.1.2341**. A 1.5.5.2363 é a mais re
 - Backpacks + Storage + ambas as Create integrations no mesmo runtime.
 
 Fontes upstream: CurseForge Sophisticated Core 1.5.4.2356 e 1.5.5.2363; commits oficiais `0c393553fb16a8195bb2f8a7a4b656176680734b` e `1a284cdd4445897264ff0131344ded6f1ddcacc7` em `P3pp3rF1y/SophisticatedCore`.
+
+## 23. Atualizações upstream 1.5.6.2374 → 1.5.7.2381 — 10/10/2026
+
+**Autoridade física:** `sophisticatedcore-1.21.1-1.5.1.2341.jar` / 1.5.1. As seções 21–22 deste dossiê já preservam a cadeia **1.5.2.2343 → 1.5.4.2356 → 1.5.5.2363**: shared linked storage, prevenção da perda de item data em migração de mundo, crash de memory settings ao desmarcar slots e perda de storage links após quebra de barrel. **Não existe release pública 1.5.3 para NeoForge 1.21.1 no índice verificado.**
+
+### 1.5.6.2374 (05/10/2026)
+O arquivo `sophisticatedcore-1.21.1-1.5.6.2374.jar` foi publicado para NeoForge 1.21.1, mas **o changelog técnico específico não foi isolado com segurança nesta auditoria**. Não atribuir à 1.5.6 features/fixes vistos em versões vizinhas ou de outro Minecraft.
+
+### 1.5.7.2381 (06/10/2026)
+O arquivo `sophisticatedcore-1.21.1-1.5.7.2381.jar` é a release pública mais recente NeoForge 1.21.1 identificada em 10/10. Changelog publicado:
+- corrige **dimensões do ícone do Ender Linker** na interface;
+- atualiza **traduções espanholas**.
+
+O primeiro fix é visual, mas o comportamento de linked storage continua sendo o risco fundamental herdado da série 1.5.2–1.5.5. Não deduzir correção de corrupção de dados na 1.5.7 quando o upstream só documenta correção do ícone.
+
+### Contrato de atualização e gate
+Sophisticated Core deve ser promovido **coordenadamente** com Sophisticated Backpacks (físico 3.26.3, upstream 3.26.9), Sophisticated Storage (físico 1.5.91, upstream 1.6.2), bridges Create (Storage Create físico 0.1.21; Backpacks Create físico 0.2.0) e Sophisticated JEI Index. Em cópia do mundo verificar migração e fidelidade de data components, linked barrels/backpacks, break/relink, controller, memory slot selection, Ender Linker icon scaling em GUI grande/pequena, multiplayer concurrent sync, reload, chunks e save/restart. Compatibilidade não pode ser inferida de arquivo CurseForge recente nem de CI documental.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/all?version=1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9083874
+
+**Estado:** físico permanece 1.5.1.2341, disponível 1.5.7.2381; **promover somente após confirmação de manifests e teste de integração**.

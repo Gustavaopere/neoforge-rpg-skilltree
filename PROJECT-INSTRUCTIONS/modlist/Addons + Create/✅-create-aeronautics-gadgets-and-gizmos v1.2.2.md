@@ -122,3 +122,64 @@ Impacto no pack: 1.2.5 toca exatamente superfícies de alto risco já documentad
 Gate de promoção 1.2.2→1.2.5: aplicar primeiro os regressions 1.2.3/1.2.4 já documentados e acrescentar Smart Glasses equip/unequip, Physics Staff em parent/child sublevels, Haunting Upgrade, SCM lazy chunk loading + cleanup, rigid joint do Gantry Carriage, Network Linker através de assembly/disassembly, controller graph encadeado sem node skip, Toolgun schematic links e primeiro save de controller novo.
 
 Fonte upstream: CurseForge file ID 8983532, `gadgets-and-gizmos-bundled-V1.2.5.jar`, release NeoForge 1.21.1.
+
+## Atualizações upstream 1.2.3 → 1.2.8 — 10/10/2026
+
+**Autoridade física:** `gadgets-and-gizmos-bundled-V1.2.2.jar` / mod V1.2.2 (último snapshot). No CurseForge oficial de NeoForge Minecraft 1.21.1 foram localizadas **todas as seis releases posteriores**, em ordem: **1.2.3 (17/09) → 1.2.4 (18/09) → 1.2.5 (26/09) → 1.2.6 (04/10) → 1.2.7 (05/10) → 1.2.8 (09/10)**. A última disponível é **`gadgets-and-gizmos-bundled-V1.2.8.jar`**. O nome do dossiê continua ancorado no JAR físico 1.2.2.
+
+### 1.2.3 — correções e controle de contraptions
+- **BiDirectional Gearbox**: ajuste na GUI e seleção de faces de bloco.
+- **RCS Thrusters**: controle estendido por servos e periféricos CC:Tweaked.
+- Corrige problemas com **pickaxes em dedicated servers**, hanging de servidor no **Physics Gantry** quando chunks carregam, e nodes pulados na execução de **Advanced Contraption Controller (ACC)**.
+- Edit de ângulos inline em Servo/Aileron, scale de GUI, tooltip de combustível e consumo correto de fuel buckets pelos thrusters (sem derramar fluidos).
+- As correções no ACC afetam execução de grafos, outputs e sincronização e precisam ser exercitadas independentemente da UI.
+
+### 1.2.4 — Physics Gantry, montagem e segurança do editor
+- Corrige regressão de montagem de **Physics Gantry em sublevels** e overhead de performance.
+- Corrige **Belt Wheels** que quebravam belts quando ambos montados/desmontados simultaneamente.
+- **ION Thruster** craftável com 1 Thruster + 1 Lens; adiciona **advancements**.
+- Remove port **NBT** do node **Set Data**, passível de crash, e os ports do mesmo node quando o alvo é um Copycat. Grafos antigos com ports removidos exigem teste de migration/load.
+
+### 1.2.5 — estado persistente e permissões
+- **Smart Glasses:** corrige widgets permanecendo após desequipar.
+- **Physics Staff:** permite lock/unlock do sublevel atual e impede mover o sublevel (ou child sublevel) ocupado pelo jogador.
+- Corrige interação mob de **Haunting Upgrade** e habilita lazy chunk loading do **Ship Control Module** já ao colocar ACC.
+- Supporter Mannequin passa a carregar skins de jogador configuradas pela GUI.
+- **Physics Gantry Carriage:** passa a usar rigid joint real, impedindo efeito indevido da inércia.
+- Corrige perda de links do **Contraption Network Linker** na montagem/desmontagem, linker quebrado em schematics com Toolgun e ACC falhando no primeiro save de graph.
+- Corrige outputs inconsistentes/nodes pulados em ACC encadeado.
+
+### 1.2.6 — release confirmada, changelog individual não isolado
+O arquivo `gadgets-and-gizmos-bundled-V1.2.6.jar` está publicado para NeoForge 1.21.1 desde 04/10, porém **as notas individuais não foram recuperadas de uma fonte primária verificável**. Uma descrição secundária sugere alterações em ACC, Belt Wheels, thrusters e receitas, mas **não é suficiente para atribuir alterações de API ou comportamento precisas**. Esse gap deve ser preenchido por página oficial/commit/tag ou comparação binária antes de liberação física.
+
+### 1.2.7 — UI, thrusters e node typing
+- Corrige goggle tooltip do **ACC** mostrando indevidamente `Sable Contraption Controller`.
+- Goggle tooltip de **Aileron Bearing** informa `Head Assembled`.
+- Aileron GUI mostra hover de frequências de redstone fora de modo Precise.
+- Adiciona config de **max thrust dos RCS Thrusters**.
+- **Vector Bearing** ganha opção de inverter thrust direction e node **Set Data** passa a aceitar input **Thrust Direction** com Vector Bearing como alvo.
+
+### 1.2.8 — graph runtime e correção crítica de inicialização
+- **ACC** recebe novos math nodes.
+- Corrige **Ship Control Module/autopilot**: ao iniciar servidor dedicado, ships não devem mais cair do céu por erro de inicialização dos controladores.
+- Corrige **shared graphs removendo binding dos linkers**, com impacto direto na preservação de redes de contraptions e connections de automação. Falha nessa superfície pode causar controle incorreto ou desincronizado de ships após restart.
+
+### Gates de regressão integrados
+1. Backup restaurável, cópia de mundo com graph ACC e links existentes; verificar schema de nodes **Set Data removidos/adicionados**, graph saving e migration sem perda.
+2. **Dedicated server restart com ships ativos** em autopilot, ACC e Ship Control Module; posição/velocidade e inputs não podem ficar órfãos ou fazer o navio cair.
+3. Network Linkers/CC:Tweaked/ACC encadeado com outputs e consumers, assembly/disassembly, Toolgun schematics e reload de mundo; nunca duplicar/remover binding.
+4. Physics Gantry, Belt Wheels e rigid joint de carriage em sublevels Sable; lock/child permissions do Physics Staff.
+5. Servo/Aileron redstone GUI, Vector Bearing invert thrust, RCS max thrust, fuels/buckets, ION Thruster recipe, redstone events e Sable gravity constraints.
+6. Smart Glasses equip/desequip, Mannequin skins, tooltip localization/scale, save/restart e multiplayer com dois operadores concorrentes.
+7. Comparar manifests e bundled libraries de V1.2.8 com Create, Create Aeronautics/Sable e CC:Tweaked físicos; test de loader NeoForge21.1.250 sem tratar releases de outros Minecrafts como compatíveis.
+
+**Fontes oficiais:**
+- índice de todas releases: https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/all?version=1.21.1
+- 1.2.3: https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/8899907
+- 1.2.4: https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/8915440
+- 1.2.5: https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/8983532
+- 1.2.7: https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/9070149
+- 1.2.8: https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/9110305
+- source oficial: https://github.com/Riieno/Gadgets-And-Gizmos
+
+**Decisão:** 1.2.8 documentada como upstream, **não instalada**; promoção pendente de compatibilidade, source da 1.2.6 e smoke test de persistência/autopilot.

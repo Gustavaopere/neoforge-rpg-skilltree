@@ -115,3 +115,21 @@ Essas mudanças são relevantes para o pack porque alteram diretamente settlemen
 Gate de promoção 1.3.4→1.3.5: Heal Book em companion domesticado, mob passivo e undead hostil; owner/target attribution; múltiplos alvos sem double-heal/double-damage; Tamed Minion em quedas de alturas variadas; death/respawn/relog; KnightLib 2.0.1; regressões herdadas de cooldown, Dinamo, Puppet Cannon e phasing de Teddy/Golden Allay.
 
 Fonte upstream: CurseForge Companions! file ID 8962932, release 1.3.5 para NeoForge 1.21.1.
+
+## 17. Atualização upstream 1.3.6 — 10/10/2026
+
+**Físico comprovado:** `companions-neoforge-1.21.1-1.3.4.jar` / 1.3.4, com KnightLib 2.0.1 no snapshot. A seção 16 cobre **Companions! 1.3.5 (24/09)**: Heal Book cura mobs tamed/passive e atinge undead corretamente; Tamed Minion deixa de sofrer fall damage.
+
+**Nova release 1.3.6 (04/10/2026; CurseForge file 9056538)** para NeoForge Minecraft 1.21.1:
+- corrige **crash no cliente provocado pela animação sweeping dos Gloves**;
+- acrescenta **configuração por itens e item tags** para custos/pagamentos de invocação de **Cornelius em copper, Nether e End**.
+
+Os pagamentos configuráveis podem afetar progressão, recipes, KubeJS, obtenção de recursos e decisões de quests; a lista exata de tags/defaults deve ser extraída da configuração da build antes de definir receitas de progressão. A correção de animação é do **cliente** e não demonstra alteração server-side no dano.
+
+**Cadeia:** 1.3.4 → 1.3.5 → 1.3.6; nenhuma dessas atualizações foi fisicamente confirmada no pack.
+
+**QA:** Gloves sweeping com Epic Fight/resource packs; Cornelius summon com tags vanilla/modded, pagamentos insuficientes e consumo exactly-once; invocações nas três rotas; Heal Book em tamed, passive e undead sem aplicação dupla; fall damage de Tamed Minion; KnightLib compatibility e startup dedicado; multiplayer ownership, save/restart e cross-dimension travel.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/companions-mod/files/9056538
+
+**Estado:** runtime físico 1.3.4 preservado; upstream 1.3.6 registrada e testes ainda pendentes.
