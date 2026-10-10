@@ -129,3 +129,17 @@ Impacto: `usingShaders` e `resourcepack` tornam seleção de asset dependente do
 Gate de promoção 7.2.1→7.2.4: NBT property `id`; render cancelado por terceiro seguido por outra entidade; shoulder parrot; EMF overrides; `usingShaders` com Iris on/off; `resourcepack` com troca de packs; resource reload; reconnect; emissives/blinking/random variants sem state leakage.
 
 Fonte upstream: `Traben-0/Entity_Texture_Features`, `CHANGELOG.MD` oficial; CurseForge confirma 7.2.2, 7.2.3 e 7.2.4 para 1.21.1.
+
+## 20. Atualização ETF 7.2.5 — 10/10/2026
+
+**Instalado segundo snapshot físico:** `entity_texture_features-7.2.1-1.21-neoforge.jar` / 7.2.1; EMF 3.3.5 e Iris/Sodium físicos. O dossiê já documenta a cadeia **ETF 7.2.2 → 7.2.3 → 7.2.4**, incluindo NBT property `id`, render state contamination após cancelamento de terceiros, shoulder parrots, `usingShaders` e `resourcepack`. A nova release **7.2.5-neoforge-1.21** foi publicada em **04/10/2026** para Minecraft 1.21/1.21.1, e é o teto publicado da plataforma em 10/10.
+
+**Delta exato 7.2.5** no changelog oficial `Traben-0/Entity_Texture_Features`, `CHANGELOG.MD`: **“reduced per frame allocations to improve performance”**. É otimização de alocação por frame no subsistema de texturas e camadas, sem feature nova de gameplay anunciada. Não afirmar redução percentual de GC ou FPS sem benchmark do pack.
+
+**Cadeia integral:** 7.2.1 → 7.2.2 → 7.2.3 → 7.2.4 → **7.2.5**. A compatibilidade deve ser coordenada com a evolução de **EMF até 3.3.11**, documentada no lote #47, além de renderers de outros mods, entity sounds, shader Iris, resource packs CEM/OptiFine format e sincronização de asset change. Atualizar ETF sem verificar EMF e regressões de third-party cancellation pode invalidar o objetivo dos fixes 7.2.3–7.2.4.
+
+**QA obrigatório:** pack de recursos real com conditional properties `usingShaders`/`resourcepack`, troca de shader/resource pack, F3+T, skin player/shoulder parrots, random/blinking/emissive, render cancel seguido de entidades distintas, animação EMF e shader PBR, profiling de heap allocations por frame e FPS em cena densa antes/depois; dedicado sem classloading client render. Não alterar ownership de entidades/data server-side.
+
+**Fontes:** https://github.com/Traben-0/Entity_Texture_Features/blob/ETF-Main/CHANGELOG.MD ; https://www.curseforge.com/minecraft/mc-mods/entity-texture-features-fabric/files/all?version=1.21.1
+
+**Estado:** upstream 7.2.5 documentada, versão física 7.2.1 preservada; testes não executados.
