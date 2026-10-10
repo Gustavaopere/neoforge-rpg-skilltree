@@ -335,3 +335,24 @@ Para Axolotl, Dolphin, Bat, Putrid Horse, Ocelot, Villager, Silver Fish, Warden,
 - **Página oficial do projeto:** authority para Clinical Stretch, resurrected mobs, body parts, Organ Extractor, Surgery Stretch, Subject Assembly, Igor/failed experiments, syringes, estruturas, Witherstein e cosméticos aqui documentados.
 - **Source 5.4.4:** não estabelecido/publicamente auditado nesta pesquisa.
 - **Limite fail-closed:** não são declarados classes, métodos, registries, packets, configs ou persistência interna sem uma fonte de versão correspondente. Qualquer bridge futura deve começar por inspeção do JAR/runtime ou source oficial equivalente.
+
+## 24. Atualização upstream 5.4.5 — 10/10/2026
+
+**Autoridade física:** `mobstein-5.4.4-neoforge-1.21.1.jar`, runtime 5.4.4. **Próxima release:** **Mobstein 5.4.5** para NeoForge 1.21.1, publicada em outubro/2026 (CurseForge file **9086942**, 07/10/2026). Não há outras releases intermediárias 1.21.1 entre 5.4.4 e 5.4.5 documentadas neste intervalo.
+
+O delta oficial tem impacto em gameplay, desempenho e apresentação:
+
+- **Witherstein:** revisão do comportamento de combate do boss. É preciso revalidar as fases e qualquer automação/progressão que dependa de seu estado.
+- **Boss bar:** correção de dimensionamento durante **ambas as fases** do combate.
+- **Performance:** corrige aumento expressivo de **TPS** relacionado a `igorItemProcedure`. Uma melhoria publicada pelo autor não substitui medição de MSPT no pack.
+- **Interação com Igor:** ao lançar uma **Suspicious Syringe** em Igor com sua mesa próxima, a criação do experimento passa a funcionar de modo confiável.
+- **Head Creator:** corrige paridade/comportamento entre loaders. Verificar a implementação da variante NeoForge, sem inferir APIs internas não publicadas.
+
+### Interoperabilidade e regressões
+
+Mobstein traz necromancia, corpos/partes, resurrected mobs e boss worldgen; **GeckoLib é requerida**, JEAsync é opcional. A compatibilidade com Sable declarada pela 5.4.4 deve continuar sob teste, especialmente com corpse/ragdoll providers da instância. Validar Witherstein phase transitions e boss bar em diferentes escalas de GUI; Igor/Suspicious Syringe em single/multiplayer e save/reload; medição de MSPT/TPS com Igor/experimentos; Head Creator; death/resurrection/pets/bodyguards e coexistência com outros mods de magia/necromancia. Não presumir que todas as entidades possuem o mesmo pipeline de death/render.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/mobstein-upgrade-useless-animals/files/9086942
+
+**Estado:** 5.4.5 upstream, **não instalada**, sem hash, JAR ou metadata física novos. Nenhum teste executado.
+
