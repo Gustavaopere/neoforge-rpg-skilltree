@@ -110,3 +110,30 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 29. Evidências e limites
 A modlist física confirma JAR/mod id/runtime 1.3.2-beta.3. O source oficial `main` matching confirma versão 1.3.2-beta.3, MC 1.21.1, Create dev 6.0.7 e escopo de ores/reactor/electricity. README/changelog da mesma linha confirmam reactor control, fuels, neutron/steam systems, radiation, HEV/Hazmat, Curios meter e os deltas exatos 1.3.2 de Coal Dust/Reinforced Glass. Conteúdo de V2 posterior não foi usado como evidência desta build.
 > 🔒 **Boundary canônico:** Create Nuclear owns reactor/radiation/fuel state; Create owns stress/kinetics. Reactor state deve ser recalculável e conservativo, e nenhum dado de linhas V2 posteriores deve contaminar a catalogação da 1.3.2-beta.3.
+
+## 30. Create Nuclear V2 — migração crítica — 10/10/2026
+
+**Instalado fisicamente:** createnuclear-1.3.2-beta.3-neoforge.jar (Minecraft 1.21.1). **Upstream público atual para NeoForge 1.21.1:** createnuclear-2.0.0-neoforge.jar, file ID 9056910, publicado em 04/10/2026. A release 2.0.1 pertence a Minecraft 1.20.1/Forge, não é alternativa para este pack.
+
+**BLOQUEIO DE SEGURANÇA DE MUNDO:** o autor exige desmontar completamente **todos os reatores ativos antes de atualizar para V2**. Reatores antigos mantidos montados podem causar **corrupção ou meltdown nuclear imediato**. Não instalar V2 num save principal, não executar migração sem backup testado e remoção dos multiblocos ativos usando a build antiga.
+
+### Alterações oficiais V2
+- Reforma dos reatores com Tier 2 e Tier 3, maior geração e limite térmico; heat/coolant refeito pelo ratio fuel:coolant.
+- Entrada de líquido para refrigerante configurável via datapack, fluido Nitrogen, novo alarm block controlado por redstone/temperatura; estrutura de reactor input/output e alarm mais flexível.
+- Explosão nuclear própria com mushroom cloud, modelo/som; radiação passa a afetar todas as living entities, não apenas players.
+- Novo efeito protetor Iodine com brewing chain, anti-radiation armors e irradiated-hearts HUD; overlays desativados em Creative/Spectator.
+- Novo Irradiated Land biome **não natural**: propaga-se com explosões; Biome Irradiation Extractor/Glass Bottle restauram zonas.
+- Novas cadeias completas de Thorium e Nitrate/Nitrogen; Snow Powder criado com fans Create; ores Uranium/Thorium rebalanceadas e common tags NeoForge c:.
+- Montagem de blocos de reactor inputs/outputs com Create Deployer, novos advancements, config keys e defaults reorganizados; integração opcional de reactor em contraptions Create Aeronautics/Sable e Create Dragons Plus.
+
+### Gate de promoção obrigatória
+1. Inventariar todos os reatores do mundo, inclusive contraptions/Sable sublevels, usando V1.3.2; desmontar os ativos integralmente.
+2. Fazer backup completo antes e depois da desmontagem, e testar restauração em cópia separada.
+3. Promover JAR **somente em cópia**; verificar registry/data component migration, configs, tags, Create 6.0.10 e Sable/Aeronautics.
+4. Montar Tier 1/2/3, validar rod controls, coolant/Nitrogen, fuel depletion e ejection exactly-once, heat/alarm, steam, FE/SU conservation.
+5. Em mundo descartável testar explosions/Irradiated Land, radiation effects em mobs, Iodine/armors, claims, Biome Extractor e world save/restart.
+6. Testar multibloco montado/móvel e chunk unload/reload, restart em períodos quentes, HUD e dedicated server. Não declarar teste executado sem evidência.
+
+**Fonte primária:** https://www.curseforge.com/minecraft/mc-mods/createnuclear/files/9056910 ; https://www.curseforge.com/minecraft/mc-mods/createnuclear
+
+**Decisão:** **NÃO promover automaticamente a V2**. Último runtime físico comprovado continua 1.3.2-beta.3.
