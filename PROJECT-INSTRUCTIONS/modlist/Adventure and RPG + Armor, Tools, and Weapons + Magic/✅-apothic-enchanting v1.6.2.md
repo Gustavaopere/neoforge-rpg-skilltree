@@ -337,3 +337,28 @@ Podem alterar caps/regras. Overcap com estrela, max levels e anvil behavior prec
 - Changelog oficial da linha 1.21 até `1.6.2`.
 - CurseForge oficial.
 - Modlist física do projeto — authority de JAR/runtime.
+
+## Atualizações upstream 1.6.3 → 1.6.4 — 10/10/2026
+
+**Autoridade física preservada:** `ApothicEnchanting-1.21.1-1.6.2.jar` / 1.6.2. O upstream NeoForge 1.21.1 foi revisado sequencialmente até **1.6.4** (release pública de outubro/2026). O changelog do branch oficial `1.21` diferencia as mudanças:
+
+### 1.6.3 — correções mecânicas
+
+- Corrige o bug dos **enchantability bonuses** (chance aleatória de +1 nível no encantamento). Esta correção pode alterar o resultado de encantamentos em mesas e modifica uma superfície de progressão/balanceamento.
+- Corrige os thresholds de **Arcana**: estavam em **0/33/66/99**, em divergência com os valores documentados **0/25/75**. A formulação do upstream deve ser preservada; não projetar automaticamente um quarto threshold de valor desconhecido.
+- Atualiza tradução chinesa, sem atribuir gameplay adicional.
+
+### 1.6.4 — limites de extração e progressão
+
+- **Enchantment Libraries** passam a respeitar o **limite máximo de encantamentos configurado no Apoth** ao extrair livros. Isso fecha uma inconsistência de cap que poderia produzir itens acima do limite pretendido.
+- **Chainsaw** passa a aparecer em **Power 40**, em vez de **Power 55**, antecipando a disponibilidade no sistema.
+- Atualização de tradução ucraniana.
+
+### Impactos e QA
+
+A cadeia física→upstream é **1.6.2 → 1.6.3 → 1.6.4**, sem atribuir fixes futuros à 1.6.2 atualmente documentada. Ao promover a atualização, testar encantamento com níveis próximos aos thresholds de Arcana; bônus aleatórios +1 sob condições controladas; extração na Enchantment Library com max configurado e livros que excedam o cap; Chainsaw em Power 39/40/55; JEI e tooltips; persistência, world tiers, datapack reload, compatibilidade com Apotheosis/Apothic Attributes e Placebo; cliente e dedicated server.
+
+**Fonte primária:** https://github.com/Shadows-of-Fire/Apothic-Enchanting/blob/1.21/changelog.md ; **distribuição:** https://www.curseforge.com/minecraft/mc-mods/apothic-enchanting/files/all?version=1.21.1
+
+**Estado:** 1.6.4 identificada upstream, **não promovida ao inventário físico**; nenhum teste de runtime executado neste lote.
+
