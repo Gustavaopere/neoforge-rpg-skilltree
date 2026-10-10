@@ -147,3 +147,17 @@ São mudanças de lifecycle/performance client-side, não novas fontes de gamepl
 6. confirmar preservação da categoria `suspense` introduzida na 6.3.8.
 
 Fonte upstream: CurseForge file ID 9037168, `AmbientSounds_NEOFORGE_v6.3.9_mc1.21.1.jar`.
+
+## 13. Atualização AmbientSounds 6.3.10 — 10/10/2026
+
+**Autoridade física conhecida:** `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` / 6.3.8. A seção 12 já registra a release **6.3.9 (02/10)** e seu delta completo: encerramento do air-pocket scanner em troca de level, cache de regex de biomas, terrain scan limitado e padrões de dimensão pré-compilados.
+
+**Nova release:** **`AmbientSounds_NEOFORGE_v6.3.10_mc1.21.1.jar`**, publicada em **08/10/2026** para Minecraft 1.21.1 NeoForge. É a mais recente identificada nessa linha; artefatos de outros Minecrafts não podem ser usados como substitutos. **O changelog individual da build 6.3.10 ainda não pôde ser recuperado com granularidade técnica de uma fonte primária**. Não lhe atribuir mudança de sound engine, novos sons, performance ou bugfix específico sem a release note exata.
+
+**Cadeia integral verificada:** 6.3.8 → 6.3.9 → 6.3.10. As correções da 6.3.9 continuam sendo o principal ganho técnico **confirmado** desde o runtime físico.
+
+**Risco e QA:** compare CreativeCore metadata required pelo JAR, startup client, dimension swaps, caves, modded biomes, rain/ambience and sound category, large biome registry regex cost, profiler, instrumentação de soundscape com shaders/Particle Rain/Subtle Effects, mudança de packs, pausa/relogin e descarte de scanners. Não supor que 6.3.10 altera a lógica ambiental do servidor, pois o mod continua layer client-only.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/ambientsounds/files/all?version=1.21.1
+
+**Estado:** release 6.3.10 upstream documentada, 6.3.8 físico preservado, changelog granular 6.3.10 pendente e nenhum teste executado.
