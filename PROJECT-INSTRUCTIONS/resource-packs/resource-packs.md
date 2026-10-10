@@ -49,7 +49,7 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 | 37 | Fresh Animations | `FreshAnimations_v1.10.4.zip` | `1.10.4` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations v1.10.4.md` | 18/09/2026 - 11:04 |
 | 38 | Fresh Animations: Extensions | `FA+All_Extensions-v1.8.1.zip` | `1.8.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-extensions v1.8.1.md` | 29/09/2026 - 17:25 |
 | 39 | Fresh Animations: Player Extension | `FA+Player-v1.1.zip` | `1.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-player-extension v1.1.md` | 29/09/2026 - 17:25 |
-| 40 | Fresh Illager Mod Compats | `4.3 FA Illager Mod Compats.zip` | `4.3` | `Animated + Mod Support` | `Animated + Mod Support/✅-fresh-illager-mod-compats v4.3.md` | 29/09/2026 - 17:25 |
+| 40 | Fresh Illager Mod Compats | `4.3 FA Illager Mod Compats.zip` | `4.3` | `Animated + Mod Support` | `Animated + Mod Support/fresh-illager-mod-compats v4.3.md` | 29/09/2026 - 17:25 |
 | 41 | Golems Refreshed + Fresh Animations | `golems-refreshed-fa-v2.1.zip` | `2.1` | `Traditional` | `Traditional/✅-golems-refreshed-fresh-animations v2.1.md` | 29/09/2026 - 17:42 |
 | 42 | Golems Refreshed | `golems-refreshed-v2.1.zip` | `2.1` | `Traditional` | `Traditional/✅-golems-refreshed v2.1.md` | 29/09/2026 - 17:42 |
 | 43 | Iron's Spells 'n Spellbooks 3D weapons Resource Pack | `3D items.zip` | sem versão semântica publicada | `Animated + Medieval + Mod Support` | `Animated + Medieval + Mod Support/✅-irons-spells-n-spellbooks-3d-weapons-resource-pack.md` | 29/09/2026 - 17:42 |
