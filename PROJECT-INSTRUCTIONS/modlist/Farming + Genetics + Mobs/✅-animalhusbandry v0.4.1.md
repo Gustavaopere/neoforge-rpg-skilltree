@@ -254,3 +254,31 @@ Impacto: 0.4.2 muda economia de produção, transmissão de doença, traits e fl
 Gate de promoção 0.4.1→0.4.2: milk/egg/wool durante sickness; 5 sick days; contagion em pen lotado; constitution recovery; medicine immunity; Hardy/Iron Stomach; Slowness/particles; two-click pairing válido/inválido/cancel; item consumption exactly-once; hologram 5 s; relog/restart/chunk unload; herd stress; genetics e custom textures.
 
 Fonte upstream: CurseForge file ID 8919786, `AnimalHusbandry-neoforge-0.4.2.jar`.
+
+## Atualizações upstream 0.4.2 → 0.5.0 — 10/10/2026
+
+**Físico:** `AnimalHusbandry-neoforge-0.4.1.jar` / runtime 0.4.1. O CurseForge publicou **0.4.2** em 19/09 e **0.5.0** em 08/10 para Minecraft 1.21.1 NeoForge; a 0.5.0 é o último alvo público verificado, **file ID 9098766**.
+
+### 0.4.2 — Sickday (file 8919786)
+- Reformula **sickness**: animais doentes interrompem produção de leite/ovos/lã, ficando comprometida a economia de fazenda.
+- Dano leve por fome só começa após **cinco dias consecutivos de sickness**; elimina progressão letal imediata.
+- Em cercados lotados, **chance diária publicada de 10%** de contágio a outros animais próximos; não extrapolar para taxa de reprodução real sem simulação.
+- Recuperação natural diária baseada no atributo de constitution; **Animal Medicine** fornece imunidade temporária de 100% durante o período de proteção publicado.
+- Traits **Hardy** (evita starvation damage associado) e **Iron Stomach** (evita disseminação de contágio), mais Slowness e partículas visuais.
+- Corrige consumo de **Fertility Potion** usando pareamento dirigido em **dois cliques**; item só é consumido após criar par válido, e clique no ar cancela boosts pendentes.
+- Magnifying Glass passa de mensagem no chat a **holograma sobre o animal**, expirando após cinco segundos.
+
+### 0.5.0 — Fluffy Hoppers (file 9098766)
+- Novo sistema de **rabbit genetics**: cinco cores básicas, três padrões primários e até 30 combinações genéticas descritas, com variação associada ao bioma nativo.
+- Quatro rabbit traits: **Charmer** (fêmea com aura que recupera felicidade de animais próximos), **Skittish** (cautela/assustadiço), **Lucky** (efeitos sutis de sorte em volta da fazenda) e **Soulmate** (vínculo duradouro com compartilhamento de dano). Magnifying Glass indica vínculo com corações.
+- **Angora fluff/yarn** e **Angora hood + set de armadura**. O set completo confere **imunidade a freezing** e **redução do ritmo de fome**. Relevante ao stack de sobrevivência e temperatura do pack; não pressupor override de Cold Sweat sem teste.
+- Corrige hologramas persistindo após a morte do animal e **custom blocks não dropando a si mesmos**.
+- O autor menciona um resource pack **AH × FA** a ser atualizado futuramente: não registrar a atualização desse pack como já publicada/instalada.
+
+### Regressão prioritária
+Testar saúde/produção de animais por dia e densidade; medicine e immunity expiry; fertility potion two-click e cancel; breeding multigeracional de rabbits; biomas BWG; skill buffs com outros mods de perks; Soulmate damage transfer sem duplicar source; hologram lifecycle/dedicated server; Angora set com freezing/Cold Sweat; mortes/drops, save/restart, multiplayer e economia. A natureza de renderização dos hologramas não autoriza alterar lógica server-side a partir do cliente.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/animal-husbandry/files/8919786 ; https://www.curseforge.com/minecraft/mc-mods/animal-husbandry/files/9098766
+
+**Estado:** 0.4.2 e 0.5.0 documentadas; sem instalação/testes afirmados.
+
