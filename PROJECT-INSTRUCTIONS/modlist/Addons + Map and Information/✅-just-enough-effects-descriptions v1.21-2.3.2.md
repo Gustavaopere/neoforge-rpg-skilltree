@@ -82,3 +82,20 @@ Gate de regressão: abrir lista de effects no JEI, clicar efeitos com runtime/he
 **Fontes GitHub upstream:** `MehVahdJukaar/JustEnoughEffectDescriptions`, branch `1.21`, `gradle.properties`, `changelog.md`, commits `563f67d3698aeb4e0e400d8207f9cb8e44c8a3431d`, `3f6b83fe9801d23be00c9013927bae4adb973ac5`, `294834554fea3edbeae1799cd43de8beda945d32` e merge `bde967459b24ef7d6ccd68919c907f08c625e6e8`.
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — JEED 1.21-2.3.2/JAR físico reconfirmado; viewer/display-only authority, integração concreta com JEI 19.56.0.440, fix de legibilidade EMI 2.3.2, localization/data risks e testes preservados.
+
+## Atualizações upstream 2.3.4 → 2.3.5 — 10/10/2026
+
+**Autoridade física:** `jeed-1.21-2.3.2.jar`, metadata `1.21-2.3.2`, na última snapshot. O CurseForge de Minecraft 1.21.1/NeoForge identifica **`jeed-1.21-2.3.4-neoforge.jar`** (17/09/2026) e **`jeed-1.21-2.3.5-neoforge.jar`** (06/10/2026, file **9079612**) como releases posteriores; **2.3.5 é a mais recente para este loader/MC**. **2.3.3 não foi localizada nessa sequência publicada** e não foi preenchida por inferência.
+
+### Deltas verificáveis
+- **2.3.4 (17/09):** CurseForge descreve **`fixed tooltip rendering`**; a nota não identifica uma classe, evento ou UI específica, por isso não inventar causa.
+- **2.3.5 (06/10):** release oficial também descreve **`fixed tooltip rendering`**. A descrição repetida não demonstra que seja o mesmo bug ou que contenha alterações adicionais.
+- Não confundir **2.5.x de Minecraft 26.1.x** ou **2.5.0 de 1.21.11** com a linha compatível 2.3.x do pack.
+
+### Riscos e regressões
+JEED apresenta informações de efeitos/status em viewers JEI/REI/EMI. Conferir JEI físico 19.56.0.440, effect category/list, ícones e tooltips com múltiplos efeitos de mods Ars/Apothic, GUI scale, localization pt_BR e outras línguas, resource reload/pack changes, overlay rendering, busca e dedicated server sem carregar render classes no lado incorreto. A atualização é de apresentação; não atribuir alterações ao registro de efeitos nem à aplicação server-side.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/just-enough-effect-descriptions-jeed/files/9079612 ; índice oficial https://www.curseforge.com/minecraft/mc-mods/just-enough-effect-descriptions-jeed/files/all .
+
+**Estado:** 2.3.4/2.3.5 registrados como upstream; física 2.3.2 preservada; testes pendentes.
+
