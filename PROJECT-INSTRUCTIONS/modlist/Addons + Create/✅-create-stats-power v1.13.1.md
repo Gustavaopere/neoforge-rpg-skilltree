@@ -158,3 +158,28 @@ Security state precisa continuar server-authoritative durante assembly/disassemb
 12. restart/chunk unload, Sable/Aeronautics/Simulated integrations e exactly-once FE settlement.
 
 Fonte upstream: CurseForge file ID 8906784, `create_stats-1.14.5.jar`, release NeoForge 1.21.1.
+
+## 21. Atualização upstream 1.15.0 — 10/10/2026
+
+**Físico:** create_stats-1.13.1.jar / 1.13.1. A seção anterior documenta integralmente **1.14.5** (Portable Power Interface, Power Controller e corrections). **Nova release NeoForge Minecraft 1.21.1:** create_stats-1.15.0.jar, 05/10/2026, CurseForge file 9074215. O autor exige atualização **conjunta do servidor e de todos os clientes**.
+
+### 1.15.0 — novo escopo operacional
+- **Power Track**: trilhos energizados permitem carregar trens em movimento ou transportar energia até bases remotas.
+- **VCC Mk IV Ground** com trailer, luzes, Driver Helmet e HUD; requer **Create Aeronautics + Create Offroad**; rotas autônomas geradas via Surveyor's Staff e Create Schedule.
+- **VCC Mk IV Aerial** com airship/autopilot, Aviator Helmet e reflector sight, ampliando as surfaces do stack Sable/Aeronautics.
+- **Battle Bridge** reconstruída para Create Big Cannons, com aiming/leading target e proteção contra disparo no próprio navio; deve ser server-authoritative.
+- **Cine Camera** grava vídeo MP4 com áudio em Windows e captura de fotos, timelapse/slow motion; testar permissão, I/O e desempenho.
+- **Seismic Scanner** identifica minérios, cavernas e lava até 64 blocos. **Solar Panels** (3 tiers), Biofuel Burner, Starter Capacitor, HV Line/Busbar Trunk (quarto nível de wiring), Contactor redstone/FE, Oven + seis cakes/quatro crops, Vacuum Collector/Cleaner/Sniffer e recursos de iluminação/temporização, advancements e suporte administrativo.
+- Smart Home Panel recebe floor plan e mob-spawn light view, Battery Controller mostra previsão de 30min, PDU ganha In/Out; cabos e controls revisados, shader/dynamic lights integrados ao stack Sodium/Iris.
+
+### Mudanças potencialmente breaking / migração
+- **Industrial Connector agora limita 65.536 FE/t, antes 98.304 FE/t**; qualquer desenho de rede que dependa do throughput antigo pode deixar de satisfazer consumo. Power Connector não transporta mais que a capacidade de sua própria grade, mesmo como hub.
+- **Stats Recorder** e **Memory Cog** deixam de ser craftáveis, embora blocos colocados permaneçam; receitas, quests e scripts precisam ser revisados.
+- Factory Manual substituído pelo Student's Manual (WIP); **lâmpadas voltam ao brilho máximo uma vez**, as receitas de fios passam a usar máquinas Create.
+- Support terminal vem **bloqueado inclusive para operadores**, exigindo permissão explícita pelo comando de administração divulgado no upstream.
+
+**Regressões de maior risco:** conservação de FE/SU entre rede estacionária e veículos, train charging e schedules, throughput/cabo grade, segurança de blocos/doors/admin, station routing, VCC autônomo e multiplayer, compat de aeronaves/physics + Create Big Cannons, nova dynamic lighting e concorrência com outros lighting providers, UI e codecs, migração de configurações/permissões, world save/restart. Não instalar em mundo principal sem cópia de teste.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/9074215 ; https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/8906784
+
+**Estado:** 1.15.0 upstream, atualização física e smoke-tests pendentes.
