@@ -133,3 +133,17 @@ O salto 19.56.0.440→19.57.0.450 é principalmente UI/config/index lifecycle, m
 Gate de promoção: client + dedicated server; todos os plugins JEI principais; search focus key; bookmark drag/transfer e várias páginas; legacy config migration; MezzConfigGui presente/ausente; recipe focus order; proxy/reconnect recipe refresh; `/reload`; KubeJS/datapacks; large-tooltip stress; fireworks recipes; GUI/resource reload.
 
 Fontes upstream: CurseForge 19.56.0.441 e file list 19.57.0.444–450; Modrinth release notes 19.57.0.444–449; source `mezz/JustEnoughItems` branch 1.21.1.
+
+## 18. Atualização JEI 19.57.0.451 — 10/10/2026
+
+**Físico:** `jei-1.21.1-neoforge-19.56.0.440.jar` / 19.56.0.440 (Beta). O dossiê já audita **todas as releases 19.56.0.441 → 19.57.0.450**, incluindo mudanças importantes de MezzConfig GUI, bookmarks/focus, cache lazy tooltip, recipe transfer e refresh ao trocar de proxy server. O CurseForge publica **19.57.0.451 for NeoForge 1.21.1** desde **05/10/2026**, última build Beta da linha aplicável em 10/10.
+
+**Delta 19.57.0.451:** o índice oficial confirma a release e seu target NeoForge 1.21.1, mas **não foi identificado um changelog individual suficientemente verificável** nesta auditoria. Não atribuir a ela conserto de recipes/plugins nem mudança de API de mod sem fonte vinculada ao build exato.
+
+**Cadeia de promoção:** 19.56.0.440 → .441 → 19.57.0.444/.445/.446/.447/.448/.449/.450 → **.451**, preservando no corpo anterior todos os deltas publicados. O caráter Beta e o fan-out de plugins/consumers exigem atenção a MezzConfig e MezzConfigGUI (componentes separados com próprios versions), Sophisticated JEI Index, ALI, JEED, KubeJS/loot recipes, custom ingredient types e alterações de Gui atlas.
+
+**Gate antes de promover:** startup cliente/servidor, enumeração de plugins JEI com API/ABI matching, recipe and uses display, dynamic recipe reload, tooltip lazy cache com muitas categories, bookmarked recipes/recipe transfer from backpacks, focus/search, config GUI, proxy reconnect, registro de ingredients de terceiros, resource pack pt_BR e validação de missing ingredients. Não se afirmar alteração funcional específica da 451 até release note/source pinado.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/jei/files/all?version=1.21.1
+
+**Estado:** 19.57.0.451 disponível, 19.56.0.440 permanece a última versão instalada comprovada.

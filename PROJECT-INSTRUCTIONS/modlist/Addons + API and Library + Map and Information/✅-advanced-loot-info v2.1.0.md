@@ -288,3 +288,26 @@ Impacto para este pack: o JEI físico está em **19.56.0.440**, então tooltip/U
 12. perfil de memória/scan em conjunto representativo de loot tables do pack.
 
 Fontes upstream: CurseForge Advanced Loot Info 2.2.0 e 2.3.0 para Minecraft 1.21.1; changelogs oficiais da linha 2.x.
+
+## 25. Atualização ALI 2.4.0 — 10/10/2026
+
+**Físico:** `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar` / 2.1.0. A seção 24 preserva as releases **2.2.0 e 2.3.0**, com fixes de Global Loot Modifier NeoForge, compat LootJS, tooltip JEI/REI, natural spawning info, memory e count/binomial. A nova **2.4.0 (06/10/2026)**, arquivo **`AdvancedLootInfo-neoforge-1.21.1-2.4.0.jar`**, é a última **NeoForge Minecraft 1.21.1** verificada. **2.4.1** publicada para Minecraft **26.3** não deve ser confundida com release desta linha.
+
+### Mudanças oficiais 2.4.0 (source `yanny7/AdvancedLootInfo`, branch `1.21.1`, `ali/CHANGELOG.md`)
+- Nova config **`spawnInfo`** para ocultar contexto de spawning.
+- Exibe **chances e rolls condicionados a Luck** em linhas por valor; a chance de entry agora considera **quality/luck** e pools com alternatives consideram **peso da alternativa sorteada**.
+- Number converters e tooltip de count/chance/entry factories recebem as condições do valor; número mais provável, rows por nível, **charts (`showCharts`) e fórmulas avançadas com F3+H**.
+- Tooltips maiores que a janela tornam-se **scrollable com wheel**.
+- `showInGameNames` traduz biome, dimension, structure, tags e IDs quando tradução está disponível, inclusive no contexto de spawning.
+- Fixes de hardening: plugin quebrado de loot functions/conditions ou entry/tooltip/trades não deve ocultar a loot table/trader inteira; componentes não suportados aparecem como `unsupported`.
+- `Storage` e enchantment-level number providers passam a exibir valores; enchantment-level values simplificados em uma linha com level rows em vez de tree completa.
+- LootJS `replaceLoot` corrigido com **LootJS 3.7.0**; broken loot modifications de LootJS/GLM são ignorados de forma localizada em vez de eliminar whole table.
+- Valores inválidos de config geram warning e só o valor inválido é ignorado, sem reset de toda opção.
+- Ajustes para names com placeholders (%s, GregTech), blocks que dropam apenas si mesmos, e correção de equipment slot translations no **Fabric** (não afirmar como bug NeoForge).
+
+### Interoperabilidade e QA
+ALI é viewer **informacional**; chances exibidas podem depender de Luck, GLM, data components e mods custom, mas **não alteram drop rates reais**. A atualização deve acompanhar requisitos de **ACI** (físico1.1.0; upstream1.3.0) e **JEI** (físico19.56.0.440; upstream19.57.0.451), e registrar o suporte Farmer's Delight removido para **ALI Compat** desde 2.2.0 sem presumir companion instalado. Verificar chances/rolls por luck e alternativas, configs `showCharts`/`spawnInfo`/`showInGameNames`, raw versus translated IDs, tooltip scroll, LootJS replaceLoot e GLMs com errors, modded-trader POI, reload, client+dedicated server e limites de memória/packet payload com grande modlist. Não indicar QA executado.
+
+**Fontes primárias:** https://github.com/yanny7/AdvancedLootInfo/blob/1.21.1/ali/CHANGELOG.md ; https://www.curseforge.com/minecraft/mc-mods/advanced-loot-info/files/all?version=1.21.1
+
+**Estado:** 2.4.0 upstream auditada, 2.1.0 fisicamente comprovada; dependências requerem reconciliação antes de promoção.

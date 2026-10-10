@@ -104,3 +104,15 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Source oficial: `Mods-For-Lupin/MonoLib`; branch `1.21.1` confirmada.
 - Consumer físico confirmado: Dis-Enchanting Table 5.0.2.
 - **Limite:** não foi pinado neste lote um commit byte-equivalente ao JAR NeoForge 1.21.1-4.1.0; métodos/classes internas não são inventados.
+
+## 13. MonoLib 4.1.2 — upstream 10/10/2026
+
+**Autoridade física:** `monolib-neoforge-1.21.1-4.1.0.jar` / 4.1.0, de 30/07/2026. **Nova release pública** para NeoForge Minecraft 1.21.1: **`neoforge-1.21.1-4.1.2`**, publicada em **03/10/2026**. O índice CurseForge da linha 1.21.1 exibe **4.1.0 → 4.1.2**, **sem build 4.1.1 para NeoForge 1.21.1 individualmente localizada**. A 4.1.1 existe para Minecraft26.1.2 e não autoriza inventar um artefato 1.21.1.
+
+**Limite de changelog:** o índice confirma versão/loader/data, porém **não foi recuperada uma release note individual detalhada da 4.1.2** para 1.21.1 nem diff pinado da build. Não atribuir novas APIs, correções de mixins ou gameplay. `MonoLib` é library Client & Server consumida pelo **Dis-Enchanting Table 5.0.2** no snapshot.
+
+**Riscos/gate:** version/loader metadata, API/ABI dos callbacks/commands/registries, side loading, lifecycle com mixins common/neoforge, boot cliente/dedicated server, recipe registration/disenchant transaction exatamente uma vez, menus, datapack reload, world persistence e logs de incompatibilidade. Nenhuma alteração de JAR físico deve ocorrer somente porque há release numericamente mais recente.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/monolib/files/all?version=1.21.1 ; https://github.com/Mods-For-Lupin/MonoLib
+
+**Estado:** upstream 4.1.2, físico 4.1.0; changelog granular não verificado e testes pendentes.
