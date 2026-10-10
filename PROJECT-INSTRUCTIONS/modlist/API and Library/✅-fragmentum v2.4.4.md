@@ -144,3 +144,20 @@ Impacto: o novo option type afeta consumers que constroem config screens pelo Fr
 Gate de promoção: atualizar todos os consumers Obscuria/Fragmentum compatíveis com 5.x; dedicated server boot; config UI com `buttonOption`; YACL/config screens; resource/datapack reload; payload/registry bootstrap; confirmar ausência de API calls 2.x removidas.
 
 Fonte upstream: CurseForge Fragmentum [NeoForge Edition] file ID 9022824, `fragmentum-5.1.1+1.21.1-neoforge.jar`.
+
+## 17. Atualização upstream 5.2.0 — 10/10/2026
+
+O runtime físico documentado permanece **Fragmentum 2.4.4**, JAR `fragmentum-neoforge-1.21.1-2.4.4.jar`. As atualizações anteriores **5.0.0** (breaking changes; Modern Stonecutter/Kotlin) e **5.1.1** (`ConfigScreenFactory.buttonOption`) estão registradas nas seções 14 e 16.
+
+O CurseForge publicou **5.2.0** em 05/10/2026, JAR `fragmentum-5.2.0+1.21.1-neoforge.jar` e file ID **9070553**.
+
+**5.2.0 altera infraestrutura de registry:** `ForgeRegistrar.createRegistry` passa a criar **registries mapeados pela vanilla**, em vez de Forge-specific registries. O release também informa **MixinExtras embutido para Forge**; por ser artefato NeoForge, não se infere automaticamente que a inclusão do componente Forge altera o classpath ativo do pack.
+
+**Risco de compatibilidade:** source/consumers Obscuria anteriores a 5.x podem depender de registry IDs, classes, tags, serializers ou lifecycle específicos do contrato antigo. Este é um boundary de API/ABI/persistência, não novo gameplay. Não atualizar o provider isoladamente.
+
+**Gates:** todos os consumidores Obscuria e adapters do pack; registry bootstrap, datapack reload; salvos antigos com IDs/NBT; config screen com buttonOption; NeoForge dedicated/client; payload sync; detecção de colisão JarJar YACL/LuaJ/MixinExtras. A alteração de registry mapping é especialmente sensível para mundos persistentes.
+
+**Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/fragmentum-neoforge/files/9070553
+
+**Decisão:** revalidado até 5.2.0, **não instalado**, sem renomear a ficha física.
+
