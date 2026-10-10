@@ -146,3 +146,27 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Relations oficiais: CorgiLib, GeckoLib, Oh The Trees You'll Grow e TerraBlender required; WTHIT optional.
 - Source oficial `Potion-Studios/Oh-The-Biomes-Weve-Gone`, branch 1.21.1, com changelog 2.6.0 coerente com os deltas documentados.
 - **Limite:** este dossiê não inventa uma enumeração completa de registry IDs, estruturas ou conteúdo por bioma; para scripting, extrair IDs/dados da build física.
+
+## 17. Atualizações upstream 2.6.1 → 2.6.3 — 10/10/2026
+
+**Autoridade física:** `Oh-The-Biomes-Weve-Gone-NeoForge-2.6.0.jar` / 2.6.0, Minecraft 1.21.1. **Mais recente NeoForge 1.21.1:** **2.6.3**, lançada em **10/10/2026**. O source oficial do branch `1.21.1` contém changelog cumulativo completo, não sendo necessário atribuir correções de outra versão Minecraft.
+
+### 2.6.1 — 04/10/2026
+- Torna todos os **BushBlocks compostáveis**.
+- Corrige **Salem Meeting Point 2** usando referência errada `biomeswevegone:village/common/cats`, substituindo por `minecraft:village/common/cats`.
+- Corrige **Husk spawning no Frosted Coniferous Forest**.
+- Adiciona recipe para **Black Ice**.
+
+### 2.6.2 — 04/10/2026
+- Corrige **remoção acidental do check de configuração para NeoForge Biome Modifiers**. É especialmente importante para a geração controlável de biomas/features, configs de mundo e interoperabilidade com outros providers de worldgen.
+
+### 2.6.3 — 10/10/2026
+- O changelog oficial registra **`Update schedule tick signature`**. Trata-se de alteração de assinatura para tick agendado; sem acesso a diff compilado correlacionado à release, não inferir entidades ou block entities específicas afetadas, nem presumir alteração de gameplay.
+
+### Gate integrado de worldgen
+Preservar o histórico de migração de config JSON5→JSON já documentado na 2.6.0. Verificar mundo novo + chunks antigos, NeoForge biome modifiers com toggles on/off, associação de cats no Salem meeting point, husks no Frosted Coniferous Forest, compostagem BushBlocks, recipe Black Ice, save/restart com scheduled ticks e estabilidade de blocos/vegetação. **Dependências:** CorgiLib, GeckoLib, TerraBlender, Oh The Trees You'll Grow; o último passou de 5.3.2 para 5.3.5 upstream, também revisado neste lote. Dynamic Trees BWG 1.1.0-BETA02 e composições Terralith/Tectonic são regressões críticas.
+
+**Fontes primárias:** https://github.com/Potion-Studios/Oh-The-Biomes-Weve-Gone/blob/1.21.1/CHANGELOG.md ; https://www.curseforge.com/minecraft/mc-mods/oh-the-biomes-weve-gone/files/all?version=1.21.1
+
+**Estado:** upstream 2.6.3 documentado; último instalado conhecido permanece 2.6.0.
+
