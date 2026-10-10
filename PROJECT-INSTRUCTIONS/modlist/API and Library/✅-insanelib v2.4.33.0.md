@@ -70,3 +70,15 @@ Validar construction/config load, datapack/config reload quando suportado, login
 - **Changelog:** 2.4.33.0 remove Sound Overrides; 2.4.32.0 registra sua introdução; mudanças 2.4.31.0 citadas acima permanecem baseline histórica.
 - **Limite:** consumers físicos não foram inferidos somente pela autoria; devem ser confirmados por dependency metadata quando necessário.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+## 13. Correção upstream InsaneLib 2.4.33.1 — 10/10/2026
+
+**Físico:** `insanelib-2.4.33.0.jar` / 2.4.33.0. A release **2.4.33.1 (05/10/2026; CurseForge file 9068453)** é a última NeoForge 1.21.1 pública identificada. O changelog de versão registra precisamente: **“Client modules are no longer loaded on server side”**.
+
+**Impacto:** correção de **classloading por lado**. Bibliotecas usadas por vários consumers não podem inicializar módulos que referenciam render/config GUI no dedicated server; a mudança reduz risco de classnotfound/wrong-side startup crash. Não afirmar que um crash concreto já foi observado neste pack, pois nenhum novo log dedicado foi fornecido. A atualização herda a remoção de Sound Overrides feita em 2.4.33.0 (estado físico) e não reintroduz a feature.
+
+**Gate:** iniciar servidor dedicado sem classes/client jars indevidos, client login, carregamento de todos os consumers InsaneLib sem linkage/mixin error, reload de config/registries, spawn/death, grindstone XP, efeitos que usam módulos comuns, e export/report de profiling. Não mudar config defaults sem comparação de source.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/insanelib/files/9068453
+
+**Estado:** apenas documentação atualizada até 2.4.33.1; último runtime confirmado permanece 2.4.33.0.
