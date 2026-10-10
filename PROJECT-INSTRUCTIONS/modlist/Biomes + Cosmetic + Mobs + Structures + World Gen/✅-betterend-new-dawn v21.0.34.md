@@ -185,3 +185,17 @@ Os dois pontos afetam diretamente worldgen do End. Config de biome deve controla
 - [ ] Particle crash corrigido em 21.0.34 não regride.
 
 Fonte upstream: CurseForge BetterEnd: New Dawn 21.0.35, file ID 8896285, NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.
+
+## 17. Upstream BetterEnd 21.0.36 — 10/10/2026
+
+**Autoridade física:** `BetterEnd-21.0.34.jar` / runtime 21.0.34. A seção anterior já analisa **21.0.35**, publicada em 16/09, com adição de opções de configuração para desligar dois biomas novos e fix de cave-biome generation. A publicação posterior **BetterEnd-21.0.36** para **NeoForge Minecraft 1.21.1** foi confirmada no CurseForge em **07/10/2026**, sem release 1.21.1 adicional identificada depois dela.
+
+**Limite de changelog:** não foi possível isolar com segurança um delta técnico específico da **21.0.36** a partir da ficha de arquivo consultada. **Não atribuir novos mobs, biomas, fixes ou alterações de worldgen a esta build sem a release note exata ou diff source correspondente.** Mudanças publicadas nas séries BetterEnd 1.21.11, 26.1/26.2/26.3 são independentes e não são evidência de comportamento em 1.21.1.
+
+### Gates
+Validação deve ser feita em cópia do save do End, com chunks antigos/novos: geração de cave biomes, toggles novos da 21.0.35, estruturas/biomes/pools, worldgen sampling, startup dedicado, registry/holder resolution, BCLib: New Dawn 21.0.26 + WorldWeaver 21.0.25 + WunderLib 21.0.10 e seus ranges efetivos, compatibilidade com YUNG's Better End Island, Dynamic Trees BetterEnd 2.2.0, shaders, resource reload e travessia de antigas fronteiras de chunks. Não afirmar compatibilidade de 21.0.36 com libs instaladas apenas pela mesma Minecraft version.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/all ; https://github.com/Reijin2312/BetterEnd-New-Dawn .
+
+**Estado:** latest upstream 21.0.36 confirmado; changelog granular não verificado; JAR físico 21.0.34 preservado.
+

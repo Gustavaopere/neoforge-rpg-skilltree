@@ -422,3 +422,29 @@ Esses testes são **evidência upstream**, não resultado local do pack.
 - [ ] Migração de config 3.3.4→3.3.5 preserva keys antigas e aplica somente o passo novo.
 
 Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9009833
+
+## 31. Atualizações upstream 3.3.6 → 3.3.7 — 10/10/2026
+
+**Versão física comprovada:** `ars_n_spells-3.3.4.jar`, runtime 3.3.4. A seção anterior já cobre **3.3.5** (27/09) e seus fixes de mana payment/affordability, channel, regen/ceiling, curio discounts, cooldown cross-cast, blacklist e config migration. Em 10/10, a última versão publicada NeoForge Minecraft 1.21.1 é **3.3.7 (05/10/2026)**, file ID **9064804**, com **3.3.6** publicada em 03/10 (file ID **9048029**). Não pular 3.3.5 ao promover.
+
+### 3.3.6 — resolução de carrier em casting via Iron's staff
+- Corrige **Ars spell vinculada em Iron's spellbook não poder ser lançada ao usar clique direito em Iron's staff**, embora o hotkey funcionasse.
+- Durante `casting_implement`, Iron's trata staff como casting item e hand slot; a fonte do spell continua sendo o spellbook equipado. ANS tratava a staff como único carrier e não encontrava a sidecar/spellbook payload.
+- A correção deve preservar o **carrier real no spellbook**, usando staff somente como implement, sem debit/cooldown/efeito duplicados.
+
+### 3.3.7 — mana, escolas e sincronização
+- Corrige o cálculo de **maximum mana no modo default**: mana derivada de glyphs, tiers de spellbook e equipamentos soma corretamente sem contar buffs de equipamento duas vezes; mundos existentes sincronizam no próximo login, mana faltante regenera normalmente, sem migração manual publicada.
+- Reduz updates desnecessários de mana entre servidor/cliente.
+- Adiciona **escolha manual de school para custom Ars spells** pelo botão School no Spell Loom; `Automatic` infere de glyphs. A school escolhida afeta bônus de spell power, affinity, progression e discounts Blasphemy; **glyphs ainda governam efeitos, damage types e cooldown category**.
+- Alteração de school em scroll existente com Apply **não consome itens**. Escolha de school persiste ao salvar/copiar/bind e projéteis preservam a school original após troca de spell.
+- Adiciona tooltips/guide, comandos `/ans school list`, `/ans school show`, comando de operador para editar schools e opção server-side para desativar seleção manual.
+- Fundo dos ícones explicitamente cosmético; rename/recolor de spell deixa de contornar prevenção de **duplicação de binding**. Escolhas de school distintas podem ocupar slots separados.
+- **Compatibilidade de rede:** release informa expressamente que **cliente e servidor precisam ambos ser 3.3.7**. Não promover só um lado.
+
+### Gate operacional
+Validar mana default com glyphs + tier + Curios + equipamentos, os quatro outros modos de mana, relog/mundo antigo, packets; spellbook carrier usado por staff vs tecla, debits/refunds exatamente uma vez e cooldown; School manual/Automatic com Ars Elemental/Ars Elemancy, status de progressão e blacklists; scroll copy/bind/rename/recolor sem dupes; projéteis preservando school, comandos/permissões, servidor desativando manual school; configs antigas, multiplayer e dedicated server.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9009833 (3.3.5); https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9048029 (3.3.6); https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9064804 (3.3.7).
+
+**Decisão:** auditada cadeia 3.3.4 → 3.3.5 → 3.3.6 → 3.3.7; o JAR físico conhecido não foi modificado.
+
