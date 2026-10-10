@@ -83,3 +83,16 @@ Create Deco, Design n' Decor e outros addons podem oferecer glass, lamps ou casi
 - documentação oficial: fluxo Andesite Alloy → clear casing via Stonecutter/Saw → Prismarine Crystals → illumination casing;
 - changelog 1.2.2: `fix server issue`, sem detalhe causal público.
 > 🔒 Boundary canônico: **Prismatic Shine controla casing/iluminação; Create controla o componente cinético encased**. Render transparente e luz visual não substituem state server-side.
+
+## 18. Revalidação upstream — 10/10/2026
+
+**Autoridade física:** `createprism-1.2.2.jar`, mod id `createprism`, runtime 1.2.2, SHA-1 `2c911b9b9abaac0572f0935ccfc9ae91c02eb4c7`. As listagens do CurseForge/Modrinth para **Minecraft 1.21.1 NeoForge** continuam apontando **1.2.2 de 07/05/2026** como a publicação mais recente do addon; não há uma nova versão intermediária identificada após o runtime físico.
+
+O changelog publicado para 1.2.2 permanece curto: **`fix server issue`**, sem detalhamento técnico do crash/sintoma. As funções são glass casing, scaffolding, illumination casing, recipes e apresentação/render vinculada ao Create; nenhum novo bloco/recipe deve ser inferido apenas pela data da revalidação. O núcleo Create continua definindo cinética e contraptions, enquanto Prismatic Shine define casing/decor e suas propriedades relevantes.
+
+**QA ainda pendente:** dedicated server boot, recipes Stonecutter/Mechanical Saw e casings, iluminação e atualizações de light engine, shader/resource reload, casing em contraptions montadas, serialização após chunk unload/restart, coexistência de texturas transparentes com outros addon Create. Revalidar dependência Create 6.0.10 real; não alterar versão do arquivo físico.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/create-prismatic-shine/files/all ; https://modrinth.com/mod/create-prismatic-shine/version/1.2.2
+
+**Decisão:** **sem atualização pública posterior aplicável**, documentação apenas revalidada.
+
