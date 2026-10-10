@@ -127,3 +127,22 @@ A 1.3.15b contém dois fixes:
 Para promoção, testar connected textures em UI/item contexts sem world, modelos translúcidos em Fabulous, Iris/PBR, resource reload e os loaders visuais concorrentes já listados nesta ficha.
 
 **Fontes upstream:** SuperMartijn642/Fusion branch neoforge-1.21, changelog.md; CurseForge file ID 8942891.
+
+## 15. Upstream Fusion 1.3.16 — 10/10/2026
+
+**Autoridade física:** `fusion-1.3.15a-neoforge-mc1.21.1.jar`, distribuição 1.3.15a, **metadata interna `1.3.15+a`**. Esta divergência de versão continua explicitamente preservada. **O filename continua sem `✅-`** porque a inconsistência de origem Notion/documentação não foi declarada sanada. A seção anterior já registra **1.3.15b** (21/09, fixes de connecting texture sem world context/empty tile e translucency de item em Fabulous).
+
+### 1.3.16 — 05/10/2026
+A release pública **Fusion 1.3.16 para NeoForge Minecraft 1.21.1**, arquivo `fusion-1.3.16-neoforge-mc1.21.1.jar`, aparece no CurseForge. O changelog oficial de `SuperMartijn642/Fusion`, branch `neoforge-1.21`, registra:
+- **Correção de arredondamento do tamanho das `continuous textures` de itens para potência de dois**: cálculo anterior estava deslocado em **uma unidade (off by 1)**.
+
+### Cadeia completa
+A promoção física deve contemplar **1.3.15a → 1.3.15b → 1.3.16** e suas três superfícies: empty connecting tiles fora de world context, item translucency em Fabulous e dimensionamento de continuous textures em item models. Não atribuir as fixes a `1.3.15a`.
+
+### QA
+Resource packs com Fusion, conectadas de blocos e continuous item textures de dimensões limítrofes (potências de 2), item model GUI/held/inventory, Fabulous, Irris/shader PBR, overlay/alpha, EMF/ETF/Fresh Animations e F3+T. Testar load/reload repetidos para prevenir cache stale, não confundir apresentação visual com datapack/gameplay authority. Sem revalidação de paridade histórica Notion, não adicionar `✅-` automaticamente.
+
+**Fontes:** https://github.com/SuperMartijn642/Fusion/blob/neoforge-1.21/changelog.md ; https://www.curseforge.com/minecraft/mc-mods/fusion-connected-textures/files/all?version=1.21.1
+
+**Estado:** latest upstream 1.3.16; físico permanece no build 1.3.15a e metadata 1.3.15+a.
+
