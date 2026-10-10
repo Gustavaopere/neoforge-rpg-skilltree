@@ -166,3 +166,25 @@ O pack possui ETF **7.2.1**. A linha 1.21.1 já possui ETF **7.2.4**, cujo chang
 - [ ] Shader profile real do pack é testado junto ao novo ETF.
 
 Fontes upstream: CurseForge EMF NeoForge 1.21.1 releases 3.3.6–3.3.9; 3.3.9 file ID 8909425. ETF 7.2.4 NeoForge 1.21.1 file ID 8908931. Nenhum teste acima foi executado nesta atualização documental.
+
+## 21. Atualizações EMF 3.3.10 → 3.3.11 — 10/10/2026
+
+**Físico:** entity_model_features-3.3.5-1.21-neoforge.jar / 3.3.5 e ETF 7.2.1. O dossiê anterior cobre **3.3.6 → 3.3.7 → 3.3.8 → 3.3.9**, incluindo a regressão de launch da 3.3.8 para 1.21.1 e seu fix em 3.3.9.
+
+### 3.3.10 — October 2026
+- Corrige animações de entidades dentro de GUI (por exemplo paper dolls).
+- Otimiza carregamento/compilação de animações grandes, com potencial de diminuir duração de resource reload/primeiro load.
+- Corrige cubes ausentes em modelos forçados ao vanilla e modelos com attach=true.
+- Changelog também menciona is_in_item_frame e mixin crash restritos a Minecraft 1.21.9+, **não extrapolar esses fixes para 1.21.1**.
+
+### 3.3.11 — October 2026
+- Corrige keyframeloop() não funcionando ao usar compiled maths.
+- Reduz log spam em falha de modelo menor porém comum.
+
+**Cadeia completa:** 3.3.5 → .6 → .7 → .8 (launch regression) → .9 (fix) → .10 → .11. Se houver atualização, escolher versão mais recente 3.3.11, e **coordenar com ETF atualizado**, que também possui cadeia upstream própria (item #56 desta rodada). Sem confundir presença de client-side shader/resource pack com server gameplay state.
+
+**QA:** boot client com EMF/ETF, EMF Compat Create/Iron's/Core, Fresh Animations packs, GUI-entities, modelos vanilla forced, attach cubes, keyframeloop compilado, logs, mem/performance reload F3+T, shoulder parrots, shader/culling e observers multiplayer. Não tratar melhoria upstream como medição do pack.
+
+**Fonte primária:** https://github.com/Traben-0/Entity_Model_Features/blob/master/CHANGELOG.MD ; https://www.curseforge.com/minecraft/mc-mods/entity-model-features/files/all?version=1.21.1
+
+**Estado:** 3.3.11 upstream não instalado; último físico continua 3.3.5.
