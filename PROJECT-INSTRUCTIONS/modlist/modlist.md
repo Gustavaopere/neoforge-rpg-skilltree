@@ -649,3 +649,49 @@ Estes dossiers existem no catálogo documental, mas **não correspondem a entrad
 - **Copycats+ aeronautics weight (#013):** o artefato/publicação e o filename físico são `1.1.1`, enquanto a metadata interna auditada reporta `1.1.0`. As duas informações permanecem explícitas.
 - **Easy NPC: Core (#239):** o JAR físico identifica a distribuição `7.12.1`, mas a metadata runtime da modlist não declara versão. O índice preserva a ausência em vez de inventar metadata.
 - **Dungeons Delight (#416):** a distribuição/JAR instalado é `1.5.1`, enquanto a metadata interna auditada reporta `1.5.0`. As duas informações permanecem explícitas.
+
+
+## Gate de promoção coordenada — Sophisticated (10/10/2026)
+
+**Classificação: PENDENTE / BLOQUEADO PARA PROMOÇÃO FÍSICA.** Esta seção é um **plano técnico de manutenção**, não uma alteração no inventário físico nem aprovação de compatibilidade. A tabela ordinal acima continua refletindo o snapshot `modlist(1).txt` de 27/09/2026. Os seis dossiês abaixo foram atualizados separadamente com pesquisa upstream em 10/10/2026; suas versões/documentos físicos históricos são preservados até conferência de novos JARs.
+
+### Matriz de artefatos: instalado no snapshot × candidato oficial NeoForge 1.21.1
+
+| Nº físico | Componente | JAR no snapshot | JAR público candidato (não instalado / não validado em runtime) |
+|---:|---|---|---|
+| #515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `sophisticated_jei_index-1.2.4+1.21.1.jar` |
+| #516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `sophisticatedbackpacks-1.21.1-3.26.9.2195.jar` |
+| #517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `sophisticatedbackpackscreateintegration-1.21.1-0.2.2.188.jar` |
+| #518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `sophisticatedcore-1.21.1-1.5.7.2381.jar` |
+| #519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `sophisticatedstorage-1.21.1-1.6.2.2159.jar` |
+| #520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar` | `sophisticatedstoragecreateintegration-1.21.1-0.1.22.238.jar` |
+
+**Identificação das fontes externas (arquivos específicos):**
+- Core: https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9083874
+- Backpacks: https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/9083940
+- Backpacks Create Integration: https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-create-integration/files/9074505
+- Storage: https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/9083992
+- Storage Create Integration: https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-create-integration/files/9074616
+- Sophisticated JEI Index: https://www.curseforge.com/minecraft/mc-mods/sophisticated-jei-index/files/9089418
+
+O `1.2.4` do JEI Index **não tem changelog público**; não atribuir fix próprio por analogia com Backpacks/JEI. Não confundir builds lançadas para Minecraft `26.x` com releases do perfil `1.21.1`.
+
+### Superfícies de compatibilidade que ultrapassam os seis JARs
+
+O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** numa substituição coordenada:
+
+- **#054** — Sophisticated Storage: Ars Compat / `arssophisticatedcompat-0.3.0.jar`: abrir/fechar containers, capability, recipes e interação com Ars Nouveau e Storage 1.6.x.
+- **#160** — Create: Sophisticated Backpacks Compat / `create_sophback_compat-1.0.jar`: coexistência com a bridge oficial Backpacks Create; avaliar double-handling de inventário e hooks de Create sem presumir redundância ou removê-lo automaticamente.
+- **#514** — Thirst Upgrade for Sophisticated Backpacks / `sophisticated-thirst-upgrade.jar`: persistência e ativação de upgrade após alteração de APIs/Core.
+- **Create** (snapshot 6.0.10), **JEI** (snapshot 19.56.0.440; revisão upstream distinta), **Ars Nouveau**, **Tom's Storage** e demais integrações de armazenamento presentes: validar APIs, recipe transfer e read/write de inventory em contraptions.
+
+### Ordem operacional obrigatória antes da promoção
+
+1. **Recaptura física:** obter novo dump de `mods/` e, se possível, os seis JARs atuais para registrar nome, SHA-256, `META-INF/neoforge.mods.toml`/`mods.toml`, mod IDs, versões de runtime, lados cliente/servidor e intervalos de dependências. Confirmar ausência de versões duplicadas. Sem isso não alterar linhas #515–#520 do índice.
+2. **Validação de candidatos:** obter todos os seis binários oficiais exatos; verificar seus SHA-256/metadata. Mapear, por arquivo, as restrições de Core/Backpacks/Storage/Create/JEI e comparar com os consumidores #054, #160 e #514. O dossiê de Storage indica exigência de Core **≥1.5.2** para a linha 1.6.x, mas o limite exato de cada candidato deve ser confirmado no próprio artefato e não inferido desta nota.
+3. **Staging em cópia isolada:** backup verificável de `world/`, `config/`, `serverconfig/`, `defaultconfigs/` e scripts. Substituir **apenas na cópia** o conjunto compatível de Core, Storage, Backpacks e bridges. O JEI Index pode requerer validação separada porque é de outro mantenedor, mas deve permanecer incluído no teste integrado.
+4. **Gate funcional:** iniciar dedicated server e cliente NeoForge 1.21.1 / Java 21; validar login/relogin; migrar cópia de mundo com itens contendo NBT/data components; verificar linked barrel/chest/backpack/controller, Ender Linker, rebind, multi-jogador concorrente, storage com tank/memory/upgrades, save/restart e chunk unload/reload. Com Create testar contraptions montadas, em movimento e desmontadas, incluindo links entre endpoints, transferências e upgrade tick. Com JEI Index testar recipe transfer, Tom's Storage, equip/unequip e ausência de contagem dupla. Comparar quantidade/identidade de stacks antes e depois e procurar *ghost slots*, duplicação e perda de dados.
+5. **Decisão fail-closed:** se faltar metadata, dependência ou aprovação de runtime, **não promover** nem retirar JARs originais; registrar o bloqueio. Somente após teste real e backup aprovado substituir atomicamente os seis JARs necessários, remover versões antigas sem duplicatas, regenerar modlist e hashes, atualizar o nome dos dossiês versionados **de acordo com a nova instalação**, corrigir referências e refazer QC.
+6. **Rollback:** qualquer desync, erro de load, alteração silenciosa de item data, dupe/loss ou incompatibilidade de bridge exige retorno **conjunto** dos JARs e da cópia correspondente do mundo — não reabrir dados migrados em runtime antigo sem restauração coerente.
+
+**Estado desta nota em 10/10/2026:** verificação de fontes públicas e consistência do snapshot documental; **nenhum JAR baixado/instalado, nenhum novo dump físico obtido, nenhuma migração de mundo ou teste de runtime executado**. A promoção de versões permanece pendente.
