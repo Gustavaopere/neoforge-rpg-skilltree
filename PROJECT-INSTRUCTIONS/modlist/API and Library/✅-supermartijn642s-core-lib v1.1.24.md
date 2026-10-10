@@ -117,3 +117,21 @@ Delta publicado: `TextComponents#block` passa a permitir que o próprio bloco cr
 É uma mudança de API/biblioteca, não uma feature de gameplay. Consumers que dependam de labels/text components de blocos podem apresentar texto diferente após a atualização; o regression gate deve cobrir GUIs, tooltips, nomes de blocos e qualquer consumer que use essa helper.
 
 Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib/files/8943316
+
+## 17. Atualização upstream 1.1.25 — 10/10/2026
+
+**Autoridade física:** `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` / 1.1.24. A documentação anterior cobriu 1.1.24a. O changelog oficial da biblioteca exige uma **correção documental**: para **1.1.24a**, a nota atualmente publicada no `SuperMartijn642/SuperMartijn642sCoreLib/changelog.md` é **`Fixed CustomSlot#isActive being obfuscated by ForgeGradle`**. A descrição histórica anterior que atribuía `TextComponents#block` à mesma versão **não foi corroborada pelo changelog oficial agora lido**; preservar como divergência histórica a esclarecer, e não afirmar que foi parte comprovada de 1.1.24a.
+
+**Última release NeoForge Minecraft 1.21/1.21.1:** **1.1.25**, publicada em 06/10/2026. O changelog oficial registra:
+- O widget principal de `WidgetScreen` e `WidgetContainerScreen` pode **receber offset**, deixando de ser obrigatoriamente centralizado.
+- Introduz `Widget#right` e `Widget#bottom`.
+- Corrige **`ObjectBaseWidget#left` e `ObjectBaseContainerWidget#left`**, que retornavam a largura em vez da coordenada esquerda.
+
+**Cadeia da versão física à publicada:** 1.1.24 → **1.1.24a** (CustomSlot.isActive/obfuscation segundo fonte atual) → **1.1.25** (layout/widget APIs).
+
+**QA:** widgets com origem deslocada, bounds right/bottom/left, clicking+hover no CustomSlot, render de formulários, custom text field, GUI scale, ImmediatelyFast 1.6.13, pack resource reload, client/dedicated server e compatibilidade de consumers não mapeados integralmente. Layout visual não deve alterar authority de container ou packets.
+
+**Fonte upstream primária:** https://github.com/SuperMartijn642/SuperMartijn642sCoreLib/blob/master/changelog.md ; https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib/files/all
+
+**Estado:** 1.1.25 somente upstream; JAR físico continua 1.1.24.
+
