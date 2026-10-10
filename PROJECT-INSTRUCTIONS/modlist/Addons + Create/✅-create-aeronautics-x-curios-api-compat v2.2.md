@@ -67,3 +67,14 @@ Não é duplicata de bridges de jetpack/backtank. Seu escopo oficial é Aviator 
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 10. Evidências e limite
 CurseForge oficial confirma Release/publicação 2.2 e o funcionamento de Aviator Goggles/Linked Typewriter. A modlist física confirma que o mesmo artefato declara runtime 2.0. Esta ficha não inventa a causa do version mismatch; ele permanece como risco de packaging/metadata.
+
+## 11. Revalidação upstream — 10/10/2026
+
+**Artefato físico e publicação:** `createaeronauticscurios-neoforge-1.21.1-2.2.jar` / distribuição **2.2**; o mesmo binário declara **metadata/runtime 2.0**, conforme inspeção física anterior. Esta diferença permanece explícita e não deve ser “consertada” por substituição textual da versão runtime.
+
+O CurseForge oficial confirma que **2.2**, de 31/07/2026, continua a release mais recente identificada para Minecraft 1.21.1/NeoForge em 10/10/2026. Não houve nova release intermediária a acrescentar.
+
+**QA ainda necessário:** verificar Curios 9.5.1, Create 6.0.10, Aeronautics 1.3.2, head slot de Aviator Goggles, overlay, Linked Typewriter ao converter bloco→item→Curios e ativação remota exactly-once sob dois clientes. O problema de metadata 2.0 deve ser observado no loader, mas não basta para afirmar incompatibilidade.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-x-curios-api-compat/files/all
+
