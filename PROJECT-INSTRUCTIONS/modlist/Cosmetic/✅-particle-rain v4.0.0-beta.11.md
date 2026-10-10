@@ -122,3 +122,29 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Source oficial `PigCart/particle-rain`: versão `4.0.0-beta.11`, MIT e changelog v4.
 - Documentação do projeto: weather particles, haze/wind/sandstorms e editor/config in-game.
 - **Limite:** defaults efetivos da instância, contagens de partículas e regras customizadas locais não foram lidos; não foram inventados.
+
+## 16. Histórico upstream v4.0.0 → v4.0.2 — 10/10/2026
+
+**Artefato físico:** `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` / `4.0.0-beta.11`. O CurseForge publicou builds **NeoForge Minecraft 1.21.1** da série Release **v4.0.0 (07/10) → v4.0.1 (07/10) → v4.0.2 (10/10)**. v4.0.2 é a última compatível localizada e encerra a fase beta do build físico.
+
+### v4.0.0 — mudanças materiais do changelog
+- Retira o marcador **beta** porque as partículas, exceto streaks, usam o **sistema configurável**.
+- Corrige contagem de Particle Group quando spawn é cancelado; wind aplicado indevidamente a partículas com wind strength zero; storm particles que apareciam no tempo errado; rain color/water tint do dripstone e config `always`.
+- Corrige **rain em chunks ainda não carregados**, haze em spyglass/low FOV, surface effects gerados dentro de blocos em coordenadas negativas, colisões que ignoravam velocidade e mudanças de textura configurada provocando reload precoce.
+- Adiciona **fade types**, rotação horizontal e **heavy rain/snow durante thunderstorms**; refatora mist/ripple para partículas horizontais configuráveis, variação de spawn para efeitos compostos e texturas de chuva/neve com maior densidade.
+- **WindLink compatibility:** partículas vanilla/outros mods podem responder ao vento e WindLink pode solicitar mais chuva/neve; só há integração ativa se WindLink estiver presente.
+- Alguns fixes no mesmo changelog são expressamente de **Minecraft 26.x** e não devem ser atribuidos como problema existente em 1.21.1.
+
+### v4.0.1 — sem delta NeoForge 1.21.1 confirmado
+- A nota oficial descreve **crash de accessor mapping na inicialização de Fabric pré-26.1**. Não atribuir o bug a NeoForge: embora exista build publicada em 1.21.1 NeoForge, o changelog não indica correção própria para esse loader.
+
+### v4.0.2 — fixes em 1.21.1 e outras versões
+- Corrige **heightmap collision consultada no bloco errado**, velocity particles invisíveis quando não há vento e level-height hardcoded que fazia chuva aparecer sob estruturas altas em alguns servidores.
+- As demais correções do changelog são explicitamente limitadas a **26.3** (crash em improved transparency) e **Minecraft 1.20.x** (flicker ao coletar itens); não atribuir essas falhas ao alvo NeoForge 1.21.1.
+
+### QA e limite de autoridade
+No pack grande com PartiCull, Iris/shader, AmbientSounds, Subtle Effects e Particle Effects/Particular, validar custo FPS, overdraw, wind e WeatherX, haze/fog, resource packs que adicionem partículas, config migration beta→Release, storm transitions, high structures + world max height, server heightmaps alteradas, chunk load, biome borders, shaders/PBR, F3+T e mudança de dimensão. Particle Rain continua **cliente/visual**, não redefine estação, temperatura ou precipitation logic do servidor.
+
+**Fonte primária:** https://github.com/PigCart/particle-rain/blob/main/CHANGELOG.md ; **builds**: https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/all?version=1.21.1
+
+**Estado:** v4.0.2 upstream, 4.0.0-beta.11 físico; sem troca de JAR ou teste executado.
