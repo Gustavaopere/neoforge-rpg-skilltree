@@ -85,3 +85,18 @@ Validar create/join/leave network, port placement/removal, chunk unload, Robo Be
 - CurseForge/Modrinth oficiais: Create 6.0.9+, NeoForge 21.1.206+, Logistics Network, Bee Ports, Robo Bees, Portable Stock Ticker e Mobile Packager;
 - changelog 0.7.7: ticker categories persistence, BeePort unload fix, owner membership, screens, FilterMode, rename command e Factory Abstractions 1.6.0.
 > 🔒 Boundary canônico: **Create mantém o estoque/package base; Mobile Packages controla rede, acesso e transporte móvel**. Item algum pode existir simultaneamente em origem, carrier e destino.
+
+## 18. Atualização upstream 0.7.8 — 10/10/2026
+
+**Autoridade física:** `create_mobile_packages-1.21.1-0.7.7.jar` / 0.7.7. A release pública seguinte para **Minecraft 1.21.1** é `create_mobile_packages-1.21.1-0.7.8.jar` (05/10/2026, CurseForge file **9067013**). O changelog oficial detalha três deltas:
+
+- **FluidLogistic compat atualizada para 1.2.9** (#367). O pack físico contém **Create: FluidLogistics 1.3.0** (`fluidlogistics-1.3.0-mc1.21.1.jar`), então o mínimo/base referido pelo source é anterior ao provider instalado. Isso não significa incompatibilidade confirmada, mas exige regressão.
+- **PlayerNameCache** (#366), usado para exibir nome de jogadores **offline**; cache não deve alterar network ownership, permissions ou roteamento autoritativo de pacotes.
+- **Atualização de traduções** (#344), sem outra feature funcional documentada nessa release.
+
+**Contrato com o pack:** Create 6.0.10 continua a prover logistics/packages base; o addon implementa networks e Bee Ports/Robo Bees. Testar delivery e pickup de packages e fluids após save/restart; resolução de jogadores offline que mudam nick/UUID; broadcasts de membership e acessos; FluidLogistics 1.3.0 real, e não apenas a versão 1.2.9 de desenvolvimento; item count, tooltips, filter mode e server/client divergence.
+
+**Fonte primária:** https://github.com/timplay33/Create-Mobile-Packages/blob/mc1.21.1/main/CHANGELOG.md ; https://www.curseforge.com/minecraft/mc-mods/create-mobile-packages/files/9067013
+
+**Estado:** atualização upstream revisada; versão física 0.7.7 e SHA anteriores preservados, nenhum runtime test executado.
+
