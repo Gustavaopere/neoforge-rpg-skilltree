@@ -142,3 +142,14 @@ Gate de regressão do runtime atual:
 - [ ] Geomancy/Hazen/T.O integrations continuam carregando sem mixin crash.
 
 Fonte: CurseForge Recolor 1.3.3, file ID 8852186.
+
+## 16. Revalidação de release — 10/10/2026
+
+O JAR físico documentado continua **`recolor_tablet-1.3.3+1.21.1.jar`**, mod id `recolor_tablet`. O projeto oficial **Iron's Spells 'n Spellbooks: Recolor** (CurseForge 1650140) continua listando **1.3.3 NeoForge 1.21.1**, publicada em 10/09/2026, como release atual. Portanto, **não existe delta de versão pública posterior à instalada a registrar neste ciclo**. A sequência histórica 1.3.2 → 1.3.3 e os fixes de Gyro Slash/Ichor/crash permanecem no corpo existente.
+
+A coexistência com o mod-base Iron's Spells 'n Spellbooks 3.16.3 é conhecida no snapshot. Mudanças do mod-base ou de outros addons não devem ser atribuídas automaticamente ao Recolor. Testar render de spells por jogador, shaders, resource pack, multiplayer e persistência de customizações quando houver novo runtime real.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor/files/all ; https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor
+
+**Estado:** revalidado sem upgrade; nenhum artefato físico ou hash modificado.
+
