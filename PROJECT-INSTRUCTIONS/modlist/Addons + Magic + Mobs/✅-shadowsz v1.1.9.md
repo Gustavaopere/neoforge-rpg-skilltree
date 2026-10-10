@@ -248,3 +248,26 @@ O salto **1.1.9 → 2.0** deve ser tratado como atualização não reconciliada 
 - [ ] Confirmar ausência de breaking network/save changes antes de abrir mundo principal.
 
 Fonte factual disponível: CurseForge ShadowsZ files — `shadowsz-2.0.jar`, Release, NeoForge 1.21.1, 23/09/2026. O conteúdo funcional da 2.0 permanece **não verificado** nesta rodada.
+
+## 25. Atualizações upstream 2.0 → 2.1.0 — 10/10/2026
+
+**Físico:** `shadowsz-1.1.9.jar` / 1.1.9, última versão presente na snapshot. **Releases posteriores NeoForge 1.21.1:** `shadowsz-2.0.jar` (23/09/2026) → **`shadowsz-2.1.0.jar`** (07/10/2026, file ID **9091037**). O dossiê histórico já tinha confirmado a 2.0, mas sem changelog técnico que permitisse verificar seus detalhes; essa limitação ainda é válida para 2.0.
+
+### 2.1.0 — alteração de gameplay e progressão
+**Divergência de publicação:** o artefato CurseForge e seu filename são **2.1.0**, mas o próprio texto de release começa com **“Version 2.0.1”**. Preservar ambas as strings e **não** tratá-las como dois JARs distintos, pois não foi localizado arquivo `2.0.1` separado para NeoForge 1.21.1.
+
+- Adiciona **shadow traits**, re-roláveis com **três Shadow Essence**, alterando progressão e otimização de units.
+- Adiciona **Shadow Essence**, obtida pela liberação definitiva de shadows, com chance influenciada pelo HP; recurso usado na criação de scrolls. O texto upstream não fornece curva/probabilidade numérica, então não inventar taxas.
+- Permite alterar **UI e cor das shadows** depois de alcançar Shadow Monarch Rank.
+- Novas partículas de shadows e creative tab.
+- Config de progression mode para quantidade máxima de shadows por level.
+- Spell ofensiva **Umbral Spear**.
+- Correções de compatibilidade com **Nightwarden de T.O Magic n Extras**, **werewolf de Fangs and Claws**, **gingerbread man de Alex's Caves**; ajuste de UI em buff windows dos shadow spells e suporte a **Roaring Knight**.
+
+### Implicações e QA
+A atualização atravessa ownership de necromancia, Army/Pet AI, spawn/death/loot e progressão. No pack há outros providers de necromancia (incluindo Mobstein e Goety) e o addon T.O Magic n Extras; compatibilidade com entidades específicas deve ser testada com o provider físico real. Regressões: shadow capture/release/HP, traits e reroll com essência exatamente uma vez, achievements/rank/server config, save/restart, multiplayer claims/permissões, reinício com shadows persistidas, targeting/death sem duplicação com Sable ragdolls, UI em client e performance de exércitos.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/shadowsz/files/9091037 e https://www.curseforge.com/minecraft/mc-mods/shadowsz/files/all .
+
+**Estado:** 2.1.0 disponível; ausência de validação física, não declarar instalação nem substituir o dossiê antigo.
+
