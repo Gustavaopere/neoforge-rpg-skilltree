@@ -99,3 +99,20 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Descrição oficial: shared code; sozinho não adiciona gameplay relevante.
 - Catálogo atual: consumers Apotheosis/Apothic confirmados no pack, sustentando `Dependência`.
 - **Limite:** APIs/methods internos e delta textual exato da 9.9.2 não foram inventados sem changelog/source pinado à build.
+
+## 13. Delta upstream Placebo 9.9.3 — 10/10/2026
+
+**Instalado no snapshot:** `Placebo-1.21.1-9.9.2.jar` / metadata 9.9.2. **Nova release NeoForge 1.21.1:** `Placebo-1.21.1-9.9.3.jar`, publicada em **06/10/2026**, file ID **9077763**. É a única release pública posterior à 9.9.2 identificada nesta linha.
+
+O **changelog oficial, branch `1.21`, versão 9.9.3** descreve quatro alterações:
+1. O **renderer de supporter/Patreon wings** pode ser usado por qualquer `LivingEntity`, não apenas players; potencial superfície visual com modelos/EMF/ETF.
+2. Correção de **Placebo indevidamente requerido simultaneamente no cliente e servidor**. Isso altera boundary de distribuição: não presumir que consumidores específicos também se tornaram client-only, pois a dependência de cada consumer segue seu próprio manifest.
+3. Correção de **possível crash em datagen de `JsonMix`**.
+4. Correção de **`DynamicRegistry` levantando validation error para empty holder** — risco relevante a datapacks, mods de enchant/loot e reloads de registros.
+
+**Integrações:** Placebo é biblioteca consumida pelo ecossistema Apotheosis/Apothic. Neste ciclo, Apothic Enchanting foi revisado até 1.6.4. Antes de uma promoção, conferir requirements de todos os consumers e smoke-test de client/dedicated server, loading misto controlado onde suportado, datapack reload, registo de empty holder, Apothic Attributes, loot/enchant, wing render de entities, migrations e reconnect. O fix de JsonMix é documentado como datagen, **não** como crash runtime comprovado.
+
+**Fontes oficiais:** https://github.com/Shadows-of-Fire/Placebo/blob/1.21/changelog.md ; https://www.curseforge.com/minecraft/mc-mods/placebo/files/9077763
+
+**Estado:** upstream 9.9.3 auditada; versão física conhecida continua 9.9.2.
+
