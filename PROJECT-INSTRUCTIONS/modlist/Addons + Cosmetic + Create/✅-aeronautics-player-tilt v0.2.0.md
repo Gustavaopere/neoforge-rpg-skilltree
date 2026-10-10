@@ -95,3 +95,14 @@ Regression gates adicionais:
 - [ ] sticky tilt não impede movimento legítimo nem cria desync;
 - [ ] `allowMagneticBoots`/`allowStickyTilt` do servidor prevalecem sobre cliente;
 - [ ] Rotate Camera altera apenas presentation/camera, sem separar aim/hitbox authority indevidamente.
+
+## 11. Revalidação upstream 0.2.0 — 10/10/2026
+
+O projeto CurseForge **Aeronautics Player Tilt** (project 1681706) continua em **`aero_player_tilt-0.2.0.jar`**, release NeoForge 1.21.1 de 14/09/2026, mesma versão da última autoridade física (`aero_player_tilt-0.2.0.jar`, mod id `aero_player_tilt`). O histórico anterior 0.1.x → 0.2.0 já está documentado, inclusive Magnetic Boots beta, Sticky Tilt, camera rotation toggle e server configs; **nenhuma release posterior foi localizada para acrescentar nesta rodada**.
+
+A ausência de bump não equivale a certificação de compatibilidade. O addon altera pose corporal/hitbox/gravity frame de player em decks de sublevel e atravessa APIs Sable/Aeronautics. Testar boots em teto/parede e detach, collision server-authoritative, câmera independente da hitbox, Player Tilt + Camera Sync + Pehkui + Epic Fight, logout/relogin em contraption inclinada, save/restart e dois clientes observadores.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/aero-player-tilt/files/all
+
+**Estado:** versão física preservada; sem novos JARs nem testes.
+
