@@ -160,3 +160,25 @@ Impacto: esta sequência afeta parsing/data-driven resources e compatibilidade d
 Gate de promoção 4.4.0→4.5.3: packs com colormaps antigos/lenient; resource location inválida; tags NeoForge; fluid colors com mods de fluidos; color expressions novas; water fog/shaders; GUI modifiers; resource reload; pack enable/disable; dedicated server sem classloading client-only.
 
 Fontes upstream: CurseForge files 8920477 (4.5.0), 8965719 (4.5.1), 8974918 (4.5.2) e 8981069 (4.5.3).
+
+## 17. Atualização upstream 5.0.0 → 5.0.3 — 10/10/2026
+
+**Autoridade física:** `polytone-1.21-4.4.0-neoforge.jar` / 4.4.0. A cadeia anterior **4.5.0 → 4.5.1 → 4.5.2 → 4.5.3** já está descrita na seção 16 e integra o intervalo completo para uma futura promoção. A versão pública mais recente para **NeoForge 1.21.1** é **`polytone-1.21-5.0.3-neoforge.jar`** (CurseForge file **9103491**, 09/10/2026).
+
+### Releases posteriores à 4.5.3
+
+- **5.0.0 (06/10):** revisão significativa do subsistema de cores/iluminação, incluindo **colored/dynamic lights** baseadas em recursos/mods. Trata-se de mudança com impacto potencial em renderização, performance, resource packs e shader stack, não de um simples patch de traduções.
+- **5.0.1 (07/10):** melhorias da API pública/modder-facing para registrar luzes coloridas de **blocks, block entities e entities**. A documentação de mods que integrem com essa API deve especificar o provider que registra a luz.
+- **5.0.2 (08/10):** corrige interação problemática com **WATUT** e melhora a API de iluminação, inclusive **aliases de blocos**; essas correções são relevantes mesmo que WATUT esteja ausente, pois alteram o contrato de resolução de luzes.
+- **5.0.3 (09/10):** otimiza a **ativação sob demanda dos volumes de iluminação** e adiciona padding nas luzes distantes para evitar **bleeding de cores nas bordas em direção à iluminação vanilla**.
+
+### Limites e QA
+
+A branch 5.0.x altera a semântica de presentation e interação com recursos; o cadastro de recursos antigos (colormaps, expressions, particles, fluids e tags) deve ser testado tanto sem shader quanto com o shader stack ativo. Não se deve pressupor que todos os resource packs 4.4.0 sejam compatíveis por semelhança de arquivo. Revalidar world join, teleport/dimension swap, chunk reload, packs com lightmaps/colormaps customizados, resource reload em sequência, misturas com iluminação dinâmica de outros mods, regressões de WATUT caso presente e MSPT/FPS ao mudar muitos blocos luminosos.
+
+**Risco especial:** há relatos de falhas de carregamento na linha 5.x que exigem reprodução no conjunto real de mods. A indicação de versão latest pelo CurseForge não comprova inicialização segura neste pack. **Nenhum teste da 5.0.3 foi executado nesta auditoria documental.**
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/polytone/files/all ; https://www.curseforge.com/minecraft/mc-mods/polytone/files/9103491 ; https://github.com/MehVahdJukaar/polytone
+
+**Decisão:** manter **4.4.0 como versão física comprovada**, registrar 5.0.3 como candidato com risco de compatibilidade/renderer e exigir smoke test antes de qualquer promoção.
+

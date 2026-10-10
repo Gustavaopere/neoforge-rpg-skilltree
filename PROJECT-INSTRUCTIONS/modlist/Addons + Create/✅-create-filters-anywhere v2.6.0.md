@@ -83,3 +83,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 20. Evidências e limites
 A modlist física confirma 2.6.0 e os arquivos de mixin opcionais. O source matching confirma mod id/versão. O changelog oficial 2.6.0 confirma os dois caches, novos atributos de Apotheosis/FE/data component/item identity e objetivo de TPS. Providers ativos foram cruzados com a modlist atual; cobertura funcional detalhada por cada adapter não foi inventada.
 > 🔒 **Boundary canônico:** caching pode acelerar a descoberta do tipo de filtro, mas predicates dependentes do stack continuam obrigatoriamente derivados do state atual. Performance não pode trocar correção por stale filtering.
+
+## 21. Revalidação upstream — 10/10/2026
+
+**Autoridade física:** `createfiltersanywhere-1.21.1-2.6.0.jar` / 2.6.0. No projeto CurseForge consultado em 10/10/2026, a **2.6.0** continua a última release identificada da linha NeoForge 1.21.1; não há atualização intermediária a transcrever.
+
+A versão física já documenta o cache por conjunto de mods/item, predicados de data components e energia/rarity/item identity. O risco permanece **cache stale** em atributos mutáveis ou adapters opcionais após reload, especialmente com Tom's, Sophisticated, Apotheosis e as versões mais recentes do stack de armazenamento revisadas nesta rodada.
+
+**Gate antes de futuro upgrade:** verificar Filtros List/Attribute em Create 6.0.10, energia FE variável, componentes mutáveis, rarity, widgets client/server, optional mixins, reload e desempenho MSPT sob carga. Não alterar o JAR documentado nem atribuir mudanças inexistentes.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-filters-anywhere
+

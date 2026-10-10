@@ -206,3 +206,16 @@ Os mínimos publicados de dependências continuam, na 1.1.1403, em Structurize 1
 **Gates de regressão prioritários para promoção 1387→1403:** save/restart com requests grandes; Dining Hall + Warehouse + Courier; graveyard; citizens com alimentação fora do restaurante; pathing/drift em água com slabs; cenários capazes de formar loops no work/request graph; Tavern; Cavalry; Compatibility 3.57; Tweaks 3.33; Jade crops 1.1.1300.
 
 **Fontes upstream:** releases oficiais ldtteam/minecolonies 1.1.1392–1.1.1403 e CurseForge file ID 9023811 para minecolonies-1.1.1403-1.21.1-snapshot.jar.
+
+## 21. Revalidação upstream — 10/10/2026
+
+**Autoridade física preservada:** `minecolonies-1.1.1387-1.21.1-snapshot.jar`; não há evidência de troca de JAR após a snapshot canônica. A versão mais recente da linha NeoForge 1.21.1 localizada para esta revisão continua **1.1.1403-1.21.1-snapshot**, publicada em 01/10/2026 (CurseForge file 9023811).
+
+A cadeia integral já investigada em 01/10 permanece válida e está preservada na seção 20: 1.1.1392 → 1.1.1393 → 1.1.1394 → 1.1.1395 → 1.1.1396 → 1.1.1397 → 1.1.1399 → 1.1.1402 → 1.1.1403. **Nenhuma nova alteração comportamental foi atribuída sem changelog adicional verificável.** O delta mais crítico é a correção de serialização de requests de quantidades elevadas (#11808), seguido de ajuste de pedidos do Dining Hall/Waiter (#11834), possíveis loops de execução/burial, nova UI do Graveyard e stables em estilos de colônia.
+
+**Interdependências deste lote:** a versão física de MineColonies também afeta #45 Epic Colonies e #50 Compatibility addon for MineColonies, ambos na relação total da rodada. Na promoção do mod-base, revalidar também a interface dos adapters próprios de colony economy e Battle Mage e executar as matrizes de claims/AI/persistência. Não atribuir sucesso a esses testes apenas porque o CI do repositório compila.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/minecolonies ; https://github.com/ldtteam/minecolonies/releases
+
+**Decisão:** atualização upstream revisada; promoção física **pendente** de JAR/metadata/hash novos e teste integrado.
+

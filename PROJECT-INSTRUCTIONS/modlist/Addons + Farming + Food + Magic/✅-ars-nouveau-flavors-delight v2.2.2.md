@@ -181,3 +181,14 @@ Fail-closed: classes opcionais só devem ser tocadas atrás do gate corresponden
 - `ADFood`, `ADItems`, `ADBlocks`, `ADJellys`, `ADPie` e `ADEffects` auditados.
 
 > 📦 Inventário concreto confirmado: 42 food entries, 8 itens utilitários, 8 blocos crate/cabinet/feast, 5 jellies + 1 BE type, 4 pies + 4 slices e 5 efeitos próprios. Entradas podem se sobrepor entre categorias de item/bloco por block item; as contagens são por registries/superfícies descritas, não uma soma artificial de “conteúdo único”.
+
+## Revalidação upstream — 10/10/2026
+
+**Autoridade física:** `arsdelight-2.2.2.jar` / 2.2.2, confirmada na última snapshot do pack. As publicações oficiais consultadas não identificaram release posterior de **Ars Nouveau's Flavors & Delight** para **NeoForge 1.21.1** em 10/10/2026; a linha **2.2.2** permanece o alvo documental compatível localizado. Não há sequência intermediária nova a adicionar nesta revisão.
+
+**Boundary técnico:** o addon fornece compatibilidade/conteúdo específico do ecossistema Ars Nouveau + culinária/Farmer's Delight; não deve receber novas recipes, IDs, dependências ou interações apenas por atualizações de Ars Nouveau ou de outros addons. Se qualquer provider-base for atualizado, revisar seus recipes/tags e a integração JEI/EMI.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-nouveaus-flavors-delight/files/all
+
+**Estado:** versão física preservada, sem bump documental inventado. Testes de runtime e novo dump físico continuam pendentes.
+

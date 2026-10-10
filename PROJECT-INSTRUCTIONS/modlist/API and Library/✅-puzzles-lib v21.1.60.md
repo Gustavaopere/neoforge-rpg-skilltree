@@ -171,3 +171,18 @@ Gate de regressão: client + dedicated server, reconnect, save/restart, componen
 Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/puzzles-lib/files/all?page=1&version=1.21.1 ; https://github.com/Fuzss/puzzles-lib/blob/1.21.1/CHANGELOG.md
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS APLICADO EM 10/09/2026 — Puzzles Lib 21.1.60 reconstruída; pesquisa Rever→Verificado: shared code/config/networking, consumers Portable Hole/Overflowing Bars, backports 21.1.60, version coupling, riscos e testes.
+
+## 18. Atualização upstream 21.1.63 — 10/10/2026
+
+**Autoridade física:** `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar`, runtime 21.1.60. A cadeia 21.1.61 e 21.1.62 já foi documentada integralmente na seção 17 e permanece relevante; **não** se deve pular a correção de desync da 21.1.62 ao avaliar apenas a nota da versão final.
+
+**21.1.63**, publicada em **08/10/2026** para Minecraft 1.21.1, resolve: **“Restore transitive access wideners that are not covered elsewhere”** (reintrodução de access wideners transitivos não cobertos em outras partes). Trata-se de uma correção de acessibilidade/transitividade que pode afetar classes usadas por mods consumidores, embora não introduza gameplay da biblioteca.
+
+**Cadeia completa 21.1.60 → 21.1.63:** 21.1.61 (MutableBakedQuad, QuadCollection, QuadUtils) → 21.1.62 (rebind de mutable capability components para evitar desync) → 21.1.63 (access wideners transitivos). Compilar ou iniciar com versão final não prova que o problema de capability/client-server foi exercitado.
+
+**Gate:** startup client/dedicated server, linkage de Portable Hole e Overflowing Bars, capability retrieval/mutation em mundo persistente, reconnect e packet sanity, rendering/quad backports, config e resource reload; verificar também eventuais consumers que dependam de acessos transitivos. Não executar upgrade isolado da library sem validar consumers.
+
+**Fonte upstream primária:** https://github.com/Fuzss/puzzles-lib/blob/1.21.1/CHANGELOG.md ; https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.63-mc1.21.1
+
+**Estado:** 21.1.63 disponível; instalação ainda identificada como 21.1.60.
+

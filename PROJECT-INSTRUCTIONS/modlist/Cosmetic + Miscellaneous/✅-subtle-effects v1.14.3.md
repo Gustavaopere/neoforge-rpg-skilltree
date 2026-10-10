@@ -139,3 +139,18 @@ O snapshot atual continua contendo `SubtleEffects-neoforge-1.21.1-1.14.3.jar`, m
 A configuração local, deployment client-only/server-assisted e interação real com PartiCull/Iris/Particle Effects não foram executados nesta recatalogação. A matriz permanece integralmente desmarcada.
 ## 16. Revalidação física — 13/09/2026
 Runtime físico preservado em `SubtleEffects-neoforge-1.21.1-1.14.3.jar`. O JAR contém `mixinconstraints-1.1.0.jar` em `META-INF/jarjar`; ele permanece componente interno do host, sem ordinal próprio. Fzzy Config 0.7.6 continua presente. Nenhum teste runtime foi executado.
+
+## 17. Atualização upstream 1.14.3 → 1.15.0 — 10/10/2026
+
+**Autoridade física:** `SubtleEffects-neoforge-1.21.1-1.14.3.jar` / 1.14.3, ainda a última instalação comprovada pela snapshot. **Release 1.21.1 NeoForge mais recente:** `SubtleEffects-neoforge-1.21.1-1.15.0.jar`, publicada em **07/10/2026**.
+
+O ciclo público até 1.15.0 amplia os detalhes ambientais/client-side. Entre os itens associados à nova linha de efeitos aparecem partículas ósseas em skeleton variants/skeleton horses sob dano, alterações de apresentação de parrots, feedback sonoro de allays e efeitos elétricos de charged creepers. Esses recursos são **visuais/sonoros**, não prova de alteração da mecânica de dano, AI ou estado de uma entidade no servidor. Os recursos individuais devem ser reconfirmados no binário 1.21.1 ao testar, porque o autor também distribui builds independentes para MC 26.x.
+
+**Fronteira de versão:** `26.3-1.15.0-hotfix.1` é um artefato para **Minecraft 26.3**, não a versão para este pack. Não se deve promover esse hotfix à linha Minecraft 1.21.1.
+
+**Regressões prioritárias:** Fzzy Config 0.7.6; presença client/server; despawn/reload de efeitos; custo de partículas com PartiCull/Particle Rain, shaders/Iris e Resource Packs; efeitos sonoros duplicados com AmbientSounds; observação de skeletons, allays, parrots e charged creepers. Medir FPS/volume em cenários densos; não declarar testes executados.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/subtle-effects/files/all ; https://www.curseforge.com/minecraft/mc-mods/subtle-effects
+
+**Estado:** 1.15.0 **upstream não instalada**, na autoridade física conhecida. Nenhum bump de JAR/SHA é reivindicado.
+

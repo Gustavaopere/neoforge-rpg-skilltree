@@ -100,3 +100,32 @@ Changelog 1.3.7:
 Boundary: os registries/source descritos em detalhe nas seções antigas foram pinados na 1.3.6 e não são automaticamente declarados idênticos na 1.3.7 sem nova leitura integral do source. A versão instalada, porém, é inequivocamente 1.3.7.
 
 Fonte upstream: CurseForge file ID 8875587, `hexalia-neoforge-1.3.7.jar`.
+
+## Atualização upstream 1.3.7 → 1.3.8 → 1.3.8.1 — 10/10/2026
+
+**Autoridade física:** `hexalia-neoforge-1.3.7.jar` / runtime 1.3.7. **Alvo upstream publicado:** `Hexalia-1.3.8.1-1.21.1-NeoForge.jar`, CurseForge file **9075400** (06/10/2026). As versões **1.3.8 e 1.3.8.1** foram avaliadas separadamente.
+
+### 1.3.8 — revisão substancial de rituais e progressão
+
+- **Nature, Celestial e Summoning Rituals** passam a operar no modelo revisado de Ritual Table e de consumos de energia/elementos ambientais. A disponibilidade de crops maduros e de **Celestial Blooms** nas proximidades participa do requisito dos rituais correspondentes; recipes antigas, scripts e datapacks precisam ser reavaliados.
+- **Celestial Blooms**: ciclo diurno/noturno e degradação de flora associada a rituais (fresh → withered → dead), relevantes para automações de farming e persistência após reload.
+- **Sage Pendant**: armazenamento/liberação de experiência como mecânica própria, com limites e interações de equipamento; não presumir compat universal com todos acessórios sem teste.
+- **Bogshade Boots**: a linha revisada **deixa de fornecer Water Breathing**; mudança comportamental que altera builds de exploração em água, independentemente de balanceamento.
+- Melhorias de AI de **Cacofey/Silk Moth**, efeitos das transformações Mutavis/Morphora e mudança de **Morphora** envolvendo conversão de Grass em Coarse Dirt. Essas operações cruzam claims/proteção e mods de alteração de terreno.
+- Mudanças em custos de **Moonweave** e balanceamento de recipes; revisar JEI/EMI, Patchouli, KubeJS, tags e integração de processamentos.
+
+### 1.3.8.1 — hotfix (06/10)
+
+- Corrige **Spawn Egg outputs ausentes** nas páginas de Summoning Ritual do **Verdant Grimoire**.
+- Corrige compostagem de **plantas/sementes para NeoForge 1.21.1**.
+- Melhora interoperabilidade do item **Salt** com outros mods/loaders.
+- O changelog também menciona correções de server crash e More Culling **exclusivas para Fabric 1.20.1**; essas notas **não** são automaticamente aplicáveis ao build NeoForge 1.21.1.
+
+### QA exigido antes de promoção
+
+Ritual Table com receitas antigas/novas; disponibilidade e gasto de energia ambiental; Celestial Bloom dia/noite/murcha; consumo de crops em claim; Sage Pendant em offhand e acessórios; Water Breathing dos Bogshade Boots; Morphora/mutation sobre terrain protegido; compostagem de sementes; craft e exibição no Verdant Grimoire; survival progression; client/dedicated server; save/restart com rituals pendentes; dois clientes executando rituais concorrentes.
+
+**Fontes:** https://github.com/AstralyaStudios/Hexalia/wiki/Latest-Changelog ; https://www.curseforge.com/minecraft/mc-mods/hexalia/files/9075400
+
+**Decisão:** atualizar nota técnica e classificar **1.3.8.1 como upstream não instalada**, mantendo físico 1.3.7 até novo inventário e QA.
+

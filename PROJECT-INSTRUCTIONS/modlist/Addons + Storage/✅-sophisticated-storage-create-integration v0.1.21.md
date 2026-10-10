@@ -128,3 +128,20 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Modlist física atual: Integration 0.1.21.209 e providers atuais.
 - CurseForge oficial: barrels/chests/shulkers em contraptions; content/upgrades/settings/memorized slots; dynamic position de Pickup/Magnet; stack/crafting/tier upgrades; Storage Tool/Paintbrush.
 - **Limite:** nenhum contraption runtime test foi executado; detalhes não publicados de implementação não foram inventados.
+
+## 23. Atualização upstream 0.1.21 → 0.1.22 — 10/10/2026
+
+**Autoridade física:** `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar` / 0.1.21, verificada no snapshot anterior.
+
+A release de 05/10/2026, **`sophisticatedstoragecreateintegration-1.21.1-0.1.22.238.jar`** (CurseForge file **9074616**), acrescenta explicitamente **linked storage em Create contraptions**. Não foi localizada uma release intermediária 1.21.1 entre as duas linhas semânticas, e não se atribuem outros recursos à atualização sem evidência.
+
+**Contrato funcional:** storage local de barrels/chests/shulkers em movimento, inventory/settings/upgrades e links entre endpoints/containers deixam de poder ser testados como superfícies independentes. É preciso verificar membership, endpoint identity, permissões e sincronização de conteúdo enquanto o contraption se move, monta/desmonta, troca de chunk ou reinicia. Linked storage é um recurso com estado persistente: risco de referências órfãs, inconsistência de saldo, dupe e perda de itens.
+
+**Version skew:** atualizar a bridge sem validar Sophisticated Core, Sophisticated Storage, Create e o stack de Sophisticated Backpacks/linked storage é inadequado. Este lote também revisa Backpacks (#9), e o lote posterior inclui Sophisticated Storage (#17) e Core (#51). Os JARs físicos atuais não foram substituídos nesta operação documental.
+
+**Gate:** montagem/desmontagem com links ativos; barrel quebrado/reconectado; save/restart; chunk unload/reload; dois clientes abrindo inventário; upgrades Pickup/Magnet em movimento; stress com shared controllers; compat com Create 6.0.10 e Sable/Aeronautics quando pertinente. Nenhum teste é declarado aprovado.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-create-integration/files/9074616
+
+**Estado:** documentação atualizada, **promoção física pendente**.
+
