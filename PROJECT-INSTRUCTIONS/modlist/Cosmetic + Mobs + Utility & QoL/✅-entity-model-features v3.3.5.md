@@ -188,3 +188,25 @@ Fontes upstream: CurseForge EMF NeoForge 1.21.1 releases 3.3.6–3.3.9; 3.3.9 fi
 **Fonte primária:** https://github.com/Traben-0/Entity_Model_Features/blob/master/CHANGELOG.MD ; https://www.curseforge.com/minecraft/mc-mods/entity-model-features/files/all?version=1.21.1
 
 **Estado:** 3.3.11 upstream não instalado; último físico continua 3.3.5.
+
+## 21. Atualização EMF 3.3.10 → 3.3.11 — 10/10/2026
+
+**Autoridade física:** `entity_model_features-3.3.5-1.21-neoforge.jar` / 3.3.5, com **ETF 7.2.1** físico. A seção 20 já registra a sequência **3.3.6 → 3.3.7 → 3.3.8 → 3.3.9** e os bugs críticos. O CurseForge publica agora **3.3.10 (04/10)** e **3.3.11 (05/10)** também para NeoForge **Minecraft 1.21.1**, nome de distribuição `3.3.11-neoforge-1.21`.
+
+### 3.3.10 — alterações do changelog oficial
+- Corrige problemas em **entidades animadas em GUIs**, incluindo paper-doll mods.
+- **Otimiza carregamento/compilação de animações**, para reduzir custo de load inicial e resource reload com animações grandes; a melhoria não é benchmark comprovado nesta instância.
+- Corrige **cubos ausentes ao forçar model vanilla** ou com `attach=true`.
+- O fix de `is_in_item_frame` sempre falso e o mixin crash mencionado na mesma versão são **específicos de Minecraft 1.21.9+ / 1.21.9–1.21.10**, sem evidência de que afetem 1.21.1.
+
+### 3.3.11 — correções
+- Corrige **`keyframeloop()` com matemática compilada**, importante para scripts de animação OptiFine/CEM complexos.
+- Reduz logs repetitivos de um **problema comum mas menor em modelos**.
+
+**Cadeia integral da versão física:** 3.3.5 → 3.3.6 → 3.3.7 → 3.3.8 → 3.3.9 → **3.3.10 → 3.3.11**. A 3.3.8 causou regressão de **boot em 1.21.1** resolvida na 3.3.9; **não promover 3.3.8 isoladamente**. Para obter toda a correção de shoulder parrots/third-party render, promover em conjunto com ETF compatível, verificando requisitos do ETF na rodada #56.
+
+**Gates:** resource packs Fresh Animations/Excalibur e custom CEM, paper-doll GUI, models forçados vanilla/attach, loops de animação e `keyframeloop()`, mass reload F3+T, client boot, ETF 7.2.4+ conforme manifest, render mods Entity Culling 1.10.5/1.11.3, Iris shaders e consumo de CPU em cenas com muitas entidades. Não confundir carregamento do dossiê ou CI com teste visual.
+
+**Fontes:** https://github.com/Traben-0/Entity_Model_Features/blob/master/CHANGELOG.MD ; https://www.curseforge.com/minecraft/mc-mods/entity-model-features/files/all?version=1.21
+
+**Estado:** 3.3.11 upstream, **3.3.5 fisicamente comprovada**; testes de runtime pendentes.
