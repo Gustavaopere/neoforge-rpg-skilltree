@@ -153,3 +153,17 @@ Impacto para o pack: 3.6.5 pode alterar auto-discovery de famílias de madeira e
 Gate de promoção 3.6.4→3.6.8: Supplementaries/Amendments boot, automatic wood detection, config screens/CodecUI, fluid buckets, `/reload`, resource reload, dois clientes concorrentes, dynamic packs, reconnect, e cenário No Man's Land + ModernFix apenas quando essa combinação existir fisicamente.
 
 Fontes upstream: CurseForge files 8905916 (3.6.5), 8929425 (3.6.6), 8940361 (3.6.7) e 8941470 (3.6.8), NeoForge 1.21.1.
+
+## 16. Atualizações upstream 3.6.9 → 3.7.1 — 10/10/2026
+
+**Físico:** moonlight-1.21.1-3.6.4-neoforge.jar, com CodecUI 1.3.6 embarcado. O histórico prévio deste dossiê cobre 3.6.5 → 3.6.6 → 3.6.7 → 3.6.8. O novo intervalo público NeoForge 1.21.1 é:
+
+- **3.6.9 (24/09, file 8963246):** melhorias de configurações, novos sanity checks para facilitar diagnóstico e fixes diversos não especificados; não atribuir mecânicas sem evidência.
+- **3.7.0 (26/09, file 8981395):** API para adicionar conteúdo aos slots da Cartography Table, incluindo ícones.
+- **3.7.1 (05/10):** detecção de WoodType ancient_root do The Undergarden (issue #967); mudança só é funcional quando o correspondente provider está presente.
+
+**Cadeia completa:** 3.6.4 → .5 → .6 → .7 → .8 → .9 → 3.7.0 → 3.7.1. Moonlight é biblioteca de dinâmica de assets/registries/codec configs. Testar acoplamento com Supplementaries, Amendments, wood families, CodecUI/JarJar, client/server, reloads concorrentes, Cartography Table, fluid buckets, salva/reabre e consumo por resource packs antes de promover isoladamente.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/selene/files/8963246 ; https://www.curseforge.com/minecraft/mc-mods/selene/files/8981395 ; https://www.curseforge.com/minecraft/mc-mods/selene/files/all?version=1.21.1
+
+**Estado:** 3.7.1 disponível upstream; JAR 3.6.4 continua físico. Sem runtime QA executado.
