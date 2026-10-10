@@ -132,3 +132,18 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Página oficial atual: backpack recipe transfer, terminal integrations e source/recipe-fill behavior.
 - Página oficial 1.2.3 de 10/09/2026: runtime atual confirmado; arquivo sem changelog, sem inferência de delta interno.
 - **Limite:** config local, EMI e detalhes internos de prioridade não foram inferidos além do publicado; testes runtime permanecem pendentes.
+
+## 22. Revisão upstream 1.2.4 — 10/10/2026
+
+**Instalado conforme snapshot físico:** `sophisticated_jei_index-1.2.3+1.21.1.jar` / 1.2.3. A atualização pública para **NeoForge Minecraft 1.21.1** é **`sophisticated_jei_index-1.2.4+1.21.1.jar`**, de **07/10/2026**, CurseForge file **9089418**. É a próxima versão pública após 1.2.3, sem etapa intermediária localizada.
+
+### Evidência/limite
+A página oficial de 1.2.4 traz explicitamente **“File has no changelog”**. Portanto, **não é possível atribuir uma correção de recipe transfer, performance ou compatibilidade específica a 1.2.4**. Mudanças em Sophisticated Backpacks, JEI ou outro consumer não são automaticamente mudanças do JEI Index. Se for necessário saber o delta interno para liberação, comparar source/tag ou JARs 1.2.3 vs 1.2.4.
+
+### Gate de integração
+A stack física conhece JEI 19.56.0.440, Sophisticated Backpacks 3.26.3 e Tom's Storage 2.4.2; AE2/Refined Storage/Beyond Dimensions não foram confirmados top-level. Testar transfer de receitas com ingredientes distribuídos entre mochila e inventário; prioridade entre duas mochilas; backpack equip/unequip; max transfer; recipes por tags; Tom's crafting terminal; dois usuários e reload/reconnect. A revisão upstream de Backpacks para 3.26.9 ainda não foi promovida fisicamente; não inferir compatibilidade futura pela mera co-publicação.
+
+**Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-jei-index/files/9089418
+
+**Estado:** 1.2.4 publicada, não instalada no snapshot; nenhum smoke test realizado.
+
