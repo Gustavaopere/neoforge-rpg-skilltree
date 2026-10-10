@@ -182,3 +182,15 @@ A branch 5.0.x altera a semântica de presentation e interação com recursos; o
 
 **Decisão:** manter **4.4.0 como versão física comprovada**, registrar 5.0.3 como candidato com risco de compatibilidade/renderer e exigir smoke test antes de qualquer promoção.
 
+## 18. Correção de teto upstream: Polytone 5.0.5 — 10/10/2026
+
+**Autoridade física não modificada:** `polytone-1.21-4.4.0-neoforge.jar` / 4.4.0. A seção 17 documenta o estado observado quando a linha NeoForge 1.21.1 estava em 5.0.3 (09/10), mas foi posteriormente supersedida por **`polytone-1.21-5.0.5-neoforge.jar`**, **Release (R)** publicada em **10/10/2026**, CurseForge file **9120876**. A eventual build **5.0.4 não foi individualmente verificada nesta revisão**, portanto não se inventa nem se pula um changelog conhecido dessa versão.
+
+**Changelog vinculado ao arquivo 5.0.5:** o autor informa genericamente *fixed many old issues*, sem enumerá-los, e explicita a adição de **`p.gameMode()`** e **`g.difficulty()`**, além da chave **`text.black_sign_glow`** em `colors.json` para personalizar o contorno do texto preto luminoso de placas. Sem inspeção do source/artefato não é possível atribuir correções específicas adicionais a 5.0.5. A evolução já documentada da linha 5.0.0–5.0.3 (luzes coloridas e API) permanece como risco de migração acumulado.
+
+**Verificações exigidas antes de promover:** expressions dependentes de game mode/difficulty após login/relogin e troca de mundo; aplicação de `colors.json` com/sem chave nova, glow em placas, erro de sintaxe e fallback; `F3+T` após alternância de packs; teste de colormaps, colored lights, fluids, shader/renderer e cross-mod overlays. Medir performance/FPS com e sem efeitos; não presumir equivalência de recursos com a 4.4.0. A compatibilidade plena com o stack de shaders e resource packs deste perfil ainda não foi verificada.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/polytone/files/9120876 ; https://github.com/MehVahdJukaar/polytone/blob/1.21.1/changelog.md
+
+**Status:** 5.0.5 é a última release externa identificada neste ciclo; instalação 4.4.0 segundo a última autoridade física, **PENDENTE de nova inspeção e testes**.
+
