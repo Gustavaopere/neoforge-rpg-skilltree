@@ -97,3 +97,23 @@ Impacto: a 0.15 amplia fortemente a superfície de graph schema e adiciona poten
 Gate de promoção 0.14→0.15: abrir/salvar graphs antigos; pins com tipo alterado; dynamic+declared ports; Set Var após rename; quaternion/vector/math nodes; sampler params; off-thread node em graph puro; bloquear off-thread para node que toca game state; resource reload; shader compilation; LDLib2 compat; loader resolution com o JarJar 0.14 do Photon.
 
 Fonte upstream: CurseForge file ID 8941172, `kilagraph-neoforge-1.21.1-21.1.0.15.jar`.
+
+## 17. Revalidação 21.1.0.15 e source posterior — 10/10/2026
+
+**Físico:** `kilagraph-neoforge-1.21.1-21.1.0.14.jar` e componente interno **JarJar 21.1.0.14 dentro de Photon**, conforme snapshot. **Mais recente pública CurseForge para NeoForge Minecraft 1.21.1:** **21.1.0.15** de 21/09/2026. O histórico completo 0.14→0.15 de quaternions, vectors, math, node scheduling off-thread, pins e graph schema já foi incorporado na seção anterior; mantê-lo como autoridade para a release pública.
+
+O **source GitHub `Low-Drag-MC/KilaGraph` branch `1.21`** já contém seção de changelog **v21.1.0.16** com recursos **não confirmados como release CurseForge 1.21.1**:
+- nearest-entity node;
+- `damage source` como graph type, com nós para leitura, teste de damage-type tag, criação e `hurt`;
+- NBT Copy e copy pins em NBT Set/Path Set/Remove, que continuam mutando in-place por default;
+- conversão de cor em vector RGB;
+- avaliação de pure nodes por consumer exec, correções de loops/subgraph/flow state, atualização de port labels.
+
+**Importante:** 0.16 **não** foi promovida a versão disponível no CurseForge nem tratada como código instalado. Essas mudanças sugerem risco futuro maior por exporem side effects de dano e mutação NBT em graph execution; avaliar server authority, duplicação de hurt e write ordering se forem publicadas.
+
+**Gate:** não atualizar apenas KilaGraph top-level sem confrontar a versão embarcada em Photon e a ABI LDLib2 2.2.39.a. Verificar graph persistence/pin migration, sampler/shader, tool/editor e ambientes client+server. Nenhum teste de runtime foi realizado.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/kilagraph/files/all ; https://github.com/Low-Drag-MC/KilaGraph/blob/1.21/CHANGELOG.md
+
+**Decisão:** 21.1.0.15 permanece candidata pública, 0.16 em observação de source; físico 0.14 preservado.
+
