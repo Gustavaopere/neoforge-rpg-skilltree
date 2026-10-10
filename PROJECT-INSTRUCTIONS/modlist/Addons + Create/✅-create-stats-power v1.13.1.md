@@ -183,3 +183,15 @@ Fonte upstream: CurseForge file ID 8906784, `create_stats-1.14.5.jar`, release N
 **Fontes:** https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/9074215 ; https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/8906784
 
 **Estado:** 1.15.0 upstream, atualização física e smoke-tests pendentes.
+
+## 21. Revalidação upstream 1.14.5 — 10/10/2026
+
+**JAR físico canônico:** `create_stats-1.13.1.jar` / 1.13.1. O CurseForge continua registrando **`create_stats-1.14.5.jar` como última release NeoForge 1.21.1**, publicada em 17/09/2026. O dossiê já detalha anteriormente o histórico até 1.14.5: redes e limites de PPI, train charge/dock, leitura/visualização de redes de energia, Capacitor Bank, Battery Controller/PDU e correções de sincronização/renderização de painéis. Não se encontrou release 1.21.1 posterior a 1.14.5 nem se deve criar artificialmente um novo changelog de versão.
+
+**Cadeia:** partir do físico 1.13.1 e incorporar toda a sequência intermediária registrada na seção 20 antes de considerar 1.14.5; não saltar diretamente para testes somente da última build. Ownership de FE/SU permanece definido por Create e pelos fornecedores de energia e não pelo HUD. Riscos de rate amplification, scheduler loops, cache incorreto de display e discrepância de autoridade cliente/servidor continuam pendentes.
+
+**Teste de promoção:** PPI dock/undock, limites e charge floor, charge conditions, capacitor móvel, displays multiplayer, oversubscription de rede, power priority, dispatch/freight order, assembly/disassembly de Sable/Aeronautics, save/restart, conservation FE/SU e performance com displays sob carga. Nenhum teste foi executado nesta revalidação.
+
+**Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/create-stats-power
+
+**Estado:** 1.14.5 upstream documentada, 1.13.1 físico preservado.
