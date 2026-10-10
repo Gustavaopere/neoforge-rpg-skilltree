@@ -226,3 +226,24 @@ Antes de substituir o runtime físico, validar conjuntamente:
 7. dedicated server boot com Sophisticated Core e addons Sophisticated atuais do pack.
 
 Nenhum desses testes upstream foi marcado como executado nesta atualização documental.
+
+## 27. Atualizações upstream 3.26.8 → 3.26.9 — 10/10/2026
+
+**Autoridade física:** `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` / 3.26.3. O histórico já presente no dossiê cobre **3.26.4.2162 → 3.26.5.2171 → 3.26.6.2174 → 3.26.7.2182**, incluindo a correção de perda de dados ao migrar mundos. Nesta revisão foram acrescentadas todas as releases **posteriores** da linha NeoForge **1.21.1**, até **3.26.9.2195**.
+
+### 3.26.8.2189 — 05/10/2026
+
+**Correção de performance de linked backpack menus:** reduz tráfego de sincronização de menu. Implica menos pacotes/redeshoots sem sacrificar integridade: o inventário client-side deve convergir com a visão server-authoritative sob leitura/edição concorrente e com muitos slots/players. CurseForge file **9074419**.
+
+### 3.26.9.2195 — 06/10/2026
+
+**Correção de sincronização de slots dos backpacks vinculados ao alterar tank upgrades.** Inclui atualização da tradução russa. A correção é funcional, pois altera coerência do inventory state e da UI ao instalar, trocar ou remover upgrade de tank em storage ligado. CurseForge file **9083940**.
+
+**Cadeia completa desde 3.26.3:** 3.26.4 (estado de linked controller e sincronização) → 3.26.5 (correções registradas na seção anterior) → 3.26.6 (modelo/cor pós-chunk load) → 3.26.7 (migração de item data) → 3.26.8 (menor tráfego de menu) → 3.26.9 (slot sync ao modificar tank upgrade). Descrições detalhadas de 3.26.4–3.26.7 permanecem na seção 26; não foram substituídas pelo resumo.
+
+**Gates integrados prioritários:** Core ≥ versão exigida pela 3.26.9 (reconfirmar metadata antes do upgrade); linked storage, inventory persistence após world migration; tank upgrades com múltiplos players; menu de muitos slots sob latência; Create Packaging/Inception sem recursão; place/pickup, chunk unload/reload, world save/restart; integração com Sophisticated Storage/Create. Não afirmar segurança apenas por CI verde do repositório, pois CI não substitui o pack físico.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/9074419 ; https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/9083940
+
+**Limite de escopo:** build **3.26.10** publicada para outros Minecrafts 26.x em outubro **não** deve ser usada como release de NeoForge 1.21.1. Runtime local segue em 3.26.3 até novo inventário.
+
