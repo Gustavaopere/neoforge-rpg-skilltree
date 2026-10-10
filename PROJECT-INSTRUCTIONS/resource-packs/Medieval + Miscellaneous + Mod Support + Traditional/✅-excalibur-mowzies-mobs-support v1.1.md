@@ -78,3 +78,16 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma v1.1 e o escopo mobs/bosses/items/particles/boss bars/GUI, incluindo Elokosa. O ZIP não foi inventariado asset por asset.
 
 > Boundary canônico: **Mowzie's Mobs controla gameplay; o support pack controla exclusivamente a apresentação visual coberta**.
+
+## 10. Revalidação upstream v1.1 — 10/10/2026
+
+**Instalação historicamente registrada:** `Excalibur Mowzie's Mobs 1.1.zip`, versão 1.1, conforme captura da pasta de resource packs do perfil em 08/09/2026. O ZIP atual não foi comparado novamente neste ciclo. O arquivo **`Excalibur Mowzie's Mobs 1.1`**, publicado em **18/03/2026**, permanece a **última versão pública para Minecraft 1.21.1** no CurseForge; nenhum delta intermediário novo foi identificado entre a versão física e a mais recente.
+
+**Escopo preservado:** textures/models de criaturas e bosses de Mowzie's Mobs, itens, particles, GUI e boss bars, conforme descrição oficial. Mowzie's Mobs 1.8.2 é o provider físico documentado; `Integrated Mowzie's Mobs` e `Mowzie's Cataclysm` não são automaticamente cobertos pelo resource pack base. Não inferir que atualizar outros mods de boss ou mudanças no conteúdo do Mowzie's foram refletidas numa v1.1 que não recebeu nova publicação.
+
+**QA prioritário:** spawn de Frostmaw/Foliaath/Barako/Elokosa e variantes efetivamente suportadas, observação de boss bars e partículas, resource reload, avaliação de asset priority contra Excalibur e Fresh Animations, compat visual com EMF/ETF e shader pack, F3+T sem missing texture. Nenhum novo hash ZIP ou screenshot foi obtido.
+
+**Fonte:** https://www.curseforge.com/minecraft/texture-packs/excalibur-mowzies-mobs-support/files/all
+
+**Decisão:** sem atualização upstream aplicável, estado histórico do ZIP 1.1 preservado.
+

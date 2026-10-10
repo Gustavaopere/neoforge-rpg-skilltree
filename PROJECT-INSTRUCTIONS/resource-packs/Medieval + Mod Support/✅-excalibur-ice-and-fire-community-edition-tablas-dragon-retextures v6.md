@@ -78,3 +78,23 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma o propósito e a cobertura Fire/Ice/Lightning do projeto CE. O arquivo físico confirma `v6`; sem changelog CE v6 suficiente, diferenças exatas da release não são inventadas.
 
 > Boundary canônico: **Ice and Fire CE controla os dragões como entidades; Tabla's Dragon Retextures controla apenas sua aparência, sujeita à prioridade contra True Dovah**.
+
+## 10. Divergência entre ZIP histórico v6 e CurseForge v5 — 10/10/2026
+
+**Autoridade do perfil preservada conforme evidência histórica:** o dossiê registra captura da pasta de resource packs de 08/09/2026 com o ZIP **`1.21.1_G's_Dragons_Retextured_I&F-CE.v6.zip`**, versão indicada **v6**. O ZIP/captura não foi recuperado neste ciclo e seu SHA/manifest interno **não foi comparado**.
+
+**Verificação externa em 10/10:** o projeto CurseForge específico **Excalibur | Ice and Fire: Community Edition | Tabla's Dragon Retextures**, project **1553651**, apresenta **`1.21.1_G's_Dragons_Retextured_I&F-CE.v5.zip` de 14/07/2026 como última release pública para Minecraft 1.21.1**, com listagem de arquivos v3, v4 e v5, **sem v6 publicada nesse projeto**. Não confundir com outro projeto **Excalibur | Ice and Fire | Tabla's Dragon Retextures** para o mod não Community Edition; versões desse outro projeto não estabelecem uma v6 CE.
+
+### Tratamento da divergência
+- **Fato do catálogo histórico:** houve registro físico de ZIP cujo filename declarava v6. Sem o arquivo real nesta rodada, esse fato é evidência do documento de origem, **não verificação atual de conteúdo/versão interna**.
+- **Fato do CurseForge do projeto correspondente:** a latest release **pública rastreável é v5**, não v6. Não há changelog público de v6 CE que permita concluir as diferenças para v5.
+- **Hipóteses não verificadas:** ZIP local renomeado, edição privada, distribuição por outra fonte ou erro na captura/atribuição. **Nenhuma deve ser declarada verdadeira** sem recuperar ZIP ou URL de origem.
+- **Decisão:** **não renomear o dossiê para v5 nem substituir o ZIP por v5 automaticamente**; manter filename histórico v6 enquanto fonte, hash e conteúdo não forem reconciliados. Tratar a origem/versão v6 como **PENDÊNCIA DE PROVENIÊNCIA**, sem afirmar v6 publicada publicamente no projeto CurseForge.
+
+### Regressão/precedência
+Este resource pack é camada puramente visual para dragões **Fire, Ice e Lightning** do Ice and Fire: Community Edition (físico 2.1.2). Revalidar modelos por estágio/cor/sexo, ovos e jovens quando houver assets, olhos/emissive se presentes nos arquivos, resource reload, compatibilidade com EMF/ETF/shaders e prioridade contra **True Dovah** e outros packs Excalibur que alterem os mesmos caminhos de textura. Comparar hash/árvore ZIP v6 contra o artefato público v5 em instância isolada antes de qualquer decisão.
+
+**Fonte externa oficial:** https://www.curseforge.com/minecraft/texture-packs/excalibur-ice-and-fire-community-edition-tablas/files/all
+
+**Estado:** discrepância comprovada entre **filename físico histórico v6** e **publicação oficial v5**; nenhuma instalação ou correção física nesta operação documental.
+
