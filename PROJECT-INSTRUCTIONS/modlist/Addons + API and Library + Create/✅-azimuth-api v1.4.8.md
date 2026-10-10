@@ -86,3 +86,16 @@ Gate de promoção: boot com Create, consumer graph real, place/break/reload de 
 
 **Fonte GitHub upstream:** `Aztech-Modding/Azimuth`, `gradle.properties`, `CHANGELOG.md`, commits `bf23abe40322072efe6cacddb93d9f9362d26c73` e `beb45055665cc5fa53b143b3541f332cbce48d70`.
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #60: `azimuth-1.4.8.jar` / `1.4.8` conferidos contra a modlist atual; display físico `Azimuth`, título editorial `Azimuth API` e consumer graph pendente preservados.
+
+## 12. Revalidação CurseForge/GitHub — 10/10/2026
+
+**Instalada conforme última autoridade física:** `azimuth-1.4.8.jar` / 1.4.8. O CurseForge oficial permanece em **Azimuth 1.4.8** para Minecraft 1.21.1/NeoForge (31/08/2026). O dossiê já documentou **1.4.9 no source GitHub** `Aztech-Modding/Azimuth`, versão **não identificada como release pública CurseForge**; não confundir source adiantado com JAR disponível nem alterar filename/metadata.
+
+**Revisão do conflito Tracks+:** o changelog GitHub 1.4.9 possui duas entradas; a revisão final remove o bloqueio inicialmente proposto com Tracks+ e mantém apenas aviso em log. O pack físico tem Create Tracks+ 1.0.6b6, mas não provou seu papel como consumer da Azimuth; a presença do mod na modlist não autoriza concluir incompatibilidade.
+
+**Gates:** dependency graph real e manifests, SmartBlockEntity behaviour registry, save/restart, train/track under simulated movement, Ponder/outlines client-side, 2 addons coexistindo sem double-tick, resource reload, warnings sem falsos blockers. Não instalar 1.4.9 de branch de desenvolvimento como se fosse release CurseForge.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/azimuth-api/files/all ; https://github.com/Aztech-Modding/Azimuth .
+
+**Estado:** sem delta oficial novo publicado na plataforma; físico 1.4.8 preservado.
+
