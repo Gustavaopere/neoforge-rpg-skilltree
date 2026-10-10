@@ -108,3 +108,18 @@ Isso é relevante porque linked storage atravessa estado de inventário/backpack
 Gate de regressão: backpack em contraption, linked storage, unload/reload da contraption, transferência de itens, save/restart e upgrades que consultam storage compartilhado.
 
 Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-create-integration/files/8985949
+
+## 18. Nova release 0.2.2.188 — 10/10/2026
+
+**Autoridade física:** `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` / 0.2.0. A seção 17 já documenta a release intermediária **0.2.1.171 (27/09)**, que atualiza linked-storage integration para o Sophisticated Core mais recente. A última release NeoForge 1.21.1 localizada é **0.2.2.188 (05/10/2026)**, file ID **9074505**.
+
+**Delta oficial 0.2.2.188:** **redução do tráfego de sincronização em backpacks linked montados**, descrita como melhoria de performance. A mudança envolve tráfego entre servidor e clientes, portanto é funcionalmente relevante mesmo sem novos itens ou recipes. Ela não comprova, por si só, ausência de desync: inventários compartilhados, upgrades e configurações continuam server-authoritative.
+
+**Cadeia completa:** 0.2.0.168 → 0.2.1.171 (linked-storage integration atualizada para Core novo) → 0.2.2.188 (menos sync de backpack linkado em contraption).
+
+**Bloqueio de promoção:** o snapshot ainda documenta Sophisticated Core 1.5.1 e Backpacks 3.26.3. A bridge deve ser testada junto da versão mínima efetivamente requerida pelo build novo, Core/Backpacks compatíveis e Create 6.0.10. O lote #3 revisou Storage Create Integration e o lote #9 revisou Backpacks base; nenhuma dessas revisões implica troca física. Regressão: backpacks ligados em contraptions montadas/móveis, entrada/saída do chunk, unload, disassembly, carros com inventário cheio, múltiplos jogadores simultâneos, mudanças de upgrades, reconnect e restart, observando lost/duplicate stacks e tráfego de pacotes.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-create-integration/files/9074505
+
+**Estado:** release upstream documentada; nenhum JAR físico atualizado nem teste executado.
+
