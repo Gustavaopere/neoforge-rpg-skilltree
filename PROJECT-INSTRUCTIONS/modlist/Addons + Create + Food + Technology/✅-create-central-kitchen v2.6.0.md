@@ -116,3 +116,9 @@ Gate de regressão após reconciliar Dragons Plus: Spout+Depot sob carga, Keg fa
 **Fontes GitHub upstream:** `DragonsPlusMinecraft/CreateCentralKitchen`, branch `1.21.1/6.0.0-dev`; commits `4b95e8e508df8b18aede19ccf1e3b6878c36419b` (2.6.1) e `7e1610a66e4cecd68b20c2c4a19e20c9f1f45523` (2.6.2); `gradle.properties` declara `mod_version = 2.6.2` e `create_dragons_plus_version_range = [1.11.9,)`.
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #117: `create-central-kitchen-2.6.0.jar` / `2.6.0` conferidos contra a modlist atual; cooking automation, Packager/Arm conversions, recipe priority/cache e integrações físicas preservados.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Estado upstream:** **`2.6.2b`** de 09/10/2026, NeoForge 1.21.1 para Create **6.0.10**, artefato `create-central-kitchen-2.6.2b.jar`, file ID **9104646**; JAR físico histórico permanece **2.6.0**. **Delta específico 2.6.2b:** corrige o Mechanical Saw ignorando filtros em receitas convertidas de Cutting Board. Preservar as alterações 2.6.1/2.6.2 já descritas na seção 19 (batch unpacking e package refill). **BLOQUEIO de atualização física herdado:** a linha 2.6.1+ exige Dragons Plus **1.11.9+**, enquanto o snapshot contém `CreateDragonsPlus-1.11.8b.jar`; não recomendar upgrade isolado. **Gate:** atualizar/revalidar primeiro Dragons Plus, depois recipes convertidas e filters no Mechanical Saw, JEI, reload, Packager e kitchenware optional; testar servidor e persistência. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-central-kitchen/files/9104646
+
+> **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.
