@@ -110,3 +110,9 @@ O changelog publicado pelo autor para a versão 8.43 (também veiculada em build
 **Fontes:** https://www.curseforge.com/minecraft/mc-mods/collective/files/all?gameVersionTypeId=5&page=1 ; https://www.curseforge.com/minecraft/mc-mods/collective/files/9119660 (changelog 8.43 multiversão).
 
 **Estado:** upstream 8.43; físico 8.39, sem testes locais.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Upstream NeoForge Minecraft 1.21.1:** `collective-1.21.1-8.45.jar`, publicado em **11/10/2026**, com 8.44 em 10/10 após a 8.43 já documentada. O último físico permanece **8.39**. O changelog individual das 8.44/8.45 ainda deve ser correlacionado ao JAR exato; não deduzir features pelo número. **Regressões prioritárias:** packet registration sob carga simultânea, side-correct networking client/server, helpers de mensagens e translations, config/reload, consumers Serilum, handshake multijogador e servidor dedicado. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/collective/files/all
+
+> **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
