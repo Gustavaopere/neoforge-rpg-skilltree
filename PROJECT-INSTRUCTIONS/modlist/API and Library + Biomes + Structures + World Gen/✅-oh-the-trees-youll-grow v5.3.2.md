@@ -128,3 +128,8 @@ A library governa NBT templates, filtros de logs `PIERCE`/`PASSTHROUGH`/`BLOCK`,
 
 **Situação:** informação de releases atualizada; promoção **PENDENTE DE CHANGELOG/DEPENDÊNCIAS + QA**, sem bump físico.
 
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Revalidação:** a publicação **5.3.5** para NeoForge 1.21.1, em **10/10/2026**, já consta da seção anterior; último JAR histórico é **5.3.2**. Não inventar deltas técnicos 5.3.4/5.3.5 enquanto as notas específicas não estiverem isoladas. **Gate conjunto essencial:** Oh The Biomes We've Gone 2.6.0, Dynamic Trees BWG, NBT tree templates, blockstate/log filters, generation placement, species/saplings, Terralith/Tectonic e segurança de chunks existentes. Validar seed de mundo novo e mundos persistentes, worldgen throughput, collision com estruturas e dedicated server. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/oh-the-trees-youll-grow/files/all?version=1.21.1
+
+> **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
