@@ -76,3 +76,41 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 - Corte atual: lotes determinísticos **#1–#6**, itens **01–58**.
 - Categoria `resource-packs/` integralmente percorrida pelo protocolo de revalidação atual.
 - Dossiers organizados em subpastas temáticas: **58/58**.
+
+
+## Gate de promoção dos quatro resource packs priorizados — 10/10/2026
+
+**Estado: PENDENTE DE RECONCILIAÇÃO FÍSICA.** Esta matriz acrescenta informação externa e critérios de liberação aos quatro resource packs solicitados, **sem modificar nenhuma das 58 entradas históricas acima**. Os números `#23`, `#29`, `#40` e `#55` são **posições deste catálogo**, não prioridade de carregamento. O último testemunho físico é a captura do perfil em **08/09/2026**; os ZIPs atuais, seus hashes e sua ativação não foram reobtidos nesta rodada.
+
+| Nº do catálogo | Recurso | Último ZIP registrado no perfil | Release externa para MC 1.21.1 em 10/10/2026 | Decisão |
+|---|---|---|---|---|
+| **#23** | Excalibur / Ice and Fire: Community Edition / Tabla's Dragon Retextures | `1.21.1_G's_Dragons_Retextured_I&F-CE.v6.zip` (**v6**) | `Gs ReDraco_CE_1.21.1_v7.zip` (**v7**, publicada 03/10) | **Candidata**; conferir ZIP CE correto, emissives e conflitos visuais |
+| **#29** | Excalibur / Mowzie's Mobs Support | `Excalibur Mowzie's Mobs 1.1.zip` (**1.1**) | `Excalibur Mowzie's Mobs 1.1.zip` (**1.1**, última release verificada 18/03) | **Manter**; não substituir sem motivo técnico |
+| **#40** | Fresh Illager Mod Compats | `4.3 FA Illager Mod Compats.zip` (**4.3**) | `5.0 FA Illager Mod Compats.zip` (**5.0**, publicada 03/10) | **Candidata**; Goety/EMF/ETF e illagers, com Friends & Foes condicional |
+| **#55** | The Brazilian Localization Project [PT-BR] | `The Brazilian Project [1.21.1-1.3.0].zip` (**1.3.0**) | `The Brazilian Project [1.21.1-1.4.0].zip` (**1.4.0**, publicada 07/10) | **Candidata**; validar cobertura e chaves de tradução do conjunto real |
+
+### Sobreposição, precedência e providers
+
+- **#23 (dragões):** provider das entidades e mecânicas = *Ice and Fire: Community Edition*; overlays visuais = Excalibur, Excalibur | Ice and Fire e Tabla's CE. Validar colisões de `assets/`, cores/estágios/sexos Fire/Ice/Lightning, olhos e emissives com EMF/ETF e shaders. O autor alerta que, desde v5, os emissives podem apagar enquanto os dragões piscam/dormem; isso não constitui sozinho falha de renderização.
+- **#29 (Mowzie):** provider = *Mowzie's Mobs*; o ZIP de suporte altera aparência de mobs, itens, particles, GUI e boss bars, não AI, dano ou saves. Conferir prioridade em relação ao Excalibur base e demais overlays de mobs; **não há release posterior à 1.1 confirmada** para o alvo 1.21.1.
+- **#40 (illagers):** provider de animação base = *Fresh Animations*, com compat visual via EMF/ETF; este ZIP deve ficar **acima do Fresh Animations**, conforme instrução do autor. *Goety* está registrado no inventário dos mods, e o fix de **Friends & Foes Illusioner** da 5.0 só é aplicável se esse mod estiver realmente presente na instância atual. A ausência de Friends & Foes entre as 587 linhas históricas não prova sua ausência hoje.
+- **#55 (localização):** controla traduções `pt_br`, não comportamento de mods. Precisa coexistir com resource packs que também alterem arquivos de idioma; a prioridade para arquivos **concretamente sobrepostos** deve ser definida por inspeção de `assets/*/lang/pt_br.json`, não por um load order global presumido.
+
+**Não existe ordem efetiva atual certificada** entre esses quatro ZIPs e o restante dos 58 resource packs; as posições ordinais do catálogo não servem para inferi-la. Não fixar prioridade sem inspecionar `options.txt`, `resourcePacks` e `incompatibleResourcePacks`, estado da interface e, quando pertinente, configuração do servidor/mundo. Um ZIP existente pode estar desativado.
+
+### Sequência de QA antes de qualquer substituição
+
+1. Coletar o inventário real de `resourcepacks/` e `options.txt`; confirmar presença, filename, tamanho, SHA-256, `pack.mcmeta`, `pack_format`, descrição, `supported_formats` quando presentes, packs ativados e sua ordem efetiva. Não interpretar a posição #23/#29/#40/#55 como prioridade.
+2. Baixar da origem oficial as três releases candidatas **apenas para staging**, cada uma com seu `pack.mcmeta` e asset tree, e comparar com o ZIP anterior. Não sobrescrever o perfil de produção antes dos testes; não confundir **Tabla's CE** com o pacote de dragões *Ice and Fire* não-CE.
+3. Testar em cópia do perfil Minecraft 1.21.1 / NeoForge: toggling de packs, **F3+T**, dragões e emissivos com/sans shader, sobreposição dos arquivos em `assets/` e texturas ausentes. Para o Fresh Illager: Evoker/Vindicator, Royal Guard do Goety, prioridades em relação a Fresh Animations e, **somente se presente**, Friends & Foes Illusioner.
+4. Para Brazilian Localization, auditar JSON/encoding, `%s`/formatos posicionais, chaves traduzidas vs chaves ausentes, GUI/JEI/Create/Ars/Sophisticated, textos truncados e colisões com outros packs de tradução. Para Mowzie's 1.1, inspecionar Frostmaw/Foliaath/Elokosa e coberturas de itens, boss bars e partículas, sem substituição obrigatória.
+5. Comprimir evidências de regressão (hashes antes/depois, manifest dos ZIPs, lista de caminhos em conflito, screenshots e logs), registrar decisão de manter/promover individualmente e **somente então** alterar fisicamente os ZIPs, atualizar seus inventários, dossiês versionados e referências do catálogo. Na falha, preservar/restaurar os ZIPs e a configuração original de prioridade.
+
+### Fontes oficiais das versões externas
+
+- **Tabla's Dragon Retextures CE:** https://www.curseforge.com/minecraft/texture-packs/excalibur-ice-and-fire-community-edition-tablas (file ID CE v7: **9042500**).
+- **Mowzie's Mobs Support:** https://www.curseforge.com/minecraft/texture-packs/excalibur-mowzies-mobs-support/files/7778006.
+- **Fresh Illager Mod Compats:** https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/9050536.
+- **Brazilian Localization:** https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9085941.
+
+**Limite de evidência:** as quatro publicações foram verificadas externamente; as versões **instaladas agora** não foram re-inspecionadas. Nenhuma promoção física, comparação de arquivos ZIP ou verificação de load order foi executada. A aprovação do CI documental não equivale à validação visual em jogo.
