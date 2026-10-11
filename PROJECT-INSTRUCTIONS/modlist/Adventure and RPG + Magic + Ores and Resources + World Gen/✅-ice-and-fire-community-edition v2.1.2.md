@@ -106,3 +106,9 @@ O pack possui Alex's Mobs, Mowzie's Mobs, Cataclysm e muitos structure packs. So
 - **Documentação oficial:** escopo CE, warning de save migration, Myrmex ausente, Jupiter config, biome tags e matriz de compatibilidade.
 - **Limite:** não foi transformada esta ficha em dump integral de centenas de registry IDs; registries e systems foram mapeados por domínio, com IDs concretos apenas onde necessários para contracts.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Release oficial inédita para esta auditoria:** `iceandfire-2.1.4.jar` (**NeoForge 1.21.1**, **11/10/2026**, file **9128508**). A release 2.1.3 (20/09) precede a 2.1.4; última versão física comprovada historicamente **2.1.2**. **Changelog 2.1.4:** adiciona valores **EMC**, opções de proteção/toughness por material de armadura e toggles de passivas separadas (escamas/dragonsteel breath resistance, troll projectile immunity, tide guardian effects), opção cosmética unbreakable; configurações de pixie wand cooldown, pixie charge duration, hydra heart regeneration, deathworm gauntlet range/knockback/ray targeting; modificadores de dificuldade de Sea Serpent, stage mínima de dragão para quebra de blocos, offset Y das cavernas, pathfinding de dragão evitando água e imunidade do Hippocampus em bubble column. **Gate de promoção:** auditar default/migration de Jupiter config sem perder valores locais, combate/armadura e efeitos passivos, dano e encantamentos, Pixie/Hydra/Deathworm, dragons + nests + structure gen em mundo novo e persistente, tame/bonding Dragon Care, Dread Land, armor Epic Fight compat, GeckoLib, Curios, server ownership, save backup e teste dedicado. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9128508
+
+> **Estado:** atualização documental sem qualquer substituição de JAR, edição da autoridade física ou teste in-game nesta execução.
