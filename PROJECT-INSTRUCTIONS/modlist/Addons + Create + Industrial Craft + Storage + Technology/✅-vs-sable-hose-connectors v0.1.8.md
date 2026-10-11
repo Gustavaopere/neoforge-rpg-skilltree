@@ -118,3 +118,9 @@ A modlist física mantém `VS-Sable-HoseConnectors-0.1.8-1.21.1.jar`, mod id `vs
 O stack físico relevante permanece Create `6.0.10`, Create Aeronautics `1.3.2` e Sable `2.0.5`. O papel de bridge — sem ownership próprio de inventory/fluid/energy/kinetics — continua válido. O estado **Integrado ao Github** e a decisão **Sem decisão** foram preservados. Nenhum transfer, reconnect, rotation, chunk reload ou atomicity test foi executado nesta recatalogação.
 ## 17. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece `VS-Sable-HoseConnectors-0.1.8-1.21.1.jar`, mod id `vsfluidlink`, versão `0.1.8`, e a file list oficial continua tratando 0.1.8 como a release NeoForge 1.21.1 atual. Create `6.0.10`, Create Aeronautics `1.3.2` e Sable `2.0.5` permanecem o stack relevante. O boundary de bridge continua intacto: inventory/fluid/energy/kinetics pertencem aos endpoints/providers reais; o addon apenas cruza a fronteira de espaço físico. Nenhum transfer, reconnect, rotation, chunk reload ou atomicity test foi executado nesta revalidação.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Estado upstream:** CurseForge continua publicando `VS-Sable-HoseConnectors-0.1.8-1.21.1.jar` (NeoForge 1.21.1, 28/06/2026); coincide com a versão da última snapshot física documentada. **Decisão:** manter versão; não confundir checagem upstream com nova inspeção do JAR. Regressões prioritárias em Sable/Aeronautics: endpoint cross-space, auto-connect magnético, transferências exatamente uma vez, 32 RPM para item connectors, assembly, unload/reload e restart. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/vs-hose-connectors/files/all?version=1.21.1
+
+> **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.
