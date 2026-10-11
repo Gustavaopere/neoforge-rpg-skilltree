@@ -165,3 +165,9 @@ O commit oficial 0.15.2.1 altera a detecção de biomas sem precipitação para 
 - [ ] Confirmar que integrações térmicas continuam tratando Ecliptic Seasons como **clima/estações**, não como temperatura corporal do Cold Sweat.
 
 Fonte: CurseForge oficial da linha 1.21.1 + source `TeamTeaMC/Ecliptic-Seasons` branch `neoforge-1.21.x`, checkpoints 0.15.2.2, 0.15.3 e 0.15.3.1.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Upstream:** **Ecliptic Seasons 0.15.4 Beta** publicada para **NeoForge MC 1.21.1** em 10/10/2026. **Autoridade física anterior:** `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar`. A cadeia 0.15.2–0.15.3.1 está descrita acima. Nova beta não é promoção automática nem release estável; não atribuir alterações exatas sem changelog. **Gate:** `AlternatingWeatherModel`, `UseSolarWeather` e migração de config, termos solares, plantio/humidity, chuva/trovão, Distant Horizons, Cold Sweat como provider térmico distinto, Bundles 0.18.0.2 e MultiMod Patch 0.32.1, save/restart multiplayer/dedicated server. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons/files/all?version=1.21.1
+
+> **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
