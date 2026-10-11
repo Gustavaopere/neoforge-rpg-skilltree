@@ -87,3 +87,9 @@ Diagnóstico deve registrar CorgiLib `5.0.0.9` + consumer + arquivo/data respons
 - documentação/source do ecossistema: JSON5/Mojang codecs, codecs comentados, NBT trees, easing/blending, entity filters e villager-trade codecs;
 - guia técnico atualizado do projeto corrobora essas superfícies sem atribuir gameplay próprio à library.
 > 🔧 Boundary canônico: CorgiLib fornece **serialização e utilities compartilhadas**; conteúdo e decisões de gameplay permanecem nos mods consumidores.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Upstream NeoForge 1.21.1:** **`5.0.0.10`** publicada em 10/10/2026, posterior a `Corgilib-NeoForge-1.21.1-5.0.0.9.jar` físico histórico. Changelog granular da 5.0.0.10 não verificado; não prometer alteração específica de codec/worldgen. **Gate:** consumers CorgiTaco, codecs Mojang e JSON5 comentado, template NBT tree, easing/blending, entity filters, villager trades, malformed config fallback, datapack reload, mundo novo e persistente, client/dedicated server. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/corgilib/files/all?version=1.21.1
+
+> **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
