@@ -176,3 +176,9 @@ Os dois fixes tocam a origem causal de XP da árvore. Um source que antes não d
 - [ ] Exchange, rewards, exclusive roots e persistência permanecem sem regressão.
 
 Fonte upstream: CurseForge Pufferfish's Skills 0.19.1, file ID 8941352. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Upstream para NeoForge 1.21/1.21.1:** **Pufferfish's Skills 0.19.2 Beta** publicada em 08/10/2026 (`puffish_skills-0.19.2-1.21-neoforge.jar`), após 0.19.1 documentada na seção 19. **Última física:** `puffish_skills-0.19.0-1.21-neoforge.jar`; **consumer** Pufferfish's Unofficial Additions 2.2.8. A linha 0.19.1 corrige fontes de experiência e `criterion` player conditions; não atribuir mudança específica de 0.19.2 sem notas de release. **Gate:** skill tree data/schema/IDs e exclusivity, XP source causal exactly-once, player conditions/criteria e anti-farming, JSON reload, persistent player progression após relog/restart, consumer integrations, interação com RPG Skill Tree próprio do pack sem duplicar ledger e client/server authority. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/puffish-skills/files/all
+
+> **Estado:** atualização documental sem substituição de JAR, edição da autoridade física ou teste in-game nesta execução.
