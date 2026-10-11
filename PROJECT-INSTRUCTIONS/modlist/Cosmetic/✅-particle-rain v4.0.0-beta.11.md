@@ -148,3 +148,9 @@ No pack grande com PartiCull, Iris/shader, AmbientSounds, Subtle Effects e Parti
 **Fonte primária:** https://github.com/PigCart/particle-rain/blob/main/CHANGELOG.md ; **builds**: https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/all?version=1.21.1
 
 **Estado:** v4.0.2 upstream, 4.0.0-beta.11 físico; sem troca de JAR ou teste executado.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Revalidação:** upstream já coberto integralmente até **Particle Rain v4.0.2 Release** NeoForge 1.21.1, de 10/10/2026; JAR físico histórico permanece **4.0.0-beta.11**. **Matriz crítica beta→release:** 4.0.2 corrige consulta incorreta de heightmap collision, partículas de velocidade invisíveis sem vento e chuva sob estruturas altas em alguns servers; diferenciar fixes Fabric/26.3 não aplicáveis automaticamente a NeoForge 1.21.1. **Gate:** visual-only owner, Particle Rain vs Subtle Effects/PartiCull/WeatherX/Iris, partículas + shaders, max world height, haze/fog/dust storm, feedback sonoro AmbientSounds, resource pack F3+T, config migration e perf/FPS. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/all?version=1.21.1
+
+> **Estado:** atualização documental sem qualquer substituição de JAR, edição da autoridade física ou teste in-game nesta execução.
