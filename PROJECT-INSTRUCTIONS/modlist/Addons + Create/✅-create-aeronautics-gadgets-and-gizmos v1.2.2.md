@@ -183,3 +183,9 @@ O arquivo `gadgets-and-gizmos-bundled-V1.2.6.jar` está publicado para NeoForge 
 - source oficial: https://github.com/Riieno/Gadgets-And-Gizmos
 
 **Decisão:** 1.2.8 documentada como upstream, **não instalada**; promoção pendente de compatibilidade, source da 1.2.6 e smoke test de persistência/autopilot.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Release pública NeoForge 1.21.1:** Gadgets & Gizmos **1.2.9** (11/10/2026), após a cadeia 1.2.3–1.2.8 auditada anteriormente. **Último JAR físico documentado:** `gadgets-and-gizmos-bundled-V1.2.2.jar` com host `createthrusters_bundled` e módulos embarcados `createthrusters` e `gadgetsngizmos` 1.2.2. Não presumir equivalência da composição JarJar ou novas features sem inspecionar a build 1.2.9. **Gate:** Create Aeronautics/Sable/CC:Tweaked, autopilot e controles em ship, persistência de steering/rotations, reconnect/unload/restart, física authoritative em multiplayer. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/all?version=1.21.1
+
+> **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
