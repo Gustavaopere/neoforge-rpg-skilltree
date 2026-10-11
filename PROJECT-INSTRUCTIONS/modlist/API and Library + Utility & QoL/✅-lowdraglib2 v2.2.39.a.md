@@ -102,3 +102,9 @@ Impacto: a 2.2.41 atua na organização/editor de graph, mas graphs são assets 
 10. dedicated-server boot e ausência de classloading de editor client-only.
 
 Fontes upstream: CurseForge files 8866144 (`2.2.40`) e 8940836 (`2.2.41`) para NeoForge 1.21.1.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Identificação:** o item `LDLib` corresponde à biblioteca **LowDragLib2** neste modpack (Minecraft 1.21.1); o último físico é `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`. **Upstream NeoForge 1.21.1:** **2.2.42** disponível (outubro/2026), sucedendo as mudanças 2.2.40/2.2.41 já descritas acima. Não atribuir delta exclusivo à 2.2.42 sem notas de release específicas. **Gate:** APIs de UI, editors/graph, IDs/links, RPC exactly-once, rebinds/chords, undo/redo, persistência de nodes, regressões de consumers, JarJar e dedicated-server boot. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ldlib/files/all?version=1.21.1
+
+> **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
