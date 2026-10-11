@@ -103,3 +103,9 @@ O fix do Hatch toca conservação de XP em uma borda numérica relevante; o novo
 - [ ] Hyper-enchanting, Mending on belt, salvage/affix e recipe reload permanecem exactly-once.
 
 Fonte upstream: CurseForge CEI 2.5.4, file ID 8900719. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Upstream NeoForge 1.21.1 + Create 6.0.10:** **Create: Enchantment Industry 2.5.4b Beta** (09/10/2026), posterior à 2.5.4 já detalhada acima. **Físico histórico:** `create-enchantment-industry-2.5.3b.jar`. Manter deltas da 2.5.4, especialmente fix do Experience Hatch em níveis altos, Ponder datagen e **Create: Dragons Plus 1.11.9+** como dependência mínima. **BLOQUEIO físico:** o snapshot traz `CreateDragonsPlus-1.11.8b.jar`; não promover 2.5.4b isoladamente. Sem changelog 2.5.4b específico, não presumir alteração adicional de XP. **Gate:** atualizar/revalidar Dragons Plus e sua cadeia, converter/armazenar XP exactly-once, Hatch e níveis altos, Hyper-Enchanting, books, salvage/affix, reload/tag/recipes, integração Apothic/Apotheosis, contraptions e mundo persistente. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-enchantment-industry/files/all?version=1.21.1
+
+> **Estado:** atualização documental sem substituição de JAR, edição da autoridade física ou teste in-game nesta execução.

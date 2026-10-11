@@ -93,3 +93,9 @@ Outros jogadores precisam ver a pose correta do rider a partir do movement state
 - CurseForge oficial: Client-only, release 2.0.0 NeoForge 1.21.1;
 - descrição oficial: pausa EMF durante Skyhook, chain/rope/Aeronautics e compat adicionais.
 > **Boundary canônico:** EMF Compat: Create controla apenas a **precedence visual da pose**. Create/Aeronautics continuam authority do movement e physics state.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Upstream NeoForge 1.21.1:** `emf_compat_create_neoforge_1.21.1_2.1.0.jar`, **release de 08/10/2026**; JAR físico histórico `emf_compat_create_1.21.1_2.0.0.jar` (2.0.0). Não imputar alteração exata de pose/assembly à 2.1.0 sem changelog granular ou inspeção source. **Gate coordenado:** EMF Compat Core 2.0.0, EMF 3.3.5, ETF 7.2.1, Create 6.0.10, Create Aeronautics/Sable, Climbable Ropes. Validar Skyhook, chain/rope ride, mount/dismount, first/third person, outros observadores, pose precedence e restauração após stop/relog/reload F3+T, dedicado não assumir pose como gameplay authority. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-create/files/all
+
+> **Estado:** atualização documental sem substituição de JAR, edição da autoridade física ou teste in-game nesta execução.

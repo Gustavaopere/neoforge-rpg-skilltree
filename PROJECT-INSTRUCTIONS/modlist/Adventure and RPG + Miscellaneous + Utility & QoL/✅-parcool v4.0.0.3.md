@@ -205,3 +205,8 @@ A autoridade física continua em **ParCool 4.0.0.3** (`ParCool-1.21.1-4.0.0.3.ja
 
 **Fontes:** https://www.curseforge.com/minecraft/mc-mods/parcool/files/9059241 ; https://www.curseforge.com/minecraft/mc-mods/parcool/files/9068414 ; https://www.curseforge.com/minecraft/mc-mods/parcool/files/9106851
 
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Revalidação:** o dossiê já apresenta a cadeia upstream NeoForge 1.21.1 até **4.0.1.2**, release 09/10/2026. O último JAR histórico permanece **4.0.0.3**. **Impacto cumulativo essencial:** 4.0.1.1 corrige crash de boot dedicado e 4.0.1.2 adiciona desativação individual de learning de ações e altera custos padrão; efeitos de progressão não podem ser atribuídos como instalados. **Gate:** config migration, parkour learning/custos, oito dodge directions, slide/grapple em fluido, Epic Fight animation precedence, Sable/Aeronautics physics, Curios 9.5.1, mundos persistentes e reboot de servidor. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/parcool/files/all
+
+> **Estado:** atualização documental sem qualquer substituição de JAR, edição da autoridade física ou teste in-game nesta execução.
