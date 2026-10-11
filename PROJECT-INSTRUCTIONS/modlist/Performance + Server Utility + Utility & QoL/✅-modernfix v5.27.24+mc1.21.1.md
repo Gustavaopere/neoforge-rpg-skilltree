@@ -106,3 +106,9 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Source oficial: `embeddedt/ModernFix`, branch 1.21.1 e documentação/wiki do projeto.
 - Evidência histórica de compat: issue público sobre `mixin.perf.dynamic_resources` + Create Teleporters em versão anterior da mesma linha.
 - **Limite:** não foi localizado um tag/commit público inequivocamente pinado como 5.27.24; source HEAD não é apresentado como binário exato.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Upstream NeoForge Minecraft 1.21.1:** `modernfix-neoforge-5.27.26+mc1.21.1.jar`, release em 08/10/2026, após a 5.27.25; **JAR físico histórico** mantém **5.27.24**. O changelog específico 5.27.25–26 não foi isolado para atribuição de uma correção técnica. **Gate:** mixin compatibility e flags, carga massiva de registries/models/resources do pack, config `mixin.perf.dynamic_resources`, Create Teleporters, FastSuite, FerriteCore, resource/datapack reload, memória e classloading client/dedicated server, save/restart, baseline de tempos de boot. Não tratar maior número de versão como benchmark automaticamente. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/modernfix/files/all?version=1.21.1
+
+> **Estado:** atualização documental sem qualquer substituição de JAR, edição da autoridade física ou teste in-game nesta execução.
