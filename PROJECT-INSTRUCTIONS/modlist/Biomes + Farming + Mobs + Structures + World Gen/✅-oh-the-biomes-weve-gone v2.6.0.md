@@ -170,3 +170,8 @@ Preservar o histórico de migração de config JSON5→JSON já documentado na 2
 
 **Estado:** upstream 2.6.3 documentado; último instalado conhecido permanece 2.6.0.
 
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Revalidação de upstream:** **Oh The Biomes We've Gone 2.6.3** para NeoForge **1.21.1** publicado 10/10/2026, já documentado na seção anterior; físico histórico **2.6.0**. **Cadeia técnica:** 2.6.2 restaura check de config para NeoForge Biome Modifiers; 2.6.3 altera assinatura `schedule tick` sem vincular efeito a um block/entity específicos sem source diff. **Gate conjunto:** Oh The Trees You'll Grow 5.3.5 upstream, CorgiLib 5.0.0.10 upstream, GeckoLib e TerraBlender, Dynamic Trees BWG e worldgen com Tectonic/Terralith, JSON5→JSON config migration, toggles biome modifiers, chunks velhos/novos, saplings/trees, structures, save/restart e scheduled ticks. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/oh-the-biomes-weve-gone/files/all?version=1.21.1
+
+> **Estado:** atualização documental sem substituição de JAR, edição da autoridade física ou teste in-game nesta execução.
