@@ -167,3 +167,9 @@ Fontes upstream: CurseForge files 8905916 (3.6.5), 8929425 (3.6.6), 8940361 (3.6
 **Fontes:** https://www.curseforge.com/minecraft/mc-mods/selene/files/8963246 ; https://www.curseforge.com/minecraft/mc-mods/selene/files/8981395 ; https://www.curseforge.com/minecraft/mc-mods/selene/files/all?version=1.21.1
 
 **Estado:** 3.7.1 disponível upstream; JAR 3.6.4 continua físico. Sem runtime QA executado.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Upstream NeoForge 1.21.1:** **3.7.2**, release de 10/10/2026 (`moonlight-1.21.1-3.7.2-neoforge`); JAR histórico permanece **3.6.4**. A cadeia 3.6.5–3.7.1 está detalhada acima; não inventar deltas da 3.7.2 sem consultar changelog granular. **Gate transversal:** Supplementaries, Amendments 2.1.11, Polytone 5.0.5, CodecUI, dynamic generated assets, registries/wood types, Cartography Table, configs, resource/datapack reload, shader and resource-pack order, client+dedicated-server, save/restart. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/selene/files/all?version=1.21.1
+
+> **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.

@@ -75,3 +75,9 @@ Validar cast/cancel, ship assembly/disassembly, player mount/dismount, sublevel/
 - **Runtime/logs já auditados:** sete IDs próprios e dez overlays de spells-base.
 - **Limite:** source/bytecode exatos não foram extraídos nesta ficha; signatures, fórmulas e ownership policies não publicados permanecem fail-closed.
 - **Runtime QA:** nenhum item da matriz acima foi marcado como executado nesta catalogação.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Publicação NeoForge 1.21.1:** `ironsable-1.2.1.jar` em **09/10/2026**, posterior ao último JAR físico documentado **`ironsable-1.2.0.jar`**. A release oficial confirma o artefato, mas seu changelog técnico granular não foi confirmado nesta rodada: não imputar spells/forças adicionais por inferência. **Gate:** Iron's Spells 3.16.3, Sable 2.0.5, Wind's Spellbooks 1.0.5, Create Aeronautics, 7 spells próprios e 10 overrides de física anteriores, ownership de mana/damage/cooldown pelo ISS, physics force exactly-once, multi-caster/ships e lifecycle de tether/stasis, dimension/assembly, chunk unload, save e dedicated server. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ironsable/files/all
+
+> **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
