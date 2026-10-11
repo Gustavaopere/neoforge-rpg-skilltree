@@ -130,3 +130,8 @@ AzureLib é uma **engine de animação** consumida por outros mods; migração 3
 
 **Decisão:** deixar 3.1.11 como estado instalado e 3.1.18 como candidato upstream; dependências/consumers e testes físicos pendentes.
 
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Estado upstream:** o catálogo CurseForge para **NeoForge 1.21.1** passou a incluir `azurelib-neo-1.21.1-3.1.19.jar` em **09/10/2026**. Corrige a limitação da seção 12, que havia visto 3.1.19 só em Fabric antes da publicação/identificação NeoForge. **Última física:** `azurelib-neo-1.21.1-3.1.11.jar` (3.1.11); versão **3.1.19** é apenas **candidata disponível**, não instalada. Esta checagem confirma a existência do artefato, sem atribuir changelog não verificado a 3.1.19. **Gate:** compat de consumers, renderers/controller APIs, Molang `math.`, animation reverse/sequence, reload, resource packs e shaders, servidor dedicado e carga alta de mobs. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/azurelib/files/all?version=1.21.1
+
+> **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.

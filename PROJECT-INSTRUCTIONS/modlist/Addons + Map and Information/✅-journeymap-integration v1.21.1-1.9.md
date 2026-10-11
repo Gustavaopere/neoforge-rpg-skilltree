@@ -67,3 +67,9 @@ A integração depende da API de JourneyMap para overlays/markers. Atualizar Jou
 - **CurseForge/Modrinth oficiais:** release 1.9, ambiente client-side, support matrix e changelog.
 - **Limite:** configurações locais de JMI/JourneyMap não foram fornecidas; não se afirma quais overlays estão habilitados na sessão do usuário.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Estado upstream:** release NeoForge Minecraft 1.21.1 **`1.9.1`** publicada em 10/10/2026, file ID **9121304**, `jmi-neoforge-1.21.1-1.9.1.jar`; último JAR físico documentado segue `jmi-neoforge-1.21.1-1.9.jar` (**1.9**). **Mudanças oficiais:** port da melhoria de performance de FTB Chunks da linha MC 1.20.1 para 1.21 e atualização para a release mais recente de JourneyMap; suporte divulgado a FTB Chunks e Waystones. **Gate:** comparar requisitos exatos de JourneyMap da nova build com 6.0.8 do snapshot, medir rendering/labels e múltiplos claims, color update, waystones, dimension, relog, perda de markers e smoke client. Nenhuma instalação ou teste foi comprovado. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/journeymap-integration/files/9121304
+
+> **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.

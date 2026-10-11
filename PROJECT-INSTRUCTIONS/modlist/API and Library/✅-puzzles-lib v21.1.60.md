@@ -186,3 +186,8 @@ Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/puzzles-lib/files/
 
 **Estado:** 21.1.63 disponível; instalação ainda identificada como 21.1.60.
 
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Estado upstream:** o histórico detalhado da release `21.1.63` de 08/10/2026 já está registrado na seção 18; esta passagem apenas reconfirma a separação entre **JAR físico histórico 21.1.60** e **candidato 21.1.63**. **Decisão:** não promover isoladamente uma library compartilhada. Acompanhar Portable Hole/Overflowing Bars, access wideners transitivos, capability rebind da 21.1.62, ABI, dedicated server e relog. **Fonte:** https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.63-mc1.21.1
+
+> **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.

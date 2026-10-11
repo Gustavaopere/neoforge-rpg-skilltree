@@ -222,3 +222,9 @@ A nova trade UI pode coexistir com novos trades, mas mods que substituem a tela 
 **Upstream:** [CurseForge — Amendments](https://www.curseforge.com/minecraft/mc-mods/amendments), descrição oficial e release 2.1.10.
 
 **Confiança:** alta para features publicadas acima. Compatibilidade com blocks/fluids custom depende da implementação de cada mod e deve ser confirmada runtime quando virar contrato de automação/perk.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Estado upstream:** **`2.1.11`**, release NeoForge 1.21.1 de 10/10/2026, `amendments-1.21-2.1.11-neoforge.jar`, file ID **9122440**. A modlist física histórica permanece `2.1.10`. **Mudança oficial:** adicionado código de compatibilidade com **Polytone**. Como Polytone do snapshot está em 4.4.0 e sua linha 5.0.5 já tem atualização upstream documentada, não presumir que a compat 2.1.11 foi testada com todas essas revisões. **Gate:** manter ownership de cores/variants de itens e blocos; conferir Cauldrons, lanterns, signs, generated resources do Moonlight Lib, resource reload, Pixel Consistent Signs e regressões junto a Supplementaries. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/amendments/files/9122440
+
+> **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.

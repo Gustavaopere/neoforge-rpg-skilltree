@@ -250,3 +250,9 @@ Apprentice's Codex não é duplicata de **Spell Codex**: este addon adiciona spe
 - [CurseForge — Apprentice's Codex](https://www.curseforge.com/minecraft/mc-mods/apprentices-codex)
 - [Wiki/source oficial](https://github.com/hexqua/apprentice_codex/wiki)
 - Modlist física e guia consolidado de Magia do projeto.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Estado upstream:** a última build exibida para NeoForge 1.21.1 continua **`0.9.7.1` Beta** (30/08/2026), idêntica ao JAR no snapshot. **Decisão:** manter enquanto não houver release mais nova compatível e aprovada. **Gate:** Iron's Spells 3.16.3, Create 6.0.10, Spell Dispenser em automação/redstone e contraptions, single-source casting/mana/progressão, datapack schema, compatibilidade de Arcane in a Jar e restart de mundo; especialmente relevante se o pack migrar versão dos provedores. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apprentices-codex/files/all?version=1.21.1
+
+> **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.

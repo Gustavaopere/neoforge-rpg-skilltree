@@ -103,3 +103,9 @@ Cada cliente restaura a pose dos braços com base no state normal recebido. O he
 - página oficial: Client-only, objetivo, both-arm capture, head/body/legs EMF, other-player support;
 - CurseForge oficial: `emf_compat_iron_spells_1.21.1_2.0.0.jar` como latest release NeoForge 1.21.1.
 > **Boundary canônico:** esta bridge corrige somente a **pose visual de cast contra override EMF**. Iron's Spells continua authority do spell.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Estado upstream:** CurseForge lista **2.0.0** como última release NeoForge 1.21.1 (02/09/2026), igual ao JAR histórico. **Decisão:** sem bump. Manter alinhamento com EMF Compat Core 2.0.0, EMF 3.3.5 e Iron's Spells; após qualquer mudança de EMF/ISS, testar captura/restauração de braços no casting, EFIS/Epic Fight, primeira/terceira pessoa, observador multiplayer e reload visual. Client-side; nenhuma mutação no casting autoritativo do servidor. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-irons-spells-n-spellbooks/files/all
+
+> **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.

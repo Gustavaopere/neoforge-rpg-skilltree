@@ -108,3 +108,9 @@ Gate de regressão: Sable parent/child origins, bounding boxes em moving structu
 Fontes upstream: CurseForge CreativeCore 2.13.47/2.13.48 para NeoForge 1.21.1; `CreativeMD/CreativeCore` branch `1.21`, `changelog.txt`.
 
 > **Atualização/Status — valor histórico preservado do Notion:** REATUALIZADO EM 20/09/2026 — runtime físico CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar / 2.13.46 confirmado. A build instalada é a latest Release NeoForge 1.21.1 de 11/09/2026. O delta 2.13.45 adiciona index method ao ChunkLayerMap e reworka VecOrigin para melhor suporte a partialTick no client; 2.13.46 corrige empty-box item rendering, rotation values de animation tratados como radians e item-box offset held/in-ground.
+
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Estado upstream:** **`2.13.51`**, release NeoForge MC 1.21.1 de 09/10/2026 (`CreativeCore_NEOFORGE_v2.13.51_mc1.21.1.jar`, file ID **9108041**); física histórica continua **2.13.46**. A cadeia 2.13.47/48 documentada na seção 21 continua válida; houve também 2.13.49/50 publicados para 1.21.1. **Changelog oficial 2.13.51:** correção de suporte a **rotation collision em Sable origins**. Isso complementa o fix anterior de bounding boxes exagerados em origins parent/child. **Gate de migração:** LittleTiles/LittleFrames e demais consumers, colisões/voxel shapes em Sable ships e sublevels, origins e bounds rotativas, cliente/dedicated server, render, configuração, troca de dimensão e mundo salvo. Fonte não prova que a versão foi instalada. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/creativecore/files/9108041
+
+> **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.
