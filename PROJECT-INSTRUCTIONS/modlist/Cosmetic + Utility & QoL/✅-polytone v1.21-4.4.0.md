@@ -194,3 +194,8 @@ A branch 5.0.x altera a semântica de presentation e interação com recursos; o
 
 **Status:** 5.0.5 é a última release externa identificada neste ciclo; instalação 4.4.0 segundo a última autoridade física, **PENDENTE de nova inspeção e testes**.
 
+## Atualização upstream e gate de manutenção — 11/10/2026
+
+**Revalidação:** o dossiê já documenta a série até **Polytone 5.0.5** (10/10/2026); versão historicamente instalada permanece **4.4.0**. **Risco novo:** Amendments **2.1.11** publicou compatibilidade específica com Polytone, e Moonlight **3.7.2** é nova candidata de biblioteca. Não promover Polytone 5.x isoladamente sem o trio e o stack shader/resource-pack. **Gate:** colors.json, sign glow, game mode/difficulty expressions, biome/particle colormaps, colored lights, water fog, assets gerados, F3+T, save/relog, visuais e FPS. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/polytone/files/all?version=1.21.1
+
+> **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
