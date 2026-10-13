@@ -76,3 +76,11 @@ Validar first worldgen, End exploration, portal assembly/open/close, dimension t
 - página oficial: AzureLib + Iron's + Biolith + Fusion required; OptiFine incompatível;
 - documentação separa claramente features atuais de planned/WIP progression.
 > 🔒 Boundary canônico: **Crystal Chronicles expande o pós-game de Iron's; não redefine o core de spellcasting**. Tudo marcado WIP/Alpha deve permanecer tratado como contrato instável até evidência versionada futura.
+
+## Atualização de publicação e gates — 13/10/2026
+
+**Mod:** Crystal Chronicles — Iron's Spells 'n Spellbooks. **Última release NeoForge 1.21.1 identificada:** `0.1.4-alpha`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/crystal-chronicles/files/all.
+
+Release **`crystal_chronicles-0.1.4-alpha.jar`** para NeoForge 1.21.1 em 12/10/2026, subsequente ao JAR histórico **0.1.3-alpha**. O projeto adiciona conteúdo de escolas mágicas com armaduras, armas e biomas integrados a Iron's Spells. A publicação está nomeada alpha; sem changelog granular verificado da 0.1.4, não inventar bosses/spells/biomes/recipes. Gate com Iron's Spells 3.16.3, magias/registries, schools, worldgen e geração em chunks antigos vs novos, loot balance/armor effects, cliente e dedicated server, configs e possíveis dependências não declaradas; backup de mundo obrigatório antes de migrar.
+
+**Autoridade física:** JAR/metadata e versão efetivamente instalados permanecem os do snapshot histórico `modlist(1).txt`; não há novo dump. Preservar o prefixo ✅ e a versão física no filename do `.md`; não substituir o arquivo com uma versão candidata. **Estado:** reauditoria documental; QA Minecraft (client/server/mundo) não executado nesta ação.
