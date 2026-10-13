@@ -1,132 +1,87 @@
-# Ars Sophisticated Compatibility
+# Sophisticated Backpacks: Ars Compat — Ars Nouveau Compatibility
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#54**: `arssophisticatedcompat-0.3.0.jar`, mod id `arssophisticatedcompat`, runtime `0.3.0`, SHA-1 `7cc6c1e1d92d109230f68b6a63dc4bfb13c245a6`.
+> **CORREÇÃO DE IDENTIDADE DOCUMENTAL — 13/10/2026.** O inventário histórico registra na posição física **#054** o JAR `arssophisticatedcompat-0.3.0.jar`, mod ID atribuído no snapshot `arssophisticatedcompat`, versão runtime `0.3.0` e SHA-1 histórico `7cc6c1e1d92d109230f68b6a63dc4bfb13c245a6`. Esse filename corresponde **exatamente** ao arquivo oficial de **Sophisticated Backpacks: Ars Compat** para Minecraft 1.21.1 / NeoForge, [CurseForge 1653477, File ID 8653384](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-ars-compat-sophisticated/files/8653384). O dossiê anterior confundia o projeto com **Sophisticated Storage: Ars Compat**, que tem o JAR distinto `arssophisticatedstoragecompat-0.3.0.jar`, [CurseForge 1653878, File ID 8655579](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated/files/8655579). **O arquivo do pack não foi disponibilizado nesta rodada para comparação SHA ou extração de manifesto. A identidade é fortemente apoiada no filename oficial, não uma igualdade binária já verificada.**
 
-> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `arssophisticatedcompat-0.3.0.jar`, versão `0.3.0`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+- **Identidade oficial mais compatível com a evidência física:** Sophisticated Backpacks: Ars Compat | Sophisticated Backpacks Ars-Nouveau Compatibility.
+- **Nome histórico no catálogo:** Ars Sophisticated Compatibility / erroneamente Sophisticated Storage: Ars Compat.
+- **Autor e publicação:** LuminaCherry, 15/08/2026, tipo Release, CurseForge project `1653477`, file `8653384`.
+- **Minecraft/loader do arquivo publicado:** Minecraft `1.21.1`, NeoForge, cliente e servidor.
+- **Arquivo top-level histórico:** `arssophisticatedcompat-0.3.0.jar` — não modificado.
+- **Versão histórica:** `0.3.0` (runtime no snapshot). **Disponível para o mesmo target:** `0.3.0`.
+- **Mod ID do inventário:** `arssophisticatedcompat`; confirmar novamente no JAR real.
+- **Categorias CurseForge:** `Magic + Storage + Utility & QoL`; a pasta existente permanece válida.
+- **Estado do pack:** última evidência de presença é `modlist(1).txt` de setembro de 2026; nenhuma nova lista física foi fornecida.
+- **Decisão:** **MANTER no catálogo e no inventário histórico**, corrigindo a identidade; promoção/compatibilidade com atualização Sophisticated **PENDENTE**.
+- **Fonte primária funcional:** [descrição do projeto Backpacks](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-ars-compat-sophisticated) e [release 0.3.0 NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-ars-compat-sophisticated/files/8653384).
+- **Source versionado:** não localizado/inspecionado para este binário; não inventar assinaturas, mixins, ticks ou nomes internos de classes.
 
-- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
-- **Estado no pack na exportação:** Instalado — Dossiê completo
-- **Autoridade física usada:** `modlist(1).txt` de 22/09/2026 — autoridade física atual
-- **Data da exportação:** 2026-09-09
+## 1. Função e arquitetura
 
-## Propriedades do banco
+A extensão fornece upgrades de **Ars Nouveau para Sophisticated Backpacks**, manipulando Source, conversão de itens, manutenção de efeitos de poção e reparo de equipamentos enquanto associados a uma mochila. É uma bridge de funcionalidade, não cria um segundo inventário independente nem substitui o sistema de magia Ars.
 
-- **Mod:** Ars Sophisticated Compatibility
-- **Arquivo JAR:** arssophisticatedcompat-0.3.0.jar
-- **Versão 1.21.1:** 0.3.0
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Decisão:** Sem decisão
-- **Categoria:** Compat, Armazenamento, Magia
-- **Função:** Bridge Ars Nouveau ↔ Sophisticated Storage com Source Storage, Storage Source Link, Potion Jar e Enchanter's Upgrade.
-- **Dependências:** Ars Nouveau 5.13.1 + Sophisticated Core 1.5.1 + Sophisticated Storage 1.5.91 confirmados fisicamente. AE2 está ausente do snapshot atual e não é superfície ativa.
-- **Sobreposição:** Ponte específica Ars Nouveau↔Sophisticated Storage; não é substituto de nenhum dos dois sistemas-base.
-- **Compatibilidade/Riscos:** Sem source público versionado acessível nesta auditoria: taxas/classes internas não foram inferidas. Riscos principais são double-consumption/double-credit de Source, repair duplicado, potion refresh fantasma e concorrência de automação.
-- **Observações:** Quatro superfícies oficiais: Source Storage, Storage Source Link, Potion Jar e Enchanter's Upgrade. A divergência de filename `arssophisticatedcompat` vs publicação `arssophisticatedstoragecompat` continua registrada sem alegar identidade binária não comprovada.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + documentação/release oficial Ars Sophisticated Compatibility 0.3.0 + dossiê operacional já auditado. Reconciliação final: JAR/runtime permanecem exatamente `arssophisticatedcompat-0.3.0.jar` / `0.3.0`; sem divergência física e sem inferir classes/taxas internas não confirmadas.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #54: `arssophisticatedcompat-0.3.0.jar` / `0.3.0` conferidos contra a modlist atual; quatro superfícies oficiais e limite de evidência sem source versionado preservados.
-- **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou o runtime físico 0.3.0 e as quatro superfícies funcionais oficiais. A instalação atual não foi usada como substituto de decisão de manter/remover.
-- **Data da última decisão:** não definida
+**Ownership:** Sophisticated Backpacks controla inventários móveis/colocados, upgrades, slots, filtros, persistência e sincronização. Ars Nouveau é autoridade da economia de Source e dos efeitos/reparos aceitos. Este addon conecta essas duas APIs no contexto de uma **mochila Sophisticated**, não de barrel/chest/shulker do Sophisticated Storage.
 
-# Dossiê operacional — padrão Alex's Mobs
+## 2. Superfícies e conteúdo oficialmente publicados
 
-> ✅ Versão física confirmada: `arssophisticatedcompat-0.3.0.jar`, mod id `arssophisticatedcompat`, versão `0.3.0`. A documentação oficial da release é a autoridade funcional disponível; nenhuma taxa interna, classe ou algoritmo foi inventado.
+### 2.1 Source Storage Upgrade
+A documentação do autor prevê guardar Source dentro de backpack e escalar capacidade com **Stack Upgrades**. Valores concretos, fórmula, número de slots, transferências e restrições não foram isolados no JAR; não publicar valores especulativos.
 
-## 1. Papel e autoridade
-Ars Sophisticated Compatibility conecta **Ars Nouveau** com **Sophisticated Storage/Sophisticated Core** por upgrades de storage. O addon não substitui nenhum dos providers:
-- Ars Nouveau mantém autoridade sobre **Source, efeitos mágicos e reparo mágico**;
-- Sophisticated Storage/Core mantém autoridade sobre **inventário, slots, upgrade stacking, storage lifecycle e GUI**;
-- este addon define somente as bridges/upgrade types que ligam os dois sistemas.
+### 2.2 Sourcelink Upgrades
+A [descrição oficial](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-ars-compat-sophisticated) enumera **Agronomic, Alchemical, Mycelial, Volcanic e Vitalic**. A [release 0.3.0](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-ars-compat-sophisticated/files/8653384) informa conversão de itens válidos da mochila em Source por Backpack Source Link. As condições específicas dos cinco tipos, quantidades e receitas internas não foram auditadas; qualquer lógica de conversão deve se apoiar no provider Ars.
 
-## 2. Dependências físicas relevantes no pack
-- Ars Nouveau 5.13.1.
-- Sophisticated Core 1.5.1.
-- Sophisticated Storage 1.5.91.
+### 2.3 Potion Jar Upgrade
+A documentação prevê armazenar duração de poção e manter efeitos ativos com auto-refresh. Testar duração, remoção do upgrade, troca de mochila, dimension change, morte, logout e restart sem efeito fantasma; o comportamento exato de servidor não foi inspecionado em bytecode.
 
-A presença física dessas dependências foi confirmada na modlist atual. Não criar fallback que simule Sophisticated Storage se o provider real estiver ausente.
+### 2.4 Enchanter's Upgrade
+A [página oficial do projeto](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-ars-compat-sophisticated) anuncia reparo de equipamento encantado consumindo Source guardado. A release file 8653384 não lista esse upgrade explicitamente no texto resumido, portanto sua existência é **evidência da descrição do projeto**, sem atribuir classes/receitas específicas ao binário antes de inspeção.
 
-## 3. Superfícies funcionais oficiais — 4 upgrades
+### 2.5 Templates e recipes
+A release confirma modelos Ars-themed de upgrades para backpack e recipes. Não inventar IDs, custo/outputs ou compatibilidade com alterações KubeJS/datapacks sem extrair o conteúdo da publicação e avaliar o RecipeManager carregado.
 
-### Source Storage Upgrade
-Permite a um storage Sophisticated armazenar **Source**. A capacidade escala com **Stack Upgrades** segundo a documentação oficial.
+## 3. Dependências e faixa de versões
 
-**Ownership:** o container/upgrade pertence ao storage Sophisticated; a unidade/recurso continua Source Ars. Inserção/extração precisa ser atômica e não pode materializar Source duas vezes durante save/reload ou upgrade move.
+**Obrigatórias conforme descrição da publicação:** Ars Nouveau, Sophisticated Backpacks e Sophisticated Core. O autor não publica ranges granulares do NeoForge no changelog acessado; **não atribuir mínimos numéricos a este addon sem ler o manifesto do JAR**.
 
-### Storage Source Link Upgrade
-Converte **itens válidos armazenados** em Source. É uma bridge de geração ligada ao conteúdo do inventário.
+**Providers do último snapshot do pack:** Ars Nouveau `5.13.1`, Sophisticated Backpacks `3.26.3` e Sophisticated Core `1.5.1`. A migração documental avaliada na PR #893 mira Core `1.5.11.2394` + Backpacks `3.26.12.2208` + Storage `1.6.5.2176` e bridges Create. Essa combinação **não foi testada com Ars Compat 0.3.0**. O lançamento para o mesmo Minecraft não comprova ABI com versões posteriores.
 
-Riscos: consumo duplo do mesmo stack, processamento repetido após chunk reload, ou geração antes de a remoção do item ser confirmada. Ordem segura: validar provider/receita → reservar/consumir item → creditar Source exatamente uma vez.
+**Não confundir com outro produto:** [Sophisticated Storage: Ars Compat, File ID 8655579](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated/files/8655579), depende de **Sophisticated Storage** e implementa upgrades de recipientes estacionários; seu filename oficial não foi encontrado como top-level no snapshot conhecido. Não registrá-lo como instalado nem transferir suas features para o presente dossiê.
 
-### Potion Jar Upgrade
-Armazena **duração de poção** e pode auto-refresh efeitos. É uma integração de storage/effect lifecycle.
+## 4. Integrações do modpack
 
-Riscos: refresh duplicado por mais de uma instância, efeito persistindo após upgrade removido, e client-side simulando duração. A decisão final de aplicar/renovar efeito deve permanecer no servidor.
+- **Sophisticated JEI Index (#515):** consulta contents de backpacks e recipe transfer. Se o Sourcelink consumir itens simultaneamente, verificar contabilidade e invalidar caches corretamente.
+- **Sophisticated Backpacks Create Integration (#517):** contraptions e grupos vinculados podem mover/expor backpacks; garantir um dono efetivo dos ticks de Source/upgrades durante montagem, movimento e desmontagem.
+- **Sophisticated Storage e sua bridge Create (#519–520):** providers relacionados, mas **não destinatários diretos** dos upgrades deste addon. A partilha de linked storage entre Backpacks e Storage pode expor inventários relacionados, exigindo evitar conversão/tick em duplicidade.
+- **Ars Nouveau e addons Ars:** economia e efeitos seguem contratos Ars. A coexistência não autoriza aplicação duplicada de Source ou reparos.
+- **KubeJS/datapacks:** confirmar receitas de upgrades e conflitos de recipe IDs/outputs na instância real; nenhuma mudança arbitrária foi feita.
+- **Dedicated server/multiplayer:** dois usuários consultando o mesmo backpack/linked group devem ver estado server-authoritative; nenhuma transferência pode ocorrer mais de uma vez.
 
-### Enchanter's Upgrade
-Usa **Source para reparar itens encantados** armazenados/gerenciados pelo storage.
+## 5. Persistência, sincronização e performance
 
-Riscos: reparar sem debitar Source, debitar Source sem confirmar reparo, dois upgrades reparando o mesmo item no mesmo tick ou interferência com outros sistemas de repair. A operação precisa ser idempotente por ciclo.
+Cenários de risco a examinar: carga de chunks, backpack equipado vs colocado, mudança de dono/localização, Inception/nesting se suportado pelo conjunto instalado, movement via contraption, ações concorrentes e restart. O provider dos itens e o de Source devem preservar estado de maneira transacional; uma cópia client-side não pode recriar item consumido nem saldo de Source.
 
-## 4. Conteúdo auxiliar oficial
-A release também documenta:
-- template de upgrade com tema Ars;
-- texturas invertidas/edição Sophisticated Storage para os itens de upgrade.
+As opções de configuração e cooldowns específicos da versão 0.3.0 **não foram inspecionados**. Não deduzir custo de tick, taxa de geração ou mecanismos internos apenas pelas descrições funcionais.
 
-Esses elementos são apresentação/progressão e não constituem um segundo sistema de storage ou Source.
+## 6. Matriz de validação para atualização coordenada (tudo PENDENTE)
 
-## 5. Stack Upgrades e escalonamento
-A documentação confirma que o Source Storage Upgrade escala com Stack Upgrades. Não foi confirmada nesta auditoria a fórmula numérica exata para 0.3.0; portanto a ficha **não publica valores especulativos**.
+- [ ] Obter o JAR top-level real `arssophisticatedcompat-0.3.0.jar`, comparar SHA-1 físico `7cc6c1e1d92d109230f68b6a63dc4bfb13c245a6` com SHA do arquivo oficial **8653384** (se acessível), verificar SHA-256.
+- [ ] Extrair `META-INF/neoforge.mods.toml` do JAR real e oficial; confirmar `modId`, versão, loader, dependências e eventuais JarJar, sem inferir por filename.
+- [ ] Verificar se **`arssophisticatedstoragecompat-0.3.0.jar`** está ausente/presente em um **novo dump físico**; não presumir que o segundo mod foi instalado.
+- [ ] Testar boot cliente + dedicated server NeoForge `1.21.1`, Java 21 e logs de classloading com o trio Ars/Core/Backpacks.
+- [ ] Testar cada Sourcelink publicado com insumos válidos, débito único dos itens e crédito único de Source, inclusive quando inventário é visualizado via JEI.
+- [ ] Testar Source Storage + Stack Upgrades antes/depois da alteração de nível; nenhuma perda/duplicação de Source.
+- [ ] Testar Potion Jar após remoção do upgrade, backpack pickup/place, restart, death/respawn e troca de dimensão.
+- [ ] Testar Enchanter's Upgrade somente se confirmado na versão binária: Source debitado uma vez por reparo efetivo.
+- [ ] Testar Backpack em Create contraption, linked group Backpack↔Storage, unload/reload, assemble/disassemble e dois clientes concorrentes.
+- [ ] Repetir o conjunto em **cópia do mundo** com Core 1.5.11, Backpacks 3.26.12, bridges Create 0.2.3/0.1.23 e Storage 1.6.5; rollback e contagem de inventário antes/depois.
+- [ ] Confirmar recipes/datapacks/KubeJS/JEI de upgrades sem alterar progressão nem sobrescrever recipe silenciosamente.
 
-Qualquer perk/mod próprio que queira alterar capacidade deve ler o valor final exposto pelo provider, não recalcular uma fórmula presumida.
+**Nenhum desses testes de JAR/runtime ou inspeção binária foi executado neste ciclo.** A inferência de identificação baseia-se em correspondência exata de filename publicado, target e versão, mais descrição oficial; **a identidade byte-a-byte permanece NÃO VERIFICADA**.
 
-## 6. Client/server e sincronização
-- Inventário, Source armazenado/gerado, consumo de item, reparo e efeitos são server-authoritative.
-- GUI, barras e tooltips do upgrade são apenas apresentação.
-- Ao abrir o storage, o cliente deve receber o estado já validado pelo servidor.
-- Multiplayer: dois jogadores manipulando o mesmo storage não podem provocar dupla conversão/reparo.
+## 7. Histórico da correção e rastreabilidade
 
-## 7. Lifecycle obrigatório
-Validar:
-- colocação e remoção do upgrade;
-- mover storage com conteúdo quando o provider permitir;
-- chunk unload/reload;
-- server restart;
-- mudança de Stack Upgrades;
-- storage quebrado e recolocado;
-- inventário alterado por automação externa;
-- Source cheio/quase cheio;
-- efeito de Potion Jar expirando enquanto storage descarrega.
+- **Antes de 13/10/2026:** o catálogo classificava erroneamente o arquivo físico `arssophisticatedcompat-0.3.0.jar` como Sophisticated Storage: Ars Compat, atribuindo-lhe blocos estacionários, Storage Source Link e dependencies de Storage. Essa associação histórica **foi refutada pela comparação dos dois projetos oficiais**. A informação errada não deve continuar servindo de base para migração/QA.
+- **13/10/2026 — revisão da PR #894:** havia sido sinalizada apenas a divergência entre o filename do snapshot e o artefato de Storage, sem procurar o produto de Backpacks. Esta reauditoria resolve a *atribuição por filename* com o File ID `8653384`, mas conserva como pendência a prova binária.
+- **O que não mudou:** arquivo físico, nome físico do JAR, runtime e SHA-1 históricos, posição #054, número de mods, instalações e mundos. A pasta/file slug histórico `✅-ars-sophisticated-compatibility v0.3.0.md` foi conservado nesta correção para preservar os links existentes; o **título e identidade funcional** agora correspondem ao projeto de Backpacks.
+- **Produto separado:** Sophisticated Storage: Ars Compat mantém [File ID `8655579`](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated/files/8655579), **não incluído como top-level confirmado** no snapshot. A inclusão futura depende de pedido/justificativa, avaliação de redundância/estabilidade e inventário físico novo.
 
-Caches precisam ser invalidados quando handler, upgrade stack ou BE deixam de ser válidos.
-
-## 8. Integração com outros sistemas do pack
-- Ars 'n' Spells unifica/roteia **mana do jogador**, não o Source armazenado aqui. Não confundir as duas economias.
-- Ars Technica/Ars Creo também consomem/transportam Source; todos devem usar o provider Ars, sem manter saldos paralelos.
-- Sophisticated Backpacks é outro provider de storage e não deve receber estes upgrades por inferência, salvo suporte explícito do addon.
-- Create e outras automações fisicamente presentes podem inserir/remover itens do storage; conversão deve observar o handler final do Sophisticated Storage e não cópias client-side. **AE2 está ausente do snapshot físico atual e não é superfície ativa desta instância.**
-
-## 9. Riscos e testes obrigatórios
-1. Source Storage + Stack Upgrade: aumentar/reduzir stack level com Source dentro; testar overflow/fail-closed.
-2. Source Link: exatamente um consumo e um crédito por item processado.
-3. Enchanter: exatamente um débito de Source por reparo efetivo.
-4. Potion Jar: equip/unequip/removal/restart sem efeito fantasma.
-5. Automação concorrente: hopper/Create e player alterando o mesmo storage; reintroduzir cenário AE2 apenas se esse provider voltar à modlist física.
-6. Dedicated server: nenhum asset/GUI client-only no init comum.
-7. Provider ausente/incompatível: falhar com mensagem/disable seguro, não substituir comportamento.
-
-## 10. Evidência
-- Modlist física atual: addon 0.3.0 + Ars Nouveau + Sophisticated Core/Storage instalados.
-- CurseForge oficial da release 0.3.0: quatro upgrades e conteúdo auxiliar descritos acima.
-
-> 🔒 Limite de evidência: sem source público versionado acessível nesta etapa, taxas internas, intervalos de tick e nomes de classes não são considerados confirmados. A ficha é exaustiva quanto ao contrato funcional oficial e explicita o que permanece não observado.
-
-## Reauditoria de publicação/upgrade com Storage 1.6.x — 13/10/2026
-
-**Instalado na última evidência física:** `arssophisticatedcompat-0.3.0.jar`, mod ID `arssophisticatedcompat`, runtime `0.3.0`, posição #054 e SHA-1 históricos, **não inspecionados novamente**. A [publicação oficial NeoForge 1.21.1, CurseForge file 8655579 (15/08/2026)](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated/files/8655579) identifica o artefato distribuído como **`arssophisticatedstoragecompat-0.3.0.jar`**, diferente do filename físico `arssophisticatedcompat-0.3.0.jar`. Apesar da mesma versão semântica, **não declarar identidade binária** nem trocar filename até confirmar mod ID interno, SHA e proveniência do JAR efetivamente instalado. A listagem oficial 1.21.1 não apresenta versão posterior à 0.3.0.
-
-**Fatos da publicação:** a release especifica quatro upgrades: **Source Storage** (capacidade aumenta com Stack Upgrades), **Storage Source Link** (conversão de itens válidos em Source), **Potion Jar** (duração de poção/refresh automático) e **Enchanter's Upgrade** (reparo de itens encantados consumindo Source). Requer Ars Nouveau, Sophisticated Storage e Sophisticated Core; a página avisa que **nem todas as portas receberam teste completo in-game**. Sem source versionado específico validado nesta rodada, nenhuma assinatura ABI, limite de Source, tick ou classe interna é dada como confirmada.
-
-**Risco cruzado do lote Sophisticated:** atualizar Storage físico `1.5.91` para candidato `1.6.5` e Core `1.5.1` para `1.5.11` altera ciclo de vida de upgrades, linked groups e instâncias de storage. Não presumir que o plugin `0.3.0` suporta novas interfaces/IDs só por ter sido publicado para MC 1.21.1. Em grupo linked, o mesmo inventário e seus upgrades não podem converter itens em Source múltiplas vezes, duplicar poção ou cobrar Source em duplicata para reparo. **Fonte de Source = Ars Nouveau; storage e slots = Sophisticated Storage; bridge = upgrade específico.**
-
-**Gate PENDENTE:** validar binário físico versus file 8655579 e contratos do mod loader; entrar em cópia do mundo com Source armazenado, Source Link gerando crédito uma única vez, Potion Jar com refresh/remoção, reparos com gasto exato e Stack Upgrade antes/depois; testar Controller e Ender Linker em grupos Storage↔Backpacks, chunk unload/reload, save/restart, automação Create, dois usuários e fallback quando upgrades de Ars são incapazes de atuar em linked endpoint secundário. Não houve alteração física, comparação de SHA entre os dois nomes nem teste in-game. **Decisão: MANTER documentação do item físico, COMPATIBILIDADE NOVA NÃO VERIFICADA.**
+**Estado do lote:** identidade documental **CORRIGIDA COM BASE EM EVIDÊNCIA OFICIAL**; disponibilidade e metadata binária **NÃO VERIFICADAS**; promoção do stack Sophisticated **PENDENTE**.
