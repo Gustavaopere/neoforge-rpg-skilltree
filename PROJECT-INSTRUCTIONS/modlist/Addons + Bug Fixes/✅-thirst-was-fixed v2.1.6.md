@@ -142,3 +142,38 @@ CurseForge oficial ainda indica **2.1.6** (02/09/2026) como a última release Ne
 **Ownership e riscos de regressão:** Reclaimed controla hidratação e pureza; Thirst Was Fixed aplica patches/integrações próprias, Sophisticated Core/Backpacks são providers de inventário/tank, Sophisticated Thirst Upgrade aciona consumo automático. Nenhuma extensão deve criar segunda autoridade de água, cobrar consumível duas vezes, alterar purity durante `SIMULATE` ou corrigir o mesmo comportamento em dois mixins incompatíveis. **Não atribuir conflito ou compatibilidade como fato observado.**
 
 **Gates pendentes para qualquer promoção:** verificar `thirstwasfixed` 2.1.6 contra mixins/metadata reais do Reclaimed 3.0.5/3.0.6, NeoForge e Core, com boot de dedicated server; purity 0–3 em bucket/bottle/tank; Create tank/fluid pipe; items remainders; cliente-servidor; save/restart, chunk unload, dois jogadores e ausência de duplicação de hydration/Source. Nenhum teste desse gate foi executado neste lote; decisão física **MANTER HISTÓRICO / COMPATIBILIDADE CANDIDATA PENDENTE**.
+
+
+## 21. Auditoria do source 2.2.0 — Moonlight, ParCool e NeoForge (13/10/2026)
+
+**Instalado na última autoridade física, não reinspecionado nesta sessão:** Thirst Was Fixed 2.1.6 (thirstwasfixed-2.1.6.jar, #542, SHA-1 94f5ae571e4ab828c8aca8f7f9b26e98c59292d3), Thirst Was Reclaimed 3.0.5 (#543), ParCool 4.0.0.3 e NeoForge 21.1.250 (#001). A [última release NeoForge 1.21.1 identificada na página CurseForge consultada](https://www.curseforge.com/minecraft/mc-mods/thirstwasfixed/files/8794908) é 2.1.6, File ID 8794908, de 02/09/2026. Não foi baixado ou validado um JAR 2.2.0.
+
+### 21.1. Dois snapshots upstream distintos
+
+- [Source do commit aec5c8a65596ba8162858b22189057edbaa847d4 (02/09/2026)](https://github.com/Partonetrain/thirstwasfixed/tree/aec5c8a65596ba8162858b22189057edbaa847d4): gradle.properties declara mod_version=2.1.6, neo_version=21.1.247, neo_version_range=[21.1.247,), thirst_version_range=[1.21.1-3.0.4,). Corresponde temporalmente ao código 2.1.6, mas não se comprovou equivalência exata com o bytecode publicado.
+- [Source do commit 47fb0e7063f9e906aa05da492a938ad45f39cb8c (13/10/2026)](https://github.com/Partonetrain/thirstwasfixed/tree/47fb0e7063f9e906aa05da492a938ad45f39cb8c): mod_version=2.2.0 apenas no source inspecionado; neo_version=21.1.256 para desenvolvimento, mantendo neo_version_range=[21.1.247,). O [template neoforge.mods.toml](https://github.com/Partonetrain/thirstwasfixed/blob/47fb0e7063f9e906aa05da492a938ad45f39cb8c/src/main/templates/META-INF/neoforge.mods.toml) usa neo_version_range efetivamente como dependência. NeoForge 21.1.250 satisfaz esse limite **apenas numericamente**: compilar com 21.1.256 pode introduzir dependência binária que o range sozinho não denuncia. Não confundir com o template defeituoso do projeto separado Soph Upgrade Addons 0.9.2.1.
+
+### 21.2. Alteração de API do ParCool
+
+O [commit intermediário 3c2fd04b61f6563513e36111aa8bd5f8b73ebe8c](https://github.com/Partonetrain/thirstwasfixed/commit/3c2fd04b61f6563513e36111aa8bd5f8b73ebe8c) troca em ParCoolHelper o owner de STAMINA_RECOVERY de com.alrex.parcool.api.Attributes para com.alrex.parcool.api.ParCoolAttributes. Também muda a dependência de desenvolvimento ParCool do CurseForge File ID 6797814 para 9106851. O [commit 47fb0e7](https://github.com/Partonetrain/thirstwasfixed/commit/47fb0e7063f9e906aa05da492a938ad45f39cb8c) altera o NeoForge de desenvolvimento para 21.1.256 e a resolução do Millénaire para Curse Maven File ID 8913592. A reorganização de seções de Config.java não prova alteração funcional de configuração. **Não inferir** que ParCool físico 4.0.0.3 tenha a nova classe, nem que 2.2.0 seja compatível com ele, antes de inspecionar classes/metadata dos JARs e executar boot.
+
+### 21.3. Mixin de água em Moonlight do source 2.1.6
+
+A classe [SoftFluidTankMixin](https://github.com/Partonetrain/thirstwasfixed/blob/aec5c8a65596ba8162858b22189057edbaa847d4/src/main/java/info/partonetrain/thirstwasfixed/mixin/moonlight/SoftFluidTankMixin.java) foi lida no source 2.1.6 e é textual/funcionalmente igual na branch 2.2.0 auditada. Usa ModifyReturnValue em SoftFluidTank.isFluidCompatible e Inject cancelável no início de SoftFluidTank.addFluidOntoExisting. Quando a configuração SOFT_FLUID_WATER_MERGE, WaterPurity.isEnabled e a identidade de água de ambos os soft fluids permitem, ignora a diferença de componentes na aceitação; se ambas as purezas estão presentes e diferem, grava a pureza mínima e aumenta o volume, cancelando o caminho original. A [Config.java 2.1.6](https://github.com/Partonetrain/thirstwasfixed/blob/aec5c8a65596ba8162858b22189057edbaa847d4/src/main/java/info/partonetrain/thirstwasfixed/Config.java) define Soft Fluid Water Merge=true **como default de código**; a configuração real do pack não foi lida. Casos de pureza ausente, data components adicionais, volume e persistência permanecem pendentes de teste.
+
+### 21.4. Relação com os mixins do Reclaimed 3.0.6
+
+O MixinFluidStack global do Reclaimed 3.0.6 descrito pelas PRs #897–#898 atua em NeoForge FluidStack, enquanto o Mixin do Thirst Was Fixed age em Moonlight SoftFluidTank/SoftFluidStack. **Não são o mesmo alvo de Mixin**, de modo que não há prova de colisão direta no mesmo método. Há risco semântico de água migrar entre Moonlight/Supplementaries, Create e tanques Sophisticated com critérios diferentes de purity; isso deve ser testado, e não declarado como dupe real.
+
+O [thirstwasfixed.mixins.json do source 2.1.6](https://github.com/Partonetrain/thirstwasfixed/blob/aec5c8a65596ba8162858b22189057edbaa847d4/src/main/resources/thirstwasfixed.mixins.json) possui required=true, defaultRequire=1 e lista Moonlight, PlayerThirst, Ars, FTB, Supplementaries e outros mixins. O [MixinPlugin](https://github.com/Partonetrain/thirstwasfixed/blob/aec5c8a65596ba8162858b22189057edbaa847d4/src/main/java/info/partonetrain/thirstwasfixed/MixinPlugin.java) condiciona bridges opcionais à identificação de cada mod. Presença na lista não certifica aplicação válida na build física.
+
+### 21.5. Gate de promoção (NÃO EXECUTADO)
+
+1. Inspecionar JAR físico 2.1.6 e eventual JAR publicado 2.2.0: manifesto, Mixin config, class signatures e SHA; revalidar inventário.
+2. Verificar a presença de ParCoolAttributes e o contrato STAMINA_RECOVERY no ParCool físico 4.0.0.3; não atualizar Thirst Was Fixed isoladamente.
+3. Conferir os alvos binários SoftFluidTank.isFluidCompatible/addFluidOntoExisting no Moonlight físico; ler configs efetivas.
+4. Comparar água em Moonlight/Supplementaries, Create e Sophisticated com purity nula, igual e diferente, conservando volume e componentes; SIMULATE não pode alterar estado.
+5. Dedicated-server e client boot, dois clientes, reload, mundo salvo, chunk unload/reload, persistência e ausência de double processing.
+6. Executar baseline Reclaimed 3.0.5 versus candidato 3.0.6 em cópia de perfil e com rollback; NeoForge 21.1.259 seria estágio **separado**, não pré-requisito presumido para o source 2.2.0.
+
+**Decisão:** MANTER 2.1.6 no estado físico histórico e no filename do dossiê; source 2.2.0 em OBSERVAÇÃO e não instalado. Gate binário/runtime PENDENTE. Nenhuma atualização física ou teste de Minecraft foi realizada nesta auditoria documental.
