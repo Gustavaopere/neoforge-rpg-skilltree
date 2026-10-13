@@ -154,3 +154,10 @@ O ciclo público até 1.15.0 amplia os detalhes ambientais/client-side. Entre os
 
 **Estado:** 1.15.0 **upstream não instalada**, na autoridade física conhecida. Nenhum bump de JAR/SHA é reivindicado.
 
+## Atualização de publicação e gates — 13/10/2026
+
+**Mod:** Subtle Effects. **Última release NeoForge 1.21.1 identificada:** `1.15.1`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/subtle-effects/files/all?page=1&version=1.21.1.
+
+**Release NeoForge Minecraft 1.21.1 de 12/10/2026:** 1.15.1, após 1.15.0. **Fixes oficiais da série 1.15.1:** partículas para potted torch flowers e potted wither roses; offset de partículas de wither rose; `ClassCastException` com splashes no servidor; restabelecimento de partículas vanilla de conversão de mud quando efeito modded desligado; diferenciação de partículas vanilla de scraping e unwaxing de cobre. Não atribuir à 1.21.1 fixes especificamente marcados `[26.x]` (refmap e projectile splats). Gate visual com Particle Rain, PartiCull, shaders, AmbientSounds, reload, chuva e snapshots com efeitos ligados/desligados, dedicated server.
+
+**Fonte física:** `modlist(1).txt` continua sendo o último snapshot acessível. Não se verificou instalação nova nem JAR/metadata/hash atual; manter versão histórica no filename `✅-... vX.md` e na linha física do índice até novo dump e smoke tests. **Estado:** atualização documental concluída na branch; promoção física **PENDENTE/BLOQUEADA** conforme os gates.
