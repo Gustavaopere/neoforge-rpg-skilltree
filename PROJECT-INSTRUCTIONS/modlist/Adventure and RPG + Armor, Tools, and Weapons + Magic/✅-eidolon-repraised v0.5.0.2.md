@@ -176,3 +176,11 @@ Impacto: trata-se de correção funcional de combat effect. Damage/hit e aplica�
 10. garantir que as correções não dupliquem progressão, damage ou effect settlement.
 
 Fontes upstream: CurseForge files 8964998 (0.5.0.4) e 9009395 (0.5.0.5), NeoForge 1.21.1.
+
+## Release e compatibilidade — reauditoria 13/10/2026
+
+**Atualização upstream NeoForge 1.21.1:** 0.5.0.2. **Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/all.
+
+A versão **0.5.0.2 Release** de 09/05/2026 permanece a última publicação oficial localizada para **NeoForge 1.21.1**. Revisões mais recentes em **Forge 1.20.1** não podem ser atribuídas a este pack. Não inventar mecânicas/receitas novas. Revalidar ritual magic/altar, item recipes, progression, curio/equipment, data and configuration, reload, client/dedicated server, save e outros magic mods se houver upgrade futuro. Decisão: manter versão documentada, não existe candidato novo confirmado no alvo.
+
+**Autoridade física:** estado histórico de `modlist(1).txt` mantido; JAR, metadata, SHA e testes locais não foram re-observados. Filename do `.md` com ✅ e versão física herdada preservado. A revisão documental não significa instalação ou aprovação de promoção.
