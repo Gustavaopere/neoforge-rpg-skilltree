@@ -117,3 +117,14 @@ A/B não deve ser executado no perfil produtivo sem backup.
 - changelog Beta 17: signatures, module names, adapters, Class Tweakers, fluid aliases e cache;
 - decisão histórica 06/09/2026: `Opcional`, condicionada a consumer Fabric real.
 > 🔒 Fail-closed revisado: a linha top-level do bundle não expõe `mod version`, mas a **metadata jar-in-jar do próprio host** declara o módulo `connector` como `2.0.0-beta.17+1.21.1`. O campo de versão é preenchido a partir dessa evidência física, não por inferência do filename.
+
+
+## 19. Candidata NeoForge 21.1.253 e FancyModLoader 4.0.45 — 13/10/2026
+
+**FÍSICO HISTÓRICO:** Connector Beta 17 / arquivo connector-2.0.0-beta.17+1.21.1-full.jar (#105), Connector Extras 1.12.1+1.21.1 (#106), Forgified Fabric API 0.116.15+2.3.5+1.21.1 (#286) e NeoForge 21.1.250 (#001). A presença de módulos jarjar não os converte em top-level adicional; nenhum JAR físico foi inspecionado ou alterado agora.
+
+**Mudança upstream com impacto arquitetural potencial:** o [Maven NeoForged](https://maven.neoforged.net/releases/net/neoforged/neoforge/) confirma NeoForge 21.1.253 para MC 1.21.1. O [changelog oficial](https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.253/neoforge-21.1.253-changelog.txt) registra **FancyModLoader 4.0.45** na 253, após alteração de StackCopySlot/ItemHandlerCopySlot na 252 e depreciação de getSeaLevel na 251. Connector transforma/adapta classes Fabric, mixins/mappings e serviços de loader; logo **a coincidência de versão Minecraft não é certificação da compatibilidade** com FML 4.0.45. Não há evidência de crash nem de sucesso runtime com 253 neste pack; risco classificado PENDENTE, não INCOMPATÍVEL.
+
+**Gate A/B obrigatório:** verificar todos os consumidores Fabric realmente ativos e bibliotecas embarcadas; preservar baseline de 21.1.250; em cópia/staging instalar apenas loader 21.1.253 e executar bootstrap client+dedicated server, mixed mod discovery, jarjar/FML services, mixins/access transformers, registry sync, networking, tags/datapack reload, cache, fluid/inventory adapters, menus, save/restart e conexão de dois clientes. Conferir módulos de Connector Extras/FFAPI sem presumir que FFAPI pode ser removida junto ao Connector. Testar depois, separadamente, as versões candidatas Sophisticated/Reclaimed e eventual SUA, sem mascarar regressões do loader com múltiplas atualizações simultâneas.
+
+**Decisão:** loader 21.1.253 permanece **candidato externo não instalado**; Connector Beta 17 permanece **histórico** e não foi demonstrado compatível ou incompatível com essa candidata. Sem aprovação de instalação física ou de migração de mundo.
