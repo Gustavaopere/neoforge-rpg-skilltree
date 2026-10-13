@@ -85,3 +85,10 @@ As opções de configuração e cooldowns específicos da versão 0.3.0 **não f
 - **Produto separado:** Sophisticated Storage: Ars Compat mantém [File ID `8655579`](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated/files/8655579), **não incluído como top-level confirmado** no snapshot. A inclusão futura depende de pedido/justificativa, avaliação de redundância/estabilidade e inventário físico novo.
 
 **Estado do lote:** identidade documental **CORRIGIDA COM BASE EM EVIDÊNCIA OFICIAL**; disponibilidade e metadata binária **NÃO VERIFICADAS**; promoção do stack Sophisticated **PENDENTE**.
+
+
+## 8. Corroboração cruzada de hash/fonte — 13/10/2026
+
+A comparação de dois manifests públicos de modpacks de terceiros acrescenta **evidência secundária independente** à identificação corrigida na PR #895: [Ars Eclectica 1.21.1](https://modpacks.ch/modpacks/1073937/ars-eclectica-an-ars-nouveau-experience) e [Tribe of Frost](https://modpacks.ch/modpacks/1727342/tribe-of-frost) associam **`arssophisticatedcompat-0.3.0.jar` + SHA-1 `7cc6c1e1d92d109230f68b6a63dc4bfb13c245a6` + CurseForge File ID `8653384`**, exatamente como o hash histórico da entrada #054 e a [publicação oficial Sophisticated Backpacks Ars Compat 0.3.0](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-ars-compat-sophisticated/files/8653384). Os manifests públicos também registram, como artefato distinto, **`arssophisticatedstoragecompat-0.3.0.jar` + SHA-1 `1a5b5e262b577a0ffa015060bdfe610c0bc7ba01` + File ID `8655579`**. Isso reforça a distinção Backpacks/Storage.
+
+**Limite metodológico:** esses hashes são relatados por plataforma de terceiros que indexa manifests de outros packs; **não são digests fornecidos diretamente pela CurseForge nem representam leitura byte-a-byte do JAR desta instância**. O SHA-1 histórico local foi apenas cotejado com strings publicadas. A inspeção de `META-INF/neoforge.mods.toml`, assinatura de código/bytecode, SHA-256 e comparação binária do JAR físico continuam **PENDENTES**. **Nenhuma alteração física, promoção nem smoke test** ocorreu.
