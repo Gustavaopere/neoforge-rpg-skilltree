@@ -99,3 +99,11 @@ Gate:
 - [ ] Late viewers e players respawnados recebem pose/settings/trading/sound state corretos.
 
 Fonte upstream: CurseForge Easy NPC Bundle 1.21.1, sequência 7.12.1 → 7.13.0 → 7.14.0. Nenhum teste acima foi executado nesta atualização documental.
+
+## Reauditoria de publicação e compatibilidade — 13/10/2026
+
+**Projeto:** Easy NPC (bundle). **Última release pública identificada para Minecraft 1.21.1 / NeoForge:** `7.15.0` (`easy_npc_bundle-neoforge-1.21.1-7.15.0.jar`). **Referência oficial:** https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?page=1&pageSize=20&version=1.21.1.
+
+A família Easy NPC publicou a linha 7.13.0→7.14.0→7.15.0, com bundle, Core e Config UI para NeoForge 1.21.1. O bundle é a distribuição/agregação, e não deve ser confundido com o mod Core nem contado duplamente via JarJar. Sem changelog granular atribuído à 7.15.0 nesta revisão, não inventar novos diálogos ou comandos. Atualização coordenada deve verificar scripts/diálogos existentes, profissões/permissões e persistência de NPCs e seu estado, dependências de UI, rastreamento multiplayer e dedicated server. Evitar desalinhar versões da tríade.
+
+**Autoridade física:** permanece o JAR/versão registrados nas seções históricas deste dossiê e na `modlist(1).txt`; NÃO foi disponibilizada nova lista física nem realizada instalação/teste in-game. **Recomendação:** atualização física pendente de reconciliação de dependências, SHA e validações; não interpretar o número publicado como versão instalada. **Filename `.md`:** ✅ herdado e versão do JAR físico preservados conforme protocolo canônico.
