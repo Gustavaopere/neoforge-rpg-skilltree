@@ -117,3 +117,17 @@ A/B não deve ser executado no perfil produtivo sem backup.
 - changelog Beta 17: signatures, module names, adapters, Class Tweakers, fluid aliases e cache;
 - decisão histórica 06/09/2026: `Opcional`, condicionada a consumer Fabric real.
 > 🔒 Fail-closed revisado: a linha top-level do bundle não expõe `mod version`, mas a **metadata jar-in-jar do próprio host** declara o módulo `connector` como `2.0.0-beta.17+1.21.1`. O campo de versão é preenchido a partir dessa evidência física, não por inferência do filename.
+
+
+
+## 19. Candidata NeoForge 21.1.259 — FML, Mixin e MixinExtras (13/10/2026)
+
+**Autoridade física histórica:** o pack usa NeoForge 21.1.250 (#001), Sinytra Connector Beta 17 (#105), Connector Extras 1.12.1+1.21.1 (#106) e Forgified Fabric API 0.116.15+2.3.5+1.21.1 (#286), conforme snapshot. Nenhum arquivo foi substituído ou carregado em Minecraft nesta auditoria.
+
+**Correção de upstream:** o [índice Maven NeoForge](https://maven.neoforged.net/releases/net/neoforged/neoforge/) inicialmente retornou uma listagem que terminava em 21.1.253. A [árvore Maven espelhada](https://mirrors.qlu.edu.cn/bmclapi/net/neoforged/neoforge/) e o [changelog cumulativo da 21.1.259](https://mirrors.qlu.edu.cn/bmclapi/net/neoforged/neoforge/21.1.259/neoforge-21.1.259-changelog.txt) registram publicações posteriores, incluindo 21.1.259 de 11/10/2026. A análise de staging deve alcançar **21.1.259**, versão externa mais recente identificada, e não parar em 253 sem justificativa.
+
+As alterações observadas no changelog 250→259 incluem: mudança de slot-copy na 252, **FancyModLoader 4.0.45 na 253**, **Mixin 0.16.4 na 254**, **MixinExtras 0.5.5 na 255**, carregamento/overlay de shaders na 256 e correção da invocação de Item.onLeftClickEntity durante spin attacks na 259. Outros deltas documentados incluem depreciação de getSeaLevel na 251, traduções na 257 e atualização de build tooling na 258. **Não afirmar falhas de Connector sem testar**; a troca de infraestrutura de transformação é precisamente o motivo para testar o loader inteiro.
+
+**Gate A/B de segurança (NÃO EXECUTADO):** reconstruir snapshot e backup atuais; comparar bootstrap e mod discovery em NeoForge 21.1.250 e 21.1.259 com todos os demais JARs iguais; confirmar Connector, Extras e FFAPI em dedicated server e cliente; registrar FML/mappings, Mixin 0.16.4, MixinExtras 0.5.5, jarjar, classloaders, access transformers, plugins, mixin injections, network/registry sync, reload de datapacks e resource packs, caches, fluid API, inventários, worldgen e mods Fabric realmente transformados. Testar também Epic Fight e outros consumidores de spin attacks, shaders, save/restart, duas contas e restauração do backup. Depois, em lote distinto, validar Sophisticated/Reclaimed e qualquer addon SUA.
+
+**Decisão:** 21.1.259 é apenas **candidata publicada**; NeoForge 21.1.250, Connector Beta 17 e FFAPI permanecem físicos históricos. Nenhuma compatibilidade do Connector com a candidata está comprovada.
