@@ -30,7 +30,7 @@ O prefixo faz parte da identidade. `P5000`, `T5000` e `S5000` são códigos dist
 
 ## Regra fundamental das Transmutations
 
-`Txxxx` identifica **uma Ability única em todo o catálogo**.
+**Após vinculação e aprovação**, `Txxxx` identifica uma Ability única em todo o catálogo. **Antes**, `Txxxx` pode ser apenas uma vaga editorial numerada `RESERVED-UNBOUND`, sem Ability, provider ou runtime ID. A reserva pode ser reassociada antes do freeze, não conta como perk concluída e deve ser explicitamente marcada como reservada.
 
 O sufixo de dois dígitos identifica grupo e opção:
 

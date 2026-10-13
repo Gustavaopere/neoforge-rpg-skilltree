@@ -4,7 +4,7 @@
 
 Reconstruir o sistema de perks a partir do modpack realmente instalado, sem herdar especializações, providers ou pressupostos do catálogo legado.
 
-A regra central é: **podemos desenhar conceitos enquanto o pack é catalogado, mas só aprovamos e implementamos integrações comprovadas**.
+A regra central é: **o Codex pode gerar todos os arquivos editoriais primeiro e preencher as Transmutations após a catalogação das Abilities**; só aprovamos e implementamos integrações comprovadas. Ver `CODEX-TWO-PASS-BUILD.md`.
 
 Diablo IV e outros ARPGs podem ser estudados para identificar bons padrões de escolha, transformação e identidade de classe. Nenhum efeito, número, nome ou estrutura externa é obrigatório para este projeto.
 
@@ -62,7 +62,7 @@ Para cada capacidade registrar fantasia, tipo, domínio candidato, progressão n
 
 O primeiro sistema de Transmutation usa **seleção fixa e curada**.
 
-Durante esta fase serão escolhidas as Abilities que realmente merecem raízes `Txxxx`. Fichas vazias podem ser abertas antes em `_drafts/`, mas não recebem números `Txxxx` até existir uma Ability real selecionada. Não é requisito dar Transmutation a toda skill existente nem aceitar escolha arbitrária do jogador.
+Durante esta fase serão escolhidas as Abilities que realmente merecem raízes `Txxxx`. Após definir quotas editoriais provisórias, o Codex pode pré-criar `Txxxx-reservado/` numerados com os sete filhos mínimos; status `RESERVED-UNBOUND`, campos vazios e nenhuma Ability atribuída. O vínculo real vem na segunda passagem. Não é requisito dar Transmutation a toda skill existente nem aceitar escolha arbitrária do jogador.
 
 A seleção deve cobrir todas as árvores e incluir capacidades não mágicas quando aplicável: weapon skills, attacks, stances, movement, summons, defensive skills, survival/mining/engineering/logistics actions e vanilla.
 

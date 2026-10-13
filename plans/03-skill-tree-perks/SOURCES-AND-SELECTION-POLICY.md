@@ -135,4 +135,4 @@ Nenhuma lista concreta de “melhores skills” é congelada neste documento.
 
 ## 7. Trabalho antecipado não altera a seleção curada
 
-Antes de fechar a modlist pode-se montar estruturas de Transmutation sem Ability vinculada, em `_drafts/`, com campos vazios. Não se atribui `Txxxx`, não se declara suporte de provider e não se conta essa ficha como Ability selecionada. O catálogo definitivo continua sendo fechado pela rubrica de comparação das 11 árvores.
+Antes de fechar a modlist, o Codex pode reservar todas as vagas `Txxxx-reservado/` das 11 árvores com campos vazios (`RESERVED-UNBOUND`) e quota editorial provisória comum. Não se declara provider, skill ou efeito sem evidência; os números são posições editoriais, não Abilities vinculadas. `_drafts/` continua disponível para esboços sem número. O catálogo definitivo continua sendo fechado pela rubrica de comparação das 11 árvores.

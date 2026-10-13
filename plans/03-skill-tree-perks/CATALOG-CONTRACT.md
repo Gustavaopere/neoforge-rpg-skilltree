@@ -46,7 +46,7 @@ A forma pode variar, mas o orçamento de poder e profundidade deve ser comparáv
 
 O catálogo inicial usa **seleção fixa e curada** de Abilities.
 
-Nem toda Ability do pack precisa receber uma raiz. A lista concreta é escolhida durante a matriz de capacidades. Rascunhos com campos vazios podem ser montados antes, mas não representam Abilities selecionadas, não recebem `Txxxx` e não contam em quotas.
+Nem toda Ability do pack precisa receber uma raiz. A lista concreta é escolhida durante a matriz de capacidades. O Codex pode gerar **todas as vagas editoriais numeradas** de Transmutation antes da catalogação (`RESERVED-UNBOUND`), com sete filhos e campos vazios. O número T fica reservado como posição, mas **ainda não representa Ability selecionada nem conta como perk aprovada**. O binding real vem depois.
 
 A seleção deve abranger igualmente árvores mágicas e não mágicas. `Ability` não é sinônimo de spell.
 

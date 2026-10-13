@@ -4,7 +4,7 @@
 
 **Goal:** reconstruir o catálogo completo de perks das 11 árvores a partir do pack realmente instalado, com paridade entre árvores, Transmutations curadas por Ability, especializações com Mecânicas Assinatura e implementação técnica posterior sem herdar decisões editoriais do catálogo `A####`.
 
-**Architecture:** gates de aprovação e implementação permanecem sequenciais, mas o design editorial preliminar pode avançar em paralelo à catalogação da modlist. Rascunhos não confirmados não equivalem a perks aprovadas, não ocupam quotas finais e não recebem IDs definitivos `Txxxx`. O catálogo editorial usa Markdown individual por perk/Ability, IDs `I/P/T/S`, ownership único por árvore e seleção curada de Abilities. A implementação runtime só começa depois de o catálogo conceitual inteiro estar aprovado e tecnicamente auditado.
+**Architecture:** gates de aprovação e implementação permanecem sequenciais, mas o design editorial preliminar pode avançar em paralelo à catalogação da modlist. Rascunhos não equivalem a perks aprovadas. O Codex pode reservar IDs editoriais `Txxxx` para vagas vazias (`RESERVED-UNBOUND`) após definir orçamentos provisórios iguais nas 11 árvores; essas reservas não são Abilities e não geram IDs runtime. O catálogo editorial usa Markdown individual por perk/Ability, IDs `I/P/T/S`, ownership único por árvore e seleção curada de Abilities. A implementação runtime só começa depois de o catálogo conceitual inteiro estar aprovado e tecnicamente auditado.
 
 **Tech Stack:** Markdown versionado no GitHub, Python 3 para validators/catalog checks, Java 21 + NeoForge 1.21.1 para runtime, Gradle para testes, catálogos em `PROJECT-INSTRUCTIONS` e Black Arcana como fontes de inventário.
 
@@ -33,8 +33,8 @@
 - Nenhuma perk pode ser fechada tecnicamente antes da auditoria do provider real.
 - Nenhum filler é permitido apenas para atingir quota.
 - Rascunhos de Standard Perks e de fantasias/Mecânicas Assinatura podem ser escritos antes do fechamento total da modlist, desde que não afirmem integrações ainda não verificadas.
-- Rascunhos de Transmutation sem Ability vinculada ficam exclusivamente em `03-transmutation-perks/_drafts/`, com campos presentes e vazios quando não se souber a informação.
-- Um arquivo `DRAFT-UNBOUND` não é uma Ability, não conta na paridade, não recebe `Txxxx`/`Txxxx.xx` e não é exportado para runtime/wiki. Antes de promover, precisa ser vinculado a uma Ability real, única e presente no pack (ou vanilla/projeto próprio).
+- Esboços livres de Transmutation continuam em `_drafts/` sem número; a **geração integral pelo Codex** usa também vagas numeradas `Txxxx-reservado/` diretamente nas pastas das 11 árvores, seguindo `CODEX-TWO-PASS-BUILD.md`.
+- Um arquivo `DRAFT-UNBOUND` não tem número; uma vaga `RESERVED-UNBOUND` tem número T editorial reservado e sete filhos vazios. Ambos **não são Abilities concluídas, não contam como aprovados e não entram em runtime/wiki**. Antes de promover, precisa ser vinculado a uma Ability real, única e presente no pack (ou vanilla/projeto próprio).
 
 ---
 
@@ -42,9 +42,9 @@
 
 **Trilha A — Evidência:** reconciliar modlist/datapacks e aproveitar o catálogo do Black Arcana por lotes. Cada provider cuja presença esteja comprovada pode alimentar imediatamente o design, sem esperar pela conclusão dos demais.
 
-**Trilha B — Design:** elaborar Standard Perks conceituais, identidades das 11 árvores, fantasias e Mecânicas Assinatura, e fichas estruturais de Transmutation `DRAFT-UNBOUND`.
+**Trilha B — Codex em massa:** gerar todo o catálogo P/S conceitual e as vagas T editoriais (`RESERVED-UNBOUND`) com sete arquivos por vaga, com quotas editoriais provisórias iguais. Após a catalogação, vincular as Abilities reais e preencher os campos.
 
-**Convergência obrigatória:** não aprovar integração sem autoridade de presença, não atribuir `Txxxx` a uma habilidade desconhecida, não congelar quotas sem comparar as 11 árvores e não implementar antes da auditoria técnica. Um rascunho sem Ability compatível é descartado ou repensado, nunca transformado automaticamente em uma perk genérica.
+**Convergência obrigatória:** reservar IDs T vazios é permitido, mas eles não representam skills reais até o binding. Não aprovar integração sem autoridade de presença, não congelar quotas finais sem comparar as 11 árvores e não implementar antes da auditoria técnica. Um rascunho sem Ability compatível é descartado ou repensado, nunca transformado automaticamente em uma perk genérica.
 
 ---
 
@@ -223,7 +223,7 @@ Cada Ability aparece uma vez no catálogo. Se duas trees disputarem a mesma Abil
 
 - [ ] **Step 4: Reservar IDs `Txxxx`**
 
-Atribuir IDs `Txxxx` apenas depois de confirmar a Ability real e fechar a seleção; rascunhos anteriores usam chave editorial temporária e nenhum ID numérico de Transmutation.
+Usar os IDs `Txxxx` já reservados como vagas `RESERVED-UNBOUND` na primeira passagem. A Ability real só é vinculada após seleção curada; então a vaga vira raiz de uma Ability e os sete arquivos são preenchidos. A reserva não conta como raiz aprovada.
 
 - [ ] **Step 5: Gate de aprovação**
 
@@ -287,7 +287,7 @@ As 11 árvores precisam ter catálogo Standard completo antes da auditoria técn
 
 - [ ] **Step 1: Montar fichas estruturais mesmo sem Ability definida**
 
-Copiar o template `03-transmutation-perks/_drafts/TEMPLATE-UNBOUND.md`; indicar árvore candidata e deixar presentes, porém vazios, os campos sem evidência. Não inventar efeitos 2/2/3 nem atribuir ID T para preencher espaço.
+Copiar o template `03-transmutation-perks/_drafts/TEMPLATE-UNBOUND.md`; indicar árvore candidata e deixar presentes, porém vazios, os campos sem evidência. Não inventar efeitos 2/2/3: criar os sete arquivos da vaga T numerada, mas com **campos vazios** e status `RESERVED-UNBOUND`, conforme `CODEX-TWO-PASS-BUILD.md`.
 
 Quando for possível vincular uma Ability real, definir LEFT e RIGHT como dois eixos distintos específicos daquela Ability; não impor universalmente “dano à esquerda / área à direita”.
 
@@ -410,7 +410,8 @@ Runtime só começa quando todo catálogo estiver TECH-AUDITED ou explicitamente
 - [ ] **Step 1: Add the focused failing tests**
 
 Casos obrigatórios:
-- rascunhos `DRAFT-UNBOUND` não entram em quotas nem runtime/wiki e não podem estar em diretório final com ID `Txxxx`;
+- rascunhos `DRAFT-UNBOUND` e vagas numeradas `RESERVED-UNBOUND` não contam como Abilities aprovadas nem entram em runtime/wiki;
+- modo provisório aceita sete arquivos de opção vazios; modo final reprova reservas não vinculadas;
 - duplicate `P/T/S` ID;
 - `Txxxx.xx` sem raiz;
 - grupo fora dos ranges;
@@ -549,7 +550,7 @@ Catálogo, runtime, layout e wiki devem concordar em IDs, nomes, quotas, requisi
 
 Cada item novo passa por estados explícitos:
 
-`DRAFT-UNBOUND -> CANDIDATE -> CONCEPT-APPROVED -> TECH-AUDITED -> IMPLEMENTED -> VALIDATED`.
+`DRAFT-UNBOUND (esboço sem ID) OU RESERVED-UNBOUND (vaga T numerada) -> CANDIDATE (Ability real vinculada) -> CONCEPT-APPROVED -> TECH-AUDITED -> IMPLEMENTED -> VALIDATED`.
 
 `DRAFT-UNBOUND` aplica-se a esboços de Transmutation sem Ability real. Sua promoção exige identidade confirmada, ownership único e seleção curada; o rascunho pode também ser descartado sem reservar ID.
 

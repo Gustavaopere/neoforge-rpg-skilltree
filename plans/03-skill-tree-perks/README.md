@@ -6,7 +6,7 @@ O catálogo histórico `A####` foi aposentado desta pasta. Os documentos técnic
 
 ## Estado atual
 
-O **design editorial pode começar agora, em paralelo** à reconciliação da modlist. Apenas a aprovação final, o binding de Abilities, o congelamento das quotas e o runtime dependem dos gates de evidência.
+O **Codex pode criar o catálogo editorial inteiro antes de terminar a catalogação das skills**: perks P/S conceituais e vagas T numeradas, com campos vazios. Depois vincula Abilities reais e preenche as opções. O freeze final e o runtime dependem dos gates de evidência.
 
 O plano operacional completo está em [`MASTER-EXECUTION-PLAN.md`](./MASTER-EXECUTION-PLAN.md). Ele define gates, entregáveis, ordem de execução, validações e decisões que não podem ser antecipadas.
 
@@ -21,6 +21,7 @@ O fluxo é:
 - [`03-transmutation-perks/`](./03-transmutation-perks/) — uma raiz `Txxxx` por Ability selecionada, com LEFT/RIGHT/METAMORPHOSIS.
 - [`04-specialization-perks/`](./04-specialization-perks/) — especializações PURE/HYBRID organizadas pelo owner tree.
 - [`MASTER-EXECUTION-PLAN.md`](./MASTER-EXECUTION-PLAN.md) — plano mestre de execução.
+- [`CODEX-TWO-PASS-BUILD.md`](./CODEX-TWO-PASS-BUILD.md) — geração em massa pelo Codex e preenchimento posterior.
 - [`DOSSIER-CONTRACT.md`](./DOSSIER-CONTRACT.md) — conteúdo obrigatório de cada P/T/S.
 - [`SOURCES-AND-SELECTION-POLICY.md`](./SOURCES-AND-SELECTION-POLICY.md) — fontes e seleção curada das Abilities.
 - [`SPECIALIZATION-CONTRACT.md`](./SPECIALIZATION-CONTRACT.md) — especializações e Mecânicas Assinatura.
@@ -30,6 +31,6 @@ O fluxo é:
 
 ## Regras curtas
 
-É permitido montar rascunhos, inclusive Transmutation com campos vazios em `_drafts/`. Não contar esses rascunhos como perks aprovadas nem atribuir `Txxxx` sem Ability confirmada. Não criar perks porque um mod existe. Não criar especialização porque uma escola existe. Não selecionar definitivamente Abilities para Transmutation antes da rubrica e quotas fecharem. Não implementar antes da auditoria técnica. Não desenhar topologia definitiva antes do runtime.
+É permitido montar rascunhos, inclusive Transmutation com campos vazios em `_drafts/`. Uma vaga `RESERVED-UNBOUND` pode ter ID T **como reserva editorial**, mas não equivale a Ability vinculada nem conta como perk aprovada. Não criar perks porque um mod existe. Não criar especialização porque uma escola existe. Não selecionar definitivamente Abilities para Transmutation antes da rubrica e quotas fecharem. Não implementar antes da auditoria técnica. Não desenhar topologia definitiva antes do runtime.
 
 Diablo IV e outros jogos podem fornecer padrões de decisão e inspiração, nunca requisitos a copiar literalmente.

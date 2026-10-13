@@ -4,11 +4,11 @@ Este arquivo define o formato mínimo dos dossiês editoriais do novo catálogo.
 
 ## 0. Rascunhos durante a catalogação
 
-O estágio `DRAFT-UNBOUND` é reservado a fichas de Transmutation sem Ability concreta vinculada. Elas ficam sob `03-transmutation-perks/_drafts/`, com chave provisória no nome do arquivo (`candidate-<tree>-<slug>.md`) e nunca são catalogadas como `Txxxx`.
+`DRAFT-UNBOUND` fica em `_drafts/` e não recebe número. Para criar **todas as vagas** previamente, o Codex pode usar `RESERVED-UNBOUND` em `03-transmutation-perks/<tree>/Txxxx-reservado/`, com raiz e sete filhos numerados. Esses números são posições editoriais, **não identificadores de Abilities reais até o binding**.
 
 O template contém campos explícitos de Ability, provider, identificação técnica, requisitos, LEFT, RIGHT e METAMORPHOSIS. **Campos ainda não comprovados podem permanecer vazios**; não usar um ID real, valor numérico ou habilidade fictícia para preencher lacunas.
 
-A promoção exige Ability identificada, confirmação da presença (ou vanilla/projeto próprio), owner único, seleção curada e conceito 2/2/3 completo. Só então o rascunho é movido para a árvore correspondente e renomeado `Txxxx`, recebendo filhos `Txxxx.xx`.
+A promoção exige Ability real identificada, fonte confirmada (ou vanilla/projeto próprio), owner único e opções específicas 2/2/3. A vaga `Txxxx-reservado` é renomeada para `Txxxx-<ability>`, e os sete arquivos preenchidos. Antes disso, os campos podem ficar vazios, o status permanece `RESERVED-UNBOUND` e não há publicação ou contagem como perk concluída.
 
 Standard Perks e fantasias/Mecânicas Assinatura também podem ser rascunhadas antes do fechamento da modlist, desde que dados de integração não verificados sejam explicitamente marcados como pendentes. As quotas e publicações contam somente itens aprovados.
 

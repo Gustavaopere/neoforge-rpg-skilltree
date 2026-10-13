@@ -66,4 +66,4 @@ A implementação técnica de cada provider só é aprofundada depois que o cat�
 
 É permitido montar fichas de Transmutation com todos os campos estruturais presentes e alguns valores vazios enquanto o catálogo de Abilities é concluído. Usar [`_drafts/TEMPLATE-UNBOUND.md`](./_drafts/TEMPLATE-UNBOUND.md).
 
-Um `DRAFT-UNBOUND` **não é** uma raiz `Txxxx`: não conta para paridade, não recebe IDs .11/.21/.31, não vai a runtime/wiki. A promoção só acontece depois de vincular uma Ability existente, confirmar provider/owner e aprovar o design específico. Não preencher slots com skills inventadas.
+`DRAFT-UNBOUND` em `_drafts/` é esboço sem número. O Codex também pode criar vagas `Txxxx-reservado/` numeradas (`RESERVED-UNBOUND`) **com sete arquivos de opções e campos vazios**. São reservas de posição, não Abilities vinculadas nem conteúdo aprovado; não vão a runtime/wiki. A promoção só acontece depois de vincular uma Ability existente, confirmar provider/owner e aprovar o design específico. Não preencher slots com skills inventadas.
