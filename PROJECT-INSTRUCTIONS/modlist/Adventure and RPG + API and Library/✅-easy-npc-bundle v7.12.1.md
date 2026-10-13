@@ -12,7 +12,7 @@
 - **Dependências:** Easy NPC Core + Easy NPC Config UI; NeoForge 1.21.1. No pack atual, Core, Bundle e Config UI existem como três JARs top-level separados e alinhados pelo filename/release 7.12.1.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Risco principal é misturar versões diferentes da família ou interpretar Bundle como provider de gameplay. A linha 7.13.0 altera o protocolo de rede e exige client/server alinhados; 7.14.0 corrige replicação tardia no Core/UI. A arquitetura moderna evita jar-in-jar para não produzir mod IDs duplicados, classloading ambíguo e dependências que enxergam apenas o Core.
+- **Compatibilidade/Riscos:** Risco principal é misturar versões diferentes da família ou interpretar Bundle como provider de gameplay. A linha 7.13.0 altera o protocolo de rede e exige client/server alinhados; 7.14.0 corrige replicação tardia no Core/UI. A forma de empacotamento exata requer inspeção do JAR: o build NeoForge 7.15.0 indica dependências publicadas separadamente, mas a descrição de metadados do Bundle ainda menciona Jar-in-Jar. Mod IDs duplicados e classloading continuam riscos que devem ser testados, não resultados já demonstrados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_bundle` e runtime `7.12.1`, junto de Core/Config UI na mesma linha. CurseForge 1.21.1 foi revalidado em 03/10/2026 até Bundle 7.14.0.
 - **Observações:** Bundle 7.12.1 está fisicamente alinhado ao Core/Config UI 7.12.1. Upstream publicou Bundle 7.13.0 e 7.14.0; o meta-package continua com semântica de distribuição/dependência, enquanto gameplay/persistência pertencem ao Core.
@@ -26,8 +26,8 @@
 ## 1. Papel no modpack
 Easy NPC: Bundle é um **meta-package de distribuição** da família Easy NPC. Sua função é facilitar instalação e alinhamento de dependências, não criar NPCs, diálogos, trades ou state próprio equivalente ao Core.
 ## 2. Arquitetura moderna do bundle
-A documentação oficial do projeto esclarece que o Bundle moderno **não contém os módulos Easy NPC dentro do próprio JAR**. Em vez disso, ele declara dependências para instalar os módulos necessários separadamente.
-Essa arquitetura evita os problemas do antigo modelo jar-in-jar: mod IDs duplicados, classloading ambíguo e mods externos detectando apenas parte da família.
+No **source NeoForge 7.15.0**, o Bundle declara Core/Config UI como dependências obrigatórias e o build as anuncia à distribuição, mas a descrição do manifesto ainda menciona Jar-in-Jar. **Sem inspeção do JAR distribuído, não é possível atestar ausência ou presença de módulos embarcados.** No último snapshot físico, Core, Bundle e Config UI figuram como três arquivos top-level.
+O procedimento seguro é inspecionar metadata e JarJar efetivo em cada JAR e verificar se o loader registra exatamente uma instância de cada mod ID, prevenindo duplicidade, classloading ambíguo e dependências ausentes.
 ## 3. Dependências funcionais
 O Bundle organiza:
 - **Easy NPC Core** — provider real de NPC state/gameplay;
@@ -70,7 +70,7 @@ A linha instalada 7.12.1 deve ser tratada coordenadamente: atualizar apenas o Bu
 **Esta catalogação não afirma que esses testes foram executados.**
 ## 10. Evidências
 - modlist física atual de 21/09/2026: Bundle `7.12.1` + Core build `7.12.1` + Config UI `7.12.1` como JARs top-level;
-- documentação oficial Easy NPC Bundle: pacote de conveniência, módulos separados por dependência e abandono do antigo bundle jar-in-jar.
+- evidências oficiais Easy NPC Bundle: build NeoForge 1.21.1 indica distribuição por dependências, mas a descrição no manifesto ainda refere Jar-in-Jar; composição física do artefato permanece pendente de inspeção.
 > **Boundary canônico:** Bundle possui **dependency/distribution semantics**. NPC gameplay pertence ao Core; edição pertence ao Config UI.
 
 ## 11. Atualizações upstream 7.13.0 → 7.14.0 — não instaladas
@@ -104,7 +104,7 @@ Fonte upstream: CurseForge Easy NPC Bundle 1.21.1, sequência 7.12.1 → 7.13.0 
 
 **Projeto:** Easy NPC (bundle). **Última release pública identificada para Minecraft 1.21.1 / NeoForge:** `7.15.0` (`easy_npc_bundle-neoforge-1.21.1-7.15.0.jar`). **Referência oficial:** https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?page=1&pageSize=20&version=1.21.1.
 
-A família Easy NPC publicou a linha 7.13.0→7.14.0→7.15.0, com bundle, Core e Config UI para NeoForge 1.21.1. O bundle é a distribuição/agregação, e não deve ser confundido com o mod Core nem contado duplamente via JarJar. O changelog oficial de 7.15.0 foi revisado e suas mudanças verificadas estão descritas no complemento crítico abaixo; não extrapolar além dessas notas. Atualização coordenada deve verificar scripts/diálogos existentes, profissões/permissões e persistência de NPCs e seu estado, dependências de UI, rastreamento multiplayer e dedicated server. Evitar desalinhar versões da tríade.
+A família Easy NPC publicou a linha 7.13.0→7.14.0→7.15.0, com bundle, Core e Config UI para NeoForge 1.21.1. O bundle é o elemento de distribuição/agregação e não fornece um segundo sistema de NPCs; inspecionar sua composição JarJar real antes de assumir ausência de módulos embarcados ou adicionar/remover quaisquer JARs. O changelog oficial de 7.15.0 foi revisado e suas mudanças verificadas estão descritas no complemento crítico abaixo; não extrapolar além dessas notas. Atualização coordenada deve verificar scripts/diálogos existentes, profissões/permissões e persistência de NPCs e seu estado, dependências de UI, rastreamento multiplayer e dedicated server. Evitar desalinhar versões da tríade.
 
 **Autoridade física:** permanece o JAR/versão registrados nas seções históricas deste dossiê e na `modlist(1).txt`; NÃO foi disponibilizada nova lista física nem realizada instalação/teste in-game. **Recomendação:** atualização física pendente de reconciliação de dependências, SHA e validações; não interpretar o número publicado como versão instalada. **Filename `.md`:** ✅ herdado e versão do JAR físico preservados conforme protocolo canônico.
 
