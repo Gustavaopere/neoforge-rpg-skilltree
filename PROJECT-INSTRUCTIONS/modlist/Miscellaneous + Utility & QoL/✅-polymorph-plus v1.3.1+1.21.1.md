@@ -117,3 +117,11 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial Polymorph+: Release NeoForge 1.21.1 1.3.1 de 27/08/2026; fork declara compatibilidade com addons do original e conflito com o original instalado junto.
 - Ars Polymorphia 1.0.3: required content = Ars Nouveau + Polymorph; função = recipe conflict selection no Storage Lectern; 1.0.3 ignora recipes com output vazio.
 - **Limite:** a compatibilidade publicada do fork precisa ser confirmada por smoke real da dupla Ars Polymorphia↔Polymorph+; a classificação Dependência registra a relação operacional pretendida, não inventa equivalência de mod id interna.
+
+## Release e compatibilidade — reauditoria 13/10/2026
+
+**Atualização upstream NeoForge 1.21.1:** 1.3.2+1.21.1. **Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/polymorph-plus/files/all.
+
+Release NeoForge 1.21.1 em 12/10/2026: `polymorph_plus-neoforge-1.3.2+1.21.1.jar`, comparada ao último físico 1.3.1. Não confundir com 1.3.6 de Minecraft 26.x. Sem changelog técnico de 1.3.2, não declarar conserto de UI nem novos métodos de seleção. O mod resolve conflitos de receitas, com `recipe choice` para o player; garantir que JEI/EMI, crafting tables modded, receitas KubeJS/Datapacks, item components e multiplayer server-authoritative ainda selecionam a saída correta, sem duplicação por reabrir GUI ou trocar recipe.
+
+**Instalação física:** não revalidada desde `modlist(1).txt`; versão instalada histórica e filename versionado com ✅ preservados. Sem substituição de JAR, execução in-game ou confirmação de compatibilidade plena nesta atualização documental. Não promover a versão upstream à coluna física do índice.

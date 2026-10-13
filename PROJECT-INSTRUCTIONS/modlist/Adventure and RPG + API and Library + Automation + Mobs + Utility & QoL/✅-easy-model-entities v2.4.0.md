@@ -121,3 +121,11 @@ Alterar model state por comando/API deve produzir um único commit. Dois cliente
 - publicação oficial Easy Model Entities para NeoForge 1.21.1: artefato físico 2.4.0;
 - changelogs 2.1.0–2.4.0: API/model/animation, serializers/culling/render fixes, texture get, opacity/light/sync e, na 2.4.0, animation sequences, emissive blend e hand-item anchors.
 > **Boundary canônico:** EME controla o **state de apresentação/model entity que registra**. Não transformar aparência em uma segunda autoridade de gameplay.
+
+## Release e compatibilidade — reauditoria 13/10/2026
+
+**Atualização upstream NeoForge 1.21.1:** 2.4.0 última release NeoForge 1.21.1 identificada; 2.5.0 somente identificado em outro Minecraft. **Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/all.
+
+**Bloqueio crítico cruzado:** Easy NPC Core 7.15.0 exige Easy Model Entities **2.5.0+** e mesma versão do NPC no cliente/servidor. A nova EME **2.5.0** foi comprovada em **NeoForge Minecraft 26.1.2**, mas **não** como JAR NeoForge **1.21.1**; a última compatível 1.21.1 identificada é 2.4.0 (10/09). Não transportar 2.5.0 de outro Minecraft, nem declarar Easy NPC 7.15.0 como seguro até release 1.21.1 ou exceção upstream explícita. **Novidades upstream 2.5.0 apenas informativas, não disponíveis para este target:** animações `swim`, `hurt`, `death`, `sit` automáticas; correção de root opcional e UV Blockbench, modelos aquáticos, shoulder sitting, render profiles e APIs. Prioridade é availability de build + compat de presets/Blockbench e modelos persistentes.
+
+**Instalação física:** não revalidada desde `modlist(1).txt`; versão instalada histórica e filename versionado com ✅ preservados. Sem substituição de JAR, execução in-game ou confirmação de compatibilidade plena nesta atualização documental. Não promover a versão upstream à coluna física do índice.

@@ -161,3 +161,10 @@ O CurseForge publicou **5.2.0** em 05/10/2026, JAR `fragmentum-5.2.0+1.21.1-neof
 
 **Decisão:** revalidado até 5.2.0, **não instalado**, sem renomear a ficha física.
 
+## Release e compatibilidade — reauditoria 13/10/2026
+
+**Atualização upstream NeoForge 1.21.1:** 5.3.0. **Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/fragmentum-neoforge/files/9150745.
+
+**Breaking change material:** Fragmentum **5.0.0 (19/09/2026)** migrou para **Modern Stonecutter + Kotlin**; o changelog oficial declara explicitamente alterações incompatíveis para mods dependentes. **5.1.1** adicionou `buttonOption` em `ConfigScreenFactory`; **5.2.0** substituiu Forge registries por vanilla-mapped registries em `ForgeRegistrar.createRegistry` e incluiu MixinExtras; **5.3.0 (12/10)** introduziu `AssetRegistry` com suporte a resource reload, `stringFieldOption` em `ConfigScreenFactory` e extensão `Deferred` com `Lazy`/otimização da inicialização. O salto do JAR histórico `fragmentum-neoforge-1.21.1-2.4.4.jar` para 5.3.0 NÃO é troca segura isolada: localizar consumers Obscuria, conferir ABI/APIs, Kotlin/JarJar, registries IDs, config serialization, asset reload e smoke client+server, save e full pack restart.
+
+**Autoridade física:** estado histórico de `modlist(1).txt` mantido; JAR, metadata, SHA e testes locais não foram re-observados. Filename do `.md` com ✅ e versão física herdada preservado. A revisão documental não significa instalação ou aprovação de promoção.

@@ -158,3 +158,11 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Changelog 1.0: rework de 48 relics/120+ mecânicas, tratado como lineage.
 - Changelogs 1.0.1–1.0.4: superfícies históricas de regressão, sem promover fixes antigos a bugs atuais.
 - **Limite:** não foi inventariado individualmente o registry das 48 relics na build 1.0.8; a ficha documenta subsistemas, ownership e riscos confirmados.
+
+## Release e compatibilidade — reauditoria 13/10/2026
+
+**Atualização upstream NeoForge 1.21.1:** 1.0.9 Beta. **Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/reliquified-artifacts/files/all.
+
+A publicação de **1.0.9 Beta**, 12/10/2026, é para NeoForge 1.21.1; snapshot físico mantém 1.0.8. É uma bridge de compatibilidade entre Relics e Artifacts, não um provedor de progressão próprio. Changelog 1.0.9 não foi verificado, portanto não atribuir novos artefatos, stats ou receitas. Gate: equip/unequip, slots Curios, efeitos de ambos os providers sem double-proc, render/tooltips, NBT/state persistente, death/respawn, multiplayer, dois artefatos concorrentes e APIs Relics/Artifacts atuais. Beta merece atenção especial.
+
+**Instalação física:** não revalidada desde `modlist(1).txt`; versão instalada histórica e filename versionado com ✅ preservados. Sem substituição de JAR, execução in-game ou confirmação de compatibilidade plena nesta atualização documental. Não promover a versão upstream à coluna física do índice.

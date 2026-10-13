@@ -199,3 +199,11 @@ A branch 5.0.x altera a semântica de presentation e interação com recursos; o
 **Revalidação:** o dossiê já documenta a série até **Polytone 5.0.5** (10/10/2026); versão historicamente instalada permanece **4.4.0**. **Risco novo:** Amendments **2.1.11** publicou compatibilidade específica com Polytone, e Moonlight **3.7.2** é nova candidata de biblioteca. Não promover Polytone 5.x isoladamente sem o trio e o stack shader/resource-pack. **Gate:** colors.json, sign glow, game mode/difficulty expressions, biome/particle colormaps, colored lights, water fog, assets gerados, F3+T, save/relog, visuais e FPS. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/polytone/files/all?version=1.21.1
 
 > **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
+
+## Release e compatibilidade — reauditoria 13/10/2026
+
+**Atualização upstream NeoForge 1.21.1:** 5.1.1. **Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/polytone/files/9152140.
+
+**Novo delta 5.1.1 (12/10/2026) confirmado:** melhorias no código de **voxel volume**, descritas como melhoria de compatibilidade com **Veil**. A linha acumulada 4.4.0→5.0.5 já foi documentada na atualização anterior. **Gate adicional:** Veil se efetivamente presente, voxels e volumes/lighting, animação por shaders, resource pack-driven color/lightmaps, post-processing, F3+T, shaders alternativos, coexistência Amendments 2.1.11/Moonlight, visual world/dimensions, troca de packs e benchmark FPS. A novidade não demonstra que Veil esteja instalado ou que todos os bugs visuais estejam resolvidos.
+
+**Autoridade física:** estado histórico de `modlist(1).txt` mantido; JAR, metadata, SHA e testes locais não foram re-observados. Filename do `.md` com ✅ e versão física herdada preservado. A revisão documental não significa instalação ou aprovação de promoção.

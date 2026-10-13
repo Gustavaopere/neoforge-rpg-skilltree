@@ -123,3 +123,11 @@ As integrações documentadas com Ars Nouveau, Ars Elemental, FTB Ultimine, ParC
 O runtime físico permanece `thirstwasfixed-2.1.6.jar`, versão `2.1.6`, e a release NeoForge 1.21.1 localizada continua nessa versão. Thirst Was Reclaimed `3.0.4` permanece o provider funcional. As integrações com Ars Nouveau/Ars Elemental, FTB Ultimine, ParCool e Amendments continuam documentadas sem presumir que suas opções estejam habilitadas na config local. Nenhum teste de purity, cauldron, Flask/Urn, stamina ou gate de Ultimine foi executado nesta revalidação.
 ## 19. Reconciliação física — 27/09/2026
 A autoridade física atual mantém `thirstwasfixed-2.1.6.jar`, mod id `thirstwasfixed`, runtime `2.1.6`, enquanto o provider funcional instalado passou a `ThirstWasReclaimed-1.21.1-3.0.5.jar`, mod id `thirst`, runtime `1.21.1-3.0.5`. As referências operacionais atuais desta ficha foram atualizadas para 3.0.5; as revalidações históricas de 11/13 de setembro permanecem preservadas com 3.0.4. Nenhum teste de purity, cauldron, Flask/Urn, stamina ou gate de Ultimine foi executado nesta reconciliação.
+
+## Release e compatibilidade — reauditoria 13/10/2026
+
+**Atualização upstream NeoForge 1.21.1:** 2.1.6. **Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/thirstwasfixed/files/all.
+
+CurseForge oficial ainda indica **2.1.6** (02/09/2026) como a última release NeoForge Minecraft 1.21.1, coincidente com o JAR histórico `thirstwasfixed-2.1.6.jar`. Não confundir com versões do provider **Thirst Was Reclaimed**. Como addon fix/integration, manter ownership da sede no provider original; testar consumables, bebidas, thirst sync client/server, integration com food/temperature mods, save/restart, potion/fill via Create se houver, e recipe/item handlers exactly-once. Nenhuma novidade publicada confirmada nesta revisão.
+
+**Autoridade física:** estado histórico de `modlist(1).txt` mantido; JAR, metadata, SHA e testes locais não foram re-observados. Filename do `.md` com ✅ e versão física herdada preservado. A revisão documental não significa instalação ou aprovação de promoção.
