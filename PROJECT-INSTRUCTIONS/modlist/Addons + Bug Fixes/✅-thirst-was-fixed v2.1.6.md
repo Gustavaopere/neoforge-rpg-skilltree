@@ -177,3 +177,8 @@ O [thirstwasfixed.mixins.json do source 2.1.6](https://github.com/Partonetrain/t
 6. Executar baseline Reclaimed 3.0.5 versus candidato 3.0.6 em cópia de perfil e com rollback; NeoForge 21.1.259 seria estágio **separado**, não pré-requisito presumido para o source 2.2.0.
 
 **Decisão:** MANTER 2.1.6 no estado físico histórico e no filename do dossiê; source 2.2.0 em OBSERVAÇÃO e não instalado. Gate binário/runtime PENDENTE. Nenhuma atualização física ou teste de Minecraft foi realizada nesta auditoria documental.
+
+
+### 21.6. Resolução das duas dependências de desenvolvimento ParCool
+
+A checagem da publicação CurseForge dos **file IDs já presentes no diff upstream** resolve a nomenclatura exata: [ID 6797814 = ParCool 1.21.1-3.4.1.1-NF](https://www.curseforge.com/minecraft/mc-mods/parcool/files/6797814), compilação originalmente usada no source ThirstWasFixed 2.1.6; [ID 9106851 = ParCool 1.21.1-4.0.1.2](https://www.curseforge.com/minecraft/mc-mods/parcool/files/9106851), compilação de desenvolvimento selecionada pelo source ThirstWasFixed 2.2.0. **O pack, entretanto, mantém ParCool-1.21.1-4.0.0.3.jar, runtime 4.0.0.3, #433**, versão intermediária entre as duas integrações de desenvolvimento. Isso demonstra **drift de contrato de API a investigar**, não prova de crash: checar se a classe nova ParCoolAttributes, o atributo STAMINA_RECOVERY e a semântica de modifiers estão presentes no JAR 4.0.0.3. Uma promoção 4.0.0.3 → 4.0.1.2 seria outra atualização física, com dependências e regressões próprias, e **não está autorizada como consequência automática**. Nenhum dos três JARs foi inspecionado nesta sessão.
