@@ -207,7 +207,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 157 | Create: Rock & Stone | `create_rns-1.3.1-1.21.1-6.jar` | `1.3.1-1.21.1-6` | `Addons + Automation + Create + Ores and Resources + Processing` | 23/09/2026 - 11:23 |
 | 158 | Create Stuff & Additions Curios Jetpacks | `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar` | `1.2.4 (distribuição); metadata interna 1.2.22` | `Addons + Create` | 23/09/2026 - 11:23 |
 | 159 | Create Stuff & Netherite Additions | `create_sna-1.2-neoforge-1.21.1.jar` | `1.2` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Player Transport` | 23/09/2026 - 11:23 |
-| 160 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` | `1.0 (distribuição); metadata interna vazia` | `Addons + Create + Processing` | 23/09/2026 - 11:23 |
+| #160 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` | `1.0 (distribuição); metadata interna vazia` | `Addons + Create + Processing` | 23/09/2026 - 11:23 |
 | 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 23/09/2026 - 11:23 |
 | 162 | Create Deep Seas | `create_submarine-2.2.4.jar` | `2.2.4` | `Addons + Create` | 23/09/2026 - 12:37 |
 | 163 | Create : Misc & Things | `create_things_and_misc-4.1.1-neoforge-1.21.1.jar` | `4.1.1` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 12:37 |
@@ -562,7 +562,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 512 | Sodium | `sodium-neoforge-0.8.13+mc1.21.1.jar` | `0.8.13+mc1.21.1` | `Performance` | 27/09/2026 - 20:56 |
 | 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 20:56 |
 | 514 | Thirst Upgrade for Sophisticated Backpacks (Thirst Was Taken) | `sophisticated-thirst-upgrade.jar` | `0.1.8` | `Miscellaneous` | 27/09/2026 - 21:19 |
-| 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 20:56 |
+| #515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 20:56 |
 | 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 27/09/2026 - 20:56 |
 | 517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `0.2.0` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `1.5.1` | `API and Library` | 27/09/2026 - 21:19 |
@@ -818,9 +818,9 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 
 | # | Componente | Última evidência física | Publicação oficial NeoForge 1.21.1 | Decisão para a migração Sophisticated |
 |---|---|---|---|---|
-| 054 | Ars Sophisticated Compatibility | `arssophisticatedcompat-0.3.0.jar` / runtime 0.3.0 | [0.3.0, arquivo `arssophisticatedstoragecompat-0.3.0.jar`](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated/files/8655579) | **NÃO VERIFICADO:** filename físico diverge do publicado; Source/upgrade em linked storage exige QA |
+| #054 | Ars Sophisticated Compatibility | `arssophisticatedcompat-0.3.0.jar` / runtime 0.3.0 | [0.3.0, arquivo `arssophisticatedstoragecompat-0.3.0.jar`](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated/files/8655579) | **NÃO VERIFICADO:** filename físico diverge do publicado; Source/upgrade em linked storage exige QA |
 | 160 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` / runtime version VAZIA, display name defeituoso | [1.0, 03/08/2025](https://www.curseforge.com/minecraft/mc-mods/create-sophisticated-backpacks-compat/files/all) | **NÃO VERIFICADO** com Backpacks novos; recipes Create e KubeJS precisam de comparação |
-| 514 | Sophisticated Thirst Upgrade | `sophisticated-thirst-upgrade.jar` / runtime 0.1.8 | [0.1.8, file 8102344](https://www.curseforge.com/minecraft/mc-mods/thirst-upgrade-for-sophisticated-backpacks-thirst/files/8102344) | **PENDENTE:** addon feito para Thirst Was Taken; pack usa Reclaimed 3.0.5, autor não promete port futuro |
+| #514 | Sophisticated Thirst Upgrade | `sophisticated-thirst-upgrade.jar` / runtime 0.1.8 | [0.1.8, file 8102344](https://www.curseforge.com/minecraft/mc-mods/thirst-upgrade-for-sophisticated-backpacks-thirst/files/8102344) | **PENDENTE:** addon feito para Thirst Was Taken; pack usa Reclaimed 3.0.5, autor não promete port futuro |
 | 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` / runtime 1.2.3 | [1.2.4+1.21.1, file 9089418, sem changelog](https://www.curseforge.com/minecraft/mc-mods/sophisticated-jei-index/files/9089418) | **CANDIDATO DECLARATIVO**, mas sem verificação dos manifests do JAR, mixins, recipe transfer ou tests |
 
 ### Evidências oficiais e classificação de compatibilidade
