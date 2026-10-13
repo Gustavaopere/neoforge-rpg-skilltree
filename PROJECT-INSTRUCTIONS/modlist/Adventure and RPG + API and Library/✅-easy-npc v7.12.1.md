@@ -223,3 +223,11 @@ Impactos adicionais relevantes para este pack: o ajuste de hitbox/eye level deve
 Gate de regressão: dedicated server + client alinhados em 7.14.0; Fairy e NPCs escalados com hitbox/eye level corretos; Skeleton/Stray/Bogged; packets com dados excessivos/inválidos; diálogo/macros; owner commands; preset search; skin error handling; import/restore; integração com Easy Model Entities; late viewers/respawn preservando pose, attributes, trading settings e sound state.
 
 Fontes upstream: changelogs oficiais Easy NPC: Core; releases 1.21.1 7.12.2, 7.13.0 e 7.14.0 publicadas no CurseForge. Nenhum teste acima foi executado nesta atualização documental.
+
+## Reauditoria de publicação e compatibilidade — 13/10/2026
+
+**Projeto:** Easy NPC: Core. **Última publicação oficial NeoForge 1.21.1 identificada:** `7.15.0`; artefato de referência: `easy_npc-neoforge-1.21.1-7.15.0.jar`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all.
+
+Release NeoForge 1.21.1 de 12/10/2026; a modlist histórica identifica Core `easy_npc-neoforge-1.21.1-7.12.1.jar` (#239) mas **metadata runtime sem versão**. Preservar explicitamente essa divergência histórica; não preencher a metadata ausente por inferência. Upgrade 7.12.1→7.15.0 junto do Easy NPC bundle e Config UI, sem misturar artefato core/bundle e sem contagem duplicada JarJar. Validar entidades/NPC dialogs, actions/server permissions, saved NPC configs, scripts/reload, client GUI e world migration. Não imputar feature específica 7.15.0 sem changelog.
+
+**Autoridade física:** estado histórico do JAR documentado neste dossiê e `modlist(1).txt` permanece intacto; novo dump do pack, hashes, metadata e testes runtime não foram fornecidos. **Decisão:** candidato upstream (ou revalidação sem release nova), não uma atualização instalada. **Filename:** preservar prefixo ✅ e versão física histórica no nome até evidência da instalação.
