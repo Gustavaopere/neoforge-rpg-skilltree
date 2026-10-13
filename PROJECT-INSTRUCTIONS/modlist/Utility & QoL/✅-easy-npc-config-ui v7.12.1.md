@@ -125,3 +125,11 @@ Para Config UI, o ponto operacional é que a tela deve refletir state autoritati
 - [ ] Relog/restart preserva NPC state e não converte preview client-side em state autoritativo.
 
 Fonte upstream: CurseForge oficial Easy NPC: Config UI, releases 7.13.0 e 7.14.0 para Minecraft 1.21.1/NeoForge. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização de publicação e gates — 13/10/2026
+
+**Mod:** Easy NPC: Config UI. **Última release NeoForge 1.21.1 identificada:** `7.15.0`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui/files/all.
+
+Novo artefato NeoForge **`easy_npc_config_ui-neoforge-1.21.1-7.15.0.jar`** publicado em 12/10/2026. UI de configuração complementa Easy NPC bundle e Core, sem ownership de NPC AI/state. **BLOQUEIO de promoção coordenada:** Easy NPC Core 7.15.0 exige Easy Model Entities 2.5.0+ e versão igual no cliente/servidor; última build EME 1.21.1 verificada é 2.4.0. Não promover Config UI sozinha sem validar compat de todas as versões. Testar ID/dialog labels, lista de seleções, botões de NPC home, config de sons em resource packs, permissão/ownership server, reload, screen widgets e presets.
+
+**Fonte física:** `modlist(1).txt` continua sendo o último snapshot acessível. Não se verificou instalação nova nem JAR/metadata/hash atual; manter versão histórica no filename `✅-... vX.md` e na linha física do índice até novo dump e smoke tests. **Estado:** atualização documental concluída na branch; promoção física **PENDENTE/BLOQUEADA** conforme os gates.

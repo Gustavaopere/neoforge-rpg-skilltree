@@ -195,3 +195,10 @@ Gate: simular a migração 1.5.91→1.6.2 numa **cópia do mundo** com itens que
 
 **Estado:** atualização documental; 1.5.91 continua sendo a última versão instalada confirmada.
 
+## Atualização de publicação e gates — 13/10/2026
+
+**Mod:** Sophisticated Storage. **Última release NeoForge 1.21.1 identificada:** `1.6.4.2169`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/all.
+
+Release NeoForge 1.21.1 **`sophisticatedstorage-1.21.1-1.6.4.2169.jar`** em 12/10/2026, posterior à 1.6.2.2159 de 06/10, comparada ao histórico físico 1.5.91. **Versão mudou de linha menor 1.5→1.6:** antes de upgrade, validar serialização, persistent block entities, stack upgrades, sorting, filters, item transfer, Recipe/JEI indexing e remote access. Depende do Core 1.5.11 e bridge Create 0.1.23; coexistência com Sophisticated Backpacks e addon Ars, interações com KubeJS/automation, contraptions, world load/unload, redstone e servidor. Sem changelog granular 1.6.4 específico, não deduzir novos conteúdos.
+
+**Autoridade física:** JAR/metadata e versão efetivamente instalados permanecem os do snapshot histórico `modlist(1).txt`; não há novo dump. Preservar o prefixo ✅ e a versão física no filename do `.md`; não substituir o arquivo com uma versão candidata. **Estado:** reauditoria documental; QA Minecraft (client/server/mundo) não executado nesta ação.

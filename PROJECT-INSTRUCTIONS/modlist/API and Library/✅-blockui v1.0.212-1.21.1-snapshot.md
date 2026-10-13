@@ -144,3 +144,11 @@ Regression gates adicionais:
 - [ ] widgets que adicionam/removem views durante callbacks não corrompem o draw loop;
 - [ ] resource reload e reabertura de tela não duplicam handlers/views;
 - [ ] UI continua apenas presentation/input; state de gameplay permanece server-authoritative.
+
+## Atualização de publicação e gates — 13/10/2026
+
+**Mod:** BlockUI. **Última release NeoForge 1.21.1 identificada:** `1.0.212-1.21.1-snapshot`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/blockui/files/all?page=1&version=1.21.1.
+
+O canal oficial NeoForge 1.21.1 permanece em **1.0.212-snapshot**; foram observadas listagens de upload adicionais em 11/10/2026 com o **mesmo nome/versão** da de 15/09. Uma republicação com mesmo filename não comprova mudança de bytes ou nova funcionalidade: comparar **file ID + SHA** antes de decidir se existe modificação física. Dependências especialmente críticas: MineColonies e UI de colônias; testar screens XML/rendering, scroll/focus, netcode, classloading dedicated server, resource reload e addons com containers. **Sem versão nova inequívoca:** não renomear dossiê/linha física.
+
+**Autoridade física:** JAR/metadata e versão efetivamente instalados permanecem os do snapshot histórico `modlist(1).txt`; não há novo dump. Preservar o prefixo ✅ e a versão física no filename do `.md`; não substituir o arquivo com uma versão candidata. **Estado:** reauditoria documental; QA Minecraft (client/server/mundo) não executado nesta ação.

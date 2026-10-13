@@ -106,3 +106,10 @@ A ausência de bump não equivale a certificação de compatibilidade. O addon a
 
 **Estado:** versão física preservada; sem novos JARs nem testes.
 
+## Atualização de publicação e gates — 13/10/2026
+
+**Mod:** Aeronautics Player Tilt. **Última release NeoForge 1.21.1 identificada:** `0.2.0`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/aero-player-tilt/files/all.
+
+**Revalidação:** 0.2.0 (14/09/2026) permanece a última release oficial NeoForge 1.21.1 identificada. Mod faz corpo/hitbox acompanharem tilt do deck móvel; depende do stack Sable e Aeronautics Camera Sync 1.4.0+ e tem toggle por keybind `O`. Regressão central é colisão/hitbox, player gravity, câmera, mobs/items experimentais, rotação ship, controle de servidor multiplayer, reinício e quedas através de estruturas inclinadas. Sem novidade publicada posterior comprovada; manter versão física/dossiê.
+
+**Fonte física:** `modlist(1).txt` continua sendo o último snapshot acessível. Não se verificou instalação nova nem JAR/metadata/hash atual; manter versão histórica no filename `✅-... vX.md` e na linha física do índice até novo dump e smoke tests. **Estado:** atualização documental concluída na branch; promoção física **PENDENTE/BLOQUEADA** conforme os gates.

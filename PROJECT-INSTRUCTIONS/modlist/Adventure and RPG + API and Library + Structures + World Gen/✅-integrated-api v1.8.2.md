@@ -101,3 +101,11 @@ Processors de estrutura pertencem ao caminho server/worldgen e podem ser consumi
 - [ ] Integrated Patches continua tratado separadamente enquanto ausente do pack.
 
 Fonte upstream: CurseForge Integrated API 1.9.0, file ID 8943419. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização de publicação e gates — 13/10/2026
+
+**Mod:** Integrated API. **Última release NeoForge 1.21.1 identificada:** `1.9.0`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/integrated-api/files/all.
+
+Release **`integrated_api-neoforge-1.21.1-1.9.0.jar`**, 21/09/2026, disponível para NeoForge 1.21.1. O snapshot histórico permanece **1.8.2**; não confundir builds 26.x também 1.9.0. Biblioteca dos mods **Integrated Structures**: nenhuma estrutura nova deve ser atribuída à biblioteca automaticamente. Sem changelog técnico isolado 1.9.0, tratar como potencial mudança de codec/registry para worldgen; validar consumidores Integrated Structures, bootstrap de datapacks, structure template/loot/biome tags, startup dedicated server, mundo salvo e seed fixa em chunks novos.
+
+**Autoridade física:** JAR/metadata e versão efetivamente instalados permanecem os do snapshot histórico `modlist(1).txt`; não há novo dump. Preservar o prefixo ✅ e a versão física no filename do `.md`; não substituir o arquivo com uma versão candidata. **Estado:** reauditoria documental; QA Minecraft (client/server/mundo) não executado nesta ação.

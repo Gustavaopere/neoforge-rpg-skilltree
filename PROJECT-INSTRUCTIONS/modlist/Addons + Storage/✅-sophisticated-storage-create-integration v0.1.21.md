@@ -145,3 +145,10 @@ A release de 05/10/2026, **`sophisticatedstoragecreateintegration-1.21.1-0.1.22.
 
 **Estado:** documentação atualizada, **promoção física pendente**.
 
+## Atualização de publicação e gates — 13/10/2026
+
+**Mod:** Sophisticated Storage Create Integration. **Última release NeoForge 1.21.1 identificada:** `0.1.23.246`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-create-integration/files/all.
+
+Release NeoForge 1.21.1 **`sophisticatedstoragecreateintegration-1.21.1-0.1.23.246.jar`** publicada em 12/10/2026; anteriormente 0.1.22.238 (05/10), JAR físico histórico 0.1.21. É bridge de Sophisticated Storage com **Create contraptions**, não um container paralelo. Gate coordenado com Core 1.5.11, Storage 1.6.4, Backpacks 3.26.12 e bridge de Backpacks 0.2.3: armazenamento em movimento, capabilities, interações de upgrades, atualização de inventário exatamente uma vez, invalidations em assemble/unload/restart, rollback e backup sem dupe/loss. Sem changelog granular desta release, não imputar novas features.
+
+**Autoridade física:** JAR/metadata e versão efetivamente instalados permanecem os do snapshot histórico `modlist(1).txt`; não há novo dump. Preservar o prefixo ✅ e a versão física no filename do `.md`; não substituir o arquivo com uma versão candidata. **Estado:** reauditoria documental; QA Minecraft (client/server/mundo) não executado nesta ação.

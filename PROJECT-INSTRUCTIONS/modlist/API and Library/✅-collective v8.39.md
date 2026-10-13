@@ -116,3 +116,11 @@ O changelog publicado pelo autor para a versão 8.43 (também veiculada em build
 **Upstream NeoForge Minecraft 1.21.1:** `collective-1.21.1-8.45.jar`, publicado em **11/10/2026**, com 8.44 em 10/10 após a 8.43 já documentada. O último físico permanece **8.39**. O changelog individual das 8.44/8.45 ainda deve ser correlacionado ao JAR exato; não deduzir features pelo número. **Regressões prioritárias:** packet registration sob carga simultânea, side-correct networking client/server, helpers de mensagens e translations, config/reload, consumers Serilum, handshake multijogador e servidor dedicado. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/collective/files/all
 
 > **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
+
+## Atualização de publicação e gates — 13/10/2026
+
+**Mod:** Collective. **Última release NeoForge 1.21.1 identificada:** `8.47`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/collective/files/all?version=1.21.1.
+
+**Release NeoForge 1.21.1 de 12/10/2026:** 8.47 (após 8.43–8.46). As notas públicas da 8.47 exibem correções específicas para **Minecraft 26.2+** e **1.20.1**, as quais **não** devem ser transferidas por analogia à build 1.21.1. Não é possível identificar delta funcional exclusivo da 1.21.1 8.47 sem artefato/changelog exato. Migrar em conjunto com consumers Serilum; riscos em packet registration durante boot paralelo, config, network client/server, localization, dedicated server, reload e handshake. Última física 8.39.
+
+**Fonte física:** `modlist(1).txt` continua sendo o último snapshot acessível. Não se verificou instalação nova nem JAR/metadata/hash atual; manter versão histórica no filename `✅-... vX.md` e na linha física do índice até novo dump e smoke tests. **Estado:** atualização documental concluída na branch; promoção física **PENDENTE/BLOQUEADA** conforme os gates.

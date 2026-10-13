@@ -247,3 +247,10 @@ Nenhum desses testes upstream foi marcado como executado nesta atualização doc
 
 **Limite de escopo:** build **3.26.10** publicada para outros Minecrafts 26.x em outubro **não** deve ser usada como release de NeoForge 1.21.1. Runtime local segue em 3.26.3 até novo inventário.
 
+## Atualização de publicação e gates — 13/10/2026
+
+**Mod:** Sophisticated Backpacks. **Última release NeoForge 1.21.1 identificada:** `3.26.12.2208`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/all.
+
+**Release NeoForge 1.21.1 de 13/10/2026:** `sophisticatedbackpacks-1.21.1-3.26.12.2208.jar` após 3.26.11.2204 (12/10) e 3.26.9.2195 (06/10); físico histórico 3.26.3. Integração **deve ser coordenada** com Sophisticated Core 1.5.11.2394, Storage 1.6.4.2169, Backpack Create Integration 0.2.3.194 e Storage Create Integration 0.1.23.246; há também `create_sophback_compat-1.0.jar`, outro addon físico, então exigir teste de double-handling. Sem changelog granular não inventar upgrades/novos slots. Gate persistent inventories, pickup/place, upgrade/filter, bind keys, stack limits, Curios, XP/storage interaction, moving contraptions, chunk unload/save/restart, concurrency e anti-dupe.
+
+**Fonte física:** `modlist(1).txt` continua sendo o último snapshot acessível. Não se verificou instalação nova nem JAR/metadata/hash atual; manter versão histórica no filename `✅-... vX.md` e na linha física do índice até novo dump e smoke tests. **Estado:** atualização documental concluída na branch; promoção física **PENDENTE/BLOQUEADA** conforme os gates.
