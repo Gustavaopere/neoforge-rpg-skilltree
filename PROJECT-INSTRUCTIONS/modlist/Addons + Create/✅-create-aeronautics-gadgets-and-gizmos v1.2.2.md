@@ -189,3 +189,11 @@ O arquivo `gadgets-and-gizmos-bundled-V1.2.6.jar` está publicado para NeoForge 
 **Release pública NeoForge 1.21.1:** Gadgets & Gizmos **1.2.9** (11/10/2026), após a cadeia 1.2.3–1.2.8 auditada anteriormente. **Último JAR físico documentado:** `gadgets-and-gizmos-bundled-V1.2.2.jar` com host `createthrusters_bundled` e módulos embarcados `createthrusters` e `gadgetsngizmos` 1.2.2. Não presumir equivalência da composição JarJar ou novas features sem inspecionar a build 1.2.9. **Gate:** Create Aeronautics/Sable/CC:Tweaked, autopilot e controles em ship, persistência de steering/rotations, reconnect/unload/restart, física authoritative em multiplayer. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/all?version=1.21.1
 
 > **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
+
+## Release e compatibilidade — reauditoria 13/10/2026
+
+**Atualização upstream NeoForge 1.21.1:** 1.2.10. **Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/9141062.
+
+**Mudanças reais da 1.2.10:** novo nodo `Counter` com incremento/decremento por `Step` a cada pulso; reset do `Do N`; comparação numérica int↔float (`0.0 == 0` retorna verdadeiro); correção de propagação do Advanced HUD Text Input; nodos **Watch Chat** (wake word) e **Send Chat Message** (`Local`/`Player`, com possibilidade de desativar Local na config do servidor); `Local` alcança jogadores no mesmo sublevel OU raio 3x3 chunks do Advanced Contraption Controller; nova entrada `Stop` para `Play Sound`; proteção de `null` world level para evitar crash com Supplementaries. **Alerta oficial:** a build 1.2.9 foi rotulada **DO NOT USE! Causes crashes**; não usá-la como etapa de migração. Smoke test de nós lógicos, chat/abuso spam/permissões, propagation em sublevels, sound stop, Supplementaries, multiplayer e persistência de graphs. Bundle 1.2.2 instalado no snapshot; nova composição JarJar deve ser conferida antes do upgrade.
+
+**Instalação física:** não revalidada desde `modlist(1).txt`; versão instalada histórica e filename versionado com ✅ preservados. Sem substituição de JAR, execução in-game ou confirmação de compatibilidade plena nesta atualização documental. Não promover a versão upstream à coluna física do índice.
