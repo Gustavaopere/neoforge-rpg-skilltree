@@ -1,9 +1,9 @@
-# Rascunhos de Transmutation ainda não vinculados
+# _drafts — esboços exploratórios de perfis de Ability
 
-Esta pasta guarda **estrutura de trabalho**, não o catálogo final.
+Esta pasta **não** representa slots de árvore. Slots T são gerados diretamente nas pastas `<tree>/Txxxx-reservado/`, com status `RESERVED-UNBOUND`.
 
-Copie `TEMPLATE-UNBOUND.md` para um novo `candidate-<tree>-<slug>.md`. Não atribua `Txxxx`, mesmo que exista um número livre. Os campos desconhecidos devem ficar **vazios**, não preenchidos com nomes/IDs de skills imaginárias.
+O template `TEMPLATE-UNBOUND.md` serve para explorar uma Ability ou fantasia específica **sem reservar ID, declarar suporte de provider nem completar as opções**.
 
-Use `DRAFT-UNBOUND` enquanto Ability e provider não estão confirmados. A ficha só poderá ser movida a `../<tree>/Txxxx-<ability>/` quando a Ability real tiver sido selecionada pelo processo curado, tiver owner único e oferecer escolhas específicas 2/2/3. Caso contrário descarte ou revise o rascunho.
+Quando uma Ability real for catalogada e auditada, criar o perfil único em `../ability-profiles/<provider>/<ability>/` (pasta futura do trabalho 3), **não** substituir uma vaga T por uma árvore hardcoded da Ability. O slot permanece uma posição de progressão.
 
-**Nunca contar esses arquivos para a quota por árvore, nem exportá-los para runtime/wiki.**
+Esboços não contam em quotas nem entram em runtime/wiki.

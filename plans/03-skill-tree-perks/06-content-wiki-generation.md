@@ -1,41 +1,31 @@
-# Skill Tree Plan — fechamento do novo catálogo e wiki
+# Stage 03 — Fechamento do catálogo, runtime e wiki
 
-Este plano é downstream do [`00-EXECUTION-ROADMAP.md`](./00-EXECUTION-ROADMAP.md).
+Este documento segue o [`MASTER-EXECUTION-PLAN.md`](./MASTER-EXECUTION-PLAN.md) e a sequência [`CODEX-FOUR-STAGES.md`](./CODEX-FOUR-STAGES.md).
 
-## Pré-requisitos
+## Critérios de fechamento editorial
 
-- [ ] Modlist física atual reconciliada.
-- [ ] Matriz de capacidades do pack concluída, incluindo vanilla.
-- [ ] Capacidades distribuídas nas 11 árvores.
-- [ ] Especializações e suas mecânicas assinatura reconstruídas do zero.
-- [ ] Catálogo conceitual de Standard, Transmutation e Specialization Perks revisado.
+- [ ] Seis atributos I com seus papéis/custos reais canônicos, sem duplicação de rank.
+- [ ] Todas as Standard Perks P das 11 árvores completas como design, com mesmo orçamento, custos em pontos/rank, requisitos mínimos de atributos e evidência dos mods/versões.
+- [ ] Especializações PURE/HYBRID com owner único, Mecânicas Assinatura e S generalistas por facts/tags **verificadas**; mesmo orçamento S por árvore.
+- [ ] Vagas T de cada owner com **mesmo total**, tiers e sete arquivos mínimos ainda sem Ability inicialmente.
+- [ ] Cobertura de todas as Abilities relevantes dos providers/vanilla/projetos próprios, com disposição ELIGIBLE/DESIGN-CANDIDATE/BLOCKED/UNSUPPORTED.
+- [ ] Um perfil de transformação por Ability elegível, ID de provider/registry próprio, mesmo que compatível com múltiplas vagas; mínimo 2 LEFT/2 RIGHT/3 META, máx. 9/grupo.
+- [ ] Vagas vazias não contam como perfis concluídos; perfis de Ability não contam como vagas T.
 
-## Fechamento
+## Critérios técnicos de fechamento
 
-- [ ] Congelar `N_standard_per_tree`.
-- [ ] Congelar `N_transmutation_per_tree`.
-- [ ] Congelar `N_specialization_per_tree`.
-- [ ] Decidir e congelar `K_specializations_per_tree` e `M_perks_per_specialization` se a matriz confirmar a simetria sem filler.
-- [ ] Auditar tecnicamente providers.
-- [ ] Fechar matriz de Affinity/School para conversões.
-- [ ] Completar dossiês individuais.
-- [ ] Definir binding editorial -> runtime ID.
-- [ ] Migrar geradores/validators.
-- [ ] Implementar/testar exclusividade intragrupo e coexistência LEFT+RIGHT+METAMORPHOSIS.
-- [ ] Implementar/testar mecânicas assinatura.
-- [ ] Gerar wiki e drift gate.
-- [ ] Só então desenhar topologia visual final.
+- [ ] Verificação de versão/JAR presente e fonte real de gameplay/API para cada provider/hook usado; source externo não pinado na versão não comprova integração.
+- [ ] `NodeAccessRequirement`/resolvers suportam quando implementado requisitos de atributo sem consumir os ranks canônicos.
+- [ ] Custo de pontos de perk e custo de atributo continuam economias distintas; respec coerente e seguro.
+- [ ] `NormalizedAbilityFacts` (proposto) tem mapping auditável e server-authoritative; especialização não reaplica dano/cura/proc.
+- [ ] Transformação T específica é resolvida por Ability e compatibilidade de slot/tier; skill conhecida/desbloqueada segundo provider real.
+- [ ] Grupos T funcionam com exatamente uma opção ativa em cada grupo simultaneamente (1+1+1), respec e persistência.
+- [ ] A migração do piloto `T5000-chain-lightning` para perfil independente ocorre sem renumerar um save publicado nem perder decisões úteis.
+- [ ] Validator distingue modo editorial (reservas aceitas) e release (não declarar slot vazio como habilidade funcional), duplicidades de P/S/T/profile, contagem e owner.
+- [ ] JUnit, validators, dedicated server, compat mod-presente/ausente, save/reload e multiplayer verificados com resultado registrado.
 
-A infraestrutura de `✅-01` a `✅-05` deve ser reaproveitada onde continuar compatível. Contratos específicos da antiga malha 512/A-series precisam ser reavaliados.
+## Topologia, UX e wiki
 
-## Acceptance
+Somente depois do catálogo funcional: layout, gateways e distâncias definitivas; híbridas entre árvores sem mudar o owner; UI mostra tier/elegibilidade de slots e opções da Ability vinculada. Gerar wiki e drift gate para dados, runtime e documentação.
 
-- uma única authority de modlist;
-- quotas globais iguais entre as 11 árvores;
-- uma única raiz de Transmutation por Ability;
-- exatamente uma escolha ativa por grupo de Transmutation;
-- especializações temáticas com mecânicas assinatura;
-- conversão de Affinity semanticamente completa ou fail-closed;
-- runtime IDs estáveis;
-- documentação gerável;
-- nenhuma perk ativa dependente de provider removido ou identidade editorial antiga.
+Reutilizar `✅-01` a `✅-05` apenas nas partes compatíveis. Contratos herdados da malha 512/A-series precisam ser migrados explicitamente e não prevalecem sobre a nova arquitetura.

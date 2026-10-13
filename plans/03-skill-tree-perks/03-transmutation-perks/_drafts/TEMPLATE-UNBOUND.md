@@ -1,50 +1,46 @@
-# Candidato de Transmutation (estrutura vazia)
+# Esboço de perfil de Ability (ainda sem auditoria)
 
 - **Status:** DRAFT-UNBOUND
-- **Chave editorial temporária:**
-- **Árvore candidata:**
-- **Categoria (spell, weapon skill, movement, summon, vanilla etc.):**
-- **Ability real / nome:**
-- **Provider / mod ID:**
-- **Origem da evidência:**
-- **Requisito de conhecimento/desbloqueio:**
-- **Fantasia da customização:**
-- **Conflitos previsíveis com progressão nativa:**
+- **Chave exploratória:**
+- **Categoria (spell, weapon skill, movement, summon, ability vanilla etc.):**
+- **Ability / ID nativo:**
+- **Provider e versão/JAR:**
+- **Fonte de evidência:**
+- **School/affinity/tags nativas:**
+- **Nível/rank máximo da Ability:**
+- **Requisitos de conhecimento/desbloqueio:**
+- **Tier normalizado candidato:**
+- **Efeito nativo conhecido:**
+- **Hooks/entidades/status ainda não verificados:**
 
-## LEFT — escolher 1 (mínimo 2, máximo 9)
+## LEFT — uma escolha entre 2–9 opções possíveis
 
-**Eixo de personalização:**
-
-| Posição provisória | Nome da opção | Mudança conceitual | Tradeoff |
+| Opção provisória | Nome | Efeito | Risco técnico |
 |---|---|---|---|
 | LEFT-1 | | | |
 | LEFT-2 | | | |
 
-## RIGHT — escolher 1 (mínimo 2, máximo 9)
+## RIGHT — uma escolha entre 2–9 opções possíveis
 
-**Eixo de personalização:**
-
-| Posição provisória | Nome da opção | Mudança conceitual | Tradeoff |
+| Opção provisória | Nome | Efeito | Risco técnico |
 |---|---|---|---|
 | RIGHT-1 | | | |
 | RIGHT-2 | | | |
 
-## METAMORPHOSIS — escolher 1 (mínimo 3, máximo 9)
+## METAMORPHOSIS — uma escolha entre 3–9 opções
 
-| Posição provisória | Nome da opção | Transformação real de comportamento | Afinidades/recursos/VFX candidatos |
+| Opção provisória | Nome | Mudança real | Risco técnico |
 |---|---|---|---|
 | META-1 | | | |
 | META-2 | | | |
 | META-3 | | | |
 
-## Dependências e pendências
+## Compatibilidade
 
-- **Campos a verificar:**
-- **Relação com datapacks e Black Arcana:**
-- **Escolhas de build a preservar:**
-- **Risco de redundância:**
-- **Responsável pela promoção:**
+- **Vagas T por tier potencialmente compatíveis:**
+- **Fonte de autoridade de conhecimento da Ability:**
+- **Dependências/mods removidos:**
+- **Limites/fail-closed:**
+- **Condição para promover a perfil real:**
 
-## Condições de promoção
-
-A ficha só recebe `Txxxx` e filhos `Txxxx.11`/`.21`/`.31` após seleção da Ability real, confirmação de owner e provider/vanilla, revisão da unicidade global e desenho específico das opções. Até então este arquivo não conta como perk aprovada.
+Este arquivo **não** é uma vaga T; não possui IDs `Txxxx.xx` e não conta como perk aprovada.
