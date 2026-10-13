@@ -315,3 +315,20 @@ Se algum mod exige build mais nova por correção concreta, essa exigência deve
 
 ## Revalidação física final — 29/09/2026
 A autoridade física foi reconfirmada: `Mods count: 587` corresponde a **586 JARs top-level + `neoforge-21.1.250 (modloader)`**. NeoForge permanece a plataforma-base de Minecraft 1.21.1/Java 21; nenhum update de loader foi presumido sem uma matriz de compatibilidade completa dos consumers. Nenhum boot/regression suite adicional foi executado nesta revalidação.
+
+
+## 27. Loader 21.1.253 como candidato externo — auditoria 13/10/2026
+
+**ESTADO FÍSICO HISTÓRICO INALTERADO:** NeoForge 21.1.250 (modloader), ordem #001 da snapshot modlist(1).txt com 587 entradas top-level. Minecraft 1.21.1 e Java 21. Não foi fornecido novo dump de perfil, servidor, configurações ou mundo, e **nenhum loader/JAR foi instalado nesta pesquisa**.
+
+**FONTE OFICIAL DE VERSÃO EXTERNA:** o [índice Maven do NeoForged](https://maven.neoforged.net/releases/net/neoforged/neoforge/) contém as versões NeoForge 1.21.1 **21.1.251, 21.1.252 e 21.1.253**. O [diretório oficial 21.1.253](https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.253/) expõe installer.jar, universal.jar, sources.jar, POM, metadata de módulo e checksums; **21.1.253 é candidata publicada, não instalada**. O [changelog oficial 21.1.253](https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.253/neoforge-21.1.253-changelog.txt) confirma este delta, e não se deve atribuir funcionalidades adicionais não documentadas:
+
+- **21.1.251:** depreciação da forma inadequada de obter sea level, em favor de chunk generator (#3507); isso **não comprova** incompatibilidade de worldgen.
+- **21.1.252:** StackCopySlot passa a aceitar índice de slot e ItemHandlerCopySlot o fornece (#3469); atenção a containers/inventários e menus, sem alegar regressão real.
+- **21.1.253:** dependência FancyModLoader atualizada para **4.0.45** (#3581), superfície crítica para Sinytra Connector, jarjar, mixins, metadata e bootstrap.
+
+**MOTIVO DA AVALIAÇÃO:** [Soph Upgrade Addons 0.9.2, CurseForge File ID 9071404](https://www.curseforge.com/minecraft/mc-mods/soph-upgrade-addons/files/9071404) tem [source oficial 1.21.1 0.9.2 pinado no commit eb7d4f35066b6f48d9926f4168f09dd4ecdb0e8c](https://github.com/MorenRx/Soph-Upgrade-Addons/tree/eb7d4f35066b6f48d9926f4168f09dd4ecdb0e8c). O Gradle e o template de metadata requerem NeoForge **[21.1.252,)**; a candidata NeoForge **21.1.253 satisfaz somente esse piso numérico**, não a compatibilidade real do conjunto. O JAR publicado do SUA não teve o manifesto expandido extraído. Seu source posterior 0.9.2.1 altera uma propriedade de versão que o template observado não consome no requisito obrigatório; não tratar isso como port liberado para o 21.1.250.
+
+**BLAST RADIUS: loader não é addon isolado.** Priorizar Sinytra Connector Beta 17 (#105), Connector Extras (#106), Forgified Fabric API (#286), mods Fabric transformados, Sophisticated Core/Backpacks/Storage (#516–#520), Create, worldgen, magia, Thirst Reclaimed/Fixed e os consumidores de storage/tank. A 21.1.253 altera o FancyModLoader e cruza mudança de slot-copy da 21.1.252. **Teste obrigatório em staging antes de promoção:** backup e novo dump físico; faixas máximas/mínimas dos JARs e bibliotecas embarcadas; bootstrap de cliente e dedicated server baseline 21.1.250 versus 21.1.253; logs FML/Connector/mixin; registries, networking, data reload, inventário, transferências, save/restart, dimensões, contraptions e dois clientes. Avaliar SUA somente depois de o loader isolado passar. Preservar mecanismos de rollback do mundo e da instância.
+
+**DECISÃO:** 21.1.250 permanece instalado segundo a última autoridade física; 21.1.253 é **CANDIDATO EXTERNO**, upgrade físico **PENDENTE**, eficácia/segurança **NÃO VERIFICADAS**. CI de documentação não substitui GameTests nem boot do modpack.
