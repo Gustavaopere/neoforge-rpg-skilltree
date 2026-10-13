@@ -282,3 +282,21 @@ A release 7.15.0 do **Core** (e do bundle vinculado) declara fixes que alteram c
 **Autoridades:** [changelog oficial Easy NPC, branch Minecraft 1.21.1](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/CHANGELOG.md) (seções 7.15.0, 7.14.0, 7.13.0 e 7.12.0); [Easy NPC Core — arquivos NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all?version=1.21.1); [Easy Model Entities — arquivos oficiais](https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/all); [EME 2.5.0 NeoForge para Minecraft 26.1.2 — não compatível como JAR de 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/9152252).
 
 **Estado físico:** `modlist(1).txt` continua sendo a última autoridade disponível. Sem novo dump/JAR/SHA, nenhuma destas funções de 7.15.0 pode ser declarada instalada ou testada. Não renomear o dossiê versionado `✅-` até confirmar nova instalação.
+
+## Auditoria declarativa NeoForge 7.15.0 — 13/10/2026
+
+### Dependência EME: tipo e faixa publicados no source
+
+O `core/NeoForge/src/main/resources/META-INF/neoforge.mods.toml` declara `[[dependencies.easy_npc]] modId = "easy_model_entities"`, **`type = "optional"`**, **`versionRange = "[2.5.0,3.0.0)"`**, `ordering = "AFTER"`, `side = "BOTH"`. Logo, **EME não é estritamente obrigatória quando ausente**, mas **se estiver instalada deve cumprir a faixa de compatibilidade**: a própria documentação NeoForge 1.21.1 explicita que `optional` não exige presença e ainda valida a versão de dependência presente.
+
+O último snapshot físico contém **`easy_model_entities-neoforge-1.21.1-2.4.0.jar`**. **2.4.0 fica fora de `[2.5.0,3.0.0)`**. Portanto, Easy NPC Core **7.15.0 + EME física 2.4.0 é combinação não aprovada pelo contrato declarativo**; não assumir que a label opcional permita ignorar incompatibilidade. O campo de versão runtime da EME aparece vazio no dump histórico, agravando a necessidade de verificar o valor que o loader efetivamente atribui ao JAR.
+
+### Caminhos tecnicamente distintos
+
+1. **Manter o pack atual** (Core/Bundle/UI 7.12.1 + EME 2.4.0) até uma build EME 2.5.0+ para **NeoForge Minecraft 1.21.1** ser publicada/verificada.
+2. **Avaliar ausência de EME somente em cópia descartável**, pois o manifesto declara a dependência como opcional. **Não recomendar removê-la do pack real**: há conteúdo, model entities e mundos potencialmente dependentes, e remover o provider pode provocar perdas, degradação visual ou dados órfãos. Um teste de boot isolado não certifica ausência de perda funcional.
+3. **Alternativa upstream explícita:** uma release do Core para 1.21.1 com faixa compatível ou confirmação oficial sobre fallback. Não fabricar versão, editar manifestos do JAR ou aplicar mod de outro Minecraft como workaround.
+
+**Estado:** `BLOQUEADO — incompatibilidade de faixa de versão com EME presente`. As descrições anteriores que tratavam a natureza `optional` do manifesto como **não verificada** foram superadas por esta leitura do source; isso **não** comprova o conteúdo binário nem substitui smoke client/dedicated-server.
+
+**Código-fonte lido (branch oficial `1.21.1`, 13/10/2026):** [manifesto NeoForge Core](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/core/NeoForge/src/main/resources/META-INF/neoforge.mods.toml), [manifesto NeoForge Config UI](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/config-ui/NeoForge/src/main/resources/META-INF/neoforge.mods.toml), [manifesto NeoForge Bundle](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/bundle/NeoForge/src/main/resources/META-INF/neoforge.mods.toml), [build.gradle do Bundle NeoForge](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/bundle/NeoForge/build.gradle), [gradle.properties do Core](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/core/gradle.properties), [documentação oficial NeoForge 1.21.1 — dependências opcionais](https://docs.neoforged.net/docs/1.21.1/gettingstarted/modfiles/), [CurseForge EME 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/all?version=1.21.1), [Modrinth EME 2.4.0 NeoForge 1.21.1](https://modrinth.com/mod/easy-model-entities/version/KIk2E6sP). **Limite:** estes arquivos são source da branch 1.21.1; o manifesto do **binário publicado 7.15.0** ainda não foi extraído e comparado byte a byte, nem houve boot do perfil.
