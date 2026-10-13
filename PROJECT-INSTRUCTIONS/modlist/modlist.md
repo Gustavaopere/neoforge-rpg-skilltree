@@ -935,3 +935,6 @@ A rechecagem dos **dois projetos oficiais distintos** mantidos por LuminaCherry 
 | Mixin bootstrap | [JSON 2.1.6](https://github.com/Partonetrain/thirstwasfixed/blob/aec5c8a65596ba8162858b22189057edbaa847d4/src/main/resources/thirstwasfixed.mixins.json) com required=true, defaultRequire=1 e plugin de compatibilidade condicional. | Verificar bytecode real e dedicated server; source não é prova de aplicação de injector. |
 
 **Decisão:** source 2.2.0 identificado, **NÃO INSTALADO/NÃO APROVADO**; dossiê #542 atualizado apenas com evidências e testes pendentes. [Dossiê completo](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md).
+
+
+**Precisão adicional dos builds ParCool:** [CurseForge 6797814](https://www.curseforge.com/minecraft/mc-mods/parcool/files/6797814) = ParCool **3.4.1.1-NF** (alvo de desenvolvimento do ThirstWasFixed 2.1.6); [CurseForge 9106851](https://www.curseforge.com/minecraft/mc-mods/parcool/files/9106851) = ParCool **4.0.1.2** (alvo de desenvolvimento do source ThirstWasFixed 2.2.0). **Físico do pack: ParCool #433 4.0.0.3**. A versão física está entre os dois targets de desenvolvimento; a presença/ausência de ParCoolAttributes nesse JAR não foi determinada e permanece gate binário obrigatório. Não inferir que a troca de dependência upstream obriga atualização de ParCool na produção.
