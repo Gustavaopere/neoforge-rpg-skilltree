@@ -1,141 +1,50 @@
-# Dossier Contract — P / T / S
+# Contrato dos dossiês — I/P/S/T
 
-Este arquivo define o formato mínimo dos dossiês editoriais do novo catálogo. O objetivo é impedir que perks sejam criadas com informações incompletas ou com decisões técnicas misturadas ao conceito.
+## Campos comuns para P, S e perfis de Ability T
 
-## 0. Rascunhos durante a catalogação
+Cada dossiê de conteúdo precisa registrar:
 
-`DRAFT-UNBOUND` fica em `_drafts/` e não recebe número. Para criar **todas as vagas** previamente, o Codex pode usar `RESERVED-UNBOUND` em `03-transmutation-perks/<tree>/Txxxx-reservado/`, com raiz e sete filhos numerados. Esses números são posições editoriais, **não identificadores de Abilities reais até o binding**.
+- ID editorial, status de conceito e status técnico separadamente;
+- nome PT-BR, owner tree, função de árvore, tier/faixa de poder;
+- fantasia, efeito completo por rank, `maxRank`, `costPerRank` em Passive Points e custos extras reais quando aplicáveis;
+- nível mínimo de personagem, atributos mínimos (dos seis do Core), classe/mastery/gateway/nodes requeridos, dependências e respec;
+- provider/mod id, **JAR/versão instalada**, caminho da modlist, source/API/evidência da mesma release;
+- efeito nativo observado, delta pretendido, pipeline/callback/authority server-side, limites, fallback/fail-closed;
+- sinergias, conflicts, mecanismo anti-recursão/antiabuso, deduplicação, alcance, causalidade e compatibilidade com outros mods;
+- estado/escopo de implementação e testes necessários.
 
-O template contém campos explícitos de Ability, provider, identificação técnica, requisitos, LEFT, RIGHT e METAMORPHOSIS. **Campos ainda não comprovados podem permanecer vazios**; não usar um ID real, valor numérico ou habilidade fictícia para preencher lacunas.
+Campos cujo valor não se encontra verificado podem marcar `PENDING-EVIDENCE` durante conceito, nunca fingir dado real para passar auditoria.
 
-A promoção exige Ability real identificada, fonte confirmada (ou vanilla/projeto próprio), owner único e opções específicas 2/2/3. A vaga `Txxxx-reservado` é renomeada para `Txxxx-<ability>`, e os sete arquivos preenchidos. Antes disso, os campos podem ficar vazios, o status permanece `RESERVED-UNBOUND` e não há publicação ou contagem como perk concluída.
+## I — atributo interno
 
-Standard Perks e fantasias/Mecânicas Assinatura também podem ser rascunhadas antes do fechamento da modlist, desde que dados de integração não verificados sejam explicitamente marcados como pendentes. As quotas e publicações contam somente itens aprovados.
+`01-internal-attributes/I0001..I0006-*.md`: enum/rank canônico, efeito real, custo do rank pela Core policy, papel de build, riscos de respec, limites. A árvore interna é comum a todas.
 
-## 1. Standard Perk — `Pxxxx-<slug>.md`
+## P — normal
 
-Cada arquivo deve conter:
+`02-standard-perks/<tree>/Pxxxx-<slug>.md`: efeito geral em sistema/ação/categoria, sem direcionar customização de um único spell. Fonte real e versão obrigatórias quando depender de mod. Ranks/custo/atributos mínimos não podem ser esquecidos.
 
-- **ID editorial:** `Pxxxx`.
-- **Nome:** nome de jogador.
-- **Owner tree:** uma das 11 árvores.
-- **Família:** `STANDARD`.
-- **Status:** estado da state machine do plano mestre.
-- **Fantasia/objetivo:** que decisão ou estilo a perk reforça.
-- **Efeito conceitual:** comportamento sem fingir API/hook ainda não auditado.
-- **Escopo:** self, target, party, summon, world, item, process etc.
-- **Providers candidatos:** somente providers presentes/pertinentes.
-- **Sinergias:** outras categorias/perks que combinam.
-- **Antissinergias/tradeoffs:** quando aplicável.
-- **Não deve fazer:** limites explícitos para evitar overlap.
-- **Technical Audit:** preenchida somente na Task 9.
+## S — especialização
 
-Uma Standard Perk não pode recriar uma customização específica de Ability que pertença a um `Txxxx`.
+`04-specialization-perks/<owner>/<specialization>/README.md`: PURE/HYBRID, required trees, owner único, fantasia, Mecânica Assinatura, providers e seus versions, power budget e relação com outras especializações.
 
-## 2. Transmutation Root — `Txxxx-<ability>.md`
+`Sxxxx-<slug>.md`: efeito generalista sobre **predicado explícito de tags/facts** (ex.: fire + projectile + single_target), requisito, custo, rank e limite de disparos; reentrância, attribution/PvP/friendly-fire e ausência de metadata. Não criar S que seja apenas segunda versão nomeada de Fireball ou outra Ability.
 
-Cada raiz deve conter:
+## T — vaga editorial vazia
 
-- **ID editorial:** `Txxxx`.
-- **Ability alvo:** identidade legível.
-- **Provider/authority candidata:** origem da Ability.
-- **Owner tree:** exatamente uma.
-- **Status:** state machine.
-- **Requisito conceitual de acesso:** Ability conhecida/desbloqueada.
-- **Descrição da Ability base:** curta, suficiente para entender as decisões.
-- **LEFT axis:** qual aspecto menor o grupo modifica.
-- **RIGHT axis:** qual outro aspecto menor o grupo modifica.
-- **METAMORPHOSIS axis:** que tipos de transformação profunda são válidos.
-- **Lista de filhos LEFT:** links `.11-.19`.
-- **Lista de filhos RIGHT:** links `.21-.29`.
-- **Lista de filhos METAMORPHOSIS:** links `.31-.39`.
-- **Exemplo de configuração:** uma combinação 1+1+1 coerente.
-- **Boundary de exclusividade:** somente uma opção por grupo.
-- **Não duplicação:** declaração de que não existe outra raiz para a mesma Ability.
-- **Technical Audit:** preenchida na Task 9.
+`03-transmutation-perks/<tree>/Txxxx-reservado/` contém raiz `Txxxx-reservado.md` e os sete arquivos `Txxxx.11/.12/.21/.22/.31/.32/.33`. **Antes da catalogação, nenhuma vaga possui Ability, provider ou efeito individual preenchido.** Status de todos: `RESERVED-UNBOUND`. A vaga documenta apenas owner, tier/progressão e IDs dos grupos estruturais. Não conta como perfil de Ability completo nem é exportada para runtime.
 
-## 3. Transmutation Option — `Txxxx.xx-<slug>.md`
+## Perfil de Ability — transformação individual (etapa 3)
 
-Cada filho deve conter:
+**Pasta proposta:** `03-transmutation-perks/ability-profiles/<provider>/<ability>/`.
 
-- **ID editorial:** `Txxxx.xx`.
-- **Pai:** `Txxxx`.
-- **Grupo:** `LEFT`, `RIGHT` ou `METAMORPHOSIS`.
-- **Status:** state machine.
-- **Nome:** nome de jogador.
-- **Intenção:** qual decisão cria.
-- **Mudança conceitual:** comportamento esperado sem afirmar hook inexistente.
-- **Tradeoff:** quando existir.
-- **Compatibilidade intragrupo:** normalmente exclusiva por regra estrutural.
-- **Compatibilidade intergrupo:** conflitos excepcionais devem ser documentados.
-- **Affinity behavior:** se houver conversão, usar a abstração `Affinity` e listar somente candidatos, nunca afirmar suporte técnico sem auditoria.
-- **Technical Audit:** versão, registry/API/boundary, authority, persistência, fallback/fail-closed.
+Um perfil por Ability conhecida e tecnicamente elegível, com registry id namespaced, provider/versão, rank/raridade/unlock/cooldown/resource, autoridade de conhecimento, tiers elegíveis, efeitos nativos, eixos LEFT/RIGHT/META, no mínimo 2/2/3 opções até 9/grupo, descrição de mudanças, limites e source audit específico.
 
-### Regras dos IDs
+Cada opção do perfil é exclusiva dentro do grupo e pode coexistir com uma escolha dos outros dois grupos. O perfil é referenciado dinamicamente pela vaga T; **não recebe uma segunda cópia para cada Txxxx**. Uma Ability sem hook seguro fica `BLOCKED`/ `UNSUPPORTED`, com motivo e testes.
 
-- `.11-.19` LEFT.
-- `.21-.29` RIGHT.
-- `.31-.39` METAMORPHOSIS.
-- `.10/.20/.30` reservados.
-- mínimo 2 LEFT, 2 RIGHT, 3 METAMORPHOSIS.
-- máximo 9 por grupo.
+### Cuidado com exemplos anteriores
 
-## 4. Specialization Container — `04-specialization-perks/<owner-tree>/<slug>/README.md`
+A pasta existente `arcane/T5000-chain-lightning/` serve como piloto **de um perfil**. Deve ser migrada para a nova pasta de perfis na etapa 3, sem convertê-la em regra de binding fixo nem apagar ideias válidas. `T5000` poderá ser um slot reservado normalmente depois da migração.
 
-Cada especialização deve conter:
+## Auditoria técnica
 
-- **Nome.**
-- **Owner tree:** exatamente uma.
-- **Type:** `PURE` ou `HYBRID`.
-- **Required trees:** owner e secondary trees quando HYBRID.
-- **Fantasia de build.**
-- **Providers candidatos.**
-- **Mecânica Assinatura:** sistema principal de decisão.
-- **Estado persistente da mecânica:** descrito conceitualmente.
-- **Como as Sxxxx alimentam a mecânica.**
-- **Quantidade de Sxxxx atribuídas a esta especialização.**
-- **Relações com outras especializações:** exclusividade, coexistência ou nenhum conflito.
-- **Technical Audit:** preenchida depois.
-
-Uma especialização HYBRID pode depender de duas ou mais árvores, mas sua quota conta somente para o owner.
-
-## 5. Specialization Perk — `Sxxxx-<slug>.md`
-
-Cada arquivo deve conter:
-
-- **ID editorial:** `Sxxxx`.
-- **Specialization:** slug/container.
-- **Owner tree:** herdado e repetido explicitamente.
-- **Status:** state machine.
-- **Função na Mecânica Assinatura:** unlock, expand, specialize, tradeoff, bridge ou enhancement.
-- **Efeito conceitual.**
-- **Requisitos conceituais.**
-- **Providers candidatos.**
-- **Sinergias e limites.**
-- **Technical Audit.**
-
-Uma `Sxxxx` que não conversa nem com a fantasia nem com a Mecânica Assinatura precisa ser justificada como exceção ou removida.
-
-## 6. Technical Audit — campos obrigatórios quando o item chega à Task 9
-
-Para P/T/S que dependam de integração externa:
-
-- provider e versão instalados;
-- mod id;
-- registry/resource id relevante;
-- API/event/hook/boundary;
-- server/client authority;
-- fonte de verdade do estado;
-- persistência;
-- ordem de aplicação;
-- stacking/dedup;
-- optional-provider behavior;
-- save/reload behavior;
-- multiplayer behavior;
-- VFX/presentation dependency;
-- fallback;
-- status final `TECH-AUDITED`, `FAIL-CLOSED` ou `REQUIRES-DESIGN-CHANGE`.
-
-## 7. Regra editorial
-
-O conceito deve ser escrito antes do detalhe técnico. A auditoria técnica pode provar que um conceito é inviável, mas não deve silenciosamente substituí-lo por outro efeito só porque existe um hook mais fácil.
+Aplicar as invariantes de `PROJECT-INSTRUCTIONS/orientacoes/ia/CRITERIOS-OBRIGATORIOS-PARA-APROVACAO-DE-PERKS.md`. A formulação antiga do protocolo de 10 perks A/Notion não controla o novo naming/routine, mas os princípios de hooks exatos, provider-native-first, ausência de duplicação, anti-farm e PT-BR permanecem obrigatórios.

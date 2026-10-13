@@ -1,19 +1,21 @@
-# Convenção de numeração
+# IDs editoriais do catálogo
 
-## Prefixos
+## Famílias
 
-- `Ixxxx` — Internal Attribute.
-- `Pxxxx` — Standard Perk.
-- `Txxxx` — raiz de Transmutation de uma Ability.
-- `Txxxx.xx` — opção de um dos três grupos da mesma Ability.
-- `Sxxxx` — Specialization Perk.
+- `I0001..I0006`: seis atributos canônicos globais.
+- `Pxxxx`: perk normal específica de árvore.
+- `Sxxxx`: perk de especialização; uma árvore owner para contagem, inclusive híbrida.
+- `Txxxx`: **vaga de Transmutation da árvore**, com tier/camada; não é ID de spell.
+- `Txxxx.11..19`: slots de escolha LEFT.
+- `Txxxx.21..29`: slots RIGHT.
+- `Txxxx.31..39`: slots METAMORPHOSIS.
 
-A antiga série `A####` não é reutilizada.
+`.10`, `.20`, `.30` reservados; sufixos são textuais e não floating point. Slots editoriais T vazios são `RESERVED-UNBOUND`. Após vinculação, os subslots exibem opções do perfil real da Ability sem duplicar conteúdo.
 
-## Blocos por árvore
+## Blocos dos owners
 
-| Árvore | Bloco |
-| --- | ---: |
+| Owner | Bloco |
+|---|---:|
 | MARTIAL | 1000–1999 |
 | AGILITY | 2000–2999 |
 | VITALITY | 3000–3999 |
@@ -26,77 +28,12 @@ A antiga série `A####` não é reutilizada.
 | OCCULT | 10000–10999 |
 | LOGISTICS | 11000–11999 |
 
-O prefixo faz parte da identidade. `P5000`, `T5000` e `S5000` são códigos distintos do domínio ARCANE.
+Os prefixos tornam `P5000`, `S5000` e `T5000` distintos. Os blocos são reservas de espaço, **não** quantidade definitiva de perks.
 
-## Regra fundamental das Transmutations
+## Identidade das Abilities
 
-**Após vinculação e aprovação**, `Txxxx` identifica uma Ability única em todo o catálogo. **Antes**, `Txxxx` pode ser apenas uma vaga editorial numerada `RESERVED-UNBOUND`, sem Ability, provider ou runtime ID. A reserva pode ser reassociada antes do freeze, não conta como perk concluída e deve ser explicitamente marcada como reservada.
+O **perfil de transformação** da Ability tem ID próprio, derivado do provider e registry ID canônico, não do slot T. Exemplo de chave conceitual: `irons_spellbooks:chain_lightning`. Uma Ability só tem um perfil global, mesmo que possa ser apresentada em posições elegíveis diferentes.
 
-O sufixo de dois dígitos identifica grupo e opção:
+Durante a fase editorial os códigos dos slots podem ser reorganizados. Depois de expostos em save/runtime publicado, não reutilizar sem migração explícita e testada. O binding exato de ID editorial para `ResourceLocation` é definido na implementação.
 
-- primeiro dígito = grupo;
-- segundo dígito = índice da opção, de 1 a 9.
-
-### Grupo 1 — esquerda
-
-- `T5000.11`
-- `T5000.12`
-- ...
-- `T5000.19`
-
-### Grupo 2 — direita
-
-- `T5000.21`
-- `T5000.22`
-- ...
-- `T5000.29`
-
-### Grupo 3 — metamorfose
-
-- `T5000.31`
-- `T5000.32`
-- ...
-- `T5000.39`
-
-Os IDs `.10`, `.20` e `.30` não representam opções e ficam reservados.
-
-Não existem opções acima de 9 dentro de um grupo. Portanto `.19`, `.29` e `.39` são os limites.
-
-## Exemplo
-
-```
-T5000 — Chain Lightning
-
-LEFT
-T5000.11
-T5000.12
-
-RIGHT
-T5000.21
-T5000.22
-
-METAMORPHOSIS
-T5000.31
-T5000.32
-T5000.33
-```
-
-Uma configuração pode ter `T5000.11 + T5000.22 + T5000.33`, pois são grupos diferentes.
-
-Não pode ter `T5000.11 + T5000.12` simultaneamente.
-
-Se Chain Lightning ganhar mais opções no futuro, elas precisam ocupar slots livres do grupo correspondente. Chain Lightning **não recebe outro `Txxxx` mais adiante**.
-
-`T5001` é reservado para outra Ability de ARCANE.
-
-## Natureza textual do ID
-
-O sufixo é **textual**, não um decimal numérico. `T5000.11` deve ser tratado como código estruturado, não como número de ponto flutuante.
-
-## Runtime IDs
-
-Os códigos editoriais não precisam ser o `ResourceLocation` runtime. O binding final deve usar ID namespaced estável e seguro para save/datapack.
-
-## Estabilidade
-
-Durante a fase editorial os códigos podem ser reorganizados antes do freeze. Depois que um código entrar em save/runtime publicado, sua identidade não deve ser reciclada silenciosamente.
+O piloto editorial existente `T5000-chain-lightning` ainda associa T5000 a Chain Lightning; **não é contrato definitivo**. Na terceira etapa será convertido em perfil de Ability independente e T5000 será uma vaga normal.

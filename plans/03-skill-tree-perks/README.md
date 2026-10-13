@@ -1,36 +1,39 @@
 # 03 — Skill Tree & Perks
 
-Este diretório é o plano canônico do redesenho do catálogo de perks.
+Este Stage define o novo catálogo I/P/S/T. O legado A#### ainda existe no runtime, mas **não** governa o novo design; código e save antigos só devem ser migrados numa etapa própria com testes.
 
-O catálogo histórico `A####` foi aposentado desta pasta. Os documentos técnicos concluídos do Stage 03 (`✅-01` a `✅-05`) permanecem como infraestrutura existente, mas não definem o novo catálogo de conteúdo.
+## Ordem do Codex
 
-## Estado atual
+**[CODEX-FOUR-STAGES.md](./CODEX-FOUR-STAGES.md):**
 
-O **Codex pode criar o catálogo editorial inteiro antes de terminar a catalogação das skills**: perks P/S conceituais e vagas T numeradas, com campos vazios. Depois vincula Abilities reais e preenche as opções. O freeze final e o runtime dependem dos gates de evidência.
+0. **Atributos I:** seis atributos do Core, progressão e política de requisitos.
+1. **Perks P:** escrever perks normais completas como design após consultar modlist, fontes da versão instalada, hooks/contratos e custos.
+2. **Especializações S:** criar ramificações e Mecânicas Assinatura, com perks generalistas aplicadas por **categoria/tag verificada**, não por ID exclusivo de um spell.
+3. **Transmutation T:** criar **vagas numeradas vazias** por tier; depois catalogar **cada Ability individualmente** e desenvolver seu perfil de transformação; inclui skills não mágicas.
 
-O plano operacional completo está em [`MASTER-EXECUTION-PLAN.md`](./MASTER-EXECUTION-PLAN.md). Ele define gates, entregáveis, ordem de execução, validações e decisões que não podem ser antecipadas.
+As 11 árvores devem ter quotas iguais por família comparável. O desenho visual vem depois.
 
-O fluxo é:
+## Documentos de execução
 
-`TRILHA A: modlist/capacidades` em paralelo a `TRILHA B: Standard/Especializações/rascunhos de Transmutation` -> convergência por evidence+quota+Abilities reais -> auditoria técnica -> runtime -> topologia/UX/wiki.
+- [`MASTER-EXECUTION-PLAN.md`](./MASTER-EXECUTION-PLAN.md): entregáveis, gates e testes.
+- [`PROVIDER-EVIDENCE-AND-COSTS.md`](./PROVIDER-EVIDENCE-AND-COSTS.md): como provar mod/versão, custo de perk e requisito de atributo.
+- [`ABILITY-SLOTS-AND-TAGS.md`](./ABILITY-SLOTS-AND-TAGS.md): distinguir posição T, perfil de Ability e tags de especialização.
+- [`CODEX-TWO-PASS-BUILD.md`](./CODEX-TWO-PASS-BUILD.md): duas passagens dentro da etapa de Transmutation.
+- [`CATALOG-CONTRACT.md`](./CATALOG-CONTRACT.md): paridade e ownership.
+- [`NUMBERING.md`](./NUMBERING.md): identificadores I/P/S/T.
+- [`DOSSIER-CONTRACT.md`](./DOSSIER-CONTRACT.md): campos obrigatórios para todos os dossiês.
+- [`SOURCES-AND-SELECTION-POLICY.md`](./SOURCES-AND-SELECTION-POLICY.md): modlist, datapacks, Black Arcana, vanilla, projetos próprios.
+- [`SPECIALIZATION-CONTRACT.md`](./SPECIALIZATION-CONTRACT.md): especializações e Mecânica Assinatura.
+- [`00-EXECUTION-ROADMAP.md`](./00-EXECUTION-ROADMAP.md): visão global.
+- [`06-content-wiki-generation.md`](./06-content-wiki-generation.md): fechamento do catálogo, runtime e wiki.
 
-## Estrutura
+## Pastas de conteúdo
 
-- [`01-internal-attributes/`](./01-internal-attributes/) — seis atributos fundamentais comuns.
-- [`02-standard-perks/`](./02-standard-perks/) — perks normais das 11 árvores.
-- [`03-transmutation-perks/`](./03-transmutation-perks/) — uma raiz `Txxxx` por Ability selecionada, com LEFT/RIGHT/METAMORPHOSIS.
-- [`04-specialization-perks/`](./04-specialization-perks/) — especializações PURE/HYBRID organizadas pelo owner tree.
-- [`MASTER-EXECUTION-PLAN.md`](./MASTER-EXECUTION-PLAN.md) — plano mestre de execução.
-- [`CODEX-TWO-PASS-BUILD.md`](./CODEX-TWO-PASS-BUILD.md) — geração em massa pelo Codex e preenchimento posterior.
-- [`DOSSIER-CONTRACT.md`](./DOSSIER-CONTRACT.md) — conteúdo obrigatório de cada P/T/S.
-- [`SOURCES-AND-SELECTION-POLICY.md`](./SOURCES-AND-SELECTION-POLICY.md) — fontes e seleção curada das Abilities.
-- [`SPECIALIZATION-CONTRACT.md`](./SPECIALIZATION-CONTRACT.md) — especializações e Mecânicas Assinatura.
-- [`CATALOG-CONTRACT.md`](./CATALOG-CONTRACT.md) — paridade e ownership.
-- [`NUMBERING.md`](./NUMBERING.md) — IDs e ranges.
-- [`06-content-wiki-generation.md`](./06-content-wiki-generation.md) — fechamento de runtime/wiki.
+- `01-internal-attributes/`: I0001..I0006 comuns.
+- `02-standard-perks/<tree>/`: Pxxxx.
+- `03-transmutation-perks/<tree>/`: **slots** Txxxx vazios; perfis individuais por Ability em `ability-profiles/` **serão criados na etapa 3**.
+- `04-specialization-perks/<owner-tree>/<specialization>/`: Sxxxx e Mecânicas Assinatura.
 
-## Regras curtas
+## O que ainda não é implementação
 
-É permitido montar rascunhos, inclusive Transmutation com campos vazios em `_drafts/`. Uma vaga `RESERVED-UNBOUND` pode ter ID T **como reserva editorial**, mas não equivale a Ability vinculada nem conta como perk aprovada. Não criar perks porque um mod existe. Não criar especialização porque uma escola existe. Não selecionar definitivamente Abilities para Transmutation antes da rubrica e quotas fecharem. Não implementar antes da auditoria técnica. Não desenhar topologia definitiva antes do runtime.
-
-Diablo IV e outros jogos podem fornecer padrões de decisão e inspiração, nunca requisitos a copiar literalmente.
+O mecanismo atual de requisitos de compra **não contém atributo mínimo**, e a vinculação de uma Ability a um slot T no runtime ainda é uma proposta. Não atribuir status de código pronto a documentação editorial. Não alegar que um mod suporta uma alteração com base numa versão antiga.

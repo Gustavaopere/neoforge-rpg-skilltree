@@ -1,14 +1,16 @@
 # 01 — Internal Attributes
 
-Árvore interna comum a todos os personagens/árvores. Ela não participa das quotas P/T/S.
+**Ponto 0 do plano do Codex.** A árvore interna dos atributos é compartilhada por todos os personagens e **não** entra nas quotas P/S/T.
 
-O runtime atual possui seis atributos fundamentais, todos uncapped no modelo de ranks:
+A enum canônica `AttributeId` possui:
 
-1. `I0001` Strength
-2. `I0002` Constitution
-3. `I0003` Agility
-4. `I0004` Intelligence
-5. `I0005` Determination
-6. `I0006` Charisma
+- `I0001` STRENGTH
+- `I0002` CONSTITUTION
+- `I0003` AGILITY
+- `I0004` INTELLIGENCE
+- `I0005` DETERMINATION
+- `I0006` CHARISMA
 
-Esta pasta documenta cada atributo sem inventar novos efeitos numéricos. Escalonamentos concretos continuam subordinados aos contratos do RPG Core.
+`AttributeRanks` armazena ranks uncapped; custo de ranks é definido pela Core policy `AttributeRankCostPolicy`, não por esta pasta. Codex deve conferir fórmulas/efeitos reais antes de completá-los, sem inventar bônus e sem criar segunda economia de pontos.
+
+**Requisito de perk:** ex.: `INTELLIGENCE >= 20` é *limiar não consumível*. O gasto em rank de atributo ocorreu no Core, e a compra de uma perk não debita esse atributo de novo. `NodeAccessRequirement` **não implementa mínimos de atributo atualmente**: contrato da compra fica em `PROVIDER-EVIDENCE-AND-COSTS.md` para implementação posterior.

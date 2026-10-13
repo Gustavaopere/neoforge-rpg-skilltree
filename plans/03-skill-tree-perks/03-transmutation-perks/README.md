@@ -1,69 +1,18 @@
-# 03 — Transmutation Perks
+# 03 — Transmutation Perks (trabalho 3, último, do Codex)
 
-Transmutation Perks modificam uma Ability existente em vez de conceder a Ability.
+**Txxxx é a vaga da árvore, não um spell fixo.** Cada árvore possui o mesmo número de vagas distribuídas por tiers. O Codex cria inicialmente `Txxxx-reservado/` com sete arquivos e campos vazios, status `RESERVED-UNBOUND`.
 
-Cada árvore terá exatamente `N_transmutation_per_tree` raízes `Txxxx`.
+Cada vaga tem os grupos:
+- LEFT: `.11-.19` — escolher 1;
+- RIGHT: `.21-.29` — escolher 1;
+- METAMORPHOSIS: `.31-.39` — escolher 1.
 
-## Identidade e unicidade
+Mínimo de 2 LEFT + 2 RIGHT + 3 META, até 9 por grupo, se aplica ao **perfil de Ability concluído**, não a uma vaga ainda vazia.
 
-Uma raiz `Txxxx` representa uma Ability.
+Depois de catalogar os providers, desenvolver um **perfil por Ability elegível** em `ability-profiles/<provider>/<ability>/` (pasta proposta, ainda não criada); avaliar também skills não mágicas. Uma vaga equipada mostra escolhas derivadas desse perfil, sem clonar o conteúdo em cada Txxxx. Vagas limitam quantas Abilities podem ser transmutadas na build; os perfis cobrem as que forem tecnicamente elegíveis.
 
-**Cada Ability aparece uma única vez como raiz de Transmutation em todo o catálogo.**
+Uma Ability de nível máximo 1 não é necessariamente inicial; tiers devem considerar raridade, requisitos e poder além do maxLevel.
 
-Um novo número inteiro é usado somente para outra Ability.
+A pasta existente `arcane/T5000-chain-lightning` é **piloto antigo de um perfil**, deverá ser migrada na etapa 3. Não é prova de que T5000 continuará fixamente associado a Chain Lightning.
 
-## Três grupos
-
-Cada raiz possui:
-
-### LEFT / esquerda
-- IDs `.11`–`.19`;
-- mínimo 2 opções;
-- máximo 9;
-- escolher somente 1.
-
-### RIGHT / direita
-- IDs `.21`–`.29`;
-- mínimo 2 opções;
-- máximo 9;
-- escolher somente 1.
-
-### METAMORPHOSIS / metamorfose
-- IDs `.31`–`.39`;
-- mínimo 3 opções;
-- máximo 9;
-- escolher somente 1.
-
-Os três grupos coexistem. Portanto uma configuração completa pode manter simultaneamente uma opção de cada grupo.
-
-Exemplo:
-
-`T5000.11 + T5000.22 + T5000.33`.
-
-O máximo de 9 é por grupo, não por Ability inteira. Uma raiz pode ter até 27 opções catalogadas, embora não exista obrigação de preencher todos os slots.
-
-## Papel dos grupos
-
-LEFT e RIGHT devem oferecer dois eixos menores de customização diferentes entre si.
-
-METAMORPHOSIS contém transformações maiores: elemento/afinidade, geometria, trajetória, targeting, recurso, comportamento espacial, forma de entrega ou outra alteração que mude a identidade da Ability.
-
-Esses significados podem variar conforme a natureza da Ability. O design não deve forçar “dano à esquerda” para todas as skills se isso produzir opções artificiais.
-
-## Separação de responsabilidades
-
-A raiz de Transmutation é o único lugar dedicado a modificar especificamente aquela Ability.
-
-Standard Perks e Specialization Perks podem afetar regras gerais, categorias, recursos ou sinergias, mas não devem criar uma segunda árvore específica para a mesma Ability.
-
-## Escopo
-
-Ability inclui spells, weapon skills, active skills, summons, stances, movement e ações vanilla integráveis.
-
-A implementação técnica de cada provider só é aprofundada depois que o catálogo conceitual estiver fechado.
-
-## Rascunhos antecipados
-
-É permitido montar fichas de Transmutation com todos os campos estruturais presentes e alguns valores vazios enquanto o catálogo de Abilities é concluído. Usar [`_drafts/TEMPLATE-UNBOUND.md`](./_drafts/TEMPLATE-UNBOUND.md).
-
-`DRAFT-UNBOUND` em `_drafts/` é esboço sem número. O Codex também pode criar vagas `Txxxx-reservado/` numeradas (`RESERVED-UNBOUND`) **com sete arquivos de opções e campos vazios**. São reservas de posição, não Abilities vinculadas nem conteúdo aprovado; não vão a runtime/wiki. A promoção só acontece depois de vincular uma Ability existente, confirmar provider/owner e aprovar o design específico. Não preencher slots com skills inventadas.
+[Regras de slots e tags](../ABILITY-SLOTS-AND-TAGS.md) · [Execução Codex](../CODEX-FOUR-STAGES.md)

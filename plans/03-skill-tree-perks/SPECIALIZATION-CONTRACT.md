@@ -1,85 +1,35 @@
-# Contrato de Especializações e Mecânicas Assinatura
+# Especializações — Mecânicas Assinatura e perks de categoria
 
-## 1. Definição
+## Identidade
 
-Uma especialização é uma ramificação temática de uma das 11 árvores principais.
+Especialização é ramificação PURE ou HYBRID (pode unir várias árvores, mas conta para um owner). Não é sinônimo de mod. Cada uma precisa de uma **Mecânica Assinatura** que cria decisões de build, e perks S que aprofundam seu uso.
 
-Ela possui duas camadas diferentes:
+Padrões de inspiração: escolher espíritos/afinidades, papéis ou sacrifício de summons, captura/selamento, posturas, juramentos, contratos, disciplinas de combate ou engenharia. Não copiar Diablo literalmente nem limitar identidade apenas a magia.
 
-1. **Specialization Perks** — os nós `Sxxxx` que constroem e ampliam a build.
-2. **Signature Mechanic / Mecânica Assinatura** — o sistema próprio de decisões que dá identidade à especialização.
+## Fronteira obrigatória P × S × T
 
-Uma especialização não deve existir apenas porque um mod possui uma escola, arma, recurso ou subsystem.
+- P: sistemas, atributos, recursos e efeitos gerais sem ser uma metamorfose individual.
+- S: efeitos **gerais, porém condicionais** a categorias semânticas; devem funcionar com **todas as Abilities realmente classificadas e compatíveis**, inclusive de diferentes providers.
+- T: efeitos **específicos da Ability** (Fireball, Shield, weapon skill etc.) desenvolvidos após auditoria individual.
 
-## 2. Critério de aprovação
+Exemplo de S conceitual: "Quando um acerto de um projétil de fogo de alvo único ocorre, parte do efeito pode atingir alvos próximos." O predicado de S deve usar facts verificadas `fire + projectile + single_target + direct_hit`. Alcance "5 blocos" é **somente exemplo**, não valor aprovado. Não presumir que um efeito de fogo em área, um DoT ou aura são alvo único.
 
-Uma candidata só vira especialização se:
+## Mapeamento de providers
 
-- representar fantasia de build distinguível;
-- tiver capacidades reais no pack que a sustentem;
-- não for apenas duplicação de outra especialização;
-- conseguir sustentar uma mecânica assinatura coerente;
-- possuir espaço suficiente para perks relevantes sem filler;
-- não exigir que um único mod opcional seja tratado como dono de toda a fantasia.
+Os mods podem não ter tags universais. Criar adapter/catálogo de `NormalizedAbilityFacts` para school/affinity, delivery, targeting, effect, owner, attribution e origem causal **com evidência da versão instalada**. Classificação ausente não é autorização para aplicar efeito por nome de spell.
 
-## 3. Inspiração de mecânicas
+Quando T converte Fireball para outra afinidade, S deve avaliar os **facts efetivos** pós-transformação, nunca aplicar simultaneamente a classificação de escola antiga e nova sem regra explícita.
 
-O projeto pode estudar sistemas externos para aprender padrões de decisão.
+## Segurança dos efeitos generalistas
 
-Padrões particularmente úteis:
+- Server authoritative; não inferir gameplay de partículas client.
+- Toda propagação ou proc marca sua origem: o proc gerado **não pode se disparar recursivamente**.
+- Preservar pipeline nativo de dano/cura, resistência, friendly-fire, PvP, summons e ownership; evitar segunda rolagem de crítico ou mana/cooldown.
+- Limites/cooldowns/alvos e stack de sinergias são definidos na perk com power budget e hooks reais.
+- Sem hook/classificação verificada no provider exato, a integração específica fica `TECH-BLOCKED` ou fail-closed, não vira +5% genérico.
 
-### Afinidade
-Escolher um espírito, patrono, escola, doutrina ou afinidade que altera tags, bonuses e comportamento de um conjunto de capacidades.
+## Dossiês e paridade
 
-### Roster configurável
-Cada summon/companion pode receber uma função. O jogador pode optar por manter a unidade, mudar sua função ou converter parte de sua presença em um benefício pessoal.
+Pastas de especialização em `04-specialization-perks/<owner>/<slug>/`, com `README.md` contendo PURE/HYBRID, owners/requisitos, Mecânica Assinatura e providers; os `Sxxxx` detalham efeitos, custos, ranks e **mínimos de atributo**.
 
-### Caça, captura ou selamento
-Alvos especiais podem ser caçados, marcados, capturados, aprisionados ou selados para desbloquear escolhas persistentes, troféus funcionais, poderes ou relações de progressão.
-
-### Juramento / postura / contrato
-O jogador escolhe regras persistentes com vantagens e custos que alteram prioridades da build.
-
-Esses padrões não são templates obrigatórios. Cada especialização deve ser construída a partir dos sistemas reais do modpack.
-
-## 4. Relação com providers
-
-Uma especialização pode usar vários providers.
-
-Exemplo abstrato:
-
-`Piromante = spells + armas + efeitos + itens + vanilla + sistemas próprios compatíveis com a fantasia de fogo`.
-
-Não criar automaticamente:
-- especialização por mod;
-- especialização por addon;
-- especialização por cada school;
-- especialização por categoria técnica.
-
-## 5. Paridade
-
-Cada árvore terá o mesmo total `N_specialization_per_tree`.
-
-O objetivo preferencial é também ter o mesmo número de especializações por árvore e o mesmo número de perks por especialização, mas isso é um parâmetro de design a validar após a matriz de capacidades.
-
-Cada especialização deve possuir **uma mecânica assinatura principal** de profundidade comparável. Isso não significa interfaces idênticas ou o mesmo número de subopções.
-
-## 6. Mecânica assinatura não é perk comum
-
-A mecânica assinatura pode ter UI, estado persistente, seleção, ritual, roster ou outro modelo próprio.
-
-As `Sxxxx` devem:
-- desbloquear partes da mecânica;
-- ampliar opções;
-- especializar escolhas;
-- melhorar sinergias;
-- criar tradeoffs;
-- ou ligar a mecânica a outras capacidades da build.
-
-Evitar uma subárvore de passivos que não conversa com a mecânica assinatura.
-
-## 7. Momento de implementação
-
-A mecânica assinatura é desenhada conceitualmente junto da especialização, mas API, persistência, UI e hooks só são fechados depois da auditoria dos providers.
-
-Se a fantasia for boa, mas o provider não oferecer boundary seguro, a integração específica fica fail-closed; a especialização não recebe um bônus genérico falso para esconder a limitação.
+Mesmo total `N_specialization_per_tree` para cada owner. Uma híbrida não conta duas vezes; níveis/atributos/class gates podem criar builds distintas sem criar quotas desiguais.

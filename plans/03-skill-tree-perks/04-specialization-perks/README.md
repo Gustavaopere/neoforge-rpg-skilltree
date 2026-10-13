@@ -1,47 +1,11 @@
-# 04 — Specialization Perks
+# 04 — Specialization Perks (trabalho 2 do Codex)
 
-Esta pasta está intencionalmente sem especializações individuais neste momento.
+Ainda não contém roster definitivo. Os providers/especializações legadas não serão ressuscitados como proposta automática.
 
-As 25 pastas herdadas do catálogo/runtime antigo foram removidas. Elas não reservam nomes, providers ou quotas.
+Estrutura prevista: `<owner-tree>/<specialization>/README.md` e `Sxxxx-<slug>.md`. PURE/HYBRID, com um owner para a quota. Todas as árvores terão o mesmo total de S.
 
-O contrato detalhado está em [`../SPECIALIZATION-CONTRACT.md`](../SPECIALIZATION-CONTRACT.md).
+Cada especialização cria fantasia de build e Mecânica Assinatura. **Sxxxx altera famílias de abilities/ações classificadas**, não Fireball ou Shield individualmente. Exemplo: projéteis de fogo de alvo único podem propagar o impacto; a aplicabilidade vem de tags/facts **realmente mapeadas da versão do provider**.
 
-## Modelo
+Os arquivos S incluem versão/JAR, facts/tags, hooks/casuística, limites, custos por rank, requisitos de atributos, tiers, risco de recursão e fallback. A auditoria do efeito deve impedir duplicação de dano, cura, mana ou proc.
 
-Especialização é uma ramificação temática de uma árvore e possui:
-
-- uma fantasia de build;
-- perks `Sxxxx`;
-- uma **Mecânica Assinatura** própria;
-- um conjunto de providers que alimentam a fantasia sem se tornarem donos dela.
-
-Exemplo conceitual:
-
-```
-ARCANE
-├── árvore principal
-├── Piromante
-│   ├── perks Sxxxx
-│   └── mecânica assinatura
-├── Criomante
-│   ├── perks Sxxxx
-│   └── mecânica assinatura
-└── ...
-```
-
-## Inspiração
-
-Podemos estudar mecânicas de outros ARPGs — afinidades, espíritos, summon roles, sacrifícios, caça/captura/selamento, juramentos etc. — mas não copiar sistemas ou números sem avaliar se combinam com Minecraft e com a modlist.
-
-## Quando serão aprovadas
-
-**Rascunhos de fantasias e Mecânicas Assinatura podem começar imediatamente**, sem declarar como presentes providers ainda não verificados.
-
-A aprovação e o congelamento de quotas só ocorrerão após:
-
-1. modlist física reconciliada;
-2. matriz de capacidades concluída;
-3. capacidades distribuídas nas 11 árvores;
-4. fantasias comparadas entre todos os domínios.
-
-O mesmo total de perks de especialização por árvore é obrigatório. A quantidade final de especializações e perks por especialização será congelada somente quando soubermos o que cada domínio consegue sustentar sem filler.
+[Contrato de especializações](../SPECIALIZATION-CONTRACT.md) · [Tags e slots T](../ABILITY-SLOTS-AND-TAGS.md)

@@ -1,105 +1,34 @@
-# Contrato do novo catálogo de perks
+# Contrato do catálogo I/P/S/T
 
-## 1. Famílias
+## Paridade e ownership
 
-1. **Internal Attributes** — seis atributos fundamentais comuns.
-2. **Standard Perks** — passivos e regras de build que não modificam uma Ability concreta.
-3. **Transmutation Perks** — uma raiz `Txxxx` por Ability selecionada, com três grupos `Txxxx.xx`.
-4. **Specialization Perks** — perks de uma ramificação temática, ligadas a uma mecânica assinatura.
+11 árvores: MARTIAL, AGILITY, VITALITY, HEALING, ARCANE, ENGINEERING, MINING, SURVIVAL, SUMMONING, OCCULT, LOGISTICS.
 
-## 2. As 11 árvores
+Cada owner terá mesmo total de **P**, mesmo total de **S** e mesmo total de **vagas T**. Perfis de Abilities não contam como vagas, e seu total não precisa ser igual por domínio. O conjunto I é compartilhado e fixo em seis.
 
-`MARTIAL`, `AGILITY`, `VITALITY`, `HEALING`, `ARCANE`, `ENGINEERING`, `MINING`, `SURVIVAL`, `SUMMONING`, `OCCULT` e `LOGISTICS`.
+Cada perk P/S e vaga T possui um owner; uma especialização pode ser HYBRID com requisitos de outras árvores sem contar duas vezes. Sem filler.
 
-## 3. Paridade
+## Responsabilidades
 
-Obrigatório:
-- mesmo `N_standard_per_tree`;
-- mesmo `N_transmutation_per_tree`;
-- mesmo `N_specialization_per_tree`.
+- **I**: identidade dos seis atributos e suas policies do Core; não cria barra de stats paralela.
+- **P**: perks normais que alteram sistemas/ações/recursos de modo geral, sem criar uma árvore específica para um único spell.
+- **S**: especializações com Mecânica Assinatura e perks generalistas por **categoria validada** de ação/Ability; não se limitar a uma única spell.
+- **T**: vagas de progressão com escolha futura de Ability conhecida, e perfis **únicos para cada Ability elegível**.
 
-Preferencial, a congelar somente após a matriz de capacidades:
-- mesmo `K_specializations_per_tree`;
-- mesmo `M_perks_per_specialization`.
+## Escolha T
 
-A prioridade é equilíbrio sem filler.
+Perfis suportados têm LEFT (mínimo 2, máximo 9), RIGHT (mínimo 2, máximo 9), META (mínimo 3, máximo 9); **1 de cada grupo** ativo. Uma metamorfose pode converter afinidade/escola, alterando damage/scaling/status/tags/VFX quando tecnicamente possível. A lista de afinidades é provider-aware, não pré-aprovada.
 
-## 4. Especializações
+Um slot T não concede a Ability; depende de conhecimento/desbloqueio segundo a fonte real. O mapeamento slot ↔ Ability e o tier/raridade/level do provider serão auditados depois.
 
-Especialização é uma ramificação temática, não um mod, escola ou provider.
+## Evidência e custos
 
-Cada especialização aprovada deve possuir uma **Mecânica Assinatura** que crie decisões próprias e seja alimentada por suas perks.
+Perks P/S e profiles T citam nome, mod id, JAR, **versão real instalada** e funções/hook da release. As competências gerais devem usar tags normalizadas **somente a partir de facts verificadas**; não presumir que mods compartilham a mesma taxonomia.
 
-Exemplos de famílias de mecânica:
-- afinidade/patrono/espírito;
-- funções e sacrifícios de summons;
-- caça/captura/selamento;
-- posturas/juramentos/contratos;
-- doutrinas de crafting/engenharia;
-- outros sistemas equivalentes sustentados pelo pack.
+Cada perk contém custos de pontos/ranks/tier e requisitos mínimos de atributos (não consumíveis), além de dependências, sinergias, providers, fallback e antiabuso. Recurso mana/stamina/cooldown respeita pipeline nativo e não pode ser debitado duas vezes.
 
-A forma pode variar, mas o orçamento de poder e profundidade deve ser comparável.
+Leia [`PROVIDER-EVIDENCE-AND-COSTS.md`](./PROVIDER-EVIDENCE-AND-COSTS.md), [`ABILITY-SLOTS-AND-TAGS.md`](./ABILITY-SLOTS-AND-TAGS.md) e [`CODEX-FOUR-STAGES.md`](./CODEX-FOUR-STAGES.md).
 
-## 5. Transmutation Perks
+## Gates
 
-### Seleção
-
-O catálogo inicial usa **seleção fixa e curada** de Abilities.
-
-Nem toda Ability do pack precisa receber uma raiz. A lista concreta é escolhida durante a matriz de capacidades. O Codex pode gerar **todas as vagas editoriais numeradas** de Transmutation antes da catalogação (`RESERVED-UNBOUND`), com sete filhos e campos vazios. O número T fica reservado como posição, mas **ainda não representa Ability selecionada nem conta como perk aprovada**. O binding real vem depois.
-
-A seleção deve abranger igualmente árvores mágicas e não mágicas. `Ability` não é sinônimo de spell.
-
-Somente a raiz `Txxxx` conta para `N_transmutation_per_tree`.
-
-### Unicidade
-
-Cada Ability selecionada possui uma única raiz no catálogo.
-
-### Grupos
-
-- LEFT: `.11`–`.19`, mínimo 2, máximo 9, escolher 1.
-- RIGHT: `.21`–`.29`, mínimo 2, máximo 9, escolher 1.
-- METAMORPHOSIS: `.31`–`.39`, mínimo 3, máximo 9, escolher 1.
-
-Os três grupos coexistem: `1 LEFT + 1 RIGHT + 1 METAMORPHOSIS`.
-
-A quantidade de opções internas pode variar por Ability; a paridade mede raízes.
-
-### Affinity/School Transformation
-
-Conversões profundas devem usar uma abstração de **Affinity**, porque Fire/Ice/Lightning podem se comportar como elementos enquanto Holy/Blood/Ender podem ser escolas ou afinidades do provider.
-
-Uma metamorfose de afinidade pode oferecer várias escolhas internas, mas apenas uma afinidade fica configurada por vez.
-
-A lista permitida é provider-aware e será definida após a modlist. Uma affinity só entra se a conversão puder preservar coerentemente damage semantics, scaling, status, resistências, tags e apresentação necessária.
-
-Troca apenas de cor/VFX não satisfaz uma Transmutação de Afinidade.
-
-## 6. Ability, não Spell
-
-`Ability` pode representar spell, weapon skill, active skill, summon, stance, movement, ação vanilla ou outra capacidade integrável.
-
-Vanilla faz parte da matriz.
-
-Uma raiz só fica disponível quando a Ability exigida estiver conhecida/desbloqueada segundo a authority pertinente.
-
-## 7. Fontes
-
-A política detalhada está em [`SOURCES-AND-SELECTION-POLICY.md`](./SOURCES-AND-SELECTION-POLICY.md).
-
-Presença física da modlist prevalece sobre catálogos funcionais. Datapacks entram no comportamento carregado. O catálogo de providers do Black Arcana é referência canônica de capacidades mágicas já inventariadas. Resource packs e shaders são contexto visual, não authority de gameplay.
-
-## 8. Referências externas
-
-Diablo e outros jogos são fontes de padrões e perguntas de design, não specifications.
-
-Podemos adaptar uma ideia, generalizá-la, combinar padrões ou rejeitá-la completamente se não servir ao modpack.
-
-## 9. Ownership
-
-Toda perk possui exatamente uma árvore proprietária para contagem. Um provider pode alimentar várias árvores.
-
-## 10. Balanceamento
-
-Valores externos não são autoridade. Números finais são decididos contra Minecraft, providers instalados, sinergias do pack e testes.
+Nenhum slot vazio publicado como perk funcional. Nenhuma P/S com hook não confirmado é tratada como TECH-AUDITED. Nenhuma Ability com tipo de interação/estado insuficiente recebe metamorfose falsa. Layout vem por último. Diablo IV é inspiração, não autoridade técnica.

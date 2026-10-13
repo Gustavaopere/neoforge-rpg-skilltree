@@ -1,9 +1,9 @@
-# 02 — Standard Perks
+# 02 — Standard Perks (trabalho 1 do Codex)
 
-Perks normais do catálogo. Cada uma recebe um código `Pxxxx` e pertence a exatamente uma das 11 árvores.
+Aqui ficam `Pxxxx-<slug>.md` para cada uma das 11 árvores, com quota igual por owner.
 
-Todas as árvores terão o mesmo total `N_standard`. O valor ainda não está congelado porque o catálogo será desenhado primeiro e nivelado depois.
+**Não gerar apenas nomes vazios:** cada P precisa de design completo com efeito por rank, fantasia, tier/faixa de poder, custo em Passive Points, requisitos mínimos de atributos, gates/mastery, sinergias, mod/provider **versão/JAR instalados**, fato nativo e boundary/hook com evidência.
 
-Cada perk final terá seu próprio `.md`. Os `README.md` de cada árvore são o plano/índice local até o catálogo ser preenchido.
+Codex deve ler a modlist e consultar o source/API correspondentes ao JAR antes de afirmar que um efeito funciona. Se não houver boundary seguro, registrar `TECH-BLOCKED` (sem converter para bônus genérico). Aprovação conceitual e técnica são gates separados.
 
-Rascunhos conceituais podem começar antes do fechamento integral da modlist. Dependências técnicas sem evidência devem permanecer não verificadas; somente itens aprovados entram na contagem final.
+[Ordem de trabalho](../CODEX-FOUR-STAGES.md) · [Critérios de versão/custos](../PROVIDER-EVIDENCE-AND-COSTS.md)
