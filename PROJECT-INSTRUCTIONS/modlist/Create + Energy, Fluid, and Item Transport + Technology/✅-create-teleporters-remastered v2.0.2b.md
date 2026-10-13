@@ -119,3 +119,11 @@ Impacto específico neste pack: Sable e Create Aeronautics estão ativos, então
 Gate de regressão: trains atravessando custom portals, player/items/entities em Sable ships, portal-to-coordinates vs portal-to-portal, dye state persistente, Telejuice spouting recipe, KubeJS fluid stacks, portal alignment e save/restart.
 
 Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/create-teleporters/files/9010655
+
+## Reauditoria de publicação e compatibilidade — 13/10/2026
+
+**Projeto:** Create: Teleporters. **Última release pública identificada para Minecraft 1.21.1 / NeoForge:** `2.0.2b` (`createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar`). **Referência oficial:** https://www.curseforge.com/minecraft/mc-mods/create-teleporters/files/all?page=1&version=1.21.1.
+
+O catálogo oficial ainda aponta 2.0.2b como release NeoForge 1.21.1; a publicação Forge 1.19.2 de 03/06/2026 NÃO é atualização compatível deste perfil. Não foi constatado novo conteúdo publicamente lançado para a edição instalada. Preservar integração com Create, gerenciamento de destino, energia/custo se definido pelo provider, teleportação player/entidades, segurança em dimensões/chunk unload e concorrência entre operadores. Verificar interação com ModernFix `dynamic_resources` antes de alterar configuracões.
+
+**Autoridade física:** permanece o JAR/versão registrados nas seções históricas deste dossiê e na `modlist(1).txt`; NÃO foi disponibilizada nova lista física nem realizada instalação/teste in-game. **Recomendação:** atualização física pendente de reconciliação de dependências, SHA e validações; não interpretar o número publicado como versão instalada. **Filename `.md`:** ✅ herdado e versão do JAR físico preservados conforme protocolo canônico.
