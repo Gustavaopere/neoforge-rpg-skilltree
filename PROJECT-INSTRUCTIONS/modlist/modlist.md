@@ -695,3 +695,61 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 6. **Rollback:** qualquer desync, erro de load, alteração silenciosa de item data, dupe/loss ou incompatibilidade de bridge exige retorno **conjunto** dos JARs e da cópia correspondente do mundo — não reabrir dados migrados em runtime antigo sem restauração coerente.
 
 **Estado desta nota em 10/10/2026:** verificação de fontes públicas e consistência do snapshot documental; **nenhum JAR baixado/instalado, nenhum novo dump físico obtido, nenhuma migração de mundo ou teste de runtime executado**. A promoção de versões permanece pendente.
+
+## Matriz de atualizações externas — 13/10/2026 (solicitação de 30 mods)
+
+> **Escopo documental, NÃO inventário físico novo.** Estas 30 entradas foram reexaminadas contra publicações oficiais NeoForge/Minecraft **1.21.1**. Versões na coluna 'Candidato upstream' são publicações de referência, não instalação, teste, aprovação nem substituição do JAR. A tabela física ordenada de 587 entradas e o registro de duas adições pós-snapshot permanecem imutáveis até recebimento de novo dump. Arquivos `.md` mantêm `✅-` e versão **histórica física** no nome; o sinal `✅` existente não certifica novos upgrades. A seção abaixo **supersede os candidatos datados do gate Sophisticated de 10/10/2026**, preservado acima como histórico.
+
+| Ordem da solicitação | Projeto | Última evidência física (snapshot histórico) | Candidato upstream NeoForge 1.21.1 / conclusão | Decisão e gate |
+|---:|---|---|---|---|
+| 01 | Easy NPC (bundle) | `7.12.1` | `7.15.0` | BLOQUEADO: EME 2.5.0+ não identificado para NeoForge 1.21.1 |
+| 02 | Create: Teleporters | `2.0.2b (filename); metadata 2.0.2` | `2.0.2b` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 03 | Sophisticated Backpacks Create Integration | `0.2.0` | `0.2.3.194` | PENDENTE: promoção coordenada do ecossistema Sophisticated |
+| 04 | Sophisticated Core | `1.5.1` | `1.5.11.2394` | PENDENTE: ABI e dependências Sophisticated |
+| 05 | VS / Sable Hose Connectors | `0.1.8` | `0.2.2` | PENDENTE: novas interações sem wrench, config e transferência atômica |
+| 06 | Placebo | `9.9.2` | `9.9.4` | PENDENTE: consumer linkage com Apotheosis/Apothic |
+| 07 | Ace's Spell Utils | `1.2.7.2-1.21.1` | `1.2.7.2-1.21.1` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 08 | Supplementaries | `1.21.1-3.9.9` | `4.0.1` | PENDENTE: migração entre linhas 3.x/4.x; Moonlight/Amendments |
+| 09 | AzureLib | `3.1.11` | `3.1.19 Release; 3.1.20-alpha.1 pré-release` | PENDENTE: alpha não equivale a estabilidade |
+| 10 | Easy NPC: Core | `7.12.1 (JAR); metadata sem versão` | `7.15.0` | BLOQUEADO: EME 2.5.0+ não comprovado para NeoForge 1.21.1 |
+| 11 | Create Aeronautics: Gadgets & Gizmos | `1.2.2` | `1.2.10` | PENDENTE: v1.2.9 desaconselhada pelo upstream; revalidar bundle e lógica |
+| 12 | Reliquified Artifacts | `1.0.8` | `1.0.9 Beta` | PENDENTE: Relics/Artifacts/Curios e efeitos sem duplicação |
+| 13 | Minecolonies: Epiched (Epic Colonies) | `21.0.8` | `21.0.9` | PENDENTE: novos movesets EpicFight Nightfall + Extra; animações cidadãos |
+| 14 | Easy Model Entities | `2.4.0` | `2.4.0 para NeoForge 1.21.1` | REVALIDADO: 2.5.0 encontrada somente para outro Minecraft; bloqueia Easy NPC 7.15 |
+| 15 | Polymorph+ | `1.3.1+1.21.1` | `1.3.2+1.21.1` | PENDENTE: receitas/GUI/JEI/KubeJS |
+| 16 | Eidolon: Repraised | `0.5.0.2` | `0.5.0.2` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 17 | Fragmentum [NeoForge] | `2.4.4` | `5.3.0` | BLOQUEADO: mudança incompatível de API/Kotlin/registries desde 5.0 |
+| 18 | ThirstWasFixed | `2.1.6` | `2.1.6` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 19 | Polytone | `1.21-4.4.0` | `5.1.1` | PENDENTE: voxel volume/Veil, shaders, packs; compat de Amendments |
+| 20 | Just Enough Items (JEI) | `19.56.0.440` | `19.64.0.453 Beta` | PENDENTE: addon APIs, recipe/indexing e integração |
+| 21 | Subtle Effects | `1.14.3` | `1.15.1` | PENDENTE: partículas e correções de servidor específicas de 1.21.1 |
+| 22 | Collective | `8.39` | `8.47` | PENDENTE: changes específicas do target não isoladas; Serilum consumers |
+| 23 | Aeronautics Player Tilt | `0.2.0` | `0.2.0` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 24 | Sophisticated Backpacks | `3.26.3` | `3.26.12.2208` | PENDENTE: atualizar com Core, Storage e bridges; anti-dupe |
+| 25 | Easy NPC: Config UI | `7.12.1` | `7.15.0` | BLOQUEADO: tríade Easy NPC exige EME 2.5.0+ |
+| 26 | Crystal Chronicles — Iron's Spells | `0.1.3-alpha` | `0.1.4-alpha` | PENDENTE: versão alpha, magia e worldgen |
+| 27 | BlockUI | `1.0.212-1.21.1-snapshot` | `1.0.212-1.21.1-snapshot` | REVALIDADO: possível republicação; conferir file ID/SHA, sem bump |
+| 28 | Sophisticated Storage Create Integration | `0.1.21` | `0.1.23.246` | PENDENTE: bridge coordenada, dupe/loss |
+| 29 | Integrated API | `1.8.2` | `1.9.0` | PENDENTE: consumers Integrated Structures e registries worldgen |
+| 30 | Sophisticated Storage | `1.5.91` | `1.6.4.2169` | PENDENTE: API/storage persistence; upgrade coordenado |
+
+### Prioridade: dependências e conteúdo novo que exigem validação
+
+- **Easy NPC #01/#10/#25 ↔ Easy Model Entities #14:** bundle, Core e Config UI 7.15.0 são publicações NeoForge 1.21.1, porém o Core exige **Easy Model Entities 2.5.0+**, enquanto a última publicação 1.21.1 localizada é EME **2.4.0**. A EME 2.5.0 encontrada foi publicada para **Minecraft 26.1.2**, incompatível como substituição direta. **PROMOÇÃO BLOQUEADA**. Deltas NPC relevantes: persistência/importação com IDs, controle de proprietários/home, diálogo lock por contexto, NPC duplicados, áudio custom de resource packs e retenção de backup ajustada para 30 dias. Fontes: https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/9151672 ; https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/all.
+- **Gadgets & Gizmos #11:** a versão 1.2.9 é marcada pelo autor '**DO NOT USE! Causes crashes**'. Avaliar **1.2.10** diretamente: Counter, reset Do N, numeric compare int/float, Watch/Send Chat, stop sound, null-level guard com Supplementaries. Smoke de graphs, permissions/chat em sublevels, bundle e estado persistente. Fonte: https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/9141062.
+- **Fragmentum #17:** release **5.0.0** anuncia *breaking changes*, migração Kotlin/Modern Stonecutter; 5.3.0 acrescenta `AssetRegistry` com resource reload, `ConfigScreenFactory.stringFieldOption` e `Deferred`/`Lazy`. Revalidar consumidores/APIs e JarJar antes do salto **2.4.4 → 5.3.0**. Fonte: https://www.curseforge.com/minecraft/mc-mods/fragmentum-neoforge/files/9150745.
+- **VS/Sable Hose Connectors #05:** 0.2.2 altera conexão sem wrench, wrench rotate/sneak remove e oferece config para recuperar interação antiga; conferir transfers exactly-once, connector state e input conflicts. Fonte: https://www.curseforge.com/minecraft/mc-mods/vs-hose-connectors/files/9147235.
+- **Sophisticated #03/#04/#24/#28/#30:** não atualizar Core, Backpacks, Storage ou bridges Create isoladamente; conferir consumidor **Sophisticated JEI Index**, addon extra `create_sophback_compat-1.0.jar` e Ars Compat. Exigir backup de mundo, suite anti-duplicação de inventário, reopen/save/restart, chunk unload e teste com contraptions. O gate histórico de 10/10 acima foi substituído pelas versões deste lote.
+- **Supplementaries #08 / Polytone #19 / AzureLib #09:** mudanças em generated resources, shaders, voxel volume e render/animation; diferenciar release 3.1.19 de alpha 3.1.20. O novo Polytone 5.1.1 modifica voxel volume/compat Veil. Testar resource reload e coexistência de Amendments/Moonlight.
+- **Minecolonies Epiched #13:** 21.0.9 amplia movesets quando **EpicFight Nightfall + EpicFight Extra** estão juntos; corrige meshes de Settlers. Atribuição restrita aos addons realmente presentes.
+- **Subtle Effects #21:** 1.15.1 melhora partículas (potted flowers/withering, copper scraping/unwaxing, mud), e corrige crash de splashes em servidor. Fixes identificados pelo autor como 26.x não são automaticamente aplicáveis a NeoForge 1.21.1.
+- **Revalidação sem mudança de release:** #02 Create Teleporters, #07 Ace's Spell Utils, #14 Easy Model Entities, #16 Eidolon Repraised, #18 ThirstWasFixed, #23 Aeronautics Player Tilt e #27 BlockUI. **BlockUI republicado com mesmo nome/versão** exige SHA/file ID para diagnosticar se bytes mudaram; não inventar bump.
+
+### Condições para alterar a modlist física e os filenames
+
+1. Recolher dump atual da pasta `mods/` com caminho, filename, metadados internos, hashes e ordem, incluindo verificação de dependências JarJar e os módulos Easy NPC.
+2. Separar versão **publicada**, **compatível** e **instalada**; não copiar automaticamente a coluna de publicação para a coluna de instalação. Bloqueios e prereleases/alphas/betas exigem decisão e smoke test explícitos.
+3. Somente depois de comprovar substituição física, atualizar as 587 posições ou reordenar segundo novo dump e então renomear os `.md` para `✅-<mod> v<versão física>.md`, incluindo links e contadores. Até lá os 30 arquivos preservam seus nomes canônicos já versionados.
+4. CI do repositório valida a documentação/código de integração do repositório, **não substitui** os smoke tests do modpack real para novas versões físicas.
+
+**Fontes detalhadas, changelogs e matrizes individuais:** seções `13/10/2026` dos 30 dossiês respectivos; estes registros preservam explicitamente ausência de changelog nas releases em que o delta não pôde ser identificado com segurança.
