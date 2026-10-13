@@ -700,38 +700,40 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 
 > **Escopo documental, NÃO inventário físico novo.** Estas 30 entradas foram reexaminadas contra publicações oficiais NeoForge/Minecraft **1.21.1**. Versões na coluna 'Candidato upstream' são publicações de referência, não instalação, teste, aprovação nem substituição do JAR. A tabela física ordenada de 587 entradas e o registro de duas adições pós-snapshot permanecem imutáveis até recebimento de novo dump. Arquivos `.md` mantêm `✅-` e versão **histórica física** no nome; o sinal `✅` existente não certifica novos upgrades. A seção abaixo **supersede os candidatos datados do gate Sophisticated de 10/10/2026**, preservado acima como histórico.
 
-| Ordem da solicitação | Projeto | Última evidência física (snapshot histórico) | Candidato upstream NeoForge 1.21.1 / conclusão | Decisão e gate |
-|---:|---|---|---|---|
-| 01 | Easy NPC (bundle) | `7.12.1` | `7.15.0` | BLOQUEADO: EME 2.5.0+ não identificado para NeoForge 1.21.1 |
-| 02 | Create: Teleporters | `2.0.2b (filename); metadata 2.0.2` | `2.0.2b` | REVALIDADO: sem nova release 1.21.1 demonstrada |
-| 03 | Sophisticated Backpacks Create Integration | `0.2.0` | `0.2.3.194` | PENDENTE: promoção coordenada do ecossistema Sophisticated |
-| 04 | Sophisticated Core | `1.5.1` | `1.5.11.2394` | PENDENTE: ABI e dependências Sophisticated |
-| 05 | VS / Sable Hose Connectors | `0.1.8` | `0.2.2` | PENDENTE: novas interações sem wrench, config e transferência atômica |
-| 06 | Placebo | `9.9.2` | `9.9.4` | PENDENTE: consumer linkage com Apotheosis/Apothic |
-| 07 | Ace's Spell Utils | `1.2.7.2-1.21.1` | `1.2.7.2-1.21.1` | REVALIDADO: sem nova release 1.21.1 demonstrada |
-| 08 | Supplementaries | `1.21.1-3.9.9` | `4.0.1` | PENDENTE: migração entre linhas 3.x/4.x; Moonlight/Amendments |
-| 09 | AzureLib | `3.1.11` | `3.1.19 Release; 3.1.20-alpha.1 pré-release` | PENDENTE: alpha não equivale a estabilidade |
-| 10 | Easy NPC: Core | `7.12.1 (JAR); metadata sem versão` | `7.15.0` | BLOQUEADO: EME 2.5.0+ não comprovado para NeoForge 1.21.1 |
-| 11 | Create Aeronautics: Gadgets & Gizmos | `1.2.2` | `1.2.10` | PENDENTE: v1.2.9 desaconselhada pelo upstream; revalidar bundle e lógica |
-| 12 | Reliquified Artifacts | `1.0.8` | `1.0.9 Beta` | PENDENTE: Relics/Artifacts/Curios e efeitos sem duplicação |
-| 13 | Minecolonies: Epiched (Epic Colonies) | `21.0.8` | `21.0.9` | PENDENTE: novos movesets EpicFight Nightfall + Extra; animações cidadãos |
-| 14 | Easy Model Entities | `2.4.0` | `2.4.0 para NeoForge 1.21.1` | REVALIDADO: 2.5.0 encontrada somente para outro Minecraft; bloqueia Easy NPC 7.15 |
-| 15 | Polymorph+ | `1.3.1+1.21.1` | `1.3.2+1.21.1` | PENDENTE: receitas/GUI/JEI/KubeJS |
-| 16 | Eidolon: Repraised | `0.5.0.2` | `0.5.0.2` | REVALIDADO: sem nova release 1.21.1 demonstrada |
-| 17 | Fragmentum [NeoForge] | `2.4.4` | `5.3.0` | BLOQUEADO: mudança incompatível de API/Kotlin/registries desde 5.0 |
-| 18 | ThirstWasFixed | `2.1.6` | `2.1.6` | REVALIDADO: sem nova release 1.21.1 demonstrada |
-| 19 | Polytone | `1.21-4.4.0` | `5.1.1` | PENDENTE: voxel volume/Veil, shaders, packs; compat de Amendments |
-| 20 | Just Enough Items (JEI) | `19.56.0.440` | `19.64.0.453 Beta` | PENDENTE: addon APIs, recipe/indexing e integração |
-| 21 | Subtle Effects | `1.14.3` | `1.15.1` | PENDENTE: partículas e correções de servidor específicas de 1.21.1 |
-| 22 | Collective | `8.39` | `8.47` | PENDENTE: changes específicas do target não isoladas; Serilum consumers |
-| 23 | Aeronautics Player Tilt | `0.2.0` | `0.2.0` | REVALIDADO: sem nova release 1.21.1 demonstrada |
-| 24 | Sophisticated Backpacks | `3.26.3` | `3.26.12.2208` | PENDENTE: atualizar com Core, Storage e bridges; anti-dupe |
-| 25 | Easy NPC: Config UI | `7.12.1` | `7.15.0` | BLOQUEADO: tríade Easy NPC exige EME 2.5.0+ |
-| 26 | Crystal Chronicles — Iron's Spells | `0.1.3-alpha` | `0.1.4-alpha` | PENDENTE: versão alpha, magia e worldgen |
-| 27 | BlockUI | `1.0.212-1.21.1-snapshot` | `1.0.212-1.21.1-snapshot` | REVALIDADO: possível republicação; conferir file ID/SHA, sem bump |
-| 28 | Sophisticated Storage Create Integration | `0.1.21` | `0.1.23.246` | PENDENTE: bridge coordenada, dupe/loss |
-| 29 | Integrated API | `1.8.2` | `1.9.0` | PENDENTE: consumers Integrated Structures e registries worldgen |
-| 30 | Sophisticated Storage | `1.5.91` | `1.6.4.2169` | PENDENTE: API/storage persistence; upgrade coordenado |
+| Ordem da solicitação | Projeto | Dossiê técnico | Última evidência física (snapshot histórico) | Candidato upstream NeoForge 1.21.1 / conclusão | Decisão e gate |
+|---:|---|---|---|---|---|
+| 01 | Easy NPC (bundle) | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc-bundle%20v7.12.1.md) | `7.12.1` | `7.15.0` | BLOQUEADO: EME 2.5.0+ não identificado para NeoForge 1.21.1 |
+| 02 | Create: Teleporters | [Abrir `.md`](./Create%20%2B%20Energy%2C%20Fluid%2C%20and%20Item%20Transport%20%2B%20Technology/%E2%9C%85-create-teleporters-remastered%20v2.0.2b.md) | `2.0.2b (filename); metadata 2.0.2` | `2.0.2b` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 03 | Sophisticated Backpacks Create Integration | [Abrir `.md`](./Addons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks-create-integration%20v0.2.0.md) | `0.2.0` | `0.2.3.194` | PENDENTE: promoção coordenada do ecossistema Sophisticated |
+| 04 | Sophisticated Core | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-sophisticated-core%20v1.5.1.md) | `1.5.1` | `1.5.11.2394` | PENDENTE: ABI e dependências Sophisticated |
+| 05 | VS / Sable Hose Connectors | [Abrir `.md`](./Addons%20%2B%20Create%20%2B%20Industrial%20Craft%20%2B%20Storage%20%2B%20Technology/%E2%9C%85-vs-sable-hose-connectors%20v0.1.8.md) | `0.1.8` | `0.2.2` | PENDENTE: novas interações sem wrench, config e transferência atômica |
+| 06 | Placebo | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-placebo%20v9.9.2.md) | `9.9.2` | `9.9.4` | PENDENTE: consumer linkage com Apotheosis/Apothic |
+| 07 | Ace's Spell Utils | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library/%E2%9C%85-aces-spell-utils%20v1.2.7.2-1.21.1.md) | `1.2.7.2-1.21.1` | `1.2.7.2-1.21.1` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 08 | Supplementaries | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous%20%2B%20Redstone%20%2B%20Storage/%E2%9C%85-supplementaries%20v1.21.1-3.9.9.md) | `1.21.1-3.9.9` | `4.0.1` | PENDENTE: migração entre linhas 3.x/4.x; Moonlight/Amendments |
+| 09 | AzureLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-azurelib%20v3.1.11.md) | `3.1.11` | `3.1.19 Release; 3.1.20-alpha.1 pré-release` | PENDENTE: alpha não equivale a estabilidade |
+| 10 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1 (JAR); metadata sem versão` | `7.15.0` | BLOQUEADO: EME 2.5.0+ não comprovado para NeoForge 1.21.1 |
+| 11 | Create Aeronautics: Gadgets & Gizmos | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-aeronautics-gadgets-and-gizmos%20v1.2.2.md) | `1.2.2` | `1.2.10` | PENDENTE: v1.2.9 desaconselhada pelo upstream; revalidar bundle e lógica |
+| 12 | Reliquified Artifacts | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-artifacts%20v1.0.8.md) | `1.0.8` | `1.0.9 Beta` | PENDENTE: Relics/Artifacts/Curios e efeitos sem duplicação |
+| 13 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.0.8.md) | `21.0.8` | `21.0.9` | PENDENTE: novos movesets EpicFight Nightfall + Extra; animações cidadãos |
+| 14 | Easy Model Entities | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Automation%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-easy-model-entities%20v2.4.0.md) | `2.4.0` | `2.4.0 para NeoForge 1.21.1` | REVALIDADO: 2.5.0 encontrada somente para outro Minecraft; bloqueia Easy NPC 7.15 |
+| 15 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | `1.3.2+1.21.1` | PENDENTE: receitas/GUI/JEI/KubeJS |
+| 16 | Eidolon: Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | `0.5.0.2` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 17 | Fragmentum [NeoForge] | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | `5.3.0` | BLOQUEADO: mudança incompatível de API/Kotlin/registries desde 5.0 |
+| 18 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | `2.1.6` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 19 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | `5.1.1` | PENDENTE: voxel volume/Veil, shaders, packs; compat de Amendments |
+| 20 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.56.0.440.md) | `19.56.0.440` | `19.64.0.453 Beta` | PENDENTE: addon APIs, recipe/indexing e integração |
+| 21 | Subtle Effects | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous/%E2%9C%85-subtle-effects%20v1.14.3.md) | `1.14.3` | `1.15.1` | PENDENTE: partículas e correções de servidor específicas de 1.21.1 |
+| 22 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | `8.47` | PENDENTE: changes específicas do target não isoladas; Serilum consumers |
+| 23 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | `0.2.0` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 24 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.3.md) | `3.26.3` | `3.26.12.2208` | PENDENTE: atualizar com Core, Storage e bridges; anti-dupe |
+| 25 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.12.1.md) | `7.12.1` | `7.15.0` | BLOQUEADO: tríade Easy NPC exige EME 2.5.0+ |
+| 26 | Crystal Chronicles — Iron's Spells | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Dimensions%20%2B%20Magic/%E2%9C%85-crystal-chronicles%20v0.1.3-alpha.md) | `0.1.3-alpha` | `0.1.4-alpha` | PENDENTE: versão alpha, magia e worldgen |
+| 27 | BlockUI | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-blockui%20v1.0.212-1.21.1-snapshot.md) | `1.0.212-1.21.1-snapshot` | `1.0.212-1.21.1-snapshot` | REVALIDADO: possível republicação; conferir file ID/SHA, sem bump |
+| 28 | Sophisticated Storage Create Integration | [Abrir `.md`](./Addons%20%2B%20Storage/%E2%9C%85-sophisticated-storage-create-integration%20v0.1.21.md) | `0.1.21` | `0.1.23.246` | PENDENTE: bridge coordenada, dupe/loss |
+| 29 | Integrated API | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-integrated-api%20v1.8.2.md) | `1.8.2` | `1.9.0` | PENDENTE: consumers Integrated Structures e registries worldgen |
+| 30 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.5.91.md) | `1.5.91` | `1.6.4.2169` | PENDENTE: API/storage persistence; upgrade coordenado |
+
+> **Auditoria de rastreabilidade — 13/10/2026:** os 30 links da coluna **Dossiê técnico** foram reconciliados com caminhos existentes na `main`; cada filename `✅-... vX.md` retém a **última evidência física histórica**, não a release candidata. O endereço CurseForge `easy-npc/files/9151672` citado nos dossiês Easy NPC corresponde a um JAR **Fabric**: ele é fonte do changelog comum, mas **NÃO** é o artefato NeoForge. Verificar o JAR NeoForge 1.21.1 e manter o bloqueio EME 2.5.0+ até publicação compatível comprovada.
 
 ### Prioridade: dependências e conteúdo novo que exigem validação
 
