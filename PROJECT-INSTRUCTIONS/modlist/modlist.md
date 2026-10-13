@@ -101,7 +101,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 051 | Ars Nouveau: Two-Way Portals (with immersive portal support) | `ars_two_way_portals-2.0.0.jar` | `2.0.0` | `Addons` | 19/09/2026 - 17:10 |
 | 052 | Ars Zero | `ars_zero-1.21.1-2.0.2.jar` | `2.0.2` | `Addons + Cosmetic + Magic + Technology` | 19/09/2026 - 17:10 |
 | 053 | Ars Nouveau's Flavors & Delight | `arsdelight-2.2.2.jar` | `2.2.2` | `Addons + Farming + Food + Magic` | 19/09/2026 - 17:10 |
-| 054 | Sophisticated Storage: Ars Compat \| Sophisticated Storage Ars-Nouveau Compatibility | `arssophisticatedcompat-0.3.0.jar` | `0.3.0` | `Magic + Storage + Utility & QoL` | 19/09/2026 - 18:06 |
+| 054 | Sophisticated Backpacks: Ars Compat \| Sophisticated Backpacks Ars-Nouveau Compatibility | `arssophisticatedcompat-0.3.0.jar` | `0.3.0` | `Magic + Storage + Utility & QoL` | 19/09/2026 - 18:06 |
 | 055 | Artifacts | `artifacts-neoforge-13.2.5.jar` | `13.2.5` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Structures` | 19/09/2026 - 18:06 |
 | 056 | Asterism Arcanum \| Addon for Iron's Spells and Spellbooks | `asterismarcanum-1.21.1-0.1.0.jar` | `1.21.1-0.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 18:06 |
 | 057 | Athena | `athena-neoforge-1.21.1-4.0.6.jar` | `4.0.6` | `API and Library + Utility & QoL` | 19/09/2026 - 18:06 |
@@ -680,7 +680,7 @@ O `1.2.4` do JEI Index **não tem changelog público**; não atribuir fix própr
 
 O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** numa substituição coordenada:
 
-- **#054** — Sophisticated Storage: Ars Compat / `arssophisticatedcompat-0.3.0.jar`: abrir/fechar containers, capability, recipes e interação com Ars Nouveau e Storage 1.6.x.
+- **#054** — Sophisticated Backpacks: Ars Compat / `arssophisticatedcompat-0.3.0.jar`: **correção oficial de identificação 13/10**; Source, Sourcelink, Potion Jar e reparo pertencem à **mochila Sophisticated Backpacks**, não ao armazenamento em blocos. O projeto Storage: Ars Compat usa outro JAR e não está comprovado como instalado.
 - **#160** — Create: Sophisticated Backpacks Compat / `create_sophback_compat-1.0.jar`: coexistência com a bridge oficial Backpacks Create; avaliar double-handling de inventário e hooks de Create sem presumir redundância ou removê-lo automaticamente.
 - **#514** — Thirst Upgrade for Sophisticated Backpacks / `sophisticated-thirst-upgrade.jar`: persistência e ativação de upgrade após alteração de APIs/Core.
 - **Create** (snapshot 6.0.10), **JEI** (snapshot 19.56.0.440; revisão upstream distinta), **Ars Nouveau**, **Tom's Storage** e demais integrações de armazenamento presentes: validar APIs, recipe transfer e read/write de inventory em contraptions.
@@ -817,7 +817,7 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 
 | # | Componente | Última evidência física | Publicação oficial NeoForge 1.21.1 | Decisão para a migração Sophisticated |
 |---|---|---|---|---|
-| #054 | Ars Sophisticated Compatibility | `arssophisticatedcompat-0.3.0.jar` / runtime 0.3.0 | [0.3.0, arquivo `arssophisticatedstoragecompat-0.3.0.jar`](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated/files/8655579) | **NÃO VERIFICADO:** filename físico diverge do publicado; Source/upgrade em linked storage exige QA |
+| #054 | Sophisticated Backpacks: Ars Compat | `arssophisticatedcompat-0.3.0.jar` / runtime 0.3.0 | [Backpacks Ars Compat 0.3.0 — arquivo coincidente, CurseForge 8653384](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-ars-compat-sophisticated/files/8653384) | **IDENTIDADE DOCUMENTAL CORRIGIDA POR FILENAME; HASH/ABI PENDENTES.** Storage Ars Compat é outro mod/File ID 8655579 |
 | #160 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` / runtime version VAZIA, display name defeituoso | [1.0, 03/08/2025](https://www.curseforge.com/minecraft/mc-mods/create-sophisticated-backpacks-compat/files/all) | **NÃO VERIFICADO** com Backpacks novos; recipes Create e KubeJS precisam de comparação |
 | #514 | Sophisticated Thirst Upgrade | `sophisticated-thirst-upgrade.jar` / runtime 0.1.8 | [0.1.8, file 8102344](https://www.curseforge.com/minecraft/mc-mods/thirst-upgrade-for-sophisticated-backpacks-thirst/files/8102344) | **PENDENTE:** addon feito para Thirst Was Taken; pack usa Reclaimed 3.0.5, autor não promete port futuro |
 | #515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` / runtime 1.2.3 | [1.2.4+1.21.1, file 9089418, sem changelog](https://www.curseforge.com/minecraft/mc-mods/sophisticated-jei-index/files/9089418) | **CANDIDATO DECLARATIVO**, mas sem verificação dos manifests do JAR, mixins, recipe transfer ou tests |
@@ -835,3 +835,15 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 **Gates ainda PENDENTES:** inspecionar os quatro JARs e metadados reais (IDs/ranges/hash/JarJar); comparar recipe JSON e KubeJS para #160; validar ABI Source/linked lifecycle para #054; JEI protocol, packet, Mixin e config client/server para #515; hidratação Reclaimed/Fixed para #514. Em cópia com backup de mundo: dedicated server + cliente, dois jogadores, Tom's recipe transfer, Source upgrade/linked groups, Create contraptions, save/restart, chunk unload/reload, anti-dupe e rollback. **CI do repositório não constitui essa certificação.** Core/Backpacks/Storage e bridges da PR #893 permanecem candidatos, não instalação.
 
 **Dossiês correspondentes:** [#054](./Magic%20%2B%20Storage%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ars-sophisticated-compatibility%20v0.3.0.md), [#160](./Addons%20%2B%20Create%20%2B%20Processing/%E2%9C%85-create-sophisticated-backpacks-compat%20v1.0.md), [#514](./Miscellaneous/%E2%9C%85-sophisticated-thirst-upgrade%20v0.1.8.md), [#515](./Addons%20%2B%20Applied%20Energistics%202%20%2B%20Refined%20Storage%20%2B%20Storage/%E2%9C%85-sophisticated-jei-index%20v1.2.3.md).
+
+
+## Errata prioritária — projeto do Ars Compat #054 (13/10/2026, após PR #894)
+
+A rechecagem dos **dois projetos oficiais distintos** mantidos por LuminaCherry corrigiu a atribuição anterior:
+
+1. **[Sophisticated Backpacks: Ars Compat — CurseForge Project 1653477, File ID 8653384](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-ars-compat-sophisticated/files/8653384):** arquivo **`arssophisticatedcompat-0.3.0.jar`**, NeoForge 1.21.1, 15/08/2026. Coincide exatamente com o **nome físico da entrada #054** do snapshot. Upgrades de Source/Sourcelink/Potion Jar/reparo são voltados para **backpacks**; dependências declaradas no release: **Ars Nouveau, Sophisticated Backpacks e Sophisticated Core**.
+2. **[Sophisticated Storage: Ars Compat — CurseForge Project 1653878, File ID 8655579](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated/files/8655579):** arquivo diferente, **`arssophisticatedstoragecompat-0.3.0.jar`** para NeoForge 1.21.1. Esse projeto aplica upgrades ao **Sophisticated Storage em blocos**. **Não foi confirmado como instalado na modlist histórica**; sua existência publicada não cria presença física.
+
+**Decisão:** o nome apresentado na linha #054 e a documentação do dossiê foram corrigidos para **Backpacks Ars Compat**. Conservar JAR, runtime `0.3.0`, mod ID histórico `arssophisticatedcompat`, SHA-1 histórico `7cc6c1e1d92d109230f68b6a63dc4bfb13c245a6`, categoria, posição, quantidade de mods e slug do dossiê existente (evita links órfãos). A menção antiga do índice de 10/10/2026 a Storage Ars Compat foi corrigida como erro documental; a tabela da PR #894 foi ajustada. As demais partes históricas que descrevem Storage como consumidor de Ars passam a ser **substituídas por esta errata**.
+
+**Limite de confiança:** coincidência exata de filename de publicação + target e versão é evidência forte para **identificação catalográfica**, porém nenhum JAR instalado foi disponibilizado para re-hash, leitura de `META-INF/neoforge.mods.toml` ou comparação byte-a-byte com o arquivo 8653384. **Não há prova binária, teste de jogo ou atualização física.** A migração Sophisticated para Core 1.5.11/Backpacks 3.26.12/Storage 1.6.5 permanece PENDENTE, com testes de Ars voltados ao **inventory do backpack**. O arquivo distinto `arssophisticatedstoragecompat-0.3.0.jar` não deve ser instalado automaticamente.
