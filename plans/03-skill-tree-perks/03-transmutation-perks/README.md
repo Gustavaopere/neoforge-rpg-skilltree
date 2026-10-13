@@ -61,3 +61,9 @@ Standard Perks e Specialization Perks podem afetar regras gerais, categorias, re
 Ability inclui spells, weapon skills, active skills, summons, stances, movement e ações vanilla integráveis.
 
 A implementação técnica de cada provider só é aprofundada depois que o catálogo conceitual estiver fechado.
+
+## Rascunhos antecipados
+
+É permitido montar fichas de Transmutation com todos os campos estruturais presentes e alguns valores vazios enquanto o catálogo de Abilities é concluído. Usar [`_drafts/TEMPLATE-UNBOUND.md`](./_drafts/TEMPLATE-UNBOUND.md).
+
+Um `DRAFT-UNBOUND` **não é** uma raiz `Txxxx`: não conta para paridade, não recebe IDs .11/.21/.31, não vai a runtime/wiki. A promoção só acontece depois de vincular uma Ability existente, confirmar provider/owner e aprovar o design específico. Não preencher slots com skills inventadas.

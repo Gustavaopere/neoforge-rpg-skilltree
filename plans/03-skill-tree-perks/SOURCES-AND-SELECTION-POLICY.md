@@ -132,3 +132,7 @@ A seleção deve considerar, entre outros fatores que serão definidos naquela f
 - cobertura justa entre estilos mágicos e não mágicos.
 
 Nenhuma lista concreta de “melhores skills” é congelada neste documento.
+
+## 7. Trabalho antecipado não altera a seleção curada
+
+Antes de fechar a modlist pode-se montar estruturas de Transmutation sem Ability vinculada, em `_drafts/`, com campos vazios. Não se atribui `Txxxx`, não se declara suporte de provider e não se conta essa ficha como Ability selecionada. O catálogo definitivo continua sendo fechado pela rubrica de comparação das 11 árvores.

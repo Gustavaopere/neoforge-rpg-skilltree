@@ -2,6 +2,16 @@
 
 Este arquivo define o formato mínimo dos dossiês editoriais do novo catálogo. O objetivo é impedir que perks sejam criadas com informações incompletas ou com decisões técnicas misturadas ao conceito.
 
+## 0. Rascunhos durante a catalogação
+
+O estágio `DRAFT-UNBOUND` é reservado a fichas de Transmutation sem Ability concreta vinculada. Elas ficam sob `03-transmutation-perks/_drafts/`, com chave provisória no nome do arquivo (`candidate-<tree>-<slug>.md`) e nunca são catalogadas como `Txxxx`.
+
+O template contém campos explícitos de Ability, provider, identificação técnica, requisitos, LEFT, RIGHT e METAMORPHOSIS. **Campos ainda não comprovados podem permanecer vazios**; não usar um ID real, valor numérico ou habilidade fictícia para preencher lacunas.
+
+A promoção exige Ability identificada, confirmação da presença (ou vanilla/projeto próprio), owner único, seleção curada e conceito 2/2/3 completo. Só então o rascunho é movido para a árvore correspondente e renomeado `Txxxx`, recebendo filhos `Txxxx.xx`.
+
+Standard Perks e fantasias/Mecânicas Assinatura também podem ser rascunhadas antes do fechamento da modlist, desde que dados de integração não verificados sejam explicitamente marcados como pendentes. As quotas e publicações contam somente itens aprovados.
+
 ## 1. Standard Perk — `Pxxxx-<slug>.md`
 
 Cada arquivo deve conter:

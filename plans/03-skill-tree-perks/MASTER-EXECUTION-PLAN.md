@@ -4,7 +4,7 @@
 
 **Goal:** reconstruir o catálogo completo de perks das 11 árvores a partir do pack realmente instalado, com paridade entre árvores, Transmutations curadas por Ability, especializações com Mecânicas Assinatura e implementação técnica posterior sem herdar decisões editoriais do catálogo `A####`.
 
-**Architecture:** o trabalho é dividido em gates sequenciais. Nenhuma fase de conteúdo pode começar enquanto a fonte anterior não estiver fechada. O catálogo editorial usa Markdown individual por perk/Ability, IDs `I/P/T/S`, ownership único por árvore e seleção curada de Abilities. A implementação runtime só começa depois de o catálogo conceitual inteiro estar aprovado e tecnicamente auditado.
+**Architecture:** gates de aprovação e implementação permanecem sequenciais, mas o design editorial preliminar pode avançar em paralelo à catalogação da modlist. Rascunhos não confirmados não equivalem a perks aprovadas, não ocupam quotas finais e não recebem IDs definitivos `Txxxx`. O catálogo editorial usa Markdown individual por perk/Ability, IDs `I/P/T/S`, ownership único por árvore e seleção curada de Abilities. A implementação runtime só começa depois de o catálogo conceitual inteiro estar aprovado e tecnicamente auditado.
 
 **Tech Stack:** Markdown versionado no GitHub, Python 3 para validators/catalog checks, Java 21 + NeoForge 1.21.1 para runtime, Gradle para testes, catálogos em `PROJECT-INSTRUCTIONS` e Black Arcana como fontes de inventário.
 
@@ -32,6 +32,19 @@
 - Resource packs e shaders servem como contexto visual, não prova de gameplay/hook.
 - Nenhuma perk pode ser fechada tecnicamente antes da auditoria do provider real.
 - Nenhum filler é permitido apenas para atingir quota.
+- Rascunhos de Standard Perks e de fantasias/Mecânicas Assinatura podem ser escritos antes do fechamento total da modlist, desde que não afirmem integrações ainda não verificadas.
+- Rascunhos de Transmutation sem Ability vinculada ficam exclusivamente em `03-transmutation-perks/_drafts/`, com campos presentes e vazios quando não se souber a informação.
+- Um arquivo `DRAFT-UNBOUND` não é uma Ability, não conta na paridade, não recebe `Txxxx`/`Txxxx.xx` e não é exportado para runtime/wiki. Antes de promover, precisa ser vinculado a uma Ability real, única e presente no pack (ou vanilla/projeto próprio).
+
+---
+
+## Execução paralela controlada
+
+**Trilha A — Evidência:** reconciliar modlist/datapacks e aproveitar o catálogo do Black Arcana por lotes. Cada provider cuja presença esteja comprovada pode alimentar imediatamente o design, sem esperar pela conclusão dos demais.
+
+**Trilha B — Design:** elaborar Standard Perks conceituais, identidades das 11 árvores, fantasias e Mecânicas Assinatura, e fichas estruturais de Transmutation `DRAFT-UNBOUND`.
+
+**Convergência obrigatória:** não aprovar integração sem autoridade de presença, não atribuir `Txxxx` a uma habilidade desconhecida, não congelar quotas sem comparar as 11 árvores e não implementar antes da auditoria técnica. Um rascunho sem Ability compatível é descartado ou repensado, nunca transformado automaticamente em uma perk genérica.
 
 ---
 
@@ -68,7 +81,7 @@ Mods removidos precisam de evidência explícita suficiente para impedir reapare
 
 - [ ] **Step 5: Gate de aprovação**
 
-A fase passa somente se uma consulta por nome de mod responder de forma não ambígua: presente/ausente, versão/prova e papel no pack.
+A fase fecha globalmente quando uma consulta por nome de mod responde de forma não ambígua: presente/ausente, versão/prova e papel no pack. Rascunhos conceituais podem progredir antes disso, mas nenhum provider incerto pode ser tratado como confirmado.
 
 **Validation:**
 - revisão manual cruzada dos três `CURRENT-MODLIST.md`;
@@ -88,8 +101,8 @@ A fase passa somente se uma consulta por nome de mod responder de forma não amb
 - Read: projetos próprios e vanilla pertinentes.
 
 **Interfaces:**
-- Consumes: authority fechada pela Task 1.
-- Produces: inventário funcional de capacidades jogáveis, sem ainda criar perks.
+- Consumes: registros da Task 1 confirmados individualmente, inclusive antes do fechamento global.
+- Produces: matriz de capacidades preenchida incrementalmente; fechamento global exigido apenas para aprovação final do catálogo.
 
 - [ ] **Step 1: Enumerar providers que realmente fornecem gameplay relevante**
 
@@ -176,7 +189,7 @@ Os blocos `1000–11999` continuam reservas. `CATALOG-BUDGETS.md` deve declarar 
 
 - [ ] **Step 4: Gate de aprovação**
 
-Não avançar para criação massiva de perks enquanto os três `N_*` não estiverem congelados.
+Não finalizar contagens, declarar paridade ou promover catálogo enquanto os três `N_*` não estiverem congelados. Produção preliminar de ideias e rascunhos é permitida desde já; quotas provisórias nunca justificam filler.
 
 **Validation:** tabela 11×3 com contagens idênticas em cada coluna.
 
@@ -210,7 +223,7 @@ Cada Ability aparece uma vez no catálogo. Se duas trees disputarem a mesma Abil
 
 - [ ] **Step 4: Reservar IDs `Txxxx`**
 
-Atribuir IDs apenas depois da seleção fechar. Não criar filhos `.xx` ainda.
+Atribuir IDs `Txxxx` apenas depois de confirmar a Ability real e fechar a seleção; rascunhos anteriores usam chave editorial temporária e nenhum ID numérico de Transmutation.
 
 - [ ] **Step 5: Gate de aprovação**
 
@@ -232,7 +245,7 @@ A lista completa de raízes deve ser revisável como conjunto antes de desenhar 
 - Consumes: identidade das árvores + `N_standard_per_tree`.
 - Produces: exatamente `N_standard_per_tree` perks normais por árvore.
 
-- [ ] **Step 1: Criar propostas por árvore em lote editorial**
+- [ ] **Step 1: Criar propostas por árvore em lote editorial, inclusive em paralelo à modlist**
 
 Cobrir ofensiva, defesa, utilidade, recursos, sinergias e bridges apenas onde fizer sentido ao domínio.
 
@@ -261,7 +274,8 @@ As 11 árvores precisam ter catálogo Standard completo antes da auditoria técn
 ### Task 7: Desenhar LEFT/RIGHT/METAMORPHOSIS para cada Txxxx
 
 **Files:**
-- Create: `plans/03-skill-tree-perks/03-transmutation-perks/<tree>/Txxxx-<ability>/Txxxx-<ability>.md`
+- Create (rascunho): `plans/03-skill-tree-perks/03-transmutation-perks/_drafts/candidate-<tree>-<slug>.md`
+- Create (após vincular Ability): `plans/03-skill-tree-perks/03-transmutation-perks/<tree>/Txxxx-<ability>/Txxxx-<ability>.md`
 - Create: `.../Txxxx.1x-<slug>.md`
 - Create: `.../Txxxx.2x-<slug>.md`
 - Create: `.../Txxxx.3x-<slug>.md`
@@ -271,9 +285,11 @@ As 11 árvores precisam ter catálogo Standard completo antes da auditoria técn
 - Consumes: roster fechado da Task 5.
 - Produces: personalização conceitual completa de cada Ability selecionada.
 
-- [ ] **Step 1: Definir dois eixos menores distintos**
+- [ ] **Step 1: Montar fichas estruturais mesmo sem Ability definida**
 
-LEFT e RIGHT precisam responder a perguntas diferentes sobre a Ability. Não fixar universalmente “dano à esquerda / área à direita” quando não fizer sentido.
+Copiar o template `03-transmutation-perks/_drafts/TEMPLATE-UNBOUND.md`; indicar árvore candidata e deixar presentes, porém vazios, os campos sem evidência. Não inventar efeitos 2/2/3 nem atribuir ID T para preencher espaço.
+
+Quando for possível vincular uma Ability real, definir LEFT e RIGHT como dois eixos distintos específicos daquela Ability; não impor universalmente “dano à esquerda / área à direita”.
 
 - [ ] **Step 2: Criar mínimo 2 LEFT e 2 RIGHT**
 
@@ -289,7 +305,7 @@ A escolha de afinidade pode existir como uma metamorfose configurável, mas a li
 
 - [ ] **Step 5: Gate de aprovação**
 
-Cada raiz precisa ter ao menos 2/2/3, nenhum grupo pode conter opções redundantes e a combinação `1 LEFT + 1 RIGHT + 1 METAMORPHOSIS` deve produzir configurações coerentes.
+Cada raiz **vinculada e candidata à aprovação** precisa ter ao menos 2/2/3, nenhum grupo redundante e configurações 1+1+1 coerentes. Fichas vazias permanecem DRAFT-UNBOUND e não passam este gate.
 
 **Validation:** IDs dentro de `.11-.19/.21-.29/.31-.39`, limites 2–9/2–9/3–9, exclusividade intragrupo, uma raiz por Ability.
 
@@ -310,7 +326,7 @@ Cada raiz precisa ter ao menos 2/2/3, nenhum grupo pode conter opções redundan
 - Consumes: matriz de capacidades + orçamento de especializações.
 - Produces: roster de especializações e perks `Sxxxx`.
 
-- [ ] **Step 1: Propor especializações por fantasia, não por mod**
+- [ ] **Step 1: Propor especializações por fantasia, não por mod (rascunhos podem iniciar em paralelo)**
 
 Cada candidata deve sobreviver mesmo quando suas capacidades vêm de múltiplos providers.
 
@@ -394,6 +410,7 @@ Runtime só começa quando todo catálogo estiver TECH-AUDITED ou explicitamente
 - [ ] **Step 1: Add the focused failing tests**
 
 Casos obrigatórios:
+- rascunhos `DRAFT-UNBOUND` não entram em quotas nem runtime/wiki e não podem estar em diretório final com ID `Txxxx`;
 - duplicate `P/T/S` ID;
 - `Txxxx.xx` sem raiz;
 - grupo fora dos ranges;
@@ -532,7 +549,9 @@ Catálogo, runtime, layout e wiki devem concordar em IDs, nomes, quotas, requisi
 
 Cada item novo passa por estados explícitos:
 
-`CANDIDATE -> CONCEPT-APPROVED -> TECH-AUDITED -> IMPLEMENTED -> VALIDATED`.
+`DRAFT-UNBOUND -> CANDIDATE -> CONCEPT-APPROVED -> TECH-AUDITED -> IMPLEMENTED -> VALIDATED`.
+
+`DRAFT-UNBOUND` aplica-se a esboços de Transmutation sem Ability real. Sua promoção exige identidade confirmada, ownership único e seleção curada; o rascunho pode também ser descartado sem reservar ID.
 
 Estados alternativos:
 - `REJECTED` — não entra no catálogo.

@@ -4,7 +4,7 @@
 
 Reconstruir o sistema de perks a partir do modpack realmente instalado, sem herdar especializações, providers ou pressupostos do catálogo legado.
 
-A regra central é: **primeiro entender o que o pack oferece; depois desenhar builds; somente então aprofundar APIs/hooks e implementar.**
+A regra central é: **podemos desenhar conceitos enquanto o pack é catalogado, mas só aprovamos e implementamos integrações comprovadas**.
 
 Diablo IV e outros ARPGs podem ser estudados para identificar bons padrões de escolha, transformação e identidade de classe. Nenhum efeito, número, nome ou estrutura externa é obrigatório para este projeto.
 
@@ -14,7 +14,7 @@ A política de fontes e seleção de Abilities está em [`SOURCES-AND-SELECTION-
 
 ## Fase 0 — congelamento e limpeza do legado editorial
 
-- não expandir o catálogo enquanto a modlist não estiver reconciliada;
+- não aprovar nem implementar conteúdo dependente de provider ainda não verificado; **rascunhos editoriais podem avançar em paralelo**;
 - remover especializações herdadas automaticamente do runtime antigo;
 - preservar somente infraestrutura técnica reaproveitável;
 - tratar exemplos existentes como pilotos conceituais.
@@ -62,7 +62,7 @@ Para cada capacidade registrar fantasia, tipo, domínio candidato, progressão n
 
 O primeiro sistema de Transmutation usa **seleção fixa e curada**.
 
-Durante esta fase serão escolhidas as Abilities que realmente merecem raízes `Txxxx`. Não é requisito dar Transmutation a toda skill existente nem aceitar escolha arbitrária do jogador.
+Durante esta fase serão escolhidas as Abilities que realmente merecem raízes `Txxxx`. Fichas vazias podem ser abertas antes em `_drafts/`, mas não recebem números `Txxxx` até existir uma Ability real selecionada. Não é requisito dar Transmutation a toda skill existente nem aceitar escolha arbitrária do jogador.
 
 A seleção deve cobrir todas as árvores e incluir capacidades não mágicas quando aplicável: weapon skills, attacks, stances, movement, summons, defensive skills, survival/mining/engineering/logistics actions e vanilla.
 
@@ -97,6 +97,10 @@ A mecânica não é cópia literal de Diablo; nasce das capacidades reais do pac
 O mesmo total de perks de especialização por árvore é obrigatório. Quantidade exata de especializações e perks por especialização só é congelada após a matriz de capacidades.
 
 ---
+
+## Trilha editorial antecipada — paralela às Fases 1–4
+
+Pode-se começar agora a redigir Standard Perks, fantasias/Mecânicas Assinatura de especializações e templates de Transmutation com campos presentes e vazios. Esses arquivos são rascunhos, não quotas aprovadas. A convergência exige provider/Ability real, ownership, rubrica, quotas e revisão sem filler.
 
 ## Fase 5 — catálogo conceitual
 

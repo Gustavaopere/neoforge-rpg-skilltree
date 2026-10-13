@@ -6,13 +6,13 @@ O catálogo histórico `A####` foi aposentado desta pasta. Os documentos técnic
 
 ## Estado atual
 
-A criação massiva de perks está **congelada até a reconciliação da modlist e da matriz de capacidades**.
+O **design editorial pode começar agora, em paralelo** à reconciliação da modlist. Apenas a aprovação final, o binding de Abilities, o congelamento das quotas e o runtime dependem dos gates de evidência.
 
 O plano operacional completo está em [`MASTER-EXECUTION-PLAN.md`](./MASTER-EXECUTION-PLAN.md). Ele define gates, entregáveis, ordem de execução, validações e decisões que não podem ser antecipadas.
 
 O fluxo é:
 
-`authority do pack -> matriz de capacidades -> identidade das 11 árvores -> budgets -> seleção curada de Abilities -> Standard Perks -> Transmutations -> especializações + Mecânicas Assinatura -> auditoria técnica -> runtime -> topologia/UX/wiki`.
+`TRILHA A: modlist/capacidades` em paralelo a `TRILHA B: Standard/Especializações/rascunhos de Transmutation` -> convergência por evidence+quota+Abilities reais -> auditoria técnica -> runtime -> topologia/UX/wiki.
 
 ## Estrutura
 
@@ -30,6 +30,6 @@ O fluxo é:
 
 ## Regras curtas
 
-Não criar perks porque um mod existe. Não criar especialização porque uma escola existe. Não selecionar Abilities para Transmutation antes da rubrica e quotas fecharem. Não implementar antes da auditoria técnica. Não desenhar topologia definitiva antes do runtime.
+É permitido montar rascunhos, inclusive Transmutation com campos vazios em `_drafts/`. Não contar esses rascunhos como perks aprovadas nem atribuir `Txxxx` sem Ability confirmada. Não criar perks porque um mod existe. Não criar especialização porque uma escola existe. Não selecionar definitivamente Abilities para Transmutation antes da rubrica e quotas fecharem. Não implementar antes da auditoria técnica. Não desenhar topologia definitiva antes do runtime.
 
 Diablo IV e outros jogos podem fornecer padrões de decisão e inspiração, nunca requisitos a copiar literalmente.

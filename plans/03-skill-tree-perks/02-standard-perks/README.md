@@ -5,3 +5,5 @@ Perks normais do catálogo. Cada uma recebe um código `Pxxxx` e pertence a exat
 Todas as árvores terão o mesmo total `N_standard`. O valor ainda não está congelado porque o catálogo será desenhado primeiro e nivelado depois.
 
 Cada perk final terá seu próprio `.md`. Os `README.md` de cada árvore são o plano/índice local até o catálogo ser preenchido.
+
+Rascunhos conceituais podem começar antes do fechamento integral da modlist. Dependências técnicas sem evidência devem permanecer não verificadas; somente itens aprovados entram na contagem final.

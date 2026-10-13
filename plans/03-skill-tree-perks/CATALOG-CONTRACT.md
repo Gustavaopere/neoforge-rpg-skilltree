@@ -46,7 +46,7 @@ A forma pode variar, mas o orçamento de poder e profundidade deve ser comparáv
 
 O catálogo inicial usa **seleção fixa e curada** de Abilities.
 
-Nem toda Ability do pack precisa receber uma raiz. A lista concreta é escolhida somente durante a execução da matriz de capacidades.
+Nem toda Ability do pack precisa receber uma raiz. A lista concreta é escolhida durante a matriz de capacidades. Rascunhos com campos vazios podem ser montados antes, mas não representam Abilities selecionadas, não recebem `Txxxx` e não contam em quotas.
 
 A seleção deve abranger igualmente árvores mágicas e não mágicas. `Ability` não é sinônimo de spell.
 

@@ -33,9 +33,11 @@ ARCANE
 
 Podemos estudar mecânicas de outros ARPGs — afinidades, espíritos, summon roles, sacrifícios, caça/captura/selamento, juramentos etc. — mas não copiar sistemas ou números sem avaliar se combinam com Minecraft e com a modlist.
 
-## Quando serão criadas
+## Quando serão aprovadas
 
-Somente após:
+**Rascunhos de fantasias e Mecânicas Assinatura podem começar imediatamente**, sem declarar como presentes providers ainda não verificados.
+
+A aprovação e o congelamento de quotas só ocorrerão após:
 
 1. modlist física reconciliada;
 2. matriz de capacidades concluída;
