@@ -189,3 +189,11 @@ Sophisticated Core deve ser promovido **coordenadamente** com Sophisticated Back
 **Fontes:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/all?version=1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9083874
 
 **Estado:** físico permanece 1.5.1.2341, disponível 1.5.7.2381; **promover somente após confirmação de manifests e teste de integração**.
+
+## Reauditoria de publicação e compatibilidade — 13/10/2026
+
+**Projeto:** Sophisticated Core. **Última release pública identificada para Minecraft 1.21.1 / NeoForge:** `1.5.11.2394` (`sophisticatedcore-1.21.1-1.5.11.2394.jar`). **Referência oficial:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/all.
+
+Release NeoForge 1.21.1 de 12/10/2026, sucedendo 1.5.7.2381 e versões anteriores. Biblioteca compartilhada: migrar somente após alinhar Sophisticated Backpacks 3.26.12, Sophisticated Storage 1.6.4 e duas bridges Create (Backpacks 0.2.3; Storage 0.1.23). Changelog granular desta build não foi estabelecido; não inferir semântica de upgrades/handlers. Validar serialização de NBT/data components, capabilities, networking menus, automação, filtros, limite de stack, movimentação com contraptions, load/unload e mundos persistentes; rollback com backup.
+
+**Autoridade física:** permanece o JAR/versão registrados nas seções históricas deste dossiê e na `modlist(1).txt`; NÃO foi disponibilizada nova lista física nem realizada instalação/teste in-game. **Recomendação:** atualização física pendente de reconciliação de dependências, SHA e validações; não interpretar o número publicado como versão instalada. **Filename `.md`:** ✅ herdado e versão do JAR físico preservados conforme protocolo canônico.

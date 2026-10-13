@@ -123,3 +123,10 @@ Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/sophisticated-backp
 
 **Estado:** release upstream documentada; nenhum JAR físico atualizado nem teste executado.
 
+## Reauditoria de publicação e compatibilidade — 13/10/2026
+
+**Projeto:** Sophisticated Backpacks Create Integration. **Última release pública identificada para Minecraft 1.21.1 / NeoForge:** `0.2.3.194` (`sophisticatedbackpackscreateintegration-1.21.1-0.2.3.194.jar`). **Referência oficial:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-create-integration/files/all.
+
+Nova sequência NeoForge 1.21.1 0.2.1.171 (27/09) → 0.2.2.188 (05/10) → 0.2.3.194 (12/10). Bridge para mochilas funcionais em Create contraptions; exige pin conjunto com Backpacks e Sophisticated Core. Sem release notes detalhadas por build, não atribuir correções de dupe ou nova mecânica sem evidência. Testar abertura, inventário/capability, pickup, inserção/extração, filter/upgrade, contraption em movimento, unload/assembly, save/restart e concorrência multiplayer para dupe/loss.
+
+**Autoridade física:** permanece o JAR/versão registrados nas seções históricas deste dossiê e na `modlist(1).txt`; NÃO foi disponibilizada nova lista física nem realizada instalação/teste in-game. **Recomendação:** atualização física pendente de reconciliação de dependências, SHA e validações; não interpretar o número publicado como versão instalada. **Filename `.md`:** ✅ herdado e versão do JAR físico preservados conforme protocolo canônico.

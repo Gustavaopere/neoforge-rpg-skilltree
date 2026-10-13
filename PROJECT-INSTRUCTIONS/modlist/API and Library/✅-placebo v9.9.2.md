@@ -116,3 +116,10 @@ O **changelog oficial, branch `1.21`, versão 9.9.3** descreve quatro alteraçõ
 
 **Estado:** upstream 9.9.3 auditada; versão física conhecida continua 9.9.2.
 
+## Reauditoria de publicação e compatibilidade — 13/10/2026
+
+**Projeto:** Placebo. **Última publicação oficial NeoForge 1.21.1 identificada:** `9.9.4`; artefato de referência: `Placebo 1.21.1-9.9.4 (arquivo da release; verificar filename exato)`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/placebo/files/all?version=1.21.1.
+
+Release NeoForge 1.21.1 publicada em 13/10/2026, após 9.9.3 (06/10). Biblioteca do ecossistema Shadows_of_Fire: antes de atualizar, validar com Apotheosis, Apothic Enchanting e demais consumers, eventos/registries/config APIs, recipes, save e servidor dedicado. O índice público consultado confirma número/canal, mas não foi obtido changelog específico de 9.9.4; não imputar feature/gameplay nova.
+
+**Autoridade física:** estado histórico do JAR documentado neste dossiê e `modlist(1).txt` permanece intacto; novo dump do pack, hashes, metadata e testes runtime não foram fornecidos. **Decisão:** candidato upstream (ou revalidação sem release nova), não uma atualização instalada. **Filename:** preservar prefixo ✅ e versão física histórica no nome até evidência da instalação.
