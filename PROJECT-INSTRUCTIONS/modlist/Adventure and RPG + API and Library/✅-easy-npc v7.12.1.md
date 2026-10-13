@@ -228,7 +228,7 @@ Fontes upstream: changelogs oficiais Easy NPC: Core; releases 1.21.1 7.12.2, 7.1
 
 **Projeto:** Easy NPC: Core. **Última publicação oficial NeoForge 1.21.1 identificada:** `7.15.0`; artefato de referência: `easy_npc-neoforge-1.21.1-7.15.0.jar`. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all.
 
-Release NeoForge 1.21.1 de 12/10/2026; a modlist histórica identifica Core `easy_npc-neoforge-1.21.1-7.12.1.jar` (#239) mas **metadata runtime sem versão**. Preservar explicitamente essa divergência histórica; não preencher a metadata ausente por inferência. Upgrade 7.12.1→7.15.0 junto do Easy NPC bundle e Config UI, sem misturar artefato core/bundle e sem contagem duplicada JarJar. Validar entidades/NPC dialogs, actions/server permissions, saved NPC configs, scripts/reload, client GUI e world migration. Não imputar feature específica 7.15.0 sem changelog.
+Release NeoForge 1.21.1 de 12/10/2026; a modlist histórica identifica Core `easy_npc-neoforge-1.21.1-7.12.1.jar` (#239) mas **metadata runtime sem versão**. Preservar explicitamente essa divergência histórica; não preencher a metadata ausente por inferência. Upgrade 7.12.1→7.15.0 junto do Easy NPC bundle e Config UI, sem misturar artefato core/bundle e sem contagem duplicada JarJar. Validar entidades/NPC dialogs, actions/server permissions, saved NPC configs, scripts/reload, client GUI e world migration. As adições confirmadas pelo changelog oficial 7.15.0 estão discriminadas na reavaliação técnica abaixo; não atribuir API signatures sem inspecionar source.
 
 **Autoridade física:** estado histórico do JAR documentado neste dossiê e `modlist(1).txt` permanece intacto; novo dump do pack, hashes, metadata e testes runtime não foram fornecidos. **Decisão:** candidato upstream (ou revalidação sem release nova), não uma atualização instalada. **Filename:** preservar prefixo ✅ e versão física histórica no nome até evidência da instalação.
 
@@ -240,8 +240,45 @@ A release 7.15.0 do **Core** (e do bundle vinculado) declara fixes que alteram c
 - Sons de resource packs podem ser escolhidos na configuração; NPCs deixam de nascer canhotos aleatoriamente.
 - Botões de diálogo com mesmo label em diálogos distintos deixam de compartilhar indevidamente o lock.
 - Corrige NPCs deletados/duplicados que voltavam, vazamentos de memória, problemas de proprietário/GUI e falta do mob patch Epic Fight para NPC Wither Skeleton.
-- Adiciona controles **Set Home Here** e **Reset Home**; exports de presets preservam ID/posição, e importação pode atualizar o NPC original, em vez de gerar cópia (usar comando de importar como novo quando apropriado).
+- **Correção histórica:** `Set Home Here`, `Reset Home`, preservação de ID/posição e atualização do NPC original por importação são novidades da **7.12.0**, anteriores ao JAR físico 7.12.1; não devem ser atribuídas à 7.15.0.
 - Muda política de backup: dados de mundos e NPCs mortos expiram em **30 dias** conforme `storage.cfg`; revisar política local de retenção/backup antes do upgrade.
 - **Novo requisito declarado para 7.15.0:** mesma versão do mod em cliente/servidor **e Easy Model Entities 2.5.0+**. O catálogo oficial consultado mostra Easy Model Entities 2.5.0 **para Minecraft 26.1.2**, mas a última publicação NeoForge **1.21.1** confirmada é **2.4.0**. **BLOQUEADO** migrar a tríade Easy NPC 7.15.0 no Minecraft 1.21.1 até sair build da dependência no alvo ou existir confirmação oficial inequívoca de compatibilidade alternativa. Não usar o JAR 26.1.2 em 1.21.1.
 
 **Fontes e segregação por loader:** [changelog oficial da série 7.15.0](https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/9151672) (**esta página específica corresponde ao JAR Fabric 1.21.1; NÃO é o artefato NeoForge**); [bundle Easy NPC: releases filtradas por Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?version=1.21.1) (confirmar `easy_npc_bundle-neoforge-1.21.1-7.15.0.jar`); [Core: releases filtradas por Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all?version=1.21.1) (confirmar `easy_npc-neoforge-1.21.1-7.15.0.jar`); [Easy Model Entities: arquivos por loader/MC](https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/all) (última build NeoForge 1.21.1 identificada: 2.4.0). **Matriz obrigatória:** backup de NPCs, teste de import preservando UUID/owner/home, prevenção de respawn duplicado, scripts/commands, Resource-pack sounds, lock local de diálogo, retenção de backup, Epic Fight NPC poses, client+dedicated server na mesma versão.
+
+## Reavaliação de conteúdo 7.15.0 — fontes primárias e gates — 13/10/2026
+
+### O que realmente foi ADICIONADO em 7.15.0 (não instalado)
+
+- **Novas ações/objetivos:** `Jump`, `Assist Owner` e `Follow Nearest Player`. O changelog confirma a introdução, mas não fixa cooldown, distância, seleção de alvos ou precedence com objetivos anteriores; esses parâmetros devem ser derivados do JAR/config antes de criar contratos de datapack ou quests.
+- **Inventário de NPC:** introduz item pickup e drops na morte. Este é um novo domínio de persistência/loot, sujeito a armazenamento duplicado, perda de itens e concorrência com looting, fake players, hoppers, claims ou mods que alterem death drops. Não afirmar regras de pickup/stack, permissões ou drop chances sem código/metadata.
+- **Interação/apresentação:** `Sit on Shoulder`, boss bar, modo de animação `Hold` e preset **Bank Teller**. O `Sit on Shoulder` do NPC não deve ser automaticamente confundido com a capacidade de shoulder sitting da versão EME 2.5.0 em Minecraft 26.1.2; atribuir cada comportamento ao respectivo provider depois de verificar integração.
+- **Operação/extensibilidade:** `/easy_npc debug core loglevel` e novos métodos de API para addons. As assinaturas e efeitos dos métodos novos não foram inspecionados, portanto **ABI e addon builds ficam em gate de compatibilidade**.
+
+### Fixes 7.15.0 e mudanças desde o baseline 7.12.1
+
+- Importação silenciosa de presets via `/execute` ou command blocks; limite de NPC aplicado também ao spawner padrão; áudios de resource packs selecionáveis.
+- Locks de botões de diálogo agora isolados por diálogo, mesmo se labels coincidirem; corrige também NPCs deletados/duplicados reaparecendo, memory leaks e problemas de owner/UI.
+- Correção de NPCs nascendo canhotos aleatoriamente e patch Epic Fight ausente para Wither Skeleton NPC.
+- **7.14.0 anterior:** late-viewers recebem pose, atributos, trading settings e som atualizados, sem exigir reload; **7.13.0 anterior:** macros `@initiator`, `@npc`, `@score()` e nova versão do protocolo de rede.
+- **Correção de atribuição histórica:** `Set Home Here`, `Reset Home`, export de ID/posição e import de presets atualizando o NPC existente são da **7.12.0**, portanto **já antecedem o JAR histórico 7.12.1**. Não computar como novidades 7.15.0.
+
+### Dependência e decisão de promoção
+
+**Changelog 7.15.0** declara alinhamento exato da versão Easy NPC no cliente/servidor e **Easy Model Entities 2.5.0+**. Até esta reauditoria, o artefato EME publicado para **NeoForge Minecraft 1.21.1** permanece **2.4.0**, ao passo que EME 2.5.0 NeoForge encontrada pertence a **Minecraft 26.1.2**. O histórico 7.12.0 citava EME 2.4.0+, mas isso **não** autoriza ignorar o novo requisito. A declaração na release é suficiente para suspender a promoção por risco, embora a natureza hard/optional exata de EME 7.15.0 dependa de examinar o `neoforge.mods.toml` e o comportamento de fallback do JAR alvo. **Decisão: BLOQUEADO em configuração atual até validação oficial/runtime; não substituir 2.4.0 por build 26.x.**
+
+### Gate de aceitação em cópia de teste
+
+1. Core + Bundle + Config UI sincronizados em versão e client/server handshake (network protocol 7.13+).
+2. Criar NPC com inventário, coletar itens no chão, matar e inspecionar drops; repetir em unload/reload, morte/revivificação, dois clientes, player claim, respawn e rollback, verificando ausência de dupe/loss.
+3. Testar Jump, Assist Owner e Follow Nearest Player com hostiles, alvos inválidos, vários players, pathfinding, shutdown/relog e prioridade de outros objetivos.
+4. `Sit on Shoulder` e `Hold` contra EME, GeckoLib/EMF/ETF/Epic Fight; observar âncoras, escala, colisão e transforms, sem assumir alteração de hitbox.
+5. Boss bar criar/remover/reconectar com rastreio correto e sem vazamento após unload/death; testar Bank Teller/trading/loot junto a Economy e MineColonies se aplicável.
+6. Diálogos com labels duplicadas; import via command blocks e `/execute`; default spawner sob limite de NPCs; presets antigos, owners e posicionamento.
+7. Testar sound resources/F3+T, Wither Skeleton Epic Fight mob patch, logs e permissão de `/easy_npc debug core loglevel`.
+8. Verificar arquivo `storage.cfg` e políticas de expiração de backup de 30 dias **antes** de atualizar; backup externo independente do mod obrigatório.
+9. Confirmar EME target 1.21.1, requisito exato no manifesto do Core 7.15.0 e smoke de dedicated server; não registrar nenhum teste como executado nesta documentação.
+
+**Autoridades:** [changelog oficial Easy NPC, branch Minecraft 1.21.1](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/CHANGELOG.md) (seções 7.15.0, 7.14.0, 7.13.0 e 7.12.0); [Easy NPC Core — arquivos NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all?version=1.21.1); [Easy Model Entities — arquivos oficiais](https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/all); [EME 2.5.0 NeoForge para Minecraft 26.1.2 — não compatível como JAR de 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/9152252).
+
+**Estado físico:** `modlist(1).txt` continua sendo a última autoridade disponível. Sem novo dump/JAR/SHA, nenhuma destas funções de 7.15.0 pode ser declarada instalada ou testada. Não renomear o dossiê versionado `✅-` até confirmar nova instalação.
