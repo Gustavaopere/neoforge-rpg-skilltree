@@ -151,7 +151,7 @@ Novo artefato NeoForge **`easy_npc_config_ui-neoforge-1.21.1-7.15.0.jar`** publi
 ### Manifesto NeoForge Config UI 7.15.0
 
 O `config-ui/NeoForge/src/main/resources/META-INF/neoforge.mods.toml` declara:
-- `easy_npc` como dependência indicada por `mandatory = true` (sem `type` explícito nesse bloco); `versionRange = "[\u0024{file.jarVersion},\u0024{file.nextMajorVersion})"`; `ordering = "AFTER"`; `side = "BOTH"`. Para o build 7.15.0, a faixa substituída corresponde à linha major 7; isso **não é equivalência de versões idênticas**, mas o protocolo de rede do Core e o changelog ainda justificam **alinhamento exato dos três artefatos** para migração/QA.
+- `easy_npc` como dependência indicada por `mandatory = true` (sem `type` explícito nesse bloco); `versionRange = "[${file.jarVersion},${file.nextMajorVersion})"`; `ordering = "AFTER"`; `side = "BOTH"`. Para o build 7.15.0, a faixa substituída corresponde à linha major 7; isso **não é equivalência de versões idênticas**, mas o protocolo de rede do Core e o changelog ainda justificam **alinhamento exato dos três artefatos** para migração/QA.
 - `easy_model_entities` com **`type = "optional"`**, `versionRange = "[2.5.0,3.0.0)"`, `ordering = "AFTER"`, `side = "BOTH"`.
 
 Conforme documentação NeoForge 1.21.1, **opcional não significa ignorar a versão de um mod presente**. Com a EME 2.4.0 fisicamente registrada, a candidata Config UI 7.15.0 permanece **BLOQUEADA em conjunto com Core/Bundle**, sem recomendação de remover EME. Esta evidência especifica a natureza do gate, antes descrita como ambígua. Não confundir um UI de configuração com autoridade de inventário/AI de NPC.
