@@ -16,13 +16,13 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/epicfightcurioscompat
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `Epic Fight x Curios Compat 2.2.jar`, mod id `epicfight_curios_compat`, metadata runtime 1.4 e SHA-1 `3b13ee4590d3765249419c6f320f461cbf1c8f6d`. CurseForge oficial revalidado em 21/09/2026 mantém 2.2 como latest release NeoForge 1.21.1 e Environment Client & Server.
 - **Observações:** SHA-1 físico `3b13ee4590d3765249419c6f320f461cbf1c8f6d` identifica o artefato publicado como `Epic Fight x Curios Compat 2.2.jar`; metadata interna continua `1.4` e não deve ser normalizada para 2.2. CurseForge oficial revalidado em 21/09/2026 classifica o projeto como **Client & Server**.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #258: `Epic Fight x Curios Compat 2.2.jar` permanece instalado; filename/publicação `2.2` e metadata runtime `1.4` continuam divergência legítima. CurseForge oficial mantém 2.2 como latest release NeoForge 1.21.1.
+- **Atualização/Status:** REVALIDADO DOCUMENTALMENTE EM 13/10/2026 — último inventário físico histórico de **587 entradas** coloca o item na posição **#259** (`Epic Fight x Curios Compat 2.2.jar`; versão distribuída `2.2`; metadata interna `1.4`). A menção a **#258** pertence ao lote de reauditoria de 21/09/2026. CurseForge confirma a release **2.2** NeoForge/MC1.21.1; **a branch de source público rotulada 1.21.1 não corresponde à build 2.2**. Nenhum novo teste binário ou update físico foi realizado.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não substitui Curios ou Epic Fight. Atua na camada de attachment/render de equipamentos Curios no modelo Epic Fight; outras armor/player render bridges podem tocar os mesmos transforms e exigem precedence.
 - **Data da última decisão:** 2026-08-26
 
 # Dossiê operacional — padrão Alex's Mobs
-> **Autoridade física:** `Epic Fight x Curios Compat 2.2.jar` · mod id `epicfight_curios_compat` · **metadata runtime ****`1.4`**. O filename/publicação é `2.2`; essa divergência é legítima e deve permanecer explícita. SHA-1: `3b13ee4590d3765249419c6f320f461cbf1c8f6d`.
+> **Autoridade física:** `Epic Fight x Curios Compat 2.2.jar` · mod id `epicfight_curios_compat` · **metadata runtime `1.4`**. O filename/publicação é `2.2`; essa divergência é legítima e deve permanecer explícita. SHA-1: `3b13ee4590d3765249419c6f320f461cbf1c8f6d`.
 ## 1. Papel no modpack
 Epic Fight x Curios Compat é uma bridge de **equip/render**: itens equipados em slots Curios precisam acompanhar o modelo/armature/pose do Epic Fight em vez de permanecer presos ao renderer vanilla ou desaparecer/clipping durante animações.
 ## 2. Authority / ownership
@@ -102,3 +102,35 @@ Outro jogador deve enxergar o accessory/backpack na posição correta a partir d
 - SHA-1 físico → CurseForge file 7865987;
 - descrição/matriz pública do projeto: correção de render Curios e providers/slots suportados em 1.21.1.
 > **Boundary canônico:** Curios continua authority do **equipamento**; Epic Fight do **modelo/combat animation**; esta bridge apenas resolve o attachment/render entre ambos.
+
+
+## 16. Revalidação de distribuição e proveniência do source — 13/10/2026
+
+**Autoridade instalada conhecida:** última modlist histórica de **587 posições incluindo NeoForge** registra **#259 `Epic Fight x Curios Compat 2.2.jar`**, identificador `epicfight_curios_compat`, **release/filename `2.2`** e **metadata runtime `1.4`**, SHA-1 previamente catalogado `3b13ee4590d3765249419c6f320f461cbf1c8f6d`. Referência do mesmo inventário: **Epic Fight #260 21.17.3.1**, **Curios #211 9.5.1+1.21.1**, **NeoForge #001 21.1.250**. Sem acesso direto aos JARs nesta auditoria; hash/metadata são registros históricos, não novos cálculos. O filename deste dossiê segue a versão **interna 1.4** por padrão herdado, sem renomeação infundada.
+
+**Fonte oficial de distribuição:** [CurseForge, File ID **7865987**](https://www.curseforge.com/minecraft/mc-mods/epicfightcurioscompat/files/7865987), **release 2.2 em 03/04/2026**, arquivo exato `Epic Fight x Curios Compat 2.2.jar` publicado para **Minecraft 1.21.1 / NeoForge**, ambiente categorizado **Client & Server**. A [listagem oficial de arquivos](https://www.curseforge.com/minecraft/mc-mods/epicfightcurioscompat/files/all) não apresenta release posterior da mesma combinação Minecraft/loader na consulta realizada; a publicação 2.2 é, portanto, **a versão externa mais recente compatível identificada**, mas a metadata runtime histórica continua sendo **1.4**, não 2.2.
+
+### 16.1. O que a release 2.2 afirma ter corrigido
+
+O changelog de **7865987** declara dois fixes específicos:
+1. **Curios Slots Editor:** corrigida a digitação de letras e números na interface.
+2. **Supplementaries quiver:** corrigido um caso de **renderização dupla da aljava**.
+
+O pack tem **Supplementaries #536 3.9.9**, portanto o segundo caso é um regression gate diretamente relevante. O primeiro é um gate de **input/editor client-side**, não justificativa para atribuir à bridge controle do inventário ou da topologia de slots. A existência do fix na release não certifica a ausência de regressão com Epic Fight 21.17.3.1, outras bridges de visual ou as configurações atuais do pack.
+
+### 16.2. Branch oficial chamada 1.21.1 não é o source comprovado do JAR 2.2
+
+O [link **Source** da própria página oficial CurseForge](https://github.com/Unitei-Dev/OneWorldStudio_EpicFight_CuriosCompat) aponta para o repositório do autor, mas sua branch [**`1.21.1`, HEAD `2ec76ce27f9df75f5699d037fb5d5eb6e72114ef`**](https://github.com/Unitei-Dev/OneWorldStudio_EpicFight_CuriosCompat/tree/2ec76ce27f9df75f5699d037fb5d5eb6e72114ef) contém, textualmente:
+- [`gradle.properties`](https://github.com/Unitei-Dev/OneWorldStudio_EpicFight_CuriosCompat/blob/2ec76ce27f9df75f5699d037fb5d5eb6e72114ef/gradle.properties): **`minecraft_version=1.20.1`**, **`forge_version=47.4.10`**, **`mod_version=1.3`**;
+- [`META-INF/mods.toml`](https://github.com/Unitei-Dev/OneWorldStudio_EpicFight_CuriosCompat/blob/2ec76ce27f9df75f5699d037fb5d5eb6e72114ef/src/main/resources/META-INF/mods.toml): `loaderVersion="[47,)"`, dependência **`forge`** `[47.4.0,)`, Curios `[5.14.1,)` e Epic Fight `[20.13.6,)`, módulo exibido como Forge **1.3**;
+- [`README.txt`](https://github.com/Unitei-Dev/OneWorldStudio_EpicFight_CuriosCompat/blob/2ec76ce27f9df75f5699d037fb5d5eb6e72114ef/README.txt) usa exemplos de JARs **Forge 1.20.1** e recomenda desativar CuriosCompat interno do Epic Fight.
+
+**Conclusão de proveniência, não de incompatibilidade:** essa branch, apesar do nome, **não documenta o build NeoForge/1.21.1/2.2**. Não usar assinaturas, hooks, classes de rendering ou instruções do README Forge como prova de comportamento ou de ação necessária para o JAR físico do pack. A instrução de desativar compat interno do Epic Fight **não está validada para 21.17.3.1** e não autoriza remover classes, mixins ou outro mod. Não foi encontrada, nesta inspeção, uma tag/release source pública que conecte **inequivocamente** o artefato CurseForge 7865987 ao código correspondente; classificar a comparação bytecode como **pendente**.
+
+### 16.3. Integrações realmente presentes e testes pendentes
+
+A descrição oficial da linha 1.21.1 lista **Supplementaries, Sophisticated Backpacks e Iron's Spells** dentre os providers suportados (além de outros). O inventário confirma esses três: **#536 3.9.9**, **#516 3.26.3** e **#342 3.16.3**. Coexistem **EFIS #245 3.1.0** e **EMF Compat: Iron's Spells #249 2.0.0**; sua mera presença não prova conflito, mas exige testes de precedence para spellbook/torso/back/cape e player renderer. O quadro público foi originalmente referenciado a **Epic Fight 21.16.1**, diferente da versão histórica **21.17.3.1**: drift de API/render a auditar no JAR, sem inventar incompatibilidade.
+
+**Matriz futura, não executada:** obter cópia autorizada do JAR 2.2, inspecionar `META-INF/neoforge.mods.toml`, mixin configs, classes, dependências e SHA-1; testar boot client + dedicated server NeoForge 21.1.250; validar edição de slots com teclas alfanuméricas; equipar/remover aljava Supplementaries, alternar render de cosmetic/equipment e battle mode, observar se há **um** quiver; testar backpack Sophisticated e spellbook Iron's em ataque/dodge/guard/cast, dois jogadores, troca de dimensão, morte/respawn, relog, reload de resources e coexistência EFIS/EMF. Não atribuir ao cliente autoridade de mutation do inventário. Sem o binário e testes, o *nível de certeza* limita-se às declarações de publicação e ao último inventário registrado.
+
+**Estado:** `Sem decisão` curatorial continua vigente; release publicada externa **2.2** e metadata física histórica **1.4** permanecem distintas. Nenhuma atualização/remoção/patch físico foi efetuado, nem compatibilidade de runtime ou teste in-game foi certificado.
