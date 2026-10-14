@@ -64,6 +64,16 @@ Redução pequena em tempo de recarga de habilidades para as quais há modifica�
 |---|---|
 | Recuperação de stamina | BLOQUEADO — Epic Fight 21.17.3.1/ParCool 4.0.0.3 possuem owners distintos; requer verificação de compatibilidade |
 | Redução da duração de controle nocivo | BLOQUEADO — falta classificação nativa segura de duração/efeitos elegíveis |
-| Recuperação de cooldown elegível | BLOQUEADO — sem API por provider e redução de recarga auditada |
+| Recuperação de cooldown elegível | IMPLEMENTADO NO CÓDIGO / CI PENDENTE — somente cooldown de spells Iron's 3.16.3 (`SPELLBOOK` e `SWORD`), evento `SpellCooldownAddedEvent.Pre`, redução relativa até 5%, arredondamento para tick inteiro e mínimo positivo de 1 tick; demais providers continuam bloqueados |
 
 A implementação vanilla usa `AttributeInvestmentBonuses` e `InvestedAttributeEffectsRuntime.refresh`, calculada pelo servidor a partir dos ranks, com IDs transitórios removíveis. Benefícios de providers não verificados continuam inativos (*fail-closed*). Não houve teste físico do modpack; JUnit/GameTests foram adicionados para verificação em CI. Uma integração marcada IMPLEMENTADO **ainda não é VALIDADO** antes de resultados dos testes de runtime.
+
+
+### Contrato exato de cooldown Iron's — evidência primária (14/10/2026)
+
+- **Release alvo:** Iron's Spells 'n Spellbooks `1.21.1-3.16.3` da modlist; source público `iron431/irons-spells-n-spellbooks@e4056af90302d37eb1739f5ff05020b020e6e252`, `gradle.properties` indica a mesma versão. O JAR instalado no pack ainda precisa de validação binária.
+- **Hook confirmado:** `io.redspace.ironsspellbooks.api.events.SpellCooldownAddedEvent.Pre` oferece `getEffectiveCooldown()`, `setEffectiveCooldown(int)` e `getCastSource()`. Em `capabilities/magic/MagicManager.java`, Iron's calcula previamente o cooldown com `(2 - Utils.softCapFormula(attribute cooldown_reduction))` e publica `Pre` **antes** de atualizar seu próprio `PlayerCooldowns` e emitir `SyncCooldownPacket`.
+- **Decisão de boundary:** modificar o cooldown final pelo evento `Pre`, e **não** aplicar simultaneamente um modifier em `irons_spellbooks:cooldown_reduction` — essa duplicação alteraria a redução nativa duas vezes. O nosso bônus se aplica a essa recarga já calculada, até 5%, com arredondamento para o tick mais próximo.
+- **Elegibilidade:** o próprio `CastSource.respectsCooldown()` da versão 3.16.3 só autoriza `SPELLBOOK` e `SWORD`; `SCROLL`, `COMMAND`, `MOB` e `NONE` são excluídos. Usuários falsos, criativo, espectador e clients não passam no servidor. A integração só é registrada com mod presente, provider ativo e versão exata.
+- **Segurança:** um cooldown positivo nunca resulta em zero; cooldown inicialmente zero permanece zero. A ausência de Core snapshot corresponde a rank 0. Não se cria contador, barra, storage ou packet próprios. Ranks ilimitados mantêm o limite teórico de contribuição.
+- **Validação:** `IronsCooldownInvestmentPolicyJUnitTest` valida pontos de corte, semântica discreta, limites e rank extremo; `IronsCooldownInvestmentGameTests` cobre o evento real e o Core snapshot quando Iron's está presente. Teste com outros mods e multiplayer do modpack completo continua pendente.

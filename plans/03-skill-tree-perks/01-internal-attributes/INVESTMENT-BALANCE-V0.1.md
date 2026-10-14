@@ -171,3 +171,14 @@ Cada modifier tem ID permanente próprio no namespace `rpgskilltree:investment/`
 | INTELLIGENCE_SPELL_POWER | `irons_spellbooks:spell_power` | `ADD_MULTIPLIED_TOTAL` (relativo) | source 3.16.3 + Gate de versão; provider-present GameTest pendente |
 
 **Fonte primária Iron's:** `iron431/irons-spells-n-spellbooks@e4056af90302d37eb1739f5ff05020b020e6e252` — `gradle.properties`, `api/registry/AttributeRegistry.java`, `capabilities/magic/MagicManager.java`. Este source aponta para a versão publicada, mas não substitui comparação binária de um JAR de pack real. A integração Iron's não assume presença em dedicated server nem equivalência com Ars Nouveau.
+
+
+## Determinação — recuperação de cooldown Iron's (incremento de 14/10/2026)
+
+A 10ª contribuição com boundary de gameplay utiliza o evento `SpellCooldownAddedEvent.Pre` da release exata Iron's `1.21.1-3.16.3`. Fonte primária pinada: `iron431/irons-spells-n-spellbooks@e4056af90302d37eb1739f5ff05020b020e6e252`, arquivos `api/events/SpellCooldownAddedEvent.java`, `api/spells/CastSource.java`, `capabilities/magic/MagicManager.java` e `api/util/Utils.java`.
+
+**Boundary:** `SpellCooldownAddedEvent.Pre` roda depois de `getEffectiveSpellCooldown` (equipamento, `cooldown_reduction` e soft-cap Iron's) e antes de `PlayerCooldowns.addCooldown` e `SyncCooldownPacket`. `IronsInvestmentCooldownEvents` lê `CoreProgressionState.attributeRanks().rank(DETERMINATION)` apenas no servidor, verifica versão exata e `CastSource.respectsCooldown()` (`SPELLBOOK` e `SWORD`), calcula `newTicks=max(1, round(oldTicks × (1 − bonus(rank))))` para `oldTicks > 1`. Este método evita aplicar novamente o bônus ao atributo `irons_spellbooks:cooldown_reduction` e evita recarga positiva de zero tick. Recarregamentos já zero continuam intactos. Efeitos de cooldown de outros providers continuam bloqueados.
+
+**Limite:** o bônus do próprio investimento tende a 5% de redução do número de ticks **anterior ao arredondamento**; em cooldowns curtos o arredondamento pode resultar em nenhum tick reduzido, conforme a semântica nativa discreta. Não há recurso, barra ou storage paralelo.
+
+**Testes de regressão:** `IronsCooldownInvestmentPolicyJUnitTest` e `IronsCooldownInvestmentGameTests` cobrem marcos, rank extremo, cooldown mínimo, casts permitidos, ausência de provider e leitura do Core snapshot. CI atual precisa terminar verde; testes físicos do pack completo e presença de plugins adicionais ainda não realizados.
