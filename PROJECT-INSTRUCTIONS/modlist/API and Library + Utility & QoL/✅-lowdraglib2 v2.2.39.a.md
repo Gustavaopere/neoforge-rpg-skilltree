@@ -19,11 +19,9 @@
 - **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece LowDragLib2 2.2.39.a. CurseForge publicou **2.2.40** em 12/09/2026 e **2.2.41** em 21/09/2026 para NeoForge 1.21.1; ambas foram revisadas e registradas abaixo.
 - **Data da última decisão:** 2026-08-26
 
-> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #370: JAR `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`, mod id `ldlib2`, runtime `2.2.39.a`, SHA-1 `628c9cd7f63f217c554673925854800643948b6a`.
+> **Última autoridade física verificada — snapshot de 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #370: JAR `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`, mod id `ldlib2`, runtime `2.2.39.a`, SHA-1 `628c9cd7f63f217c554673925854800643948b6a`.
 
-<callout icon="🧩" color="blue_bg">
-	**ESCOPO CANÔNICO.** Runtime físico: `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`, mod id `ldlib2`, versão `2.2.39.a`. É uma biblioteca/framework técnico amplo para UI, sincronização/persistência de dados, graph tooling e editores in-game; não é gameplay autônomo.
-</callout>
+> **ESCOPO CANÔNICO.** No snapshot físico de 25/09/2026 consta `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`, mod ID `ldlib2`, runtime 2.2.39.a. Biblioteca central de UI, sincronização, graph/editor e persistência; sua atualização requer teste de todos os consumers, sem promover automaticamente uma release externa.
 ## 1. Identidade e source pin
 A modlist física confirma o JAR e a versão 2.2.39.a. O source oficial `Low-Drag-MC/LDLib2`, branch `1.21`, está pinado no commit `d30e86b56b2a31982063ef907a335d36371b0bc4` de 05/09/2026, cujo `gradle.properties` também declara `mod_version=2.2.39.a`, Minecraft 1.21.1 e NeoForge 21.1.x. Esse é o source correspondente usado como referência principal.
 ## 2. Papel no modpack
@@ -105,6 +103,48 @@ Fontes upstream: CurseForge files 8866144 (`2.2.40`) e 8940836 (`2.2.41`) para N
 
 ## Atualização upstream e gate de manutenção — 11/10/2026
 
-**Identificação:** o item `LDLib` corresponde à biblioteca **LowDragLib2** neste modpack (Minecraft 1.21.1); o último físico é `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`. **Upstream NeoForge 1.21.1:** **2.2.42** disponível (outubro/2026), sucedendo as mudanças 2.2.40/2.2.41 já descritas acima. Não atribuir delta exclusivo à 2.2.42 sem notas de release específicas. **Gate:** APIs de UI, editors/graph, IDs/links, RPC exactly-once, rebinds/chords, undo/redo, persistência de nodes, regressões de consumers, JarJar e dedicated-server boot. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ldlib/files/all?version=1.21.1
+**Identificação:** o item `LDLib` corresponde à biblioteca **LowDragLib2** neste modpack (Minecraft 1.21.1); o último físico é `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`. **Upstream NeoForge 1.21.1:** **2.2.42** disponível desde 04/10/2026, sucedendo 2.2.40/2.2.41. O changelog exclusivo de 2.2.42 foi localizado e auditado em 14/10/2026; consultar a seção 16 para mudanças verificadas, inclusive fix do Kotlin pre-release embarcado. **Gate:** APIs de UI, editors/graph, IDs/links, RPC exactly-once, rebinds/chords, undo/redo, persistência de nodes, regressões de consumers, JarJar e dedicated-server boot. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ldlib/files/all?version=1.21.1
 
 > **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
+
+## 16. Auditoria técnica da disponibilidade 2.2.42 e decisão de não atualizar às cegas — 14/10/2026
+
+### 16.1. Versão no pack, latest compatível e diferença de artefato
+
+- **Instalado no último snapshot físico #370 (25/09/2026):** `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`, mod ID `ldlib2`, versão `2.2.39.a`, SHA-1 `628c9cd7f63f217c554673925854800643948b6a`. JarJar do snapshot: `taffy-1.1.4.jar`, `yoga-1.0.0.jar` e `kotlin-stdlib-2.4.20-RC3.jar`. Esses componentes embarcados **não são mods top-level**. A presença do artefato **em outubro** não foi revalidada nesta execução.
+- **Última publicação compatível verificada:** [CurseForge File ID `9059591`](https://www.curseforge.com/minecraft/mc-mods/ldlib/files/9059591), **04/10/2026**, release **2.2.42** para NeoForge Minecraft `1.21.1` (também 1.21). O campo oficial **File name** declara `ldlib2-neoforge-1.21.1-2.2.42-all.jar`; é um artefato distinto e não instalado/certificado no perfil. O [índice oficial do projeto](https://www.curseforge.com/minecraft/mc-mods/ldlib/files/all) distingue as publicações **26.x** das releases Minecraft **1.21.1**.
+- **Source 2.2.39.a anteriormente pinado:** [commit `d30e86b56b2a31982063ef907a335d36371b0bc4`](https://github.com/Low-Drag-MC/LDLib2/tree/d30e86b56b2a31982063ef907a335d36371b0bc4), branch `1.21`, cujo `gradle.properties` confirma `mod_version=2.2.39.a`. Mantê-lo como referência dos contratos históricos, sem confundi-lo com a 2.2.42.
+- **Source mais recente consultado:** [commit `ae11d71607ada1364de154634a2652a73b66ba0c`](https://github.com/Low-Drag-MC/LDLib2/tree/ae11d71607ada1364de154634a2652a73b66ba0c), branch `1.21`, cujo [`gradle.properties`](https://github.com/Low-Drag-MC/LDLib2/blob/ae11d71607ada1364de154634a2652a73b66ba0c/gradle.properties) declara `mod_version=2.2.42`, Minecraft `1.21.1`, NeoForge compile `21.1.238`, `taffy_version=1.1.5`, `yoga_version=1.0.0` e `kotlin_stdlib_version=2.1.20`. **O commit público consultado não foi certificado como fonte byte-for-byte da release File 9059591**.
+
+### 16.2. Changelog oficial 2.2.42 — novidades e correções materiais
+
+O [`CHANGELOGS.md` oficial da branch `1.21`](https://github.com/Low-Drag-MC/LDLib2/blob/ae11d71607ada1364de154634a2652a73b66ba0c/CHANGELOGS.md) documenta expressamente as seguintes mudanças da **2.2.42**, que antes estavam sem detalhamento:
+
+| Subsistema | Alteração 2.2.42 verificada | Consequência e teste necessário |
+| --- | --- | --- |
+| **Window/editor** | Mover uma janela de editor para janela nativa do SO; diálogos lembram tamanho e se ajustam à tela. | Testar foco, escala GUI, fechamento, vários monitores, minimizing/reabrir e persistência de bounds; evitar comandos duplicados. |
+| **Asset browser** | Busca global, pasta como provider, busca/sort em grids, menu por project type e drag-drop de views para arquivos; correções de cache/providers e paths. | Testar colisão de nomes, rename, pastas aninhadas, providers dinâmicos, exclusão/recriação de arquivos e integridade de assets. |
+| **UI editor e undo/redo** | Undo/redo para adicionar, remover, colar, mover elementos; debugger acessível de simulation via F3; seleção Ctrl+A para graph. | Garantir que comandos de UI não gerem duplo RPC ou mutação server-side não autorizada; rollback de IDs/state. |
+| **Keyboard/input** | Shortcut bubbling do elemento focado até view; configuradores lembram campo editado; menús contextuais enriquecidos. | Regressar keymap 2.2.40 e text inputs para não executar ações de jogo enquanto usuário edita texto. |
+| **Graph schema** | Correções para nós aninhados herdando portas/opções indevidas, options que mudam portas e declaração de tipo de variável do próprio graph perdida no reload. | Testar graph persistente, blackboards, connections, node IDs/ports, migração e round-trip sem perda semântica. |
+| **Packaging** | **Corrige empacotamento no mod JAR de uma Kotlin standard library pre-release diferente da versão de compilação**. | **Crítico para o snapshot:** ele contém `kotlin-stdlib-2.4.20-RC3.jar`. A 2.2.42 declara compile `2.1.20`, mas não presumir o conteúdo exato do JAR novo sem abrir o artefato; auditar JarJar de qualquer candidato. |
+| **Taffy / Yoga** | Source 2.2.42 declara `taffy_version=1.1.5` e Yoga `1.0.0`; snapshot antigo inclui Taffy `1.1.4` e Yoga `1.0.0`. | Verificar metadata JarJar, transitive deps e eventuais consumidores do engine de layout ao atualizar; **não instalar Taffy separadamente apenas por estar embutido**. |
+| **Segurança do editor** | Corrigiu painel disabled/read-only ainda permitir alterações por campos, pickers, paste, reordering ou dialogs. | Validar boundary de leitura/escrita: callbacks client-side não podem forçar mutação de state autoritativo do consumer. |
+
+**Não reduzir a release 2.2.42 a “apenas cosmética”:** há mudanças em serialização de graph, visibilidade de controles read-only, encaminhamento de shortcuts, resources e JarJar. Ao mesmo tempo, **nenhuma dessas correções prova incompatibilidade atual** na 2.2.39.a.
+
+### 16.3. Ownership e gate de promoção
+
+A biblioteca só fornece componentes e infraestrutura. Um addon consumidor continua responsável pelos seus próprios dados, UIs, workflows e autorização server-side; a existência de integração no Gradle (`JEI`, `REI`, `EMI`, `KubeJS`, `AE2`, `Iris`, `Sodium`) não torna tudo dependência hard nem evidencia consumers instalados específicos. A lista real de consumidores deve ser obtida por dependências/metadata/imports do **perfil físico**.
+
+**Sem promover o JAR ainda.** Exigir:
+- [ ] Inspeção atual do `ldlib2` instalado, SHA-1/SHA-256, `neoforge.mods.toml`, `META-INF/jarjar`, classloading e consumers atuais por mod ID, dependências e chamadas de API.
+- [ ] Conferir a assinatura/hash/file ID da distribuição 2.2.42, layout dos JARs Kotlin/Taffy/Yoga, comparar bytecode e metadata; registrar plano de rollback para 2.2.39.a.
+- [ ] Client + dedicated server boots antes/depois, com JEI/EMI/KubeJS/AE2/Iris/Sodium reais; observar classloading de código de editor no servidor.
+- [ ] Testar todos os consumers instalados que exibem `ModularUI` e telas remotas com packets/RPC; não aceitar input não autorizado, duplication nem desync.
+- [ ] Testar graph persistido das versões antigas (nodes, ports, variables, blackboards, undo/redo, project file/resources, rename/move).
+- [ ] Testar keymap 2.2.40 e shortcuts: teclas em text inputs, foco, Ctrl+A, copy/paste, múltiplas janelas OS e GUI scale.
+- [ ] Validar Taffy layout, UI render/font, shaders Iris, reload, relog, restart e estado de editor read-only.
+- [ ] Só após critérios claros e backup dos saves/configs, avaliar atualização física e **então** reconciliar modlist e filename de dossiê pela nova versão.
+
+**Status: PENDENTE — update 2.2.42 justificado para avaliação, não autorizado como compatível sem QA.** Histórico 2.2.39.a e decisões/documentos existentes foram preservados. Não houve alteração de JAR, item top-level, shader, resource pack, datapack, mundo, config, script ou `modlist.md`; **somente o dossiê** foi atualizado neste ciclo.
