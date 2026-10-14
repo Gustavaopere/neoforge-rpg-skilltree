@@ -316,11 +316,24 @@ public final class ProgressionService {
         Map<String, NodeAccessRequirement> requirements,
         CharacterLevelCurve curve
     ) {
+        return reconcileInvalidNodes(state, graph, definitions, requirements, curve, AttributeRanks.empty());
+    }
+
+    /** Reconciles purchased passive nodes against canonical, non-consumable attribute thresholds. */
+    public static NodeAccessReconcileResult reconcileInvalidNodes(
+        ProgressionState state,
+        SkillGraph graph,
+        Map<String, NodePurchaseDefinition> definitions,
+        Map<String, NodeAccessRequirement> requirements,
+        CharacterLevelCurve curve,
+        AttributeRanks investedRanks
+    ) {
         Objects.requireNonNull(state);
         Objects.requireNonNull(graph);
         Objects.requireNonNull(definitions);
         Objects.requireNonNull(requirements);
         Objects.requireNonNull(curve);
+        Objects.requireNonNull(investedRanks);
 
         ProgressionState current = state;
         Map<String, Integer> removedRanks = new HashMap<>();
@@ -336,7 +349,7 @@ public final class ProgressionService {
                     NodePurchaseDefinition definition = definitions.get(nodeId);
                     if (definition == null) return true;
                     NodeAccessRequirement requirement = requirements.getOrDefault(nodeId, NodeAccessRequirement.none());
-                    return !NodeAccessResolver.satisfied(snapshot, requirement, curve);
+                    return !NodeAccessResolver.satisfied(snapshot, requirement, curve, investedRanks);
                 })
                 .findFirst()
                 .orElse(null);
