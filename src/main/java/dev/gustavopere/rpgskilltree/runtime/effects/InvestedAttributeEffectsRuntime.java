@@ -25,6 +25,10 @@ public final class InvestedAttributeEffectsRuntime {
     ) {}
 
     private static final List<NativeBonus> NATIVE = List.of(
+        // Damage from vanilla melee attacks is derived from this player attribute.
+        // A single native modifier avoids an independent damage-event multiplier.
+        bonus(Benefit.STRENGTH_MELEE_DAMAGE, "strength_melee_damage", "minecraft:generic.attack_damage",
+            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
         bonus(Benefit.STRENGTH_KNOCKBACK_RESISTANCE, "strength_knockback", "minecraft:generic.knockback_resistance",
             AttributeModifier.Operation.ADD_VALUE),
         bonus(Benefit.STRENGTH_MANUAL_MINING, "strength_manual_mining", "minecraft:player.block_break_speed",
