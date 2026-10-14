@@ -14,9 +14,9 @@
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Dependência transversal e stateful de equipamentos. Riscos: version drift com consumers, slot definitions divergentes após datapack/config reload, equip/unequip hooks duplicados, sync client/server e world-upgrade migrations. A 9.5.1 corrige crash ao carregar mundo após update vindo de 9.4.2+1.21.1 ou inferior.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/curios/files/6529130
-- **Procedência:** modlist.txt física atual de 11/09/2026 — 595 entradas totais incluindo o modloader + runtime `curios` 9.5.1+1.21.1 + CurseForge oficial revalidado em 12/09/2026; 9.5.1+1.21.1 permanece a release NeoForge 1.21.1 mais recente.
+- **Procedência:** a snapshot de **11/09/2026** registrava **595 entradas incluindo o modloader**; trata-se de histórico, não do pack atual. O **último inventário físico documentado**, `modlist(1).txt`, contém **587 entradas top-level** e confirma **Curios #211**, `curios-neoforge-9.5.1+1.21.1.jar` / `9.5.1+1.21.1`. Fonte oficial CurveForge/Curios File ID `6529130` e lista filtrada NeoForge 1.21.1 revalidadas em 13/10/2026: versão **9.5.1+1.21.1** continua a mais recente publicada para este Minecraft/loader; releases mais novas de outras versões de Minecraft não se aplicam ao pack.
 - **Observações:** mod id `curios`; runtime 9.5.1+1.21.1. Curios é API/library Client & Server. A release 9.5.1 corrige crash em world load após atualizar de 9.4.2+1.21.1 ou abaixo (#520). Não hardcodar uma lista universal de slots: consumers definem a topologia aplicável.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #213: curios-neoforge-9.5.1+1.21.1.jar / runtime 9.5.1+1.21.1 reconfirmados como latest Release NeoForge 1.21.1; slot/equipment authority, consumer-defined topology, sync/migration e regressão #520 permanecem atuais.
+- **Atualização/Status:** REVALIDADO EM 13/10/2026 — **#211** no último inventário histórico de **587 top-level**; JAR `curios-neoforge-9.5.1+1.21.1.jar` / versão `9.5.1+1.21.1` não foram alterados. A referência a **#213** pertence ao lote físico histórico de 12/09/2026, não ao ordinal atual. Publicação NeoForge 1.21.1 9.5.1+1.21.1 confirmada; risco de travamento upstream issue #616 classificado como **relato não reproduzido**. Sem update físico nem QA runtime nesta edição.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Curios API 9.5.1+1.21.1 foi reconfirmado como `Instalado` na modlist física de 595; o dossiê Alex já aplicado foi preservado e necessidade técnica por consumers não foi convertida em decisão curatorial.
 - **Sobreposição:** Não substitui os equipamentos dos mods consumidores nem Curios-style systems sem port explícito. Pode coexistir com outros slot APIs; conflito real exige dois providers disputando o mesmo equipamento/state ou bridge duplicando eventos.
@@ -45,7 +45,7 @@ Em multiplayer, cliente não pode fabricar um accessory state apenas alterando G
 Topologia/regras de slots podem depender da configuração e do stack do pack. Reload deve reconstruir o que a versão/consumer suportar sem perder itens ou manter slots stale.
 Qualquer remoção/renomeação de slot em pack existente deve ser testada em cópia do mundo antes de produção.
 ## 8. Upgrade migration — 9.5.1
-O changelog exato da build física corrige **crash no world load após atualizar de ****`9.4.2+1.21.1`**** ou inferior**.
+O changelog exato da build física corrige **crash no world load após atualizar de `9.4.2+1.21.1` ou inferior**.
 Esse é o regression gate principal da 9.5.1: mundos com state Curios anterior precisam carregar sem crash e preservar inventário/equipamentos conforme o contract da migração.
 ## 9. Consumers concretos do pack
 O catálogo já contém integrações/consumers que dependem ou usam Curios, como Artifacts e compatibilidades específicas de outros providers. Essas presenças demonstram a transversalidade da API, mas não autorizam inferir que todo mod RPG use Curios.
@@ -85,3 +85,41 @@ Itens equipados não podem sumir, duplicar ou reaparecer em slot antigo após to
 - release/File ID 6529130 para NeoForge 1.21.1;
 - changelog 9.5.1: fix de crash no world load ao atualizar de 9.4.2+1.21.1 ou inferior.
 > 🔗 Boundary canônico: **Curios organiza slots/equipamento; consumers definem os itens, regras e efeitos**. A topologia deve ser descoberta do runtime, não inventada.
+
+
+## 16. Revalidação de source, slots e risco upstream #616 — 13/10/2026
+
+**Autoridade do estado instalado:** inventário histórico mais recente de **587 JARs/modloader top-level**: **NeoForge #001 21.1.250**, **Curios API #211 9.5.1+1.21.1**, arquivo `curios-neoforge-9.5.1+1.21.1.jar`. Não foi obtido acesso ao diretório físico do usuário nem executada nova inspeção do JAR em 13/10/2026. A referência antiga a 595 itens corresponde à snapshot de 11/09/2026; não converter essa contagem ou a antiga posição #213 em estado atual.
+
+**Release publicada:** a [listagem oficial CurseForge filtrada Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/curios/files/all?page=1&version=1.21.1) mantém **`9.5.1+1.21.1`** como última release **NeoForge/1.21.1**, [File ID `6529130`, publicada em 14/05/2025](https://www.curseforge.com/minecraft/mc-mods/curios/files/6529130). O fix oficial dessa release é a migração do mundo após `9.4.2+1.21.1` ou anterior, [issue #520](https://github.com/TheIllusiveC4/Curios/issues/520). O projeto possui releases 2026 para outras versões de Minecraft, mas isso **não cria atualização compatível nova para 1.21.1**.
+
+**Source exato da linha:** [`TheIllusiveC4/Curios` branch 1.21.1, commit `6b122c8a7e2b514fd94197459ade11f19a0bfb09`](https://github.com/TheIllusiveC4/Curios/tree/6b122c8a7e2b514fd94197459ade11f19a0bfb09), cujo `gradle.properties` declara `version=9.5.1+1.21.1`, `mod_id=curios`, `minecraft_version=1.21.1`, `java_version=21` e faixa NeoForge `[21.1.60,)`. Essa metadata fonte **aceita numericamente** o loader histórico `21.1.250`; não é prova de compatibilidade in-game com todas as integrações. Não se demonstrou identidade de bytecode source↔JAR físico.
+
+### 16.1. Contratos observáveis de API 9.5.1 (relevantes para atributos/perks)
+
+A classe pública [`CuriosApi.java`](https://github.com/TheIllusiveC4/Curios/blob/6b122c8a7e2b514fd94197459ade11f19a0bfb09/neoforge/src/main/java/top/theillusivec4/curios/api/CuriosApi.java) define `getCuriosInventory(LivingEntity)` com retorno `Optional<ICuriosItemHandler>`, `getCurio(ItemStack)` com `Optional<ICurio>`, `getSlot(String, Level)`, `getSlots(Level)`, `getItemStackSlots(ItemStack, LivingEntity)` e `getAttributeModifiers(SlotContext, ResourceLocation, ItemStack)`. Muitos desses métodos aparecem como *stubs* `apiError()` na classe API de compilação; o runtime injeta a implementação por [`MixinCuriosApi`](https://github.com/TheIllusiveC4/Curios/blob/6b122c8a7e2b514fd94197459ade11f19a0bfb09/neoforge/src/main/java/top/theillusivec4/curios/mixin/core/MixinCuriosApi.java). Portanto **não interpretar o `Optional.empty()` do source stub como comportamento funcional do runtime** nem contornar esses contratos com mixins próprios sem necessidade.
+
+O [`ICuriosItemHandler`](https://github.com/TheIllusiveC4/Curios/blob/6b122c8a7e2b514fd94197459ade11f19a0bfb09/neoforge/src/main/java/top/theillusivec4/curios/api/type/capability/ICuriosItemHandler.java) da versão 9.5.1 expõe:
+- `getCurios()` → `Map<String, ICurioStacksHandler>`; `getStacksHandler(String)` → `Optional<ICurioStacksHandler>` (consultar a topologia real em vez de inventar `ring`/`back`);
+- `getEquippedCurios()` → `IItemHandlerModifiable`, **explicitamente excluindo os cosméticos** na documentação de interface;
+- `isEquipped(Item)`, `isEquipped(Predicate<ItemStack>)`, `findFirstCurio(...)`, `findCurios(...)` e `isSlotActive(String, int)` para consultas;
+- `setEquippedCurio(String, int, ItemStack)`, `addTransientSlotModifier`, `addPermanentSlotModifier` e `removeSlotModifier` para mutações que exigem validação de ownership e lado servidor.
+
+**Implicação de design para perks:** usar consultas provider-native para verificar acessório equipado e estado do slot, com avaliação server-authoritative no momento adequado; um item cosmético não é segundo item funcional; distinguir o efeito do mod consumidor, o modifier de slot e um atributo próprio da árvore, evitando double-application. Nenhuma função aqui permite deduzir cooldowns, buffs ou IDs de terceiros sem ler o JAR exato do consumer.
+
+### 16.2. Issue aberta #616 — congelamentos na geração/carregamento de chunks
+
+O upstream tem a [issue **#616 — Server deadlock on chunk loading caused by EquipCurioTrigger in 9.5.1**](https://github.com/TheIllusiveC4/Curios/issues/616), **aberta**, registrada em **16/06/2026**, com labels `type: bug` e `status: triage` e assignee do projeto. O autor do relato usa **Minecraft 1.21.1 / NeoForge 21.1.232 / Curios 9.5.1** e descreve pausas de **15–50 segundos** ao explorar chunks, sem reprodução publicada para o loader `21.1.250` ou para este modpack.
+
+O [source 9.5.1 de `EquipCurioTrigger`](https://github.com/TheIllusiveC4/Curios/blob/6b122c8a7e2b514fd94197459ade11f19a0bfb09/common/src/main/java/top/theillusivec4/curios/common/util/EquipCurioTrigger.java) efetivamente chama `ServerPlayer.getBlockStateOn()` ao construir `LootParams` com `LootContextParams.BLOCK_STATE`, inclusive na variante `trigger(SlotContext, ServerPlayer, ItemStack)`. O [`CuriosEventHandler` 9.5.1](https://github.com/TheIllusiveC4/Curios/blob/6b122c8a7e2b514fd94197459ade11f19a0bfb09/neoforge/src/main/java/top/theillusivec4/curios/common/event/CuriosEventHandler.java) invoca esse trigger ao processar mudança de stack equipado em `ServerPlayer`. **Esse encadeamento é verificável no source.**
+
+**Limite do diagnóstico:** o stack trace anexado pelo relator mostra `ServerChunkCache.getChunk` / `Entity.move` / `ServerGamePacketListenerImpl.handleMovePlayer`, **sem frames de Curios ou `EquipCurioTrigger` naquele recorte**. Assim, a cadeia causal atribuída ao Curios permanece **hipótese do relatório**, e o tempo de pausa não foi reproduzido nem atribuído causalmente ao mod no pack. Uma espera `TIMED_WAITING` observada nesse recorte **não prova deadlock originado por Curios**.
+
+**Gate de regressão para servidor com modpack grande, NÃO executado:** registrar MSPT/TPS, thread dump com timestamp e servidor/chunkload profiling; medir chunk exploration com Curios e consumers presentes; alternar equip/unequip e eventos de advancements em mundo de teste; verificar se frames `CuriosEventHandler`/`EquipCurioTrigger` aparecem durante travamento; comparar com baseline reproduzível e logs de worldgen, sem fazer downgrade em mundo real. Revalidar compat de dependentes antes de atualizar ou substituir Curios. **Issue #616 não é motivo suficiente para remover a 9.5.1 ou culpar o Curios por qualquer travamento sem evidência local.**
+
+### 16.3. Decisão e estado
+
+- **Instalada historicamente:** `9.5.1+1.21.1`, sem divergência de filename/versão conhecida.
+- **Última publicada para MC1.21.1/NeoForge:** `9.5.1+1.21.1`, conferida no CurseForge oficial em 13/10/2026.
+- **Decisão curatorial:** `Sem decisão`, inalterada; esta edição documenta evidências e riscos, **não** aprova novo upgrade/removal.
+- **Estado:** dossiê atualizado documentalmente; verificação física direta, QA dedicado e atribuição causal da issue permanecem **pendentes/não verificados**.
