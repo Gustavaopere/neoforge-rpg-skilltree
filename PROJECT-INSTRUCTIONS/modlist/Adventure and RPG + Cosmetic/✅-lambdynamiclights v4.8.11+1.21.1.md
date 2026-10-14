@@ -20,11 +20,9 @@
 - **Histórico da decisão:** Mantido como parte do stack escolhido de iluminação dinâmica com Sodium e Sable Dynamic Lights. As implementações Sodium/Embeddium Dynamic Lights e bridges Create concorrentes foram removidas em 15/08/2026.
 - **Data da última decisão:** 2026-08-26
 
-> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #369: JAR `lambdynamiclights-4.8.11+1.21.1.jar`, mod id `lambdynlights`, runtime `4.8.11+1.21.1`, SHA-1 `7b5afc75a094b4e8a7118f9856eec959b10f2422`.
+> **Última autoridade física certificada — snapshot de 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #369: JAR `lambdynamiclights-4.8.11+1.21.1.jar`, mod id `lambdynlights`, runtime `4.8.11+1.21.1`, SHA-1 `7b5afc75a094b4e8a7118f9856eec959b10f2422`.
 
-<callout icon="💡" color="yellow_bg">
-	**ESCOPO CANÔNICO.** Runtime físico: `lambdynamiclights-4.8.11+1.21.1.jar`, mod id top-level `lambdynlights`, versão `4.8.11+1.21.1`. É uma camada **client-side de iluminação dinâmica renderizada**; não altera o light level canônico do mundo no servidor.
-</callout>
+> **ESCOPO CANÔNICO.** O snapshot físico certificado de 25/09/2026 registra `lambdynamiclights-4.8.11+1.21.1.jar` (mod ID top-level `lambdynlights`). É um renderer **client-side** de luz dinâmica, não um modificador do nível de luz lógico do servidor. O JAR no disco atual não foi inspecionado nesta auditoria.
 ## 1. Identidade e packaging físico
 A modlist confirma o wrapper top-level e, dentro dele, o runtime NeoForge `lambdynamiclights-4.8.11+1.21.1-neoforge.jar` com mod id `lambdynlights_runtime` e mixins `lambdynlights.mixins.json` + `lambdynlights.lightsource.mixins.json`.
 O bundle também contém componentes internos, portanto **não top-level**: LambDynamicLights API 4.8.11, Yumi Minecraft Libraries: Foundation 1.0.0-beta.1, Yumi Commons Core/Collections/Event 1.0.0, SpruceUI 6.2.5 e Pride Lib 1.2.4, com variantes de mapping/packaging do bundle. Não criar páginas independentes apenas por aparecerem sob `META-INF/jars/`.
@@ -41,10 +39,10 @@ O range técnico documentado é 7,75 blocos para limitar a área de atualizaçã
 Dynamic light exige rebuild das seções/chunks visuais afetados. O próprio upstream classifica isso como a parte crítica de performance. Há modos `FASTEST`, `FAST` e `FANCY` que controlam frequência/qualidade de update.
 A implementação acompanha a posição das fontes e marca chunks próximos para rebuild. Quando Sodium está presente, o hook de terrain setup é adaptado ao pipeline Sodium. Atualizações 4.8.x adicionaram culling/adaptive ticking e correções no scheduler para reduzir rebuilds e crashes.
 ## 6. Sodium, Iris e stack físico
-O pack contém **Sodium 0.8.13** e **Iris 1.8.14-beta.1**. A linha LambDynamicLights 4.8.9 atualizou explicitamente a compatibilidade da tela de configuração para Sodium 0.8.x; 4.8.10 adicionou o ícone do mod nessa tela. Sodium é recomendado/compatível como otimização, não deve ser confundido com o projeto separado **Sodium Dynamic Lights**, listado pelo upstream como implementação incompatível concorrente.
+O snapshot físico de 25/09/2026 registra **Sodium 0.8.13** e **Iris 1.8.14-beta.1**; a instalação atual não foi reaberta nesta etapa. A linha LambDynamicLights 4.8.9 atualizou explicitamente a compatibilidade da tela de configuração para Sodium 0.8.x; 4.8.10 adicionou o ícone do mod nessa tela. Sodium é recomendado/compatível como otimização, não deve ser confundido com o projeto separado **Sodium Dynamic Lights**, listado pelo upstream como implementação incompatível concorrente.
 Iris/shaders entram na superfície de renderização e devem ser validados visualmente, especialmente com shader packs; a presença de Iris não prova conflito por si.
 ## 7. Relação concreta com Sable Dynamic Lights
-A modlist física contém `sable-dynamic-lights-1.21.1-2.0.1.jar`. O projeto oficial Sable Dynamic Lights declara **Create + LambDynamicLights** como dependências e Sable como opcional; ele é um **bridge/extensão alimentado pelo engine LambDynamicLights**, adicionando iluminação a contraptions/trains e Sable sub-levels.
+O snapshot físico catalogado contém `sable-dynamic-lights-1.21.1-2.0.1.jar`. O projeto oficial Sable Dynamic Lights declara **Create + LambDynamicLights** como dependências e Sable como opcional; ele é um **bridge/extensão alimentado pelo engine LambDynamicLights**, adicionando iluminação a contraptions/trains e Sable sub-levels.
 Logo, no stack atual não existem duas authorities independentes por definição: LambDynamicLights permanece o engine, enquanto Sable Dynamic Lights estende as fontes/superfícies para estruturas móveis. Ainda assim, a composição deve ser testada para evitar fonte duplicada, rebuild redundante ou desync entre world/sublevel/contraption.
 ## 8. Client / server
 A publicação oficial de LambDynamicLights 4.8.11 é **client-side**. O servidor não precisa usar o efeito para decidir iluminação lógica. Em multiplayer, clientes podem ter configuração/modo visual diferentes sem que isso altere o state canônico do servidor.
@@ -62,7 +60,7 @@ Pontos críticos:
 - fechamento do cliente persistindo config/keybinds sem corromper `options.txt`.
 A versão 4.8.11 corrige especificamente um caso de **duplicate keybind** que podia corromper `options.txt`.
 ## 11. Linha 1.21 em EOL
-O changelog 4.8.9, 4.8.10 e 4.8.11 marca a linha Minecraft 1.21 como **End-of-Life**. A 4.8.11, publicada em 31/08/2026, é a release atual localizada para 1.21.1 e contém o fix de keybind duplicado + atualização de Yumi Foundation.
+O changelog 4.8.9, 4.8.10 e 4.8.11 marca a linha Minecraft 1.21 como **End-of-Life**. A 4.8.11, publicada em 31/08/2026, permanece a release mais recente **para Minecraft 1.21.1** localizada na revisão externa de 14/10/2026 e contém o fix de keybind duplicado + atualização de Yumi Foundation.
 Isso não torna a versão insegura ou quebrada, mas aumenta risco de manutenção futura: regressões específicas do pack podem não receber backport nessa linha.
 ## 12. Riscos técnicos
 1. **False authority:** tratar iluminação visual como block-light server-side.
@@ -95,3 +93,54 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - source oficial: README e `HOW_DOES_IT_WORK.md` para lightmap, entity lighting, chunk rebuild e integração Sodium;
 - Sable Dynamic Lights oficial: bridge Create/Sable dependente de LambDynamicLights.
 Nenhum FPS ganho/perda foi inventado. O efeito com shaders específicos e a ausência de double-source no stack atual ainda dependem de teste runtime.
+
+## 16. Revalidação da release 4.8.11, API v4 e stacks de luz — 14/10/2026
+
+### 16.1. Autoridade da versão instalada e publicação oficial
+
+- **Snapshot histórico #369 de 25/09/2026:** `lambdynamiclights-4.8.11+1.21.1.jar`; mod ID top-level `lambdynlights`; versão `4.8.11+1.21.1`; SHA-1 `7b5afc75a094b4e8a7118f9856eec959b10f2422`. O JAR atual em disco e os JARs embarcados **não foram reabertos** neste ciclo. A última autoridade de packaging continua sendo a metadata documentada no snapshot anterior.
+- **Distribuição oficial CurseForge:** [File ID `8780227`](https://www.curseforge.com/minecraft/mc-mods/lambdynamiclights/files/8780227), **31/08/2026**, release para Minecraft **1.21 e 1.21.1**, **Fabric/Quilt/NeoForge**; campo **File name** = `lambdynamiclights-4.8.11+1.21.1.jar`, igual ao snapshot. O [filtro oficial de arquivos Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/lambdynamiclights/files/all?page=1&pageSize=20&version=1.21.1) não apresenta release posterior à 4.8.11.
+- **Distribuição oficial Modrinth:** [versão `4.8.11+1.21.1`](https://modrinth.com/mod/lambdynamiclights/version/ksaGCvSu) publicada com **ambiente Client-side**. O [changelog do autor](https://modrinth.com/mod/lambdynamiclights/changelog) registra para 4.8.11 **correção de keybind duplicado que corrompia `options.txt` (#311, #386)** e marca a linha Minecraft 1.21 em **End-of-Life**. Não confundir versões 4.12.x/4.13.x para Minecraft 26.x com atualizações compatíveis com 1.21.1.
+- **Source oficial da versão pinado:** [tag `v4.8.11+1.21.1` / commit `c2e10b81c3233dc30c01cb1a62154529b5dbca2d`](https://github.com/LambdAurora/LambDynamicLights/tree/c2e10b81c3233dc30c01cb1a62154529b5dbca2d). [`gradle.properties`](https://github.com/LambdAurora/LambDynamicLights/blob/c2e10b81c3233dc30c01cb1a62154529b5dbca2d/gradle.properties) declara `base_version=4.8.11`, `java_version=21`, `neoforge_mc_constraints=[1.21,1.21.1]` e IDs CurseForge/Modrinth. Fonte e release são consistentes nominalmente; **o hash do download oficial não foi comparado ao JAR histórico**.
+- **Licença:** o [README no commit da tag](https://github.com/LambdAurora/LambDynamicLights/blob/c2e10b81c3233dc30c01cb1a62154529b5dbca2d/README.md) e a publicação oficial identificam **Lambda License**, adotada na linha 3.0.0. Não presumir permissão de redistribuição ou de empacotamento de derivados sem consultar o texto da licença e o acordo da distribuição.
+- **Decisão:** **Manter** a release 4.8.11 catalogada, compatível nominalmente com Minecraft 1.21.1 NeoForge; sem indicação de versão superior 1.21.1 e sem teste de necessidade de troca.
+
+### 16.2. Data-driven API — namespaces, paths, precedência e consequências
+
+A [documentação oficial da API v4](https://lambdaurora.dev/projects/lambdynamiclights/docs/v4/) estabelece dois caminhos de resource pack, **client-side**:
+
+- `assets/<namespace>/dynamiclights/item/<file>.json`: [especificação de item lighting](https://lambdaurora.dev/projects/lambdynamiclights/docs/v4/item.html). Itens luminosos por estado de bloco podem herdar luminância; JSON de item permite especificar condições e intensidade, inclusive para itens modded. A documentação da API usa `lambdynlights` para mod completo e `lambdynlights_api` para a API.
+- `assets/<namespace>/dynamiclights/entity/<file>.json`: [especificação de entity lighting](https://lambdaurora.dev/projects/lambdynamiclights/docs/v4/entity.html). Permite `match` de tipo de entidade/ID/tag, localização, effects, flags, equipamento e relações com veículos/passageiros; luminância pode ser fixa ou derivada de provider (`lambdynlights:value`, `lambdynlights:item`, `lambdynlights:water_sensitive`, `lambdynlights:wet_sensitive`, entre outros definidos pela API).
+- **Semântica version-specific da release 4.8.11:** no [source oficial `ItemLightSources.getLuminance`](https://github.com/LambdAurora/LambDynamicLights/blob/c2e10b81c3233dc30c01cb1a62154529b5dbca2d/src/main/java/dev/lambdaurora/lambdynlights/resource/item/ItemLightSources.java), o manager percorre cada definição cujo predicado reconhece o item e usa `Math.max` sobre sua luminância (respeitando `waterSensitive`); o [manager de entidades `EntityLightSources.getLuminance`](https://github.com/LambdAurora/LambDynamicLights/blob/c2e10b81c3233dc30c01cb1a62154529b5dbca2d/src/main/java/dev/lambdaurora/lambdynlights/resource/entity/EntityLightSources.java) também usa `Math.max` sobre fontes de entidade correspondentes, com saída antecipada ao atingir 15. Dentro de [listas de providers de uma mesma entidade](https://github.com/LambdAurora/LambDynamicLights/blob/c2e10b81c3233dc30c01cb1a62154529b5dbca2d/api/src/main/java/dev/lambdaurora/lambdynlights/api/entity/luminance/EntityLuminance.java), `EntityLuminance.getLuminance` seleciona igualmente o máximo. **Isto não é soma de intensidades.** Os codecs [`ItemLightSource`](https://github.com/LambdAurora/LambDynamicLights/blob/c2e10b81c3233dc30c01cb1a62154529b5dbca2d/api/src/main/java/dev/lambdaurora/lambdynlights/api/item/ItemLightSource.java) e [`EntityLightSource`](https://github.com/LambdAurora/LambDynamicLights/blob/c2e10b81c3233dc30c01cb1a62154529b5dbca2d/api/src/main/java/dev/lambdaurora/lambdynlights/api/entity/EntityLightSource.java) **não declaram campo `priority` de definição nessa tag**. **Separadamente**, um resource pack de maior prioridade pode substituir um JSON de mesmo identificador/path na resolução vanilla de recursos. Não importar para 4.8.11 contracts de releases posteriores (por exemplo `priority`, `lambdynlights:max` ou `lambdynlights:conditional`) sem confirmar sua existência no bytecode da linha 4.8.11. O intervalo de luminância é **0–15**.
+- **Provider Java:** a [documentação de interfaces](https://lambdaurora.dev/projects/lambdynamiclights/docs/v4/java.html) permite novos providers de luminância e registro direto via API; a API usa entrypoints, inclusive na plataforma NeoForge. Para mods próprios e bridges, essa superfície é mais segura do que criar uma segunda engine de luz ou modificar o light engine lógico de Minecraft.
+
+**Fronteira para catálogo de resource packs:** arquivos JSON de dynamic lighting **só devem ser contabilizados como presentes no modpack quando o resource pack real contiver esses paths**. O fato de o mod aceitar `assets/*/dynamiclights` não justifica criar novas entradas no inventário de resource packs sem artefato verificável.
+
+### 16.3. Pipeline de renderização, custo e coexistência do pack
+
+No [`HOW_DOES_IT_WORK.md` da tag](https://github.com/LambdAurora/LambDynamicLights/blob/c2e10b81c3233dc30c01cb1a62154529b5dbca2d/HOW_DOES_IT_WORK.md), o provider explica a arquitetura **lightmap coordinates**: usa o maior valor entre contribuição dinâmica e luz vanilla ao calcular a iluminação de renderização, em vez de escrever blocos de luz reais no chunk. O raio citado para cálculo é **7,75 blocos**; contribuição diminui com a distância. A atualização de seções visuais implica **chunk/section rebuild**, principal custo informado pelo upstream. Os modos `FASTEST`, `FAST` e `FANCY` controlam frequência de atualização. Hook de renderer tem rota própria quando Sodium está presente. Isso não constitui mudança de block light server-side.
+
+**Relações do snapshot do pack:**
+
+| Item | Snapshot / papel |
+| --- | --- |
+| **Sodium #512** | `sodium-neoforge-0.8.13+mc1.21.1.jar`. Render optimization, não segunda dynamic-light engine. A release Lamb 4.8.9 registrou suporte de configuração a Sodium 0.8.x. |
+| **Iris #338** | `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar`. Shader pipeline client-side; shader packs e opções não foram examinados nesta revisão. |
+| **Create #116** | `create-1.21.1-6.0.10.jar`. Provider de contraptions/trens; não substitui o engine visual de Lamb. |
+| **Sable Dynamic Lights #485** | `sable-dynamic-lights-1.21.1-2.0.1.jar`. A [descrição oficial da bridge](https://modrinth.com/mod/sable-dynamic-lights) confirma **Create + LambDynamicLights** obrigatórios, **Sable opcional**, suporte a contraptions, trens e sublevels; desde 2.0.0 declara iluminação cruzada world/sublevel/contraption. A bridge usa a engine Lamb para luz visual, mas seu ambiente é **Client & Server**, o que não equivale a exigir Lamb no servidor. |
+
+**Atenção:** a [lista de incompatibilidades Modrinth](https://modrinth.com/mod/lambdynamiclights) relaciona implementações de luz dinâmica concorrentes. Não instalar `Sodium Dynamic Lights`/`RyoamicLights` só porque o **Sodium renderer** consta no pack: são componentes distintos. Qualquer composição com alternativas como Contraption Lights deve ser avaliada separadamente para evitar registros duplicados, rebuilds em excesso e luz fantasma.
+
+### 16.4. QA ainda não executado
+
+- [ ] Reabrir o JAR físico atual e confirmar SHA-1, `lambdynlights`, dependências e bundles internos (`META-INF/jars`), diferenciando libs embarcadas de JARs top-level.
+- [ ] Confirmar o `File ID 8780227`/Modrinth `ksaGCvSu` por hash comparável ao snapshot antes de declarar equivalência byte-a-byte com o JAR histórico.
+- [ ] Boot de client com Java 21 / NeoForge, Sodium 0.8.13, Iris 1.8.14-beta.1 e Sable Dynamic Lights 2.0.1; verificar shaders usados no perfil real.
+- [ ] Testar item segurado, drop, entidade em chamas, dimensão, spawn/despawn, disconnect/reconnect e resource-pack reload; nenhuma fonte luminosa deve persistir após remoção.
+- [ ] Em **perfil de teste**, validar duas definições de arquivos diferentes que satisfaçam o mesmo `match` com luminâncias distintas: os managers do source **4.8.11** agregam pelo máximo após os filtros de água. Testar **separadamente** dois resource packs sobrescrevendo **o mesmo resource path**, quando a prioridade vanilla de pack determina qual JSON é carregado. Não esperar um campo de `priority` inexistente nessa tag.
+- [ ] Perfil de performance: contabilizar frame time e contagem de rebuilds com centenas de fontes e com contraptions móveis; comparar modos `FASTEST`/`FAST`/`FANCY`, com e sem shader Iris.
+- [ ] Sable bridge: luz de mundo/sublevel/contraption em todas as direções, sem duplicação de fontes ou runaway rebuild, verificando atualizações ao desmontar, descarregar e mudar dimensão.
+- [ ] Verificar fechamento/reabertura do cliente e integridade de `options.txt`: correção do upstream existe, mas não houve teste local do fix nem de eventuais conflitos de keybind.
+- [ ] Confirmar que farms, spawn de mobs, lógica de temperatura, stealth e perks não consomem luminância visual como fonte de verdade do servidor.
+
+**Limites:** esta é uma atualização do **dossiê do mod #369**, não uma instalação, edição de resource pack ou teste gráfico. As versões físicas citadas são de snapshot histórico, sem novo dump de outubro. Sem modificação de `modlist.md`, saves, scripts, JARs ou mecânicas. Nenhum desempenho em FPS ou compatibilidade in-game foi alegado sem medição.
