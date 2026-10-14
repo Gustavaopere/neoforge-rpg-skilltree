@@ -1,12 +1,56 @@
-# I0002 — Constitution
+# I0002 — Constituição
 
-- **Família:** Internal Attribute
-- **Runtime canônico:** `AttributeId.CONSTITUTION`
-- **Escopo:** global/comum
-- **Ranks:** uncapped no modelo atual
-- **Paridade:** presente igualmente para todas as árvores
-- **Balanceamento concreto:** não redefinido neste arquivo
+- **ID runtime:** `AttributeId.CONSTITUTION`
+- **Família:** Internal Attribute / Ponto 0
+- **Status:** `CONCEPT-REVIEWED / TECH-PENDING`
+- **Escopo:** global; rank investido sem limite canônico
+- **Identidade:** saúde corporal e resistência a desgaste
+- **Fonte do rank:** RPG Core `AttributeRanks` / ledger de Core Points
+- **Custo de rank:** `AttributeRankCostPolicy` (proposta no contrato; não implementada aqui)
 
-## Regra
+## Progressão proposta
 
-Este documento registra a identidade do atributo. Fórmulas, custo por rank, efeitos derivados e UI devem consumir o contrato canônico do RPG Core; não criar uma segunda implementação de atributo dentro da skill tree.
+Todos os bônus começam em rank 0 com zero; cada marco é cumulativo, mas cada marco posterior vale menos que o anterior. Fórmula completa em [`INVESTMENT-BALANCE-V0.1.md`](./INVESTMENT-BALANCE-V0.1.md).
+
+| Estatística | Primeiro ganho | A cada | Fator q | Limite teórico | Rank 30 | Rank 100 |
+|---|---:|---:|---:|---:|---:|---:|
+| Vida máxima | 0,5 HP | 4 ranks | 0,96 | 12,5 HP | 3,107 HP | 7,995 HP |
+| Curas recebidas | 0,4% | 8 ranks | 0,96 | 10% | 1,153% | 3,873% |
+| Mitigação de dano ao longo do tempo | 0,4% | 12 ranks | 0,96 | 10% | 0,784% | 2,786% |
+
+## Contrato de cada trilha
+
+### 1. Vida máxima
+
++0,5 HP no primeiro marco; 2 HP correspondem a um coração. Recalcular vida atual com política de preservação de proporção ao equipar/remover bonus.
+
+**Boundary e evidência pendente:** minecraft:max_health; reconciliar com cura/vida atual.
+
+### 2. Curas recebidas
+
+Aumentar apenas cura efetivamente recebida; não aplicar a overheal nem criar cura em ticks sem evento.
+
+**Boundary e evidência pendente:** Pipeline único de healing (vanilla/mods), com causalidade sem dupla aplicação.
+
+### 3. Mitigação de dano ao longo do tempo
+
+Atenuar dano periódico de condições nocivas classificadas (ex.: veneno/wither), sem resistir a todo dano ambiental.
+
+**Boundary e evidência pendente:** Bridge de damage types por tick; excluir void, queda, buffs, temperatura e hazards sem auditoria.
+
+## Fronteiras e sinergias
+
+- **Não deve fazer:** Não gera regeneração automática gratuita, imunidade a dano ou segunda barra de vida.
+- **Sinergias pretendidas:** VITALITY, SURVIVAL, HEALING; sinergia com cura e defesa, sem substituir shields e mitigação especial.
+- **Investimento como gate:** perks P/S/T podem pedir `CONSTITUTION >= N` sem consumir rank na compra; os valores N serão balanceados no catálogo e validados por `NodeAccessResolver`.
+- **Arquitetura:** calculado somente a partir do rank canônico; nunca acumular bonus por login/cast/tick e nunca duplicar o adapter nativo com um segundo buff de mesmo efeito.
+- **Versionamento:** se houver provider externo, consultar `PROJECT-INSTRUCTIONS/modlist` e source/API/JAR **exatamente da versão instalada** antes de marcar `TECH-AUDITED`. Ausência de hook seguro significa fail-closed.
+
+## Critérios específicos de validação
+
+- Conferir rank 0, primeiro marco, rank 30, 100, 300, 1000 e rank extremo sem overflow.
+- Verificar que o limite teórico desta trilha não pode ser ultrapassado apenas pelo investimento em Constituição.
+- Testar refresh idempotente, respec e remoção do modifier; reiniciar servidor sem drift.
+- Testar stacking com equipamento e outras perks em um único pipeline real.
+
+**Pendência:** a presente ficha aprova a **proposta de design**, não afirma existência de runtime, hooks ou balanceamento final.

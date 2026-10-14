@@ -1,16 +1,22 @@
-# 01 — Internal Attributes
+# 01 — Internal Attributes — Ponto 0
 
-**Ponto 0 do plano do Codex.** A árvore interna dos atributos é compartilhada por todos os personagens e **não** entra nas quotas P/S/T.
+O sistema tem seis atributos canônicos **compartilhados entre todas as árvores**, independentes de P/S/T. Ranks são ilimitados no RPG Core; seus efeitos não podem crescer linearmente para sempre.
 
-A enum canônica `AttributeId` possui:
+**Contrato de investimento e balanceamento:** [`INVESTMENT-BALANCE-V0.1.md`](./INVESTMENT-BALANCE-V0.1.md).
 
-- `I0001` STRENGTH
-- `I0002` CONSTITUTION
-- `I0003` AGILITY
-- `I0004` INTELLIGENCE
-- `I0005` DETERMINATION
-- `I0006` CHARISMA
+| Código | Atributo | Papel principal |
+|---|---|---|
+| I0001 | [Força](./I0001-strength.md) | impacto físico, esforço muscular e tarefas manuais |
+| I0002 | [Constituição](./I0002-constitution.md) | saúde corporal e resistência a desgaste |
+| I0003 | [Agilidade](./I0003-agility.md) | movimento, cadência corporal e entrega de projéteis |
+| I0004 | [Inteligência](./I0004-intelligence.md) | reserva de magia, regeneração e potência de habilidades mágicas |
+| I0005 | [Determinação](./I0005-determination.md) | disciplina, constância, recuperação e resistência a interrupções |
+| I0006 | [Carisma](./I0006-charisma.md) | negociação, liderança de aliados e cura prestada |
 
-`AttributeRanks` armazena ranks uncapped; custo de ranks é definido pela Core policy `AttributeRankCostPolicy`, não por esta pasta. Codex deve conferir fórmulas/efeitos reais antes de completá-los, sem inventar bônus e sem criar segunda economia de pontos.
+**Status:** desenho v0.1 com fórmulas explícitas, **não implementado em gameplay**. Cada atributo concede três trilhas de bônus por marcos com retornos decrescentes, fonte de verdade em `AttributeRanks`. Gastos de rank seguem `AttributeRankCostPolicy`. O preço proposto e os marcos serão confrontados com o orçamento real de Core Points.
 
-**Requisito de perk:** ex.: `INTELLIGENCE >= 20` é *limiar não consumível*. O gasto em rank de atributo ocorreu no Core, e a compra de uma perk não debita esse atributo de novo. `NodeAccessRequirement` **não implementa mínimos de atributo atualmente**: contrato da compra fica em `PROVIDER-EVIDENCE-AND-COSTS.md` para implementação posterior.
+**Requisito de perk:** `INTELLIGENCE >= 20`, por exemplo, é mínimo **não consumível**, não gasto de atributos. O runtime ainda precisa acrescentar esse gate a `NodeAccessRequirement`.
+
+**Regra anti-duplicação:** não criar segunda barra de mana, stamina, HP ou stats específicos. Mods opcionais usam adapters versionados e fail-closed, sem efeito fictício se o provider não suportar o hook.
+
+**Referências:** [BG3 — Abilities](https://bg3.wiki/wiki/Abilities), [Path of Exile — Attributes](https://www.poewiki.net/wiki/Attribute), [Elden Ring — Vigor](https://eldenring.wiki.gg/wiki/Vigor). Esses jogos inspiram papéis e soft caps, **não fornecem coeficientes aprovados para Minecraft**.
