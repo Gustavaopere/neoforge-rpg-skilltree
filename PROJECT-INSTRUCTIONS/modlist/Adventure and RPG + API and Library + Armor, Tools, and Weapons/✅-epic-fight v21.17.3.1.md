@@ -9,7 +9,7 @@
 - **Versão 1.21.1:** `21.17.3.1`
 - **Categoria:** RPG
 - **Função:** Framework/sistema principal de combate action-RPG do pack, com battle mode, movesets/animações, weapon capabilities, stamina, stun, dodge/guard/passive skills, special attacks e patches de entidades.
-- **Dependências:** NeoForge 1.21.1. É provider-base para vários addons/bridges fisicamente presentes, incluindo Battle Arts API 21.17.7, Epic-API 21.3.1, Better Lock On 2.0.8, EFIS 3.1.0, Curios Compat artifact 2.2/metadata 1.4, Epic Fight Compat 1.1.0, Epic ParCool e Epic Colonies 21.0.8.
+- **Dependências:** NeoForge 1.21.1. É provider-base para vários addons/bridges fisicamente presentes, incluindo Battle Arts API 21.17.7, Epic-API 21.3.1, Better Lock On 2.0.8, EFIS 3.1.0, Curios Compat artifact 2.2/metadata 1.4, Epic Fight Compat 1.1.0 e Epic Colonies 21.0.8. **Epic ParCool não consta do inventário físico histórico de 587 entradas**, portanto não é dependência nem bridge instalada.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Compatibilidade/Riscos:** Núcleo de combate com alta superfície de integração. README 1.21.1 atual lista compatibilidade plena com ParCool, Sodium, Iris, 3D Skin Layers, Shoulder Surfing, playerAnimator, GeckoLib, AzureLib, First-person Model e KubeJS; OptiFine/Controllable são incompatíveis. Werewolves 2.0.3.3 permanece risco de render/forma documentado apesar de o JAR Epic Fight conter mixin de compat. Riscos principais: double-damage/stun, skill-slot collision, entity-patch ownership, weapon capability drift, armor/model render, input conflicts e addon version drift.
@@ -106,7 +106,7 @@ A modlist física confirma, entre outros:
 - Epic Fight x Curios Compat release `2.2` / metadata `1.4`;
 - EFIS `3.1.0` para Iron's Spells;
 - Epic Fight Compat `1.1.0`;
-- ParCool `4.0.0.3` + bridge Epic ParCool;
+- ParCool `4.0.0.3` **sem bridge Epic ParCool física** (não confundir com a compatibilidade nativa indicada no README Epic Fight);
 - Epic Colonies `21.0.8`.
 Cada addon deve consumir o core; nenhum deve manter seu próprio player patch paralelo.
 ## 19. Compatibilidade oficial
@@ -191,3 +191,18 @@ Target lock-on é apresentação/controle local; o servidor ainda valida alcance
 - API Input docs 1.21.1: input actions/controller abstraction;
 - mixin configs do JAR físico: compat surfaces para SkinLayers3D, Werewolves, GeckoLib, Vampirism e outras.
 > **Boundary canônico:** Epic Fight é a authority do **combat framework que adiciona**. Addons devem registrar/extender capabilities, patches, skills e animations sem criar outra fonte de verdade para damage, stamina ou player patch.
+
+
+## 27. Reconciliação física — Epic ParCool AUSENTE e bridge oficial 21.0.0 incompatível em source com ParCool 4.0.0.x (13/10/2026)
+
+**Inventário histórico, não reinspeção de `.jar`:** o catálogo ordenado mantém **Epic Fight #260 = 21.17.3.1**, **ParCool #433 = 4.0.0.3** e **Curios #211 = 9.5.1+1.21.1**. Entre as 587 entradas físicas registradas, **não há `epicparcool`, `epic x parcool` nem `epicfightxparcool`**; a árvore de dossiês do repositório também não lista um Epic ParCool instalado. A menção anterior neste dossiê a `ParCool + bridge Epic ParCool` era **falsa como afirmação de instalação** e foi corrigida acima.
+
+**Projetos externos distintos:** [\[Official\] Epic ParCool (Epic Fight Team)](https://www.curseforge.com/minecraft/mc-mods/official-epic-fight-x-parcool/files/7490217) publica release **21.0.0 / NeoForge 1.21.1**, 19/01/2026, arquivo de distribuição `epic x parcool-neoforge-21.0.0-1.21.1.jar`. Separadamente existe [\[NEOFORGE\] Epic Fight X Parcool (Ivotday)](https://www.curseforge.com/minecraft/mc-mods/epic-fight-x-parcool/files/all) com release externa 1.0.0 para 1.21.1 (10/08/2026). **Não identificar, mesclar, instalar ou recomendar esses dois addons como equivalentes** só pelo nome ou pelo Minecraft alvo. Nenhum foi avaliado por JAR neste pack.
+
+**Evidência de risco do addon oficial 21.0.0:** o [source oficial da branch 1.21.1, commit `b1f703e7ed911bd2704cd566b8aa511723b8b78a`](https://github.com/Antikythera-Studios/epicparcool/tree/b1f703e7ed911bd2704cd566b8aa511723b8b78a) fixa `mod_version=21.0.0`, `neo_version=21.1.217`, usa `libs/ParCool-3.4.3.0.jar` e declara `parcool_version_range=[3.4.2.0,)` — intervalo aberto que **não impede a seleção da linha 4.0.0.x**. O [mixin `ParCoolMixinActionProcessor.java`](https://github.com/Antikythera-Studios/epicparcool/blob/b1f703e7ed911bd2704cd566b8aa511723b8b78a/src/main/java/com/yesman/epicparcool/mixin/ParCoolMixinActionProcessor.java) aponta diretamente para `com.alrex.parcool.common.action.ActionProcessor` e uma assinatura antiga com `common.attachment.common.Parkourability`. O [mixin config](https://github.com/Antikythera-Studios/epicparcool/blob/b1f703e7ed911bd2704cd566b8aa511723b8b78a/src/main/resources/epicparcool.mixins.json) registra `ParCoolMixinAnimation` na lista comum, mas seu [target source](https://github.com/Antikythera-Studios/epicparcool/blob/b1f703e7ed911bd2704cd566b8aa511723b8b78a/src/main/java/com/yesman/epicparcool/mixin/ParCoolMixinAnimation.java) é `common.attachment.client.Animation`. Esses contratos **não correspondem** ao source ParCool 4.0.0.3 (MC1.21.1, commit `5116ae71574428ba63e162f7e39a0f2c5e1d641c`), no qual a arquitetura passou para `common.Parkourability` e para novas estruturas de action/animation.
+
+**Reports upstream, não logs do pack:** a [issue #18](https://github.com/Antikythera-Studios/epicparcool/issues/18) relata falha de carregamento com Epic Fight 21.17.3.1, ParCool 4.0.0.1 e NeoForge 21.1.248; a [issue #19](https://github.com/Antikythera-Studios/epicparcool/issues/19) detalha (a) warning/ERROR de mixin client-only em servidor dedicado ao usar ParCool **3.4.3.3** e (b) sete targets ausentes + dois descriptors alterados em comparação com **ParCool 4.0.0.3**. São evidências de risco do **addon externo não instalado**, não prova de crash no baseline sem essa bridge.
+
+**Ownership:** Epic Fight continua provider de combate; ParCool, de parkour/mobilidade; o README do Epic Fight citar ParCool como compatível **não prova** a presença de `epicparcool` nem a transferência de stamina/animators via addon. Se houver intenção futura de obter movimentos integrados, avaliar separadamente as duas bridges externas, as dependências e suas versões, o diff de mixins, o boot cliente/dedicated server, battle toggle, dodge/parkour, sincronização, animation precedence, Curios, morte, dimensão, relog, mundo persistido e rollback **antes** da inclusão física.
+
+**Decisão:** addon oficial **21.0.0 BLOQUEADO para inclusão direta sobre ParCool 4.0.0.3 por incompatibilidade source sustentada**; alternativa externa **1.0.0 NÃO VERIFICADA**; nenhum addon de ponte instalado nesta snapshot. Manter as linhas de inventário, dossiês e JARs existentes sem alteração.
