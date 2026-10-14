@@ -4,6 +4,7 @@ import dev.gustavopere.rpgskilltree.core.A0081A0100CombatPolicy;
 import dev.gustavopere.rpgskilltree.core.AttributeInvestmentBonuses;
 import dev.gustavopere.rpgskilltree.core.AttributeInvestmentBonuses.Benefit;
 import dev.gustavopere.rpgskilltree.core.AttributeRanks;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsInvestmentAttributesRuntime;
 import java.util.List;
 import java.util.Objects;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -67,6 +68,8 @@ public final class InvestedAttributeEffectsRuntime {
             instance.addOrUpdateTransientModifier(new AttributeModifier(
                 nativeBonus.modifierId(), amount, nativeBonus.operation()));
         }
+
+        IronsInvestmentAttributesRuntime.refresh(player, investedRanks);
 
         double newMaxHealth = player.getMaxHealth();
         if (oldMaxHealth > 0.0 && newMaxHealth > 0.0 && oldMaxHealth != newMaxHealth) {
