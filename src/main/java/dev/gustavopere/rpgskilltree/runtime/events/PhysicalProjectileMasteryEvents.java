@@ -48,7 +48,8 @@ public final class PhysicalProjectileMasteryEvents {
 
     private PhysicalProjectileMasteryEvents() {}
 
-    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    // Observe the final cancellation outcome before trusting a release receipt.
+    @SubscribeEvent(priority = EventPriority.MONITOR)
     public static void onArrowLoose(ArrowLooseEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player)
             || !eligible(player)
@@ -57,7 +58,8 @@ public final class PhysicalProjectileMasteryEvents {
         if (!WeaponMasteryMilestonePolicy.acceptsPhysicalProjectileRelease(category, event.hasAmmo())) return;
         PENDING_RELEASES.put(
             player.getUUID(),
-            new PendingRelease(category, now(player) + LAUNCH_CORRELATION_MILLIS)
+            new PendingRelease(category, now(player) + LAUNCH_CORRELATION_MILLIS,
+                event.getBow().is(Items.BOW) && BowItem.getPowerForTime(event.getCharge()) >= 0.1F)
         );
     }
 
@@ -90,6 +92,8 @@ public final class PhysicalProjectileMasteryEvents {
             || !eligible(player)
             || !arrow.getWeaponItem().is(Items.BOW)) return;
         if (!"bow".equals(confirmedPlayerLaunch(arrow))) return;
+        PendingRelease release = PENDING_RELEASES.get(player.getUUID());
+        if (release == null || !release.vanillaBowFired() || release.expiresAt() < now(player)) return;
 
         AttributeRanks ranks = CanonicalPlayerAttachmentRuntime.observe(player)
             .coreProgression().state()
@@ -200,5 +204,5 @@ public final class PhysicalProjectileMasteryEvents {
         return player.level().getGameTime() * 50L;
     }
 
-    private record PendingRelease(String category, long expiresAt) {}
+    private record PendingRelease(String category, long expiresAt, boolean vanillaBowFired) {}
 }
