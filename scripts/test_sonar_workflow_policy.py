@@ -17,6 +17,13 @@ BATTLE_MAGE_TEST_PATTERNS = (
 ARS_PROVIDER_TEST_PATTERN = (
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/gametest/ArsProviderCausalityGameTests.java"
 )
+INVESTMENT_GAME_TEST_PATTERNS = (
+    "src/main/java/dev/gustavopere/rpgskilltree/gametest/EpicFightInvestmentAttributeGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/gametest/InvestedAttributeGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/gametest/IronsInvestmentAttributeGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/irons/IronsCooldownInvestmentGameTests.java",
+)
+
 ECONOMY_TEST_PATTERNS = (
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java",
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*",
@@ -147,6 +154,15 @@ def main() -> None:
         require(
             pattern in workflow,
             f"MineColonies Economy GameTest scope is missing from Sonar classification: {pattern}",
+        )
+    # Provider-present/absent investment probes must be classified as tests,
+    # never treated as uncovered production sources in Sonar's New Code gate.
+    sonartests = next((line for line in workflow.splitlines() if line.strip().startswith("-Dsonar.test.inclusions=")), "")
+    sonarexcludes = next((line for line in workflow.splitlines() if line.strip().startswith("-Dsonar.exclusions=")), "")
+    for pattern in INVESTMENT_GAME_TEST_PATTERNS:
+        require(
+            pattern in sonartests and pattern in sonarexcludes,
+            f"Investment GameTest must be test-scoped and excluded from main-code scope: {pattern}",
         )
     require(
         "-Dsonar.test.inclusions=" in workflow and "-Dsonar.exclusions=" in workflow,
