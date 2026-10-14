@@ -12,11 +12,11 @@
 - **Fonte:** https://github.com/Low-Drag-MC/LDLib2
 - **Função:** Framework/biblioteca para Modular UI, data binding, persistência/sincronização, RPC, node graphs, editores in-game, rendering e integrações de consumers.
 - **Dependências:** Runtime físico NeoForge 1.21.1. Bundle contém Taffy 1.1.4, Yoga 1.0.0 e Kotlin stdlib 2.4.20-RC3 como JarJar internos; integrações adicionais do source não são hard dependencies presumidas.
-- **Compatibilidade/Riscos:** Rewrite para 1.21+, não assumir compatibilidade drop-in com LDLib antiga. Riscos: API/ABI e schema drift, RPC authority leakage, duplicate plugins/listeners, graph persistence e JarJar skew. Upstream 2.2.40/2.2.41 amplia diretamente editor/keymap e graph layout; consumers que persistem graphs ou interceptam input devem ser regressados.
+- **Compatibilidade/Riscos:** Rewrite para 1.21+, não assumir compatibilidade drop-in com LDLib antiga. Riscos: API/ABI e schema drift, RPC authority leakage, duplicate plugins/listeners, graph persistence e JarJar skew. Upstream 2.2.40/2.2.41 amplia editor/keymap e graph layout; a 2.2.42 acrescenta correções de serialização de graphs, permissões de painéis read-only e do JarJar Kotlin pre-release. Regressão dos consumers obrigatória.
 - **Sobreposição:** Infraestrutura, não sistema de gameplay. Pode compartilhar superfícies de UI/render/data com outras libraries, mas ownership funcional permanece nos consumers.
-- **Observações:** Runtime físico permanece 2.2.39.a. O upstream NeoForge 1.21.1 avançou depois por **2.2.40** e **2.2.41**; os JarJar físicos do bundle instalado permanecem Taffy 1.1.4, Yoga 1.0.0 e Kotlin stdlib 2.4.20-RC3.
-- **Procedência:** modlist.txt física reconferida + CurseForge oficial LDLib2 2.2.39.a/2.2.40/2.2.41 para NeoForge 1.21.1 + source oficial branch 1.21 + JarJar físico do host. A autoridade instalada continua 2.2.39.a.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece LowDragLib2 2.2.39.a. CurseForge publicou **2.2.40** em 12/09/2026 e **2.2.41** em 21/09/2026 para NeoForge 1.21.1; ambas foram revisadas e registradas abaixo.
+- **Observações:** Runtime físico permanece 2.2.39.a. O upstream NeoForge 1.21.1 avançou por **2.2.40**, **2.2.41** e **2.2.42 (04/10/2026)**; os JarJar históricos do bundle instalado permanecem Taffy 1.1.4, Yoga 1.0.0 e Kotlin stdlib 2.4.20-RC3.
+- **Procedência:** modlist.txt física reconferida + CurseForge oficial LDLib2 2.2.39.a/2.2.40/2.2.41/**2.2.42** para NeoForge 1.21.1 + source oficial branch 1.21 e CHANGELOGS.md 2.2.42 + JarJar do snapshot histórico. A autoridade instalada continua 2.2.39.a.
+- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 14/10/2026 — último snapshot físico LowDragLib2 **2.2.39.a**; CurseForge publicou **2.2.40** (12/09), **2.2.41** (21/09) e **2.2.42** (04/10) para NeoForge 1.21.1. O delta da 2.2.42, incluindo JarJar Kotlin e graph/editor, está na seção 16. Instalação/testes atuais pendentes.
 - **Data da última decisão:** 2026-08-26
 
 > **Última autoridade física verificada — snapshot de 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #370: JAR `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar`, mod id `ldlib2`, runtime `2.2.39.a`, SHA-1 `628c9cd7f63f217c554673925854800643948b6a`.
@@ -69,7 +69,7 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - README oficial do mesmo commit: Modular UI, persist/sync, graph toolkit, editor, rendering e plugin model.
 Não foi inferido quais consumers do pack utilizam cada API específica; isso exige auditoria das dependências/imports desses mods.
 
-## 15. Histórico upstream 2.2.39.a → 2.2.41 — não instalado
+## 15. Histórico intermediário upstream 2.2.39.a → 2.2.41 — não instalado (2.2.42 na seção 16)
 A autoridade física continua em **LowDragLib2 2.2.39.a**. Existem duas releases posteriores na linha NeoForge 1.21.1.
 
 ### 2.2.40 — 12/09/2026
@@ -135,14 +135,16 @@ O [`CHANGELOGS.md` oficial da branch `1.21`](https://github.com/Low-Drag-MC/LDLi
 
 ### 16.3. Ownership e gate de promoção
 
+**Consumers concretamente conhecidos pelo catálogo histórico:** **KilaGraph #357** (`kilagraph-neoforge-1.21.1-21.1.0.14.jar`) declara dependência direta LDLib2 com range `[2.2.33,)`, conforme o [dossiê KilaGraph](../API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-kilagraph%20v21.1.0.14.md); **Photon #442** (`photon-neoforge-1.21.1-2.2.6.a-all.jar`) incorpora uma cópia **JarJar KilaGraph 21.1.0.14**, de acordo com o mesmo snapshot. Photon é **host do KilaGraph embarcado** e parte da cadeia a regredir; isso não certifica que Photon declare uma dependência direta adicional de LDLib2 na sua metadata. O top-level KilaGraph 21.1.0.14 e seu homônimo nested no Photon devem resolver sem dois providers, inclusive após mudança de LDLib2. Outros consumers são **desconhecidos**, até auditoria física completa de dependências/imports.
+
 A biblioteca só fornece componentes e infraestrutura. Um addon consumidor continua responsável pelos seus próprios dados, UIs, workflows e autorização server-side; a existência de integração no Gradle (`JEI`, `REI`, `EMI`, `KubeJS`, `AE2`, `Iris`, `Sodium`) não torna tudo dependência hard nem evidencia consumers instalados específicos. A lista real de consumidores deve ser obtida por dependências/metadata/imports do **perfil físico**.
 
 **Sem promover o JAR ainda.** Exigir:
 - [ ] Inspeção atual do `ldlib2` instalado, SHA-1/SHA-256, `neoforge.mods.toml`, `META-INF/jarjar`, classloading e consumers atuais por mod ID, dependências e chamadas de API.
 - [ ] Conferir a assinatura/hash/file ID da distribuição 2.2.42, layout dos JARs Kotlin/Taffy/Yoga, comparar bytecode e metadata; registrar plano de rollback para 2.2.39.a.
-- [ ] Client + dedicated server boots antes/depois, com JEI/EMI/KubeJS/AE2/Iris/Sodium reais; observar classloading de código de editor no servidor.
+- [ ] Client + dedicated server boots antes/depois, com **KilaGraph 21.1.0.14 top-level #357**, **Photon 2.2.6.a #442 e seu KilaGraph JarJar 21.1.0.14**, e demais integrações existentes (JEI/EMI/KubeJS/AE2/Iris/Sodium); observar linkage/API, resolução do loader sem duplicidade e classloading do editor no servidor.
 - [ ] Testar todos os consumers instalados que exibem `ModularUI` e telas remotas com packets/RPC; não aceitar input não autorizado, duplication nem desync.
-- [ ] Testar graph persistido das versões antigas (nodes, ports, variables, blackboards, undo/redo, project file/resources, rename/move).
+- [ ] Abrir e salvar **graphs reais KilaGraph #357 e resources Photon #442**, verificar Blueprint / RenderType / Shader Function graphs, compilation, node IDs, ports dinâmicos e declarados, variables/blackboards, undo/redo, project files e ausência de corrupção após rename/move/reload/restart; certificar igualdade de KilaGraph nested e top-level antes/depois.
 - [ ] Testar keymap 2.2.40 e shortcuts: teclas em text inputs, foco, Ctrl+A, copy/paste, múltiplas janelas OS e GUI scale.
 - [ ] Validar Taffy layout, UI render/font, shaders Iris, reload, relog, restart e estado de editor read-only.
 - [ ] Só após critérios claros e backup dos saves/configs, avaliar atualização física e **então** reconciliar modlist e filename de dossiê pela nova versão.
