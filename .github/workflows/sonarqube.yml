@@ -78,12 +78,12 @@ jobs:
           runGameTestServer
           -PgameTestCoverageName=provider-free
 
-      - name: Collect Battle Mage provider GameTest coverage
+      - name: Collect Battle Mage Epic Fight provider GameTest coverage
         run: >-
           ./gradlew --no-daemon
           -I gradle/sonar-gametest-coverage.init.gradle
           runGameTestServer
-          -PbattleMageProviderRuntime=true
+          -PbattleMageEpicRuntime=true
           -PgameTestCoverageName=battle-mage-provider
 
       - name: Collect Ars Nouveau provider GameTest coverage

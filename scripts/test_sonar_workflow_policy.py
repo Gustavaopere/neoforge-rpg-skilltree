@@ -117,6 +117,11 @@ def main() -> None:
         "Sonar CI must import the provider-present Battle Mage transformed-class GameTest report.",
     )
     require(
+        "-PbattleMageEpicRuntime=true" in workflow
+        and "Collect Battle Mage Epic Fight provider GameTest coverage" in workflow,
+        "Battle Mage Sonar coverage must run the exact Epic Fight opt-in provider GameTest stack.",
+    )
+    require(
         "ars-provider/ars-provider.xml" in workflow and "'ars-provider'" in game_test_coverage,
         "Sonar CI must import a dedicated transformed-class Ars provider GameTest report.",
     )
