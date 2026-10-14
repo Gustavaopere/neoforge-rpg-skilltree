@@ -91,6 +91,8 @@ public final class AgilityProjectileInvestmentGameTests {
         ServerPlayer invalid = new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
             new GameProfile(UUID.randomUUID(), "invalid-bow-release"), ClientInformation.createDefault());
         setAgilityRank(invalid, 300L);
+        PhysicalProjectileMasteryEvents.onArrowLoose(new ArrowLooseEvent(
+            invalid, new ItemStack(Items.BOW), helper.getLevel(), 20, true));
         ArrowLooseEvent canceledRelease = new ArrowLooseEvent(
             invalid, new ItemStack(Items.BOW), helper.getLevel(), 20, true);
         canceledRelease.setCanceled(true);
@@ -108,6 +110,16 @@ public final class AgilityProjectileInvestmentGameTests {
         PhysicalProjectileMasteryEvents.onEntityJoin(underchargedJoin);
         PhysicalProjectileMasteryEvents.onAgilityArrowJoin(underchargedJoin);
         close(helper, 2.0D, undercharged.getDeltaMovement().z, "undercharged bow release");
+
+        PhysicalProjectileMasteryEvents.onArrowLoose(new ArrowLooseEvent(
+            invalid, new ItemStack(Items.BOW), helper.getLevel(), 20, true));
+        PhysicalProjectileMasteryEvents.onArrowLoose(new ArrowLooseEvent(
+            invalid, new ItemStack(Items.BOW), helper.getLevel(), 20, false));
+        Arrow noAmmo = arrow(helper, invalid, Items.BOW);
+        EntityJoinLevelEvent noAmmoJoin = new EntityJoinLevelEvent(noAmmo, helper.getLevel());
+        PhysicalProjectileMasteryEvents.onEntityJoin(noAmmoJoin);
+        PhysicalProjectileMasteryEvents.onAgilityArrowJoin(noAmmoJoin);
+        close(helper, 2.0D, noAmmo.getDeltaMovement().z, "no-ammunition release");
 
         helper.succeed();
     }
