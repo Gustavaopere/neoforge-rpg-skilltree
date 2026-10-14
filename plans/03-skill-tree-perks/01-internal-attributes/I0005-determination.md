@@ -54,3 +54,16 @@ Redução pequena em tempo de recarga de habilidades para as quais há modifica�
 - Testar stacking com equipamento e outras perks em um único pipeline real.
 
 **Pendência:** a presente ficha aprova a **proposta de design**, não afirma existência de runtime, hooks ou balanceamento final.
+
+
+## Estado técnico da implementação — 14/10/2026
+
+**Custo em uso:** `UnitAttributeRankCostPolicy.INSTANCE`, 1 Core Progression Point por rank; a proposta crescente de 50 ranks **não foi ativada**. Ranks e refunds persistem via `CoreProgressionState.attributeRanks()` e ledger Core. Todos os três ganhos seguem `a × (1−q^floor(rank/k))/(1−q)`, com valores/intervalos da tabela de design, sempre recalculados. Esses limites restringem a contribuição da trilha, não a estatística global.
+
+| Trilha | Situação da integração |
+|---|---|
+| Recuperação de stamina | BLOQUEADO — Epic Fight 21.17.3.1/ParCool 4.0.0.3 possuem owners distintos; requer verificação de compatibilidade |
+| Redução da duração de controle nocivo | BLOQUEADO — falta classificação nativa segura de duração/efeitos elegíveis |
+| Recuperação de cooldown elegível | BLOQUEADO — sem API por provider e redução de recarga auditada |
+
+A implementação vanilla usa `AttributeInvestmentBonuses` e `InvestedAttributeEffectsRuntime.refresh`, calculada pelo servidor a partir dos ranks, com IDs transitórios removíveis. Benefícios de providers não verificados continuam inativos (*fail-closed*). Não houve teste físico do modpack; JUnit/GameTests foram adicionados para verificação em CI. Uma integração marcada IMPLEMENTADO **ainda não é VALIDADO** antes de resultados dos testes de runtime.

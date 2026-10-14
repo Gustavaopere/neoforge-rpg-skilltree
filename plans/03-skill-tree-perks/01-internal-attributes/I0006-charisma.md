@@ -54,3 +54,16 @@ Bônus à cura que o jogador realiza em outras entidades elegíveis, excluindo a
 - Testar stacking com equipamento e outras perks em um único pipeline real.
 
 **Pendência:** a presente ficha aprova a **proposta de design**, não afirma existência de runtime, hooks ou balanceamento final.
+
+
+## Estado técnico da implementação — 14/10/2026
+
+**Custo em uso:** `UnitAttributeRankCostPolicy.INSTANCE`, 1 Core Progression Point por rank; a proposta crescente de 50 ranks **não foi ativada**. Ranks e refunds persistem via `CoreProgressionState.attributeRanks()` e ledger Core. Todos os três ganhos seguem `a × (1−q^floor(rank/k))/(1−q)`, com valores/intervalos da tabela de design, sempre recalculados. Esses limites restringem a contribuição da trilha, não a estatística global.
+
+| Trilha | Situação da integração |
+|---|---|
+| Desconto em compras de aldeões | BLOQUEADO — falta hook sem economia abusiva, preço zero ou redução na venda |
+| Dano de companheiros do jogador | BLOQUEADO — autoria e owner de summons de múltiplos providers não validados |
+| Cura realizada em aliados | BLOQUEADO — falta boundary de cura com caster/recipient sem dupla aplicação |
+
+A implementação vanilla usa `AttributeInvestmentBonuses` e `InvestedAttributeEffectsRuntime.refresh`, calculada pelo servidor a partir dos ranks, com IDs transitórios removíveis. Benefícios de providers não verificados continuam inativos (*fail-closed*). Não houve teste físico do modpack; JUnit/GameTests foram adicionados para verificação em CI. Uma integração marcada IMPLEMENTADO **ainda não é VALIDADO** antes de resultados dos testes de runtime.

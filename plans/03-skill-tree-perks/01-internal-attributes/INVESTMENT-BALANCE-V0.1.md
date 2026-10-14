@@ -129,3 +129,25 @@ Valores arredondados só para leitura; não são acréscimos por nível de perso
 - [ ] Tooltip PT-BR expõe bonus efetivo e próximo marco, não promete stats indisponíveis.
 
 **Aprovação:** fórmula e design podem ser revistos agora; status `TECH-AUDITED` e `VALIDATED` apenas depois de implementação e evidência da versão real dos providers.
+
+
+## Implementação incremental registrada — 14/10/2026
+
+O design quantitativo v0.1 da tabela acima **foi implementado como cálculo puro para as 18 contribuições** em `core/AttributeInvestmentBonuses.java`, mas **somente quatro benefícios possuem projeção vanilla no runtime**:
+
+| Atributo / benefício | Alvo vanilla NeoForge 1.21.1 | Status |
+|---|---|---|
+| Força — resistência a empurrão | `minecraft:generic.knockback_resistance` / ADD_VALUE | IMPLEMENTADO, AINDA NÃO VALIDADO |
+| Constituição — vida máxima | `minecraft:generic.max_health` / ADD_VALUE | IMPLEMENTADO, AINDA NÃO VALIDADO |
+| Agilidade — movimento | `minecraft:generic.movement_speed` / ADD_MULTIPLIED_BASE | IMPLEMENTADO, AINDA NÃO VALIDADO |
+| Agilidade — velocidade de ataque | `minecraft:generic.attack_speed` / ADD_MULTIPLIED_BASE | IMPLEMENTADO, AINDA NÃO VALIDADO (Epic Fight ainda não certificado) |
+
+Cada modifier tem ID permanente próprio no namespace `rpgskilltree:investment/` e é **transient**, removido e reaplicado sob autoridade do servidor em compra, refund, login/respawn, troca de dimensão e refresh de efeitos passivos. A vida atual preserva a proporção quando o total muda. Ausência de alvo registrado deixa somente aquele efeito inativo. As 14 trilhas restantes estão catalogadas nos seis dossiês como BLOQUEADO: nenhuma possui integração de provider fictícia.
+
+**Preço real não alterado:** 1 Core Point por rank pela `UnitAttributeRankCostPolicy` já instalada; a curva crescente a cada 50 ranks continua **proposta não aprovada**. Ao alterar esta curva no futuro, auditar ledgers e refunds históricos: o custo de reembolso não pode ser recalculado sob uma política divergente do gasto original sem migração explícita.
+
+**Requisitos:** `NodeAccessRequirement.requiredAttributeRanks` (mapa `AttributeId -> long`) lê ranks Core existentes e é avaliado antes do débito de Passive Points. Datapacks suportam `"requiredAttributes":{"INTELLIGENCE":20,"AGILITY":15}`. Ranks não são debitados como requisito; respec de Core pode invalidar nós já adquiridos, que são reconciliados usando o respec/refund canônico de Passive Points.
+
+**Base documental conferida:** `PROJECT-INSTRUCTIONS/modlist/modlist.md` na `main@9e6436edb0049a8dcc4e47165db0f6850e5efa68` (14/10/2026), Iron's `irons_spellbooks-1.21.1-3.16.3.jar`, Ars Nouveau `ars_nouveau-1.21.1-5.13.1.jar`, Epic Fight `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` e Apothic Attributes `ApothicAttributes-1.21.1-2.10.1.jar`. Esses dados **não** certificam APIs ou hooks específicos; cópia física do pack, JARs correspondentes, QA de addons e dedicated server ainda pendentes.
+
+**Testes adicionados (execução pendente):** `AttributeInvestmentBonusesJUnitTest` (18 curvas, limites, extremos), `AttributeInvestmentGateJUnitTest` (thresholds, compra, refund de nó), `InvestedAttributeGameTests` (quatro alvos de atributos reais e remoção). Status VALIDATED exige executar `./gradlew test`, `bash scripts/test-core.sh`, `python3 scripts/validate-data.py`, NeoForge GameTests e smoke de servidor. Não houve teste físico completo de gameplay ou modpack.
