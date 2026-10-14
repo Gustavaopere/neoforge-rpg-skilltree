@@ -193,7 +193,7 @@ A autoridade física continua em **ParCool 4.0.0.3** (`ParCool-1.21.1-4.0.0.3.ja
 - Registra correção #520 no changelog; sem inferir a natureza da issue a partir apenas do número.
 
 ### 4.0.1.1 (file 9068414)
-- Corrige **crash na inicialização de servidor dedicado** (issue #521). Correção crítica para ambiente multiplayer, independentemente de funcionalidade de movimento.
+- O changelog da 4.0.1.1 registra **duas entradas distintas**: `Crash on boot of server` e `#521`. A primeira diz respeito a código client-only no bootstrap; a segunda é uma recursão de capacidades Curios/Epic Fight reproduzida em **Minecraft 1.20.1 Forge**, não em NeoForge 1.21.1. A seção 18 separa a procedência e os gates; nenhuma falha local foi reproduzida.
  
 ### 4.0.1.2 (file 9106851)
 - Nova opção para **desativar learning de cada ação separadamente**.
@@ -239,3 +239,32 @@ O [source do Thirst Was Fixed 2.2.0, commit `47fb0e7063f9e906aa05da492a938ad45f3
 5. Avaliar separadamente a opção Thirst Was Fixed 2.2.0 somente após o **JAR** estar publicado, inspecionado e testado; não confundir mudança de source com aprovação.
 
 **Decisão:** estado **PENDENTE DE BINÁRIO E RUNTIME**. Manter ParCool 4.0.0.3 (#433), Thirst Was Fixed 2.1.6 (#542), seus dossiês/filenames e as linhas físicas do inventário. Não recomendar atualização ou ativação de bônus de stamina sem evidência.
+
+
+## 18. Auditoria de código — Curios/Epic Fight #521 versus boot dedicado 4.0.1.1 (13/10/2026)
+
+**Autoridade física histórica (não reinspecionada):** ParCool #433 `ParCool-1.21.1-4.0.0.3.jar`, runtime 4.0.0.3; Curios `curios-neoforge-9.5.1+1.21.1.jar`; Epic Fight `21.17.3.1`; Minecraft 1.21.1 / NeoForge 21.1.250. A [página oficial de versões 1.21.1](https://www.curseforge.com/minecraft/mc-mods/parcool/files/all?gameVersionTypeId=6&page=1) publica **4.0.1.2** (09/10/2026) como última release 1.21.1 localizada. As versões 4.0.1.1/4.0.1.2 **não foram instaladas** nesta auditoria.
+
+### 18.1. #521: falha reproduzida em ambiente DIFERENTE do pack
+
+A [issue oficial #521](https://github.com/alRex-U/ParCool/issues/521), aberta em 04/10/2026 e fechada em 05/10/2026, relata `StackOverflowError` por inicialização recursiva de capacidades em **Minecraft 1.20.1 / Forge 47.4.23 / ParCool 4.0.1.0 / Epic Fight 20.14.17**. O caminho documentado pelo autor do report é `TraceurGlovesItem.initCapabilities` → `CuriosManager.initEquipAbleCapabilities` → `EquipAbleCuriosWrapper.<init>` → consulta de modificadores do `ItemStack` → `ItemAttributeModifierEvent` do Forge → consulta de capabilities pelo Epic Fight → reentrada em `initCapabilities`. **Essa reprodução NÃO constitui evidência de crash no perfil NeoForge 1.21.1 deste pack.**
+
+**Correspondência concreta em source 1.21.1:** no [commit oficial ParCool 4.0.0.3 / branch `1.21.1-v4` `5116ae71574428ba63e162f7e39a0f2c5e1d641c`](https://github.com/alRex-U/ParCool/blob/5116ae71574428ba63e162f7e39a0f2c5e1d641c/src/main/java/com/alrex/parcool/extern/curios/capability/EquipAbleCuriosWrapper.java), o construtor `EquipAbleCuriosWrapper(ItemStack)` consulta `itemStack.getAttributeModifiers().modifiers()` durante a construção da wrapper `ICurio` e filtra por `equipAble.getEquipmentSlot()`. Trata-se do **mesmo padrão de consulta antecipada potencialmente reentrante** descrito na issue, mas sob APIs e eventos NeoForge diferentes. O risco é estático/cross-loader, não uma observação de falha física.
+
+A [implementação source 4.0.1.1 / MC 1.21.1 no commit `efc8f3c6887dd8f817a88f4031a7858b37834548`](https://github.com/alRex-U/ParCool/blob/efc8f3c6887dd8f817a88f4031a7858b37834548/src/main/java/com/alrex/parcool/extern/curios/capability/EquipAbleCuriosWrapper.java) troca a chamada antecipada por `itemStack.getItem().getDefaultAttributeModifiers(itemStack).modifiers()`, mantendo o filtro pelo equipamento. Isso confirma a **alteração estrutural da consulta no source 1.21.1**, não valida por si só o binário distribuído ou garante equivalência completa de modificadores gerados por outros mods no runtime.
+
+### 18.2. Crash no boot de servidor: outro problema e outra correção
+
+A [release oficial ParCool 4.0.1.1 NeoForge 1.21.1, File ID 9068414](https://www.curseforge.com/minecraft/mc-mods/parcool/files/9068414) e o [changelog v_4.0.1.1.md](https://github.com/alRex-U/ParCool/blob/efc8f3c6887dd8f817a88f4031a7858b37834548/changelog/v_4.0.1.1.md) listam separadamente `Crash on boot of server` e `#521`. O diff oficial 1.21.1 nesse commit acrescenta `@OnlyIn(Dist.CLIENT)` a `AbstractLocalStamina.get(LocalPlayer)` no [arquivo da API de stamina](https://github.com/alRex-U/ParCool/blob/efc8f3c6887dd8f817a88f4031a7858b37834548/src/main/java/com/alrex/parcool/api/stamina/AbstractLocalStamina.java).
+
+**Controle de introdução:** o [source 4.0.1.0/MC 1.21.1 (`b7b0529d0e85820d1b4847c19623f046f7a299da`)](https://github.com/alRex-U/ParCool/blob/b7b0529d0e85820d1b4847c19623f046f7a299da/src/main/java/com/alrex/parcool/api/stamina/AbstractLocalStamina.java) já possui o método com parâmetro `LocalPlayer`, porém ainda sem `@OnlyIn`. **O source histórico 4.0.0.3 não tem esse método/import client-only**. Logo, não se pode atribuir o problema de boot desse método especificamente ao JAR físico 4.0.0.3 por leitura do changelog 4.0.1.1. Também não há prova de que essa anotação seja a única condição para um boot bem-sucedido.
+
+### 18.3. Contrato de testes e decisão
+
+1. **Inspeção binária:** conferir hash e bytecode de `ParCool-1.21.1-4.0.0.3.jar` e candidatos 4.0.1.1/4.0.1.2, mais Curios/Epic Fight físicos; confirmar a chamada efetiva em `EquipAbleCuriosWrapper`, métodos client-only e dependências.
+2. **Reentrada Curios:** com pack isolado, testar equip/unequip/reatribuição de **Traceur Gloves** via slot vanilla e Curios, inventário, player join, death, dimension change e restart, com/sem Epic Fight battle mode. Monitorar `StackOverflowError`, recursion no `ItemAttributeModifierEvent`, perda/duplicação de attribute modifiers e sincronização em dedicated server.
+3. **Cenário de outras fontes de atributos:** após upgrade em staging, verificar se a mudança para `getDefaultAttributeModifiers` preserva na prática as interações pretendidas com modificadores dinâmicos de Epic Fight/Apotheosis/outros providers; não afirmar perda efetiva sem reproduzir.
+4. **Dedicated server:** comparar boot headless no baseline 4.0.0.3 e candidato 4.0.1.2 (4.0.1.1 já inclui a anotação source), com logs de `ClassNotFoundException`, `NoClassDefFoundError` e referências a `net.minecraft.client`; não atribuir a uma versão um bug observado em outra.
+5. **Regressão cruzada:** manter o gate independente Thirst Was Fixed 2.1.6 ↔ ParCool 4.0.0.3 (owner `api.Attributes` versus `api.ParCoolAttributes` no source) e não fazer duas mudanças físicas simultâneas antes de baseline comparável.
+
+**Decisão:** **MANTER #433 em 4.0.0.3 no inventário histórico; atualização para 4.0.1.2 é CANDIDATA PENDENTE DE TESTE.** Esta seção é documental: não prova crash no pack, não altera JAR, configuração, world ou server.
