@@ -48,8 +48,10 @@ public final class PhysicalProjectileMasteryEvents {
 
     private PhysicalProjectileMasteryEvents() {}
 
-    // Observe the final cancellation outcome before trusting a release receipt.
-    @SubscribeEvent(priority = EventPriority.MONITOR)
+    // NeoForge 21.1.x exposes LOWEST (not Forge's MONITOR priority).
+    // Observe cancellations made by earlier-priority handlers; same-priority
+    // handler order cannot be guaranteed, so the later arrow join is also gated.
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onArrowLoose(ArrowLooseEvent event) {
         if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)) return;
         String category = physicalCategory(event.getBow());
