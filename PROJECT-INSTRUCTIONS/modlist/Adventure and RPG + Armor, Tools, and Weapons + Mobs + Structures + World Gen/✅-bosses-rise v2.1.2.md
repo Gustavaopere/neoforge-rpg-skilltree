@@ -217,3 +217,17 @@ Sobreposição temática não exige remoção. O que deve ser medido é:
 
 > 👑 Conteúdo confirmado: cinco encounters — Ashlord, Helvar, Skor, Sirok e Kraken — com arenas e progressão próprias. A ficha enumera nomes/itens apenas onde a documentação oficial os confirma e não fabrica registry counts ausentes.
 
+
+## 21. Interface real com Epic Fight Compat 1.1.0 — armas, não bosses (13/10/2026)
+
+A [tag oficial `v1.1.0` do Epic Fight Compat](https://github.com/payangar-dev/epicfight-mod-compat/tree/v1.1.0) inclui `BlockFactorysBossesModule` com `requiredModId() = "block_factorys_bosses"`. Esse ID é exatamente o documentado para o JAR histórico Bosses'Rise **#079 `block_factorys_bosses-2.1.2-neo-1.21.1.jar`**. O compat foi incluído no [changelog de release NeoForge 1.21.1, File ID 8097273](https://www.curseforge.com/minecraft/mc-mods/epic-fight-mod-compat/files/8097273).
+
+**Escopo upstream delimitado:** este módulo de compatibilidade é **weapon-only** e contém oito JSONs em [`data/block_factorys_bosses/capabilities/weapons/`](https://github.com/payangar-dev/epicfight-mod-compat/tree/v1.1.0/src/main/resources/data/block_factorys_bosses/capabilities/weapons): `warrior_sword`, `dagger`, `knight_sword`, `large_sword`, `pirate_saber`, `kraken_trident`, `dragon_guard_shield`, `enhanced_shield`. Presets Epic Fight documentados: sword, dagger, longsword, greatsword, sword, trident, shield, shield. O source explicitamente **não registra entity patches para os cinco bosses**; seus rigs GeckoLib, AI, ataques especiais e fases continuam pertencendo a Bosses'Rise. `sandworm_gauntlet` e `undying_tentacle` não recebem capability explícita, evitando sobrescrever sua lógica GeckoLib; `ice_gauntlet` fica no fallback base de shield.
+
+**Ownership:** Bosses'Rise controla boss entity/boss animation/combat/loot e habilidades exclusivas; Epic Fight fornece presets de combate **apenas para os equipamentos nomeados** via Epic Fight Compat. Não deduzir adaptação de bosses nem integração total a partir da presença do módulo.
+
+**Estado instalado e limite da evidência:** o inventário histórico possui Epic Fight Compat #263 **1.1.0**, Bosses'Rise #079 **2.1.2**, Epic Fight #260 **21.17.3.1**. A tag upstream é evidência de contrato source, não prova do conteúdo byte-for-byte dos JARs locais nem de sucesso em runtime. O `gradle.properties` da tag `v1.1.0` preserva `mod_version=0.1.0`, enquanto a release oficial e a metadata física histórica confirmam 1.1.0; manter essa distinção sem renomear arquivos.
+
+**Gate pendente:** testar weapon capabilities/guard e escudos em battle mode, ações GeckoLib dos itens excluídos, boss AI/phase/telegraphs/cinematics sem patch novo e sem double-damage, comportamento dedicado, multiplayer, reload e saves. [Dossiê especializado do Epic Fight Compat #263](../Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Mobs/%E2%9C%85-epic-fight-compat%20v1.1.0.md).
+
+**Decisão:** **MANTER Bosses'Rise 2.1.2 e Epic Fight Compat 1.1.0; corrigir cobertura e registrar QA futuro**. Não houve novo JAR, upgrade, alteração de entidades nem teste in-game nesta atualização documental.
