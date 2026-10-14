@@ -1,4 +1,4 @@
-package dev.gustavopere.rpgskilltree.gametest;
+package dev.gustavopere.rpgskilltree.runtime.compat.irons;
 
 import com.mojang.authlib.GameProfile;
 import dev.gustavopere.rpgskilltree.core.AttributeId;
