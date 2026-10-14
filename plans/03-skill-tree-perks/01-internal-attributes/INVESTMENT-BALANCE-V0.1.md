@@ -182,3 +182,11 @@ A 10ª contribuição com boundary de gameplay utiliza o evento `SpellCooldownAd
 **Limite:** o bônus do próprio investimento tende a 5% de redução do número de ticks **anterior ao arredondamento**; em cooldowns curtos o arredondamento pode resultar em nenhum tick reduzido, conforme a semântica nativa discreta. Não há recurso, barra ou storage paralelo.
 
 **Testes de regressão:** `IronsCooldownInvestmentPolicyJUnitTest` e `IronsCooldownInvestmentGameTests` cobrem marcos, rank extremo, cooldown mínimo, casts permitidos, ausência de provider e leitura do Core snapshot. CI atual precisa terminar verde; testes físicos do pack completo e presença de plugins adicionais ainda não realizados.
+
+## Determinação — regeneração nativa Epic Fight (incremento de 14/10/2026)
+
+A 11ª contribuição implementada no código integra `DETERMINATION_STAMINA_REGEN` ao atributo **Epic Fight** `epicfight:stamina_regen`. O modifier `rpgskilltree:investment/epicfight/determination_stamina_regen` é transitório e idempotente, aplicado no `InvestedAttributeEffectsRuntime.refresh` já utilizado para compra/refund, relog, respawn e mudança de dimensão. A operação `ADD_MULTIPLIED_TOTAL` usa a contribuição relative de marcos (primeiro ganho 0,4% em 5 ranks; limite matemático de 10%). Sem stamina paralela, sem mutação de `PlayerPatch` e sem buff em ParCool.
+
+**Contrato de provider:** `epicfight` exatamente `21.17.3.1`, maven version ID `8HHhJt6i` no `gradle.properties`. A fonte pública da linha `21.17.3` em `Antikythera-Studios/epicfight@a78aa24b72e90a9d09f5fd61925e4369d117abaf` registra `stamina_regen` em `EpicFightAttributes` e a usa na recuperação em `PlayerPatch`. O site da [release 21.17.3.1](https://modrinth.com/mod/epic-fight/version/21.17.3.1-mc1.21.1-neoforge) publica sources correspondentes, mas esta auditoria leu a branch 21.17.3; somente GameTest com a release 21.17.3.1 comprovará que o registro e a operação persistiram. Falha de ABI/versão resulta em desativação apenas da contribuição afetada.
+
+**Teste:** `EpicFightInvestmentAttributePolicyJUnitTest` e `EpicFightInvestmentAttributeGameTests` (com provider ausente e no runtime Epic real) verificam target, versão, limite, `ADD_MULTIPLIED_TOTAL`, refresh duplicado e restauração após respec. O CI incremental está pendente; não tratar resultados históricos como validação da nova branch.
