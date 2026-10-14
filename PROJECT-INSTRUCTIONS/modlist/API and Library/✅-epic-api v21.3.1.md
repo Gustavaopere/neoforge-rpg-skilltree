@@ -126,3 +126,43 @@ Não há evidência de incompatibilidade comprovada; classificar como regression
 - source auditado: `HeavyAttack`, `CounterAttack`, `PlayerPatchMixin`, `WeaponTypeReloadListenerMixin`, `IEventHook`, `EpicAPIEventHooks`, registrars/builders e ControlEngine mixin;
 - changelog oficial 21.2.x: fixes/additions em damage-impact, capability hooks, armature/entity patch registrars, client-side classloading, key mappings, builders e counter/heavy events.
 > **Boundary canônico:** Epic-API fornece **helpers e features adicionais sobre Epic Fight**. O core Epic Fight continua sendo a authority do combat framework e do player/entity patch principal.
+
+
+## 21. Auditoria source 21.3.1 — HeavyAttack, animação compartilhada e consumo de stamina (13/10/2026)
+
+**Escopo e versionamento:** último inventário histórico consultado: **Epic-API #261 `epic_api-21.3.1.jar`**, mod ID `epic_api`, versão runtime `21.3.1`; **Epic Fight #260 `21.17.3.1`**, **NeoForge #001 `21.1.250`**, Minecraft 1.21.1, Java 21. [CurseForge oficial](https://www.curseforge.com/minecraft/mc-mods/epic-api/files/all) continua publicando `epic_api-21.3.1.jar` como a **release mais recente identificada para NeoForge/Minecraft 1.21.1** (14/07/2026); builds numericamente diferentes para Forge 1.20.1 não a substituem. A inspeção abaixo é **estática**, baseada no [source oficial da branch 1.21.1, commit `29b5c563d6152ba1bd64bed9415a3bc7ad4a7a16`](https://github.com/M6FGR/Epic-API/tree/29b5c563d6152ba1bd64bed9415a3bc7ad4a7a16), cujo `gradle.properties` fixa `mod_version=21.3.1`. Não foi provada identidade byte-a-byte com o JAR físico histórico.
+
+### 21.1. Registry e contratos úteis para perks
+
+[`EpicAPISkills.java`](https://github.com/M6FGR/Epic-API/blob/29b5c563d6152ba1bd64bed9415a3bc7ad4a7a16/src/main/java/M6FGR/epic_api/gameassets/EpicAPISkills.java) utiliza `DeferredRegister.create(EpicFightRegistries.Keys.SKILL, "epic_api")` e registra **`epic_api:heavy_attack`** e **`epic_api:counter_attack`**. A classe [`EpicAPI.java`](https://github.com/M6FGR/Epic-API/blob/29b5c563d6152ba1bd64bed9415a3bc7ad4a7a16/src/main/java/M6FGR/epic_api/main/EpicAPI.java) carrega `EpicAPISkills` via `ILoadableClass.loadClass`. Portanto a biblioteca **declara e registra skills próprias**, mas a presença no registry **não demonstra** que um jogador tenha acesso automático a elas, nem que algum addon ativo já forneça movimentos/animações. A [descrição do autor](https://www.curseforge.com/minecraft/mc-mods/epic-api) a caracteriza como biblioteca para consumidores; não prometer uma habilidade jogável sem verificação de datapack, weapon capability e equip do player.
+
+A [implementação de `HeavyAttack.java`](https://github.com/M6FGR/Epic-API/blob/29b5c563d6152ba1bd64bed9415a3bc7ad4a7a16/src/main/java/M6FGR/epic_api/skills/common/HeavyAttack.java) lê de parâmetros NBT/data-driven:
+- `heavy_attack_consumption`, `heavy_dash_consumption`, `heavy_airslash_consumption` (consumos de stamina por modo);
+- `attack_recovery` (fallback numérico **16** se ausente);
+- `damage_multiplier` (fallback **0.5f**), `impact_multiplier` (**1.0f**) e `armor_negation` (**15.0f**).
+
+Esses são **nomes de chaves encontrados no source 21.3.1**, não nomes inventados de atributos NeoForge e **não equivalem a uma API pública para reescrever diretamente o estado do mod por perk**. Validar schema/registro do consumer antes de editar datapack. O builder da skill usa `Resource.STAMINA`, categoria `HEAVY_ATTACK` e ativação `ONE_SHOT`; `CounterAttack` também usa `Resource.STAMINA`, tem parâmetro `stamina_consumption`, categoria `COUNTER_ATTACK`, e seu `isExecutableState` testa disponibilidade de stamina e `EpicAPIAnimationStates.CAN_COUNTER`. Nenhum comportamento novo foi instalado pelo catálogo.
+
+### 21.2. Escalonamento mutável em `AttackAnimation.Phase`
+
+No source `HeavyAttack.executeOnServer`, uma animação é obtida do `AnimationAccessor`; antes de `playAnimationSynchronized`, `applyWeaponScaling(attackAnim)` percorre **`attackAnim.phases`** e chama `phase.addProperty` para `DAMAGE_MODIFIER`, `IMPACT_MODIFIER` e `ARMOR_NEGATION_MODIFIER`. A [implementação atual da branch Epic Fight 1.21.1, commit `a78aa24b72e90a9d09f5fd61925e4369d117abaf`, `AttackAnimation.Phase.addProperty`](https://github.com/Antikythera-Studios/epicfight/blob/a78aa24b72e90a9d09f5fd61925e4369d117abaf/src/main/java/yesman/epicfight/api/animation/types/AttackAnimation.java) utiliza `this.properties.put(propertyType, value)`: **sobrescreve a chave do mapa em vez de empilhar modificadores numa lista**. Ainda assim, a propriedade é escrita **no objeto de fase da animação**, não em uma cópia explícita por-hit exibida nesse caminho.
+
+**Hipótese operacional, NÃO bug reproduzido:** se o mesmo `AttackAnimation`/fase for compartilhado entre armas, jogadores ou usos, parâmetros de um HeavyAttack podem persistir ou ser sobrescritos por outro uso até uma nova escrita/reset. A versão branch do core Epic Fight pode não ser byte-identical à versão física `21.17.3.1`; não inferir efeito global real sem inspeção de JAR/mutabilidade/lifecycle e reprodução. Para criar perks de escalonamento, preferir interface oficial do provider e estado server-authoritative por hit/skill em vez de mutar fases globais indiscriminadamente.
+
+### 21.3. Ordem de recursos, cancelamentos e estados sem animação
+
+Em `HeavyAttack.executeOnServer`, o source constrói `SkillConsumeEvent` e faz `EpicFightEventHooks.Player.CONSUME_SKILL.postWithListener(...)` antes de obter e validar a lista de animações. Quando o hook não cancela, executa `consumer.consume(..., event.getAmount())`. Só depois verifica `heavyAttackEvent.post()`, a existência de `combo` e `checkConsumption(...)` — método que chama `playerPatch.consumeForSkill(this, resource, consumption)`.
+
+**Pontos de teste, não defeitos declarados:** verificar no JAR/runtime se `getDefaultConsumptionAmount` é zero ou não para essa skill; se o consumo ocorre uma ou duas vezes em um HeavyAttack válido; se stamina é cobrada em caminhos sem `combo`/animação; se cancelamento do evento impede efetivamente gasto; se multipliers alterados por datapack não interferem no cálculo normal de dano/impact. Não concluir “double stamina charge” a partir da presença de dois métodos sem conhecer o default, a semântica dos hooks e o estado do player.
+
+Em [`CounterAttack.executeOnServer`](https://github.com/M6FGR/Epic-API/blob/29b5c563d6152ba1bd64bed9415a3bc7ad4a7a16/src/main/java/M6FGR/epic_api/skills/common/CounterAttack.java), o source cria `SkillConsumeEvent`, verifica `isCanceled()` e consome `counterConsumption`, mas **nesse caminho não aparece chamada explícita a `EpicFightEventHooks.Player.CONSUME_SKILL.post...`**; há `CounterAttackEvent.post()` separado. Confirmar com hooks e mods consumidores se a ausência de post do evento de consumo resulta em política de cancelamento diferente da HeavyAttack; não afirmar bypass efetivo sem teste. O CounterAttack escolhe motion via `DeferredCapabilityBuilder.getParryingCounterAttacks` ou `getNormalCounterAttack`, não gera automaticamente todos os counters para todas as armas.
+
+### 21.4. QA de integração — PENDENTE
+
+1. Confirmar hashes, metadata, classes e bytecode físicos para Epic-API **21.3.1** e Epic Fight **21.17.3.1**; confrontar a versão real de `Phase.addProperty` e `SkillConsumeEvent`.
+2. Com datapack/weapon capability de teste, habilitar `heavy_attack` e `counter_attack` por um consumer com IDs válidos e testar armas com e sem motion disponível; medir stamina **antes/depois** por ataque comum/dash/aéreo e por cancelamento.
+3. Repetir em dois jogadores com consumos/multipliers diferentes e na mesma animação, depois voltar a ataque normal; medir dano, impact e armor negation para detectar vazamento ou restauração de propriedades de fase.
+4. Variar `damage_multiplier`, `impact_multiplier`, `armor_negation` e `attack_recovery` sem presumir que configurações persistidas se aplicam automaticamente; testar datapack reload, death/relog, dimension change, troca de arma e rollback.
+5. Validar SideBoundary (skill/dano/stamina no servidor; VFX/inputs no cliente), coexistência de addons Epic Fight e nenhuma liquidação duplicada de damage/impact. Repetir em dedicated server NeoForge **21.1.250**.
+
+**Conclusão:** manter **Epic-API 21.3.1**. O source sustenta contratos de registry, parâmetros e caminhos de execução, mas não certifica comportamento real dos JARs do pack. Nenhum upgrade, bug confirmado, JAR/config/mundo alterado ou teste in-game é reivindicado.
