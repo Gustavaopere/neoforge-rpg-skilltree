@@ -12,18 +12,16 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/legendary-monsters
 - **Função:** Provider de criaturas/encounters, estruturas, loot/equipamentos, archaeology e lógica própria de AI/combate, com efeitos/render associados.
 - **Dependências:** NeoForge 1.21.1. Integração física Legendary Spellbooks 0.3.2 existe separadamente; dependências hard adicionais não foram inventadas sem metadata exata da build 2.2.2.
-- **Compatibilidade/Riscos:** Source público mais novo localizado ainda está em 2.1.15, então 2.2.2 tem source gap. Riscos: worldgen/loot duplication, BlockEntity lifecycle, encounter duplication, combat bridge drift e skew com Legendary Spellbooks.
+- **Compatibilidade/Riscos:** Source público mais novo localizado ainda está em 2.1.15; as releases distribuídas 2.2.2 e 2.2.3 têm source gap. Riscos: worldgen/loot duplication, BlockEntity lifecycle, encounter duplication, combat bridge drift, render Create e skew com Legendary Spellbooks.
 - **Sobreposição:** Sobrepõe-se funcionalmente a outros mods de bosses/worldgen apenas em domínio, não em ownership. Bridges/quests devem reagir ao provider em vez de duplicar spawn, damage ou loot.
-- **Observações:** JAR/publicação oficial confirmam 2.2.2, enquanto a metadata runtime exposta na modlist registra `1.21.1`; o campo de versão foi corrigido para a release efetivamente instalada, preservando a discrepância como evidência.
-- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial Legendary Monsters file 8715533 confirmando release 2.2.2 NeoForge 1.21.1 + source oficial público predecessor 2.1.15, usado somente dentro dos limites já documentados.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Legendary Monsters 2.2.2/JAR físico reconfirmado; 2.2.2 permanece a release NeoForge 1.21.1 mais recente localizada. Discrepância metadata interna `1.21.1` vs release/JAR 2.2.2 e source gap 2.1.15 continuam explicitamente preservados.
+- **Observações:** JAR/publicação oficial confirmam 2.2.2 como último estado físico verificado, enquanto a metadata runtime exposta na modlist registra `1.21.1`; a publicação 2.2.3 de 17/09/2026 está disponível, mas não instalada/certificada.
+- **Procedência:** modlist(1).txt snapshot de 25/09/2026 + CurseForge oficial Legendary Monsters File 8715533 (2.2.2), File 8902342 (2.2.3 de 17/09/2026) NeoForge 1.21.1 + source oficial público predecessor 2.1.15, usado somente dentro dos limites já documentados.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 14/10/2026 — último snapshot físico de 25/09/2026: Legendary Monsters 2.2.2/JAR histórico; upstream **2.2.3** (17/09/2026, NeoForge 1.21.1) registrado na seção 14 como **não instalado**. Discrepância metadata interna `1.21.1` vs release/JAR 2.2.2 e source gap 2.1.15 preservados; QA de Create/Spellbooks pendente.
 - **Data da última decisão:** 2026-08-26
 
-> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #371: JAR `legendary_monsters-2.2.2 MC 1.21.1.jar`, mod id `legendary_monsters`, metadata runtime `1.21.1`; a release/filename instalada é `2.2.2`, conforme discrepância preservada no dossiê; SHA-1 `8910859ba94190dd8cbc8c2c1e2f07562db729b4`.
+> **Última autoridade física verificada — snapshot de 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #371: JAR `legendary_monsters-2.2.2 MC 1.21.1.jar`, mod id `legendary_monsters`, metadata runtime `1.21.1`; a release/filename instalada é `2.2.2`, conforme discrepância preservada no dossiê; SHA-1 `8910859ba94190dd8cbc8c2c1e2f07562db729b4`.
 
-<callout icon="👹" color="red_bg">
-	**ESCOPO CANÔNICO.** Runtime físico: `legendary_monsters-2.2.2 MC 1.21.1.jar`, mod id `legendary_monsters`. A release/publicação instalada é **2.2.2** para Minecraft 1.21.1; a metadata interna exposta pela modlist registra `1.21.1`, portanto o número de publicação/JAR oficial é a referência de versão desta ficha.
-</callout>
+> **ESCOPO CANÔNICO.** O snapshot físico de 25/09/2026 registra `legendary_monsters-2.2.2 MC 1.21.1.jar` (mod ID `legendary_monsters`, distribuição **2.2.2**) e metadata interna **`1.21.1`**. A discrepância faz parte da evidência histórica. Existe uma distribuição posterior **2.2.3 (17/09/2026)**, mas não foi verificada como instalada e seu binário não foi comparado ao JAR histórico.
 ## 1. Identidade e version authority
 CurseForge confirma a release 2.2.2 para NeoForge 1.21.1, publicada em 23/08/2026 com o mesmo filename físico. O changelog 2.2.2 corrige o modelo do Mossy Hammer e suspicious sand/gravel vazios em estruturas novas. Como o JAR/arquivo oficial e a publicação convergem, `Versão 1.21.1` deve registrar 2.2.2, com a discrepância da metadata interna explicitamente documentada.
 ## 2. Source gap
@@ -67,3 +65,33 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial: release 2.2.2 NeoForge 1.21.1 e changelog da versão;
 - source oficial público predecessor: commit `f412a3e…`, versão 2.1.15, usado apenas para contratos que podem ser confirmados sem fingir equivalência com 2.2.2.
 A ausência de source público exato da 2.2.2 fica registrada como limite de verificabilidade, não preenchida por suposição.
+
+## 14. Reauditoria upstream 2.2.3 e impacto Create/Spellbooks — 14/10/2026
+
+### 14.1. Distinção entre release histórica e latest NeoForge 1.21.1
+
+- **Fonte primária do estado físico histórico #371 (25/09/2026):** `legendary_monsters-2.2.2 MC 1.21.1.jar`, mod ID `legendary_monsters`, metadata interna `1.21.1` (não 2.2.2), SHA-1 `8910859ba94190dd8cbc8c2c1e2f07562db729b4`. Publicação correspondente nominal: [CurseForge file `8715533`](https://www.curseforge.com/minecraft/mc-mods/legendary-monsters/files/8715533), **23/08/2026**, release 2.2.2; filename oficial igual ao inventário histórico. **Hash físico não comparado ao download do portal** neste ciclo.
+- **Atualização oficial disponível:** [CurseForge file `8902342`](https://www.curseforge.com/minecraft/mc-mods/legendary-monsters/files/8902342), **17/09/2026**, Minecraft **1.21.1 NeoForge**, release **2.2.3**, arquivo `legendary_monsters-2.2.3 MC 1.21.1.jar`, ambiente divulgado pelo projeto como **Client & Server**. A listagem [CurseForge oficial](https://www.curseforge.com/minecraft/mc-mods/legendary-monsters/files/all) confirma a 2.2.3 como release mais recente encontrada para esse loader e MC. **Não instalada no último snapshot**; a data do snapshot (25/09) posterior à publicação não autoriza mudar o estado físico de 2.2.2.
+- **Changelog 2.2.3 exclusivamente confirmado pelo autor:** “New Possessed Paladin's soulstrike animation sprite”, “Fixed a few bugs”, “Fixed Create render issue”. Isto confirma **uma nova sprite/animação Soulstrike do Possessed Paladin**, **correções gerais não especificadas** e **uma correção de renderização ligada ao Create**. Não ampliar “a few bugs” para alterações de boss AI, spawn, hitboxes, loot, cooldowns, estruturas ou compatibilidade de runtime sem evidência independente.
+- **Source oficial acessível ainda anterior:** [`Miauczel/Legendary-Monsters-1.21.1-NeoForge`, commit `f412a3e5a583705502dd924aee9a0d672a607e76`](https://github.com/Miauczel/Legendary-Monsters-1.21.1-NeoForge/tree/f412a3e5a583705502dd924aee9a0d672a607e76); [`gradle.properties`](https://github.com/Miauczel/Legendary-Monsters-1.21.1-NeoForge/blob/f412a3e5a583705502dd924aee9a0d672a607e76/gradle.properties) declara `mod_version=2.1.15 MC 1.21.1`, NeoForge de compilação `21.1.219`, `mod_id=legendary_monsters` e licença declarada `All Rights Reserved`. Esse source **não representa exatamente o binário distribuído 2.2.2 ou 2.2.3** e não pode certificar APIs, animations, attack triggers e registries específicos de nenhuma das duas releases.
+
+### 14.2. Autoridade dos sistemas, integração com Create e arquitetura de perks
+
+Legendary Monsters continua provider autoritativo para **entidades, bosses, AI, mortes, projéteis, loot, suspicious sand/gravel, estruturas, efeitos server-side e BlockEntities**. Create #116 é provider de **contraptions e rendering próprio**, mas o changelog 2.2.3 apenas relata um “Create render issue”; não demonstra um bridge novo, nem informa quais entities, shaders ou block renderers foram corrigidos. Sem comparação de classes e reprodução em cliente, essa melhoria deve permanecer **pendente de validação**.
+
+O snapshot contém **Create #116 `create-1.21.1-6.0.10.jar`**, **Legendary Spellbooks #372 `legendary_spellbooks-1.21.1+neo-0.3.2.jar`**, **Iris #338 `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar`** e **Sodium #512 `sodium-neoforge-0.8.13+mc1.21.1.jar`**. São superfícies plausíveis de regressão gráfica ou de efeitos, **não prova de incompatibilidade instalada**. A distribuição oficial CurseForge 2.2.3 não lista relações required na página de dependencies consultada; **não deduzir que todas as dependências carregadas são opcionais sem a metadata do JAR 2.2.3**.
+
+**Boundary para o RPG Skill Tree e especializações:** nenhuma habilidade/perk pode ser vinculada a um boss ou golpe por nome de animação (por exemplo, `soulstrike`) ou VFX client-side. Condições de dano, cooldown, knockback, status, source de magia e kill credit exigem contratos reais de eventos/classes do binário em uso, mais contexto server-side, causalidade idempotente e version pins. **Não inventar APIs de 2.2.2/2.2.3** a partir do source público 2.1.15.
+
+### 14.3. Gate de atualização e rollback — NÃO EXECUTADO
+
+- [ ] Reabrir JAR físico de outubro, comparar SHA-1/SHA-256, `META-INF/neoforge.mods.toml` e versão interna `1.21.1` contra snapshot. Obter/hash do file 8902342 antes de afirmar equivalência byte-a-byte de 2.2.3 e fonte pública.
+- [ ] Comparar os dois artefatos oficiais 2.2.2 vs 2.2.3 por manifesto, JAR entries, classes, assets de animation/sprite, recipes, loot tables, estruturas, tags, mixins e registries; não inferir o escopo real do changelog genérico.
+- [ ] Client/dedicated server cold boot com Create 6.0.10, Legendary Spellbooks 0.3.2 e render stack real; validar classloading, crashes e inicialização de registries.
+- [ ] Testar render do **Possessed Paladin Soulstrike** em cliente normal e com Iris/Sodium, sem alterar dano/temporização/desync do servidor.
+- [ ] Reproduzir cenário de **Create render issue** identificado pelo autor se houver informação suficiente; validar contraptions/mobs/structures afetadas sem supor correção universal de render.
+- [ ] Em mundo duplicado/teste, gerar estruturas novas, verificar suspicious sand/gravel, loot/archaeology, boss triggers, checkpoints, BlockEntities e persistência após unload/reload; proteger saves de migrações não reversíveis.
+- [ ] Verificar Legendary Spellbooks 0.3.2 com entidade IDs, loot, summons, effects e spell hooks contra 2.2.3, mantendo server authority; em multiplayer, loot e kill credit exatamente uma vez.
+- [ ] Somente promover a release após regressões, backup de mundo/config, verificação de JAR e rollback documentado; **atualizar depois o filename e a versão dos catálogos** quando a mudança física estiver realmente confirmada.
+
+**Decisão:** preservar a propriedade histórica **Sem decisão**; registrar **2.2.3 disponível, mas não instalado**. Nenhum mod JAR, script, datapack, shader, resource pack, mundo, config ou `modlist.md` foi alterado nesta reauditoria, e nenhum teste runtime foi declarado aprovado.
