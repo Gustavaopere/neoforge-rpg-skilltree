@@ -4,7 +4,15 @@ import com.mojang.authlib.GameProfile;
 import dev.gustavopere.rpgskilltree.core.AttributeId;
 import dev.gustavopere.rpgskilltree.core.AttributeInvestmentBonuses;
 import dev.gustavopere.rpgskilltree.core.AttributeRanks;
+import dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentData;
+import dev.gustavopere.rpgskilltree.core.CharacterProgressionState;
+import dev.gustavopere.rpgskilltree.core.CorePointLedger;
+import dev.gustavopere.rpgskilltree.core.CoreProgressionAttachmentData;
+import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
+import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.effects.InvestedAttributeEffectsRuntime;
+import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.UUID;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -96,6 +104,50 @@ public final class InvestedAttributeGameTests {
         assertClose(helper, baselineMining, mining.getValue(), "mining removal");
         assertClose(helper, baselineMelee, melee.getValue(), "melee removal");
         helper.succeed();
+    }
+
+    @GameTest(template = "foundation_empty")
+    public static void passiveGateReadsCanonicalCoreRanksWithoutCreatingMissingStorage(GameTestHelper helper) {
+        ServerPlayer player = new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
+            new GameProfile(UUID.randomUUID(), "canonical-gate-ranks"), ClientInformation.createDefault());
+
+        helper.assertTrue(!player.hasData(ModAttachments.CANONICAL_PLAYER),
+            "isolated player fixture must not start with canonical persistence");
+        AttributeRanks missing = investedRanksForPassiveGates(player);
+        helper.assertTrue(missing.equals(AttributeRanks.empty()),
+            "no Core progression must fail closed to empty attribute ranks");
+        helper.assertTrue(!player.hasData(ModAttachments.CANONICAL_PLAYER),
+            "observing missing Core ranks must not materialize canonical storage");
+
+        AttributeRanks saved = AttributeRanks.of(Map.of(
+            AttributeId.AGILITY, 15L, AttributeId.INTELLIGENCE, 20L));
+        var core = new CoreProgressionState(CharacterProgressionState.empty(),
+            CorePointLedger.empty(), saved, 1L, "0".repeat(64), 0, 0L);
+        player.setData(ModAttachments.CANONICAL_PLAYER,
+            CanonicalPlayerAttachmentData.empty().withCoreProgression(
+                CoreProgressionAttachmentData.initialized(core)));
+
+        AttributeRanks observed = investedRanksForPassiveGates(player);
+        helper.assertTrue(observed.equals(saved),
+            "runtime passive gates must see exactly the persisted canonical Core ranks");
+        helper.assertTrue(player.getData(ModAttachments.CANONICAL_PLAYER)
+                .coreProgression().state().orElseThrow().attributeRanks().equals(saved),
+            "observing rank thresholds must not modify the Core ledger or rank state");
+        player.removeData(ModAttachments.CANONICAL_PLAYER);
+        helper.assertTrue(investedRanksForPassiveGates(player).equals(AttributeRanks.empty()),
+            "absent Core state after removal must fail closed without cached ranks");
+        helper.succeed();
+    }
+
+    private static AttributeRanks investedRanksForPassiveGates(ServerPlayer player) {
+        try {
+            Method rankReader = PlayerProgressionRuntime.class.getDeclaredMethod(
+                "currentAttributeRanks", ServerPlayer.class);
+            rankReader.setAccessible(true);
+            return (AttributeRanks) rankReader.invoke(null, player);
+        } catch (ReflectiveOperationException failure) {
+            throw new AssertionError("canonical passive gate reader must be accessible for GameTest", failure);
+        }
     }
 
     private static void assertClose(GameTestHelper helper, double expected, double actual, String stage) {
