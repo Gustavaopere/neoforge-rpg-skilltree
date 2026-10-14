@@ -133,7 +133,7 @@ Valores arredondados só para leitura; não são acréscimos por nível de perso
 
 ## Implementação incremental registrada — 14/10/2026
 
-O design quantitativo v0.1 da tabela acima **foi implementado como cálculo puro para as 18 contribuições** em `core/AttributeInvestmentBonuses.java`, mas **somente quatro benefícios possuem projeção vanilla no runtime**:
+O design quantitativo v0.1 da tabela acima **foi implementado como cálculo puro para as 18 contribuições** em `core/AttributeInvestmentBonuses.java`, mas **cinco benefícios possuem projeção vanilla no runtime, mais uma cura nativa e três alvos Iron's versionados (CI incremental pendente)**:
 
 | Atributo / benefício | Alvo vanilla NeoForge 1.21.1 | Status |
 |---|---|---|
@@ -142,7 +142,7 @@ O design quantitativo v0.1 da tabela acima **foi implementado como cálculo puro
 | Agilidade — movimento | `minecraft:generic.movement_speed` / ADD_MULTIPLIED_BASE | IMPLEMENTADO, AINDA NÃO VALIDADO |
 | Agilidade — velocidade de ataque | `minecraft:generic.attack_speed` / ADD_MULTIPLIED_BASE | IMPLEMENTADO, AINDA NÃO VALIDADO (Epic Fight ainda não certificado) |
 
-Cada modifier tem ID permanente próprio no namespace `rpgskilltree:investment/` e é **transient**, removido e reaplicado sob autoridade do servidor em compra, refund, login/respawn, troca de dimensão e refresh de efeitos passivos. A vida atual preserva a proporção quando o total muda. Ausência de alvo registrado deixa somente aquele efeito inativo. As 14 trilhas restantes estão catalogadas nos seis dossiês como BLOQUEADO: nenhuma possui integração de provider fictícia.
+Cada modifier tem ID permanente próprio no namespace `rpgskilltree:investment/` e é **transient**, removido e reaplicado sob autoridade do servidor em compra, refund, login/respawn, troca de dimensão e refresh de efeitos passivos. A vida atual preserva a proporção quando o total muda. Ausência de alvo registrado deixa somente aquele efeito inativo. As demais nove trilhas sem ponte de gameplay continuam bloqueadas; as adaptações para outros sistemas de mana/combate também não devem ser consideradas cobertas por Iron's.
 
 **Preço real não alterado:** 1 Core Point por rank pela `UnitAttributeRankCostPolicy` já instalada; a curva crescente a cada 50 ranks continua **proposta não aprovada**. Ao alterar esta curva no futuro, auditar ledgers e refunds históricos: o custo de reembolso não pode ser recalculado sob uma política divergente do gasto original sem migração explícita.
 
@@ -159,3 +159,15 @@ Cada modifier tem ID permanente próprio no namespace `rpgskilltree:investment/`
 - `scripts/export-client-tree.py` espelha o mapa de requisitos da árvore principal a partir de `data/rpgskilltree/node_rules/main.json`. O `scripts/validate-client-tree.py` exige paridade de `requiredAttributes` para main, technomancer, warlock, druid e metamorph.
 - Testes adicionais: `AttributeTreeDisplayJUnitTest` e `AttributeRequirementDataJUnitTest`; o parser aceita ranks `long` positivos e rejeita chaves desconhecidas, zero, negativos, frações e overflow.
 - Limitação: o layout cliente é estático; alterações arbitrárias via datapack de servidor externo não são refletidas automaticamente. O servidor é sempre a autoridade e pode negar uma compra sugerida pelo cliente se houver divergência. Requer protocolo versionado para futura UI totalmente dinâmica.
+
+## Progresso de providers e efeitos universais (14/10/2026)
+
+| Trilha adicionada | Provider/target | Projeção | Evidência/validação |
+|---|---|---|---|
+| STRENGTH_MANUAL_MINING | `minecraft:player.block_break_speed` | multiplicador nativo, exclusivamente estatística de `Player` | registry Minecraft 1.21.1; `InvestedAttributeGameTests`; novo CI pendente |
+| CONSTITUTION_HEALING_RECEIVED | `LivingHealEvent`, NeoForge 21.1.250 | `event.setAmount(original×(1+bonus))`, somente receptor `ServerPlayer` | `AttributeInvestmentHealingPolicyJUnitTest`; CI pendente; sem emissão de novo evento |
+| INTELLIGENCE_MAX_MANA | `irons_spellbooks:max_mana` | `ADD_VALUE` (unidades de mana) | source 3.16.3 + Gate de versão; provider-present GameTest pendente |
+| INTELLIGENCE_MANA_REGEN | `irons_spellbooks:mana_regen` | `ADD_MULTIPLIED_TOTAL` (relativo) | source 3.16.3 + Gate de versão; provider-present GameTest pendente |
+| INTELLIGENCE_SPELL_POWER | `irons_spellbooks:spell_power` | `ADD_MULTIPLIED_TOTAL` (relativo) | source 3.16.3 + Gate de versão; provider-present GameTest pendente |
+
+**Fonte primária Iron's:** `iron431/irons-spells-n-spellbooks@e4056af90302d37eb1739f5ff05020b020e6e252` — `gradle.properties`, `api/registry/AttributeRegistry.java`, `capabilities/magic/MagicManager.java`. Este source aponta para a versão publicada, mas não substitui comparação binária de um JAR de pack real. A integração Iron's não assume presença em dedicated server nem equivalência com Ars Nouveau.

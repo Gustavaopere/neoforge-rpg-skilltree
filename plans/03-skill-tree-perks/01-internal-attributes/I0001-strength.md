@@ -63,7 +63,7 @@ Adicionar resistência limitada ao knockback. 'pp' são pontos percentuais de re
 | Trilha | Situação da integração |
 |---|---|
 | Dano físico corpo a corpo | BLOQUEADO — classificação melee/Epic Fight e risco de dupla aplicação ainda sem boundary provado |
-| Mineração manual | BLOQUEADO — mecanismo de break speed e isolamento de automação não testados |
+| Mineração manual | IMPLEMENTADO NO CÓDIGO / CI PENDENTE — `minecraft:player.block_break_speed`; modificador `rpgskilltree:investment/strength_manual_mining`, `ADD_MULTIPLIED_TOTAL`. Afeta velocidade de quebra da entidade jogador, não eventos industriais de break de máquina |
 | Resistência a empurrão | IMPLEMENTADO (validação pendente) — Minecraft 1.21.1 `minecraft:generic.knockback_resistance`; modificador `rpgskilltree:investment/strength_knockback`, ADD_VALUE |
 
 A implementação vanilla usa `AttributeInvestmentBonuses` e `InvestedAttributeEffectsRuntime.refresh`, calculada pelo servidor a partir dos ranks, com IDs transitórios removíveis. Benefícios de providers não verificados continuam inativos (*fail-closed*). Não houve teste físico do modpack; JUnit/GameTests foram adicionados para verificação em CI. Uma integração marcada IMPLEMENTADO **ainda não é VALIDADO** antes de resultados dos testes de runtime.

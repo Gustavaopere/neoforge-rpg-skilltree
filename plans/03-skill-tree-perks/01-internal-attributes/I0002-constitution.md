@@ -63,7 +63,7 @@ Atenuar dano periódico de condições nocivas classificadas (ex.: veneno/wither
 | Trilha | Situação da integração |
 |---|---|
 | Vida máxima | IMPLEMENTADO (validação pendente) — Minecraft 1.21.1 `minecraft:generic.max_health`; modificador `rpgskilltree:investment/constitution_health`, ADD_VALUE; preservação proporcional |
-| Curas recebidas | BLOQUEADO — falta atribuição única de evento de cura entre providers |
+| Curas recebidas | IMPLEMENTADO NO CÓDIGO / CI PENDENTE — `LivingHealEvent` NeoForge 1.21.1 em `InvestedConstitutionHealingEvents`; apenas paciente `ServerPlayer`, coeficiente de `AttributeInvestmentHealingPolicy`; modifica o montante **do evento existente**, não chama `heal()` nem cria tick próprio |
 | Mitigação de dano ao longo do tempo | BLOQUEADO — falta taxonomia auditada dos damage types periódicos |
 
 A implementação vanilla usa `AttributeInvestmentBonuses` e `InvestedAttributeEffectsRuntime.refresh`, calculada pelo servidor a partir dos ranks, com IDs transitórios removíveis. Benefícios de providers não verificados continuam inativos (*fail-closed*). Não houve teste físico do modpack; JUnit/GameTests foram adicionados para verificação em CI. Uma integração marcada IMPLEMENTADO **ainda não é VALIDADO** antes de resultados dos testes de runtime.

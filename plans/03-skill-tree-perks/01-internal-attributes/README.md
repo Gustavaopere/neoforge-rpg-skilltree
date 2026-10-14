@@ -13,7 +13,7 @@ O sistema tem seis atributos canônicos **compartilhados entre todas as árvores
 | I0005 | [Determinação](./I0005-determination.md) | disciplina, constância, recuperação e resistência a interrupções |
 | I0006 | [Carisma](./I0006-charisma.md) | negociação, liderança de aliados e cura prestada |
 
-**Status:** cálculos puros das 18 trilhas implementados; quatro projeções de estatísticas vanilla ativas no código e validadas no CI anterior. As outras 14 trilhas aguardam auditoria técnica por provider. Não confundir CI com teste físico completo do modpack. Cada atributo concede três trilhas de bônus por marcos com retornos decrescentes, fonte de verdade em `AttributeRanks`. Gastos de rank seguem `AttributeRankCostPolicy`. O preço proposto e os marcos serão confrontados com o orçamento real de Core Points.
+**Status:** cálculos puros das 18 trilhas implementados; **cinco modificadores vanilla, uma cura nativa por evento e três modificadores Iron's** registrados no código (CI do incremento pendente). Os **outros nove** benefícios ou partes multi-provider aguardam auditoria técnica. Não confundir CI com teste físico completo do modpack. Cada atributo concede três trilhas de bônus por marcos com retornos decrescentes, fonte de verdade em `AttributeRanks`. Gastos de rank seguem `AttributeRankCostPolicy`. O preço proposto e os marcos serão confrontados com o orçamento real de Core Points.
 
 **Requisito de perk:** `INTELLIGENCE >= 20`, por exemplo, é mínimo **não consumível**, não gasto de atributos. O runtime ainda precisa acrescentar esse gate a `NodeAccessRequirement`.
 
@@ -25,8 +25,8 @@ O sistema tem seis atributos canônicos **compartilhados entre todas as árvores
 ## Progresso de implementação — 14/10/2026
 
 - Cálculo matemático dos 18 efeitos: `AttributeInvestmentBonuses` (puro, `long` e limites finitos).
-- Quatro efeitos conectados ao Minecraft 1.21.1 vanilla: Força/resistência a empurrão, Constituição/vida máxima, Agilidade/velocidade de movimento e Agilidade/velocidade de ataque, via `InvestedAttributeEffectsRuntime`. **Implementados no código, ainda dependentes de validação GameTest/servidor e cross-mod.**
-- Outros 14: bloqueados ou pendentes de source/API/hook equivalente na versão instalada; jamais simulados na UI nem por sistema paralelo.
+- Cinco modificadores nativos conectados ao Minecraft 1.21.1: Força/resistência a empurrão e mineração manual, Constituição/vida máxima, Agilidade/movimento e ataque vanilla; adicionalmente Constituição/curas recebidas usa o evento NeoForge `LivingHealEvent`. Três efeitos de Inteligência foram integrados ao Iron's 3.16.3 com gate estrito por versão. A prévia pública de atributos não substitui a validação de gameplay; fontes e código precisam ser examinados na revisão. **Implementados no código, ainda dependentes de validação GameTest/servidor e cross-mod.**
+- Nove contribuições ainda sem ponte de gameplay completa (e componentes de provedores adicionais dentro de contribuições já cobertas): bloqueados/pendentes de source, ABI ou hook equivalente na versão instalada; jamais simular stats sem provider.
 - Requisitos de `requiredAttributes` nos nós usam nomes canônicos em maiúsculas (por exemplo `{"INTELLIGENCE":20,"AGILITY":15}`), número inteiro positivo `long`; verificação e reconciliação no servidor via `NodeAccessResolver` e `ProgressionService` (sem consumo de ranks). Perda do mínimo no respec usa política existente de remover/refundir ranks dos nós passivos.
 - **Economia preservada:** `UnitAttributeRankCostPolicy`, 1 Core Point por rank, sem instalar a curva proposta `1+floor((novoRank−1)/50)`; alterar a economia sem migração afetaria custo/reembolso de saves.
 - Documentos/versões físicos da modlist são apenas evidência de instalação declarada; nenhuma API de mod externo foi considerada certificada sem examinar o JAR da mesma release.

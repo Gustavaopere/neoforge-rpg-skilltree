@@ -62,8 +62,16 @@ Incremento percentual RELATIVO no scaling real da magia; não é +1 dano absolut
 
 | Trilha | Situação da integração |
 |---|---|
-| Mana máxima | BLOQUEADO — sem prova da API do Iron's 3.16.3; Ars Nouveau 5.13.1 exige integração separada |
-| Regeneração de mana | BLOQUEADO — contrato/semântica relativa de mana_regen não comprovado na release instalada |
-| Poder mágico geral | BLOQUEADO — multiplicação de spell_power e outras escolas/providers não auditada |
+| Mana máxima | IMPLEMENTADO NO CÓDIGO / TESTE DE PROVIDER PENDENTE — `irons_spellbooks:max_mana`, `ADD_VALUE`, exige `irons_spellbooks` exatamente `1.21.1-3.16.3` |
+| Regeneração de mana | IMPLEMENTADO NO CÓDIGO / TESTE DE PROVIDER PENDENTE — `irons_spellbooks:mana_regen`, `ADD_MULTIPLIED_TOTAL`, sem custom tick/mana duplicate |
+| Poder mágico geral | IMPLEMENTADO PARA IRON'S NO CÓDIGO / TESTE DE PROVIDER PENDENTE — `irons_spellbooks:spell_power`, `ADD_MULTIPLIED_TOTAL`; outros providers, incluindo Ars, permanecem BLOQUEADOS |
 
 A implementação vanilla usa `AttributeInvestmentBonuses` e `InvestedAttributeEffectsRuntime.refresh`, calculada pelo servidor a partir dos ranks, com IDs transitórios removíveis. Benefícios de providers não verificados continuam inativos (*fail-closed*). Não houve teste físico do modpack; JUnit/GameTests foram adicionados para verificação em CI. Uma integração marcada IMPLEMENTADO **ainda não é VALIDADO** antes de resultados dos testes de runtime.
+
+### Evidência versionada da integração Iron's (14/10/2026)
+
+- **Provider/mod ID:** `irons_spellbooks`; JAR do inventário: `irons_spellbooks-1.21.1-3.16.3.jar`; runtime esperado exatamente `1.21.1-3.16.3`.
+- **Fonte primária:** [branch 1.21 — commit `e4056af90302d37eb1739f5ff05020b020e6e252`](https://github.com/iron431/irons-spells-n-spellbooks/tree/e4056af90302d37eb1739f5ff05020b020e6e252), `gradle.properties` declara `mod_version=1.21.1-3.16.3`; `api/registry/AttributeRegistry.java` registra `max_mana` (base 100), `mana_regen` (base 1) e `spell_power` (base 1) em `irons_spellbooks`; `capabilities/magic/MagicManager.java` lê `getAttributeValue(MAX_MANA)` e `MANA_REGEN` para a regeneração nativa.
+- **Política:** `IronsInvestmentAttributePolicy` exige versão exata, sem classes de provider em imports; `IronsInvestmentAttributesRuntime` faz lookup de registro somente quando presente, remove modifier estável anterior e reaplica em refresh. Ausência de provider ou versão divergente desativa somente esses três efeitos.
+- **Cobertura:** `IronsInvestmentAttributePolicyJUnitTest` e `IronsInvestmentAttributeGameTests` foram escritos. CI verde é condição de compilação/execução; Teste de magia real, addons e JAR físico completo ainda não realizado.
+- **Outros providers:** Ars Nouveau 5.13.1 não recebe estes modificadores. Sua mana e cálculo de dano têm API própria e serão validados em adapter separado.
