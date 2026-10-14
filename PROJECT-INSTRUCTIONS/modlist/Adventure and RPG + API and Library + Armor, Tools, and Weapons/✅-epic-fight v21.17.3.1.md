@@ -106,7 +106,7 @@ A modlist física confirma, entre outros:
 - Epic Fight x Curios Compat release `2.2` / metadata `1.4`;
 - EFIS `3.1.0` para Iron's Spells;
 - Epic Fight Compat `1.1.0`;
-- ParCool `4.0.0.3` **sem bridge Epic ParCool física** (não confundir com a compatibilidade nativa indicada no README Epic Fight);
+- ParCool `4.0.0.3` **sem bridge Epic ParCool física** (o README do Epic Fight lista ParCool como compatível, mas não comprova integração de movimentos/animações sem o addon nem substitui teste do runtime);
 - Epic Colonies `21.0.8`.
 Cada addon deve consumir o core; nenhum deve manter seu próprio player patch paralelo.
 ## 19. Compatibilidade oficial
