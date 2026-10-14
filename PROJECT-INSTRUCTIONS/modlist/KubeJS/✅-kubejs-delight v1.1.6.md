@@ -99,7 +99,7 @@ Testes operacionais **pendentes**:
 - [ ] Localizar scripts reais que instanciam `farmersdelight:knife`, `farmersdelight:pie`, `farmersdelight:feast`, `farmersdelight:cutting` e `farmersdelight:cooking`; confirmar IDs e versão das dependências.
 - [ ] Verificar atributos de facas e tags, ataques, uso de Cutting Board, tier e quebra/durabilidade após restart.
 - [ ] Criar pie com slice válido e contagem de bites; feast com `servingsAmount` explícito, lista não vazia de porções, arrays curtos, leftovers e persistência/multiplayer.
-- [ ] Testing de chance 0, 0.75 e 1.0 versus `ChanceResult.of`; não duplicar recompensas após `/reload`, reinício ou duas receitas iguais.
+- [ ] Testar chances de 0, 0.75 e 1.0 versus `ChanceResult.of`; não duplicar recompensas após `/reload`, reinício ou duas receitas iguais.
 - [ ] Validar cooking `recipe_book_tab`/container/experience/cookingtime`, retirada do recipiente e igualdade servidor/JEI; dois `/reload` seguidos devem preservar uma receita por ID.
 - [ ] Testar eventuais interações com mods culinários adicionais e economia de alimentos, sem dupe/duplo processamento.
 - [ ] Para quests/perks, atribuir progresso apenas a ações reais do servidor (craft/corte/consumo/serving com causalidade), nunca ao mero registro do recipe ou exibição JEI.
