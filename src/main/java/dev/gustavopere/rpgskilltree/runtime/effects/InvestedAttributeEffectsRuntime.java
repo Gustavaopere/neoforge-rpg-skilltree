@@ -26,6 +26,8 @@ public final class InvestedAttributeEffectsRuntime {
     private static final List<NativeBonus> NATIVE = List.of(
         bonus(Benefit.STRENGTH_KNOCKBACK_RESISTANCE, "strength_knockback", "minecraft:generic.knockback_resistance",
             AttributeModifier.Operation.ADD_VALUE),
+        bonus(Benefit.STRENGTH_MANUAL_MINING, "strength_manual_mining", "minecraft:player.block_break_speed",
+            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
         bonus(Benefit.CONSTITUTION_MAX_HEALTH, "constitution_health", "minecraft:generic.max_health",
             AttributeModifier.Operation.ADD_VALUE),
         bonus(Benefit.AGILITY_MOVEMENT_SPEED, "agility_movement", "minecraft:generic.movement_speed",
