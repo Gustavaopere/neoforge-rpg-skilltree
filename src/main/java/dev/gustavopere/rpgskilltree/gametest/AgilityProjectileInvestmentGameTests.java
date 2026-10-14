@@ -124,6 +124,45 @@ public final class AgilityProjectileInvestmentGameTests {
         helper.succeed();
     }
 
+    @GameTest(template = "foundation_empty")
+    public static void agilityRejectsNonFiniteOrStationaryLaunches(GameTestHelper helper) {
+        ServerPlayer player = new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
+            new GameProfile(UUID.randomUUID(), "agility-velocity-guards"), ClientInformation.createDefault());
+        setAgilityRank(player, 300L);
+
+        for (Vec3 unsafeVelocity : new Vec3[] {
+            Vec3.ZERO,
+            new Vec3(Double.POSITIVE_INFINITY, 0.0D, 0.0D),
+            new Vec3(Double.NaN, 0.0D, 0.0D)
+        }) {
+            PhysicalProjectileMasteryEvents.onArrowLoose(new ArrowLooseEvent(
+                player, new ItemStack(Items.BOW), helper.getLevel(), 20, true));
+            Arrow arrow = arrow(helper, player, Items.BOW);
+            arrow.setDeltaMovement(unsafeVelocity);
+            EntityJoinLevelEvent joining = new EntityJoinLevelEvent(arrow, helper.getLevel());
+            PhysicalProjectileMasteryEvents.onEntityJoin(joining);
+            PhysicalProjectileMasteryEvents.onAgilityArrowJoin(joining);
+            Vec3 actual = arrow.getDeltaMovement();
+            helper.assertTrue(
+                Double.doubleToLongBits(unsafeVelocity.x) == Double.doubleToLongBits(actual.x)
+                    && Double.doubleToLongBits(unsafeVelocity.y) == Double.doubleToLongBits(actual.y)
+                    && Double.doubleToLongBits(unsafeVelocity.z) == Double.doubleToLongBits(actual.z),
+                "unsafe projectile velocity must not be multiplied");
+        }
+
+        ServerPlayer withoutCore = new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
+            new GameProfile(UUID.randomUUID(), "agility-no-core-state"), ClientInformation.createDefault());
+        PhysicalProjectileMasteryEvents.onArrowLoose(new ArrowLooseEvent(
+            withoutCore, new ItemStack(Items.BOW), helper.getLevel(), 20, true));
+        Arrow missingState = arrow(helper, withoutCore, Items.BOW);
+        EntityJoinLevelEvent missingJoin = new EntityJoinLevelEvent(missingState, helper.getLevel());
+        PhysicalProjectileMasteryEvents.onEntityJoin(missingJoin);
+        PhysicalProjectileMasteryEvents.onAgilityArrowJoin(missingJoin);
+        close(helper, 2.0D, missingState.getDeltaMovement().z,
+            "missing Core rank state must not award projectile speed");
+        helper.succeed();
+    }
+
     private static Arrow arrow(GameTestHelper helper, ServerPlayer player, net.minecraft.world.item.Item weapon) {
         Arrow arrow = new Arrow(helper.getLevel(), player, new ItemStack(Items.ARROW), new ItemStack(weapon));
         arrow.setDeltaMovement(new Vec3(0.0D, 0.0D, 2.0D));
