@@ -18,6 +18,7 @@ ARS_PROVIDER_TEST_PATTERN = (
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/gametest/ArsProviderCausalityGameTests.java"
 )
 INVESTMENT_GAME_TEST_PATTERNS = (
+    "src/main/java/dev/gustavopere/rpgskilltree/gametest/AgilityProjectileInvestmentGameTests.java",
     "src/main/java/dev/gustavopere/rpgskilltree/gametest/EpicFightInvestmentAttributeGameTests.java",
     "src/main/java/dev/gustavopere/rpgskilltree/gametest/InvestedAttributeGameTests.java",
     "src/main/java/dev/gustavopere/rpgskilltree/gametest/IronsInvestmentAttributeGameTests.java",
