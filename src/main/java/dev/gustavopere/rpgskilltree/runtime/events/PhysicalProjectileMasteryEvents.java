@@ -51,11 +51,14 @@ public final class PhysicalProjectileMasteryEvents {
     // Observe the final cancellation outcome before trusting a release receipt.
     @SubscribeEvent(priority = EventPriority.MONITOR)
     public static void onArrowLoose(ArrowLooseEvent event) {
-        if (!(event.getEntity() instanceof ServerPlayer player)
-            || !eligible(player)
-            || event.isCanceled()) return;
+        if (!(event.getEntity() instanceof ServerPlayer player) || !eligible(player)) return;
         String category = physicalCategory(event.getBow());
-        if (!WeaponMasteryMilestonePolicy.acceptsPhysicalProjectileRelease(category, event.hasAmmo())) return;
+        if (event.isCanceled()
+            || !WeaponMasteryMilestonePolicy.acceptsPhysicalProjectileRelease(category, event.hasAmmo())) {
+            // A rejected release must invalidate the preceding short-lived receipt.
+            PENDING_RELEASES.remove(player.getUUID());
+            return;
+        }
         PENDING_RELEASES.put(
             player.getUUID(),
             new PendingRelease(category, now(player) + LAUNCH_CORRELATION_MILLIS,
