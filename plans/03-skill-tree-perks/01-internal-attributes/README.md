@@ -13,7 +13,7 @@ O sistema tem seis atributos canônicos **compartilhados entre todas as árvores
 | I0005 | [Determinação](./I0005-determination.md) | disciplina, constância, recuperação e resistência a interrupções |
 | I0006 | [Carisma](./I0006-charisma.md) | negociação, liderança de aliados e cura prestada |
 
-**Status:** desenho v0.1 com fórmulas explícitas, **não implementado em gameplay**. Cada atributo concede três trilhas de bônus por marcos com retornos decrescentes, fonte de verdade em `AttributeRanks`. Gastos de rank seguem `AttributeRankCostPolicy`. O preço proposto e os marcos serão confrontados com o orçamento real de Core Points.
+**Status:** cálculos puros das 18 trilhas implementados; quatro projeções de estatísticas vanilla ativas no código e validadas no CI anterior. As outras 14 trilhas aguardam auditoria técnica por provider. Não confundir CI com teste físico completo do modpack. Cada atributo concede três trilhas de bônus por marcos com retornos decrescentes, fonte de verdade em `AttributeRanks`. Gastos de rank seguem `AttributeRankCostPolicy`. O preço proposto e os marcos serão confrontados com o orçamento real de Core Points.
 
 **Requisito de perk:** `INTELLIGENCE >= 20`, por exemplo, é mínimo **não consumível**, não gasto de atributos. O runtime ainda precisa acrescentar esse gate a `NodeAccessRequirement`.
 
@@ -30,3 +30,5 @@ O sistema tem seis atributos canônicos **compartilhados entre todas as árvores
 - Requisitos de `requiredAttributes` nos nós usam nomes canônicos em maiúsculas (por exemplo `{"INTELLIGENCE":20,"AGILITY":15}`), número inteiro positivo `long`; verificação e reconciliação no servidor via `NodeAccessResolver` e `ProgressionService` (sem consumo de ranks). Perda do mínimo no respec usa política existente de remover/refundir ranks dos nós passivos.
 - **Economia preservada:** `UnitAttributeRankCostPolicy`, 1 Core Point por rank, sem instalar a curva proposta `1+floor((novoRank−1)/50)`; alterar a economia sem migração afetaria custo/reembolso de saves.
 - Documentos/versões físicos da modlist são apenas evidência de instalação declarada; nenhuma API de mod externo foi considerada certificada sem examinar o JAR da mesma release.
+
+**Prévia de requisitos no cliente (outubro/2026):** `TreeDisplayProjector` aceita o snapshot Core de `AttributeRanks` e calcula elegibilidade em modo fail-closed sem snapshot. `ClientTreeLayout` suporta `requiredAttributes` e tooltips expõem rank atual/mínimo em português. A paridade de regras e layout é auditada por `scripts/validate-client-tree.py`; a compra definitiva continua exclusiva do servidor. Datapacks externos que alterem requisitos sem sincronizar metadados cliente exigem um contrato específico de rede na etapa de interface dinâmica.

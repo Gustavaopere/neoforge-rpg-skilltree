@@ -151,3 +151,11 @@ Cada modifier tem ID permanente próprio no namespace `rpgskilltree:investment/`
 **Base documental conferida:** `PROJECT-INSTRUCTIONS/modlist/modlist.md` na `main@9e6436edb0049a8dcc4e47165db0f6850e5efa68` (14/10/2026), Iron's `irons_spellbooks-1.21.1-3.16.3.jar`, Ars Nouveau `ars_nouveau-1.21.1-5.13.1.jar`, Epic Fight `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` e Apothic Attributes `ApothicAttributes-1.21.1-2.10.1.jar`. Esses dados **não** certificam APIs ou hooks específicos; cópia física do pack, JARs correspondentes, QA de addons e dedicated server ainda pendentes.
 
 **Testes adicionados (execução pendente):** `AttributeInvestmentBonusesJUnitTest` (18 curvas, limites, extremos), `AttributeInvestmentGateJUnitTest` (thresholds, compra, refund de nó), `InvestedAttributeGameTests` (quatro alvos de atributos reais e remoção). Status VALIDATED exige executar `./gradlew test`, `bash scripts/test-core.sh`, `python3 scripts/validate-data.py`, NeoForge GameTests e smoke de servidor. Não houve teste físico completo de gameplay ou modpack.
+
+## Preview cliente, contrato de dados e testes de regressão
+
+- `TreeDisplayProjector.project(..., AttributeRanks)` avalia requisitos de seis atributos via snapshot Core; sem snapshot recusa acesso visual a nós com requisito, sem interferir na compra server-authoritative.
+- `ClientTreeLayout` lê o mapa `requiredAttributes` da árvore cliente; a UI apresenta nomes localizados, ranks atuais e mínimos (sem debitá-los).
+- `scripts/export-client-tree.py` espelha o mapa de requisitos da árvore principal a partir de `data/rpgskilltree/node_rules/main.json`. O `scripts/validate-client-tree.py` exige paridade de `requiredAttributes` para main, technomancer, warlock, druid e metamorph.
+- Testes adicionais: `AttributeTreeDisplayJUnitTest` e `AttributeRequirementDataJUnitTest`; o parser aceita ranks `long` positivos e rejeita chaves desconhecidas, zero, negativos, frações e overflow.
+- Limitação: o layout cliente é estático; alterações arbitrárias via datapack de servidor externo não são refletidas automaticamente. O servidor é sempre a autoridade e pode negar uma compra sugerida pelo cliente se houver divergência. Requer protocolo versionado para futura UI totalmente dinâmica.

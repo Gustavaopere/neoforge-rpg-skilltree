@@ -1,6 +1,5 @@
 package dev.gustavopere.rpgskilltree.runtime.client;
 
-import dev.gustavopere.rpgskilltree.core.AttributeId;
 import dev.gustavopere.rpgskilltree.core.AttributeRanks;
 import dev.gustavopere.rpgskilltree.core.CharacterLevelCurve;
 import dev.gustavopere.rpgskilltree.core.NodeDisplayState;
