@@ -182,6 +182,8 @@ public final class CorePlayerProgressionRuntime {
         );
         if (next != current) {
             set(player, next, rules);
+            // Recheck already purchased passive nodes after the canonical Core rank refund.
+            PlayerProgressionRuntime.reconcilePlayerState(player);
         }
         return next;
     }

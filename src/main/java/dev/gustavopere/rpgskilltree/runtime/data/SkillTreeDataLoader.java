@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
 import dev.gustavopere.rpgskilltree.core.ModifierOperation;
+import dev.gustavopere.rpgskilltree.core.AttributeId;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodeAttributeEffect;
 import dev.gustavopere.rpgskilltree.core.NodeBehaviorEffect;
@@ -167,6 +168,7 @@ public final class SkillTreeDataLoader {
             Set<String> requiredNodes = resourceIdStringSet(source, idText, node, "requiredNodes");
             Map<String, Integer> requiredNodeRanks = intMap(source, idText, node, "requiredNodeRanks", 1, true);
             Set<String> requiredDiscoveries = stringSet(source, idText, node, "requiredDiscoveries");
+            Map<AttributeId, Long> requiredAttributes = parseRequiredAttributes(source, idText, node);
             int minCharacterLevel = node.has("minCharacterLevel")
                 ? requiredInt(source, idText, node, "minCharacterLevel") : 1;
             if (minCharacterLevel < 1) {
@@ -183,7 +185,8 @@ public final class SkillTreeDataLoader {
                     requiredClassChoices,
                     requiredNodes,
                     requiredNodeRanks,
-                    requiredDiscoveries
+                    requiredDiscoveries,
+                    requiredAttributes
                 );
             } catch (IllegalArgumentException failure) {
                 throw validation(source, idText, "requirements", failure.getMessage(), failure);
@@ -499,6 +502,36 @@ public final class SkillTreeDataLoader {
         Set<ResourceLocation> result = new HashSet<>();
         values.forEach(value -> result.add(namespacedId(source, entryId, field, value)));
         return Set.copyOf(result);
+    }
+
+    private static Map<AttributeId, Long> parseRequiredAttributes(
+        ResourceLocation source, String nodeId, JsonObject node
+    ) {
+        if (!node.has("requiredAttributes") || node.get("requiredAttributes").isJsonNull()) return Map.of();
+        JsonElement element = node.get("requiredAttributes");
+        if (!element.isJsonObject()) {
+            throw validation(source, nodeId, "requiredAttributes", "must be an object");
+        }
+        Map<AttributeId, Long> result = new java.util.EnumMap<>(AttributeId.class);
+        for (var entry : element.getAsJsonObject().entrySet()) {
+            AttributeId attribute;
+            try {
+                attribute = AttributeId.valueOf(entry.getKey());
+            } catch (IllegalArgumentException badId) {
+                throw validation(source, nodeId, "requiredAttributes", "unknown canonical attribute " + entry.getKey(), badId);
+            }
+            long minimum;
+            try {
+                minimum = Long.parseLong(entry.getValue().getAsString());
+            } catch (RuntimeException invalidValue) {
+                throw validation(source, nodeId, "requiredAttributes." + entry.getKey(), "must be a positive long", invalidValue);
+            }
+            if (minimum <= 0) {
+                throw validation(source, nodeId, "requiredAttributes." + entry.getKey(), "must be positive");
+            }
+            result.put(attribute, minimum);
+        }
+        return Map.copyOf(result);
     }
 
     private static Map<String, Integer> intMap(

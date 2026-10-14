@@ -6,6 +6,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
+import dev.gustavopere.rpgskilltree.core.AttributeId;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
 import dev.gustavopere.rpgskilltree.core.NodePurchaseDefinition;
 import dev.gustavopere.rpgskilltree.core.NodeSpecializationGrant;
@@ -60,10 +61,11 @@ public final class NodeRulesReloader extends SimpleJsonResourceReloadListener {
                 Set<String> requiredNodes = readStringSet(node.getAsJsonArray("requiredNodes"));
                 Map<String, Integer> requiredNodeRanks = readIntMap(node.getAsJsonObject("requiredNodeRanks"));
                 Set<String> requiredDiscoveries = readStringSet(node.getAsJsonArray("requiredDiscoveries"));
+                Map<AttributeId, Long> requiredAttributes = readRequiredAttributes(node.getAsJsonObject("requiredAttributes"));
                 NodeAccessRequirement requirement = new NodeAccessRequirement(
                     node.has("minCharacterLevel") ? node.get("minCharacterLevel").getAsInt() : 1,
                     requiredClasses, requiredMastery, requiredSpecializations, requiredClassChoices,
-                    requiredNodes, requiredNodeRanks, requiredDiscoveries);
+                    requiredNodes, requiredNodeRanks, requiredDiscoveries, requiredAttributes);
                 NodeSpecializationGrant specializationGrant = null;
                 if (node.has("grantsSpecialization")) {
                     JsonObject grant = node.getAsJsonObject("grantsSpecialization");
@@ -92,6 +94,18 @@ public final class NodeRulesReloader extends SimpleJsonResourceReloadListener {
             node.neighbors().forEach(value -> neighbors.add(ResourceLocation.parse(value)));
             rules.add(new TreeRuleCatalog.NodeRule(id, definition, requirement, null, neighbors));
         }
+    }
+
+    private static Map<AttributeId, Long> readRequiredAttributes(JsonObject values) {
+        if (values == null) return Map.of();
+        Map<AttributeId, Long> result = new java.util.EnumMap<>(AttributeId.class);
+        values.entrySet().forEach(entry -> {
+            AttributeId id = AttributeId.valueOf(entry.getKey());
+            long minimum = Long.parseLong(entry.getValue().getAsString());
+            if (minimum <= 0L) throw new IllegalArgumentException("required attribute minimum must be positive");
+            result.put(id, minimum);
+        });
+        return Map.copyOf(result);
     }
 
     private static Set<String> readStringSet(JsonArray values) {
