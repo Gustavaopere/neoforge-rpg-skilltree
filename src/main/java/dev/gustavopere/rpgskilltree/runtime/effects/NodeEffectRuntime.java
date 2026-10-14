@@ -1,6 +1,8 @@
 package dev.gustavopere.rpgskilltree.runtime.effects;
 
+import dev.gustavopere.rpgskilltree.core.AttributeRanks;
 import dev.gustavopere.rpgskilltree.core.ProgressionState;
+import dev.gustavopere.rpgskilltree.runtime.CanonicalPlayerAttachmentRuntime;
 import dev.gustavopere.rpgskilltree.runtime.data.NodeEffectCatalog;
 import java.util.Objects;
 import java.util.UUID;
@@ -29,6 +31,9 @@ public final class NodeEffectRuntime {
         Objects.requireNonNull(player, "player");
         Objects.requireNonNull(state, "state");
         AttributeNodeEffectRuntime.refresh(player, state);
+        AttributeRanks ranks = CanonicalPlayerAttachmentRuntime.observe(player).coreProgression().state()
+            .map(core -> core.attributeRanks()).orElse(AttributeRanks.empty());
+        InvestedAttributeEffectsRuntime.refresh(player, ranks);
         BEHAVIOR_RUNTIME.refresh(player, state, NodeEffectCatalog.behaviorEffects());
     }
 
