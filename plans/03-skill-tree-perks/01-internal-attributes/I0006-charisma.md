@@ -63,7 +63,18 @@ Bônus à cura que o jogador realiza em outras entidades elegíveis, excluindo a
 | Trilha | Situação da integração |
 |---|---|
 | Desconto em compras de aldeões | BLOQUEADO — falta hook sem economia abusiva, preço zero ou redução na venda |
-| Dano de companheiros do jogador | BLOQUEADO — autoria e owner de summons de múltiplos providers não validados |
+| Dano de companheiros do jogador | IMPLEMENTADO NO CÓDIGO SOMENTE PARA LOBOS VANILLA — corpo a corpo contra `Enemy`, proprietário `ServerPlayer` online, rank canônico e idempotência por evento. CI DO INCREMENTO PENDENTE; summons de outros providers continuam BLOQUEADOS |
 | Cura realizada em aliados | BLOQUEADO — falta boundary de cura com caster/recipient sem dupla aplicação |
 
 A implementação vanilla usa `AttributeInvestmentBonuses` e `InvestedAttributeEffectsRuntime.refresh`, calculada pelo servidor a partir dos ranks, com IDs transitórios removíveis. Benefícios de providers não verificados continuam inativos (*fail-closed*). Não houve teste físico do modpack; JUnit/GameTests foram adicionados para verificação em CI. Uma integração marcada IMPLEMENTADO **ainda não é VALIDADO** antes de resultados dos testes de runtime.
+
+
+## Incremento de gameplay — dano de lobo domesticado vanilla (14/10/2026)
+
+O benefício `CHARISMA_COMPANION_DAMAGE` está conectado no código **somente** a um ataque `minecraft:mob_attack` cuja entidade causadora e entidade direta sejam o mesmo `Wolf` vanilla exato (`EntityType.WOLF`). O lobo deve estar domesticado, vivo e com `getOwnerUUID()` apontando para o `ServerPlayer` conectado no mesmo nível; não aceita `FakePlayer`, criativo ou espectador. A vítima deve ser um `Enemy` vivo, vulnerável e não aliado. Rejeita flechas, magias, explosões, origem indireta, PvP, lobos selvagens, falsas atribuições e donos offline. O valor é calculado de `CoreProgressionState.attributeRanks()`, sem atributo ou armazenamento paralelo.
+
+O hook `LivingIncomingDamageEvent` do NeoForge 1.21.1 ajusta **uma vez** o dano de entrada antes da armadura, aplicando a curva de contribuição de `AttributeInvestmentBonuses` (+0,4% a partir do rank 8; limite assintótico +10%). Um conjunto fraco/transitório de instâncias do próprio evento impede aplicação repetida, sem persistir estado do pet ou do jogador. A checagem de `Float.isFinite` rejeita entradas impróprias.
+
+`CharismaCompanionInvestmentGameTests` constrói `Wolf`, `Zombie`, `DamageContainer` e `LivingIncomingDamageEvent` reais e verifica ranks 0/7/8/300/`Long.MAX_VALUE`, hit distinto, duplicação do mesmo evento, reset do rank, dano zero, cancelamento, dono incorreto, lobo selvagem, fonte inválida e PvP. O GameTest exercita a lógica de validação com `ServerPlayer` isolado, **não** prova o lookup de dono online no servidor nem integração com AI/combate do lobo sob todos os mods. A prova de integração total e o QA físico do modpack permanecem pendentes. O CI deste incremento ainda não terminou; não rotular como VALIDADO.
+
+Fontes do hook: `net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent` e `net.neoforged.neoforge.common.damagesource.DamageContainer` do NeoForge branch `1.21.1`. Não estender a summons de Ars Nouveau, Goety ou quaisquer outros mods sem validar JAR/ABI e atribuição de dano por provider.
