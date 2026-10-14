@@ -16,16 +16,14 @@
 - **Sobreposição:** Base authority para seus bosses/estruturas/loot. Addons físicos `cataclysm_spellbooks`, `cataclysmfortresses`, `goety_cataclysm`, `ignissoulfires` e `integrated_cataclysm` expandem/integram; não substituem o mod-base.
 - **Observações:** Source oficial usa repositório histórico `lender544/new1.20.1`, mas a branch correta da build instalada é `1.21`; `gradle.properties` dessa branch declara MC 1.21.1 e mod 3.33. Não usar `master`/1.20.1 como equivalente.
 - **Procedência:** modlist.txt física atual + CurseForge/Modrinth oficiais Cataclysm 3.33 + source oficial branch `1.21` (`gradle.properties`, ModEntities, ModItems, ModBlocks, worldgen/structure).
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — L_Ender's Cataclysm 3.33/JAR físico reconfirmado; 3.33 permanece a release NeoForge 1.21.1 mais recente localizada. Corpo técnico preservado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — L_Ender's Cataclysm 3.33/JAR físico reconfirmado; 3.33 permanece a versão nominal NeoForge 1.21.1 mais recente localizada; existe republicação homônima posterior em 20/09/2026 que exige reconciliação do artefato. Corpo técnico preservado.
 - **Data da última decisão:** 2026-08-26
 
-> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #368: JAR `L_Ender's Cataclysm 1.21.1-3.33.jar`, mod id `cataclysm`, runtime `3.33`, SHA-1 `5ff39c0eddfa08ea0e921bdcb17da7f32f0b00ce`.
+> **Última autoridade física verificada — snapshot de 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #368: JAR `L_Ender's Cataclysm 1.21.1-3.33.jar`, mod id `cataclysm`, runtime `3.33`, SHA-1 `5ff39c0eddfa08ea0e921bdcb17da7f32f0b00ce`.
 
-<callout icon="⚔️" color="red_bg">
-	**ESCOPO CANÔNICO.** Runtime físico: `L_Ender's Cataclysm 1.21.1-3.33.jar`, mod id `cataclysm`, versão `3.33`, Minecraft 1.21.1/NeoForge. É um provider grande de **worldgen, mobs/bosses, combate, loot e equipamento endgame**.
-</callout>
+> **ESCOPO CANÔNICO.** O snapshot de 25/09/2026 registra `L_Ender's Cataclysm 1.21.1-3.33.jar` (mod ID `cataclysm`, versão 3.33) como provider de worldgen, bosses, combate, loot e equipamentos. A linha 3.33 tem **publicações distintas exibidas sob o mesmo título no CurseForge**; os nomes reais de todos os arquivos distribuídos ainda não foram individualmente certificados; a distribuição específica do JAR local não foi associada a um File ID nesta auditoria.
 ## 1. Identidade e source pin
-A modlist física confirma JAR, mod id `cataclysm`, versão 3.33 e `cataclysm.mixins.json`. CurseForge/Modrinth confirmam a release 3.33 para NeoForge 1.21.1 em 22/08/2026. O repositório oficial mantém o nome histórico `new1.20.1`, porém a branch **`1.21`** é a linha correta desta build; nela `gradle.properties` declara Minecraft 1.21.1, Cataclysm 3.33 e NeoForge 21.1.x. Não usar `master`/1.20.1 como source equivalente ao binário atual.
+A modlist física confirma JAR, mod id `cataclysm`, versão 3.33 e `cataclysm.mixins.json`. CurseForge confirma arquivos da release 3.33 para NeoForge 1.21.1 desde 22/08/2026, e outra publicação exibida sob o **mesmo título e número 3.33 em 20/09/2026**; a identidade binária do snapshot precisa ser reconciliada por hash/File ID. O repositório oficial mantém o nome histórico `new1.20.1`, porém a branch **`1.21`** é a linha correta desta build; nela `gradle.properties` declara Minecraft 1.21.1, Cataclysm 3.33 e NeoForge 21.1.x. Não usar `master`/1.20.1 como source equivalente ao binário atual.
 ## 2. Papel no modpack e authority
 Cataclysm é authority de suas estruturas, spawn rules, entidades, boss AI/phases, projéteis/áreas de ataque, materiais, equipamentos, dungeon-locator items, loot e configs próprias. Addons instalados devem integrar esses contratos; não criar uma segunda authority de boss health, loot, cooldown ou spawn sem bridge explícita.
 ## 3. Dependências obrigatórias
@@ -106,3 +104,29 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge/Modrinth oficiais: release 3.33, NeoForge 1.21.1, Client & Server, dependencies Lionfish API + Curios; changelog 3.33 informa otimização de projéteis e atualização `uk_ua`;
 - source oficial branch `1.21`: `gradle.properties`, `ModEntities`, `ModItems`, `ModBlocks` e datapack `worldgen/structure` auditados.
 A auditoria é por subsistemas, conforme permitido para mods grandes; não foi feita uma linha para cada bloco/item/classe. Valores numéricos de boss/weapon config não são reproduzidos aqui porque dependem do config/runtime e devem ser consultados no source/config específico quando necessários.
+
+## 18. Revalidação de publicação 3.33 e proveniência binária — 14/10/2026
+
+### 18.1. Múltiplas publicações com o mesmo número e título de exibição
+
+A [lista de arquivos CurseForge do projeto (filtro 1.21.1)](https://www.curseforge.com/minecraft/mc-mods/lendercataclysm/files/all?page=1&pageSize=20&version=1.21.1) registra **três entradas NeoForge** exibidas sob o título `L_Ender's Cataclysm 1.21.1-3.33.jar`: **uma de 20/09/2026 e duas de 22/08/2026**. A publicação mais recente identificada é o [File ID `8931182`](https://www.curseforge.com/minecraft/mc-mods/lendercataclysm/files/8931182), de **20/09/2026**, ainda com **versão 3.33**. Seu changelog oficial declara correção de divergência de licença entre CurseForge, Modrinth e 1.20.1, além de atualização de tradução `uk_ua`. **Não há mudança de gameplay confirmada por esse changelog.** Não classificar essa publicação como atualização 3.34, nem tratar todos os arquivos 3.33 como bytes idênticos.
+
+**Última autoridade física verificável (snapshot de 25/09/2026):** #368, `L_Ender's Cataclysm 1.21.1-3.33.jar`, SHA-1 `5ff39c0eddfa08ea0e921bdcb17da7f32f0b00ce`, mod ID `cataclysm`, versão `3.33`. **Nenhum File ID CurseForge foi certificado para esse SHA-1 histórico.** Embora a snapshot tenha data posterior a 20/09/2026, a cronologia **não prova** qual das três distribuições foi instalada. A alteração física e qualquer promoção de release ficam **PENDENTES** até abrir o JAR atual, confirmar SHA/metadata e comparar com hashes oficiais das distribuições, quando disponíveis.
+
+### 18.2. Source e dependências: authority distinta
+
+**Source oficial reaberto e pinado:** [`lender544/new1.20.1`, branch `1.21`, commit `10e21131b8eb2ce92be416409f91925e8c5decf0`](https://github.com/lender544/new1.20.1/tree/10e21131b8eb2ce92be416409f91925e8c5decf0). No [`gradle.properties` dessa revisão](https://github.com/lender544/new1.20.1/blob/10e21131b8eb2ce92be416409f91925e8c5decf0/gradle.properties), os campos declarados são `minecraft_version=1.21.1`, `mod_id=cataclysm`, `mod_version=3.33`, `neo_version=21.1.219`, `lf_version_range=3.1` e `curios_version=9.2.2+1.21.1`. **São declarações do source, não confirmação de identidade do binário instalado.** A branch `master` de linha 1.20.1 não deve ser substituída no lugar da branch `1.21` para APIs, mobs ou estruturas da build documentada.
+
+A [lista de dependências oficial](https://www.curseforge.com/minecraft/mc-mods/lendercataclysm/relations/dependencies) declara **Curios API e Lionfish API como obrigatórias**. O snapshot do pack mantém Curios #211 `9.5.1+1.21.1` e Lionfish API #374 `3.1`; divergência entre Curios usado no source e runtime histórico não demonstra incompatibilidade sem teste. O `mod_license` do source distingue restrições sobre assets e licenciamento do código; a republicação 8931182 relata harmonização de licença. **Não extrapolar permissões de redistribuição** sem verificar a licença efetiva do arquivo distribuído e seus assets.
+
+### 18.3. Decisão de manutenção e verificações operacionais
+
+**Status: MANTER ESTADO HISTÓRICO / PENDENTE DE RECONCILIAÇÃO BINÁRIA.** Não foi tomada decisão nova de update ou remoção (a propriedade histórica `Decisão: Sem decisão` permanece). Toda a pesquisa anterior sobre worldgen, Boss AI, entidades, atributos, armaduras, dungeon eyes, addons e matriz de testes deve permanecer no dossiê. Os riscos de worldgen, saves e compatibilidade dos addons são prioridade superior à data de publicação da release.
+
+- [ ] Reabrir o JAR **atualmente usado pelo perfil**, registrar tamanho exato, SHA-1/SHA-256, `META-INF/neoforge.mods.toml`, dependências, mod ID e mixins; comparar com SHA-1 do snapshot e com o File ID correspondente à distribuição oficial.
+- [ ] Obter hashes binários confiáveis das distribuições 3.33 de 22/08 e 20/09 antes de atribuir ao pack o File ID `8931182`; evitar alteração do arquivo físico com base na coincidência do número nominal ou do título exibido no portal; confirmar separadamente o filename e o hash de cada distribuição.
+- [ ] Se os binários divergirem materialmente, comparar manifest, recursos/lang, classes, registries, mixins e alterações de gameplay/metadata **antes** de propor qualquer troca; preservar backups dos mundos.
+- [ ] Validar boot client/dedicated server, compatibilidade com Lionfish/Curios, bosses e respectivos addons, carregamento de estruturas em chunks novos, equipamentos, loot, multiplayer, mortes e boss respawner.
+- [ ] Para RPG Skill Tree/perks, preferir eventos server-authoritative; checar IDs, fases/AI, dano, cooldown de item e modificadores de attributes contra a **versão binária efetivamente instalada**, sem deduzir contratos do source nominal.
+
+**Nesta atualização:** somente proveniência documental e saneamento de formatação histórica, sem alteração no `modlist.md`, mod JAR, mundo, config, datapack, resource pack, shader ou código próprio. Nenhum teste runtime foi executado nesta etapa.
