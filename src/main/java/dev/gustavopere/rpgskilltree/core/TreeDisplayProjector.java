@@ -24,6 +24,19 @@ public final class TreeDisplayProjector {
         Map<String, NodeAccessRequirement> requirements,
         CharacterLevelCurve curve
     ) {
+        return project(state, graph, definitions, requirements, curve, AttributeRanks.empty());
+    }
+
+    /** Client-only preview: the server still authorizes purchases using live Core ranks. */
+    public static TreeDisplayState project(
+        ProgressionState state,
+        SkillGraph graph,
+        Map<String, NodePurchaseDefinition> definitions,
+        Map<String, NodeAccessRequirement> requirements,
+        CharacterLevelCurve curve,
+        AttributeRanks investedRanks
+    ) {
+        Objects.requireNonNull(investedRanks, "investedRanks");
         Objects.requireNonNull(state);
         Objects.requireNonNull(graph);
         Objects.requireNonNull(definitions);
@@ -43,7 +56,7 @@ public final class TreeDisplayProjector {
             boolean canPurchase = rank < definition.maxRank()
                 && available >= definition.costPerRank()
                 && connected
-                && NodeAccessResolver.satisfied(state, requirement, curve);
+                && NodeAccessResolver.satisfied(state, requirement, curve, investedRanks);
             projected.put(nodeId, new NodeDisplayState(
                 nodeId,
                 rank,

@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import dev.gustavopere.rpgskilltree.core.AttributeId;
 import dev.gustavopere.rpgskilltree.core.CombatPerkTreeModel;
 import dev.gustavopere.rpgskilltree.core.CombatPerkVisualLayout;
 import dev.gustavopere.rpgskilltree.core.NodeAccessRequirement;
@@ -229,7 +230,9 @@ public final class ClientTreeLayout {
                     readStringSet(node.getAsJsonArray("requiredClasses")),
                     readIntMap(node.getAsJsonObject("requiredMastery")),
                     readStringSet(node.getAsJsonArray("requiredSpecializations")),
-                    readStringSet(node.getAsJsonArray("requiredClassChoices"))
+                    readStringSet(node.getAsJsonArray("requiredClassChoices")),
+                    Set.of(), Map.of(), Set.of(),
+                    readRequiredAttributes(node.getAsJsonObject("requiredAttributes"))
                 );
                 Integer finalTriadSlot = node.has("finalTriadSlot") ? node.get("finalTriadSlot").getAsInt() : null;
                 nodes.add(new Node(
@@ -269,6 +272,14 @@ public final class ClientTreeLayout {
         java.util.HashSet<String> result = new java.util.HashSet<>();
         values.forEach(value -> result.add(value.getAsString()));
         return Set.copyOf(result);
+    }
+
+    private static Map<AttributeId, Long> readRequiredAttributes(JsonObject values) {
+        if (values == null) return Map.of();
+        Map<AttributeId, Long> result = new java.util.EnumMap<>(AttributeId.class);
+        values.entrySet().forEach(entry ->
+            result.put(AttributeId.valueOf(entry.getKey()), Long.parseLong(entry.getValue().getAsString())));
+        return Map.copyOf(result);
     }
 
     private static Map<String, Integer> readIntMap(JsonObject values) {

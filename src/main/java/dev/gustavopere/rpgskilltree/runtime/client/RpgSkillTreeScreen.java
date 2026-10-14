@@ -1,5 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.client;
 
+import dev.gustavopere.rpgskilltree.core.AttributeId;
+import dev.gustavopere.rpgskilltree.core.AttributeRanks;
 import dev.gustavopere.rpgskilltree.core.CharacterLevelCurve;
 import dev.gustavopere.rpgskilltree.core.NodeDisplayState;
 import dev.gustavopere.rpgskilltree.core.TreeDisplayProjector;
@@ -58,8 +60,15 @@ public final class RpgSkillTreeScreen extends Screen {
             layout.graph(),
             layout.definitions(),
             layout.requirements(),
-            CharacterLevelCurve.defaultCurve()
+            CharacterLevelCurve.defaultCurve(),
+            currentInvestedRanks()
         );
+    }
+
+    private static AttributeRanks currentInvestedRanks() {
+        return ClientCoreProgressionState.get()
+            .map(snapshot -> snapshot.attributeRanks())
+            .orElse(AttributeRanks.empty());
     }
 
     private void renderEdges(GuiGraphics graphics, TreeDisplayState display) {
@@ -250,6 +259,19 @@ public final class RpgSkillTreeScreen extends Screen {
         if (!description.isBlank()) {
             lines.addAll(font.split(Component.literal(description), maxLineWidth));
         }
+
+        // Display each authoritative-design threshold with the observed Core rank, not a spent cost.
+        AttributeRanks invested = currentInvestedRanks();
+        node.requirement().requiredAttributeRanks().entrySet().stream()
+            .sorted(java.util.Map.Entry.comparingByKey())
+            .forEach(entry -> {
+                String attribute = Component.translatable(
+                    "screen.rpgskilltree.attribute." + entry.getKey().name()).getString();
+                Component requirement = Component.translatable(
+                    "screen.rpgskilltree.tooltip.attribute_requirement",
+                    attribute, invested.rank(entry.getKey()), entry.getValue());
+                lines.addAll(font.split(requirement, maxLineWidth));
+            });
 
         SkillTreeTooltipText.PurchaseState purchaseState = state.canPurchase()
             ? SkillTreeTooltipText.PurchaseState.PURCHASABLE
