@@ -1,6 +1,10 @@
 package dev.gustavopere.rpgskilltree.runtime.events;
 
+import dev.gustavopere.rpgskilltree.core.AttributeId;
+import dev.gustavopere.rpgskilltree.core.AttributeInvestmentBonuses;
+import dev.gustavopere.rpgskilltree.core.AttributeRanks;
 import dev.gustavopere.rpgskilltree.core.WeaponMasteryMilestonePolicy;
+import dev.gustavopere.rpgskilltree.runtime.CanonicalPlayerAttachmentRuntime;
 import dev.gustavopere.rpgskilltree.runtime.WeaponMasteryMilestoneRuntime;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +16,8 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
@@ -38,6 +44,7 @@ public final class PhysicalProjectileMasteryEvents {
     private static final long LAUNCH_CORRELATION_MILLIS = 250L;
     private static final Map<UUID, PendingRelease> PENDING_RELEASES = new HashMap<>();
     private static final WeakHashMap<AbstractArrow, String> PLAYER_LAUNCHED = new WeakHashMap<>();
+    private static final WeakHashMap<AbstractArrow, Boolean> AGILITY_ACCELERATED = new WeakHashMap<>();
 
     private PhysicalProjectileMasteryEvents() {}
 
@@ -56,7 +63,8 @@ public final class PhysicalProjectileMasteryEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEntityJoin(EntityJoinLevelEvent event) {
-        if (!(event.getEntity() instanceof AbstractArrow arrow)
+        if (event.isCanceled() || event.loadedFromDisk()
+            || !(event.getEntity() instanceof AbstractArrow arrow)
             || !(arrow.getOwner() instanceof ServerPlayer player)
             || !eligible(player)) return;
         String category = physicalCategory(arrow.getWeaponItem());
@@ -65,6 +73,44 @@ public final class PhysicalProjectileMasteryEvents {
         if (pending == null || pending.expiresAt() < now(player) || !pending.category().equals(category)) return;
         synchronized (PLAYER_LAUNCHED) {
             PLAYER_LAUNCHED.put(arrow, category);
+        }
+    }
+
+    /**
+     * Applies Agility only to a fresh, correlated vanilla bow arrow at launch.
+     * This uses an already established ArrowLooseEvent receipt; neither spell
+     * projectiles nor arbitrary arrows with a ServerPlayer owner qualify.
+     * Never recalculates velocity per tick or accelerates a reloaded arrow.
+     */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onAgilityArrowJoin(EntityJoinLevelEvent event) {
+        if (event.isCanceled() || event.loadedFromDisk()
+            || !(event.getEntity() instanceof AbstractArrow arrow)
+            || !(arrow.getOwner() instanceof ServerPlayer player)
+            || !eligible(player)
+            || !arrow.getWeaponItem().is(Items.BOW)) return;
+        if (!"bow".equals(confirmedPlayerLaunch(arrow))) return;
+
+        AttributeRanks ranks = CanonicalPlayerAttachmentRuntime.observe(player)
+            .coreProgression().state()
+            .map(state -> state.attributeRanks())
+            .orElse(AttributeRanks.empty());
+        long rank = ranks.rank(AttributeId.AGILITY);
+        if (rank < 10L) return;
+        double bonus = AttributeInvestmentBonuses.value(
+            AttributeInvestmentBonuses.Benefit.AGILITY_PROJECTILE_SPEED, rank);
+        if (!(bonus > 0.0D) || !Double.isFinite(bonus)) return;
+
+        Vec3 velocity = arrow.getDeltaMovement();
+        double norm = velocity.lengthSqr();
+        if (!(norm > 0.0D) || !Double.isFinite(norm)) return;
+        Vec3 adjusted = velocity.scale(1.0D + bonus);
+        if (!Double.isFinite(adjusted.x) || !Double.isFinite(adjusted.y)
+            || !Double.isFinite(adjusted.z)) return;
+        synchronized (AGILITY_ACCELERATED) {
+            if (AGILITY_ACCELERATED.containsKey(arrow)) return;
+            arrow.setDeltaMovement(adjusted);
+            AGILITY_ACCELERATED.put(arrow, Boolean.TRUE);
         }
     }
 
@@ -116,6 +162,9 @@ public final class PhysicalProjectileMasteryEvents {
         PENDING_RELEASES.clear();
         synchronized (PLAYER_LAUNCHED) {
             PLAYER_LAUNCHED.clear();
+        }
+        synchronized (AGILITY_ACCELERATED) {
+            AGILITY_ACCELERATED.clear();
         }
     }
 
