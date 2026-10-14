@@ -300,7 +300,18 @@ public final class PlayerProgressionRuntime {
     }
 
     private static ProgressionState reconcileDerivedState(ServerPlayer player, ProgressionState initial) {
-        AttributeRanks investedRanks = currentAttributeRanks(player);
+        return reconcileDerivedState(initial, currentAttributeRanks(player));
+    }
+
+    /**
+     * Compatibility for the existing pure reconcilers and their reflective regression tests.
+     * An absent canonical Core context can never satisfy an attribute-gated requirement.
+     */
+    private static ProgressionState reconcileDerivedState(ProgressionState initial) {
+        return reconcileDerivedState(initial, AttributeRanks.empty());
+    }
+
+    private static ProgressionState reconcileDerivedState(ProgressionState initial, AttributeRanks investedRanks) {
         ProgressionState current = initial;
         for (int iteration = 0; iteration < 32; iteration++) {
             var beforeNodes = current.passiveNodes().learnedNodeIds();
