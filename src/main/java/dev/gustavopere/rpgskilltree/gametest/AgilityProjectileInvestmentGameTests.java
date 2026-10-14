@@ -87,6 +87,28 @@ public final class AgilityProjectileInvestmentGameTests {
         PhysicalProjectileMasteryEvents.onAgilityArrowJoin(canceledJoin);
         close(helper, 2.0D, canceled.getDeltaMovement().z, "canceled spawn");
 
+        // Canceled and undercharged bow releases must not create Agility receipts.
+        ServerPlayer invalid = new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
+            new GameProfile(UUID.randomUUID(), "invalid-bow-release"), ClientInformation.createDefault());
+        setAgilityRank(invalid, 300L);
+        ArrowLooseEvent canceledRelease = new ArrowLooseEvent(
+            invalid, new ItemStack(Items.BOW), helper.getLevel(), 20, true);
+        canceledRelease.setCanceled(true);
+        PhysicalProjectileMasteryEvents.onArrowLoose(canceledRelease);
+        Arrow noRelease = arrow(helper, invalid, Items.BOW);
+        EntityJoinLevelEvent noReleaseJoin = new EntityJoinLevelEvent(noRelease, helper.getLevel());
+        PhysicalProjectileMasteryEvents.onEntityJoin(noReleaseJoin);
+        PhysicalProjectileMasteryEvents.onAgilityArrowJoin(noReleaseJoin);
+        close(helper, 2.0D, noRelease.getDeltaMovement().z, "canceled bow release");
+
+        PhysicalProjectileMasteryEvents.onArrowLoose(new ArrowLooseEvent(
+            invalid, new ItemStack(Items.BOW), helper.getLevel(), 0, true));
+        Arrow undercharged = arrow(helper, invalid, Items.BOW);
+        EntityJoinLevelEvent underchargedJoin = new EntityJoinLevelEvent(undercharged, helper.getLevel());
+        PhysicalProjectileMasteryEvents.onEntityJoin(underchargedJoin);
+        PhysicalProjectileMasteryEvents.onAgilityArrowJoin(underchargedJoin);
+        close(helper, 2.0D, undercharged.getDeltaMovement().z, "undercharged bow release");
+
         helper.succeed();
     }
 
