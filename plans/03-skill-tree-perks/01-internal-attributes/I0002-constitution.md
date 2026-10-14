@@ -64,6 +64,15 @@ Atenuar dano periódico de condições nocivas classificadas (ex.: veneno/wither
 |---|---|
 | Vida máxima | IMPLEMENTADO (validação pendente) — Minecraft 1.21.1 `minecraft:generic.max_health`; modificador `rpgskilltree:investment/constitution_health`, ADD_VALUE; preservação proporcional |
 | Curas recebidas | IMPLEMENTADO NO CÓDIGO / CI PENDENTE — `LivingHealEvent` NeoForge 1.21.1 em `InvestedConstitutionHealingEvents`; apenas paciente `ServerPlayer`, coeficiente de `AttributeInvestmentHealingPolicy`; modifica o montante **do evento existente**, não chama `heal()` nem cria tick próprio |
-| Mitigação de dano ao longo do tempo | BLOQUEADO — falta taxonomia auditada dos damage types periódicos |
+| Mitigação de dano ao longo do tempo | IMPLEMENTADO NO CÓDIGO — **parcial e vanilla**: `minecraft:on_fire` e `minecraft:wither` sem entidade causadora. **Poison/magic, lava, contato com fogo e danos de addons continuam excluídos** por ambiguidade ou domínio externo; GameTests e CI novos pendentes |
 
 A implementação vanilla usa `AttributeInvestmentBonuses` e `InvestedAttributeEffectsRuntime.refresh`, calculada pelo servidor a partir dos ranks, com IDs transitórios removíveis. Benefícios de providers não verificados continuam inativos (*fail-closed*). Não houve teste físico do modpack; JUnit/GameTests foram adicionados para verificação em CI. Uma integração marcada IMPLEMENTADO **ainda não é VALIDADO** antes de resultados dos testes de runtime.
+
+
+### Boundary técnico — DoT vanilla, 15ª integração (14/10/2026)
+
+`InvestedConstitutionDotEvents` atua exclusivamente em `LivingIncomingDamageEvent` do NeoForge 1.21.1 contra `ServerPlayer`, com `DamageSource` vanilla sem entidade causadora nem direta e com `DamageTypes.ON_FIRE` ou `DamageTypes.WITHER`. Essa allowlist representa **somente** dano de queimadura persistente e Wither nativos. Poison vanilla usa um tipo compartilhado com fontes mágicas não periódicas e permanece deliberadamente fora do boundary; também não há resistência a fogo no primeiro contato (`IN_FIRE`), lava, quedas, void, hazards térmicos/modded ou DoT de spells.
+
+O hook multiplica `LivingIncomingDamageEvent.getAmount()` por `1 - AttributeInvestmentBonuses.CONSTITUTION_DAMAGE_OVER_TIME` uma vez por objeto de evento (controle fraco/transitório), **antes** das reduções nativas. Não cria outro evento de dano, não altera vida diretamente, não salva um estado adicional, não afeta alvos não jogadores e não altera o cooldown de dano. Primeiro ganho no rank 12: mitigação de 0,4%; teto teórico de redução de 10% da contribuição; rank persistido exclusivamente no Core.
+
+`ConstitutionDotInvestmentGameTests` exerce `DamageContainer` e `LivingIncomingDamageEvent` nativos para ranks 0/11/12/30/300/`Long.MAX_VALUE`, repetição do mesmo evento, fontes ambientais e magia excluídas, cancelamento, respec e ausência de Core. O teste de evento não substitui QA da aplicação de efeitos periódicos em entidades reais no modpack; classificar como **IMPLEMENTADO / CI NOVO PENDENTE**, não certificado cross-mod. Fonte de semântica: `NeoForge/1.21.1`, `LivingIncomingDamageEvent` e `DamageContainer` (estágio anterior à mitigação).
