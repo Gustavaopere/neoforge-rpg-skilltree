@@ -5,21 +5,19 @@ import dev.gustavopere.rpgskilltree.core.AttributeId;
 import dev.gustavopere.rpgskilltree.core.AttributeRanks;
 import dev.gustavopere.rpgskilltree.core.CanonicalPlayerAttachmentData;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionAttachmentData;
-import dev.gustavopere.rpgskilltree.core.CoreProgressionBootstrap;
+import dev.gustavopere.rpgskilltree.core.CharacterProgressionState;
+import dev.gustavopere.rpgskilltree.core.CorePointLedger;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
-import dev.gustavopere.rpgskilltree.runtime.CanonicalPlayerAttachmentRuntime;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import dev.gustavopere.rpgskilltree.runtime.compat.OptionalIntegrations;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsInvestmentAttributePolicy;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsInvestmentCooldownEvents;
-import dev.gustavopere.rpgskilltree.runtime.data.CoreProgressionRulesCatalog;
 import io.redspace.ironsspellbooks.api.events.SpellCooldownAddedEvent;
 import io.redspace.ironsspellbooks.api.spells.CastSource;
 import java.util.Map;
 import java.util.UUID;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.gametest.GameTestHolder;
@@ -45,22 +43,21 @@ public final class IronsCooldownInvestmentGameTests {
 
         ServerPlayer player = new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
             new GameProfile(UUID.randomUUID(), "iron-cooldown"), ClientInformation.createDefault());
-        var rules = CoreProgressionRulesCatalog.provider().requireCurrent();
-        var original = CoreProgressionBootstrap.newPlayer(rules);
+        // Provider-present GameTests do not load the Core rules datapack. Build a
+        // structurally valid Core attachment directly rather than changing global
+        // rules or bypassing the production read-only attachment boundary.
         var invested = new CoreProgressionState(
-            original.characterProgression(),
-            original.corePoints(),
+            CharacterProgressionState.empty(),
+            CorePointLedger.empty(),
             AttributeRanks.of(Map.of(AttributeId.DETERMINATION, 10L)),
-            original.mainPerkBudgetProgression(),
-            original.progressionRewardClaims(),
-            original.rulesVersion(),
-            original.rulesFingerprint(),
-            original.migrationSourceFormatVersion(),
-            original.discardedLegacyCapXp()
+            1L,
+            "0".repeat(64),
+            0,
+            0L
         );
-        CanonicalPlayerAttachmentData attachment = CanonicalPlayerAttachmentRuntime.readOrMigrate(player);
         player.setData(ModAttachments.CANONICAL_PLAYER,
-            attachment.withCoreProgression(CoreProgressionAttachmentData.initialized(invested)));
+            CanonicalPlayerAttachmentData.empty().withCoreProgression(
+                CoreProgressionAttachmentData.initialized(invested)));
 
         var book = new SpellCooldownAddedEvent.Pre(1000, null, player, CastSource.SPELLBOOK);
         IronsInvestmentCooldownEvents.onCooldownPre(book);
