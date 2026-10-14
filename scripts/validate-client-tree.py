@@ -154,3 +154,17 @@ for morph_tree, expected_count in [('druid', 11), ('metamorph', 10)]:
     if redges != aedges:
         raise SystemExit(f'Client tree validation: FAIL {morph_tree} edge mismatch')
 print('Client morph-tree validation: PASS (Druid + Metamorph)')
+
+
+# Attribute thresholds are a server access gate. Client layout must not omit them.
+for tree_name in ('main','technomancer','warlock','druid','metamorph'):
+    server_path=ROOT/f'src/main/resources/data/rpgskilltree/node_rules/{tree_name}.json'
+    client_path=ROOT/f'src/main/resources/assets/rpgskilltree/tree/{tree_name}.json'
+    server_nodes={node['id']:node for node in json.loads(server_path.read_text()).get('nodes',[])}
+    client_nodes={node['id']:node for node in json.loads(client_path.read_text()).get('nodes',[])}
+    for node_id, rule in server_nodes.items():
+        if node_id not in client_nodes:
+            raise SystemExit(f'Attribute requirement parity: FAIL missing {tree_name} client node {node_id}')
+        if client_nodes[node_id].get('requiredAttributes',{}) != rule.get('requiredAttributes',{}):
+            raise SystemExit(f'Attribute requirement parity: FAIL {tree_name} {node_id} requiredAttributes mismatch')
+print('Attribute requirement parity: PASS (server rule/client layout thresholds)')
