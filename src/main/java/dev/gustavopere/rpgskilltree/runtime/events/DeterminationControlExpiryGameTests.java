@@ -41,9 +41,12 @@ public final class DeterminationControlExpiryGameTests {
         setRank(player, 8L);
         Shulker shulker = new Shulker(EntityType.SHULKER, helper.getLevel());
         MobEffectInstance effect = new MobEffectInstance(MobEffects.LEVITATION, 200);
-        helper.assertTrue(player.addEffect(effect, shulker), "fresh vanilla levitation must install");
-        // Manual invocation here is deliberate: verifies the event handler without
-        // relying on player networking/ticking for a detached test fixture.
+        player.getActiveEffectsMap().put(MobEffects.LEVITATION, effect);
+        helper.assertTrue(player.getEffect(MobEffects.LEVITATION) == effect,
+            "native effect storage must hold the exact incoming instance");
+        // The fixture inserts into native activeEffects directly so optional mods
+        // never receive fake player network events. Production uses NeoForge Added
+        // and Post events automatically; this test invokes the handlers explicitly.
         InvestedDeterminationControlEvents.onAdded(
             new MobEffectEvent.Added(player, null, effect, shulker));
         helper.assertTrue(effect.getDuration() == 200, "incoming instance must remain unmodified");
@@ -67,7 +70,7 @@ public final class DeterminationControlExpiryGameTests {
         ServerPlayer nonShulker = player(helper, "determination-foreign");
         setRank(nonShulker, 300L);
         MobEffectInstance fromZombie = new MobEffectInstance(MobEffects.LEVITATION, 40);
-        nonShulker.addEffect(fromZombie, zombie);
+        nonShulker.getActiveEffectsMap().put(MobEffects.LEVITATION, fromZombie);
         InvestedDeterminationControlEvents.onAdded(
             new MobEffectEvent.Added(nonShulker, null, fromZombie, zombie));
         advance(helper, nonShulker, fromZombie, 39);
@@ -78,7 +81,7 @@ public final class DeterminationControlExpiryGameTests {
         ServerPlayer refunded = player(helper, "determination-respec");
         setRank(refunded, 300L);
         MobEffectInstance initial = new MobEffectInstance(MobEffects.LEVITATION, 40);
-        refunded.addEffect(initial, shulker);
+        refunded.getActiveEffectsMap().put(MobEffects.LEVITATION, initial);
         InvestedDeterminationControlEvents.onAdded(
             new MobEffectEvent.Added(refunded, null, initial, shulker));
         setRank(refunded, 0L);
@@ -90,11 +93,11 @@ public final class DeterminationControlExpiryGameTests {
         ServerPlayer refreshed = player(helper, "determination-refresh");
         setRank(refreshed, 300L);
         MobEffectInstance old = new MobEffectInstance(MobEffects.LEVITATION, 40);
-        refreshed.addEffect(old, shulker);
+        refreshed.getActiveEffectsMap().put(MobEffects.LEVITATION, old);
         InvestedDeterminationControlEvents.onAdded(
             new MobEffectEvent.Added(refreshed, null, old, shulker));
         MobEffectInstance renewed = new MobEffectInstance(MobEffects.LEVITATION, 80);
-        refreshed.addEffect(renewed, zombie);
+        helper.assertTrue(old.update(renewed), "native duration refresh must merge into current effect instance");
         InvestedDeterminationControlEvents.onAdded(
             new MobEffectEvent.Added(refreshed, old, renewed, zombie));
         helper.assertTrue(refreshed.getEffect(MobEffects.LEVITATION) == old,
@@ -114,8 +117,9 @@ public final class DeterminationControlExpiryGameTests {
         ShulkerBullet bullet = new ShulkerBullet(EntityType.SHULKER_BULLET, helper.getLevel());
         bullet.setOwner(shulker);
         MobEffectInstance effect = new MobEffectInstance(MobEffects.LEVITATION, 200);
-        helper.assertTrue(player.addEffect(effect, bullet),
-            "genuine ShulkerBullet owner must give a native Levitation instance");
+        player.getActiveEffectsMap().put(MobEffects.LEVITATION, effect);
+        helper.assertTrue(player.getEffect(MobEffects.LEVITATION) == effect,
+            "genuine projectile fixture must use native effect storage");
         InvestedDeterminationControlEvents.onAdded(
             new MobEffectEvent.Added(player, null, effect, bullet));
         double reduction = AttributeInvestmentBonuses.value(
@@ -132,7 +136,7 @@ public final class DeterminationControlExpiryGameTests {
         setRank(orphaned, 300L);
         ShulkerBullet orphan = new ShulkerBullet(EntityType.SHULKER_BULLET, helper.getLevel());
         MobEffectInstance orphanEffect = new MobEffectInstance(MobEffects.LEVITATION, 40);
-        orphaned.addEffect(orphanEffect, orphan);
+        orphaned.getActiveEffectsMap().put(MobEffects.LEVITATION, orphanEffect);
         InvestedDeterminationControlEvents.onAdded(
             new MobEffectEvent.Added(orphaned, null, orphanEffect, orphan));
         advance(helper, orphaned, orphanEffect, 39);
@@ -142,7 +146,7 @@ public final class DeterminationControlExpiryGameTests {
 
         ServerPlayer noCore = player(helper, "determination-no-core");
         MobEffectInstance vanilla = new MobEffectInstance(MobEffects.LEVITATION, 40);
-        noCore.addEffect(vanilla, shulker);
+        noCore.getActiveEffectsMap().put(MobEffects.LEVITATION, vanilla);
         InvestedDeterminationControlEvents.onAdded(
             new MobEffectEvent.Added(noCore, null, vanilla, shulker));
         advance(helper, noCore, vanilla, 39);
