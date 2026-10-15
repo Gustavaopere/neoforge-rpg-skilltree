@@ -50,6 +50,8 @@ public final class AttributeInvestmentScreen extends Screen {
 
     @Override
     public void tick() {
+        ClientAttributeMutationResultState.take().ifPresent(
+            result -> model.acknowledge(result.transactionId(), result.accepted()));
         model.tick(snapshot());
         updateButtons();
     }
