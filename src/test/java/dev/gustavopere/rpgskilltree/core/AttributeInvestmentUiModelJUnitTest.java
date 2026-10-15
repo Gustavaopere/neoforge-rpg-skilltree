@@ -122,6 +122,18 @@ class AttributeInvestmentUiModelJUnitTest {
         assertEquals("screen.rpgskilltree.rank_ready", model.status().translationKey());
     }
 
+    @Test
+    void unrelatedRankRefreshMustNotConfirmAnUnacknowledgedPurchase() {
+        var model = new AttributeInvestmentUiModel();
+        var before = state(5L, 2L, AttributeId.CHARISMA);
+        assertTrue(model.request(before, AttributeId.CHARISMA, false,
+            "attribute-ui-race").isPresent());
+        model.tick(state(4L, 3L, AttributeId.CHARISMA));
+        assertTrue(model.isPending(),
+            "a changed snapshot by itself does not prove acceptance of this transaction");
+        assertEquals(AttributeInvestmentUiModel.Status.PENDING, model.status());
+    }
+
     private static CoreProgressionSyncState state(long available, long rank, AttributeId attribute) {
         long allocated = rank;
         return new CoreProgressionSyncState(
