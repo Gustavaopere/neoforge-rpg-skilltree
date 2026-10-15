@@ -1,14 +1,16 @@
 # Stage 03 / Ponto 0 — Matriz de QA físico do modpack
 
 - **Status:** roteiro preparado, **NÃO EXECUTADO**; não constitui certificação.
-- **Base automatizada verificada:** PR #920, HEAD `4ae2f6a25b50fc9d23ecf055c30bf86dafffc265`, 26/26 workflows GitHub Actions `success` e Sonar New Code Coverage **80,5%** (mínimo 80%), zero issues novos e hotspots. Contagem **18/18** bridges, várias com alcance limitado.
+- **Base automatizada de referência (15/10/2026):** PR #920, checkpoint `05c70549bc3985039e123016b6c4c56085499761`: **26/26 workflows e 37/37 check runs `success`**, Sonar Quality Gate `PASSED`, 0 issues novos abertos/confirmados e **90/90 GameTests** nos runtimes de cobertura. São **18/18** bridges de gameplay, algumas com alcance limitado. Este SHA é uma evidência histórica, não uma instrução para ignorar um HEAD posterior.
+- **Autoridade do build físico:** antes da sessão, consultar o [HEAD atual do PR #920](https://github.com/Gustavaopere/neoforge-rpg-skilltree/pull/920), conferir o CI/Quality Gate desse **SHA exato**, construir e registrar o SHA-256 do JAR correspondente. Se o HEAD mudar, não reutilizar certificação física de outro commit; reavaliar mudanças e refazer casos impactados. O roteiro não certifica o QA físico.
+
 - **Ambiente-alvo:** Minecraft **1.21.1**, **NeoForge 1.21.1** (versão física da instância a registrar), **Java 21**, JAR físico do PR e **mesma modlist real** que se pretende distribuir, não substituí-la apenas por snapshots de CI.
 - **Responsável/registro:** preencher para cada caso data, SHA do JAR, hashes dos mods relevantes, versão Java/NeoForge, modo singleplayer ou dedicado, jogadores A/B, coordenadas e seed se mundo alterado, passos, resultado esperado/observado, log e screenshot/vídeo de evidência. Evidência ausente significa **PENDENTE**, nunca PASS.
 
 ## Preparação da sessão
 
 1. Guardar backup separado de mundo/instância e das configurações. Confirmar hashes do JAR e da modlist instalada; testar primeiro mundo descartável.
-2. Construir o artefato exato do SHA acima; conferir que não há JAR antigo ou duplicado no diretório `mods`. Usar conta A e conta B distintas num servidor dedicado e, quando indicado, cliente individual com os mesmos mods.
+2. Construir o artefato do **HEAD atual do PR** (não de um SHA histórico citado na matriz), registrar commit SHA e hash do JAR; conferir que não há JAR antigo ou duplicado no diretório `mods`. Usar conta A e conta B distintas num servidor dedicado e, quando indicado, cliente individual com os mesmos mods.
 3. Usar as operações de investimento/respec **oferecidas pelo Core no jogo**, capturando ranks canônicos visíveis ou snapshot de logs. **Não** introduzir cheats/commands fictícios para conceder rank; se o fluxo de atribuição ainda estiver ausente na UI, registrar o teste como **BLOCKED — aquisição de ranks**, não simular dados sem rastreio.
 4. Capturar baseline sem investimento (rank 0), primeiro marco e rank alto; executar reload/relog quando indicado. Os seis atributos são Força, Constituição, Agilidade, Inteligência, Determinação e Carisma. Cada rank continua custando 1 Core Point conforme policy atual; não presumir UI final.
 
