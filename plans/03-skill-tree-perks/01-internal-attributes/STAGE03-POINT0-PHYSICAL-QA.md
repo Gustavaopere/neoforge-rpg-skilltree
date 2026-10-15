@@ -1,7 +1,7 @@
 # Stage 03 / Ponto 0 — Matriz de QA físico do modpack
 
 - **Status:** roteiro preparado, **NÃO EXECUTADO**; não constitui certificação.
-- **Base automatizada verificada:** PR #920, HEAD `d68e041150460deeabf7ea5e4d4b536d4703b8d8`, 26/26 workflows GitHub Actions `success` e Sonar New Code Coverage 80,8% (mínimo 80%), zero issues novos e hotspots.
+- **Base automatizada verificada:** PR #920, HEAD `4ae2f6a25b50fc9d23ecf055c30bf86dafffc265`, 26/26 workflows GitHub Actions `success` e Sonar New Code Coverage **80,5%** (mínimo 80%), zero issues novos e hotspots. Contagem **18/18** bridges, várias com alcance limitado.
 - **Ambiente-alvo:** Minecraft **1.21.1**, **NeoForge 1.21.1** (versão física da instância a registrar), **Java 21**, JAR físico do PR e **mesma modlist real** que se pretende distribuir, não substituí-la apenas por snapshots de CI.
 - **Responsável/registro:** preencher para cada caso data, SHA do JAR, hashes dos mods relevantes, versão Java/NeoForge, modo singleplayer ou dedicado, jogadores A/B, coordenadas e seed se mundo alterado, passos, resultado esperado/observado, log e screenshot/vídeo de evidência. Evidência ausente significa **PENDENTE**, nunca PASS.
 
@@ -26,12 +26,16 @@
 | QA-07 | Carisma: lobo vanilla domesticado de A atacando mob hostil; lobo de B, lobo selvagem, alvos não hostis, dano indireto e respec | Bônus só para o domínio declarado de companheiro próprio; nunca global para outros pets/summons |
 | QA-08 | Constituição: cura/regeneração, fogo contínuo sem entidade atacante, Wither vanilla sem atacante, lava, veneno e magia; sob efeitos de diversos mods | Apenas fontes vanilla explicitamente cobertas pelo adapter; DoT não se estende a lava/veneno/magia sem auditoria |
 | QA-09 | Força, Agilidade, Inteligência e stamina/cooldown de Determinação com Epic Fight, Iron's, Create e demais providers presentes/ausentes | Modifiers corretos no provider exato; remover no respec; reentrância não compõe duas vezes; mod ausente não impede o servidor |
-| QA-10 | Aldeões vanilla: jogador A com Carisma alto, B rank 0, compras e vendas, gossip, Hero of the Village e restock | **Nenhum desconto do mod está implementado**; preços vanilla preservados e sem oferta de custo zero, compras grátis, lucro por repetição ou preço compartilhado alterado |
+| QA-10 | Aldeões vanilla: jogador A com Carisma alto, B rank 0, compras e vendas, gossip, Hero of the Village e restock | Desconto de CHA aplicado **só** nas compras elegíveis de esmeraldas; custo mínimo 1 e preço final igual no cliente e servidor; gossip/Herói da Vila são preservados; segundo jogador rank 0 vê preço vanilla da própria sessão; sem benefício em vendas, multi-custos ou mercadores de mods; sem oferta grátis ou duplicação |
 | QA-11 | Cliente A, cliente B e servidor dedicado, vários ciclos de /reload do datapack, reconnect e restart do servidor | Sem crash, desync de UI, drift de modificadores, perda de ranks ou mudança permanente de preços; registrar casos com mods ausentes |
+| QA-12 | Aldeão vanilla com compra simples por 64 esmeraldas, CHA rank 0/4/5/30/300/extremo e menu aberto uma vez e repetido; inventário do cliente e servidor | Respeitar `floor(preço×fator)`, 0 no rank 0/4; preço final >=1, mesmo preço anunciado e cobrado no servidor, sem multiplicar desconto por abertura repetida |
+| QA-13 | Dois clientes A e B negociam sequencialmente com mesmo aldeão, A com CHA 300, B com CHA 0; fechar com X, alcance, desconexão abrupta, morte ou troca de dimensão | O preço de B usa sua própria reputação/rank; sem vazamento de desconto de A; oferta original restaurada, sem item ou esmeralda fantasma após fechar |
+| QA-14 | Compras com gossip positiva/negativa, Herói da Vila, demanda crescente e restock; alternar rank por respec enquanto menu permanece aberto e reabrir menu | Desconto só **após** cálculo vanilla; sem alteração permanente de gossip/demanda; sessão aberta usa rank do início; novo menu usa rank atualizado, sem preço zero |
+| QA-15 | Venda de trigo por esmeraldas, oferta por 1 esmeralda, oferta de dois custos, mercador errante, comerciantes de mods, receita esgotada, multi-clique e shift-click | Sem ganho de CHA nesses casos; nenhuma forma de gastar menos que o custo exibido ou duplicar itens/esmeraldas |
 
 ## Critérios para sair de Draft
 
 - Cada caso aplicável acima deve ter registro PASS com evidência; BLOCKED ou FAIL exigem correção e novo teste. Nenhum teste automatizado substitui os casos simultâneos com dois jogadores reais.
 - Qualquer novo commit requer **novamente** CI e Sonar para o SHA exato, mantendo mínimo **80% de cobertura em código novo**, 0 falha de workflow e revisão dos alerts.
-- A pendência do desconto `CHARISMA_VILLAGER_DISCOUNT` **não** pode ser considerada implementada apenas por cálculo da fórmula, troca pós-fato ou mudança global em ofertas; precisa de contrato de transação por jogador e QA de não exploração. Decidir explicitamente se ficará em um incremento posterior antes de marcar o Ponto 0 como final.
+- `CHARISMA_VILLAGER_DISCOUNT` tem integração automatizada aprovada, mas a **certificação física de não exploração** ainda exige cliente/servidor, dois jogadores, fechamento, recarregamento e coexistência com outros modificadores de comércio; falha em qualquer cenário bloqueia a saída de Draft.
 - PR #920 deve permanecer **Draft/sem merge** até decisão de escopo, QA físico e aprovação para release.

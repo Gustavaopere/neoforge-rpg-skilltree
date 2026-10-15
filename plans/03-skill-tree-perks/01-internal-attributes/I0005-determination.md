@@ -2,7 +2,7 @@
 
 - **ID runtime:** `AttributeId.DETERMINATION`
 - **Família:** Internal Attribute / Ponto 0
-- **Status:** `CONCEPT-REVIEWED / TECH-PENDING`
+- **Status atual:** `IMPLEMENTADO COM FONTES DELIMITADAS / QA FÍSICO PENDENTE` (histórico abaixo)
 - **Escopo:** global; rank investido sem limite canônico
 - **Identidade:** disciplina, constância, recuperação e resistência a interrupções
 - **Fonte do rank:** RPG Core `AttributeRanks` / ledger de Core Points
@@ -110,3 +110,6 @@ Foi preparado o adapter experimental de Shulker/Levitação com `MobEffectEvent.
 **Testes e evidência:** `DeterminationControlExpiryGameTests` (3 GameTests) exercita primeira aplicação de Shulker, efeito preservado até o tick anterior, corte no tick correto, origem `Zombie` excluída, respec durante o efeito, extensão/reapplication, `ShulkerBullet` com proprietário vanilla, órfão, `Long.MAX_VALUE` e Core ausente. Um primeiro TDD testou contra handler inativo; a falha de efeito 200 vs 199 ticks foi registrada na compatibilidade Create Sable `#38668916448`. A implementação veio no commit `e963643`. Testes adicionais de projétil/rank `5da4079`; fixture `d68e041` insere `MobEffectInstance` no mapa nativo do jogador desconectado de GameTest para não disparar callbacks de rede MineColonies; em produção, o evento real é usado. **HEAD `d68e041`: 26/26 SUCCESS, Sonar 80,8% de cobertura de código novo, 0 issues novos, 0 hotspots e 0% duplicação**. Testes do modpack real, PVP, logout, extensões de duração entre eventos e reabertura do servidor exigem QA físico.
 
 **Nota de contagem:** esta é a **17ª das 18 contribuições com alguma integração de gameplay**. A única sem hook permanece desconto de Carisma em aldeões; conforme projeto, a presença de uma bridge limitada não implica cobertura universal ou certificação de produção. Mantenha PR #920 **Draft, sem merge**.
+
+
+**Atualização de contagem (15/10/2026):** com a integração de comércio de Carisma, o estágio alcançou **18/18 benefícios conectados ao gameplay no código, em escopo parcial ou completo**, no HEAD automatizado verde `4ae2f6a` (26/26, Sonar New Code Coverage 80,5%). As conclusões históricas sobre 17/18 acima referem-se ao momento anterior ao último incremento. O alcance de Determinação continua restrito a Levitação inicial por shulker vanilla; QA físico e merge continuam pendentes.

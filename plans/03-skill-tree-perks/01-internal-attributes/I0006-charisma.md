@@ -2,7 +2,7 @@
 
 - **ID runtime:** `AttributeId.CHARISMA`
 - **Família:** Internal Attribute / Ponto 0
-- **Status:** `CONCEPT-REVIEWED / TECH-PENDING`
+- **Status atual:** `18/18 COM BRIDGE DE GAMEPLAY / ESCOPO PARCIAL / QA FÍSICO PENDENTE` (histórico técnico abaixo)
 - **Escopo:** global; rank investido sem limite canônico
 - **Identidade:** negociação, liderança de aliados e cura prestada
 - **Fonte do rank:** RPG Core `AttributeRanks` / ledger de Core Points
@@ -24,7 +24,7 @@ Todos os bônus começam em rank 0 com zero; cada marco é cumulativo, mas cada 
 
 Aplica desconto apenas a transações de compra elegíveis, sem permitir preço zero e sem reduzir também o preço de venda.
 
-**Boundary e evidência pendente:** Trading vanilla; respeitar gossip/cura/Hero of the Village e antifraude; boundary técnico a investigar.
+**Boundary de gameplay implementado (escopo limitado):** `PlayerContainerEvent.Open` do NeoForge 1.21.1, após preços de reputação/Herói da Vila e antes do envio da lista de ofertas. O handler recusa menus sem `Villager` único vinculado ao jogador; ver seção de validação final abaixo. QA físico pendente.
 
 ### 2. Dano de companheiros do jogador
 
@@ -62,7 +62,7 @@ Bônus à cura que o jogador realiza em outras entidades elegíveis, excluindo a
 
 | Trilha | Situação da integração |
 |---|---|
-| Desconto em compras de aldeões | BLOQUEADO — falta hook sem economia abusiva, preço zero ou redução na venda |
+| Desconto em compras de aldeões | **IMPLEMENTADO E APROVADO NO CI 26/26** — somente sessão de `MerchantMenu` vanilla com `Villager` único validado, oferta de compra com custo A em esmeraldas e sem segundo pagamento, rank canônico; restaura via fechamento nativo, sem cashback; QA físico de dois jogadores e UI ainda pendente |
 | Dano de companheiros do jogador | IMPLEMENTADO NO CÓDIGO SOMENTE PARA LOBOS VANILLA — corpo a corpo contra `Enemy`, proprietário `ServerPlayer` online, rank canônico e idempotência por evento. CI DO INCREMENTO PENDENTE; summons de outros providers continuam BLOQUEADOS |
 | Cura realizada em aliados | IMPLEMENTADO NO CÓDIGO / VALIDAÇÃO PARCIAL — somente cura **Holy** atribuída por `SpellHealEvent` de Iron’s 1.21.1-3.16.3 para outro `ServerPlayer`; ponte de uso único e mesmo tick com `LivingHealEvent`; GameTests provider-present aprovados, Sonar do incremento pendente |
 
@@ -104,3 +104,18 @@ Fontes oficiais: `neoforged/NeoForge@1.21.1` em `event/entity/player/TradeWithVi
 ### Revisão de status após o incremento 17 (14/10/2026 BRT)
 
 O projeto passou a **17/18 bridges de gameplay validadas no HEAD `d68e041` (26/26 workflows, Sonar New Code Coverage 80,8%, zero novos issues, hotspots e duplicação)**. **Carisma/dano de lobos** e **Carisma/cura de aliados por Iron's Holy** permanecem integrações **parciais por fonte/provider**, não universais. `CHARISMA_VILLAGER_DISCOUNT` é a **última contribuição completamente bloqueada**. Após reauditar o NeoForge `1.21.1`, `TradeWithVillagerEvent` é emitido **dentro de `AbstractVillager.notifyTrade` após a transação**, sem contrato para alterar o preço antes do consumo; `VillagerTradesEvent` atua em tabelas de profissão compartilhadas. Não modificar `specialPriceDiff` em `MerchantOffer` compartilhada (risco reputação, outros clientes, preço mínimo) nem fazer cashback de esmeraldas sem prova de ID transacional, pois não equivale a um desconto de preço pré-negociado e pode ser repetido por eventos de terceiros. Necessário hook **antes da validação/consumo no servidor**, isolamento por jogador/aldeão/oferta, compatibilidade com gossip, Hero of the Village, restocks e addons, custo final >=1 e sincronização fiel do menu cliente. Conservar fórmula já aprovada (primeiro ganho 0,32% a cada 5 ranks, teto assintótico 8%), mas **sem efeito no jogo enquanto o contrato não estiver resolvido**. Ver `STAGE03-POINT0-PHYSICAL-QA.md` para testes físicos; PR #920 continua Draft/sem merge.
+
+
+### Incremento 18 — desconto por sessão de comércio vanilla, aprovado no CI (15/10/2026 BRT)
+
+**Estado atual: IMPLEMENTADO E VALIDADO POR TESTES AUTOMATIZADOS.** Os parágrafos anteriores desta ficha sobre `CHARISMA_VILLAGER_DISCOUNT` bloqueado são um **histórico de decisões antes da identificação da janela de abertura do menu**, não o estado presente. O PR #920 chegou ao HEAD `4ae2f6a25b50fc9d23ecf055c30bf86dafffc265` com **26/26 workflows `success`**, inclusive CI principal, Battle Mage Epic, integração do modpack e SonarQube Cloud. **New Code Coverage 80,5%** (mínimo obrigatório 80%), **0 novos issues, 0 security hotspots e 0% duplicação**.
+
+**Fonte do hook e fluxo:** em Minecraft/NeoForge 1.21.1, `Villager.startTrading` calcula os ajustes especiais por reputação e `HERO_OF_THE_VILLAGE`, associa o `tradingPlayer` e abre `MerchantMenu`. O patch NeoForge de `ServerPlayer.openMenu` publica `PlayerContainerEvent.Open` depois de instalar o container, e `AbstractVillager.openTradingScreen` envia em seguida a tabela de ofertas ao jogador. O adapter registrado `InvestedCharismaVillagerTradingEvents.onOpen` atua somente nesse momento anterior ao envio da oferta. `TradeWithVillagerEvent` é pós-negociação e **não** participa da mudança. No encerramento, `MerchantMenu.removed -> Villager.setTradingPlayer(null) -> stopTrading -> resetSpecialPrices` remove os diferenciais transitórios; o evento `PlayerContainerEvent.Close` limpa o registro de idempotência do menu, sem tentar restaurar offsets de reputação manualmente.
+
+**Guardas fail-closed:** somente `ServerPlayer` real, survival, mundo servidor; menu da classe vanilla exata `MerchantMenu`, igual ao `containerMenu` ativo e `stillValid(player)`; **um e apenas um** `Villager` vanilla vivo nas proximidades com `getTradingPlayer() == player` e a **mesma coleção nativa `MerchantOffers`**. Só ofertas com `Items.EMERALD` como custo A, sem custo B, que entreguem item não esmeralda, disponíveis e com custo atual superior a 1 são elegíveis. Exclui mercadores de addons, venda de itens para adquirir esmeraldas, trocas de dois custos, ofertas esgotadas, jogador em criativo/espectador, falso player, menu abandonado, preço zero e aplicação duplicada sobre a mesma instância de menu. Não cria cashback, oferta paralela, reputação fictícia, gossip ou persistência econômica.
+
+**Cálculo:** lê apenas `CoreProgressionState.attributeRanks()` e `AttributeInvestmentBonuses.Benefit.CHARISMA_VILLAGER_DISCOUNT`, primeiro marco CHA 5 = **0,32%**, teto assintótico **8%**. Redução inteira `min(preçoAtual - 1, floor(preçoAtual * fração))`, aplicada ao diferencial especial da oferta **depois** do preço vanilla da sessão. Não há arredondamento para 1 esmeralda de bônus se o desconto calculado for inferior a uma unidade; portanto preços baixos podem não mudar, mesmo com CHA investido. O preço de compra nunca será reduzido abaixo de 1 esmeralda pela contribuição.
+
+**GameTests reais:** `CharismaVillagerTradingGameTests` (3 cenários) cobre rank alto, abertura repetida idempotente, `MerchantOffer.satisfiedBy` com pagamento exato e insuficiente, `MerchantOffer.take` descontando esmeraldas, preservação do `getBaseCostA`, exclusão de vendas, item de 1 esmeralda, oferta com segundo custo e menu obsoleto, interação com `specialPriceDiff` de reputação já existente, restabelecimento do preço vanilla e novo comprador de rank zero. O ciclo TDD teve falhas esperadas no preço antes do handler; as fixtures precisaram ser corrigidas porque `AbstractVillager.overrideOffers` é no-op e jogadores de GameTest sem conexão não podem sofrer teleporte com `moveTo`. A implementação usa a coleção nativa via `getOffers`; `PlayerContainerEvent.Open` em jogo real é emitido automaticamente. Os GameTests invocam o método diretamente para testar a política de ofertas com `MerchantMenu` e `Villager` reais.
+
+**Limites e QA físico obrigatório:** nenhum teste de CI prova a tela gráfica de dois clientes reais nem a ausência de conflitos com outros mods que mutem `specialPriceDiff` após a abertura; testes de restock, saída abrupta, logout/relog, gossip, Hero of the Village, economia de plugins e respec com menu aberto precisam de validação no pack físico. Um refresh/respec enquanto o menu permanece aberto **não** recalcula o desconto imediatamente; o valor da sessão é calculado na abertura e a próxima negociação deve refletir o rank atualizado. Consulte `STAGE03-POINT0-PHYSICAL-QA.md`. **A contagem passa a 18/18 bridges integradas ao gameplay (algumas parciais), não a certificação física de release. PR #920 permanece Draft e não deve sofrer merge automático.**
