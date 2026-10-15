@@ -12,6 +12,7 @@ import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import java.util.Map;
 import java.util.UUID;
+import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.server.level.ClientInformation;
@@ -21,6 +22,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.projectile.ShulkerBullet;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
@@ -61,6 +63,25 @@ public final class DeterminationControlInvestmentGameTests {
             new MobEffectEvent.Added(player, previous, renewal, shulker));
         check(helper, 200, renewal.getDuration(), "already active effect must not be altered");
         check(helper, 30, previous.getDuration(), "existing effect must remain intact");
+
+        // Actual projectile ownership is the normal hostile source: a Shulker
+        // bullet is eligible only when it demonstrably belongs to a Shulker.
+        ShulkerBullet hostileBullet = new ShulkerBullet(
+            helper.getLevel(), shulker, player, Direction.Axis.Y);
+        MobEffectInstance bulletLevitation = new MobEffectInstance(MobEffects.LEVITATION, 200);
+        InvestedDeterminationControlEvents.onAdded(
+            new MobEffectEvent.Added(player, null, bulletLevitation, hostileBullet));
+        double bulletReduction = AttributeInvestmentBonuses.value(
+            AttributeInvestmentBonuses.Benefit.DETERMINATION_CONTROL_DURATION, 300L);
+        check(helper, Math.max(1, (int) Math.floor(200.0D * (1.0D - bulletReduction))),
+            bulletLevitation.getDuration(), "verified Shulker bullet owner");
+
+        ShulkerBullet orphanBullet = new ShulkerBullet(EntityType.SHULKER_BULLET, helper.getLevel());
+        MobEffectInstance orphanLevitation = new MobEffectInstance(MobEffects.LEVITATION, 200);
+        InvestedDeterminationControlEvents.onAdded(
+            new MobEffectEvent.Added(player, null, orphanLevitation, orphanBullet));
+        check(helper, 200, orphanLevitation.getDuration(),
+            "ownerless Shulker bullet must fail closed");
 
         Zombie zombie = new Zombie(EntityType.ZOMBIE, helper.getLevel());
         for (MobEffectEvent.Added ignored : new MobEffectEvent.Added[] {
