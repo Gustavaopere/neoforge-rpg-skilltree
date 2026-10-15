@@ -17,6 +17,11 @@ public final class ClientCoreProgressionState {
         return Optional.ofNullable(CURRENT.get());
     }
 
+    /** Prevent a previous world's Core snapshot from authorizing UI actions on a new server. */
+    public static void clear() {
+        CURRENT.set(null);
+    }
+
     public static void handleSync(CoreProgressionSyncPayload payload, IPayloadContext context) {
         CoreProgressionSyncState decoded = CoreProgressionSyncStateCodec.decode(payload.snapshot());
         CURRENT.set(decoded);
