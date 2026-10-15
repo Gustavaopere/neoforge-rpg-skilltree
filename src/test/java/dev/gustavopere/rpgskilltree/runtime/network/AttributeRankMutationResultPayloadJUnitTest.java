@@ -47,6 +47,22 @@ final class AttributeRankMutationResultPayloadJUnitTest {
     }
 
     @Test
+    void lateResponseCannotOverwriteAnEarlierPendingTransactionResult() {
+        var active = new AttributeRankMutationResultPayload("active-transaction", true);
+        var stale = new AttributeRankMutationResultPayload("stale-transaction", false);
+
+        // Both network callbacks may run before one client tick consumes receipts.
+        AttributeRankMutationResultPayload.handle(active, null);
+        AttributeRankMutationResultPayload.handle(stale, null);
+
+        assertEquals(active, ClientAttributeMutationResultState.take().orElseThrow(),
+            "an unrelated later receipt must not erase the pending transaction verdict");
+        assertEquals(stale, ClientAttributeMutationResultState.take().orElseThrow(),
+            "each verdict should remain readable once");
+        assertTrue(ClientAttributeMutationResultState.take().isEmpty());
+    }
+
+    @Test
     void clientReceiptMailboxIsReadOnceAndResetOnDisconnect() {
         var first = new AttributeRankMutationResultPayload("first", true);
         var second = new AttributeRankMutationResultPayload("second", false);
