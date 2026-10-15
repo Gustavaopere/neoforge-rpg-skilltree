@@ -15,7 +15,6 @@ import dev.gustavopere.rpgskilltree.runtime.network.CoreProgressionSyncPayload;
 import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.EnumMap;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
