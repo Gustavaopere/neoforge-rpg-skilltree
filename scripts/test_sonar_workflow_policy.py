@@ -173,6 +173,23 @@ def main() -> None:
             pattern in sonartests and pattern in sonarexcludes,
             f"Investment GameTest must be test-scoped and excluded from main-code scope: {pattern}",
         )
+    # S2187 treats runtime NeoForge @GameTest methods as empty JUnit test classes.
+    # Scope this targeted false-positive suppression to actual test classes only.
+    for pattern in INVESTMENT_GAME_TEST_PATTERNS:
+        class_text = (ROOT / pattern).read_text(encoding="utf-8")
+        require(
+            '@SuppressWarnings("java:S2187")' in class_text
+            and '@GameTestHolder("rpgskilltree")' in class_text
+            and "@GameTest(" in class_text,
+            f"S2187 suppression must be attached to an executable GameTest class: {pattern}",
+        )
+    permitted = set(INVESTMENT_GAME_TEST_PATTERNS)
+    for java_file in (ROOT / "src/main/java").rglob("*.java"):
+        if '@SuppressWarnings("java:S2187")' in java_file.read_text(encoding="utf-8"):
+            require(
+                java_file.relative_to(ROOT).as_posix() in permitted,
+                f"S2187 suppression outside audited GameTests: {java_file}",
+            )
     require(
         "-Dsonar.test.inclusions=" in workflow and "-Dsonar.exclusions=" in workflow,
         "Provider GameTests must be test-scoped and excluded only from main-code scope.",

@@ -27,6 +27,8 @@ import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
  * Exact-provider GameTest. Uses the real native Pre event and ServerPlayer's
  * canonical Core attachment; never allocates a second cooldown store.
  */
+// Sonar S2187 expects JUnit; these methods execute as NeoForge @GameTest.
+@SuppressWarnings("java:S2187")
 @GameTestHolder("rpgskilltree")
 @PrefixGameTestTemplate(false)
 public final class IronsCooldownInvestmentGameTests {

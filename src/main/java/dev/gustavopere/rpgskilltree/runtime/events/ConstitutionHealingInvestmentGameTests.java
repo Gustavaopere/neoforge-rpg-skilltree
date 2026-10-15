@@ -23,6 +23,8 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /** Event-level coverage of the native Constitution incoming-heal hook. */
+// Sonar S2187 expects JUnit; these methods execute as NeoForge @GameTest.
+@SuppressWarnings("java:S2187")
 @GameTestHolder("rpgskilltree")
 @PrefixGameTestTemplate(false)
 public final class ConstitutionHealingInvestmentGameTests {

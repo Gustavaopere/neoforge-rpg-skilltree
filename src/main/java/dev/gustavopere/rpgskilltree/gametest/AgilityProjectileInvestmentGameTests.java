@@ -27,6 +27,8 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /** Tests the actual NeoForge release/join events and native arrow velocity. */
+// Sonar S2187 expects JUnit; these methods execute as NeoForge @GameTest.
+@SuppressWarnings("java:S2187")
 @GameTestHolder("rpgskilltree")
 @PrefixGameTestTemplate(false)
 public final class AgilityProjectileInvestmentGameTests {

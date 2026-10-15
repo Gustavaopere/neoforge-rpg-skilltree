@@ -25,6 +25,8 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /** Real NeoForge damage events, not a replacement damage/tick simulation. */
+// Sonar S2187 expects JUnit; these methods execute as NeoForge @GameTest.
+@SuppressWarnings("java:S2187")
 @GameTestHolder("rpgskilltree")
 @PrefixGameTestTemplate(false)
 public final class ConstitutionDotInvestmentGameTests {

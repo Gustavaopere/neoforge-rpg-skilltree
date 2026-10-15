@@ -25,6 +25,8 @@ import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 /** Real NeoForge incoming-damage event and real vanilla owner/pet fixtures. */
+// Sonar S2187 expects JUnit; these methods execute as NeoForge @GameTest.
+@SuppressWarnings("java:S2187")
 @GameTestHolder("rpgskilltree")
 @PrefixGameTestTemplate(false)
 public final class CharismaCompanionInvestmentGameTests {
