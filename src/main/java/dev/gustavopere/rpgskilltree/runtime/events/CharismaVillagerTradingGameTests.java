@@ -75,6 +75,19 @@ public final class CharismaVillagerTradingGameTests {
         InvestedCharismaVillagerTradingEvents.onOpen(open);
         helper.assertTrue(emeraldPurchase.getCostA().getCount() == expected,
             "pre-transaction offer price must be reduced in native merchant inventory");
+        helper.assertTrue(emeraldPurchase.getBaseCostA().getCount() == 64,
+            "Charisma must never rewrite the underlying vanilla base cost");
+        helper.assertTrue(emeraldPurchase.satisfiedBy(
+            new ItemStack(Items.EMERALD, expected), ItemStack.EMPTY),
+            "server-side MerchantOffer must accept the exact discounted payment");
+        helper.assertTrue(!emeraldPurchase.satisfiedBy(
+            new ItemStack(Items.EMERALD, expected - 1), ItemStack.EMPTY),
+            "server-side merchant must reject a single emerald less than the discount");
+        ItemStack chargedEmeralds = new ItemStack(Items.EMERALD, expected);
+        helper.assertTrue(emeraldPurchase.take(chargedEmeralds, ItemStack.EMPTY),
+            "native MerchantOffer.take must collect the discounted payment exactly");
+        helper.assertTrue(chargedEmeralds.isEmpty(),
+            "the server must consume the entire validated payment");
         InvestedCharismaVillagerTradingEvents.onOpen(open);
         helper.assertTrue(emeraldPurchase.getCostA().getCount() == expected,
             "replayed open must not compound a price discount");
@@ -83,6 +96,7 @@ public final class CharismaVillagerTradingGameTests {
         // Minecraft's own lifecycle; avoid any persisted or globally modified offer.
         buyer.containerMenu = buyer.inventoryMenu;
         villager.setTradingPlayer(null);
+        InvestedCharismaVillagerTradingEvents.onClose(new PlayerContainerEvent.Close(buyer, menu));
         helper.assertTrue(emeraldPurchase.getCostA().getCount() == 64,
             "closing vanilla merchant must restore unmodified price");
 
@@ -133,6 +147,48 @@ public final class CharismaVillagerTradingGameTests {
             "offer price must never become zero");
         helper.assertTrue(twoCosts.getCostA().getCount() == 64,
             "dual-input exchanges are not audited for the narrow initial boundary");
+        helper.succeed();
+    }
+
+    @GameTest(template = "foundation_empty")
+    public static void preexistingVanillaSpecialPriceIsPreservedAndNotInherited(GameTestHelper helper) {
+        ServerPlayer buyer = player(helper, "charisma-gossip");
+        setRank(buyer, 300L);
+        Villager villager = villager(helper, buyer);
+        MerchantOffers offers = villager.getOffers();
+        offers.clear();
+        MerchantOffer withReputation = offer(64, Items.BREAD);
+        withReputation.setSpecialPriceDiff(-5);
+        offers.add(withReputation);
+        villager.setTradingPlayer(buyer);
+        MerchantMenu menu = new MerchantMenu(35, buyer.getInventory(), villager);
+        buyer.containerMenu = menu;
+
+        helper.assertTrue(withReputation.getCostA().getCount() == 59,
+            "vanilla reputation-like offset must be present before opening");
+        double fraction = AttributeInvestmentBonuses.value(
+            AttributeInvestmentBonuses.Benefit.CHARISMA_VILLAGER_DISCOUNT, 300L);
+        int expected = 59 - (int) Math.floor(59.0D * fraction);
+        InvestedCharismaVillagerTradingEvents.onOpen(new PlayerContainerEvent.Open(buyer, menu));
+        helper.assertTrue(withReputation.getCostA().getCount() == expected,
+            "Charisma should be additive after vanilla pricing, never replacing gossip");
+
+        buyer.containerMenu = buyer.inventoryMenu;
+        villager.setTradingPlayer(null);
+        InvestedCharismaVillagerTradingEvents.onClose(
+            new PlayerContainerEvent.Close(buyer, menu));
+        helper.assertTrue(withReputation.getCostA().getCount() == 64,
+            "vanilla merchant must clear all session-specific price differences");
+
+        ServerPlayer other = player(helper, "charisma-gossip-other");
+        setRank(other, 0L);
+        villager.setTradingPlayer(other);
+        MerchantMenu nextMenu = new MerchantMenu(36, other.getInventory(), villager);
+        other.containerMenu = nextMenu;
+        InvestedCharismaVillagerTradingEvents.onOpen(
+            new PlayerContainerEvent.Open(other, nextMenu));
+        helper.assertTrue(withReputation.getCostA().getCount() == 64,
+            "second player inherits neither Charisma nor prior gossip offsets");
         helper.succeed();
     }
 
