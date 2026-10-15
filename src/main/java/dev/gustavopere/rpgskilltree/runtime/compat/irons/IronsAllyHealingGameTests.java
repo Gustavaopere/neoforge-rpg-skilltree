@@ -108,6 +108,56 @@ public final class IronsAllyHealingGameTests {
         helper.succeed();
     }
 
+    @GameTest(template = "foundation_empty")
+    public static void charismaRespectsMilestonesAndRejectsCanceledOrForeignSchool(GameTestHelper helper) {
+        if (!IronsInvestmentAttributePolicy.operational(
+            OptionalIntegrations.isLoaded(OptionalIntegrations.Provider.IRONS_SPELLBOOKS),
+            OptionalIntegrations.version(OptionalIntegrations.Provider.IRONS_SPELLBOOKS))) {
+            helper.succeed();
+            return;
+        }
+
+        ServerPlayer caster = player(helper, "charisma-milestones");
+        ServerPlayer patient = player(helper, "charisma-patient");
+        patient.setHealth(8.0F);
+        for (long rank : new long[] {0L, 9L, 10L, 30L, 300L, Long.MAX_VALUE}) {
+            setRank(caster, rank);
+            IronsAllyHealingEvents.onSpellHeal(
+                new SpellHealEvent(caster, patient, 4.0F, SchoolRegistry.HOLY.get()));
+            LivingHealEvent nativeEvent = new LivingHealEvent(patient, 4.0F);
+            IronsAllyHealingEvents.onLivingHeal(nativeEvent);
+            double ratio = AttributeInvestmentBonuses.value(
+                AttributeInvestmentBonuses.Benefit.CHARISMA_ALLY_HEALING, rank);
+            close(helper, 4.0D * (1.0D + ratio), nativeEvent.getAmount(),
+                "canonical Charisma rank " + rank);
+        }
+
+        setRank(caster, 300L);
+        IronsAllyHealingEvents.onSpellHeal(
+            new SpellHealEvent(caster, patient, 4.0F, SchoolRegistry.HOLY.get()));
+        LivingHealEvent canceled = new LivingHealEvent(patient, 4.0F);
+        canceled.setCanceled(true);
+        IronsAllyHealingEvents.onLivingHeal(canceled);
+        close(helper, 4.0D, canceled.getAmount(), "cancelled native heal");
+        LivingHealEvent afterCancel = new LivingHealEvent(patient, 4.0F);
+        IronsAllyHealingEvents.onLivingHeal(afterCancel);
+        close(helper, 4.0D, afterCancel.getAmount(), "canceled token consumed");
+
+        IronsAllyHealingEvents.onSpellHeal(
+            new SpellHealEvent(caster, patient, 4.0F, SchoolRegistry.FIRE.get()));
+        LivingHealEvent untrustedSchool = new LivingHealEvent(patient, 4.0F);
+        IronsAllyHealingEvents.onLivingHeal(untrustedSchool);
+        close(helper, 4.0D, untrustedSchool.getAmount(), "foreign school is not attributed");
+
+        ServerPlayer missingCore = player(helper, "charisma-no-core");
+        IronsAllyHealingEvents.onSpellHeal(
+            new SpellHealEvent(missingCore, patient, 4.0F, SchoolRegistry.HOLY.get()));
+        LivingHealEvent absent = new LivingHealEvent(patient, 4.0F);
+        IronsAllyHealingEvents.onLivingHeal(absent);
+        close(helper, 4.0D, absent.getAmount(), "missing Core rank fails closed");
+        helper.succeed();
+    }
+
     private static ServerPlayer player(GameTestHelper helper, String name) {
         return new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
             new GameProfile(UUID.randomUUID(), name), ClientInformation.createDefault());
