@@ -90,7 +90,7 @@ public final class CharismaVillagerTradingGameTests {
             new ItemStack(Items.EMERALD), 10, 2, 0.0F);
         MerchantOffer oneEmerald = offer(1, Items.BREAD);
         MerchantOffer twoCosts = new MerchantOffer(
-            new ItemCost(Items.EMERALD, 64), new ItemCost(Items.BREAD, 1),
+            new ItemCost(Items.EMERALD, 64), java.util.Optional.of(new ItemCost(Items.BREAD, 1)),
             new ItemStack(Items.COOKIE), 10, 2, 0.0F);
         offers.add(purchase);
         offers.add(sale);
