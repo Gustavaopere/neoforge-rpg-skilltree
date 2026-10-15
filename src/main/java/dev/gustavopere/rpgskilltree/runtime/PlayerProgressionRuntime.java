@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime;
 
+import dev.gustavopere.rpgskilltree.core.AttributeRanks;
 import dev.gustavopere.rpgskilltree.core.BossIdentity;
 import dev.gustavopere.rpgskilltree.core.BossProgressionResult;
 import dev.gustavopere.rpgskilltree.core.BossRewardDefinition;
@@ -82,7 +83,7 @@ public final class PlayerProgressionRuntime {
             discoveries = discoveries.add(discoveryKey);
         }
 
-        ProgressionState next = reconcileDerivedState(
+        ProgressionState next = reconcileDerivedState(player, 
             current.withMastery(mastery).withDiscoveries(discoveries)
         );
         set(player, next);
@@ -126,7 +127,8 @@ public final class PlayerProgressionRuntime {
             boolean requirementsSatisfied = NodeAccessResolver.satisfied(
                 accessState,
                 TreeRuleCatalog.requirement(nodeId),
-                CharacterLevelCurve.defaultCurve()
+                CharacterLevelCurve.defaultCurve(),
+                currentAttributeRanks(player)
             );
             ProgressionState next = ProgressionService.purchaseNode(
                 current,
@@ -134,7 +136,7 @@ public final class PlayerProgressionRuntime {
                 definition.get(),
                 requirementsSatisfied
             );
-            next = reconcileDerivedState(next);
+            next = reconcileDerivedState(player, next);
             set(player, next);
             return true;
         } catch (IllegalArgumentException rejectedPurchase) {
@@ -165,7 +167,8 @@ public final class PlayerProgressionRuntime {
         boolean requirementsSatisfied = NodeAccessResolver.satisfied(
             accessState,
             TreeRuleCatalog.requirement(nodeId),
-            CharacterLevelCurve.defaultCurve()
+            CharacterLevelCurve.defaultCurve(),
+            currentAttributeRanks(player)
         );
         NodePurchaseResult result = NODE_PURCHASE_PROCESSOR.purchase(
             player.getUUID(),
@@ -180,7 +183,7 @@ public final class PlayerProgressionRuntime {
             return result;
         }
 
-        ProgressionState reconciled = reconcileDerivedState(result.state());
+        ProgressionState reconciled = reconcileDerivedState(player, result.state());
         set(player, reconciled);
         return NodePurchaseResult.accepted(reconciled);
     }
@@ -213,7 +216,7 @@ public final class PlayerProgressionRuntime {
                 current.classProgression().unlockedClassIds(),
                 definition.get().defaultGroupCapacity()
             );
-            ProgressionState next = reconcileDerivedState(current.withClassChoices(choices));
+            ProgressionState next = reconcileDerivedState(player, current.withClassChoices(choices));
             set(player, next);
             return true;
         } catch (IllegalArgumentException rejectedChoice) {
@@ -236,7 +239,7 @@ public final class PlayerProgressionRuntime {
             return false;
         }
         var choices = current.classChoices().withoutSelection(definition.get().groupId(), definition.get().choiceId());
-        ProgressionState next = reconcileDerivedState(current.withClassChoices(choices));
+        ProgressionState next = reconcileDerivedState(player, current.withClassChoices(choices));
         set(player, next);
         return true;
     }
@@ -256,7 +259,7 @@ public final class PlayerProgressionRuntime {
         try {
             ProgressionState current = get(player);
             var result = ProgressionService.unlockClass(current, definition.get());
-            ProgressionState next = reconcileDerivedState(result.state());
+            ProgressionState next = reconcileDerivedState(player, result.state());
             set(player, next);
             return result.unlockedNow();
         } catch (IllegalArgumentException rejectedUnlock) {
@@ -276,7 +279,7 @@ public final class PlayerProgressionRuntime {
                 TreeRuleCatalog.definitions(),
                 nodeId.toString()
             );
-            ProgressionState reconciled = reconcileDerivedState(result.state());
+            ProgressionState reconciled = reconcileDerivedState(player, result.state());
             set(player, reconciled);
             return true;
         } catch (IllegalArgumentException rejectedRespec) {
@@ -288,7 +291,7 @@ public final class PlayerProgressionRuntime {
     /** Revalidates persisted progression against the currently loaded datapack rules. */
     public static ProgressionState reconcilePlayerState(ServerPlayer player) {
         Objects.requireNonNull(player);
-        ProgressionState reconciled = reconcileDerivedState(get(player));
+        ProgressionState reconciled = reconcileDerivedState(player, get(player));
         if (!set(player, reconciled)) {
             NodeEffectRuntime.refresh(player, reconciled);
             ModNetworking.syncToOwner(player, reconciled);
@@ -296,7 +299,19 @@ public final class PlayerProgressionRuntime {
         return reconciled;
     }
 
+    private static ProgressionState reconcileDerivedState(ServerPlayer player, ProgressionState initial) {
+        return reconcileDerivedState(initial, currentAttributeRanks(player));
+    }
+
+    /**
+     * Compatibility for the existing pure reconcilers and their reflective regression tests.
+     * An absent canonical Core context can never satisfy an attribute-gated requirement.
+     */
     private static ProgressionState reconcileDerivedState(ProgressionState initial) {
+        return reconcileDerivedState(initial, AttributeRanks.empty());
+    }
+
+    private static ProgressionState reconcileDerivedState(ProgressionState initial, AttributeRanks investedRanks) {
         ProgressionState current = initial;
         for (int iteration = 0; iteration < 32; iteration++) {
             var beforeNodes = current.passiveNodes().learnedNodeIds();
@@ -317,7 +332,8 @@ public final class PlayerProgressionRuntime {
                 TreeRuleCatalog.graph(),
                 TreeRuleCatalog.definitions(),
                 TreeRuleCatalog.requirements(),
-                CharacterLevelCurve.defaultCurve()
+                CharacterLevelCurve.defaultCurve(),
+                investedRanks
             ).state();
 
             boolean stable = beforeNodes.equals(current.passiveNodes().learnedNodeIds())
@@ -326,6 +342,13 @@ public final class PlayerProgressionRuntime {
             if (stable) return current;
         }
         throw new IllegalStateException("progression reconciliation did not stabilize");
+    }
+
+    private static AttributeRanks currentAttributeRanks(ServerPlayer player) {
+        // A read-only Core observation must never materialize storage or sync packets.
+        return CanonicalPlayerAttachmentRuntime.observe(player).coreProgression().state()
+            .map(core -> core.attributeRanks())
+            .orElse(AttributeRanks.empty());
     }
 
     private static boolean set(ServerPlayer player, ProgressionState state) {

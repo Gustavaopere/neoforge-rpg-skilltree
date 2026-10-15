@@ -37,6 +37,9 @@ import dev.gustavopere.rpgskilltree.runtime.compat.goety.GoetyVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.Identity2EcologyEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReloader;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsInvestmentAttributePolicy;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsInvestmentCooldownEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsAllyHealingEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSustainEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSustainVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumIntegrationBootstrap;
@@ -85,6 +88,11 @@ import dev.gustavopere.rpgskilltree.runtime.events.EntityRewardEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.EntityScalingEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ExplorationProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.MiningProgressionEvents;
+import dev.gustavopere.rpgskilltree.runtime.events.InvestedConstitutionHealingEvents;
+import dev.gustavopere.rpgskilltree.runtime.events.InvestedConstitutionDotEvents;
+import dev.gustavopere.rpgskilltree.runtime.events.InvestedCharismaVillagerTradingEvents;
+import dev.gustavopere.rpgskilltree.runtime.events.InvestedDeterminationControlEvents;
+import dev.gustavopere.rpgskilltree.runtime.events.InvestedCharismaCompanionDamageEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.PhysicalProjectileMasteryEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.PlayerProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.ProgressionOwnerSyncEvents;
@@ -140,6 +148,11 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(CombatProgressionEvents.class);
         NeoForge.EVENT_BUS.register(ExplorationProgressionEvents.class);
         NeoForge.EVENT_BUS.register(MiningProgressionEvents.class);
+        NeoForge.EVENT_BUS.register(InvestedConstitutionHealingEvents.class);
+        NeoForge.EVENT_BUS.register(InvestedConstitutionDotEvents.class);
+        NeoForge.EVENT_BUS.register(InvestedCharismaVillagerTradingEvents.class);
+        NeoForge.EVENT_BUS.register(InvestedDeterminationControlEvents.class);
+        NeoForge.EVENT_BUS.register(InvestedCharismaCompanionDamageEvents.class);
         NeoForge.EVENT_BUS.register(A0041A0060ProjectileEvents.class);
         NeoForge.EVENT_BUS.register(PhysicalProjectileMasteryEvents.class);
         NeoForge.EVENT_BUS.register(A0081A0100CombatEvents.class);
@@ -354,6 +367,11 @@ public final class RpgSkillTreeMod {
 
         if (ironsSpellbooksLoaded) {
             NeoForge.EVENT_BUS.register(IronsSpellbookProgressionEvents.class);
+            // Load the event's Iron's ABI only after the exact version gate.
+            if (IronsInvestmentAttributePolicy.supportsVersion(ironsSpellbooksVersion)) {
+                NeoForge.EVENT_BUS.register(IronsInvestmentCooldownEvents.class);
+                NeoForge.EVENT_BUS.register(IronsAllyHealingEvents.class);
+            }
             if (IronsSustainEvents.operational()) {
                 NeoForge.EVENT_BUS.register(IronsSustainEvents.class);
             } else {

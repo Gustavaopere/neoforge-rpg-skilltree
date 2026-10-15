@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.client;
 
+import dev.gustavopere.rpgskilltree.core.AttributeRanks;
 import dev.gustavopere.rpgskilltree.core.CharacterLevelCurve;
 import dev.gustavopere.rpgskilltree.core.NodeDisplayState;
 import dev.gustavopere.rpgskilltree.core.TreeDisplayProjector;
@@ -12,6 +13,7 @@ import dev.gustavopere.rpgskilltree.runtime.network.ClearClassChoicePayload;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -41,6 +43,15 @@ public final class RpgSkillTreeScreen extends Screen {
     }
 
     @Override
+    protected void init() {
+        super.init();
+        addRenderableWidget(Button.builder(
+            Component.translatable("screen.rpgskilltree.attribute_panel"),
+            button -> minecraft.setScreen(new AttributeInvestmentScreen(this))
+        ).bounds(8, Math.max(8, height - 28), 104, 20).build());
+    }
+
+    @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
         graphics.fill(0, 0, width, height, 0xFF090C12);
         TreeDisplayState display = displayState();
@@ -50,6 +61,7 @@ public final class RpgSkillTreeScreen extends Screen {
         renderPaidClasses(graphics, mouseX, mouseY);
         renderClassChoices(graphics, mouseX, mouseY);
         renderHoveredNode(graphics, display, mouseX, mouseY);
+        super.render(graphics, mouseX, mouseY, partialTick);
     }
 
     private TreeDisplayState displayState() {
@@ -58,8 +70,15 @@ public final class RpgSkillTreeScreen extends Screen {
             layout.graph(),
             layout.definitions(),
             layout.requirements(),
-            CharacterLevelCurve.defaultCurve()
+            CharacterLevelCurve.defaultCurve(),
+            currentInvestedRanks()
         );
+    }
+
+    private static AttributeRanks currentInvestedRanks() {
+        return ClientCoreProgressionState.get()
+            .map(snapshot -> snapshot.attributeRanks())
+            .orElse(AttributeRanks.empty());
     }
 
     private void renderEdges(GuiGraphics graphics, TreeDisplayState display) {
@@ -251,6 +270,19 @@ public final class RpgSkillTreeScreen extends Screen {
             lines.addAll(font.split(Component.literal(description), maxLineWidth));
         }
 
+        // Display each authoritative-design threshold with the observed Core rank, not a spent cost.
+        AttributeRanks invested = currentInvestedRanks();
+        node.requirement().requiredAttributeRanks().entrySet().stream()
+            .sorted(java.util.Map.Entry.comparingByKey())
+            .forEach(entry -> {
+                String attribute = Component.translatable(
+                    "screen.rpgskilltree.attribute." + entry.getKey().name()).getString();
+                Component requirement = Component.translatable(
+                    "screen.rpgskilltree.tooltip.attribute_requirement",
+                    attribute, invested.rank(entry.getKey()), entry.getValue());
+                lines.addAll(font.split(requirement, maxLineWidth));
+            });
+
         SkillTreeTooltipText.PurchaseState purchaseState = state.canPurchase()
             ? SkillTreeTooltipText.PurchaseState.PURCHASABLE
             : state.learned()
@@ -285,6 +317,7 @@ public final class RpgSkillTreeScreen extends Screen {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (super.mouseClicked(mouseX, mouseY, button)) return true;
         ClassChoiceButton classChoice = classChoiceAt(mouseX, mouseY);
         if (classChoice != null) {
             ResourceLocation choiceId = ResourceLocation.parse(classChoice.choiceId());

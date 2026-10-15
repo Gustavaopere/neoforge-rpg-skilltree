@@ -17,6 +17,20 @@ BATTLE_MAGE_TEST_PATTERNS = (
 ARS_PROVIDER_TEST_PATTERN = (
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/ars/gametest/ArsProviderCausalityGameTests.java"
 )
+INVESTMENT_GAME_TEST_PATTERNS = (
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/CharismaVillagerTradingGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/DeterminationControlExpiryGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/irons/IronsAllyHealingGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/ConstitutionDotInvestmentGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/ConstitutionHealingInvestmentGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/events/CharismaCompanionInvestmentGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/gametest/AgilityProjectileInvestmentGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/gametest/EpicFightInvestmentAttributeGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/gametest/InvestedAttributeGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/gametest/IronsInvestmentAttributeGameTests.java",
+    "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/irons/IronsCooldownInvestmentGameTests.java",
+)
+
 ECONOMY_TEST_PATTERNS = (
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/economy/ColonyEconomyPersistenceGameTests.java",
     "src/main/java/dev/gustavopere/rpgskilltree/runtime/compat/minecolonies/economy/gametest/**/*",
@@ -107,6 +121,11 @@ def main() -> None:
         "Sonar CI must import the provider-present Battle Mage transformed-class GameTest report.",
     )
     require(
+        "-PbattleMageEpicRuntime=true" in workflow
+        and "Collect Battle Mage Epic Fight provider GameTest coverage" in workflow,
+        "Battle Mage Sonar coverage must run the exact Epic Fight opt-in provider GameTest stack.",
+    )
+    require(
         "ars-provider/ars-provider.xml" in workflow and "'ars-provider'" in game_test_coverage,
         "Sonar CI must import a dedicated transformed-class Ars provider GameTest report.",
     )
@@ -148,6 +167,36 @@ def main() -> None:
             pattern in workflow,
             f"MineColonies Economy GameTest scope is missing from Sonar classification: {pattern}",
         )
+    # Provider-present/absent investment probes must be classified as tests,
+    # never treated as uncovered production sources in Sonar's New Code gate.
+    sonartests = next((line for line in workflow.splitlines() if line.strip().startswith("-Dsonar.test.inclusions=")), "")
+    sonarexcludes = next((line for line in workflow.splitlines() if line.strip().startswith("-Dsonar.exclusions=")), "")
+    for pattern in INVESTMENT_GAME_TEST_PATTERNS:
+        require(
+            pattern in sonartests and pattern in sonarexcludes,
+            f"Investment GameTest must be test-scoped and excluded from main-code scope: {pattern}",
+        )
+    # S2187 treats runtime NeoForge @GameTest methods as empty JUnit test classes.
+    # Scope this targeted false-positive suppression to actual test classes only.
+    for pattern in INVESTMENT_GAME_TEST_PATTERNS:
+        class_text = (ROOT / pattern).read_text(encoding="utf-8")
+        require(
+            '@SuppressWarnings("java:S2187")' in class_text
+            and '@GameTestHolder("rpgskilltree")' in class_text
+            and "@GameTest(" in class_text,
+            f"S2187 suppression must be attached to an executable GameTest class: {pattern}",
+        )
+    # Other already-audited provider GameTests use the same targeted suppression.
+    # Verify executable GameTest identity rather than introducing a brittle
+    # whitelist that rejects legitimate GameTests in other subsystems.
+    for java_file in (ROOT / "src/main/java").rglob("*.java"):
+        class_text = java_file.read_text(encoding="utf-8")
+        if '@SuppressWarnings("java:S2187")' in class_text:
+            require(
+                "@GameTestHolder(" in class_text and "@GameTest(" in class_text
+                and java_file.name.endswith("GameTests.java"),
+                f"S2187 suppression outside an executable NeoForge GameTest: {java_file}",
+            )
     require(
         "-Dsonar.test.inclusions=" in workflow and "-Dsonar.exclusions=" in workflow,
         "Provider GameTests must be test-scoped and excluded only from main-code scope.",

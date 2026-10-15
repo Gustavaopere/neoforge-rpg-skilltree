@@ -2,6 +2,7 @@ package dev.gustavopere.rpgskilltree.runtime.events;
 
 import dev.gustavopere.rpgskilltree.runtime.CorePlayerProgressionRuntime;
 import dev.gustavopere.rpgskilltree.runtime.PlayerProgressionRuntime;
+import dev.gustavopere.rpgskilltree.runtime.effects.NodeEffectRuntime;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -30,6 +31,7 @@ public final class PlayerProgressionEvents {
         if (event.getEntity() instanceof ServerPlayer player) {
             PlayerProgressionRuntime.syncToOwner(player);
             CorePlayerProgressionRuntime.syncToOwnerIfInitialized(player);
+            NodeEffectRuntime.refresh(player, PlayerProgressionRuntime.get(player));
         }
     }
 }

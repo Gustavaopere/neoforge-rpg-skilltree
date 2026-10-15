@@ -54,3 +54,23 @@ Adicionar resistência limitada ao knockback. 'pp' são pontos percentuais de re
 - Testar stacking com equipamento e outras perks em um único pipeline real.
 
 **Pendência:** a presente ficha aprova a **proposta de design**, não afirma existência de runtime, hooks ou balanceamento final.
+
+
+## Estado técnico da implementação — 14/10/2026
+
+**Custo em uso:** `UnitAttributeRankCostPolicy.INSTANCE`, 1 Core Progression Point por rank; a proposta crescente de 50 ranks **não foi ativada**. Ranks e refunds persistem via `CoreProgressionState.attributeRanks()` e ledger Core. Todos os três ganhos seguem `a × (1−q^floor(rank/k))/(1−q)`, com valores/intervalos da tabela de design, sempre recalculados. Esses limites restringem a contribuição da trilha, não a estatística global.
+
+| Trilha | Situação da integração |
+|---|---|
+| Dano físico corpo a corpo | IMPLEMENTADO NO CÓDIGO / CI NOVO PENDENTE — atributo vanilla `minecraft:generic.attack_damage`, `ADD_MULTIPLIED_TOTAL`, ID `rpgskilltree:investment/strength_melee_damage`; o pipeline de dano não recebe segundo multiplicador. Valida ataque físico vanilla; compatibilidade com técnicas próprias do Epic Fight ainda requer QA cruzado |
+| Mineração manual | IMPLEMENTADO NO CÓDIGO / CI PENDENTE — `minecraft:player.block_break_speed`; modificador `rpgskilltree:investment/strength_manual_mining`, `ADD_MULTIPLIED_TOTAL`. Afeta velocidade de quebra da entidade jogador, não eventos industriais de break de máquina |
+| Resistência a empurrão | IMPLEMENTADO (validação pendente) — Minecraft 1.21.1 `minecraft:generic.knockback_resistance`; modificador `rpgskilltree:investment/strength_knockback`, ADD_VALUE |
+
+A implementação vanilla usa `AttributeInvestmentBonuses` e `InvestedAttributeEffectsRuntime.refresh`, calculada pelo servidor a partir dos ranks, com IDs transitórios removíveis. Benefícios de providers não verificados continuam inativos (*fail-closed*). Não houve teste físico do modpack; JUnit/GameTests foram adicionados para verificação em CI. Uma integração marcada IMPLEMENTADO **ainda não é VALIDADO** antes de resultados dos testes de runtime.
+
+
+### Dano de Força — bridge nativa (incremento posterior)
+
+A contribuição `STRENGTH_MELEE_DAMAGE` usa o atributo do jogador `minecraft:generic.attack_damage` (Minecraft/NeoForge 1.21.1), operação `ADD_MULTIPLIED_TOTAL`. A fonte é a curva de ranks canônicos de Força: primeiro marco no rank 5 (+0,4%), com limite de contribuição teórico de +10%. O modifier transitório tem ID `rpgskilltree:investment/strength_melee_damage`; o refresh remove e recria esse ID uma única vez. A remoção por rank 0/respec não mantém resíduos.
+
+**Escopo certificado apenas estruturalmente antes do CI:** o atributo vanilla determina o dano de ataques corpo a corpo que o utilizam. Não se promete cobertura de skills com cálculo próprio, nem se modifica `LivingDamageEvent`/`AttackEntityEvent`. Modificações existentes do mesmo atributo permanecem no pipeline vanilla e podem combinar multiplicativamente conforme operação; isso não equivale a um cap global de dano. `InvestedAttributeGameTests` verifica o atributo real, marcos, idempotência, rank extremo e remoção. O comportamento com Epic Fight e o modpack completo requer testes dedicados; compilação ou GameTest isolado não atestam essa compatibilidade.

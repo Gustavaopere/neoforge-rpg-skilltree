@@ -20,6 +20,7 @@ import dev.gustavopere.rpgskilltree.core.SemanticProgressionResult;
 import dev.gustavopere.rpgskilltree.core.SemanticProgressionService;
 import dev.gustavopere.rpgskilltree.core.XpPolicy;
 import dev.gustavopere.rpgskilltree.runtime.data.AttributeRankCostPolicyCatalog;
+import dev.gustavopere.rpgskilltree.runtime.effects.InvestedAttributeEffectsRuntime;
 import dev.gustavopere.rpgskilltree.runtime.data.CoreProgressionRulesCatalog;
 import dev.gustavopere.rpgskilltree.runtime.network.ModNetworking;
 import java.util.Objects;
@@ -182,6 +183,8 @@ public final class CorePlayerProgressionRuntime {
         );
         if (next != current) {
             set(player, next, rules);
+            // Recheck already purchased passive nodes after the canonical Core rank refund.
+            PlayerProgressionRuntime.reconcilePlayerState(player);
         }
         return next;
     }
@@ -289,11 +292,13 @@ public final class CorePlayerProgressionRuntime {
         CanonicalPlayerAttachmentData next = current.withCoreProgression(
             CoreProgressionAttachmentData.initialized(state)
         );
-        CanonicalPlayerAttachmentRuntime.commitMutation(
+        if (CanonicalPlayerAttachmentRuntime.commitMutation(
             player,
             current,
             next,
             ProgressionMutationEvent.Section.CORE
-        );
+        )) {
+            InvestedAttributeEffectsRuntime.refresh(player, state.attributeRanks());
+        }
     }
 }

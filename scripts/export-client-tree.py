@@ -9,10 +9,17 @@ out.parent.mkdir(parents=True,exist_ok=True)
 def namespaced(node_id: str) -> str:
     return node_id if ':' in node_id else f'rpgskilltree:{node_id}'
 
+# Copy only access metadata declared by authoritative server rules.
+# Do not infer requirements from geometry or player-facing names.
+server_rules=json.loads((ROOT/'src/main/resources/data/rpgskilltree/node_rules/main.json').read_text())
+rule_nodes={node['id']:node for node in server_rules.get('nodes',[])}
 nodes=[]
 for source in layout['nodes']:
     node=dict(source)
     node['id']=namespaced(node['id'])
+    rule=rule_nodes.get(node['id'],{})
+    if 'requiredAttributes' in rule:
+        node['requiredAttributes']=rule['requiredAttributes']
     nodes.append(node)
 
 client={

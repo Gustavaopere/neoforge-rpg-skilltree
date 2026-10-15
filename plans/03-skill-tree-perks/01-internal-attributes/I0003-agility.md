@@ -54,3 +54,26 @@ Projéteis elegíveis lançados pelo jogador saem discretamente mais rápidos; n
 - Testar stacking com equipamento e outras perks em um único pipeline real.
 
 **Pendência:** a presente ficha aprova a **proposta de design**, não afirma existência de runtime, hooks ou balanceamento final.
+
+
+## Estado técnico da implementação — 14/10/2026
+
+**Custo em uso:** `UnitAttributeRankCostPolicy.INSTANCE`, 1 Core Progression Point por rank; a proposta crescente de 50 ranks **não foi ativada**. Ranks e refunds persistem via `CoreProgressionState.attributeRanks()` e ledger Core. Todos os três ganhos seguem `a × (1−q^floor(rank/k))/(1−q)`, com valores/intervalos da tabela de design, sempre recalculados. Esses limites restringem a contribuição da trilha, não a estatística global.
+
+| Trilha | Situação da integração |
+|---|---|
+| Velocidade de movimento | IMPLEMENTADO (validação pendente) — Minecraft 1.21.1 `minecraft:generic.movement_speed`; modificador `rpgskilltree:investment/agility_movement`, ADD_MULTIPLIED_BASE |
+| Velocidade de ataque | IMPLEMENTADO somente no atributo vanilla (validação pendente) — `minecraft:generic.attack_speed`; modificador `rpgskilltree:investment/agility_attack_speed`, ADD_MULTIPLIED_BASE; efetividade nos combos Epic Fight NÃO verificada |
+| Velocidade inicial de projéteis | IMPLEMENTADO NO CÓDIGO / NOVO CI PENDENTE — **somente arco vanilla** (`Items.BOW`) com autoria de `ServerPlayer` e correlação `ArrowLooseEvent` → `EntityJoinLevelEvent`. Multiplica a velocidade inicial uma vez, no servidor, até +8%; não afeta besta, projéteis mágicos, disparos sem recibo, spawns cancelados nem entidades carregadas do disco |
+
+A implementação vanilla usa `AttributeInvestmentBonuses` e `InvestedAttributeEffectsRuntime.refresh`, calculada pelo servidor a partir dos ranks, com IDs transitórios removíveis. Benefícios de providers não verificados continuam inativos (*fail-closed*). Não houve teste físico do modpack; JUnit/GameTests foram adicionados para verificação em CI. Uma integração marcada IMPLEMENTADO **ainda não é VALIDADO** antes de resultados dos testes de runtime.
+
+
+### Auditoria incremental — Agilidade/projéteis (14/10/2026)
+
+- **Hook NeoForge 1.21.1:** `ArrowLooseEvent` marca um release válido de arco com munição; `PhysicalProjectileMasteryEvents` já correlacionava esse receipt com `AbstractArrow` em `EntityJoinLevelEvent` por jogador/arma/janela curta, para mastery física. O novo tratamento em `EventPriority.LOWEST` aproveita **somente** essa correlação, só para `Items.BOW`, com proprietário `ServerPlayer` elegível e velocidade não nula e finita. O evento pode ocorrer em cliente ou carregamento do disco; ambos são excluídos.
+- **Efeito nativo:** multiplica `arrow.getDeltaMovement()` por `1+AttributeInvestmentBonuses.AGILITY_PROJECTILE_SPEED` no spawn, sem alterar o módulo da direção, dano, gravidade, pierce, itens, estoque ou colisão. Primeiro marco no rank 10 (+0,32%); contribuição assintótica limitada a +8%. Lê apenas o rank persistido em `CoreProgressionState.attributeRanks()`. Não instala um atributo permanente/estatística global nem executa em ticks futuros.
+- **Idempotência e limpeza:** `AGILITY_ACCELERATED` é um `WeakHashMap` transitório de identidade para impedir segunda aplicação em `EntityJoinLevelEvent`; a referência ao projétil não é persistida e o mapa é limpo no encerramento do servidor. Entidades `loadedFromDisk()` são excluídas, assim como eventos cancelados. Essa estrutura **não** constitui armazenamento de progresso.
+- **Limites:** crossbows, modded bows, projéteis de spells/mobs, dardos, tridentes e fontes sem receipt não recebem bônus. A correlação breve não é autenticação criptográfica de lançamento; exige QA com entidades derivadas e addons que possam fabricar flechas com metadados vanilla durante um disparo legítimo. Epic Fight e suas animações devem ser testados no modpack completo. Não estender o scope sem provas.
+- **Teste:** `AgilityProjectileInvestmentGameTests` valida proprietário sem receipt, ranks 0/9/10/300/`Long.MAX_VALUE`, idempotência, crossbow, loading e cancelamento. Testes adicionados ao repositório; resultado do novo CI **pendente**.
+- **Fonte:** NeoForge 1.21.1 Javadoc de `EntityJoinLevelEvent` e `ArrowLooseEvent`, além de construtores de `Arrow` do Minecraft 1.21.1.
