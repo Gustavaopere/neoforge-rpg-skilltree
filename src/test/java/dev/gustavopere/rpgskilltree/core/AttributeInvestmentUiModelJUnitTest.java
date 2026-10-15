@@ -75,6 +75,9 @@ class AttributeInvestmentUiModelJUnitTest {
         for (int tick = 0; tick < 3; tick++) model.tick(baseline);
         assertTrue(model.isPending());
         model.tick(state(4L, 11L, AttributeId.CHARISMA));
+        assertTrue(model.isPending(), "the Core snapshot alone is not an ACK");
+        assertTrue(model.acknowledge("attribute-ui-1", true));
+        model.tick(state(4L, 11L, AttributeId.CHARISMA));
         assertFalse(model.isPending());
         assertEquals(AttributeInvestmentUiModel.Status.UPDATED, model.status());
         assertTrue(model.canPurchase(baseline, AttributeId.STRENGTH));
@@ -100,6 +103,7 @@ class AttributeInvestmentUiModelJUnitTest {
         assertEquals("screen.rpgskilltree.rank_unconfirmed", model.status().translationKey());
 
         assertTrue(model.request(baseline, AttributeId.CHARISMA, true, "refund-new").isPresent());
+        assertTrue(model.acknowledge("refund-new", true));
         model.tick(state(1L, 1L, AttributeId.CHARISMA));
         assertFalse(model.isPending());
         assertEquals(AttributeInvestmentUiModel.Status.UPDATED, model.status());
@@ -132,6 +136,43 @@ class AttributeInvestmentUiModelJUnitTest {
         assertTrue(model.isPending(),
             "a changed snapshot by itself does not prove acceptance of this transaction");
         assertEquals(AttributeInvestmentUiModel.Status.PENDING, model.status());
+    }
+
+    @Test
+    void transactionResultRejectsStaleIdsAndHonorsExplicitServerRejection() {
+        var model = new AttributeInvestmentUiModel();
+        var before = state(3L, 2L, AttributeId.CHARISMA);
+        assertFalse(model.acknowledge("old", false));
+        assertTrue(model.request(before, AttributeId.CHARISMA, false, "id-1").isPresent());
+        assertFalse(model.acknowledge("id-2", false), "other player's result is not ours");
+        assertFalse(model.acknowledge("old", true));
+        assertTrue(model.isPending());
+        assertTrue(model.acknowledge("id-1", false));
+        assertFalse(model.isPending());
+        assertEquals(AttributeInvestmentUiModel.Status.REJECTED, model.status());
+        assertEquals("screen.rpgskilltree.rank_rejected", model.status().translationKey());
+        assertFalse(model.acknowledge("id-1", true), "late success after rejection is ignored");
+        assertTrue(model.request(before, AttributeId.CHARISMA, false, "id-3").isPresent());
+        assertTrue(model.acknowledge("id-3", true));
+        model.tick(before);
+        assertTrue(model.isPending(), "accepted, but canonical Core state not synchronized yet");
+        model.tick(state(2L, 3L, AttributeId.CHARISMA));
+        assertEquals(AttributeInvestmentUiModel.Status.UPDATED, model.status());
+        assertFalse(model.isPending());
+    }
+
+    @Test
+    void acknowledgedMutationStillTimesOutIfCoreNeverSynchronizes() {
+        var model = new AttributeInvestmentUiModel();
+        var before = state(3L, 2L, AttributeId.CHARISMA);
+        assertTrue(model.request(before, AttributeId.CHARISMA, true, "refund-5").isPresent());
+        assertTrue(model.acknowledge("refund-5", true));
+        for (int tick = 0; tick < AttributeInvestmentUiModel.REQUEST_TIMEOUT_TICKS; tick++) {
+            model.tick(before);
+        }
+        assertFalse(model.isPending());
+        assertEquals(AttributeInvestmentUiModel.Status.UNCONFIRMED, model.status());
+        assertFalse(model.acknowledge("refund-5", false));
     }
 
     private static CoreProgressionSyncState state(long available, long rank, AttributeId attribute) {
