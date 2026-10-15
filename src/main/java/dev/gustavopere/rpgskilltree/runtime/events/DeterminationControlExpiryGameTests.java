@@ -12,7 +12,6 @@ import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import java.util.Map;
 import java.util.UUID;
-import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.server.level.ClientInformation;
