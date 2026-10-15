@@ -15,6 +15,7 @@ import dev.gustavopere.rpgskilltree.runtime.network.CoreProgressionSyncPayload;
 import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.util.Map;
+import java.util.EnumMap;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -73,6 +74,24 @@ final class AttributeInvestmentScreenJUnitTest {
         Field layout = AttributeInvestmentScreen.class.getDeclaredField("layout");
         layout.setAccessible(true);
         layout.set(screen, dev.gustavopere.rpgskilltree.core.AttributeInvestmentUiModel.layout(320, 240));
+        // The screen's real init/registered widgets are tested separately.
+        // Seed only its own control maps here so its painter can run with no
+        // native Minecraft window and no vanilla widget draw path.
+        Field purchases = AttributeInvestmentScreen.class.getDeclaredField("purchase");
+        Field refunds = AttributeInvestmentScreen.class.getDeclaredField("refund");
+        purchases.setAccessible(true);
+        refunds.setAccessible(true);
+        @SuppressWarnings("unchecked")
+        Map<AttributeId, Button> buyButtons = (Map<AttributeId, Button>) purchases.get(screen);
+        @SuppressWarnings("unchecked")
+        Map<AttributeId, Button> refundButtons = (Map<AttributeId, Button>) refunds.get(screen);
+        for (AttributeId attribute : AttributeId.values()) {
+            buyButtons.put(attribute, Button.builder(Component.literal("+"), b -> {})
+                .bounds(0, 0, 42, 18).build());
+            refundButtons.put(attribute, Button.builder(Component.literal("-"), b -> {})
+                .bounds(0, 0, 42, 18).build());
+        }
+
         Field font = Screen.class.getDeclaredField("font");
         font.setAccessible(true);
         font.set(screen, mock(Font.class));
