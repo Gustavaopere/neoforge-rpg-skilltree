@@ -184,5 +184,13 @@
   "node.rpgskilltree.metamorph.unstable_anatomy.name": "Unstable Anatomy",
   "node.rpgskilltree.metamorph.chimeric_memory.name": "Chimeric Memory",
   "node.rpgskilltree.metamorph.perfect_mimicry.name": "Perfect Mimicry",
-  "node.rpgskilltree.metamorph.apex_metamorph.name": "Apex Metamorph"
+  "node.rpgskilltree.metamorph.apex_metamorph.name": "Apex Metamorph",
+  "screen.rpgskilltree.attribute_panel": "Attributes",
+  "screen.rpgskilltree.rank_balance": "Available Core Points: %s",
+  "screen.rpgskilltree.rank_back": "Back",
+  "screen.rpgskilltree.rank_ready": "+ invest / - refund",
+  "screen.rpgskilltree.rank_pending": "Awaiting server",
+  "screen.rpgskilltree.rank_updated": "Ranks synchronized",
+  "screen.rpgskilltree.rank_unconfirmed": "Unconfirmed; check balance",
+  "screen.rpgskilltree.rank_no_sync": "Awaiting synchronization"
 }
