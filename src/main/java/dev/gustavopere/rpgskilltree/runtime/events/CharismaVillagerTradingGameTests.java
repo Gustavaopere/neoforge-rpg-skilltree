@@ -139,7 +139,7 @@ public final class CharismaVillagerTradingGameTests {
         ServerPlayer player = new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
             new GameProfile(UUID.randomUUID(), name), ClientInformation.createDefault());
         BlockPos insideStructure = helper.absolutePos(new BlockPos(1, 2, 1));
-        player.moveTo(insideStructure.getX() + 0.5D,
+        player.setPos(insideStructure.getX() + 0.5D,
             insideStructure.getY(), insideStructure.getZ() + 0.5D);
         return player;
     }
