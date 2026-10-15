@@ -16,6 +16,7 @@ public final class AttributeInvestmentUiModel {
         READY("screen.rpgskilltree.rank_ready"),
         PENDING("screen.rpgskilltree.rank_pending"),
         UPDATED("screen.rpgskilltree.rank_updated"),
+        REJECTED("screen.rpgskilltree.rank_rejected"),
         UNCONFIRMED("screen.rpgskilltree.rank_unconfirmed");
 
         private final String translationKey;
@@ -63,10 +64,11 @@ public final class AttributeInvestmentUiModel {
 
     public record Request(AttributeId attribute, boolean refund, String transactionId) {}
 
-    private record Pending(AttributeId attribute, long previousRank, boolean refund) {}
+    private record Pending(AttributeId attribute, long previousRank, boolean refund, String transactionId) {}
 
     private Pending pending;
     private int pendingTicks;
+    private boolean serverAccepted;
     private Status status = Status.READY;
 
     public static Layout layout(int width, int height) {
@@ -106,20 +108,36 @@ public final class AttributeInvestmentUiModel {
         if (refund ? !canRefund(snapshot, attribute) : !canPurchase(snapshot, attribute)) {
             return Optional.empty();
         }
-        pending = new Pending(attribute, snapshot.attributeRanks().rank(attribute), refund);
+        pending = new Pending(attribute, snapshot.attributeRanks().rank(attribute), refund, transactionId);
+        serverAccepted = false;
         pendingTicks = 0;
         status = Status.PENDING;
         return Optional.of(new Request(attribute, refund, transactionId));
     }
 
+    /** Ignore stale, unrelated and duplicate receipts. Only the matching ID can settle a request. */
+    public boolean acknowledge(String transactionId, boolean accepted) {
+        if (pending == null || !pending.transactionId().equals(transactionId)) return false;
+        if (!accepted) {
+            pending = null;
+            serverAccepted = false;
+            status = Status.REJECTED;
+        } else {
+            serverAccepted = true;
+        }
+        return true;
+    }
+
     public void tick(CoreProgressionSyncState snapshot) {
         if (pending == null) return;
-        if (AttributeInvestmentUiPolicy.rankChanged(
+        if (serverAccepted && AttributeInvestmentUiPolicy.rankChanged(
             snapshot, pending.attribute(), pending.previousRank(), pending.refund())) {
             pending = null;
+            serverAccepted = false;
             status = Status.UPDATED;
         } else if (++pendingTicks >= REQUEST_TIMEOUT_TICKS) {
             pending = null;
+            serverAccepted = false;
             status = Status.UNCONFIRMED;
         }
     }
