@@ -90,6 +90,7 @@ import dev.gustavopere.rpgskilltree.runtime.events.ExplorationProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.MiningProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.InvestedConstitutionHealingEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.InvestedConstitutionDotEvents;
+import dev.gustavopere.rpgskilltree.runtime.events.InvestedCharismaVillagerTradingEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.InvestedDeterminationControlEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.InvestedCharismaCompanionDamageEvents;
 import dev.gustavopere.rpgskilltree.runtime.events.PhysicalProjectileMasteryEvents;
@@ -149,6 +150,7 @@ public final class RpgSkillTreeMod {
         NeoForge.EVENT_BUS.register(MiningProgressionEvents.class);
         NeoForge.EVENT_BUS.register(InvestedConstitutionHealingEvents.class);
         NeoForge.EVENT_BUS.register(InvestedConstitutionDotEvents.class);
+        NeoForge.EVENT_BUS.register(InvestedCharismaVillagerTradingEvents.class);
         NeoForge.EVENT_BUS.register(InvestedDeterminationControlEvents.class);
         NeoForge.EVENT_BUS.register(InvestedCharismaCompanionDamageEvents.class);
         NeoForge.EVENT_BUS.register(A0041A0060ProjectileEvents.class);
