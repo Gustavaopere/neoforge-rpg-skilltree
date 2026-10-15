@@ -12,6 +12,7 @@ import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import java.util.Map;
 import java.util.UUID;
+import net.minecraft.core.Direction;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.server.level.ClientInformation;
@@ -22,6 +23,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.projectile.ShulkerBullet;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.gametest.GameTestHolder;
@@ -102,6 +104,52 @@ public final class DeterminationControlExpiryGameTests {
         InvestedDeterminationControlEvents.onPlayerTick(new PlayerTickEvent.Post(refreshed));
         helper.assertTrue(refreshed.getEffect(MobEffects.LEVITATION) == old,
             "refresh must invalidate original early-expiry receipt");
+        helper.succeed();
+    }
+
+    @GameTest(template = "foundation_empty")
+    public static void ownedShulkerBulletUsesBoundedRankAndRejectsOrphanOrMissingCore(GameTestHelper helper) {
+        ServerPlayer player = player(helper, "determination-owned-bullet");
+        setRank(player, Long.MAX_VALUE);
+        Shulker shulker = new Shulker(EntityType.SHULKER, helper.getLevel());
+        ShulkerBullet bullet = new ShulkerBullet(EntityType.SHULKER_BULLET, helper.getLevel());
+        bullet.setOwner(shulker);
+        MobEffectInstance effect = new MobEffectInstance(MobEffects.LEVITATION, 200);
+        helper.assertTrue(player.addEffect(effect, bullet),
+            "genuine ShulkerBullet owner must give a native Levitation instance");
+        InvestedDeterminationControlEvents.onAdded(
+            new MobEffectEvent.Added(player, null, effect, bullet));
+        double reduction = AttributeInvestmentBonuses.value(
+            AttributeInvestmentBonuses.Benefit.DETERMINATION_CONTROL_DURATION, Long.MAX_VALUE);
+        helper.assertTrue(reduction > 0.0D && reduction < 0.100001D,
+            "rank extreme must preserve the cap of the investment contribution");
+        int shortened = (int) Math.max(1.0D, Math.floor(200D * (1D - reduction)));
+        advance(helper, player, effect, shortened);
+        InvestedDeterminationControlEvents.onPlayerTick(new PlayerTickEvent.Post(player));
+        helper.assertTrue(player.getEffect(MobEffects.LEVITATION) == null,
+            "Shulker-owned projectile must use canonical capped early expiry");
+
+        ServerPlayer orphaned = player(helper, "determination-orphan-bullet");
+        setRank(orphaned, 300L);
+        ShulkerBullet orphan = new ShulkerBullet(EntityType.SHULKER_BULLET, helper.getLevel());
+        MobEffectInstance orphanEffect = new MobEffectInstance(MobEffects.LEVITATION, 40);
+        orphaned.addEffect(orphanEffect, orphan);
+        InvestedDeterminationControlEvents.onAdded(
+            new MobEffectEvent.Added(orphaned, null, orphanEffect, orphan));
+        advance(helper, orphaned, orphanEffect, 39);
+        InvestedDeterminationControlEvents.onPlayerTick(new PlayerTickEvent.Post(orphaned));
+        helper.assertTrue(orphaned.getEffect(MobEffects.LEVITATION) == orphanEffect,
+            "orphan projectile must not inherit the Shulker ownership exemption");
+
+        ServerPlayer noCore = player(helper, "determination-no-core");
+        MobEffectInstance vanilla = new MobEffectInstance(MobEffects.LEVITATION, 40);
+        noCore.addEffect(vanilla, shulker);
+        InvestedDeterminationControlEvents.onAdded(
+            new MobEffectEvent.Added(noCore, null, vanilla, shulker));
+        advance(helper, noCore, vanilla, 39);
+        InvestedDeterminationControlEvents.onPlayerTick(new PlayerTickEvent.Post(noCore));
+        helper.assertTrue(noCore.getEffect(MobEffects.LEVITATION) == vanilla,
+            "missing Core rank must leave the entire native effect intact");
         helper.succeed();
     }
 
