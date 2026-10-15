@@ -184,5 +184,13 @@
   "node.rpgskilltree.metamorph.unstable_anatomy.name": "Anatomia Instável",
   "node.rpgskilltree.metamorph.chimeric_memory.name": "Memória Quimérica",
   "node.rpgskilltree.metamorph.perfect_mimicry.name": "Mimetismo Perfeito",
-  "node.rpgskilltree.metamorph.apex_metamorph.name": "Metamorfo Supremo"
+  "node.rpgskilltree.metamorph.apex_metamorph.name": "Metamorfo Supremo",
+  "screen.rpgskilltree.attribute_panel": "Atributos",
+  "screen.rpgskilltree.rank_balance": "Pontos Core disponíveis: %s",
+  "screen.rpgskilltree.rank_back": "Voltar",
+  "screen.rpgskilltree.rank_ready": "+ investir / - reembolsar",
+  "screen.rpgskilltree.rank_pending": "Aguardando servidor",
+  "screen.rpgskilltree.rank_updated": "Ranks sincronizados",
+  "screen.rpgskilltree.rank_unconfirmed": "Sem confirmação; confira o saldo",
+  "screen.rpgskilltree.rank_no_sync": "Aguardando sincronização"
 }
