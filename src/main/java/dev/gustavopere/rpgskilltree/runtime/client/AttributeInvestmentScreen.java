@@ -1,7 +1,7 @@
 package dev.gustavopere.rpgskilltree.runtime.client;
 
 import dev.gustavopere.rpgskilltree.core.AttributeId;
-import dev.gustavopere.rpgskilltree.core.AttributeInvestmentUiPolicy;
+import dev.gustavopere.rpgskilltree.core.AttributeInvestmentUiModel;
 import dev.gustavopere.rpgskilltree.core.CoreProgressionSyncState;
 import dev.gustavopere.rpgskilltree.runtime.network.PurchaseAttributeRanksPayload;
 import dev.gustavopere.rpgskilltree.runtime.network.RefundAttributeRanksPayload;
@@ -14,23 +14,13 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.network.PacketDistributor;
 
-/**
- * Compact control surface for six canonical attributes. The Core server
- * validates affordability, rank limits, refund safety and transaction IDs.
- */
+/** Physical controls, with all state transitions delegated to the tested Core UI model. */
 public final class AttributeInvestmentScreen extends Screen {
-    private static final int REQUEST_TIMEOUT_TICKS = 100;
     private final Screen parent;
-    private final Map<AttributeId, Button> purchaseButtons = new EnumMap<>(AttributeId.class);
-    private final Map<AttributeId, Button> refundButtons = new EnumMap<>(AttributeId.class);
-    private Pending pending;
-    private int pendingTicks;
-    private String statusKey = "screen.rpgskilltree.rank_ready";
-    private int left;
-    private int panelWidth;
-    private int rowHeight;
-    private int firstRowY;
-    private int footerY;
+    private final AttributeInvestmentUiModel model = new AttributeInvestmentUiModel();
+    private final Map<AttributeId, Button> purchase = new EnumMap<>(AttributeId.class);
+    private final Map<AttributeId, Button> refund = new EnumMap<>(AttributeId.class);
+    private AttributeInvestmentUiModel.Layout layout;
 
     public AttributeInvestmentScreen(Screen parent) {
         super(Component.translatable("screen.rpgskilltree.attribute_panel"));
@@ -40,105 +30,77 @@ public final class AttributeInvestmentScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        purchaseButtons.clear();
-        refundButtons.clear();
-        panelWidth = Math.max(130, Math.min(336, width - 16));
-        left = Math.max(8, (width - panelWidth) / 2);
-        rowHeight = Math.max(18, Math.min(23, (height - 74) / AttributeId.values().length));
-        firstRowY = 44;
-        footerY = Math.min(height - 24, firstRowY + AttributeId.values().length * rowHeight + 8);
-
-        int row = 0;
-        for (AttributeId attribute : AttributeId.values()) {
-            int y = firstRowY + row++ * rowHeight;
-            Button purchase = Button.builder(Component.literal("+"), button -> request(attribute, false))
-                .bounds(left + panelWidth - 94, y, 42, 18).build();
-            Button refund = Button.builder(Component.literal("-"), button -> request(attribute, true))
-                .bounds(left + panelWidth - 47, y, 42, 18).build();
-            purchaseButtons.put(attribute, addRenderableWidget(purchase));
-            refundButtons.put(attribute, addRenderableWidget(refund));
+        purchase.clear();
+        refund.clear();
+        layout = AttributeInvestmentUiModel.layout(width, height);
+        for (var row : model.rows(snapshot(), layout)) {
+            AttributeId attribute = row.attribute();
+            purchase.put(attribute, addRenderableWidget(Button.builder(Component.literal("+"),
+                button -> request(attribute, false))
+                .bounds(layout.purchaseX(), row.y(), 42, 18).build()));
+            refund.put(attribute, addRenderableWidget(Button.builder(Component.literal("-"),
+                button -> request(attribute, true))
+                .bounds(layout.refundX(), row.y(), 42, 18).build()));
         }
-        addRenderableWidget(Button.builder(
-            Component.translatable("screen.rpgskilltree.rank_back"),
+        addRenderableWidget(Button.builder(Component.translatable("screen.rpgskilltree.rank_back"),
             button -> minecraft.setScreen(parent))
-            .bounds(left, footerY, Math.min(86, panelWidth / 3), 20).build());
+            .bounds(layout.left(), layout.footerY(), layout.backWidth(), 20).build());
         updateButtons();
     }
 
     @Override
     public void tick() {
-        CoreProgressionSyncState snapshot = ClientCoreProgressionState.get().orElse(null);
-        if (pending != null) {
-            if (AttributeInvestmentUiPolicy.rankChanged(
-                snapshot, pending.attribute(), pending.previousRank(), pending.refund())) {
-                pending = null;
-                statusKey = "screen.rpgskilltree.rank_updated";
-            } else if (++pendingTicks >= REQUEST_TIMEOUT_TICKS) {
-                pending = null;
-                statusKey = "screen.rpgskilltree.rank_unconfirmed";
-            }
-        }
+        model.tick(snapshot());
         updateButtons();
     }
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
         graphics.fill(0, 0, width, height, 0xFF090C12);
-        CoreProgressionSyncState snapshot = ClientCoreProgressionState.get().orElse(null);
+        CoreProgressionSyncState state = snapshot();
         updateButtons();
         graphics.drawCenteredString(font, title, width / 2, 12, 0xFFF2E7B6);
         graphics.drawCenteredString(font,
-            snapshot == null ? Component.translatable("screen.rpgskilltree.rank_no_sync")
-                : Component.translatable("screen.rpgskilltree.rank_balance", snapshot.availableCorePoints()),
+            state == null ? Component.translatable("screen.rpgskilltree.rank_no_sync")
+                : Component.translatable("screen.rpgskilltree.rank_balance", state.availableCorePoints()),
             width / 2, 27, 0xFFD0D6E0);
-
-        int row = 0;
-        for (AttributeId attribute : AttributeId.values()) {
-            int y = firstRowY + row++ * rowHeight;
-            graphics.fill(left, y - 1, left + panelWidth, y + rowHeight - 2, 0xCC18202B);
-            long rank = snapshot == null ? 0L : snapshot.attributeRanks().rank(attribute);
-            String label = Component.translatable("screen.rpgskilltree.attribute." + attribute.name()).getString()
-                + " (" + rank + ")";
-            graphics.drawString(font,
-                font.plainSubstrByWidth(label, Math.max(24, panelWidth - 108)),
-                left + 6, y + 5, snapshot == null ? 0xFF81909D : 0xFFE3E8EF);
+        for (var row : model.rows(state, layout)) {
+            graphics.fill(layout.left(), row.y() - 1, layout.left() + layout.width(),
+                row.y() + layout.rowHeight() - 2, 0xCC18202B);
+            String label = Component.translatable(
+                "screen.rpgskilltree.attribute." + row.attribute().name()).getString()
+                + " (" + row.rank() + ")";
+            graphics.drawString(font, font.plainSubstrByWidth(label, layout.labelWidth()),
+                layout.left() + 6, row.y() + 5, state == null ? 0xFF81909D : 0xFFE3E8EF);
         }
-        graphics.drawString(font, Component.translatable(statusKey),
-            left + Math.min(94, panelWidth / 3 + 8), footerY + 6, 0xFF9EA9B8);
+        graphics.drawString(font, Component.translatable(model.status().translationKey()),
+            layout.statusX(), layout.footerY() + 6, 0xFF9EA9B8);
         super.render(graphics, mouseX, mouseY, partialTick);
     }
 
-    private void request(AttributeId attribute, boolean refund) {
-        CoreProgressionSyncState snapshot = ClientCoreProgressionState.get().orElse(null);
-        boolean allowed = refund
-            ? AttributeInvestmentUiPolicy.canRefund(snapshot, attribute, pending != null)
-            : AttributeInvestmentUiPolicy.canPurchase(snapshot, attribute, pending != null);
-        if (!allowed) return;
+    private CoreProgressionSyncState snapshot() {
+        return ClientCoreProgressionState.get().orElse(null);
+    }
 
-        long previousRank = snapshot.attributeRanks().rank(attribute);
-        String transactionId = "attribute-ui-" + UUID.randomUUID();
-        pending = new Pending(attribute, previousRank, refund);
-        pendingTicks = 0;
-        statusKey = "screen.rpgskilltree.rank_pending";
+    private void request(AttributeId attribute, boolean refundAction) {
+        model.request(snapshot(), attribute, refundAction, "attribute-ui-" + UUID.randomUUID())
+            .ifPresent(request -> {
+                if (request.refund()) {
+                    PacketDistributor.sendToServer(new RefundAttributeRanksPayload(
+                        request.attribute(), 1L, request.transactionId()));
+                } else {
+                    PacketDistributor.sendToServer(new PurchaseAttributeRanksPayload(
+                        request.attribute(), 1L, request.transactionId()));
+                }
+            });
         updateButtons();
-        if (refund) {
-            PacketDistributor.sendToServer(new RefundAttributeRanksPayload(attribute, 1L, transactionId));
-        } else {
-            PacketDistributor.sendToServer(new PurchaseAttributeRanksPayload(attribute, 1L, transactionId));
-        }
     }
 
     private void updateButtons() {
-        CoreProgressionSyncState snapshot = ClientCoreProgressionState.get().orElse(null);
+        CoreProgressionSyncState state = snapshot();
         for (AttributeId attribute : AttributeId.values()) {
-            Button purchase = purchaseButtons.get(attribute);
-            Button refund = refundButtons.get(attribute);
-            if (purchase != null) {
-                purchase.active = AttributeInvestmentUiPolicy.canPurchase(snapshot, attribute, pending != null);
-            }
-            if (refund != null) {
-                refund.active = AttributeInvestmentUiPolicy.canRefund(snapshot, attribute, pending != null);
-            }
+            purchase.get(attribute).active = model.canPurchase(state, attribute);
+            refund.get(attribute).active = model.canRefund(state, attribute);
         }
     }
 
@@ -146,6 +108,4 @@ public final class AttributeInvestmentScreen extends Screen {
     public boolean isPauseScreen() {
         return false;
     }
-
-    private record Pending(AttributeId attribute, long previousRank, boolean refund) {}
 }
