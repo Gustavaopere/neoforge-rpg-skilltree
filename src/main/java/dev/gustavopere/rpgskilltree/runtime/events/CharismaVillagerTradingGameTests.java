@@ -54,6 +54,23 @@ public final class CharismaVillagerTradingGameTests {
         int expected = 64 - Math.min(63, (int) Math.floor(64D * fraction));
         helper.assertTrue(expected < 64 && expected >= 1, "rank 300 has bounded discount");
 
+        helper.assertTrue(!buyer.isCreative() && !buyer.isSpectator(),
+            "detached buyer must be in survival for a legitimate merchant boundary");
+        helper.assertTrue(menu.getClass() == MerchantMenu.class && buyer.containerMenu == menu,
+            "test fixture must own a native current MerchantMenu");
+        helper.assertTrue(menu.stillValid(buyer) && villager.getTradingPlayer() == buyer,
+            "merchant must designate buyer as the exclusive trading player");
+        helper.assertTrue(menu.getOffers() == villager.getOffers()
+            && menu.getOffers().contains(emeraldPurchase),
+            "merchant offers must be exactly the villager's native shared collection");
+        helper.assertTrue(helper.getLevel().getEntitiesOfClass(Villager.class,
+            buyer.getBoundingBox().inflate(8.0D),
+            v -> v.getClass() == Villager.class && v.isAlive()
+                && v.getTradingPlayer() == buyer && v.getOffers() == menu.getOffers()).size() == 1,
+            "authoritative nearby villager owner must be uniquely identified");
+        helper.assertTrue(emeraldPurchase.getCostA().is(Items.EMERALD)
+            && emeraldPurchase.getItemCostB().isEmpty() && !emeraldPurchase.isOutOfStock(),
+            "native merchant offer must be a simple emerald purchase");
         PlayerContainerEvent.Open open = new PlayerContainerEvent.Open(buyer, menu);
         InvestedCharismaVillagerTradingEvents.onOpen(open);
         helper.assertTrue(emeraldPurchase.getCostA().getCount() == expected,
