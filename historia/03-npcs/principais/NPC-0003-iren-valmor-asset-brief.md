@@ -66,7 +66,7 @@ A produção visual separa deliberadamente portrait/concept de skin técnica.
 
 ## Portrait/documentação
 Decisão de produção para o portrait/documentação:
-- master aprovado: **2048×2048 px**, PNG, sRGB;
+- master aprovado: **2048×2048 px**, PNG, sRGB, em resolução-alvo nativa;
 - manter o master sem recompressão lossy;
 - derivados menores podem ser gerados para UI/documentação, mas não substituem o master;
 - concept sheets não precisam ser quadradas, porém devem preservar pelo menos **2048 px no maior lado** para leitura de material/rosto;
@@ -114,10 +114,11 @@ Nenhuma animação project-owned exigida por este brief. Animações de apresent
 As três devem continuar reconhecíveis como o mesmo NPC.
 
 ## Proveniência/licença
-Asset project-owned. Referências externas, se usadas em look-dev, servem apenas para linguagem visual e devem ser registradas; não copiar textura/modelo de terceiros.
+Nenhum asset project-owned aprovado existe ainda. O portrait/skin novo deve possuir proveniência própria e ser project-owned; referências externas, se usadas em look-dev, servem apenas para linguagem visual e devem ser registradas, sem copiar textura/modelo de terceiros.
 
 ## Evidência final exigida
-- concept/portrait aprovado contra este brief em master 2048×2048;
+- portrait master nativo 2048×2048 aprovado contra este brief;
+- SHA-256, dimensões medidas, formato e provenance registrados no manifest físico;
 - textura/skin técnica 64×64 separada do concept;
 - validação estrutural no pipeline Blockbench/Factory;
 - vistas úteis de frente, lateral, costas e três-quartos quando aplicável;
