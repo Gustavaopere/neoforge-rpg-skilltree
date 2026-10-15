@@ -260,9 +260,19 @@ public final class CharismaVillagerTradingGameTests {
         Villager entity = helper.spawn(EntityType.VILLAGER, new BlockPos(2, 2, 1));
         helper.assertTrue(entity != null && entity.isAlive(),
             "villager must be spawned by the native GameTest helper");
+        // A detached ServerPlayer is not ticked by the server's player list.
+        // Align its native bounding box with the actually spawned villager,
+        // independent of GameTest structure rotation/placement.
+        buyer.setPos(entity.getX(), entity.getY(), entity.getZ());
+        var reach = buyer.getBoundingBox().inflate(8.0D);
+        helper.assertTrue(reach.intersects(entity.getBoundingBox()),
+            "test fixture buyer bounding box must overlap the villager: buyer="
+                + buyer.position() + ", villager=" + entity.position());
         helper.assertTrue(helper.getLevel().getEntitiesOfClass(
-            Villager.class, buyer.getBoundingBox().inflate(8.0D)).contains(entity),
-            "spawned villager must be discoverable inside the loaded GameTest structure");
+            Villager.class, reach).contains(entity),
+            "spawned villager must be indexed and visible within the buyer reach: buyer="
+                + buyer.position() + ", villager=" + entity.position()
+                + ", reach=" + reach + ", villagerBounds=" + entity.getBoundingBox());
         return entity;
     }
 
