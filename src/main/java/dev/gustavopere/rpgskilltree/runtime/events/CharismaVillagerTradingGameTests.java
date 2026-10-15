@@ -12,6 +12,7 @@ import dev.gustavopere.rpgskilltree.core.CoreProgressionState;
 import dev.gustavopere.rpgskilltree.runtime.ModAttachments;
 import java.util.Map;
 import java.util.UUID;
+import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.server.level.ClientInformation;
@@ -128,12 +129,19 @@ public final class CharismaVillagerTradingGameTests {
         entity.moveTo(buyer.getX() + 1.0D, buyer.getY(), buyer.getZ());
         helper.assertTrue(helper.getLevel().addFreshEntity(entity),
             "villager must be present in the level for authoritative lookup");
+        helper.assertTrue(helper.getLevel().getEntitiesOfClass(
+            Villager.class, buyer.getBoundingBox().inflate(8.0D)).contains(entity),
+            "spawned villager must be discoverable inside the loaded GameTest structure");
         return entity;
     }
 
     private static ServerPlayer player(GameTestHelper helper, String name) {
-        return new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
+        ServerPlayer player = new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
             new GameProfile(UUID.randomUUID(), name), ClientInformation.createDefault());
+        BlockPos insideStructure = helper.absolutePos(new BlockPos(1, 2, 1));
+        player.moveTo(insideStructure.getX() + 0.5D,
+            insideStructure.getY(), insideStructure.getZ() + 0.5D);
+        return player;
     }
 
     private static void setRank(ServerPlayer player, long rank) {
