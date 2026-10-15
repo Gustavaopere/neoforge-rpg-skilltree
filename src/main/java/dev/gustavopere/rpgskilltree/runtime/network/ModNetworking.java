@@ -18,10 +18,9 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
 public final class ModNetworking {
-    // Network v5 was already consumed by the economy payload expansion on main. Adding the
-    // MARTIAL_STANCE serverbound payload changes the protocol surface again, so this reconciliation
-    // deliberately advances to v6 instead of reusing the stale Chat 2 version number.
-    private static final String NETWORK_VERSION = "6";
+    // v7 adds an explicit transaction-correlated clientbound attribute mutation verdict.
+    // The Core snapshot remains the sole source of rank and balance authority.
+    private static final String NETWORK_VERSION = "7";
 
     private ModNetworking() {}
 
@@ -33,6 +32,8 @@ public final class ModNetworking {
         var registrar = event.registrar(NETWORK_VERSION);
         registrar.playToClient(ProgressionSyncPayload.TYPE, ProgressionSyncPayload.STREAM_CODEC, ClientProgressionState::handleSync);
         registrar.playToClient(CoreProgressionSyncPayload.TYPE, CoreProgressionSyncPayload.STREAM_CODEC, ClientCoreProgressionState::handleSync);
+        registrar.playToClient(AttributeRankMutationResultPayload.TYPE,
+            AttributeRankMutationResultPayload.STREAM_CODEC, AttributeRankMutationResultPayload::handle);
         registrar.playToClient(EconomySnapshotPayload.PAYLOAD_TYPE, EconomySnapshotPayload.STREAM_CODEC, EconomySnapshotPayload::handle);
         registrar.playToClient(
             EconomyMintPreflightResultPayload.PAYLOAD_TYPE,
