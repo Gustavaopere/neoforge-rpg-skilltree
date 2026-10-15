@@ -56,6 +56,14 @@ public final class AttributeInvestmentScreen extends Screen {
 
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+        renderPanel(graphics);
+        super.render(graphics, mouseX, mouseY, partialTick);
+    }
+
+    // Separating the RPG panel paint from vanilla widget rendering permits
+    // headless checks of the text and price presentation without requiring
+    // a native Minecraft window or OpenGL state.
+    void renderPanel(GuiGraphics graphics) {
         graphics.fill(0, 0, width, height, 0xFF090C12);
         CoreProgressionSyncState state = snapshot();
         updateButtons();
@@ -75,7 +83,6 @@ public final class AttributeInvestmentScreen extends Screen {
         }
         graphics.drawString(font, Component.translatable(model.status().translationKey()),
             layout.statusX(), layout.footerY() + 6, 0xFF9EA9B8);
-        super.render(graphics, mouseX, mouseY, partialTick);
     }
 
     private CoreProgressionSyncState snapshot() {
