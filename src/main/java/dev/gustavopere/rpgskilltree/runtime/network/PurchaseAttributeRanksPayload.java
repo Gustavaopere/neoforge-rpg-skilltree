@@ -12,6 +12,7 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 /** Minimal client request for purchasing uncapped attribute ranks. */
 public record PurchaseAttributeRanksPayload(AttributeId attribute, long rankCount, String transactionId)
@@ -60,13 +61,24 @@ public record PurchaseAttributeRanksPayload(AttributeId attribute, long rankCoun
     public static void handle(PurchaseAttributeRanksPayload payload, IPayloadContext context) {
         context.enqueueWork(() -> {
             if (context.player() instanceof ServerPlayer player) {
-                CorePlayerProgressionRuntime.purchaseAttributeRanks(
-                    player,
-                    payload.attribute(),
-                    payload.rankCount(),
-                    payload.transactionId(),
-                    "network:attribute_purchase"
-                );
+                // Rejection is explicit; the server remains authoritative for ranks and price.
+                boolean accepted;
+                try {
+                    CorePlayerProgressionRuntime.purchaseAttributeRanks(
+                        player,
+                        payload.attribute(),
+                        payload.rankCount(),
+                        payload.transactionId(),
+                        "network:attribute_purchase"
+                    );
+                    accepted = true;
+                } catch (IllegalArgumentException | IllegalStateException rejected) {
+                    accepted = false;
+                }
+                // Send the canonical projection before the correlated verdict.
+                CorePlayerProgressionRuntime.syncToOwnerIfInitialized(player);
+                PacketDistributor.sendToPlayer(player,
+                    new AttributeRankMutationResultPayload(payload.transactionId(), accepted));
             }
         });
     }
