@@ -41,10 +41,10 @@ public final class CharismaVillagerTradingGameTests {
         ServerPlayer buyer = player(helper, "charisma-buyer");
         setRank(buyer, 300L);
         Villager villager = villager(helper, buyer);
-        MerchantOffers offers = new MerchantOffers();
+        MerchantOffers offers = villager.getOffers();
+        offers.clear();
         MerchantOffer emeraldPurchase = offer(64, Items.BREAD);
         offers.add(emeraldPurchase);
-        villager.overrideOffers(offers);
         villager.setTradingPlayer(buyer);
         MerchantMenu menu = new MerchantMenu(32, buyer.getInventory(), villager);
         buyer.containerMenu = menu;
@@ -102,7 +102,8 @@ public final class CharismaVillagerTradingGameTests {
         ServerPlayer buyer = player(helper, "charisma-restrictions");
         setRank(buyer, Long.MAX_VALUE);
         Villager villager = villager(helper, buyer);
-        MerchantOffers offers = new MerchantOffers();
+        MerchantOffers offers = villager.getOffers();
+        offers.clear();
         MerchantOffer purchase = offer(64, Items.BREAD);
         MerchantOffer sale = new MerchantOffer(new ItemCost(Items.WHEAT, 20),
             new ItemStack(Items.EMERALD), 10, 2, 0.0F);
@@ -114,7 +115,6 @@ public final class CharismaVillagerTradingGameTests {
         offers.add(sale);
         offers.add(oneEmerald);
         offers.add(twoCosts);
-        villager.overrideOffers(offers);
         villager.setTradingPlayer(buyer);
         MerchantMenu menu = new MerchantMenu(34, buyer.getInventory(), villager);
         buyer.containerMenu = buyer.inventoryMenu;
