@@ -63,6 +63,20 @@ final class AttributeRankMutationResultPayloadJUnitTest {
     }
 
     @Test
+    void burstOfRepliesIsBoundedAndDropsOnlyOldestReceipts() {
+        int capacity = ClientAttributeMutationResultState.MAX_PENDING_RESULTS;
+        for (int i = 0; i < capacity + 4; i++) {
+            ClientAttributeMutationResultState.handle(
+                new AttributeRankMutationResultPayload("reply-" + i, true), null);
+        }
+        for (int i = 4; i < capacity + 4; i++) {
+            assertEquals("reply-" + i,
+                ClientAttributeMutationResultState.take().orElseThrow().transactionId());
+        }
+        assertTrue(ClientAttributeMutationResultState.take().isEmpty());
+    }
+
+    @Test
     void clientReceiptMailboxIsReadOnceAndResetOnDisconnect() {
         var first = new AttributeRankMutationResultPayload("first", true);
         var second = new AttributeRankMutationResultPayload("second", false);
