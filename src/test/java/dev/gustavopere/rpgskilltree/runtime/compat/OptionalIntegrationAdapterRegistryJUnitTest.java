@@ -1,5 +1,6 @@
 package dev.gustavopere.rpgskilltree.runtime.compat;
 
+import dev.gustavopere.rpgskilltree.runtime.compat.ars.ArsNouveauVersionContract;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
@@ -59,5 +60,44 @@ final class OptionalIntegrationAdapterRegistryJUnitTest {
             .orElseThrow()
             .state());
         assertTrue(registry.summary().contains("rpgskilltree:adapter/epicfight=disabled(unsupported_version)"));
+    }
+
+    @Test
+    void arsExactPackVersionOwnsItsSemanticSource() {
+        IntegrationAdapterRegistry registry = OptionalIntegrationAdapterRegistry.create(
+            provider -> provider == OptionalIntegrations.Provider.ARS_NOUVEAU,
+            provider -> "",
+            provider -> provider == OptionalIntegrations.Provider.ARS_NOUVEAU
+                ? ArsNouveauVersionContract.SUPPORTED_VERSION
+                : "absent"
+        );
+
+        assertTrue(OptionalIntegrationAdapterRegistry.isActive(registry, OptionalIntegrations.Provider.ARS_NOUVEAU));
+        assertEquals(
+            OptionalIntegrationAdapterRegistry.adapterId(OptionalIntegrations.Provider.ARS_NOUVEAU),
+            registry.owner(OptionalIntegrationAdapterRegistry.sourceAction(OptionalIntegrations.Provider.ARS_NOUVEAU)).orElseThrow()
+        );
+    }
+
+    @Test
+    void arsUnsupportedVersionFailsClosedBeforeProviderHookClassloading() {
+        IntegrationAdapterRegistry registry = OptionalIntegrationAdapterRegistry.create(
+            provider -> provider == OptionalIntegrations.Provider.ARS_NOUVEAU,
+            provider -> "",
+            provider -> provider == OptionalIntegrations.Provider.ARS_NOUVEAU ? "5.13.0" : "absent"
+        );
+
+        assertFalse(OptionalIntegrationAdapterRegistry.isActive(registry, OptionalIntegrations.Provider.ARS_NOUVEAU));
+        assertTrue(registry.owner(
+            OptionalIntegrationAdapterRegistry.sourceAction(OptionalIntegrations.Provider.ARS_NOUVEAU)
+        ).isEmpty());
+        assertEquals(IntegrationAdapterRegistry.AdapterState.DISABLED, registry.diagnostics().stream()
+            .filter(entry -> entry.adapterId().equals(
+                OptionalIntegrationAdapterRegistry.adapterId(OptionalIntegrations.Provider.ARS_NOUVEAU)
+            ))
+            .findFirst()
+            .orElseThrow()
+            .state());
+        assertTrue(registry.summary().contains("rpgskilltree:adapter/ars_nouveau=disabled(unsupported_version)"));
     }
 }

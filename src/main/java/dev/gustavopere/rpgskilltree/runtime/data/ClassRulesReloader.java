@@ -51,7 +51,23 @@ public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
     }
 
     private static void load(Map<ResourceLocation, JsonElement> resources) {
-        load(resources, modId -> ModList.get().isLoaded(modId));
+        load(resources, ClassRulesReloader::providerGameplayAvailable);
+    }
+
+    static boolean providerGameplayAvailable(String modId, boolean loaded, String installedVersion) {
+        if (!loaded) return false;
+        if ("ars_nouveau".equals(modId)) {
+            return SpecializationProviderRuntimePolicy.hasCompleteAdapter(modId, installedVersion);
+        }
+        return true;
+    }
+
+    private static boolean providerGameplayAvailable(String modId) {
+        boolean loaded = ModList.get().isLoaded(modId);
+        String installedVersion = ModList.get().getModContainerById(modId)
+            .map(container -> container.getModInfo().getVersion().toString())
+            .orElse("");
+        return providerGameplayAvailable(modId, loaded, installedVersion);
     }
 
     static void load(Map<ResourceLocation, JsonElement> resources, Predicate<String> isLoaded) {
@@ -74,7 +90,7 @@ public final class ClassRulesReloader extends SimpleJsonResourceReloadListener {
             );
             providerAvailability.put(classId, providersAvailable);
             if (!providersAvailable) {
-                LOGGER.debug("Class {} unavailable because a required provider mod is not loaded: {}",
+                LOGGER.debug("Class {} unavailable because a required provider runtime is unavailable: {}",
                     classId, requiredProviderMods);
             }
 
