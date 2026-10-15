@@ -65,7 +65,7 @@ final class AttributeInvestmentScreenJUnitTest {
     }
 
     @Test
-    void rendersCanonicalRankLabelsAndPendingMessageFromSnapshotWithoutLiveWindow() throws Exception {
+    void panelPaintsFromAuthoritativeSnapshotWithoutCallingVanillaWidgetRenderer() throws Exception {
         ClientCoreProgressionState.clear();
         AttributeInvestmentScreen screen = new AttributeInvestmentScreen(null);
         screen.width = 320;
@@ -96,12 +96,12 @@ final class AttributeInvestmentScreenJUnitTest {
         font.set(screen, mock(Font.class));
         GuiGraphics graphics = mock(GuiGraphics.class);
 
-        screen.render(graphics, 10, 10, 0.0F);
+        screen.renderPanel(graphics);
         verify(graphics, atLeastOnce()).fill(
             0, 0, 320, 240, 0xFF090C12);
 
         applySnapshot(5L, 10L, AttributeId.CHARISMA);
-        screen.render(graphics, 10, 10, 0.0F);
+        screen.renderPanel(graphics);
         verify(graphics, atLeastOnce()).fill(
             0, 0, 320, 240, 0xFF090C12);
     }
