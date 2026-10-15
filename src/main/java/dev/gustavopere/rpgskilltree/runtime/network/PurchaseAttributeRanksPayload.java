@@ -61,7 +61,7 @@ public record PurchaseAttributeRanksPayload(AttributeId attribute, long rankCoun
     public static void handle(PurchaseAttributeRanksPayload payload, IPayloadContext context) {
         context.enqueueWork(() -> {
             if (context.player() instanceof ServerPlayer player) {
-                // Rejection is explicit; the server remains authoritative for ranks and price.
+                // Server validates the rank mutation and returns only an outcome.
                 boolean accepted;
                 try {
                     CorePlayerProgressionRuntime.purchaseAttributeRanks(
