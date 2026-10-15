@@ -48,6 +48,7 @@ public final class ClientKeyMappings {
         @SubscribeEvent
         public static void onLogout(ClientPlayerNetworkEvent.LoggingOut event) {
             ClientCoreProgressionState.clear();
+            ClientAttributeMutationResultState.clear();
         }
 
         @SubscribeEvent
