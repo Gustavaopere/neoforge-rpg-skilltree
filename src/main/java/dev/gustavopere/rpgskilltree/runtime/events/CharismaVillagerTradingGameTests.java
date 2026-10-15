@@ -255,10 +255,11 @@ public final class CharismaVillagerTradingGameTests {
     }
 
     private static Villager villager(GameTestHelper helper, ServerPlayer buyer) {
-        Villager entity = new Villager(EntityType.VILLAGER, helper.getLevel());
-        entity.moveTo(buyer.getX() + 1.0D, buyer.getY(), buyer.getZ());
-        helper.assertTrue(helper.getLevel().addFreshEntity(entity),
-            "villager must be present in the level for authoritative lookup");
+        // Spawn through the GameTest structure coordinates, not detached-player
+        // world coordinates: provider suites may place structures far apart.
+        Villager entity = helper.spawn(EntityType.VILLAGER, new BlockPos(2, 2, 1));
+        helper.assertTrue(entity != null && entity.isAlive(),
+            "villager must be spawned by the native GameTest helper");
         helper.assertTrue(helper.getLevel().getEntitiesOfClass(
             Villager.class, buyer.getBoundingBox().inflate(8.0D)).contains(entity),
             "spawned villager must be discoverable inside the loaded GameTest structure");
