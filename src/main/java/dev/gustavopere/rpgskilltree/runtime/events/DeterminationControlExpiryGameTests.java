@@ -18,6 +18,7 @@ import net.minecraft.server.level.ClientInformation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.monster.Zombie;
@@ -113,8 +114,29 @@ public final class DeterminationControlExpiryGameTests {
     }
 
     private static ServerPlayer player(GameTestHelper helper, String name) {
-        return new ServerPlayer(helper.getLevel().getServer(), helper.getLevel(),
-            new GameProfile(UUID.randomUUID(), name), ClientInformation.createDefault());
+        return new DetachedEffectsPlayer(helper, name);
+    }
+
+    /**
+     * A GameTest-created ServerPlayer has no network connection. Vanilla
+     * ServerPlayer effect lifecycle normally sends packets through that
+     * connection; override just those transport callbacks, keeping the real
+     * LivingEntity addEffect/update/remove storage and tick behavior intact.
+     */
+    private static final class DetachedEffectsPlayer extends ServerPlayer {
+        DetachedEffectsPlayer(GameTestHelper helper, String name) {
+            super(helper.getLevel().getServer(), helper.getLevel(),
+                new GameProfile(UUID.randomUUID(), name), ClientInformation.createDefault());
+        }
+
+        @Override
+        protected void onEffectAdded(MobEffectInstance effect, Entity source) {}
+
+        @Override
+        protected void onEffectUpdated(MobEffectInstance effect, boolean forced, Entity source) {}
+
+        @Override
+        protected void onEffectRemoved(MobEffectInstance effect) {}
     }
 
     private static void setRank(ServerPlayer player, long rank) {
