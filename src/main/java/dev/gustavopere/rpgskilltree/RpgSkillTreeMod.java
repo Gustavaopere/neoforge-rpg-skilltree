@@ -39,6 +39,7 @@ import dev.gustavopere.rpgskilltree.runtime.compat.identity2.MorphCategoryReload
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSpellbookProgressionEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsInvestmentAttributePolicy;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsInvestmentCooldownEvents;
+import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsAllyHealingEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSustainEvents;
 import dev.gustavopere.rpgskilltree.runtime.compat.irons.IronsSustainVersionContract;
 import dev.gustavopere.rpgskilltree.runtime.compat.malum.MalumIntegrationBootstrap;
@@ -365,6 +366,7 @@ public final class RpgSkillTreeMod {
             // Load the event's Iron's ABI only after the exact version gate.
             if (IronsInvestmentAttributePolicy.supportsVersion(ironsSpellbooksVersion)) {
                 NeoForge.EVENT_BUS.register(IronsInvestmentCooldownEvents.class);
+                NeoForge.EVENT_BUS.register(IronsAllyHealingEvents.class);
             }
             if (IronsSustainEvents.operational()) {
                 NeoForge.EVENT_BUS.register(IronsSustainEvents.class);
