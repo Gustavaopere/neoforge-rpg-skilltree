@@ -50,8 +50,14 @@ public final class AttributeInvestmentScreen extends Screen {
 
     @Override
     public void tick() {
-        ClientAttributeMutationResultState.take().ifPresent(
-            result -> model.acknowledge(result.transactionId(), result.accepted()));
+        // Consume all receipts received since the last tick. An older reply
+        // must not mask the verdict of the currently pending transaction.
+        for (int read = 0; read < ClientAttributeMutationResultState.MAX_PENDING_RESULTS; read++) {
+            var next = ClientAttributeMutationResultState.take();
+            if (next.isEmpty()) break;
+            var result = next.orElseThrow();
+            model.acknowledge(result.transactionId(), result.accepted());
+        }
         model.tick(snapshot());
         updateButtons();
     }
