@@ -192,6 +192,63 @@ public final class CharismaVillagerTradingGameTests {
         helper.succeed();
     }
 
+    @GameTest(template = "foundation_empty")
+    public static void emeraldIntegerDiscountThresholdsRemainStableAcrossSessions(GameTestHelper helper) {
+        // Expected counts are independent, fixed acceptance values. This
+        // catches accidental ceil/rounding, rank off-by-one, price-zero and
+        // leaked session offsets without reproducing the production formula.
+        int[] baseCosts = {12, 13, 16, 20, 32, 64};
+        long[] ranks = {0L, 4L, 5L, 25L, 30L, 60L, 65L, 120L, 125L, 185L,
+            190L, Long.MAX_VALUE};
+        int[][] expectedCosts = {
+            {12, 13, 16, 20, 32, 64},
+            {12, 13, 16, 20, 32, 64},
+            {12, 13, 16, 20, 32, 64},
+            {12, 13, 16, 20, 32, 64},
+            {12, 13, 16, 20, 32, 63},
+            {12, 13, 16, 20, 32, 63},
+            {12, 13, 16, 20, 31, 62},
+            {12, 13, 16, 20, 31, 61},
+            {12, 13, 16, 19, 31, 61},
+            {12, 13, 16, 19, 31, 61},
+            {12, 13, 15, 19, 30, 60},
+            {12, 12, 15, 19, 30, 59}
+        };
+        ServerPlayer origin = player(helper, "charisma-price-origin");
+        Villager villager = villager(helper, origin);
+        MerchantOffers offers = villager.getOffers();
+        offers.clear();
+        for (int baseCost : baseCosts) {
+            offers.add(offer(baseCost, Items.BREAD));
+        }
+
+        for (int i = 0; i < ranks.length; i++) {
+            ServerPlayer buyer = player(helper, "charisma-price-" + i);
+            setRank(buyer, ranks[i]);
+            villager.setTradingPlayer(buyer);
+            MerchantMenu menu = new MerchantMenu(40 + i, buyer.getInventory(), villager);
+            buyer.containerMenu = menu;
+            InvestedCharismaVillagerTradingEvents.onOpen(new PlayerContainerEvent.Open(buyer, menu));
+
+            for (int j = 0; j < baseCosts.length; j++) {
+                MerchantOffer offer = offers.get(j);
+                helper.assertTrue(offer.getCostA().getCount() == expectedCosts[i][j],
+                    "integer price mismatch for CHA " + ranks[i] + " and cost " + baseCosts[j]);
+                helper.assertTrue(offer.getBaseCostA().getCount() == baseCosts[j],
+                    "base price must remain immutable after the session discount");
+            }
+
+            buyer.containerMenu = buyer.inventoryMenu;
+            villager.setTradingPlayer(null);
+            InvestedCharismaVillagerTradingEvents.onClose(new PlayerContainerEvent.Close(buyer, menu));
+            for (int j = 0; j < baseCosts.length; j++) {
+                helper.assertTrue(offers.get(j).getCostA().getCount() == baseCosts[j],
+                    "closing a priced session must restore all vanilla offers");
+            }
+        }
+        helper.succeed();
+    }
+
     private static MerchantOffer offer(int emeralds, net.minecraft.world.item.Item result) {
         return new MerchantOffer(new ItemCost(Items.EMERALD, emeralds),
             new ItemStack(result), 10, 2, 0.0F);
