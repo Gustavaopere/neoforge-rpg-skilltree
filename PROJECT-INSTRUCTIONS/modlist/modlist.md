@@ -68,7 +68,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 018 | Create Aeronautics: Alcubierre | `alcubierre-1.2.6.jar` | `1.2.6` | `Addons + Create` | 18/09/2026 - 15:31 |
 | 019 | Alex's Caves Continued | `alexscaves-1.0.10-neoforge+1.21.1.jar` | `1.0.10` | `World Gen` | 16/09/2026 - 19:09 |
 | 020 | Alex's Delight | `alexsdelight-1.6.jar` | `1.6` | `Addons + Food` | 18/09/2026 - 15:31 |
-| 021 | Alex's Mobs Continued | `alexsmobs-2.1.13-neoforge+1.21.1.jar` | `2.1.13` | `Mobs` | 22/10/2026 - 19:45 |
+| 021 | Alex's Mobs Continued | `alexsmobs-2.1.13-neoforge+1.21.1.jar` | `2.1.13` | `Mobs` | 22/10/2026 - 19:50 |
 | 022 | Almost Unified | `almostunified-neoforge-1.21.1-1.4.2.jar` | `1.21.1-1.4.2` | `API and Library + KubeJS + Ores and Resources + Processing + Server Utility` | 18/09/2026 - 15:31 |
 | 023 | Alshanex's Familiars | `alshanex_familiars-1.21.1_v4.0.3.jar` | `1.21.1_v4.0.3` | `Addons + Magic + Mobs` | 18/09/2026 - 15:31 |
 | 024 | Alternate Current | `alternate_current-mc1.21-1.9.0.jar` | `1.9.0` | `Redstone + Server Utility + Technology + Utility & QoL` | 19/09/2026 - 12:06 |
