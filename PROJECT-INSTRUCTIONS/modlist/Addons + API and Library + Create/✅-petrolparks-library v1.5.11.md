@@ -183,3 +183,14 @@ Nenhum boot/linkage/JEI/chemistry test foi executado nesta atualização documen
 - **Gate de promoção:** Manter baseline física; qualquer atualização futura precisa ser testada com Destroy/Petrolpark consumers e Create.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/petrolpark-library
 
+## Revisão cumulativa auditada — 22/10/2026 — lote 01–10
+**Correção da matriz 22/10:** o JAR instalado **Petrolpark's Library 1.5.11** continua sendo a **última Release estável** publicada para NeoForge 1.21.1, porém já existe **1.5.12 Beta, publicada 19/10/2026** (file ID **9259866**, filename de distribuição petrolpark-1.21.1-1.5.12.jar). A anotação antiga “não há versão posterior” estava incompleta; a 1.5.12 é **prerelease**, não novo baseline para produção.
+
+| Versão | Estado e alteração oficial |
+|---|---|
+| 1.5.11 (14/09) | Versão física do pack e última linha Release estável; correções de compatibilidade JEI documentadas no dossier, consumers Destroy/Create. |
+| **1.5.12 (19/10, Beta)** | Changelog oficial: **“Update to latest JEI”**. Nenhuma mudança de API, correção funcional independente ou faixa exata mínima de JEI foi declarada no arquivo de release; não inferir efeito além do informado. |
+
+**Implicações:** JEI físico 19.56.0.440, candidato estável 19.64.0.455 e candidato Beta 19.69.0.457 são linhas distintas; validar a ABI da biblioteca com JEI, Create e Destroy antes de considerar o 1.5.12. Verificar startup em servidor dedicado e cliente, categorias/recipes JEI do Destroy, chemistry UI, itens/receitas e configs em save/restart. **1.5.12 Beta bloqueada para promoção automática; a versão no dossier segue 1.5.11 e não foi inspecionado seu novo binário**.
+
+Fontes oficiais: https://www.curseforge.com/minecraft/mc-mods/petrolpark-library/files/9259866 ; https://www.curseforge.com/minecraft/mc-mods/petrolpark-library/files/8878365 .
