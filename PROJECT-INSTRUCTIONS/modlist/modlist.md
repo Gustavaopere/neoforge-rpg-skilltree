@@ -286,9 +286,9 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 236 | Dynamic Trees Plus | `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` | `1.3.2` | `Addons + Biomes + Cosmetic + Farming + World Gen` | 24/09/2026 - 11:14 |
 | 237 | Create: Dynamic Village | `dynamicvillage-0.9-1.21.1.jar` | `0.9` | `Cosmetic + Create + Structures + Technology + World Gen` | 24/09/2026 - 11:14 |
 | 238 | Easy Model Entities | `easy_model_entities-neoforge-1.21.1-2.4.0.jar` | `2.4.0 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library + Automation + Mobs + Utility & QoL` | 24/09/2026 - 11:14 |
-| 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 24/09/2026 - 11:14 |
-| 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 24/09/2026 - 11:14 |
-| 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 24/09/2026 - 11:14 |
+| 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 22/10/2026 - 18:52 |
+| 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 22/10/2026 - 18:52 |
+| 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 22/10/2026 - 18:52 |
 | 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
 | 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 24/09/2026 - 14:02 |
 | 244 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
