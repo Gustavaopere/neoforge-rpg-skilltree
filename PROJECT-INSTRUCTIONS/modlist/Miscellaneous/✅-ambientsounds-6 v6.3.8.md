@@ -161,3 +161,14 @@ Fonte upstream: CurseForge file ID 9037168, `AmbientSounds_NEOFORGE_v6.3.9_mc1.2
 **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ambientsounds/files/all?version=1.21.1
 
 **Estado:** release 6.3.10 upstream documentada, 6.3.8 físico preservado, changelog granular 6.3.10 pendente e nenhum teste executado.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum arquivo físico do pack, filename documental certificado, posição de inventário, configuração ou save foi alterado.
+
+- **Projeto solicitado:** AmbientSounds 6
+- **Último candidato compatível localizado:** **6.3.11 (NeoForge 1.21.1, 19/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Client audio: validar soundscape por biome/dimensão, resource reload, performance e coexistência com sound resource packs.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/ambientsounds
+

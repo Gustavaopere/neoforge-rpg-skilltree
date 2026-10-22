@@ -93,3 +93,13 @@ A alteração é de **arquivos de idioma, tooltips e textos de UI** e não modif
 
 **Estado:** última publicação 1.4.0 registrada; **ZIP físico histórico 1.3.0 preservado**, testes pendentes.
 
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum arquivo físico do pack, filename documental certificado, posição de inventário, configuração ou save foi alterado.
+
+- **Projeto solicitado:** The Brazilian Localization Project [PT-BR]
+- **Último candidato compatível localizado:** **1.5.0 para Minecraft 1.21.1 (Release, 20/10)**
+- **Estado:** **CANDIDATO DE RESOURCE PACK**
+- **Gate de promoção:** Validar idioma PT-BR, chaves sobrescritas, traduções de mods presentes, fallback en_us, ordem do pack e ausência de strings quebradas.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/texture-packs/brazilian-project
+
