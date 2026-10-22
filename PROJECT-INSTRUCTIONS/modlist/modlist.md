@@ -984,7 +984,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | Pedido | Projeto | Dossiê | Versão documental/física preservada | Upstream 22/10/2026 | Estado |
 |---:|---|---|---|---|---|
 | 01 | MineColonies | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Automation%20%2B%20Storage%20%2B%20Structures/%E2%9C%85-minecolonies%20v1.1.1387-1.21.1-snapshot.md) | `1.1.1387-1.21.1-snapshot` | 1.1.1403 Release; 1.1.1405-snapshot Beta | **PENDENTE; snapshot BLOQUEADO** |
-| 02 | Easy NPC | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc-bundle%20v7.12.1.md) | `7.12.1` | 7.16.0 | **COORDENADO com Core/UI/EME** |
+| 02 | Easy NPC | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc-bundle%20v7.12.1.md) | `7.12.1` | 7.17.0 | **COORDENADO com Core/UI/EME** |
 | 03 | Alex's Mobs Continued | [Abrir `.md`](./Mobs/%E2%9C%85-alexs-mobs-continued%20v2.1.13.md) | `2.1.13` | 2.1.13 | **REVALIDADO** |
 | 04 | Ars 'n Spells | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ars-n-spells%20v3.3.4.md) | `3.3.4` | 3.3.7 | **PENDENTE** |
 | 05 | Photon | [Abrir `.md`](./API%20and%20Library%20%2B%20Magic%20%2B%20Technology%20%2B%20Utility%20%26%20QoL/%E2%9C%85-photon%20v2.2.6.a.md) | `2.2.6.a` | 2.2.8 | **PENDENTE** |
@@ -1009,7 +1009,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 24 | EMF Compat: Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic/%E2%9C%85-emf-compat-core%20v2.0.0.md) | `2.0.0` | 2.3.2 | **PENDENTE** |
 | 25 | Supplementaries | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous%20%2B%20Redstone%20%2B%20Storage/%E2%9C%85-supplementaries%20v1.21.1-3.9.9.md) | `1.21.1-3.9.9` | 4.0.2 | **PENDENTE** |
 | 26 | AzureLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-azurelib%20v3.1.11.md) | `3.1.11` | 3.1.22 Release; 3.1.23-alpha.2 | **Release PENDENTE; alpha BLOQUEADA** |
-| 27 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1` | 7.16.0 | **COORDENADO com Bundle/UI/EME** |
+| 27 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1` | 7.17.0 | **COORDENADO com Bundle/UI/EME** |
 | 28 | Create Aeronautics: Gadgets & Gizmos | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-aeronautics-gadgets-and-gizmos%20v1.2.2.md) | `1.2.2` | 1.2.10; 2.0.0 Pre-Release 3 | **1.2.10 PENDENTE; pre-release BLOQUEADA** |
 | 29 | WorldWeaver: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Biomes%20%2B%20Utility%20%26%20QoL%20%2B%20World%20Gen/%E2%9C%85-worldweaver-new-dawn%20v21.0.25.md) | `21.0.25` | 21.0.29 | **COORDENADO NEW DAWN** |
 | 30 | ImmediatelyFast | [Abrir `.md`](./Performance%20%2B%20Utility%20%26%20QoL/%E2%9C%85-immediatelyfast%20v1.6.14%2B1.21.1.md) | `1.6.14+1.21.1` | 1.6.15 | **PENDENTE** |
@@ -1040,7 +1040,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 55 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.3.md) | `3.26.3` | 3.26.14.2222 | **COORDENADO** |
 | 56 | Climbable Ropes for Create Aeronautics | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-climbable-ropes-for-create-aeronautics%20v2.1.3.md) | `2.1.3` | 2.1.3 | **REVALIDADO** |
 | 57 | Epic Fight: Curios Compat 3.0 | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Cosmetic/%E2%9C%85-epic-fight-curios-compat%20v1.4.md) | `1.4` | linha 3.0; arquivo 1.21.1 exato não confirmado | **FAIL-CLOSED** |
-| 58 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.12.1.md) | `7.12.1` | 7.16.0 | **COORDENADO Easy NPC** |
+| 58 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.12.1.md) | `7.12.1` | 7.17.0 | **COORDENADO Easy NPC** |
 | 59 | Goety - The Dark Arts | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Mobs%20%2B%20Structures/%E2%9C%85-goety%20v3.1.4.md) | `3.1.4` | 3.2.1 | **PENDENTE** |
 | 60 | BetterNether: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betternether-new-dawn%20v21.0.26.md) | `21.0.26` | 21.0.28 | **COORDENADO NEW DAWN** |
 | 61 | Streams Reflowing | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20World%20Gen/%E2%9C%85-streamsreflowing%20v2.13.5.md) | `2.13.5` | 2.15.2 | **PENDENTE** |
@@ -1069,7 +1069,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 
 ### Gates transversais — 22/10/2026
 
-- **Easy NPC:** Bundle/Core/Config UI 7.16.0 e EME 2.6.0 passam a formar um candidato coordenado 1.21.1. O bloqueio de 13/10 por ausência de EME pública ≥2.5 deixou de existir, mas manifests/JarJar, persistência de NPC, networking, render, backups e multiplayer continuam obrigatórios.
+- **Easy NPC:** Bundle/Core/Config UI 7.17.0 e EME 2.6.0 passam a formar um candidato coordenado 1.21.1. O bloqueio de 13/10 por ausência de EME pública ≥2.5 deixou de existir, mas manifests/JarJar, persistência de NPC, networking, render, backups e multiplayer continuam obrigatórios. Conferir o histórico completo 7.12.2→7.17.0 nos três dossiers: 7.16 adiciona revive/shoulder/priority e exige EME 2.6.0 quando presente; 7.17 corrige persistência/saves, mudanças de dimensão e modifica Light Level padrão de 7 para 0, inclusive em NPCs preexistentes com valor default. A branch fonte consultada ainda indica 7.16.0; manifesto do JAR 7.17.0 não inspecionado.
 - **Sophisticated:** Core 1.5.17.2426, Backpacks 3.26.14.2222 e Storage 1.6.8.2196 devem ser avaliados como stack; bridges/JEI/Ars/Thirst, linked storage, anti-dupe, chunk unload e save/restart impedem promoção isolada.
 - **New Dawn:** BCLib 21.0.28, WorldWeaver 21.0.29, BetterNether 21.0.28, BetterEnd 21.0.38 e WunderLib 21.0.11 exigem backup e QA coordenado de registries/worldgen em mundos existentes e chunks novos.
 - **ParCool / Thirst:** ParCool 4.0.1.6 e ThirstWasFixed 2.2.1 exigem revalidação conjunta de stamina API/attributes, configs, Epic Fight/Curios e dedicated server.
