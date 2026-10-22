@@ -139,7 +139,7 @@ O catálogo oficial ainda aponta 2.0.2b como release NeoForge 1.21.1; a publica�
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-teleporters-remastered
 
 ## Revisão cumulativa auditada — 22/10/2026 — lote 01–10
-**Instalado:** Create: Teleporters Remastered 2.0.2b (filename físico; metadata interna registrada como 2.0.2). **Última publicação oficial NeoForge 1.21.1:** 3.0.1b (13/10, file 9165011). O salto para a linha 3.x altera blocos/regras de teleporte e deve ser tratado como **migração de save**.
+**Instalado:** Create: Teleporters Remastered 2.0.2b (filename físico; metadata interna registrada como 2.0.2). **Última publicação oficial NeoForge 1.21.1:** 3.0.1b (13/10, file 9165011). O salto para a linha 3.x modifica regras de teleporte e exige **avaliação de persistência de save**; uma alteração obrigatória de block IDs especificamente entre 2.0.2b e 3.0.1b **não foi demonstrada**.
 
 ### Releases intermediárias verificadas (Minecraft 1.21.1 / NeoForge)
 
@@ -149,7 +149,7 @@ O catálogo oficial ainda aponta 2.0.2b como release NeoForge 1.21.1; a publica�
 | **3.0.1** (12/10; file 9149411) | Corrige alto custo TPS de checagem de Custom Portal, freeze no TP Link de longa distância e Immersive Portals; **tracks devem existir dos dois lados** do portal; remove passive portal drain; ajustes Ponder, efeitos ripple e configs para ripple/shake. |
 | **3.0.1b** (13/10; file 9165011) | Hotfixes de **Electro Energetics compat** e de **bogeys**. A presença de Electro Energetics não foi atestada, portanto seu fix é condicional. |
 
-**Escopo da sequência:** nenhuma publicação distinta **3.0.1a** para NeoForge 1.21.1 foi confirmada nas listagens consultadas; não criar um delta fictício. O dossier já registra a advertência sobre block replacement de custom portal entre 2.x e 3.x; antes de atualizar, preservar backup de saves, portal network/destinations, dados de links e configs, comparar blockstate/registry IDs entre os JARs e planejar rollback do **mundo + mods**, não só do JAR.
+**Escopo da sequência:** nenhuma publicação distinta **3.0.1a** para NeoForge 1.21.1 foi confirmada nas listagens consultadas; não criar um delta fictício. A página oficial alerta que, ao migrar uma instalação **antiga para a edição Remastered**, Custom Portal pode ser substituído por um bloco placeholder recuperável. **O aviso não demonstra que a mesma substituição acontece de 2.0.2b (já Remastered) para 3.0.1b.** Antes de atualizar, preservar backup de saves, portal network/destinations, links e configs, comparar blockstate/registry IDs entre os JARs e planejar rollback do **mundo + mods**; testar se há ou não transformação real de portal.
 
 **Regression gates:** Create 6.0.10, trains e tracks em ambos os lados, Sable ships e sublevels, teleporte entre dimensões e chunks descarregados, permissões/concorrência, telejuice/Spout/KubeJS, link remoto sem hanging, TPS, Bogey e portal render, reinicialização e carregamento de mundo antigo. **Compatibilidade binária, conservação de itens, rollback e performance real não testados.** Não promover para o jogo por simples semver.
 
