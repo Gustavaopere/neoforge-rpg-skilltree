@@ -250,7 +250,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 200 | Create Propulsion: Simulated | `createpropulsion-1.1.5.jar` | `1.1.5` | `Addons + Create + Player Transport + Technology` | 24/09/2026 - 00:20 |
 | 201 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 24/09/2026 - 00:20 |
 | 202 | Create: Schematic Checker | `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar` | `2.27.45-6.0` | `Addons + Bug Fixes + Create` | 24/09/2026 - 00:44 |
-| 203 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 22/10/2026 - 19:46 |
+| 203 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 22/10/2026 - 19:52 |
 | 204 | Create: Transmission! | `createtransmission-1.2.2+neoforge-create6-1.21.1.jar` | `1.2.2+neoforge-create6-1.21.1` | `Addons + Cosmetic + Create + Technology + Utility & QoL` | 24/09/2026 - 00:44 |
 | 205 | Create Ultimine | `createultimine-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `Addons + Create + Utility & QoL` | 24/09/2026 - 00:44 |
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 24/09/2026 - 00:44 |
