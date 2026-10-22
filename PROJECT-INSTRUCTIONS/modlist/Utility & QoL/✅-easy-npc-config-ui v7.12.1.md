@@ -175,3 +175,20 @@ O commit oficial [`2c7fb934c6626224220227e6db5150edd891cdd3`](https://github.com
 - **Gate de promoção:** Promover junto de Core/Bundle 7.16.0 e EME compatível; validar protocol/UI permissions, double-submit, late-viewer sync, models, save/restart e client/server parity.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui
 
+
+## Revisão incremental por release — 22/10/2026 (Config UI 7.12.1 físico → 7.17.0 candidato)
+
+**Nova publicação oficial:** `easy_npc_config_ui-neoforge-1.21.1-7.17.0.jar`, 21/10/2026. Config UI edita/apresenta o estado do **Core**; os itens abaixo são efeitos que precisam de regressão na interface e **não funcionalidades exclusivas deste JAR**.
+
+| Release da família | Efeito no editor/UI que precisa de verificação |
+|---|---|
+| `7.12.2` | NPCs escalonados/Fairy: hitbox, eye level, seleção do editor e validação de valores inválidos; protocolo mudou. A presença como arquivo Config UI separado nessa versão não foi confirmada. |
+| `7.13.0` | Edição de diálogo/macro `@initiator`, `@npc`, `@score()`, erro de skins, browser de presets e validação owner/permission. |
+| `7.14.0` | Replicação de custom poses, attributes, trading e sons a quem observa depois; alteração deve aparecer sem reload. |
+| `7.15.0` | Editor passa a interagir com novos atributos de inventory, `Sit on Shoulder`, boss bar, `Hold` e AI do Core; testar serialization/death drops; EME 2.5+ requisitada se instalada. |
+| `7.16.0` | `Sit on Shoulder` muda da aba Abilities para Misc, ganha offset/distância/cooldown/combate; prioridade editável de objetivos, APIs de revive, regras de preset export 10/min e EME `[2.6.0,3.0.0)` no **source 7.16**. |
+| `7.17.0` | Light Level padrão 7→0 afeta inclusive NPCs existentes com default; novos comandos de atributos e correções de gravação de equipment, nome, inventário, diálogos e objetivos. Testar valor persistente e UI pós-save/restart, comando `name clear`, mudança de modelo `root`, editor versus outro client/dimensão. |
+
+**Bloqueio de promoção:** sem extração do `neoforge.mods.toml` do artefato UI 7.17.0, não afirmar ABI ou faixa de dependências final. Conferir Core/Bundle/UI 7.17.0 com EME 2.6.0 e loader; impedir dois mod IDs e testar permissions, input, late-join, edição simultânea, persistência, backups e client-server protocol. **Nenhuma nova versão física instalada/validada**; filename versionado 7.12.1 mantido.
+
+**Fontes:** [CurseForge Config UI — 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui/files/all?version=1.21.1); [changelog da família distribuído com Core 7.17.0, arquivo 9282416 (Fabric; não é o alvo binário NeoForge)](https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/9282416/additional-files); [CHANGELOG upstream 1.21.1](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/CHANGELOG.md).

@@ -88,3 +88,15 @@ CurseForge oficial confirma `FreshAnimations_v1.10.4.zip`, suporte a 1.21.1, rec
 - **Gate de promoção:** Testar EMF/ETF, packs de compat Fresh Animations, modelos de mobs/NPCs, resource reload e precedência da pilha; não usar a 1.11.1 destinada a 26.1+.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/7670377
 
+
+## Revisão de releases intermediárias — 22/10/2026 (1.10.4 instalada → 1.11.1 - 1.20+)
+
+**Correção material da revisão anterior:** o [CurseForge filtrado especificamente para Minecraft 1.21.1](https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/all?page=1&version=1.21.1) mostra **FA 1.11.1 - 1.20+ (Release, 19/10/2026)**. Essa publicação é diferente de **FA 1.11.1 - 26.1+ (20/10/2026)**. A frase anterior de que "1.11.1" não serve ao pack é, sem qualificar o **sufixo do arquivo**, falsa.
+
+**Cadeia comprovada na linha 1.21.1:** `1.10.4` (ZIP histórico) → `FA 1.11 - 1.20+` (19/10) → `FA 1.11.1 - 1.20+` (19/10). A `1.10.5` listada no projeto é build para a linha **26.1+**, não um passo intermediário aplicável a Minecraft 1.21.1.
+
+**Mudanças para documentação/QA:** a release 1.11 na outra **linha de artefato, 26.1+**, anuncia animações customizadas de **panda e urso-polar**, consolidação de arquivos de modelo/properties por famílias de mobs e diversos ajustes visuais, incluindo bat, aranha, tartaruga, Happy Ghast e modelos infantis. **Esse changelog de arquivo 26.1+ não comprova, sozinho, a inclusão de todos esses assets na build `1.20+`**; conferir notas e `assets/` específicos de ambas as publicações `1.11 - 1.20+` e `1.11.1 - 1.20+` antes de atribuir mudanças. As diferenças exatas de `1.11.1 - 1.20+` **não foram extraídas nem certificadas**, logo não são inventariadas como fatos.
+
+**Gates:** obter o ZIP oficial `1.11.1 - 1.20+`, verificar filename real, `pack.mcmeta`, `pack_format`/ranges, assets, paths CEM e licença; fazer diff **1.10.4→1.11→1.11.1** por arquivos, especialmente modelos de mobs, materiais animados, nomes de bones e ordem de precedência. Testar EMF `3.3.5` + ETF `7.2.1` instalados, compats Refreshed, Excalibur, variantes de illagers, parrot shoulders, polar bear/panda, wolf, ghast, turtle e modelos customizados; `F3+T`/relogin e shaders sem invisibilidade ou perda de animação. **Não está aprovado substituir `FreshAnimations_v1.10.4.zip`**.
+
+**Fontes:** [CurseForge — lista filtrada para 1.21.1](https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/all?page=1&version=1.21.1); [registro do changelog FA 1.11 **26.1+**, apenas para identificação das áreas afetadas e não como prova da variante 1.20+](https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/9254421); [CurseForge da versão instalada 1.10.4](https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/7670377).

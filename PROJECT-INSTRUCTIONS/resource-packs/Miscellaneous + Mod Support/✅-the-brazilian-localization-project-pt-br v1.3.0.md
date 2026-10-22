@@ -103,3 +103,18 @@ A alteração é de **arquivos de idioma, tooltips e textos de UI** e não modif
 - **Gate de promoção:** Validar idioma PT-BR, chaves sobrescritas, traduções de mods presentes, fallback en_us, ordem do pack e ausência de strings quebradas.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/texture-packs/brazilian-project
 
+
+## Auditoria incremental 1.3.0 → 1.4.0 → 1.5.0 — 22/10/2026
+
+**Autoridade física:** `The Brazilian Project [1.21.1-1.3.0].zip` permanece o arquivo certificado, sem nova cópia ou SHA. A cadeia de arquivos da **linha 1.21.1**, conferida no [CurseForge](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/all?version=1.21.1), é **1.3.0 (07/05/2026) → 1.4.0 (07/10/2026) → 1.5.0 (20/10/2026)**. A 1.3.1 da família 26.1.2 não é intermediária 1.21.1.
+
+| Versão publicada | Conteúdo documental comprovado |
+|---|---|
+| `1.4.0` | O autor declara suporte a **231 mods** na linha 1.21.1; tradução/revisão de mods, correções de terminologia e typos. O inventário nominal e riscos próprios dessa release já estão detalhados na seção anterior. O número não significa incremento líquido sobre 1.3.0. |
+| `1.5.0` | O [changelog do arquivo `9263820`](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9263820) declara **383 mods e 101 guidebooks** com suporte em MC 1.21.1, suporte orientado a modpacks (BMC5, All The Mons, ATM10 e ATM10 Aeronautics, FTB Skies 2 Aero, Infinity Legacy II), revisões de traduções, correções de typos e bugs. O autor não publica diff chave-a-chave `1.4.0→1.5.0`: números são **cobertura total declarada**, não exatamente "152 mods novos" ou garantia de completude. |
+
+**Interseções explícitas com esta modlist na lista nominal de novos suportes de `1.5.0`:** **MineColonies, AdvancedCoreInfo, AdvancedLootInfo, AzureLib, Cyclops Core, Collective, Entity Model Features, Entity Texture Features, Euphoria Patcher, 3d-Skin-Layers, oωo**, entre outros. Essas entradas representam **nomes anunciados pelo autor**; conferir a identificação de cada projeto e os namespaces reais `assets/*/lang/pt_br.json` antes de concluir que a tradução está completa ou coincide com a versão instalada. A observação histórica de que *MineColonies não consta na lista nominal de 1.4.0* continua válida **para 1.4.0**, mas não deve ser estendida a 1.5.0.
+
+**Gates prioritários:** comparar ZIPs e JSONs `1.3.0→1.4.0→1.5.0` em staging; validar chaves com os JARs instalados e `en_us.json`; `%s` e índices posicionais, escapes UTF-8, JSON, livro/gui de Create Aeronautics, MineColonies, JEI, Sophisticated e APIs; verificar precedência de outros packs de tradução após F3+T. A tradução pode alterar strings sem alterar o comportamento do jogo. **1.5.0 segue candidata documental, não instalada nem aprovada**.
+
+**Fontes:** [arquivo oficial 1.5.0 — CurseForge ID 9263820](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9263820); [arquivo 1.4.0 — ID 9085941](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9085941); [catálogo de releases 1.21.1](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/all?version=1.21.1).
