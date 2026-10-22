@@ -163,3 +163,20 @@ O source [`2c7fb934c6626224220227e6db5150edd891cdd3`](https://github.com/MarkusB
 - **Gate de promoção:** Promover somente junto de Core 7.16.0 + Config UI 7.16.0 + Easy Model Entities compatível. EME 2.6.0 para 1.21.1 agora existe, removendo o bloqueio de ausência de publicação 2.5+, mas não substitui inspeção de manifests/JarJar nem QA de NPC persistence/network/render.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all
 
+
+## Revisão incremental por release — 22/10/2026 (Bundle 7.12.1 físico → 7.17.0 candidato)
+
+**Nova publicação oficial:** `easy_npc_bundle-neoforge-1.21.1-7.17.0.jar`, 21/10/2026. O Bundle é um **módulo de distribuição/dependências**, portanto o changelog funcional abaixo pertence ao **Core**; não atribuir IA, inventário, storage ou rendering próprios ao Bundle.
+
+- **7.12.2 (changelog do Core; publicação do Bundle nessa versão não confirmada):** hitboxes de NPCs escalonados, validação de payloads e mudança de protocolo.
+- **7.13.0:** macros de diálogo e novo network protocol exigindo versões iguais no cliente/servidor; correções de owner/skins/presets.
+- **7.14.0:** late-viewer sync de pose, atributos, trading e som; revalidação da Config UI.
+- **7.15.0:** novas AI actions, inventário, shoulder/boss bar e correções de duplicação/persistência do Core; requisito opcional de EME 2.5+ se presente e alterações na retenção de backups.
+- **7.16.0:** comando de revive/shoulder, prioridade de objetivos de addons, correções de attack speed/shoulder e rate limit de export; EME opcional `[2.6.0,3.0.0)` comprovada **no source da família 7.16**.
+- **7.17.0:** correções de persistência e gravação de arquivos NPC, saves/export no shutdown, movimento entre dimensões, render/sync de shoulder; Light Level padrão 7→0, novo comando `/easy_npc attribute` e diagnóstico de armazenamento. **O novo padrão de iluminação pode mudar NPCs preexistentes.**
+
+**Gate específico do Bundle:** validar se o artefato publicado **7.17.0** contém dependências embutidas em `META-INF/jarjar/` ou `META-INF/jars/`, cotejar mod IDs Core/UI com os JARs top-level, conferir a versão EME realmente resolvida e fazer staging dos três módulos juntos. A divergência histórica entre descrição JarJar e build com dependências externas não está resolvida por consultar a página de download. Não renomear o dossier `✅-... v7.12.1.md` sem recaptura física.
+
+**Status:** `7.12.1` instalada historicamente; `7.17.0` **candidato coordenado, não instalado, QA pendente**. Os changelogs 7.12.2→7.17.0 foram rastreados como **mudanças da família**, sem presumir a publicação individual de todo número como artefato Bundle.
+
+**Fontes:** [CurseForge Bundle, lista de versões 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?version=1.21.1); [Core 7.17.0, changelog comum no arquivo 9282416 (Fabric; não é binário NeoForge)](https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/9282416/additional-files); [CHANGELOG oficial 1.21.1](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/CHANGELOG.md).
