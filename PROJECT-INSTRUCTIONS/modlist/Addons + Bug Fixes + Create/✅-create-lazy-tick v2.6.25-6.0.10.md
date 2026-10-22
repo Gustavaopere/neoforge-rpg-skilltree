@@ -106,8 +106,8 @@ Fontes upstream: CurseForge file IDs 8970326 (2.7.29) e 8995867 (2.7.30); source
 > **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
 
 - **Projeto solicitado:** Create:LazyTick
-- **Último candidato 1.21.1 / NeoForge localizado:** **2.6.25 para Create 6.0.10**
-- **Estado:** **REVALIDADO — sem bump localizado**
-- **Gate de promoção:** Manter alinhamento exato com Create 6.0.10; qualquer atualização de Create exige revalidar hooks/tick scheduling/performance.
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.7.30 para Minecraft 1.21.1 / Create 6.0.10**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Revalidar Basin multi-fluid, Factory Gauge, Saw + Central Kitchen, sequenced Deployer, Lazy Tick Clock, funnels/redstone, bounded Redstone Link refreshes, reload/restart e CBC ammo/deployer regressions.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-lazytick
 

@@ -333,8 +333,8 @@ Fonte upstream: CurseForge Alshanex's Familiars file ID 8966342, release v4.0.4 
 > **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
 
 - **Projeto solicitado:** Alshanex's Familiars
-- **Último candidato 1.21.1 / NeoForge localizado:** **4.0.3 (NeoForge 1.21.1)**
-- **Estado:** **REVALIDADO — sem bump localizado**
-- **Gate de promoção:** Manter baseline; qualquer futura troca exige regressão de familiar ownership, summon lifecycle, sync e Ars/Iron's integrations.
+- **Último candidato 1.21.1 / NeoForge localizado:** **4.0.4 (NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE — migração coordenada**
+- **Gate de promoção:** Fazer backup e validar junto de FamiliarsLib 1.8 a migração do storing system, coleções >10, Pandora's Box/Familiar Storage, ownership, relog/dimensão/restart, performance e ausência de perda/duplicação.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/alshanexs-familiars
 

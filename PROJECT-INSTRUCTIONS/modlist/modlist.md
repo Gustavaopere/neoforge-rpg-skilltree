@@ -1002,7 +1002,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 17 | Platform | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-platform%20v1.3.3.md) | `1.3.3` | 1.4 | **PENDENTE** |
 | 18 | FTB XMod Compat | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-ftb-xmod-compat%20v21.1.11.md) | `21.1.11` | 21.1.12 | **PENDENTE** |
 | 19 | Amendments | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-amendments%20v1.21-2.1.10.md) | `1.21-2.1.10` | 2.2.0 | **PENDENTE** |
-| 20 | Alshanex's Familiars | [Abrir `.md`](./Addons%20%2B%20Magic%20%2B%20Mobs/%E2%9C%85-alshanexs-familiars%20v1.21.1_v4.0.3.md) | `1.21.1_v4.0.3` | 4.0.3 | **REVALIDADO** |
+| 20 | Alshanex's Familiars | [Abrir `.md`](./Addons%20%2B%20Magic%20%2B%20Mobs/%E2%9C%85-alshanexs-familiars%20v1.21.1_v4.0.3.md) | `1.21.1_v4.0.3` | 4.0.4 | **PENDENTE — coordenar FamiliarsLib 1.8** |
 | 21 | Create:Tracks+ | [Abrir `.md`](./Create/%E2%9C%85-create-tracks-plus%20v1.0.6b6.md) | `1.0.6b6` | 1.0.6beta6 | **REVALIDADO beta; sem bump** |
 | 22 | Relics | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic%20%2B%20Magic%20%2B%20Ores%20and%20Resources/%E2%9C%85-relics%20v0.12.8.md) | `0.12.8` | 0.12.9 Beta | **BLOQUEADO** |
 | 23 | Lychee [Neo/Forge] | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-lychee-tweaker%20v6.7.0%2Bneoforge.md) | `6.7.0+neoforge` | 6.7.1 Beta | **BLOQUEADO** |
@@ -1022,18 +1022,18 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 37 | Eidolon : Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | 0.5.0.7 | **PENDENTE** |
 | 38 | [ETF] Entity Texture Features - [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-texture-features%20v7.2.1.md) | `7.2.1` | 7.2.6 | **PENDENTE** |
 | 39 | Reliquified Ars Nouveau | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-ars-nouveau%20v0.8.1.md) | `0.8.1` | 0.8.1 Beta | **REVALIDADO beta** |
-| 40 | Create:LazyTick | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-lazy-tick%20v2.6.25-6.0.10.md) | `2.6.25-6.0.10` | 2.6.25 / Create 6.0.10 | **REVALIDADO** |
+| 40 | Create:LazyTick | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-lazy-tick%20v2.6.25-6.0.10.md) | `2.6.25-6.0.10` | 2.7.30 / Create 6.0.10 | **PENDENTE** |
 | 41 | Ecliptic Seasons | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Farming%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ecliptic-seasons%20v0.15.0-rc-3-1.md) | `0.15.0-rc-3-1` | 0.15.4.1 Beta | **BLOQUEADO** |
 | 42 | Fragmentum ✿ NeoForge | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | 5.4.0 | **PENDENTE — breaking changes** |
 | 43 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | 2.2.1 | **COORDENADO ParCool/Thirst** |
-| 44 | FamiliarsLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-familiarslib%20v1.21.1-1.7.md) | `1.21.1-1.7` | 1.7.1 | **PENDENTE** |
+| 44 | FamiliarsLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-familiarslib%20v1.21.1-1.7.md) | `1.21.1-1.7` | 1.8 | **PENDENTE — coordenar Alshanex 4.0.4** |
 | 45 | Cyclops Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Server%20Utility/%E2%9C%85-cyclops-core%20v1.30.0.md) | `1.30.0` | 1.30.0-1205 Beta | **BLOQUEADO** |
 | 46 | Apotheosis x Iron's Spellbooks Compat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-irons-apothic%20v2.2.2.md) | `2.2.2` | 2.2.8+1.21.1 | **PENDENTE** |
 | 47 | Dynamic Trees - VanillaBackport | [Abrir `.md`](./Addons%20%2B%20World%20Gen/%E2%9C%85-dynamic-trees-vanillabackport%20v1.7.0.md) | `1.7.0` | 1.7.0 | **REVALIDADO** |
 | 48 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | 5.2.0 | **PENDENTE** |
 | 49 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.56.0.440.md) | `19.56.0.440` | 19.64.0.455 Release; 19.69.0.457 Beta | **Release PENDENTE; beta BLOQUEADA** |
 | 50 | Create Aeronautics: Automated Logistics | [Abrir `.md`](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md) | `0.6.2` | 0.6.2 | **BLOQUEADO: dossier sem ✅; não editado** |
-| 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.57 Beta | **REVALIDADO beta** |
+| 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.58 Beta | **BLOQUEADO / PENDENTE QA** |
 | 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.62 | **PENDENTE** |
 | 53 | Create: Stats & Power | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-stats-power%20v1.13.1.md) | `1.13.1` | 1.15.0 | **PENDENTE** |
 | 54 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | 0.2.0 | **REVALIDADO** |
@@ -1045,7 +1045,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 60 | BetterNether: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betternether-new-dawn%20v21.0.26.md) | `21.0.26` | 21.0.28 | **COORDENADO NEW DAWN** |
 | 61 | Streams Reflowing | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20World%20Gen/%E2%9C%85-streamsreflowing%20v2.13.5.md) | `2.13.5` | 2.15.2 | **PENDENTE** |
 | 62 | Reliquified Iron's Spells 'n Spellbooks | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-irons-spells-n-spellbooks%20v0.2.7.md) | `0.2.7` | 0.2.8 Beta | **BLOQUEADO** |
-| 63 | Enhanced AI | [Abrir `.md`](./Mobs/%E2%9C%85-enhanced-ai%20v4.2.3.0.md) | `4.2.3.0` | 4.2.3.0 | **REVALIDADO** |
+| 63 | Enhanced AI | [Abrir `.md`](./Mobs/%E2%9C%85-enhanced-ai%20v4.2.3.0.md) | `4.2.3.0` | 4.2.4.0 | **PENDENTE** |
 | 64 | ParCool! ~ Minecraft Parkour ~ | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-parcool%20v4.0.0.3.md) | `4.0.0.3` | 4.0.1.6 | **COORDENADO TWF/Epic Fight** |
 | 65 | Skin Layers 3D | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic/%E2%9C%85-3d-skin-layers%20v1.11.2.md) | `1.11.2` | 1.10.1 é o último NeoForge 1.21.1 comprovado | **FAIL-CLOSED: diverge do físico 1.11.2** |
 | 66 | Lithostitched | [Abrir `.md`](./API%20and%20Library%20%2B%20Miscellaneous%20%2B%20World%20Gen/%E2%9C%85-lithostitched%20v1.8.0%2Bbeta6.md) | `1.8.0+beta6` | 1.8.1 | **PENDENTE** |
@@ -1065,7 +1065,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 80 | Create: Ornithopter Glider | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Create%20%2B%20Player%20Transport%20%2B%20Utility%20%26%20QoL/%E2%9C%85-create-ornithopter-glider%20v1.2.0-1.21.1.md) | `1.2.0-1.21.1` | 1.2.0 | **REVALIDADO** |
 | 81 | AmbientSounds 6 | [Abrir `.md`](./Miscellaneous/%E2%9C%85-ambientsounds-6%20v6.3.8.md) | `6.3.8` | 6.3.11 | **PENDENTE** |
 | 82 | Spell Codex: Iron's Spells 'n Spellbooks Addon | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-spell-codex-irons-spells-n-spellbooks-addon%20v1.6.5.md) | `1.6.5` | 1.6.13 | **PENDENTE** |
-| 83 | Apothic Compats | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons/%E2%9C%85-apothic-compats%20v0.2.4.2.md) | `0.2.4.2` | 0.2.4.2 | **REVALIDADO** |
+| 83 | Apothic Compats | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons/%E2%9C%85-apothic-compats%20v0.2.4.2.md) | `0.2.4.2` | 0.2.4.3 compatível com Apotheosis 8.8.0; 0.2.5.5 latest 1.21.1 | **0.2.4.3 PENDENTE; 0.2.5.5 BLOQUEADO até stack 8.9.x** |
 
 ### Gates transversais — 22/10/2026
 

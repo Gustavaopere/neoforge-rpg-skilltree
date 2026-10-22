@@ -153,8 +153,8 @@ Fonte upstream: CurseForge Enhanced AI 4.2.4.0, file ID 8946964, NeoForge 1.21.1
 > **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
 
 - **Projeto solicitado:** Enhanced AI
-- **Último candidato 1.21.1 / NeoForge localizado:** **4.2.3.0**
-- **Estado:** **REVALIDADO — sem bump localizado**
-- **Gate de promoção:** Manter baseline; futura atualização exige testes de mob AI/pathfinding, spawn load e performance server-side.
+- **Último candidato 1.21.1 / NeoForge localizado:** **4.2.4.0 (NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Validar blow-up-on-death, equipment/enchant scaling por profundidade/lua, Enderman follow range, Fisher LOS, drowning swim-up, interação com Epic Fight/AI-Improvements e performance server-side.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/enhanced-ai
 

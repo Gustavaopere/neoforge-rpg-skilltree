@@ -106,8 +106,8 @@ Fonte upstream: CurseForge file ID 8966334, `familiarslib-1.21.1-1.8.jar`.
 > **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
 
 - **Projeto solicitado:** FamiliarsLib
-- **Último candidato 1.21.1 / NeoForge localizado:** **1.7.1 (NeoForge 1.21.1)**
-- **Estado:** **CANDIDATO PENDENTE**
-- **Gate de promoção:** Biblioteca de familiars: testar Alshanex's Familiars e demais consumers, registries/network/persistence e server boot.
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.8 (NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE — migração coordenada**
+- **Gate de promoção:** Fazer backup e validar migração do familiar storing system (10→até 50), config 10/25/50, beds/storage, relog/restart, dimension transfer e consumer Alshanex's Familiars 4.0.4.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/familiarslib
 

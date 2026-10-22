@@ -161,8 +161,8 @@ Fontes upstream: CurseForge Apothic Compats 0.2.4.3 (file ID 8936047), sequênci
 > **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum arquivo físico do pack, filename documental certificado, posição de inventário, configuração ou save foi alterado.
 
 - **Projeto solicitado:** Apothic Compats
-- **Último candidato compatível localizado:** **0.2.4.2**
-- **Estado:** **REVALIDADO — sem bump localizado**
-- **Gate de promoção:** Manter baseline; futuras mudanças exigem teste de Apothic/Apotheosis consumers, attributes/affixes/gems e addon interactions.
+- **Último candidato compatível localizado:** **0.2.4.3 para o stack Apotheosis 8.8.0; 0.2.5.5 é a latest 1.21.1 e requer migração coordenada para a linha Apotheosis 8.9.x**
+- **Estado:** **0.2.4.3 CANDIDATO PENDENTE; 0.2.5.5 BLOQUEADO ATÉ MIGRAÇÃO DO PROVIDER**
+- **Gate de promoção:** Para 0.2.4.3, validar o alinhamento com Apotheosis 8.8.0 e regressões de affixes/loot. Para 0.2.5.5, validar stack Apotheosis 8.9.x, hostile spawns (regressão do mixin revertido), reload, providers ausentes/presentes e ausência de duplicação de affixes/gems.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/apothic-compats
 
