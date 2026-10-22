@@ -124,3 +124,14 @@ O changelog publicado pelo autor para a versão 8.43 (também veiculada em build
 **Release NeoForge 1.21.1 de 12/10/2026:** 8.47 (após 8.43–8.46). As notas públicas da 8.47 exibem correções específicas para **Minecraft 26.2+** e **1.20.1**, as quais **não** devem ser transferidas por analogia à build 1.21.1. Não é possível identificar delta funcional exclusivo da 1.21.1 8.47 sem artefato/changelog exato. Migrar em conjunto com consumers Serilum; riscos em packet registration durante boot paralelo, config, network client/server, localization, dedicated server, reload e handshake. Última física 8.39.
 
 **Fonte física:** `modlist(1).txt` continua sendo o último snapshot acessível. Não se verificou instalação nova nem JAR/metadata/hash atual; manter versão histórica no filename `✅-... vX.md` e na linha física do índice até novo dump e smoke tests. **Estado:** atualização documental concluída na branch; promoção física **PENDENTE/BLOQUEADA** conforme os gates.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Collective
+- **Último candidato 1.21.1 / NeoForge localizado:** **8.62 (NeoForge 1.21.1, 21/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Biblioteca compartilhada Serilum: revalidar todos os consumers instalados, configs/events e boot dedicado; não atualizar isoladamente sem smoke do conjunto.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/collective
+

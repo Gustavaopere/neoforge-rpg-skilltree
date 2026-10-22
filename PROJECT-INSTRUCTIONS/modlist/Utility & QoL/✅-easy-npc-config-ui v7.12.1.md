@@ -164,3 +164,14 @@ Conforme documentação NeoForge 1.21.1, **opcional não significa ignorar a ver
 O commit oficial [`2c7fb934c6626224220227e6db5150edd891cdd3`](https://github.com/MarkusBordihn/BOs-Easy-NPC/commit/2c7fb934c6626224220227e6db5150edd891cdd3) contém **Core 7.14.0** para Minecraft 1.21.1 e [manifesto NeoForge Config UI](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/2c7fb934c6626224220227e6db5150edd891cdd3/config-ui/NeoForge/src/main/resources/META-INF/neoforge.mods.toml) com `easy_model_entities` **opcional `[2.4.0,3.0.0)`**, `ordering = "AFTER"`, `side = "BOTH"`; o Core no mesmo commit possui a mesma faixa. Isso torna o candidato **7.14.0 declarativamente compatível com EME build 2.4.0** da última fotografia física. A UI também exige o Core e declara seu range vinculado à versão substituída pelo build; manter os três componentes alinhados em **7.14.0** para evitar quebra de protocolo. A 7.15.0 continua **BLOQUEADA** com a EME 2.4.0 presente.
 
 **Limitações:** verificar os manifests extraídos dos JARs distribuídos, a versão de EME resolvida pelo NeoForge (o campo histórico no inventário está vazio), as dependências e a composição do Bundle. Revalidar telas de configuração, skin, custom pose, trading e novos espectadores após restart/relogin em ambiente descartável. **Não houve download/extração de JAR, teste funcional ou mudança física**. O [source EME 2.5.0 para 1.21.1](https://github.com/MarkusBordihn/BOs-Easy-Model-Entities/blob/7305984c57845b97d0190bfc6d4b3e0363ca5aaf/gradle.properties) não equivale à publicação do binário NeoForge 1.21.1.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Easy NPC: Config UI
+- **Último candidato 1.21.1 / NeoForge localizado:** **7.16.0 (Release, 17/10)**
+- **Estado:** **CANDIDATO COORDENADO**
+- **Gate de promoção:** Promover junto de Core/Bundle 7.16.0 e EME compatível; validar protocol/UI permissions, double-submit, late-viewer sync, models, save/restart e client/server parity.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui
+

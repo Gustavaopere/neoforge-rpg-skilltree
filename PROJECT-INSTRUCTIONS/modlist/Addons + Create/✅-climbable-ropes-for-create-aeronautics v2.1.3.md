@@ -104,3 +104,14 @@ Qualquer attachment temporário deve ser descartado quando a entidade/rope deixa
 - changelog 2.1.1: fixes de respawn/dimension, disconnect stale pose e render cancellation;
 - changelog 2.1.3: fixes de drift/velocity em contraptions móveis e override de hanging pose por FA-PE.
 > 🪢 Boundary canônico: o addon controla **interação do jogador com ropes Aeronautics**; a rope e sua física continuam pertencendo ao provider hospedeiro.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Climbable Ropes for Create Aeronautics
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.1.3**
+- **Estado:** **REVALIDADO — sem bump localizado**
+- **Gate de promoção:** Manter baseline; testar rope climbing em moving sublevels, dismount/fall, multiplayer e chunk transitions se houver update futuro.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes
+
