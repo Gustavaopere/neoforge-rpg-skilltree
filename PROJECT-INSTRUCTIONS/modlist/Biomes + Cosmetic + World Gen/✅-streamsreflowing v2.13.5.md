@@ -237,3 +237,14 @@ Fontes upstream: CurseForge/Modrinth oficiais Streams Reflowing, changelogs 2.13
 **Upstream NeoForge MC 1.21.1:** **`StreamsReflowing-1.21.1-neoforge-2.14.4.jar`** (file ID **9060294**, 04/10/2026), após a linha 2.13.5–2.13.8 previamente auditada. **Deltas oficiais 2.14.4:** bordas de lagos mais arredondadas em terreno de precisão baixa, válidas para **lagos novos**; cascatas diagonais não solidificam indevidamente quando conversão de fontes de água está ativa; hooks de mixin ausentes deixam de causar falha de inicialização (incluindo setups sem Sodium e com verificações estritas/C2ME); builds NeoForge rejeitam versões de Minecraft erradas. **Último JAR físico:** 2.13.5. **Gate:** geração de rios/lagoas/springs, seeds fixas, chunks velhos vs novos, water conversion gamerule, Tectonic/Terralith/BWG, Create kinetic via water wheels, shaders, C2ME/mixin conflicts, dedicated server, memória e restart. Não inferir retroatividade das alterações de shoreline. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9060294
 
 > **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Streams Reflowing
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.15.2 (Release NeoForge 1.21.1, 16/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Worldgen/hydrology: backup de mundo, testar chunks novos vs existentes, river continuity, biome/worldgen stack e dedicated restart.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/streams-reflowing ; https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/all?version=1.21.1
+

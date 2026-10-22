@@ -279,3 +279,14 @@ A [release oficial ParCool 4.0.1.1 NeoForge 1.21.1, File ID 9068414](https://www
 **Alternativa não equivalente:** há outro projeto publicado, [\[NEOFORGE\] Epic Fight X Parcool 1.0.0 (10/08/2026)](https://www.curseforge.com/minecraft/mc-mods/epic-fight-x-parcool/files/all), cujo código/JAR não foi comparado. Não transferir conclusões entre projetos nem instalá-lo por similaridade de nome.
 
 **Gate de inclusão futura:** comparar classes/mixin targets/versions reais, dependências Epic Fight e ParCool, NeoForge 21.1.250, server headless, camadas de animação/dodge, stamina (Epic Fight vs ParCool), skills, inputs, Curios/Traceur Gloves, save/restart, dimensão e multiplayer; registrar hashes e testar rollback. **Decisão: Epic ParCool oficial 21.0.0 BLOQUEADO no stack 4.0.0.3 por mismatch de source; outro projeto NÃO VERIFICADO; nenhum addon instalado.** Nenhum problema atribuído ao baseline sem bridge.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** ParCool! ~ Minecraft Parkour ~
+- **Último candidato 1.21.1 / NeoForge localizado:** **4.0.1.6 (Release NeoForge 1.21.1, 16/10)**
+- **Estado:** **CANDIDATO COORDENADO**
+- **Gate de promoção:** Revalidar com ThirstWasFixed 2.2.1, Epic Fight/Curios, stamina attributes, learning costs/config migration, movement authority, dimensão, Sable/Aeronautics e dedicated boot.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/parcool
+

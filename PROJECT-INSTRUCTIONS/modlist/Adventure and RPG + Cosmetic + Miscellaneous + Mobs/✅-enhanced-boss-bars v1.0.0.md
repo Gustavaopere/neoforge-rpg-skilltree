@@ -85,3 +85,14 @@ Cada cliente renderiza a barra com base no state recebido. Barras não podem cri
 - modlist física atual: JAR/mod id/version e providers locais;
 - CurseForge oficial Enhanced Boss Bars / projeto relacionado: finalidade visual, mod support e motivo do mod frente às limitações do resource pack.
 > **Boundary canônico:** Enhanced Boss Bars controla somente a **apresentação da boss bar**. O boss provider continua authority de todo o combate.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Enhanced Boss Bars (Fabric/Forge/NeoForge)
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.1.2 (Release, 18/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Validar boss detection, custom bars, overlays/shaders/resource packs, multiplayer e coexistência com bosses modded.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars
+

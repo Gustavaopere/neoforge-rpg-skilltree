@@ -107,3 +107,14 @@ O último fix é material porque o pack usa um stack de worldgen amplo e Lithost
 - [ ] WorldWeaver não emite regressões funcionais apesar do fix de logging.
 
 Fonte upstream: CurseForge Lithostitched 1.8.0 para NeoForge 21.1, file ID 8944659, e changelog oficial da release. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Lithostitched
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.8.1 (Release, 14/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Biblioteca/worldgen: validar datapack/worldgen APIs, consumers, registries, novos chunks e boot/restart.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/lithostitched
+

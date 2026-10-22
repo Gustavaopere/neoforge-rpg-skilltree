@@ -116,3 +116,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge 1.11.2: delta exato e known issue de 26.2 não aplicável.
 - Epic Fight JAR físico: mixin de compat `skinlayers3d` confirma integration surface.
 - **Limite:** nenhuma inspeção visual/runtime foi executada nesta auditoria; qualidade de composição depende do shader, skin e modelos efetivamente usados.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Skin Layers 3D
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.10.1 (último arquivo NeoForge explicitamente comprovado para Minecraft 1.21.1 na listagem oficial consultada)**
+- **Estado:** **FAIL-CLOSED — DIVERGÊNCIA COM A AUTORIDADE FÍSICA**
+- **Gate de promoção:** O dossier físico registra 1.11.2, mas a publicação 1.11.x visível é para versões Minecraft posteriores. Não rebaixar nem reescrever o instalado. Inspecionar o JAR físico/manifest/filename e origem antes de concluir se 1.11.2 é backport, mislabeled ou outro artefato.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/skin-layers-3d/files/8274824
+
