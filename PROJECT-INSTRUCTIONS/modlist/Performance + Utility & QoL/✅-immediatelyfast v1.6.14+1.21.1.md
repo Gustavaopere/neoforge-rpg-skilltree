@@ -76,3 +76,14 @@ Validar client boot, world join/leave, resource reload, shader reload/toggle qua
 - **GitHub oficial:** branch 1.21 documenta arquitetura/optimizations/config/known incompatibilities, mas já está em 1.6.14-SNAPSHOT e não é byte pin da 1.6.13.
 - **Limite:** benchmarks históricos não foram repetidos no hardware/modpack atual.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** ImmediatelyFast
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.6.15 (NeoForge 1.21.1, 13/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Performance/render: validar GPU paths, overlays/UI, shader/resource-pack stack, EMF/ETF e ausência de regressão visual/crash.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/immediatelyfast/files/8749421
+

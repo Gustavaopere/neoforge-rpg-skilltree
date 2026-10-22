@@ -99,3 +99,14 @@ Cada cliente renderiza a pose a partir do state sincronizado do jogo/mod externo
 **Estado upstream:** release **`2.0.0`** continua sendo a correspondente à NeoForge 1.21.1, file ID **8793794**, sem upgrade indicado para este loader/MC. **Changelog oficial já aplicado ao baseline:** usa hooks próprios do EMF, exige EMF **3.3.2+** e restaura pose uma vez por jogador renderizado, em vez de uma vez por parte do corpo. **Gate conjunto:** EMF 3.3.5, ETF 7.2.1 e consumers Create/Iron's Spells 2.0.0; testar concorrência de animation layers, resource reload e mudança de perspectiva. Não atribuir gameplay ao Core. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-core/files/8793794
 
 > **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** EMF Compat: Core
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.3.2 (Release, 16/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Validar EMF/ETF, compat modules, model/resource reload e client-only boundaries com os packs visuais ativos.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-core
+

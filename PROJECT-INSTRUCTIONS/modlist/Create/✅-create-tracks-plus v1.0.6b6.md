@@ -118,3 +118,14 @@ O runtime físico continua exatamente `tracks_plus-1.0.6b6.jar`, mod id `tracks`
 A decisão **Manter** e o estado **Integrado ao Github** foram preservados. Nenhum teste de suspensão, drop, chunk crossing, physics stability ou interação destrutiva com True Impact foi executado nesta recatalogação.
 ## 16. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece `tracks_plus-1.0.6b6.jar`, versão `1.0.6b6`, na linha Beta 1.0.6 mais recente localizada para NeoForge 1.21.1; a Release 1.0.5 permanece somente fallback de estabilidade documentado. O stack Create `6.0.10` + Aeronautics `1.3.2` + Sable `2.0.5` + True Impact `0.5.7-delta` permanece inalterado. A decisão **Manter** foi preservada e nenhum teste de suspensão, drops, chunk crossing ou physics stability foi executado nesta revalidação.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Create:Tracks+
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.0.6beta6 (beta; o canal estável localizado permanece 1.0.5)**
+- **Estado:** **REVALIDADO — baseline já está na beta mais nova localizada; não há bump seguro**
+- **Gate de promoção:** Não 'atualizar' para a release estável numericamente inferior. Manter 1.0.6b6 até existir release posterior ou decisão explícita de downgrade; testar bogeys/tracks/contraptions.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-track
+

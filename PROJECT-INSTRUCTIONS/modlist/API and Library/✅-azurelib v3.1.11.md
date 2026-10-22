@@ -143,3 +143,14 @@ AzureLib é uma **engine de animação** consumida por outros mods; migração 3
 Em 12/10 apareceu **3.1.20-alpha.1** para NeoForge Minecraft 1.21.1, superior numericamente à 3.1.19 estável, mas **alpha não deve ser eleita automaticamente como recomendação**. Atualizar somente de forma coordenada com consumers que usam AzureLib, mantendo GeckoLib independente. A família 3.1.x já evoluiu APIs de keyframe/sequence, Molang e render/controller; esta alpha exige changelog exato e teste de source/ABI antes de imputar feature nova. Gate client+server, threaded setup, poses/bones, reverse playback, sound/particle keyframes exactly-once, F3+T e stress de entidades.
 
 **Autoridade física:** estado histórico do JAR documentado neste dossiê e `modlist(1).txt` permanece intacto; novo dump do pack, hashes, metadata e testes runtime não foram fornecidos. **Decisão:** candidato upstream (ou revalidação sem release nova), não uma atualização instalada. **Filename:** preservar prefixo ✅ e versão física histórica no nome até evidência da instalação.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** AzureLib
+- **Último candidato 1.21.1 / NeoForge localizado:** **3.1.22 (Release estável); 3.1.23-alpha.2 (Alpha)**
+- **Estado:** **3.1.22 CANDIDATO PENDENTE; 3.1.23-alpha.2 BLOQUEADO**
+- **Gate de promoção:** Priorizar a release estável. Testar animation/model APIs, armor/entities, networking e todos os consumers; não promover alpha.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/azurelib
+

@@ -311,3 +311,14 @@ O último snapshot físico contém **`easy_model_entities-neoforge-1.21.1-2.4.0.
 **Matriz de decisão:** (A) **7.15.0 + EME 2.4.0: BLOQUEADO** pela faixa `[2.5.0,3.0.0)`; (B) **7.14.0 + EME 2.4.0: CANDIDATO CONDICIONAL**, com compatibilidade de faixa apenas no source pinado; (C) **7.15.0 + EME 2.5.0 1.21.1: PENDENTE DE PUBLICAÇÃO/ARTEFATO**. O [source EME 1.21.1 já contém 2.5.0](https://github.com/MarkusBordihn/BOs-Easy-Model-Entities/blob/7305984c57845b97d0190bfc6d4b3e0363ca5aaf/gradle.properties), mas seu binário correspondente não foi localizado nas publicações oficiais consultadas.
 
 **Gates para a opção B:** obter os três JARs NeoForge 1.21.1 7.14.0 de origem oficial; extrair manifests e inventário de `META-INF/jarjar/` e `META-INF/jars/`; verificar mod IDs únicos, versão runtime EME, dependências e SHA-256; fazer backup de mundo/NPCs; boot cliente + dedicated server; dois clientes na mesma versão; teste com NPCs existentes, preset import/restore, poses e trading para cliente tardio, som/sincronização, save/restart, Epic Fight e shader stack. **Nenhum desses testes foi executado nesta análise.** Não alterar JAR, modlist física ou filename versionado antes desses gates.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Easy NPC: Core
+- **Último candidato 1.21.1 / NeoForge localizado:** **7.16.0 (Release, 17/10)**
+- **Estado:** **CANDIDATO COORDENADO**
+- **Gate de promoção:** Promover junto de Bundle + Config UI e EME compatível. A publicação EME 2.6.0/1.21.1 remove o bloqueio anterior de ausência de 2.5+, mas persistência, inventory/actions, networking, backups, models e Epic Fight ainda exigem QA.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all
+
