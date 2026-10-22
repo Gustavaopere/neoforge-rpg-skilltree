@@ -155,3 +155,14 @@ Fonte upstream: CurseForge Photon file ID 8941291, changelog v2.2.7.
 - **Gate de promoção:** Regressão de efeitos/VFX, resource reload, client/server separation e consumers antes de promoção.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/photon
 
+## Revisão cumulativa auditada — 22/10/2026 — lote 01–10
+**Autoridade física:** Photon 2.2.6.a; **latest release NeoForge 1.21.1:** 2.2.8 (08/10, arquivo photon-neoforge-1.21.1-2.2.8-all.jar, ID 9096743). A linha intermediária é **2.2.7 → 2.2.8**.
+
+| Versão | Changelog upstream relevante |
+|---|---|
+| 2.2.7 | Modelos GLB/glTF rigged e animações, phases, soft particles, mesh-facing, alterações em instancing, transform/parent rotation, playback rate e timeline, com efeito nos projetos FX e em caches. O dossier já descreve com detalhes essa release. |
+| 2.2.8 | **Dynamic clustered point/spot lights** com voxel soft shadows; volumetric lights e fog volumes; light emission em partículas, nó Dynamic Light para shaders; **KilaMaterial com 27 presets**, exportação como shader graph, render state opcional; custom space para força/velocidade/rotação/gravidade ara trail; cópia/colagem/duplicação de FX. Correções do stutter de ara trail, speed/loop ignorados por animação por partícula, filhos de FX deletado reaparecendo, atalhos após menu de contexto e literais float em GLSL ES que quebravam shaders. |
+
+**Gates:** resource reload, criação/serialização de materials e shader graphs, upload de GLB animado, renderer de GPU/instancing, comparativos on/off de lights e fog, integração com shaders e LDLib/KilaGraph, efeitos em entidades/contraptions/SubLevels quando aplicável, contexto GLSL ES, stutter FPS e classes client-only em dedicated server. **Nenhum binário novo/benchmark foi executado**, e as configurações padrão de luz não foram inferidas.
+
+Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/photon/files/8941291 (2.2.7); https://www.curseforge.com/minecraft/mc-mods/photon/files/9096743 (2.2.8).
