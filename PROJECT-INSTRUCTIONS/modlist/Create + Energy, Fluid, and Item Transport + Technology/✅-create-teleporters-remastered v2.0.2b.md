@@ -127,3 +127,14 @@ Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/create-teleporters/
 O catálogo oficial ainda aponta 2.0.2b como release NeoForge 1.21.1; a publicação Forge 1.19.2 de 03/06/2026 NÃO é atualização compatível deste perfil. Não foi constatado novo conteúdo publicamente lançado para a edição instalada. Preservar integração com Create, gerenciamento de destino, energia/custo se definido pelo provider, teleportação player/entidades, segurança em dimensões/chunk unload e concorrência entre operadores. Verificar interação com ModernFix `dynamic_resources` antes de alterar configuracões.
 
 **Autoridade física:** permanece o JAR/versão registrados nas seções históricas deste dossiê e na `modlist(1).txt`; NÃO foi disponibilizada nova lista física nem realizada instalação/teste in-game. **Recomendação:** atualização física pendente de reconciliação de dependências, SHA e validações; não interpretar o número publicado como versão instalada. **Filename `.md`:** ✅ herdado e versão do JAR físico preservados conforme protocolo canônico.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Create: Teleporters
+- **Último candidato 1.21.1 / NeoForge localizado:** **3.0.1b (NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Validar Create 6.0.10, teleporte server-authoritative, energia/fluido/item state, chunk unload, dimensão, multiplayer e save/restart.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-teleporters-remastered
+

@@ -196,3 +196,14 @@ O delta é pequeno em volume, mas relevante para este pack porque Gloomwood é u
 - [ ] Novo mundo e mundo existente passam por smoke test no Nether.
 
 Fonte upstream: CurseForge BetterNether: New Dawn 21.0.27, file ID 8896389, NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** BetterNether: New Dawn
+- **Último candidato 1.21.1 / NeoForge localizado:** **21.0.28 (NeoForge 1.21.1, 14/10)**
+- **Estado:** **CANDIDATO COORDENADO NEW DAWN**
+- **Gate de promoção:** Atualizar somente com BCLib/WorldWeaver/WunderLib/BetterEnd compatíveis; backup de mundo, registries/biomes, Nether já explorado, chunks novos e restart.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/betternether-new-dawn
+

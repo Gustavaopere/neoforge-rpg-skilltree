@@ -171,3 +171,14 @@ Fonte: CurseForge oficial da linha 1.21.1 + source `TeamTeaMC/Ecliptic-Seasons` 
 **Upstream:** **Ecliptic Seasons 0.15.4 Beta** publicada para **NeoForge MC 1.21.1** em 10/10/2026. **Autoridade física anterior:** `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar`. A cadeia 0.15.2–0.15.3.1 está descrita acima. Nova beta não é promoção automática nem release estável; não atribuir alterações exatas sem changelog. **Gate:** `AlternatingWeatherModel`, `UseSolarWeather` e migração de config, termos solares, plantio/humidity, chuva/trovão, Distant Horizons, Cold Sweat como provider térmico distinto, Bundles 0.18.0.2 e MultiMod Patch 0.32.1, save/restart multiplayer/dedicated server. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons/files/all?version=1.21.1
 
 > **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Ecliptic Seasons
+- **Último candidato 1.21.1 / NeoForge localizado:** **0.15.4.1 (Beta, 16/10)**
+- **Estado:** **BLOQUEADO COMO BETA**
+- **Gate de promoção:** Season/calendar/weather/crop growth afetam world state e balanceamento. Exigir migração de save, datapacks, multiplayer e restart em staging.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons
+

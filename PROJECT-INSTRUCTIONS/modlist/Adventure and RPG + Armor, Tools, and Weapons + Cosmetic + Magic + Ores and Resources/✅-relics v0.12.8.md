@@ -179,3 +179,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - GitHub público da linha 1.21: arquitetura geral de registries/subsistemas, sem tratá-lo como source pin exato do JAR.
 - Issues/PR upstream: riscos conhecidos, explicitamente marcados como **não reproduzidos localmente**.
 - **Limite:** não foi enumerada cada relic do mod nem cada config entry; isso exigiria source/JAR audit pinning adicional e não é necessário para inventar conteúdo.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Relics
+- **Último candidato 1.21.1 / NeoForge localizado:** **0.12.9 (Beta, 18/10)**
+- **Estado:** **BLOQUEADO COMO BETA**
+- **Gate de promoção:** Avaliar relic abilities, Curios slots, sync/cooldowns, loot/persistence e compats antes de considerar promoção.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/relics-mod
+

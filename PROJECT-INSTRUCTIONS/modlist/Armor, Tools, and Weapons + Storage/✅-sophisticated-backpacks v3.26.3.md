@@ -280,3 +280,14 @@ A modlist histórica #054 registra `arssophisticatedcompat-0.3.0.jar`, que coinc
 **Sobreposições com o ecossistema atual:** a função Drink duplica parcialmente a função do **Sophisticated Thirst Upgrade 0.1.8** (#514). O SUA também traz Ender, Super Void, Network Magnet/Pickup/Deposit/Restock, Potion Charm e Salvaging; isso toca armazenamento, networks, automação, loot e outros addons, exigindo inventário de ownership/compatibilidade antes de adição. O source de `DrinkUpgrade.java` retorna lista vazia em `getUpgradeConflicts()`, **sem prova de bloqueio automático da duplicidade com `sophisticatedthirst`**. O source de `SUAConfig` define `enable=true` para Drink/Advanced por padrão (não representa config física do usuário).
 
 **Critérios para eventual substituição:** (1) NeoForge/manifesto binário e ABI de Core/Backpacks; (2) recipes/IDs/itens/data components e slots de upgrade no save; (3) filtros, pureza 0–3, consumo exatamente uma vez e remainder; (4) fonte de jogador correta com backpack equipado ou colocado, alcance 3 blocos, multiplayer; (5) lifecycle de contraptions, linked groups, death/relogin e persistência; (6) comparação dos recursos extras do SUA com addons já instalados e plano de desativação/remoção rastreável; (7) rollback antes de alterar mochilas em mundos existentes. **Nenhum JAR atualizado ou instalado.** Este é um **candidato de pesquisa**, não uma nova entrada física nem recomendação de coinstalação.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Sophisticated Backpacks
+- **Último candidato 1.21.1 / NeoForge localizado:** **3.26.14.2222 (Release NeoForge 1.21.1, 20/10)**
+- **Estado:** **CANDIDATO COORDENADO**
+- **Gate de promoção:** Não atualizar isoladamente. Exige Sophisticated Core compatível, bridges/Ars/JEI/Thirst consumers, anti-dupe, Mob Catcher/linked storage, reopen/save/restart e contraptions.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/8845926
+

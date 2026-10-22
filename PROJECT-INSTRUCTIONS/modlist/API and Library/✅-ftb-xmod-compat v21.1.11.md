@@ -154,3 +154,14 @@ A release **FTB XMod Compat 21.1.12** para NeoForge 1.21.1 foi publicada em 18/0
 **Confirmado pela documentação/CurseForge oficial:** finalidade de bridge, soft dependencies, integrações FTB Quests↔KubeJS, Game Stages e JEI/REI, fallback de stages, ambiente Client & Server e release instalada NeoForge 21.1.11. A release mais recente para 1.21.1 é 21.1.12 (18/09/2026), não instalada.
 **Confirmado pelo changelog 21.1.11:** fix de crash quando TooManyRecipeViewers se apresenta como JEI.
 **Limite:** source/commit exato do binário 21.1.11 não foi pinado nesta auditoria; portanto não são inventadas classes, métodos, eventos internos ou integrações adicionais não sustentadas pela documentação pública.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** FTB XMod Compat
+- **Último candidato 1.21.1 / NeoForge localizado:** **21.1.12**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Revalidar FTB Library/Teams/Chunks/Quests e integrações cross-mod; garantir ausência de dupla aplicação de eventos/permissões.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/ftb-xmod-compat
+

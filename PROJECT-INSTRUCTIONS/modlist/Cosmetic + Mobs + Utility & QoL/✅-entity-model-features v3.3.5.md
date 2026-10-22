@@ -210,3 +210,14 @@ Fontes upstream: CurseForge EMF NeoForge 1.21.1 releases 3.3.6–3.3.9; 3.3.9 fi
 **Fontes:** https://github.com/Traben-0/Entity_Model_Features/blob/master/CHANGELOG.MD ; https://www.curseforge.com/minecraft/mc-mods/entity-model-features/files/all?version=1.21
 
 **Estado:** 3.3.11 upstream, **3.3.5 fisicamente comprovada**; testes de runtime pendentes.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** [EMF] Entity Model Features [Fabric & Forge]
+- **Último candidato 1.21.1 / NeoForge localizado:** **3.3.11 (NeoForge 1.21.1, 05/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Testar com ETF, EMF Compat Core, Fresh Animations/resource packs, ImmediatelyFast, shaders e reload; manter estritamente client-side quando aplicável.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/entity-model-features
+

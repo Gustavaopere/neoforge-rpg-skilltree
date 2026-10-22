@@ -195,3 +195,14 @@ Fonte upstream: CurseForge file ID 8906784, `create_stats-1.14.5.jar`, release N
 **Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/create-stats-power
 
 **Estado:** 1.14.5 upstream documentada, 1.13.1 físico preservado.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Create: Stats & Power
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.15.0 (Release, 05/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Validar Create 6.0.10, stress/power/stat accounting, displays/networking, contraptions e save/restart.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-stats-power
+

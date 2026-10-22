@@ -184,3 +184,14 @@ Fontes upstream: CurseForge files 8964998 (0.5.0.4) e 9009395 (0.5.0.5), NeoForg
 A versão **0.5.0.2 Release** de 09/05/2026 permanece a última publicação oficial localizada para **NeoForge 1.21.1**. Revisões mais recentes em **Forge 1.20.1** não podem ser atribuídas a este pack. Não inventar mecânicas/receitas novas. Revalidar ritual magic/altar, item recipes, progression, curio/equipment, data and configuration, reload, client/dedicated server, save e outros magic mods se houver upgrade futuro. Decisão: manter versão documentada, não existe candidato novo confirmado no alvo.
 
 **Autoridade física:** estado histórico de `modlist(1).txt` mantido; JAR, metadata, SHA e testes locais não foram re-observados. Filename do `.md` com ✅ e versão física herdada preservado. A revisão documental não significa instalação ou aprovação de promoção.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Eidolon : Repraised
+- **Último candidato 1.21.1 / NeoForge localizado:** **0.5.0.7 (Release, 17/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Regressão de rituals/magic state, recipes/tags, world/save data, Curios/compat e dedicated server antes de promoção.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised
+

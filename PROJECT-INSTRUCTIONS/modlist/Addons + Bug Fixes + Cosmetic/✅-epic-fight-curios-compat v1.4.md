@@ -134,3 +134,14 @@ A descrição oficial da linha 1.21.1 lista **Supplementaries, Sophisticated Bac
 **Matriz futura, não executada:** obter cópia autorizada do JAR 2.2, inspecionar `META-INF/neoforge.mods.toml`, mixin configs, classes, dependências e SHA-1; testar boot client + dedicated server NeoForge 21.1.250; validar edição de slots com teclas alfanuméricas; equipar/remover aljava Supplementaries, alternar render de cosmetic/equipment e battle mode, observar se há **um** quiver; testar backpack Sophisticated e spellbook Iron's em ataque/dodge/guard/cast, dois jogadores, troca de dimensão, morte/respawn, relog, reload de resources e coexistência EFIS/EMF. Não atribuir ao cliente autoridade de mutation do inventário. Sem o binário e testes, o *nível de certeza* limita-se às declarações de publicação e ao último inventário registrado.
 
 **Estado:** `Sem decisão` curatorial continua vigente; release publicada externa **2.2** e metadata física histórica **1.4** permanecem distintas. Nenhuma atualização/remoção/patch físico foi efetuado, nem compatibilidade de runtime ou teste in-game foi certificado.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Epic Fight: Curios Compat 3.0
+- **Último candidato 1.21.1 / NeoForge localizado:** **linha/projeto 3.0 atualizado em 18/10; suporte 1.21.1/NeoForge confirmado, mas o número exato do arquivo 1.21.1 não foi exposto pela fonte oficial consultada**
+- **Estado:** **FAIL-CLOSED — IDENTIDADE/ARTEFATO EXATO PENDENTE**
+- **Gate de promoção:** Não inferir versão pelo nome do projeto. Exigir página/arquivo oficial 1.21.1, filename, manifest, dependências Epic Fight/Curios, e teste de render de slots/backpacks/relics antes de editar versão ou recomendar promoção.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/epicfightcurioscompat
+

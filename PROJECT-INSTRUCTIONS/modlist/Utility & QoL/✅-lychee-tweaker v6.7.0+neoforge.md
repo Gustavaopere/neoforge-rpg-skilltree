@@ -135,3 +135,14 @@ Esses pontos devem ser considerados ao depurar datapacks escritos para 6.6.x: co
 <callout icon="✅" color="green_bg">
 	**Authority forte:** diferentemente de um source apenas aproximado, a branch consultada declara exatamente a 6.7.0 instalada. A ficha pode, portanto, usar os tipos, serializers, registries e configs acima como evidência direta desta build.
 </callout>
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Lychee [Neo/Forge]
+- **Último candidato 1.21.1 / NeoForge localizado:** **6.7.1 (Beta, 17/10)**
+- **Estado:** **BLOQUEADO COMO BETA**
+- **Gate de promoção:** Recipe/tweaker engine: validar datapacks, conditions/actions, reload e dedicated server; não promover beta sobre pack persistente sem regressão.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/lychee
+

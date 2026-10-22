@@ -77,3 +77,14 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma `FreshAnimations_v1.10.4.zip`, suporte a 1.21.1, recomendação de EMF/ETF e o changelog da release. O catálogo mantém escopo estritamente visual.
 
 > Boundary canônico: **Fresh Animations/EMF/ETF controlam apresentação; Minecraft controla integralmente as entidades e seu gameplay**.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum arquivo físico do pack, filename documental certificado, posição de inventário, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Fresh Animations
+- **Último candidato compatível localizado:** **Fresh Animations 1.11 - 1.20+ (Release, 19/10; suporta 1.21.1). A 1.11.1 - 26.1+ NÃO é candidata para este pack.**
+- **Estado:** **CANDIDATO DE RESOURCE PACK**
+- **Gate de promoção:** Testar EMF/ETF, packs de compat Fresh Animations, modelos de mobs/NPCs, resource reload e precedência da pilha; não usar a 1.11.1 destinada a 26.1+.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/7670377
+

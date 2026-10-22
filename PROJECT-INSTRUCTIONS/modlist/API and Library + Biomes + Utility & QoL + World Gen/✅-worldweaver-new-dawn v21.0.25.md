@@ -114,3 +114,14 @@ WorldWeaver fornece infraestrutura para BetterEnd/BetterNether/BCLib/WunderLib. 
 **Fonte:** https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/all
 
 **Estado:** candidato upstream 21.0.26; runtime físico ainda 21.0.25.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** WorldWeaver: New Dawn
+- **Último candidato 1.21.1 / NeoForge localizado:** **21.0.29 (NeoForge 1.21.1, 20/10)**
+- **Estado:** **CANDIDATO COORDENADO NEW DAWN**
+- **Gate de promoção:** Testar junto de BCLib/BetterNether/BetterEnd/WunderLib, worldgen/registries, novos chunks, mundos existentes, datapack reload e restart.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge
+

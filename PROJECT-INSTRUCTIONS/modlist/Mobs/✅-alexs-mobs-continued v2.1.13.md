@@ -460,3 +460,14 @@ Os fixes de 2.1.10 para pathfinding/agro, Animal Dictionary, Shield of the Deep 
 ~~~
 
 > **Reconciliação:** todos os enunciados acima que tratam 2.1.11 como “instalado”, “atual” ou “authority física” devem ser lidos no contexto temporal do snapshot histórico do Notion. A authority atual deste dossiê permanece a modlist física de 2.1.13; os deltas 2.1.12/2.1.13 já estão incorporados no corpo principal.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Alex's Mobs Continued
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.1.13 (Release, NeoForge 1.21.1)**
+- **Estado:** **REVALIDADO — sem bump 1.21.1 localizado**
+- **Gate de promoção:** Manter JAR físico; qualquer mudança futura exige regressão de spawn/AI/loot, Citadel/integrações e dedicated server.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued
+

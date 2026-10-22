@@ -327,3 +327,14 @@ Gate de promoção 4.0.3→4.0.4:
 10. compatibilidade com addons/consumers que assumam limite antigo de 10.
 
 Fonte upstream: CurseForge Alshanex's Familiars file ID 8966342, release v4.0.4 para NeoForge 1.21.1.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Alshanex's Familiars
+- **Último candidato 1.21.1 / NeoForge localizado:** **4.0.4 (NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE — migração coordenada**
+- **Gate de promoção:** Fazer backup e validar junto de FamiliarsLib 1.8 a migração do storing system, coleções >10, Pandora's Box/Familiar Storage, ownership, relog/dimensão/restart, performance e ausência de perda/duplicação.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/alshanexs-familiars
+

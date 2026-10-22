@@ -80,3 +80,14 @@ Validar build→assembly→launch→travel→arrival→disassembly, death/reconn
 - documentação oficial conflitante sobre Interactive tratada como risco, não como fato resolvido;
 - decisão histórica `Manter` de 22/08/2026 preservada.
 > 🔒 Boundary canônico: **Creating Space decide a camada espacial; Create decide a infraestrutura de contraption**. A transição mundo↔foguete↔planeta precisa preservar uma única cópia de cada state.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Create: Creating Space
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.7.22**
+- **Estado:** **REVALIDADO — sem bump localizado**
+- **Gate de promoção:** Manter baseline; qualquer futura troca exige testes de dimensão/teleporte, Create, worldgen, vehicles, save/restart e multiplayer.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-creating-space
+

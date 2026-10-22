@@ -168,3 +168,14 @@ O CurseForge publicou **5.2.0** em 05/10/2026, JAR `fragmentum-5.2.0+1.21.1-neof
 **Breaking change material:** Fragmentum **5.0.0 (19/09/2026)** migrou para **Modern Stonecutter + Kotlin**; o changelog oficial declara explicitamente alterações incompatíveis para mods dependentes. **5.1.1** adicionou `buttonOption` em `ConfigScreenFactory`; **5.2.0** substituiu Forge registries por vanilla-mapped registries em `ForgeRegistrar.createRegistry` e incluiu MixinExtras; **5.3.0 (12/10)** introduziu `AssetRegistry` com suporte a resource reload, `stringFieldOption` em `ConfigScreenFactory` e extensão `Deferred` com `Lazy`/otimização da inicialização. O salto do JAR histórico `fragmentum-neoforge-1.21.1-2.4.4.jar` para 5.3.0 NÃO é troca segura isolada: localizar consumers Obscuria, conferir ABI/APIs, Kotlin/JarJar, registries IDs, config serialization, asset reload e smoke client+server, save e full pack restart.
 
 **Autoridade física:** estado histórico de `modlist(1).txt` mantido; JAR, metadata, SHA e testes locais não foram re-observados. Filename do `.md` com ✅ e versão física herdada preservado. A revisão documental não significa instalação ou aprovação de promoção.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Fragmentum ✿ NeoForge
+- **Último candidato 1.21.1 / NeoForge localizado:** **5.4.0 (Release, 16/10)**
+- **Estado:** **CANDIDATO PENDENTE — salto major permanece de alto risco**
+- **Gate de promoção:** Preservar o bloqueio por breaking changes desde 5.0; revalidar Kotlin/registries, AssetRegistry/resource reload, config screen APIs, Deferred/Lazy e consumers antes de promoção.
+- **Fonte primária do dossier reconsultada:** https://github.com/ObscuriaLithium/fragmentum/tree/legacy/1.21.1
+

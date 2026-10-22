@@ -147,3 +147,14 @@ As alterações do MPR Data Pack mudam a curva efetiva de dificuldade por profun
 - [ ] TPS/CPU é comparado com AI-Improvements durante cenário multi-mob.
 
 Fonte upstream: CurseForge Enhanced AI 4.2.4.0, file ID 8946964, NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Enhanced AI
+- **Último candidato 1.21.1 / NeoForge localizado:** **4.2.4.0 (NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Validar blow-up-on-death, equipment/enchant scaling por profundidade/lua, Enderman follow range, Fisher LOS, drowning swim-up, interação com Epic Fight/AI-Improvements e performance server-side.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/enhanced-ai
+

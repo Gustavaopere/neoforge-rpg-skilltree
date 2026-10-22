@@ -113,3 +113,13 @@ Em um pack de centenas de mods, a navegação/filtragem da ModList deve ser test
 
 **Situação:** atualizado **somente o dossiê**, versão física 21.1.1 preservada; testes reais não executados.
 
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Better Modlist
+- **Último candidato 1.21.1 / NeoForge localizado:** **21.1.4 (Release, 05/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Client UI/mod list: validar rendering/search/metadata, resource packs e compat com loader; baixo risco de world state, mas exigir boot client.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/better-modlist-neoforge
+

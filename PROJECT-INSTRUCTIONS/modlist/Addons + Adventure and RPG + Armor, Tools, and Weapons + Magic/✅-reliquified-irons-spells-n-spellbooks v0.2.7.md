@@ -139,3 +139,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Publicação oficial: required dependencies Iron's Spells + Relics, ambiente Client & Server e distribuição via estruturas.
 - Changelog oficial 0.2.7: ability icons + research entries para end relics.
 - **Limite:** não foi inventariado todo o conjunto de relics/abilities da 0.2.7; classes, research IDs e recipes não foram inventados sem source pin.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Reliquified Iron's Spells 'n Spellbooks
+- **Último candidato 1.21.1 / NeoForge localizado:** **0.2.8 (Beta, 18/10)**
+- **Estado:** **BLOQUEADO COMO BETA**
+- **Gate de promoção:** Validar Relics/Curios + Iron's Spells, spell/attribute hooks, loot, cooldowns, persistence e multiplayer; não promover beta.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/reliquified-irons-spells-n-spellbooks
+

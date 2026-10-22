@@ -120,3 +120,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - upstream de Create: Curios Jetpack & Backtank 1.2.0 confirma suporte também aos backtanks base; upstream Create Goggles publica Curios Backtank Support.
 Não foi localizado source público versionado do próprio Create: Curios Backtank 1.0.1 nesta auditoria. Internals de slot registration, event hooks e lookup permanecem fail-closed.
 > 🔒 Boundary canônico: **Create controla backtank e pressurized air; Curios controla o slot; Curios Backtank apenas conecta os dois**. No pack atual há outras duas integrações capazes de tocar o mesmo domínio, então exatamente-once e state único são os principais gates de compatibilidade.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Create: Curios Backtank
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.0.2 (Release, 16/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Testar Curios slot ownership, Create backtank air/state, equip/unequip, death/relogin, Epic Fight render e multiplayer.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-curios-backtank
+

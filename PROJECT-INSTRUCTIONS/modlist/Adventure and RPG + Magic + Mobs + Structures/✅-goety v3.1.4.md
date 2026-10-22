@@ -221,3 +221,14 @@ Impacto para o catálogo: é uma atualização estrutural de **worldgen + boss +
 - [ ] Worldgen é validado em volume suficiente para detectar ausência sistemática de structures, não apenas boot sem crash.
 
 Fontes upstream: CurseForge Goety 3.1.5 (file ID 8905184), 3.1.5.1 (file ID 8911352) e 3.2.0 (file ID 9044971), NeoForge 1.21.1; source oficial `Vivideru/Goety-3` para Hurricane/Hurricane Servant/Wind Shrine e recipe de conversão. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Goety - The Dark Arts
+- **Último candidato 1.21.1 / NeoForge localizado:** **3.2.1 (Release NeoForge 1.21.1, 16/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Salto de conteúdo: testar soul/ritual progression, summons ownership, bosses/entities, structures/worldgen, configs, saves e dedicated server.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/goety/files/8689429
+

@@ -166,3 +166,14 @@ A autoridade física atual continua exatamente em `specs_irons_spellbooks-1.6.5.
 O CurseForge oficial continua apontando **1.6.5** (file ID `8710459`) como a release NeoForge 1.21.1 mais recente, publicada em 22/08/2026. Logo, não existe release posterior à versão do GitHub/física que precise ser incorporada neste ciclo. Permanecem materiais os deltas já documentados da própria 1.6.5: `allowImbuedWeaponCasting`, keybind/HUD de spell imbued, bypass de discovery/tier para casts imbued com blacklist preservada e o fix de startup quando outro mod fornece recipe com result nulo.
 
 `Apprentice's Codex 0.9.7.1` também aparece na modlist física atual, porém é um mod distinto (`apprenticecodex`) e não altera a identidade nem a versão física de Spell Codex/Specs. Nenhum teste runtime adicional foi executado nesta revalidação documental.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum arquivo físico do pack, filename documental certificado, posição de inventário, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Spell Codex: Iron's Spells 'n Spellbooks Addon
+- **Último candidato compatível localizado:** **1.6.13 (NeoForge 1.21.1, 19/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Validar spellbook/codex UI, spell registry, recipes/loot, Iron's Spells API, networking e persistence.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon ; https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/8710459
+

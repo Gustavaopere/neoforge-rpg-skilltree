@@ -189,3 +189,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - CurseForge oficial 1.9: Release NeoForge 1.21.1, requisitos publicados e changelog de Punchy/pearl/wind bomb/`/sable remove @e`.
 - Descrição oficial do projeto: FA+Player fixes, Curios display, carrying, collisions, skin/cape e swim pose.
 - **Limite crítico:** `ragdoll_corpse 0.3.0` não foi encontrado como top-level na modlist; `mob_ragdoll_corpse 1.1.5` não foi presumido equivalente. Compat corpse permanece pendente de verificação de runtime/metadata, sem impedir a catalogação factual do patch instalado.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Sable: Ragdoll - Patch
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.9**
+- **Estado:** **REVALIDADO — sem bump localizado**
+- **Gate de promoção:** Manter baseline; qualquer revisão futura deve testar Sable/ragdoll death lifecycle, corpse state, multiplayer e restart.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/sable-ragdoll-patch
+

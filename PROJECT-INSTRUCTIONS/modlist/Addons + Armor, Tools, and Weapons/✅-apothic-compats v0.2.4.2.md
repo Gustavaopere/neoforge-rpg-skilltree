@@ -155,3 +155,14 @@ A latest pública 1.21.1. O changelog oficial diz que a release **reverte a muda
 - [ ] Curios/Ars/Create/Malum e demais providers usados no pack continuam semanticamente alinhados após a migração para Apotheosis 8.9.x.
 
 Fontes upstream: CurseForge Apothic Compats 0.2.4.3 (file ID 8936047), sequência pública 0.2.5–0.2.5.5 e latest 0.2.5.5 (file ID 8996735); source oficial `ianm1647/apothic-compats`. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum arquivo físico do pack, filename documental certificado, posição de inventário, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Apothic Compats
+- **Último candidato compatível localizado:** **0.2.4.3 para o stack Apotheosis 8.8.0; 0.2.5.5 é a latest 1.21.1 e requer migração coordenada para a linha Apotheosis 8.9.x**
+- **Estado:** **0.2.4.3 CANDIDATO PENDENTE; 0.2.5.5 BLOQUEADO ATÉ MIGRAÇÃO DO PROVIDER**
+- **Gate de promoção:** Para 0.2.4.3, validar o alinhamento com Apotheosis 8.8.0 e regressões de affixes/loot. Para 0.2.5.5, validar stack Apotheosis 8.9.x, hostile spawns (regressão do mixin revertido), reload, providers ausentes/presentes e ausência de duplicação de affixes/gems.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/apothic-compats
+

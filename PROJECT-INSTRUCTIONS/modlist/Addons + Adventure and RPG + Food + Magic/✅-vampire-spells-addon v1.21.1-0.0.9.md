@@ -118,3 +118,14 @@ As faixas declaradas continuam satisfeitas por NeoForge `21.1.248`, Vampirism `1
 O runtime físico permanece `vampire_spells_addon-neoforge-1.21.1-0.0.9.jar`, versão `1.21.1-0.0.9`, e a página oficial continua listando `0.0.9` como a release NeoForge 1.21.1 mais recente. As faixas publicadas seguem atendidas por NeoForge `21.1.248`, Vampirism `1.10.13` e Iron's Spells `3.16.3`. O contrato de fallback atômico mana→blood, payout por dano real em Ray of Siphoning/Devour, Holy inversion e limpeza de estado de correlação permanece documentado. Nenhum serverconfig efetivo, payout, Holy handling, cooldown ou lifecycle de correlação foi testado nesta revalidação.
 ## 15. Reconciliação física — 27/09/2026
 A autoridade física atual mantém `vampire_spells_addon-neoforge-1.21.1-0.0.9.jar`, mod id `vampire_spells_addon`, runtime `1.21.1-0.0.9`. O modloader físico atual é `neoforge-21.1.250`, enquanto Vampirism `1.10.13` e Iron's Spells `3.16.3` permanecem os providers instalados. A faixa declarada `NeoForge >=21.1.200 e <21.2` continua satisfeita. As referências de 08/09–13/09 a NeoForge 21.1.248 foram mantidas como snapshots históricos. Nenhum serverconfig efetivo, fallback mana→blood, payout, Holy handling, cooldown ou lifecycle de correlação foi testado nesta reconciliação.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Vampirism Iron's Spells Compatibility
+- **Último candidato 1.21.1 / NeoForge localizado:** **0.0.10 (Release, 17/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Compat entre Vampirism e Iron's Spells: validar spell ownership/costs, vampire state, attributes, damage/healing, sync e multiplayer.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/vampirism-irons-spells-compatibility
+

@@ -137,3 +137,14 @@ A autoridade física atual passou a `supplementaries-1.21.1-3.9.9-neoforge.jar`,
 Linha pública NeoForge 1.21.1 entrou em 4.0.0 (11/10) e recebeu 4.0.1 (11/10). A passagem 3.9.9→4.0.1 pode alterar comportamento/persistência de blocos, automation/redstone, dynamic registration/resources e compat com Moonlight/Amendments: **não é segura por simples correspondência de Minecraft/loader**. Changelog granular 4.0.1 não isolado nesta rodada, por isso nenhuma mecânica inédita específica é inventada. Gate: coexistência Amendments, Moonlight 3.7.2, generated resource packs, redstone/hoppers, items/block entities, placements, config/server sync, recipes/datapacks e load de mundos com decoração/contraptions.
 
 **Autoridade física:** estado histórico do JAR documentado neste dossiê e `modlist(1).txt` permanece intacto; novo dump do pack, hashes, metadata e testes runtime não foram fornecidos. **Decisão:** candidato upstream (ou revalidação sem release nova), não uma atualização instalada. **Filename:** preservar prefixo ✅ e versão física histórica no nome até evidência da instalação.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Supplementaries
+- **Último candidato 1.21.1 / NeoForge localizado:** **4.0.2 (Release, 16/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Salto major: testar Moonlight, Amendments, Polytone, block entities/redstone/storage, recipes, generated resources, world migration e dedicated server.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/8852720
+

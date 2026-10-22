@@ -116,3 +116,14 @@ Impacto: melhora elegibilidade de reforging/loot e impede affixes mágicos seman
 Gate de promoção 2.2.2→2.2.6: rotten spellbook rare-tier; ausência da compat T.O Magic alpha; channeling trigger sem interrupção; charging force-complete com mana+cooldown exatamente uma vez; failed cast sem cooldown; cenário de doublecast; all-school affix em gear mágico e não-mágico; reforging/loot; Curios lifecycle; multiplayer; provider versions Apotheosis/Iron's atuais.
 
 Fonte upstream: CurseForge cumulative changelog da release 2.2.6, file ID 8984247, cobrindo 2.2.3–2.2.6.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Apotheosis x Iron's Spellbooks Compat
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.2.8+1.21.1 (Release, 17/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Compat de dois providers: validar affixes/gems/spells, attributes, loot/recipes, exactly-once de efeitos e multiplayer.
+- **Fonte primária do dossier reconsultada:** https://github.com/muon-rw/Apotheosis-Irons-Spells
+

@@ -121,3 +121,14 @@ São preservados os fixes de animações mining/sitting, texturas Aristocrat/Set
 **Novas adições upstream em 21.0.9 (29/09/2026):** compat com **EpicFight-Nightfall + EpicFight-Extra** em conjunto para novos movesets; meshes faltantes de Settlers. **Correções declaradas pelo autor com ressalva de tentativa:** repetição de animações de mineração e sentar, textures Aristocrat/Settler, nome do mod em `mods.toml`; remoção de debug logs desnecessários. **Gate:** confirmar se ambos addons Nightfall/Extra existem no pack antes de ativar movesets, MineColonies citizens AI/work/job animations, pose overrides com EMF/ETF, skins/textures, pathfinding e dedicated server; não presumir correções definitivas quando changelog diz 'hopefully'.
 
 **Instalação física:** não revalidada desde `modlist(1).txt`; versão instalada histórica e filename versionado com ✅ preservados. Sem substituição de JAR, execução in-game ou confirmação de compatibilidade plena nesta atualização documental. Não promover a versão upstream à coluna física do índice.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Minecolonies: Epiched (Epic Colonies)
+- **Último candidato 1.21.1 / NeoForge localizado:** **21.1.2 (Release NeoForge 1.21.1, 17/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** 21.1.2 adiciona suporte a MineColonies Mages, opções de moveset/facial features e corrige Druids. Validar MineColonies atual, Epic Fight 21.17.3.1, citizen models/AI/combat, multiplayer e restart.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/epic-colonies
+

@@ -143,3 +143,14 @@ Fonte upstream: `Traben-0/Entity_Texture_Features`, `CHANGELOG.MD` oficial; Curs
 **Fontes:** https://github.com/Traben-0/Entity_Texture_Features/blob/ETF-Main/CHANGELOG.MD ; https://www.curseforge.com/minecraft/mc-mods/entity-texture-features-fabric/files/all?version=1.21.1
 
 **Estado:** upstream 7.2.5 documentada, versão física 7.2.1 preservada; testes não executados.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** [ETF] Entity Texture Features - [Fabric & Forge]
+- **Último candidato 1.21.1 / NeoForge localizado:** **7.2.6 (Release, 15/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Testar com EMF, resource packs, emissive/random textures, ImmediatelyFast/shaders e reload; manter boundary client-only.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/entity-texture-features-fabric
+

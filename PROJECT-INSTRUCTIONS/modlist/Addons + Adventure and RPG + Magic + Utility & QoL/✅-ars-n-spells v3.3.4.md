@@ -448,3 +448,13 @@ Validar mana default com glyphs + tier + Curios + equipamentos, os quatro outros
 
 **Decisão:** auditada cadeia 3.3.4 → 3.3.5 → 3.3.6 → 3.3.7; o JAR físico conhecido não foi modificado.
 
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Ars 'n Spells
+- **Último candidato 1.21.1 / NeoForge localizado:** **3.3.7 (NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Revalidar spell registry, glyph/recipe data, networking e integrações Ars Nouveau; não assumir compatibilidade binária apenas pela versão Minecraft.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/ars-n-spells
+

@@ -199,3 +199,13 @@ Validação deve ser feita em cópia do save do End, com chunks antigos/novos: g
 
 **Estado:** latest upstream 21.0.36 confirmado; changelog granular não verificado; JAR físico 21.0.34 preservado.
 
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** BetterEnd: New Dawn
+- **Último candidato 1.21.1 / NeoForge localizado:** **21.0.38 (NeoForge 1.21.1, 19/10)**
+- **Estado:** **CANDIDATO COORDENADO NEW DAWN**
+- **Gate de promoção:** Atualizar com BCLib/WorldWeaver/WunderLib e stack BetterNether; backup, End já explorado, biome/structure registries, chunks novos e restart.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/betterend-new-dawn
+

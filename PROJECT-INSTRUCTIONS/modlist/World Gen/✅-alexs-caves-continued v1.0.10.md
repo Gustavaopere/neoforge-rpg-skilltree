@@ -195,3 +195,14 @@ O catálogo de gameplay acima cruza a descrição oficial do Continued — que d
 ~~~
 
 > **Reconciliação:** qualquer referência acima a 1.0.9 como runtime/JAR instalado é histórica. A authority física atual deste dossiê permanece 1.0.10.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Alex's Caves Continued
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.0.10 (última publicação 1.21.1 localizada)**
+- **Estado:** **REVALIDADO — sem bump 1.21.1 localizado**
+- **Gate de promoção:** Não usar releases de Minecraft 26.x como atualização do pack. Manter worldgen/biomes e saves no baseline atual.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued
+

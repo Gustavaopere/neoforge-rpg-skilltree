@@ -125,3 +125,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 Release NeoForge 1.21.1 em 12/10/2026: `polymorph_plus-neoforge-1.3.2+1.21.1.jar`, comparada ao último físico 1.3.1. Não confundir com 1.3.6 de Minecraft 26.x. Sem changelog técnico de 1.3.2, não declarar conserto de UI nem novos métodos de seleção. O mod resolve conflitos de receitas, com `recipe choice` para o player; garantir que JEI/EMI, crafting tables modded, receitas KubeJS/Datapacks, item components e multiplayer server-authoritative ainda selecionam a saída correta, sem duplicação por reabrir GUI ou trocar recipe.
 
 **Instalação física:** não revalidada desde `modlist(1).txt`; versão instalada histórica e filename versionado com ✅ preservados. Sem substituição de JAR, execução in-game ou confirmação de compatibilidade plena nesta atualização documental. Não promover a versão upstream à coluna física do índice.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Polymorph+
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.4.1 (Release NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** A linha nova inclui compat/fix para JEI 19.52+ e seleção '+'. Coordenar com JEI candidato; testar recipe conflicts, GUI, networking e reload.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/polymorph-plus
+

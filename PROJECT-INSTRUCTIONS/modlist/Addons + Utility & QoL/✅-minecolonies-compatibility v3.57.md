@@ -111,3 +111,14 @@ CurseForge oficial confirma a Beta 3.57, os target baselines e o change de `knif
 **Fonte primária:** https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility/files/9099509
 
 **Estado:** versão 3.58 apenas upstream; 3.57 permanece física; sem execução de testes de runtime.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Compatibility addon for MineColonies
+- **Último candidato 1.21.1 / NeoForge localizado:** **3.58 (Beta, 08/10/2026)**
+- **Estado:** **BLOQUEADO COMO BETA / CANDIDATO PENDENTE DE QA**
+- **Gate de promoção:** Validar especialmente o fix de crash com Cultural Delights, além de boot client/dedicated, optional classloading, jobs/recipes, knife_dig, courier/network requests e compatibilidade com o stack MineColonies físico.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility
+

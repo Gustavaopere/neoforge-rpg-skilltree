@@ -162,3 +162,14 @@ Fontes upstream revisadas: CurseForge file 1.0.1 (baseline instalada), Modrinth/
 > **Atualização/Status — valor histórico da origem:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #89: artefato `cbcatfix-1.21.1-neoforge-1.0.1.jar` reconfirmado; metadata runtime `1.0.0` preservada sem normalização fictícia. Crash/cluster fixes, rocket automation, Rocket Pod, big rockets/rails e shell scope permanecem documentados.
 
 O registro acima é mantido literalmente para paridade de migração. O cabeçalho atual do arquivo continua sendo a authority temporal mais recente para posição física e estado vigente.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** CBC: Advanced technologies crash fix
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.1.4 (Release, NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Validar exatamente com Create Big Cannons: Advanced Technologies/CBC, Create 6.0.10, startup, registries e cenários que motivaram o crash fix.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/cbc-advanced-technologies-aeronautics-fix
+
