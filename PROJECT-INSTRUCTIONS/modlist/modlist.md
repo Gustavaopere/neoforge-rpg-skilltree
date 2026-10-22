@@ -976,3 +976,104 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 **Fronteira funcional obrigatória:** o módulo Bosses'Rise fornece **oito JSONs de capabilities de armas/escudos**, **não** patches de entidades/bosses. Não atribuir automaticamente bosses GeckoLib, AI, fases, hits ou cinematics ao Epic Fight por causa desse módulo. Das 17 integrações source, **oito** possuem target top-level na snapshot (#342 Iron's Spells, #503 Simply Swords, #502 Simply More, #411 Mowzie's Mobs, #468 Quark, #079 Bosses'Rise, #536 Supplementaries, #276 Farmer's Delight); as outras nove não foram identificadas como targets instalados. A tag upstream inclui `mod_version=0.1.0` no `gradle.properties`; a publicação 1.1.0 e a metadata do snapshot têm autoridade sobre a versão física registrada. Não extrapolar presença de source para ABI/runtimes certificados.
 
 **Decisão:** documentação corrigida, **sem instalar/atualizar/remover** qualquer mod; preservar **587/587 posições e ordem física histórica**; QA pendente: conferir JARs reais, oito weapon capabilities, bypass de gauntlets especiais, ausência de entity patches de bosses, regressão Epic Fight 21.17.3.1 e dedicated server. [Dossiê compat #263](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Mobs/%E2%9C%85-epic-fight-compat%20v1.1.0.md); [Bosses'Rise #079](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-bosses-rise%20v2.1.2.md).
+
+## Atualização solicitada — 22/10/2026 — 83 mods
+
+> **Escopo:** auditoria de catálogo upstream para Minecraft 1.21.1 / NeoForge na ordem exata solicitada. **Não é uma nova modlist física.** As 587 linhas físicas acima permanecem autoridade de presença/JAR/versão instalada. Releases Beta/Alpha/Pre-Release/Snapshot permanecem fail-closed até staging e QA.
+
+| Pedido | Projeto | Dossiê | Versão documental/física preservada | Upstream 22/10/2026 | Estado |
+|---:|---|---|---|---|---|
+| 01 | MineColonies | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Automation%20%2B%20Storage%20%2B%20Structures/%E2%9C%85-minecolonies%20v1.1.1387-1.21.1-snapshot.md) | `1.1.1387-1.21.1-snapshot` | 1.1.1403 Release; 1.1.1405-snapshot Beta | **PENDENTE; snapshot BLOQUEADO** |
+| 02 | Easy NPC | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc-bundle%20v7.12.1.md) | `7.12.1` | 7.16.0 | **COORDENADO com Core/UI/EME** |
+| 03 | Alex's Mobs Continued | [Abrir `.md`](./Mobs/%E2%9C%85-alexs-mobs-continued%20v2.1.13.md) | `2.1.13` | 2.1.13 | **REVALIDADO** |
+| 04 | Ars 'n Spells | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ars-n-spells%20v3.3.4.md) | `3.3.4` | 3.3.7 | **PENDENTE** |
+| 05 | Photon | [Abrir `.md`](./API%20and%20Library%20%2B%20Magic%20%2B%20Technology%20%2B%20Utility%20%26%20QoL/%E2%9C%85-photon%20v2.2.6.a.md) | `2.2.6.a` | 2.2.8 | **PENDENTE** |
+| 06 | Forgified Fabric API | [Abrir `.md`](./Technology/%E2%9C%85-forgified-fabric-api%20v0.116.15%2B2.3.5%2B1.21.1.md) | `0.116.15+2.3.5+1.21.1` | 0.116.15+2.3.6+1.21.1 | **PENDENTE** |
+| 07 | BCLib: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Biomes%20%2B%20Utility%20%26%20QoL%20%2B%20World%20Gen/%E2%9C%85-bclib-new-dawn%20v21.0.26.md) | `21.0.26` | 21.0.28 | **COORDENADO NEW DAWN** |
+| 08 | InsaneLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-insanelib%20v2.4.33.0.md) | `2.4.33.0` | 2.4.33.1 | **PENDENTE** |
+| 09 | Create: Teleporters | [Abrir `.md`](./Create%20%2B%20Energy%2C%20Fluid%2C%20and%20Item%20Transport%20%2B%20Technology/%E2%9C%85-create-teleporters-remastered%20v2.0.2b.md) | `2.0.2b` | 3.0.1b | **PENDENTE** |
+| 10 | Petrolpark Library | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Create/%E2%9C%85-petrolparks-library%20v1.5.11.md) | `1.5.11` | 1.5.11 | **REVALIDADO** |
+| 11 | Punchy! - First person animations | [Abrir `.md`](./Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.7e | **REVALIDADO** |
+| 12 | Sophisticated Core | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-sophisticated-core%20v1.5.1.md) | `1.5.1` | 1.5.17.2426 | **COORDENADO** |
+| 13 | Alex's Caves Continued | [Abrir `.md`](./World%20Gen/%E2%9C%85-alexs-caves-continued%20v1.0.10.md) | `1.0.10` | 1.0.10 | **REVALIDADO** |
+| 14 | Puzzles Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-puzzles-lib%20v21.1.60.md) | `21.1.60` | 21.1.65 | **PENDENTE** |
+| 15 | CBC: Advanced technologies crash fix | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-cbcat-fix%20v1.0.1.md) | `1.0.1` | 1.1.4 | **PENDENTE** |
+| 16 | Vanilla Backport | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Biomes%20%2B%20Mobs%20%2B%20Ores%20and%20Resources%20%2B%20World%20Gen/%E2%9C%85-vanillabackport%20v1.1.7.10.md) | `1.1.7.10` | 1.1.7.10 | **REVALIDADO** |
+| 17 | Platform | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-platform%20v1.3.3.md) | `1.3.3` | 1.4 | **PENDENTE** |
+| 18 | FTB XMod Compat | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-ftb-xmod-compat%20v21.1.11.md) | `21.1.11` | 21.1.12 | **PENDENTE** |
+| 19 | Amendments | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-amendments%20v1.21-2.1.10.md) | `1.21-2.1.10` | 2.2.0 | **PENDENTE** |
+| 20 | Alshanex's Familiars | [Abrir `.md`](./Addons%20%2B%20Magic%20%2B%20Mobs/%E2%9C%85-alshanexs-familiars%20v1.21.1_v4.0.3.md) | `1.21.1_v4.0.3` | 4.0.3 | **REVALIDADO** |
+| 21 | Create:Tracks+ | [Abrir `.md`](./Create/%E2%9C%85-create-tracks-plus%20v1.0.6b6.md) | `1.0.6b6` | 1.0.6beta6 | **REVALIDADO beta; sem bump** |
+| 22 | Relics | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic%20%2B%20Magic%20%2B%20Ores%20and%20Resources/%E2%9C%85-relics%20v0.12.8.md) | `0.12.8` | 0.12.9 Beta | **BLOQUEADO** |
+| 23 | Lychee [Neo/Forge] | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-lychee-tweaker%20v6.7.0%2Bneoforge.md) | `6.7.0+neoforge` | 6.7.1 Beta | **BLOQUEADO** |
+| 24 | EMF Compat: Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic/%E2%9C%85-emf-compat-core%20v2.0.0.md) | `2.0.0` | 2.3.2 | **PENDENTE** |
+| 25 | Supplementaries | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous%20%2B%20Redstone%20%2B%20Storage/%E2%9C%85-supplementaries%20v1.21.1-3.9.9.md) | `1.21.1-3.9.9` | 4.0.2 | **PENDENTE** |
+| 26 | AzureLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-azurelib%20v3.1.11.md) | `3.1.11` | 3.1.22 Release; 3.1.23-alpha.2 | **Release PENDENTE; alpha BLOQUEADA** |
+| 27 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1` | 7.16.0 | **COORDENADO com Bundle/UI/EME** |
+| 28 | Create Aeronautics: Gadgets & Gizmos | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-aeronautics-gadgets-and-gizmos%20v1.2.2.md) | `1.2.2` | 1.2.10; 2.0.0 Pre-Release 3 | **1.2.10 PENDENTE; pre-release BLOQUEADA** |
+| 29 | WorldWeaver: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Biomes%20%2B%20Utility%20%26%20QoL%20%2B%20World%20Gen/%E2%9C%85-worldweaver-new-dawn%20v21.0.25.md) | `21.0.25` | 21.0.29 | **COORDENADO NEW DAWN** |
+| 30 | ImmediatelyFast | [Abrir `.md`](./Performance%20%2B%20Utility%20%26%20QoL/%E2%9C%85-immediatelyfast%20v1.6.14%2B1.21.1.md) | `1.6.14+1.21.1` | 1.6.15 | **PENDENTE** |
+| 31 | Advanced Loot Info (ALI) | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-advanced-loot-info%20v2.1.0.md) | `2.1.0` | 2.5.0 Beta | **BLOQUEADO** |
+| 32 | owo (owo-lib) | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-owo-lib%20v0.12.15.5-beta.1%2B1.21.md) | `0.12.15.5-beta.1+1.21` | 0.12.15.6-beta.1+1.21 | **BLOQUEADO beta** |
+| 33 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.0.8.md) | `21.0.8` | 21.1.2 | **PENDENTE** |
+| 34 | Easy Model Entities | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Automation%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-easy-model-entities%20v2.4.0.md) | `2.4.0` | 2.6.0 | **COORDENADO Easy NPC** |
+| 35 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | 1.4.1 | **PENDENTE; coordenar JEI** |
+| 36 | Sable: Ragdoll - Patch | [Abrir `.md`](./Bug%20Fixes/%E2%9C%85-sable-ragdolls-patch%20v1.9.md) | `1.9` | 1.9 | **REVALIDADO** |
+| 37 | Eidolon : Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | 0.5.0.7 | **PENDENTE** |
+| 38 | [ETF] Entity Texture Features - [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-texture-features%20v7.2.1.md) | `7.2.1` | 7.2.6 | **PENDENTE** |
+| 39 | Reliquified Ars Nouveau | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-ars-nouveau%20v0.8.1.md) | `0.8.1` | 0.8.1 Beta | **REVALIDADO beta** |
+| 40 | Create:LazyTick | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-lazy-tick%20v2.6.25-6.0.10.md) | `2.6.25-6.0.10` | 2.6.25 / Create 6.0.10 | **REVALIDADO** |
+| 41 | Ecliptic Seasons | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Farming%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ecliptic-seasons%20v0.15.0-rc-3-1.md) | `0.15.0-rc-3-1` | 0.15.4.1 Beta | **BLOQUEADO** |
+| 42 | Fragmentum ✿ NeoForge | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | 5.4.0 | **PENDENTE — breaking changes** |
+| 43 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | 2.2.1 | **COORDENADO ParCool/Thirst** |
+| 44 | FamiliarsLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-familiarslib%20v1.21.1-1.7.md) | `1.21.1-1.7` | 1.7.1 | **PENDENTE** |
+| 45 | Cyclops Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Server%20Utility/%E2%9C%85-cyclops-core%20v1.30.0.md) | `1.30.0` | 1.30.0-1205 Beta | **BLOQUEADO** |
+| 46 | Apotheosis x Iron's Spellbooks Compat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-irons-apothic%20v2.2.2.md) | `2.2.2` | 2.2.8+1.21.1 | **PENDENTE** |
+| 47 | Dynamic Trees - VanillaBackport | [Abrir `.md`](./Addons%20%2B%20World%20Gen/%E2%9C%85-dynamic-trees-vanillabackport%20v1.7.0.md) | `1.7.0` | 1.7.0 | **REVALIDADO** |
+| 48 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | 5.2.0 | **PENDENTE** |
+| 49 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.56.0.440.md) | `19.56.0.440` | 19.64.0.455 Release; 19.69.0.457 Beta | **Release PENDENTE; beta BLOQUEADA** |
+| 50 | Create Aeronautics: Automated Logistics | [Abrir `.md`](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md) | `0.6.2` | 0.6.2 | **BLOQUEADO: dossier sem ✅; não editado** |
+| 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.57 Beta | **REVALIDADO beta** |
+| 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.62 | **PENDENTE** |
+| 53 | Create: Stats & Power | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-stats-power%20v1.13.1.md) | `1.13.1` | 1.15.0 | **PENDENTE** |
+| 54 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | 0.2.0 | **REVALIDADO** |
+| 55 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.3.md) | `3.26.3` | 3.26.14.2222 | **COORDENADO** |
+| 56 | Climbable Ropes for Create Aeronautics | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-climbable-ropes-for-create-aeronautics%20v2.1.3.md) | `2.1.3` | 2.1.3 | **REVALIDADO** |
+| 57 | Epic Fight: Curios Compat 3.0 | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Cosmetic/%E2%9C%85-epic-fight-curios-compat%20v1.4.md) | `1.4` | linha 3.0; arquivo 1.21.1 exato não confirmado | **FAIL-CLOSED** |
+| 58 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.12.1.md) | `7.12.1` | 7.16.0 | **COORDENADO Easy NPC** |
+| 59 | Goety - The Dark Arts | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Mobs%20%2B%20Structures/%E2%9C%85-goety%20v3.1.4.md) | `3.1.4` | 3.2.1 | **PENDENTE** |
+| 60 | BetterNether: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betternether-new-dawn%20v21.0.26.md) | `21.0.26` | 21.0.28 | **COORDENADO NEW DAWN** |
+| 61 | Streams Reflowing | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20World%20Gen/%E2%9C%85-streamsreflowing%20v2.13.5.md) | `2.13.5` | 2.15.2 | **PENDENTE** |
+| 62 | Reliquified Iron's Spells 'n Spellbooks | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-irons-spells-n-spellbooks%20v0.2.7.md) | `0.2.7` | 0.2.8 Beta | **BLOQUEADO** |
+| 63 | Enhanced AI | [Abrir `.md`](./Mobs/%E2%9C%85-enhanced-ai%20v4.2.3.0.md) | `4.2.3.0` | 4.2.3.0 | **REVALIDADO** |
+| 64 | ParCool! ~ Minecraft Parkour ~ | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-parcool%20v4.0.0.3.md) | `4.0.0.3` | 4.0.1.6 | **COORDENADO TWF/Epic Fight** |
+| 65 | Skin Layers 3D | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic/%E2%9C%85-3d-skin-layers%20v1.11.2.md) | `1.11.2` | 1.10.1 é o último NeoForge 1.21.1 comprovado | **FAIL-CLOSED: diverge do físico 1.11.2** |
+| 66 | Lithostitched | [Abrir `.md`](./API%20and%20Library%20%2B%20Miscellaneous%20%2B%20World%20Gen/%E2%9C%85-lithostitched%20v1.8.0%2Bbeta6.md) | `1.8.0+beta6` | 1.8.1 | **PENDENTE** |
+| 67 | Better Modlist | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-better-modlist%20v21.1.1.md) | `21.1.1` | 21.1.4 | **PENDENTE** |
+| 68 | Enhanced Boss Bars (Fabric/Forge/NeoForge) | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Miscellaneous%20%2B%20Mobs/%E2%9C%85-enhanced-boss-bars%20v1.0.0.md) | `1.0.0` | 1.1.2 | **PENDENTE** |
+| 69 | BetterEnd: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betterend-new-dawn%20v21.0.34.md) | `21.0.34` | 21.0.38 | **COORDENADO NEW DAWN** |
+| 70 | Create: Curios Backtank | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Automation%20%2B%20Create/%E2%9C%85-create-curios-backtank%20v1.0.1.md) | `1.0.1` | 1.0.2 | **PENDENTE** |
+| 71 | Advanced Core Info (ACI) | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-advanced-core-info%20v1.1.0.md) | `1.1.0` | 1.5.0 Beta | **BLOQUEADO** |
+| 72 | Create Deep Seas [BETA] | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-deep-seas%20v2.2.4.md) | `2.2.4` | 3.3.0 Release; 3.4.1 ALPHA-2 | **Release PENDENTE; alpha BLOQUEADA** |
+| 73 | Cold Sweat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-cold-sweat%20v2.4.3.1.md) | `2.4.3.1` | 2.4.4 | **PENDENTE** |
+| 74 | Knight Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-knight-lib%20v2.0.1.md) | `2.0.1` | 2.0.5 | **PENDENTE** |
+| 75 | Create: Creating Space | [Abrir `.md`](./Create%20%2B%20Dimensions%20%2B%20Player%20Transport%20%2B%20Technology%20%2B%20World%20Gen/%E2%9C%85-creating-space%20v1.7.22.md) | `1.7.22` | 1.7.22 | **REVALIDADO** |
+| 76 | [EMF] Entity Model Features [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-model-features%20v3.3.5.md) | `3.3.5` | 3.3.11 | **PENDENTE** |
+| 77 | Vampirism Iron's Spells Compatibility | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Food%20%2B%20Magic/%E2%9C%85-vampire-spells-addon%20v1.21.1-0.0.9.md) | `1.21.1-0.0.9` | 0.0.10 | **PENDENTE** |
+| 78 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.5.91.md) | `1.5.91` | 1.6.8.2196 | **COORDENADO** |
+| 79 | WunderLib: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-wunderlib-neoforge%20v21.0.10.md) | `21.0.10` | 21.0.11 | **COORDENADO NEW DAWN** |
+| 80 | Create: Ornithopter Glider | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Create%20%2B%20Player%20Transport%20%2B%20Utility%20%26%20QoL/%E2%9C%85-create-ornithopter-glider%20v1.2.0-1.21.1.md) | `1.2.0-1.21.1` | 1.2.0 | **REVALIDADO** |
+| 81 | AmbientSounds 6 | [Abrir `.md`](./Miscellaneous/%E2%9C%85-ambientsounds-6%20v6.3.8.md) | `6.3.8` | 6.3.11 | **PENDENTE** |
+| 82 | Spell Codex: Iron's Spells 'n Spellbooks Addon | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-spell-codex-irons-spells-n-spellbooks-addon%20v1.6.5.md) | `1.6.5` | 1.6.13 | **PENDENTE** |
+| 83 | Apothic Compats | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons/%E2%9C%85-apothic-compats%20v0.2.4.2.md) | `0.2.4.2` | 0.2.4.2 | **REVALIDADO** |
+
+### Gates transversais — 22/10/2026
+
+- **Easy NPC:** Bundle/Core/Config UI 7.16.0 e EME 2.6.0 passam a formar um candidato coordenado 1.21.1. O bloqueio de 13/10 por ausência de EME pública ≥2.5 deixou de existir, mas manifests/JarJar, persistência de NPC, networking, render, backups e multiplayer continuam obrigatórios.
+- **Sophisticated:** Core 1.5.17.2426, Backpacks 3.26.14.2222 e Storage 1.6.8.2196 devem ser avaliados como stack; bridges/JEI/Ars/Thirst, linked storage, anti-dupe, chunk unload e save/restart impedem promoção isolada.
+- **New Dawn:** BCLib 21.0.28, WorldWeaver 21.0.29, BetterNether 21.0.28, BetterEnd 21.0.38 e WunderLib 21.0.11 exigem backup e QA coordenado de registries/worldgen em mundos existentes e chunks novos.
+- **ParCool / Thirst:** ParCool 4.0.1.6 e ThirstWasFixed 2.2.1 exigem revalidação conjunta de stamina API/attributes, configs, Epic Fight/Curios e dedicated server.
+- **JEI / Polymorph+:** usar JEI 19.64.0.455 como candidato estável; 19.69.0.457 permanece Beta. Polymorph+ 1.4.1 deve ser testado junto por alterações explícitas de compatibilidade JEI 19.52+.
+- **Pré-releases:** MineColonies snapshot, Relics/Lychee/Ecliptic/ALI/owo/Reliquified Iron/Cyclops/ACI betas, AzureLib alpha, Gadgets & Gizmos 2.0 pre-release e Create Deep Seas alpha não são baseline de produção.
+- **Bloqueios de identidade:** #50 Automated Logistics não foi editado porque o dossier não possui `✅-`; #57 Epic Fight Curios 3.0 não tem arquivo 1.21.1 exato comprovado pela fonte consultada; #65 Skin Layers registra físico 1.11.2, enquanto a última publicação NeoForge 1.21.1 explicitamente comprovada é 1.10.1. Nenhum desses casos autoriza inferência ou rename.
+

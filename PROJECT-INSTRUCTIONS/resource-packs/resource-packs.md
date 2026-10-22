@@ -114,3 +114,14 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 - **Brazilian Localization:** https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9085941.
 
 **Limite de evidência:** as quatro publicações foram verificadas externamente; as versões **instaladas agora** não foram re-inspecionadas. Nenhuma promoção física, comparação de arquivos ZIP ou verificação de load order foi executada. A aprovação do CI documental não equivale à validação visual em jogo.
+
+## Atualização solicitada — 22/10/2026 — Resource Packs
+
+> **Estado físico preservado:** esta tabela não altera os 58 registros históricos nem prova load order/ativação atual dos ZIPs.
+
+| Nº do catálogo | Resource Pack | Último ZIP registrado | Upstream compatível com 1.21.1 | Estado |
+|---:|---|---|---|---|
+| **#55** | The Brazilian Localization Project [PT-BR] | `The Brazilian Project [1.21.1-1.3.0].zip` / 1.3.0 | **1.5.0** (Release, 20/10) | **CANDIDATO** — validar chaves PT-BR, placeholders, cobertura dos mods reais e precedência de lang packs |
+| **#37** | Fresh Animations | `FreshAnimations_v1.10.4.zip` / 1.10.4 | **1.11 - 1.20+** (Release, 19/10; inclui 1.21.1) | **CANDIDATO** — 1.11.1 é 26.1+ e não serve; testar EMF/ETF e patches Fresh Animations |
+
+**Regra:** os ZIPs só devem ser substituídos após inventário físico atual, hash/manifest, ordem efetiva em `options.txt`, comparação de assets e QA visual. A aprovação documental não equivale a promoção física.
