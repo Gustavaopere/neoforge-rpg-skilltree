@@ -172,3 +172,14 @@ Nenhum boot/linkage/JEI/chemistry test foi executado nesta atualização documen
 - [ ] JEI 19.56.0.440 abre categories/recipes do consumer sem API error.
 - [ ] Destroy registra conteúdo sem missing class/method/service.
 - [ ] Processos Destroy representativos executam do input ao output sem state loss.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Petrolpark Library
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.5.11 (mesma linha publicada)**
+- **Estado:** **REVALIDADO — sem bump localizado**
+- **Gate de promoção:** Manter baseline física; qualquer atualização futura precisa ser testada com Destroy/Petrolpark consumers e Create.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/petrolpark-library
+

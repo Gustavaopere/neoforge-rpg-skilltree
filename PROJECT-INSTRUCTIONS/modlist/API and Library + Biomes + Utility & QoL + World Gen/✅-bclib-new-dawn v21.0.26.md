@@ -105,3 +105,13 @@ Worldgen já materializado não deve ser “regerado” por reload ou por bridge
 
 > 🌍 BCLib é foundation do BetterX, não uma terceira dimensão/worldgen authority. O dossiê registra os contratos que importam para integração e troubleshooting.
 
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** BCLib: New Dawn
+- **Último candidato 1.21.1 / NeoForge localizado:** **21.0.28 (NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO COORDENADO NEW DAWN**
+- **Gate de promoção:** Testar em conjunto com WorldWeaver, BetterNether, BetterEnd e WunderLib; preservar mundo existente e validar registries/worldgen/restart antes de promoção.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/bclib-new-dawn
+

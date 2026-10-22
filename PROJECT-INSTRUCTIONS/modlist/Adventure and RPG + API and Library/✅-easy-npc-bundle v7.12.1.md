@@ -152,3 +152,14 @@ A dependência `easy_model_entities` fica **`optional` com faixa `[2.5.0,3.0.0)`
 O source [`2c7fb934c6626224220227e6db5150edd891cdd3`](https://github.com/MarkusBordihn/BOs-Easy-NPC/commit/2c7fb934c6626224220227e6db5150edd891cdd3) identifica a família Easy NPC **7.14.0 / Minecraft 1.21.1**, com Core e Config UI permitindo EME opcional `[2.4.0,3.0.0)` ([Core](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/2c7fb934c6626224220227e6db5150edd891cdd3/core/NeoForge/src/main/resources/META-INF/neoforge.mods.toml), [UI](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/2c7fb934c6626224220227e6db5150edd891cdd3/config-ui/NeoForge/src/main/resources/META-INF/neoforge.mods.toml)). O [manifesto Bundle 7.14.0](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/2c7fb934c6626224220227e6db5150edd891cdd3/bundle/NeoForge/src/main/resources/META-INF/neoforge.mods.toml) mantém requisitos para Core + Config UI e descrição de Jar-in-Jar. **A composição efetiva do JAR publicado não foi inspecionada**; não confundir descrição com prova de empacotamento.
 
 **Decisão:** 7.14.0 é **alternativa documental condicional** à 7.15.0 atualmente bloqueada por EME 2.4.0; não está aprovada para instalação. Inspecionar JAR Bundle + Core + Config UI publicados, identificar dependências embarcadas, controlar duplicidade de mod ID, validar faixas e então realizar os gates de multiplayer, NPC persistente, UI e restart. O [source EME 2.5.0 para 1.21.1](https://github.com/MarkusBordihn/BOs-Easy-Model-Entities/blob/7305984c57845b97d0190bfc6d4b3e0363ca5aaf/gradle.properties) **existe**, porém publicação binária NeoForge 1.21.1 não foi comprovada. Preservar trio físico `7.12.1`, sem renomeações nem remoções.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Easy NPC
+- **Último candidato 1.21.1 / NeoForge localizado:** **7.16.0 (Release, NeoForge 1.21.1, 17/10)**
+- **Estado:** **CANDIDATO COORDENADO**
+- **Gate de promoção:** Promover somente junto de Core 7.16.0 + Config UI 7.16.0 + Easy Model Entities compatível. EME 2.6.0 para 1.21.1 agora existe, removendo o bloqueio de ausência de publicação 2.5+, mas não substitui inspeção de manifests/JarJar nem QA de NPC persistence/network/render.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all
+

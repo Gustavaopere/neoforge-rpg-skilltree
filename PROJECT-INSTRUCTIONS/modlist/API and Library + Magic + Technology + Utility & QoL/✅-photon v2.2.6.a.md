@@ -144,3 +144,14 @@ Impacto para este pack: animated glTF, dynamic meshes, soft particles e mesh-fac
 Gate de regressão numa promoção: import/preview de GLB rigged; animation clips/fases/frame blend; soft particles com shaders; mesh-facing; playback rate; resource reload; GPU instancing em contexto compatível/mais antigo; parent rotation; meshes dinâmicas; coexistência com KilaGraph, LDLib, PartiCull, Iris/shaders e Sable/SubLevels quando aplicável.
 
 Fonte upstream: CurseForge Photon file ID 8941291, changelog v2.2.7.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Photon
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.2.8 (NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Regressão de efeitos/VFX, resource reload, client/server separation e consumers antes de promoção.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/photon
+

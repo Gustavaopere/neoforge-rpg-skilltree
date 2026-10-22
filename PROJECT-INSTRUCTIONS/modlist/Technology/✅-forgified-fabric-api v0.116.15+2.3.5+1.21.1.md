@@ -178,3 +178,14 @@ A biblioteca é infraestrutura compartilhada por múltiplos consumidores. Proble
 **Release oficial:** `0.116.15+2.3.5+1.21.1`, com correção de `FabricTooltipType`.
 **Limite:** a existência de uma API na biblioteca não prova que todo consumidor do pack a usa. Integrações são documentadas apenas quando confirmadas.
 **Nenhum teste de runtime foi executado nesta catalogação.** A matriz é plano de validação.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Forgified Fabric API
+- **Último candidato 1.21.1 / NeoForge localizado:** **0.116.15+2.3.6+1.21.1**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Tratar como infraestrutura Sinytra/Connector: validar loader, mixins, APIs Fabric traduzidas, boot client/dedicated e consumers do pack em staging.
+- **Fonte primária do dossier reconsultada:** https://github.com/Sinytra/ForgifiedFabricAPI/tree/1.21.1
+

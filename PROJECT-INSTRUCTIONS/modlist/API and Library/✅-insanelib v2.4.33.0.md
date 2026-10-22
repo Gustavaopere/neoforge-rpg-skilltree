@@ -82,3 +82,14 @@ Validar construction/config load, datapack/config reload quando suportado, login
 **Fonte:** https://www.curseforge.com/minecraft/mc-mods/insanelib/files/9068453
 
 **Estado:** apenas documentação atualizada até 2.4.33.1; último runtime confirmado permanece 2.4.33.0.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** InsaneLib
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.4.33.1**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Revalidar consumers de InsaneLib, config/serialization, networking e dedicated server; não alterar versão física sem QA.
+- **Fonte primária do dossier reconsultada:** https://github.com/Insane96/InsaneLib/tree/1.21.1
+

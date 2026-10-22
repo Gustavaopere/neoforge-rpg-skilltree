@@ -270,3 +270,14 @@ A cadeia integral já investigada em 01/10 permanece válida e está preservada 
 **Fontes primárias verificadas:** https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9058295 ; https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9023811 ; https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility/files/9099509 .
 
 **Status:** **versões mínimas documentais 4/4; compatibilidade em runtime NÃO VERIFICADA; promoção física BLOQUEADA** até recuperar os artefatos atuais e testar cópia de mundo. Este adendo não altera versão, filename, posição ou hash histórico.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** MineColonies
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.1.1403 (Release estável); 1.1.1405-snapshot (snapshot Beta, 21/10)**
+- **Estado:** **PENDENTE para 1.1.1403; snapshot 1.1.1405 BLOQUEADO para promoção**
+- **Gate de promoção:** Testar migração de colônia/save, workers/AI, raids, buildings/Structurize/BlockUI e dedicated server antes de trocar o JAR. Não promover snapshot como baseline de produção.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/minecolonies
+
