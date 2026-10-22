@@ -84,3 +84,14 @@ A modlist física mantém `wunderlib-21.0.10.jar`, mod id `wunderlib`, versão `
 BetterEnd `21.0.34` e BetterNether `21.0.26` continuam presentes como consumers registrados no stack BetterX. A decisão **Dependência** e o estado **Integrado ao Github** foram preservados. Nenhum config-screen, networking, dedicated-server ou linkage test foi executado nesta recatalogação.
 ## 12. Revalidação — 13/09/2026
 WunderLib 21.0.10 permanece atual para NeoForge 1.21.1. BetterEnd 21.0.34 e BetterNether 21.0.26 continuam consumers atuais. Decisão Dependência preservada. Nenhum teste runtime foi executado.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** WunderLib: New Dawn
+- **Último candidato 1.21.1 / NeoForge localizado:** **21.0.11 (NeoForge 1.21.1, 14/10)**
+- **Estado:** **CANDIDATO COORDENADO NEW DAWN**
+- **Gate de promoção:** Validar API/consumers do stack BetterNether/BetterEnd/BCLib/WorldWeaver e boot/restart antes de promoção.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/wunderlib-neoforge
+

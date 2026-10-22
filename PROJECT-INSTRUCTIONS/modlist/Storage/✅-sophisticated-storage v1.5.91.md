@@ -219,3 +219,14 @@ Release NeoForge 1.21.1 **`sophisticatedstorage-1.21.1-1.6.4.2169.jar`** em 12/1
 **Correção de escopo material:** a entrada física #054 `arssophisticatedcompat-0.3.0.jar` coincide com [Sophisticated Backpacks: Ars Compat 0.3.0 (File ID 8653384)](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks-ars-compat-sophisticated/files/8653384), **não** com [Sophisticated Storage: Ars Compat 0.3.0 (File ID 8655579)](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-ars-compat-sophisticated/files/8655579). O segundo publica `arssophisticatedstoragecompat-0.3.0.jar`, não encontrado entre as entradas top-level da última modlist física. A menção histórica a "addon Ars" como integração direta instalada de Storage **não deve ser usada para justificar upgrade ou testes de Storage Source Link/Potion Jar em barrels/chests**. O addon de Backpacks usa a mochila como provider de inventário e é relevante indiretamente aos linked groups **Backpacks↔Storage** introduzidos na linha 1.6.4/1.6.5.
 
 **Gate:** testar a migração do Storage 1.5.91 para candidato 1.6.5 com Backpacks 3.26.12/Core 1.5.11 e **Ars Compat da mochila** 0.3.0, verificando que Source/ticks/upgrades de backpack não são atribuídos a endpoints de Storage em blocos nem processados em duplicidade após linked group, chunk reload, Create contraptions e restart. Não há garantia binária até comparar SHA/manifesto do JAR instalado com File ID 8653384. **Nenhuma alteração física ou QA in-game nesta correção.**
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Sophisticated Storage
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.6.8.2196 (Release NeoForge 1.21.1, 21/10)**
+- **Estado:** **CANDIDATO COORDENADO**
+- **Gate de promoção:** Não atualizar isoladamente. Exige Core compatível e regressão de linked groups/controllers, anti-dupe, chunk unload, save/restart, Backpacks e Create bridge.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/8762100
+

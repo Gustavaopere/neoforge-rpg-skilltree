@@ -90,3 +90,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 22. Evidências e limites
 A modlist física confirma JAR, mod id e runtime `1.2.0-1.21.1`. A release oficial correspondente confirma NeoForge 1.21.1, Client & Server, Mechanical Crafting, flap/boost, Curios opcional, config de cooldown, remoção de Caelus e fixes de Armor Stand/player animations. Source matching não foi localizado; packet names, classes, valores efetivos de impulso e serialização permanecem fail-closed.
 > 🔒 **Boundary canônico:** Ornithopter controla glider/boost/cooldown; o servidor valida equipamento e movimento. Config efetiva prevalece sobre defaults históricos, e runtime físico `1.2.0-1.21.1` prevalece sobre o label público `1.2.0+1.21.1`.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Create: Ornithopter Glider
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.2.0 (NeoForge 1.21.1)**
+- **Estado:** **REVALIDADO — sem bump localizado**
+- **Gate de promoção:** Manter baseline; futura atualização exige flight authority, equip/use, Aeronautics/Create physics, fall damage e multiplayer.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-ornithopter-glider
+

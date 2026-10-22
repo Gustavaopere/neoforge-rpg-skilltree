@@ -102,3 +102,14 @@ Nenhum teste térmico, Create/Sable, death/dimension, KubeJS ou multiplayer foi 
 - [ ] Block temperature funciona em Sable/Create: Aeronautics contraptions.
 - [ ] Create tanks/pipes não recebem maximum temperature ilimitada.
 - [ ] Cold Sweat inicia sem Create instalado em perfil isolado, validando o hotfix 2.4.3.1.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Cold Sweat
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.4.4 (Release NeoForge 1.21.1, 16/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Temperatura é state crítico: validar biome/dimension configs, insulation/items, networking, seasons, Thirst, Create integrations, multiplayer e restart.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat
+

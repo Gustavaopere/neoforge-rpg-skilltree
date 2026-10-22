@@ -164,3 +164,14 @@ O pack usa Create Aeronautics/Sable, Sodium-related rendering stack e várias in
 - [ ] Confirmar recipes/configs novos sem reset indevido de configuração existente.
 
 Fontes upstream: CurseForge Create Deep Seas 1.21.1, sequência 3.0.0→3.3.0; source oficial `MaxCreateMC/Create-Deep-Seas` `changelog.md`. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Create Deep Seas [BETA]
+- **Último candidato 1.21.1 / NeoForge localizado:** **3.3.0 (Release estável, 02/10); 3.4.1 ALPHA-2 (17/10)**
+- **Estado:** **3.3.0 CANDIDATO PENDENTE; 3.4.1 ALPHA-2 BLOQUEADO**
+- **Gate de promoção:** Projeto experimental com Create/world content: validar recipes/machines/fluids, world/save, contraptions e dedicated server; não promover alpha.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-deep-seas
+

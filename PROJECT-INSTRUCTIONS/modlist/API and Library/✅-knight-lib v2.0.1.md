@@ -110,3 +110,14 @@ Os dois deltas são visuais/rendering, mas podem afetar qualquer consumer que us
 - [ ] Dedicated server permanece livre de classloading render-only.
 
 Fontes upstream: Knight Lib 2.0.2 e 2.0.3 para NeoForge 1.21.1; 2.0.3 file ID 8958408. Nenhum teste acima foi executado nesta atualização documental.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Knight Lib
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.0.5 (Release, 15/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Biblioteca: identificar e testar consumers, API/registry changes, networking e boot client/dedicated.
+- **Fonte primária do dossier reconsultada:** https://github.com/Xylonity/Knight-Lib/tree/1.21.1
+

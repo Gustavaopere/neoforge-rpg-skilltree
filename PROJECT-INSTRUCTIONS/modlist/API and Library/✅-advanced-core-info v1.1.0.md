@@ -254,3 +254,13 @@ Fontes upstream: CurseForge Advanced Core Info 1.2.0/1.3.0 e `yanny7/AdvancedLoo
 
 **Estado:** revalidação concluída da linha pública; **versão física 1.1.0 mantida**, sem QA runtime executado.
 
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Advanced Core Info (ACI)
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.5.0 (Beta, 16/10)**
+- **Estado:** **BLOQUEADO COMO BETA**
+- **Gate de promoção:** Core/info API: validar ABI, consumers, registries/networking e boot dedicado antes de qualquer promoção.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/advanced-core-info
+
