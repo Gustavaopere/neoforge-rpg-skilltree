@@ -193,3 +193,14 @@ A checagem da publicação CurseForge dos **file IDs já presentes no diff upstr
 **Correção nominal somente no source candidato 2.2.0:** o [commit de alteração `3c2fd04`](https://github.com/Partonetrain/thirstwasfixed/commit/3c2fd04b61f6563513e36111aa8bd5f8b73ebe8c) usa `ParCoolAttributes.STAMINA_RECOVERY`, símbolo encontrado no source do ParCool 4.0.0.3. **Isto resolve a dúvida de existência nominal em source** registrada anteriormente; não prova build, compatibilidade de bytecode, Mixin, nem sucesso com NeoForge 21.1.250. O arquivo de distribuição 2.2.0 não foi verificado nem instalado.
 
 **QA prioritário:** extrair os JARs atuais, comparar descriptors de owner/campo e aliases, verificar `ParCoolAttributes`/`Attributes` efetivos, ler os limiares reais, testar cliente e dedicated server em cópia com valores `0` e não nulos e logs de linkage, modifiers idempotentes, networking e relog/restart. Se houver incompatibilidade confirmada, decidir mitigação por configuração versus atualização coordenada em staging (sem promover item por conveniência). **Físico inalterado:** TWF 2.1.6, ParCool 4.0.0.3 e Reclaimed 3.0.5 continuam no snapshot.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** ThirstWasFixed
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.2.1 (Release, 15/10)**
+- **Estado:** **CANDIDATO COORDENADO**
+- **Gate de promoção:** Revalidar com ParCool 4.0.1.6, Thirst Was Reclaimed/Sophisticated integrations, stamina attribute owner/API, purity/fluid handlers, configs e dedicated server.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/thirstwasfixed ; https://www.curseforge.com/minecraft/mc-mods/thirstwasfixed/files/8794908
+

@@ -87,3 +87,14 @@ A modlist física atual de 21/09/2026 confirma `dtvanillabackport-1.21.1-1.7.0.j
 A distribuição oficial 1.7.0 para NeoForge 1.21.1 corresponde à build instalada. A página oficial documenta Pale Oak, Creaking Heart, comportamento Dynamic Trees e Cactus Flower com DT Plus. O arquivo 1.7.0 não publica changelog detalhado próprio; por isso nenhum delta adicional é inventado.
 ## 16. Conclusão operacional
 **Manter** enquanto Dynamic Trees e VanillaBackport permanecerem ativos, mas tratar qualquer atualização como alteração de integração/worldgen. Antes de promover uma versão futura, validar em mundo novo e atualizar a ficha apenas com evidência da build correspondente.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Dynamic Trees - VanillaBackport
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.7.0 (NeoForge 1.21.1)**
+- **Estado:** **REVALIDADO — sem bump localizado**
+- **Gate de promoção:** Manter alinhamento Dynamic Trees/VanillaBackport; não mexer em worldgen de mundo existente sem backup e teste de chunks novos.
+- **Fonte primária do dossier reconsultada:** Modlist/JAR físico atual como autoridade de presença/versão + source público dannykim2011/DynamicTrees-VanillaBackport branch 1.21.1 apenas como contexto estrutural não exato.
+

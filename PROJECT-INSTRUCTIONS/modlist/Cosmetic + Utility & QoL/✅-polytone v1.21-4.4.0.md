@@ -207,3 +207,14 @@ A branch 5.0.x altera a semântica de presentation e interação com recursos; o
 **Novo delta 5.1.1 (12/10/2026) confirmado:** melhorias no código de **voxel volume**, descritas como melhoria de compatibilidade com **Veil**. A linha acumulada 4.4.0→5.0.5 já foi documentada na atualização anterior. **Gate adicional:** Veil se efetivamente presente, voxels e volumes/lighting, animação por shaders, resource pack-driven color/lightmaps, post-processing, F3+T, shaders alternativos, coexistência Amendments 2.1.11/Moonlight, visual world/dimensions, troca de packs e benchmark FPS. A novidade não demonstra que Veil esteja instalado ou que todos os bugs visuais estejam resolvidos.
 
 **Autoridade física:** estado histórico de `modlist(1).txt` mantido; JAR, metadata, SHA e testes locais não foram re-observados. Filename do `.md` com ✅ e versão física herdada preservado. A revisão documental não significa instalação ou aprovação de promoção.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Polytone
+- **Último candidato 1.21.1 / NeoForge localizado:** **5.2.0 (Release NeoForge 1.21.1, 20/10)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Resource/shader/voxel-volume changes: testar Amendments/Supplementaries/Veil, resource reload, packs ativos e multiplayer visual.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/polytone
+

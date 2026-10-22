@@ -99,3 +99,14 @@ A publicação oficial confirma **1.30.0 para NeoForge 1.21.1** em 11/09/2026. P
 - 1.29.4 preservada como lineage: fixes #237 e #236;
 - changelog anterior 1.29.3: forced crouching GUI fix #233.
 > 🔒 Boundary canônico: **Cyclops Core fornece infraestrutura; a modlist física define sua versão; consumers mantêm authority do gameplay final**.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Cyclops Core
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.30.0-1205 (Beta build, 18/10)**
+- **Estado:** **BLOQUEADO COMO BETA**
+- **Gate de promoção:** Não substituir baseline semanticamente 1.30.0 por build beta sem verificar consumers Cyclops, configs, networking e compatibilidade binária.
+- **Fonte primária do dossier reconsultada:** https://github.com/CyclopsMC/CyclopsCore/blob/master-26-lts/CHANGELOG-1.21.1.md
+

@@ -100,3 +100,14 @@ Isso é a infraestrutura correspondente ao mesmo boundary observado no update de
 Gate de promoção 1.7.1→1.8: backup/migração de storage existente; config 10/25/50; tame acima de 10; beds/storage blocks; relog/restart; death/respawn; dimension transfer; chunk unload; dois jogadores com coleções grandes; consumer Alshanex Familiars 4.0.4 compatível; ausência de perda/duplicação ao migrar slots.
 
 Fonte upstream: CurseForge file ID 8966334, `familiarslib-1.21.1-1.8.jar`.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** FamiliarsLib
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.7.1 (NeoForge 1.21.1)**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Biblioteca de familiars: testar Alshanex's Familiars e demais consumers, registries/network/persistence e server boot.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/familiarslib
+

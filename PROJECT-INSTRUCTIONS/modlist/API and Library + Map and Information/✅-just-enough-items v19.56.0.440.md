@@ -153,3 +153,14 @@ Fontes upstream: CurseForge 19.56.0.441 e file list 19.57.0.444–450; Modrinth 
 **Atualização upstream NeoForge 1.21.1:** **19.64.0.453 Beta**, publicada em **12/10/2026**, sucedendo 19.57.0.451 de 05/10 e o JAR físico histórico `justenoughitems-neoforge-1.21.1-19.56.0.440.jar` (19.56.0.440). Fonte oficial: https://www.curseforge.com/minecraft/mc-mods/jei/files/all?page=1&pageSize=20&version=1.21.1
 
 A publicação é um salto de linha em uma API central de receitas. Changelog técnico granular da 19.64.0.453 não foi isolado: **não** atribuir novas categorias/plugins/handlers sem evidência. **Gate:** receitas Create/automation, magia/Ars/Iron's, Sophisticated JEI Index, Polymorph+, KubeJS e datapacks, ingredient indexing/search, hidden recipes, tooltips, client-only UI, F3+T e custo de CPU/memória em centenas de mods. Build beta não deve ser promovida sem reconciliação dos addons. **Estado instalado e filename `.md`:** manter última evidência física, prefixo ✅ e versão 19.56.0.440 até novo inventário JAR/metadata/SHA; nenhum teste in-game executado nesta reauditoria.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Just Enough Items (JEI)
+- **Último candidato 1.21.1 / NeoForge localizado:** **19.64.0.455 (Release estável, 16/10); 19.69.0.457 (Beta, 20/10)**
+- **Estado:** **19.64.0.455 CANDIDATO PENDENTE; 19.69.0.457 BLOQUEADO**
+- **Gate de promoção:** Coordenar com Polymorph+ 1.4.1 e addons JEI; validar recipe transfer/indexing/plugins/GUI. Não usar beta como baseline.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/jei/files/all?version=1.21.1
+
