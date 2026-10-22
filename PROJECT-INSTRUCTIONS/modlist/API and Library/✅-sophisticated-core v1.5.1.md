@@ -228,3 +228,14 @@ O [source 1.21.x pinado em `400660f2d4e6165076977b09e66cae26a7f2dfd3`](https://g
 **Limite dos testes upstream:** [`tests/sophisticated/README.md`](https://github.com/mlus-asuka/Thirst-Was-Reclaimed/blob/3a4326893b726010bbd7580c557de3d8447fc8a9/tests/sophisticated/README.md) registra **2 GameTests** usando NeoForge `21.1.215`, Core `1.3.89.1239`, Backpacks `3.25.14.1410`; o autor aponta bloqueio para validar Core histórico `1.5.1.2341`. **Não extrapolar** passes para Core `1.5.11`, Backpacks `3.26.12` ou Reclaimed `3.0.6` no modpack real. [Source dos GameTests](https://github.com/mlus-asuka/Thirst-Was-Reclaimed/blob/3a4326893b726010bbd7580c557de3d8447fc8a9/tests/sophisticated/java/cn/mlus/thirst/compat/sophisticated/SophisticatedPurityGameTests.java) verifica pureza 0–3 em bottle, tank, simulação, inserção inválida, serialização e mixing.
 
 **Gate de promoção NÃO EXECUTADO:** obter hashes/manifestos e bytecode dos JARs publicados Core `1.5.11` e Reclaimed `3.0.6`; executar bootstrap cliente e servidor com Mixin diagnostics e conferir cada `require=1` efetivamente aplicado; testar tanks e água de purity 0–3 nos dois sentidos, `SIMULATE` sem mutações, remainders de garrafas/buckets, serialização/recarga, pipes Create, outros fluid handlers, contraptions e multiplayer. Registrar logs reais; reverter juntos Core/Reclaimed/Backpacks e backup do mundo ao detectar quebra. **Classificação: correspondência estrutural source POSITIVA; compatibilidade efetiva PENDENTE.**
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Sophisticated Core
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.5.17.2426 (Release, 21/10)**
+- **Estado:** **CANDIDATO COORDENADO**
+- **Gate de promoção:** Não atualizar isoladamente. Validar junto de Backpacks, Storage, bridges Create e consumers; exigir anti-dupe, linked inventories, reopen/save/restart, chunk unload e dedicated server.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/8839323
+

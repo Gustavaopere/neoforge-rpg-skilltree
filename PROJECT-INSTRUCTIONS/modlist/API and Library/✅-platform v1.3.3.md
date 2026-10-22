@@ -102,3 +102,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Descrição oficial: cross-platform library baseada em Architectury para acesso uniforme a APIs de loaders.
 - Cruzamento do catálogo atual não localizou consumer explícito adicional.
 - **Limite:** não foi executado dependency scan de manifests das 587 entradas top-level da modlist física atual, incluindo o modloader, neste passe; por isso não declarar library órfã nem segura para remoção.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Platform
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.4**
+- **Estado:** **CANDIDATO PENDENTE**
+- **Gate de promoção:** Biblioteca: validar ABI/API dos consumers, mixins, networking e boot client/dedicated antes de promoção.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/platform
+

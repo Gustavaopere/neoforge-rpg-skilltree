@@ -87,3 +87,14 @@ O changelog exato da 1.1.7.10 registra três deltas: remoção da compatibilidad
 O runtime físico permanece `VanillaBackport-neoforge-1.21.1-1.1.7.10.jar`, versão `1.1.7.10`, e a página oficial continua listando esta build como a release NeoForge 1.21.1 mais recente. Delightful Backport `1.0` e Dynamic Trees for VanillaBackport `1.6.0` permanecem bridges físicas separadas do provider. O boundary continua registry-by-registry: não assumir IDs ou duplicação de features sem inspeção da build efetivamente instalada. Nenhum registry audit completo, toggle de config, spawn/worldgen ou teste das bridges foi executado nesta revalidação.
 ## 13. Reconciliação física — 27/09/2026
 A autoridade física atual mantém `VanillaBackport-neoforge-1.21.1-1.1.7.10.jar`, mod id `vanillabackport`, runtime `1.1.7.10`. As bridges atuais são `Delightful-Backport-1.0-1.21.1-neoforge.jar` / `1.0` e `dtvanillabackport-1.21.1-1.7.0.jar` / `1.7.0`. A referência operacional do bridge Dynamic Trees foi atualizada de 1.6.0 para 1.7.0; as revalidações históricas permanecem preservadas. O boundary continua registry-by-registry e nenhum registry audit completo, toggle de config, spawn/worldgen ou teste das bridges foi executado nesta reconciliação.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Vanilla Backport
+- **Último candidato 1.21.1 / NeoForge localizado:** **1.1.7.10 (NeoForge 1.21.1)**
+- **Estado:** **REVALIDADO — sem bump 1.21.1 localizado**
+- **Gate de promoção:** Não confundir arquivos para versões Minecraft posteriores; manter worldgen/recipes/entities no baseline.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/vanillabackport
+

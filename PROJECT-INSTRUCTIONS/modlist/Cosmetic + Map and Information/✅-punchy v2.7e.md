@@ -137,3 +137,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Changelog 2.7e: final resource refresh, animation sound cleanup e itemgrip rotation/alignment fixes.
 - Pack físico: Punchy Epic Fight Compat 1.0.0 instalado.
 - **Limite:** profiles/Mixpacks/config local não foram inventariados; compatibilidade visual é validada por smoke, não pela mera presença dos mods.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Punchy! - First person animations
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.7e (NeoForge 1.21.1)**
+- **Estado:** **REVALIDADO — sem bump localizado**
+- **Gate de promoção:** Manter baseline; testar primeira pessoa com Epic Fight, animações, câmera/FOV e mods de render se houver troca futura.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/punchy
+
