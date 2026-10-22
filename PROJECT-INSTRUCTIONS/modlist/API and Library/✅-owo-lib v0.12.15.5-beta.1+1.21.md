@@ -70,3 +70,14 @@ UI/config/network helpers nunca são events de Mastery por si. Qualquer progress
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 11. Evidências e limite
 Modrinth oficial confirma build Beta, NeoForge 1.21.1, Client & Server e changelog `DerivedComponentMap`. Wisp Forest Docs confirmam owo-ui, owo-config, config sync, networking e Endec. A modlist física confirma a hierarquia `/META-INF/jars/`. Consumers exatos ainda precisam de dependency graph completo antes de qualquer remoção.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** owo (owo-lib)
+- **Último candidato 1.21.1 / NeoForge localizado:** **0.12.15.6-beta.1+1.21 (Beta, 16/10)**
+- **Estado:** **BLOQUEADO COMO BETA**
+- **Gate de promoção:** Biblioteca: revisar ABI/API, networking, UI/config e todos os consumers; não promover beta sem regressão do conjunto dependente.
+- **Fonte primária do dossier reconsultada:** https://modrinth.com/mod/owo-lib
+

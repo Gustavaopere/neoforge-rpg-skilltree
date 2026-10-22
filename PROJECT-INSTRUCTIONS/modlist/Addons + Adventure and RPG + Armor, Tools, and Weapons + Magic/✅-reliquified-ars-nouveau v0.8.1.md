@@ -138,3 +138,14 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Changelog 0.8.1: fixes de Whirlisprig petals e Reliquified Artifacts.
 - Changelogs históricos: exemplos de relics usados apenas como lineage confirmada.
 - **Limite:** não foi inventariado todo o registry da 0.8.1; qualquer relic não confirmada por fonte foi deliberadamente omitida.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Reliquified Ars Nouveau
+- **Último candidato 1.21.1 / NeoForge localizado:** **0.8.1 (Beta)**
+- **Estado:** **REVALIDADO — sem bump; baseline continua Beta**
+- **Gate de promoção:** Não promover canal experimental como estável por ausência de bump; manter QA de relics/Curios/Ars Nouveau e persistence.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/reliquified-ars-nouveau
+

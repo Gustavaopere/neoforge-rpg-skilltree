@@ -311,3 +311,14 @@ ALI é viewer **informacional**; chances exibidas podem depender de Luck, GLM, d
 **Fontes primárias:** https://github.com/yanny7/AdvancedLootInfo/blob/1.21.1/ali/CHANGELOG.md ; https://www.curseforge.com/minecraft/mc-mods/advanced-loot-info/files/all?version=1.21.1
 
 **Estado:** 2.4.0 upstream auditada, 2.1.0 fisicamente comprovada; dependências requerem reconciliação antes de promoção.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Advanced Loot Info (ALI)
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.5.0 (Beta, 16/10)**
+- **Estado:** **BLOQUEADO COMO BETA**
+- **Gate de promoção:** Validar loot-table introspection, JEI/UI overlays, client/server data sync e compat com datapacks/modded loot antes de promoção.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/advanced-loot-info
+

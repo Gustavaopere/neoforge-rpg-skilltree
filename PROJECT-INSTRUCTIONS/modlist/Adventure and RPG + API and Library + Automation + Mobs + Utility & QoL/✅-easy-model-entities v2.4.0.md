@@ -167,3 +167,14 @@ A documentação oficial NeoForge 1.21.1 esclarece que uma dependência **`optio
 Nas listagens oficiais [CurseForge NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/all?version=1.21.1) e [Modrinth EME 2.4.0 NeoForge 1.21.1](https://modrinth.com/mod/easy-model-entities/version/KIk2E6sP), o último **binário 1.21.1 encontrado** ainda é `easy_model_entities-neoforge-1.21.1-2.4.0.jar`; a publicação 2.5.0 já identificada [no CurseForge](https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/9152252) é para **Minecraft 26.1.2**, não para 1.21.1. O `neoforge.mods.toml` do source 1.21.1 usa `version = "${file.jarVersion}"`; isso **não confirma** a versão resolvida no binário físico 2.4.0, cuja coluna de metadata no inventário histórico permanece vazia.
 
 **Decisão:** manter EME 2.4.0 como última evidência física; aguardar publicação/verificação do JAR 2.5.0 especificamente NeoForge 1.21.1 antes de reconsiderar Easy NPC 7.15.0. Em paralelo, a [revisão 7.14.0 do Core](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/2c7fb934c6626224220227e6db5150edd891cdd3/core/NeoForge/src/main/resources/META-INF/neoforge.mods.toml) aceita, declarativamente, EME opcional `[2.4.0,3.0.0)`; esse caminho intermediário exige QA próprio e não está aprovado. Sem modificação física, testes de boot ou mudança de filename.
+
+## Atualização de catálogo — 22/10/2026
+
+> **Autoridade física preservada.** Esta revisão registra apenas o estado upstream solicitado; nenhum JAR, filename físico, posição da modlist, configuração ou save foi alterado.
+
+- **Projeto solicitado:** Easy Model Entities
+- **Último candidato 1.21.1 / NeoForge localizado:** **2.6.0 (Release NeoForge 1.21.1, 16/10)**
+- **Estado:** **CANDIDATO COORDENADO; resolve a indisponibilidade pública ≥2.5 registrada em 13/10**
+- **Gate de promoção:** Testar em conjunto com Easy NPC 7.16.0, model/pose sync, render client-only, late viewers, resource reload e dedicated server. Existência da release não equivale a compatibilidade certificada.
+- **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/8706558
+
