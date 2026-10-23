@@ -119,3 +119,34 @@ A publicação oficial confirma **1.30.0 para NeoForge 1.21.1** em 11/09/2026. P
 **Estado BLOQUEADO da auditoria integral:** sem changelog de Beta -1205 ou source diff inequivocamente associado ao binário, não existe evidência suficiente para descrever a diferença por build. Manter baseline e validar consumers EvilCraft, Integrated Dynamics/Terminals, hashing/collections, networking, GUI, infobook, server startup e reload somente depois de resolver a identificação do delta. Não promover uma Beta sem QA.
 
 Fontes: https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files/all?version=1.21.1 ; https://github.com/CyclopsMC/CyclopsCore/blob/master-26-lts/CHANGELOG-1.21.1.md .
+
+
+## Delta Beta NeoForge 1.30.0-1205 resolvido por comparação upstream — 23/10/2026
+
+> **A observação anterior "Estado BLOQUEADO da auditoria integral" fica superada quanto à identificação da mudança de código publicada.** O artefato `cyclopscore-1.21.1-neoforge-1.30.0-1205.jar` foi publicado no CurseForge como **Beta para Minecraft 1.21.1, NeoForge em 18/10/2026**. A última Release **estável** para esse ambiente permanece `cyclopscore-1.21.1-neoforge-1.30.0.jar` de 11/09/2026. O JAR físico do pack é a Release 1.30.0, não a Beta.
+
+### Investigação source exata da janela Release → Beta
+Foi comparado o branch upstream oficial `master-1.21-lts` entre os commits:
+- baseline de versão `c0372426f` (11/09/2026, **Bump mod version**), associado à linha estável 1.30.0;
+- ponta após o hotfix `3e43a02bc` (18/10/2026, **Fix incorrect key binding labels being shown in appendices**, issue #255).
+
+**Comparação GitHub oficial:** https://github.com/CyclopsMC/CyclopsCore/compare/c0372426f...3e43a02bc . Ela mostra **um único commit e um único arquivo alterado**:
+`loader-neoforge/src/main/java/org/cyclops/cyclopscore/infobook/pageelement/KeyBindingAppendix.java`.
+
+O patch na renderização de informações de tecla substitui:
+```java
+String binding = L10NHelpers.localize(keyBinding.saveString());
+```
+por:
+```java
+String binding = keyBinding.getTranslatedKeyMessage().getString();
+```
+
+**Efeito funcional documentável:** exibição correta do nome/descrição traduzida da tecla efetivamente associada a um atalho nas páginas de apêndice de infobooks/GUI. Trata-se de correção de interface na camada **NeoForge**; **não** há evidência de nova API pública, mudança de contrato de ingredientes/receitas, networking, serialização, configs ou mecânica de EvilCraft/Integrated Dynamics nessa comparação.
+
+**Papel de Beta:** a publicação Beta 1205 e o commit de mesmo dia/branch tornam a mudança source inequívoca no intervalo; entretanto nenhum arquivo binário foi disassemblado para confirmar seu SHA/classe. Não atribuir demais alterações de branches 26.x à linha Minecraft 1.21.1.
+
+**QA sugerido para eventual promoção física:** abrir infobooks de Integrated Dynamics/EvilCraft com keybindings remapeados, layout de apêndices sob português/inglês, teclas modificadas por outros mods e fallback quando bindings não configurados; smoke de inicialização dedicado e cliente. Nenhum teste in-game nem troca de JAR foi executado.
+
+**Resultado documental:** intervalo `1.30.0 → 1.30.0-1205 Beta` investigado com comparação de commits 1:1 e as restrições de confiança declaradas. A diferença técnica foi especificada; pode ser removido o **item #45 da lista de pesquisas documentais**, sem afirmar instalação ou certificação binária.
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files/all?version=1.21.1 ; https://github.com/CyclopsMC/CyclopsCore/commit/3e43a02bc .
