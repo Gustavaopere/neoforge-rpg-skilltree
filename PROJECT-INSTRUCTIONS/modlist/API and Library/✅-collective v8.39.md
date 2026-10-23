@@ -135,3 +135,19 @@ O changelog publicado pelo autor para a versão 8.43 (também veiculada em build
 - **Gate de promoção:** Biblioteca compartilhada Serilum: revalidar todos os consumers instalados, configs/events e boot dedicado; não atualizar isoladamente sem smoke do conjunto.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/collective
 
+## Revalidação incremental de catálogo — 23/10/2026 (Collective 8.63–8.65)
+
+**Autoridade física inalterada:** `collective-1.21.1-8.39.jar` / 8.39 no último inventário físico documentado. Nenhuma instalação ou execução de testes foi feita.
+
+A listagem oficial do projeto confirma três releases **Minecraft 1.21.1** posteriores ao candidato 8.62 registrado em 22/10:
+- **8.63**, Release, 22/10/2026;
+- **8.64**, Release, 22/10/2026;
+- **8.65**, Release, 22/10/2026, último candidato exibido para Minecraft 1.21.1 na consulta desta revisão.
+
+Fonte primária para versões, datas, loader e classificação `API and Library`: https://www.curseforge.com/minecraft/mc-mods/collective/files/all?page=1&version=1.21
+
+**Deltas de funcionalidade ainda não certificados:** a listagem confirma as publicações, mas esta revisão não extraiu os três changelogs *dos artefatos exatos 1.21.1*. Os changelogs oficiais da série multicarga 8.61/8.62/8.64 relatam, respectivamente, editor de listas de texto e correção de checagens de block entities em chunks não carregados; correções de respawn anchors e de dados de schematics; e evento unificado de verificação de spawn com centralização de variáveis em cache. Essas notas aparecem em páginas de builds **26.2/26.3**, por isso **não são atribuídas sem prova aos JARs 1.21.1**. Fonte de controle: https://www.curseforge.com/minecraft/mc-mods/collective/files/9287886 .
+
+**Cadeia a fechar:** as versões 8.40–8.47 já possuem registros anteriores com graus variáveis de evidência; faltam conciliar individualmente os deltas 8.48–8.65, inclusive a existência/ausência de builds numéricas intermediárias não publicadas para 1.21.1. Verificar o changelog exato ou source/tag e identificar mudanças de API, eventos, callbacks, packet registration, serialização e configs antes de aprovar o upgrade.
+
+**Gate de promoção:** atualizar/testar em ambiente de cópia todos os consumidores Serilum do modpack, client/server dedicados, bootstrap concorrente, eventos de spawn, chunk boundaries, schematics, respawn anchor, config UI, reload, handshake e save/restart. **Status: documentação do catálogo atualizada; auditoria release-by-release e QA ainda pendentes. Manter o item 52 na lista do Bloco de Notas.**
