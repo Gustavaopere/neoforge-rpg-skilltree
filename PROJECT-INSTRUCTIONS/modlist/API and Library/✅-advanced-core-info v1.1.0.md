@@ -264,3 +264,39 @@ Fontes upstream: CurseForge Advanced Core Info 1.2.0/1.3.0 e `yanny7/AdvancedLoo
 - **Gate de promoção:** Core/info API: validar ABI, consumers, registries/networking e boot dedicado antes de qualquer promoção.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/advanced-core-info
 
+## Auditoria individual das releases ainda não detalhadas — 23/10/2026 (ACI 1.1.0 → 1.5.0)
+
+**Versão física do snapshot:** AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar, runtime 1.1.0, posição física #006; não foi substituída. **Sequência publicada para NeoForge 1.21.1 após a instalada:** 1.2.0 → 1.3.0 → **1.4.0 Beta (06/10/2026)** → **1.5.0 Beta (16/10/2026)**. As diferenças específicas de 1.2.0 e 1.3.0 estão enumeradas na seção 17; abaixo seguem os deltas inéditos de 1.4.0 e 1.5.0, extraídos do changelog primário do módulo aci, branch 1.21.1. Não incluir 1.4.1, publicado em outras linhas de Minecraft (26.3), como se fosse um release NeoForge 1.21.1.
+
+### 1.4.0 — spawns, modelos numéricos e apresentação
+- Introdução do bloco de configuração **SpawnInfoFilter** para filtragem de informações de spawn.
+- Valores de configuração inválidos retornam aos defaults com aviso; entradas individuais inválidas de listas são descartadas isoladamente, em vez de invalidar toda a lista.
+- Variáveis de domínio finito que incluem o valor zero (por exemplo, luck) passam a ter linhas separadas para cada valor, como já se faz com níveis de encantamento.
+- Conversores numéricos recebem as descrições das condições associadas aos seus valores.
+- Informações de spawn em estruturas passam a ser agrupadas.
+- Tooltips cuja altura excede a tela passam a aceitar rolagem por mouse.
+- **NumberExpr substitui RangeValue** na representação numérica e apresenta valor mais provável, linhas por nível e gráficos. Pode afetar consumidores que dependem do modelo anterior.
+- **TooltipBuilder.intervals** permite construir intervalos numéricos formatados segundo o locale do cliente.
+- Overrides de spawns de estruturas sem categoria de mob deixam de quebrar o tooltip de entidades.
+- Para mais de dez biomas, a relação de spawn pode ser resumida como exclusões, marcadas por sinal menos (-).
+- IDs de tags e registries passam a poder ser traduzidos com a opção **showInGameNames**, usando formas pertinentes a vanilla/Fabric API/NeoForge/EMI.
+
+### 1.5.0 — configuração, enumeração e correções
+- Novas APIs **registerEnumTranslation** e **getEnumTranslation** no registry compartilhado de servidor e utilitários.
+- Opções ausentes de um arquivo de configuração já existente passam a ser preenchidas com seus valores padrão.
+- Cada reset de configuração mantém um backup próprio com timestamp, em vez de sobrescrever backup anterior.
+- Tooltips com rolagem agora quebram linhas mais largas que a janela.
+- Correção de espaço indevido depois do nome de número cujo valor depende de condições.
+- Correção de informações de loot e worldgen ausentes. O changelog também menciona crash ao iniciar diretamente no mundo em **Forge**; não atribuir esse sintoma ao binário NeoForge sem confirmação.
+- O fix de amostragem de textura de widgets presente em changelogs de **outras versões do Minecraft** não integra a entrada do changelog de 1.21.1 consultada e não é contabilizado nesta linha.
+
+### Análise de impacto e validação sugerida (não executada)
+1. ACI é **biblioteca compartilhada**, não possui UI final própria. **Advanced Loot Info (ALI) 2.1.0 está instalado**, e **Advanced Worldgen Info (AWI) não está instalado** no snapshot. Revalidar ranges/dependências e eventuais APIs de ALI antes de qualquer promoção coordenada.
+2. Testar integridade de configs antigas: defaults acrescentados, tratamento de inputs inválidos, warnings e backups timestamped após múltiplos resets.
+3. Exercitar toolkit de tooltip: rolamento e wrap em telas pequenas, tradução de registry/tag, NumberExpr, casos de luck=0, intervals com locale pt_BR, overrides de spawns e estruturas.
+4. Em NeoForge 1.21.1 cliente/dedicated server, testar sincronização de payloads, registry discovery, loot de datapacks após /reload, informação por bioma/dimensão/estrutura e reconnect, sem regressão em ALI.
+5. Verificar explicitamente conflitos de API/ABI em addons ou scripts que ainda esperem RangeValue ou formatos antigos de serialização; não considerar compatibilidade certificada sem testes.
+
+**Resultado documental:** o intervalo de releases 1.1.0 → 1.5.0 está discriminado por versão, inclusive as duas Betas. A pendência de pesquisa do histórico upstream foi resolvida com fonte primária do autor. Isso **não equivale a aprovação de instalação da 1.5.0 Beta nem a QA concluído**; o JAR físico continua 1.1.0.
+
+**Fontes primárias:** https://raw.githubusercontent.com/yanny7/AdvancedLootInfo/1.21.1/aci/CHANGELOG.md ; https://www.curseforge.com/minecraft/mc-mods/advanced-core-info/files/all (projeto CurseForge 1661923, NeoForge Minecraft 1.21.1).
