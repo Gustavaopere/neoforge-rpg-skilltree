@@ -206,3 +206,12 @@ Fonte upstream: CurseForge file ID 8906784, `create_stats-1.14.5.jar`, release N
 - **Gate de promoção:** Validar Create 6.0.10, stress/power/stat accounting, displays/networking, contraptions e save/restart.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-stats-power
 
+## Conciliação de releases publicadas — 23/10/2026
+
+**Publicações NeoForge 1.21.1 posteriores ao JAR físico `create_stats-1.13.1.jar`:**
+1. **1.14.5**, Release de 17/09/2026 — mudanças de PPI, energia, controle/displays, bugs e limites detalhadas na seção 20.
+2. **1.15.0**, Release de 05/10/2026, File ID **9074215** — mudanças de mecânicas/veículos/energia, migração, permissões e requisitos de atualização de clientes e servidor detalhados na seção 21.
+
+**Verificação de intervalo:** o catálogo oficial de arquivos NeoForge 1.21.1 lista **somente esses dois artefatos** após 1.13.1; nenhum pacote 1.14.0–1.14.4 ou 1.14.6 foi publicado nessa lista. Portanto, a revisão documental **1.13.1→1.14.5→1.15.0 está completa**, sem inventar releases intermediárias a partir da sequência numérica.
+
+Fontes primárias: https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/all?version=1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/9074215 . **JAR físico não alterado;** permanece o gate de smoke test/backup de mundo antes da eventual promoção, que não faz parte desta conferência documental.
