@@ -124,3 +124,30 @@ A ausência de bump não equivale a certificação de compatibilidade. O addon a
 - **Gate de promoção:** Manter baseline; futuras mudanças exigem teste de câmera/tilt, Aeronautics physics, Sable sublevels e primeira pessoa.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/aeronautics-player-tilt
 
+## Revisão incremental upstream — 23/10/2026 (0.2.0 → 0.2.3)
+
+> **Escopo exclusivamente documental.** O último JAR top-level documentado continua `aero_player_tilt-0.2.0.jar` (NeoForge 1.21.1). Não houve instalação, teste de runtime ou renomeação deste dossier. As notas anteriores que afirmavam ausência de releases posteriores a 0.2.0 estão **superadas** por esta checagem.
+
+### 0.2.1 — 30/09/2026
+- Compatibilidade adicionada com **Physics Mod Pro**.
+- Corrigida rotação descontrolada da câmera ao saltar depois de percorrer cantos usando Magnetic Boots.
+- Corrigido Sticky Tilt permanecendo ativo após reduzir Max Tilt para 37° ou menos.
+- Fonte primária: https://www.curseforge.com/minecraft/mc-mods/aero-player-tilt/files/9021670
+
+### 0.2.2 — 06/10/2026
+- Compatibilidade com **Pehkui** e **Create: Pocket Sized**; raycasts, Sticky Tilt, Magnetic Boots e modelo do jogador passam a respeitar a escala do jogador.
+- Corrigidos crash com Create: Pocket Sized 0.20.0 e queda de FPS junto a sublevels reduzidos.
+- Corrigidos sneaking preso entre blocos em sublevels escalados e deslizamento para fora de sublevel ao agachar usando Magnetic Boots ou Sticky Tilt.
+- Fonte primária: https://www.curseforge.com/minecraft/mc-mods/aero-player-tilt/files/9080709
+
+### 0.2.3 — 11/10/2026
+- Nova configuração de **altura de borda (ledge height)** para Magnetic Boots.
+- Transições mais suaves em arestas/cantos, sem salto involuntário na borda; perda de aderência não deve arremessar o jogador e jump pressionado acidentalmente em canto não deve soltar as botas.
+- Corrigidos jitter em sublevels estreitos, travamento inclinado em degraus, snap de câmera e tremores no ângulo máximo de tilt ou em sublevels com rotação rápida.
+- Fonte primária: https://www.curseforge.com/minecraft/mc-mods/aero-player-tilt/files/9138420
+
+### Decisão e gates
+- As versões intermediárias **0.2.1, 0.2.2 e 0.2.3** possuem notas de release oficiais individualizadas; constituem deltas relevantes ausentes das revisões anteriores.
+- Prioridade de QA: Physics Mod Pro; escala Pehkui e Create: Pocket Sized 0.20.0+; câmera após salto/curvas e altas velocidades de rotação; Magnetic Boots em teto/parede, degraus, bordas e sublevels estreitos; Sticky Tilt ao alterar limiar; estabilidade de FPS; hitbox e colisão sincronizadas em servidor e cliente.
+- **Candidato 0.2.4:** há indicação em catálogo secundário de publicação em 19/10/2026, mas o release e changelog não foram confirmados diretamente no CurseForge nesta revisão; tratá-lo como **pendente de verificação primária**, nunca como versão instalada ou delta concluído.
+- **Situação final:** atualização documental parcial concluída até 0.2.3; revisão até a última versão upstream e compatibilidade prática **pendentes**. **Não retirar o item 54 da lista de acompanhamento.**
