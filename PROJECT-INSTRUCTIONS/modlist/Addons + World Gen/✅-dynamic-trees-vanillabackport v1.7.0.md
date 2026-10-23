@@ -98,3 +98,10 @@ A distribuição oficial 1.7.0 para NeoForge 1.21.1 corresponde à build instala
 - **Gate de promoção:** Manter alinhamento Dynamic Trees/VanillaBackport; não mexer em worldgen de mundo existente sem backup e teste de chunks novos.
 - **Fonte primária do dossier reconsultada:** Modlist/JAR físico atual como autoridade de presença/versão + source público dannykim2011/DynamicTrees-VanillaBackport branch 1.21.1 apenas como contexto estrutural não exato.
 
+## Revalidação cumulativa #47 — Dynamic Trees - VanillaBackport (22/10/2026)
+
+**Instalado e última publicação aplicável à linha NeoForge 1.21.1:** Dynamic Trees - VanillaBackport **1.7.0**. Não existe release posterior para este loader/Minecraft na listagem oficial examinada; portanto o intervalo de releases a comparar está **vazio**. O 1.7.0, incluindo suporte Pale Oak, Creaking Heart e Cactus Flower com Dynamic Trees Plus opcional, é baseline instalado e não deve ser reportado como update.
+
+**Riscos futuros sem novo release próprio:** VanillaBackport 1.2 passou por reescrita major em outubro, mas a presença dessa publicação **não prova** compatibilidade do addon 1.7.0 com ela. Checar Dynamic Trees, Dynamic Trees Plus, Pale Oak worldgen/structures, Creaking Heart, geração em chunks novos comparada a antigos, static→dynamic replacements, leaves drops e integração de recipes com backup, server e restart caso o provider seja atualizado. Nenhum JAR foi alterado.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/dynamic-trees-vanillabackport/files/all?version=1.21.1 ; https://github.com/dannykim2011/DynamicTrees-VanillaBackport .
