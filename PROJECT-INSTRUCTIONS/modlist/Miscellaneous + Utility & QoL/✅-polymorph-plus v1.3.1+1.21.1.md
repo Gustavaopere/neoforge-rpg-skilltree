@@ -136,3 +136,16 @@ Release NeoForge 1.21.1 em 12/10/2026: `polymorph_plus-neoforge-1.3.2+1.21.1.jar
 - **Gate de promoção:** A linha nova inclui compat/fix para JEI 19.52+ e seleção '+'. Coordenar com JEI candidato; testar recipe conflicts, GUI, networking e reload.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/polymorph-plus
 
+## Auditoria cumulativa Polymorph+ 1.3.1 → 1.4.1 — lote 31–40 (22/10/2026)
+
+**Instalado:** Polymorph+ fork de Aminoquiz, `1.3.1+1.21.1` NeoForge Minecraft 1.21.1. **Nova Release comprovada:** `1.4.1+1.21.1-neoforge`, Modrinth version ID `8N82mraG`; não confundir com projeto Polymorph original nem com Polymorph+ 1.4.1 de Minecraft 26.x.
+
+| Publicação | Delta que pode ser atribuído com segurança |
+|---|---|
+| **1.3.2** | JAR NeoForge 1.21.1 publicado (12/10, revisão anterior do dossier). O catálogo histórico não dispõe de changelog detalhado individual pinado; não se deve inventar novos recursos. |
+| **1.4.0** | Há changelog público da linha 26.x com Traveler's Backpack picker, prioridade e favoritos nas crafting upgrades do Sophisticated e ajustes de tutorial/GUI. **Esse arquivo 26.x não prova que tudo foi entregue num artefato 1.21.1**; o arquivo intermediário específico 1.21.1 e sua atribuição permanecem não verificados. |
+| **1.4.1 (NeoForge 1.21.1)** | **Corrige crash de inicialização com JEI 19.52+**; integração do botão `+` do JEI passa a selecionar diretamente a receita clicada. Fonte Modrinth 1.4.1+1.21.1-neoforge, não notas de outra versão do Minecraft. |
+
+**Gate:** JEI físico 19.56.0.440 já na faixa mencionada mas isso não prova que o crash se reproduziu; validar a versão exata junto a Ars Polymorphia, crafting grids vanilla e modded, KubeJS/datapacks, favoritos e prioridade entre players, recipes/remainders sem perda/duplicação, multiplayer autoritativo e /reload. **BLOQUEADO para exclusão como auditoria *estritamente completa* até individualizar 1.3.2 e 1.4.0 para NeoForge 1.21.1**. A versão física não foi mudada.
+
+Fonte principal: https://modrinth.com/mod/polymorph_plus/version/1.4.1%2B1.21.1-neoforge ; https://www.curseforge.com/minecraft/mc-mods/polymorph-plus/files/all .
