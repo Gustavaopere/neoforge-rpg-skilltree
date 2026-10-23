@@ -218,3 +218,24 @@ A branch 5.0.x altera a semântica de presentation e interação com recursos; o
 - **Gate de promoção:** Resource/shader/voxel-volume changes: testar Amendments/Supplementaries/Veil, resource reload, packs ativos e multiplayer visual.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/polytone
 
+## Auditoria cumulativa #48 — Polytone 4.4.0 → 5.2.0 (22/10/2026)
+
+**Versão física:** Polytone 1.21-4.4.0 NeoForge Minecraft 1.21.1. **Último arquivo aplicável confirmado:** polytone-1.21-5.2.0-neoforge **Release** (20/10); **não** usar o arquivo Fabric com mesmo número. As séries 4.5.0→4.5.3 e 5.0.0→5.0.5 estão detalhadas separadamente nas seções 16–18 do dossier (incluindo mudanças de render, colormaps, lights e GPU particles). A sequência posterior confirmada é 5.1.1 (12/10), 5.1.2 (13/10), 5.1.3 (16/10), 5.2.0 (20/10).
+
+| Versão | Delta documentado com seu limite |
+
+|---|---|
+
+| 4.5.0–5.0.5 | Funcionalidades e hotfixes discriminados nos subitens originais do dossier. Não contabilizar a mesma feature como novidade 5.1. |
+
+| **5.1.1** | Melhora código de **voxel volume** para compatibilidade com Veil (somente se Veil presente; sem garantir FPS). |
+
+| **5.1.2** | Changelog NeoForge informa **minor fixes** e suporte a condições Polytone em **sounds.json**. |
+
+| **5.1.3** | Changelog público: **more API improvements**; o autor não enumera cada assinatura afetada. Atribuição mais granular depende de source diff versionado, e não deve ser inventada. |
+
+| **5.2.0** | Introduz **fallback colormap system**, incluindo lógica de fallback e alterações source de busca de cor. Não extrapolar para melhora universal de performance. |
+
+**Gates:** resource packs de colormap/lightmap/sounds.json, particles, biome variants, cores e voxel volume, condition expressions, F3+T e troca de shader, Veil se presente, Moonlight resource generation, Amendments e Supplementaries com colored lights/Polylight. Verificar conteúdo presente no pack antes de afirmar conflito concreto. Sem promoção física. A descrição imprecisa da API de 5.1.3 permanece **limitação explícita da fonte**, mas todas as releases publicadas na linha estão individualizadas.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/polytone/files/all?gameVersionTypeId=6&page=1 ; https://www.curseforge.com/minecraft/mc-mods/polytone/files/9163586 ; https://www.curseforge.com/minecraft/mc-mods/polytone/files/9211009 ; https://www.curseforge.com/minecraft/mc-mods/polytone/files/9269715 ; https://github.com/MehVahdJukaar/polytone/commits .
