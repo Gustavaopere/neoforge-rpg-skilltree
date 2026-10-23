@@ -301,7 +301,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 24/09/2026 - 14:02 |
 | 252 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 23/10/2026 - 01:41 |
 | 253 | Enhanced Boss Bars | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 23/10/2026 - 14:22 |
-| 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
+| 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 23/10/2026 - 14:33 |
 | 255 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
 | 256 | [ETF] Entity Texture Features - [Fabric & Forge] | `entity_texture_features-7.2.1-1.21-neoforge.jar` | `7.2.1` | `Cosmetic + Utility & QoL` | 22/10/2026 - 22:49 |
 | 257 | Entity Culling Fabric/Forge | `entityculling-neoforge-1.10.5-mc1.21.1.jar` | `1.10.5` | `Miscellaneous + Utility & QoL` | 29/09/2026 - 02:57 |
@@ -1058,7 +1058,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 73 | Cold Sweat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-cold-sweat%20v2.4.3.1.md) | `2.4.3.1` | 2.4.4 Release (16/10) | **PESQUISA DE CHANGELOG CONCLUÍDA EM 23/10; MIGRAÇÃO TÉRMICA/JEI E QA PENDENTES** |
 | 74 | Knight Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-knight-lib%20v2.0.1.md) | `2.0.1` | 2.0.5 Release (15/10) | **PESQUISA DOCUMENTAL 2.0.2–2.0.5 CONCLUÍDA EM 23/10; API/QA COM COMPANIONS PENDENTES** |
 | 75 | Create: Creating Space | [Abrir `.md`](./Create%20%2B%20Dimensions%20%2B%20Player%20Transport%20%2B%20Technology%20%2B%20World%20Gen/%E2%9C%85-creating-space%20v1.7.22.md) | `1.7.22` | 1.7.23 Release (21/10) | **SOURCE 19–21/10 DOCUMENTADO; CHANGELOG BINÁRIO 1.7.23 NÃO DISCRIMINADO, PENDENTE** |
-| 76 | [EMF] Entity Model Features [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-model-features%20v3.3.5.md) | `3.3.5` | 3.3.11 | **PENDENTE** |
+| 76 | [EMF] Entity Model Features [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-model-features%20v3.3.5.md) | `3.3.5` | 3.3.12 Release (15/10) | **PESQUISA DOCUMENTAL 3.3.6–3.3.12 CONCLUÍDA EM 23/10; ETF 7.2.6 E QA GRÁFICO PENDENTES** |
 | 77 | Vampirism Iron's Spells Compatibility | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Food%20%2B%20Magic/%E2%9C%85-vampire-spells-addon%20v1.21.1-0.0.9.md) | `1.21.1-0.0.9` | 0.0.10 | **PENDENTE** |
 | 78 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.5.91.md) | `1.5.91` | 1.6.8.2196 | **COORDENADO** |
 | 79 | WunderLib: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-wunderlib-neoforge%20v21.0.10.md) | `21.0.10` | 21.0.11 | **COORDENADO NEW DAWN** |
