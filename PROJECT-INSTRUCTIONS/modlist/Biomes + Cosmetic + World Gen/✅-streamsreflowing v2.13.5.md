@@ -248,3 +248,45 @@ Fontes upstream: CurseForge/Modrinth oficiais Streams Reflowing, changelogs 2.13
 - **Gate de promoção:** Worldgen/hydrology: backup de mundo, testar chunks novos vs existentes, river continuity, biome/worldgen stack e dedicated restart.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/streams-reflowing ; https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/all?version=1.21.1
 
+## Auditoria release-by-release 2.13.5 → 2.15.2 — 23/10/2026
+
+**Autoridade física histórica preservada:** `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`, runtime `2.13.5` (posição #528). **Última release oficial NeoForge Minecraft 1.21.1: `StreamsReflowing-1.21.1-neoforge-2.15.2.jar`, 16/10/2026**, CurseForge projeto 1581408. O catálogo oficial filtrado lista após a 2.13.5 **2.13.8 → 2.14.1 → 2.14.4 → 2.15.0 → 2.15.2**; **2.13.6, 2.13.7, 2.14.3 e 2.15.1 são versões referidas por changelogs cumulativos**, não JARs NeoForge 1.21.1 separados confirmados. Seus deltas são examinados na ordem de origem, sem criar releases falsas.
+
+### 2.13.6 e 2.13.7 — changelogs de origem (sem JAR NeoForge 1.21.1 separado)
+- **2.13.6:** corrige retenção de memória durante exploração e reentrada em mundo; prepara currents em paralelo/multicore, sem atraso relativo à geração de terreno; Create pumps/pipes/boilers recebem **plain water** e Sable evita crash quando um physics object presente numa corrente é removido. A seção 19 anterior já detalha o impacto.
+- **2.13.7:** corrige streams que começam sem headwater e subitamente ganham largura máxima em pleno terreno.
+- Fonte de changelog cumulativo do **mesmo projeto**, seção de versões: https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9060294 .
+
+### 2.13.8 — 20/09 (Release NeoForge 1.21.1)
+Corrige tela preta sem fim durante criação de mundo quando preparação de streams falha, crash com mods que enumeram fluidos (ex. XyCraft Machines) e diagnóstico de stall falso durante geração normal. Fonte cumulativa exata acima.
+
+### 2.14.1 — 26/09 (Release NeoForge 1.21.1)
+Revisão de worldgen em novos chunks: biome mods que não registram biomas no tag de Overworld deixam de causar lacunas de carving; POTATO terrain accuracy acelera preparação; lagos não somem indevidamente após saída por waterfalls; confluências preservam tributários; streams chegam ao oceano sem interromper na costa; river current não inverte ao atingir sea. O ajuste `riverDrainageSize` corrige texto do default, não seu valor. Fonte: https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9060294 .
+
+### 2.14.4 — 04/10 (Release NeoForge 1.21.1; file ID 9060294)
+O changelog agrega mudanças de 2.14.3 sem build separada NeoForge 1.21.1:
+- **Physics Mod:** nova configuração `physicsModWater`: 3 preserva água do Streams contra ocean physics do Physics Mod, 1 delega superfícies do stream, 0 deixa Physics Mod sem intervenção. O mod deixa de alterar settings do Physics Mod por conta própria.
+- **Performance:** chuva em rios deixa de degradar FPS drasticamente; waterfall spray menos custoso/menos acumulado fora da visão; grandes embarcações Sable deixam de consumir tanto tempo do servidor mesmo longe de água.
+- **Water/terrain:** evita water conversion indevida nas bordas, restaura frost walker para stream water, mitiga spill/crescimento ao usar Flowing Fluids, integração com ReTerraForged/FreeTerraForged e efeitos de Particular/Effective.
+- **Release 2.14.4 específica:** bordas de lagos novos ficam arredondadas sem alterar lagos de chunks já gerados; water conversion gamerule deixa waterfalls diagonais fluidas, sem preencher completamente com água parada; hooks mixin ausentes passam a ser ignorados em vez de crash, inclusive sem Sodium/shaders em setups estritos (C2ME). NeoForge passa a exigir versão correta do Minecraft.
+- Fonte primária da **distribuição NeoForge 1.21.1**, inclusive texto cumulativo 2.14.3: https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9060294 .
+
+### 2.15.0 — 11/10 (Release NeoForge 1.21.1)
+**Mudança estrutural substancial de API/config:** GUI de configurações unificada entre loaders, com tabs, sliders, search, resets individuais e indicadores de custo; sete presets de footprint, nova região de streams de **256 blocos**; sliders de força de corrente para jogador/boat/mob de 0–4x. Controle de spray via Effective/Particular. **Opção multiplayer "Players help prepare streams" (desligada por padrão)** transfere tarefas de planejamento de hidrologia a clientes que possuem o mod; **enviam-se dados de world seed aos participantes**, implicando **consideração de privacidade e trust boundary** em servidores onde a seed não deve ser revelada. Não habilitar por default no pack sem decisão explícita.
+- **Migração de config NeoForge:** passa a usar **`streamsreflowing.properties`** e **`streamsreflowing-client.properties`**, como Fabric; os antigos `.toml` são migrados no primeiro arranque e retidos com extensão `.imported`. Guardar backup antes de iniciar com 2.15.0+ e comparar valores, principalmente watershed size (config de mundos existentes).
+- **Mudanças de gameplay/default:** barcos passam a receber empuxo **2x**, jogadores/mobs ~**20% a mais**; preset "Amount of water 100%" passa a reproduzir ~80% anterior em terra nova; novos defaults em configurações criadas de novo: shortest stream 75 (era 50), minimum lake ~32 (era ~23), clima seco 1/10 (era 1/50), comportamento de bioma wet. Streams em packs com **Lithostitched** adotam a river biome do pack em vez de forçar vanilla river; melhorias em estruturas esperando stream planning.
+- Changelog primário 2.15.0 do **mesmo projeto**: https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9132143 (texto da série; artefato dessa página é Fabric 26.2, **não confundir com binário NeoForge 1.21.1**). Catálogo NeoForge 1.21.1: https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/all?version=1.21.1 .
+
+### 2.15.1 — notas da linha upstream (sem JAR NeoForge 1.21.1 separado verificado)
+O changelog 2.15.2 é cumulativo e diz incluir todas as mudanças de 2.15.1; não foi localizado arquivo individual 2.15.1 para NeoForge 1.21.1 na lista oficial. Por falta de notas isoladas confiáveis, **não inventar delta específico de 2.15.1**.
+
+### 2.15.2 — 16/10 (última Release NeoForge 1.21.1)
+- GUI multiplayer informa que mudar settings locais não modifica servidor; opções controladas pelo server são sinalizadas. Relevante para evitar falsa validação de configurações de worldgen.
+- Integração com **UltraTerraForged** para worldgen em novos chunks, preservando água estática em rios próprios do provider.
+- Correção com **One Dimension** para evitar netherrack/end stone indevidos na borda de rios e carving em camadas de Nether/End.
+- Correção com **FreeTerraForged + Lithosphere/Still Life** para evitar rios sobre bank elevada em mundos recém-criados; correntes e partículas sincronizadas no sentido downstream das curvas.
+- Fonte primária do projeto, changelog 2.15.2: https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9216752 (página de build 26.3, **notas transversais do mesmo release**, não binário 1.21.1); a publicação exata de `StreamsReflowing-1.21.1-neoforge-2.15.2.jar` é verificada no catálogo oficial filtrado.
+
+**Principais riscos e gates novos no pack:** migração `.toml` → `.properties`; **exposição de world seed ao habilitar client-assisted planning**; compatibilidade Lithostitched, biome tags, Tectonic/Terralith, Sable/Create, outros providers de água; mudanças de balanceamento de empuxo; não atribuir mudanças de shoreline a terreno já materializado; comparação de mapa/geração a partir da mesma seed em chunks antigos versus novos. Exigir backup, teste dedicado, logout/restart, client/server sync, medição de CPU/heap e observação de seams/rios/correntes, além de teste de integração com Physics Mod, particular/effective e C2ME se instalados.
+
+**Conclusão da revisão documental:** todas as releases **efetivamente publicadas para NeoForge 1.21.1** de `2.13.5 → 2.15.2` estão rastreadas e as notas upstream intermediárias identificadas sem inventar artefatos. Sem JAR atualizado ou QA de runtime. Revisão documental concluída, deploy/testes futuros independentes. Categorias oficiais `Biomes + Cosmetic + World Gen` diretamente confirmadas, pasta existente correta.
