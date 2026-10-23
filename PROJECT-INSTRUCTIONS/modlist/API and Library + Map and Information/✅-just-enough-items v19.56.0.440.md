@@ -164,3 +164,14 @@ A publicação é um salto de linha em uma API central de receitas. Changelog t�
 - **Gate de promoção:** Coordenar com Polymorph+ 1.4.1 e addons JEI; validar recipe transfer/indexing/plugins/GUI. Não usar beta como baseline.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/jei/files/all?version=1.21.1
 
+## Auditoria cumulativa #49 — JEI 19.56.0.440 → 19.69.0.457 (22/10/2026)
+
+**Versão física:** Just Enough Items (JEI) NeoForge 1.21.1 19.56.0.440, não atualizar na coluna física. **Release não Beta posterior:** 19.64.0.455 Release NeoForge 1.21.1 (16/10). **Última Beta:** 19.69.0.457 (20/10), antecedida por 19.69.0.456 (19/10). Os filenames e changelogs de Forge/Fabric não são prova de ABI NeoForge.
+
+**Releases pós-instalação já documentadas neste dossier:** 19.56.0.441; 19.57.0.444, .445, .446, .447, .448, .449, .450; 19.57.0.451 (05/10); 19.64.0.453 Beta (12/10), 19.64.0.454 Beta (14/10), 19.64.0.455 Release (16/10), 19.69.0.456 Beta (19/10) e 19.69.0.457 Beta (20/10). Algumas alterações 19.57 foram auditadas nos subitens 17–18; **não foi obtido changelog técnico individual verificável dos cinco builds 19.64/19.69** nem prova de enumeração exaustiva das builds intermediárias numéricas, especialmente a transição 19.57→19.64.
+
+**Observação de empacotamento:** arquivo NeoForge 19.64.0.455 cerca de 2,3 MB, Beta 19.69.0.457 cerca de 7,0 MB; diferença de tamanho **não comprova** inclusão/exclusão de API ou libraries específicas sem comparar JARs.
+
+**BLOQUEADO para 'tudo detalhado' e exclusão da lista:** faltam changelogs individuais de 19.64.0.453/.454/.455 e 19.69.0.456/.457 vinculados à linha NeoForge 1.21.1. Não atribuir melhorias específicas de recipe UI, indexing, security ou performance por mera diferença de versões. **Gates futuros:** Polymorph+, Lychee, Sophisticated Backpacks/Storage, Ars/Iron's, Create, ACI/ALI, recipe/bookmarks/transfer, 500+ mods, item components, KubeJS/datapacks, plugin API, resource reload e client/dedicated compatibility.
+
+Catálogo oficial que confirma os artefatos e canais: https://www.curseforge.com/minecraft/mc-mods/jei/files/all?page=1&pageSize=20&version=1.21.1 .
