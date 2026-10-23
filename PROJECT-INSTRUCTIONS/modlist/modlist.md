@@ -150,7 +150,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 100 | CodeChicken Lib 1.8.+ | `CodeChickenLib-1.21.1-4.6.1.529.jar` | `4.6.1.529` | `API and Library` | 23/09/2026 - 01:02 |
 | 101 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 23/09/2026 - 01:02 |
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 23/09/2026 - 01:02 |
-| 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 23/10/2026 - 00:14 |
+| 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 23/10/2026 - 00:40 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 23/09/2026 - 01:13 |
 | 105 | Sinytra Connector | `connector-2.0.0-beta.17+1.21.1-full.jar` | `2.0.0-beta.17+1.21.1` | `Technology` | 22/09/2026 - 22:34 |
 | 106 | Connector Extras | `ConnectorExtras-1.12.1+1.21.1.jar` | `1.12.1+1.21.1` | `Addons + API and Library + Technology + Utility & QoL` | 22/09/2026 - 22:34 |
@@ -260,7 +260,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 24/09/2026 - 00:44 |
 | 211 | Curios API | `curios-neoforge-9.5.1+1.21.1.jar` | `9.5.1+1.21.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 24/09/2026 - 00:44 |
 | 212 | Customizable Player Models | `CustomPlayerModels-1.21-0.6.27a.jar` | `0.6.27a` | `Cosmetic` | 24/09/2026 - 01:22 |
-| 213 | Cyclops Core | `cyclopscore-1.21.1-neoforge-1.30.0.jar` | `1.30.0` | `API and Library + Server Utility` | 22/10/2026 - 23:20 |
+| 213 | Cyclops Core | `cyclopscore-1.21.1-neoforge-1.30.0.jar` | `1.30.0` | `API and Library + Server Utility` | 23/10/2026 - 00:42 |
 | 214 | Deeper and Darker: Spellbooks | `darkermagic-1.3.3-1.21.1-ver.b.jar` | `1.3.3-1.21.1` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 01:22 |
 | 215 | Deeper and Darker | `deeperdarker-neoforge-1.21.1-1.4.1.jar` | `1.4.1` | `Biomes + Dimensions + Mobs + Ores and Resources + Structures` | 24/09/2026 - 01:22 |
 | 216 | VanillaBackport X Farmer's Delight Compat | `Delightful-Backport-1.0-1.21.1-neoforge.jar` | `1.0` | `Addons + Food` | 24/09/2026 - 01:22 |
@@ -443,7 +443,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 393 | Melody | `melody_neoforge_1.0.10_MC_1.21.jar` | `1.0.10` | `API and Library` | 25/09/2026 - 12:31 |
 | 394 | MezzConfig | `mezz_config-1.21.1-neoforge-0.5.9.jar` | `0.5.9` | `API and Library` | 20/09/2026 - 01:38 |
 | 395 | MineColonies | `minecolonies-1.1.1387-1.21.1-snapshot.jar` | `1.1.1387-1.21.1-snapshot` | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 22/10/2026 - 19:45 |
-| 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 23/10/2026 - 00:18 |
+| 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 23/10/2026 - 00:43 |
 | 397 | Tweaks addon for MineColonies | `MineColonies_Tweaks-1.21.1-3.33.jar` | `3.33` | `Addons + Utility & QoL` | 25/09/2026 - 12:31 |
 | 398 | Miner's Delight + | `minersdelight-1.21.1-1.4.5.jar` | `1.4.5` | `Cosmetic + Farming + Food` | 25/09/2026 - 12:31 |
 | 399 | Ragdoll mob corpses | `mob_ragdoll_corpse-1.1.5.jar` | `1.1.5` | `Addons + Mobs` | 25/09/2026 - 12:31 |
@@ -1027,14 +1027,14 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 42 | Fragmentum ✿ NeoForge | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | 5.4.0 (NeoForge 1.21.1, 16/10) | **AUDITORIA DOCUMENTAL FECHADA; migração 2.x→5.x exige QA** |
 | 43 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | 2.2.1 (NeoForge 1.21.1, 15/10) | **AUDITORIA DOCUMENTAL FECHADA; ParCool/ABI não homologados** |
 | 44 | FamiliarsLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-familiarslib%20v1.21.1-1.7.md) | `1.21.1-1.7` | 1.8 (NeoForge 1.21.1, 24/09) | **AUDITORIA DOCUMENTAL FECHADA; metadata divergente preservada** |
-| 45 | Cyclops Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Server%20Utility/%E2%9C%85-cyclops-core%20v1.30.0.md) | `1.30.0` | 1.30.0-1205 Beta (18/10) | **BLOQUEADO: changelog da Beta 1205 não individualizado** |
+| 45 | Cyclops Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Server%20Utility/%E2%9C%85-cyclops-core%20v1.30.0.md) | `1.30.0` | 1.30.0-1205 Beta (18/10) | **AUDITORIA DE DIFF BETA 1205 CONCLUÍDA; QA FÍSICO SEPARADO** |
 | 46 | Apotheosis x Iron's Spellbooks Compat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-irons-apothic%20v2.2.2.md) | `2.2.2` | 2.2.8+1.21.1 (17/10) | **AUDITORIA DOCUMENTAL FECHADA; QA spell/affix pendente** |
 | 47 | Dynamic Trees - VanillaBackport | [Abrir `.md`](./Addons%20%2B%20World%20Gen/%E2%9C%85-dynamic-trees-vanillabackport%20v1.7.0.md) | `1.7.0` | 1.7.0 (sem release posterior NeoForge 1.21.1) | **REVALIDADO: intervalo vazio; provider 1.2 não homologado** |
 | 48 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | 5.2.0 NeoForge 1.21.1 (20/10) | **AUDITORIA DOCUMENTAL FECHADA; 5.1.3 changelog genérico** |
 | 49 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.56.0.440.md) | `19.56.0.440` | 19.64.0.455 Release (16/10); 19.69.0.457 Beta (20/10) | **19.64.0.453 DOCUMENTADA; .454/.455/.456/.457 AINDA NÃO ATRIBUÍDAS** |
 | 50 | Create Aeronautics: Automated Logistics | [Abrir `.md`](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md) | `0.6.2` | 0.6.2 | **BLOQUEADO: dossier sem ✅; não editado** |
-| 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.60 Beta (19/10; 3.59 sem delta individualizado) | **DELTAS 3.58/3.60 DOCUMENTADOS; 3.59 E QA PENDENTES** |
-| 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.65 (22/10) | **8.48–8.65 PENDENTES DE CONCILIAÇÃO INDIVIDUAL** |
+| 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.60 Beta (19/10; 3.59 corrigiu teach recipes) | **AUDITORIA DOCUMENTAL 3.57→3.60 COMPLETA; QA FÍSICO SEPARADO** |
+| 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.65 (22/10) | **AUDITORIA DOCUMENTAL 8.39→8.65 COMPLETA (8.48/8.55 NÃO PUBLICADAS 1.21.1); QA FÍSICO SEPARADO** |
 | 53 | Create: Stats & Power | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-stats-power%20v1.13.1.md) | `1.13.1` | 1.15.0 | **AUDITORIA DOCUMENTAL 1.13.1→1.14.5→1.15.0 CONCLUÍDA; QA FÍSICO SEPARADO** |
 | 54 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | 0.2.3 (11/10) | **DELTAS DOCUMENTADOS 0.2.1→0.2.3; QA FÍSICO SEPARADO** |
 | 55 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.3.md) | `3.26.3` | 3.26.14.2222 | **COORDENADO** |
@@ -1158,7 +1158,7 @@ Esta matriz segue a numeração do pedido, não a posição física da tabela de
 | 42 | Fragmentum NeoForge | 2.4.4 | 5.0.0→5.1.1→5.2.0→5.3.0→5.4.0 | Fechada documental; breaking Kotlin/registries e opção Lite, migração física sem QA |
 | 43 | ThirstWasFixed | 2.1.6 | 2.2.0→2.2.1 | Fechada documental; atributo ParCool e config Linux |
 | 44 | FamiliarsLib | filename 1.7.1 / metadata 1.21.1-1.7 | 1.8 | Fechada documental; storage 10→50 e backup |
-| 45 | Cyclops Core | 1.30.0 | 1.30.0-1205 Beta | **BLOQUEADO**: changelog/diff da Beta não pinado ao binário |
+| 45 | Cyclops Core | 1.30.0 | 1.30.0-1205 Beta | SOURCE DIFF 1:1 (11/09→18/10): rótulos de tecla corrigidos nos infobooks, Beta e QA físico separado |
 | 46 | Apotheosis x Iron's Spellbooks Compat | 2.2.2 | 2.2.3→2.2.8 | Fechada documental; affix triggers, datagen, casts e interrupts |
 | 47 | Dynamic Trees - VanillaBackport | 1.7.0 | 1.7.0 | Revalidado sem release posterior; validar integração com VanillaBackport 1.2 |
 | 48 | Polytone | 1.21-4.4.0 | 4.5.x→5.0.x→5.1.1→5.1.2→5.1.3→5.2.0 | Fechada segundo changelogs disponíveis; 5.1.3 descrita genericamente pelo autor |
