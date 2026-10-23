@@ -206,3 +206,22 @@ Fonte da release série 2.8g: https://www.curseforge.com/minecraft/mc-mods/punch
 
 ### Decisão e testes
 **Candidato upstream NeoForge 1.21.1: 2.8g.** A sequência de cinco versões publicadas foi identificada e o conteúdo relevante conhecido catalogado. Permanecem **lacunas de changelog individual exato 2.8a e comprovação de texto para NeoForge nas 2.8f/2.8g**, logo a auditoria integral por build **não está certificada**. Validações necessárias no modpack: Epic Fight bridge e battle mode, First Person Model, shaders e arm model, enchants/components dinâmicos com Penchant, tridentes, dual-hand equips, Spatial GUI se instalado, animações personalizadas e resource reload. Nenhum JAR foi trocado; nenhuma QA in-game foi executada. **Não apagar item 11 da lista de pendências ainda.**
+
+## Retificação do percurso de publicações: 2.8d e 2.8e no Modrinth — 23/10/2026
+
+**Inventário físico preservado:** `punchy-2.7e-neoforge-1.21.1.jar`, mod id `punchy`, runtime 2.7e, posição #465. **Projeto CurseForge oficial** `punchy` (ID 1374153); categorias oficiais previamente verificadas **API and Library + Cosmetic + Map and Information**. **Outra fonte oficial do mesmo mod:** projeto Modrinth `punchy-fpa` (ID `8aoMKplv`, marca/autoria Punchy), cujos artefatos devem ser considerados **separadamente do filtro de arquivos CurseForge**, sem presumir publicação cruzada de cada build.
+
+### Correção de lacuna histórica
+A seção anterior afirmou que versões **2.8d e 2.8e não aparecem no catálogo filtrado CurseForge**. Isso **não autoriza concluir inexistência das releases para NeoForge 1.21.1**. Há **artefatos exatos publicados pelo projeto oficial no Modrinth**:
+
+- **2.8d, NeoForge 1.21.1**, versão Modrinth `NFoiGe81`: correção de **lanternas e outros itens com física de pêndulo** que saltavam ao equipar ou finalizar ataque/mineração; sincronização de pêndulo para itens e partes do modelo; sway de caminhada menos oscilante e mais ponderado. Também corrige **atraso no carregamento da besta** ao recarregar imediatamente após equipar e **offhand vazio retornando brevemente a idle** durante charge/troca e animações hand-out/hand-in puladas no disparo. Changelog do próprio artefato: https://modrinth.com/mod/punchy-fpa/version/NFoiGe81 .
+- **2.8e, NeoForge 1.21.1**, versão Modrinth `luK5HVTT`: nova integração opcional **Spatial GUI** (toggle **ligado por padrão**) para inventário, crafting tables, fornalhas e outras telas, mostrando transições hand-out/hand-in e item no cursor na mão do personagem. O changelog global também menciona atualização de metadata do **Minecraft 26.4 snapshot** (outra versão, não alteração da 1.21.1) e integração experimental com Mielon's The Sift/Tiny Takeovers para carregar Blubs domesticados; não presumir que este mod opcional esteja instalado. Fonte do arquivo exato: https://modrinth.com/mod/punchy-fpa/version/luK5HVTT .
+
+**Nova matriz de versões identificadas entre a física e 2.8g:** `2.8a → 2.8b → 2.8c → 2.8d → 2.8e → 2.8f → 2.8g`. Para 2.8d/2.8e a evidência de NeoForge 1.21.1 é **Modrinth oficial**, e não se reivindica que o CurseForge distribua exatamente as mesmas duas builds. A conclusão anterior de 'cinco releases na linha CurseForge' pode continuar válida **somente com escopo restrito ao catálogo dessa plataforma**.
+
+### Repercussões técnicas e QA futuro
+- [ ] Caso Spatial GUI esteja presente no pack, verificar transições entre inventário, crafting e containers, item arrastado no cursor, abrir/fechar menus repetidamente, offsets F8 e sobreposição com Epic Fight/First Person Model.
+- [ ] Verificar crossbow quick-reload após equip, disparos com item na mão secundária, pêndulo de lanternas em corrida/ataque/mineração e modelos com braços customizados.
+- [ ] Manter a comparação lado a lado de Punchy Epic Fight Compat, shaderpack e resource packs com animações de primeira pessoa; nenhum desses testes foi executado aqui.
+
+**Status fail-closed:** a série de candidatos NeoForge 1.21.1 está agora melhor catalogada, mas **o changelog exclusivo da 2.8a continua publicado apenas como “HOTFIX”** e as correspondências exatas das notas **2.8f/2.8g** com seus artefatos NeoForge ainda precisam ser reconciliadas. Portanto **não liberar o item #11** da fila. Não instalar, mover ou renomear `✅-punchy v2.7e.md`.
