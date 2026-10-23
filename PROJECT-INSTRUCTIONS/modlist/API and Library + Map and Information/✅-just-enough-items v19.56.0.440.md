@@ -175,3 +175,29 @@ A publicação é um salto de linha em uma API central de receitas. Changelog t�
 **BLOQUEADO para 'tudo detalhado' e exclusão da lista:** faltam changelogs individuais de 19.64.0.453/.454/.455 e 19.69.0.456/.457 vinculados à linha NeoForge 1.21.1. Não atribuir melhorias específicas de recipe UI, indexing, security ou performance por mera diferença de versões. **Gates futuros:** Polymorph+, Lychee, Sophisticated Backpacks/Storage, Ars/Iron's, Create, ACI/ALI, recipe/bookmarks/transfer, 500+ mods, item components, KubeJS/datapacks, plugin API, resource reload e client/dedicated compatibility.
 
 Catálogo oficial que confirma os artefatos e canais: https://www.curseforge.com/minecraft/mc-mods/jei/files/all?page=1&pageSize=20&version=1.21.1 .
+
+## Auditoria ampliada 19.64.0.453 → 19.69.0.457 — 23/10/2026
+
+**Base física:** `jei-1.21.1-neoforge-19.56.0.440.jar` / `19.56.0.440`; não houve troca de JAR. Este complemento corrige a antiga afirmação de ausência total de changelogs específicos da série 19.64: foi localizado um changelog técnico substancial do artefato **NeoForge 1.21.1 19.64.0.453** no Modrinth oficial do autor, além da confirmação das builds posteriores no CurseForge/Maven.
+
+### 19.64.0.453 — Beta NeoForge 1.21.1 (12/10)
+Changelog do arquivo publicado: https://modrinth.com/project/u6dRKJwZ/version/OZIoQboh .
+- **Receitas e APIs:** separa identidades dos dados-fonte de receitas das identidades da interface JEI; expõe bookmarks de receitas em `IBookmarkManager`, índices de slots de crafting e links de foco entre coleções; transferência de receitas com alternativas de input e novos shortcuts no recipe GUI.
+- **Busca/indexação:** normalização de busca conforme locale de Minecraft; pesquisa com completamento, sugestões configuráveis e realce de sintaxe; reconstrução somente de índices marcados como sujos, reduzindo trabalho após mudanças localizadas.
+- **UI/UX:** redimensionamento por drag em GUIs JEI, receitas em colunas adaptáveis, rolagem lazy para categorias grandes, scrollbars configuráveis/compartilhadas, scroll de tooltip fixada, grids menores quando com pouco conteúdo e ocultação de grids vazios sem desabilitar busca. Corrigidos scroll com Shift, tratamento de inputs capturados e tooltips sobre os grids.
+- **Configuração/render:** `MezzConfig` também para servidor, migrações de configuração, opções aninhadas, novos estilos de borda/fundo, composição visual com efeitos de inventário e compatibilidade com modificadores AMECS. Correções especificamente descritas para Fabric não foram automaticamente atribuídas ao NeoForge.
+- **Compatibilidade e risco:** mudanças de API de bookmarks/crafting/focus e de identidade de receitas devem ser confrontadas com addons JEI do pack; invalidation incremental de índices, layouts responsivos e settings migrados precisam de backup e testes de usuário.
+
+### 19.64.0.454 — Beta NeoForge 1.21.1 (14/10)
+O artefato publicado está confirmado no catálogo oficial e no repositório Maven do autor; **não foi identificado um changelog exclusivo e inequivocamente associado** à build. Não atribuir detalhes da 19.64.0.453 ou 19.64.0.455 a ela. Fontes: https://www.curseforge.com/minecraft/mc-mods/jei/files/all?gameVersionTypeId=6&version=1.21 ; https://maven.blamejared.com/mezz/jei/jei-1.21.1-common-api/ .
+
+### 19.64.0.455 — Release NeoForge 1.21.1 (16/10)
+**Última Release estável da linha 1.21.1 identificada**, separada das versões Beta 19.69.x. Artefato Maven publicado com fontes das bibliotecas 1.21.1. O delta exclusivo **.454→.455** não foi isolado em changelog público recuperado; a publicação de uma Release não comprova que bugs específicos tenham sido corrigidos nessa build. Fontes: https://www.curseforge.com/minecraft/mc-mods/jei/files/all?gameVersionTypeId=6&version=1.21 ; https://maven.blamejared.com/mezz/jei/jei-1.21.1-common/19.64.0.455/ .
+
+### 19.69.0.456 — Beta NeoForge 1.21.1 (19/10)
+**Nova linha Beta (19.69)**, aproximadamente 7 MB versus ~2,3 MB da Release 19.64.0.455. A diferença de tamanho **não demonstra** quais bibliotecas/classes estão embarcadas; examinar o artefato e manifest antes de atribuir eventuais mudanças de empacotamento. Artefato e Maven confirmados; **delta exclusivo ainda sem changelog individual identificado**. Fontes: https://www.curseforge.com/minecraft/mc-mods/jei/files/all?gameVersionTypeId=6&version=1.21 ; https://maven.blamejared.com/mezz/jei/jei-1.21.1-common/19.69.0.456/ .
+
+### 19.69.0.457 — Beta NeoForge 1.21.1 (20/10)
+**Mais recente Beta verificada**; não confundir com a última Release 19.64.0.455. A publicação foi confirmada por CurseForge e Maven mas, sem changelog/tag inequívoca, o delta **.456→.457** permanece indeterminado. Fontes: https://www.curseforge.com/minecraft/mc-mods/jei/files/all?gameVersionTypeId=6&version=1.21 ; https://maven.blamejared.com/mezz/jei/jei-1.21.1-common/19.69.0.457/ .
+
+**Intervalo integral publicado:** `19.56.0.440 → .441 → 19.57.0.444/.445/.446/.447/.448/.449/.450/.451 → 19.64.0.453/.454/.455 → 19.69.0.456/.457`; as builds numéricas não presentes no catálogo (p.ex. `19.57.0.442`, `19.64.0.452`) não devem ser inventadas. Revisão técnica da 19.64.0.453 agora detalhada. **Ainda bloqueado para certificação release-by-release** pela falta dos quatro changelogs exclusivos .454, .455, .456 e .457. O pack depende de addons JEI e integrações (Create, KubeJS, Lychee, Polymorph+, Sophisticated), então não migrar cegamente para Beta. Nenhum QA de runtime realizado; **manter item 49 na lista**.
