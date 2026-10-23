@@ -200,3 +200,12 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Gate de promoção:** Manter baseline; qualquer revisão futura deve testar Sable/ragdoll death lifecycle, corpse state, multiplayer e restart.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/sable-ragdoll-patch
 
+## Retificação e auditoria 1.9 → 1.9.1 — lote 31–40 (22/10/2026)
+
+**Retificação factual:** o catálogo 22/10 havia marcado o Patch **1.9 como latest**, mas existe **1.9.1 Release NeoForge 1.21.1**, 19/10/2026, CurseForge file **9255596**. **Instalado continua 1.9**, não houve troca de JAR.
+
+**Única release posterior identificada, 1.9.1:** corrigida a capa dos ragdolls que **ignorava pixels transparentes**. Agora suporta **transparência total e semitransparência** nas texturas de capas. Não atribuir à 1.9.1 os fixes de Punchy/ender pearl/wind bomb que já eram do baseline 1.9.
+
+**Gates:** recurso de capa com alpha 0/parcial/opaco, death-to-ragdoll/revive, F3+T skin/cape change, skin 3D, Curios, Punchy first-person, Sable 2.0.5, Sable Player Ragdoll 0.7.5, e distinguir **ragdoll_corpse 0.3.0** exigido oficialmente de **mob_ragdoll_corpse 1.1.5** que não é automaticamente equivalente. Multiplayer/relog/restart e eventual translucency shader. A correção visual **não** foi smoke-tested.
+
+Fonte oficial: https://www.curseforge.com/minecraft/mc-mods/sable-ragdoll-patch/files/9255596 .
