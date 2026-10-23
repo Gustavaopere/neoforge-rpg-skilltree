@@ -175,3 +175,81 @@ Fontes upstream: CurseForge Create Deep Seas 1.21.1, sequência 3.0.0→3.3.0; s
 - **Gate de promoção:** Projeto experimental com Create/world content: validar recipes/machines/fluids, world/save, contraptions e dedicated server; não promover alpha.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-deep-seas
 
+## Auditoria integral das releases experimentais — 23/10/2026 (3.3.0 → 3.4.5)
+
+**Autoridade física histórica:** `create_submarine-2.2.4.jar`, mod ID `create_submarine`, runtime `2.2.4`, #162 da modlist física. **Projeto:** *Create Deep Seas [BETA]* por MaxCreateMC, CurseForge **1533137**, NeoForge 1.21.1, categorias oficiais **Addons + Create** (diretório atual). A série **3.0.0 → 3.1.0 → 3.2.0 → 3.3.0** já foi analisada anteriormente neste dossier. Verificação de 23/10 identifica **seis releases experimentais posteriores** na mesma linha: **3.4.0 Alpha (16/10) → 3.4.1 Alpha (17/10) → 3.4.2 Alpha (18/10) → 3.4.3 Beta (18/10) → 3.4.4 Beta (18/10) → 3.4.5 Beta (22/10)**. A **última Release estável permanece 3.3.0 (02/10)**; **3.4.5 é a candidata mais recente, mas Beta**. O projeto contém builds Alpha que **não aparecem quando o filtro CurseForge oculta alphas**: verificar os artefatos por file ID, em vez de concluir que 3.4.0/3.4.1/3.4.2 não existem.
+
+### 3.4.0 — Alpha, file ID 9216182 (16/10)
+
+**Pressão e estrutura:** três modelos configuráveis (`pressureModel`) — **Classic**, **Hybrid** (padrão, escala por profundidade e forma do casco), **Realistic** (solver estrutural experimental). **Girder Beams** entre blocos do casco reforçam a estrutura em cerca de **60%** e podem ceder com aviso de 4 s; **Pressure Goggles** mostram mapas de pressão por cor (Absolute/Distribution/Off). `liquidDensities` aplica pressões diferentes aos líquidos (lava com pressão 3× maior), e `lavaBurnsHull` pode incendiar cascos inflamáveis em lava.
+
+**Conteúdo:** alarmes personalizados em `.ogg` a partir de `config/create_submarine/alarms` com timing, volume e transmissão servidor→cliente; comando de operador **`/submarine repair`**; botão de config em pause/title; Oxygen Diffuser aceita fluidos da tag `#c:oxygen`; receita de Anchor; `seaglideFlightSpeed` ao usar Elytra; disco musical com Water Breathing nas proximidades; velas triangulares/fore-and-aft, **Halyards** via rope e Rope Winch, Ponders para sail/rudder; **Diving Chestplate e Leggings**, com suporte ao Copper Backtank no inventário; **limite de pressão do mergulhador** (120 m normal; 280 m com traje completo; morte 60 m após o limite, com HUD/aviso). Submarinos acoplados passam a seguir um líder de ballast controlado pelo Onboard Computer. Melhorias de culling e fog com shaders Iris.
+
+**Mudanças de contrato:** **Sodium passa a ser requisito de cliente** nesta série; Lithostitched deixa de vir embarcado (ainda pode ser necessário para oceanos mais profundos e, se existir top-level no pack, manter sua entrada independente); Sail renomeada Ship Sail, velas funcionam fora da água, culling passa a cobrir todos os líquidos, layouts e vazamentos em partial blocks refinados. **Removidos:** furl manual de velas (usar halyard) e propulsão por water wheel em barcos.
+
+**Correções importantes:** GPU sem OpenGL 4.0 tessellation, congelamento em join de grandes ships, quedas de FPS/frames em hulls e rafts, vazamentos visuais, drops/receitas de Engine/Anchor/Buoy/Decompression Chamber/Oar, lag de servidor, **duplicação em Oxygen Diffuser/Electrolyzer**, duplicação de combustível de Boat Engine, memória de servidor com muitos ships, controlos no dedicated server, interações com TV e radar de Create e persistência de compartimentos reparados.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/9216182 .
+
+### 3.4.1 — Alpha, file ID 9231952 (17/10)
+
+**Vortex Engine:** novo renderer **cliente** para iluminação colorida, configurável nos gráficos ou `create_submarine-vortex.toml`, desativa-se com shader pack **Iris** ativo; aceita configurações de cores por `assets/<namespace>/vortex/glow/*.json`. Integra luz de Sonar, Industrial Alarm e Submarine Staff; estilos de luz **volumes/flood/vanilla/hybrid/pixel**, comandos `/vortex style light`, `/vortex mist` e `/vortex profiler` (relatórios em `vortex-profiles/`); shafts de sol e caustics sob água, névoa luminosa, partículas marinhas e wakes bioluminescentes. Opções gráficas separadas para Deep Seas, High Seas e Vortex no menu de vídeo. **Veil lights e a opção `veilLights` são removidas**, substituídas pelo Vortex Engine.
+
+**Performance/rede:** Ballast Tank, Oxygen Diffuser, Water Thruster e Electrolyzer deixam de emitir updates a jogadores próximos todo tick; flooding agrupado por ship/tick, partículas de implosion limitadas a 256, análise do casco agendada em prioridade baixa.
+
+**Solver Realistic:** calibragem contra pressão uniforme, ruptura sob tração para vidro/obsidian/amethyst/calcite/terracotta; conexão estrutural de slabs/stairs baseada em contatos reais. Isso modifica o comportamento de cascos existentes sob o modo experimental e não deve ser aplicado sem testes.
+
+**Fixes críticos da própria 3.4.0:** leaves de árvores intactas decaying, lentidão geral de mineração/drops inexistentes para netherrack/blackstone/basalt, tags de logs e mineable não carregadas, loot table de Create Abyss inválida, verificações de ships carregando/gerando chunks distantes, lag com muitos ships, análises de casco reiniciando em loop, luz block updates presas em lentidão e Sonar exibindo terrain antigo.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/9231952 .
+
+### 3.4.2 — Alpha, file ID 9241368 (18/10)
+
+- Pode desligar o billowing de velas com Iris na página **High Seas** das configurações gráficas.
+- Corrige shaders pesados (ex.: IterationRP) sendo desativados por falta de texture units: culling só reserva unidades nos programas que as usam.
+- Corrige luzes Vortex apagando irregularmente em bordas de fog; blocos vizinhos a sail distorcidos por shaders com terrain programs sem UV/texture coordinates.
+- Fechar tela de Sonar não deixa terrain scan ativo em segundo plano; uma análise de casco não deve ser recacheada após remoção do navio.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/9241368 .
+
+### 3.4.3 — Beta, file ID 9243537 (18/10)
+
+- Reduz pela metade o brilho dos blocos luminosos no Vortex; nova opção `brightness` (**10–200%**). Controles adicionais: **Light Reach, Light Saturation, Animated Lights, Bloom Strength, Glow in Water e Sunlight Under Water**.
+- Corrige flashes/degraus luminosos no estilo **vanilla** ao redor de tochas, fogo e plantas luminosas; textos do modo fotossensível deixam de referir-se ao antigo Veil.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/9243537 .
+
+### 3.4.4 — Beta, file ID 9246826 (18/10)
+
+- Por padrão, Vortex agora ilumina apenas blocos de **Create Deep Seas, Create High Seas e Create Abyss**, além das fontes móveis **Sonar/Industrial Alarm**; tochas, lanternas e demais fontes de Minecraft/outros mods mantêm iluminação vanilla. **Reduz a superfície e o custo do renderer**; a possibilidade de reativar iluminação de outros blocos aparece posteriormente na 3.4.5.
+- Espalhamento da luz só nas proximidades de fontes, não em todo o volume de 128 blocos; evita reconstruir/enviar grid de blocos sem iluminação/água relevante e calcula bloom apenas quando ativado.
+- Corrige custo indevido de GPU mesmo em mundo plano sem água ou fontes luminosas, além de evitar renderizar caustics/plankton e passes fullscreen fora da água.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/9246826 .
+
+### 3.4.5 — Beta, file ID 9290742 (22/10) — candidata experimental mais recente
+
+- Casco de barcos/submarinos passa a **ocluir luz colorida** Vortex (inclusive Sonar), mas vidro pode transmiti-la; stained glass e panes filtram a cor; tinted glass bloqueia a luz.
+- Blocos transparentes (água, vidro, gelo etc.) passam a receber cor luminosa na superfície. Nova opção `allBlocks` (**desligada por padrão**) permite luz colorida de tochas, lanternas, Sea Lanterns e blocos de outros mods. Preserva tonalidade da fonte, com seleção de cores a partir das texturas do modelo.
+- Corrige profundidade do **Onboard Computer travada perto de 400 m**, quando o casco deixava de receber pressão adicional abaixo dessa profundidade (#126).
+- Corrige **água ao redor de hold seco drenando permanentemente**, gerando buracos no mar e cubos azuis em casco rompido; buracos já presentes em mundos existentes voltam a ser preenchidos quando a água vizinha recebe updates (#124/#126).
+- Corrige trilhas visuais de blocos luminosos dinâmicos atrás de ships em movimento; Onboard Computer com tela fantasma/diagrama deslocado após remoção e reload; crash com **Submarine Propeller 2×2**.
+- Corrige modo pixel Vortex falhando em placas **NVIDIA** e névoa verde intensa com shaders Complementary/BSL/Bliss/Photon em GPUs com poucas unidades de textura.
+- Quedas de água (waterfalls) deixam de contar como centenas de metros de profundidade para ships ou esmagar jogadores instantaneamente ao nadar para cima; somente água parada contribui para cálculo vertical.
+- Nova configuração de servidor **`diverPressure`** permite desligar o dano de pressão no jogador.
+- **Remoções da 3.4.5:** wakes bioluminescentes de jogadores/mobs (`wakeStyle`), iluminação da Submarine Staff segurada e fontes luminosas de blocos isolados lançados como physics objects. Estas funções estavam descritas na 3.4.1; **não se deve tratá-las como ainda presentes na última candidata**.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/9290742 .
+
+### Avaliação para o modpack e protocolo de promoção
+
+1. **Separar estabilidade do canal de testes.** **3.3.0 é a última Release, 3.4.5 é Beta**. A instalação física segue **2.2.4**. Não substituir o JAR do modpack sem campanha de QA de save e de dependency compatibility.
+2. **Dependências/embarcados:** a linha 3.4 muda o contrato do cliente para **Sodium obrigatório**; Lithostitched deixa de ser embarcado na 3.4.0, mas o Lithostitched top-level instalado deve permanecer entidade própria. As mudanças de `META-INF/jarjar` não promovem bibliotecas internas a entradas top-level.
+3. **Server authority:** pressão, dano por profundidade, hull integrity, flooded state, oxygen, ballast, crafting, rotas e persisting ship/crew state pertencem ao servidor; Vortex light e overlays são cliente. Testar comunicação/caches sem updates redundantes.
+4. **World safety:** testar cópia do mundo 2.2.4 com boats/submarinos existentes, comparar `pressureModel` Classic/Hybrid/Realistic, transições em lava/água, chunk load/restart, pressão além de **400 m**, eventos de implosion/repair, antigos buracos de água e limitações de worldgen.
+5. **Anti-dupe:** verificar Oxygen Diffuser/Electrolyzer, fuel/Boat Engine, crafts e drops, repair/flooding, Onboard Computer e integração com Aeronautics/Sable/Deep Seas - Lava Fix. Controle de itens/fluids deve conservar quantidades.
+6. **Performance e gráficos:** profiling com/sem Iris e Sodium, shaders pesados, GPUs com poucas unidades de textura, Vortex styles e `allBlocks`, server tick/MSPT em muitos ships, chunk rebuild, GPU idle em mundo plano, fog/shader da última Beta; não inventar números de FPS.
+7. **QA de jogador e terceiros:** checar mergulho, armadura/backtank, `diverPressure`, quests/perks de risco, Halyards, sailing e water wheel removida, oclusão de luz, resource reload e suporte a players fotossensíveis (respeitar opções).
+8. **Smoke tests:** dedicated server Java 21 / NeoForge 1.21.1, dois jogadores, reboot, unload/reload de ships, diferentes oceanos, Create 6.0.10/Aeronautics 1.3.2/Sable 2.0.5, crash logs, conflitos com mod de shaders/GUI/performace.
+
+**Conclusão documental:** a sequência **2.2.4 → 3.0.0 → 3.1.0 → 3.2.0 → 3.3.0 → 3.4.0 → 3.4.1 → 3.4.2 → 3.4.3 → 3.4.4 → 3.4.5** está agora descrita, com os seis changelogs experimentais NeoForge 1.21.1 separados e links diretos aos artefatos. A pesquisa das publicações até **22/10/2026** pode ser **retirada da fila documental**, mas a adoção, verificação de binários/dependências e compatibilidade do save **não estão aprovadas/testadas**. O mod instalado é **2.2.4**, o arquivo `.md` continua **✅-create-deep-seas v2.2.4.md**. Reabrir a pesquisa se surgir release posterior à 3.4.5.
