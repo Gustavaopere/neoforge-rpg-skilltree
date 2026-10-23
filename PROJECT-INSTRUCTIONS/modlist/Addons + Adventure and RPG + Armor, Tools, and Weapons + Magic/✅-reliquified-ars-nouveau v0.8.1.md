@@ -149,3 +149,10 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Gate de promoção:** Não promover canal experimental como estável por ausência de bump; manter QA de relics/Curios/Ars Nouveau e persistence.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/reliquified-ars-nouveau
 
+## Revalidação integral — sem releases intermediárias (lote 31–40, 22/10/2026)
+
+**Instalado e última build publicada para NeoForge 1.21.1:** Reliquified Ars Nouveau **0.8.1 Beta** (17/05/2026). A página oficial apresenta Release estável **0.6.1** mais antiga, mas 0.8.1 Beta é a publicação numericamente mais recente; **não trocar por 0.6.1 como se fosse upgrade**. Não foi encontrada versão posterior 0.8.2 para este alvo. Assim, o conjunto de releases a comparar de 0.8.1 até a data consultada está **vazio**, sem changelog intermediário fictício.
+
+O delta 0.8.1, já incorporado fisicamente, corrige **Whirlisprig Petals** e integração com **Reliquified Artifacts**. Para instalação futura, as dependências **Relics + Ars Nouveau**, relics obtidas em estruturas/biomas Ars, XP e mana, Curios, state save/relog/multiplayer, render e ferramentas de datapack continuam gates importantes; não foram executados. O canal Beta instalado não é automaticamente convertido em stable.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/reliquified-ars-nouveau ; https://modrinth.com/mod/reliquified-ars-nouveau/version/0.8.1 .
