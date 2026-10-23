@@ -163,3 +163,9 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 Categorias temáticas oficiais atuais: API and Library + Cosmetic + Map and Information. Caminho atual: Cosmetic + Map and Information. Há discrepância e a movimentação necessita revisão dos links internos e índice. Não considerar este dossier inteiramente reorganizado ou liberado para retirada da lista até reconciliação verificada. O JAR físico e basename permanecem inalterados.
 
 Fonte: https://www.curseforge.com/minecraft/mc-mods/punchy
+
+## Encerramento da pendência estrutural — 23/10/2026
+
+> **A antiga seção “Pendência de categorias CurseForge — 22/10/2026” foi superada:** o dossier foi movido, preservando integralmente o basename e a versão `✅-punchy v2.7e.md`, para `API and Library + Cosmetic + Map and Information/`. As categorias **API and Library, Cosmetic e Map and Information** foram verificadas no projeto oficial CurseForge **1374153**. Link do índice `modlist.md` corrigido, posição física **#465** e JAR `punchy-2.7e-neoforge-1.21.1.jar` mantidos. No catálogo para NeoForge **Minecraft 1.21.1**, **2.7e (03/09/2026)** permanece o arquivo mais recente identificado; não existe intervalo de releases 1.21.1 posterior ao instalado a revisar.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/punchy ; https://www.curseforge.com/minecraft/mc-mods/punchy/files/all?version=1.21.1 . Movimentação sem troca de JAR, sem alteração de funcionamento e sem reauditoria Notion→GitHub. As ressalvas gerais de QA de mods visuais continuam, sem impedir o encerramento documental da conferência de releases.
