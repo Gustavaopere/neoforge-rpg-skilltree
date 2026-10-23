@@ -129,3 +129,12 @@ O runtime físico permanece `tracks_plus-1.0.6b6.jar`, versão `1.0.6b6`, na lin
 - **Gate de promoção:** Não 'atualizar' para a release estável numericamente inferior. Manter 1.0.6b6 até existir release posterior ou decisão explícita de downgrade; testar bogeys/tracks/contraptions.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-track
 
+## Lote 21–30 — reconciliação da publicação de 15/10/2026
+
+**Baseline:** `tracks_plus-1.0.6b6.jar`, versão 1.0.6b6, Beta NeoForge Minecraft 1.21.1. O projeto correto é **Create:Tracks+** de ChiyahaRee, CurseForge 1548863, fork do Create:Tracks original.
+
+**DIVERGÊNCIA oficial:** o arquivo de ID **9185485**, publicado **15/10/2026**, é anunciado como *Create:Tracks+ 1.0.6beta6* (Beta), **mas o JAR publicado chama-se `tracks_plus-1.0.6b7.jar`**. O catálogo anterior considerava beta6 idêntica à instalada, o que já não é seguro. Não é comprovado se houve alteração de metadata runtime, mudança de semântica ou somente uma alteração no nome do arquivo; o CurseForge declara literalmente **“File has no changelog”**. Não designar o b7 como correção específica sem exame do JAR/source.
+
+**Cadeia e limites:** instalado b6 → publicação com JAR **b7**, ainda **rotulada beta6**. A Release 1.0.5 não é versão mais nova numericamente nem substituto automático; downgrade exigiria decisão explícita. Riscos a testar: Create 6.0.10, tracks e high-clearance suspension com Aeronautics/Sable/True Impact, montagem/destruição e drops, clientes e servidor dedicado, chunks e persistência de contraptions. **BLOQUEADO para encerrar a auditoria detalhada:** changelog ou diff do JAR b6→b7 ausente.
+
+**Fonte primária:** https://www.curseforge.com/minecraft/mc-mods/create-track/files/9185485 ; https://www.curseforge.com/minecraft/mc-mods/create-track/files/all .
