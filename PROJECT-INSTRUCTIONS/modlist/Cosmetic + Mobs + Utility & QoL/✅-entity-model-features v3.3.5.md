@@ -254,3 +254,9 @@ Fontes upstream: CurseForge EMF NeoForge 1.21.1 releases 3.3.6–3.3.9; 3.3.9 fi
 - [ ] Verificar regressão de boot da 3.3.8 resolvida na 3.3.9, multiplayer observers e eventuais conflicts com mods de first person/battle renderer.
 
 **Resultado:** todas as **sete releases posteriores à 3.3.5** (3.3.6–3.3.12) estão discriminadas por versão com changelogs oficiais e limites específicos de Minecraft. A última publicação foi atualizada para **3.3.12**. **Pesquisa do histórico upstream concluída para o lote; item 76 pode ser retirado da fila de investigação de releases**. Isso **não valida nem promove** o JAR 3.3.12 no modpack; a instalação, adequação do ETF e QA gráfico ainda exigem testes específicos. O filename `✅-entity-model-features v3.3.5.md`, versão e JAR físico permanecem intactos.
+
+### Nota complementar de dependência — ETF 7.2.6 (23/10/2026)
+
+Reconsulta ao **projeto oficial Entity Texture Features (ETF), CurseForge 568563**, no filtro NeoForge/Minecraft 1.21.1, identifica **`7.2.6-neoforge-1.21` de 15/10/2026** como última Release nesta combinação, seguida de 7.2.5 (04/10) e 7.2.4 (18/09). Essa descoberta **atualiza** a menção histórica de 7.2.4 como latest; o pack permanece **ETF 7.2.1** no último snapshot físico. O exame deste dossier **não** audita toda a série ETF nem autoriza alterar seu `.md` como parte do item EMF. Antes de promover EMF 3.3.12, estudar separadamente ETF 7.2.1→7.2.6 (incluindo obrigatoriedades/manifests) e realizar teste integrado de shoulder parrots, render cancellations e resource packs.
+
+**Fonte oficial ETF:** https://www.curseforge.com/minecraft/mc-mods/entity-texture-features-fabric/files/all?version=1.21.1 .
