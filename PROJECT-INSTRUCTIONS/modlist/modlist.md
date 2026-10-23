@@ -512,7 +512,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 462 | Pufferfish's Unofficial Additions | `pufferfish_unofficial_additions-1.21.1-2.2.8.jar` | `2.2.8` | `Addons` | 29/09/2026 - 23:37 |
 | 463 | Pufferfish's Attributes [Fabric & Forge & NeoForge] | `puffish_attributes-0.8.3-1.21-neoforge.jar` | `0.8.3` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
 | 464 | Pufferfish's Skills [Fabric & Forge & NeoForge] | `puffish_skills-0.19.0-1.21-neoforge.jar` | `0.19.0` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
-| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `API and Library + Cosmetic + Map and Information` | 23/10/2026 - 00:31 |
+| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `API and Library + Cosmetic + Map and Information` | 23/10/2026 - 14:58 |
 | 466 | Epic Fight X Punchy! Neo | `punchy_epicfight_neoforge.jar` | `1.0.0` | `Addons` | 27/09/2026 - 16:30 |
 | 467 | Puzzles Lib | `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar` | `21.1.60` | `API and Library` | 22/10/2026 - 21:57 |
 | 468 | Quark | `Quark-4.1-484.jar` | `4.1-484` | `Cosmetic + Ores and Resources` | 27/09/2026 - 16:30 |
@@ -603,7 +603,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 553 | UnChipped | `unchipped-1.21-1.2.jar` | `1.21-1.2` | `Addons + Automation + Create + Processing` | 28/09/2026 - 01:09 |
 | 554 | Underground Villages, Stoneholm (Fabric/Forge/NeoForge) | `underground_village-neoforge-1.21.1-2.0.jar` | `2.0` | `Biomes + Structures + World Gen` | 28/09/2026 - 01:09 |
 | 555 | Uranus | `uranus-3.0-beta.1.jar` | `3.0-beta.1` | `API and Library + Utility & QoL` | 28/09/2026 - 01:09 |
-| 556 | Vampirism Iron's Spells Compatibility | `vampire_spells_addon-neoforge-1.21.1-0.0.9.jar` | `1.21.1-0.0.9` | `Addons + Adventure and RPG + Food + Magic` | 28/09/2026 - 01:28 |
+| 556 | Vampirism Iron's Spells Compatibility | `vampire_spells_addon-neoforge-1.21.1-0.0.9.jar` | `1.21.1-0.0.9` | `Addons + Adventure and RPG + Food + Magic` | 23/10/2026 - 14:57 |
 | 557 | Vampiric Ageing - A Vampirism Addon | `vampiricageing-1.21-1.4.21.jar` | `1.21-1.4.21` | `Magic` | 28/09/2026 - 01:09 |
 | 558 | Vampirism - Become a vampire! | `Vampirism-1.21-1.10.13.jar` | `1.10.13` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 28/09/2026 - 01:09 |
 | 559 | Vampirism Integrations | `vampirism_integrations-1.21.1-1.10.2.jar` | `1.10.2` | `Magic + Miscellaneous` | 28/09/2026 - 01:09 |
@@ -993,7 +993,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 08 | InsaneLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-insanelib%20v2.4.33.0.md) | `2.4.33.0` | 2.4.33.1 | **PENDENTE** |
 | 09 | Create: Teleporters | [Abrir `.md`](./Create%20%2B%20Energy%2C%20Fluid%2C%20and%20Item%20Transport%20%2B%20Technology/%E2%9C%85-create-teleporters-remastered%20v2.0.2b.md) | `2.0.2b` | 3.0.1b | **PENDENTE** |
 | 10 | Petrolpark Library | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Create/%E2%9C%85-petrolparks-library%20v1.5.11.md) | `1.5.11` | 1.5.11 Release estável; 1.5.12 Beta (19/10) | **1.5.11 Release mantida; 1.5.12 Beta bloqueada para promoção** |
-| 11 | Punchy! - First person animations | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.8g (18/10) | **CATEGORIA CORRIGIDA em 23/10; 2.8a/b/c/f/g DOCUMENTADAS; DELTA 2.8a SEM NOTA TÉCNICA ESPECÍFICA** |
+| 11 | Punchy! - First person animations | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.8g (18/10) | **2.8d/2.8e NEOFORGE 1.21.1 CONFIRMADAS NO MODRINTH; 2.8a E PROVA EXATA 2.8f/2.8g PENDENTES** |
 | 12 | Sophisticated Core | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-sophisticated-core%20v1.5.1.md) | `1.5.1` | 1.5.17.2426 (21/10; mapeamento por build parcialmente bloqueado) | **HISTÓRICO SOURCE; RELEASE-BY-RELEASE INCOMPLETO** |
 | 13 | Alex's Caves Continued | [Abrir `.md`](./World%20Gen/%E2%9C%85-alexs-caves-continued%20v1.0.10.md) | `1.0.10` | 1.0.10 | **REVALIDADO** |
 | 14 | Puzzles Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-puzzles-lib%20v21.1.60.md) | `21.1.60` | 21.1.65 | **PENDENTE** |
@@ -1059,7 +1059,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 74 | Knight Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-knight-lib%20v2.0.1.md) | `2.0.1` | 2.0.5 Release (15/10) | **PESQUISA DOCUMENTAL 2.0.2–2.0.5 CONCLUÍDA EM 23/10; API/QA COM COMPANIONS PENDENTES** |
 | 75 | Create: Creating Space | [Abrir `.md`](./Create%20%2B%20Dimensions%20%2B%20Player%20Transport%20%2B%20Technology%20%2B%20World%20Gen/%E2%9C%85-creating-space%20v1.7.22.md) | `1.7.22` | 1.7.23 Release (21/10) | **SOURCE 19–21/10 DOCUMENTADO; CHANGELOG BINÁRIO 1.7.23 NÃO DISCRIMINADO, PENDENTE** |
 | 76 | [EMF] Entity Model Features [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-model-features%20v3.3.5.md) | `3.3.5` | 3.3.12 Release (15/10) | **PESQUISA DOCUMENTAL 3.3.6–3.3.12 CONCLUÍDA EM 23/10; ETF 7.2.6 E QA GRÁFICO PENDENTES** |
-| 77 | Vampirism Iron's Spells Compatibility | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Food%20%2B%20Magic/%E2%9C%85-vampire-spells-addon%20v1.21.1-0.0.9.md) | `1.21.1-0.0.9` | 0.0.10 | **PENDENTE** |
+| 77 | Vampirism Iron's Spells Compatibility | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Food%20%2B%20Magic/%E2%9C%85-vampire-spells-addon%20v1.21.1-0.0.9.md) | `1.21.1-0.0.9` | 0.0.10 Release (17/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10; CONFIGS HOLY/BLOOD SCHOOL DETALHADAS; QA E PROMOÇÃO PENDENTES** |
 | 78 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.5.91.md) | `1.5.91` | 1.6.8.2196 | **COORDENADO** |
 | 79 | WunderLib: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-wunderlib-neoforge%20v21.0.10.md) | `21.0.10` | 21.0.11 | **COORDENADO NEW DAWN** |
 | 80 | Create: Ornithopter Glider | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Create%20%2B%20Player%20Transport%20%2B%20Utility%20%26%20QoL/%E2%9C%85-create-ornithopter-glider%20v1.2.0-1.21.1.md) | `1.2.0-1.21.1` | 1.2.0 | **REVALIDADO** |
@@ -1103,7 +1103,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 Documentados na sequência da lista de pedido, não pela posição física da tabela superior. Fontes e changelogs relevantes estão em cada dossier. Todas as instalações continuam na versão histórica. QA, metadata do JAR upstream e migração de save não foram executados.
 | Pedido | Projeto | Versão física | Publicação upstream NeoForge 1.21.1 | Estado da auditoria documental |
 |---:|---|---|---|---|
-| 11 | Punchy! - First person animations | 2.7e | 2.8g | Pasta corrigida em 23/10: API and Library + Cosmetic + Map and Information; releases upstream 2.8a/2.8b/2.8c/2.8f/2.8g; 2.8a sem changelog detalhado |
+| 11 | Punchy! - First person animations | 2.7e | 2.8g | Pasta correta; NeoForge 1.21.1 versões 2.8d e 2.8e confirmadas no Modrinth do autor, além da série CurseForge 2.8a/b/c/f/g; 2.8a sem delta técnico, 2.8f/g sem correspondência exata |
 | 12 | Sophisticated Core | 1.5.1 | 1.5.17.2426 | BLOQUEADO: deltas source pinados, matriz de doze releases confirmada; 1.5.15/1.5.16 sem mapeamento binário individual |
 | 13 | Alex's Caves Continued | 1.0.10 | 1.0.10 | REVALIDADO; intervalo vazio |
 | 14 | Puzzles Lib | 21.1.60 | 21.1.65 | Cadeia 21.1.61→21.1.65 revisada, callback encantado NeoForge |
