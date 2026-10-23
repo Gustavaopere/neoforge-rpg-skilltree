@@ -512,7 +512,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 462 | Pufferfish's Unofficial Additions | `pufferfish_unofficial_additions-1.21.1-2.2.8.jar` | `2.2.8` | `Addons` | 29/09/2026 - 23:37 |
 | 463 | Pufferfish's Attributes [Fabric & Forge & NeoForge] | `puffish_attributes-0.8.3-1.21-neoforge.jar` | `0.8.3` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
 | 464 | Pufferfish's Skills [Fabric & Forge & NeoForge] | `puffish_skills-0.19.0-1.21-neoforge.jar` | `0.19.0` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
-| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `Cosmetic + Map and Information` | 22/10/2026 - 21:57 |
+| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `Cosmetic + Map and Information` | 22/10/2026 - 22:05 |
 | 466 | Epic Fight X Punchy! Neo | `punchy_epicfight_neoforge.jar` | `1.0.0` | `Addons` | 27/09/2026 - 16:30 |
 | 467 | Puzzles Lib | `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar` | `21.1.60` | `API and Library` | 22/10/2026 - 21:57 |
 | 468 | Quark | `Quark-4.1-484.jar` | `4.1-484` | `Cosmetic + Ores and Resources` | 27/09/2026 - 16:30 |
@@ -993,7 +993,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 08 | InsaneLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-insanelib%20v2.4.33.0.md) | `2.4.33.0` | 2.4.33.1 | **PENDENTE** |
 | 09 | Create: Teleporters | [Abrir `.md`](./Create%20%2B%20Energy%2C%20Fluid%2C%20and%20Item%20Transport%20%2B%20Technology/%E2%9C%85-create-teleporters-remastered%20v2.0.2b.md) | `2.0.2b` | 3.0.1b | **PENDENTE** |
 | 10 | Petrolpark Library | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Create/%E2%9C%85-petrolparks-library%20v1.5.11.md) | `1.5.11` | 1.5.11 Release estável; 1.5.12 Beta (19/10) | **1.5.11 Release mantida; 1.5.12 Beta bloqueada para promoção** |
-| 11 | Punchy! - First person animations | [Abrir `.md`](./Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.7e | **REVALIDADO** |
+| 11 | Punchy! - First person animations | [Abrir `.md`](./Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.7e | **BLOQUEADO: pasta incompleta (API and Library ausente)** |
 | 12 | Sophisticated Core | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-sophisticated-core%20v1.5.1.md) | `1.5.1` | 1.5.17.2426 (21/10; mapeamento por build parcialmente bloqueado) | **HISTÓRICO SOURCE; RELEASE-BY-RELEASE INCOMPLETO** |
 | 13 | Alex's Caves Continued | [Abrir `.md`](./World%20Gen/%E2%9C%85-alexs-caves-continued%20v1.0.10.md) | `1.0.10` | 1.0.10 | **REVALIDADO** |
 | 14 | Puzzles Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-puzzles-lib%20v21.1.60.md) | `21.1.60` | 21.1.65 | **PENDENTE** |
@@ -1103,7 +1103,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 Documentados na sequência da lista de pedido, não pela posição física da tabela superior. Fontes e changelogs relevantes estão em cada dossier. Todas as instalações continuam na versão histórica. QA, metadata do JAR upstream e migração de save não foram executados.
 | Pedido | Projeto | Versão física | Publicação upstream NeoForge 1.21.1 | Estado da auditoria documental |
 |---:|---|---|---|---|
-| 11 | Punchy! - First person animations | 2.7e | 2.7e | REVALIDADO; sem release posterior, intervalo vazio |
+| 11 | Punchy! - First person animations | 2.7e | 2.7e | BLOQUEADO: categoria oficial API and Library ausente da pasta; revisão de links antes de mover |
 | 12 | Sophisticated Core | 1.5.1 | 1.5.17.2426 | BLOQUEADO: deltas source pinados, não conciliada cada build intermediária 1.5.8–1.5.17 |
 | 13 | Alex's Caves Continued | 1.0.10 | 1.0.10 | REVALIDADO; intervalo vazio |
 | 14 | Puzzles Lib | 21.1.60 | 21.1.65 | Cadeia 21.1.61→21.1.65 revisada, callback encantado NeoForge |
@@ -1113,4 +1113,4 @@ Documentados na sequência da lista de pedido, não pela posição física da ta
 | 18 | FTB XMod Compat | 21.1.11 | 21.1.13 | Correção de JEI 21.1.12 e ruptura de SG Economy API 1.1+ em 21.1.13 |
 | 19 | Amendments | 1.21-2.1.10 | 2.2.0 | 2.1.11 (Polytone) e 2.2.0 (wall/fence/pane, EBE, Iris) |
 | 20 | Alshanex's Familiars | 1.21.1_v4.0.3 | 5.0 | 4.0.4 + Spectrum Update 5.0 e migração para FamiliarsLib, backup de save requerido |
-**Regra de exclusão do Bloco de Notas:** itens 12 e 15 permanecem pendentes por lacunas objetivas; demais oito podem ser retirados após merge, CI e re-fetch do GitHub. Este processo não certifica instalação/upgrades em runtime.
+**Regra de exclusão do Bloco de Notas:** itens 11, 12 e 15 permanecem pendentes por lacunas objetivas; os outros sete só podem ser retirados após merge, CI e re-fetch de `main`. Não confundir auditoria documental com instalação ou QA de runtime.
