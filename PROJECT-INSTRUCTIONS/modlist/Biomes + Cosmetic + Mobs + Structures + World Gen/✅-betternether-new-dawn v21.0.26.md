@@ -207,3 +207,29 @@ Fonte upstream: CurseForge BetterNether: New Dawn 21.0.27, file ID 8896389, NeoF
 - **Gate de promoção:** Atualizar somente com BCLib/WorldWeaver/WunderLib/BetterEnd compatíveis; backup de mundo, registries/biomes, Nether já explorado, chunks novos e restart.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/betternether-new-dawn
 
+## Auditoria cumulativa 21.0.26 → 21.0.29 — 23/10/2026
+
+**Inventário físico intacto:** `BetterNether-21.0.26.jar` / `21.0.26`. O projeto CurseForge **BetterNether: New Dawn**, ID **1422293**, linha **NeoForge 1.21.1** alcançou a release **21.0.29** publicada **19/10/2026**, confirmada pelo source oficial `Reijin2312/BetterNether-New-Dawn`. As versões posteriores à física são **21.0.27 (16/09) → 21.0.28 (14/10) → 21.0.29 (19/10)**. Categoria da pasta existente corresponde ao conjunto oficial: **Biomes + Cosmetic + Mobs + Structures + World Gen**.
+
+### 21.0.27 — 16/09/2026
+- Nova opção de configuração para **desabilitar Gloomwood** (`10da07f1b4`). Já documentada na seção anterior; registrar testes em **chunks ainda não gerados** e não prometer que a config apaga conteúdos de chunks antigos.
+- [Commit upstream](https://github.com/Reijin2312/BetterNether-New-Dawn/commit/10da07f1b4).
+
+### 21.0.28 — 14/10/2026
+- **Pacote de backports e correções de gameplay/recursos do Nether:** commits de 13/10 `9c7c1b1ec4` e `65f86b9cc0` aplicam fixes de gameplay e dados upstream com adaptação às APIs Minecraft 1.21.1.
+- **Mundo/estruturas:** `44b4763555` trata conflitos de geração das Nether Cities; `71ae1b4c5f` corrige decay de Rubeus e problemas remanescentes de recursos; `34cccc6782` corrige import/tick de Mushroom Fir.
+- **Validação de regressões:** `54ce850bdc` adiciona matriz de regressão de backports, `dafd562a11` inclui GameTests para 1.21.1 e `69858b0410` fecha metadados da release. Esses testes no source são **evidência de cobertura do desenvolvedor**, não resultados de CI ou testes do modpack do usuário.
+- **Riscos/QA:** geração paralela, blocos de Nether City, Rubeus após mudança de chunk, ticking de flora, tags/recipes, interações com BCLib/WorldWeaver/WunderLib e mods concorrentes do Nether.
+- Histórico upstream: https://github.com/Reijin2312/BetterNether-New-Dawn/commits/master .
+
+### 21.0.29 — 19/10/2026 (commit source pontual)
+O commit `6e113e5c2c`, nomeado **Backport wall plant and translation fixes**, muda `gradle.properties` **diretamente de `mod_version=21.0.28` para `21.0.29`**, fornecendo correspondência de versão pinada com a alteração.
+- `BlockPlantWall` passa a implementar `BonemealableBlock` com lógica de bonemeal e soltura de item; plantas de parede agora respondem à aplicação de bone meal (observar quantidades e drops em testes). 
+- Tags vanilla de item `minecraft:mushrooms` passam a incluir `betternether:wall_mushroom_brown` e `betternether:wall_mushroom_red`, afetando interações com recipes/tags de outros mods.
+- Mudança de som das plantas wall mushroom para **`SoundType.FUNGUS`**, distinto do som de grama genérico.
+- Render das fireflies alterado para `RenderType.entityTranslucent(texture)`: conferir shaders/transparência, render ordering e partículas/mobs observados.
+- Novas/revistas traduções no pacote de resources (es_mx, pl_pl, pt_br, ru_ru, uk_ua); relevantes para a tradução brasileira e recursos de localisation do pack.
+- Patch fonte integral: https://github.com/Reijin2312/BetterNether-New-Dawn/commit/6e113e5c2c .
+
+**Conclusão técnica:** as três releases efetivamente publicadas após 21.0.26 foram verificadas, incluindo mudanças de worldgen, comportamento de plantas, tags de cogumelos, render de vagalumes, traduções e config Gloomwood. **Gates de promoção física:** backup de mundo e config, test Nether novo e antigo, chunk boundaries, geração/cidade, versão coordenada BCLib/WorldWeaver/WunderLib + BetterEnd: New Dawn, parallel worldgen, Garden/plant bonemeal, loot/drop exatamente uma vez, shader/Iris e render de fireflies, internationalization. O JAR físico continua em 21.0.26; não se realizou QA de cliente/servidor ou substituição de JAR. Os source commits são primários, mas não equivalem a inspeção dos bytes exatos publicados no CurseForge.
+
