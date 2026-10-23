@@ -13,7 +13,7 @@
 - **Decisão:** Sem decisão
 - **Categoria:** Compat, Magia, RPG
 - **Função:** Bridge/content addon entre Relics e Iron's Spells 'n Spellbooks que adiciona relics temáticas e integra sua progressão/loot ao conteúdo mágico do Iron's.
-- **Dependências:** Required: Iron's Spells 'n Spellbooks 3.15.1 + Relics 0.12.8, ambos presentes no pack físico.
+- **Dependências:** Required: Iron's Spells 'n Spellbooks 3.16.3 + Relics 0.12.8, ambos presentes no pack físico.
 - **Sobreposição:** Não substitui Iron's nem Relics. Iron's mantém spells/mana/cooldown/structures; Relics progression/abilities; o addon conecta os domínios.
 - **Compatibilidade/Riscos:** Beta-only para 1.21.1. Riscos: Relics/Iron's API drift, double-cast/double-charge, research UI/state mismatch, loot duplication, client/server desync e dedicated-server regression. 0.2.7 adiciona ability icons e research entries para end relics.
 - **Observações:** 0.2.7 é a build instalada atual da linha NeoForge 1.21.1; não existe fundamento para downgrade arbitrário para outra Beta apenas por canal. Linha histórica já recebeu fixes de dedicated server/Relics compatibility.
@@ -41,7 +41,7 @@ A publicação oficial exige:
 - **Iron's Spells 'n Spellbooks**;
 - **Relics**.
 
-O pack atual contém Iron's Spells 3.15.1 e Relics 0.12.8. A integração deve ser testada exatamente contra esse par físico.
+O pack atual contém Iron's Spells 3.16.3 e Relics 0.12.8. A integração deve ser testada exatamente contra esse par físico.
 
 ## 3. Papel no modpack
 O addon adiciona relics próprias que usam mecânicas/conteúdo do Iron's Spells e as coloca no framework de progression de Relics. A documentação oficial também informa que relics do addon podem aparecer em estruturas adicionadas por Iron's Spells ou seus addons.
@@ -106,7 +106,7 @@ Em multiplayer, relic XP, research e spell source devem permanecer por jogador. 
 Dois jogadores com a mesma relic devem poder manter cooldown/progressão independentes.
 
 ## 12. Integrações concretas no pack
-- **Iron's Spells 3.15.1:** provider mágico obrigatório.
+- **Iron's Spells 3.16.3:** provider mágico obrigatório.
 - **Relics 0.12.8:** framework obrigatório.
 - O pack possui vários addons de Iron's; estruturas adicionadas por eles podem ser candidatas à distribuição documentada de relics, mas nenhuma estrutura específica foi declarada sem data/source correspondente.
 
@@ -121,7 +121,7 @@ Dois jogadores com a mesma relic devem poder manter cooldown/progressão indepen
 8. **Dedicated-server regression:** linha histórica já recebeu fixes de servidor e deve ser sempre revalidada.
 
 ## 14. Matriz de testes
-- [ ] Dedicated server inicia com 0.2.7 + Iron's 3.15.1 + Relics 0.12.8.
+- [ ] Dedicated server inicia com 0.2.7 + Iron's 3.16.3 + Relics 0.12.8.
 - [ ] Ability icons da 0.2.7 renderizam sem missing texture.
 - [ ] Research entries das end relics aparecem e correspondem ao state funcional.
 - [ ] Relic é obtida por loot/estrutura sem duplicação não intencional.
