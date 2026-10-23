@@ -111,3 +111,12 @@ Fonte upstream: CurseForge file ID 8966334, `familiarslib-1.21.1-1.8.jar`.
 - **Gate de promoção:** Fazer backup e validar migração do familiar storing system (10→até 50), config 10/25/50, beds/storage, relog/restart, dimension transfer e consumer Alshanex's Familiars 4.0.4.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/familiarslib
 
+## Auditoria cumulativa #44 — FamiliarsLib 1.7.1 / runtime 1.7 → 1.8 (22/10/2026)
+
+**Hierarquia física preservada:** filename top-level de FamiliarsLib é familiarslib-1.21.1-1.7.1.jar; a metadata instalada historicamente corresponde a 1.21.1-1.7, preservada no basename do dossier. Não encobrir essa divergência. **Última release NeoForge 1.21.1:** familiarslib-1.21.1-1.8.jar, publicada 24/09, file ID 8966334. Apenas uma release posterior à versão do filename físico foi confirmada.
+
+**Delta 1.8 oficial:** o familiar storing system foi refeito para permitir **mais de dez familiars, até 50**, com limite configurável no **novo arquivo de configuração FamiliarsLib**. O autor recomenda backup de mundo antes do upgrade.
+
+**Impactos cruzados:** Alshanex's Familiars 4.0.3 físico, versão 4.0.4 com storage >10 e 5.0 Spectrum com migração de Familiar House/Bed/Shrinkinator para FamiliarsLib. **Não está comprovado que FamiliarsLib 1.8, sem artefato novo, forneça integralmente tudo que Familiars 5.0 espera**. Validar metadata de dependência do consumer, registries, block entities antigos/novos, domesticação e armazenagem 10/25/50, player data, reconnect, restart, dimension change, inventory ownership e eventual rollback mundo+JARs.
+
+Fonte: https://www.curseforge.com/minecraft/mc-mods/familiarslib/files/8966334 .
