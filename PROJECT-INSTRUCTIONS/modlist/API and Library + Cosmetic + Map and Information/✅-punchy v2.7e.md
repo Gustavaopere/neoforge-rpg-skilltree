@@ -169,3 +169,40 @@ Fonte: https://www.curseforge.com/minecraft/mc-mods/punchy
 > **A antiga seção “Pendência de categorias CurseForge — 22/10/2026” foi superada:** o dossier foi movido, preservando integralmente o basename e a versão `✅-punchy v2.7e.md`, para `API and Library + Cosmetic + Map and Information/`. As categorias **API and Library, Cosmetic e Map and Information** foram verificadas no projeto oficial CurseForge **1374153**. Link do índice `modlist.md` corrigido, posição física **#465** e JAR `punchy-2.7e-neoforge-1.21.1.jar` mantidos. No catálogo para NeoForge **Minecraft 1.21.1**, **2.7e (03/09/2026)** permanece o arquivo mais recente identificado; não existe intervalo de releases 1.21.1 posterior ao instalado a revisar.
 
 Fontes: https://www.curseforge.com/minecraft/mc-mods/punchy ; https://www.curseforge.com/minecraft/mc-mods/punchy/files/all?version=1.21.1 . Movimentação sem troca de JAR, sem alteração de funcionamento e sem reauditoria Notion→GitHub. As ressalvas gerais de QA de mods visuais continuam, sem impedir o encerramento documental da conferência de releases.
+
+## Revisão de catálogo integral corrigida — 23/10/2026 (2.7e → 2.8g)
+
+**Correção obrigatória à nota anterior “Encerramento da pendência estrutural”:** o CurseForge **publicou releases posteriores a 2.7e para exatamente Minecraft 1.21.1 e NeoForge**. A afirmação anterior de que 2.7e era a última versão é falsa; esta seção prevalece. O arquivo físico documentado continua `punchy-2.7e-neoforge-1.21.1.jar`. A movimentação já concluída para **API and Library + Cosmetic + Map and Information** permanece válida e não autoriza renomear o dossier.
+
+**Releases posteriores publicadas na linha NeoForge 1.21.1:** `2.8a` (15/09), `2.8b` (25/09), `2.8c` (29/09), `2.8f` (14/10), `2.8g` (18/10). A lista filtrada não mostra artefatos específicos 2.8d ou 2.8e para esta combinação de jogo/loader; não inventar esses deltas. Fonte oficial: https://www.curseforge.com/minecraft/mc-mods/punchy/files/all?gameVersionTypeId=6&page=1&pageSize=20&showAlphaFiles=hide
+
+### 2.8a — 15/09
+A publicação é descrita pelo autor como `Punchy v2.8a HOTFIX`, sem notas técnicas pormenorizadas recuperadas. **O delta exclusivo desta build permanece desconhecido**, não devendo ser substituído por mudanças da 2.8b. Fonte de identificação: https://modrinth.com/mod/punchy-fpa/version/QShDZDjS (mesma série de projeto, outra plataforma; confirmar no arquivo NeoForge exato).
+
+### 2.8b — 25/09
+- **Novo:** seletores de compatibilidade `related:<name>` para aplicar configurações a itens com nomes correlacionados; tipos experimentais de animação de locomoção por item (idle, deslocamentos direcionais, corrida, salto, queda e aterrissagem).
+- **Correções:** animação de mineração não deve reiniciar quando enchantments/components mudam (inclusive Penchant); estados obsoletos de offhand e de transições de equip; `disable_mining` não deve repetir combo durante clique sustentado; resolução de conflitos `enchantment_variants` e `particle_emitters` ao mesclar packs; correção de sleeves de armaduras aparadas que apareciam pretas.
+- **Performance:** otimizações gerais; autor ressalva QA limitado da combinação com outros mods.
+Fonte: https://modrinth.com/mod/punchy-fpa/version/Y4cSOAFP (artefato NeoForge 1.21.1 do mesmo projeto).
+
+### 2.8c — 29/09
+- Opções por item para desativar a animação de queda da mace e a animação geral de queda do braço.
+- Novos tipos de compatibilidade para animação de tridente (`use_trident`, `use_trident_throw`, `use_trident_throw_loyalty`) e `movement_influence`.
+- Correção de combo que parava após o primeiro ataque para `disable_mining_animation`; tremulação/sumiço da mão secundária após transições de ações com duas mãos.
+- As notas sobre shader em Minecraft 26.x são **restritas às versões 26.x** e não constituem novidade comprovada no runtime 1.21.1.
+Fonte: https://modrinth.com/mod/punchy-fpa/version/inqESDtx (NeoForge 1.21.1).
+
+### 2.8f — 14/10
+- **Spatial GUI:** habilitar compatibilidade configura opções de inventário/containers/mira uma única vez, preservando mudanças posteriores do usuário; evita animação de clique duplicada com Punchy e mantém offsets personalizados de braços F8.
+- **Blend/animator:** transições suaves de bow/crossbow com cancelamento/retrigger, comer/beber em fases, movimento de braços ao nadar e handoff da mão secundária; preservação de timing de áudio e de offsets ao transitar entre timelines antigas e V2.
+Fonte de changelog da série 2.8f: https://modrinth.com/mod/punchy-fpa/version/kburaezy (arquivo Fabric 1.21.1; **não foi possível piná-lo ao texto do arquivo NeoForge**, mas o build 2.8f NeoForge 1.21.1 está confirmado no CurseForge). Confirmar equivalência de implementação no artefato específico antes de certificar todos os deltas como presentes.
+
+### 2.8g — 18/10
+- Corrigido flash do offhand na animação inspect e sons de inspeção ausentes; uso de projéteis quando o último stack é consumido ou um equip de duas mãos é interrompido.
+- Configurações de movimento de animações customizadas aplicam-se durante ações e equip, e retornam suavemente a idle; influência de movimento com duas mãos sem contaminar ação de um só braço; evita aplicar idle customizado duas vezes.
+- Preserva deslocamentos e rotações globais dos braços em ataque/equip; corrige modelos customizados que atravessavam uma pose neutra indevida.
+- Corrige posicionamento de linha na vara com Enchanted Fishing Line; exibe avisos de conflito com Hold My Items/Locomotion, ou ausência de animações/arquivos de compatibilidade ativos.
+Fonte da release série 2.8g: https://www.curseforge.com/minecraft/mc-mods/punchy/files/9239914 (Fabric 26.2); a versão **NeoForge 1.21.1 2.8g** é confirmada separadamente pelo catálogo oficial, sem presumir diferenças entre loaders.
+
+### Decisão e testes
+**Candidato upstream NeoForge 1.21.1: 2.8g.** A sequência de cinco versões publicadas foi identificada e o conteúdo relevante conhecido catalogado. Permanecem **lacunas de changelog individual exato 2.8a e comprovação de texto para NeoForge nas 2.8f/2.8g**, logo a auditoria integral por build **não está certificada**. Validações necessárias no modpack: Epic Fight bridge e battle mode, First Person Model, shaders e arm model, enchants/components dinâmicos com Penchant, tridentes, dual-hand equips, Spatial GUI se instalado, animações personalizadas e resource reload. Nenhum JAR foi trocado; nenhuma QA in-game foi executada. **Não apagar item 11 da lista de pendências ainda.**
