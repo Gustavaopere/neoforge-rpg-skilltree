@@ -208,7 +208,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 158 | Create Stuff & Additions Curios Jetpacks | `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar` | `1.2.4 (distribuição); metadata interna 1.2.22` | `Addons + Create` | 23/09/2026 - 11:23 |
 | 159 | Create Stuff & Netherite Additions | `create_sna-1.2-neoforge-1.21.1.jar` | `1.2` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Player Transport` | 23/09/2026 - 11:23 |
 | 160 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` | `1.0 (distribuição); metadata interna vazia` | `Addons + Create + Processing` | 23/09/2026 - 11:23 |
-| 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 23/09/2026 - 11:23 |
+| 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 23/10/2026 - 00:27 |
 | 162 | Create Deep Seas | `create_submarine-2.2.4.jar` | `2.2.4` | `Addons + Create` | 23/09/2026 - 12:37 |
 | 163 | Create : Misc & Things | `create_things_and_misc-4.1.1-neoforge-1.21.1.jar` | `4.1.1` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 12:37 |
 | 164 | Create: Tweaked Controllers | `create_tweaked_controllers-1.21.1-1.2.7.jar` | `1.21.1-1.2.7` | `Addons + Create + Redstone + Technology` | 23/09/2026 - 12:37 |
@@ -396,7 +396,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 346 | Magic From The East | `iss_magicfromtheeast-1.1.5.jar` | `1.1.5` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + World Gen` | 25/09/2026 - 01:24 |
 | 347 | Jade 🔍 | `Jade-1.21.1-NeoForge-15.10.6.jar` | `15.10.6+neoforge` | `Map and Information + Utility & QoL` | 25/09/2026 - 01:24 |
 | 348 | Just Enough Effect Descriptions (JEED) | `jeed-1.21-2.3.2.jar` | `1.21-2.3.2` | `Addons + Map and Information` | 25/09/2026 - 01:24 |
-| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 22/10/2026 - 23:21 |
+| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 23/10/2026 - 00:32 |
 | 350 | JinxedLib | `jinxedlib-neoforge-1.21.1-1.0.4.jar` | `1.0.4` | `API and Library + Server Utility + Utility & QoL` | 25/09/2026 - 01:25 |
 | 351 | JourneyMap Integration | `jmi-neoforge-1.21.1-1.9.jar` | `1.21.1-1.9` | `Addons + Map and Information` | 25/09/2026 - 01:25 |
 | 352 | JourneyMap | `journeymap-neoforge-1.21.1-6.0.8.jar` | `1.21.1-6.0.8` | `Map and Information` | 25/09/2026 - 02:10 |
@@ -512,7 +512,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 462 | Pufferfish's Unofficial Additions | `pufferfish_unofficial_additions-1.21.1-2.2.8.jar` | `2.2.8` | `Addons` | 29/09/2026 - 23:37 |
 | 463 | Pufferfish's Attributes [Fabric & Forge & NeoForge] | `puffish_attributes-0.8.3-1.21-neoforge.jar` | `0.8.3` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
 | 464 | Pufferfish's Skills [Fabric & Forge & NeoForge] | `puffish_skills-0.19.0-1.21-neoforge.jar` | `0.19.0` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
-| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `API and Library + Cosmetic + Map and Information` | 22/10/2026 - 22:05 |
+| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `API and Library + Cosmetic + Map and Information` | 23/10/2026 - 00:31 |
 | 466 | Epic Fight X Punchy! Neo | `punchy_epicfight_neoforge.jar` | `1.0.0` | `Addons` | 27/09/2026 - 16:30 |
 | 467 | Puzzles Lib | `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar` | `21.1.60` | `API and Library` | 22/10/2026 - 21:57 |
 | 468 | Quark | `Quark-4.1-484.jar` | `4.1-484` | `Cosmetic + Ores and Resources` | 27/09/2026 - 16:30 |
@@ -565,7 +565,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 20:56 |
 | 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 27/09/2026 - 20:56 |
 | 517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `0.2.0` | `Addons + Storage` | 27/09/2026 - 21:19 |
-| 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `1.5.1` | `API and Library` | 22/10/2026 - 21:57 |
+| 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `1.5.1` | `API and Library` | 23/10/2026 - 00:33 |
 | 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `1.5.91` | `Storage` | 27/09/2026 - 21:26 |
 | 520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar` | `0.1.21` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 521 | Soul fire'd | `soul-fire-d-neoforge-1.21-6.1.0.jar` | `6.1.0` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Utility & QoL` | 27/09/2026 - 20:57 |
@@ -993,11 +993,11 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 08 | InsaneLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-insanelib%20v2.4.33.0.md) | `2.4.33.0` | 2.4.33.1 | **PENDENTE** |
 | 09 | Create: Teleporters | [Abrir `.md`](./Create%20%2B%20Energy%2C%20Fluid%2C%20and%20Item%20Transport%20%2B%20Technology/%E2%9C%85-create-teleporters-remastered%20v2.0.2b.md) | `2.0.2b` | 3.0.1b | **PENDENTE** |
 | 10 | Petrolpark Library | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Create/%E2%9C%85-petrolparks-library%20v1.5.11.md) | `1.5.11` | 1.5.11 Release estável; 1.5.12 Beta (19/10) | **1.5.11 Release mantida; 1.5.12 Beta bloqueada para promoção** |
-| 11 | Punchy! - First person animations | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.7e | **CATEGORIA CORRIGIDA em 23/10; upstream 2.7e para NeoForge 1.21.1** |
+| 11 | Punchy! - First person animations | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.8g (18/10) | **CATEGORIA CORRIGIDA em 23/10; 2.8a/b/c/f/g DOCUMENTADAS; DELTA 2.8a SEM NOTA TÉCNICA ESPECÍFICA** |
 | 12 | Sophisticated Core | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-sophisticated-core%20v1.5.1.md) | `1.5.1` | 1.5.17.2426 (21/10; mapeamento por build parcialmente bloqueado) | **HISTÓRICO SOURCE; RELEASE-BY-RELEASE INCOMPLETO** |
 | 13 | Alex's Caves Continued | [Abrir `.md`](./World%20Gen/%E2%9C%85-alexs-caves-continued%20v1.0.10.md) | `1.0.10` | 1.0.10 | **REVALIDADO** |
 | 14 | Puzzles Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-puzzles-lib%20v21.1.60.md) | `21.1.60` | 21.1.65 | **PENDENTE** |
-| 15 | CBC: Advanced technologies crash fix | [Abrir `.md`](./Addons%20%2B%20Create%20%2B%20Technology/%E2%9C%85-cbcat-fix%20v1.0.1.md) | `1.0.1` | 1.1.4 (15/10) | **DELTA 1.0.1→1.1.4 DOCUMENTADO; CATEGORIA CORRIGIDA em 23/10** |
+| 15 | CBC: Advanced technologies crash fix | [Abrir `.md`](./Addons%20%2B%20Create%20%2B%20Technology/%E2%9C%85-cbcat-fix%20v1.0.1.md) | `1.0.1` | 1.1.4 (15/10) | **AUDITORIA DOCUMENTAL 1.0.1→1.1.4 COMPLETA; CATEGORIA CORRIGIDA; QA FÍSICO SEPARADO** |
 | 16 | Vanilla Backport | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Biomes%20%2B%20Mobs%20%2B%20Ores%20and%20Resources%20%2B%20World%20Gen/%E2%9C%85-vanillabackport%20v1.1.7.10.md) | `1.1.7.10` | 1.2 (Release NeoForge 1.21.1, 18/10) | **AUDITORIA DOCUMENTAL; MIGRAÇÃO MAJOR E BRIDGES EXIGEM QA** |
 | 17 | Platform | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-platform%20v1.3.3.md) | `1.3.3` | 1.4 | **PENDENTE** |
 | 18 | FTB XMod Compat | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-ftb-xmod-compat%20v21.1.11.md) | `21.1.11` | 21.1.13 (Release NeoForge 1.21.1, 20/10) | **AUDITORIA DOCUMENTAL; SG Economy API 1.1+** |
@@ -1031,12 +1031,12 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 46 | Apotheosis x Iron's Spellbooks Compat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-irons-apothic%20v2.2.2.md) | `2.2.2` | 2.2.8+1.21.1 (17/10) | **AUDITORIA DOCUMENTAL FECHADA; QA spell/affix pendente** |
 | 47 | Dynamic Trees - VanillaBackport | [Abrir `.md`](./Addons%20%2B%20World%20Gen/%E2%9C%85-dynamic-trees-vanillabackport%20v1.7.0.md) | `1.7.0` | 1.7.0 (sem release posterior NeoForge 1.21.1) | **REVALIDADO: intervalo vazio; provider 1.2 não homologado** |
 | 48 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | 5.2.0 NeoForge 1.21.1 (20/10) | **AUDITORIA DOCUMENTAL FECHADA; 5.1.3 changelog genérico** |
-| 49 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.56.0.440.md) | `19.56.0.440` | 19.64.0.455 Release (16/10); 19.69.0.457 Beta (20/10) | **BLOQUEADO: changelogs individuais 19.64/19.69 ausentes** |
+| 49 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.56.0.440.md) | `19.56.0.440` | 19.64.0.455 Release (16/10); 19.69.0.457 Beta (20/10) | **19.64.0.453 DOCUMENTADA; .454/.455/.456/.457 AINDA NÃO ATRIBUÍDAS** |
 | 50 | Create Aeronautics: Automated Logistics | [Abrir `.md`](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md) | `0.6.2` | 0.6.2 | **BLOQUEADO: dossier sem ✅; não editado** |
 | 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.60 Beta (19/10; 3.59 sem delta individualizado) | **DELTAS 3.58/3.60 DOCUMENTADOS; 3.59 E QA PENDENTES** |
 | 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.65 (22/10) | **8.48–8.65 PENDENTES DE CONCILIAÇÃO INDIVIDUAL** |
-| 53 | Create: Stats & Power | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-stats-power%20v1.13.1.md) | `1.13.1` | 1.15.0 | **PENDENTE** |
-| 54 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | 0.2.0 | **REVALIDADO** |
+| 53 | Create: Stats & Power | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-stats-power%20v1.13.1.md) | `1.13.1` | 1.15.0 | **AUDITORIA DOCUMENTAL 1.13.1→1.14.5→1.15.0 CONCLUÍDA; QA FÍSICO SEPARADO** |
+| 54 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | 0.2.3 (11/10) | **DELTAS DOCUMENTADOS 0.2.1→0.2.3; QA FÍSICO SEPARADO** |
 | 55 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.3.md) | `3.26.3` | 3.26.14.2222 | **COORDENADO** |
 | 56 | Climbable Ropes for Create Aeronautics | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-climbable-ropes-for-create-aeronautics%20v2.1.3.md) | `2.1.3` | 2.1.3 | **REVALIDADO** |
 | 57 | Epic Fight: Curios Compat 3.0 | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Cosmetic/%E2%9C%85-epic-fight-curios-compat%20v1.4.md) | `1.4` | linha 3.0; arquivo 1.21.1 exato não confirmado | **FAIL-CLOSED** |
@@ -1103,11 +1103,11 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 Documentados na sequência da lista de pedido, não pela posição física da tabela superior. Fontes e changelogs relevantes estão em cada dossier. Todas as instalações continuam na versão histórica. QA, metadata do JAR upstream e migração de save não foram executados.
 | Pedido | Projeto | Versão física | Publicação upstream NeoForge 1.21.1 | Estado da auditoria documental |
 |---:|---|---|---|---|
-| 11 | Punchy! - First person animations | 2.7e | 2.7e | Pasta corrigida em 23/10: API and Library + Cosmetic + Map and Information; versão upstream 2.7e |
-| 12 | Sophisticated Core | 1.5.1 | 1.5.17.2426 | BLOQUEADO: deltas source pinados, não conciliada cada build intermediária 1.5.8–1.5.17 |
+| 11 | Punchy! - First person animations | 2.7e | 2.8g | Pasta corrigida em 23/10: API and Library + Cosmetic + Map and Information; releases upstream 2.8a/2.8b/2.8c/2.8f/2.8g; 2.8a sem changelog detalhado |
+| 12 | Sophisticated Core | 1.5.1 | 1.5.17.2426 | BLOQUEADO: deltas source pinados, matriz de doze releases confirmada; 1.5.15/1.5.16 sem mapeamento binário individual |
 | 13 | Alex's Caves Continued | 1.0.10 | 1.0.10 | REVALIDADO; intervalo vazio |
 | 14 | Puzzles Lib | 21.1.60 | 21.1.65 | Cadeia 21.1.61→21.1.65 revisada, callback encantado NeoForge |
-| 15 | CBC: Advanced technologies crash fix | 1.0.1 (runtime 1.0.0) | 1.1.4 | Pasta corrigida em 23/10: Addons + Create + Technology; releases 1.1.0/1.1.1/1.1.2/1.1.4 documentadas |
+| 15 | CBC: Advanced technologies crash fix | 1.0.1 (runtime 1.0.0) | 1.1.4 | Pasta corrigida em 23/10: Addons + Create + Technology; releases 1.1.0/1.1.1/1.1.2/1.1.4 documentadas integralmente; certificação documental concluída |
 | 16 | Vanilla Backport | 1.1.7.10 | 1.2 | Rework amplo; migration/compatibilidades precisam de QA físico |
 | 17 | Platform | 1.3.3 | 1.4 | APIs/Events overhaul documentados conforme granularidade real do release |
 | 18 | FTB XMod Compat | 21.1.11 | 21.1.13 | Correção de JEI 21.1.12 e ruptura de SG Economy API 1.1+ em 21.1.13 |
@@ -1162,6 +1162,6 @@ Esta matriz segue a numeração do pedido, não a posição física da tabela de
 | 46 | Apotheosis x Iron's Spellbooks Compat | 2.2.2 | 2.2.3→2.2.8 | Fechada documental; affix triggers, datagen, casts e interrupts |
 | 47 | Dynamic Trees - VanillaBackport | 1.7.0 | 1.7.0 | Revalidado sem release posterior; validar integração com VanillaBackport 1.2 |
 | 48 | Polytone | 1.21-4.4.0 | 4.5.x→5.0.x→5.1.1→5.1.2→5.1.3→5.2.0 | Fechada segundo changelogs disponíveis; 5.1.3 descrita genericamente pelo autor |
-| 49 | Just Enough Items (JEI) | 19.56.0.440 | 19.64.0.455 Release; 19.69.0.457 Beta | **BLOQUEADO**: notas específicas das builds 19.64 e 19.69 não reconciliadas |
+| 49 | Just Enough Items (JEI) | 19.56.0.440 | 19.64.0.455 Release; 19.69.0.457 Beta | **BLOQUEADO**: notas 19.64.0.453 registradas; demais .454/.455/.456/.457 individuais pendentes |
 | 50 | Create Aeronautics: Automated Logistics | 0.6.2 | 0.6.2 | **INELEGÍVEL** (dossier sem ✅); nenhum edit, move ou inclusão como certificado |
 **Regra do Bloco de Notas após CI, merge e re-fetch:** liberar **41, 42, 43, 44, 46, 47 e 48** apenas como revisão do histórico documental. **Manter 45 e 49** até suprir fontes; **manter 50** até auditoria certificadora separada. QA físico/backup/migração não realizados.
