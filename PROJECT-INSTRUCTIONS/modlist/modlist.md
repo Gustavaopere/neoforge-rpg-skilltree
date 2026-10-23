@@ -525,7 +525,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 475 | Reliquified L_Ender 's Cataclysm new relics fix | `reliquified-lenders-cataclysm-new-relics-fix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes + Server Utility` | 27/09/2026 - 17:03 |
 | 476 | Reliquified Ars Nouveau | `reliquified_ars_nouveau-1.21.1-0.8.1.jar` | `0.8.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/10/2026 - 22:49 |
 | 477 | Reliquified Artifacts | `reliquified_artifacts-1.21.1-1.0.8.jar` | `1.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 17:03 |
-| 478 | Reliquified Iron's Spells 'n Spellbooks | `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.7.jar` | `0.2.7` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 23/10/2026 - 01:41 |
+| 478 | Reliquified Iron's Spells 'n Spellbooks | `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.7.jar` | `0.2.7` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 23/10/2026 - 01:47 |
 | 479 | Reliquified L_Ender 's Cataclysm | `reliquified_lenders_cataclysm-1.21.1-0.1.1.jar` | `0.1.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 17:03 |
 | 480 | Resourceful Config | `resourcefulconfig-neoforge-1.21-3.0.11.jar` | `3.0.11` | `API and Library` | 27/09/2026 - 17:03 |
 | 481 | Resourceful Lib | `resourcefullib-neoforge-1.21-3.0.12.jar` | `3.0.12` | `API and Library` | 27/09/2026 - 17:03 |
