@@ -110,3 +110,12 @@ A publicação oficial confirma **1.30.0 para NeoForge 1.21.1** em 11/09/2026. P
 - **Gate de promoção:** Não substituir baseline semanticamente 1.30.0 por build beta sem verificar consumers Cyclops, configs, networking e compatibilidade binária.
 - **Fonte primária do dossier reconsultada:** https://github.com/CyclopsMC/CyclopsCore/blob/master-26-lts/CHANGELOG-1.21.1.md
 
+## Auditoria cumulativa #45 — Cyclops Core Beta 1.30.0-1205 (22/10/2026)
+
+**Baseline físico:** cyclopscore-1.21.1-neoforge-1.30.0.jar, runtime 1.30.0. **Último arquivo NeoForge 1.21.1:** cyclopscore-1.21.1-neoforge-1.30.0-1205.jar, **Beta** 18/10; o sufixo -1205 é identificador de build, não 1.30.1 Release.
+
+**Evidência limitada:** o changelog oficial CHANGELOG-1.21.1.md em master-26-lts termina na Release 1.30.0 de 11/09: hash de ingredient key somente uma vez em IIngredientMapMutable.compute, redução de lookup redundante em IngredientMapWrappedAdapter.iterator e performance de ItemStack/ingredient classifications. Não há seção específica para Beta -1205. Alterações de 26.x não são atribuíveis automaticamente a NeoForge 1.21.1.
+
+**Estado BLOQUEADO da auditoria integral:** sem changelog de Beta -1205 ou source diff inequivocamente associado ao binário, não existe evidência suficiente para descrever a diferença por build. Manter baseline e validar consumers EvilCraft, Integrated Dynamics/Terminals, hashing/collections, networking, GUI, infobook, server startup e reload somente depois de resolver a identificação do delta. Não promover uma Beta sem QA.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files/all?version=1.21.1 ; https://github.com/CyclopsMC/CyclopsCore/blob/master-26-lts/CHANGELOG-1.21.1.md .

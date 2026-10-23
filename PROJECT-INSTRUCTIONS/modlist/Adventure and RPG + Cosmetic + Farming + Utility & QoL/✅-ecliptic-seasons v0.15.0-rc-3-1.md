@@ -182,3 +182,24 @@ Fonte: CurseForge oficial da linha 1.21.1 + source `TeamTeaMC/Ecliptic-Seasons` 
 - **Gate de promoção:** Season/calendar/weather/crop growth afetam world state e balanceamento. Exigir migração de save, datapacks, multiplayer e restart em staging.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons
 
+## Auditoria cumulativa #41 — Ecliptic Seasons (22/10/2026)
+
+**Instalado:** Ecliptic Seasons 0.15.0-rc-3-1, NeoForge Minecraft 1.21.1. **Último upstream:** 0.15.4.1 Beta (16/10/2026). Série após o instalado: 0.15.1, 0.15.2, 0.15.2.1, 0.15.2.2, 0.15.3, 0.15.3.1, 0.15.4 e 0.15.4.1. O conteúdo granular até 0.15.3.1 está registrado nos subitens anteriores do dossier.
+
+| Versão | Delta individual confirmado |
+
+|---|---|
+
+| 0.15.1–0.15.2.2 | Revisões descritas individualmente na seção 20 do dossier: seasons, simulação e integração de clima/datapacks/visual, com gates por versão. |
+
+| 0.15.3 | Introdução do AlternatingWeatherModel: alternância de clear/rain/thunder pelos períodos solares; revisar serialização de configs. |
+
+| 0.15.3.1 | Ajustes de duração/clamp e recomendação/default de UseSolarWeather; não equivalem à alteração final de 0.15.4.1. |
+
+| **0.15.4 Beta**, 10/10 | Corrige crescimento de culturas em regiões frias com taxa incorreta de verão temperado na **primeira metade do inverno**. |
+
+| **0.15.4.1 Beta**, 16/10 | Rebalanceia períodos de precipitação e céu limpo ao longo do ano: **chuva mais curta e mais tempo limpo**. |
+
+**Impactos:** crescimento de plantação e greenhouse/humidity, economia sazonal, chuva e trovão, persistência temporal de mundo, resource pack / Distant Horizons e coexistência Cold Sweat como owner independente da temperatura corporal. Exigir staging, backup, comparação de config antigos/novos, world restart, dedicated e multiplayer. Os novos JARs Beta não foram instalados ou homologados.
+
+Fontes upstream NeoForge 1.21.1: https://modrinth.com/mod/ecliptic-seasons/version/0.15.4 ; https://modrinth.com/mod/ecliptic-seasons/version/VbM6gfHE ; https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons/files/all?version=1.21.1 .

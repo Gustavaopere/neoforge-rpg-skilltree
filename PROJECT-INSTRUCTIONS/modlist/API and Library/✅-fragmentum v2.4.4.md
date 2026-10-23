@@ -179,3 +179,24 @@ O CurseForge publicou **5.2.0** em 05/10/2026, JAR `fragmentum-5.2.0+1.21.1-neof
 - **Gate de promoção:** Preservar o bloqueio por breaking changes desde 5.0; revalidar Kotlin/registries, AssetRegistry/resource reload, config screen APIs, Deferred/Lazy e consumers antes de promoção.
 - **Fonte primária do dossier reconsultada:** https://github.com/ObscuriaLithium/fragmentum/tree/legacy/1.21.1
 
+## Auditoria cumulativa #42 — Fragmentum 2.4.4 → 5.4.0 (22/10/2026)
+
+**Instalado:** Fragmentum 2.4.4, NeoForge 1.21.1. **Projeto correto:** Fragmentum NeoForge, CurseForge 1123977; não confundir com a edição Forge, CurseForge 1123970. Releases posteriores publicadas na mesma linha: 5.0.0, 5.1.1, 5.2.0, 5.3.0, 5.4.0. Não existem etapas documentadas 3.x ou 4.x como releases intermediárias NeoForge 1.21.1.
+
+| Release | Alteração upstream |
+
+|---|---|
+
+| 5.0.0 (19/09) | Migração para **Modern Stonecutter + Kotlin**, com aviso oficial de **breaking changes para mods dependentes**. |
+
+| 5.1.1 (30/09) | ConfigScreenFactory passa a aceitar buttonOption. |
+
+| 5.2.0 (05/10) | ForgeRegistrar.createRegistry passa a gerar **registries vanilla-mapped** no lugar dos específicos Forge; MixinExtras incluído para Forge, efeito binário exato NeoForge não atestado. |
+
+| 5.3.0 (12/10) | Adiciona AssetRegistry com resource reload, stringFieldOption em ConfigScreenFactory, Deferred com Lazy e melhorias na inicialização de DeferredImpl. |
+
+| 5.4.0 (16/10) | Distribuição também oferece variante **Lite sem dependências embarcadas**, além do arquivo completo de 7,5 MB; são alternativas de empacotamento, nunca novos mods top-level. |
+
+**QA bloqueante para instalar:** consumer ABI com Obscuria, Kotlin/embedded dependencies, conflito de mods aninhados com top-level, registry persistence IDs e migração de mundos, config serialization, resource/datapack reload, server/client boot e full-pack restart. O source/anúncio de breaking change é suficiente para documentar histórico, não para autorizar upgrade direto.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/fragmentum-neoforge/files/9202578 ; https://www.curseforge.com/minecraft/mc-mods/fragmentum-neoforge/files/9202578/additional-files .

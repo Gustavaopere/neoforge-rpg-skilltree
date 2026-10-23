@@ -127,3 +127,26 @@ Fonte upstream: CurseForge cumulative changelog da release 2.2.6, file ID 898424
 - **Gate de promoção:** Compat de dois providers: validar affixes/gems/spells, attributes, loot/recipes, exactly-once de efeitos e multiplayer.
 - **Fonte primária do dossier reconsultada:** https://github.com/muon-rw/Apotheosis-Irons-Spells
 
+## Auditoria cumulativa #46 — Apotheosis x Iron's Spellbooks Compat 2.2.2 → 2.2.8 (22/10/2026)
+
+**Instalado:** irons_apothic 2.2.2, NeoForge 1.21.1. **Versão upstream:** 2.2.8+1.21.1 Release (17/10, file 9234276, JAR irons_apothic-2.2.8.jar). Cadeia de releases para o alvo: 2.2.3, 2.2.4, 2.2.5, 2.2.6, 2.2.7 e 2.2.8. Versão 2.2.2 continua presente fisicamente.
+
+| Release | Delta oficial verificável |
+
+|---|---|
+
+| **2.2.3** | Conserta rotten spellbook rare-tier sem rarity e erros em log ao dropar; remove integração T.O Magic alpha inacessível. |
+
+| **2.2.4** | Atualiza tradução chinesa zh_cn, sem mecânica declarada. |
+
+| **2.2.5** | Spell-trigger affixes pulam channeling em vez de interromper; charging ainda pode force-complete, mas agora aplica mana/cooldown; failed cast não aplica cooldown; fix de possível doublecast. |
+
+| **2.2.6** | All-school affixes de spell level/power/mana cost não surgem em itens sem qualquer atributo mágico genérico. |
+
+| **2.2.7** | Adiciona builders de affixes para **datagen**, sem declaração de alteração autônoma do loot já gerado. |
+
+| **2.2.8** | Novos campos opcionais do affix spell_trigger: player_animations para suprimir animação (sons/partículas permanecem), casting_slowdown para impedir slow, delay_ticks para atrasar cast (fallback se alvo morrer/trocar dimensão), interrupt_mode FORCE_COMPLETE/CANCEL/FAIL (default conserva FORCE_COMPLETE), e fix de triggers cast_time não ativados enquanto outro spell causava dano/heal. Casts com cast_time aguardam fim do triggering spell; não geram novo affix recursivo ao resolver; instant spells com cast_time passam a mostrar cast bar. |
+
+**Gates para integração real:** provider Apotheosis 8.x e Iron's Spells instalados, affid state e Curios, mana/cooldown exactly-once em channeling/charging/failure, target change/dimension unload com delay_ticks, datapacks com affixes antigos e campos novos, loot/rework, multiplayer client-server e dedicated boot. Não alterar a versão física, saves, JAR ou caches. A sequência está documentada, mas novo binário não homologado.
+
+Fonte oficial cumulativa do JAR NeoForge 1.21.1: https://www.curseforge.com/minecraft/mc-mods/apotheosis-x-irons-spellbooks-compat/files/9234276 ; https://www.curseforge.com/minecraft/mc-mods/apotheosis-x-irons-spellbooks-compat/files/all .
