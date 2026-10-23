@@ -113,3 +113,12 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Gate de promoção:** Biblioteca: validar ABI/API dos consumers, mixins, networking e boot client/dedicated antes de promoção.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/platform
 
+## Lote 11–20: análise da release Platform 1.4 (22/10/2026)
+
+Versão instalada: Platform NeoForge 1.21.1 1.3.3. Nova publicação: 1.4 Release NeoForge 1.21.1, 18/10/2026, file ID 9236357. A 1.3.4 para Minecraft 1.20.1 não integra a cadeia deste modpack.
+
+Changelog oficial para 1.4: overhaul das APIs existentes e implementação de novos Events e APIs. O autor não fornece nomes de classes, assinaturas nem lista de APIs removidas. Qualquer atribuição individual de mudança binária sem source diff seria inferência indevida.
+
+Gate: recapturar manifests, fazer API/ABI diff com os consumers, incluindo Vanilla Backport (que publicou 1.2 na mesma data), testar registry/service lifecycle, eventos, mixins e dedicated server. A coincidência de datas não prova dependência mínima entre esses JARs. Conservar instalado 1.3.3.
+
+Fonte: https://www.curseforge.com/minecraft/mc-mods/platform/files/9236357 .
