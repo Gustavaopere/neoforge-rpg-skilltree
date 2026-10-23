@@ -299,7 +299,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 249 | EMF Compat: Iron's Spells 'n Spellbooks | `emf_compat_iron_spells_1.21.1_2.0.0.jar` | `2.0.0` | `Addons + Bug Fixes` | 24/09/2026 - 14:02 |
 | 250 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 24/09/2026 - 14:02 |
 | 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 24/09/2026 - 14:02 |
-| 252 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 24/09/2026 - 16:02 |
+| 252 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 23/10/2026 - 01:41 |
 | 253 | Enhanced Boss Bars | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 24/09/2026 - 16:02 |
 | 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
 | 255 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
@@ -480,7 +480,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 430 | oωo (owo-lib) | `owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar` | `0.12.15.5-beta.1+1.21` | `API and Library` | 22/10/2026 - 22:49 |
 | 431 | Ozymandias' Sundries | `ozymandias_sundries-0.0.5.jar` | `0.0.5 (distribuição/publicação); metadata interna 0.0.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 14:28 |
 | 432 | Paladin Spells - Iron's Spells Addon | `paladin_spells-1.21.1-1.1.1.jar` | `1.21.1-1.1.1` | `Addons + Magic` | 25/09/2026 - 15:17 |
-| 433 | ParCool! ~ Minecraft Parkour ~ | `ParCool-1.21.1-4.0.0.3.jar` | `4.0.0.3` | `Adventure and RPG + Miscellaneous + Utility & QoL` | 25/09/2026 - 15:17 |
+| 433 | ParCool! ~ Minecraft Parkour ~ | `ParCool-1.21.1-4.0.0.3.jar` | `4.0.0.3` | `Adventure and RPG + Miscellaneous + Utility & QoL` | 23/10/2026 - 01:43 |
 | 434 | Particle Effects | `ParticleEffects-1.5.0+1.21.1+neoforge.jar` | `1.5.0+1.21.1+neoforge` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
 | 435 | Particle Rain | `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` | `4.0.0-beta.11` | `Cosmetic` | 25/09/2026 - 15:17 |
 | 436 | Particular ✨ Reforged | `particular-1.21.1-NeoForge-1.5.7.jar` | `1.5.7` | `Cosmetic` | 25/09/2026 - 15:17 |
@@ -525,7 +525,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 475 | Reliquified L_Ender 's Cataclysm new relics fix | `reliquified-lenders-cataclysm-new-relics-fix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes + Server Utility` | 27/09/2026 - 17:03 |
 | 476 | Reliquified Ars Nouveau | `reliquified_ars_nouveau-1.21.1-0.8.1.jar` | `0.8.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/10/2026 - 22:49 |
 | 477 | Reliquified Artifacts | `reliquified_artifacts-1.21.1-1.0.8.jar` | `1.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 17:03 |
-| 478 | Reliquified Iron's Spells 'n Spellbooks | `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.7.jar` | `0.2.7` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 17:03 |
+| 478 | Reliquified Iron's Spells 'n Spellbooks | `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.7.jar` | `0.2.7` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 23/10/2026 - 01:41 |
 | 479 | Reliquified L_Ender 's Cataclysm | `reliquified_lenders_cataclysm-1.21.1-0.1.1.jar` | `0.1.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 17:03 |
 | 480 | Resourceful Config | `resourcefulconfig-neoforge-1.21-3.0.11.jar` | `3.0.11` | `API and Library` | 27/09/2026 - 17:03 |
 | 481 | Resourceful Lib | `resourcefullib-neoforge-1.21-3.0.12.jar` | `3.0.12` | `API and Library` | 27/09/2026 - 17:03 |
@@ -575,7 +575,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 525 | Spell Codex: Iron's Spells 'n Spellbooks Addon | `specs_irons_spellbooks-1.6.5.jar` | `1.6.5` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
 | 526 | SpellActionbar | `spell_actionbar-1.1.4.jar` | `1.1.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
 | 527 | StarbuncleMania | `starbunclemania-1.21.1-1.5.8.jar` | `1.5.8` | `Addons + Automation + Energy, Fluid, and Item Transport + Magic` | 27/09/2026 - 22:12 |
-| 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 27/09/2026 - 22:12 |
+| 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 23/10/2026 - 01:43 |
 | 529 | Structurize | `structurize-1.0.833-1.21.1-snapshot.jar` | `1.0.833-1.21.1-snapshot` | `Cosmetic + Server Utility + Structures` | 27/09/2026 - 22:12 |
 | 530 | Strut Your Stuff (Struts) | `struts-1.3.1.jar` | `1.3.1` | `API and Library` | 27/09/2026 - 22:12 |
 | 531 | Stylish Effects | `StylishEffects-v21.1.3-1.21.1-NeoForge.jar` | `21.1.3` | `Cosmetic + Map and Information + Utility & QoL` | 27/09/2026 - 22:12 |
@@ -1043,10 +1043,10 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 58 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.12.1.md) | `7.12.1` | 7.17.0 | **RELEASES 7.13–7.17 DOCUMENTADAS; PROTOCOLO CLIENT/SERVER COORDENADO; QA FÍSICO SEPARADO** |
 | 59 | Goety - The Dark Arts | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Mobs%20%2B%20Structures/%E2%9C%85-goety%20v3.1.4.md) | `3.1.4` | 3.2.1 | **3.1.5/3.1.5.1/3.2.0/3.2.1 DOCUMENTADAS; BACKPORT CUMULATIVO 1.20.1 NÃO DISCRIMINADO** |
 | 60 | BetterNether: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betternether-new-dawn%20v21.0.26.md) | `21.0.26` | 21.0.29 (19/10) | **21.0.27→21.0.29 REVISADAS COM DIFF SOURCE; QA NEW DAWN SEPARADO** |
-| 61 | Streams Reflowing | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20World%20Gen/%E2%9C%85-streamsreflowing%20v2.13.5.md) | `2.13.5` | 2.15.2 | **PENDENTE** |
-| 62 | Reliquified Iron's Spells 'n Spellbooks | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-irons-spells-n-spellbooks%20v0.2.7.md) | `0.2.7` | 0.2.8 Beta | **BLOQUEADO** |
-| 63 | Enhanced AI | [Abrir `.md`](./Mobs/%E2%9C%85-enhanced-ai%20v4.2.3.0.md) | `4.2.3.0` | 4.2.4.0 | **PENDENTE** |
-| 64 | ParCool! ~ Minecraft Parkour ~ | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-parcool%20v4.0.0.3.md) | `4.0.0.3` | 4.0.1.6 | **COORDENADO TWF/Epic Fight** |
+| 61 | Streams Reflowing | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20World%20Gen/%E2%9C%85-streamsreflowing%20v2.13.5.md) | `2.13.5` | 2.15.2 | **RELEASES 2.13.8/2.14.1/2.14.4/2.15.0/2.15.2 REVISADAS; CONFIG .toml→.properties E ENVIO OPCIONAL DA SEED DOCUMENTADOS; QA FÍSICO SEPARADO** |
+| 62 | Reliquified Iron's Spells 'n Spellbooks | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-irons-spells-n-spellbooks%20v0.2.7.md) | `0.2.7` | 0.2.8 Beta | **0.2.8 BETA REVISADA INTEGRALMENTE; DIMENSION SEAL/ANIMATED TEXTURES/ABILITY ICONS DOCUMENTADOS; QA FÍSICO SEPARADO** |
+| 63 | Enhanced AI | [Abrir `.md`](./Mobs/%E2%9C%85-enhanced-ai%20v4.2.3.0.md) | `4.2.3.0` | 4.2.5.0 (20/10) | **4.2.4.0 E 4.2.5.0 REVISADAS COM CHANGELOGS EXATOS; QA FÍSICO SEPARADO** |
+| 64 | ParCool! ~ Minecraft Parkour ~ | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-parcool%20v4.0.0.3.md) | `4.0.0.3` | 4.0.1.6 | **4.0.0.6/4.0.1.0/.1/.2/.5/.6 REVISADAS; CURIOS OBRIGATÓRIO NO UPSTREAM; QA FÍSICO SEPARADO** |
 | 65 | Skin Layers 3D | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic/%E2%9C%85-3d-skin-layers%20v1.11.2.md) | `1.11.2` | 1.10.1 é o último NeoForge 1.21.1 comprovado | **FAIL-CLOSED: diverge do físico 1.11.2** |
 | 66 | Lithostitched | [Abrir `.md`](./API%20and%20Library%20%2B%20Miscellaneous%20%2B%20World%20Gen/%E2%9C%85-lithostitched%20v1.8.0%2Bbeta6.md) | `1.8.0+beta6` | 1.8.1 | **PENDENTE** |
 | 67 | Better Modlist | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-better-modlist%20v21.1.1.md) | `21.1.1` | 21.1.4 | **PENDENTE** |
