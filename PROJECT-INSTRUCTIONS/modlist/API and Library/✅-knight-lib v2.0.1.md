@@ -121,3 +121,37 @@ Fontes upstream: Knight Lib 2.0.2 e 2.0.3 para NeoForge 1.21.1; 2.0.3 file ID 89
 - **Gate de promoção:** Biblioteca: identificar e testar consumers, API/registry changes, networking e boot client/dedicated.
 - **Fonte primária do dossier reconsultada:** https://github.com/Xylonity/Knight-Lib/tree/1.21.1
 
+## Atualizações NeoForge 1.21.1 por release — 23/10/2026 (2.0.1 → 2.0.5)
+
+**Autoridade física histórica preservada:** `knightlib-neoforge-1.21.1-2.0.1.jar`, mod ID `knightlib`, runtime `2.0.1`, posição #359. **Projeto oficial:** [Knight Lib, CurseForge 1105855](https://www.curseforge.com/minecraft/mc-mods/knight-lib). Categoria temática oficial `API and Library`; a pasta atual corresponde ao projeto. **Releases posteriores verificadas para NeoForge Minecraft 1.21.1:** `2.0.2` (20/09) → `2.0.3` (23/09) → `2.0.4` (02/10) → `2.0.5` (15/10). São quatro artefatos Release, sem releases NeoForge 1.21.1 intermediárias adicionais na listagem consultada.
+
+### 2.0.2 — 20/09
+Correção da funcionalidade de **particle keyframe locators com shaderpacks**, já registrada na seção 18 deste dossier. Validar VFX/locators em consumidor real com e sem shaderpacks.
+
+### 2.0.3 — 23/09
+Correção da **orientação das UVs de mirrored boxes**: faces east/west utilizavam texturas trocadas, já registrada na seção 18. Revalidar modelos, animações e material por direção.
+
+### 2.0.4 — 02/10 — **automaton interno (mudança de API/comportamento)**
+Changelog do **JAR NeoForge 1.21.1 exato**, file ID **9036237**:
+- Refatoração do **internal automaton** em estrutura **modular**, com intuito de simplificar implementações;
+- O automaton **deixa de procurar jogadores em Creative/Spectator**, restringindo os targets da busca;
+- O modelo de estados passa a usar **plain states** em vez de **literal IDs**;
+- Os **behaviors de automaton recebem a `DamageSource`** quando são danificados, ampliando o contexto do evento;
+- Correção de **forced exits** que podiam congelar o comportamento do automaton.
+
+**Impacto:** potencial mudança de contrato para consumidores da API de AI, incluindo callbacks/state semantics; não assumir compatibilidade binária com `Companions! 1.3.4` somente porque o requisito declarado anteriormente era Knight Lib `>=2.0.1`. Verificar registro de states, seleção de targets, retorno de behaviors e interrupções por dano/forced exits em runtime de teste. Fonte primária: https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/9036237 .
+
+### 2.0.5 — 15/10 — **animated textures/Sodium**
+Changelog do **JAR NeoForge 1.21.1 exato**, file ID **9190296**: **corrige Sodium congelando as texturas animadas de Knight Lib no primeiro frame**. É uma correção de apresentação/render, com teste recomendado em consumers que usem animated textures, resource reload, shaders e outras etapas de render; não presumir alteração geral de state/AI no patch 2.0.5. Fonte primária: https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/9190296 .
+
+### Matriz de compatibilidade do pack — não executada
+- [ ] Fazer cópia da configuração/world; manter `Companions! 1.3.4`, dependente real, e Knight Lib coordenados durante o teste.
+- [ ] Iniciar cliente e dedicated server NeoForge 1.21.1; inspecionar incompatibilidades de networking, registries, entity data e event handlers.
+- [ ] Exercitar automaton em survival vs creative/spectator, danos com tipos diferentes de `DamageSource`, término de behavior, forced exits e world reload.
+- [ ] Verificar que bosses/Companions continuam com AI e efeitos coerentes, sem comportamentos congelados ou entidades procurando targets indevidos.
+- [ ] Verificar animated textures com Sodium e shaders, keyframe locators, mirrored UV east/west e resource reload, sem confundir problemas gráficos com lógica de combate.
+- [ ] Testar persistência, dimensão/reconnect e multiplayer, além de visual e áudio de consumers reais; não inventar testes concluídos.
+
+**Conclusão documental:** a cadeia **2.0.1 → 2.0.2 → 2.0.3 → 2.0.4 → 2.0.5** está documentada com changelogs por artefato da combinação correta. **A pesquisa das alterações publicadas está concluída para o catálogo de 23/10/2026**, mas **nenhum JAR foi promovido** e a compatibilidade/ABI com Companions! **não foi validada**. Pode sair da lista de *pesquisa documental*; manter gate próprio para instalação/QA futura.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/all ; https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/9036237 ; https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/9190296 .
