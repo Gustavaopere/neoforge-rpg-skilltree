@@ -115,3 +115,23 @@ Qualquer attachment temporário deve ser descartado quando a entidade/rope deixa
 - **Gate de promoção:** Manter baseline; testar rope climbing em moving sublevels, dismount/fall, multiplayer e chunk transitions se houver update futuro.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes
 
+## Reauditoria de releases 2.1.3 → 2.2.0 — 23/10/2026
+
+**Baseline instalada:** `climbable_ropes-2.1.3.jar` (conservar o nome físico registrado na tabela mestre, sem inferir mudança). O catálogo CurseForge do projeto **1528764** está temporalmente defasado e mostra 2.1.3 como principal; porém **o mesmo projeto oficial no Modrinth `jImqv1M5` e o source canônico do autor publicaram 2.1.4 (26/09/2026) e 2.2.0 (19/10/2026)** para **Minecraft 1.21.1 / NeoForge**. Último JAR publicado identificado: `climbable_ropes-2.2.0.jar`. **Não pressupor que a atualização já ocorreu no modpack.**
+
+### 2.1.4 — 26/09/2026
+- Mudanças de otimização gerais e atualização da configuração de desenvolvimento/compatibilidade para **Create Aeronautics 1.3.2** e **Sable 2.0.5**.
+- Entre 2.1.3 e o release, o source refatorou a física de escalada de cordas normais e plunger ropes com helpers compartilhados (pacing, hover raycast, ride lifecycle e controllers). A refatoração não comprova nova mecânica visível, mas afeta a área a testar.
+- Fonte primária (release Modrinth ID `fk5DMIYY`): https://modrinth.com/mod/create-aeronautics-climbable-rope/version/fk5DMIYY ; commits upstream: https://github.com/matejhozlar/Create-Aeronautics-Climbable-Ropes/commits/1.21.1 .
+
+### 2.2.0 — 19/10/2026
+- **Mudança principal:** substitui as animações de keyframes da escalada por um sistema de **IK (cinemática inversa) procedural**, ajustando poses à orientação real da corda; resulta de source commit `20468a967`.
+- **Compatibilidade com cordas inclinadas e horizontais:** rig procedural permite rastejar/deslocar-se ao longo de cordas planas no lugar da pose pendurada padrão do Create (`cb5946b46`); acompanha direção local em segmentos curvados/sagging e não continua animação além das pontas (`54c5296df`).
+- **Poses físicas:** trava pés na corda e permite balanço das pernas (`d5e42bbb1`); os pés apertam a corda e as pernas impulsionam o movimento (`3c73af2dc`).
+- **Correções de render e transição:** cordas inclinadas não aparecem indevidamente em primeira pessoa (`e09f00270`); só aplica pose depois de determinar a direção da corda e mantém grip durante fade-out (`3baaf511b`); reinicializa supressão de pose em primeira pessoa a cada tick para evitar estado residual (`189a60709`).
+- **Evidência inequívoca da publicação:** commit `49c63485c` `chore: release 2.2.0` e merge `586433256`, ambos 19/10/2026, na branch upstream oficial `1.21.1`. Source: https://github.com/matejhozlar/Create-Aeronautics-Climbable-Ropes/commits/1.21.1 ; catálogo oficial: https://modrinth.com/mod/create-aeronautics-climbable-rope/versions .
+
+**Intervalo completo de versões lançadas após a instalada:** 2.1.4 → 2.2.0, sem release 2.1.5 publicada identificada. O README e código do projeto são a evidência dos detalhes de 2.2.0, não especulação a partir do nome do pacote.
+
+**Impactos de QA se houver upgrade físico:** confirmar compatibilidade entre Sable e Create Aeronautics físicos, Player Animator, Epic Fight, EMF/Fresh Animations, cordas em contraptions movendo/rotacionando, plunger ropes, transições vertical/horizontal, multiplayer/pose observadores, câmera em primeira pessoa, detach/respawn/relog, chunk unload e performance de IK no cliente. **Auditoria documental concluída no nível source/release; nenhum JAR instalado ou runtime validado.** A classificação do dossier permanece **Addons + Create**, tal como as categorias temáticas publicadas no CurseForge.
+
