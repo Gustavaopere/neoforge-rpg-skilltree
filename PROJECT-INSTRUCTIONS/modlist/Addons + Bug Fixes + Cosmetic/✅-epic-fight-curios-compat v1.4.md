@@ -145,3 +145,20 @@ A descrição oficial da linha 1.21.1 lista **Supplementaries, Sophisticated Bac
 - **Gate de promoção:** Não inferir versão pelo nome do projeto. Exigir página/arquivo oficial 1.21.1, filename, manifest, dependências Epic Fight/Curios, e teste de render de slots/backpacks/relics antes de editar versão ou recomendar promoção.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/epicfightcurioscompat
 
+## Evidência oficial NeoForge 1.21.1 e nova release 3.1 — 23/10/2026
+
+**Preservação da identidade instalada:** o snapshot físico #259 aponta o JAR top-level `Epic Fight x Curios Compat 2.2.jar` com metadata `epicfight_curios_compat` runtime **1.4**. O nome distribuído 2.2 e a metadata 1.4 são diferentes: não renomear dossier ou versão instalada. A página CurseForge **projeto ID 1389133, autor Unitei** intitulada **Epic Fight: Curios Compat 3.0** é inequívoca, mas seu título não corresponde à versão atual da distribuição.
+
+### Publicações e limites do intervalo
+- **2.2** (baseline instalado, 03/04/2026): compatibilidade de slots/render Curios com Epic Fight já descrita nas seções anteriores. O projeto oficial do JAR físico permanece o mesmo.
+- **3.0** (publicação indicada em 18/10/2026): o catálogo recente mostrava **3.0 para Forge 1.20.1**, não foi recuperado o file ID de um JAR **NeoForge 1.21.1** 3.0 nem changelog específico de arquivo nessa combinação. **Não transferir o conteúdo do arquivo Forge ao NeoForge sem evidência.** A versão 3.0 pode ter sido pulada no canal 1.21.1; o número no nome do projeto não comprova existência de artefato NeoForge.
+- **3.1** (22/10/2026, Release **NeoForge 1.21.1**, File ID **9288645**): nome exato do artefato publicado `EpicFight x Curios Compat 3.1.jar`. O changelog da página oficial registra **suporte completo novo** para **Dungeons And Combat** e **Samurai Dynasty**; corrige **Apocalypse Now – Post Apocalyptic Arsenal** quando o personagem está sentado e o item equipado no slot Curios aparece deslocado fora do modelo. Evidência primária: https://www.curseforge.com/minecraft/mc-mods/epicfightcurioscompat/files/9288645 .
+
+### Impacto de compatibilidade real
+- **Render/sentado:** validar alinhamento e offsets de itens Curios enquanto o jogador está sentado, escalado, em posição especial e em battle mode. Não confundir deslocamento do renderer com perda de `ItemStack` física.
+- **Novos providers:** testar Dungeons And Combat e Samurai Dynasty **somente se presentes** na modlist atual; o suporte publicado não demonstra que estejam instalados.
+- **Mods concorrentes já relacionados no dossier:** Supplementaries quiver, Sophisticated Backpacks, Iron's Spells e outras integrações de accessory/back slots; teste de no-double-render e troca de equipamento, em terceira pessoa, first person, multiplayer, troca de dimensão, respawn e client resource reload.
+- **Compatibilidade de API:** 3.1 pode depender de contratos Epic Fight/Curios diferentes dos do JAR 2.2; consultar `neoforge.mods.toml` da distribuição exata e as versões instaladas antes de promover.
+
+**Status de pesquisa:** identidade CurseForge e release 3.1 NeoForge 1.21.1 **confirmadas**, novo conteúdo funcional **registrado**; **não é possível declarar o histórico 2.2→3.1 integral** sem eliminar a ambiguidade da intermediária 3.0 e examinar sua publicação exata NeoForge (se houver). Cumprir fail-closed; **não retirar o item #57 do controle por enquanto**, não instalar nem mudar filename/metadados físicos.
+
