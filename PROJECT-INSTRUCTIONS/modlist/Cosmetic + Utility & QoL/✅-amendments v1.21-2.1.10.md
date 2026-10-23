@@ -239,3 +239,10 @@ A nova trade UI pode coexistir com novos trades, mas mods que substituem a tela 
 - **Gate de promoção:** Testar em conjunto com Moonlight/Supplementaries/Polytone, generated resources, interactions e resource reload.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/amendments
 
+## Complemento cumulativo — Amendments (22/10/2026)
+
+Físico 2.1.10, candidato NeoForge Minecraft 1.21.1 2.2.0 de 20/10/2026. Releases pós-instalada: 2.1.11 (10/10), acrescenta compatibilidade com Polytone; 2.2.0 (20/10), acrescenta slot animado suave da hotbar e conexão entre muros, cercas e painéis de vidro. Modificações de compatibilidade com Enhanced Block Entities protegem placas e sinos e removem aviso no chat; compatibilidade com Iris corrige partículas de candle holder quando carregado na mão.
+
+Gate: recursos gerados Moonlight, geometria e conexões, Polytone, Supplementaries, visualização EBE/shaders, partículas, reload e dedicado. Este changelog 2.2.0 é específico NeoForge 1.21.1; não usar a versão 2.2.0 Forge 1.20.1, cujo changelog diferente tratava cauldrons. Nenhum JAR foi atualizado.
+
+Fontes https://www.curseforge.com/minecraft/mc-mods/amendments/files/9122440 e https://www.curseforge.com/minecraft/mc-mods/amendments/files/9272216 .

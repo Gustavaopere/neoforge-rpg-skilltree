@@ -165,3 +165,11 @@ A release **FTB XMod Compat 21.1.12** para NeoForge 1.21.1 foi publicada em 18/0
 - **Gate de promoção:** Revalidar FTB Library/Teams/Chunks/Quests e integrações cross-mod; garantir ausência de dupla aplicação de eventos/permissões.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/ftb-xmod-compat
 
+## Lote 11–20: histórico cumulativo FTB XMod Compat 21.1.11→21.1.13
+**Retificação:** última versão publicada NeoForge 1.21.1 é 21.1.13 (20/10/2026), não 21.1.12. Instalado 21.1.11 permanece imutável.
+| Release | Mudanças documentadas |
+|---|---|
+| 21.1.12, 18/09 | JEI typed recipe manager lookup; stable bookmark API contra crashes nas versões JEI mais novas; background e click handling de JEI quest recipes; fluid tasks como ingredients. A preservação de amount/components ao abrir fluid recipes foi explicitamente declarada para **Fabric**, não aplicar como correção comprovada NeoForge. |
+| 21.1.13, 20/10 | Adapta a integração a **SG Economy API 1.1.0 ou superior**. O autor alerta que essa API 1.1.0 é incompatível com suas versões anteriores; é mudança de contrato cross-mod, não alteração do JAR SG Economy instalado. |
+Gates: conferir se SG Economy API está realmente presente no perfil e em qual versão; testar FTB Quests/KubeJS, Game Stages, JEI bookmarks/fluid tasks, clique nas quests, APIs soft, servidor dedicado e reconexão, sem duplicação de eventos. Não inferir que todo mod opcional está fisicamente instalado.
+Fonte oficial NeoForge 21.1.12: https://www.curseforge.com/minecraft/mc-mods/ftb-xmod-compat/files/8909889 ; catálogo NeoForge 21.1.13: https://www.curseforge.com/minecraft/mc-mods/ftb-xmod-compat/files/all ; texto 21.1.13 em https://www.curseforge.com/minecraft/mc-mods/ftb-xmod-compat/files/9267871 (esse arquivo é Fabric; serve somente ao changelog comum).

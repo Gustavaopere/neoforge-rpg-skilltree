@@ -98,3 +98,20 @@ A autoridade física atual mantém `VanillaBackport-neoforge-1.21.1-1.1.7.10.jar
 - **Gate de promoção:** Não confundir arquivos para versões Minecraft posteriores; manter worldgen/recipes/entities no baseline.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/vanillabackport
 
+## Release acumulada 1.2 — revisão do lote 11–20 em 22/10/2026
+
+**Correção da matriz anterior:** instalada 1.1.7.10; existe 1.2 Release para NeoForge 1.21.1, publicada 18/10/2026 (CurseForge file 9243543). É uma release maior de reescrita do código e de conteúdo, não uma versão já instalada.
+
+**Copper Age e Mounts of Mayhem:** adiciona materiais e equipamentos de cobre, novos blocos, variantes, mounts e entidades. Acrescenta conteúdo de Wilderness Bound; não atribuir ao 1.21.1 notas exclusivas de 1.20.1.
+
+**Bundles of Bravery:** ender pearls mantêm tickets de chunks em área 3×3, inclusive ao cruzar dimensões; tickets podem durar durante a viagem, com carregamento e descarregamento sincronizados a logout/login. Novos controles de bundles e tabs de conteúdo.
+
+**Garden Awakens:** pale gardens, trial chambers, creaking/creaking hearts, resin spread, emissive models e trees passam por refactors que afetam chunks e datapacks.
+
+**Spring to Life:** cactus flower e leaf litter atualizados, variantes de mobs via dados e novas shapes; underwool sheep desativado por padrão.
+
+**Chase the Skies:** equipaments de happy ghast passam a tags/assets datapack, locator bar para multiplayer, ajustes de leashes, música e soundtrack via resource pack integrado Backported OST.
+
+**Impacto no modpack:** mudança estrutural pode quebrar bridges e consumidores; revalidar em cópia de mundo Platform, Delightful Backport, Dynamic Trees for VanillaBackport, recursos e worldgen, recipes/registries, quests, cliente e dedicado. O requisito mínimo exato de Platform no JAR 1.2 não foi extraído; relação técnica não é prova de dependência declarada. Não alterar o JAR nem renomear dossier sem nova modlist física.
+
+Fonte upstream (artefato NeoForge): https://www.curseforge.com/minecraft/mc-mods/vanillabackport/files/9243543 .

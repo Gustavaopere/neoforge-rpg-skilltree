@@ -173,3 +173,26 @@ O registro acima é mantido literalmente para paridade de migração. O cabeçal
 - **Gate de promoção:** Validar exatamente com Create Big Cannons: Advanced Technologies/CBC, Create 6.0.10, startup, registries e cenários que motivaram o crash fix.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/cbc-advanced-technologies-aeronautics-fix
 
+## Atualizações cumulativas confirmadas — lote 11–20 (22/10/2026)
+
+Versão física top-level: cbcatfix 1.0.1, com divergência histórica metadata runtime 1.0.0 preservada. Projeto CurseForge inequívoco 1603954, CBC: Advanced technologies crash fix (Maqwr_), NeoForge Minecraft 1.21.1. Último artefato publicado: 1.1.4 Release de 15/10/2026.
+
+Sequência efetivamente publicada desde o físico: 1.1.0 (17/09), 1.1.1 (23/09), 1.1.2 (24/09) e 1.1.4 (15/10). Não foi localizado arquivo 1.1.3 no catálogo oficial; não inventar changelog de versão inexistente.
+
+| Release | Novidade específica já suportada na documentação ou na release oficial |
+
+|---|---|
+
+| 1.1.0 | Sable Rockets: física/lançamento de foguetes e integração com veículos; grande expansão além da correção de crash original. O dossier original descreve engine burnout, variantes de combustíveis/payloads, rail launching e compatibilidade Create/Sable. |
+
+| 1.1.1 | Integração Radars/RWR/jamming/chaff, seeker lifecycle e guided munitions, segundo seção 14 preexistente. |
+
+| 1.1.2 | Hotfix de Minecraft launch; versão de referência da linha de rádios e foguetes. |
+
+| 1.1.4 | Compatibilidade Create: Radars 3.1.3, launcher readiness avaliando ammo, arming time e firing cooldown; suporta side launchers e posicionamento, Traverse aiming bonuses; Sable alvo 2.0.6; ícones novos, particle textures de steel launcher rail e limpeza de checks. |
+
+**Gates:** matrizes reais do pack devem confirmar Create Big Cannons Advanced Technologies, Create, Create: Radars e Sable físicos, sem assumir que as versões alvo publicadas já estão instaladas. Testar launchers com ammo parcial/arming/cooldown, side rockets, inherited velocity, RWR/chaff/jamming, guided fuse, world save/reload, Sable physicalize/dephysicalize e dedicated server. Passar de 1.0.1 para 1.1.4 não é só patch de crash. Não instalar nem alterar JAR.
+
+**Inconsistência estrutural separada:** o CurseForge atual mostra as categorias **Addons + Create + Technology**, enquanto o dossier existente está em **Addons + Create**. Não o movimentar sem pesquisa integral de links internos e atualização coerente do índice mestre. Este item permanece BLOQUEADO para declarar conclusão integral da reorganização até corrigir essa divergência de categoria com segurança.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/cbc-advanced-technologies-aeronautics-fix/files/all ; https://www.curseforge.com/minecraft/mc-mods/cbc-advanced-technologies-aeronautics-fix/files/9200297 .

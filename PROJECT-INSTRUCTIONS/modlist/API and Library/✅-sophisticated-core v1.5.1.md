@@ -239,3 +239,48 @@ O [source 1.21.x pinado em `400660f2d4e6165076977b09e66cae26a7f2dfd3`](https://g
 - **Gate de promoção:** Não atualizar isoladamente. Validar junto de Backpacks, Storage, bridges Create e consumers; exigir anti-dupe, linked inventories, reopen/save/restart, chunk unload e dedicated server.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/8839323
 
+## Auditoria acumulada — lote 11–20 (22/10/2026)
+
+**Físico:** Sophisticated Core 1.5.1 (o dossier registra divergências internas de build e não as apaga). **Última release NeoForge Minecraft 1.21.1:** 1.5.17.2426 (21/10). Não confundir com 1.5.18 para 26.x nem com builds Forge 1.20.1.
+
+### Marcos intermediários e suas evidências
+
+| Release / período | Fonte e delta verificável |
+
+|---|---|
+
+| 1.5.2.2343 (setembro) | Shared linked storage para Sophisticated. |
+
+| 1.5.4.2356 (outubro) | Correções de migração de inventários e estados de memory settings (detalhes nas seções 21–22 deste dossier). |
+
+| 1.5.5.2363 (outubro) | Link de storages perde conexão ao quebrar barrel: fix de source. |
+
+| 1.5.6.2374 (05/10) | Melhorias de estado e sincronização de storages linked; consultar seção 23 do dossier. |
+
+| 1.5.7.2381 (06/10) | Ender Linker icon dimensions e traduções; consultar seção 23. |
+
+| Releases posteriores 1.5.8–1.5.17 (outubro, culminando em 1.5.17.2426 em 21/10) | O catálogo oficial 1.21.1 comprova 1.5.14.2413 (17/10), 1.5.15.2417 e 1.5.16.2422 (19/10), 1.5.17.2426 (21/10); source branch 1.21.x registra a sequência detalhada abaixo. A associação exata de cada commit a cada artefato exige tags/manifesto e permanece NÃO RESOLVIDA; não se presume que o commit anterior à data pertença necessariamente à release imediata. |
+
+### Sequência de mudanças source na janela 06/10–21/10
+
+- 06/10: localizações, e icon sizing para Ender Linker.
+
+- 10/10: grupos linked compartilhados Backpacks/Storage e fix de depósitos de controller após chunk unload.
+
+- 12/10: item actions deixam de contornar claim protection.
+
+- 13/10: controller deposit com filtros de mod deixa de perder itens; acesso de claims obrigatório em endpoints.
+
+- 15/10: handlers de controller passam a extrair novos itens após refresh.
+
+- 16/10: loaded-block-entity lookup evita carregar chunks indevidamente.
+
+- 19/10: wrapper caches para storage stacks copiadas deixam de crescer; crafting upgrade recipe transfer não pode void leftover items.
+
+- 21/10: pump upgrades deixam de acessar tanques próximos contornando claims.
+
+**Risco cumulativo:** perda/duplicação de item em linked storage, controller transfers, chunk unload, filter, leftover recipe, memory settings, claim bypass, fluid/pump e version skew. Cotejar em conjunto Core, Backpacks, Storage, bridges Create, Thirst Reclaimed/mixins, JEI e dedicated server; fazer cópia de mundo, controlar hashes dos três JARs e testar save/restart e multiplayer. O source publicado não é teste de integração nem prova de qual build empacotou cada commit.
+
+**Fontes primárias:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/all?page=1&pageSize=20&version=1.21.1 ; https://github.com/P3pp3rF1y/SophisticatedCore/commits/1.21.x ; commits: https://github.com/P3pp3rF1y/SophisticatedCore/commit/a25986c3b ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/9bdc66d50 ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/10b92475f ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/646973452 ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/149104468 ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/3094ea5fa ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/176692b25 .
+
+**Limite pendente para certificação da auditoria integral por release:** matriz pública individual dos pacotes 1.5.8–1.5.13 e 1.5.14–1.5.17 com changelog de cada build; por ausência desse mapeamento, este item segue **BLOQUEADO para remoção da lista de acompanhamento**. Os fatos verificados não são uma licença para inferir changelog.

@@ -148,3 +148,18 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Gate de promoção:** Manter baseline; testar primeira pessoa com Epic Fight, animações, câmera/FOV e mods de render se houver troca futura.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/punchy
 
+## Auditoria acumulada — lote 11–20 (22/10/2026)
+
+**Versão instalada:** Punchy 2.7e, NeoForge 1.21.1. **Mais recente no alvo:** 2.7e, mesma versão. A listagem oficial separa 1.21.1 de 1.21.11 e Minecraft 26.x: builds de outras versões com o mesmo número 2.7e não são upgrades aplicáveis.
+
+**Intervalo instalado → upstream:** vazio. Portanto não há release intermediária nova a descrever. O dossier já registra o changelog do 2.7e (resource refresh, término de sons de animação e item grip alignment); esses fixes já estão incorporados à linha física e não constituem uma atualização futura.
+
+**Conferências para mudanças futuras:** Punchy Epic Fight Compat, battle-mode switch, First Person Model, Hand Editor, perfis/Mixpacks, animations on reload, left-handed e shaders. Nenhum teste de runtime foi executado agora.
+
+**Fonte primária da distribuição:** https://www.curseforge.com/minecraft/mc-mods/punchy/files/all (2.7e NeoForge 1.21.1, 03/09/2026).
+
+## Pendência de categorias CurseForge — 22/10/2026
+
+Categorias temáticas oficiais atuais: API and Library + Cosmetic + Map and Information. Caminho atual: Cosmetic + Map and Information. Há discrepância e a movimentação necessita revisão dos links internos e índice. Não considerar este dossier inteiramente reorganizado ou liberado para retirada da lista até reconciliação verificada. O JAR físico e basename permanecem inalterados.
+
+Fonte: https://www.curseforge.com/minecraft/mc-mods/punchy
