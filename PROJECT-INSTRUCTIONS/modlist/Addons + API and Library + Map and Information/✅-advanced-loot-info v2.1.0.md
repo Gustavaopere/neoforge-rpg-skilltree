@@ -322,3 +322,17 @@ ALI é viewer **informacional**; chances exibidas podem depender de Luck, GLM, d
 - **Gate de promoção:** Validar loot-table introspection, JEI/UI overlays, client/server data sync e compat com datapacks/modded loot antes de promoção.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/advanced-loot-info
 
+## Auditoria detalhada de versões 2.1.0 → 2.5.0 — lote 31–40 (22/10/2026)
+
+**JAR instalado:** Advanced Loot Info 2.1.0 NeoForge 1.21.1. **Último publicado:** 2.5.0 **Beta** (16/10/2026, arquivo NeoForge 1.21.1 file ID 9212286). **Sequência completa publicada deste recorte:** 2.1.0 → 2.2.0 → 2.3.0 → 2.4.0 → 2.5.0. Os três primeiros incrementos já têm detalhes nas seções 24–25; este adendo consolida seus deltas com as notas 2.5.0 do changelog oficial do source.
+
+| Release | Mudança comprovada (upstream) |
+|---|---|
+| 2.2.0 | Corrige erros JEI via REI Plugin; suporte a custom entity trades, POIs de profissões modded, global loot modifier plugins NeoForge, LootJS filters e tooltip; **Farmer's Delight passa ao mod separado ALI Compat**. |
+| 2.3.0 | Custom ingredients não derivados de Ingredient; estatísticas de spawn natural das entidades (biomas, dimensões, estrutura, peso/grupos), nova config showEntitiesWithoutLoot; reduz memória com JEI/EMI, acelera GLM scanning; fixa dados de chance/count e tooltip. |
+| 2.4.0 | UI por luck e pesos de alternativas, roll/chance/count, configuração spawnInfo, gráficos, tooltip scroll e tradução de nomes; tratamento tolerante a plugins/loot entries ruins; fix LootJS replaceLoot; validação de config evita reset total. |
+| **2.5.0 Beta** | Tooltip larga quebra linhas; entradas de air e empty table exibidas como vazias; evita recursão infinita em loot tables cíclicas; mostra GLMs e entries removidas por modifier sem apagar o resto; pluggable traders podem substituir trades, desdobrar níveis e usar entradas de loot como trade items; LootJS pools, replacement chance, XP/explosions/lightning e funções posicionadas corretamente. Correção de mixin no dev Forge e detecção de trades adicionadas ao world-load **Fabric-only**, não representar como defeitos confirmados de NeoForge. |
+
+**Gate:** JEI/REI/EMI confirmado no perfil; Advanced Core Info (ACI) e ALI Compat conforme dependências; modded villager trade/POI, LootJS, GLMs, tabela recursiva, chances por luck, settings, seed/datapack reload, client+dedicated, conexão de jogadores com grandes dados e benchmark de tooltips. **A Beta 2.5.0 é apenas candidata documental**, não foi instalada nem homologada. Nenhuma versão de outros loaders foi contada como artefato top-level.
+
+**Fontes:** https://github.com/yanny7/AdvancedLootInfo/blob/1.21.1/ali/CHANGELOG.md ; https://www.curseforge.com/minecraft/mc-mods/advanced-loot-info/files/9212286 ; https://www.curseforge.com/minecraft/mc-mods/advanced-loot-info/files/all?version=1.21.1 .
