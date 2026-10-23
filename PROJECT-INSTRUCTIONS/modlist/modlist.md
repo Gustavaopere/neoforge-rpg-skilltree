@@ -238,7 +238,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 188 | Create: Food | `createfood-neoforge-1.21.1-2.7.1.jar` | `2.7.1` | `Automation + Create + Food` | 23/09/2026 - 23:51 |
 | 189 | Create Goggles (Create Plus) | `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar` | `6.1.1` | `Addons + Armor, Tools, and Weapons + Create` | 23/09/2026 - 23:51 |
 | 190 | Create JEI Compat | `createjeicompat-1.0.3.jar` | `1.0.3` | `Create` | 23/09/2026 - 23:51 |
-| 191 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 22/10/2026 - 22:50 |
+| 191 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 22/10/2026 - 22:55 |
 | 192 | Create: Liquid Fuel | `createliquidfuel-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 24/09/2026 - 00:20 |
 | 193 | Create: Mechanical Companion | `createmechanicalcompanion-1.9-neoforge-1.21.1.jar` | `1.9 (artefato/publicação); metadata runtime vazia` | `Addons + Adventure and RPG + Create + Mobs + Technology` | 24/09/2026 - 00:20 |
 | 194 | Create: Metallurgy | `createmetallurgy-1.0.3-1.21.1.jar` | `1.0.3` | `Addons + Automation + Create + Processing + Technology` | 24/09/2026 - 00:20 |
@@ -495,7 +495,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 445 | Platform | `Platform-neoforge-1.21.1-1.3.3.jar` | `1.3.3` | `API and Library` | 22/10/2026 - 21:59 |
 | 446 | playerAnimator | `player-animation-lib-forge-2.0.4+1.21.1.jar` | `2.0.4+1.21.1` | `API and Library + Cosmetic` | 26/09/2026 - 02:33 |
 | 447 | Player Animation Library | `PlayerAnimationLibNeoforge-1.1.6+mc.1.21.1.jar` | `1.1.6+mc.1.21.1` | `API and Library` | 26/09/2026 - 02:33 |
-| 448 | Polymorph+ | `polymorph_plus-neoforge-1.3.1+1.21.1.jar` | `1.3.1+1.21.1` | `Miscellaneous + Utility & QoL` | 22/10/2026 - 22:50 |
+| 448 | Polymorph+ | `polymorph_plus-neoforge-1.3.1+1.21.1.jar` | `1.3.1+1.21.1` | `Miscellaneous + Utility & QoL` | 22/10/2026 - 22:55 |
 | 449 | Polytone | `polytone-1.21-4.4.0-neoforge.jar` | `1.21-4.4.0` | `Cosmetic + Utility & QoL` | 26/09/2026 - 02:34 |
 | 450 | Pondus Inventory [Sable] | `pondus_inventory_fi-0.15-Beta.jar` | `0.15-Beta` | `Addons + API and Library + Utility & QoL` | 26/09/2026 - 02:33 |
 | 451 | Create Aeronautics: Portable Engine Liquid Fuel | `portable_engine_liquid_fuel-2.0.0-neoforge-1.21.1.jar` | `2.0.0` | `Addons + Create + MCreator + Utility & QoL` | 26/09/2026 - 02:34 |
@@ -1017,12 +1017,12 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 32 | owo (owo-lib) | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-owo-lib%20v0.12.15.5-beta.1%2B1.21.md) | `0.12.15.5-beta.1+1.21` | 0.12.15.6-beta.1+1.21 (Beta, NeoForge) | **AUDITORIA DOCUMENTAL FECHADA; Beta não instalada** |
 | 33 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.0.8.md) | `21.0.8` | 21.1.2 (17/10; 21.0.9→21.1.2) | **AUDITORIA DOCUMENTAL FECHADA; validar EFM/MineColonies** |
 | 34 | Easy Model Entities | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Automation%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-easy-model-entities%20v2.4.0.md) | `2.4.0` | 2.6.0 (NeoForge 1.21.1; 2.5.0 intermediária) | **AUDITORIA DOCUMENTAL FECHADA; Easy NPC coordenado** |
-| 35 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | 1.4.1 (NeoForge 1.21.1) | **BLOQUEADO: 1.3.2/1.4.0 sem delta exato para alvo** |
+| 35 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | 1.4.1 (NeoForge 1.21.1) | **AUDITORIA DOCUMENTAL FECHADA; source 1.21.1 pinado, QA JEI pendente** |
 | 36 | Sable: Ragdoll - Patch | [Abrir `.md`](./Bug%20Fixes/%E2%9C%85-sable-ragdolls-patch%20v1.9.md) | `1.9` | 1.9.1 (Release NeoForge 1.21.1, 19/10) | **CORRIGIDO E AUDITADO; alpha cape transparency** |
 | 37 | Eidolon : Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | 0.5.0.7 (17/10; 0.5.0.4/.5/.6/.7) | **AUDITORIA DOCUMENTAL FECHADA; locator ritual QA** |
 | 38 | [ETF] Entity Texture Features - [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-texture-features%20v7.2.1.md) | `7.2.1` | 7.2.6 (15/10; 7.2.2→7.2.6) | **AUDITORIA DOCUMENTAL FECHADA; EMF/ETF render QA** |
 | 39 | Reliquified Ars Nouveau | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-ars-nouveau%20v0.8.1.md) | `0.8.1` | 0.8.1 Beta (sem publicação posterior NeoForge 1.21.1) | **REVALIDADO; zero versões intermediárias** |
-| 40 | Create:LazyTick | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-lazy-tick%20v2.6.25-6.0.10.md) | `2.6.25-6.0.10` | 2.7.30 / Create 6.0.10 (28/09) | **BLOQUEADO: enumeração exaustiva desde 2.6.25 não comprovada** |
+| 40 | Create:LazyTick | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-lazy-tick%20v2.6.25-6.0.10.md) | `2.6.25-6.0.10` | 2.7.30 / Create 6.0.10 (28/09) | **AUDITORIA DOCUMENTAL FECHADA; Modrinth histórico 2.6.25→2.7.30** |
 | 41 | Ecliptic Seasons | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Farming%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ecliptic-seasons%20v0.15.0-rc-3-1.md) | `0.15.0-rc-3-1` | 0.15.4.1 Beta | **BLOQUEADO** |
 | 42 | Fragmentum ✿ NeoForge | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | 5.4.0 | **PENDENTE — breaking changes** |
 | 43 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | 2.2.1 | **COORDENADO ParCool/Thirst** |
@@ -1141,10 +1141,10 @@ Esta matriz complementar preserva a numeração do pedido, distinta da ordem fí
 | 32 | owo (owo-lib) | 0.12.15.5-beta.1+1.21 | 0.12.15.6-beta.1+1.21 Beta | FECHADO documental; Beta não instalada |
 | 33 | Minecolonies: Epicfied (Epic Colonies) | 21.0.8 | 21.0.9, 21.0.91, 21.1.0, 21.1.1, 21.1.2 | FECHADO documental; QA Epic Fight/MineColonies pendente |
 | 34 | Easy Model Entities | 2.4.0 (metadata runtime ausente) | 2.5.0, 2.6.0 | FECHADO documental; homologar conjunto Easy NPC/EME |
-| 35 | Polymorph+ | 1.3.1+1.21.1 | 1.3.2, 1.4.1; 1.4.0 no alvo sem delta isolado | BLOQUEADO: changelog das intermediárias insuficiente |
+| 35 | Polymorph+ | 1.3.1+1.21.1 | 1.3.2, 1.4.0 (source 1.21.1), 1.4.1 JAR NeoForge 1.21.1 | FECHADO documental por commits upstream 1.21.1; JAR 1.4.0 não individualizado, QA pendente |
 | 36 | Sable: Ragdoll - Patch | 1.9 | 1.9.1 Release (19/10), cape alpha | FECHADO documental; retificado anterior sem bump |
 | 37 | Eidolon : Repraised | 0.5.0.2 | 0.5.0.4, 0.5.0.5, 0.5.0.6, 0.5.0.7 | FECHADO documental; checar rituais locator/mana |
 | 38 | [ETF] Entity Texture Features | 7.2.1 | 7.2.2, 7.2.3, 7.2.4, 7.2.5, 7.2.6 | FECHADO documental; render/shaders/EMF QA |
 | 39 | Reliquified Ars Nouveau | 0.8.1 Beta | 0.8.1 Beta, sem release posterior para 1.21.1 | REVALIDADO; intervalo vazio |
-| 40 | Create:LazyTick | 2.6.25-6.0.10 | 2.7.29, 2.7.30 / Create 6.0.10 | BLOQUEADO: intervalo 2.6.25→2.7.29 não enumerado exaustivamente |
-**Regra para o Bloco de Notas, após CI+merge+re-fetch:** itens **31, 32, 33, 34, 36, 37, 38 e 39** podem sair por histórico de atualizações documentado. Manter **35 e 40** por falta de evidência release-by-release. Nenhuma linha implica que o JAR instalado mudou ou que testes in-game foram executados.
+| 40 | Create:LazyTick | 2.6.25-6.0.10 | 2.7.29, 2.7.30 / Create 6.0.10 | FECHADO documental: Modrinth changelog cumulativo lista 2.6.25→2.7.29→2.7.30; QA pendente |
+**Regra para o Bloco de Notas, após CI+merge+re-fetch:** os **dez itens 31–40** podem sair da lista de pendências de auditoria **documental**, porque as publicações intermediárias são agora cobertas por changelog oficial ou commits upstream versionados da linha NeoForge 1.21.1. O JAR 1.4.0 Polymorph+ não foi individualizado como download: source 1.21.1 versionado é a evidência do delta. Esta revisão **não comprova atualização física, hashes de novos JARs, segurança de upgrade ou testes in-game**.
