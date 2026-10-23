@@ -309,3 +309,57 @@ O [source 1.21.x pinado em `400660f2d4e6165076977b09e66cae26a7f2dfd3`](https://g
 **Impactos relevantes para adicionar à avaliação do pack:** claims/permissions (Pump e Item Actions) têm implicações de proteção de bases e acesso não autorizado; fix de queries de block entities reduz chunkloads incidentais e risco de impacto de servidor; refresh dos handlers/linked groups evita perda/aparente inacessibilidade de itens; wrappers de storages copiados devem ser checados quanto ao consumo de memória; recipe transfer exige teste de leftovers e de conservação de itens. Dependentes/backpacks/storage devem atualizar de modo coordenado, principalmente pela ABI/shared linked storage e mixins de Thirst Was Reclaimed 3.0.6.
 
 **Limite de completude:** a sequência de **releases** está integralmente inventariada e os commits relevantes do período estão nominados. Entretanto a prova 1:1 sobre **qual das builds 1.5.15 e 1.5.16 contém cada correção de 19/10** ainda requer changelog/compare/tag específico. Nenhum teste in-game realizado e nenhuma promoção do JAR; **continuar item 12 pendente para a exigência de auditoria release-by-release estrita**.
+
+## Reconciliação por commit e versão explícita — 23/10/2026 (Core 1.5.8–1.5.17)
+
+**Autoridade física histórica permanece:** posição **#518**, `sophisticatedcore-1.21.1-1.5.1.2341.jar`, mod id `sophisticatedcore`, runtime **1.5.1** (build 2341 no filename). **Projeto oficial CurseForge 618298**, categorias atuais **API and Library**, coerentes com a pasta. A última Release publicada para **Minecraft 1.21.1/NeoForge** continua **`sophisticatedcore-1.21.1-1.5.17.2426.jar`**, 21/10/2026; versões 1.5.18 publicadas para **Minecraft 26.x** não se aplicam automaticamente. A matriz anterior já inventariou os **12 JARs** posteriores ao instalado. Esta revisão encerra especificamente o mapeamento de versões `1.5.8/1.5.9` e `1.5.15/1.5.16`, antes indicado como incompleto.
+
+### Evidência mais forte: o próprio commit altera `mod_version`
+
+Os commits abaixo pertencem à branch oficial **`P3pp3rF1y/SophisticatedCore:1.21.x`** para Minecraft 1.21.1 e contêm mudança de versão explícita **no mesmo diff que a correção de código**. Isso permite separar os deltas de source por versão com mais precisão que apenas a data do commit:
+
+| Commit oficial | Transição em `gradle.properties` | Correção identificada |
+|---|---|---|
+| `5452f932d` | `1.5.7 → 1.5.8` | Grupos linked compartilhados entre Backpacks/Storage e mudanças da janela de 10/10 já analisadas |
+| `16b0bbc36` | `1.5.8 → 1.5.9` | Controller deposit após chunk unload e demais fixes daquela janela |
+| `176692b25` | `1.5.9 → 1.5.11` | Ações de itens precisam respeitar proteção/claims (janela 12/10) |
+| `3094ea5fa` | `1.5.11 → 1.5.12` | Controller deposit com filtros de conteúdos de mods, sem perda de itens |
+| `149104468` | `1.5.12 → 1.5.13` | Controller consegue extrair novos itens após refresh de handlers |
+| `646973452` | `1.5.13 → 1.5.14` | Consultas a block entities carregadas não devem acionar carregamento de chunk |
+| **`10b92475f53f`** | **`1.5.14 → 1.5.15`** | **Corrige crescimento indevido de cache de wrappers de storage stacks copiadas** |
+| **`9bdc66d50911`** | **`1.5.15 → 1.5.16`** | **Corrige descarte/perda de sobras ao transferir receitas de crafting upgrade** |
+| `a25986c3bd74` | `1.5.16 → 1.5.17` | Pump Upgrades não devem ignorar permissões/claims ao acessar tanques próximos |
+
+**Atenção ao limite da sequência publicada:** a existência dos commits de source **1.5.8 e 1.5.9 não significa que foram publicados JARs NeoForge 1.21.1 com esses números**. Na lista CurseForge filtrada, o próximo arquivo após **1.5.7.2381** é **1.5.11.2394**; portanto os deltas presentes no source entre 1.5.7 e 1.5.11 são tratados como **conteúdo acumulado na primeira release publicada 1.5.11**, não como dois releases adicionais. Números `1.5.10` e `1.5.3` também não devem originar releases imaginárias.
+
+### Deltas exclusivos 1.5.15 e 1.5.16 — pendência anterior corrigida
+
+**1.5.15.2417 — Release NeoForge 1.21.1 de 19/10; commit source `10b92475f53f`.**
+
+- `StorageWrapperRepository` deixa de acumular wrappers compartilhados inadequadamente para **ItemStacks copiados**; a implementação passa a organizar cache UUID por **ThreadGroup** com valores fracos, em vez de misturar wrappers de grupos de threads.
+- Adiciona tratamento de listeners e callbacks de refresh com remoção/limpeza apropriada para caches de upgrades e inventários; isso deve ser testado para impedir referências obsoletas e efeitos de refresh duplicados.
+- O source incorpora testes unitários direcionados à separação por thread group e limpeza dos caches. **Não afirmar que os testes rodaram neste modpack**.
+- **Evidência direta:** https://github.com/P3pp3rF1y/SophisticatedCore/commit/10b92475f53f .
+
+**1.5.16.2422 — Release NeoForge 1.21.1 de 19/10; commit source `9bdc66d50911`.**
+
+- Corrige fluxo server-side de **recipe transfer** do crafting upgrade que podia **destruir itens remanescentes** ao devolver ingredientes/leftovers ao inventário.
+- O método de reinserção passa a usar `Slot.safeInsert` e a carregar explicitamente o **stack restante** após cada inserção, em vez de mutar manualmente contadores ou tratar parte não inserida como consumida.
+- O source contém teste de regressão para transferência de itens do inventário de crafting a um handler existente. **Não confundir teste do repositório com QA executada neste pack**.
+- **Evidência direta:** https://github.com/P3pp3rF1y/SophisticatedCore/commit/9bdc66d50911 .
+
+A sequência documental fica agora **1.5.14.2413 → 1.5.15.2417 (wrapper cache/thread groups) → 1.5.16.2422 (recipe transfer/leftovers) → 1.5.17.2426 (Pump/claims)**, com identidade técnica de cada uma demonstrada nos respectivos source commits. Os números do JAR/build provêm do catálogo CurseForge, enquanto os números `mod_version` provêm dos commits — ambas as evidências são necessárias e mantidas **distintas**. Não houve comparação de bytecode de JARs instalados/candidatos.
+
+### Impactos operacionais e testes pendentes
+
+- [ ] Atualizar Core **junto** a Sophisticated Storage, Backpacks, bridges Create e demais consumers. Storage candidata **1.6.9.2199** declara **Core ≥1.5.12**, ao passo que o Core instalado permanece 1.5.1.
+- [ ] Reproduzir e medir o comportamento de **cached wrappers** com stacks copiados, diferentes thread groups e resource/world restart; verificar retenção de memória e listeners stale.
+- [ ] Testar crafting upgrade recipe transfer, restos/ingredientes, inventário quase cheio, slots incompatíveis, rollback e reabertura, comprovando conservação de itens em todas as operações.
+- [ ] Validar Controller deposit/filter/linked groups/chunk unload, anti-dupe, multiusuário e integridade de dados de itens.
+- [ ] Validar autorização de claims em ações/pumps, chunkload indireto, configs e boot de dedicated server.
+- [ ] Fazer backup de mundo/registries antes de qualquer promoção, conferir metadata dos JARs e hashes binários das versões candidatas; nenhuma dessas verificações de runtime foi executada nesta revisão.
+
+**Conclusão documental:** todas as publicações posteriores à build física **1.5.1.2341** já estavam enumeradas; a lacuna de autoria das correções **1.5.15/1.5.16** foi resolvida com **transições de `mod_version` no próprio diff oficial**, e as mudanças não publicadas 1.5.8/1.5.9 foram reconciliadas sem criar artefatos. **O histórico de releases da linha alvo está suficientemente discriminado para retirar o item #12 da fila de *pesquisa de changelogs***. **Não representa autorização para instalar Core novo, declarar compatibilidade/QA concluída, ou alterar o número instalado.**
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/all?page=1&version=1.21.1 ; https://github.com/P3pp3rF1y/SophisticatedCore/commits/1.21.x ; commits pinados na tabela e nas seções anteriores.
+
