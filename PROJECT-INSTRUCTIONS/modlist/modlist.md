@@ -117,7 +117,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 067 | Create: Bells & Whistles | `bellsandwhistles-0.4.7-1.21.1.jar` | `0.4.7-1.21.1` | `Cosmetic + Create + Player Transport + Technology + Utility & QoL` | 19/09/2026 - 21:35 |
 | 068 | Better Advanced Tooltips | `better-advanced-tooltips-2101.1.0-build.5.jar` | `2101.1.0-build.5` | `API and Library + Map and Information + Utility & QoL` | 19/09/2026 - 21:35 |
 | 069 | Better Library | `better_lib-neoforge-1.21.1-1.0.111.jar` | `1.0.111` | `API and Library + Server Utility + Utility & QoL` | 19/09/2026 - 21:35 |
-| 070 | Better Modlist | `better_modlist-21.1.1.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 19/09/2026 - 21:35 |
+| 070 | Better Modlist | `better_modlist-21.1.1.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 23/10/2026 - 02:01 |
 | 071 | BetterEnd: New Dawn | `BetterEnd-21.0.34.jar` | `21.0.34` | `Biomes + Cosmetic + Mobs + Structures + World Gen` | 19/09/2026 - 21:35 |
 | 072 | Better Fps - Render Distance | `betterfpsdist-1.21.1-6.1.jar` | `6.1` | `Cosmetic + Miscellaneous` | 19/09/2026 - 21:46 |
 | 073 | Epic Fight - Better lock on | `betterlockon-2.0.8-neoforge.jar` | `2.0.8-neoforge` | `Addons + Adventure and RPG` | 19/09/2026 - 21:35 |
@@ -300,7 +300,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 250 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 24/09/2026 - 14:02 |
 | 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 24/09/2026 - 14:02 |
 | 252 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 23/10/2026 - 01:41 |
-| 253 | Enhanced Boss Bars | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 24/09/2026 - 16:02 |
+| 253 | Enhanced Boss Bars | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 23/10/2026 - 02:03 |
 | 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
 | 255 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
 | 256 | [ETF] Entity Texture Features - [Fabric & Forge] | `entity_texture_features-7.2.1-1.21-neoforge.jar` | `7.2.1` | `Cosmetic + Utility & QoL` | 22/10/2026 - 22:49 |
@@ -422,7 +422,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 372 | Legendary Spellbooks | `legendary_spellbooks-1.21.1+neo-0.3.2.jar` | `0.3.2` | `Addons + Magic` | 25/09/2026 - 11:24 |
 | 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `leylines-1.0.3.jar` | `1.0.3` | `Addons + Magic + Structures + World Gen` | 25/09/2026 - 11:24 |
 | 374 | Lionfish API | `lionfishapi-3.1.jar` | `3.1` | `API and Library` | 25/09/2026 - 11:24 |
-| 375 | Lithostitched | `lithostitched-1.8.0+beta6-neoforge-21.1.jar` | `1.8.0+beta6` | `API and Library + Miscellaneous + World Gen` | 25/09/2026 - 11:24 |
+| 375 | Lithostitched | `lithostitched-1.8.0+beta6-neoforge-21.1.jar` | `1.8.0+beta6` | `API and Library + Miscellaneous + World Gen` | 23/10/2026 - 02:00 |
 | 376 | Load My F***ing Tags | `lmft-1.1.1+1.21.9-neoforge.jar` | `1.1.1+1.21.9` | `Miscellaneous + Server Utility` | 25/09/2026 - 11:24 |
 | 377 | Epic Fight x Better Lock On: Movement & Camera Fixes | `lockonmovementfix-neoforge-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes + Utility & QoL` | 25/09/2026 - 11:24 |
 | 378 | Lodestone | `lodestone-1.21.1-1.8.2.jar` | `1.8.2` | `API and Library` | 25/09/2026 - 11:24 |
@@ -553,7 +553,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 503 | Simply Swords [Fabric & Forge] | `simplyswords-neoforge-1.70.2-1.21.1.jar` | `1.70.2-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 30/09/2026 - 10:20 |
 | 504 | Simply Tooltips | `SimplyTooltips-neoforge-0.1.5.jar` | `0.1.5` | `API and Library + Miscellaneous` | 27/09/2026 - 19:01 |
 | 505 | Create: Coasters Simulated | `simulatedcoasters-0.1.5.jar` | `0.1.5` | `Addons + Create` | 27/09/2026 - 19:01 |
-| 506 | Skin Layers 3D | `skinlayers3d-neoforge-1.11.2-mc1.21.1.jar` | `1.11.2` | `Adventure and RPG + Cosmetic` | 27/09/2026 - 19:01 |
+| 506 | Skin Layers 3D | `skinlayers3d-neoforge-1.11.2-mc1.21.1.jar` | `1.11.2` | `Adventure and RPG + Cosmetic` | 23/10/2026 - 02:00 |
 | 507 | Sky Aesthetics | `sky_aesthetics-neoforge-2.0.13-beta.jar` | `2.0.13-beta` | `API and Library + Cosmetic + Dimensions + Utility & QoL` | 27/09/2026 - 19:01 |
 | 508 | Create Slice & Dice | `sliceanddice-4.3.3-neoforge.jar` | `4.3.3` | `Addons + Farming + Technology` | 27/09/2026 - 19:01 |
 | 509 | Create: Smart Bounds | `smart_bounds-1.0.0.jar` | `1.0.0` | `Bug Fixes + Create + Performance + Technology` | 27/09/2026 - 19:02 |
@@ -1047,10 +1047,10 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 62 | Reliquified Iron's Spells 'n Spellbooks | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-irons-spells-n-spellbooks%20v0.2.7.md) | `0.2.7` | 0.2.8 Beta | **0.2.8 BETA REVISADA INTEGRALMENTE; DIMENSION SEAL/ANIMATED TEXTURES/ABILITY ICONS DOCUMENTADOS; QA FÍSICO SEPARADO** |
 | 63 | Enhanced AI | [Abrir `.md`](./Mobs/%E2%9C%85-enhanced-ai%20v4.2.3.0.md) | `4.2.3.0` | 4.2.5.0 (20/10) | **4.2.4.0 E 4.2.5.0 REVISADAS COM CHANGELOGS EXATOS; QA FÍSICO SEPARADO** |
 | 64 | ParCool! ~ Minecraft Parkour ~ | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-parcool%20v4.0.0.3.md) | `4.0.0.3` | 4.0.1.6 | **4.0.0.6/4.0.1.0/.1/.2/.5/.6 REVISADAS; CURIOS OBRIGATÓRIO NO UPSTREAM; QA FÍSICO SEPARADO** |
-| 65 | Skin Layers 3D | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic/%E2%9C%85-3d-skin-layers%20v1.11.2.md) | `1.11.2` | 1.10.1 é o último NeoForge 1.21.1 comprovado | **FAIL-CLOSED: diverge do físico 1.11.2** |
-| 66 | Lithostitched | [Abrir `.md`](./API%20and%20Library%20%2B%20Miscellaneous%20%2B%20World%20Gen/%E2%9C%85-lithostitched%20v1.8.0%2Bbeta6.md) | `1.8.0+beta6` | 1.8.1 | **PENDENTE** |
-| 67 | Better Modlist | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-better-modlist%20v21.1.1.md) | `21.1.1` | 21.1.4 | **PENDENTE** |
-| 68 | Enhanced Boss Bars (Fabric/Forge/NeoForge) | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Miscellaneous%20%2B%20Mobs/%E2%9C%85-enhanced-boss-bars%20v1.0.0.md) | `1.0.0` | 1.1.2 | **PENDENTE** |
+| 65 | Skin Layers 3D | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic/%E2%9C%85-3d-skin-layers%20v1.11.2.md) | `1.11.2` | 1.11.4 (18/10; NeoForge 1.21.1 verificado) | **AUDITORIA 1.11.2→1.11.3→1.11.4 COMPLETA; FALSO BLOQUEIO DE CATÁLOGO CORRIGIDO; QA FÍSICO SEPARADO** |
+| 66 | Lithostitched | [Abrir `.md`](./API%20and%20Library%20%2B%20Miscellaneous%20%2B%20World%20Gen/%E2%9C%85-lithostitched%20v1.8.0%2Bbeta6.md) | `1.8.0+beta6` | 1.8.1 | **BETA6→1.8.0→1.8.1 DOCUMENTADAS; NOVOS TARGETS API/TAGS/STRUCTURE PROCESSORS; QA DE WORLDGEN SEPARADO** |
+| 67 | Better Modlist | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-better-modlist%20v21.1.1.md) | `21.1.1` | 21.1.5 (20/10) | **21.1.2/21.1.3/21.1.4/21.1.5 AUDITADAS EM RELEASES OFICIAIS; QA DE GUI SEPARADO** |
+| 68 | Enhanced Boss Bars (Fabric/Forge/NeoForge) | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Miscellaneous%20%2B%20Mobs/%E2%9C%85-enhanced-boss-bars%20v1.0.0.md) | `1.0.0` | 1.1.2 | **1.1.2 SOURCE NEOFORGE E CHANGELOG DETALHADOS; 1.1.0/1.1.1 SEM ARTEFATO 1.21.1 AUTÔNOMO COMPROVADO; QA DE CONFIG/RENDER SEPARADO** |
 | 69 | BetterEnd: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betterend-new-dawn%20v21.0.34.md) | `21.0.34` | 21.0.38 | **COORDENADO NEW DAWN** |
 | 70 | Create: Curios Backtank | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Automation%20%2B%20Create/%E2%9C%85-create-curios-backtank%20v1.0.1.md) | `1.0.1` | 1.0.2 | **PENDENTE** |
 | 71 | Advanced Core Info (ACI) | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-advanced-core-info%20v1.1.0.md) | `1.1.0` | 1.5.0 Beta | **BLOQUEADO** |
