@@ -157,3 +157,9 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 **Conferências para mudanças futuras:** Punchy Epic Fight Compat, battle-mode switch, First Person Model, Hand Editor, perfis/Mixpacks, animations on reload, left-handed e shaders. Nenhum teste de runtime foi executado agora.
 
 **Fonte primária da distribuição:** https://www.curseforge.com/minecraft/mc-mods/punchy/files/all (2.7e NeoForge 1.21.1, 03/09/2026).
+
+## Pendência de categorias CurseForge — 22/10/2026
+
+Categorias temáticas oficiais atuais: API and Library + Cosmetic + Map and Information. Caminho atual: Cosmetic + Map and Information. Há discrepância e a movimentação necessita revisão dos links internos e índice. Não considerar este dossier inteiramente reorganizado ou liberado para retirada da lista até reconciliação verificada. O JAR físico e basename permanecem inalterados.
+
+Fonte: https://www.curseforge.com/minecraft/mc-mods/punchy
