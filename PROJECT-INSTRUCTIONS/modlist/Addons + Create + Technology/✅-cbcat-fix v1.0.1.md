@@ -196,3 +196,11 @@ Sequência efetivamente publicada desde o físico: 1.1.0 (17/09), 1.1.1 (23/09),
 **Inconsistência estrutural separada:** o CurseForge atual mostra as categorias **Addons + Create + Technology**, enquanto o dossier existente está em **Addons + Create**. Não o movimentar sem pesquisa integral de links internos e atualização coerente do índice mestre. Este item permanece BLOQUEADO para declarar conclusão integral da reorganização até corrigir essa divergência de categoria com segurança.
 
 Fontes: https://www.curseforge.com/minecraft/mc-mods/cbc-advanced-technologies-aeronautics-fix/files/all ; https://www.curseforge.com/minecraft/mc-mods/cbc-advanced-technologies-aeronautics-fix/files/9200297 .
+
+## Encerramento da pendência de categoria — 23/10/2026
+
+> **A antiga observação “Inconsistência estrutural separada”, escrita antes da movimentação, foi resolvida:** dossier agora em `Addons + Create + Technology/`, categorias oficiais do projeto CurseForge **1603954**. O basename `✅-cbcat-fix v1.0.1.md` e o conteúdo técnico das releases foram preservados; a referência no índice mestre foi atualizada. Posição física **#090**, JAR top-level `cbcatfix-1.21.1-neoforge-1.0.1.jar` e divergência de metadata runtime **1.0.0** continuam explícitos.
+
+O catálogo revisado da linha NeoForge 1.21.1 publica, após o artefato físico 1.0.1: **1.1.0 → 1.1.1 → 1.1.2 → 1.1.4**; **1.1.3 não consta como release publicada**. Os deltas técnicos de cada uma das quatro publicações estão documentados na seção cumulativa anterior, inclusive mudanças relevantes em balística/integração Sable, radar e readiness dos launchers. Fontes: https://www.curseforge.com/minecraft/mc-mods/cbc-advanced-technologies-aeronautics-fix ; https://www.curseforge.com/minecraft/mc-mods/cbc-advanced-technologies-aeronautics-fix/files/all .
+
+**Escopo de conclusão:** auditoria documental das publicações e classificação estrutural finalizadas. Não houve promoção do JAR, world migration ou QA em runtime. As etapas de teste previstas são requisito separado para uma eventual instalação 1.1.4, não evidência de que ela esteja instalada.
