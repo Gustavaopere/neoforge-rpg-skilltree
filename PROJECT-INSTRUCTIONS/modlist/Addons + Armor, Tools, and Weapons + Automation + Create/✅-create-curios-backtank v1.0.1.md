@@ -131,3 +131,23 @@ Não foi localizado source público versionado do próprio Create: Curios Backta
 - **Gate de promoção:** Testar Curios slot ownership, Create backtank air/state, equip/unequip, death/relogin, Epic Fight render e multiplayer.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-curios-backtank
 
+## Auditoria da atualização NeoForge 1.21.1 — 23/10/2026 (1.0.1 → 1.0.2)
+
+**Autoridade física preservada:** JAR create_curios_backtank-neoforge-1.21.1-1.0.1.jar, mod id create_curios_backtank, runtime 1.0.1, posição física #140. **Versão mais recente para o mesmo loader/jogo:** 1.0.2, arquivo create_curios_backtank-neoforge-1.21.1-1.0.2.jar, Release de 16/10/2026, CurseForge projeto 1096864, File ID **9207977**. A publicação 1.0.2 é a única release posterior a 1.0.1 identificada neste catálogo para NeoForge 1.21.1; não há versão intermediária documentada nesse intervalo.
+
+### 1.0.2 — changelog específico do artefato NeoForge 1.21.1
+1. **Renderização do backtank equipado:** o autor informa que o backtank agora aparece visualmente no jogador. Verificar renderização no slot Back de Curios, perspectivas e multiplayer. Não inferir uma API específica de render a partir da nota.
+2. **Novo bônus de gameplay:** o Netherite Backtank equipado especificamente no **slot Back de Curios** passa a conferir o **bônus de conjunto de netherite, descrito pelo autor como imunidade à lava**. Isso altera proteção efetiva e tem impacto em progressão, combates e hazards; a implementação exata, interações com fontes de fogo diferentes e outros slots não estão documentadas pelo changelog.
+
+**Não foram declaradas no changelog outras alterações de crafting, consumo de ar, API ou duplicação.** A versão 1.0.1 instalada não deve ser descrita como se já tivesse as duas novidades.
+
+### Plano de regressão antes da promoção de JAR
+- [ ] Verificar backtank normal e netherite em Curios Back, em terceira pessoa, após relog/restart, em multiplayer e junto às animações/renderizadores Epic Fight.
+- [ ] Validar servidor como autoridade do bônus: entrar e sair de lava com Netherite Backtank equipado, desequipar, morrer/renascer, trocar de dimensão e comparar com backtank em outro slot, sem presumir invulnerabilidade universal a fogo.
+- [ ] Verificar consumo **exatamente uma vez** de ar pressurizado pelo Create físico 6.0.10; mover Curios ↔ chest/inventory sem reset, duplicação ou ghost state.
+- [ ] Verificar conflito/duplicidade de identificação de backtanks com Create: Jetpack Curios 1.2.0 e Create Goggles 6.1.1: duplo render, lookup redundante e aplicação duplicada de bônus.
+- [ ] Revalidar Curios API 9.5.1+1.21.1, dedicated server/client, sincronização de equipamento e dois jogadores simultâneos.
+
+**Resultado:** a única release posterior (**1.0.2**) tem **todos os deltas oficialmente declarados explicitados**. A pesquisa documental da sequência 1.0.1 → 1.0.2 fica concluída; testes de gameplay e promoção física **não** foram realizados. Não modificar filename do dossier, versão instalada, JAR ou configuração. A remoção da fila refere-se apenas à **atualização de pesquisa/documentação**, não à instalação.
+
+**Fonte primária:** https://www.curseforge.com/minecraft/mc-mods/create-curios-backtank/files/9207977 (file 9207977, NeoForge 1.21.1).
