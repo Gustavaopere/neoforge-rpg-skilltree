@@ -53,7 +53,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 003 | Ace's Spell Utils | `aces_spell_utils-1.2.7.2-1.21.1.jar` | `1.2.7.2-1.21.1` | `Addons + API and Library` | 22/09/2026 - 13:39 |
 | 004 | Acolyte : Iron's Spells 'n Spellbooks Addon | `acolyte-1.0.3.jar` | `1.0.3` | `Adventure and RPG + Magic + Mobs + Structures` | 22/09/2026 - 13:39 |
 | 005 | Additional Attributes | `additional_attributes-1.21.1-1.2.2.jar` | `1.2.2` | `Miscellaneous` | 22/09/2026 - 13:40 |
-| 006 | Advanced Core Info (ACI) | `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar` | `1.1.0` | `API and Library` | 22/09/2026 - 13:40 |
+| 006 | Advanced Core Info (ACI) | `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar` | `1.1.0` | `API and Library` | 23/10/2026 - 02:19 |
 | 007 | Advanced Loot Info (ALI) | `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar` | `2.1.0` | `Addons + API and Library + Map and Information` | 22/10/2026 - 22:49 |
 | 008 | Advancement Plaques [Neo/Forge] | `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar` | `1.6.8` | `Cosmetic + Map and Information + Miscellaneous + Utility & QoL` | 22/09/2026 - 13:40 |
 | 009 | SnackPirate's Aeromancy Additions | `aero_additions-1.2.8.jar` | `1.2.8` | `Addons + Magic` | 22/09/2026 - 13:40 |
@@ -118,7 +118,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 068 | Better Advanced Tooltips | `better-advanced-tooltips-2101.1.0-build.5.jar` | `2101.1.0-build.5` | `API and Library + Map and Information + Utility & QoL` | 19/09/2026 - 21:35 |
 | 069 | Better Library | `better_lib-neoforge-1.21.1-1.0.111.jar` | `1.0.111` | `API and Library + Server Utility + Utility & QoL` | 19/09/2026 - 21:35 |
 | 070 | Better Modlist | `better_modlist-21.1.1.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 23/10/2026 - 02:01 |
-| 071 | BetterEnd: New Dawn | `BetterEnd-21.0.34.jar` | `21.0.34` | `Biomes + Cosmetic + Mobs + Structures + World Gen` | 19/09/2026 - 21:35 |
+| 071 | BetterEnd: New Dawn | `BetterEnd-21.0.34.jar` | `21.0.34` | `Biomes + Cosmetic + Mobs + Structures + World Gen` | 23/10/2026 - 02:21 |
 | 072 | Better Fps - Render Distance | `betterfpsdist-1.21.1-6.1.jar` | `6.1` | `Cosmetic + Miscellaneous` | 19/09/2026 - 21:46 |
 | 073 | Epic Fight - Better lock on | `betterlockon-2.0.8-neoforge.jar` | `2.0.8-neoforge` | `Addons + Adventure and RPG` | 19/09/2026 - 21:35 |
 | 074 | BetterNether: New Dawn | `BetterNether-21.0.26.jar` | `21.0.26` | `Biomes + Cosmetic + Mobs + Structures + World Gen` | 23/10/2026 - 01:20 |
@@ -187,7 +187,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 137 | Create: Colony Logistics | `create_colony_logistics-1.3.3.jar` | `1.3.3` | `Addons + Create` | 23/09/2026 - 08:34 |
 | 138 | Create: Connected | `create_connected-1.3.3-mc1.21.1.jar` | `1.3.3-mc1.21.1` | `Addons + Automation + Create + Utility & QoL` | 23/09/2026 - 08:34 |
 | 139 | Create: Arm-made Cuisine | `create_cuisine-1.0.0-mc1.21.1-neoforge.jar` | `1.0.0` | `Automation + Create + Food` | 23/09/2026 - 08:35 |
-| 140 | Create: Curios Backtank | `create_curios_backtank-neoforge-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Armor, Tools, and Weapons + Automation + Create` | 23/09/2026 - 08:35 |
+| 140 | Create: Curios Backtank | `create_curios_backtank-neoforge-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Armor, Tools, and Weapons + Automation + Create` | 23/10/2026 - 02:18 |
 | 141 | Create: Deep Dark | `create_deep_dark-3.0.2-neoforge-1.21.1.jar` | `3.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Biomes + Create + Ores and Resources` | 23/09/2026 - 08:35 |
 | 142 | Create: Factory | `create_factory-0.7b-1.21.1.jar` | `0.7b-1.21.1` | `Automation + Create + Food` | 23/09/2026 - 10:19 |
 | 143 | Create: Fantasizing Again | `create_fantasizing-1.21.1-1.2.0-b3.jar` | `1.2.0-b3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 10:19 |
@@ -1051,9 +1051,9 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 66 | Lithostitched | [Abrir `.md`](./API%20and%20Library%20%2B%20Miscellaneous%20%2B%20World%20Gen/%E2%9C%85-lithostitched%20v1.8.0%2Bbeta6.md) | `1.8.0+beta6` | 1.8.1 | **BETA6→1.8.0→1.8.1 DOCUMENTADAS; NOVOS TARGETS API/TAGS/STRUCTURE PROCESSORS; QA DE WORLDGEN SEPARADO** |
 | 67 | Better Modlist | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-better-modlist%20v21.1.1.md) | `21.1.1` | 21.1.5 (20/10) | **21.1.2/21.1.3/21.1.4/21.1.5 AUDITADAS EM RELEASES OFICIAIS; QA DE GUI SEPARADO** |
 | 68 | Enhanced Boss Bars (Fabric/Forge/NeoForge) | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Miscellaneous%20%2B%20Mobs/%E2%9C%85-enhanced-boss-bars%20v1.0.0.md) | `1.0.0` | 1.1.2 | **1.1.2 SOURCE NEOFORGE E CHANGELOG DETALHADOS; 1.1.0/1.1.1 SEM ARTEFATO 1.21.1 AUTÔNOMO COMPROVADO; QA DE CONFIG/RENDER SEPARADO** |
-| 69 | BetterEnd: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betterend-new-dawn%20v21.0.34.md) | `21.0.34` | 21.0.38 | **COORDENADO NEW DAWN** |
-| 70 | Create: Curios Backtank | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Automation%20%2B%20Create/%E2%9C%85-create-curios-backtank%20v1.0.1.md) | `1.0.1` | 1.0.2 | **PENDENTE** |
-| 71 | Advanced Core Info (ACI) | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-advanced-core-info%20v1.1.0.md) | `1.1.0` | 1.5.0 Beta | **BLOQUEADO** |
+| 69 | BetterEnd: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betterend-new-dawn%20v21.0.34.md) | `21.0.34` | 21.0.38 | **HISTÓRICO 21.0.35–.38 DETALHADO; COMPARAÇÃO BINÁRIA .37/.38 E DEPENDÊNCIAS NEW DAWN PENDENTES** |
+| 70 | Create: Curios Backtank | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Automation%20%2B%20Create/%E2%9C%85-create-curios-backtank%20v1.0.1.md) | `1.0.1` | 1.0.2 | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10: RENDERIZAÇÃO E BÔNUS DE LAVA; QA IN-GAME PENDENTE** |
+| 71 | Advanced Core Info (ACI) | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-advanced-core-info%20v1.1.0.md) | `1.1.0` | 1.5.0 Beta | **PESQUISA DOCUMENTAL 1.2–1.5 CONCLUÍDA EM 23/10; BETA NÃO PROMOVIDA, ABI/QA PENDENTES** |
 | 72 | Create Deep Seas [BETA] | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-deep-seas%20v2.2.4.md) | `2.2.4` | 3.3.0 Release; 3.4.1 ALPHA-2 | **Release PENDENTE; alpha BLOQUEADA** |
 | 73 | Cold Sweat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-cold-sweat%20v2.4.3.1.md) | `2.4.3.1` | 2.4.4 | **PENDENTE** |
 | 74 | Knight Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-knight-lib%20v2.0.1.md) | `2.0.1` | 2.0.5 | **PENDENTE** |
