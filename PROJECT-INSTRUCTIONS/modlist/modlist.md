@@ -80,7 +80,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 030 | Apotheosis | `Apotheosis-1.21.1-8.8.0.jar` | `8.8.0` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 19/09/2026 - 12:06 |
 | 031 | Apotheotic Creation | `apotheoticcreation-2.0.0.jar` | `2.0.0` | `Automation + Create + Storage + Utility & QoL` | 19/09/2026 - 12:06 |
 | 032 | Apothic Category Compat | `apothic_compat-2.0.2.jar` | `2.0.2` | `Addons + Armor, Tools, and Weapons + Bug Fixes` | 19/09/2026 - 12:06 |
-| 033 | Apothic Compats | `apothic_compats-0.2.4.2.jar` | `0.2.4.2` | `Addons + Armor, Tools, and Weapons` | 19/09/2026 - 12:06 |
+| 033 | Apothic Compats | `apothic_compats-0.2.4.2.jar` | `0.2.4.2` | `Addons + Armor, Tools, and Weapons` | 23/10/2026 - 15:31 |
 | 034 | Apothic Attributes | `ApothicAttributes-1.21.1-2.10.1.jar` | `2.10.1` | `Adventure and RPG + API and Library` | 19/09/2026 - 16:04 |
 | 035 | Apothic Enchanting | `ApothicEnchanting-1.21.1-1.6.2.jar` | `1.6.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:04 |
 | 036 | Apothic Spawners | `ApothicSpawners-1.21.1-1.4.0.jar` | `1.4.0` | `Automation + Utility & QoL` | 19/09/2026 - 16:04 |
@@ -1065,7 +1065,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 80 | Create: Ornithopter Glider | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Create%20%2B%20Player%20Transport%20%2B%20Utility%20%26%20QoL/%E2%9C%85-create-ornithopter-glider%20v1.2.0-1.21.1.md) | `1.2.0-1.21.1` | 1.2.0+1.21.1 Release (03/06) | **REVALIDADO EM 23/10: SEM UPGRADE NEOFORGE 1.21.1; CHANGELOG DA VERSÃO FÍSICA CERTIFICADO; QA IN-GAME PENDENTE** |
 | 81 | AmbientSounds 6 | [Abrir `.md`](./Miscellaneous/%E2%9C%85-ambientsounds-6%20v6.3.8.md) | `6.3.8` | 6.3.11 Release (19/10) | **PESQUISA DOCUMENTAL 6.3.9–6.3.11 CONCLUÍDA EM 23/10; CREATIVECORE/QA DE ÁUDIO PENDENTES** |
 | 82 | Spell Codex: Iron's Spells 'n Spellbooks Addon | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-spell-codex-irons-spells-n-spellbooks-addon%20v1.6.5.md) | `1.6.5` | 1.6.13 Release (19/10) | **PESQUISA DOCUMENTAL 1.6.6–1.6.13 CONCLUÍDA EM 23/10; ACTIONBAR 1.1.4 FÍSICA NÃO ATENDE MIN 1.1.7; QA/PROMOÇÃO PENDENTES** |
-| 83 | Apothic Compats | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons/%E2%9C%85-apothic-compats%20v0.2.4.2.md) | `0.2.4.2` | 0.2.4.3 compatível com Apotheosis 8.8.0; 0.2.5.5 latest 1.21.1 | **0.2.4.3 PENDENTE; 0.2.5.5 BLOQUEADO até stack 8.9.x** |
+| 83 | Apothic Compats | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons/%E2%9C%85-apothic-compats%20v0.2.4.2.md) | `0.2.4.2` | 0.2.6 Release NeoForge 1.21.1 (18/10) | **PESQUISA DOCUMENTAL 0.2.4.3–0.2.6 CONCLUÍDA EM 23/10; 0.2.4.3 ALINHADA A APOTHEOSIS 8.8.0; 0.2.5.2+ EXIGE RECONCILIAR STACK 8.9.x; QA/PROMOÇÃO PENDENTES** |
 
 ### Gates transversais — 22/10/2026
 
