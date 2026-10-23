@@ -245,7 +245,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` | `2.0.0` | `Automation + Create + Energy, Fluid, and Item Transport + Processing` | 24/09/2026 - 00:20 |
 | 196 | Create Missiles | `createmissiles-1.0.3+neoforge-1.21.1.jar` | `1.0.3` | `Addons + Create + Map and Information + Structures + Technology` | 24/09/2026 - 00:20 |
 | 197 | Create Nuclear | `createnuclear-1.3.2-beta.3-neoforge.jar` | `1.3.2-beta.3` | `Addons + Create + Energy + Ores and Resources + Technology` | 24/09/2026 - 00:20 |
-| 198 | Create: Ornithopter Glider | `createornithopterglider-1.2.0-1.21.1.jar` | `1.2.0-1.21.1 (runtime/filename); publicação 1.2.0+1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL` | 24/09/2026 - 00:20 |
+| 198 | Create: Ornithopter Glider | `createornithopterglider-1.2.0-1.21.1.jar` | `1.2.0-1.21.1 (runtime/filename); publicação 1.2.0+1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL` | 23/10/2026 - 15:15 |
 | 199 | Create: Prismatic Shine | `createprism-1.2.2.jar` | `1.2.2` | `Addons + Create` | 24/09/2026 - 00:20 |
 | 200 | Create Propulsion: Simulated | `createpropulsion-1.1.5.jar` | `1.1.5` | `Addons + Create + Player Transport + Technology` | 24/09/2026 - 00:20 |
 | 201 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 24/09/2026 - 00:20 |
@@ -620,7 +620,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 570 | Werewolves - Become a Beast! | `Werewolves-1.21-2.0.3.3.jar` | `2.0.3.3` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 28/09/2026 - 02:10 |
 | 571 | Wind's Spellbooks : Iron's Spells 'n Spellbooks Addon | `wind_spellbooks-1.0.5.jar` | `1.0.5` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 28/09/2026 - 02:10 |
 | 572 | WorldWeaver: New Dawn | `worldweaver-21.0.25.jar` | `21.0.25` | `API and Library + Biomes + Utility & QoL + World Gen` | 22/10/2026 - 22:26 |
-| 573 | WunderLib: New Dawn | `wunderlib-21.0.10.jar` | `21.0.10` | `API and Library + Utility & QoL` | 28/09/2026 - 08:36 |
+| 573 | WunderLib: New Dawn | `wunderlib-21.0.10.jar` | `21.0.10` | `API and Library + Utility & QoL` | 23/10/2026 - 15:15 |
 | 574 | YetAnotherConfigLib | `yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar` | `3.8.2+1.21.1-neoforge` | `API and Library` | 28/09/2026 - 08:36 |
 | 575 | Fundamental Principles - Iron's Spells Addon | `ypfundamentals-1.1.7.1.jar` | `1.1.7.1` | `Addons + Adventure and RPG + Magic + Mobs` | 30/09/2026 - 10:20 |
 | 576 | YUNG's API (NeoForge) [1.20.4-1.21.1 ONLY] | `YungsApi-1.21.1-NeoForge-5.1.8.jar` | `1.21.1-NeoForge-5.1.8` | `API and Library + World Gen` | 28/09/2026 - 08:36 |
@@ -1061,8 +1061,8 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 76 | [EMF] Entity Model Features [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-model-features%20v3.3.5.md) | `3.3.5` | 3.3.12 Release (15/10) | **PESQUISA DOCUMENTAL 3.3.6–3.3.12 CONCLUÍDA EM 23/10; ETF 7.2.6 E QA GRÁFICO PENDENTES** |
 | 77 | Vampirism Iron's Spells Compatibility | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Food%20%2B%20Magic/%E2%9C%85-vampire-spells-addon%20v1.21.1-0.0.9.md) | `1.21.1-0.0.9` | 0.0.10 Release (17/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10; CONFIGS HOLY/BLOOD SCHOOL DETALHADAS; QA E PROMOÇÃO PENDENTES** |
 | 78 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.5.91.md) | `1.5.91` | 1.6.9.2199 Release (23/10) | **PESQUISA DOCUMENTAL 1.6.0–1.6.9 CONCLUÍDA EM 23/10; CORE ≥1.5.12, BACKPACKS/CREATE E QA ANTI-DUPE PENDENTES** |
-| 79 | WunderLib: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-wunderlib-neoforge%20v21.0.10.md) | `21.0.10` | 21.0.11 | **COORDENADO NEW DAWN** |
-| 80 | Create: Ornithopter Glider | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Create%20%2B%20Player%20Transport%20%2B%20Utility%20%26%20QoL/%E2%9C%85-create-ornithopter-glider%20v1.2.0-1.21.1.md) | `1.2.0-1.21.1` | 1.2.0 | **REVALIDADO** |
+| 79 | WunderLib: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-wunderlib-neoforge%20v21.0.10.md) | `21.0.10` | 21.0.11 Release (14/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10: BUMP/BUILD E METADATA DO SOURCE IDENTIFICADOS; BYTECODE E QA NEW DAWN PENDENTES** |
+| 80 | Create: Ornithopter Glider | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Create%20%2B%20Player%20Transport%20%2B%20Utility%20%26%20QoL/%E2%9C%85-create-ornithopter-glider%20v1.2.0-1.21.1.md) | `1.2.0-1.21.1` | 1.2.0+1.21.1 Release (03/06) | **REVALIDADO EM 23/10: SEM UPGRADE NEOFORGE 1.21.1; CHANGELOG DA VERSÃO FÍSICA CERTIFICADO; QA IN-GAME PENDENTE** |
 | 81 | AmbientSounds 6 | [Abrir `.md`](./Miscellaneous/%E2%9C%85-ambientsounds-6%20v6.3.8.md) | `6.3.8` | 6.3.11 | **PENDENTE** |
 | 82 | Spell Codex: Iron's Spells 'n Spellbooks Addon | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-spell-codex-irons-spells-n-spellbooks-addon%20v1.6.5.md) | `1.6.5` | 1.6.13 | **PENDENTE** |
 | 83 | Apothic Compats | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons/%E2%9C%85-apothic-compats%20v0.2.4.2.md) | `0.2.4.2` | 0.2.4.3 compatível com Apotheosis 8.8.0; 0.2.5.5 latest 1.21.1 | **0.2.4.3 PENDENTE; 0.2.5.5 BLOQUEADO até stack 8.9.x** |
