@@ -338,3 +338,13 @@ Fonte upstream: CurseForge Alshanex's Familiars file ID 8966342, release v4.0.4 
 - **Gate de promoção:** Fazer backup e validar junto de FamiliarsLib 1.8 a migração do storing system, coleções >10, Pandora's Box/Familiar Storage, ownership, relog/dimensão/restart, performance e ausência de perda/duplicação.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/alshanexs-familiars
 
+## Lote 11–20: histórico 4.0.3 → 4.0.4 → 5.0 (22/10/2026)
+**Retificação:** versão física 4.0.3. Última release NeoForge Minecraft 1.21.1 é **5.0 (21/10/2026)**, não 4.0.4. Projeto oficial Alshanex's Familiars; não confundir o ramo Forge 1.20.1 4.1.0 com uma release da linha NeoForge 1.21.1.
+| Release | Changelog confirmado |
+|---|---|
+| 4.0.4 (24/09/2026) | Familiar Storage refatorado para mais de 10 familiars, até 50, com novo limite configurável por FamiliarsLib; mudança estrutural em owner/storage, save e performance. A seção 20 anterior contém os testes pormenorizados. |
+| 5.0 Spectrum Update (21/10/2026) | Novas variantes coloridas e por bioma, roupas/olhos customizáveis, hat e weapon layers em alguns familiars, shrink de equipamentos, Familiar Compendium, câmera/fotos, Identity Vessel e guia interno. Familiar Eggs permitem recuperar mortos/soltos. |
+| 5.0 — stations/automation | Ritual Automator com archmage em Origin Island; estação de reroll que coleta scrolls de inventories adjacentes com filtros; estação escultórica com druid + illusionist usando fotografia. Archmage não possui mais reroll como habilidade direta. |
+| 5.0 — migração de conteúdo | Familiar House, Familiar Bed e Shrinkinator **migraram para FamiliarsLib**. Antigos shards continuam utilizáveis porém não são mais obtidos normalmente; rituais passam a usar eggs, receita do Tome of Alignment e advancements mudam. Também há melhorias de sitting animations e summoned placement. |
+**AVISO oficial:** fazer backup do mundo antes de atualizar; 5.0 pode quebrar saves. Em staging, cotejar a versão **realmente exigida** de FamiliarsLib pelo binário 5.0 (não presumir que 1.8 seja suficiente), NBT/data components dos itens relocados, registry e block entities, recipes, armazenamento 10/25/50, retaming/recall, owners/AI, filtros e estações, multiplayer/dedicated, re-login e dimension travel. Para rollback, restaurar mundo e ambos os JARs em conjunto. Nova versão não instalada.
+Fontes: https://www.curseforge.com/minecraft/mc-mods/alshanexs-familiars/files/8966342 ; https://www.curseforge.com/minecraft/mc-mods/alshanexs-familiars/files/9276628 .
