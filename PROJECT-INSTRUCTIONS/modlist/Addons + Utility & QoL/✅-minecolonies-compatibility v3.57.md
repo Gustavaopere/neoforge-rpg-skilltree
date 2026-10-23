@@ -133,3 +133,26 @@ CurseForge oficial confirma a Beta 3.57, os target baselines e o change de `knif
 **Risco/gates:** conferir se Cultural Delights e Let's do Vinery integram o pack, compatibilidade de dependências-alvo, classloading opcional, inicialização no dedicated server, jobs/receitas/courier requests, saves e reprodução dos crashes. Não promover versão Beta sem QA.
 
 **Estado:** catalogação de 3.57→3.58→3.59→3.60 atualizada; **auditoria individual da 3.59 e QA físico pendentes**. Não retirar item #51 da lista de acompanhamento.
+
+
+## Auditoria integral da sequência 3.57 → 3.60 — 23/10/2026
+
+**Esta seção resolve a lacuna técnica anterior da versão 3.59 por consulta direta ao código-fonte upstream 1.21.1.** Baseline: `MineColonies_Compatibility-1.21.1-3.57.jar` (3.57), versão instalada no último dump do pack. Artefatos posteriores publicados para NeoForge 1.21.1: **3.58 (08/10) → 3.59 (19/10) → 3.60 (19/10)**, todos no canal **Beta**.
+
+### 3.58 — correção Cultural Delights
+A revisão precedente identifica a correção do crash ao carregar o Cultural Delights recente. No GitHub upstream, o commit **`b520e6fa7`** (`Fixed #203`) precede o bump de versão `cad975d0f` (`mod_version=3.58`). Referência: https://github.com/gisellevonbingen-Minecraft/MineColonies_Compatibility/commit/b520e6fa7b4d758fda80e06e93b64b88c44b5e05 .
+
+### 3.59 — correção técnica individual do Issue #205 (antes não identificada)
+Entre os bumps de versão `3.58` (`cad975d0f`) e **`3.59` (`9cd2dd484`)** constam os seguintes commits oficiais, em sequência:
+- **`5e4e4ac64`**: ajuste exclusivamente de whitespace em `ScorchedGunsModule.java`, sem alteração de comportamento demonstrada.
+- **`c65c0e9ce`** (**`Fixed #205 in 1.21.1`**): substituição do pacote `AddRemoveRecipeMessage` de MineColonies pela mensagem própria **`AddRemoveRecipeMessage2`** na tela de ensinar receitas de crafting. A nova mensagem é registrada como pacote **cliente→servidor** em `ModMessagesRegistrar`, serializa `IRecipeStorage` por `StandardFactoryController`, inclui o sinalizador adicionar/remover, atualiza receitas no `ICraftingBuildingModule`, dá feedback sonoro/mensagem, dispara advancement no sucesso e marca o building como alterado.
+
+**Implicações do patch 3.59:** compatibilidade de protocolo/GUI do teach recipe com as novas APIs de MineColonies; evitar erro ao salvar/remover receitas e assegurar integridade de tokens de `IRecipeStorage`. Testar tela de ensinar crafting, add/remove, receita duplicada, erros, courier/building persistence, client/dedicated server e compatibilidade de versão dos dois lados. Não há evidência de que 3.59 corrigiu Cultural Delights ou Let's do Vinery; são fixes de versões vizinhas. Comparação source pinada: https://github.com/gisellevonbingen-Minecraft/MineColonies_Compatibility/compare/cad975d0f844d55246c7659128f231142174718c...9cd2dd4849f6cd563475871da91f48b827d8e8d7 ; commit de implementação: https://github.com/gisellevonbingen-Minecraft/MineColonies_Compatibility/commit/c65c0e9ce2a84054ba8ac1895cc051cb727fbf29 .
+
+### 3.60 — compatibilidade Let's do Vinery
+O commit **`95fd2edf3`** `Fixed #204`, antes do bump `ace57a94a` (`mod_version=3.60`), atualiza dependência de Let's do Vinery (ID CurseForge **7539914 → 9203990**) e referências de API das receitas/plantas: **`GrapeBush → GrapeBushBlock`**, **`RecipeTypesRegistry → RecipeTypeRegistry`**, além de reidentificação do módulo de esmagamento **`lets_do_vinery_apple_press_mashing`**. Testar colher uvas, prensa (mashing/fermenting), recipes teach e migração de módulos identificados por ID. Código: https://github.com/gisellevonbingen-Minecraft/MineColonies_Compatibility/commit/95fd2edf3c3d5f70eb51c13418b1484739445889 . Publicação: https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility/files/all?version=1.21.1 .
+
+### Resultado e gates
+**Auditoria release-by-release integral das três builds NeoForge 1.21.1 posteriores à instalada concluída**. A alteração 3.59 foi identificada por diff direto e vinculada ao bump de versão do mesmo branch. As mudanças dos três patches afetam addons externos distintos, GUI de receitas e comunicação cliente-servidor. Embora 3.60 seja a candidata mais recente, ainda é **Beta** e sua promoção exige teste de compatibilidade real do pack — especialmente MineColonies/Tweaks/Structurize e versões de Cultural Delights/Let's do Vinery, teach recipes e saves. **Nenhum JAR foi substituído nem QA de runtime realizado.**
+
+A pendência de **pesquisa e documentação** referente ao item **#51** fica solucionada: pode ser removido da lista de auditorias documentais, mantendo QA físico como tarefa diferente caso a atualização da Beta seja instalada.
