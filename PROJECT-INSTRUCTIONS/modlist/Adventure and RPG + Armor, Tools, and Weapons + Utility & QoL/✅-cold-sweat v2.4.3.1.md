@@ -113,3 +113,32 @@ Nenhum teste térmico, Create/Sable, death/dimension, KubeJS ou multiplayer foi 
 - **Gate de promoção:** Temperatura é state crítico: validar biome/dimension configs, insulation/items, networking, seasons, Thirst, Create integrations, multiplayer e restart.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat
 
+## Auditoria release-by-release — Cold Sweat 2.4.3.1 → 2.4.4 (23/10/2026)
+
+**Estado instalado (snapshot histórico, não atualizado):** `ColdSweat-2.4.3.1.jar`, mod ID `cold_sweat`, runtime `2.4.3.1`, posição física **#102**. **Projeto correto:** CurseForge **506194**, **Cold Sweat** por Mikul; categorias oficiais **Adventure and RPG**, **Armor, Tools, and Weapons**, **Utility & QoL**, correspondentes à pasta atual. **Nova candidata:** `ColdSweat-2.4.4.jar`, **Release**, **NeoForge / Minecraft 1.21.1**, publicada **16/10/2026**, **File ID 9215368**. Na lista de versões da combinação exata, **2.4.4 é a única versão posterior à 2.4.3.1**; `2.4.3.2` pertence à distribuição **Forge 1.20.1**, e `2.4.4-a1` é Alpha para Minecraft **26.2**, não intermediários do alvo físico.
+
+### 2.4.4 — diferenças oficiais, por subsistema
+
+1. **Temperatura da água e ponto de congelamento por bioma.** Cada bioma possui agora um **freezing point** explícito, configurável por **TOML, JSON e KubeJS**. Isso procura reduzir congelamentos e derretimentos incorretos. O valor escolhido pode diferir conforme o clima/bioma; não pressupor um ponto universal igual para todos.
+2. **Mudança semântica de configuração da água.** Temperatura da água passa a ser **valor absoluto**, e não deslocamento relativo à temperatura do bioma. Assim uma água configurada em 60 unidades permanece nesse valor mesmo quando o ambiente apresenta 80; o horário do dia deixa de afetar a temperatura da água pela antiga vinculação ao bioma. O autor declara **migração automática** das antigas configs de offset. Esta mudança merece backup e inspeção comparativa de TOML/JSON/scripts KubeJS, especialmente ajustes customizados do modpack.
+3. **Icebox:** recupera a emissão constante de partículas de névoa, sem restringi-la às situações em que a máquina está ligada ou resfriando Waterskins. Isso é mudança de apresentação e pode alterar quantidade de partículas visuais no cliente.
+4. **Integração com JEI:** agrupa receitas cujos itens pertencem a uma mesma **tag**; corrige receitas de **Boiler, Icebox, Hearth e Sewing** não serem localizadas ao clicar no respectivo bloco pelo JEI. Importante confrontar com JEI instalado **19.56.0.440** e outros addons antes de promover.
+5. **Memória/performance:** corrige **entity configs** consumindo mais memória que o necessário. Changelog não fornece valores quantitativos; não alegar ganhos mensurados sem profiling.
+6. **Soulspring Lamp:** corrige posicionamento na mão ao comer ou usar itens de duas mãos (arco, besta etc.), relevante em conjunto com Punchy/FirstPerson/Epic Fight.
+7. **Compatibilidade de API:** corrige crashes de mods que ainda dependem do **sistema de block temperature anterior à 2.4.3**. Essa correção não prova que qualquer integração de Create/Sable/KubeJS compilada contra a API antiga esteja automaticamente testada.
+8. O changelog da mesma série também menciona **suporte Alpha a Minecraft 26.2**, mas essa observação é **específica do outro alvo** e não representa nova mecânica da Release NeoForge 1.21.1.
+
+### Impactos práticos e gates de atualização (nenhum executado)
+
+- [ ] Fazer backup de world/configs e registrar defaults atuais de temperatura por bioma, altitude/dimensão e água antes de substituir o JAR.
+- [ ] Validar conversão **offset → valor absoluto**, defaults de **freezing point**, TOML/JSON/KubeJS e /reload, comparando água em um mesmo bioma ao longo de diferentes horários.
+- [ ] Testar congelamento/derretimento de água em biomas frios/quentes, chunks novos e antigos, chuva/estação se houver provider no pack, e rejeitar mudanças térmicas não previstas.
+- [ ] Testar Hearth, Boiler, Icebox, Waterskin, insulation e Thirst Was Reclaimed com cliente/servidor; temperatura corporal permanece server-authoritative.
+- [ ] Conferir indexação, tag grouping e clique nos blocos **Boiler/Icebox/Hearth/Sewing** no JEI instalado (e candidatos Beta somente em ambiente separado).
+- [ ] Verificar positioning da Soulspring Lamp em primeira pessoa com Punchy, Epic Fight e interações de arco/besta/comida.
+- [ ] Em Create 6.0.10, Aeronautics/Sable e bridge Create: Cold Sweat, exercer emitters móveis, fluid tanks/pipes e addons que chamem a antiga API `BlockTemp`; não presumir ausência de crashes por simples compatibilidade declarada.
+- [ ] Testar dedicated server, dois jogadores em biomas distintos, death/respawn, dimension travel e restart; acompanhar logs e consumo de memória real sem inventar benchmarks.
+
+**Conclusão de pesquisa documental:** a sequência **2.4.3.1 → 2.4.4** foi percorrida integralmente para **NeoForge 1.21.1**, com o changelog oficial do **artefato exato** e as diferenças relevantes adicionadas ao dossier. **Liberado da fila de pesquisa dos changelogs**. **Adoção do JAR 2.4.4 e QA runtime permanecem pendentes**; nenhuma alteração na versão instalada, filename do dossier ou configs é autorizada por essa conclusão.
+
+**Fonte primária:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat/files/9215368 (CurseForge 506194, File ID 9215368). Catálogo de versões: https://www.curseforge.com/minecraft/mc-mods/cold-sweat/files/all .
