@@ -471,3 +471,20 @@ Os fixes de 2.1.10 para pathfinding/agro, Animal Dictionary, Shield of the Deep 
 - **Gate de promoção:** Manter JAR físico; qualquer mudança futura exige regressão de spawn/AI/loot, Citadel/integrações e dedicated server.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued
 
+## Revisão cumulativa auditada — 22/10/2026 — lote 01–10
+**RETIFICAÇÃO material da matriz 22/10:** último **NeoForge 1.21.1 publicado é 2.2.4 Release (19/10)**; a matriz anterior apontava incorretamente a versão física 2.1.13 como release mais recente. O projeto correto é **Alex's Mobs Continued / CodxIO / CurseForge 1635121**, não o original Alex's Mobs. A versão instalada **permanece 2.1.13**.
+
+### Release por release desde 2.1.13
+
+| Publicação 1.21.1 | Mudanças documentadas — sem projetar outras versões do jogo sobre o pack |
+|---|---|
+| 2.1.14 (15/09) | Roadrunner pode caçar alvos configuráveis em /amc menu, /amc config set roadrunnerTargets e tag alexsmobs:roadrunner_targets; **gulls deixam de desaparecer a ~20 blocos**, **crows procurando caminho junto a crops passam a recalc a cada 0,5 s em vez de cada tick**, e **textura da elytra equipada do Tarantula Hawk** corrigida em NeoForge 1.21.1. Correções de anthill registradas como Fabric-only e de cachalot/crash como 1.21.9+, não aplicáveis ao runtime. |
+| 2.2.0 (16/09) | Skreecher clap: som e anel de partículas novamente em sincronia; traduções de quadros NFT e Dogs Playing Poker (1.21+); correção de JSON sueco e zh-HK. A estreia de suporte a 26.3 não acrescenta mecânica própria a 1.21.1. |
+| 2.2.1 (17/09) | Changelog publicado corrige novo formato de loot/advancements **para Minecraft 26.3**. Nenhum efeito funcional próprio da versão 1.21.1 demonstrado; preservar a lacuna, sem invenções. |
+| 2.2.2 (18/09) | Corrige tint de **rainbow jelly** ao renderizar entidades de terceiros com GeckoLib (faixa declarada 1.20.1–1.21.8). |
+| 2.2.3 (16/10) | Feeder de hummingbird aceita açúcar; garrafa de vidro retornada/dropada se inventário cheio; capuchin no ombro deixa de flutuar; JEI brewing deixa de exibir Uncraftable Potion; tradução tcheca; pet store compat com Redomesticate, condicional à presença. A correção de 11 tags/recipes é **específica do Fabric**, não é fix demonstrado para NeoForge. |
+| 2.2.4 (19/10) | **Arquivo NeoForge 1.21.1 publicado**, mas as notas funcionais da versão tratam de enchant glint para 26.3; não foi isolado fix próprio de 1.21.1. Não confundir compatibilidade de release com mudança comprovada de gameplay. |
+
+**Dependência e testes:** changelog exige CodxLib ≥1.6.0, que coincide com a última versão física documentada da biblioteca; confirmar manifesto do artefato exato antes da troca. Em staging: spawn/AI/loot de mobs e Roadrunner; Skreecher/partículas, GeckoLib/rainbow jelly, JEI/brewing, feeder/garrafas sem item loss/dupe, capuchin shoulder, outras texturas EMF/ETF/shaders, persistência em save/restart, dedicado e multiplayer. **Candidato 2.2.4 não instalado, não testado nem promovido.**
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued/files/all?gameVersionTypeId=6&page=1&pageSize=20&showAlphaFiles=hide ; https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued/files/8889895 (2.1.14, changelog comum/arquivo Forge 26.1, não é binário NeoForge 1.21.1); https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued/files/8897552 ; https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued/files/8906992 ; https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued/files/9216503 (changelog comum, arquivo Fabric, não é binário NeoForge); https://modrinth.com/mod/alexs-mobs-continued/version/ThZbQpga.

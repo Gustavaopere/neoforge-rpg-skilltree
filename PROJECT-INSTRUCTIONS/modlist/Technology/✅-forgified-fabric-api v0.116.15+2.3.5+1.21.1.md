@@ -189,3 +189,14 @@ A biblioteca é infraestrutura compartilhada por múltiplos consumidores. Proble
 - **Gate de promoção:** Tratar como infraestrutura Sinytra/Connector: validar loader, mixins, APIs Fabric traduzidas, boot client/dedicated e consumers do pack em staging.
 - **Fonte primária do dossier reconsultada:** https://github.com/Sinytra/ForgifiedFabricAPI/tree/1.21.1
 
+## Revisão cumulativa auditada — 22/10/2026 — lote 01–10
+**Versão física:** Forgified Fabric API 0.116.15+2.3.5+1.21.1; **candidato** 0.116.15+2.3.6+1.21.1 (15/10/2026). Confirmado no [histórico de releases do repositório upstream Sinytra](https://github.com/Sinytra/ForgifiedFabricAPI/releases). Só existe **uma release intermediária aplicável a este recorte**; versões 0.155/0.161 para Minecraft 26.x são ramos distintos e não entram na cadeia 1.21.1.
+
+| Versão | Delta upstream verificado | Impacto |
+|---|---|---|
+| 0.116.15+2.3.5+1.21.1, baseline instalada | Correção de default method incompatível em FabricTooltipType — já incorporada ao JAR físico. | Não reapresentar como novidade 2.3.6. |
+| **0.116.15+2.3.6+1.21.1** (15/10) | **Fix codec unwrapper mixin em builds NeoForge mais recentes**; “Dehardcode publish settings” é alteração de metadados/configuração de publicação, não funcionalidade de gameplay. | Risco de mixin target/serializer/registries, compat binária com loader e Connector. |
+
+**Gates:** validar a versão real do NeoForge instalada contra o novo mixin, decodificação/encode de registries e codecs por mods Fabric via Sinytra Connector, consumers e JARs em META-INF/jars, resource/datapack reload, servidor dedicado e cliente; verificar ausência de duplicate mod IDs antes de upgrade. **Não foi baixado nem extraído JAR novo, nem executado runtime**. A versão no dossier permanece a instalada; o número 2.3.6 é publicação upstream, não promoção.
+
+Fonte primária: https://github.com/Sinytra/ForgifiedFabricAPI/releases (registro 1.21.1 v0.116.15+2.3.6); https://www.curseforge.com/minecraft/mc-mods/forgified-fabric-api/files/all?version=1.21.1.

@@ -93,3 +93,14 @@ Validar construction/config load, datapack/config reload quando suportado, login
 - **Gate de promoção:** Revalidar consumers de InsaneLib, config/serialization, networking e dedicated server; não alterar versão física sem QA.
 - **Fonte primária do dossier reconsultada:** https://github.com/Insane96/InsaneLib/tree/1.21.1
 
+## Revisão cumulativa auditada — 22/10/2026 — lote 01–10
+**Fechamento histórico de uma única release:** JAR histórico InsaneLib **2.4.33.0**, última versão 1.21.1 **2.4.33.1** (upstream). A seção 13 anterior do dossier documenta o delta oficial; esta seção o reconcilia à cadeia de versão instalada → publicada.
+
+| Versão | Delta específico |
+|---|---|
+| 2.4.33.0 — instalada | Sound Overrides **removido** na 2.4.33.0; retirada é parte do baseline, e não novidade da 2.4.33.1. |
+| 2.4.33.1 — publicada | **Client modules deixam de ser carregados no server side**, reduzindo risco de classloading/DISTXFORM ou lançamento de classe cliente no dedicado. Não existe nova feature de gameplay anunciada nesta nota. |
+
+**QA condicionado:** inicialização dedicada sem classes do renderer/cliente, consumidores que usam Common vs Client, registries, efeitos de atributos, spawn/death e XP/grindstone, client login, network/reload e crash logging. Sem download de JAR, boot nem inspeção de metadata; publicação candidata não é autorização de instalação.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/insanelib/files/9068453 ; https://github.com/Insane96/InsaneLib/tree/1.21.1 .

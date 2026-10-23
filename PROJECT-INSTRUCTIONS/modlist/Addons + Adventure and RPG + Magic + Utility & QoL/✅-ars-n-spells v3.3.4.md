@@ -458,3 +458,15 @@ Validar mana default com glyphs + tier + Curios + equipamentos, os quatro outros
 - **Gate de promoção:** Revalidar spell registry, glyph/recipe data, networking e integrações Ars Nouveau; não assumir compatibilidade binária apenas pela versão Minecraft.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/ars-n-spells
 
+## Revisão cumulativa auditada — 22/10/2026 — lote 01–10
+**Fechamento da cadeia já analisada em profundidade nas seções 26 e 31 do dossier:** instalado 3.3.4; último candidato 1.21.1 NeoForge 3.3.7. Revisão explícita de **todos os incrementos publicados 3.3.5 → 3.3.6 → 3.3.7**:
+
+| Release | Conteúdo relevante |
+|---|---|
+| 3.3.5 | Payment boundary entre Ars Nouveau e Iron's, controle de débito, affordability durante eventos de cast, refunds, channels com modifiers, mana ceiling/regen, novo cooldown de inscrição, desconto de Curios, blacklist cross-cast, migração de config. |
+| 3.3.6 | Recupera carrier correto do spellbook ao usar Iron's staff e clique direito; evita cast negado ou débito incorreto. |
+| 3.3.7 | Corrige max mana calculada por equipment/tier/glyph, reduz sync de mana, acrescenta School manual/Automatic no Spell Loom, commands/permissões, preservação de school em scroll/bind/projétil e proteção contra duplicação. A release exige cliente/servidor 3.3.7 em conjunto. |
+
+**Gates:** mana dual pool/LP/refund, channel cost pago exatamente uma vez, carrier staff versus hotkey, caches, migration de configs 3.3.4, scroll duplication/bind, escolas e providers Ars Elemental quando presentes, Curios/JEI, packet compatibility e restart. Upstream GameTests não são QA do modpack; nenhuma versão física foi alterada. Seções 26 e 31 permanecem a referência técnica granular.
+
+Fontes oficiais: https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9009833 ; https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9048029 ; https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9064804.

@@ -281,3 +281,27 @@ A cadeia integral já investigada em 01/10 permanece válida e está preservada 
 - **Gate de promoção:** Testar migração de colônia/save, workers/AI, raids, buildings/Structurize/BlockUI e dedicated server antes de trocar o JAR. Não promover snapshot como baseline de produção.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/minecolonies
 
+## Revisão cumulativa auditada — 22/10/2026 — lote 01–10
+**Instalado:** 1.1.1387-1.21.1-snapshot, imutável; release candidata 1.1.1403 (04/10, file 9058295) e snapshot 1.1.1405 (21/10, Beta, não aprovada).
+
+### Histórico intermediário acumulado (NeoForge 1.21.1)
+
+| Release | Delta da release confirmado |
+|---|---|
+| 1.1.1392-snapshot | Fix #11808: requests com quantidade superior ao limite de um ItemStack passam por serialização/persistência segura; ports de Cavalry/datagen. |
+| 1.1.1393-snapshot | Graveyard: min-stock e contador de posições ocupadas. |
+| 1.1.1394-snapshot | Fix #11827: tratamento de alimentação eventual de cidadãos fora do Restaurant. |
+| 1.1.1395-snapshot | Música na Tavern. |
+| 1.1.1396-snapshot | Melhorias nas referências de nós e debug tracking. |
+| 1.1.1397-snapshot | Correção da movimentação vertical em água junto a slabs. |
+| 1.1.1399-snapshot | Fix #11834: Waiter solicita ingrediente cru para cozinhar, em lugar de pedir comida pronta. |
+| 1.1.1402-snapshot | Tratamento de possível loop infinito e tentativas de burial repetidas. |
+| 1.1.1403-snapshot | Stables dos estilos Fortress e Desert Oasis. |
+| 1.1.1403 Release | Artefato distinto da snapshot 1.1.1403: o changelog da tag oficial não indica novos commits; isto **não** comprova igualdade binária entre os dois JARs. |
+| 1.1.1405-snapshot | **Novo desde a auditoria anterior:** Desert Oasis fix (#11859); **dois novos visitors e scraps** (#11846). É snapshot/Beta; não substituir a Release estável sem decisão explícita. |
+
+Todas as versões efetivamente publicadas identificadas no intervalo constam acima. Nenhuma publicação 1.1.1404 foi comprovada na série consultada; números não publicados não foram tratados como alterações fictícias.
+
+**Gates:** backup íntegro do mundo, request que excede stack, logística Warehouse/Waiter, Graveyard, Tavern e Cavalry, estilos Desert Oasis/Fortress, visitors/scraps, pathfinding água/slabs, claims/permissions e addons. Os pisos documentais da Release 1.1.1403 são Structurize 1.0.832+, MultiPiston 1.2.51+, BlockUI 1.0.199+ e Domum Ornamentum 1.0.223+: o último snapshot atende numericamente, mas não há prova ABI/teste de JAR. **Documentação da cadeia concluída; promoção física, rollback e QA não executados.**
+
+Fontes primárias: https://github.com/ldtteam/minecolonies/releases ; https://github.com/ldtteam/minecolonies/releases/tag/v1.21.1-1.1.1405-snapshot ; https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9058295 ; https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9023811.
