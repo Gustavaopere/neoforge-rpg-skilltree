@@ -232,3 +232,20 @@ Fontes upstream: CurseForge Goety 3.1.5 (file ID 8905184), 3.1.5.1 (file ID 8911
 - **Gate de promoção:** Salto de conteúdo: testar soul/ritual progression, summons ownership, bosses/entities, structures/worldgen, configs, saves e dedicated server.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/goety/files/8689429
 
+## Revisão final de publicações 3.1.4 → 3.2.1 — 23/10/2026
+
+**Autoridade física preservada:** `goety-3.1.4.jar` / 3.1.4 (último dump), **não** JAR 3.2.1. O projeto oficial CurseForge **Goety - The Dark Arts**, ID **586095**, linha **NeoForge 1.21.1**, publicou quatro versões posteriores à instalada: `3.1.5` (17/09), `3.1.5.1` (18/09), `3.2.0` (03/10) e `3.2.1` (16/10). A árvore permanece em `Adventure and RPG + Magic + Mobs + Structures/`, suas quatro categorias temáticas completas no CurseForge.
+
+| Versão publicada | Delta técnico e de conteúdo |
+|---|---|
+| 3.1.5 | Expansão Howling: conteúdo de mobs e variantes, mecânicas e correções do sistema de servos descritas na seção 21. Novo conteúdo/regras de spawn e comportamento tornam necessário verificar addons Goety Iron e Goety Cataclysm. |
+| 3.1.5.1 | Corrige worldgen de structures da publicação anterior, evitando a ausência de estruturas em chunks novos. Importante confirmar efeito apenas em chunks ainda não gerados. |
+| 3.2.0 — *Windy Update* | Introduz **Wind Shrine**, salas/geração e Trial Spawners, **Hurricane** em Trial Chambers com loot incluindo Heavy Core, rituais/Focus para servos Breeze e evolução **Hurricane Servant**, conteúdo wind-themed e **Ominous Crystal Ball**. É mudança de geração + progressão + summons que justifica backup e prova de coexistência de registries. |
+| 3.2.1 — 16/10/2026 | **Release oficial file ID 9207885:** changelog: “Ported 1.20.1 content up to Goety - 2.5.59.2” e “Added a few more configs to better customize the Launching Focus”. Logo, além da série Windy anterior, traz backport cumulativo do conteúdo da linha Forge 1.20.1 até **2.5.59.2** e **novas opções de configuração do Launching Focus**, alterando o contrato de personalização do Focus. A nota de release **não enumera cada classe, item ou feitiço portado**; não atribuir novos conteúdos por inferência. |
+
+**Fontes primárias:** https://www.curseforge.com/minecraft/mc-mods/goety/files/8689429 (baseline 3.1.4), https://www.curseforge.com/minecraft/mc-mods/goety/files/8905184 (3.1.5), https://www.curseforge.com/minecraft/mc-mods/goety/files/8911352 (3.1.5.1), https://www.curseforge.com/minecraft/mc-mods/goety/files/9044971 (3.2.0) e https://www.curseforge.com/minecraft/mc-mods/goety/files/9207885 (3.2.1).
+
+**Novos testes/impactos a manter no dossier:** checar novos parâmetros Launching Focus e gravação/reload; comparar conteúdo portado ao source da linha 1.20.1 **2.5.59.2** antes de atribuir receitas ou IDs específicos; evitar perda de research/Soul Energy e servants após migração; validar Hurricane e Breeze Servants (ownership/drops), ritual, trial spawners e Wind Shrine somente em chunks novos, além de addons Goety Iron/Goety Cataclysm e interação com estruturas de outros mods; servidor dedicado e client parity.
+
+**Conclusão limitada:** as **quatro publicações** e respectivas notas de alto nível foram investigadas e incorporadas ao dossier. O changelog 3.2.1 **é cumulativo e não discrimina integralmente os recursos portados de 1.20.1**; não declarar inventário completo desses recursos sem comparação de código, nem instalação/QA concluída. Mantida versão física 3.1.4.
+
