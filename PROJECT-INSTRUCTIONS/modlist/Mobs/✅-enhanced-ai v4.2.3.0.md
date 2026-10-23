@@ -158,3 +158,34 @@ Fonte upstream: CurseForge Enhanced AI 4.2.4.0, file ID 8946964, NeoForge 1.21.1
 - **Gate de promoção:** Validar blow-up-on-death, equipment/enchant scaling por profundidade/lua, Enderman follow range, Fisher LOS, drowning swim-up, interação com Epic Fight/AI-Improvements e performance server-side.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/enhanced-ai
 
+## Auditoria completa de releases 4.2.3.0 → 4.2.5.0 — 23/10/2026
+
+**Baseline top-level preservada:** `enhancedai-4.2.3.0.jar`, posição física #252, NeoForge 1.21.1. O CurseForge oficial **Enhanced AI** (projeto **515276**, Insane96) publica **exatamente duas releases posteriores dessa linha**: **4.2.4.0, 22/09/2026, file 8946964** e **4.2.5.0, 20/10/2026, file 9271399**, ambas Release para **NeoForge 1.21.1**. A versão 4.2.5.0 substitui o candidato incompleto 4.2.4.0 do índice anterior.
+
+### 4.2.4.0 — 22/09/2026
+O changelog da publicação exata foi anteriormente discriminado na seção 17 deste dossier: corrige Blow up on Death, Enderman follow range, Fisher line of sight/attack e Better Drowning Swimming Up. Ajusta **MPR Data Pack** (chance de armor/equipment e enchantment escalando com profundidade até +20%, bônus de lua cheia +20%, materiais iron/diamond relativamente mais favorecidos subterrâneo/lua cheia). Fonte: https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/8946964 .
+
+### 4.2.5.0 — 20/10/2026
+A página de release **`enhancedai-4.2.5.0.jar`** contém um extenso changelog cujo primeiro cabeçalho interno está escrito **`2.4.5.0`**; isso é **erro tipográfico no texto do changelog**, não um artefato `2.4.5.0` instalado. Filename/loader/file ID explícitos identificam a versão correta **4.2.5.0**.
+
+Mudanças relevantes do changelog do autor, separadas por subsistemas:
+
+- **Healing:** a feature anteriormente limitada ao Snow Golem foi ampliada para **Healed by Snowballs**, potencialmente elegendo outras entidades conforme regra/config.
+- **Shielding:** chance de block agora respeita direção frontal, comportamento de vanilla shields, também projectiles/explosions, exceto piercing arrows. Fix offhand substituído indevidamente (por exemplo, pickaxe de miner); hurt shields devem aplicar enchants/propriedades relevantes do portador.
+- **Skeleton AI:** evita wandering durante shooting; prioridade do goal de shoot comparável a vanilla (sol/locos como wolves podem interromper ataque); modded bows voltam a funcionar.
+- **Targeting:** Better Hurt by Target preserva ordem de prioridades e timing de retaliation; Creepers/Endermen retaliam apropriadamente; `Prevent infighting` não aplica probabilidade invertida; animals mantêm `HurtByTargetGoal`. Better Nearby Targeting respeita custom vanilla goals e goals de outros mods (Polar Bears, Witches, Foxes, Bees) em vez de substituí-los; troca de alvo e perda de percepção deixam de apagar alvo novo cedo demais.
+- **Teleport to Target:** destino de teleporte, colisão em paredes, não rerrolar chance em reload; entidades temporariamente ocultas reaparecem e não ficam flutuando/unloaded com objetivos suspensos.
+- **Riding/Pick Up and Throw:** escolher montaria e sorteio de chance não deve rerrolar a cada load/chunk unload, o que alterava estatísticas em mundos de longa duração.
+- **Actual Blindness:** previne crash ao consultar visibilidade sem entidade olhando (ex. End Crystal/Dragon), e corrige multiplicador duplo de follow range e penalty não removida no expiration.
+- **Leaders / reinforcements:** chance de reforços passa a usar damage antes da redução por armor/enchant; `Charge per spawn` não inverte e não aplica uma vez apenas.
+- **Warden:** taxa de atualização de anger deixa de variar indevidamente quando Darkness Range está habilitado; previne crash com wardens existentes e volta a permitir sonic boom em entidades previamente carregadas.
+- **Witches / Dark Art:** potion selection não buffa inimigos indevidamente; ritual é marcado e executado uma vez, mesmo com interrupção/reload; não deixa vilarejos invulneráveis/tags residuais, egg na mão ou particles ausentes.
+- **Drowned/Fisher:** dismount de drowned vivo/morto e cancelamento de goals; evita mob sem dano após unload enquanto afogava alguém; limita Sun Resistant time; corrige velocidade excessiva de recolher vara dos Fisher e interrupção inadequada do goal ao iniciar em alcance.
+- **Item disruption:** manipula o slot realmente selecionado, não o primeiro item idêntico do inventário, e bloqueia uso do item interrompido.
+- **Outros:** Patrol não deixa mobs presos em waypoint impossível; tempos de detecção de mobs presos em Parkour/Spider Destuck e Creeper Breaching corrigidos; Teleport Anti-Cheese não teleporta em alcance melee; Vehicle Anti-Cheese não bloqueia dismount; forced-explosion Creeper deixa de inflar se perde target; breaching Creepers retêm target 15 s sob Mobs > Targeting off (antes 3 s); Angry Creepers data não reaplicada a cada load.
+
+**Fonte primária detalhada:** https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9271399 (ID 9271399, 20/10/2026; confirmar página exata, não título interno com typo). **Categorias oficiais atuais**: somente `Mobs`, em acordo com a pasta física.
+
+**Impactos novos e testes de risco:** (a) regras de Shielding podem afetar balanceamento de Epic Fight, projetéis de outros mods e shields com encantamentos; (b) goals de alvo/retaliation não devem sobrescrever AI de entidades de addons; (c) não rerrolar chance ao reiniciar ou descarregar chunk é relevante para saves longos; (d) Warden/Witch/Ender Dragon/Drowned requerem casos reproduzíveis e verificação de fix em servidor dedicado; (e) MPR balance em 4.2.4.0 altera equipamento de mobs em lua cheia/altitude; (f) comparar TPS, CPU e aggro com AI-Improvements 0.5.3 e Epic Fight 21.17.3.1 do snapshot.
+
+**Conclusão da pesquisa de releases:** `4.2.3.0 → 4.2.4.0 → 4.2.5.0` **revisadas individualmente** com changelogs primários; versão física continua 4.2.3.0 e **não houve testes runtime ou troca de JAR**. A documentação pode sair da fila de pesquisas de atualização; QA/instalação eventual é outra tarefa.
