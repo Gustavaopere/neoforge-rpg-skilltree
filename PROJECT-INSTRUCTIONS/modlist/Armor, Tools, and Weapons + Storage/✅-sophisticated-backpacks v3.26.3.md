@@ -291,3 +291,29 @@ A modlist histórica #054 registra `arssophisticatedcompat-0.3.0.jar`, que coinc
 - **Gate de promoção:** Não atualizar isoladamente. Exige Sophisticated Core compatível, bridges/Ars/JEI/Thirst consumers, anti-dupe, Mob Catcher/linked storage, reopen/save/restart e contraptions.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/8845926
 
+## Fechamento do catálogo 3.26.3 → 3.26.14 — 23/10/2026
+
+**Baseline físico preservado:** `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` / runtime `3.26.3` no último snapshot disponível; candidato máximo no **CurseForge NeoForge 1.21.1** é **`sophisticatedbackpacks-1.21.1-3.26.14.2222.jar`**, publicado 20/10/2026. Não confundir versões da linha 26.x ou de Minecraft 1.20.1. Página oficial: https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/all?page=1&version=1.21.1 .
+
+A cadeia **efetivamente publicada** após 3.26.3 consiste em `3.26.4.2162` (27/09), `3.26.5.2171` (27/09), `3.26.6.2174` (29/09), `3.26.7.2182` (02/10), `3.26.8.2189` (05/10), `3.26.9.2195` (06/10), `3.26.11.2204` (12/10), `3.26.12.2208` (13/10), `3.26.13.2214` (19/10), `3.26.14.2222` (20/10). O número 3.26.10 **não é um artefato separado** para NeoForge 1.21.1 na lista; não criar changelog fictício.
+
+### Deltas de cada release, source upstream 1.21.x
+
+| Release | Mudança identificada | Evidência source |
+|---|---|---|
+| 3.26.4.2162 | Impede que o controller multiblock reporte conteúdo de backpack vinculado duplicadamente, reduzindo risco de contagem enganosa e extração duplicada. | [Commit 8005657](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/8005657e4) |
+| 3.26.5.2171 | Corrige backpack colocado perder dados após descarregar e recarregar chunk. | [Commit 7a44bf6](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/7a44bf62c) |
+| 3.26.6.2174 | Corrige backpack colocado ficar branco/sem sua coloração após carregar chunk. | [Commit fd0e91b](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/fd0e91bb6) |
+| 3.26.7.2182 | Corrige perda de dados de itens das mochilas durante migração de mundos. | [Commit e68d844](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/e68d8449f) |
+| 3.26.8.2189 | Reduz tráfego de sincronização de menus de backpacks vinculadas, melhorando performance. | [Commit a5cc39f](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/a5cc39fed) |
+| 3.26.9.2195 | Corrige sync de slots de backpack vinculado ao trocar Tank Upgrades; incorpora atualização de tradução russa. | [Commits 565bd1b](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/565bd1bfa), [c904875](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/c90487525) |
+| 3.26.11.2204 | Compartilhamento de grupos de linked storage entre Backpacks e Storage e correção de depósitos de controller após chunk unload, nos commits 10/10. | [Commits e3d9a7b](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/e3d9a7b7c), [d1f9269](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/d1f9269b2) |
+| 3.26.12.2208 | Corrige linked storage permitindo contornar restrições de remoção do Mob Catcher Upgrade. | [Commit 974d5e1](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/974d5e1d7) |
+| 3.26.13.2214 | Corrige crescimento do cache de wrappers de backpacks durante acesso a fluidos, com risco de consumo de memória cumulativo. | [Commit 6580623](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/6580623d1) |
+| 3.26.14.2222 | Corrige interferência de backpacks em drops de equipamento de mobs de Trial Spawners; atualização de tradução japonesa. | [Commits 7913d88](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/7913d880c), [6303574](https://github.com/P3pp3rF1y/SophisticatedBackpacks/commit/6303574a7) |
+
+**Precisão da atribuição:** cada commit foi observado na branch `1.21.x` do autor, em janela cronológica compatível com as releases. Para provar estritamente o conteúdo **binário** de cada JAR seria necessário SHA/diff de cada artefato; esta matriz descreve os deltas de source por janela de publicação, não resultados de decompilação dos binários.
+
+**Novas implicações para a documentação:** linked storage compartilhado pode alterar a cardinalidade de inventário do controller; Mob Catcher envolve autorização de remoção; tank wrappers e sincronização de slots têm risco de vazamento de memória ou duplicação visual; loot de Trial Spawners deve permanecer sob autoridade do jogo; migração de mundo e chunk unload não podem corromper `ItemStack`/components.
+
+**Gate coordenado antes de instalar:** validar Sophisticated Core da mesma janela, Sophisticated Storage, Sophisticated Backpacks: Ars Compat `arssophisticatedcompat-0.3.0.jar`, integração Create, Sophisticated JEI Index, Sophisticated Thirst Upgrade e Thirst Was Reclaimed; testar linked groups, upgrades de fluidos, claim restrictions, relog/restart, trial spawners, menus sob carga e conservation/anti-dupe. **Documentação de releases até 3.26.14 registrada; runtime continua 3.26.3.**
