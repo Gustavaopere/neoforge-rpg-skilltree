@@ -129,3 +129,41 @@ A autoridade física atual mantém `vampire_spells_addon-neoforge-1.21.1-0.0.9.j
 - **Gate de promoção:** Compat entre Vampirism e Iron's Spells: validar spell ownership/costs, vampire state, attributes, damage/healing, sync e multiplayer.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/vampirism-irons-spells-compatibility
 
+## Auditoria da release NeoForge 1.21.1 — 23/10/2026 (0.0.9 → 0.0.10)
+
+**Inventário físico histórico (inalterado):** posição **#556**, `vampire_spells_addon-neoforge-1.21.1-0.0.9.jar`, mod id `vampire_spells_addon`, runtime `1.21.1-0.0.9`. **Projeto oficial do JAR:** *Vampirism Iron's Spells Compatibility*, CurseForge **1350048**, autor `xsharov_`, categorias temáticas oficiais **Addons + Adventure and RPG + Food + Magic**; correspondem ao diretório utilizado. **Última Release verificada para NeoForge 1.21.1:** **0.0.10**, publicada **17/10/2026**, JAR `vampire_spells_addon-neoforge-1.21.1-0.0.10.jar`, File ID **9226160**. O intervalo publicado pertinente ao mesmo loader/jogo é **0.0.9 → 0.0.10**, sem outro artefato intermediário confirmado.
+
+### 0.0.10 — changelog do JAR correto e correlação com código-fonte
+
+O [changelog da release NeoForge exata](https://www.curseforge.com/minecraft/mc-mods/vampirism-irons-spells-compatibility/files/9226160) declara a adição de **configurações para dano de Holy healing e blood casting por escola de magia**. Para discriminar o comportamento efetivo, o source do **mesmo desenvolvedor**, `xsharov/VampireSpellsAddon`, contém commits de 17/10 mesclados na PR #9 (merge `d76dba6bf7f4b5451701e1e727bd662a2b0201c1`); trata-se de comprovação de mudanças na janela de publicação, **sem inspeção de bytecode do JAR**.
+
+**1. Config `bloodCastingSchools`: escolha das escolas que permitem pagar mana com sangue.**
+- A seleção deixa de ser obrigatoriamente exclusiva da **Blood School**; a **config padrão mantém somente Blood School**, preservando o comportamento esperado da 0.0.9 enquanto nenhuma alteração manual é feita.
+- As entradas aceitam ID completo (`irons_spellbooks:fire`), nome simples do Iron's (`fire`, interpretado no namespace `irons_spellbooks`) ou wildcard `*` para **todas as escolas**, inclusive de addons; lista vazia `[]` **desliga completamente a substituição mana→blood**.
+- `alwaysUseBloodForVampireBloodSpells` passa a valer para **todas as escolas selecionadas**, não somente Blood; o custo é atômico, sem cobrança parcial de mana mais sangue no mesmo cast.
+- Permanecem excluídos da substituição **Ray of Siphoning**, magias Holy utility cuja execução pelo vampiro é bloqueada, jogadores em Creative, casts sem custo de mana e recasts upstream.
+- **Fonte do source e testes de parser:** https://github.com/xsharov/VampireSpellsAddon/commit/ab54946d7590e611f4dd3e64fc5c7e2c9a58bcee .
+
+**2. Config `disableHolyHealDamage` — default `false`.**
+- Por padrão, mantém a tradução de **Holy healing para dano a vampiros** já descrita neste dossier, suprimindo a cura correspondente.
+- Quando configurada em `true`, as magias Holy healing **voltam a curar vampiros normalmente**, sem dano ao vampiro caster nem ao alvo devido a esse handler.
+- **A configuração NÃO desliga** reflexão de dano Holy, dano Holy duplicado em NPCs vampiros nem penalidade/cancelamento de **Holy utility**; esses fluxos são separados no código.
+- O source cita Heal, Greater Heal, Healing Circle, Blessing of Life e Cloud of Regeneration como exemplos de curas cobertas. Fonte: https://github.com/xsharov/VampireSpellsAddon/commit/393bd9505287d327990f631471fbed658a1dadaa .
+
+**3. Devour sob escolas selecionáveis e casts contínuos — ajuste do mesmo lote de source.**
+- Quando Blood School não integra `bloodCastingSchools`, o Devour **não pode usar o fallback de blood**: o pre-cast exige mana suficiente para o **preço multiplicado específico de vampiro**, e em caso contrário cancela com notificação de mana insuficiente.
+- O README registra uma limitação na execução de **casts contínuos**: no modo forced blood-only, após acabar blood o canal pode permanecer ativo até liberar/timeout, mas os pulsos não pagos não produzem o efeito nem debitam recurso; essa observação é relevante a Fire Breath e outros spells canalizados elegíveis.
+- Fonte do ajuste: https://github.com/xsharov/VampireSpellsAddon/commit/1ef4e10d4eb2df3a6862a21937359b5e87ea3d5e .
+
+### Boundaries e regressões a testar — nenhum teste realizado
+- [ ] Salvar backup de `<world>/serverconfig/vampire_spells_addon-server.toml`; verificar inserção dos novos defaults em mundos existentes e leitura sincronizada de config no dedicated server.
+- [ ] Testar `bloodCastingSchools=["blood"]`, `[]`, `["blood","fire","ice"]`, wildcard `*` e ID de escola de addon; rejeitar nomes inválidos via config validator.
+- [ ] Para vampiro: mana suficiente, mana insuficiente com sangue suficiente/insuficiente, always-use-blood e redução de cooldown; cada spell aplica **um** débito e **um** cast, sem duplicação em perks/bridges.
+- [ ] Confirmar Ray of Siphoning fora do fallback e Devour com mana multiplicada quando a Blood School está desmarcada; testar canais contínuos quando acaba mana/blood.
+- [ ] Exercitar `disableHolyHealDamage=false/true` com self-heal, heal em outro vampiro, heal em não vampiro, AoE e Holy utility; assegurar que a opção não desativa reflexão Holy ou bônus de dano em NPC Vampirism.
+- [ ] Testar logout, death/respawn, mudança de dimensão e casts concorrentes em multiplayer para evitar correlações stale, débito duplicado e efeitos aplicados a jogador errado.
+- [ ] Validar integração com **Vampirism 1.10.13**, **Iron's Spells 3.16.3**, **NeoForge 21.1.250** documentados no último inventário, sem presumir que os ranges declarados equivalem a QA de runtime.
+
+**Conclusão documental:** a **única release 0.0.10** posterior à 0.0.9 no alvo NeoForge 1.21.1 foi descrita a partir de **changelog do arquivo exato**, com complementos de código-fonte do autor separados e identificados. **A pesquisa das alterações publicadas deste intervalo está concluída** e o item #77 pode sair da fila **documental**. A promoção física do JAR 0.0.10, a verificação de seu bytecode e os testes in-game **não** foram realizados; preservar arquivo de dossier, JAR e runtime em 0.0.9.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/vampirism-irons-spells-compatibility/files/9226160 ; https://github.com/xsharov/VampireSpellsAddon/pull/9 ; commits pinados acima.
