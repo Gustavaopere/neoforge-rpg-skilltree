@@ -118,3 +118,36 @@ Fonte upstream: CurseForge Lithostitched 1.8.0 para NeoForge 21.1, file ID 89446
 - **Gate de promoção:** Biblioteca/worldgen: validar datapack/worldgen APIs, consumers, registries, novos chunks e boot/restart.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/lithostitched
 
+## Auditoria incremental beta6 → 1.8.0 → 1.8.1 — 23/10/2026
+
+**Autoridade física conservada:** `lithostitched-1.8.0+beta6-neoforge-21.1.jar`, metadata instalada `1.8.0+beta6`; não foi instalado nenhum binário novo. Projeto oficial CurseForge **936015**, autor **Apollo**, categorias oficiais **API and Library + Miscellaneous + World Gen** — a pasta já representa o conjunto completo, na ordenação exigida.
+
+**Sequência completa após o beta6 para NeoForge Minecraft 1.21.1:** **1.8.0 Release** (22/09/2026, file ID 8944659) e **1.8.1 Release** (14/10/2026, file ID **9170709**). Não confundir com 2.0.6 da linha Minecraft 26.3.
+
+### 1.8.0 — 22/09/2026
+A seção 16 anterior registra os deltas, incluindo worldgen modifiers `add_spawn_costs`, `set_tree_decorators`, placers adicionais, density function `cellular`, otimização de caching, correções de `offset` e de feature `dungeon`, logs com WorldWeaver, minimum-value de density functions e o **fix importante de corrupção de mundos em certos cenários com injeção de surface rules**. São riscos efetivos para um modpack com múltiplos produtores de biomas e regras de superfície.
+
+Fonte exata NeoForge 1.21.1: https://www.curseforge.com/minecraft/mc-mods/lithostitched/files/8944659 .
+
+### 1.8.1 — 14/10/2026
+**Changelog oficial do artefato `lithostitched-1.8.1-neoforge-21.1.jar`, File ID 9170709:**
+
+1. **Sistema novo de targeting alternativo nos worldgen modifiers:** em lugar de apenas selecionar um ID, lista de IDs ou uma tag, passa a permitir **objeto tipado de seleção**. O changelog declara os tipos:
+   - `lithostitched:any`: todos os elementos de um registry;
+   - `lithostitched:regex`: seleção de IDs do registry por expressão regular;
+   - `lithostitched:biome/climate`: biomas cujo clima pertence ao intervalo indicado;
+   - `lithostitched:biome/has_feature`: biomas que contêm determinado placed feature.
+   Trata-se de **extensão de schema/seletores de datapack**; não presumir conversão automática de seletores existentes ou semântica de regex sem testar validação de JSON.
+2. **Processor list injections agora alcançam elementos aninhados** dentro de `list_pool_element` — especialmente torres de Pillager Outpost — e blocos de estruturas vanilla anteriormente não tratados: logs/chains/planks de mineshafts, folhas/vines/netherrack dos ruined portals, sand/suspicious sand dos desert temples, dried ghasts de nether fossils, spawners das strongholds/fortresses, cobblestone extensions de woodland mansions e **chests de múltiplas estruturas**. A correção de injeção pode **alterar a aparência e o loot-containment** de estruturas em chunks novos mesmo sem atualização do mod fornecedor.
+3. **Novas tags para palette swapping:** `#lithostitched:supports_mineshaft_extension` e `#lithostitched:supports_ruined_portal_leaves`; importantes para datapacks que substituem blocos de worldgen e para persistência de estruturas.
+4. **Correção de congelamento esporádico** ao avaliar a condição de processor `lithostitched:matching_biomes`.
+
+Fonte primária inequívoca, versão, loader e ID: https://www.curseforge.com/minecraft/mc-mods/lithostitched/files/9170709 .
+
+### Gate de compatibilidade e conclusão
+- **Antes de promover:** backup completo do mundo; copiar configs/datapacks; testar mundo novo e mundo existente, fronteiras de chunks, WorldWeaver, BetterEnd/BetterNether: New Dawn, Tectonic, TerraBlender e consumers de datapacks.
+- **Novos regression gates:** validar parsing/JSON dos quatro target types, seleção `regex` e climática, `biome/has_feature`; inspeção de outpost/mineshaft/ruined portal/desert temple/nether fossils/fortress/stronghold e chests em chunks **novos**, com comparação antes/depois; confirmar `matching_biomes` sem deadlock; verificar determinismo entre runs/threads e ausência de corrupção de surface rules.
+- **Dependências embarcadas:** Apollib e json5-java identificados dentro do JAR são bibliotecas aninhadas e **não** criam novos mods top-level nem linhas no índice.
+- **Risco de compatibilidade não anulado:** o relato de Tectonic “View Presets” na beta6 permanece como problema a reproduzir e não como erro comprovado localmente.
+
+**Conclusão da revisão documental de releases:** beta6 → 1.8.0 → 1.8.1 completamente catalogadas, incluindo mudanças novas de API/data e correções de worldgen. **Installed permanece beta6**; não executar rename ou presumir que houve smoke test do modpack.
