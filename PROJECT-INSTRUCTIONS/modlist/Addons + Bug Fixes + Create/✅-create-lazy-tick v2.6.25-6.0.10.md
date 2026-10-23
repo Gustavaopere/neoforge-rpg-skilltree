@@ -111,3 +111,17 @@ Fontes upstream: CurseForge file IDs 8970326 (2.7.29) e 8995867 (2.7.30); source
 - **Gate de promoção:** Revalidar Basin multi-fluid, Factory Gauge, Saw + Central Kitchen, sequenced Deployer, Lazy Tick Clock, funnels/redstone, bounded Redstone Link refreshes, reload/restart e CBC ammo/deployer regressions.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-lazytick
 
+## Auditoria cumulativa Create:LazyTick 2.6.25 → 2.7.30 — lote 31–40 (22/10/2026)
+
+**Baseline físico:** `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` com Create `6.0.10`. **Publicação mais recente mesma linha:** `CreateLazyTick-2.7.30-6.0.10-neoforge-1.21.1.jar` (28/09, CurseForge ID 8995867) e seu predecessor confirmado **2.7.29** (25/09, ID 8970326). Files `2.7.30-6.0.x-forge-1.20.1.jar` e Fabric 1.20.1 são builds de outra linha, não inserir na cadeia da instalação.
+
+| Release oficial 1.21.1 / Create 6.0.10 | Delta técnico |
+|---|---|
+| 2.7.29 | **Basin multi-fluid** passa a reconhecer segundo fluido no recipe evaluation; Factory Gauge reduz monitoramento inativo; corrigidos recipe caches de Mechanical Saw com Central Kitchen e progresso do sequenced Deployer. Fix NeoForge de Mixin load e receita do Lazy Tick Clock; funnels/belt funnels voltam a funcionar após pause de redstone; `funnel redstone overclock` novo e **DESLIGADO por padrão**, pois aumenta lag; diminui CPU de passengers vivos parados nas belts. |
+| 2.7.30 | Recupera refresh **bounded** de Redstone Links com sinais estáveis sem interceptar transmissões explícitas. A nota de suporte Fabric 1.20.1/Create Fabric 6.0.8.1 é irrelevante ao alvo NeoForge 1.21.1. |
+
+**Limite na cadeia:** o catálogo consultado confirma esses dois artefatos finais e a documentação anterior cobre os 2.6.25, mas **não foi obtida uma prova exaustiva de ausência de versões 2.7.x precedentes a 2.7.29** (por exemplo notas individuais/índice de todo o canal desde 2.6.25). Não declarar revisão de *cada* versão intermediária inteiramente concluída sem essa enumeração. **BLOQUEADO para retirada da lista por esse limite objetivo**, embora os deltas funcionais acessíveis e testes já estejam descritos.
+
+**Gates:** factory de recipes com Basin 2 fluidos, reloading scripts, Factory Gauges, Central Kitchen, saw e Deployer, clock recipe/UI, belts/funnels e redstone pauses, Redstone Link com sinal estável e mudanças explícitas, overclock off/on sob stress, CBC ammo containers, multiplayer, save/restart e TPS medido. Candidato não testado fisicamente.
+
+**Fontes oficiais NeoForge 1.21.1:** https://www.curseforge.com/minecraft/mc-mods/create-lazytick/files/8970326 ; https://www.curseforge.com/minecraft/mc-mods/create-lazytick/files/8995867 .
