@@ -96,3 +96,37 @@ Cada cliente renderiza a barra com base no state recebido. Barras não podem cri
 - **Gate de promoção:** Validar boss detection, custom bars, overlays/shaders/resource packs, multiplayer e coexistência com bosses modded.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars
 
+## Revisão de releases 1.0.0 → 1.1.2 — 23/10/2026
+
+**Autoridade física do último snapshot:** `enhancedbossbars-1.0.0.jar`, mod ID `enhancedbossbars`, runtime `1.0.0`, posição #253. **Projeto oficial CurseForge** de ID **1063296**, autor **Nakuring**; **categorias Adventure and RPG + Cosmetic + Miscellaneous + Mobs** idênticas à pasta real. O projeto foi atualizado com suporte a **Fabric/Forge/NeoForge** e hoje exibe a release **`enhanced_boss_bars-1.1.2-1.21.1-neoforge.jar`**, publicada em **18/10/2026**, file ID **9245977**. Os nomes `enhancedbossbars` e `enhanced_boss_bars` **não são idênticos**: conservar JAR/mod ID físico e conferir migration de config/mod ID ao instalar antes de presumir save/config coexistentes.
+
+**Evidência principal de fonte:** o **próprio link "Source" do projeto CurseForge** aponta para o repositório oficial **`Naku2004/Enhanced_Boss_Bars_1.21.1_NeoForge`**, especificamente da linha 1.21.1 NeoForge; a análise abaixo não usa classes de outro loader para atribuir comportamentos à versão candidata. https://github.com/Naku2004/Enhanced_Boss_Bars_1.21.1_NeoForge/commits/master .
+
+### Linha 1.1.0 — mudanças upstream acumuladas em outubro, anteriores ao 1.1.2
+**Publicação de um arquivo NeoForge 1.21.1 com número exato 1.1.0 não corroborada** no catálogo consultado; as mudanças upstream identificadas nos commits de 03–14/10 **não** devem ser rotuladas arbitrariamente como específicas desse JAR:
+- Introduz **configuração baseada em Cloth Config** e tela dedicada; preferências por barra e seleção de variante/autor de design. Permite que resource packs forneçam JSONs de boss bars customizadas e escolher variantes por identificador/autor, em lugar de overlay fixo (commits `7a7747e9`, `cb1138a4`, `68d36ca4`).
+- Novo controle de **escala da boss bar** de **1 a 4**; alinhamento horizontal/vertical e posição X/Y com offsets calculados usando escala efetiva da GUI. A configuração padrão passou de 1 para **3** no commit `794130dd`; não presumir que o default físico 1.0.0 era 1 nem que a escala visual é igual à GUI scale.
+- Correções de **render overlay** (prioridade do evento `CustomizeGuiOverlayEvent.BossEventProgress`), previsão de layout e texturas, **second-phase** de bosses, atlas de textura, carregamento de resource packs e limpeza de estado ao recarregar recursos (`BossBarsManager.clear()` no listener).
+- Muitas definições vanilla/modded recebem campo **`author`** e configurações por boss bar, relevantes para packs visuais personalizáveis. Não duplicar HP/fase/AI do boss provider.
+
+### Linha 1.1.1 — mudanças upstream intermediárias
+**Publicação separada para NeoForge 1.21.1 não comprovada**: 1.1.1 foi publicada no CurseForge em 16/10 para **outros loaders/game versions**, então distinguir a sequência numérica da sequência de JARs concretos instaláveis. O changelog da publicação **Forge 1.20.1 1.1.1** cita **Aquamirae e Antarchy**; no upstream específico NeoForge 1.21.1 há definições Antarchy e correções de segunda fase/layout, mas **não atribuir automaticamente suporte Aquamirae ao artefato 1.21.1** sem comprovação do JSON/patch.
+- Commits em 14–16/10 incluem `f5824e326` (ajuste de second-phase), `7bd56f2b05` / `c6765a7f61` / `139ce0925b` (detalhes/limpeza de recursos/implementação).
+
+### 1.1.2 — 18/10/2026, Release oficial NeoForge 1.21.1 (File ID 9245977)
+**Changelog publicado do JAR exato:**
+- **Nova opção para desativar Enhanced Boss Bars**, mantendo barras vanilla quando a apresentação enhanced é desligada; source adiciona `enhanced_boss_bars_enabled` com default **true** na `GeneralConfig` e gating no evento HUD.
+- **Compatibilidade com Bosses'Rise e Legendary Monster**; são providers *opcionais* — não criar entradas físicas nem considerá-los instalados por constarem nas release notes.
+- **Refatoração de código** e correções dos limites do layout/config, sem alterar autoridade de vida/combate.
+- **NeoForge mínimo reduzido para 21.1.219**, enquanto o snapshot do modpack documenta **21.1.250** (compatível com esse mínimo declarativo, sujeito aos demais mods).
+- O commit oficial `e5ebc0631b` muda diretamente `mod_version=1.1.0-1.21.1-neoforge` para `1.1.2-1.21.1-neoforge` (logo **não comprova 1.1.1 como artefato NeoForge 1.21.1**) e introduz **migração de chaves de configuração traduzidas** para novos IDs, evitando perda de escolhas depois da atualização. Também adiciona offsets de overlay para **segunda fase do boss** e controles de draw order.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/9245977 ; https://github.com/Naku2004/Enhanced_Boss_Bars_1.21.1_NeoForge/commit/e5ebc0631b .
+
+### Gates de compatibilidade e decisão
+- **Mudança de identidade:** verificar manifesto real e mod ID no `1.1.2`, porque o JAR novo usa nome externo diferente; caso o mod ID mude, migrar configs manualmente/checar se ambos não carregam como mods distintos. Nunca instalar lado a lado como teste sem identificar ids.
+- **Assets/configuração:** backup dos arquivos, reabrir GUI Cloth Config, testar escolha de autor por boss, enable/disable geral, fallback vanilla, recursos `.json` adicionados por packs e reload; verificar layout/escala com HUD diferentes e várias boss bars simultâneas.
+- **Providers locais:** validar Wither/Dragon, Cataclysm, Mowzie's Mobs, Bosses of Mass Destruction, Alex's Mobs e Jade sem barras duplicadas ou deslocamento na segunda fase; Bosses'Rise/Legendary Monster apenas se um novo inventário confirmar presença.
+- **QA futuro:** client render, multi boss overlap, leitura de config de versões antigas, shaders, morte/respawn/teleporte, duas telas e fullscreen; servidor dedicado sem dependência lógica de HUD.
+
+**Conclusão documental:** o delta do projeto e de source NeoForge 1.21.1 foi revisado em toda a janela `1.0.0 → 1.1.2`, incluindo o registro de que **1.1.0/1.1.1 não têm binários NeoForge 1.21.1 individuais inequivocamente confirmados**. Release candidata **1.1.2**, física **1.0.0**. Não houve teste in-game nem instalação. O conteúdo técnico conhecido e as lacunas de publicação foram documentados; **não declarar equivalência binária de outras plataformas**.
