@@ -230,3 +230,46 @@ Release NeoForge 1.21.1 **`sophisticatedstorage-1.21.1-1.6.4.2169.jar`** em 12/1
 - **Gate de promoção:** Não atualizar isoladamente. Exige Core compatível e regressão de linked groups/controllers, anti-dupe, chunk unload, save/restart, Backpacks e Create bridge.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/8762100
 
+## Auditoria integral de releases NeoForge 1.21.1 — 23/10/2026 (1.5.91.2127 → 1.6.9.2199)
+
+**Autoridade física preservada:** posição **#519** da última modlist física, JAR top-level `sophisticatedstorage-1.21.1-1.5.91.2127.jar`, mod ID `sophisticatedstorage`, metadata runtime **1.5.91**; Sophisticated Core físico `sophisticatedcore-1.21.1-1.5.1.2341.jar`, runtime **1.5.1**. **Projeto oficial CurseForge:** *Sophisticated Storage*, ID **619320**, autor **P3pp3rF1y**, categoria temática única **Storage**, coerente com a pasta atual. **Última Release confirmada para exatamente Minecraft 1.21.1 / NeoForge:** **`sophisticatedstorage-1.21.1-1.6.9.2199.jar`**, **23/10/2026**. Retifica a nota de 22/10 que citava a 1.6.8.2196 como última. Fontes: https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/all ; https://github.com/P3pp3rF1y/SophisticatedStorage/tree/1.21.x .
+
+### Sequência de artefatos publicados na plataforma correta
+
+| Release | Data | Delta técnico documentado e evidência |
+|---|---|---|
+| **1.6.0.2136** | 27/09 | Novo **Linked Storage** via Ender Linker para barris, limited barrels, baús e shulker boxes: inventário/settings/upgrades compartilhados; upgrades por tick aplicados apenas no principal, apenas o principal pode subir de tier e endpoints ligados não podem ser empacotados. Já detalhada na seção 26. |
+| **1.6.1.2147** | 02/10 | Corrige **perda de data components/dados de itens durante migração de mundos**, importante para NBT/componentes em inventários existentes (CurseForge **9036665**). |
+| **1.6.2.2154** | 05/10 | Permite funcionalidades de linked storage em containers **montados ou móveis**; superfície de Create contraptions e lifecycle de chunks (CurseForge **9074514**). |
+| **1.6.2.2159** | 06/10 | Traduções **espanhol/chinês**; não associar feature inédita sem prova adicional (CurseForge **9083992**). |
+| **1.6.4.2169** | 12/10 | **Grupos linked compartilhados entre Sophisticated Backpacks e Storage**, e correção de **Controller deposit após chunk unload** (CurseForge **9151544**). |
+| **1.6.5.2176** | 13/10 | Corrige **crash quando Sophisticated Backpacks opcional está ausente**; isso não torna seguro desinstalar Backpacks do pack atual (CurseForge **9154831**). |
+| **1.6.6.2181** | 13/10 | Corrige Controller deposit com **mod content filters** que podia perder itens. Changelog do JAR exato e código verificam o guard `!stack.isEmpty()` antes de verificar filtros/elegibilidade; adicionados testes de depósitos com slots vazios. **Core mínimo no código da linha passa a 1.5.12**: de `sc_version=[1.21.1-1.5.9,1.21.2)` para `[1.21.1-1.5.12,1.21.2)` (File ID **9166168**; commit `c9e1fa6c31e2`). |
+| **1.6.7.2184** | 15/10 | Corrige **faces de barris desaparecendo após alterar display slots**. O código substitui hash reduzido pela chave de cache `BarrelBakedModelCacheKey` que considera estado de renderização, materiais, itens exibidos e faces; adiciona testes de chaves. Changelog exato File ID **9201424**; commit `3f6feef475c4`. |
+| **1.6.8.2196** | 21/10 | Corrige **crash ao girar displays de barris usando Sodium**, substituindo mapa de rotações não thread-safe por `ConcurrentHashMap`; o source altera explicitamente `mod_version=1.6.7` → `1.6.8`. Commit `7d01973c3cb1`. |
+| **1.6.9.2199** | 23/10 | Corrige **perda de itens ao elevar o tier de baús duplos**, causada por expor/registrar inventário adicional perante Controllers. O source altera explicitamente `mod_version=1.6.8` → `1.6.9`: normaliza o registro das duas metades **após** concluir o upgrade, invalida capabilities e só então adiciona o storage ao Controller. Commit completo **`349ae8f1384db08eef2848bd581d12605706ff9c`**. |
+
+A sequência acima identifica **todos os dez artefatos posteriores presentes na listagem oficial** deste alvo, inclusive as duas builds 1.6.2. Não há publicação 1.6.3 para esse filtro; **não criar entrada fictícia**. Também não confundir 1.6.9.2199 NeoForge 1.21.1 com versões `1.5.x` publicadas em 23/10 para Minecraft 26.x ou Forge 1.20.1.
+
+**Fontes primárias específicas das últimas quatro releases:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/9166168 ; https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/9201424 ; https://github.com/P3pp3rF1y/SophisticatedStorage/commit/7d01973c3cb1 ; https://github.com/P3pp3rF1y/SophisticatedStorage/commit/349ae8f1384db08eef2848bd581d12605706ff9c . A correspondência da mudança a **1.6.8/1.6.9** possui evidência reforçada pelo `gradle.properties` alterado **no mesmo commit**. O registro documental não equivale a inspeção de bytecode/manifest dos JARs já compilados.
+
+### Dependência, impacto real e veto a upgrade isolado
+
+- **Bloqueio físico confirmado:** Sophisticated Core **1.5.1** é inferior ao mínimo **1.5.12** que o source 1.21.x da Storage 1.6.9 declara em `sc_version=[1.21.1-1.5.12,1.21.2)`. A versão candidata de Core **1.5.17.2426** continua com sua própria pendência documental (#12); **não atualizar Storage antes de coordenar Core/Backpacks/integrations**.
+- **Regressões de integridade:** as correções 1.6.1, 1.6.4, 1.6.6 e **1.6.9** afetam perda de dados ou de itens; migrar mundo existente sem backup pode produzir perda difícil de reverter. Não utilizar a build intermediária 1.6.8 como baseline final se o problema dos baús duplos for aplicável.
+- **Integrações físicas:** Sophisticated Backpacks, Storage Create Integration, Backpacks Create Integration, Sophisticated Storage in Motion (quando presentes no snapshot), Sophisticated Core e os controllers compartilham efeitos sobre inventários; é necessário verificar os contratos específicos e seus manifests, inclusive a exigência de NeoForge que o source 1.21.x declara.
+- **Render e compat cliente:** duas releases consecutivas (**1.6.7/1.6.8**) corrigem cachê/rotação de quads de barris. Testar Sodium e shader/resource reload sem atribuir à biblioteca influência lógica sobre o inventário.
+
+### Matriz de regressão recomendada — **não executada**
+
+- [ ] Backup frio de mundo e `serverconfig` antes da migração 1.5.91 → 1.6.9, registrando contagem, conteúdo e data components de itens sensíveis.
+- [ ] Testar **tier upgrade dos dois lados de baú duplo vanilla** conectado a Controller, com inventários preenchidos, filtro, slots vazios e operação automática; garantir somente um inventário lógico, sem perda/duplicação antes e depois de restart.
+- [ ] Testar **Controller deposit** com mod content filter, itens de múltiplos mods, slots vazios e passagem de chunk unload/reload; conferir conservação de itens.
+- [ ] Testar Linked Storage entre barris, baús, limited barrels, shulkers e backpacks: Ender Linker, grupos compartilhados, limitação de packing e upgrades por tick apenas no principal.
+- [ ] Testar Storage montado/móvel e Create contraption com upgrades, sorting, memória de slots, chunks e save/restart.
+- [ ] Testar material/color/display de barris, troca rápida de display slots, rotação de face com/sem Sodium, F3+T, GPU/CPU e GUI.
+- [ ] Testar perfil **descartável** sem Backpacks para reproduzir o caso de 1.6.5; não remover um consumer real do modpack ativo.
+- [ ] Validar matrizes de dependências e client/dedicated boot com as versões reais das integrações, dois jogadores simultâneos e inventories concorrentes.
+
+**Conclusão documental:** toda a sequência de **releases e changelogs específicos** de **1.5.91.2127 até 1.6.9.2199** foi identificada, confrontada com publicações CurseForge e complementada por commits oficiais que alteram os números de versão. **A pesquisa upstream deste intervalo pode ser retirada da fila (#78)**; a **promoção/QA do JAR 1.6.9 continua BLOQUEADA** pela necessidade de atualizar Sophisticated Core e testar o modpack. Nenhum JAR físico, arquivo de configuração, código, asset, dossier de outro mod ou caminho foi alterado por esta revisão.
+
