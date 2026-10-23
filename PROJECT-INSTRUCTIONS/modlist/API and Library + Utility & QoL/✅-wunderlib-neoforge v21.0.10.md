@@ -95,3 +95,32 @@ WunderLib 21.0.10 permanece atual para NeoForge 1.21.1. BetterEnd 21.0.34 e Bett
 - **Gate de promoção:** Validar API/consumers do stack BetterNether/BetterEnd/BCLib/WorldWeaver e boot/restart antes de promoção.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/wunderlib-neoforge
 
+## Auditoria da release 21.0.10 → 21.0.11 — 23/10/2026
+
+**Autoridade física preservada:** posição real histórica **#573**, JAR `wunderlib-21.0.10.jar`, mod id `wunderlib`, runtime `21.0.10`. **Projeto CurseForge inequívoco:** *WunderLib: New Dawn*, autor Raijin2312, ID **1422273**, categorias temáticas **API and Library + Utility & QoL**, exatamente a pasta do dossier. Trata-se da continuação independente New Dawn, **não da biblioteca WunderLib original**; fontes da original não são automaticamente changelogs desta versão.
+
+### Artefatos da plataforma alvo — NeoForge / Minecraft 1.21.1
+- **21.0.10:** Release de **16/01/2026**, CurseForge **File ID 7469725**, nome `wunderlib-21.0.10.jar`, compatível com 1.21/1.21.1 e loader NeoForge; a página cita requisito NeoForge >= 176. Este é o JAR documentado como fisicamente instalado.
+- **21.0.11:** Release de **14/10/2026**, nome de arquivo publicado **`wunderlib-21.0.11.jar`**, alvo **NeoForge 1.21 e 1.21.1**; a listagem pública do mesmo projeto confirma publicação posterior, sem artefato 1.21.1 adicional até 23/10. Outras linhas `21.11.x`, `26.1`–`26.3` e a `21.0.10-fabric` **não são atualizações da mesma combinação de jogo/loader**.
+
+Fonte de inventário oficial: https://www.curseforge.com/minecraft/mc-mods/wunderlib-neoforge/files/all ; fonte da versão física: https://www.curseforge.com/minecraft/mc-mods/wunderlib-neoforge/files/7469725 .
+
+### O que foi alterado no repositório oficial desde a distribuição 21.0.10
+O link oficial de código do projeto aponta para **`Reijin2312/WunderLib-New-Dawn`**, branch **`master`** para NeoForge 1.21.1. O commit público de **14/10/2026**, SHA **`28f1ae8c02156a3ba5f3a9ea5bb088b45b09dba2`**, intitulado `Update release metadata and composite builds`, contém explicitamente **`mod_version=21.0.10` → `mod_version=21.0.11`** em `gradle.properties`. No mesmo commit:
+- Corrige `curseforge_id` para **1422273**, identificando o projeto correto New Dawn no publisher;
+- Atualiza autoria declarada em `META-INF/neoforge.mods.toml` de `Quiqueck` para `Quiqueck, Raijin2312`; preserva o mod id e o escopo de ambiente `BOTH` no template;
+- Ajusta `wunderlib-composit.gradle` para **ler explicitamente o `gradle.properties` da biblioteca e expor suas propriedades ao build composto**; não equivale a introduzir APIs de gameplay ou networking.
+
+**Fonte do diff por release:** https://github.com/Reijin2312/WunderLib-New-Dawn/commit/28f1ae8c02156a3ba5f3a9ea5bb088b45b09dba2 .
+
+Outra mudança ocorrida na branch no intervalo entre **16/01 e 14/10**, commit **`4ae3bfb9ce0cb5926915443b1094a7292f0d235f`** de **24/07**, remove `dependsOn(runData)` da tarefa de empacotamento `jar` em `wunderlib.gradle`, **tornando datagen opt-in no build**. Trata-se de uma mudança no processo de empacotamento, não de uma correção de API no runtime demonstrada pela evidência. Fonte: https://github.com/Reijin2312/WunderLib-New-Dawn/commit/4ae3bfb9ce0cb5926915443b1094a7292f0d235f . Outras alterações de README/workflows/launcher no mesmo período são de suporte/desenvolvimento e não foram apresentadas como novas funcionalidades binárias.
+
+**Limite de afirmação:** a versão foi atribuída diretamente no source, mas **o binário publicado não foi submetido a diff de classes, manifest ou ABI**. Não concluir que 21.0.10 e 21.0.11 sejam byte-a-byte equivalentes nem inventar correção de UI/networking ausente dos commits. O changelog técnico recuperável deste delta é essencialmente **metadados do mod/publicação e infraestrutura de build**.
+
+### Consumers e QA separados da pesquisa documental
+- [ ] Confirmar via manifest e testes no pack que BetterEnd: New Dawn, BetterNether: New Dawn, BCLib e WorldWeaver permanecem compatíveis com o artifact NeoForge `21.0.11`.
+- [ ] Subir **cliente e dedicated server**; abrir e salvar telas de configuração dos consumers, reiniciar, relogar, trocar dimensão e fazer resource reload sem `NoSuchMethodError`, packet mismatch ou client-only classloading no servidor.
+- [ ] Comparar manifests/mod IDs e hash do JAR antigo/novo, mantendo no mínimo os bounds de dependência do consumer e Java 21.
+- [ ] Não promover isoladamente junto de BetterEnd 21.0.38, BetterNether e outras bibliotecas New Dawn: reconciliar essas cadeias por separado e testar em cópia do mundo.
+
+**Resultado:** a **única release posterior 21.0.11** foi identificada com fonte oficial e seu **bump explícito no source** reconciliado; diferenças publicamente observáveis do código foram descritas sem inventar alterações funcionais. Para o escopo de **pesquisa documental do changelog publicado**, o item **#79 pode sair da fila**. Essa conclusão **não certifica a equivalência binária**, nem aprova a instalação/compatibilidade com os consumers. Nenhum JAR, pasta ou arquivo além deste dossier/índice foi modificado.
