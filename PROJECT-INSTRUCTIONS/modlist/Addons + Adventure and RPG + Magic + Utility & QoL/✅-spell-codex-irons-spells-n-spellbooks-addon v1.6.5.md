@@ -177,3 +177,45 @@ O CurseForge oficial continua apontando **1.6.5** (file ID `8710459`) como a rel
 - **Gate de promoção:** Validar spellbook/codex UI, spell registry, recipes/loot, Iron's Spells API, networking e persistence.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon ; https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/8710459
 
+## Auditoria oficial release-by-release NeoForge 1.21.1 — 23/10/2026 (1.6.5 → 1.6.13)
+
+**Autoridade física histórica preservada:** ordem #525, JAR `specs_irons_spellbooks-1.6.5.jar`, mod id `specs_irons_spellbooks`, runtime `1.6.5`. O nome de runtime é *Specs: Iron's Spells 'n Spellbooks Addon*, enquanto o projeto CurseForge exato é **Spell Codex: Iron's Spells 'n Spellbooks Addon**, autor **SemSemSem**, **ID 1623374**. Categorias temáticas oficiais **Addons + Adventure and RPG + Magic + Utility & QoL**, correspondentes ao diretório. Ambiente **Client & Server**. A última Release NeoForge 1.21.1 verificada em 23/10 é **`specs_irons_spellbooks-1.6.13-neoforge-1.21.1.jar`**, 19/10, CurseForge **File ID 9253448**.
+
+### Sequência completa dos arquivos publicados após a build física
+
+| Versão | Data / File ID NeoForge 1.21.1 | Changelog oficial atribuível à build correta | Requisito Actionbar publicado |
+|---|---|---|---|
+| **1.6.6** | **17/09**, **8906895**, `specs_irons_spellbooks-1.6.6.jar` | **Corrige targeting de bloco em spells do Apprentice's Codex** quando lançados por actionbar ou tecla de spell imbued (antes podia solicitar “Target a block” indevidamente); `known_spells.json` passa a **agrupar spells pela escola real**, e não tudo em Evocation; os JSON de config passam a conter apenas dados, movendo guias/exemplos para `config/specs_irons_spellbooks/CONFIG_GUIDE.md`. | **1.1.5+** |
+| **1.6.7** | **18/09**, **8910755**, `specs_irons_spellbooks-1.6.7.jar` | **Descobrir uma spell** por Codex page, scroll ou extração de spellbook também **desbloqueia tier I** da spell; corrige estado descoberto sem primeiro tier acessível. | **1.1.5+** |
+| **1.6.8** | **22/09**, **8946417**, `specs_irons_spellbooks-1.6.8-neoforge-1.21.1.jar` | Introduz tab **All spells** para spells descobertas agrupadas por escola, memória da última aba aberta e rolagem suave em abas e grade; corrige **camada de desenho de cooldowns** de actionbar/imbued slot para não cobrir hotkey, além de setas de abas de escolas que ficavam presas à aba selecionada. | **1.1.6+** |
+| **1.6.9** | **26/09**, **8976546**, `specs_irons_spellbooks-1.6.9-neoforge-1.21.1.jar` | Adiciona **`defaultActionbarSlots`** ao `codex_settings.json`, padrão **3** e faixa **1–15**, sincronizada com clientes, definindo os slots mostrados quando **não há spellbook equipado**. | **1.1.7+** |
+| **1.6.10** | **29/09**, **9013888**, `specs_irons_spellbooks-1.6.10-neoforge-1.21.1.jar` | Acrescenta **comandos administrativos para elevar ao máximo os tiers de spells já descobertas**, no conjunto do jogador ou filtrado por escola: `/specs_codex spell max @s` e `/specs_codex spell max @s irons_spellbooks:fire`. | A página da build não declara mínimo novo; manter o piso **1.1.7+** já estabelecido para a 1.6.9, sem presumir retrocompatibilidade. |
+| **1.6.13** | **19/10**, **9253448**, `specs_irons_spellbooks-1.6.13-neoforge-1.21.1.jar` | Corrige **Codex saindo da tela com GUI scale alto/janela pequena** (escala ajustada para manter livro, inspector e ink row visíveis); corrige **crash de dedicated server** por classe client-only de player em networking comum; impede colocar **Codex spell cards em slots extras de outros mods, como TrashSlot**, evitando **duplicação** — cards só entram na actionbar. | **1.1.7+** |
+
+**Lacunas numéricas:** o catálogo oficial filtrado **não publica builds `1.6.11` nem `1.6.12` para NeoForge 1.21.1** entre 1.6.10 e 1.6.13; elas **não devem ser inventadas nem contabilizadas como releases auditadas**. Também não tomar arquivos com mesmo número para **Forge 1.20.1** como prova dos fixes no NeoForge: as notas acima foram verificadas nas páginas dos JARs **da plataforma correta**.
+
+**Fontes primárias por arquivo:**
+- 1.6.6 — https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/8906895
+- 1.6.7 — https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/8910755
+- 1.6.8 — https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/8946417
+- 1.6.9 — https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/8976546
+- 1.6.10 — https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/9013888
+- 1.6.13 — https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/9253448 ; lista completa e categorias https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/all
+
+### Bloqueio obrigatório: Spell Actionbar instalado não atende as novas releases
+
+**O snapshot físico atual contém `Spell Actionbar 1.1.4`, enquanto a versão 1.6.6 já declara `Spell Actionbar 1.1.5+`, a 1.6.8 requer `1.1.6+` e as versões 1.6.9/1.6.13 pedem explicitamente `1.1.7+`.** Logo, apesar de a série documental estar completa, **nenhum destes candidatos pode ser recomendado para instalação isolada**. Deve ser auditada e coordenada a atualização de Spell Actionbar e verificada a compatibilidade real com Iron's Spells 3.16.3, Iron's Lib 2.1.0, playerAnimator/Curios, skills/quests do pack e Apprentice's Codex 0.9.7.1. A exigência publicada é um mínimo de dependency, não comprovação de QA.
+
+**Mudanças de gameplay que demandam decisão:** 1.6.7 concede tier I no momento da descoberta; isso interfere na economia de XP+ink e em qualquer skill tree que também faça gating. Comandos 1.6.10 alteram progressão server-side; verificar permissões e flags para não criar unlock sem custo indevido. `defaultActionbarSlots` altera apresentação e sync da configuração por jogador, mas não cria novas spells nem autoridade cliente para casting.
+
+### Plano de validação — nenhum teste executado
+- [ ] Backup de mundo, configurações JSON e estado por jogador antes de migrar; catalogar páginas/spellbooks, tiers, inks e cargas em actionbar.
+- [ ] Atualizar Spell Actionbar para versão compatível **≥1.1.7** em uma cópia de instância, avaliando o changelog e a metadata da sua própria build; nunca alterar automaticamente o JAR físico.
+- [ ] Abrir Codex em GUI scale alta e janela pequena; testar tabs, All spells, scrollbars, school navigation, inspector e ink row.
+- [ ] Iniciar **dedicated server** de verdade e dois clientes, testar rede/sincronização e ausência de classes cliente no common networking.
+- [ ] Tentar mover Codex cards para slots extra de TrashSlot/outros mods e checar conservação/ausência de dupe, dentro e fora da actionbar.
+- [ ] Testar Apprentice's Codex block-targeting spells, casting imbued e actionbar; garantir tier I após discovery por page, scroll e spellbook, incluindo casos de XP/ink insuficientes.
+- [ ] Validar `defaultActionbarSlots` 1/3/15 com e sem spellbook equipado, sincronização server→client, slot shrink e inventários cheios.
+- [ ] Testar comandos `/specs_codex spell max` com e sem escola e permissions, relog, morte, restart e spells provenientes de outros addons.
+
+**Conclusão documental:** as **seis releases posteriores à física 1.6.5** foram discriminadas por **changelog do artefato NeoForge 1.21.1 exato**, e a ausência de 1.6.11/1.6.12 no catálogo foi registrada sem inferência. **#82 pode sair da fila de pesquisa de versões/changelogs**. Isso **não autoriza update**: o **Spell Actionbar 1.1.4 físico bloqueia a promoção** da série 1.6.6–1.6.13, e os gates de progressão/duplicação/servidor ainda requerem QA. Preservar dossier, versão e JAR.
