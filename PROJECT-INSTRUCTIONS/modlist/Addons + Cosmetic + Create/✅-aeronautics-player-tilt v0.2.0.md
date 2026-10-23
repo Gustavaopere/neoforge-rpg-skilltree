@@ -151,3 +151,11 @@ A ausência de bump não equivale a certificação de compatibilidade. O addon a
 - Prioridade de QA: Physics Mod Pro; escala Pehkui e Create: Pocket Sized 0.20.0+; câmera após salto/curvas e altas velocidades de rotação; Magnetic Boots em teto/parede, degraus, bordas e sublevels estreitos; Sticky Tilt ao alterar limiar; estabilidade de FPS; hitbox e colisão sincronizadas em servidor e cliente.
 - **Candidato 0.2.4:** há indicação em catálogo secundário de publicação em 19/10/2026, mas o release e changelog não foram confirmados diretamente no CurseForge nesta revisão; tratá-lo como **pendente de verificação primária**, nunca como versão instalada ou delta concluído.
 - **Situação final:** atualização documental parcial concluída até 0.2.3; revisão até a última versão upstream e compatibilidade prática **pendentes**. **Não retirar o item 54 da lista de acompanhamento.**
+
+## Correção de evidência de releases — 23/10/2026
+
+**Correção importante à seção “Revisão incremental upstream — 23/10/2026 (0.2.0 → 0.2.3)” anterior:** a fonte primária identificada pelo projeto e pelo JAR do pack, **Aeronautics Player Tilt** (CurseForge projeto **1681706**, autor mrlemonhog, `aero_player_tilt-0.2.0.jar`), mostra **cinco arquivos publicados**, de 0.1 até **0.2.0 (14/09/2026)**. **Não apresenta releases 0.2.1, 0.2.2, 0.2.3 ou 0.2.4** nessa listagem. Logo, as descrições 0.2.1–0.2.3 e a indicação de 0.2.4 da seção anterior **não estão comprovadas para este projeto** e **não devem ser utilizadas para orientar atualização, download ou migração**.
+
+**Fonte correta:** https://www.curseforge.com/minecraft/mc-mods/aero-player-tilt/files/all (projeto **1681706**; conferir identidade pelo ID e artefato). A versão registrada no inventário físico, **0.2.0**, coincide com a última publicação observada nessa lista. Não atribuir mudanças publicadas sob outro nome, fork ou página semelhante ao mod instalado.
+
+**Resultado:** revalidação de catálogo compatível com baseline **0.2.0, sem delta de versão comprovado**. Permanecem necessários smoke tests/QA e verificação de estrutura e links antes da retirada definitiva da lista. Esta nota prevalece sobre a seção anterior conflitante; seu texto antigo foi mantido para auditabilidade, mas está **expressamente invalidado como evidência**.
