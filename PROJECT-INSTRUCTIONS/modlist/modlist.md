@@ -72,7 +72,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 022 | Almost Unified | `almostunified-neoforge-1.21.1-1.4.2.jar` | `1.21.1-1.4.2` | `API and Library + KubeJS + Ores and Resources + Processing + Server Utility` | 18/09/2026 - 15:31 |
 | 023 | Alshanex's Familiars | `alshanex_familiars-1.21.1_v4.0.3.jar` | `1.21.1_v4.0.3` | `Addons + Magic + Mobs` | 22/10/2026 - 22:01 |
 | 024 | Alternate Current | `alternate_current-mc1.21-1.9.0.jar` | `1.9.0` | `Redstone + Server Utility + Technology + Utility & QoL` | 19/09/2026 - 12:06 |
-| 025 | AmbientSounds 6 | `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` | `6.3.8` | `Miscellaneous` | 19/09/2026 - 12:06 |
+| 025 | AmbientSounds 6 | `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` | `6.3.8` | `Miscellaneous` | 23/10/2026 - 15:22 |
 | 026 | Amendments | `amendments-1.21-2.1.10-neoforge.jar` | `1.21-2.1.10` | `Cosmetic + Utility & QoL` | 22/10/2026 - 22:00 |
 | 027 | Amplified Nether | `Amplified_Nether_26.2_v1.2.16.jar` | `1.2.16` | `Biomes + Dimensions + World Gen` | 19/09/2026 - 12:06 |
 | 028 | Animal Husbandry | `AnimalHusbandry-neoforge-0.4.1.jar` | `0.4.1` | `Farming + Genetics + Mobs` | 19/09/2026 - 12:06 |
@@ -572,7 +572,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 522 | Sound Physics: Aeronautics | `sound-physics-remastered-neoforge-1.4.0.1.jar` | `1.4.0.1` | `Create + Utility & QoL` | 27/09/2026 - 22:12 |
 | 523 | Sounds | `sounds-2.4.22+lts+1.21.1-neoforge.jar` | `2.4.22+lts` | `Adventure and RPG + Cosmetic + Utility & QoL` | 27/09/2026 - 22:12 |
 | 524 | spark | `spark-1.10.124-neoforge.jar` | `1.10.124` | `Server Utility` | 27/09/2026 - 22:12 |
-| 525 | Spell Codex: Iron's Spells 'n Spellbooks Addon | `specs_irons_spellbooks-1.6.5.jar` | `1.6.5` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
+| 525 | Spell Codex: Iron's Spells 'n Spellbooks Addon | `specs_irons_spellbooks-1.6.5.jar` | `1.6.5` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 23/10/2026 - 15:23 |
 | 526 | SpellActionbar | `spell_actionbar-1.1.4.jar` | `1.1.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
 | 527 | StarbuncleMania | `starbunclemania-1.21.1-1.5.8.jar` | `1.5.8` | `Addons + Automation + Energy, Fluid, and Item Transport + Magic` | 27/09/2026 - 22:12 |
 | 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 23/10/2026 - 01:43 |
@@ -1063,8 +1063,8 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 78 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.5.91.md) | `1.5.91` | 1.6.9.2199 Release (23/10) | **PESQUISA DOCUMENTAL 1.6.0–1.6.9 CONCLUÍDA EM 23/10; CORE ≥1.5.12, BACKPACKS/CREATE E QA ANTI-DUPE PENDENTES** |
 | 79 | WunderLib: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-wunderlib-neoforge%20v21.0.10.md) | `21.0.10` | 21.0.11 Release (14/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10: BUMP/BUILD E METADATA DO SOURCE IDENTIFICADOS; BYTECODE E QA NEW DAWN PENDENTES** |
 | 80 | Create: Ornithopter Glider | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Create%20%2B%20Player%20Transport%20%2B%20Utility%20%26%20QoL/%E2%9C%85-create-ornithopter-glider%20v1.2.0-1.21.1.md) | `1.2.0-1.21.1` | 1.2.0+1.21.1 Release (03/06) | **REVALIDADO EM 23/10: SEM UPGRADE NEOFORGE 1.21.1; CHANGELOG DA VERSÃO FÍSICA CERTIFICADO; QA IN-GAME PENDENTE** |
-| 81 | AmbientSounds 6 | [Abrir `.md`](./Miscellaneous/%E2%9C%85-ambientsounds-6%20v6.3.8.md) | `6.3.8` | 6.3.11 | **PENDENTE** |
-| 82 | Spell Codex: Iron's Spells 'n Spellbooks Addon | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-spell-codex-irons-spells-n-spellbooks-addon%20v1.6.5.md) | `1.6.5` | 1.6.13 | **PENDENTE** |
+| 81 | AmbientSounds 6 | [Abrir `.md`](./Miscellaneous/%E2%9C%85-ambientsounds-6%20v6.3.8.md) | `6.3.8` | 6.3.11 Release (19/10) | **PESQUISA DOCUMENTAL 6.3.9–6.3.11 CONCLUÍDA EM 23/10; CREATIVECORE/QA DE ÁUDIO PENDENTES** |
+| 82 | Spell Codex: Iron's Spells 'n Spellbooks Addon | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-spell-codex-irons-spells-n-spellbooks-addon%20v1.6.5.md) | `1.6.5` | 1.6.13 Release (19/10) | **PESQUISA DOCUMENTAL 1.6.6–1.6.13 CONCLUÍDA EM 23/10; ACTIONBAR 1.1.4 FÍSICA NÃO ATENDE MIN 1.1.7; QA/PROMOÇÃO PENDENTES** |
 | 83 | Apothic Compats | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons/%E2%9C%85-apothic-compats%20v0.2.4.2.md) | `0.2.4.2` | 0.2.4.3 compatível com Apotheosis 8.8.0; 0.2.5.5 latest 1.21.1 | **0.2.4.3 PENDENTE; 0.2.5.5 BLOQUEADO até stack 8.9.x** |
 
 ### Gates transversais — 22/10/2026
