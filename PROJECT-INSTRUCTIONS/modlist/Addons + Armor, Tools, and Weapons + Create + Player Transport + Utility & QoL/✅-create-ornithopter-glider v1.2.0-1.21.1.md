@@ -101,3 +101,22 @@ A modlist física confirma JAR, mod id e runtime `1.2.0-1.21.1`. A release ofici
 - **Gate de promoção:** Manter baseline; futura atualização exige flight authority, equip/use, Aeronautics/Create physics, fall damage e multiplayer.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-ornithopter-glider
 
+## Revalidação final do intervalo de releases — 23/10/2026
+
+**Identificação oficial inequívoca:** [Create: Ornithopter Glider](https://www.curseforge.com/minecraft/mc-mods/create-ornithopter-glider), CurseForge **1312780**, autor **LuLaBoludo**. Categorias oficiais temáticas **Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL**, correspondentes à pasta atual. Não confundir com outras implementações de glider/ornithopter nem com builds **Forge 1.20.1**.
+
+**Autoridade física preservada:** posição histórica **#198**, JAR `createornithopterglider-1.2.0-1.21.1.jar`, runtime metadata `1.2.0-1.21.1`, mod id `createornithopterglider`; prefixo e versão do filename documental permanecem os mesmos.
+
+**Comparação com o catálogo CurseForge atual para exatamente NeoForge 1.21.1:** último arquivo oficial **`1.2.0+1.21.1`**, **Release de 03/06/2026**, **File ID 8192296**, cujo **nome físico de distribuição é exatamente `createornithopterglider-1.2.0-1.21.1.jar`**. Assim, **o intervalo instalado → candidato está vazio**: não há release posterior para o loader e Minecraft alvo a auditar. O nome público usa `+`, enquanto o JAR e o runtime usam `-`; manter a distinção, sem normalizar o filename.
+
+**Revalidação do changelog do artefato instalado:** a página oficial desse **mesmo File ID 8192296** discrimina:
+- **Corrigido:** exibição do Ornithopter em **Armor Stands**;
+- **Corrigido:** animações quebradas quando usado com texturas/mods que alteram a animação do jogador;
+- **Adicionado/alterado:** **Curios API passa a opcional**, e surge arquivo de configuração com campo de **cooldown em ticks**;
+- **Removido:** requisito de **Caelus API**.
+
+Todos esses deltas **já pertencem à versão instalada**; não são propostas de atualização. O dossier anterior os registrava corretamente. Fonte de changelog específico https://www.curseforge.com/minecraft/mc-mods/create-ornithopter-glider/files/8192296 e inventário de releases https://www.curseforge.com/minecraft/mc-mods/create-ornithopter-glider/files/all?version=1.21.1 .
+
+**QA futuro independente:** planagem/flap e cooldown com spam de Space, Curios presente/ausente em perfil descartável, Create 6.x, interação com Jetpack/outros movement mods, fall damage, Armor Stand e animações com resource packs/Punchy/Epic Fight, join/relog/restart e dedicated-server authority. Nenhum teste foi executado nesta conferência. Não há razão documental para promover JAR, alterar versão física ou mexer em configurações.
+
+**Conclusão:** com **zero versões posteriores** e o changelog do próprio artefato 1.2.0+1.21.1 já discriminado, **#80 pode sair da lista de pesquisa de updates de versões**. Isso não deve ser confundido com aprovação de todo o QA runtime listado.
