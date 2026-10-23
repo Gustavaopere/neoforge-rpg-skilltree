@@ -221,3 +221,36 @@ Fontes upstream: CurseForge EMF NeoForge 1.21.1 releases 3.3.6–3.3.9; 3.3.9 fi
 - **Gate de promoção:** Testar com ETF, EMF Compat Core, Fresh Animations/resource packs, ImmediatelyFast, shaders e reload; manter estritamente client-side quando aplicável.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/entity-model-features
 
+## Consolidação oficial das releases 3.3.6–3.3.12 — 23/10/2026
+
+**Autoridade física preservada:** `entity_model_features-3.3.5-1.21-neoforge.jar`, mod id `entity_model_features`, runtime `3.3.5`, posição #254 na modlist física histórica. **Projeto oficial:** [EMF] Entity Model Features [Fabric & Forge], CurseForge **844662**, mantenedor **Traben**. Categorias oficiais **Cosmetic + Mobs + Utility & QoL**, exatamente o diretório presente; o projeto lista ambiente **Client**. **Última Release na combinação NeoForge 1.21.1 em 23/10/2026: `3.3.12-neoforge-1.21`, de 15/10/2026** (não 3.3.11). O nome de distribuição mantém `1.21`, mas a página oficial marca explicitamente o artefato como compatível com **Minecraft 1.21 e 1.21.1**.
+
+### Matriz de publicações, sem inventar versões não distribuídas
+
+| Release NeoForge 1.21.1 | Data publicada | Mudanças declaradas no changelog oficial |
+|---|---|---|
+| **3.3.6** | 16/09 | Corrige limites de tamanho da matemática ASM compilada (`MethodTooLargeException`), falha da primeira variação de modelo a cada frame e exportação de modelos de villagers. A nota também cita suporte a Minecraft 26.3, **alvo diferente**. |
+| **3.3.7** | 17/09 | Corrige override de textura quando partes não são todas declaradas ou se usa `attach=true`; impede que outros mixins interrompendo renders contaminem valores de animação em renders seguintes (**requer ETF atualizado para correção completa**); corrige `is_in_ground` para flechas/tridentes caídos no chão; corrige tradução es_AR. Outras variáveis de item/GUI do changelog têm limitação **Minecraft 1.21.9+**. |
+| **3.3.8** | 18/09 | Adiciona `parrot_left`/`parrot_right` e attachment points animáveis para papagaios nos ombros; opcionalmente ajusta sua posição ao modelo animado do jogador; ID determinístico ombro esquerdo = 0, direito = 1; corrige `head_yaw`/`head_pitch` de papagaios (também requer ETF atualizado). Fix `is_on_shoulder` é indicado para **1.21.9+**. **Esta versão introduziu regressão de lançamento em 1.21.1**, como reconhecido na 3.3.9. |
+| **3.3.9** | 18/09 | Corrige **falha de inicialização em Minecraft 1.21.1/1.20.1 introduzida pela 3.3.8**; versão 3.3.8 não deve ser considerada destino seguro isolado para o pack. |
+| **3.3.10** | 04/10 | Corrige entidades animadas na GUI (inclusive paper dolls), otimiza carregamento de animações grandes e resource reload, recupera cubos ausentes em modelos forçados a vanilla ou `attach=true`. Fix de `is_in_item_frame` e mixin crash mencionados na mesma nota são específicos de **1.21.9–1.21.10**, não atribuídos à 1.21.1. |
+| **3.3.11** | 05/10 | Corrige `keyframeloop()` quando a matemática é compilada e reduz log spam causado por erro pequeno porém frequente de modelo. |
+| **3.3.12** | 15/10 | **Otimizações adicionais em animações ASM**, declaradas pelo autor como aumento perceptível de FPS em animações grandes. O changelog **não traz percentuais, métricas ou promessa de desempenho do modpack**; não inventar benchmark. |
+
+**Fontes primárias de escopo e sequência:** catálogo oficial filtrado https://www.curseforge.com/minecraft/mc-mods/entity-model-features/files/all?version=1.21.1 ; changelog versionado do projeto https://github.com/Traben-0/Entity_Model_Features/blob/master/CHANGELOG.MD ; artefatos exatos para NeoForge 1.21.1: 3.3.6 https://www.curseforge.com/minecraft/mc-mods/entity-model-features/files/8892054 , 3.3.7 https://www.curseforge.com/minecraft/mc-mods/entity-model-features/files/8900925 , 3.3.9 https://www.curseforge.com/minecraft/mc-mods/entity-model-features/files/8909425 , 3.3.11 https://www.curseforge.com/minecraft/mc-mods/entity-model-features/files/9064942 . A listagem inclui também a versão 3.3.12 para NeoForge 1.21.1.
+
+### Impacto de dependências e compatibilidade com o pack
+
+- **Entity Texture Features (ETF)** permanece fisicamente documentado na versão **7.2.1**, enquanto o dossier anterior aponta **7.2.4** como atualização disponível. As correções completas de render cancel/shoulder parrots exigem **ETF atualizado** segundo o changelog EMF; consultar a versão/manifesto real do ETF candidato antes de atualizar conjuntamente, **sem alterar sua ficha aqui**.
+- O snapshot contém EMF Compat Core/Create/Iron's Spells, EntityCulling e recursos CEM/OptiFine. Os modelos e animações (inclusive Fresh Animations) passam por renderização client-side; a presença do mod no servidor não demonstra ganho funcional nem requer mudança de autoridade da entidade.
+- A otimização 3.3.12 mira animações ASM grandes. Resultado de FPS, possível efeito com shaders, performance de resource reload e consumo de memória são **hipóteses de teste**, não medições feitas nesta revisão.
+
+### Gates de promoção (não executados)
+- [ ] Fazer backup de configs e resource packs; confirmar no JAR candidato NeoForge 1.21.1 o mod id/metadata, dependência ETF e outras relações.
+- [ ] Iniciar cliente com EMF 3.3.12, ETF coordenado, EntityCulling e EMF Compat Core/Create/Iron's Spells. Verificar ambiente servidor separado sem introduzir carregamento indevido de classes cliente.
+- [ ] Exercitar Fresh Animations e CEM `.jem`/`.jpm`, shoulder parrots, custom player models, `attach=true`, primeira variação por frame, ciclos `keyframeloop()` e modelos vanilla forçados.
+- [ ] Verificar Paper Doll/inventory GUIs, texture overrides, tridentes/flechas caídos, mixins de terceiros que cancelam renderizações e ausência de animation state stale.
+- [ ] Comparar um perfil 3.3.5 vs 3.3.12 com mesmas configs, cenas com animações ASM grandes, resource reload F3+T e shaders habilitados/desabilitados. Registrar FPS/frame time e logs reais, sem estimativas inventadas.
+- [ ] Verificar regressão de boot da 3.3.8 resolvida na 3.3.9, multiplayer observers e eventuais conflicts com mods de first person/battle renderer.
+
+**Resultado:** todas as **sete releases posteriores à 3.3.5** (3.3.6–3.3.12) estão discriminadas por versão com changelogs oficiais e limites específicos de Minecraft. A última publicação foi atualizada para **3.3.12**. **Pesquisa do histórico upstream concluída para o lote; item 76 pode ser retirado da fila de investigação de releases**. Isso **não valida nem promove** o JAR 3.3.12 no modpack; a instalação, adequação do ETF e QA gráfico ainda exigem testes específicos. O filename `✅-entity-model-features v3.3.5.md`, versão e JAR físico permanecem intactos.
