@@ -284,3 +284,28 @@ O [source 1.21.x pinado em `400660f2d4e6165076977b09e66cae26a7f2dfd3`](https://g
 **Fontes primárias:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/all?page=1&pageSize=20&version=1.21.1 ; https://github.com/P3pp3rF1y/SophisticatedCore/commits/1.21.x ; commits: https://github.com/P3pp3rF1y/SophisticatedCore/commit/a25986c3b ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/9bdc66d50 ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/10b92475f ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/646973452 ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/149104468 ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/3094ea5fa ; https://github.com/P3pp3rF1y/SophisticatedCore/commit/176692b25 .
 
 **Limite pendente para certificação da auditoria integral por release:** matriz pública individual dos pacotes 1.5.8–1.5.13 e 1.5.14–1.5.17 com changelog de cada build; por ausência desse mapeamento, este item segue **BLOQUEADO para remoção da lista de acompanhamento**. Os fatos verificados não são uma licença para inferir changelog.
+
+## Matriz de publicação e correções upstream — 23/10/2026
+
+**Versão física do snapshot:** `sophisticatedcore-1.21.1-1.5.1.2341.jar`, metadata runtime `1.5.1`. **Última publicação NeoForge 1.21.1:** `sophisticatedcore-1.21.1-1.5.17.2426.jar`, 21/10/2026. Esta matriz identifica **todas as doze publicações efetivamente listadas** após o artefato instalado; números como 1.5.3 e 1.5.8–1.5.10 não correspondem a releases publicadas nesse filtro e não recebem changelog fictício.
+
+| Release 1.21.1 | Data | Fonte/alteração técnica sustentada |
+|---|---|---|
+| 1.5.2.2343 | 27/09 | **Shared linked storage**; implementação de armazenamento vinculado compartilhado (commit `f5ec6fb76`) |
+| 1.5.4.2356 | 02/10 | Correções de migração de mundos com perda de item e crash ao desmarcar slots de memória (commits `0c393553f`, `55a74398b`, Oct 1) |
+| 1.5.5.2363 | 02/10 | Correção de storage links desconectando após quebra de barril (commit `1a284cdd4`) |
+| 1.5.6.2374 | 05/10 | Corrigida sincronização de settings de linked storage e preservação dos grupos quando endpoints desaparecem (commit `3127d3e66`) |
+| 1.5.7.2381 | 06/10 | Correção de ícone Ender Linker e atualização da tradução espanhola (commits `8a3966f36`, `15394b3e1`) |
+| 1.5.11.2394 | 12/10 | Commits da janela Oct 10–12: grupos compartilhados de links, controller deposits após unload de chunk e item actions não respeitando permissões de claims (`5452f932d`, `16b0bbc36`, `176692b25`). Verificar vinculação exata de cada commit ao binário |
+| 1.5.12.2400 | 13/10 | Commit Oct 13: correção de depósitos do controller com filtros de conteúdo de mods (`3094ea5fa`), mais cleanup de código (`400660f2d`) |
+| 1.5.13.2404 | 15/10 | Correção de controllers incapazes de extrair itens novos após refresh do handler (`149104468`) |
+| 1.5.14.2413 | 17/10 | Correção confirmada no **changelog exato do JAR**: consultar block entities carregadas não deve carregar chunks indevidamente (`646973452`) |
+| 1.5.15.2417 | 19/10 | Release confirmada; mudanças entre publicações 1.5.14 e 1.5.16 incluem crescimento indevido de wrapper cache para stacks copiados e perda de leftover em recipe transfers; **atribuição individual a 1.5.15 não pinada ao binário** |
+| 1.5.16.2422 | 19/10 | Release confirmada; mesmos commits de janela Oct 19 (`10b92475f`, `9bdc66d50`); **atribuição individual a 1.5.16 não pinada ao binário** |
+| 1.5.17.2426 | 21/10 | Corrigido Pump Upgrade ignorando claims ao acessar tanques próximos (`a25986c3b`) |
+
+**Fontes de autoridade:** filtro de todas as releases exatas da linha https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/all?gameVersionTypeId=6&page=1&pageSize=20&version=1.21.1 ; fonte da correção 1.5.14 https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9229216 ; histórico oficial de commits https://github.com/P3pp3rF1y/SophisticatedCore/commits/1.21.x .
+
+**Impactos relevantes para adicionar à avaliação do pack:** claims/permissions (Pump e Item Actions) têm implicações de proteção de bases e acesso não autorizado; fix de queries de block entities reduz chunkloads incidentais e risco de impacto de servidor; refresh dos handlers/linked groups evita perda/aparente inacessibilidade de itens; wrappers de storages copiados devem ser checados quanto ao consumo de memória; recipe transfer exige teste de leftovers e de conservação de itens. Dependentes/backpacks/storage devem atualizar de modo coordenado, principalmente pela ABI/shared linked storage e mixins de Thirst Was Reclaimed 3.0.6.
+
+**Limite de completude:** a sequência de **releases** está integralmente inventariada e os commits relevantes do período estão nominados. Entretanto a prova 1:1 sobre **qual das builds 1.5.15 e 1.5.16 contém cada correção de 19/10** ainda requer changelog/compare/tag específico. Nenhum teste in-game realizado e nenhuma promoção do JAR; **continuar item 12 pendente para a exigência de auditoria release-by-release estrita**.
