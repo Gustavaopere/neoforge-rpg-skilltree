@@ -1,5 +1,8 @@
 # Monsters & Spellbooks
 
+> **Correção de identidade compilada — 21/10/2026.** O arquivo instalado conserva o nome `monstersspellbooks-0.0.16.3.jar` e o SHA-1 físico `b3aa89fd081bf4bfaf8d0f4380bcdc393c66ab0e`. A auditoria [Black Arcana CI #39667742292](https://github.com/Gustavaopere/Black-Arcana/actions/runs/39667742292) obteve um JAR com o SHA-1 correspondente e leu o TOML NeoForge real: `modId = "monsterspellbooks"` (17 caracteres), `modLoader = "javafml"`, uma entrada `[[mods]]`. O texto anterior da ficha indicava `monstersspellbooks` (18 caracteres), que é o stem do filename/pacote Java e **não** o `modId`. O source público consultado em `RedReaper28/Monsters-Spellbooks-1.21.1@1ab9b72af2ea44c3c8b816e665d06531ea44ddc2` também declara `mod_id=monsterspellbooks`, mas sua versão de build 0.0.14 permanece **não exata**. Esta correção documental não certifica inicialização no servidor/cliente, IDs de spells, perks ou Survival. A prova física de 98 spells continua independente no [PR Black Arcana #869](https://github.com/Gustavaopere/Black-Arcana/pull/869).
+
+
 ## Propriedades do registro
 
 - **Mod:** Monsters & Spellbooks
@@ -20,15 +23,15 @@
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-10
 
-> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #406: JAR `monstersspellbooks-0.0.16.3.jar`, mod id `monstersspellbooks`, runtime `0.0.16.3`, SHA-1 `b3aa89fd081bf4bfaf8d0f4380bcdc393c66ab0e`.
+> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #406: JAR `monstersspellbooks-0.0.16.3.jar`, mod id `monsterspellbooks`, runtime `0.0.16.3`, SHA-1 `b3aa89fd081bf4bfaf8d0f4380bcdc393c66ab0e`.
 
 <callout icon="🔎" color="blue_bg">
-	**ESCOPO CANÔNICO.** Runtime físico: `monstersspellbooks-0.0.16.3.jar`, mod id `monstersspellbooks`, versão `0.0.16.3`, NeoForge 1.21.1. A release exata é o CurseForge file ID `8788560`, publicada em 01/09/2026. O source público `RedReaper28/Monsters-Spellbooks-1.21.1` ainda declara `0.0.14`; por isso é usado apenas como evidência de arquitetura/linha de dependências quando coerente, **não** como source exato de 0.0.16.3.
+	**ESCOPO CANÔNICO.** Runtime físico: `monstersspellbooks-0.0.16.3.jar`, mod id `monsterspellbooks`, versão `0.0.16.3`, NeoForge 1.21.1. A release exata é o CurseForge file ID `8788560`, publicada em 01/09/2026. O source público `RedReaper28/Monsters-Spellbooks-1.21.1` ainda declara `0.0.14`; por isso é usado apenas como evidência de arquitetura/linha de dependências quando coerente, **não** como source exato de 0.0.16.3.
 </callout>
 ## 1. Identidade, versão e papel
 - **Mod:** Monsters & Spellbooks: Iron's Spells 'n Spellbooks Addon.
 - **JAR físico:** `monstersspellbooks-0.0.16.3.jar`.
-- **Mod id:** `monstersspellbooks`.
+- **Mod id:** `monsterspellbooks` (17 caracteres; identificador real do descritor NeoForge no JAR 0.0.16.3).
 - **Runtime:** `0.0.16.3`.
 - **Loader/jogo:** NeoForge 1.21.1.
 - **Autor público:** RedTablos / source credit RedReaper.
