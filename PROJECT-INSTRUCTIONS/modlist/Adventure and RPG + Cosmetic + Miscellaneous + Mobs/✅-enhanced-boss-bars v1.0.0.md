@@ -130,3 +130,29 @@ Fontes: https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/92
 - **QA futuro:** client render, multi boss overlap, leitura de config de versões antigas, shaders, morte/respawn/teleporte, duas telas e fullscreen; servidor dedicado sem dependência lógica de HUD.
 
 **Conclusão documental:** o delta do projeto e de source NeoForge 1.21.1 foi revisado em toda a janela `1.0.0 → 1.1.2`, incluindo o registro de que **1.1.0/1.1.1 não têm binários NeoForge 1.21.1 individuais inequivocamente confirmados**. Release candidata **1.1.2**, física **1.0.0**. Não houve teste in-game nem instalação. O conteúdo técnico conhecido e as lacunas de publicação foram documentados; **não declarar equivalência binária de outras plataformas**.
+
+## Correção factual de artefatos intermediários — 23/10/2026 (1.0.0 → 1.1.2)
+
+**Autoridade física preservada:** `enhancedbossbars-1.0.0.jar`, mod ID `enhancedbossbars`, runtime `1.0.0`, posição #253. **Projeto oficial CurseForge 1063296** (*Enhanced Boss Bars (Fabric/Forge/NeoForge)*), categorias **Adventure and RPG + Cosmetic + Miscellaneous + Mobs**, conforme pasta atual.
+
+### Retificação obrigatória da seção anterior
+**As afirmações anteriores de que 1.1.0 e 1.1.1 não possuíam artefatos NeoForge 1.21.1 estavam incorretas**. O catálogo completo do projeto, atualizado em outubro, **lista expressamente**:
+- **1.1.0 — 15/10/2026:** `enhanced_boss_bars-1.1.0-1.21.1-neoforge.jar` — **Release NeoForge 1.21.1**, arquivo ~231,8 KB;
+- **1.1.1 — 16/10/2026:** `enhanced_boss_bars-1.1.1-1.21.1-neoforge.jar` — **Release NeoForge 1.21.1**, arquivo ~233,6 KB (File ID **9202589**);
+- **1.1.2 — 18/10/2026:** `enhanced_boss_bars-1.1.2-1.21.1-neoforge.jar`, **Release NeoForge 1.21.1**, File ID **9245977**, com changelog discriminado na seção anterior.
+
+**Fonte primária da enumeração:** https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/all . Os arquivos são do **mesmo projeto oficial**; não confundir com o resource pack homônimo nem com builds Forge 1.20.1/Fabric 1.21.1. O simples fato de os nomes terem mudado entre 1.0.0 e 1.1.x não certifica que o mod ID persistiu.
+
+### Separação do conteúdo da série por evidência
+- **1.1.0:** os commits iniciais de outubro na branch de **NeoForge 1.21.1** implementam Cloth Config, opções por barra/autor, suporte a definições JSON via resource packs, escala/posição, reorganização de render e fixes de overlays/segunda fase. O commit `139ce0925b24` de 16/10 altera `mod_version=1.1.0` para `mod_version=1.1.0-1.21.1-neoforge`, evidenciando a linha de código, mas **não fornece sozinho um pin de cada feature à compilação exata do JAR 1.1.0 publicado em 15/10**.
+- **1.1.1:** o catálogo prova o arquivo NeoForge 1.21.1 de 16/10; os commits na janela 14–16/10 incluem ajustes visuais/segunda fase e limpeza de resources. O changelog Forge 1.20.1 (`Aquamirae`/`Antarchy`) **não é evidência de delta exclusivo NeoForge**, e o **delta 1.1.0 → 1.1.1 do JAR exato ainda precisa de changelog/compare**.
+- **1.1.2:** as notas do artefato exato confirmam opção de desativação, integrações Bosses'Rise/Legendary Monster, refatoração e NeoForge mínimo 21.1.219. O commit `e5ebc0631bc0` altera a versão do source de `1.1.0-1.21.1-neoforge` diretamente para `1.1.2-1.21.1-neoforge` e acrescenta migração de chaves traduzidas de configuração, ajustes de overlays de segunda fase, controle de draw order. **O salto no número do source não apaga a existência física do JAR intermediário 1.1.1**.
+
+**Evidências de source:** https://github.com/Naku2004/Enhanced_Boss_Bars_1.21.1_NeoForge/commit/139ce0925b24 ; https://github.com/Naku2004/Enhanced_Boss_Bars_1.21.1_NeoForge/commit/e5ebc0631bc0 ; https://github.com/Naku2004/Enhanced_Boss_Bars_1.21.1_NeoForge/commits/master .
+
+### Consequências da correção
+1. A lacuna já **não é a existência das releases**: ambas estão comprovadas para a plataforma correta. A pendência real é **qual delta específico corresponde a 1.1.1 e a vinculação exata das mudanças source à distribuição 1.1.0/1.1.1**.
+2. Validar update com configs antigas, autor por barra, custom JSON, troca de fase, enable/disable, HUD em escala variável, resource reload, render de boss bars múltiplas, clients com shaders e fontes de bosses existentes no modpack.
+3. Conferir `META-INF/neoforge.mods.toml` nos JARs 1.0.0/1.1.0/1.1.1/1.1.2 para detectar possível **mudança de mod ID** e preservar settings (não carregar versões simultaneamente). Nenhuma comparação binária ou QA foi executada.
+
+**Status:** pesquisa de catálogo **corrigida e completa para a sequência de quatro releases**, mas a auditoria **por changelog exclusivo de cada artefato** ainda não está concluída. **Manter #68 na fila**, não declarar 1.1.1 inexistente, não instalar nem renomear a versão física documentada.
