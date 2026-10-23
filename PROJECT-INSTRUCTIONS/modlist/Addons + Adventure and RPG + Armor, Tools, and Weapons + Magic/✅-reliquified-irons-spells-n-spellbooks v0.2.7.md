@@ -150,3 +150,16 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Gate de promoção:** Validar Relics/Curios + Iron's Spells, spell/attribute hooks, loot, cooldowns, persistence e multiplayer; não promover beta.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/reliquified-irons-spells-n-spellbooks
 
+## Revisão individual da Beta 0.2.8 — 23/10/2026
+
+**Versão instalada confirmada pelo último inventário físico:** `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.7.jar`, runtime `0.2.7`, posição #478. **Release candidata do mesmo projeto CurseForge 1216851:** `reliquified_irons_spells_and_spellbooks-1.21.1-0.2.8.jar`, **Beta NeoForge 1.21.1**, 18/10/2026, file ID **9241204**. Na lista completa oficial, **0.2.8 é a única publicação posterior a 0.2.7**. Não existe uma versão intermediária para documentar.
+
+### Changelog exato da 0.2.8, emitido pelo autor
+1. **Correção de armas seladas ao mudar de dimensão**: há problema corrigido no ciclo de transição dimensional de sealed weapons. Regressão precisa abranger mudança Overworld/Nether/End, equipped/unequipped, retorno, relog e reinício dedicado; conferir que estado selado, skills e dados persistem.
+2. **Texturas animadas para determinadas relics**: mudança relevante de recursos client-side. Checar sprites, atlas, animação em inventário, JEI, slots Curios, item em mão e recarregamento de resource packs; a nota não identifica por nome quais relics.
+3. **Correção do ícone da habilidade Ring of Elusiveness**: mudança de apresentação. Não presumir novo efeito funcional.
+4. **Correção dos ícones de habilidades de sealed weapons**: validar combinações de pesquisa/ícones de 0.2.7 e novas animações, sem recursos faltantes ou ícones obsoletos.
+
+**Fonte primária e identidade inequívoca:** https://www.curseforge.com/minecraft/mc-mods/reliquified-irons-spells-n-spellbooks/files/9241204 (projeto 1216851, upload 18/10/2026, exatamente NeoForge 1.21.1). A página mostra as quatro notas acima, loader e classificação temática **Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic**, idêntica à pasta atual. Catálogo completo https://www.curseforge.com/minecraft/mc-mods/reliquified-irons-spells-n-spellbooks/files/all .
+
+**Decisão documental:** todo o delta `0.2.7 → 0.2.8` está identificado e registrado no dossier. **Não existe bloqueio documental apenas por ser Beta**: canal Beta é informação para o futuro gate de instalação. Não houve troca do JAR físico nem execução de QA do modpack. Atualização para 0.2.8 dependerá de smoke de Iron's Spells 3.16.3, Relics 0.12.8, spells/mana/cooldown, resource reload, dimension travels, loot e multiplayer. A revisão de releases pode ser dada como concluída; promoção do binário permanece separada.
