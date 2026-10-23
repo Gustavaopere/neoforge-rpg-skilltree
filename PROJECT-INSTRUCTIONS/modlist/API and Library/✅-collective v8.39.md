@@ -151,3 +151,48 @@ Fonte primária para versões, datas, loader e classificação `API and Library`
 **Cadeia a fechar:** as versões 8.40–8.47 já possuem registros anteriores com graus variáveis de evidência; faltam conciliar individualmente os deltas 8.48–8.65, inclusive a existência/ausência de builds numéricas intermediárias não publicadas para 1.21.1. Verificar o changelog exato ou source/tag e identificar mudanças de API, eventos, callbacks, packet registration, serialização e configs antes de aprovar o upgrade.
 
 **Gate de promoção:** atualizar/testar em ambiente de cópia todos os consumidores Serilum do modpack, client/server dedicados, bootstrap concorrente, eventos de spawn, chunk boundaries, schematics, respawn anchor, config UI, reload, handshake e save/restart. **Status: documentação do catálogo atualizada; auditoria release-by-release e QA ainda pendentes. Manter o item 52 na lista do Bloco de Notas.**
+
+
+## Conciliação integral da sequência publicada 8.39 → 8.65 — 23/10/2026
+
+> **Esta seção substitui explicitamente o bloqueio do relatório "Revalidação incremental de catálogo — 23/10/2026".** Foi localizada a **branch upstream oficial `1.21.1` do Collective**, com mensagens de commit de versão que permitem identificar os deltas intermediários sem transplantar sem ressalvas changelogs de outras versões de Minecraft. A última autoridade física disponível continua **`collective-1.21.1-8.39.jar` / 8.39**, sem substituição de JAR.
+
+### Matriz de releases e mudanças por versão
+
+| Versão upstream | Evidência upstream 1.21.1 | Delta descrito pelo autor e aplicabilidade ao pack |
+|---|---|---|
+| 8.40 | [commit 5dc09d1](https://github.com/Serilum/Collective/commit/5dc09d1dd984) | Normalização de indentação do código-fonte para tabs; **sem mudança funcional**. |
+| 8.41 | [commit 9ee1eea](https://github.com/Serilum/Collective/commit/9ee1eeab5606) | Atualização de informações em `mods.toml` e `fabric.mod.json`; mudança de metadata, não de gameplay. |
+| 8.42 | [commit 1babce0](https://github.com/Serilum/Collective/commit/1babce01d1b2) | Fix do aviso de configurações experimentais do mod Hide Experimental Warning, **especificamente indicado como Forge**; não atribuir efeito NeoForge não comprovado. |
+| 8.43 | [commit a7a996b](https://github.com/Serilum/Collective/commit/a7a996b87fc4) | Traduções do Daily Quest adicionadas; mudanças de localização. |
+| 8.44 | [commit ca47368](https://github.com/Serilum/Collective/commit/ca47368c67ed) | Completadas linhas restantes de tradução do Daily Quests. |
+| 8.45 | [commit 722c797](https://github.com/Serilum/Collective/commit/722c797b6e96) | Corrigido reset esporádico de configurações de mods para o default no startup; relevante para persistência e migração de config. |
+| 8.46 | [commit dc6b633](https://github.com/Serilum/Collective/commit/dc6b63378943) | Fix de mineração de blocos através do Immersive Portals, **marcado Fabric-only**; não extrapolar para NeoForge. |
+| 8.47 | [commit 4e1d7c4](https://github.com/Serilum/Collective/commit/4e1d7c4956ac) | Correção dos overlays de GUI Clock/Compass quando overlays de hitbox, chunk borders ou debug estão ativos, **indicada apenas para Minecraft 26.2+**, não para 1.21.1. |
+| 8.49 | [commit c009865](https://github.com/Serilum/Collective/commit/c009865d3f49) | Traduções do Stack Refill. |
+| 8.50 | [commit 196cf96](https://github.com/Serilum/Collective/commit/196cf960aacd) | Traduções do GUI Followers. |
+| 8.51 | [commit ce98551](https://github.com/Serilum/Collective/commit/ce98551c27e5) | Evento `block break` no serviço de eventos cross-loader: nova superfície para addons/consumers. |
+| 8.52 | [commit 76e427b](https://github.com/Serilum/Collective/commit/76e427b7dbde) | Corrigidas buscas/localizações de vilas e biomas quando idioma do jogo não é inglês. |
+| 8.53 | [commit 5c93e46](https://github.com/Serilum/Collective/commit/5c93e466d9e7) | Evento de drops de entidades vivas, **descrito como específico do Fabric**; outras plataformas possuem seus próprios hooks. |
+| 8.54 | [commit 0b39707](https://github.com/Serilum/Collective/commit/0b3970710ca9) | **Mudança estrutural importante**: reescrita das configurações, arquivos passam a **`.json`** e arquivos `.json5` antigos são convertidos automaticamente. Salvar cópia dos configs antes da promoção e comparar valores após a conversão. |
+| 8.56 | [commit a023065](https://github.com/Serilum/Collective/commit/a023065aa2f8) | **Mudança estrutural importante** da série 8.55–8.56: configs de mods Serilum movidos para **`./config/serilum/...`**; checar scripts, paths, backups, sincronismo client/server e valores migrados. O upstream agrupa os commits como 8.55–8.56, mas o catálogo 1.21.1 mostra o pacote 8.56, **sem release 8.55 publicada nesse filtro**. |
+| 8.57 | [commit 6e1c77b](https://github.com/Serilum/Collective/commit/6e1c77be1b8b) | Ajustes finais da ampla reestruturação das configurações. A mensagem não especifica a alteração exclusiva; sem inferir detalhe inexistente. |
+| 8.58 | [commit d1770ba](https://github.com/Serilum/Collective/commit/d1770ba54189) | Correção de desaceleração do jogo provocada por checagem **a cada frame** pelo código da tela de configurações. |
+| 8.59 | [commit dfb9375](https://github.com/Serilum/Collective/commit/dfb937533de7) | Novos filtros por dimensão e bioma no sistema de substituição de spawns: API/contrato importante para futuros mods de spawn. |
+| 8.60 | [commit 7553a33](https://github.com/Serilum/Collective/commit/7553a33cabe6) | Detecção ampliada de villagers e traders modificados por mods, inclusive entidades fora da lista tradicional. |
+| 8.61 | [commit 9fc2f77](https://github.com/Serilum/Collective/commit/9fc2f77000c1) | Novo editor de listas de texto na GUI de configuração, uma entrada por linha. |
+| 8.62 | [commit 87f6183](https://github.com/Serilum/Collective/commit/87f618394940) | Corrigido consumo indevido de **uma carga do Respawn Anchor** quando um mod apenas consulta o ponto de respawn do jogador. |
+| 8.63 | [commit 7e43d17](https://github.com/Serilum/Collective/commit/7e43d179f2a1) | Geração de drops de mobs pelo **All Loot Drops** passa a ocorrer gradualmente após o início do servidor; reduz pico de trabalho de boot. |
+| 8.64 | [commit 546b802](https://github.com/Serilum/Collective/commit/546b8026539d) | Novo **evento unificado de verificação de spawn** com comportamento uniforme entre mod loaders e origens de spawn; impacto em consumidores que alteram spawning. |
+| 8.65 | [commit eb15798](https://github.com/Serilum/Collective/commit/eb1579874369) | Último candidato da série; commit descreve apenas **backport para NeoForge 47.1 de Minecraft 1.20.1**, não uma correção funcional atribuível ao MC 1.21.1. Não inventar novo comportamento para a distribuição 1.21.1. |
+
+**Números sem release 1.21.1:** 8.48 e 8.55 não constam como JARs separados na sequência de publicações NeoForge 1.21.1 consultada; o upstream registra alterações cruzadas entre branches, mas isso não cria artificialmente versões instaláveis nessa linha. Esta tabela descreve **todas as publicações posteriores ao baseline 8.39 até 8.65** e assinala quando um commit afeta exclusivamente Fabric, Forge, MC 26.2+ ou MC 1.20.1.
+
+### Novos pontos técnicos obrigatórios no dossier
+
+- **Migração de configuração:** as versões **8.54** e **8.56** alteram, respectivamente, formato `.json5` → `.json` e diretório padrão para `config/serilum/`. Antes da futura substituição do JAR, fazer backup de `config/` e conferir que nenhuma configuração ou script continue apontando a arquivos antigos; comparar valores carregados após primeira execução e após reinício.
+- **Eventos/compatibilidade:** novos eventos de quebra de blocos (8.51) e de verificação de spawn (8.64), e filtros de dimensão/bioma (8.59), pedem verificação com mods Serilum e outros consumidores de eventos que possam interceptar essas operações.
+- **Integridade de jogo:** 8.45 (reset de configurações), 8.52 (locale), 8.58 (UI performance), 8.62 (carga de respawn anchor), 8.63 (carga de geração de drops no startup) e 8.60 (villagers de mods) representam correções testáveis por smoke-tests direcionados.
+- **Testes de regressão na futura instalação:** dedicated server/cliente, mudanças de side, multiplayer/handshake, load concorrente, translation UI, save/restart, backups de config, conversão e paths, eventos de bloco/spawn, respawn anchor, mods Serilum instalados, All Loot Drops se presente.
+
+**Resultado auditável:** diferencial documental `8.39 → 8.65` **reconciliado versão por versão no histórico primário da branch 1.21.1**; ainda **não foi efetuada atualização física para 8.65 nem QA em runtime**. Este dossier pode sair da lista de **pendências de pesquisa/atualização documental**; testes de instalação, se decididos, são outra etapa. Fontes: https://github.com/Serilum/Collective/commits/1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/collective/files/all?version=1.21.1 .
