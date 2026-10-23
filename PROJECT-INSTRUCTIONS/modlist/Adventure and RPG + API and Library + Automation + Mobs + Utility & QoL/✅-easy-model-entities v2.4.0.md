@@ -178,3 +178,15 @@ Nas listagens oficiais [CurseForge NeoForge 1.21.1](https://www.curseforge.com/m
 - **Gate de promoção:** Testar em conjunto com Easy NPC 7.16.0, model/pose sync, render client-only, late viewers, resource reload e dedicated server. Existência da release não equivale a compatibilidade certificada.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/8706558
 
+## Auditoria por release 2.4.0 → 2.5.0 → 2.6.0 — lote 31–40 (22/10/2026)
+
+**Instalado:** Easy Model Entities 2.4.0 NeoForge Minecraft 1.21.1; **novas publicações NeoForge 1.21.1** 2.5.0 e 2.6.0 (16/10). **Fonte mais específica para a linha Minecraft 1.21.1:** CHANGELOG.md da branch `1.21.1` de Kaworru/MarkusBordihn. Changelogs comuns de arquivos 26.x também existem, mas não são usados para atribuir suporte a versões erradas do Minecraft.
+
+| Versão | Delta oficial na branch 1.21.1 |
+|---|---|
+| **2.5.0** | Corrige `fly` em vez de `swim` sob água, interferência dos GameTests, modelo sem `root`, paths de textura e opções Blockbench `inflate`/`export`/cubos invertidos; texturas passam a vir do modelo com override via profile, clips `swim`/`hurt`/`death`/`sit` auto-play, fish flop no chão. Adiciona shoulder sit (pose de papagaio), sockets de itens, API server/client de animação/textura/opacity/luz/freeze, interface opt-in para modelo de outro mod, playback speed/hold e weighted variants, double sided e UV rotation; placed block entities novos passam a olhar para o jogador, os antigos preservam rotação. Alteração de requisito **Forge 52.1.8 não é requisito NeoForge**. |
+| **2.6.0** | Corrige **crash NeoForge de servidor quando jogador sem o mod está perto de modelo animado**, comportamento de peixes voadores quando em voo, e **metadata reportada como 0.0NONE** (impedia outros mods de impor versão mínima). Acrescenta subcomandos `animation get`, `behavior get`, `profile get`, `profile set block`, `shoulder offset`; versão NeoForge testada na branch 1.21.1 atualizada para **21.1.262**. A correção específica de *shoulder model crash* que aparece em changelog da linha 26.2 **não está declarada no changelog 1.21.1**, então não é atribuída como fix confirmado do alvo. |
+
+**Correção de autoridade metadata:** o inventário histórico tem versão do nome do JAR 2.4.0 e metadata runtime não disponível; o upstream da 2.6.0 corrige o registro `0.0NONE`, mas não altera retroativamente a evidência sobre o JAR físico. **QA** com Easy NPC Core/Bundle/Config UI 7.17 candidatos, model/texture variants Blockbench, old/new placed models, shoulder + multiplayer sem EME client, save/relog/restart, GameTests, server-only loading e manifests JarJar. **Não instalar a tríade Easy NPC nem EME fisicamente sem staging**.
+
+**Fontes primárias:** https://github.com/MarkusBordihn/BOs-Easy-Model-Entities/blob/1.21.1/CHANGELOG.md ; https://www.curseforge.com/minecraft/mc-mods/easy-model-entities/files/all?version=1.21.1 .
