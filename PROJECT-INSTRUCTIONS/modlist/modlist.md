@@ -58,7 +58,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 008 | Advancement Plaques [Neo/Forge] | `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar` | `1.6.8` | `Cosmetic + Map and Information + Miscellaneous + Utility & QoL` | 22/09/2026 - 13:40 |
 | 009 | SnackPirate's Aeromancy Additions | `aero_additions-1.2.8.jar` | `1.2.8` | `Addons + Magic` | 22/09/2026 - 13:40 |
 | 010 | Aeronautics Camera Sync | `aero_cam_sync-1.4.0.jar` | `1.4.0` | `Addons + Cosmetic + Create` | 22/09/2026 - 13:40 |
-| 011 | Aeronautics Player Tilt | `aero_player_tilt-0.2.0.jar` | `0.2.0` | `Addons + Cosmetic + Create` | 18/09/2026 - 08:51 |
+| 011 | Aeronautics Player Tilt | `aero_player_tilt-0.2.0.jar` | `0.2.0` | `Addons + Cosmetic + Create` | 23/10/2026 - 00:21 |
 | 012 | Create Aeronautics and Connected Fluid Vessel Compatability | `aeroconnectedfluidvessel-1.0.0.jar` | `1.0.0` | `Create + Utility & QoL` | 18/09/2026 - 15:31 |
 | 013 | Copycats+ aeronautics weight | `aerocopycats-1.1.1.jar` | `1.1.1` (distribuição/filename); metadata interna `1.1.0` | `Addons + Create + Utility & QoL` | 18/09/2026 - 15:31 |
 | 014 | Create Aeronautics: Compatibility | `aeronauticscompat-1.1.3.jar` | `1.1.3` | `Addons + Create + Utility & QoL` | 18/09/2026 - 15:31 |
@@ -137,7 +137,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 087 | Cataclysm: Spellbooks | `cataclysm_spellbooks-1.1.14-1.21.jar` | `1.1.14-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 23/09/2026 - 00:58 |
 | 088 | Cataclysm x YUNG's Better Nether Fortresses Compat | `cataclysmfortresses-1.21.1-NeoForge.jar` | `1.21.1` | `Addons + Bug Fixes` | 23/09/2026 - 00:58 |
 | 089 | Create Big Cannons: Advanced Technologies | `cbc_at_Neoforge_1.21.1_0.1.4c.jar` | `0.1.4c-1.21.1` | `Armor, Tools, and Weapons + Create` | 23/09/2026 - 00:58 |
-| 090 | CBC: Advanced technologies crash fix | `cbcatfix-1.21.1-neoforge-1.0.1.jar` | `1.0.1 (distribuição/filename); metadata runtime 1.0.0` | `Addons + Create` | 22/10/2026 - 21:59 |
+| 090 | CBC: Advanced technologies crash fix | `cbcatfix-1.21.1-neoforge-1.0.1.jar` | `1.0.1 (distribuição/filename); metadata runtime 1.0.0` | `Addons + Create + Technology` | 22/10/2026 - 21:59 |
 | 091 | CERBON's API [Forge \| Fabric \| NeoForge] | `CerbonsAPI-NeoForge-1.21-1.3.0.jar` | `1.3.0` | `API and Library` | 23/09/2026 - 00:58 |
 | 092 | Chipped | `chipped-neoforge-1.21.1-4.0.2.jar` | `4.0.2` | `Cosmetic` | 23/09/2026 - 01:02 |
 | 093 | Chunky (Forge/NeoForge) | `Chunky-NeoForge-1.4.23.jar` | `1.4.23` | `Dimensions + Server Utility + World Gen` | 23/09/2026 - 01:02 |
@@ -150,7 +150,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 100 | CodeChicken Lib 1.8.+ | `CodeChickenLib-1.21.1-4.6.1.529.jar` | `4.6.1.529` | `API and Library` | 23/09/2026 - 01:02 |
 | 101 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 23/09/2026 - 01:02 |
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 23/09/2026 - 01:02 |
-| 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 23/09/2026 - 01:02 |
+| 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 23/10/2026 - 00:14 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 23/09/2026 - 01:13 |
 | 105 | Sinytra Connector | `connector-2.0.0-beta.17+1.21.1-full.jar` | `2.0.0-beta.17+1.21.1` | `Technology` | 22/09/2026 - 22:34 |
 | 106 | Connector Extras | `ConnectorExtras-1.12.1+1.21.1.jar` | `1.12.1+1.21.1` | `Addons + API and Library + Technology + Utility & QoL` | 22/09/2026 - 22:34 |
@@ -443,7 +443,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 393 | Melody | `melody_neoforge_1.0.10_MC_1.21.jar` | `1.0.10` | `API and Library` | 25/09/2026 - 12:31 |
 | 394 | MezzConfig | `mezz_config-1.21.1-neoforge-0.5.9.jar` | `0.5.9` | `API and Library` | 20/09/2026 - 01:38 |
 | 395 | MineColonies | `minecolonies-1.1.1387-1.21.1-snapshot.jar` | `1.1.1387-1.21.1-snapshot` | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 22/10/2026 - 19:45 |
-| 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 17/09/2026 - 21:40 |
+| 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 23/10/2026 - 00:18 |
 | 397 | Tweaks addon for MineColonies | `MineColonies_Tweaks-1.21.1-3.33.jar` | `3.33` | `Addons + Utility & QoL` | 25/09/2026 - 12:31 |
 | 398 | Miner's Delight + | `minersdelight-1.21.1-1.4.5.jar` | `1.4.5` | `Cosmetic + Farming + Food` | 25/09/2026 - 12:31 |
 | 399 | Ragdoll mob corpses | `mob_ragdoll_corpse-1.1.5.jar` | `1.1.5` | `Addons + Mobs` | 25/09/2026 - 12:31 |
@@ -512,7 +512,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 462 | Pufferfish's Unofficial Additions | `pufferfish_unofficial_additions-1.21.1-2.2.8.jar` | `2.2.8` | `Addons` | 29/09/2026 - 23:37 |
 | 463 | Pufferfish's Attributes [Fabric & Forge & NeoForge] | `puffish_attributes-0.8.3-1.21-neoforge.jar` | `0.8.3` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
 | 464 | Pufferfish's Skills [Fabric & Forge & NeoForge] | `puffish_skills-0.19.0-1.21-neoforge.jar` | `0.19.0` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
-| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `Cosmetic + Map and Information` | 22/10/2026 - 22:05 |
+| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `API and Library + Cosmetic + Map and Information` | 22/10/2026 - 22:05 |
 | 466 | Epic Fight X Punchy! Neo | `punchy_epicfight_neoforge.jar` | `1.0.0` | `Addons` | 27/09/2026 - 16:30 |
 | 467 | Puzzles Lib | `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar` | `21.1.60` | `API and Library` | 22/10/2026 - 21:57 |
 | 468 | Quark | `Quark-4.1-484.jar` | `4.1-484` | `Cosmetic + Ores and Resources` | 27/09/2026 - 16:30 |
@@ -993,11 +993,11 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 08 | InsaneLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-insanelib%20v2.4.33.0.md) | `2.4.33.0` | 2.4.33.1 | **PENDENTE** |
 | 09 | Create: Teleporters | [Abrir `.md`](./Create%20%2B%20Energy%2C%20Fluid%2C%20and%20Item%20Transport%20%2B%20Technology/%E2%9C%85-create-teleporters-remastered%20v2.0.2b.md) | `2.0.2b` | 3.0.1b | **PENDENTE** |
 | 10 | Petrolpark Library | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Create/%E2%9C%85-petrolparks-library%20v1.5.11.md) | `1.5.11` | 1.5.11 Release estável; 1.5.12 Beta (19/10) | **1.5.11 Release mantida; 1.5.12 Beta bloqueada para promoção** |
-| 11 | Punchy! - First person animations | [Abrir `.md`](./Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.7e | **BLOQUEADO: pasta incompleta (API and Library ausente)** |
+| 11 | Punchy! - First person animations | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.7e | **CATEGORIA CORRIGIDA em 23/10; upstream 2.7e para NeoForge 1.21.1** |
 | 12 | Sophisticated Core | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-sophisticated-core%20v1.5.1.md) | `1.5.1` | 1.5.17.2426 (21/10; mapeamento por build parcialmente bloqueado) | **HISTÓRICO SOURCE; RELEASE-BY-RELEASE INCOMPLETO** |
 | 13 | Alex's Caves Continued | [Abrir `.md`](./World%20Gen/%E2%9C%85-alexs-caves-continued%20v1.0.10.md) | `1.0.10` | 1.0.10 | **REVALIDADO** |
 | 14 | Puzzles Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-puzzles-lib%20v21.1.60.md) | `21.1.60` | 21.1.65 | **PENDENTE** |
-| 15 | CBC: Advanced technologies crash fix | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-cbcat-fix%20v1.0.1.md) | `1.0.1` | 1.1.4 (15/10) | **DELTA DOCUMENTADO; PASTA CURSEFORGE DIVERGENTE (Technology)** |
+| 15 | CBC: Advanced technologies crash fix | [Abrir `.md`](./Addons%20%2B%20Create%20%2B%20Technology/%E2%9C%85-cbcat-fix%20v1.0.1.md) | `1.0.1` | 1.1.4 (15/10) | **DELTA 1.0.1→1.1.4 DOCUMENTADO; CATEGORIA CORRIGIDA em 23/10** |
 | 16 | Vanilla Backport | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Biomes%20%2B%20Mobs%20%2B%20Ores%20and%20Resources%20%2B%20World%20Gen/%E2%9C%85-vanillabackport%20v1.1.7.10.md) | `1.1.7.10` | 1.2 (Release NeoForge 1.21.1, 18/10) | **AUDITORIA DOCUMENTAL; MIGRAÇÃO MAJOR E BRIDGES EXIGEM QA** |
 | 17 | Platform | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-platform%20v1.3.3.md) | `1.3.3` | 1.4 | **PENDENTE** |
 | 18 | FTB XMod Compat | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-ftb-xmod-compat%20v21.1.11.md) | `21.1.11` | 21.1.13 (Release NeoForge 1.21.1, 20/10) | **AUDITORIA DOCUMENTAL; SG Economy API 1.1+** |
@@ -1033,8 +1033,8 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 48 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | 5.2.0 NeoForge 1.21.1 (20/10) | **AUDITORIA DOCUMENTAL FECHADA; 5.1.3 changelog genérico** |
 | 49 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.56.0.440.md) | `19.56.0.440` | 19.64.0.455 Release (16/10); 19.69.0.457 Beta (20/10) | **BLOQUEADO: changelogs individuais 19.64/19.69 ausentes** |
 | 50 | Create Aeronautics: Automated Logistics | [Abrir `.md`](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md) | `0.6.2` | 0.6.2 | **BLOQUEADO: dossier sem ✅; não editado** |
-| 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.58 Beta | **BLOQUEADO / PENDENTE QA** |
-| 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.62 | **PENDENTE** |
+| 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.60 Beta (19/10; 3.59 sem delta individualizado) | **DELTAS 3.58/3.60 DOCUMENTADOS; 3.59 E QA PENDENTES** |
+| 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.65 (22/10) | **8.48–8.65 PENDENTES DE CONCILIAÇÃO INDIVIDUAL** |
 | 53 | Create: Stats & Power | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-stats-power%20v1.13.1.md) | `1.13.1` | 1.15.0 | **PENDENTE** |
 | 54 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | 0.2.0 | **REVALIDADO** |
 | 55 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.3.md) | `3.26.3` | 3.26.14.2222 | **COORDENADO** |
@@ -1103,11 +1103,11 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 Documentados na sequência da lista de pedido, não pela posição física da tabela superior. Fontes e changelogs relevantes estão em cada dossier. Todas as instalações continuam na versão histórica. QA, metadata do JAR upstream e migração de save não foram executados.
 | Pedido | Projeto | Versão física | Publicação upstream NeoForge 1.21.1 | Estado da auditoria documental |
 |---:|---|---|---|---|
-| 11 | Punchy! - First person animations | 2.7e | 2.7e | BLOQUEADO: categoria oficial API and Library ausente da pasta; revisão de links antes de mover |
+| 11 | Punchy! - First person animations | 2.7e | 2.7e | Pasta corrigida em 23/10: API and Library + Cosmetic + Map and Information; versão upstream 2.7e |
 | 12 | Sophisticated Core | 1.5.1 | 1.5.17.2426 | BLOQUEADO: deltas source pinados, não conciliada cada build intermediária 1.5.8–1.5.17 |
 | 13 | Alex's Caves Continued | 1.0.10 | 1.0.10 | REVALIDADO; intervalo vazio |
 | 14 | Puzzles Lib | 21.1.60 | 21.1.65 | Cadeia 21.1.61→21.1.65 revisada, callback encantado NeoForge |
-| 15 | CBC: Advanced technologies crash fix | 1.0.1 (runtime 1.0.0) | 1.1.4 | BLOQUEADO estrutural: CurseForge mostra Addons + Create + Technology; dossier em Addons + Create; releases 1.1.0/1.1.1/1.1.2/1.1.4 documentadas |
+| 15 | CBC: Advanced technologies crash fix | 1.0.1 (runtime 1.0.0) | 1.1.4 | Pasta corrigida em 23/10: Addons + Create + Technology; releases 1.1.0/1.1.1/1.1.2/1.1.4 documentadas |
 | 16 | Vanilla Backport | 1.1.7.10 | 1.2 | Rework amplo; migration/compatibilidades precisam de QA físico |
 | 17 | Platform | 1.3.3 | 1.4 | APIs/Events overhaul documentados conforme granularidade real do release |
 | 18 | FTB XMod Compat | 21.1.11 | 21.1.13 | Correção de JEI 21.1.12 e ruptura de SG Economy API 1.1+ em 21.1.13 |
