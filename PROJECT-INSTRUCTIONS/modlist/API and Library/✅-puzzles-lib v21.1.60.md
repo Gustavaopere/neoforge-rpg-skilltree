@@ -202,3 +202,14 @@ Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/puzzles-lib/files/
 - **Gate de promoção:** Revalidar todos os consumers Puzzles Lib, config/events/networking e boot dedicado antes da troca.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/puzzles-lib
 
+## Revisão de versões intermediárias — lote 11–20, 22/10/2026
+Instalado 21.1.60; nova release oficial NeoForge 1.21.1 21.1.65 (21/10/2026). Cadeia 21.1.61, 21.1.62, 21.1.63, 21.1.64, 21.1.65. Não misturar com 26.x.
+| Release | Mudança confirmada |
+|---|---|
+| 21.1.61 | Histórico anterior nesta documentação, seção 17. |
+| 21.1.62 | Mutable capability components passam por rebind no momento do retrieval, contra desync. |
+| 21.1.63 | Restauração de transitive access wideners ausentes. |
+| 21.1.64 | Cache de method handles em FabricEventFactory, redução de overhead no listener invocation. |
+| 21.1.65 | Evita callback de bônus encantado de loot executar duas vezes na build NeoForge. |
+QA pendente: callbacks de loot encantado sem dupla aplicação, Portable Hole, Overflowing Bars, capabilities persistentes, reconexão e servidor dedicado. O inventário físico 21.1.60 permanece inalterado.
+Fontes: https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.65-mc1.21.1 ; https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.64-mc1.21.1 ; https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.63-mc1.21.1 ; https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.62-mc1.21.1 .
