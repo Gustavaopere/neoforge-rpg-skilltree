@@ -122,3 +122,14 @@ CurseForge oficial confirma a Beta 3.57, os target baselines e o change de `knif
 - **Gate de promoção:** Validar especialmente o fix de crash com Cultural Delights, além de boot client/dedicated, optional classloading, jobs/recipes, knife_dig, courier/network requests e compatibilidade com o stack MineColonies físico.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility
 
+## Revisão de releases 3.59–3.60 — 23/10/2026
+
+**Baseline do inventário:** `MineColonies_Compatibility-1.21.1-3.57.jar` (3.57); nenhum JAR foi substituído. A série NeoForge 1.21.1 publicada no CurseForge avança por **3.58 (08/10/2026) → 3.59 (19/10/2026) → 3.60 (19/10/2026)**, todas **Beta**.
+
+- **3.58 — File ID 9099509:** corrigido crash com versão recente de **Cultural Delights**; source e dependências-alvo registrados na própria página. https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility/files/9099509
+- **3.59 — 19/10/2026:** publicação NeoForge 1.21.1 confirmada pela lista oficial, mas **não foi isolado o changelog da build exata**. Não transferir automaticamente a correção da 3.60 à 3.59. https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility/files/all?version=1.21.1
+- **3.60 — File ID 9255068:** corrigido crash com a versão mais recente de **Let's do Vinery**. Metas declaradas na página: MineColonies 1.1.1368 snapshot, Structurize 1.0.832 snapshot, Multi-Piston 1.2.51 snapshot, BlockUI 1.0.199 snapshot, Domum Ornamentum 1.0.223 snapshot e Tweaks addon 3.33. Essas são versões **alvo da release**, não uma afirmação de que todas estejam instaladas. https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility/files/9255068
+
+**Risco/gates:** conferir se Cultural Delights e Let's do Vinery integram o pack, compatibilidade de dependências-alvo, classloading opcional, inicialização no dedicated server, jobs/receitas/courier requests, saves e reprodução dos crashes. Não promover versão Beta sem QA.
+
+**Estado:** catalogação de 3.57→3.58→3.59→3.60 atualizada; **auditoria individual da 3.59 e QA físico pendentes**. Não retirar item #51 da lista de acompanhamento.
