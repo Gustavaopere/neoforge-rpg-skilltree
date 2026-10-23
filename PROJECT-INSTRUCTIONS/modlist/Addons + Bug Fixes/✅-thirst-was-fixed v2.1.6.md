@@ -204,3 +204,18 @@ A checagem da publicação CurseForge dos **file IDs já presentes no diff upstr
 - **Gate de promoção:** Revalidar com ParCool 4.0.1.6, Thirst Was Reclaimed/Sophisticated integrations, stamina attribute owner/API, purity/fluid handlers, configs e dedicated server.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/thirstwasfixed ; https://www.curseforge.com/minecraft/mc-mods/thirstwasfixed/files/8794908
 
+## Auditoria cumulativa #43 — ThirstWasFixed 2.1.6 → 2.2.1 (22/10/2026)
+
+**Versão física:** 2.1.6, NeoForge 1.21.1. **Releases seguintes:** 2.2.0 (13/10) e 2.2.1 (15/10). Não confundir ThirstWasFixed com Thirst Was Taken 2 ou Thirst Was Reclaimed.
+
+| Release | Mudança identificada |
+
+|---|---|
+
+| 2.2.0 | Commit upstream 3c2fd04 troca owner do atributo ParCool: caminho antigo com Attributes.STAMINA_RECOVERY é substituído por **ParCoolAttributes.STAMINA_RECOVERY**. Commit versionado 47fb0e706 inclui ajustes de configuração e ParCoolHelper. Evidência de código-fonte, não confirmação de bytecode no JAR. |
+
+| 2.2.1 | Changelog do arquivo NeoForge informa **correção do parsing de configurações no Linux**. Não inventar alterações de gameplay adicionais. |
+
+**Risco:** ParCool físico 4.0.0.3, Thirst Was Reclaimed, Sophisticated, Moonlight/fluidos e Pureza; opções Stamina Bonus Requirement e Stamina Penalty Requirement (defaults 0 na fonte histórica, mas valores ativos não foram lidos). Checar alias/classes e descriptor real antes de upgrade, client/server Linux e Windows, save/restart, purity cauldrons, Ars flask e multiplayer. Instalação permaneceu na 2.1.6.
+
+Fontes: https://github.com/Partonetrain/thirstwasfixed/commit/3c2fd04b61f6563513e36111aa8bd5f8b73ebe8c ; https://github.com/Partonetrain/thirstwasfixed/commit/47fb0e706 ; https://www.curseforge.com/minecraft/mc-mods/thirstwasfixed/files/9201004 .
