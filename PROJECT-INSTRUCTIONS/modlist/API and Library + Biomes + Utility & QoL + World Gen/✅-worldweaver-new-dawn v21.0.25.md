@@ -125,3 +125,19 @@ WorldWeaver fornece infraestrutura para BetterEnd/BetterNether/BCLib/WunderLib. 
 - **Gate de promoção:** Testar junto de BCLib/BetterNether/BetterEnd/WunderLib, worldgen/registries, novos chunks, mundos existentes, datapack reload e restart.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge
 
+## Lote 21–30 — publicações intermediárias e bloqueio do changelog individual (22/10/2026)
+
+**Instalado historicamente:** WorldWeaver: New Dawn **21.0.25**, NeoForge Minecraft 1.21.1; o port correto é o projeto CurseForge **worldweaver-neoforge**, não o WorldWeaver original de Fabric. **Última publicação válida:** **WorldWeaver-21.0.29.jar**, NeoForge 1.21.1, 20/10/2026.
+
+| Versão | Evidência disponível |
+|---|---|
+| 21.0.26 | Publicação NeoForge 1.21.1 confirmada na revisão anterior; alteração granular não documentada. |
+| 21.0.27 | Parte da sequência NeoForge antes de 21.0.28/29; **changelog individual não pinado**. |
+| 21.0.28 | Release NeoForge 1.21.1 publicada 19/10; comportamento próprio específico ainda não isolado. |
+| 21.0.29 | Release NeoForge 1.21.1 publicada 20/10; nenhuma lista detalhada de commits associados a **este JAR** foi confirmada na pesquisa. |
+
+**Escopo funcional declarado pelo projeto, sem atribuição arbitrária de versão:** melhorias na compatibilidade entre **TerraBlender e biomas não-Wover** para evitar escala/fragmentação indevida, preservar placement de biomas externos e correções de integração de categorias The End com BetterEnd. A descrição do projeto é cumulativa; ela **não informa qual 21.0.x introduziu cada mudança**. Não transformar isso em changelog específico da 21.0.29.
+
+**QA coordenado:** BCLib: New Dawn, BetterEnd, BetterNether, WunderLib, TerraBlender e worlds com chunks existentes e novos, preservação de biome placement externo, registries, datafixers, End/Nether, datapack reload e seed repetível. **BLOQUEADO para afirmar auditoria completa release-by-release** até localizar changelogs/tags ou diff source de 21.0.26, 21.0.27, 21.0.28 e 21.0.29; nenhuma alteração física foi feita.
+
+Fonte oficial: https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/all ; https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge .

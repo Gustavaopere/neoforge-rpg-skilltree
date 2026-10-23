@@ -154,3 +154,19 @@ Em 12/10 apareceu **3.1.20-alpha.1** para NeoForge Minecraft 1.21.1, superior nu
 - **Gate de promoção:** Priorizar a release estável. Testar animation/model APIs, armor/entities, networking e todos os consumers; não promover alpha.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/azurelib
 
+## Lote 21–30 — catálogo de versões e lacunas (22/10/2026)
+
+**Versão física:** AzureLib `3.1.11` NeoForge Minecraft 1.21.1; **última publicação com número não-alpha:** `azurelib-neo-1.21.1-3.1.22.jar` (16/10). Também existe `azurelib-neo-1.21.1-3.1.23-alpha.2.jar` (16/10). **Cuidado de metadados:** o CurseForge marcou ambos como **Type R / Release**, mas o próprio filename da última publicação contém `alpha.2`; o nome do artefato deve prevalecer na avaliação de estabilidade, não assumir que um arquivo alpha é estável por causa do canal mostrado.
+
+**Sequência pública posterior ao instalado:**
+- 3.1.12, 3.1.13, 3.1.14, 3.1.15, 3.1.16, 3.1.17 e 3.1.18: dossiê anterior seção 12 contém notas históricas de changes/source; não repetidas como novidades da 3.1.22.
+- 3.1.19 (09/10): arquivo NeoForge publicado, delta individual **não atribuído sem changelog pinado**.
+- 3.1.20-alpha.1 (12/10): **pré-release** NeoForge, deve permanecer segregada da trilha estável; não tratar suas funcionalidades como entrada de produção sem confirmar absorção posterior.
+- 3.1.21 (14/10), 3.1.22 (16/10): publicações NeoForge comprovadas, mas mapeamento exato das mudanças de cada build **não confirmado por source/tag/changelog**.
+- 3.1.23-alpha.2 (16/10): artefato posterior com sufixo **alpha**, não candidato estável. Números de AzureLib para Minecraft 26.x ou Forge 1.20.1 são branches diferentes e excluídos.
+
+**Riscos ao migrar:** resource reload com caches de geo models/animations em background, `animation includes` inválidos, controller threading, Molang, sound/particle keyframes, bone LOD e entity state leak, armor/models de mobs, ABI de consumidores do pack e verificação client/dedicated. A descrição pública de AzureLib 3.1.20 aborda fixes de cache e model bake, **mas não é prova de que a mesma mudança pertença exclusivamente à alpha 3.1.20**.
+
+**Decisão fail-closed:** falta detalhar release-by-release pelo changelog oficial **3.1.19, 3.1.20-alpha.1, 3.1.21, 3.1.22 e 3.1.23-alpha.2**; por isso a auditoria da cadeia permanece **BLOQUEADA para remoção do Bloco de Notas**, apesar da atualização do catálogo. Não alterar versão física, JAR ou filename.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/azurelib/files/all?page=1&pageSize=20&showAlphaFiles=hide&version=1.21.1 ; https://modrinth.com/mod/azurelib/version/qahsHKgR .

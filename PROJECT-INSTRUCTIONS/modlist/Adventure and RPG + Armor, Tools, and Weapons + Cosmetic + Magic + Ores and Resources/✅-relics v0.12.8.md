@@ -190,3 +190,15 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - **Gate de promoção:** Avaliar relic abilities, Curios slots, sync/cooldowns, loot/persistence e compats antes de considerar promoção.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/relics-mod
 
+## Lote 21–30 — histórico 0.12.8 → 0.12.9 (22/10/2026)
+
+**Versão física:** Relics 0.12.8 NeoForge 1.21.1. **Último arquivo publicado:** `relics-1.21.1-0.12.9.jar`, **Beta 18/10/2026** (file 9241566); 0.12.8 também é classificada Beta no CurseForge (file 8158315). Não declarar que 0.12.8 é Release estável.
+
+| Versão | Mudanças efetivamente declaradas |
+|---|---|
+| 0.12.8 (baseline já instalado) | Shield of Retaliation introduzido; targeting configurável, integração FTB Teams, estatística de experiência, otimizações do cache de Relics e design visual de Ghostly/Midnight Mantle. |
+| 0.12.9 (Beta, não instalada) | Nova **mimification do Shield of Retaliation**; evita spam de console quando tecla de habilidades não é vinculada; **possíveis** fixes dos crashes com Glitchy Mantle shader e entidade Falling Star. O upstream usa “potentially”; não transformar em fix garantido. |
+
+**Regressões condicionais:** addons Reliquified, progressão/XP persistente, skills e botões sem keybind, integrações FTB Teams e Curios, Shield of Retaliation, shader/Glitchy Mantle em GPU e Falling Star no servidor, save/restart e sync multiplayer. **Histórico de release encerrado até a Beta 0.12.9; promoção física Beta bloqueada** e sem QA real.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/relics-mod/files/9241566 ; https://www.curseforge.com/minecraft/mc-mods/relics-mod/files/8158315 .

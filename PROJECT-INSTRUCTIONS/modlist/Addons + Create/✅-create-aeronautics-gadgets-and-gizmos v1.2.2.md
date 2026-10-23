@@ -208,3 +208,22 @@ O arquivo `gadgets-and-gizmos-bundled-V1.2.6.jar` está publicado para NeoForge 
 - **Gate de promoção:** Não usar 1.2.9 (historicamente marcada unsafe). Testar graphs/state, chat/permissions, Create/Aeronautics/Sable, save/restart e bundle; 2.0.0 somente em staging isolado.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos
 
+## Lote 21–30 — linha 1.2.3→1.2.10 e fork major pré-release (22/10/2026)
+
+**Versão instalada:** Gadgets & Gizmos **1.2.2** no JAR bundle NeoForge 1.21.1. **Candidato Release 1.2.x:** **1.2.10**, 12/10/2026, `gadgets-and-gizmos-bundled-V1.2.10.jar` (file 9141062). Também existe linha **2.0.0 Pre-Release 3**, cuja migração major não deve ser confundida com hotfix de 1.2.10.
+
+| Publicação | Mudança/risco com lastro |
+|---|---|
+| 1.2.3 | Fixes de controle e contraptions já detalhados na seção de histórico upstream deste dossier. |
+| 1.2.4 | Physics Gantry, montage e proteção do editor de graphs. |
+| 1.2.5 | Persistência e permissões do controller graph. |
+| 1.2.6 | Publicação confirmada, **changelog individual não isolado** na auditoria anterior; continua sem atribuição funcional segura. |
+| 1.2.7 | Ajustes de UI/thrusters e node typing, segundo registro anterior. |
+| 1.2.8 | Estado de graph runtime e fix crítico de inicialização já documentados. |
+| **1.2.9** | O autor classificou explicitamente a build **DO NOT USE — Causes crashes**. Não recomendar nem usar como passo de atualização. |
+| **1.2.10** | Adiciona nodes `Counter` (step/pulse) e `Reset` em `Do N`; corrige Compare entre integer e float (0.0 == 0), propagação de Advanced HUD Text, introduz `Watch Chat` (wake word) e `Send Chat Message` com `Local`/ `Player` (Local desabilitável no server), `Stop` em Play Sound; `null world level guard` contra crash com Supplementaries. Changelog chama Performance Hotfix, mas não relata benchmark de TPS/FPS medido. |
+| **2.0.0 pre-release** | Mudanças muito maiores em Ship Control Module, grupos explícitos de controle, network linker e algoritmos PD/LQR de pilotagem; **não é atualização in-place segura** de graphs 1.2.x por mera versão. |
+
+**Gates:** Create 6.0.10, Aeronautics, Sable, node dataflow, math int/float, chat spam/permissões, propagation para sublevel e raio 3×3 chunks, controllers/ship modes, save/restart, ausência de graph duplication e bundle `META-INF/jarjar`/dependencies. Sem QA ou substituição física. **PENDENTE individualizar a 1.2.6** para certificação estritamente release-by-release; a 1.2.9 deve ser considerada unsafe mesmo quando o changelog de 1.2.10 a sucede.
+
+Fontes: https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/9141062 ; https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/2.0-prerelease ; https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/all .

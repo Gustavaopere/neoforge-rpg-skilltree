@@ -87,3 +87,12 @@ Validar client boot, world join/leave, resource reload, shader reload/toggle qua
 - **Gate de promoção:** Performance/render: validar GPU paths, overlays/UI, shader/resource-pack stack, EMF/ETF e ausência de regressão visual/crash.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/immediatelyfast/files/8749421
 
+## Lote 21–30 — histórico 1.6.14 → 1.6.15 (22/10/2026)
+
+**Instalado:** ImmediatelyFast 1.6.14+1.21.1, **NeoForge**. **Última release NeoForge Minecraft 1.21.1:** 1.6.15 (13/10/2026); o CurseForge fornece JARs distintos para NeoForge, Forge e Fabric, não intercambiáveis. A cadeia contém uma única release posterior: **1.6.15**.
+
+O changelog oficial da publicação 1.6.15 documenta **fix de rendering dos spell cooldowns de Iron's Spells 'n Spellbooks** e **fix da tela de Cosmetica**. As notas publicadas são comuns às variantes de loader e não provam que um crash concreto se reproduz no pack. Os números de versão para Minecraft 26.x são linhas distintas; não são releases intermediárias da variante 1.21.1.
+
+**Regressões necessárias:** Spell cooldown overlay com Iron's, ordenação de GUI/HUD, Screen/DrawContext e shaders, compatibilidade Iris/EMF/ETF/skins/particles, reloading com F3+T, estabilidade de buffers e FPS comparativo em cenas controladas. Cosmetica só deve ser testado se realmente presente. Cliente-only: não instalar como dependência funcional de dedicated server.
+
+**Fonte primária:** https://www.curseforge.com/minecraft/mc-mods/immediatelyfast/files/all?gameVersionTypeId=6&page=1&version=1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/immediatelyfast/files/9165519 (arquivo Forge, utilizado SOMENTE pelo changelog comum, não como binário NeoForge).

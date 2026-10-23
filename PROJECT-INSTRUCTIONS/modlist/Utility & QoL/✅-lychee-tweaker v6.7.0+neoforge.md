@@ -146,3 +146,15 @@ Esses pontos devem ser considerados ao depurar datapacks escritos para 6.6.x: co
 - **Gate de promoção:** Recipe/tweaker engine: validar datapacks, conditions/actions, reload e dedicated server; não promover beta sobre pack persistente sem regressão.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/lychee
 
+## Lote 21–30 — histórico 6.7.0 → 6.7.1 (22/10/2026)
+
+**Baseline:** Lychee 6.7.0 NeoForge 1.21.1. **Nova candidata:** `Lychee-1.21.1-NeoForge-6.7.1.jar`, **Beta 17/10/2026**, CurseForge file 9225058. Nenhuma outra versão intermediária publicamente listada foi identificada entre 6.7.0 e 6.7.1.
+
+| Versão | Alterações upstream |
+|---|---|
+| 6.7.0 (instalada) | Atributo `action` em receita de block clicking, rodada 3 de correções de crafting, evento de block click só efetivado ao começar clicar (já baseline). |
+| 6.7.1 Beta | Implementa `ClientSideStrategy.ofEntries`; ao integrar receitas de crafting shaped com **EMI**, respeita `set_item` e o restante `air`, adaptando `ShapedCraftingRecipe` para remainders; simplifica receita exemplo `crafting3` (mudança de exemplo, não nova API automática). |
+
+**QA antes de qualquer instalação:** datapacks custom e recipes Lychee, replace/return de ingredientes e remainders sem duplicação ou perda, EMI (apenas se presente e confirmado), viewers alternativos como JEI, reload, RecipeManager, cliente versus dedicado. Preservar estado conhecido da versão 6.7.0 e a JarJar embarcada, sem criar entrada física para a dependência aninhada. **Documentação da única Beta posterior concluída; promoção da Beta não aprovada**.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/lychee/files/9225058 .

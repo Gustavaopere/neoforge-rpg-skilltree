@@ -148,3 +148,16 @@ Linha pública NeoForge 1.21.1 entrou em 4.0.0 (11/10) e recebeu 4.0.1 (11/10). 
 - **Gate de promoção:** Salto major: testar Moonlight, Amendments, Polytone, block entities/redstone/storage, recipes, generated resources, world migration e dedicated server.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/8852720
 
+## Lote 21–30 — histórico cumulativo 3.9.9 → 4.0.2 (22/10/2026)
+
+**Físico:** `1.21.1-3.9.9` NeoForge. **Linha nova:** 4.0.0 (file 9139628, 11/10), 4.0.1 (file 9140379, 11/10) e 4.0.2 (file 9211734, 16/10), todos com JAR **NeoForge 1.21.1 Release**. O changelog extenso de 4.0.0/4.0.1 repete recursos cumulativos; não presumir que foram todos introduzidos duas vezes.
+
+| Release | Publicação e mudanças com impacto |
+|---|---|
+| 4.0.0 | Introduz **Pigñata** pendurável com leash, bloco redstone **Grouper** para comparar blocos/entidades dos lados e emitir sinal, jogador pode entrar em cannon usando sneak+empty hand, blackboards 3×3 editáveis em GUI, leash amarrável em ropes, sete melodias de flute, sons wind vane/plunderer, revisão de naval raids e compatibilidade Polytone para **cores de fluidos**. |
+| 4.0.1 | Changelog repete a maior parte do elenco da 4.0.0 e declara compat com **Polytone/Polylight para luzes coloridas**, sem isolar claramente outras correções entre os dois JARs. Não inferir que o 4.0.1 adiciona novamente Pigñata/Grouper. |
+| 4.0.2 | Amplia a integração com **Polytone colored lights**; corrige **dupe com pulley**. Este fix afeta diretamente stacks persistentes e logística de rope/pulley. |
+
+**QA de migração:** blocos/redstone/GUI novos, Grouper em circuitos, cannon/chunk travel, ropes/pulley com inventários e duplicação, blackboard multiblock persistente, naval raid/AI, Amendments + Moonlight generated resource pack + Polytone, sinal de luz/shaders, multiplayer e servidor dedicado. **Versão física 3.9.9 preservada.** Sem inspeção do JAR, testes ou aprovação de mudança major.
+
+**Fontes (artefatos NeoForge exatos):** https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9139628 ; https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9140379 ; https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9211734 .
