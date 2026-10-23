@@ -81,3 +81,16 @@ Modrinth oficial confirma build Beta, NeoForge 1.21.1, Client & Server e changel
 - **Gate de promoção:** Biblioteca: revisar ABI/API, networking, UI/config e todos os consumers; não promover beta sem regressão do conjunto dependente.
 - **Fonte primária do dossier reconsultada:** https://modrinth.com/mod/owo-lib
 
+## Auditoria detalhada 0.12.15.5-beta.1 → 0.12.15.6-beta.1 (22/10/2026)
+
+**Instalado:** oωo 0.12.15.5-beta.1+1.21, **Beta** NeoForge 1.21.1. **Nova Beta NeoForge 1.21.1:** 0.12.15.6-beta.1+1.21 (Modrinth oficial version ID `wbdHEItB`). Apenas um incremento posterior comprovado nessa sequência; não converter `beta` em Release.
+
+| Mudança da 0.12.15.6-beta.1 (publicada) | Superfície afetada |
+|---|---|
+| Corrige exceção em `ConfigureHotReloadScreen` causada pelo parsing de `ResourceLocation` como string. | owo-config GUI / hot reload client. |
+| Restaura funcionamento com NeoForge recente que modificou código interno da camada de networking. | Packets/config sync, registry and handshake, dedicated boot e peers. |
+| Corrige `null EdmElements` dentro de `EdmOPs` dependidos por outros mods. | Endec/serialização e data component consumers. |
+
+**Gate:** verificação estática de manifests de consumers e libs embutidas em `META-INF/jars`; handshake NeoForge cliente/servidor, configs synced após reconnect/reload, hot reload GUI, Endec com valores nulos e data-component equality no baseline. Dependências aninhadas **não** recebem linha física independente. A publicação Beta não equivale a atualização autorizada.
+
+**Fonte primária:** https://modrinth.com/mod/owo-lib/version/wbdHEItB .

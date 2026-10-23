@@ -195,3 +195,17 @@ A versão **0.5.0.2 Release** de 09/05/2026 permanece a última publicação ofi
 - **Gate de promoção:** Regressão de rituals/magic state, recipes/tags, world/save data, Curios/compat e dedicated server antes de promoção.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised
 
+## Auditoria completa 0.5.0.2 → 0.5.0.7 — lote 31–40 (22/10/2026)
+
+**Baseline:** Eidolon : Repraised 0.5.0.2 NeoForge 1.21.1, última Release 0.5.0.7 (17/10, ID 9224421). **Chain publicamente comprovada no mesmo loader/MC:** 0.5.0.4 → 0.5.0.5 → 0.5.0.6 → 0.5.0.7. Não há arquivo NeoForge 1.21.1 `0.5.0.3` nas listagens verificadas; não inventar release.
+
+| Versão | Mudanças exatas do arquivo oficial |
+|---|---|
+| **0.5.0.4** (24/09) | Entidade do chant caster agora desaparece em unload, evitando chant preso permanentemente no jogador após crash; plugin Jade para exibir ownership de thralls. |
+| **0.5.0.5** (29/09) | Fix da **Deathbringer Scythe**, cujo hit não aplicava `undeath`. |
+| **0.5.0.6** (12/10) | Corrige traduções Jade e keybinds, ligação incorreta de recipes no Codex e datagen. **Possível breaking change** para rituals do tipo **locator**: tratar como migração de datapack/save a validar. |
+| **0.5.0.7** (17/10) | Chant do tipo `execCommand` passa a **consumir mana corretamente**; mudança com impacto em balanceamento, permissões e execução de comandos. |
+
+**Gate:** save backups para locator rituals, progressão do Ars Ecclesia/Codex, chanting interrupted/unload and restart, mana decrement exactly-once, thrall ownership Jade e permissions, Deathbringer Scythe, links recipes/datapacks, server-dedicated e spells em multiplayer; Sable/Aeronautics sublevel se usados. Separar publicação upstream de comportamento efetivamente instalado.
+
+**Fontes primárias por release NeoForge:** https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/8964998 ; https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/9009395 ; https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/9148441 ; https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/9224421 .

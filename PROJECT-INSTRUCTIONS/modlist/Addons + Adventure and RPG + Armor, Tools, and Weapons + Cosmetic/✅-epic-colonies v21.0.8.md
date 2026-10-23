@@ -132,3 +132,18 @@ São preservados os fixes de animações mining/sitting, texturas Aristocrat/Set
 - **Gate de promoção:** 21.1.2 adiciona suporte a MineColonies Mages, opções de moveset/facial features e corrige Druids. Validar MineColonies atual, Epic Fight 21.17.3.1, citizen models/AI/combat, multiplayer e restart.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/epic-colonies
 
+## Auditoria detalhada 21.0.8 → 21.1.2 — lote 31–40 (22/10/2026)
+
+**Físico:** Minecolonies: Epicfied (Epic Colonies) 21.0.8 NeoForge 1.21.1. **Último upstream:** 21.1.2 Release NeoForge 1.21.1 (17/10). Este é o port **TheDevKenji**, CurseForge 1610923, não o mod Epic Fight ou o MineColonies provider. A cadeia é 21.0.9 → 21.0.91 → 21.1.0 → 21.1.1 → 21.1.2, com fontes oficiais individuais.
+
+| Release | Mudança anunciada e escopo |
+|---|---|
+| 21.0.9 (29/09, file 9005453) | Tenta corrigir loop de animação de mineração e de sentar (autor escreve *hopefully*), texturas Aristocrat/Settler, nome do mod em mods.toml; acrescenta meshes de Settler e compat Nightfall + Extra **somente se os dois addons EpicFight estiverem instalados**; remove logs debug. |
+| **21.0.91** (02/10, file 9035733) | Refix da animação de mineração após o job terminar; fixes de arqueiros e raider archers que não disparavam flechas. |
+| **21.1.0** (06/10, file 9075508) | Fix de raider archers; mesh Epic Fight do Amazon Spearman; **dois recursos opt-in com default FALSE:** arqueiro troca para dagger no corpo a corpo se houver no inventário; cidadão usa tools tornadas unbreakable por outros mods. Não supor essas features habilitadas. |
+| **21.1.1** (12/10, file 9140888) | Corrige visual de armaduras de mods como Fantasy Armor, ajusta pesos dos combat movesets dos cidadãos, animação use/place para Builder ao construir; mais correção da animação de mineração (autor ressalva *I hope*). |
+| **21.1.2** (17/10, file 9234338) | Suporte a **MineColonies Mages**, configuração dos pesos de movesets de Guard, compat com novas versões de MineColonies; opções individuais para desativar *blinking*, expressão facial e eyes-follow; fix de Druids. |
+
+**Riscos concretos:** MineColonies 1.1.1387-snapshot do inventário versus upgrades documentais 1.1.1403/1405, Epic Fight instalado runtime 21.17.3.1 versus **EFM-21.16.4 gravado no filename upstream**: não inferir equivalência da versão compilada com provider presente. Testar guard/raider ranged, melee dagger, mages/druids, animations idle/sitting/mining/use, config false defaults, sync multiplayer, renderer EMF/ETF, claims, equipamento unbreakable e startup dedicado. O modpack físico não foi alterado.
+
+**Fontes:** https://www.curseforge.com/minecraft/mc-mods/minecolonies-epicfied-epic-colonies/files/9005453 ; https://www.curseforge.com/minecraft/mc-mods/minecolonies-epicfied-epic-colonies/files/9035733 ; https://www.curseforge.com/minecraft/mc-mods/minecolonies-epicfied-epic-colonies/files/9075508 ; https://www.curseforge.com/minecraft/mc-mods/minecolonies-epicfied-epic-colonies/files/9140888 ; https://www.curseforge.com/minecraft/mc-mods/minecolonies-epicfied-epic-colonies/files/9234338 .

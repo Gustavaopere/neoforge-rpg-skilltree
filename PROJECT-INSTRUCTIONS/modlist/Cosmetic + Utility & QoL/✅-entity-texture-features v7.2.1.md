@@ -154,3 +154,18 @@ Fonte upstream: `Traben-0/Entity_Texture_Features`, `CHANGELOG.MD` oficial; Curs
 - **Gate de promoção:** Testar com EMF, resource packs, emissive/random textures, ImmediatelyFast/shaders e reload; manter boundary client-only.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/entity-texture-features-fabric
 
+## Auditoria release-by-release ETF 7.2.1 → 7.2.6 — lote 31–40 (22/10/2026)
+
+**Instalado:** Entity Texture Features 7.2.1 NeoForge Minecraft 1.21.1; **publicação mais nova** 7.2.6 Release NeoForge 1.21.1 (15/10). Changelog oficial do repositório `ETF-Main/CHANGELOG.MD` discrimina todas as cinco revisões 7.2.2–7.2.6. Versões para 26.x não são JARs válidos para este perfil.
+
+| Versão | Delta oficial e limitação |
+|---|---|
+| **7.2.2** | Reintroduz campo `id` nas leituras de propriedade NBT. Correção de captura para EMF texture overrides **explicitamente 1.21.9–26.1**, não supor que esse bug ocorre em 1.21.1. |
+| **7.2.3** | Corrige estado de render contaminado após mixins de terceiros cancelarem render; corrige tradução francesa. |
+| **7.2.4** | Corrige papagaios no ombro em interação com EMF; acrescenta propriedades `usingShaders` (condicionadas a Iris) e `resourcepack`, que também controlam variantes de modelos EMF por shader/pack ativo. |
+| **7.2.5** | Reduz alocações de objetos por frame para melhorar desempenho/render, sem prometer FPS específico do pack. |
+| **7.2.6** | **Acelera testes de propriedade NBT por entidade**, incluindo a função NBT de animação EMF; não representa mudança de registries ou dados persistentes do servidor. |
+
+**Gate:** EMF versão instalada versus candidata, Fresh Animations/ETF skin features, skin layers, player shoulder parrots, configs random/emissive, resource packs OptiFine properties e selectors `usingShaders`/`resourcepack`, shaders Iris e load/reload F3+T, cancelar render seguido de render de outra entidade, heap allocation e FPS controlados. **Client-only**, não requer instalação no servidor dedicado para alterar loot/gameplay. Sem medição de desempenho executada.
+
+Fonte: https://github.com/Traben-0/Entity_Texture_Features/blob/ETF-Main/CHANGELOG.MD ; https://www.curseforge.com/minecraft/mc-mods/entity-texture-features-fabric/files/all?version=1.21.1 .

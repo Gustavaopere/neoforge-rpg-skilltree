@@ -111,3 +111,23 @@ Fontes upstream: CurseForge file IDs 8970326 (2.7.29) e 8995867 (2.7.30); source
 - **Gate de promoção:** Revalidar Basin multi-fluid, Factory Gauge, Saw + Central Kitchen, sequenced Deployer, Lazy Tick Clock, funnels/redstone, bounded Redstone Link refreshes, reload/restart e CBC ammo/deployer regressions.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-lazytick
 
+## Auditoria cumulativa Create:LazyTick 2.6.25 → 2.7.30 — lote 31–40 (22/10/2026)
+
+**Baseline físico:** `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` com Create `6.0.10`. **Publicação mais recente mesma linha:** `CreateLazyTick-2.7.30-6.0.10-neoforge-1.21.1.jar` (28/09, CurseForge ID 8995867) e seu predecessor confirmado **2.7.29** (25/09, ID 8970326). Files `2.7.30-6.0.x-forge-1.20.1.jar` e Fabric 1.20.1 são builds de outra linha, não inserir na cadeia da instalação.
+
+| Release oficial 1.21.1 / Create 6.0.10 | Delta técnico |
+|---|---|
+| 2.7.29 | **Basin multi-fluid** passa a reconhecer segundo fluido no recipe evaluation; Factory Gauge reduz monitoramento inativo; corrigidos recipe caches de Mechanical Saw com Central Kitchen e progresso do sequenced Deployer. Fix NeoForge de Mixin load e receita do Lazy Tick Clock; funnels/belt funnels voltam a funcionar após pause de redstone; `funnel redstone overclock` novo e **DESLIGADO por padrão**, pois aumenta lag; diminui CPU de passengers vivos parados nas belts. |
+| 2.7.30 | Recupera refresh **bounded** de Redstone Links com sinais estáveis sem interceptar transmissões explícitas. A nota de suporte Fabric 1.20.1/Create Fabric 6.0.8.1 é irrelevante ao alvo NeoForge 1.21.1. |
+
+**Reconciliação da cadeia:** a página **Changelog oficial do Modrinth** para a release 1.21.1-2.7.30-6.0.10 lista expressamente, em ordem descendente, **v2.7.30 → v2.7.29 → v2.6.25 → v2.5.21**. Assim, o conjunto de lançamentos dessa linha documentados pelo publicador **entre o baseline 2.6.25 e o latest 2.7.30** compreende 2.7.29 e 2.7.30. Números 2.7.26–2.7.28 não precisam ser inventados como lançamentos. **Auditoria documental release-by-release concluída até 22/10/2026**, sem inferir equivalência de binários de outros loaders ou QA no mundo.
+
+**Gates:** factory de recipes com Basin 2 fluidos, reloading scripts, Factory Gauges, Central Kitchen, saw e Deployer, clock recipe/UI, belts/funnels e redstone pauses, Redstone Link com sinal estável e mudanças explícitas, overclock off/on sob stress, CBC ammo containers, multiplayer, save/restart e TPS medido. Candidato não testado fisicamente.
+
+**Fontes oficiais NeoForge 1.21.1:** https://www.curseforge.com/minecraft/mc-mods/create-lazytick/files/8970326 ; https://www.curseforge.com/minecraft/mc-mods/create-lazytick/files/8995867 .
+
+## Confirmação independente do intervalo pelo histórico oficial (22/10/2026)
+
+A [página oficial de versão no Modrinth](https://modrinth.com/mod/createlazytick/version/1.21.1-2.7.30-6.0.10) contém um histórico **cumulativo** nesta ordem: **v2.7.30**, **v2.7.29**, **v2.6.25**, **v2.5.21**. Portanto, 2.7.29 e 2.7.30 são **ambas** as publicações da sequência informada desde a versão instalada neste canal. Nenhum passo 2.7.26/27/28 é afirmado sem publicação. As notas oficiais de 2.7.29 e 2.7.30 registradas acima correspondem aos JARs NeoForge 1.21.1/6.0.10 ID 8970326 e 8995867, e nenhuma instalação foi feita.
+
+**Status de revisão:** histórico completo conforme a série de releases oficiais disponível, **verificação de performance, world save, shaders, ABI e servidor dedicado pendente**. A separação entre documentação fechada e atualização física permanece explícita.

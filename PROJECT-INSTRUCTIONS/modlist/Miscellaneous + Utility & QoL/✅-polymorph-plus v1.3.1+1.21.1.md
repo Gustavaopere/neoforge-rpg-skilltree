@@ -136,3 +136,30 @@ Release NeoForge 1.21.1 em 12/10/2026: `polymorph_plus-neoforge-1.3.2+1.21.1.jar
 - **Gate de promoção:** A linha nova inclui compat/fix para JEI 19.52+ e seleção '+'. Coordenar com JEI candidato; testar recipe conflicts, GUI, networking e reload.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/polymorph-plus
 
+## Auditoria cumulativa Polymorph+ 1.3.1 → 1.4.1 — lote 31–40 (22/10/2026)
+
+**Instalado:** Polymorph+ fork de Aminoquiz, `1.3.1+1.21.1` NeoForge Minecraft 1.21.1. **Nova Release comprovada:** `1.4.1+1.21.1-neoforge`, Modrinth version ID `8N82mraG`; não confundir com projeto Polymorph original nem com Polymorph+ 1.4.1 de Minecraft 26.x.
+
+| Publicação | Delta que pode ser atribuído com segurança |
+|---|---|
+| **1.3.2** | JAR NeoForge 1.21.1 publicado (12/10, revisão anterior do dossier). O catálogo histórico não dispõe de changelog detalhado individual pinado; não se deve inventar novos recursos. |
+| **1.4.0** | Há changelog público da linha 26.x com Traveler's Backpack picker, prioridade e favoritos nas crafting upgrades do Sophisticated e ajustes de tutorial/GUI. **Esse arquivo 26.x não prova que tudo foi entregue num artefato 1.21.1**; o arquivo intermediário específico 1.21.1 e sua atribuição permanecem não verificados. |
+| **1.4.1 (NeoForge 1.21.1)** | **Corrige crash de inicialização com JEI 19.52+**; integração do botão `+` do JEI passa a selecionar diretamente a receita clicada. Fonte Modrinth 1.4.1+1.21.1-neoforge, não notas de outra versão do Minecraft. |
+
+**Gate:** JEI físico 19.56.0.440 já na faixa mencionada mas isso não prova que o crash se reproduziu; validar a versão exata junto a Ars Polymorphia, crafting grids vanilla e modded, KubeJS/datapacks, favoritos e prioridade entre players, recipes/remainders sem perda/duplicação, multiplayer autoritativo e /reload. **Revisão cumulativa agora resolvida por commits versionados específicos da branch 1.21.1**, documentados no adendo de reconciliação abaixo. O status de cada binário instalado versus não instalado é preservado. A versão física não foi mudada.
+
+Fonte principal: https://modrinth.com/mod/polymorph_plus/version/1.4.1%2B1.21.1-neoforge ; https://www.curseforge.com/minecraft/mc-mods/polymorph-plus/files/all .
+
+## Fechamento da lacuna 1.3.2/1.4.0 — fonte versionada 1.21.1 (22/10/2026)
+
+**Código upstream público pinado na branch oficial `1.21.1`** — não usar o changelog de Minecraft 26.x como substituto. A cronologia do código-fonte não equivale automaticamente à data de upload de cada JAR, e não comprova hashes publicados.
+
+| Revisão de source | Conteúdo verificado nos commits do projeto correto |
+|---|---|
+| **1.3.2**, commit `75d77ebd228cbb3594f4dc9a88ad213025e84003` (28/08) | O selector de resultado rolável volta a ficar **acima da GUI** quando possível. 1.3.0 havia ancorado o widget ao botão para acomodar terminais AE2 altos, mas o posicionava 12 pixels para dentro das GUIs vanilla; agora anchor acima-da-GUI é preferido quando cabe, e o do botão serve de fallback. |
+| **1.4.0**, commit `65c9a02a6abdc94443f7e3a5005af4747c6a4cdc` (14/10) | Suporte a crafting terminal de **Tom's Simple Storage**, **FastFurnace**, **FastSuite**, Simple Storage Network crafting table/remote, **Cyclic workbench** e prioridade/favoritos nas crafting upgrades de **Sophisticated Backpacks e Storage**, inclusive escolha pelas setas lembrada. **QuickBench support é Fabric-only**. Fixes: tutorial por cima das listas JEI/REI, carried stack/tooltips visíveis sobre picker, FastWorkbench sem escolha obsoleta após mudar grid, seleção no FastFurnace, botão no Traveler's Backpack. Preferência de modpack ignorada no Fabric é fix **Fabric-only**. O commit efetivamente altera módulos `neoforge/` além de common; não é código exclusivo 26.x. |
+| **1.4.1**, commit `597f6c4015c93bf6f9e486fb0beff264b3ba56dc` (17/10) | Integra JEI por **recipe transfer listener API**, removendo mixins antigos de transfer e handshake próprio; corrige fluxo do botão `+`. Changelog público do JAR NeoForge 1.21.1 cita fix do crash com JEI 19.52+. |
+
+**Ressalva de publicação:** versões/fixes 1.3.2, 1.4.0 e 1.4.1 estão agora **auditadas no source de versão correta**; 1.4.0 foi identificado como milestone de código, mas o registro de download de um JAR 1.4.0 NeoForge 1.21.1 **não foi individualizado**. O commit 1.4.2 (18/10) existe no source, mas **não é incorporado à lista de releases sem binário confirmado**. Esta limitação afeta a validação do upgrade físico, não a cobertura documental dos deltas públicos. **Auditoria documental da cadeia concluída por release/source; QA de build, ABI e runtime pendente**.
+
+**Fontes source pinadas:** https://github.com/Aminoquiz/polymorph_plus/commit/75d77ebd228cbb3594f4dc9a88ad213025e84003 ; https://github.com/Aminoquiz/polymorph_plus/commit/65c9a02a6abdc94443f7e3a5005af4747c6a4cdc ; https://github.com/Aminoquiz/polymorph_plus/commit/597f6c4015c93bf6f9e486fb0beff264b3ba56dc ; artefato https://modrinth.com/mod/polymorph_plus/version/1.4.1%2B1.21.1-neoforge .
