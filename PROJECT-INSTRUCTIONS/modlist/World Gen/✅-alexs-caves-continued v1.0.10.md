@@ -206,3 +206,12 @@ O catálogo de gameplay acima cruza a descrição oficial do Continued — que d
 - **Gate de promoção:** Não usar releases de Minecraft 26.x como atualização do pack. Manter worldgen/biomes e saves no baseline atual.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued
 
+## Auditoria acumulada — lote 11–20 (22/10/2026)
+
+**Versão física:** Alex's Caves Continued 1.0.10 (NeoForge 1.21.1). O projeto correto é o port Continued, não Alex's Caves original. O catálogo atual mantém 1.0.10 como a versão publicada pertinente a NeoForge 1.21.1; 1.0.9 de 1.21.11 ou 26.x não é comparação válida.
+
+**Intervalo 1.0.10 → última 1.21.1:** não há release posterior aplicável confirmada; nenhuma versão intermediária omitida. Fixes do 1.0.10 (incluindo controle de freezing check de water lake Primordial Caves, flicker Abyssal Chasm, alterações visuais específicas de Fabric) são baseline/história já coberta, não novidade de upgrade.
+
+**Distinções técnicas:** conteúdo canônico dos seis biomas e 43 mobs portados, Citadel embutido (não contar como mod top-level), CodxLib como dependência externa correta e cliente/servidor. Regredir geração em chunks novos e mundo existente, datapacks, livro, sincronização de mobs, mixins por alvo, efeitos visuais de caverna e server boot só quando houver candidato.
+
+**Fonte oficial:** https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued ; https://www.curseforge.com/minecraft/mc-mods/alexs-caves-continued/files/8856289 (texto compartilhado do changelog Fabric 1.21.1, não binário NeoForge).
