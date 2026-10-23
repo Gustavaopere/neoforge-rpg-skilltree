@@ -91,3 +91,43 @@ Validar build→assembly→launch→travel→arrival→disassembly, death/reconn
 - **Gate de promoção:** Manter baseline; qualquer futura troca exige testes de dimensão/teleporte, Create, worldgen, vehicles, save/restart e multiplayer.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/create-creating-space
 
+## Retificação de versão upstream — 23/10/2026 (Creating Space 1.7.22 → 1.7.23)
+
+**Estado físico preservado:** `creatingspace-1.21.1-1.7.22.jar`, mod ID `creatingspace`, runtime `1.7.22`, posição física #206. **Identidade do projeto:** *Create : Creating Space*, CurseForge **858897**, autor RealAntEngineer. Categorias atuais **Create + Dimensions + Player Transport + Technology + World Gen** estão de acordo com a pasta. **Retificação expressa da nota de 22/10:** a informação de que 1.7.22 ainda seria a última versão ficou obsoleta: em **21/10/2026** foi publicada a **Release 1.7.23 NeoForge 1.21.1**, arquivo exato **`creatingspace-1.21.1-1.7.23.jar`**, **CurseForge File ID 9282749**. A lista oficial não mostra outra release 1.21.1 intermediária entre 1.7.22 e 1.7.23.
+
+### Changelog público específico
+A página oficial da release 1.7.23 contém somente **“bug fixes”**, sem discriminar subsistemas. Esse texto, isoladamente, **não prova** quais correções estão no JAR distribuído, nem justifica atribuir mudanças de outras linhas/versões.
+
+### Investigação do source oficial `RealAntEngineer/creating_space` — branch `1.21.1-release`
+O próprio CurseForge vincula esse repositório. O histórico público contém **três PRs de correção fundidos em 19/10/2026**, anteriores à publicação 1.7.23, com evidência técnica por commits e arquivos modificados. O commit **`ef417124e4760f9f08482ce7e6d4eee4e79af180`**, de **21/10**, acrescentou automação de publicação e ajustes em dados/recipes/rocket engineer table. Esses commits são **evidência de source na janela de atualização**, mas não existe nesta auditoria um release tag/manifesto ou diff binário que prove correspondência 1:1 com a distribuição 9282749; a lista abaixo não é apresentada como changelog binário certificado.
+
+**PR #130 (`0f94fa5ce787507b3a96a53b595e580ec0fa8276`, 19/10) — crashes, oxigênio e worldgen:**
+- Corrige **disconnects `set_entity_data`** causados pelo envio/compartilhamento de `RoomShape` mutável em packets de entity data; `RoomShapeSerializer` e cópia de shape são superfícies relevantes;
+- Corrige **dano por superaquecimento dentro de salas seladas com oxigênio**, onde o estado de `inO2()` podia ser consumido por mais de uma checagem;
+- Corrige **data race** em cache de altura do **CraterCarver** durante geração de chunks por múltiplas threads. Fonte: https://github.com/RealAntEngineer/creating_space/commit/0f94fa5ce787507b3a96a53b595e580ec0fa8276 .
+
+**PR #131 (`0cad4fed0a2edc0eaeee8810fcdc00b987316111`, 19/10) — desempenho de salas:**
+- Reduz custo de **room rebuilds** e atualizações de blocos, incluindo debounce de reconstruções e trabalho evitado em callbacks de blocos sem necessidade;
+- Examina ocupantes em intervalos menores de frequência, evitando queries de todas as entidades em todas as caixas a cada tick;
+- Ajusta igualdade de `RoomShape` para evitar retransmissões desnecessárias quando a geometria não mudou. Fonte: https://github.com/RealAntEngineer/creating_space/commit/0cad4fed0a2edc0eaeee8810fcdc00b987316111 .
+
+**PR #132 (`211ffbbb9b806eae1282b68128bdb6491ac2282d`, 19/10) — simulação de ambientes fechados:**
+- Corrige **drift de volume de sala** ao remover uma box e recalcular sua geometria;
+- Aplica corretamente o **limite de blocos processados por tick** a cada box, preservando continuidade de buscas que atingem o limite;
+- Evita **forçar carregamento de chunks** durante scan de salas ao tratar chunks descarregados como sólidos; a busca não deve produzir chunkloads involuntários.
+- Reorganiza busca de ocupantes e sincronização de geometria. Fonte: https://github.com/RealAntEngineer/creating_space/commit/211ffbbb9b806eae1282b68128bdb6491ac2282d .
+
+**Commit 21/10 — publicação e data/loot:** o commit `ef417124e4760f9f08482ce7e6d4eee4e79af180` toca workflows de publicação, loot de rocket controls e regolith, tags de mineração, `RocketEngineerTableBlockEntity`, traduções e documentation. A alteração de arquivos no source **não significa automaticamente** mudança visível comprovada no JAR 1.7.23; comparar diff source/binário antes de atribuir comportamento específico. Fonte: https://github.com/RealAntEngineer/creating_space/commit/ef417124e4760f9f08482ce7e6d4eee4e79af180 .
+
+### Riscos e testes de promoção — nenhum executado
+- [ ] Obter JAR 1.7.23 e comparar hashes/manifests com a release, ou release tag do upstream, para fechar a correspondência dos commits de 19–21/10 com o binário.
+- [ ] Testar salas seladas e atmosfera/oxigênio, incluindo temperaturas extremas, superaquecimento, pressão e diferença entre cliente/servidor.
+- [ ] Testar retransmissões `set_entity_data` com vários jogadores, join/rejoin, shape mutável e redes instáveis sem desconexões.
+- [ ] Testar dimensão lunar/marciana, muitos chunks gerados em paralelo, crateras e `CraterCarver` sem data race/seed inconsistente.
+- [ ] Testar novos/reprocessados rooms em limites de chunks, chunks descarregados, construção/destruição de paredes, grande volume, block budget/tick e estabilidade de TPS.
+- [ ] Testar criação/lançamento de foguetes e transições entre dimensões com Create 6.0.10 e Northstar Redux; salvar, reiniciar, descarregar chunks, reconectar e desassemblar sem dupe/perda de inventários.
+- [ ] Testar loot/recipe de Engineer Table e regolith em data packs e JEI se os deltas do source se confirmarem na distribuição.
+
+**Status:** **nova release 1.7.23 confirmada**; mudanças no source da janela anterior detalhadas, mas **delta exato do binário continua parcialmente indeterminado** porque o changelog oficial só diz “bug fixes” e não houve diff entre JARs. Pela exigência estrita de release-by-release comprovada no artefato, **manter o item 75 pendente** da fila até realizar essa conciliação. Não modificar JAR instalado, filename, versão física ou configurações.
+
+**Fontes primárias:** https://www.curseforge.com/minecraft/mc-mods/create-creating-space/files/9282749 ; https://github.com/RealAntEngineer/creating_space/tree/1.21.1-release ; PRs #130, #131, #132 e commits pinados acima.
