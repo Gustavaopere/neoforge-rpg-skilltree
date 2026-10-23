@@ -172,3 +172,32 @@ Fonte upstream: CurseForge file ID 9037168, `AmbientSounds_NEOFORGE_v6.3.9_mc1.2
 - **Gate de promoção:** Client audio: validar soundscape por biome/dimensão, resource reload, performance e coexistência com sound resource packs.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/ambientsounds
 
+## Auditoria completa do intervalo NeoForge 1.21.1 — 23/10/2026 (6.3.8 → 6.3.11)
+
+**Autoridade física preservada:** posição #025 na última modlist física, JAR `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar`, mod ID `ambientsounds`, runtime `6.3.8`. **Projeto oficial CurseForge 254284**, autor **CreativeMD**; única categoria temática **Miscellaneous**, coerente com a pasta atual. Ambiente **Client**; a CreativeCore instalada é `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar` no último inventário, obrigatória à linha usada. O mod é soundscape ambiental, não provider de weather, worldgen ou gameplay.
+
+### Releases posteriores confirmadas, individualmente
+
+| Versão | Publicação na plataforma correta | Changelog oficial e impacto |
+|---|---|---|
+| **6.3.9** | 02/10/2026 — `AmbientSounds_NEOFORGE_v6.3.9_mc1.21.1.jar`, CurseForge File ID **9037168** | Fecha o scanner de **air pockets** quando um novo level carrega, prevenindo scanner obsoleto entre mundos/dimensões; **faz cache de matches de regex de biomas** e limita o scan de altura de terreno; compila **patterns de nomes de dimensões** uma vez em vez de a cada tick. Fixes de lifecycle e custo client-side já descritos na seção 12. |
+| **6.3.10** | 08/10/2026 — `AmbientSounds_NEOFORGE_v6.3.10_mc1.21.1.jar`, CurseForge File ID **9099001** | **Adiciona variantes de grama para biomas de Biomes We've Gone e Regions Unexplored**; **acrescenta suporte a outros tipos de água**; **remove sons de floresta do vampire forest**. Correção expressa à seção 13, em que o changelog desta build constava como indisponível. Não atribuir refmap fix de builds 26.x ao alvo sem prova. |
+| **6.3.11** | 19/10/2026 — `AmbientSounds_NEOFORGE_v6.3.11_mc1.21.1.jar`, Release NeoForge Minecraft 1.21.1 | **Melhora distinção de grama e blocos de grama para biomas personalizados com materiais de solo diferentes** e **corrige ausência de grilos perto de rios**. As mesmas duas mudanças constam na release **6.3.11 NeoForge 1.21.1 publicada pelo autor no Modrinth oficial**; o CurseForge confirma o JAR homônimo e a mesma combinação de loader/jogo/data. |
+
+**Fontes primárias dos artefatos:** https://www.curseforge.com/minecraft/mc-mods/ambientsounds/files/all?version=1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/ambientsounds/files/9037168 ; https://www.curseforge.com/minecraft/mc-mods/ambientsounds/files/9099001 ; https://modrinth.com/mod/ambientsounds/version/6.3.11 . Para 6.3.11, a associação ao loader/jogo também foi confirmada no próprio catálogo CurseForge de 19/10. Não confundir com **`...mc26.3.jar`** ou builds Fabric de mesmo número.
+
+### Mudanças materiais no contexto do modpack
+- **Desempenho/lifecycle (6.3.9):** evitar scanning de level desativado e custo repetitivo de regex/altura quando há muitas dimensões/biomas; não inventar ganho quantitativo de FPS.
+- **Fidelidade de ambiente (6.3.10):** categorização de solo em BYG/Regions Unexplored, águas não padrão e soundscape do bioma vampire forest; são decisões auditivas do cliente e não modificam os biomas.
+- **Correção contextual (6.3.11):** distinguir materiais de grama e evitar que o som de grilos seja silenciado indevidamente próximo de rios.
+- **Integrações locais:** CreativeCore é dependência obrigatória; Presence Footsteps, Sound Physics, recursos de áudio e outras fontes de ambience podem acumular camadas, sem que isso signifique duplicação de um provider de gameplay.
+
+### Testes para eventual atualização física — não executados
+- [ ] Checar metadata/manifest e versão CreativeCore exigida pelo JAR 6.3.11 com a versão física 2.13.46 antes de qualquer substituição.
+- [ ] Entrar/sair de mundos e alternar dimensões/cavernas repetidamente; verificar que o air-pocket scanner e os loops antigos são interrompidos.
+- [ ] Comparar som sobre grama/blocos de grama em Biomes We've Gone, Regions Unexplored e biomas com materiais modificados, com resource packs ativos.
+- [ ] Testar rios e margens com grilos, vampire forest, áreas com água de mods, Nether/End, weather/dia-noite e mudanças de altitude.
+- [ ] Avaliar sobreposição com Presence Footsteps, Sound Physics e sound/resource packs; testar reload, muting, volumes e transições sem loops presos.
+- [ ] Medir profiler real do cliente em área com muitos biomas e dimensões; soundscape não deve ser tratado como estado do servidor.
+
+**Conclusão documental:** sequência **6.3.8 → 6.3.9 → 6.3.10 → 6.3.11** confirmada com **changelog individual para cada nova Release** no alvo NeoForge 1.21.1, corrigindo a antiga lacuna de 6.3.10. **Item #81 pode sair da fila de pesquisa de releases**. Isso não aprova a instalação 6.3.11 nem afirma que houve QA client-side; filename, JAR instalado e versão física seguem 6.3.8.
