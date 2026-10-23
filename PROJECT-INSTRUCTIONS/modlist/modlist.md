@@ -260,7 +260,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 24/09/2026 - 00:44 |
 | 211 | Curios API | `curios-neoforge-9.5.1+1.21.1.jar` | `9.5.1+1.21.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 24/09/2026 - 00:44 |
 | 212 | Customizable Player Models | `CustomPlayerModels-1.21-0.6.27a.jar` | `0.6.27a` | `Cosmetic` | 24/09/2026 - 01:22 |
-| 213 | Cyclops Core | `cyclopscore-1.21.1-neoforge-1.30.0.jar` | `1.30.0` | `API and Library + Server Utility` | 24/09/2026 - 01:22 |
+| 213 | Cyclops Core | `cyclopscore-1.21.1-neoforge-1.30.0.jar` | `1.30.0` | `API and Library + Server Utility` | 22/10/2026 - 23:20 |
 | 214 | Deeper and Darker: Spellbooks | `darkermagic-1.3.3-1.21.1-ver.b.jar` | `1.3.3-1.21.1` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 01:22 |
 | 215 | Deeper and Darker | `deeperdarker-neoforge-1.21.1-1.4.1.jar` | `1.4.1` | `Biomes + Dimensions + Mobs + Ores and Resources + Structures` | 24/09/2026 - 01:22 |
 | 216 | VanillaBackport X Farmer's Delight Compat | `Delightful-Backport-1.0-1.21.1-neoforge.jar` | `1.0` | `Addons + Food` | 24/09/2026 - 01:22 |
@@ -278,7 +278,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 228 | Dynamic Trees - Oh The Biomes We've Gone | `dtbwg-1.1.0-BETA02.jar` | `1.1.0-BETA02` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
 | 229 | Dynamic Trees - Quark | `dtquark-2.6.1.jar` | `2.6.1` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
 | 230 | Dynamic Trees - Terralith | `dtterralith-1.3.0.jar` | `1.3.0` | `Addons + Biomes + World Gen` | 24/09/2026 - 10:44 |
-| 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
+| 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 22/10/2026 - 23:21 |
 | 232 | Dynamic RPG Resource Bars | `dynamic_resource_bars-neoforge-0.7.1-1.21.1.jar` | `0.7.1` | `Adventure and RPG + API and Library + Cosmetic + Magic + Utility & QoL` | 24/09/2026 - 11:14 |
 | 233 | Dynamic Brightness | `DynamicBrightness-neoforge-1.3.1.jar` | `1.3.1` | `Utility & QoL` | 24/09/2026 - 11:14 |
 | 234 | Dynamic Trees Addon Lib | `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` | `0.2.0-BETA03` | `Addons + API and Library + Cosmetic` | 24/09/2026 - 11:14 |
@@ -290,7 +290,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 22/10/2026 - 18:52 |
 | 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 22/10/2026 - 18:52 |
 | 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
-| 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 24/09/2026 - 14:02 |
+| 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 22/10/2026 - 23:19 |
 | 244 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
 | 245 | Epic Fight x Iron's Spells: Enhanced Animations | `efiscompat-3.1.0.jar` | `3.1.0` | `Cosmetic + Miscellaneous` | 24/09/2026 - 14:02 |
 | 246 | Eidolon : Repraised | `eidolon_repraised-1.21.1-0.5.0.2.jar` | `0.5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/10/2026 - 22:49 |
@@ -320,7 +320,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 270 | Explosive Enhancement: Reforged | `explosiveenhancement-neoforge-1.21.1-1.1.2.jar` | `1.1.2` | `Cosmetic + Miscellaneous` | 24/09/2026 - 16:58 |
 | 271 | Create: Extra Copycats | `extra_copycats-1.0.2.jar` | `1.0.2` | `Addons + Create` | 24/09/2026 - 16:58 |
 | 272 | Factory Construction Registry Probe | `factory_construction_registry_probe-0.1.0.jar` | `0.1.0` | `— (dossier ausente; categoria não atribuída)` | — |
-| 273 | FamiliarsLib | `familiarslib-1.21.1-1.7.1.jar` | `1.7.1 do JAR/publicação; metadata runtime 1.21.1-1.7` | `API and Library` | 24/09/2026 - 17:35 |
+| 273 | FamiliarsLib | `familiarslib-1.21.1-1.7.1.jar` | `1.7.1 do JAR/publicação; metadata runtime 1.21.1-1.7` | `API and Library` | 22/10/2026 - 23:20 |
 | 274 | Fantasy Armor (Medieval Series) | `fantasy_armor-neoforge-1.2.4-1.21.1.jar` | `1.2.4-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic` | 24/09/2026 - 17:35 |
 | 275 | Farmer's Spell 'n Spell Book | `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` | `1.0.5.1-1.21.1` | `Farmer's Delight + Food + Magic` | 24/09/2026 - 17:35 |
 | 276 | Farmer's Delight | `FarmersDelight-1.21.1-1.3.4.jar` | `1.3.4` | `Cosmetic + Farming + Food` | 24/09/2026 - 17:35 |
@@ -334,7 +334,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 24/09/2026 - 18:23 |
 | 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 24/09/2026 - 18:24 |
 | 286 | Forgified Fabric API | `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar` | `0.116.15+2.3.5+1.21.1` | `Technology` | 22/10/2026 - 19:46 |
-| 287 | Fragmentum [NeoForge Edition] | `fragmentum-neoforge-1.21.1-2.4.4.jar` | `2.4.4` | `API and Library` | 24/09/2026 - 18:24 |
+| 287 | Fragmentum [NeoForge Edition] | `fragmentum-neoforge-1.21.1-2.4.4.jar` | `2.4.4` | `API and Library` | 22/10/2026 - 23:19 |
 | 288 | FTB Chunks (NeoForge) | `ftb-chunks-neoforge-2101.1.22.jar` | `2101.1.22` | `Map and Information + Server Utility` | 24/09/2026 - 18:24 |
 | 289 | FTB Library (NeoForge) | `ftb-library-neoforge-2101.1.36.jar` | `2101.1.36` | `API and Library` | 24/09/2026 - 18:24 |
 | 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 24/09/2026 - 18:24 |
@@ -386,7 +386,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 336 | Integrated Villages | `integrated_villages-1.3.3+1.21.1-neoforge.jar` | `1.3.3+1.21.1-neoforge` | `Adventure and RPG + Create + Magic + Structures + World Gen` | 24/09/2026 - 23:21 |
 | 337 | Inventory Sorter | `inventorysorter-1.21.1-24.0.24.jar` | `24.0.24` | `Miscellaneous` | 24/09/2026 - 23:21 |
 | 338 | Iris Shaders | `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar` | `1.8.14-beta.1+mc1.21.1` | `Cosmetic + Miscellaneous` | 25/09/2026 - 00:26 |
-| 339 | Apotheosis x Iron's Spellbooks Compat | `irons_apothic-2.2.2.jar` | `2.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 23:21 |
+| 339 | Apotheosis x Iron's Spellbooks Compat | `irons_apothic-2.2.2.jar` | `2.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/10/2026 - 23:21 |
 | 340 | Iron's Gems 'n Jewelry | `irons_jewelry-1.21.1-2.0.2.jar` | `1.21.1-2.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 23:22 |
 | 341 | Iron's Lib | `irons_lib-1.21.1-2.1.0.jar` | `1.21.1-2.1.0` | `API and Library + Cosmetic` | 24/09/2026 - 23:22 |
 | 342 | Iron's Spells 'n Spellbooks | `irons_spellbooks-1.21.1-3.16.3.jar` | `1.21.1-3.16.3` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 25/09/2026 - 01:24 |
@@ -396,7 +396,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 346 | Magic From The East | `iss_magicfromtheeast-1.1.5.jar` | `1.1.5` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + World Gen` | 25/09/2026 - 01:24 |
 | 347 | Jade 🔍 | `Jade-1.21.1-NeoForge-15.10.6.jar` | `15.10.6+neoforge` | `Map and Information + Utility & QoL` | 25/09/2026 - 01:24 |
 | 348 | Just Enough Effect Descriptions (JEED) | `jeed-1.21-2.3.2.jar` | `1.21-2.3.2` | `Addons + Map and Information` | 25/09/2026 - 01:24 |
-| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 25/09/2026 - 01:24 |
+| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 22/10/2026 - 23:21 |
 | 350 | JinxedLib | `jinxedlib-neoforge-1.21.1-1.0.4.jar` | `1.0.4` | `API and Library + Server Utility + Utility & QoL` | 25/09/2026 - 01:25 |
 | 351 | JourneyMap Integration | `jmi-neoforge-1.21.1-1.9.jar` | `1.21.1-1.9` | `Addons + Map and Information` | 25/09/2026 - 01:25 |
 | 352 | JourneyMap | `journeymap-neoforge-1.21.1-6.0.8.jar` | `1.21.1-6.0.8` | `Map and Information` | 25/09/2026 - 02:10 |
@@ -496,7 +496,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 446 | playerAnimator | `player-animation-lib-forge-2.0.4+1.21.1.jar` | `2.0.4+1.21.1` | `API and Library + Cosmetic` | 26/09/2026 - 02:33 |
 | 447 | Player Animation Library | `PlayerAnimationLibNeoforge-1.1.6+mc.1.21.1.jar` | `1.1.6+mc.1.21.1` | `API and Library` | 26/09/2026 - 02:33 |
 | 448 | Polymorph+ | `polymorph_plus-neoforge-1.3.1+1.21.1.jar` | `1.3.1+1.21.1` | `Miscellaneous + Utility & QoL` | 22/10/2026 - 22:55 |
-| 449 | Polytone | `polytone-1.21-4.4.0-neoforge.jar` | `1.21-4.4.0` | `Cosmetic + Utility & QoL` | 26/09/2026 - 02:34 |
+| 449 | Polytone | `polytone-1.21-4.4.0-neoforge.jar` | `1.21-4.4.0` | `Cosmetic + Utility & QoL` | 22/10/2026 - 23:21 |
 | 450 | Pondus Inventory [Sable] | `pondus_inventory_fi-0.15-Beta.jar` | `0.15-Beta` | `Addons + API and Library + Utility & QoL` | 26/09/2026 - 02:33 |
 | 451 | Create Aeronautics: Portable Engine Liquid Fuel | `portable_engine_liquid_fuel-2.0.0-neoforge-1.21.1.jar` | `2.0.0` | `Addons + Create + MCreator + Utility & QoL` | 26/09/2026 - 02:34 |
 | 452 | Portable Hole | `PortableHole-v21.1.0-1.21.1-NeoForge.jar` | `21.1.0` | `Armor, Tools, and Weapons + Player Transport` | 26/09/2026 - 03:23 |
@@ -589,7 +589,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 539 | TerraBlender (NeoForge) | `TerraBlender-neoforge-1.21.1-4.1.0.8.jar` | `4.1.0.8` | `API and Library + Biomes + World Gen` | 27/09/2026 - 22:58 |
 | 540 | Terralith | `Terralith_1.21.x_v2.6.2.jar` | `2.6.2` | `Biomes + Structures + World Gen` | 27/09/2026 - 23:18 |
 | 541 | Create: TFMG Community Edition | `tfmg-1.21.1-1.3.1-community.jar` | `1.3.1-community` | `Addons + Armor, Tools, and Weapons + Create + Ores and Resources + Technology` | 27/09/2026 - 22:58 |
-| 542 | ThirstWasFixed | `thirstwasfixed-2.1.6.jar` | `2.1.6` | `Addons + Bug Fixes` | 28/09/2026 - 00:04 |
+| 542 | ThirstWasFixed | `thirstwasfixed-2.1.6.jar` | `2.1.6` | `Addons + Bug Fixes` | 22/10/2026 - 23:19 |
 | 543 | Thirst Was Reclaimed | `ThirstWasReclaimed-1.21.1-3.0.5.jar` | `1.21.1-3.0.5` | `Food` | 28/09/2026 - 00:04 |
 | 544 | Corail Tombstone | `tombstone-neoforge-1.21.1-9.5.6.jar` | `9.5.6` | `Adventure and RPG + Magic + Mobs + Utility & QoL` | 28/09/2026 - 00:04 |
 | 545 | Tom's Simple Storage Mod | `toms_storage-1.21-2.4.2.jar` | `2.4.2` | `Storage + Technology` | 28/09/2026 - 00:04 |
@@ -1023,15 +1023,15 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 38 | [ETF] Entity Texture Features - [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-texture-features%20v7.2.1.md) | `7.2.1` | 7.2.6 (15/10; 7.2.2→7.2.6) | **AUDITORIA DOCUMENTAL FECHADA; EMF/ETF render QA** |
 | 39 | Reliquified Ars Nouveau | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-ars-nouveau%20v0.8.1.md) | `0.8.1` | 0.8.1 Beta (sem publicação posterior NeoForge 1.21.1) | **REVALIDADO; zero versões intermediárias** |
 | 40 | Create:LazyTick | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-lazy-tick%20v2.6.25-6.0.10.md) | `2.6.25-6.0.10` | 2.7.30 / Create 6.0.10 (28/09) | **AUDITORIA DOCUMENTAL FECHADA; Modrinth histórico 2.6.25→2.7.30** |
-| 41 | Ecliptic Seasons | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Farming%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ecliptic-seasons%20v0.15.0-rc-3-1.md) | `0.15.0-rc-3-1` | 0.15.4.1 Beta | **BLOQUEADO** |
-| 42 | Fragmentum ✿ NeoForge | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | 5.4.0 | **PENDENTE — breaking changes** |
-| 43 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | 2.2.1 | **COORDENADO ParCool/Thirst** |
-| 44 | FamiliarsLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-familiarslib%20v1.21.1-1.7.md) | `1.21.1-1.7` | 1.8 | **PENDENTE — coordenar Alshanex 4.0.4** |
-| 45 | Cyclops Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Server%20Utility/%E2%9C%85-cyclops-core%20v1.30.0.md) | `1.30.0` | 1.30.0-1205 Beta | **BLOQUEADO** |
-| 46 | Apotheosis x Iron's Spellbooks Compat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-irons-apothic%20v2.2.2.md) | `2.2.2` | 2.2.8+1.21.1 | **PENDENTE** |
-| 47 | Dynamic Trees - VanillaBackport | [Abrir `.md`](./Addons%20%2B%20World%20Gen/%E2%9C%85-dynamic-trees-vanillabackport%20v1.7.0.md) | `1.7.0` | 1.7.0 | **REVALIDADO** |
-| 48 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | 5.2.0 | **PENDENTE** |
-| 49 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.56.0.440.md) | `19.56.0.440` | 19.64.0.455 Release; 19.69.0.457 Beta | **Release PENDENTE; beta BLOQUEADA** |
+| 41 | Ecliptic Seasons | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Farming%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ecliptic-seasons%20v0.15.0-rc-3-1.md) | `0.15.0-rc-3-1` | 0.15.4.1 Beta (NeoForge 1.21.1, 16/10) | **AUDITORIA DOCUMENTAL FECHADA; Beta não promovida** |
+| 42 | Fragmentum ✿ NeoForge | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | 5.4.0 (NeoForge 1.21.1, 16/10) | **AUDITORIA DOCUMENTAL FECHADA; migração 2.x→5.x exige QA** |
+| 43 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | 2.2.1 (NeoForge 1.21.1, 15/10) | **AUDITORIA DOCUMENTAL FECHADA; ParCool/ABI não homologados** |
+| 44 | FamiliarsLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-familiarslib%20v1.21.1-1.7.md) | `1.21.1-1.7` | 1.8 (NeoForge 1.21.1, 24/09) | **AUDITORIA DOCUMENTAL FECHADA; metadata divergente preservada** |
+| 45 | Cyclops Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Server%20Utility/%E2%9C%85-cyclops-core%20v1.30.0.md) | `1.30.0` | 1.30.0-1205 Beta (18/10) | **BLOQUEADO: changelog da Beta 1205 não individualizado** |
+| 46 | Apotheosis x Iron's Spellbooks Compat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-irons-apothic%20v2.2.2.md) | `2.2.2` | 2.2.8+1.21.1 (17/10) | **AUDITORIA DOCUMENTAL FECHADA; QA spell/affix pendente** |
+| 47 | Dynamic Trees - VanillaBackport | [Abrir `.md`](./Addons%20%2B%20World%20Gen/%E2%9C%85-dynamic-trees-vanillabackport%20v1.7.0.md) | `1.7.0` | 1.7.0 (sem release posterior NeoForge 1.21.1) | **REVALIDADO: intervalo vazio; provider 1.2 não homologado** |
+| 48 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | 5.2.0 NeoForge 1.21.1 (20/10) | **AUDITORIA DOCUMENTAL FECHADA; 5.1.3 changelog genérico** |
+| 49 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.56.0.440.md) | `19.56.0.440` | 19.64.0.455 Release (16/10); 19.69.0.457 Beta (20/10) | **BLOQUEADO: changelogs individuais 19.64/19.69 ausentes** |
 | 50 | Create Aeronautics: Automated Logistics | [Abrir `.md`](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md) | `0.6.2` | 0.6.2 | **BLOQUEADO: dossier sem ✅; não editado** |
 | 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.58 Beta | **BLOQUEADO / PENDENTE QA** |
 | 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.62 | **PENDENTE** |
@@ -1148,3 +1148,20 @@ Esta matriz complementar preserva a numeração do pedido, distinta da ordem fí
 | 39 | Reliquified Ars Nouveau | 0.8.1 Beta | 0.8.1 Beta, sem release posterior para 1.21.1 | REVALIDADO; intervalo vazio |
 | 40 | Create:LazyTick | 2.6.25-6.0.10 | 2.7.29, 2.7.30 / Create 6.0.10 | FECHADO documental: Modrinth changelog cumulativo lista 2.6.25→2.7.29→2.7.30; QA pendente |
 **Regra para o Bloco de Notas, após CI+merge+re-fetch:** os **dez itens 31–40** podem sair da lista de pendências de auditoria **documental**, porque as publicações intermediárias são agora cobertas por changelog oficial ou commits upstream versionados da linha NeoForge 1.21.1. O JAR 1.4.0 Polymorph+ não foi individualizado como download: source 1.21.1 versionado é a evidência do delta. Esta revisão **não comprova atualização física, hashes de novos JARs, segurança de upgrade ou testes in-game**.
+
+
+## Auditoria cumulativa por release — lote solicitado #41–#50 (22/10/2026)
+Esta matriz segue a numeração do pedido, não a posição física da tabela de 587 mods. **Somente dossiers com ✅ e versão física explícita foram editados (#41–#49).** O dossier #50 SEM ✅ permanece intocado, sem promoção de elegibilidade. Toda versão nova é publicação upstream documental, não JAR instalado/homologado.
+| Pedido | Mod | Versão física | Upstream NeoForge 1.21.1 | Auditoria documental |
+|---:|---|---|---|---|
+| 41 | Ecliptic Seasons | 0.15.0-rc-3-1 | 0.15.1→0.15.4.1 Beta | Fechada; 0.15.4 corrige plantio no inverno; 0.15.4.1 rebalanceia chuva |
+| 42 | Fragmentum NeoForge | 2.4.4 | 5.0.0→5.1.1→5.2.0→5.3.0→5.4.0 | Fechada documental; breaking Kotlin/registries e opção Lite, migração física sem QA |
+| 43 | ThirstWasFixed | 2.1.6 | 2.2.0→2.2.1 | Fechada documental; atributo ParCool e config Linux |
+| 44 | FamiliarsLib | filename 1.7.1 / metadata 1.21.1-1.7 | 1.8 | Fechada documental; storage 10→50 e backup |
+| 45 | Cyclops Core | 1.30.0 | 1.30.0-1205 Beta | **BLOQUEADO**: changelog/diff da Beta não pinado ao binário |
+| 46 | Apotheosis x Iron's Spellbooks Compat | 2.2.2 | 2.2.3→2.2.8 | Fechada documental; affix triggers, datagen, casts e interrupts |
+| 47 | Dynamic Trees - VanillaBackport | 1.7.0 | 1.7.0 | Revalidado sem release posterior; validar integração com VanillaBackport 1.2 |
+| 48 | Polytone | 1.21-4.4.0 | 4.5.x→5.0.x→5.1.1→5.1.2→5.1.3→5.2.0 | Fechada segundo changelogs disponíveis; 5.1.3 descrita genericamente pelo autor |
+| 49 | Just Enough Items (JEI) | 19.56.0.440 | 19.64.0.455 Release; 19.69.0.457 Beta | **BLOQUEADO**: notas específicas das builds 19.64 e 19.69 não reconciliadas |
+| 50 | Create Aeronautics: Automated Logistics | 0.6.2 | 0.6.2 | **INELEGÍVEL** (dossier sem ✅); nenhum edit, move ou inclusão como certificado |
+**Regra do Bloco de Notas após CI, merge e re-fetch:** liberar **41, 42, 43, 44, 46, 47 e 48** apenas como revisão do histórico documental. **Manter 45 e 49** até suprir fontes; **manter 50** até auditoria certificadora separada. QA físico/backup/migração não realizados.
