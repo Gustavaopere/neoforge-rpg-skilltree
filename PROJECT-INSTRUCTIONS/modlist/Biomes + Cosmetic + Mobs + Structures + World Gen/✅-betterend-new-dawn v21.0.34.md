@@ -209,3 +209,55 @@ Validação deve ser feita em cópia do save do End, com chunks antigos/novos: g
 - **Gate de promoção:** Atualizar com BCLib/WorldWeaver/WunderLib e stack BetterNether; backup, End já explorado, biome/structure registries, chunks novos e restart.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/betterend-new-dawn
 
+## Auditoria cumulativa NeoForge 1.21.1 — 23/10/2026 (BetterEnd: New Dawn 21.0.34 → 21.0.38)
+
+**Identidade:** CurseForge projeto 1422294, BetterEnd: New Dawn, continuação mantida por Raijin2312; não confundir com o projeto original BetterEnd nem com a versão Fabric, que usa outra sequência numérica. **Base física histórica do modpack:** BetterEnd-21.0.34.jar, runtime 21.0.34, posição #071. **Releases NeoForge 1.21.1 publicadas após essa base:** **21.0.35 (16/09) → 21.0.36 (07/10) → 21.0.37 (14/10) → 21.0.38 (19/10)**, todas Release para a combinação exata Minecraft 1.21.1 / NeoForge. A 21.0.38 é a mais nova dessa linha identificada em 23/10. Outras releases de Minecraft 1.21.11 ou 26.x não são substitutos.
+
+### 21.0.35 — 16/09 — configuração de biomas e worldgen
+Confirmado e já analisado na seção 16: foram acrescentadas **opções de configuração para desativar dois biomas novos** e corrigida a **geração de cave biomes**. Efeitos são relevantes em chunks ainda não gerados; não alegar alteração retroativa dos chunks explorados.
+
+### 21.0.36 — 07/10 — conteúdo e correções publicados no changelog exato
+**Correção da seção 17 anterior:** é incorreta a observação de que o delta da 21.0.36 não pôde ser isolado. A página do arquivo **BetterEnd-21.0.36.jar, CurseForge File ID 9089547**, explicita:
+- **Datapacks/loot:** adição de loot tables vanilla editáveis para **todos os mobs BetterEnd**, inclusive mobs que só concediam experiência; suporte a mudanças por datapack e /reload. Manter equilíbrio de drops de End Slime, End Fish, Cubozoa e Silk Moth durante a migração.
+- **Novas receitas:** quatro blocos de neve comuns passam a produzir um Dense Snow; um Dense Snow pode virar dezesseis snowballs. Construção de Snow Golem com Dense Snow.
+- **Sustentabilidade:** Amaranita renovável a partir de um Amaranita Hymenophore, que pode ser transformado em quatro Small Amaranita Mushrooms.
+- **Armadura/ferramentas:** correção da elegibilidade de Aeternium, Crystalite, Terminite e Thallasium para enchantments de armadura; hammers aceitam Efficiency, Fortune, Silk Touch, Unbreaking e Mending. Amaranita stems reconhecidos corretamente como mineráveis com machado.
+- **Itens e blocos:** Umbrella Cluster Juice agora tem animação/comportamento de beber; suporte a compostagem para folhas, cogumelos, caps/fur, Jellyshroom e Needlegrass; Flammalix passa a usar textura própria de item; nome de End Stone Flower Pot corrigido; random ticking de Brimstone restaurado para crescimento de Sulphur Crystals; corrigida textura de End Crystals em pedestais.
+- **Gameplay/estabilidade:** corrigida **duplicação de itens em Infusion Pedestals**, crash do End Fish ao morrer ou sofrer dano não causado por jogador, spawn de mobs vulneráveis ao congelamento sobre Ancient Emerald Ice; quebrar Respawn Obelisk remove o vínculo de respawn dos jogadores associados.
+- **Animações/render:** evita duplicação ou posicionamento incorreto das asas Lytra com mods de animação como Fresh Animations; renderizador de elytra própria separada da camada vanilla para melhorar compatibilidade.
+- **Localização:** tradução ucraniana uk_ua completa.
+
+**Fonte exata:** https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/9089547 . Esses fatos foram declarados pelo autor para a build NeoForge 1.21.1, não inferidos de outra versão.
+
+### 21.0.37 — 14/10 — backports e estabilidade do mundo
+A identificação da release está no CurseForge. O **código-fonte oficial do mantenedor** traz o bump para **21.0.37** e commits dessa janela, entre eles **67841db62151957d5d611383ffc986f5dea956f0** (backport de fixes de estabilidade/gameplay, 13/10) e **b148dad11fef6bf14980f672da534e9d8ea3c905** (consolidação de backports e sincronização de portais, 14/10). O diff da janela registra:
+- **Recipes/tags:** receitas adicionais de smelting para alimentos do End (incluindo cogumelos, berries e fish), tags comuns de barras e correntes de Terminite e Thallasium.
+- **Estruturas e rituais:** tratamento mais seguro de centros nulos de Eternal Ritual, posicionamento de NBTPieces e mudanças na sincronização de portais; verificar recarregamento de chunks com estruturas e portais.
+- **Worldgen e blocos:** salvaguardas em features grandes e limites de geração, estabilização de scatter e geysers, estado inicial de waterlogging de Hydrothermal Vent e correções para grow ticks; melhorias em paths que voltam a blocos de origem.
+- **Diversos:** posição de som em Respawn Obelisk, guardas para índices inválidos de cor de End Portals e normalização de strings dependentes de locale.
+
+**Limite da atribuição:** os commits citados são mudanças da janela source entre as linhas 21.0.36 e 21.0.37, e a 21.0.37 está oficialmente publicada; ainda **não foi feito bytecode diff ou reprodução do JAR 21.0.37**, portanto não há certificado de cada caminho do código dentro do binário distribuído.
+
+**Fontes:** https://github.com/Reijin2312/BetterEnd-New-Dawn/commit/67841db62151957d5d611383ffc986f5dea956f0 ; https://github.com/Reijin2312/BetterEnd-New-Dawn/commit/b148dad11fef6bf14980f672da534e9d8ea3c905 .
+
+### 21.0.38 — 19/10 — backports de features, estruturas e geração concorrente
+O commit oficial **2cb33c0f97dcff12dfab92050e6efac6f083cbf4**, intitulado *Backport latest upstream fixes*, **altera gradle.properties de mod_version=21.0.37 para mod_version=21.0.38** e contém mudanças específicas:
+- Reorganização de **surface rules de Flower Islets e Waterfall Ponds**: verificar colocação e estabilidade de superfície após geração.
+- Registro de **Aurant Polypore e Purple Polypore** na tag vanilla de mushrooms, com possível efeito em compatibilidades baseadas em tags.
+- Ordem estável dos 16 **DyeColor** vanilla em ColoredMaterial, reduzindo dependência da ordem de enumeração.
+- **Clonagem de arrays compartilhados de direções antes de embaralhar** para várias árvores, bushes, geysers e Sulphuric Cave, evitando que um gerador altere o array compartilhado usado por outros; mudança material de segurança de geração potencialmente concorrente.
+- Ajuste do **bounding box vertical de NBTPiece** para utilizar blockBox.maxY, mais alterações de estruturas/portais Eternal.
+- Atualização e adição de traduções/locales. Não tratar essas traduções como evidência de novos biomas ou mobs.
+
+**Fonte de código com pin de versão explícito:** https://github.com/Reijin2312/BetterEnd-New-Dawn/commit/2cb33c0f97dcff12dfab92050e6efac6f083cbf4 .
+
+### Matriz de testes coordenados (não executada)
+- [ ] Backup completo do mundo e de configs; copiar save do End com chunks já explorados para comparar geração antiga e nova após atualização.
+- [ ] Confirmar ranges e versões coerentes de **BCLib, WorldWeaver, WunderLib, BetterNether, Lithostitched**, e dependências do stack New Dawn; uma versão nova do BetterEnd isolada não comprova ABI/registry matching.
+- [ ] Em mundo novo e fronteiras old/new chunks, verificar Flower Islets, Waterfall Ponds, cave biomes, estruturas (incluindo portal Eternal), surface rules e crashes em worldgen concorrente.
+- [ ] Conferir loot de todos os mobs por loot tables/datapacks e /reload, sem desbalancear quests/drops; reprodução do bug de duplicação de itens em Infusion Pedestals.
+- [ ] Testar Dense Snow, Snow Golem, Amaranita renewability, recipes JEI, hammers enchantments (inclusive Resonance), Aeternium/Crystalite/Terminite/Thallasium armor e comportamento de Respawn Obelisk.
+- [ ] Validar o End Fish ao sofrer dano ambiental, renderização Lytra com Epic Fight/Fresh Animations, compostagem, render de itens e reload de recursos.
+- [ ] Testar survival/multiplayer, server restart, retornos por portais, entidades e estruturas em chunks carregados/descarregados, rastrear logs de registry e chunkgen.
+
+**Conclusão estrita:** o **intervalo 21.0.35–21.0.38 foi percorrido versão por versão**, com **changelog direto das builds 21.0.35/21.0.36 e deltas por source commit identificados para 21.0.37/21.0.38**. Fica **pendente conciliar os commits da janela source com os artefatos exatos 21.0.37 e 21.0.38** (e as versões das bibliotecas New Dawn no modpack) para afirmar auditoria por binário totalmente certificada. **Não retirar o item 69 da fila sob o critério máximo "tudo detalhado" enquanto esse vínculo não for comprovado.** Nenhum JAR ou configuração foi alterado.
