@@ -110,3 +110,17 @@ Cada cliente renderiza a pose a partir do state sincronizado do jogo/mod externo
 - **Gate de promoção:** Validar EMF/ETF, compat modules, model/resource reload e client-only boundaries com os packs visuais ativos.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-core
 
+## Lote 21–30 — revisão incremental do Core 2.0.0 para 2.3.2 (22/10/2026)
+
+**Baseline:** EMF Compat Core 2.0.0 NeoForge Minecraft 1.21.1 (file 8793794). **Releases posteriores NeoForge 1.21.1 confirmadas no CurseForge:** **2.3.0** (08/10), **2.3.1** (15/10) e **2.3.2** (16/10). O intervalo 2.0.0→2.3.0 não contém arquivo 2.1 ou 2.2 desse **Core** neste catálogo; versões 2.x de outros addons EMF Compat não são versões do Core.
+
+| Release | Delta documentado e grau de evidência |
+|---|---|
+| 2.0.0 — instalada | Hooks oficiais do EMF e requisito Entity Model Features 3.3.2+; pose restaurada uma vez por jogador, não por parte. Este comportamento é **baseline**, não fix das 2.3.x. |
+| 2.3.0 | Configurações reorganizadas em grupos dobráveis e rolagem; múltiplos valores além de on/off, addon abre direto sua aba; helpers compartilhados de reach mãos/pés; transição suave de poses, correção de crouch e compatibilidade com Player Animation Library para não congelar animações do resource pack enquanto outra animação toca. A nota de **nova build Fabric** é exclusiva daquele loader e não é feature NeoForge. |
+| 2.3.1 | Arquivo NeoForge 1.21.1 **publicado em 15/10**, porém **changelog individual confiável não isolado** na pesquisa. Não atribuir correções conhecidas do 2.3.2 retroativamente ao 2.3.1. |
+| 2.3.2 | Tratamento mais resiliente de falha ao aplicar pose: ao ocorrer exceção, a pose daquela frame é ignorada, o erro é registrado uma vez, e o EMF **não para de animar o jogador por toda a sessão**. |
+
+**Interações:** EMF, ETF, Fresh Animations Player Extension quando presente, módulos EMF Compat Create/Iron's Spells, animadores concorrentes Epic Fight/Punchy, reloading F3+T, mudança first↔third person, crouch/armor e settings. Não atribuir efeito de gameplay ao Core; ambiente descrito pelo autor é essencialmente render do cliente. **BLOQUEADO para revisão cumulativa completamente concluída** até vincular changelog ou diff de 2.3.1; o JAR instalado e a pasta permanecem inalterados.
+
+**Fontes oficiais:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-core/files/all?gameVersionTypeId=6&page=1&pageSize=20&showAlphaFiles=hide ; https://modrinth.com/mod/emf-compat-core/version/2.3.0 ; https://modrinth.com/mod/emf-compat-core/version/2.3.2 ; https://github.com/victorkozhokin/emf-compat/blob/main/core/README.md .
