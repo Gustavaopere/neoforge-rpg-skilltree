@@ -123,3 +123,21 @@ Em um pack de centenas de mods, a navegação/filtragem da ModList deve ser test
 - **Gate de promoção:** Client UI/mod list: validar rendering/search/metadata, resource packs e compat com loader; baixo risco de world state, mas exigir boot client.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/better-modlist-neoforge
 
+## Matriz final 21.1.1 → 21.1.5 — 23/10/2026
+
+**Arquivo físico e posição intocados:** `better_modlist-21.1.1.jar`, mod ID **`mod_menu`**, runtime **21.1.1**, índice #070. A identificação inequívoca é o projeto CurseForge **Better Modlist**, autor **1foxy2**, ID **1089803**, source upstream **`1foxy2/neo_mod_menu`** (não é Better Compatibility Checker nem outro fork de Mod Menu). Categorias temáticas **Cosmetic + Utility & QoL**, já coerentes com o diretório.
+
+**Cadeia de releases confirmadas NeoForge Minecraft 1.21.1:** **21.1.2 (30/09), 21.1.3 (01/10), 21.1.4 (05/10) e 21.1.5 (20/10/2026)**. Cada versão tem **tag de release no GitHub oficial com notas individuais** e publicação CurseForge correspondente. Portanto, a lacuna anterior da 21.1.3 não permanece; o changelog agora foi verificado diretamente no release upstream.
+
+| Versão | Alterações comprovadas na release oficial |
+|---|---|
+| **21.1.2** | Novas opções `always_use_square_icon` (ícone quadrado em vez de banner), `dummy_animation_interval` (cycling dos ícones dos child mods quando o fake parent não possui ícone) e `dummy_animation_fade` (velocidade do fade). Têm impacto na exibição de mods agrupados e consumos de renderização no ModsScreen. |
+| **21.1.3** | **Correção do crash da issue #48 quando um mod fornece um caminho de ícone inválido.** Isso é relevante no modpack extenso porque nem toda extensão de metadata e branding fornece ícones válidos. |
+| **21.1.4** | **Corrige lag ao clicar no botão de filtros** (issue #51) e **crashes** das issues **#52, #50 e #49**. Os IDs são a evidência do autor; **não inferir stack traces ou causas específicas** dessas três sem ler as respectivas issues. |
+| **21.1.5** | **Altera o identificador do keybinding de abrir o menu** para eliminar conflito com **Mod Menu executado por connector**. Trata-se de colisão de binding/ID e não alteração de mod loading. O changelog é uma nota única; não supor outras features. |
+
+**Fontes primárias por versão:** https://github.com/1foxy2/neo_mod_menu/releases/tag/21.1.2 ; https://github.com/1foxy2/neo_mod_menu/releases/tag/21.1.3 ; https://github.com/1foxy2/neo_mod_menu/releases/tag/21.1.4 ; https://github.com/1foxy2/neo_mod_menu/releases/tag/21.1.5 ; [CurseForge filtrado NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/better-modlist-neoforge/files/all?page=1&pageSize=20).
+
+**Gate de atualização futura:** testar Mods Screen com todos os 587 JARs históricos, agrupamentos parent-child, icon/banner square, animation interval/fade, filtro sem travar, ícone inválido e fallback, idiomas, search/hide (incluindo regex em `hidden_mods`), persistência de preferências, config screens/Excalibur Better Modlist/Mod Menu Compat se presente, e keybinding que não colide com Mod Menu via connector. Apenas UI cliente — não usar ocultação como prova de um JAR ausente. **Nenhum binário físico foi substituído nem QA in-game feito.**
+
+**Estado:** sequência de releases `21.1.1 → 21.1.2 → 21.1.3 → 21.1.4 → 21.1.5` **documentada individualmente por changelogs oficiais**. Auditoria upstream/documental concluída, versão instalada permanece 21.1.1.
