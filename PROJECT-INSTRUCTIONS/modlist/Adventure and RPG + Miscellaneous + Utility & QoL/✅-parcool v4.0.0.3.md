@@ -290,3 +290,28 @@ A [release oficial ParCool 4.0.1.1 NeoForge 1.21.1, File ID 9068414](https://www
 - **Gate de promoção:** Revalidar com ThirstWasFixed 2.2.1, Epic Fight/Curios, stamina attributes, learning costs/config migration, movement authority, dimensão, Sable/Aeronautics e dedicated boot.
 - **Fonte primária do dossier reconsultada:** https://www.curseforge.com/minecraft/mc-mods/parcool
 
+## Conciliação documental das releases 4.0.0.3 → 4.0.1.6 — 23/10/2026
+
+**Versão física no último inventário:** `ParCool-1.21.1-4.0.0.3.jar` / `4.0.0.3` (posição #433), sem promoção. **Última Release do projeto oficial CurseForge #482378 para NeoForge 1.21.1:** `ParCool-1.21.1-4.0.1.6.jar`, 16/10/2026, File ID 9205907. **Categorias oficiais atuais**: `Adventure and RPG + Miscellaneous + Utility & QoL` — pasta existente correta.
+
+### Sequência por versão efetivamente documentada, sem atribuir releases de outros loaders
+
+| Versão da linha | Evidências individuais / diferença para o baseline |
+|---|---|
+| **4.0.0.4** | Conforme seção 15 anterior: correção do erro de sincronização ao mudar de dimensão; regressão client/server e movimento após portais. Há evidência de changelog source, mas a publicação NeoForge 1.21.1 separada não foi re-confirmada nesta rodada. |
+| **4.0.0.5** | Conforme seção 15 anterior: novos keybindings Fast Run/Fast Swim, alternar ParCool, abrir skill tree sem guia, input bindings e UI fullscreen. O arquivo 4.0.0.5 recuperado na consulta atual era **Forge Minecraft 1.20.1**, portanto esses deltas são da família; **não atribuir sem prova a uma release NeoForge 1.21.1 separada**. |
+| **4.0.0.6 — Beta 02/10** | Novos dodges em oito direções e ajustes de animação/inputs (seções 15/16); um **JAR NeoForge 1.21.1** para 4.0.0.6 está visível no catálogo oficial. |
+| **4.0.1.0 — Release 04/10** | Opção `enable_first_person_view_animation`; correção de Grapple em fluidos (passa a se comportar como no ar), issue #520. Fonte oficial para **o binário exato**: https://www.curseforge.com/minecraft/mc-mods/parcool/files/9059241 . |
+| **4.0.1.1 — Release 05/10** | Correção de **crash na inicialização de servidor dedicado**, issue #521. O dossier já distingue a causa desta correção de problemas de recursão Curios/Epic Fight — não confundir. Fonte exata: https://www.curseforge.com/minecraft/mc-mods/parcool/files/9068414 . |
+| **4.0.1.2 — Release 09/10** | Config para **desabilitar aprendizado de ações individualmente**; diminuição do custo padrão de aprendizado. Implica alteração de progressão/balance em perks/skills do pack. Fonte exata: https://www.curseforge.com/minecraft/mc-mods/parcool/files/9106851 . |
+| **4.0.1.5 — Release 15/10** | Prioridade configurável de animação, ajuste de velocidade da animação Dodge e adição de eventos sonoros. As versões numéricas 4.0.1.3/4.0.1.4 encontradas na lista principal se referem a **outros alvos Minecraft/Forge**; não inventar builds 1.21.1. Fonte exata: https://www.curseforge.com/minecraft/mc-mods/parcool/files/9188447 . |
+| **4.0.1.6 — Release 16/10** | **Dependência Curios passa a ser obrigatória** no NeoForge Minecraft 1.21.1, não opcional como antes; importa diretamente para boot/headless e a bridge `EquipAbleCuriosWrapper`. O snapshot do pack contém Curios `curios-neoforge-9.5.1+1.21.1.jar`, mas isso não prova ABI final do JAR candidato; verificar versões mínimas nos manifests. Fonte exata: https://www.curseforge.com/minecraft/mc-mods/parcool/files/9205907 . |
+
+**Gates técnicos relevantes para instalação futura:** 
+1. **Curios obrigatório** em 4.0.1.6: confirmar tipo de dependência e versão mínima no `neoforge.mods.toml` real, sem inferir só pela presença física.
+2. **TWF (Thirst Was Fixed)**: o contrato de stamina `api.Attributes` versus `api.ParCoolAttributes` já auditado nas seções 17/18 precisa ser cruzado com a versão TWF realmente instalada e 4.0.1.6 (não assumir ponte válida).
+3. **Epic Fight/Epic ParCool**: Epic ParCool oficial segue **ausente e incompatibilidade source com ParCool 4.x não resolvida**; evitar adicionar bridge apenas por compatibilidade numérica de dependency. Conferir animação Dodge, prioridades, input e Curios/Traceur Gloves.
+4. **Progressão:** diminuir custos e permitir bloquear learn actions pode alterar árvore/quests/perks; comparar dados antigos e snapshots de atributos/stamina/learn progression antes e depois.
+5. **Sable/Create Aeronautics**: teste movimento em contraptions, nested levels, walls/dodge/fall, chunk unload, morte/respawn, mudança de dimensão, multiplayer e dedicated server, sem player desync/anti-cheat falso.
+
+**Resultado:** a sequência publicada relevante de NeoForge 1.21.1 foi examinada individualmente até 4.0.1.6, com limites explícitos para notas transversais de 4.0.0.4/5 e artefatos inexistentes no canal 1.21.1. **Candidato 4.0.1.6, físico 4.0.0.3**, e QA runtime/instalação ainda não realizada. A auditoria documental de releases pode ser encerrada, mantendo gates de compatibilidade separados.
