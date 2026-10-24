@@ -131,3 +131,38 @@ O próprio CurseForge vincula esse repositório. O histórico público contém *
 **Status:** **nova release 1.7.23 confirmada**; mudanças no source da janela anterior detalhadas, mas **delta exato do binário continua parcialmente indeterminado** porque o changelog oficial só diz “bug fixes” e não houve diff entre JARs. Pela exigência estrita de release-by-release comprovada no artefato, **manter o item 75 pendente** da fila até realizar essa conciliação. Não modificar JAR instalado, filename, versão física ou configurações.
 
 **Fontes primárias:** https://www.curseforge.com/minecraft/mc-mods/create-creating-space/files/9282749 ; https://github.com/RealAntEngineer/creating_space/tree/1.21.1-release ; PRs #130, #131, #132 e commits pinados acima.
+
+## Encerramento da reconciliação source → Release 1.7.23 — 24/10/2026
+
+> **Supera a pendência documental da seção “Retificação de versão upstream — 23/10/2026”.** Foi localizada **a Release pública do próprio autor**, com **tag Git, commit, JAR de distribuição e notas de PRs** para **o Minecraft/loader exatos**. Isso comprova a procedência documental do source da build; não é uma nova medição de equivalência binária do arquivo CurseForge nem um teste de gameplay.
+
+**Autoridade física preservada:** posição **#206**, JAR `creatingspace-1.21.1-1.7.22.jar`, mod ID `creatingspace`, runtime **1.7.22**. Projeto **Create: Creating Space**, CurseForge **858897**, autor **RealAntEngineer**, categorias oficiais **Create + Dimensions + Player Transport + Technology + World Gen**, idênticas à pasta. Único artefato posterior NeoForge 1.21.1 confirmado neste intervalo: **1.7.23**, CurseForge **File ID 9282749**, nome `creatingspace-1.21.1-1.7.23.jar`, upload **21/10/2026**; notas curtas no CurseForge: *bug fixes*.
+
+### Identificador verificável da distribuição do autor
+
+- **Release GitHub oficial**: https://github.com/RealAntEngineer/creating_space/releases/tag/v1.21.1-1.7.23, publicada **21/10/2026 23:16:09 UTC**. Asset **`creatingspace-1.21.1-1.7.23.jar`**, tamanho **2.506.597 bytes**, digest **SHA-256 do asset GitHub** `ba40b9bc2e74d595ed07788e7f9d3ca34822eccc8fe37d0315e849547facf882`.
+- **Tag versionada `v1.21.1-1.7.23`**: https://github.com/RealAntEngineer/creating_space/tree/ef417124e4760f9f08482ce7e6d4eee4e79af180 . A referência Git do tag aponta para **`ef417124e4760f9f08482ce7e6d4eee4e79af180`**, commit **21/10/2026 23:11:51 UTC**. Seu `gradle.properties` declara explicitamente **`minecraft_version=1.21.1`, `mod_version=1.7.23`, `neo_version=21.1.219`**.
+- **Build** `.github/workflows/release.yml`: o workflow lê as versões de `gradle.properties`, executa `./gradlew build`, cria/move tag `v<mc>-<mod>` na revisão atual e anexa **`build/libs/*.jar`** à GitHub Release.
+- **Distribuição** `.github/workflows/publish.yml`: baixa o **JAR da Release versionada**, remove fontes/javadoc/dev/slim, exige um único binário e envia **esse arquivo** ao Modrinth e ao CurseForge, com versão Minecraft/NeoForge obtida do `gradle.properties`. Fontes: https://github.com/RealAntEngineer/creating_space/blob/ef417124e4760f9f08482ce7e6d4eee4e79af180/.github/workflows/release.yml e https://github.com/RealAntEngineer/creating_space/blob/ef417124e4760f9f08482ce7e6d4eee4e79af180/.github/workflows/publish.yml .
+- **Limite de certeza:** o workflow documenta o procedimento de publicação, mas a execução particular do upload CurseForge **não foi rastreada por run/log**, tampouco foi obtido o hash do binário CurseForge para comparar byte a byte com o SHA-256 acima. Não afirmar identidade binária já verificada. A coincidência do projeto, loader/jogo, versão, filename, data e a cadeia versionada do upstream dá rastreabilidade documental adequada aos deltas abaixo.
+
+### Deltas atribuíveis ao source tagueado da 1.7.23
+
+**Somente os três PRs da janela 19/10**, posteriores à física 1.7.22, são tratados como novidades exclusivas dessa passagem. A GitHub Release enumera também PRs #103–129 acumuladas da portabilidade 1.21.1; **não reatribuí-las automaticamente** à 1.7.23 porque suas datas e presença anterior podem preceder a baseline instalada.
+
+| PR incorporado na tag 1.7.23 | Correções demonstráveis no source oficial da build |
+|---|---|
+| **#130** — merge `0f94fa5ce787507b3a96a53b595e580ec0fa8276` | Corrige **desconexões `set_entity_data`** causadas pelo envio de `RoomShape` mutável, **dano de superaquecimento em salas seladas com oxigênio** e **data race** do cache de altura de `CraterCarver` em geração concorrente. |
+| **#131** — merge `0cad4fed0a2edc0eaeee8810fcdc00b987316111` | Otimiza **reconstruções de salas e callbacks de atualização de blocos**; faz debounce de rebuild, compara `RoomShape` por valor para evitar sincronizações redundantes e reduz custo de varreduras de entidades. |
+| **#132** — merge `211ffbbb9b806eae1282b68128bdb6491ac2282d` | Corrige **desvio no cálculo de volume de salas**, respeita o **limite de trabalho por tick e continua a busca após caixas limitadas**, não força carregamento de chunks não carregados e faz scan de ocupantes em janela de **5 ticks** por consulta tipada única. |
+
+**Fonte que vincula essas PRs à Release exata (não só à janela temporal):** descrição do autor em https://github.com/RealAntEngineer/creating_space/releases/tag/v1.21.1-1.7.23 . A publicação CurseForge https://www.curseforge.com/minecraft/mc-mods/create-creating-space/files/9282749, de **21/10**, resume esse lançamento apenas como **“bug fixes”**. O commit `ef417124...` também ajusta data/loot, tags, tela da Engineer Table e documentação; como o histórico gerado na Release agrega PRs antigas, avaliar essas alterações adicionais somente no diff entre tags/source antes de classificá-las como exclusivas em gameplay.
+
+### Condições de promoção física — permanecem abertas
+
+- [ ] Baixar arquivos autorizados **GitHub Release** e **CurseForge 9282749** e confrontar SHA-256 para comprovação binária independente, caso a atualização seja realizada.
+- [ ] Checar metadata e dependências reais (Create 6.x, NeoForge, Create: Interactive, demais mods de dimensões) antes da substituição do JAR.
+- [ ] Dedicated server e dois clientes: loops de sealed-room/oxygen/superaquecimento, atualização concorrente de blocos, volume/geometria de salas, `/reload`, chunks não carregados e restrição de budget por tick.
+- [ ] Worldgen de crateras em múltiplas threads, launch/landing do foguete, rota de ida e volta entre planetas/dimensões, persistence/relog, save/restart, passageiros, inventories e risco de desync/dupe.
+
+**Conclusão:** há **um único release NeoForge 1.21.1 entre 1.7.22 e 1.7.23**, com **GitHub Release tagueada e changelog de três PRs corretivas** ligados diretamente ao source da 1.7.23 e às ferramentas de publicação do autor. **A pendência de pesquisa de changelogs/release do item da lista renumerada #17 (antigo #75) está documentalmente concluída; pode sair do Bloco de Notas.** A certificação não vale para **hash entre plataformas, migração do JAR nem QA gameplay**. O arquivo `.md`, JAR e runtime instalados permanecem com **1.7.22**.
