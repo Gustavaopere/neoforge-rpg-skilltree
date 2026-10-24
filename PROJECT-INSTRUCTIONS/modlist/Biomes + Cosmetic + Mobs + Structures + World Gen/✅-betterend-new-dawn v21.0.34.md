@@ -277,3 +277,54 @@ O commit oficial **2cb33c0f97dcff12dfab92050e6efac6f083cbf4**, intitulado *Backp
 **Resultado objetivo:** os **três nomes de dependências obrigatórias do projeto** têm artefatos top-level documentados no snapshot do perfil. Isso resolve a pergunta de **presença histórica nominal**, mas **não** confirma que `21.0.26 / 21.0.25 / 21.0.10` satisfazem todas as versões mínimas/ranges e APIs exigidas pelo **JAR `BetterEnd-21.0.38.jar`**. Para certificar compatibilidade, obter metadata do JAR candidato e dos três New Dawn e comparar os requisitos de `META-INF/neoforge.mods.toml`/metadata correspondente; executar boot em servidor dedicado, geração de End novo e transição em cópia de mundo. A [listagem oficial da linha 1.21.1](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/all) confirma o candidato **`21.0.38`, NeoForge, 19/10/2026**, sem demonstrar paridade de cada commit source ao binário distribuído.
 
 **Decisão:** documentação de dependências **mais precisa**, mas comparações de metadata/JAR e QA dos conteúdos `21.0.37`/`21.0.38` seguem **pendentes**. A versão física **`BetterEnd-21.0.34.jar`** e o basename do dossier permanecem intactos. **Não retirar o item #69 da fila.**
+
+## Revalidação direta das releases 21.0.37–21.0.39 (24/10/2026)
+
+**Autoridade física preservada:** BetterEnd: New Dawn, projeto **CurseForge 1422294** (continuação de Raijin2312, não o BetterEnd original), Minecraft **1.21.1 / NeoForge**, dossier certificado em **#071**, top-level `BetterEnd-21.0.34.jar` / versão instalada `21.0.34`. A [listagem oficial filtrada para 1.21.1](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/all?page=1&pageSize=50&version=1.21.1) identificou **uma nova release 21.0.39 em 24/10/2026**. Nenhuma versão 26.x, 1.21.11 ou Fabric foi tratada como sucessora de NeoForge 1.21.1.
+
+### Fonte exata da 21.0.37 — 14/10/2026
+
+O arquivo [`BetterEnd-21.0.37.jar`, CurseForge **9172453**](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/9172453) é explicitamente **Release, NeoForge, 1.21.1**, tamanho aproximado **93,2 MB**. Sua seção **What's new**, publicada pelo autor para **esse JAR específico**, descreve:
+
+- **Portais e rituais:** limita busca de saída do Eternal Portal para impedir geração síncrona excessiva de chunks e congelamentos do servidor; evita crash do Eternal Ritual quando uma chave é posicionada sem pedestal central; valida IDs de cor do portal contra dados corrompidos/Debug Stick; recupera a fase visível de carga, beams e partículas dos seis cristais; remove renderização residual de itens retirados dos pedestais.
+- **Worldgen, persistência e concorrência:** corrige crashes de geração concorrente de plantas em paredes e teto; montanhas, lagos e Painted Mountains truncados após reload; restringe Crashed Ships e folhas de End Lotus às regiões de geração permitidas; evita caminhos do End revertendo para terra no lugar do terreno original.
+- **Recursos, tags e recipes:** restaura regeneração do Umbrella Tree Cluster Juice, solos válidos para saplings Lacugrove e Mossy Glowshroom, drops de Sulphur Crystal nos estágios jovem/adulto, recipes de fornalha de End Fish, End Berries, Chorus Mushrooms e Bolux Mushrooms; conserta propriedades waterlogged de cristais/hydrothermal vents/sulphur cave features; restaura tags vanilla/comuns de barras e correntes de Thallasium/Terminite.
+- **Outros:** som do Respawn Obelisk na posição correta, biome IDs gerados independentes da locale do sistema, opção de configuração para recompensa de guidebook ao atravessar End Gateway.
+
+**Retificação:** o detalhamento da `.37` acima **não depende mais só de commits da janela source**; está ancorado na **página CurseForge do artefato NeoForge exato**. Isso valida a nota oficial de distribuição, **não** um diff de bytecode.
+
+### Fonte exata da 21.0.38 — 19/10/2026
+
+O arquivo [`BetterEnd-21.0.38.jar`, CurseForge **9259231**](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/9259231), **Release NeoForge 1.21.1**, aproximadamente **93,2 MB**, publica para **esse arquivo específico**:
+
+- Correção de mutação de **arrays de direção compartilhados** durante geração concorrente de arbustos, árvores, gêiseres e cavernas de enxofre, relevante para crashes/races de worldgen multithreaded.
+- Correção de limites verticais de peças de estruturas NBT e remoção de geração duplicada de peças do Eternal Portal.
+- Restrição de variantes coloridas do BetterEnd às **16 cores vanilla de dye**, com impacto possível em registries/material variants (não inferir perda de itens de um save sem teste de migração).
+- Atualização dos templates de estruturas afetadas, tags de cogumelos e traduções.
+- Simplificação de regras de superfície redundantes de Flower Islets e Waterfall Ponds **sem alterar o resultado de terreno declarado pelo autor**.
+
+A página do JAR correto resolve a lacuna de *release notes* para **21.0.38**, e o commit oficial [`2cb33c0f97dcff12dfab92050e6efac6f083cbf4`](https://github.com/Reijin2312/BetterEnd-New-Dawn/commit/2cb33c0f97dcff12dfab92050e6efac6f083cbf4) já é uma evidência complementar de source, com bump **21.0.37→21.0.38**. **Ainda não houve reprodução da build ou diff dos artefatos físicos.**
+
+### Nova release 21.0.39 — 24/10/2026
+
+O mesmo projeto publicou o arquivo exato [`BetterEnd-21.0.39.jar`, CurseForge **9306604**](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/9306604), **Release NeoForge 1.21.1**, aproximadamente **93,2 MB**; **passa a ser o último candidato da linha aplicável na consulta**. O changelog da página declara:
+
+- **Worldgen concorrente:** correções na geração simultânea de arbustos, árvores, gêiseres e cavernas de enxofre.
+- **Estruturas e portal:** limites verticais de peças NBT, exclusão de peças Eternal Portal duplicadas, ajuste de distância de Crashed Ships à ilha principal (era utilizado o eixo X em ambas as coordenadas); templates de casas e mansões atualizados.
+- **Renderização e assets:** conserto de blockstates de plantas em vasos e blocos baseados em chorus; recuperação das traduções russas e atualização dos idiomas empacotados.
+- **Superfícies, tags e registries:** regras de Flower Islets e Waterfall Ponds atualizadas; cogumelos BetterEnd incluídos na tag vanilla de itens de cogumelo; registros de materiais coloridos limitados aos 16 dyes vanilla.
+
+**Distinção essencial:** as notas da `21.0.39` **repetem em parte** tópicos já listados na `21.0.38`, sobretudo worldgen concorrente, limites NBT, Eternal Portal e cores. Assim, o texto da ficha `9306604` comprova o que o autor **declara como estado da release**, mas **não é um diff exclusivo** `21.0.38→21.0.39`. Itens como Crashed Ships (eixo duplicado), renderização de vasos/chorus, restauração de russo e templates de casas/mansões aparecem como declarações adicionais da ficha mais recente, sem assegurar que todos sejam alterações exclusivas de `.39`.
+
+**Verificação de proveniência do source em 24/10/2026:** `https://github.com/Reijin2312/BetterEnd-New-Dawn`, branch pública **main**, HEAD **`2cb33c0f97dcff12dfab92050e6efac6f083cbf4`** (19/10) e `gradle.properties` ainda com **`mod_version=21.0.38`**. A consulta do histórico datado entre 18/10 e 24/10 encontrou esse commit, mas **nenhum bump/tag/source público identificando build `21.0.39`**. Não concluir que a publicação `.39` é falsa; ela está comprovada diretamente no CurseForge. O que falta é a correspondência source/executable específica dessa publicação.
+
+### Sequência e gates finais, separados da autoridade de instalação
+
+**Releases NeoForge 1.21.1 revisadas desde a instalação:** `21.0.34 (física) → 21.0.35 (8896285) → 21.0.36 (9089547) → 21.0.37 (9172453) → 21.0.38 (9259231) → 21.0.39 (9306604)`. As notas publicadas dos arquivos `.35` e `.36` já haviam sido auditadas individualmente e foram reconfirmadas em 24/10: `.35` adiciona controles para dois biomas novos e corrige geração de cave biomes; `.36` traz loot tables de mobs customizáveis por datapacks, Dense Snow, encantamentos, correções de duplicação em Infusion Pedestals, crash de End Fish e Lytra compatível com animações de player.
+
+- **Changelogs por arquivo publicados pelo mantenedor:** encontrados para todas as cinco releases posteriores à `.34`. **Lacuna de notas .37/.38 encerrada.**
+- **Delta exclusivo de 21.0.39 e paridade source/JAR:** em aberto devido à repetição de itens na release note e ausência de source tag/bump verificável. Não rotular as repetições como mudanças novas.
+- **Compatibilidade real das três dependências obrigatórias:** BCLib: New Dawn **21.0.26** (#066), WorldWeaver: New Dawn **21.0.25** (#572), WunderLib: New Dawn **21.0.10** (#573) presentes no snapshot, mas ainda sem matriz `versionRange` dos JARs novos. **Não inferir que versões numericamente próximas garantem API compatível.**
+- **Testes não executados:** servidor dedicado, worldgen End em novo mundo/cópia, estruturas, saved chunks, item/color registry migration, portal, reload, datapacks, multiplayer, performance e restarts.
+
+**Decisão de auditoria estrita:** houve avanço relevante e a nova `.39` está catalogada; a **atribuição exclusiva `.38→.39` e o pin de código-fonte/binário `.39` continuam não resolvidos**, assim como o gate de dependências do candidato. **Não retirar BetterEnd: New Dawn da fila nesta rodada**; não alterar a versão física `21.0.34`, filename ou pasta. Nenhum JAR, asset, save, configuração ou workflow foi modificado.
