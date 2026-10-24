@@ -512,7 +512,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 462 | Pufferfish's Unofficial Additions | `pufferfish_unofficial_additions-1.21.1-2.2.8.jar` | `2.2.8` | `Addons` | 29/09/2026 - 23:37 |
 | 463 | Pufferfish's Attributes [Fabric & Forge & NeoForge] | `puffish_attributes-0.8.3-1.21-neoforge.jar` | `0.8.3` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
 | 464 | Pufferfish's Skills [Fabric & Forge & NeoForge] | `puffish_skills-0.19.0-1.21-neoforge.jar` | `0.19.0` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
-| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `API and Library + Cosmetic + Map and Information` | 24/10/2026 - 17:41 |
+| 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `API and Library + Cosmetic + Map and Information` | 24/10/2026 - 19:13 |
 | 466 | Epic Fight X Punchy! Neo | `punchy_epicfight_neoforge.jar` | `1.0.0` | `Addons` | 27/09/2026 - 16:30 |
 | 467 | Puzzles Lib | `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar` | `21.1.60` | `API and Library` | 22/10/2026 - 21:57 |
 | 468 | Quark | `Quark-4.1-484.jar` | `4.1-484` | `Cosmetic + Ores and Resources` | 27/09/2026 - 16:30 |
@@ -993,7 +993,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 08 | InsaneLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-insanelib%20v2.4.33.0.md) | `2.4.33.0` | 2.4.33.1 | **PENDENTE** |
 | 09 | Create: Teleporters | [Abrir `.md`](./Create%20%2B%20Energy%2C%20Fluid%2C%20and%20Item%20Transport%20%2B%20Technology/%E2%9C%85-create-teleporters-remastered%20v2.0.2b.md) | `2.0.2b` | 3.0.1b | **PENDENTE** |
 | 10 | Petrolpark Library | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Create/%E2%9C%85-petrolparks-library%20v1.5.11.md) | `1.5.11` | 1.5.11 Release estável; 1.5.12 Beta (19/10) | **1.5.11 Release mantida; 1.5.12 Beta bloqueada para promoção** |
-| 11 | Punchy! - First person animations | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.8g (18/10) | **JARS 2.8/2.8A NEOFORGE 1.21.1 IDENTIFICADOS PELOS HASHES MODRINTH TCa8rsY7/ORyRPNUY; 2.8A DIFERE 318 BYTES MAS SÓ TEM TEXTO HOTFIX, SEM FIX EXCLUSIVO EXPLICADO; PENDENTE** |
+| 11 | Punchy! - First person animations | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.8g (18/10) | **AUDITORIA DOCUMENTAL FECHADA EM 24/10**: cadeia 2.7e→2.8→2.8a→2.8b→2.8c→2.8d→2.8e→2.8f→2.8g revisada; JARs 2.8/2.8a (NeoForge 1.21.1) baixados, SHA-512 conferido, diff de 445 arquivos: 5 modificados (4 classes de interface/config + metadata), 0 adicionados/removidos. **Runtime físico permanece 2.7e; QA/upgrade pendentes** |
 | 12 | Sophisticated Core | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-sophisticated-core%20v1.5.1.md) | `1.5.1` | 1.5.17.2426 Release (21/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10; 1.5.15 E 1.5.16 VINCULADAS A COMMITS COM mod_version; QA/INSTALAÇÃO PENDENTES** |
 | 13 | Alex's Caves Continued | [Abrir `.md`](./World%20Gen/%E2%9C%85-alexs-caves-continued%20v1.0.10.md) | `1.0.10` | 1.0.10 | **REVALIDADO** |
 | 14 | Puzzles Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-puzzles-lib%20v21.1.60.md) | `21.1.60` | 21.1.65 | **PENDENTE** |
@@ -1103,7 +1103,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 Documentados na sequência da lista de pedido, não pela posição física da tabela superior. Fontes e changelogs relevantes estão em cada dossier. Todas as instalações continuam na versão histórica. QA, metadata do JAR upstream e migração de save não foram executados.
 | Pedido | Projeto | Versão física | Publicação upstream NeoForge 1.21.1 | Estado da auditoria documental |
 |---:|---|---|---|---|
-| 11 | Punchy! - First person animations | 2.7e | 2.8g | SHA-1/SHA-512 e tamanho oficiais de 2.8 e 2.8a NeoForge 1.21.1 agora rastreados pelo Modrinth; diferença 318 bytes não identifica o hotfix. Changelogs 2.8f/2.8g CF confirmados; aguardando diff binário ou nota técnica da 2.8a |
+| 11 | Punchy! - First person animations | 2.7e | 2.8g | **AUDITORIA DOCUMENTAL FECHADA EM 24/10**: cadeia 2.7e→2.8→2.8a→2.8b→2.8c→2.8d→2.8e→2.8f→2.8g revisada; JARs 2.8/2.8a (NeoForge 1.21.1) baixados, SHA-512 conferido, diff de 445 arquivos: 5 modificados (4 classes de interface/config + metadata), 0 adicionados/removidos. **Runtime físico permanece 2.7e; QA/upgrade pendentes** |
 | 12 | Sophisticated Core | 1.5.1 | 1.5.17.2426 | PESQUISA DE CHANGELOG CONCLUÍDA: 1.5.15 cache de wrappers, 1.5.16 leftovers de crafting; commits modificam mod_version; sem análise de bytecode ou QA |
 | 13 | Alex's Caves Continued | 1.0.10 | 1.0.10 | REVALIDADO; intervalo vazio |
 | 14 | Puzzles Lib | 21.1.60 | 21.1.65 | Cadeia 21.1.61→21.1.65 revisada, callback encantado NeoForge |
@@ -1165,3 +1165,9 @@ Esta matriz segue a numeração do pedido, não a posição física da tabela de
 | 49 | Just Enough Items (JEI) | 19.56.0.440 | 19.64.0.455 Release; 19.69.0.457 Beta | **CHANGELOGS CONCLUÍDOS — #49 REMOVÍVEL**: source compare official .454→.455 comprova 2 commits de teste/CI; .456→.457 comprova 1 commit de checagem de bytecode. **UPGRADE NÃO HOMOLOGADO**: baseline MezzConfig físico 0.5.9 cumpre source JEI .440, mas está abaixo de >=0.6.3 nos pins .455/.457; JarJar, metadata binária e QA continuam pendentes |
 | 50 | Create Aeronautics: Automated Logistics | 0.6.2 | 0.6.2 | **INELEGÍVEL** (dossier sem ✅); nenhum edit, move ou inclusão como certificado |
 **Regra do Bloco de Notas após CI, merge e re-fetch:** liberar **41, 42, 43, 44, 46, 47 e 48** apenas como revisão do histórico documental. **Manter 45 e 49** até suprir fontes; **manter 50** até auditoria certificadora separada. QA físico/backup/migração não realizados.
+
+## Fechamento comprovado da auditoria documental #11 — Punchy (24/10/2026)
+
+> **Estado efetivamente documentado:** revisão das publicações pós-2.7e até 2.8g na linha **NeoForge / Minecraft 1.21.1**, incluindo o hotfix 2.8a. O dossier certificado [`✅-punchy v2.7e.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) contém o inventário por release e a comparação dos **JARs oficiais distribuídos no Modrinth** 2.8 e 2.8a, com SHA-512 medidos. Foram **445 arquivos regulares em cada build; 440 idênticos, 5 modificados, 0 adicionados e 0 removidos**. As diferenças estão em `META-INF/neoforge.mods.toml` (2.8→2.8a) e quatro classes compiladas de telas/configuração/ajustes. O autor não publicou a causa funcional exata de 2.8a; por isso, não atribuir efeito de jogo sem prova.
+
+**Decisão sobre o Bloco de Notas:** **liberar retirada do item 11. Punchy! - First person animations da lista de auditorias DOCUMENTAIS** após re-fetch das alterações. Este fechamento **supera as pendências históricas datadas de 22–24/10** sobre ausência do diff 2.8a. **Não** autoriza substituir `punchy-2.7e-neoforge-1.21.1.jar` por 2.8g sem homologar compatibilidade, dependências, recursos visuais e estabilidade. Preservados número físico **#465**, JAR/versão instalada **2.7e**, nome do dossier, pasta/categorias e runtime. Última edição documental significativa: **24/10/2026 - 19:13** (America/Sao_Paulo).
