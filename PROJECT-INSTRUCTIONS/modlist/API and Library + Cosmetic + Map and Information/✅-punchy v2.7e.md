@@ -225,3 +225,29 @@ A seção anterior afirmou que versões **2.8d e 2.8e não aparecem no catálogo
 - [ ] Manter a comparação lado a lado de Punchy Epic Fight Compat, shaderpack e resource packs com animações de primeira pessoa; nenhum desses testes foi executado aqui.
 
 **Status fail-closed:** a série de candidatos NeoForge 1.21.1 está agora melhor catalogada, mas **o changelog exclusivo da 2.8a continua publicado apenas como “HOTFIX”** e as correspondências exatas das notas **2.8f/2.8g** com seus artefatos NeoForge ainda precisam ser reconciliadas. Portanto **não liberar o item #11** da fila. Não instalar, mover ou renomear `✅-punchy v2.7e.md`.
+
+
+## Complemento de intervalo — release 2.8 NeoForge 1.21.1 identificada em 24/10/2026
+
+**Correção material da matriz anterior:** a sequência documentada até aqui começava em `2.8a`, mas há uma **release `2.8` (sem sufixo), explicitamente publicada pelo autor para Minecraft 1.21.1 / NeoForge**. Trata-se de uma publicação distinta do `2.8a HOTFIX`, não de um apelido da mesma versão. **Fonte primária do artefato exato:** [Punchy 2.8 (NeoForge) — 1.21.1, Modrinth `TCa8rsY7`](https://modrinth.com/mod/punchy-fpa/version/TCa8rsY7). O arquivo físico permanece `punchy-2.7e-neoforge-1.21.1.jar` / runtime `2.7e`, posição física **#465**; nenhum JAR foi instalado ou substituído.
+
+### Delta próprio da 2.8, conforme changelog do artefato NeoForge 1.21.1
+
+| Superfície | Mudanças explicitadas pelo autor | Implicações específicas para validação |
+|---|---|---|
+| **Interface de estilos** | Menus de estilo mais compactos; controles e scrollbars realinhados. | Reabrir e salvar Hand Editor/Hand Config, conferir resolução, escala da UI e persistência de perfil. |
+| **Braços com armadura** | Correção das mangas de chestplate em primeira pessoa para acompanhar o movimento dos braços animados. | Conferir armaduras vanilla/modded e combinações com renderers de jogador e Epic Fight, sem atribuir compatibilidade in-game não testada. |
+| **ItemPhysic Full e drop Q** | Ao lançar um item carregado com Q, a animação de mão não deve reiniciar repetidamente; só é reproduzida quando o item sai efetivamente do slot. | Reproduzir lançamento Q normal/carregado, stacks e animações interrompidas caso ItemPhysic Full esteja presente. |
+| **Alimentos e stacks** | Correção da animação de soltar stacks de comida com Q. | Avaliar comportamento ao soltar parte ou totalidade de um stack durante ações de uso. |
+| **Hand Config: profiles** | Correção de carregamento, salvamento, exclusão e reset de perfis, evitando reloads de recursos desnecessários. | Conferir backup dos perfis, alterações de configuração em runtime e ausência de recarga excessiva. |
+| **Troca de resource packs** | Corrige alimentos e outros itens segurados que ficavam visualmente invertidos após mudar de pack, sem exigir reiniciar o jogo. | Testar alternância de resource packs com itens equipados, incluindo packs de animação visual. |
+
+**Delimitação estrita de plataforma:** o changelog desse mesmo arquivo também anuncia suporte de lançamento ao **Minecraft 26.3**, correção de pêndulo com **Improved Transparency em Minecraft 26.2+** e correção de carregamento sem fio **Powah em Forge 1.20.1**. Esses trechos se referem explicitamente a **outros alvos**; não devem ser promovidos a mudanças de runtime NeoForge 1.21.1. Não há evidência aqui de que **ItemPhysic Full** ou os demais providers opcionais citados estejam instalados na modlist física.
+
+### Sequência corrigida e lacunas restantes
+
+**Ordem de releases nomeadas encontradas depois da 2.7e:** `2.8 → 2.8a → 2.8b → 2.8c → 2.8d → 2.8e → 2.8f → 2.8g`. A versão `2.8` tem changelog **direto do arquivo NeoForge 1.21.1**; `2.8a` permanece identificada apenas como **HOTFIX**, sem delta exclusivo técnico publicado na fonte até aqui recuperada. As 2.8d/2.8e já têm fontes diretas NeoForge no Modrinth, conforme seções anteriores. Para 2.8f/2.8g, o **CurseForge** confirma os arquivos concretos NeoForge 1.21.1 `punchy-2.8f-neoforge-1.21.1.jar` (ID **9172981**) e `punchy-2.8g-neoforge-1.21.1.jar` (ID **9239897**), mas o texto granular recuperado até aqui ainda é proveniente de outra combinação de loader/game version. A existência do binário correto **não equivale a atestar cada implementação contida nele**.
+
+**Categorias revalidadas diretamente em 24/10 no [projeto CurseForge 1374153](https://www.curseforge.com/minecraft/mc-mods/punchy):** `API and Library`, `Cosmetic`, `Map and Information`. A pasta atual `API and Library + Cosmetic + Map and Information` permanece correta; não mover nem renomear o dossier.
+
+**Decisão:** a lacuna nova da `2.8` foi preenchida com fonte primária, mas a versão `2.8a` e a atribuição exata por JAR de `2.8f`/`2.8g` **continuam bloqueadas**. Nenhuma verificação binária, QA client-side ou smoke test foi executado nesta revisão. **Item 11 deve permanecer no Bloco de Notas.**
