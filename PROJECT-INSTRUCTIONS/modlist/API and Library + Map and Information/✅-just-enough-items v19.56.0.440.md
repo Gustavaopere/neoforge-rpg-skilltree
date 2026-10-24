@@ -244,3 +244,22 @@ O artefato publicado está confirmado no catálogo oficial e no repositório Mav
 **Classificação de distribuição, conferida na [listagem oficial CurseForge do JEI 1.21.1](https://www.curseforge.com/minecraft/mc-mods/jei/files/all?page=1&pageSize=20&version=1.21.1):** `19.64.0.455` é marcada **Release**, enquanto `19.69.0.456` e `19.69.0.457` são **Beta**. A página oficial de versões [Modrinth](https://modrinth.com/mod/jei/versions) usa **Beta** inclusive para alguns artefatos com o mesmo número `19.64.0.455`; essa discrepância de *canal de publicação* exige evitar descrever `.455` como estável em **todas** as plataformas/distribuições. A versão do JAR, loader e artefato exato prevalecem sobre rótulo genérico de release.
 
 **Impacto para este perfil:** a decisão prudente é manter o JAR físico `jei-1.21.1-neoforge-19.56.0.440.jar` enquanto não houver homologação da atualização. Antes de candidatar `.457`, coletar o changelog/commit ou diff **exclusivo `.456 → .457`**, validar disponibilidade e versão dos plugins do JEI, integridade/download do JAR e execuções de startup/reload, receitas sintéticas, bookmarks, busca Lucene, transferências e integração com Create/KubeJS/Sophisticated. Caso seja testada a `.456`, o rollback de terceiros é apenas **sinal de risco de integração**, nunca certificação de compatibilidade neste pack. **Pendência `.455`/`.457` permanece aberta; não retirar #49 da lista.** Nenhuma instalação, execução binária ou QA foi efetuada neste complemento.
+
+## Gate de dependências do JEI upstream — 24/10/2026
+
+**Nova evidência primária verificável:** a [página oficial de dependências do projeto Just Enough Items (JEI), CurseForge ID 238222](https://www.curseforge.com/minecraft/mc-mods/jei/relations/dependencies) identifica **MezzConfig como dependência obrigatória** e **MezzConfigGUI como dependência opcional**. Esta é uma distinção importante para atualizar o JEI: **interface de configurações opcional não substitui a biblioteca exigida**, mas a relação por projeto não fixa sozinha a versão mínima exata para cada JAR/canal.
+
+**Inventário histórico top-level do pack (modlist.md, 587 entradas):**
+- **#394 — MezzConfig:** `mezz_config-1.21.1-neoforge-0.5.9.jar`, versão física registrada `0.5.9`.
+- **MezzConfigGUI:** não foi identificada como entrada top-level nominada no mesmo inventário físico histórico. Isso **não comprova ausência em um dump futuro** ou eventual dependência embarcada; apenas não há entrada própria no snapshot de autoridade.
+- **#349 — JEI:** `jei-1.21.1-neoforge-19.56.0.440.jar`, versão física preservada `19.56.0.440`.
+
+**Implicação para as releases 19.64.0.455 e 19.69.0.457:** há evidência externa de modpack que, ao atualizar para **JEI 19.64.0.455**, adicionou **MezzConfig 0.6.8**, declarando que JEI passou a necessitar dessa biblioteca. Trata-se do changelog público de [OneBlock to Rule Them All v0.13](https://www.curseforge.com/minecraft/modpacks/one-block-to-rule-them-all/files/9225265); **não prova**, sem a metadata exata, que `0.5.9` necessariamente falha com a build específica de NeoForge no nosso perfil. A página oficial do CurseForge fornece a **relação de dependência**, enquanto as faixas mínimas/máximas e o caráter opcional/obrigatório por artefato ainda devem ser confrontados com **`META-INF/neoforge.mods.toml` (ou metadata equivalente) e os arquivos do MezzConfig exato**.
+
+**Matriz de validação antes da promoção:**
+1. Inspecionar, separadamente, os artefatos oficiais **JEI `19.64.0.455` Release NeoForge 1.21.1**, **`19.69.0.456` Beta** e **`19.69.0.457` Beta**, extraindo `modId`, versão, dependências, `versionRange` e declaração de side.
+2. Confirmar qual versão de **MezzConfig NeoForge 1.21.1** satisfaz cada `versionRange`; não atualizar MezzConfig isoladamente por associação numérica.
+3. Avaliar **MezzConfigGUI** opcional somente para a GUI de configurações — seus requisitos próprios também precisam ser verificados se instalado; não tratar ausência do plugin de GUI como defeito comprovado no JEI.
+4. Testar boot dedicado/cliente, recipe displays, pesquisa Lucene, bookmarks, interfaces de configuração e addons existentes depois de atualizar em staging.
+
+**Resultado:** a pesquisa encontrou um **gate de dependências anteriormente não explicitado**, mas não preencheu os deltas exclusivos **`.455`** e **`.457`** nem autorizou atualização de JARs. **#49 permanece pendente.**
