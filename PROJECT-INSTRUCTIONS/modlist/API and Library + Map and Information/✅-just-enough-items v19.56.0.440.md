@@ -285,3 +285,34 @@ O artefato publicado está confirmado no catálogo oficial e no repositório Mav
 **Integração Aeronautics verificada no mesmo upstream:** em https://github.com/mezz/JustEnoughItems/issues/4459 , o mantenedor `mezz` atribuiu um crash ao abrir inventário a um mixin obsoleto de **Create Simulated/Aeronautics 1.3.1**; informou que o problema específico foi corrigido na versão **1.3.2**. O snapshot físico deste RPG contém **#117 `create-aeronautics-bundled-1.21.1-1.3.2.jar`**, então o pack registra nominalmente a linha corrigida, mas **isso não certifica funcionamento com JEI 19.64.0.455 ou 19.69.0.457**. O addon **Create Aeronautics: Automated Logistics** em #128 é projeto diferente e não foi apontado como causa nessa issue.
 
 **Conclusão restrita:** o dossier agora dispõe de changelog acumulado 19.56.0 e de um fix exato da `.440`, solucionando sua lacuna documental anterior. Continuam pendentes a comparação por artefato dos deltas NeoForge exclusivos de **19.64.0.455** e **19.69.0.457**, a matriz MezzConfig por metadata e os testes do pack. A versão física, o basename `✅-just-enough-items v19.56.0.440.md`, o diretório e os JARs permanecem inalterados. **Não apagar #49.**
+
+## Fichas diretas de JEI .455 e .457 NeoForge 1.21.1 — 24/10/2026
+
+**Autoridade física intocada:** posição real #349, JEI 19.56.0.440. As fichas verificadas são do mesmo CurseForge oficial ID 238222, para NeoForge e Minecraft 1.21.1, não de outro loader.
+
+| Build correta | Fonte primária | Evidência |
+|---|---|---|
+| 19.64.0.455 Release, 16/10/2026 | [CurseForge ID 9205121](https://www.curseforge.com/minecraft/mc-mods/jei/files/9205121) | Artefato jei-1.21.1-neoforge-19.64.0.455.jar, aproximadamente 2,3 MB; notas com cabeçalho **Current release 19.64.0**. |
+| 19.69.0.457 Beta, 20/10/2026 | [CurseForge ID 9267535](https://www.curseforge.com/minecraft/mc-mods/jei/files/9267535) | Artefato jei-1.21.1-neoforge-19.69.0.457.jar, aproximadamente 7,0 MB; notas com cabeçalho **Current release 19.69.0**. |
+
+### Declarações da ficha 19.64.0.455 — changelog cumulativo 19.64.0
+
+- Separação entre IDs da receita-fonte e identidades de display JEI; possibilidade de substituir slots de scroll-grid e configurar scrollbar; bookmarks de receitas no contrato IBookmarkManager (#4522).
+- Correção da navegação por mouse em ingredientes (#4549), ajuste de scroll de categorias com shift nos dois eixos da roda e roteamento de inputs GUI por áreas capturadas.
+- Configuração de **servidor via MezzConfig**, grades de ingredientes e bookmarks ajustadas ao conteúdo, grades vazias ocultadas sem desativar busca, tooltips interativos e pinned tooltips roláveis.
+- Drag resize de GUIs, colunas configuráveis, scroll lazy de listas de receitas grandes, normalização de pesquisa pela locale do Minecraft e organização da interface de configuração em categorias aninhadas.
+- Manutenção de build e linkage de Forge documentada pelo autor, sem pressupor efeitos no runtime NeoForge.
+
+**Limite:** a lista é publicada na página do arquivo exato .455, mas o cabeçalho cobre a família 19.64.0. Ela não revela por si qual alteração foi introduzida exclusivamente entre as builds .454 e .455.
+
+### Declarações da ficha 19.69.0.457 — changelog cumulativo 19.69.0
+
+- Busca de ingredientes por **Lucene**, API de refresh dos resultados durante execução, autocompletar acima da lista de ingredientes, ocultação de ingredientes fora de pesquisa e exclusão de objetos somente de renderização da indexação de receitas.
+- IDs sintéticos com separador de barra, filtragem de IDs sintéticos, override de source ID por decorator e extensões de categorias culinárias vanilla.
+- Atalhos de cheat mode (#4548), atalhos em slots sintéticos (#4561), persistência da visibilidade do overlay entre inicializações (#2296) e correção da posição de bookmarks com sidebars em cantos (#4556).
+- Checagem de bytecode compatível com Java em JARs publicados; ajustes de API Forge e modificadores Fabric registrados como específicos de outro loader, sem afirmar efeito NeoForge.
+- Muitas notas da família 19.64.0 são repetidas no texto 19.69.0; repetições **não** são mudanças exclusivas da .457.
+
+**Risco de distribuição:** o tamanho publicado passa de aproximadamente 2,3 MB (.455) a 7,0 MB (.457). Isto exige inspeção de classes, metadata, versionRange e bibliotecas embarcadas, sem presumir a causa exata da diferença nem contar jars internos como mods top-level.
+
+**Gate fail-closed:** ambas as páginas exatas e seus changelogs oficiais estão agora identificados. Ainda falta demonstrar os deltas exclusivos entre .454→.455 e .456→.457 por source/tag de publicação ou comparação de binários, validar versionRange MezzConfig/MezzConfigGUI e executar QA dos addons. **Não apagar #49.** Não houve atualização do mod físico, configuração, pasta ou nome documental.
