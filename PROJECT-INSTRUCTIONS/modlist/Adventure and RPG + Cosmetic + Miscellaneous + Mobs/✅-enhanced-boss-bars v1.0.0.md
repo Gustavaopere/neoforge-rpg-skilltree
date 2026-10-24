@@ -184,3 +184,35 @@ O repositório **`Naku2004/Enhanced_Boss_Bars_1.21.1_NeoForge`**, indicado pelo 
 
 **Estado: FAIL-CLOSED.** Candidato externo mais recente **1.1.3 (22/10)**, runtime físico **1.0.0**, #68 **NÃO liberado para exclusão da fila documental** por falta de prova de mudanças exclusivas da **1.1.1 NeoForge**. Nenhum JAR, mod ID, arquivo de configuração ou pasta alterado.
 
+## Auditoria de changelogs exatos 1.0.0 → 1.1.3 concluída — 24/10/2026
+
+**Retificação que substitui as hipóteses antigas sobre 1.1.1 neste mesmo dossier:** em 24/10/2026, foi possível ler a **seção “What's new” do próprio arquivo `enhanced_boss_bars-1.1.1-1.21.1-neoforge.jar`, CurseForge File ID `9202589`**, no **mesmo projeto oficial 1063296**. Não é necessário extrapolar o changelog do arquivo Forge 1.20.1: a publicação **NeoForge 1.21.1** declara expressamente **“Added compatibility for Aquamirae and Antarchy bosses”**. Logo, as afirmações cronológicas anteriores “delta 1.1.1 NeoForge não comprovado” estão **SUPERADAS** por evidência primária direta. O arquivo foi identificado por nome, loader, game version, autor, data e file ID. Isto comprova a **declaração de mudança do mantenedor na release exata**, não constitui diff de bytecode ou QA.
+
+### Cadeia final — arquivos e changelogs publicados para NeoForge 1.21.1
+
+| Etapa | Arquivo oficial exato / File ID | Novidade declarada pelo autor |
+|---|---|---|
+| **1.0.0** — 29/01/2026, **INSTALADO** | [`enhancedbossbars-1.0.0.jar` — **7547171**](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/7547171) | Port NeoForge inicial; suporte ao **Umvuthi** de Mowzie's Mobs. |
+| **1.1.0** — 15/10/2026 | [`enhanced_boss_bars-1.1.0-1.21.1-neoforge.jar` — **9187887**](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/9187887) | **Nova configuração visual:** posição horizontal/vertical, alinhamento central/esquerda/direita, direção do empilhamento, escala, limite de barras simultâneas e **pré-visualização em tempo real**. Novas barras de **Twilight Forest** (Alpha Yeti, Naga, Hydra, Snow Queen, Ur Ghast); autor também cita **Umvuthi**, já anunciado no port 1.0.0 — **não contar como adição necessariamente exclusiva**. Algumas barras redesenhadas. |
+| **1.1.1** — 16/10/2026 | [`enhanced_boss_bars-1.1.1-1.21.1-neoforge.jar` — **9202589**](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/9202589) | **Compatibilidade acrescentada com os boss bars de Aquamirae e Antarchy** — texto extraído da página **exata NeoForge 1.21.1**; não mais depender do changelog Forge 1.20.1. |
+| **1.1.2** — 18/10/2026 | [`enhanced_boss_bars-1.1.2-1.21.1-neoforge.jar` — **9245977**](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/9245977) | Opção para **desativar Enhanced Boss Bars**, compatibilidades **Bosses'Rise** e **Legendary Monster**, refatoração e **NeoForge mínimo reduzido a 21.1.219**. |
+| **1.1.3** — 22/10/2026 — último candidato comprovado | [`enhanced_boss_bars-1.1.3-1.21.1-neoforge.jar` — **9292243**](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/9292243) | **Nova opção para desativar a sobrescrita de todas as barras de chefes**. Diferenciar da opção geral citada na 1.1.2; as notas não especificam as implicações precisas de cada combinação de toggles. |
+
+**Completude do catálogo:** a listagem [CurseForge filtrada por MC 1.21.1](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/all?page=1&pageSize=20&version=1.21.1&showAlphaFiles=hide) exibe **7 arquivos**, dos quais **5 são NeoForge** (1.0.0, 1.1.0, 1.1.1, 1.1.2, 1.1.3) e **2 são Fabric** (1.1.1 e 1.1.2). **Todos os cinco NeoForge têm changelog específico fornecido pelo mesmo autor em suas páginas individuais.** Não foi inventada release intermediária adicional. Os arquivos do Fabric e o Resource Pack homônimo não fazem parte desta sequência.
+
+### Cruzamento com os JARs físicos — sem inventar dependências
+
+- **Posição #253:** `enhancedbossbars-1.0.0.jar` / versão física `1.0.0`, mantida. O fato de o nome do JAR evoluir para `enhanced_boss_bars` **não é prova de alteração de mod ID interno**; comparar metadata antes de qualquer promoção.
+- **Posição #079:** Bosses'Rise — `block_factorys_bosses-2.1.2-neo-1.21.1.jar`; **integração de boss bar anunciada na 1.1.2 e mod presente no inventário histórico**.
+- **Posição #371:** Legendary Monsters — `legendary_monsters-2.2.2 MC 1.21.1.jar`; **integração anunciada sob o nome “Legendary Monster” na 1.1.2**, mas **não presumir que a compatibilidade alcance todo boss / variante do mod instalado**.
+- **Posição #347:** Jade — `Jade-1.21.1-NeoForge-15.10.6.jar`; risco de sobreposição no HUD, exigir teste de posicionamento e boss bars múltiplas.
+- **Posição #411:** Mowzie's Mobs — `mowziesmobs-1.21.1-1.8.2.jar`; validar Umvuthi e outros bosses realmente suportados.
+- **Aquamirae, Antarchy e Twilight Forest** não foram localizados nominalmente entre os **587 JARs top-level do inventário histórico** na revisão dos nomes. Suporte do mod não é prova de instalação desses providers; bibliotecas embarcadas e forks exigiriam verificação própria.
+
+### Decisão distinta para auditoria documental vs. instalação
+
+**AUDITORIA DOCUMENTAL DE CHANGELOGS: CONCLUÍDA para a sequência oficial NeoForge 1.21.1 1.0.0 → 1.1.3.** O requisito de identificar **cada release real** e documentar **sua respectiva nota de alterações publicada pelo mantenedor** agora está satisfeito, com link individual e file ID de cada versão. Para a finalidade restrita da **lista de acompanhamento da auditoria por release**, **#68 pode sair do Bloco de Notas após verificação do commit persistido no GitHub**. Esta conclusão não certifica a instalação da versão 1.1.3.
+
+**PROMOÇÃO FÍSICA / QA: NÃO EXECUTADOS, E CONTINUAM BLOQUEADOS.** Permanecem como gates distintos: examinar `META-INF/neoforge.mods.toml` / mod IDs e migração de configs entre 1.0.0 e 1.1.x, comparar assets/bytecode quando necessário para garantir payload (as release notes são declarações do autor, não diff binário), validar Cloth Config, barras vanilla/JSON, duas opções de disable, segunda fase, GUI scale, shaders, resource reload, Jade, Bosses'Rise, Legendary Monsters, Mowzie's Mobs e múltiplos bosses. **Nenhum download/instalação de JAR, asset, configuração, save, código ou workflow foi efetuado nesta operação.**
+
+**Categorias CurseForge confirmadas e pasta preservada:** `Adventure and RPG + Cosmetic + Miscellaneous + Mobs`. A manutenção do dossier sob `✅-enhanced-boss-bars v1.0.0.md` não promove ou certifica um novo binário.
