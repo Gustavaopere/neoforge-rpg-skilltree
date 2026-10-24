@@ -100,3 +100,21 @@ CurseForge oficial confirma `FreshAnimations_v1.10.4.zip`, suporte a 1.21.1, rec
 **Gates:** obter o ZIP oficial `1.11.1 - 1.20+`, verificar filename real, `pack.mcmeta`, `pack_format`/ranges, assets, paths CEM e licença; fazer diff **1.10.4→1.11→1.11.1** por arquivos, especialmente modelos de mobs, materiais animados, nomes de bones e ordem de precedência. Testar EMF `3.3.5` + ETF `7.2.1` instalados, compats Refreshed, Excalibur, variantes de illagers, parrot shoulders, polar bear/panda, wolf, ghast, turtle e modelos customizados; `F3+T`/relogin e shaders sem invisibilidade ou perda de animação. **Não está aprovado substituir `FreshAnimations_v1.10.4.zip`**.
 
 **Fontes:** [CurseForge — lista filtrada para 1.21.1](https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/all?page=1&version=1.21.1); [registro do changelog FA 1.11 **26.1+**, apenas para identificação das áreas afetadas e não como prova da variante 1.20+](https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/9254421); [CurseForge da versão instalada 1.10.4](https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/7670377).
+
+## Notas específicas da 1.11.1 — variante 1.20+ (24/10/2026)
+
+**Nova fonte primária exata:** a [publicação oficial Modrinth `aQjwvDfY`](https://modrinth.com/resourcepack/fresh-animations/version/aQjwvDfY), intitulada **Fresh Animations 1.11.1 - 1.20+**, classifica o ZIP como **Release**, compatível com **Minecraft 1.20.x e 1.21.x** e recomenda **Entity Model Features + Entity Texture Features**. Corresponde à mesma **linha 1.20+** descrita na [listagem filtrada de CurseForge para Minecraft 1.21.1](https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/all?page=1&version=1.21.1). **A release 1.11.1 para 26.1+ é outro artefato e não é candidata para este pack**.
+
+### Changelog textual do próprio artefato 1.20+
+
+| Publicação | Alteração anunciada | Interpretação restrita à instalação 1.21.1 |
+|---|---|---|
+| **1.11.1 — 1.20+** | **Removidos arquivos `.properties` desnecessários** | Mudança de organização de recursos com possível efeito de precedência e detecção CEM/ETF, sem presumir quais arquivos foram removidos nem se houve alteração visual sem diff dos ZIPs. |
+| **1.11.1 — 1.20+** | **Atualizados arquivos de metadata dos packs** | Comparar `pack.mcmeta` do `1.10.4`, `1.11 - 1.20+` e `1.11.1 - 1.20+`; confirmar formatos declarados e compatibilidade com Minecraft 1.21.1. |
+| **1.11.1 — nota explicitamente marcada `26.1+`** | Correções do modelo de **filhotes de porco** e **aldeões bebês** | Embora citadas no changelog cumulativo da página 1.20+, **não atribuir essas correções ao runtime 1.21.1** sem comparação de assets. O sufixo `26.1+` é uma restrição de escopo fornecida pelo próprio autor. |
+
+**Cadeia de publicações compatíveis identificada desde a versão instalada:** `1.10.4 → 1.11 - 1.20+ → 1.11.1 - 1.20+`, ambas as últimas publicadas em **19/10/2026** segundo o CurseForge. O catálogo comprova **a existência** da `1.11`, mas este complemento **não obteve seu changelog do artefato 1.20+ de maneira suficiente** para isolar as novidades `1.10.4→1.11`; nem compara os caminhos do ZIP exato `1.11→1.11.1`. As notas descritas na seção anterior para o ramo `26.1+` permanecem **referência de investigação**, não afirmações sobre a variante 1.20+.
+
+**Verificações ainda não executadas:** inventário de `assets/`, `.properties` e `pack.mcmeta` dos ZIPs 1.10.4/1.11/1.11.1; validação com EMF 3.3.5 e ETF 7.2.1 do snapshot, ordem/prioridade frente a Excalibur Fresh Animations Patch e compats Refreshed, F3+T, shaders, mobs em vanilla e com addons, relog e estabilidade visual. Nenhum ZIP físico, resource pack ativo ou configuração foi alterado.
+
+**Decisão:** `1.11.1 - 1.20+` ganha **changelog oficial próprio**, mas o delta intermediário **1.11** e os diffs de assets ainda precisam ser verificados. **Resource Pack #2 continua no Bloco de Notas.**
