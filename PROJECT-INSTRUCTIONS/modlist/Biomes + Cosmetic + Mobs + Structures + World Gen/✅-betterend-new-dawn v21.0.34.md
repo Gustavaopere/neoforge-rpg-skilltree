@@ -261,3 +261,19 @@ O commit oficial **2cb33c0f97dcff12dfab92050e6efac6f083cbf4**, intitulado *Backp
 - [ ] Testar survival/multiplayer, server restart, retornos por portais, entidades e estruturas em chunks carregados/descarregados, rastrear logs de registry e chunkgen.
 
 **Conclusão estrita:** o **intervalo 21.0.35–21.0.38 foi percorrido versão por versão**, com **changelog direto das builds 21.0.35/21.0.36 e deltas por source commit identificados para 21.0.37/21.0.38**. Fica **pendente conciliar os commits da janela source com os artefatos exatos 21.0.37 e 21.0.38** (e as versões das bibliotecas New Dawn no modpack) para afirmar auditoria por binário totalmente certificada. **Não retirar o item 69 da fila sob o critério máximo "tudo detalhado" enquanto esse vínculo não for comprovado.** Nenhum JAR ou configuração foi alterado.
+
+## Inventário cruzado do stack New Dawn — 24/10/2026
+
+**Âmbito da comprovação:** a [página oficial de dependências do BetterEnd: New Dawn](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/relations/dependencies) identifica explicitamente **três projetos obrigatórios**: **BCLib: New Dawn**, **WorldWeaver: New Dawn** e **WunderLib: New Dawn**, todos da continuação mantida por **Raijin2312**. Essa identidade é relevante: **BCLib**, **WorldWeaver** e **WunderLib** originais não são automaticamente equivalentes às distribuições **New Dawn**. Os números abaixo foram extraídos do **índice mestre físico histórico `modlist.md` (snapshot de 587 entradas)**, e não de uma nova leitura dos JARs no dispositivo:
+
+| Entrada física histórica | Artefato top-level registrado | Versão do snapshot | Papel no upgrade |
+|---|---|---|---|
+| **#066 — BCLib: New Dawn** | `bclib-21.0.26.jar` | `21.0.26` | **Obrigatório** no projeto BetterEnd; verificar que a versão é compatível com a release `21.0.38`. |
+| **#572 — WorldWeaver: New Dawn** | `worldweaver-21.0.25.jar` | `21.0.25` | **Obrigatório**; validar registries, biomas, worldgen, serialização e dependências transitivas. |
+| **#573 — WunderLib: New Dawn** | `wunderlib-21.0.10.jar` | `21.0.10` | **Obrigatório**; validar API/UI de configuração e quaisquer ranges declarados em metadata. |
+| **#074 — BetterNether: New Dawn** | `BetterNether-21.0.26.jar` | `21.0.26` | **Coexistente**, não listado como dependência direta obrigatória do BetterEnd; mesmo stack de worldgen, sujeito à integração. |
+| **#375 — Lithostitched** | `lithostitched-1.8.0+beta6-neoforge-21.1.jar` | `1.8.0+beta6` | **Coexistente**, não listado como dependência obrigatória direta do BetterEnd na página consultada; requer smoke de estabilidade de worldgen. |
+
+**Resultado objetivo:** os **três nomes de dependências obrigatórias do projeto** têm artefatos top-level documentados no snapshot do perfil. Isso resolve a pergunta de **presença histórica nominal**, mas **não** confirma que `21.0.26 / 21.0.25 / 21.0.10` satisfazem todas as versões mínimas/ranges e APIs exigidas pelo **JAR `BetterEnd-21.0.38.jar`**. Para certificar compatibilidade, obter metadata do JAR candidato e dos três New Dawn e comparar os requisitos de `META-INF/neoforge.mods.toml`/metadata correspondente; executar boot em servidor dedicado, geração de End novo e transição em cópia de mundo. A [listagem oficial da linha 1.21.1](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/all) confirma o candidato **`21.0.38`, NeoForge, 19/10/2026**, sem demonstrar paridade de cada commit source ao binário distribuído.
+
+**Decisão:** documentação de dependências **mais precisa**, mas comparações de metadata/JAR e QA dos conteúdos `21.0.37`/`21.0.38` seguem **pendentes**. A versão física **`BetterEnd-21.0.34.jar`** e o basename do dossier permanecem intactos. **Não retirar o item #69 da fila.**
