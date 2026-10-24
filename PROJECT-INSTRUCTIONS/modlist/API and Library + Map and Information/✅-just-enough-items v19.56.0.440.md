@@ -32,7 +32,7 @@ A versão **19.56.0.440** é a build física instalada e uma Beta oficial para N
 Em 16/09/2026 foi publicada **19.56.0.441**, também Beta, posterior à instalação atual. Ela não é tratada como runtime do pack: fica apenas registrada como update disponível até a modlist física mudar.
 ## 3. Source line e NeoForge
 O pack físico usa NeoForge **21.1.250** e JEI 19.56.0.440. A antiga pinagem documental da branch 19.53.0/NeoForge 21.1.248 não é promovida para a build atual sem novo source/tag pin exato.
-Nesta revalidação, nenhum changelog específico da build `.440` foi localizado. Portanto a atualização documental é conservadora: identidade, canal, loader físico e version gate são atualizados, sem inventar fixes internos.
+Retificação de 24/10/2026: o CurseForge publicou um changelog acumulado da série 19.56.0 no arquivo `.440` e a issue oficial #4491 vincula a correção de datagen precisamente à `.440`. O detalhamento verificável está ao fim do dossier; o texto histórico anterior fica superado.
 ## 4. Ingredient list e busca
 JEI mantém uma lista pesquisável de ingredientes registrados e interfaces de filtragem. Search/index state é client UI/cache; a existência visual de um item no painel não significa que ele seja craftável, obtível ou permitido pela progressão atual.
 ## 5. Recipes e usos
@@ -52,7 +52,7 @@ Validar client boot, plugin registration, world join, recipe sync, resource/data
 ## 12. Beta risk
 Por estar em Beta, 19.56.0.440 deve ser tratada como version gate mais estrito. Não atualizar JEI isoladamente sem confirmar os plugins do pack. O loader físico NeoForge 21.1.250 está registrado, mas a ausência de source/tag pin exato para .440 nesta auditoria mantém o comportamento version-sensitive fail-closed.
 ## 13. Version-specific limit
-A listagem oficial confirma a build 19.56.0.440, mas nenhum changelog específico do build `.440` foi localizado nesta auditoria. Portanto **nenhum fix específico é atribuído à .440** sem evidência.
+Retificação de 24/10/2026: a issue #4491 associa diretamente à build `.440` a correção de falha durante datagen; a página exata CurseForge 8886909 também lista um changelog acumulado da série 19.56.0. Consultar seção complementar para separar fix exclusivo de mudanças cumulativas.
 A build **19.56.0.441** é numericamente posterior e oficial, porém não está instalada. O catálogo permanece em 19.56.0.440 pela autoridade física.
 ## 14. Riscos técnicos
 - plugin API drift entre builds beta;
@@ -79,7 +79,7 @@ A build **19.56.0.441** é numericamente posterior e oficial, porém não está 
 ## 16. Evidências e limites
 - **Modlist física de 17/09/2026:** `jei-1.21.1-neoforge-19.56.0.440.jar`, mod id `jei`, runtime 19.56.0.440 e NeoForge 21.1.250.
 - **Distribuição oficial:** 19.56.0.440 Beta para NeoForge 1.21.1; 19.56.0.441 Beta foi publicada depois e não está instalada.
-- **Limite:** changelog específico da .440 não foi localizado; não foram inventadas diferenças funcionais.
+- **Retificação de 24/10/2026:** a falha de datagen #4491 foi confirmada como corrigida na `.440`. Demais entradas de seu changelog CurseForge são cumulativas da série 19.56.0, e não necessariamente exclusivas dessa build.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
 
 
@@ -263,3 +263,25 @@ O artefato publicado está confirmado no catálogo oficial e no repositório Mav
 4. Testar boot dedicado/cliente, recipe displays, pesquisa Lucene, bookmarks, interfaces de configuração e addons existentes depois de atualizar em staging.
 
 **Resultado:** a pesquisa encontrou um **gate de dependências anteriormente não explicitado**, mas não preencheu os deltas exclusivos **`.455`** e **`.457`** nem autorizou atualização de JARs. **#49 permanece pendente.**
+
+## Retificação documental 19.56.0.440 — changelog oficial, datagen e Aeronautics (24/10/2026)
+
+**Autoridade de artefato:** [CurseForge File ID 8886909](https://www.curseforge.com/minecraft/mc-mods/jei/files/8886909), denominado `jei-1.21.1-neoforge-19.56.0.440.jar`, **Beta**, publicado em 15/09/2026 para Minecraft 1.21.1 / NeoForge; é exatamente o JAR instalado na posição física #349 da modlist histórica. A página do próprio arquivo contém a lista intitulada **Current release 19.56.0**. Por ser changelog **cumulativo da família 19.56.0**, não atribuir cada item exclusivamente ao salto `.439→.440`.
+
+### Fix confirmado na própria build .440
+
+- **Issue #4491 — falha de datagen durante registro da configuração cliente:** a versão `.439` podia tentar acessar `Minecraft.getInstance().getUser()` quando o singleton de cliente era nulo no ambiente de datagen, desencadeando `NullPointerException` e erro de carregamento do JEI. A página do JAR `.440` lista explicitamente **Fix #4491**; o comentário do bot oficial também vincula a correção à release `19.56.0.440` para Minecraft 1.21.1 e NeoForge, arquivo CurseForge 8886909 e [Modrinth NeoForge `9myHusbW`](https://modrinth.com/mod/u6dRKJwZ/version/9myHusbW). Fonte: https://github.com/mezz/JustEnoughItems/issues/4491 . A confirmação de publicação não significa que datagen do RPG tenha sido executado nesta auditoria.
+
+### Superfícies presentes no changelog acumulado 19.56.0 publicado com .440
+
+| Área | Itens declarados pelo autor na ficha 8886909 | Cuidados de integração |
+|---|---|---|
+| Receitas / ingredientes | Agrupamento e ajuste do layout das variantes de desencantamento em grindstone; ingredientes representativos por tipo; filtro de buscas por categoria oculta; entradas removidas de configurações de ordenação também ocultas | Validar receita grindstone, abas de categorias, alternância de configurações e plugins que registram ingredientes próprios |
+| MezzConfig / configuração | Atualizações para MezzConfig `0.5.4` e `0.5.6` ao longo da série; changelog menciona **embed do artefato completo de loader do MezzConfig**, sorting config, telas abertas por mod ID, key mappings selecionados, tradução EN de config e valores server-side nativos | **Não concluir** desse texto que o JAR top-level MezzConfig `0.5.9` registrado em #394 seja redundante ou incompatível; inspecionar `META-INF/jarjar/`, dependências declaradas, loader e metadata do artefato real antes de alteração |
+| UI / interação | Centralização do modo cheat; distinção de contextos de conflito de atalhos, nomes localizados de teclas modificadoras, refresh do estado de botões de overlay por tick e overlays ajustados à tela de configuração | Verificar cheat shortcuts, sobreposição de widgets, teclado PT-BR e persistência de visibilidade |
+| Reload e ciclo de vida | Aliases de busca passam a ser aplicáveis sem reinicialização completa; mudanças de ordenação aplicáveis em runtime, reinício de JEI para lote de configurações; encerramento de listeners antigos | Testar mudança de aliases/sorting em mundo aberto, alternância de perfil, reload e leak de listeners |
+| Internals / distribuição | Separação de GUI entre módulos comuns e GUI; serializer legado de ingredientes movido ao módulo GUI; metadata NeoForge passa a declarar logo; ajustes de quebra de linha splitLines | Não atribuir nova API pública não declarada; inspecionar consumidores de classes internas e startup dedicado |
+
+**Integração Aeronautics verificada no mesmo upstream:** em https://github.com/mezz/JustEnoughItems/issues/4459 , o mantenedor `mezz` atribuiu um crash ao abrir inventário a um mixin obsoleto de **Create Simulated/Aeronautics 1.3.1**; informou que o problema específico foi corrigido na versão **1.3.2**. O snapshot físico deste RPG contém **#117 `create-aeronautics-bundled-1.21.1-1.3.2.jar`**, então o pack registra nominalmente a linha corrigida, mas **isso não certifica funcionamento com JEI 19.64.0.455 ou 19.69.0.457**. O addon **Create Aeronautics: Automated Logistics** em #128 é projeto diferente e não foi apontado como causa nessa issue.
+
+**Conclusão restrita:** o dossier agora dispõe de changelog acumulado 19.56.0 e de um fix exato da `.440`, solucionando sua lacuna documental anterior. Continuam pendentes a comparação por artefato dos deltas NeoForge exclusivos de **19.64.0.455** e **19.69.0.457**, a matriz MezzConfig por metadata e os testes do pack. A versão física, o basename `✅-just-enough-items v19.56.0.440.md`, o diretório e os JARs permanecem inalterados. **Não apagar #49.**
