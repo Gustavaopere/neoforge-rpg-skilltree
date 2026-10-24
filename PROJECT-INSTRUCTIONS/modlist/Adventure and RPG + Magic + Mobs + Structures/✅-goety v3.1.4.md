@@ -249,3 +249,32 @@ Fontes upstream: CurseForge Goety 3.1.5 (file ID 8905184), 3.1.5.1 (file ID 8911
 
 **Conclusão limitada:** as **quatro publicações** e respectivas notas de alto nível foram investigadas e incorporadas ao dossier. O changelog 3.2.1 **é cumulativo e não discrimina integralmente os recursos portados de 1.20.1**; não declarar inventário completo desses recursos sem comparação de código, nem instalação/QA concluída. Mantida versão física 3.1.4.
 
+## Inventário de candidatos do backport 1.20.1 → 1.21.1 — 24/10/2026
+
+**Autoridade física e escopo:** posição histórica física #? (ver posição exata no índice mestre), JAR `goety-3.1.4.jar`/runtime **3.1.4**, mod ID e filename mantidos. **Projeto oficial CurseForge ID 586095, Goety - The Dark Arts**, categorias oficiais **Adventure and RPG + Magic + Mobs + Structures**; não confundir com **Goetied** ou outros forks. O arquivo **NeoForge 1.21.1** candidato continua `Goety - 3.2.1.jar`, **File ID 9207885**, publicado **16/10/2026**.
+
+### O que foi explicitamente prometido pelo mantenedor da build NeoForge 3.2.1
+
+O [changelog oficial do JAR 3.2.1 NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/goety/files/9207885), enviado pelo portador **Vivideru**, afirma somente:
+1. **“Ported 1.20.1 content up to Goety - 2.5.59.2”**, isto é, a linha 1.21.1 pretende incorporar conteúdo da versão **1.20.1 2.5.59.2**, não provar paridade binária de cada subsistema.
+2. **Mais opções de configuração do Launching Focus**, sem publicar nessa página os nomes exatos das novas propriedades.
+
+### Detalhamento das fontes 1.20.1 referidas — candidatos a conferir, NÃO certificação de que estejam dentro do 3.2.1
+
+A fonte de **1.20.1** está no mesmo projeto CurseForge, mas cada arquivo abaixo **tem supported game version 1.20.1**, e **não é** um artefato instalável NeoForge 1.21.1. A tabela identifica superfícies de backport para conferência no source/JAR 3.2.1; **não converte automaticamente changelogs Forge 1.20.1 em funções comprovadamente presentes em 1.21.1**.
+
+| Fonte publicada | Candidatos funcionais que precisam de correspondência no JAR NeoForge 3.2.1 |
+|---|---|
+| **2.5.59.0 — 13/10, CurseForge 9153454** | **Conteúdo novo:** Enchanter Servants (buff **Enchanted**, dano/velocidade/resistência), **Flame Constructs**, **Rogueguards**, End Limestone, End Mineral fluid, End Lanterns, popups configuráveis de Soul Energy, música para minibosses e novos objetos cosméticos. **Mudanças mecânicas:** Launching Spell deixa de ser instant cast; Wind Robes/Staff e Wind Caller Servants são bloqueados por **Mistral Scroll research**; Ceasefire dá 10 ticks de tolerância; 3 Witch Poles ampliam distribuição de poção na mesma dimensão; Divination Ritual aceita Pale Crystal Ball; alteração de ingredientes para Dark Fabric; Grave Golem passa a desativar escudos; ajustes de AI de Enviokers, raiders e Crones. **Correções:** servidor em Servant Raids, atualização do Grimoire no cliente, descontos de Soul Energy em Cursed Cages, render de Corruption Beam e Wight music, POIs de villagers, problema de debuff de Tormentors e de ataques de Heresiarch. |
+| **2.5.59.1 — 14/10, notas retomadas explicitamente em 2.5.59.2** | Correção da tradução **Rogueguard Servant**, Enchanter Servants que não encantavam **Imperial Guards**, pick-block de cauldrons de Void/End Mud/End Mineral que não retornava o item e atualização da localização chinesa. |
+| **2.5.59.2 — 14/10, CurseForge 9170420** | **Mais três correções específicas:** Fangs aprimorados do **Ominous Staff** sem herdar enchantments; **Repair Putty** consumido em golems totalmente saudáveis ou morrendo; **Obsidian Monoliths sem dono** podendo invocar Heresiarch múltiplas vezes. O autor declara a inclusão dos fixes 2.5.59.1 nas notas 2.5.59.2. |
+
+**Fontes primárias do mesmo projeto, mas de OUTRA versão de Minecraft:** https://www.curseforge.com/minecraft/mc-mods/goety/files/9153454 (2.5.59.0 — **1.20.1**), https://www.curseforge.com/minecraft/mc-mods/goety/files/9170420 (2.5.59.2 — **1.20.1**, inclui notas 2.5.59.1). **Fonte do candidato NeoForge 1.21.1:** https://www.curseforge.com/minecraft/mc-mods/goety/files/9207885 .
+
+### Limite de proveniência observado
+
+A árvore pública do repositório **`Vivideru/Goety-3`** branch `main` foi inspecionada, inclusive nomes de recursos/enchanter e Pale Crystal Ball, mas **não apresentou commits datados de 12–24/10 que ligassem inequivocamente cada candidato da tabela ao build 3.2.1**. Um asset `enchanter` no source atual não prova que o recurso esteja funcional ou incluído no JAR exato; tampouco confirma receita, registro de entidade ou migração de estado. É necessário obter o **JAR 9207885** para examinar manifests, registries, datagen e classes, ou um histórico de source/tag que vincule precisamente o release ao código.
+
+**Novos testes prioritários (não executados):** spawn/treino/comandos de Enchanter e Rogueguard, Flame Construct ritual, gates Mistral Scroll e Launching Focus config, Soul Energy popup/discount, Ceasefire timeout, alteração de Witch Pole/Divination, owner de Obsidian Monolith, Repair Putty, encantamentos de Fangs/Ominous Staff, Servant Raid, servidor dedicado, save/relog e compatibilidade Goety Iron + Goety Cataclysm. São **hipóteses específicas de paridade 1.20.1**, não comportamentos certificados em NeoForge 3.2.1.
+
+**Resultado:** a lacuna “conteúdo cumulativo de 1.20.1 não discriminado” está agora **mapeada em fontes do upstream de origem e em gates verificáveis**, mas a **atribuição funcional ao binário NeoForge 3.2.1 segue sem prova**. **#59 continua na fila de investigação**, sem instalação ou reclassificação de versão física.
