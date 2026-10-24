@@ -156,3 +156,31 @@ Fontes: https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/92
 3. Conferir `META-INF/neoforge.mods.toml` nos JARs 1.0.0/1.1.0/1.1.1/1.1.2 para detectar possível **mudança de mod ID** e preservar settings (não carregar versões simultaneamente). Nenhuma comparação binária ou QA foi executada.
 
 **Status:** pesquisa de catálogo **corrigida e completa para a sequência de quatro releases**, mas a auditoria **por changelog exclusivo de cada artefato** ainda não está concluída. **Manter #68 na fila**, não declarar 1.1.1 inexistente, não instalar nem renomear a versão física documentada.
+
+## Nova release 1.1.3 e verificação da lacuna 1.1.1 — 24/10/2026
+
+**Autoridade física preservada:** posição #253, JAR top-level `enhancedbossbars-1.0.0.jar`, metadata `enhancedbossbars`/runtime **1.0.0** do último inventário, sem promoção nem renomeação. O projeto confirmado é **Enhanced Boss Bars (Fabric/Forge/NeoForge)**, CurseForge **1063296**, autor Nakuring, com categorias oficiais **Adventure and RPG + Cosmetic + Miscellaneous + Mobs**, idênticas à pasta atual.
+
+### Último artefato publicado da plataforma correta
+
+Em **22/10/2026**, o mesmo projeto disponibilizou **`enhanced_boss_bars-1.1.3-1.21.1-neoforge.jar`**, **Release NeoForge 1.21.1**, **File ID 9292243**, substituindo **1.1.2 de 18/10 (File ID 9245977)** como **última Release para a plataforma correta** na consulta de 24/10. Changelog **específico do artefato 1.1.3**:
+
+- **Nova opção que desativa a sobrescrita de TODAS as boss bars.** Diferenciar esta capacidade da opção anterior da **1.1.2** para desabilitar Enhanced Boss Bars em geral: as descrições oficiais não especificam exatamente os efeitos de cada toggle na seleção parcial de barras nem sua interação com os resource packs.
+- Há relevância direta para HUD customizado, Jade, barras vanilla/modded e personalizações de overlays, mas **não se pode afirmar** quais bosses passam a preservar a barra vanilla ou quais presets são migrados sem testar a configuração efetiva.
+- **Fontes:** https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/9292243 e https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/9245977 .
+
+### Falta de evidência exclusiva da 1.1.1 persiste
+
+A sequência NeoForge 1.21.1 segue **1.0.0 → 1.1.0 (15/10) → 1.1.1 (16/10, File ID 9202589) → 1.1.2 (18/10) → 1.1.3 (22/10)**. É incorreto negar a existência do 1.1.1 NeoForge; o arquivo exato aparece na listagem oficial. **Permanece, porém, sem changelog técnico EXCLUSIVO comprovado no artefato 9202589**. O release note **Forge 1.20.1** (File ID 9202568) de mesmo número adiciona suporte a **Aquamirae e Antarchy**, mas não deve ser transplantado como delta NeoForge 1.21.1 sem confirmação de assets/bytecode próprios.
+
+O repositório **`Naku2004/Enhanced_Boss_Bars_1.21.1_NeoForge`**, indicado pelo próprio CurseForge, contém commits públicos da janela 14–17/10, porém o HEAD `master` consultado em 24/10 ainda está em **`e5ebc0631bc0ff54743bf306df100d249e0c7140`**, datado de **17/10**, com bump de source `mod_version=1.1.0-1.21.1-neoforge` diretamente para **1.1.2**. Portanto **não há nesse histórico um commit/tags que isole o conteúdo da 1.1.1**, nem commit publicado na branch provando o delta de 1.1.3 em código. A verificação do changelog **do JAR de 1.1.3** é evidência suficiente para registrar a novidade, mas não preenche a lacuna anterior.
+
+### Gates para eventual promoção — nenhum teste realizado
+
+- [ ] Comparar os manifests e **IDs reais** do mod original 1.0.0 e dos builds 1.1.0/1.1.1/1.1.2/1.1.3 antes de atualizar para evitar perda de configs devido a mudança no nome externo `enhancedbossbars` → `enhanced_boss_bars`.
+- [ ] Conferir as diferenças nas chaves/telas Cloth Config, desativação geral e desativação da sobrescrita de todas as boss bars; verificar comportamento em barras vanilla e customizadas por providers.
+- [ ] Testar Jade, overlays/resource packs, várias barras simultâneas, segunda fase, boss spawn/despawn, dimension change, escala de HUD, resource reload, shaders e multiplayer.
+- [ ] Localizar o changelog do próprio arquivo **NeoForge 1.21.1 1.1.1 (9202589)** ou diff confiável do conteúdo entre **1.1.0/1.1.1**, e só então encerrar a auditoria release-by-release.
+
+**Estado: FAIL-CLOSED.** Candidato externo mais recente **1.1.3 (22/10)**, runtime físico **1.0.0**, #68 **NÃO liberado para exclusão da fila documental** por falta de prova de mudanças exclusivas da **1.1.1 NeoForge**. Nenhum JAR, mod ID, arquivo de configuração ou pasta alterado.
+
