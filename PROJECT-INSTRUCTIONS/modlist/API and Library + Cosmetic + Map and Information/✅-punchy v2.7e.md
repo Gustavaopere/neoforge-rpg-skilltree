@@ -261,3 +261,37 @@ A seção anterior afirmou que versões **2.8d e 2.8e não aparecem no catálogo
 **Categorias temáticas atuais, verificadas diretamente na [página principal CurseForge](https://www.curseforge.com/minecraft/mc-mods/punchy) em 24/10/2026:** `API and Library`, `Cosmetic`, `Map and Information` (exatamente três). O caminho existente `API and Library + Cosmetic + Map and Information/✅-punchy v2.7e.md` já corresponde ao conjunto completo; **não mover**.
 
 **Gate documental de encerramento #11:** obter notas do arquivo **2.8a NeoForge 1.21.1** ou comparação inequívoca **2.8→2.8a**; comprovar o escopo das 2.8f/2.8g para os arquivos NeoForge específicos (por changelog próprio ou comparação de classes/assets); não confundir "fonte com mesmo número" com "fonte do JAR correto". A cadeia de versões 2.8, 2.8b/c/d/e já detalhada no dossier permanece válida. **A sequência está catalogada, mas a auditoria integral dos deltas específicos não está concluída.** Nenhum JAR, pasta, índice físico, configuração ou save foi alterado por esta verificação; **não apagar #11**.
+
+## Fontes primárias das releases exatas 2.8a, 2.8f e 2.8g — 24/10/2026
+
+**Identidade de projeto e autoridade física:** todos os links abaixo são do mesmo projeto [CurseForge 1374153 — Punchy! - First person animations](https://www.curseforge.com/minecraft/mc-mods/punchy/files/all?page=1&pageSize=50&version=1.21.1), autor DevPunchyMan. Todas as publicações identificadas são **Release para Minecraft 1.21.1 / NeoForge**; não foram inferidas de Fabric 26.x. O snapshot físico continua **#465**, `punchy-2.7e-neoforge-1.21.1.jar`, `2.7e`, sem mudança de JAR.
+
+| Release específica | Arquivo / ID CurseForge | Nota publicada pelo próprio autor |
+|---|---|---|
+| **2.8a**, 15/09/2026 | [`punchy-2.8a-neoforge-1.21.1.jar` — **8891106**](https://www.curseforge.com/minecraft/mc-mods/punchy/files/8891106) | **“Punchy v2.8a HOTFIX”** é o texto **integral** da seção *What's new* dessa página; **não há descrição da correção efetuada**. O catálogo prova identidade/plataforma e a nota literal, mas não um delta técnico exclusivo `2.8→2.8a`. |
+| **2.8f**, 14/10/2026 | [`punchy-2.8f-neoforge-1.21.1.jar` — **9172981**](https://www.curseforge.com/minecraft/mc-mods/punchy/files/9172981) | Changelog técnico granular **do próprio arquivo NeoForge 1.21.1**, transcrito por tópicos abaixo. |
+| **2.8g**, 18/10/2026 | [`punchy-2.8g-neoforge-1.21.1.jar` — **9239897**](https://www.curseforge.com/minecraft/mc-mods/punchy/files/9239897) | Changelog técnico granular **do próprio arquivo NeoForge 1.21.1**, transcrito por tópicos abaixo. |
+
+### 2.8f — mudanças confirmadas na release exata NeoForge 1.21.1
+
+- **Compatibilidade Spatial GUI:** ao ativá-la no Punchy, habilita uma vez as opções do Spatial GUI para primeira pessoa em inventários, contêineres e mira, sem passar a regravar as preferências do usuário; evita a animação de swing de clique simultânea com a animação de interação no inventário; corrige perda de offsets F8 personalizados dos braços durante a renderização de inventário.
+- **Arco:** draw, release e draws repetidos transitam a partir da pose atualmente visível; quando não existe animação de disparo configurada, o retorno ao idle é suavizado.
+- **Besta:** charge, shot, cancellation, reload e recoil com blends mais contínuos; recarregar durante recoil inicia a carga no quadro zero mantendo a entrada da mão secundária.
+- **Comer/beber:** start, loop, end, cancelamento e reinício são interpolados suavemente, inclusive ao interromper animação ainda em progresso.
+- **Natação e mão secundária:** entrada/saída, direção, superfície/submersão e fase do ciclo preservadas durante blend; mão secundária vazia entra de baixo da tela, sai do enquadramento antes de desaparecer e pode reentrar durante a retirada.
+- **Engine de keyframes e áudio:** timeline continua andando durante interpolação, com reversões e retriggers mais suaves; eventos de áudio respeitam cruzamento temporal para não repetir cues; blending de keyframes legados e V2 preserva alinhamento de braços e itens em transições interrompidas.
+
+**Escopo:** a página **9172981** é explicitamente `NeoForge / 1.21.1`; não é mais necessário transferir as notas da variante Fabric ou de Minecraft 26.x para conhecer o **changelog anunciado** da 2.8f. A presença efetiva de cada implementação no JAR não foi validada por comparação de classes; a evidência aqui é a **nota específica do artefato publicada pelo autor**.
+
+### 2.8g — mudanças confirmadas na release exata NeoForge 1.21.1
+
+- **Inspect:** corrige um breve flash da mão secundária e restaura sons ausentes ao inspecionar itens em versões afetadas.
+- **Throwables:** corrige animação quando o último item da pilha é consumido e quando uma animação de equip de duas mãos é interrompida.
+- **Movimentação configurável:** movimento personalizado aplica-se durante ações/equip e retorna suavemente ao idle; em animações de duas mãos, aplica movimento a **ambos os braços** sem afetar indevidamente as ações de um braço.
+- **Idle / offsets:** corrige poses idle customizadas aplicadas em duplicidade na locomotion layer; preserva offsets globais de posição/rotação de braço durante ataques/equip; evita pose neutra intermediária indevida ao restaurar modelos/partes customizados de item.
+- **Enchanted Fishing Line:** corrige ponto de fixação da linha na vara de pesca, citando expressamente **Forge e NeoForge**; não afirmar que esse addon está instalado.
+- **Avisos de compatibilidade:** informa conflito potencial quando Punchy é instalado com **Hold My Items** ou **Locomotion**, após entrada em mundo; avisa quando nenhum resource pack ativo oferece arquivos de compatibilidade ou animações first-person durante ataques, mineração, uso de item ou acionamento de animação manual. **Avisos não demonstram incompatibilidade presente neste perfil**.
+
+**Diferença crucial em relação ao histórico anterior do dossier:** os detalhes `2.8f` e `2.8g` são agora confirmados **diretamente nas páginas dos JARs NeoForge 1.21.1 exatos**, dispensando a inferência entre loaders e versões do Minecraft. **A única lacuna técnica específica remanescente identificada entre 2.8/2.8a/2.8b/2.8c/2.8d/2.8e/2.8f/2.8g é a natureza do hotfix `2.8a`**; o autor só escreve HOTFIX na página 8891106. Essa lacuna pode ser resolvida por changelog adicional do desenvolvedor ou por diff de binários 2.8→2.8a, não por interpretação do título.
+
+**Critério fail-closed:** não declarar encerrada a auditoria individual do #11 enquanto o delta 2.8a não puder ser discriminado por evidência suficiente, ainda que a sequência e todos os links de arquivo estejam conhecidos. Os três artefatos são **candidatos documentais, não instalações**. Preservar filename `✅-punchy v2.7e.md`, categoria oficial e última versão física, sem mover ou renomear nada.
