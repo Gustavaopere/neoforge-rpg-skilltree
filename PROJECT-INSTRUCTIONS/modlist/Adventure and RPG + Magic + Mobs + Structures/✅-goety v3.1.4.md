@@ -288,3 +288,71 @@ A árvore pública do repositório **`Vivideru/Goety-3`** branch `main` foi insp
 **Consequência para os itens mapeados da série 2.5.59.0–2.5.59.2:** as notas exatas de **Minecraft 1.20.1** listadas anteriormente neste dossier permanecem **hipóteses de port por comparação com a linha de origem**, não prova de que cada AI, registry, ritual, receita e correção esteja dentro de **Goety 3.2.1 NeoForge 1.21.1**. O anúncio geral *Ported 1.20.1 content up to 2.5.59.2* é declaração válida do mantenedor, mas sem ponte verificável entre source/tag/commit e JAR 9207885. A diferença aproximada de tamanho das releases 3.2.0 (76,7 MB) e 3.2.1 (89,9 MB) **não permite inferir quais classes/recursos mudaram**.
 
 **Próxima prova necessária para encerrar a auditoria #14 do Bloco de Notas (antiga referência documental #59):** tag/commit upstream específico 3.2.1 que pinne código e assets, ou o próprio JAR 9207885 inspecionado e comparado a 3.2.0 e ao conjunto de recursos/registries/correções 1.20.1 declarados. Sem essa correspondência, preservar o estado **PENDENTE**; não adicionar novos mods, não alterar pasta, categoria, metadata física, arquivo de configuração ou namespace.
+
+## Fechamento do inventário de releases 3.1.4 → 3.2.1 por comparação dos JARs (24/10/2026)
+
+> **Autoridade física preservada:** posição real da snapshot **#305**, top-level `goety-3.1.4.jar` / runtime **3.1.4**, dossier `✅-goety v3.1.4.md`. Este fechamento trata **somente da pesquisa documental das publicações para NeoForge / Minecraft 1.21.1**; **não ocorreu promoção de versão, teste de compatibilidade, renome de arquivo, mudança de categorias nem alteração do mundo**. O projeto correto continua [CurseForge **586095**, Goety - The Dark Arts](https://www.curseforge.com/minecraft/mc-mods/goety/files/9207885), e as quatro categorias temáticas são **Adventure and RPG + Magic + Mobs + Structures**.
+
+### Cobertura das releases entre a física e o candidato
+
+As notas primárias e os limites de cada publicação **já estão detalhados nas seções anteriores**. O intervalo completo confirmado da linha correta é **3.1.4 → 3.1.5 (17/09/2026) → 3.1.5.1 (18/09/2026) → 3.2.0 (03/10/2026) → 3.2.1 (16/10/2026)**.
+
+- **3.1.5:** encerramento da Howling Update, Cerberus e integração de conteúdo anterior de 1.20.1, com escopo cumulativo explicitamente indicado pelo autor.
+- **3.1.5.1:** hotfix de estruturas do Goety que haviam deixado de gerar.
+- **3.2.0:** Windy Update com rework de terrain adaptation, Wind Shrine/bioma, trial spawners, Hurricane e Hurricane Servant, Breeze Servants, novos rituais e Ominous Crystal Ball.
+- **3.2.1:** o [changelog NeoForge exato — CurseForge file **9207885**](https://www.curseforge.com/minecraft/mc-mods/goety/files/9207885) anuncia port do conteúdo da linha **Minecraft 1.20.1 até Goety 2.5.59.2** e mais opções de configuração para **Launching Focus**. Não enumera cada port de classe/efeito, de modo que o conteúdo da linha 1.20.1 é tratado separadamente, sem instalar as releases Forge 1.20.1 no Minecraft 1.21.1.
+
+As notas da série **1.20.1**, cuja revisão era o bloqueio anterior, constam acima com [2.5.59.0 (CurseForge 9153454)](https://www.curseforge.com/minecraft/mc-mods/goety/files/9153454) e [2.5.59.2 (CurseForge 9170420)](https://www.curseforge.com/minecraft/mc-mods/goety/files/9170420), que incorpora as notas da intermediária **2.5.59.1**. Elas descrevem, respectivamente, Enchanter Servants, Flame Constructs, Rogueguards, End Limestone/Mineral/Lanterns, ajustes de ritual e Soul Energy, e correções de Ominous Staff, Repair Putty, Obsidian Monolith, Imperial Guards, traduções e cauldrons. **Essas são notas de origem de outra versão de Minecraft**, não equivalência de implementação automaticamente demonstrada.
+
+### Prova por artefatos distribuídos, não por source `main` defasado
+
+Foram baixados **os dois JARs oficiais Modrinth** publicados para **NeoForge / Minecraft 1.21.1**, da mesma linha de projeto: [3.2.0 — versão `8jB68vz3`](https://modrinth.com/mod/goety/version/8jB68vz3) e [3.2.1 — versão `bbO9Fg71`](https://modrinth.com/mod/goety/version/bbO9Fg71). Foram medidos seus tamanhos e hashes SHA-512 e conferidos contra o distribuidor.
+
+| JAR distribuído | Bytes baixados | SHA-512 efetivamente medido |
+|---|---:|---|
+| `goety-3.2.0.jar` | **80.416.092** | `bc2277f9dd22114d1aa8900a1ad145bd5cff4b935977a50d5bd8e6a38dc2ea9b2572f5ce535a1ee7e48240389c181743ecde4186d6dbd555ae12b34da8f0ce7f` |
+| `goety-3.2.1.jar` | **94.230.045** | `92a078f26b0f05159bb35e24b7e163c42aa16048228e2801ddb9b20b5c6e34784ecd98d91d665328d66fe05f0bc9a9cff830cedfc1bdcf526a8af3e7eb121b53` |
+
+**Comparação integral de cada central directory ZIP**, por caminho relativo, CRC32 e tamanho descompactado:
+
+| Métrica 3.2.0 → 3.2.1 | Resultado |
+|---|---:|
+| Entradas ZIP totais | **21.096 → 21.877** (inclui diretórios) |
+| Arquivos listados sem entradas de diretório | **20.141 → 20.911** |
+| **Entradas adicionadas** | **792** |
+| **Entradas removidas** | **11** |
+| **Entradas alteradas com mesmo caminho** | **2.001** |
+| Entradas com CRC32/tamanho inalterados | **19.084** |
+| Classes `.class` adicionadas | **145** |
+| Classes `.class` alteradas | **1.193** |
+| Arquivos `.json` adicionados | **392** |
+
+Os números são diferenças no índice ZIP — não representam quantidade de mobs, spells, mecânicas completas, traduções aprovadas ou classes testadas em execução. **CRC32/tamanho iguais não garantem identidade criptográfica de todas as entradas**. A diferença de cerca de 13,8 MB no JAR também não prova individualmente quais APIs são compatíveis com addons externos.
+
+### Correspondências específicas dos novos recursos ao JAR 3.2.1
+
+A comparação das **listas de arquivos reais** (3.2.0 versus 3.2.1) confirmou adições ligadas aos candidatos de backport, incluindo caminhos compilados e recursos concretos:
+
+| Família de arquivos ausente/menor na 3.2.0 e adicionada na 3.2.1 | Evidência no JAR 3.2.1 |
+|---|---|
+| **Enchanter** | **30 caminhos adicionais** contendo `Enchanter`, incluindo sons, modelos/spawn egg e classes de renderização/AI no conjunto da 3.2.1. |
+| **Rogueguard** | **9 caminhos novos** incluindo `RogueguardServant.class`, goals/renderer, model, textures e spawn egg. |
+| **Flame Construct** | **17 classes novas** com `FlameConstruct` no nome, abrangendo entidade, renderização, animação e efeitos; também há recursos de summon, áudio e modelos. |
+| **End Limestone** | Classes novas `EndLimestoneGrowthBlock.class` e `EndLimestoneGrowthTipBlock.class`, além de blockstates/modelos na árvore de assets. |
+| **End Mineral Fluid** | **6 classes novas** incluindo `EndMineralFluid.class`, `EndMineralFluidBlock.class`, `EndMineralFluidType.class` e variantes Flowing/Source. |
+| **Ominous Decree** | **6 classes novas**, incluindo bloco, block entity, renderer e item, além de recursos de blockstate/Black Book. |
+| **End Lanterns** | Novos recursos de modelos, partículas, texturas emissivas e sprites de bloco encontrados no diff. |
+
+O JAR 3.2.1 ainda contém entradas relevantes para **Launching Focus**, **Soul Energy**, **Witch Pole** e **Obsidian Monolith**, com mudanças em um conjunto expressivo de classes no intervalo. Entretanto, o **nome da classe não prova por si só o comportamento de Ceasefire, desconto Soul Energy, reparo de golems, exceções de ownership, animação, recipe ou correção individual**. As notas 1.20.1 permanecem a fonte que especifica o efeito pretendido; a distribuição 3.2.1 comprova presença de conteúdo compilado e assets relacionados. Não foi disassemblado o corpo de cada método nem executado teste in-game.
+
+### Identidade da versão e dependências
+
+Ao ler o **`META-INF/MANIFEST.MF` do JAR 3.2.1**, foi encontrado **`Implementation-Title: GoetyPort1211Neoforge`** e **`Implementation-Version: 3.2.1`**, além do timestamp de build **2026-10-16T17:06:44+0200**. O `META-INF/neoforge.mods.toml` utiliza **`version = "${file.jarVersion}"`** e referências de intervalo de versão por placeholders; isso é distinto de afirmar que a versão embarcada não existe: o manifesto oferece o valor de implementação **3.2.1**. A metadata declara **Curios `[9.5.1,)` como dependência obrigatória**, presente nominalmente no inventário físico como **9.5.1+1.21.1**, e **Apotheosis `[8.5.4,)` como opcional**. Não foi executada resolução real de placeholders pelo loader nem comparação de ABI com addons.
+
+A **branch pública `Vivideru/Goety-3`** continuava em `mod_version=3.2.0`, conforme investigação anterior. Essa divergência de *source* permanece explícita, mas a **existência e a composição do arquivo distribuído 3.2.1** foram agora comprovadas independentemente por **hash, manifesto, metadata e inventário de entradas**, evitando atribuir o estado da branch antiga à distribuição mais nova.
+
+### Decisão e fronteira de homologação
+
+**AUDITORIA DOCUMENTAL DO HISTÓRICO 3.1.4 → 3.2.1 ENCERRADA com granularidade por publicação e inspeção do artefato candidato.** A investigação anterior estava bloqueada pela ausência de JAR ou source versionado 3.2.1. O **JAR NeoForge específico foi obtido**, sua identidade de versão foi confirmada no manifesto e os arquivos da transição 3.2.0→3.2.1 foram mapeados sem inferir que cada fix de 1.20.1 tenha sido funcionalmente testado.
+
+**O item 59 pode sair apenas da lista de pesquisas documentais após re-fetch de GitHub**; **não liberar upgrade físico** de `goety-3.1.4.jar` para 3.2.1 antes de conferir binários e bibliotecas reais do perfil, Curios, Goety Iron/Goety Cataclysm, Patchouli/JEI, research/Soul Energy, saves, servos/rituais, lógica de owner, dedicated server, worldgen/estruturas, player/client parity e QA em mundo copiado. Não há hash comparado entre as cópias Modrinth e CurseForge nem pin público de source exato 3.2.1. Essas limitações **não foram omitidas ou tratadas como testes aprovados**.
