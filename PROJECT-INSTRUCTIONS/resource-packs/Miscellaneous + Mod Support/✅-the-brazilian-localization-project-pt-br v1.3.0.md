@@ -160,3 +160,33 @@ A **página do arquivo exato 9300904** reproduz a declaração do autor de **383
 **Sequência de distribuições que pode ser corroborada diretamente no catálogo atual a partir da física:** `1.3.0 → 1.4.0 → 1.5.2`. A referência `1.5.0` passa a ser **marco documental/de fonte cuja distribuição não é verificável**, não um ZIP obrigatório hipotético. O salto de **231 mods declarados na ficha 1.4.0** para **383 mods e 101 guidebooks declarados na ficha 1.5.2** é **diferença entre totais anunciados pelo autor**, e **não** prova a adição exata de 152 traduções de mods nem das chaves específicas. Não comparar automaticamente contagens de releases que podem ter critérios de catalogação diferentes.
 
 **Plano tecnicamente realizável com artefatos publicados hoje:** obter os ZIPs oficiais `1.3.0` (8051220), `1.4.0` (9085941) e `1.5.2` (9300904), conferir SHA/estrutura interna, `pack.mcmeta`, guidebooks, namespaces `assets/*/lang/pt_br.json`, divergências de chaves e placeholders, redundância/prioridade com demais Resource Packs e QA em staging. Opcionalmente comparar a árvore-fonte pública `1.5.0`, **indicando-a claramente como source não vinculado ao ZIP distribuído**. Não foi possível recuperar os arquivos ZIP para comparar bytes nesta rodada. **O Resource Pack #1 continua na lista, sem promoção da versão física.** As afirmações históricas acima substituem apenas aquilo que puder ser sustentado por uma fonte atual e exata; o restante das notas antigas permanece como registro da auditoria anterior.
+
+## Retificação por metadata interna e diff da árvore 1.21.1 — 24/10/2026
+
+**Nova conclusão primária: existe código-fonte explicitamente versionado como 1.5.2, embora a pasta GitHub mantenha o nome antigo `The Brazilian Project [1.21.1-1.5.0]`.** As afirmações anteriores deste dossier de que a branch `main` "não expõe uma revisão 1.5.2 apta a diff" foram **superadas** por inspeção da metadata *dentro* dessa pasta **em dois commits Git distintos do próprio upstream**. A consulta da raiz por nome de pasta era insuficiente. Repositório oficial: https://github.com/L2-01/Brazilian-Project .
+
+### Dois estados da mesma árvore de código-fonte — Minecraft 1.21.1
+
+| Estado fonte | Commit upstream identificável | `pack.mcmeta` lido diretamente nesse commit | SHA da árvore 1.21.1 |
+|---|---|---|---|
+| **20/10/2026** | [`31a8b979a723db21137edfccf9403bd8fc6b359b`](https://github.com/L2-01/Brazilian-Project/commit/31a8b979a723db21137edfccf9403bd8fc6b359b), mensagem **Added guidebook** | `pack_format: 34`, `supported_formats: [34]`, descrição da versão colorida **1.5.0** | `f109d44a0963edba5811c868c74f88f3600b08b4` |
+| **23/10/2026** | [`8f265cbefafae8e6534f0d0999f86b1444423ecc`](https://github.com/L2-01/Brazilian-Project/commit/8f265cbefafae8e6534f0d0999f86b1444423ecc), mensagem **Misc Fix and bugs fix** | `pack_format: 34`, `supported_formats: [34]`, descrição da versão colorida **1.5.2** | `a3735b593634f4e5d0eb80bcdb21685c3683df1a` |
+
+**Prova reproduzível:** leitura dos arquivos `The Brazilian Project [1.21.1-1.5.0]/pack.mcmeta` diretamente sob os dois SHAs acima. A string de descrição colorida mudou de `§f[§eV§61§f.§65§f.§60§f]` (**1.5.0**) para `§f[§eV§61§f.§65§f.§62§f]` (**1.5.2**). **Isso comprova o versionamento da fonte 1.5.0→1.5.2 pelo próprio autor.** Não comprova, isoladamente, que o arquivo CurseForge [9300904](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9300904) seja byte-a-byte a exportação do commit 8f265cbe. O ZIP 1.5.0 permanece ausente do catálogo público atual (antigo file ID 9263820 retorna 404); a publicação histórica não foi reconstruída por inferência.
+
+### Diff completo de blobs no subdiretório MC 1.21.1
+
+Foram consultadas as duas **Git Trees recursivas específicas da pasta 1.21.1**, sem usar o diff geral do repositório, que contém simultaneamente quatro versões do Minecraft e limita a exibição de arquivos. **Nenhuma das duas árvores foi truncada** (20/10: 7.533 nós, 4.901 blobs; 23/10: 6.916 nós, 4.395 blobs). Comparação exata `path → Git blob SHA`:
+
+| Estado do caminho no source de 23/10 contra 20/10 | Arquivos |
+|---|---:|
+| **Adicionados** | **1.541** |
+| **Modificados** (mesmo caminho, blob SHA diferente) | **2.539** |
+| **Removidos** | **2.047** |
+| Arquivos totais do source 1.21.1 | **4.901 → 4.395** |
+
+**Exemplos verificáveis de superfícies afetadas no source 1.21.1:** criação de centenas de conteúdos `assets/oracle_index/books/*/translated/pt_br/` (770 caminhos novos sob esse namespace); mudanças em `assets/pneumaticcraft/patchouli_books/book/pt_br/`, `assets/justdirethings/patchouli_books/justdirethingsbook/pt_br/`, `assets/croptopia/patchouli_books/guide/pt_br/`, `assets/apotheosis/patchouli_books/apoth_chronicle/pt_br/`; adições, mudanças e remoções em `assets/ae2/ae2guide/_pt_br/`; muitas remoções de caminhos `assets/cobblepedia/patchouli_books/cobblepedia/pt_br/`. **Deleção de caminho não implica necessariamente retirada deliberada de tradução:** podem existir realocações, correções de namespace, reorganização de livros ou exclusão de conteúdo antigo. Nem toda diferença de blob implica mudança semanticamente relevante de chave; arquivos podem diferir apenas em formatação.
+
+**Nota de autoridade sobre o ZIP publicado:** esta comparação agora identifica a *revisão-fonte interna 1.5.0→1.5.2* sem precisar presumir que os nomes das pastas mudem com a versão. **Não é diff entre ZIPs**: nenhum ZIP oficial 1.3.0/1.4.0/1.5.2 foi baixado ou submetido a hash local, extração, validação de JSON/placeholder ou QA. Não foi estabelecida equivalência dos arquivos distribuídos em CurseForge e os blobs Git. A nova evidência resolve a lacuna de **proveniência e existência de alterações no source**, mas não certifica o conteúdo exato do ZIP 9300904, a precedência de resource packs ou o comportamento in-game.
+
+**Gate do Resource Pack #1:** obter o ZIP físico 1.3.0 e os oficiais 1.4.0/1.5.2, calcular hashes, inventariar `assets/`, verificar traduções e guidebooks em uso e testar em staging. A fonte 1.5.2 está agora identificada pelo próprio `pack.mcmeta`, mas o **item continua na fila** pela paridade artefato/source e QA. Preservados o ZIP instalado `The Brazilian Project [1.21.1-1.3.0].zip`, o nome certificado do dossier, pasta, categorias e demais arquivos do projeto.
