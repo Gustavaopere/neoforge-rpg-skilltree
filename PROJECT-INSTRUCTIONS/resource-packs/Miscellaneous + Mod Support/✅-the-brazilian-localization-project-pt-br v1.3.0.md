@@ -190,3 +190,52 @@ Foram consultadas as duas **Git Trees recursivas específicas da pasta 1.21.1**,
 **Nota de autoridade sobre o ZIP publicado:** esta comparação agora identifica a *revisão-fonte interna 1.5.0→1.5.2* sem precisar presumir que os nomes das pastas mudem com a versão. **Não é diff entre ZIPs**: nenhum ZIP oficial 1.3.0/1.4.0/1.5.2 foi baixado ou submetido a hash local, extração, validação de JSON/placeholder ou QA. Não foi estabelecida equivalência dos arquivos distribuídos em CurseForge e os blobs Git. A nova evidência resolve a lacuna de **proveniência e existência de alterações no source**, mas não certifica o conteúdo exato do ZIP 9300904, a precedência de resource packs ou o comportamento in-game.
 
 **Gate do Resource Pack #1:** obter o ZIP físico 1.3.0 e os oficiais 1.4.0/1.5.2, calcular hashes, inventariar `assets/`, verificar traduções e guidebooks em uso e testar em staging. A fonte 1.5.2 está agora identificada pelo próprio `pack.mcmeta`, mas o **item continua na fila** pela paridade artefato/source e QA. Preservados o ZIP instalado `The Brazilian Project [1.21.1-1.3.0].zip`, o nome certificado do dossier, pasta, categorias e demais arquivos do projeto.
+
+## Encerramento da auditoria documental 1.3.0 → 1.5.2 — ZIPs reais e JSONs (24/10/2026)
+
+> **Escopo e autoridade:** a versão historicamente instalada continua **1.3.0**, arquivo **`The Brazilian Project [1.21.1-1.3.0].zip`**, posição **#55** no índice de Resource Packs. Nenhum ZIP foi instalado, alterado, reempacotado, renomeado ou ativado; o nome e as categorias deste dossier permanecem iguais. A versão upstream atualmente publicada para **Minecraft 1.21.1** é **1.5.2**, CurseForge [file 9300904](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9300904).
+
+### Fontes e versões intermediárias
+
+Esta rodada obteve **os três ZIPs reais do próprio projeto oficial no Modrinth**, mesma autoria e nomes exatos de arquivo para Minecraft 1.21.1: [1.3.0 — `fukjggqf`](https://modrinth.com/resourcepack/brazilian-project/version/fukjggqf), [1.4.0 — `urnYh7kb`](https://modrinth.com/resourcepack/brazilian-project/version/urnYh7kb) e [1.5.2 — `JXO6CEja`](https://modrinth.com/resourcepack/brazilian-project/version/JXO6CEja). Foram **baixados e extraídos**, e os SHA-512 calculados sobre os ZIPs baixados coincidiram com os hashes fornecidos pela API oficial Modrinth.
+
+| Versão | Tamanho real ZIP | SHA-512 conferido | Arquivos regulares no ZIP |
+|---|---:|---|---:|
+| **1.3.0** | **2.135.319 bytes** | `deddb614cb0e93d96fedab8a89d5e02adb974acc515a0c63db4f37c097738700354a77765e91539992008bb3f30c7e7e19069089c552fec11cfb72d258c04c08` | **381** |
+| **1.4.0** | **3.692.925 bytes** | `eaaf390365e00107c94806af9f75a8a65bbc53f1d1bbe6a811b2fe6042604083d262baa294f783ad2c39aacb5cd0421847186d973856cb3f1608b4005680c4dd` | **590** |
+| **1.5.2** | **8.521.356 bytes** | `ac54ef69f585bcc409b2cde8fb764dbb95baea976036730981e22f237d1244d1f2416b5000585e377cfb8a8f06fc878405b633d236ea950df01b0bc182d8114a` | **4.511** |
+
+**Etapa documental 1.5.0:** o GitHub oficial `L2-01/Brazilian-Project` registra a versão fonte **1.5.0** no `pack.mcmeta` em [`31a8b979`](https://github.com/L2-01/Brazilian-Project/commit/31a8b979a723db21137edfccf9403bd8fc6b359b) e a versão fonte **1.5.2** em [`8f265cbe`](https://github.com/L2-01/Brazilian-Project/commit/8f265cbefafae8e6534f0d0999f86b1444423ecc), embora a pasta mantenha nome antigo. A comparação Git Trees dessas revisões foi documentada acima (**1.541 arquivos adicionados, 2.539 modificados e 2.047 removidos no source da subárvore 1.21.1**). **Não há ZIP 1.5.0 verificável na listagem atual de distribuições 1.21.1 consultadas**, e o URL CurseForge antigo [9263820](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9263820) não estava disponível. Não foi identificada release separada **1.5.1** para 1.21.1. Assim, as **transições binárias públicas verificáveis** nesta auditoria são 1.3.0→1.4.0→1.5.2, com o marco fonte **1.5.0→1.5.2** examinado separadamente. Não criar artificialmente ZIP 1.5.0/1.5.1.
+
+### Diff por arquivos internos dos ZIPs distribuídos
+
+Os três arquivos distribuídos foram integralmente extraídos. Comparou-se para cada etapa a **lista relativa de arquivos** e o **SHA-256 de cada caminho comum**; números abaixo representam diferenças de arquivo/binário, **não** número de mods efetivamente adicionados:
+
+| Comparação entre ZIPs Modrinth | Adicionados | Removidos | Modificados | Inalterados |
+|---|---:|---:|---:|---:|
+| **1.3.0 → 1.4.0** | **284** | **75** | **293** | **13** |
+| **1.4.0 → 1.5.2** | **4.292** | **371** | **216** | **3** |
+
+**Mudanças concretas relevantes:**
+- De 1.3.0 para 1.4.0 surgem traduções `assets/.../lang/pt_br.json` de novos namespaces, inclusive `actually_additions`, `ad_astra`, módulos de AE2, Create e `aeronautics_curios_compat`. Há remoções e substituições de caminhos como `assets/alexsmobs/lang/pt_br.json` e criação de `assets/alexs_mobs/lang/pt_br.json`; **renome de namespace não comprova sozinho correção funcional**.
+- De 1.4.0 para 1.5.2 surgem **2.707 caminhos adicionados contendo `books/`**, além de novos diretórios `patchouli_books` e conteúdo de guias. Exemplos: `assets/ad_astra/patchouli_books/astrodux/pt_br/` (categorias e entradas). Alterações em AE2 e em outros livros **podem envolver migração de layout/namespaces**, logo a contagem de caminhos removidos não significa igual número de traduções deliberadamente retiradas.
+- A documentação traduzida de **Create Aeronautics Automated Logistics** foi encontrada nominalmente nos ZIPs 1.4.0 e 1.5.2, sob **`assets/create_aeronautics_automated_logistics/lang/pt_br.json`**. Isso confirma **presença física de um arquivo de tradução**, não cobertura de todas as chaves do JAR modded atualmente instalado nem integração mecânica com o mod.
+- O arquivo `pack.mcmeta` dos três ZIPs contém **`pack_format: 34` e `supported_formats: [34]`**, coerentes com o alvo do Resource Pack para Minecraft 1.21.1. A descrição declara, respectivamente, as versões 1.3.0, 1.4.0 e 1.5.2.
+
+### Auditoria de sintaxe JSON e problema novo encontrado
+
+| ZIP | Arquivos `.json` analisados | Resultado de parse `RawJSON` |
+|---|---:|---|
+| **1.3.0** | **379** | **378 válidos; 1 falhou** |
+| **1.4.0** | **588** | **588 válidos** |
+| **1.5.2** | **2.965** | **2.965 válidos** |
+
+**Achado regressivo/legado relevante:** o arquivo **`assets/mowziesmobs/lang/pt_br.json`** do ZIP **1.3.0** contém uma **vírgula pendente antes do fechamento `}`**, e falhou no parser JSON; não atribuir esta falha ao Mowzie's Mobs em si nem declarar que ela foi observada como crash do cliente. A análise de sintaxe não é validação do comportamento runtime. Na distribuição 1.5.2, foram identificados **952 arquivos `pt_br.json` sob diretórios `lang`** e **2.013 JSONs de caminhos relacionados a livros/guias**, todos parseados com sucesso. Esses números são **contagens físicas de arquivos**, não os **383 mods e 101 guidebooks** anunciados pelo autor.
+
+### Cobertura, compatibilidade e limite de evidência
+
+O changelog [CurseForge 1.4.0 — file 9085941](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9085941) declara cobertura para **231 mods**; o da [1.5.2 — file 9300904](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9300904) declara **383 mods e 101 guidebooks**. Essas são **contagens totais declaradas pelo mantenedor**, não o número de traduções novas deduzido do diff. A descrição do projeto confirma integração planejada com packs BMC5, All The Mons, ATM10, ATM10 Aeronautics, FTB Skies 2 Aero e Infinity Legacy II, mas **não comprova coincidência de todos os mods e versões desses packs com a modlist física aqui instalada**.
+
+**Fronteiras não resolvidas pelo diff:** os ZIPs concretamente inspecionados são distribuídos pelo **Modrinth oficial do mesmo projeto**. **Não foi medido hash nem comparado bit a bit o ZIP 1.5.2 do CurseForge file 9300904**, portanto **não afirmar identidade entre plataformas**. Validou-se **sintaxe dos JSONs**, mas não equivalência de cada placeholder `%s`, `%1$s`, argumentos de formato, chaves em `en_us.json` de JARs instalados ou ordem de sobreposição de Resource Packs no `options.txt`. Alterações de idioma e guidebooks **não comprovam mudanças em registries, gameplay, AI ou salvamento**.
+
+**Estado: AUDITORIA DOCUMENTAL DA SEQUÊNCIA 1.3.0 → 1.5.2 CONCLUÍDA**, com correspondência por *releases* publicadas, artefatos distribuídos pelo autor, hashes e diff interno e com limitações registradas expressamente. O **Resource Pack #1** pode ser retirado **apenas da lista de pesquisas documentais** depois de re-fetch da persistência GitHub. **NÃO homologar upgrade de ZIP** antes de confrontar o ZIP efetivamente instalado com os novos, validar format strings e chaves contra JARs reais, backups, prioridade do pack, `F3+T`, interfaces (Create, JEI, Ars, MineColonies, Sophisticated), guias e fallback. O arquivo **`✅-the-brazilian-localization-project-pt-br v1.3.0.md`** preserva a versão física histórica e as categorias oficiais **Miscellaneous + Mod Support**, sem movimentação.
