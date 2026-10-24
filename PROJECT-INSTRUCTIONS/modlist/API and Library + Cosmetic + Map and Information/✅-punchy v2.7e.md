@@ -311,3 +311,34 @@ A seção anterior afirmou que versões **2.8d e 2.8e não aparecem no catálogo
 **Conclusão possível sobre o conteúdo:** os arquivos têm **SHA-1 diferente** e o ZIP/JAR `2.8a` distribuído no Modrinth tem **318 bytes a mais** que o `2.8`. Isso comprova **artefatos diferentes e reproduzíveis por hash**, mas **NÃO diz se esses 318 bytes decorrem de correção em classe Java, recurso, metadata, compressão ou empacotamento**. Tanto a nota do [arquivo Modrinth 2.8a](https://modrinth.com/mod/punchy-fpa/version/ORyRPNUY) quanto a ficha CurseForge específica declaram apenas **`Punchy v2.8a HOTFIX`**, sem explicar a mudança. Não equiparar automaticamente os hashes de Modrinth e CurseForge: igualdade binária entre provedores não foi testada.
 
 **Próxima etapa para encerrar o #11:** obter os **dois JARs oficiais NeoForge 1.21.1** e conferir os SHA-512 acima; comparar `META-INF/`, nome/CRC/tamanho de cada entrada, assets embarcados, classes compiladas e diferenças de bytecode. Ou obter uma declaração do autor com a correção técnica exata do 2.8a. **Nenhum download de JAR nem diff binário ocorreu nesta rodada**. A auditoria documental do conteúdo exclusivo do hotfix continua **BLOQUEADA**; preservar o JAR instalado, filename, caminho e categoria do dossier e manter Punchy na lista.
+
+## Encerramento da auditoria documental 2.7e → 2.8g — diff binário 2.8/2.8a (24/10/2026)
+
+> **Fechamento do histórico documental, sem atualização física.** Esta conclusão **supera as pendências anteriores sobre a natureza do hotfix 2.8a**, pois os dois arquivos exatos da mesma plataforma foram baixados e comparados integralmente. A autoridade instalada continua **#465**, `punchy-2.7e-neoforge-1.21.1.jar`, mod id `punchy`, versão **2.7e**; nenhuma alteração foi feita no JAR, no perfil ou em configurações. O candidato de atualização upstream continua **2.8g** para **NeoForge / Minecraft 1.21.1**. A pasta e o nome deste dossier permanecem invariantes.
+
+### Método e verificações
+
+Os artefatos foram localizados pela **API oficial Modrinth do mesmo projeto Punchy** (project ID `8aoMKplv`), usando os IDs imutáveis de versão [`TCa8rsY7` — 2.8 NeoForge 1.21.1](https://modrinth.com/mod/punchy-fpa/version/TCa8rsY7) e [`ORyRPNUY` — 2.8a NeoForge 1.21.1](https://modrinth.com/mod/punchy-fpa/version/ORyRPNUY). Os dois JARs foram **efetivamente baixados e extraídos** em ambiente de análise isolado; seus hashes SHA-512 medidos coincidem com os hashes anteriormente coletados da distribuição oficial:
+
+| Build exata | Tamanho baixado | SHA-512 medido |
+|---|---:|---|
+| `punchy-2.8-neoforge-1.21.1.jar` | 1.813.371 bytes | `cbcc52f725e096108293c77acb1a470033afb70e91ff5776bc7237e95eaa498477da92403860c660a130ff6eb616bcf6b46fa58774f58ea7e4174d9c30487398` |
+| `punchy-2.8a-neoforge-1.21.1.jar` | 1.813.689 bytes | `c474815ecff99258fe33270062620ff1bf0cd24b262c3877fa450ed20ad773c6711a0bc1c07a101582a14a191b523d6bc83aecd67d0be57bd29578385d86553d` |
+
+**Diff das entradas descompactadas:** **445 arquivos regulares em cada JAR; zero adicionados, zero removidos, 440 idênticos em SHA-256 e cinco modificados**. A diferença de 318 bytes no tamanho do arquivo compactado **não equivale** à soma das diferenças dos tamanhos descompactados.
+
+| Entrada modificada no `2.8a` | Bytes em 2.8 → 2.8a | Evidência e limite |
+|---|---:|---|
+| `META-INF/neoforge.mods.toml` | 1451 → 1452 | Mudança comprovada no campo `version = "2.8"` → `version = "2.8a"`; demais campos textualizados da metadata preservados. |
+| `punchy/client/config/PunchyConfigScreen.class` | 93438 → 93470 | Bytecode diferente na tela de configuração; não é possível deduzir a correção exata só pelo hash. |
+| `punchy/client/gui/BedrockUiStyle.class` | 11473 → 11473 | Bytecode diferente apesar de tamanho igual; superfície UI/estilo. |
+| `punchy/client/tuning/TuningWorkbenchScreen.class` | 63229 → 63684 | Bytecode diferente na tela de ajuste; novos símbolos reconhecíveis incluem `clipped`, `dividerY`, `getHoverName` e `requireNonNull`. Isso aponta alterações de renderização/interface, **não comprova** o comportamento corrigido. |
+| `punchy/client/tuning/TuningWorkbenchScreen$FloatSlider.class` | 6052 → 6052 | Bytecode diferente no slider de configuração, apesar de tamanho inalterado. |
+
+**Conclusão técnica estrita sobre 2.8a:** o HOTFIX publicado **não foi apenas alteração de versão/metadata**: há quatro classes compiladas de **telas de configuração, estilo de GUI, workbench de ajustes e slider** efetivamente modificadas. **Nenhuma outra entrada** dos JARs da dupla apresentou diferença de conteúdo. O autor não descreveu qual defeito concreto foi corrigido; portanto, não inventar gatilho, sintoma, API alterada ou alegar que toda diferença byte-a-byte foi uma mudança semântica de gameplay. A equivalência byte-a-byte com o arquivo de distribuição CurseForge não foi ensaiada; a prova é dos **dois artefatos oficiais Modrinth da plataforma correta**.
+
+### Sequência completa e estado de conclusão
+
+A cadeia aplicável **após 2.7e** permanece **2.8 → 2.8a → 2.8b → 2.8c → 2.8d → 2.8e → 2.8f → 2.8g**. Cada etapa já está descrita individualmente nas seções precedentes deste dossier, com suas fontes oficiais NeoForge 1.21.1 ou changelogs atribuídos e com ressalvas explícitas; o único hotfix cuja composição binária era opaca (**2.8a**) foi agora discriminado por diff exaustivo de entradas. A documentação registra os recursos relevantes introduzidos ao longo do intervalo (configuração e transições de animação; perfis/Hand Editor; equip/itens; arco e besta; Spatial GUI; tridentes; offhand; engine de keyframes; alertas Hold My Items/Locomotion; compatibilidade com Resource Packs), separando mudanças de outros loaders e versões do Minecraft.
+
+**Estado: AUDITORIA DOCUMENTAL DO HISTÓRICO 2.7e → 2.8g ENCERRADA.** O item **11** pode sair **apenas da lista de pesquisas documentais de versões/changelogs**, após confirmação da persistência deste registro no GitHub. **Não** significa atualização instalada, compatibilidade de Epic Fight/First Person Model/Spatial GUI homologada, equivalência CurseForge↔Modrinth certificada, ausência de regressões ou testes in-game realizados. Para promover o mod instalado, continuam obrigatórios backup, checagem de bridge, hashes do JAR candidato, cliente/servidor, shader/render, Hand Editor/Mixpacks e smoke das ações novas. Manter o nome físico e este dossier como `✅-punchy v2.7e.md` até novo dump/autorização explícita de alteração da instalação.
