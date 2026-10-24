@@ -118,3 +118,27 @@ CurseForge oficial confirma `FreshAnimations_v1.10.4.zip`, suporte a 1.21.1, rec
 **Verificações ainda não executadas:** inventário de `assets/`, `.properties` e `pack.mcmeta` dos ZIPs 1.10.4/1.11/1.11.1; validação com EMF 3.3.5 e ETF 7.2.1 do snapshot, ordem/prioridade frente a Excalibur Fresh Animations Patch e compats Refreshed, F3+T, shaders, mobs em vanilla e com addons, relog e estabilidade visual. Nenhum ZIP físico, resource pack ativo ou configuração foi alterado.
 
 **Decisão:** `1.11.1 - 1.20+` ganha **changelog oficial próprio**, mas o delta intermediário **1.11** e os diffs de assets ainda precisam ser verificados. **Resource Pack #2 continua no Bloco de Notas.**
+
+## Changelog primário da intermediária exata 1.11.0 - 1.20+ — 24/10/2026
+
+**Descoberta primária:** a API pública oficial do Modrinth confirma a distribuição **[Fresh Animations 1.11.0 - 1.20+ (ID `KYOqeb1P`)](https://modrinth.com/resourcepack/fresh-animations/version/KYOqeb1P)**, **Release**, publicada em **19/10/2026, 11:14:04 UTC** e expressamente compatível com **Minecraft 1.21.1**. O artefato traz hash **SHA-1 `faee9e43f1f2b4f23de9342e175f17503ce93ca0`** segundo a metadata Modrinth. Esta é a publicação **1.20+ exata**, não sua versão homônima `26.1+`. Fonte machine-readable: https://api.modrinth.com/v2/version/KYOqeb1P .
+
+### Mudanças da seção "Release Changes" da versão intermediária 1.11.0
+
+| Superfície | Changelog do autor | Recorte válido para MC 1.21.1 |
+|---|---|---|
+| Texturas de montarias | Adicionada textura antiga de cavalo zumbi para **1.20.1 até 1.21.10** | Inclui explicitamente 1.21.1; inspecionar seleção de textura e compatibilidade com packs de cavalos |
+| Tartaruga e happy ghast | Melhoradas rotação/inclinação da cabeça da tartaruga, bem como rotação suave e inclinação do happy ghast | Conferir animações, versões de entidades e precedência de addons |
+| Baby skins e armadura | Parte dos ajustes customizados de texturas de bebê migrou para **extension pack**; particularmente helmets customizados e variantes de villager/zombie villager | **Não presumir** que os assets removidos continuem incluídos no ZIP principal; conferir se há pack de extensão e se é relevante em 1.21.1 |
+| Limpeza de modelos | Removido modelo sheep wool undercoat; removida textura baby wolf collar | Verificar compatibilidade com packs que sobrescrevem lã, lobos e armaduras |
+| Animações adicionais | Ajustadas animações de morcego clássico, villager nadando e villager sentado | Morcego clássico é especialmente associado a versões antigas; testar o escopo do asset antes de aplicá-lo a 1.21.1 |
+| **Correções com janela 1.21.1 explícita** | **Corrigidos filhotes de galinha e de tartaruga para MC 1.20.1 a 1.21.1** | **Diretamente aplicável à versão 1.21.1 deste perfil**, sem depender de interpolação de versões |
+| Correções diversas | Posição de item da raposa, alguns modelos de cavalo quebrados, natação do aldeão bebê, salto de urso-polar bebê e UV dos chifres de vaca fria | São notas upstream do artefato 1.20+; verificar se cada entidade/modelo é carregado no jogo da faixa específica |
+
+### Histórico cumulativo anunciado na mesma ficha (não atribuir integralmente à 1.11.0)
+
+A seção anterior **"75 / 90 mobs complete (26.3)"** contém adições extensas para **urso-polar** (walk, attack, run, idle, jump/fall/land, turn, novelty, swim, hurt, eye e bebê) e **panda** (walk, sneeze, sit, eat, fear, roll, lie, upset, run, idle, jump/fall/land, turn, novelty, swim, hurt, eye e bebê). O autor também lista reduções/mesclagens de arquivos de modelos e animações compartilhados entre variantes de mobs, reajustes de texturas e correções visuais de animais. A própria seção menciona explicitamente **texturas de bebês especiais 26.1+**. **Esses itens são changelog cumulativo multiversão**, não comprovação de que todas as novidades ocorreram exclusivamente em `1.10.4→1.11.0` na execução 1.21.1. A separação entre **"Changes"** e **"Release Changes"** é mantida para impedir essa extrapolação.
+
+**Cadeia documentada com fonte exata para as duas intermediárias:** `1.10.4` instalada → [`1.11.0 - 1.20+`](https://modrinth.com/resourcepack/fresh-animations/version/KYOqeb1P) → [`1.11.1 - 1.20+`](https://modrinth.com/resourcepack/fresh-animations/version/aQjwvDfY). A release `1.11.1` acrescenta limpeza de `.properties` não necessários e atualização de metadata; duas notas etiquetadas `26.1+` não foram promovidas para 1.21.1. Os changelogs agora existem para **ambas** as releases intermediárias da variante correta, mas a auditoria de **conteúdo exato** ainda exige diffs de `assets/`, `pack.mcmeta` e testes EMF/ETF. Não foi feita extração nem comparação binária dos ZIPs, alteração de ZIP físico ou QA visual.
+
+**Decisão fail-closed:** a lacuna de changelog da `1.11.0 - 1.20+` foi resolvida por fonte primária, mas a verificação asset-a-asset e QA permanecem. O ZIP instalado é `FreshAnimations_v1.10.4.zip` e o filename documental permanece `✅-fresh-animations v1.10.4.md`. **Resource Pack #2 ainda não deve ser apagado da lista.**
