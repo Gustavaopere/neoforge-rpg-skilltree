@@ -46,7 +46,7 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 | 34 | Excalibur \| Transmog support | `Excalibur_Transmog_v1.0.zip` | `1.0` | `Sem categoria temática no CurseForge` | `Sem categoria temática no CurseForge/✅-excalibur-transmog-support v1.0.md` | 29/09/2026 - 17:25 |
 | 35 | Excalibur \| Waystones Support | `Excalibur Waystones 1.1.zip` | `1.1` | `Medieval + Miscellaneous + Mod Support + Traditional` | `Medieval + Miscellaneous + Mod Support + Traditional/✅-excalibur-waystones-support v1.1.md` | 18/09/2026 - 11:04 |
 | 36 | Excalibur | `Excalibur_V26.1_01.zip` | `V26.1_01` | `Animated + Medieval + Traditional` | `Animated + Medieval + Traditional/excalibur V26.1_01.md` | 29/09/2026 - 17:25 |
-| 37 | Fresh Animations | `FreshAnimations_v1.10.4.zip` | `1.10.4` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations v1.10.4.md` | 24/10/2026 - 15:29 |
+| 37 | Fresh Animations | `FreshAnimations_v1.10.4.zip` | `1.10.4` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations v1.10.4.md` | 24/10/2026 - 16:09 |
 | 38 | Fresh Animations: Extensions | `FA+All_Extensions-v1.8.1.zip` | `1.8.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-extensions v1.8.1.md` | 29/09/2026 - 17:25 |
 | 39 | Fresh Animations: Player Extension | `FA+Player-v1.1.zip` | `1.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-player-extension v1.1.md` | 29/09/2026 - 17:25 |
 | 40 | Fresh Illager Mod Compats | `4.3 FA Illager Mod Compats.zip` | `4.3` | `Animated + Mod Support` | `Animated + Mod Support/fresh-illager-mod-compats v4.3.md` | 29/09/2026 - 17:25 |
