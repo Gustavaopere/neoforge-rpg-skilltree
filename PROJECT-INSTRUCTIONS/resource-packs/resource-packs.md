@@ -46,7 +46,7 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 | 34 | Excalibur \| Transmog support | `Excalibur_Transmog_v1.0.zip` | `1.0` | `Sem categoria temática no CurseForge` | `Sem categoria temática no CurseForge/✅-excalibur-transmog-support v1.0.md` | 29/09/2026 - 17:25 |
 | 35 | Excalibur \| Waystones Support | `Excalibur Waystones 1.1.zip` | `1.1` | `Medieval + Miscellaneous + Mod Support + Traditional` | `Medieval + Miscellaneous + Mod Support + Traditional/✅-excalibur-waystones-support v1.1.md` | 18/09/2026 - 11:04 |
 | 36 | Excalibur | `Excalibur_V26.1_01.zip` | `V26.1_01` | `Animated + Medieval + Traditional` | `Animated + Medieval + Traditional/excalibur V26.1_01.md` | 29/09/2026 - 17:25 |
-| 37 | Fresh Animations | `FreshAnimations_v1.10.4.zip` | `1.10.4` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations v1.10.4.md` | 18/09/2026 - 11:04 |
+| 37 | Fresh Animations | `FreshAnimations_v1.10.4.zip` | `1.10.4` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations v1.10.4.md` | 24/10/2026 - 03:49 |
 | 38 | Fresh Animations: Extensions | `FA+All_Extensions-v1.8.1.zip` | `1.8.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-extensions v1.8.1.md` | 29/09/2026 - 17:25 |
 | 39 | Fresh Animations: Player Extension | `FA+Player-v1.1.zip` | `1.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-player-extension v1.1.md` | 29/09/2026 - 17:25 |
 | 40 | Fresh Illager Mod Compats | `4.3 FA Illager Mod Compats.zip` | `4.3` | `Animated + Mod Support` | `Animated + Mod Support/fresh-illager-mod-compats v4.3.md` | 29/09/2026 - 17:25 |
@@ -122,11 +122,11 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 | Nº do catálogo | Resource Pack | Último ZIP registrado | Upstream compatível com 1.21.1 | Estado |
 |---:|---|---|---|---|
 | **#55** | The Brazilian Localization Project [PT-BR] | `The Brazilian Project [1.21.1-1.3.0].zip` / 1.3.0 | **1.5.2** (Release, 23/10) | **CANDIDATO** — o changelog 1.5.2 repete cobertura declarada de 383 mods / 101 guidebooks da 1.5.0; delta exclusivo 1.5.0→1.5.2 não discriminado; validar ZIPs, chaves, placeholders e precedência |
-| **#37** | Fresh Animations | `FreshAnimations_v1.10.4.zip` / 1.10.4 | **1.11.1 - 1.20+** (Release, 19/10; inclui 1.21.1) | **CANDIDATO** — 1.11.1 - 26.1+ é outro artefato; 1.11.1 - 1.20+ existe e inclui MC 1.21.1; testar EMF/ETF e patches Fresh Animations |
+| **#37** | Fresh Animations | `FreshAnimations_v1.10.4.zip` / 1.10.4 | **1.11.1 - 1.20+** (Release, 19/10; inclui 1.21.1) | **CANDIDATO** — notas da variante 1.20+ confirmam remoção de .properties desnecessários e atualização de metadata; fixes marcados 26.1+ não são atribuídos a 1.21.1; delta 1.11 e diff ZIP/EMF/ETF pendentes |
 
 **Regra:** os ZIPs só devem ser substituídos após inventário físico atual, hash/manifest, ordem efetiva em `options.txt`, comparação de assets e QA visual. A aprovação documental não equivale a promoção física.
 
 
 ### Revisão de releases dos dois resource packs — 22/10/2026
-- **Fresh Animations #37:** linha válida 1.21.1 `1.10.4 → 1.11 - 1.20+ → 1.11.1 - 1.20+`; o registro anterior excluía incorretamente **todas** as 1.11.1 por confundir o ZIP `26.1+` com o ZIP separado `1.20+`. O changelog e o diff de assets exatos desta última variante ainda requerem inspeção; candidato não instalado. Fonte: https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/all?page=1&version=1.21.1
+- **Fresh Animations #37:** linha válida 1.21.1 `1.10.4 → 1.11 - 1.20+ → 1.11.1 - 1.20+`; o registro anterior excluía incorretamente **todas** as 1.11.1 por confundir o ZIP `26.1+` com o ZIP separado `1.20+`. O changelog da variante 1.11.1 - 1.20+ confirma limpeza de .properties e atualização de pack metadata; changelog 1.11 e diff de assets ainda pendentes; candidato não instalado. Fontes: https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/all?page=1&version=1.21.1 ; https://modrinth.com/resourcepack/fresh-animations/version/aQjwvDfY
 - **Brazilian Localization #55:** linha válida 1.21.1 `1.3.0 → 1.4.0 → 1.5.0 → 1.5.2`; notas da 1.5.2 reutilizam cobertura cumulativa de 383 mods e 101 guidebooks da 1.5.0; delta exclusivo não comprovado sem comparação ZIP. Fonte: https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9300904
