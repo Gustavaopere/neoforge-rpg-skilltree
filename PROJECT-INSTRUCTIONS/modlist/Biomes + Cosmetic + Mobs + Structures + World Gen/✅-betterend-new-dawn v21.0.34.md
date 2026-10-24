@@ -344,3 +344,50 @@ O mesmo projeto publicou o arquivo exato [`BetterEnd-21.0.39.jar`, CurseForge **
 **Interpretação estritamente autorizada:** os números das três bibliotecas **presentes nominalmente no snapshot físico** passam os **limites inferiores escritos no código-fonte público de BetterEnd 21.0.38**. Isso reduz uma lacuna documental importante, mas **não comprova que esses limites tenham sido interpolados da mesma forma no JAR distribuído da 21.0.38**, nem compatibilidade binária/API real, nem satisfaz o requisito de **BetterEnd 21.0.39**: esse artefato CurseForge **9306604** foi publicado enquanto o source público consultado continua em **`mod_version=21.0.38`**. Não projetar a metadata do 21.0.38 sobre a 21.0.39. A metadata de NeoForge e versões internas nos quatro arquivos JAR concretos ainda precisa ser lida antes de instalação.
 
 **Portões remanescentes:** obter o próprio `BetterEnd-21.0.39.jar`, ler `META-INF/neoforge.mods.toml` **embutido e com placeholders substituídos**, checar requisito da versão NeoForge, os `modId` e `versionRange` exatos; revalidar que as bibliotecas instaladas oferecem as APIs usadas; isolar deltas exclusivos `21.0.38→21.0.39` com source/artefato e executar smoke de worldgen, estruturas, cores/registries e multiplayer. **Nada nesta matriz é aprovação de upgrade, e o item #15 do Bloco de Notas continua PENDENTE.** Não foram alterados JARs, packs, saves, configs, pastas nem nomes do dossier.
+
+## Fechamento documental 21.0.34 → 21.0.39 — comparação do JAR 21.0.38/21.0.39 (24/10/2026)
+
+> **Escopo certificado:** investigação das publicações **BetterEnd: New Dawn / NeoForge / Minecraft 1.21.1** entre o baseline instalado **21.0.34** e a última publicação confirmada **21.0.39**. As versões intermediárias **21.0.35, 21.0.36, 21.0.37 e 21.0.38** e respectivas notas específicas já foram discriminadas acima. Esta seção resolve a lacuna até então aberta entre **21.0.38 → 21.0.39**, usando **dois JARs reais baixados** do [projeto oficial BetterEnd: New Dawn no Modrinth](https://modrinth.com/project/betterend-neoforge). **Nenhum JAR do perfil foi atualizado:** o top-level físico continua **#071** `BetterEnd-21.0.34.jar` / `21.0.34`. Projeto distinto do BetterEnd original, sem misturar releases de Fabric/Quilt ou Minecraft 26.x.
+
+### Artefatos exatos e prova de identidade
+
+| Publicação NeoForge 1.21.1 | Fonte imutável do distribuidor | Bytes efetivamente baixados | SHA-512 do JAR efetivamente medido |
+|---|---|---:|---|
+| **21.0.38** (19/10/2026) | [Modrinth `jElJL33C`](https://modrinth.com/mod/betterend-neoforge/version/jElJL33C) — `BetterEnd-21.0.38.jar` | **97.736.268** | `e17a5362a6e7e73b5c0f660a6820ff9383a7826aeee28171891d2039783b1059a459c00fde9620dc7bab8336a5688e00abef46f589a0aee2b89de86334749f1c` |
+| **21.0.39** (24/10/2026) | [Modrinth `j1z79Nh7`](https://modrinth.com/mod/betterend-neoforge/version/j1z79Nh7) — `BetterEnd-21.0.39.jar` | **97.734.709** | `41cbcc3e104269ac9330747018a4e6a130647d4df598d59307f33520764f22146dfafdfcd3971cefb344d610e71f832f345c01370658374a553568af53a32257` |
+
+Ambos os SHA-512 medidos coincidem com a API do distribuidor. A publicação CurseForge do mesmo projeto declara a **21.0.39 (file ID `9306604`)**; esta rodada **não mediu o SHA do JAR CurseForge**, portanto não equiparar binários entre plataformas sem prova de hash.
+
+### Diff exaustivo do índice central ZIP/JAR: 21.0.38 → 21.0.39
+
+A comparação não se baseou no texto da página geral do mod: os **dois arquivos reais** foram baixados e suas **central directories ZIP** percorridas integralmente por caminho, CRC32 e tamanho descompactado, com checagem do nome e da ausência de entradas criadas/removidas. Cada JAR apresentou **10.469 entradas no índice central, das quais 10.163 são arquivos** (o restante corresponde a entradas de diretório). Houve **zero entradas adicionadas, zero removidas, cinco entradas com alteração de CRC32/tamanho e 10.464 sem diferença nesses metadados**. Uma igualdade de CRC32/tamanho não é uma prova criptográfica de bytes iguais; os números são de **diferença no índice central ZIP**, não SHA-256 por entry.
+
+| Entrada cujo CRC32/tamanho difere na 21.0.39 | Interpretação sustentada |
+|---|---|
+| `org/betterx/betterend/world/features/CrashedShipFeature.class` | **Código compilado alterado na geração de Crashed Ships**; coincide com a nota 21.0.39 que corrige cálculo de distância da ilha principal usando indevidamente coordenada X para ambos os eixos. A inspeção identifica a classe atingida, não demonstra o teste runtime da correção. |
+| `org/betterx/betterend/mixin/client/BlockStateModelLoaderMixin.class` | **Código compilado de model loading alterado**, associado na release à correção de modelos/estados de vasos e plantas baseadas em chorus. Não extrapolar para outros renderers ou plataformas. |
+| `assets/betterend/lang/ru_ru.json` | **Conteúdo de localização russa modificado**, coerente com a restauração/revisão anunciada. Não declarar modificação de outros arquivos de idiomas nesse delta sem evidência. |
+| `betterend.refmap.json` | Referências de mixin recompiladas/alteradas, sem novo mod ID ou prova independente de comportamento visível. |
+| `META-INF/neoforge.mods.toml` | Metadata do mod alterada, inclusive **versão interna `21.0.38` → `21.0.39`**, comprovada por leitura do conteúdo embarcado. Os requisitos abaixo permaneceram iguais. |
+
+A lista da release 21.0.39 também **repete** correções de concorrência na geração de bushes/trees/geysers/sulphur caves, limites de estruturas NBT, duplicações do Eternal Portal, regras de superfícies de Flower Islets/Waterfall Ponds e registro limitado às cores vanilla. **Esses itens já estavam documentados na 21.0.38, e as classes/assets correspondentes não aparecem entre as cinco entradas modificadas 21.0.38→21.0.39.** Portanto, são tratados como **notas cumulativas/repetidas**, não como implementação inédita exclusiva da 21.0.39. O mesmo cuidado se aplica a itens de house/mansion templates e mushroom tags: nenhum arquivo desses grupos surgiu no diff de CRC/tamanho entre os dois JARs específicos.
+
+### Versões de dependência: metadata REAL do JAR NeoForge 21.0.39
+
+O arquivo **`META-INF/neoforge.mods.toml`** foi lido **diretamente dentro dos JARs 21.0.38 e 21.0.39**, sem inferência pelo `gradle.properties` do source 21.0.38. A metadata de **ambos** confirma as cinco dependências abaixo, todas `mandatory=true` e `side=BOTH`:
+
+| `modId` obrigatório | `versionRange` **efetivamente embarcado** | Autoridade física histórica do perfil | Confronto numérico |
+|---|---|---|---|
+| `neoforge` | `[21.1.176,)` | #001 NeoForge **21.1.250** | Limite inferior satisfeito |
+| `minecraft` | `[1.21.1]` | Perfil **1.21.1** | Versão-alvo coincide |
+| `bclib` | `[21.0.14,)` | #066 BCLib: New Dawn **21.0.26** | Limite inferior satisfeito |
+| `wover` | `[21.0.16,)` | #572 WorldWeaver: New Dawn **21.0.25** | Limite inferior satisfeito |
+| `wunderlib` | `[21.0.9,)` | #573 WunderLib: New Dawn **21.0.10** | Limite inferior satisfeito |
+
+**Significado exato:** as versões anotadas no último inventário satisfazem os mínimos **declarados no artefato 21.0.39**. Isso **não é teste de compatibilidade ABI**, não garante que o inventário histórico espelhe a instalação atual e não equivale a aprovação de upgrade. **Não houve elevação de limites obrigatórios entre os JARs 21.0.38 e 21.0.39.**
+
+### Decisão documental e gates preservados
+
+**Histórico por release de 21.0.34 a 21.0.39: FECHADO COMO AUDITORIA DOCUMENTAL.** A última lacuna objetiva (qual o delta exato de entrada ZIP no JAR 21.0.39 e se os mínimos das bibliotecas se mantiveram) foi abordada por **comparação real de distribuição e metadata**. O changelog anterior 21.0.35→21.0.38 permanece detalhado nas seções acima; divergências de descrição cumulativa não são promovidas a recursos inéditos.
+
+**Liberar o item 69. BetterEnd: New Dawn somente da lista de pesquisas DOCUMENTAIS, depois de re-fetch do commit/índice persistido.** A troca física de **21.0.34 → 21.0.39**, migração de registries/worldgen e validação de save **NÃO** estão homologadas. Gates pendentes e separados: backup e teste em cópia do mundo; conferir JAR físico atual e SHA; dependências reais atuais; dedicated server e cliente; novas regiões do End e estruturas Crashed Ship/Eternal Portal; código de biomas, palettes, tags, datapack reload, conflito com outros mods de geração (YUNG's/WorldWeaver/etc.); renderização de vasos/chorus; respawn e inventário; restart/multiplayer; rollback. **Nenhum código, JAR, modpack, config, save, categoria ou nome do dossier foi alterado nesta auditoria.**
