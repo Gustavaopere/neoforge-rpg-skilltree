@@ -159,7 +159,7 @@ A seção anterior **"75 / 90 mobs complete (26.3)"** contém adições extensas
 - `1.11.0 - 1.20+`: `604b4517c87dfc30180bb39370106cd304970ff43cbd6c1c0e8573bb71d25987f188256d6c89e0ace7540bbfd1d909869eeb6fd246fd05ef565889cfefc09ca5`
 - `1.11.1 - 1.20+`: `641a03d55c36920cc9a70d891bcca3347b196968bcb5637781f21b417b1ff893ce60652abcf02be872872fc1130ccc6785155ea3b19a0ed484de714b6229c922`
 
-**Datas oficiais UTC:** 1.10.4 em **24/02/2026 01:17:22Z**; 1.11.0 em **19/10/2026 11:14:04Z**; 1.11.1 em **19/10/2026 23:26:39Z**. **Canal Modrinth: `release`** para as duas candidatas. A etiqueta Beta da página histórica 1.10.4 do Modrinth não altera seu status e filename físicos registrados nem o canal do artefato CurseForge já documentado.
+**Datas oficiais UTC:** 1.10.4 em **24/02/2026 01:17:22Z**; 1.11.0 em **19/10/2026 11:14:04Z**; 1.11.1 em **19/10/2026 23:26:39Z**. **Canal Modrinth: `release` nas três publicações exatas**, inclusive a versão base 1.10.4 (ID `xN57JJts`), segundo `version_type` da API consultada. Este estado da publicação não altera a identidade nem certifica o SHA do ZIP físico do perfil.
 
 **Importante sobre o alcance desta nova prova:** os checksums acima pertencem aos **arquivos oficiais disponíveis no Modrinth**. Não foram comparados ao SHA real do ZIP que está no dispositivo do usuário, nem aos ZIPs das respectivas publicações CurseForge (IDs **7670377**, **9254211**, **9261871**). Embora os nomes e a cadeia de versões coincidam com a publicação upstream, **não afirmar igualdade binária entre plataformas sem baixar e calcular hashes de ambas as cópias**. O tamanho da 1.10.4 também não pode ser usado isoladamente para diagnosticar a mudança de assets das candidatas.
 
