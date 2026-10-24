@@ -142,3 +142,25 @@ A seção anterior **"75 / 90 mobs complete (26.3)"** contém adições extensas
 **Cadeia documentada com fonte exata para as duas intermediárias:** `1.10.4` instalada → [`1.11.0 - 1.20+`](https://modrinth.com/resourcepack/fresh-animations/version/KYOqeb1P) → [`1.11.1 - 1.20+`](https://modrinth.com/resourcepack/fresh-animations/version/aQjwvDfY). A release `1.11.1` acrescenta limpeza de `.properties` não necessários e atualização de metadata; duas notas etiquetadas `26.1+` não foram promovidas para 1.21.1. Os changelogs agora existem para **ambas** as releases intermediárias da variante correta, mas a auditoria de **conteúdo exato** ainda exige diffs de `assets/`, `pack.mcmeta` e testes EMF/ETF. Não foi feita extração nem comparação binária dos ZIPs, alteração de ZIP físico ou QA visual.
 
 **Decisão fail-closed:** a lacuna de changelog da `1.11.0 - 1.20+` foi resolvida por fonte primária, mas a verificação asset-a-asset e QA permanecem. O ZIP instalado é `FreshAnimations_v1.10.4.zip` e o filename documental permanece `✅-fresh-animations v1.10.4.md`. **Resource Pack #2 ainda não deve ser apagado da lista.**
+
+## Inventário criptográfico das três releases 1.20+ — 24/10/2026
+
+**Fonte primária machine-readable:** API de versões do projeto oficial **Fresh Animations**, Modrinth **50dA9Sha**. Nesta revisão foram consultados diretamente [1.10.4 / xN57JJts](https://api.modrinth.com/v2/version/xN57JJts), [1.11.0 - 1.20+ / KYOqeb1P](https://api.modrinth.com/v2/version/KYOqeb1P) e [1.11.1 - 1.20+ / aQjwvDfY](https://api.modrinth.com/v2/version/aQjwvDfY). Os três registros **incluem explicitamente Minecraft 1.21.1** na lista de compatibilidade. Os nomes abaixo são valores da propriedade `files[].filename`, não aproximações da interface web.
+
+| Release distribuída | Arquivo Modrinth exato | ID da versão | Tamanho (bytes) | SHA-1 oficial |
+|---|---|---|---:|---|
+| **1.10.4** — base histórica instalada | `FreshAnimations_v1.10.4.zip` | `xN57JJts` | **850941** | `73db740a6868e043c5e615c036fca2c912615b6e` |
+| **1.11.0 - 1.20+** — intermediária | `FreshAnimations_v1.11_1.20+.zip` | `KYOqeb1P` | **744174** | `faee9e43f1f2b4f23de9342e175f17503ce93ca0` |
+| **1.11.1 - 1.20+** — candidata | `FreshAnimations_v1.11.1_1.20+.zip` | `aQjwvDfY` | **743793** | `eaf28f57dee43c469534953517501a021d28cf21` |
+
+**SHA-512 oficial para validação mais forte do download:**
+
+- `1.10.4`: `41258f9bea1a773d823f9a014d0c08206e9e7b339bc538e1538211fff28fadd06878a836d292cbb636ed6829cd2801a509368ae3eb3ad4bedf42190a0d5f7a90`
+- `1.11.0 - 1.20+`: `604b4517c87dfc30180bb39370106cd304970ff43cbd6c1c0e8573bb71d25987f188256d6c89e0ace7540bbfd1d909869eeb6fd246fd05ef565889cfefc09ca5`
+- `1.11.1 - 1.20+`: `641a03d55c36920cc9a70d891bcca3347b196968bcb5637781f21b417b1ff893ce60652abcf02be872872fc1130ccc6785155ea3b19a0ed484de714b6229c922`
+
+**Datas oficiais UTC:** 1.10.4 em **24/02/2026 01:17:22Z**; 1.11.0 em **19/10/2026 11:14:04Z**; 1.11.1 em **19/10/2026 23:26:39Z**. **Canal Modrinth: `release`** para as duas candidatas. A etiqueta Beta da página histórica 1.10.4 do Modrinth não altera seu status e filename físicos registrados nem o canal do artefato CurseForge já documentado.
+
+**Importante sobre o alcance desta nova prova:** os checksums acima pertencem aos **arquivos oficiais disponíveis no Modrinth**. Não foram comparados ao SHA real do ZIP que está no dispositivo do usuário, nem aos ZIPs das respectivas publicações CurseForge (IDs **7670377**, **9254211**, **9261871**). Embora os nomes e a cadeia de versões coincidam com a publicação upstream, **não afirmar igualdade binária entre plataformas sem baixar e calcular hashes de ambas as cópias**. O tamanho da 1.10.4 também não pode ser usado isoladamente para diagnosticar a mudança de assets das candidatas.
+
+**Estado da investigação binária:** as URLs de distribuição oficial foram identificadas, mas o ambiente desta rodada **não conseguiu recuperar os ZIPs para abrir seu conteúdo**. Portanto **nenhum inventário ZIP interno, diff de `assets/` ou `pack.mcmeta`, comparação de propriedades, teste EMF/ETF, teste visual ou relog foi executado**. Os hashes tornam viável atestar futuramente que os três ZIPs obtidos correspondem exatamente às releases da variante certa antes de realizar o diff, mas **não resolvem** por si só a auditoria de assets. **Resource Pack #2 permanece na lista; sem promoção do ZIP físico `FreshAnimations_v1.10.4.zip` e sem renomear o dossier certificado.**
