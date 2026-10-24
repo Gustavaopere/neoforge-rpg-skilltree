@@ -64,7 +64,7 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 | 52 | Simply More x Excalibur | `Simply More x Excalibur.zip` | sem versão semântica própria publicada | `Medieval + Mod Support` | `Medieval + Mod Support/✅-simply-more-x-excalibur.md` | 18/09/2026 - 11:04 |
 | 53 | Simply Swords x Excalibur | `Simply Swords x Excalibur.zip` | sem versão semântica própria publicada | `Medieval + Mod Support` | `Medieval + Mod Support/✅-simply-swords-x-excalibur.md` | 29/09/2026 - 19:06 |
 | 54 | Sounds X Ars Nouveau | `Sounds x Ars Nouveau V1.5.zip` | `1.5` | `Mod Support` | `Mod Support/✅-sounds-x-ars-nouveau v1.5.md` | 29/09/2026 - 19:06 |
-| 55 | The Brazilian Localization Project [PT-BR] | `The Brazilian Project [1.21.1-1.3.0].zip` | `1.3.0` | `Miscellaneous + Mod Support` | `Miscellaneous + Mod Support/✅-the-brazilian-localization-project-pt-br v1.3.0.md` | 29/09/2026 - 19:06 |
+| 55 | The Brazilian Localization Project [PT-BR] | `The Brazilian Project [1.21.1-1.3.0].zip` | `1.3.0` | `Miscellaneous + Mod Support` | `Miscellaneous + Mod Support/✅-the-brazilian-localization-project-pt-br v1.3.0.md` | 24/10/2026 - 03:47 |
 | 56 | True Dovah | `True Dovah.zip` | sem versão semântica própria publicada | `Mod Support` | `Mod Support/✅-true-dovah.md` | 29/09/2026 - 19:07 |
 | 57 | (Unofficial) Mandala's GUI - Dark Mode Mod Compatibility | `Mandala's GUI - Dark Mode Compat 0.3.2.zip` | `0.3.2` | `Miscellaneous + Mod Support` | `Miscellaneous + Mod Support/✅-unofficial-mandalas-gui-dark-mode-mod-compatibility v0.3.2.md` | 29/09/2026 - 19:07 |
 | 58 | Villagers Refreshed | `villagers-refreshed-v2.zip` | `2` | `Miscellaneous + Mod Support + Traditional` | `Miscellaneous + Mod Support + Traditional/✅-villagers-refreshed v2.md` | 29/09/2026 - 19:07 |
@@ -121,7 +121,7 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 
 | Nº do catálogo | Resource Pack | Último ZIP registrado | Upstream compatível com 1.21.1 | Estado |
 |---:|---|---|---|---|
-| **#55** | The Brazilian Localization Project [PT-BR] | `The Brazilian Project [1.21.1-1.3.0].zip` / 1.3.0 | **1.5.0** (Release, 20/10) | **CANDIDATO** — o changelog declara 383 mods / 101 guidebooks e inclui MineColonies; validar chaves PT-BR, placeholders, cobertura dos mods reais e precedência de lang packs |
+| **#55** | The Brazilian Localization Project [PT-BR] | `The Brazilian Project [1.21.1-1.3.0].zip` / 1.3.0 | **1.5.2** (Release, 23/10) | **CANDIDATO** — o changelog 1.5.2 repete cobertura declarada de 383 mods / 101 guidebooks da 1.5.0; delta exclusivo 1.5.0→1.5.2 não discriminado; validar ZIPs, chaves, placeholders e precedência |
 | **#37** | Fresh Animations | `FreshAnimations_v1.10.4.zip` / 1.10.4 | **1.11.1 - 1.20+** (Release, 19/10; inclui 1.21.1) | **CANDIDATO** — 1.11.1 - 26.1+ é outro artefato; 1.11.1 - 1.20+ existe e inclui MC 1.21.1; testar EMF/ETF e patches Fresh Animations |
 
 **Regra:** os ZIPs só devem ser substituídos após inventário físico atual, hash/manifest, ordem efetiva em `options.txt`, comparação de assets e QA visual. A aprovação documental não equivale a promoção física.
@@ -129,4 +129,4 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 
 ### Revisão de releases dos dois resource packs — 22/10/2026
 - **Fresh Animations #37:** linha válida 1.21.1 `1.10.4 → 1.11 - 1.20+ → 1.11.1 - 1.20+`; o registro anterior excluía incorretamente **todas** as 1.11.1 por confundir o ZIP `26.1+` com o ZIP separado `1.20+`. O changelog e o diff de assets exatos desta última variante ainda requerem inspeção; candidato não instalado. Fonte: https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/all?page=1&version=1.21.1
-- **Brazilian Localization #55:** linha válida 1.21.1 `1.3.0 → 1.4.0 → 1.5.0`; changelog de 1.5.0 declara cobertura de 383 mods e 101 guidebooks (inclui MineColonies entre nomes novos). Não inferir que a diferença entre contagens equivale a novos mods nem certificar chaves sem diff de ZIP. Fonte: https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9263820
+- **Brazilian Localization #55:** linha válida 1.21.1 `1.3.0 → 1.4.0 → 1.5.0 → 1.5.2`; notas da 1.5.2 reutilizam cobertura cumulativa de 383 mods e 101 guidebooks da 1.5.0; delta exclusivo não comprovado sem comparação ZIP. Fonte: https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9300904
