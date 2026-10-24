@@ -212,3 +212,28 @@ O artefato publicado está confirmado no catálogo oficial e no repositório Mav
 
 **Estado agora:** baseline `19.56.0.440`; cadeia de releases publicada já catalogada integralmente; changelogs próprios confirmados para `.453`, `.454` e `.456`; **lacunas restantes exclusivamente `.455` e `.457`**. **Não considerar a auditoria estrita concluída** até mapear as diferenças dessas duas builds por changelog, source/tag ou diff do artefato. Regressões: recipe source/display identity, `IBookmarkManager`, category plugins, synthetic recipe IDs, mouse navigation, addons JEI/Polymorph/RecipeTransfer/Create/Sophisticated, build loader e migrations. Fonte catálogo: https://www.curseforge.com/minecraft/mc-mods/jei/files/all?version=1.21.1 .
 
+## Complemento de changelog exato NeoForge — 24/10/2026: JEI 19.69.0.456
+
+**Preservação física:** `jei-1.21.1-neoforge-19.56.0.440.jar`, runtime 19.56.0.440, mod ID `jei`. Este complemento **não** aprova upgrade e **não** supõe diferenças de bytecode entre loaders. Identidade do projeto CurseForge oficial **Just Enough Items (JEI)**; categorias temáticas **API and Library + Map and Information**, pasta preservada.
+
+### Fonte primária própria da build NeoForge (não de Forge/Fabric)
+
+**Modrinth oficial do autor, versão `FLLyiWf8`:** https://modrinth.com/mod/jei/version/FLLyiWf8 — título **19.69.0.456 for NeoForge 1.21.1**, canal **Beta**, mostra uma lista de commits/mudanças da própria publicação. Isso permite ampliar a descrição anteriormente restrita à issue **#4554** para a **.456**, sem transportar mudanças de outras plataformas como fatos já testados. O autor também mantém o source `mezz/JustEnoughItems`, branch `1.21.1`; os commits descritos podem ser encontrados na janela **18–19/10/2026**.
+
+| Superfície | Mudanças listadas para a versão oficial **19.69.0.456 NeoForge 1.21.1** |
+|---|---|
+| **Busca/indexação** | **Lucene** passa a sustentar a busca de ingredientes; adiciona API de **refresh da busca em runtime**; **oculta ingredientes quando não está pesquisando**; desenha sugestões de autocompletar acima dos itens na grade. O último ajuste foi comitado em **19/10**. |
+| **Identidade de receitas e integração com plugins** | **Source IDs sintéticos** filtrados e com prefixo barra; decoradores podem sobrescrever IDs de origem das receitas; ignora ingredientes apenas de renderização na indexação; introduz extensões de categorias vanilla de cocção e widgets para botões de receitas. |
+| **UX / controles** | Corrige atalhos de teclado em **slots sintéticos de containers** (#4561), atalhos do modo cheat no botão de configuração (#4548), persistência de visibilidade do overlay entre inicializações (#2296), layout de bookmarks quando sidebars ficam nos cantos (#4556) e introduz atalhos de cheat no inventário. |
+| **Plataformas / regressões** | A publicação também lista correção de **carregamento da API em ambiente de desenvolvimento Forge**, hotkey modifiers no Fabric e marcação de Minecraft 26.1.2 como não suportado. **Essas mudanças são restritas às respectivas plataformas**, e sua presença na lista não significa que sejam mudanças de runtime NeoForge. |
+
+**Conferência de source:** commits `c35dd12f6cb9b89ed803c621c879d382c67bca80` (autocomplete por cima dos itens), `a4a5321b3a30e0f1d88af1edf4a762685e6d0f36` (search-refresh API), `fd1aa7cf44104782e273bacee1223f38f09001c0` (Lucene), `3cbb5e65714dce00d3ac0332845d51714a6dee77` e `803883f6e5596dc01ff2450e996ee507014fcd53` (IDs sintéticos). A publicação **.456** atribui a lista inteira ao seu changelog; **não supor que cada entrada tenha surgido exatamente na diferença binária .455→.456 sem comparar JARs**, pois alguns changelogs de projeto podem listar mudanças acumuladas.
+
+### Lacunas remanescentes e testes
+
+- **19.64.0.455, Release NeoForge 1.21.1 de 16/10:** código `mezz/JustEnoughItems` da janela 15/10 mostra remoção de CI Travis e teste de ligação de interfaces empacotadas de **Forge**, mas **a página Modrinth localizada para `19.64.0.455` refere-se ao JAR Forge**, não ao artefato NeoForge. Não atribuir o fix exclusivo a NeoForge por versão textual igual; é necessário release note do NeoForge ou diff do JAR exato.
+- **19.69.0.457, Beta NeoForge 1.21.1 de 20/10:** há commit source `5f8f1418804ba217737153d1af7854529d5407c1` em 20/10 com teste de **compatibilidade de bytecode dos JARs publicados**, mas não foi recuperada evidência de que ele componha a build **.457** nem de um changelog exclusivo do artefato. Não declarar fix funcional/runtime deste número a partir do commit.
+- **QA ainda não realizado:** Lucene/search refresh com 500+ mods, regex/locale de idioma PT-BR, plugins de receitas sintéticas e APIs de IDs, bookmarks, cheat shortcuts, recipe widgets, incremental index rebuild, KubeJS/datapacks, Polymorph, Create, Sophisticated/JEI Index, servidor dedicado e resource reload; a estabilidade com addons não decorre de notas de release.
+
+**Resultado:** a 19.69.0.456 está **substancialmente mais detalhada por fonte oficial NeoForge** do que na documentação anterior. O inventário de releases posteriores segue completo, mas **.455 e .457 permanecem sem vínculo suficiente do delta exclusivo ao JAR NeoForge exato**. **#49 permanece PENDENTE**, JAR físico e nome certificado do dossier preservados.
+
