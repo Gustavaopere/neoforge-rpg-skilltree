@@ -328,3 +328,19 @@ O mesmo projeto publicou o arquivo exato [`BetterEnd-21.0.39.jar`, CurseForge **
 - **Testes não executados:** servidor dedicado, worldgen End em novo mundo/cópia, estruturas, saved chunks, item/color registry migration, portal, reload, datapacks, multiplayer, performance e restarts.
 
 **Decisão de auditoria estrita:** houve avanço relevante e a nova `.39` está catalogada; a **atribuição exclusiva `.38→.39` e o pin de código-fonte/binário `.39` continuam não resolvidos**, assim como o gate de dependências do candidato. **Não retirar BetterEnd: New Dawn da fila nesta rodada**; não alterar a versão física `21.0.34`, filename ou pasta. Nenhum JAR, asset, save, configuração ou workflow foi modificado.
+
+## Matriz numérica de dependências na fonte 21.0.38 — 24/10/2026
+
+**Nova evidência primária, com commit estável:** a branch `main` do projeto correto [`Reijin2312/BetterEnd-New-Dawn`](https://github.com/Reijin2312/BetterEnd-New-Dawn) foi reconsultada em **24/10/2026**, no HEAD `2cb33c0f97dcff12dfab92050e6efac6f083cbf4`. O arquivo [`gradle.properties` desse commit](https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/2cb33c0f97dcff12dfab92050e6efac6f083cbf4/gradle.properties) declara `minecraft_version=1.21.1`, **`mod_version=21.0.38`** e três versões mínimas de dependências de compilação: `bclib_version=21.0.14`, `wover_version=21.0.16`, `wunderlib_version=21.0.9`. O [`META-INF/neoforge.mods.toml` do mesmo commit](https://github.com/Reijin2312/BetterEnd-New-Dawn/blob/2cb33c0f97dcff12dfab92050e6efac6f083cbf4/src/main/resources/META-INF/neoforge.mods.toml) declara os três como **`mandatory=true`, `side=BOTH`** e com **`versionRange="[\${...},)"`**, isto é, limite inferior inclusivo, sem limite superior no **template fonte**.
+
+| Dependência declarada no source 21.0.38 | `modId` exigido na metadata | Limite inferior (do `gradle.properties`) | JAR top-level registrado na modlist física | Comparação numérica |
+|---|---|---|---|---|
+| **BCLib: New Dawn** | `bclib` | **`[21.0.14,)`** | **#066** `bclib-21.0.26.jar` | **21.0.26 ≥ 21.0.14** |
+| **WorldWeaver: New Dawn (WoVer)** | `wover` | **`[21.0.16,)`** | **#572** `worldweaver-21.0.25.jar` | **21.0.25 ≥ 21.0.16** |
+| **WunderLib: New Dawn** | `wunderlib` | **`[21.0.9,)`** | **#573** `wunderlib-21.0.10.jar` | **21.0.10 ≥ 21.0.9** |
+
+**Identificação do `modId` WoVer:** o [README do próprio WorldWeaver: New Dawn](https://github.com/Reijin2312/WorldWeaver-New-Dawn/blob/master/README.md) usa `modId="wover"` para dependência NeoForge; portanto **não** inferir que o ID interno seja `worldweaver` apenas pelo nome do JAR top-level.
+
+**Interpretação estritamente autorizada:** os números das três bibliotecas **presentes nominalmente no snapshot físico** passam os **limites inferiores escritos no código-fonte público de BetterEnd 21.0.38**. Isso reduz uma lacuna documental importante, mas **não comprova que esses limites tenham sido interpolados da mesma forma no JAR distribuído da 21.0.38**, nem compatibilidade binária/API real, nem satisfaz o requisito de **BetterEnd 21.0.39**: esse artefato CurseForge **9306604** foi publicado enquanto o source público consultado continua em **`mod_version=21.0.38`**. Não projetar a metadata do 21.0.38 sobre a 21.0.39. A metadata de NeoForge e versões internas nos quatro arquivos JAR concretos ainda precisa ser lida antes de instalação.
+
+**Portões remanescentes:** obter o próprio `BetterEnd-21.0.39.jar`, ler `META-INF/neoforge.mods.toml` **embutido e com placeholders substituídos**, checar requisito da versão NeoForge, os `modId` e `versionRange` exatos; revalidar que as bibliotecas instaladas oferecem as APIs usadas; isolar deltas exclusivos `21.0.38→21.0.39` com source/artefato e executar smoke de worldgen, estruturas, cores/registries e multiplayer. **Nada nesta matriz é aprovação de upgrade, e o item #15 do Bloco de Notas continua PENDENTE.** Não foram alterados JARs, packs, saves, configs, pastas nem nomes do dossier.
