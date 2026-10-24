@@ -251,7 +251,7 @@ Fontes upstream: CurseForge Goety 3.1.5 (file ID 8905184), 3.1.5.1 (file ID 8911
 
 ## Inventário de candidatos do backport 1.20.1 → 1.21.1 — 24/10/2026
 
-**Autoridade física e escopo:** posição histórica física #? (ver posição exata no índice mestre), JAR `goety-3.1.4.jar`/runtime **3.1.4**, mod ID e filename mantidos. **Projeto oficial CurseForge ID 586095, Goety - The Dark Arts**, categorias oficiais **Adventure and RPG + Magic + Mobs + Structures**; não confundir com **Goetied** ou outros forks. O arquivo **NeoForge 1.21.1** candidato continua `Goety - 3.2.1.jar`, **File ID 9207885**, publicado **16/10/2026**.
+**Autoridade física e escopo:** posição histórica física **#305** (índice mestre), JAR `goety-3.1.4.jar`/runtime **3.1.4**, mod ID e filename mantidos. **Projeto oficial CurseForge ID 586095, Goety - The Dark Arts**, categorias oficiais **Adventure and RPG + Magic + Mobs + Structures**; não confundir com **Goetied** ou outros forks. O arquivo **NeoForge 1.21.1** candidato continua `Goety - 3.2.1.jar`, **File ID 9207885**, publicado **16/10/2026**.
 
 ### O que foi explicitamente prometido pelo mantenedor da build NeoForge 3.2.1
 
