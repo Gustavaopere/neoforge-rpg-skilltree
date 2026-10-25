@@ -25,7 +25,7 @@
 
 | Nº físico | Mod | JAR instalado / versão física | Último artefato oficial NeoForge 1.21.1 | Dossier e ações pendentes |
 |---:|---|---|---|---|
-| 128 | Create Aeronautics: Automated Logistics | `create_aeronautics_automated_logistics-0.6.2.jar` / **0.6.2** | [`create_aeronautics_automated_logistics-0.7.0.jar`](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-automated-logistics/files/9184782), **0.7.0** (14/10/2026) | [Revisão detalhada do dossier](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md): cargo e docking, Display Links, mapas, novas bridges de storage e contratos server-authoritative para quests/perks. **QA de Sable 2.0.5 vs 2.0.6, Create: Simulated e integração pendente; sem troca física de JAR nem certificação ✅.** |
+| #128 | Create Aeronautics: Automated Logistics | `create_aeronautics_automated_logistics-0.6.2.jar` / **0.6.2** | [`create_aeronautics_automated_logistics-0.7.0.jar`](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-automated-logistics/files/9184782), **0.7.0** (14/10/2026) | [Revisão detalhada do dossier](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md): cargo e docking, Display Links, mapas, novas bridges de storage e contratos server-authoritative para quests/perks. **QA de Sable 2.0.5 vs 2.0.6, Create: Simulated e integração pendente; sem troca física de JAR nem certificação ✅.** |
 
 **Atualização de conteúdo, não reorganização:** o dossier mantém exatamente o nome e a pasta existentes; a coluna `Versão instalada` da tabela física abaixo continua `0.6.2`. A numeração de pesquisa **#50** não é a posição física do mod (**#128**).
 
