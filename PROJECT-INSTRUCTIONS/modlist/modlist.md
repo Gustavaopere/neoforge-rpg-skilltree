@@ -21,6 +21,14 @@
 
 **Create Aeronautics: Automated Logistics não aumenta a contagem.** Apesar de ter sido citado junto das novas adições, ele já consta na autoridade física de 16/09/2026 como `create_aeronautics_automated_logistics-0.6.2.jar` / `0.6.2` e já ocupa uma linha da tabela física de 587 entradas.
 
+### Consulta de atualização upstream — 25/10/2026 (não representa instalação)
+
+| Nº físico | Mod | JAR instalado / versão física | Último artefato oficial NeoForge 1.21.1 | Dossier e ações pendentes |
+|---:|---|---|---|---|
+| 128 | Create Aeronautics: Automated Logistics | `create_aeronautics_automated_logistics-0.6.2.jar` / **0.6.2** | [`create_aeronautics_automated_logistics-0.7.0.jar`](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-automated-logistics/files/9184782), **0.7.0** (14/10/2026) | [Revisão detalhada do dossier](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md): cargo e docking, Display Links, mapas, novas bridges de storage e contratos server-authoritative para quests/perks. **QA de Sable 2.0.5 vs 2.0.6, Create: Simulated e integração pendente; sem troca física de JAR nem certificação ✅.** |
+
+**Atualização de conteúdo, não reorganização:** o dossier mantém exatamente o nome e a pasta existentes; a coluna `Versão instalada` da tabela física abaixo continua `0.6.2`. A numeração de pesquisa **#50** não é a posição física do mod (**#128**).
+
 ## Alterações solicitadas pós-snapshot — 03/10/2026
 
 > Estas mudanças representam o **estado-alvo solicitado**, não uma nova autoridade física. A tabela de 587 entradas permanece intacta como snapshot histórico até novo dump.
@@ -175,7 +183,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 125 | Create Stuff 'N Additions | `create-stuff-additions1.21.1_v2.1.4b.jar` | `2.1.4b (distribuição); metadata interna 2.1.4.` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 08:03 |
 | 126 | Create Utilities J | `Create-Utilities-J-1.21.1-0.3.4+1.21.1.jar` | `0.3.4+1.21.1` | `Automation + Create` | 23/09/2026 - 08:03 |
 | 127 | Create Aero Radars | `create_aero_radar-0.1.1-1.21.1.jar` | `0.1.1-1.21.1` | `Create + Technology` | 23/09/2026 - 08:03 |
-| 128 | Create Aeronautics: Automated Logistics | `create_aeronautics_automated_logistics-0.6.2.jar` | `0.6.2` | `Addons + Automation + Create` | 23/09/2026 - 08:03 |
+| 128 | Create Aeronautics: Automated Logistics | `create_aeronautics_automated_logistics-0.6.2.jar` | `0.6.2` | `Addons + Automation + Create` | 25/10/2026 - 00:41 |
 | 129 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` | `1.2.0` | `Create` | 23/09/2026 - 08:03 |
 | 130 | Create Aeronautics: Throwable Rope Connector | `create_aeronautics_throwable_rope_connector-0.4.3.jar` | `0.4.3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 08:03 |
 | 131 | create aeronautics：toolgun | `create_aeronautics_toolgun-0.3.6.jar` | `0.3.6` | `Utility & QoL` | 23/09/2026 - 08:03 |
@@ -1032,7 +1040,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 47 | Dynamic Trees - VanillaBackport | [Abrir `.md`](./Addons%20%2B%20World%20Gen/%E2%9C%85-dynamic-trees-vanillabackport%20v1.7.0.md) | `1.7.0` | 1.7.0 (sem release posterior NeoForge 1.21.1) | **REVALIDADO: intervalo vazio; provider 1.2 não homologado** |
 | 48 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | 5.2.0 NeoForge 1.21.1 (20/10) | **AUDITORIA DOCUMENTAL FECHADA; 5.1.3 changelog genérico** |
 | 49 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.56.0.440.md) | `19.56.0.440` | 19.64.0.455 Release (16/10); 19.69.0.457 Beta (20/10) | **AUDITORIA DE CHANGELOGS CONCLUÍDA 24/10: GITHUB COMPARE .454→.455 = 2 COMMITS (TESTE FORGE/CI); .456→.457 = 1 COMMIT (VERIFICAÇÃO BYTECODE). LIBERADO PARA RETIRAR #49 DO BLOCO DE NOTAS. UPGRADE FÍSICO BLOQUEADO POR MEZZCONFIG/JARJAR E QA.** |
-| 50 | Create Aeronautics: Automated Logistics | [Abrir `.md`](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md) | `0.6.2` | 0.6.2 | **BLOQUEADO: dossier sem ✅; não editado** |
+| 50 | Create Aeronautics: Automated Logistics | [Abrir `.md`](./Addons%20%2B%20Automation%20%2B%20Create/create-aeronautics-automated-logistics%20v0.6.2.md) | `0.6.2` | **0.7.0 Release** (14/10/2026; NeoForge 1.21.1; CF 9184782) | **PESQUISA 0.6.2→0.7.0 DOCUMENTADA EM 25/10**: Display Links/Airship Station, novas integrações de Cargo Link (Connected Silos, Iron Vaults, Propulsion Platinum Tanks), docking/filas/restore, 2 s de estabilização de cargo, Xaero/Jade e animações. Diff oficial +70/−11/107 modificados; Sable físico 2.0.5 vs upstream testado 2.0.6, JourneyMap 6.0.8 vs 6.0.9, Create: Simulated pendente. **Instalado 0.6.2; QA e certificação ✅ pendentes.** |
 | 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.60 Beta (19/10; 3.59 corrigiu teach recipes) | **AUDITORIA DOCUMENTAL 3.57→3.60 COMPLETA; QA FÍSICO SEPARADO** |
 | 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.65 (22/10) | **AUDITORIA DOCUMENTAL 8.39→8.65 COMPLETA (8.48/8.55 NÃO PUBLICADAS 1.21.1); QA FÍSICO SEPARADO** |
 | 53 | Create: Stats & Power | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-stats-power%20v1.13.1.md) | `1.13.1` | 1.15.0 | **AUDITORIA DOCUMENTAL 1.13.1→1.14.5→1.15.0 CONCLUÍDA; QA FÍSICO SEPARADO** |
@@ -1163,8 +1171,8 @@ Esta matriz segue a numeração do pedido, não a posição física da tabela de
 | 47 | Dynamic Trees - VanillaBackport | 1.7.0 | 1.7.0 | Revalidado sem release posterior; validar integração com VanillaBackport 1.2 |
 | 48 | Polytone | 1.21-4.4.0 | 4.5.x→5.0.x→5.1.1→5.1.2→5.1.3→5.2.0 | Fechada segundo changelogs disponíveis; 5.1.3 descrita genericamente pelo autor |
 | 49 | Just Enough Items (JEI) | 19.56.0.440 | 19.64.0.455 Release; 19.69.0.457 Beta | **CHANGELOGS CONCLUÍDOS — #49 REMOVÍVEL**: source compare official .454→.455 comprova 2 commits de teste/CI; .456→.457 comprova 1 commit de checagem de bytecode. **UPGRADE NÃO HOMOLOGADO**: baseline MezzConfig físico 0.5.9 cumpre source JEI .440, mas está abaixo de >=0.6.3 nos pins .455/.457; JarJar, metadata binária e QA continuam pendentes |
-| 50 | Create Aeronautics: Automated Logistics | 0.6.2 | 0.6.2 | **INELEGÍVEL** (dossier sem ✅); nenhum edit, move ou inclusão como certificado |
-**Regra do Bloco de Notas após CI, merge e re-fetch:** liberar **41, 42, 43, 44, 46, 47 e 48** apenas como revisão do histórico documental. **Manter 45 e 49** até suprir fontes; **manter 50** até auditoria certificadora separada. QA físico/backup/migração não realizados.
+| 50 | Create Aeronautics: Automated Logistics | 0.6.2 | 0.7.0 (14/10/2026) | **REVISÃO DOCUMENTAL 0.6.2→0.7.0 REGISTRADA 25/10**; dossier atualizado sem ✅, sem move; versão física 0.6.2, QA de Sable 2.0.5/2.0.6 e compatibilidades pendente. **INELEGÍVEL para reorganização** até certificação individual |
+**Regra do Bloco de Notas após CI, merge e re-fetch:** liberar **41, 42, 43, 44, 46, 47 e 48** apenas como revisão do histórico documental. **Manter 45 e 49** até suprir fontes. **#50 teve a pesquisa upstream 0.6.2→0.7.0 documentada em 25/10, mas permanece inelegível à reorganização por ausência de ✅; QA físico independente.** QA físico/backup/migração não realizados.
 
 ## Fechamento comprovado da auditoria documental #11 — Punchy (24/10/2026)
 
