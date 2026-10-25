@@ -164,4 +164,12 @@ Também há testes upstream com **Create: Iron Vaults 1.2.0**, **Simurail 0.1.0*
 - [ ] Validar integração de quests/perks com confirmação idempotente server-side.
 - [ ] Nenhuma linha deste checklist deve ser marcada aprovada sem teste real no perfil.
 
-**Conclusão documental:** changelog 0.6.2 → 0.7.0 registrado para engenharia dos nossos mods. **JAR instalado 0.6.2, upgrade físico não executado, QA pendente, certificação/`✅-` e diretório inalterados.**
+**Conclusão documental:** changelog 0.6.2 → 0.7.0 registrado para engenharia dos nossos mods. **JAR instalado 0.6.2, upgrade físico não executado, QA pendente, diretório preservado e prefixo `✅-` aplicado à revisão documental (não à instalação física).**
+
+## Marcação documental após revisão — 25/10/2026
+
+- **Filename após revisão solicitada:** `✅-create-aeronautics-automated-logistics v0.6.2.md`.
+- **Versão instalada, comprovada pelo snapshot físico:** `0.6.2`, JAR `create_aeronautics_automated_logistics-0.6.2.jar`, posição #128.
+- **Versão oficial mais recente, pesquisada e descrita:** `0.7.0` (14/10/2026), JAR publicado `create_aeronautics_automated_logistics-0.7.0.jar`.
+- A nota de certificação anterior (02/10/2026) que indica ausência de `✅-` é **histórica**. O prefixo atual sinaliza revisão técnica/documental concluída segundo instrução expressa posterior. Ele **não** representa migração física para 0.7.0, validação funcional nem nova auditoria Notion.
+- A pasta `Addons + Automation + Create` permanece idêntica. A renomeação estrutural não deve atualizar artificialmente a data da última edição documental significativa anteriormente registrada no índice.
