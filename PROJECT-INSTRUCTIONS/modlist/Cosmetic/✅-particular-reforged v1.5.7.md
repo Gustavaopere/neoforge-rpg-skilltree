@@ -136,3 +136,30 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Modrinth oficial: ambiente client-side e changelog 1.5.7.
 - Changelog 1.5.7: fix Sable ship/boat splash spam, foam wake, `enabledEffects.sableSplashes` e cave-dust exclude list.
 - **Limite:** config local e lista completa de efeitos habilitados não foram lidas; presença de mixin compat não foi confundida com presença top-level do mod alvo.
+
+## Versões 1.6.0 e 1.6.1 — NeoForge 1.21.1 (17/11/2026, não instaladas)
+
+**Runtime físico do pack:** `particular-1.21.1-NeoForge-1.5.7.jar` (#436), versão 1.5.7, projeto oficial [Particular ✨ Reforged, CurseForge ID 1219053](https://www.curseforge.com/minecraft/mc-mods/particular-reforged). O catálogo [filtrado para NeoForge Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/particular-reforged/files/all?page=1&pageSize=20&version=1.21.1) mostra **exatamente duas releases posteriores publicadas: 1.6.0 e 1.6.1**, ambas de **13/11/2026**, antes da última versão compatível **1.6.1**. A lista não mostra 1.5.8 ou 1.5.9 como publicações para a plataforma.
+
+### 1.6.0 — novos sistemas de ambientação
+
+**Novos efeitos, todos client-side/cosméticos e configuráveis:**
+- Cascades/foam overhaul: espuma em cascatas com múltiplos puffs menores, variando escala/brilho e surgindo na base da queda; **mist** translúcida e escala/intensidade segundo altura da queda.
+- **Leaf Snow:** folhas cobertas por neve ou recebendo neve soltam partículas em flocos, com toggles `enabledEffects.leafSnow` e `advancedSettings.leafSnowSettings.spawnChance`.
+- **Cold Breath:** sopro de vapor de jogadores/mobs em biomas frios; exclui undead, underwater e invisíveis. `enabledEffects.coldBreath`, `advancedSettings.coldBreathSettings`.
+- **Footstep Dust:** poeira colorida pelo bloco ao correr/aterrar em areia, cascalho, terra, grama e semelhantes, substituindo partículas vanilla nessas condições; seleção de blocos/tags em `advancedSettings.footstepDustSettings`.
+- **Pollen/Spores:** pólen diurno perto de flores, esporos em musgos/cogumelos e cavernas exuberantes; `enabledEffects.pollen`, `enabledEffects.spores` e ajustes `advancedSettings.pollenAndSporeSettings`.
+- **Embers:** brasas em campfires e fornos acesos; brasas azuis em soul campfires. `enabledEffects.embers` e `advancedSettings.emberSettings`.
+- **Tumbleweeds:** arbustos secos rolando em biomas áridos; `enabledEffects.tumbleweeds` e `advancedSettings.tumbleweedSettings`.
+- **Rainbows:** arco-íris após chuva, oposto ao sol, às vezes com arco secundário, com chance/duração/opacidade configuráveis via `enabledEffects.rainbows` e `advancedSettings.rainbowSettings`.
+- **Screen Shake:** tremor de câmera por Warden, Ravager, Ender Dragon e explosões próximas, dependente da distância, desligável por `enabledEffects.screenShake` e personalizável por `shakeIntensity`/`shakeSounds`.
+
+**Compatibilidade:** configuração `advancedSettings.cascadeSettings` (`heightScaling`, `minIntensity`, `maxIntensity`, `maxFallHeight`, `foamDensity`, `puffSize`, `mistDensity`) e `enabledEffects.cascadeMist`. Nova API `ParticularApi.addCascadeFilter((level,pos) -> ...)` permite a outros mods **bloquear cascatas em posições específicas**, criada para **Streams Reflowing**. Cache das cascatas agora respeita os filtros quando atualizado; mobs e outros jogadores caindo na água geram novamente splashes 3D conforme altura. Um aviso única vez por mundo informa novos efeitos na primeira visita após atualizar.
+
+### 1.6.1 — aviso de atualização
+
+A nota oficial da 1.6.1 corrige o **update notice**: a mensagem uma vez no chat passa a aparecer somente em **mundos preexistentes**, não mundos recém-criados. Acrescenta `enabledEffects.updateNotice` para desligar a mensagem. Não há nova família de partículas documentada exclusivamente nesta micro-release.
+
+**Limite/QA:** o changelog foi publicado pelo mesmo autor no CurseForge da família de plataformas, com headings **1.6.0** e **1.6.1**; a listagem física NeoForge 1.21.1 confirma ambos os JARs, mas ainda é necessário testar o próprio binário com shaders, Sable (splashes/wake), Streams Reflowing, Particle Rain/PartiCull, wind/water physics, chunk unload, camera shake e carga de partículas. Esta auditoria não demonstra presença de todas as integrações citadas no perfil físico. Configs antigas não foram lidas; não presumir quais toggles estão habilitados.
+
+**Fontes oficiais:** [CurseForge, changelog cumulativo 1.6.0 e 1.6.1](https://www.curseforge.com/minecraft/mc-mods/particular-reforged/files/9595401), [arquivo NeoForge 1.21.1 1.6.1 e histórico](https://www.curseforge.com/minecraft/mc-mods/particular-reforged/files/all?page=1&pageSize=20&version=1.21.1). **Conclusão documental:** 1.5.7→1.6.0→1.6.1 auditadas; versão instalada 1.5.7 e nome certificado preservados, sem mudanças no JAR nem testes de instalação.

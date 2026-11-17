@@ -69,6 +69,16 @@
 | 240 | Easy NPC (Bundle) | 7.12.1 | [7.19.0](https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?page=1&version=1.21.1) | EME físico 2.4.0 abaixo do 2.6.0+ opcional; coordenar módulos e rede |
 | 442 | Photon | 2.2.6.a | [2.2.11](https://www.curseforge.com/minecraft/mc-mods/photon/files/9489406) | GPU/editor/FX, LDLib2/QA pendentes |
 
+
+### Auditoria documental — Create : Teleporters e Particular ✨ Reforged (17/11/2026)
+
+> Versões recentes do CurseForge auditadas. Não altera o JAR nem a versão física dos itens #203 e #436.
+
+| Nº físico | Mod | Versão física | Release NeoForge 1.21.1 documentada até | Resultado |
+|---:|---|---|---|---|
+| 203 | [Create : Teleporters](https://www.curseforge.com/minecraft/mc-mods/create-teleporters) | `2.0.2b` (metadata runtime 2.0.2) | [3.0.2](https://www.curseforge.com/minecraft/mc-mods/create-teleporters/files/9407716) | Correção upstream compatibilidade Immersive Aeronautics; testes Sable/portal/save pendentes |
+| 436 | [Particular ✨ Reforged](https://www.curseforge.com/minecraft/mc-mods/particular-reforged) | `1.5.7` | [1.6.1](https://www.curseforge.com/minecraft/mc-mods/particular-reforged/files/all?page=1&pageSize=20&version=1.21.1) | Novos efeitos ambientais da 1.6.0 e opção updateNotice da 1.6.1; performance/compat QA pendentes |
+
 ## Adições pós-snapshot físico — 02/10/2026
 
 > Estas entradas foram confirmadas pelo usuário como adicionadas **depois** de `modlist(1).txt`. Os filenames/versões abaixo são os artefatos upstream atuais usados como alvo documental; **não são promovidos a autoridade física** até novo dump do perfil. Por isso não recebem número físico nem `✅-`.
@@ -317,7 +327,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 200 | Create Propulsion: Simulated | `createpropulsion-1.1.5.jar` | `1.1.5` | `Addons + Create + Player Transport + Technology` | 24/09/2026 - 00:20 |
 | 201 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 24/09/2026 - 00:20 |
 | 202 | Create: Schematic Checker | `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar` | `2.27.45-6.0` | `Addons + Bug Fixes + Create` | 24/09/2026 - 00:44 |
-| 203 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 22/10/2026 - 19:52 |
+| 203 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 17/11/2026 - 16:14 |
 | 204 | Create: Transmission! | `createtransmission-1.2.2+neoforge-create6-1.21.1.jar` | `1.2.2+neoforge-create6-1.21.1` | `Addons + Cosmetic + Create + Technology + Utility & QoL` | 24/09/2026 - 00:44 |
 | 205 | Create Ultimine | `createultimine-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `Addons + Create + Utility & QoL` | 24/09/2026 - 00:44 |
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 24/10/2026 - 01:34 |
@@ -550,7 +560,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 433 | ParCool! ~ Minecraft Parkour ~ | `ParCool-1.21.1-4.0.0.3.jar` | `4.0.0.3` | `Adventure and RPG + Miscellaneous + Utility & QoL` | 23/10/2026 - 01:43 |
 | 434 | Particle Effects | `ParticleEffects-1.5.0+1.21.1+neoforge.jar` | `1.5.0+1.21.1+neoforge` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
 | 435 | Particle Rain | `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` | `4.0.0-beta.11` | `Cosmetic` | 25/09/2026 - 15:17 |
-| 436 | Particular ✨ Reforged | `particular-1.21.1-NeoForge-1.5.7.jar` | `1.5.7` | `Cosmetic` | 25/09/2026 - 15:17 |
+| 436 | Particular ✨ Reforged | `particular-1.21.1-NeoForge-1.5.7.jar` | `1.5.7` | `Cosmetic` | 17/11/2026 - 16:14 |
 | 437 | PartiCull: Particle Fix | `PartiCull-neoforge-1.21.1-v2.0.jar` | `2.0` | `Performance + Utility & QoL` | 25/09/2026 - 15:17 |
 | 438 | Patchouli | `Patchouli-1.21.1-93-NEOFORGE.jar` | `1.21.1-93-NEOFORGE` | `API and Library` | 25/09/2026 - 15:17 |
 | 439 | Pehkui | `Pehkui-3.8.3+1.21-neoforge.jar` | `3.8.3+1.21-neoforge` | `API and Library` | 25/09/2026 - 15:17 |
