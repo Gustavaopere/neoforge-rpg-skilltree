@@ -372,3 +372,39 @@ A cadeia aplicável **após 2.7e** permanece **2.8 → 2.8a → 2.8b → 2.8c �
 **Sequência de publicações NeoForge 1.21.1 pós-2.8g com evidência adicional:** **3.0 → 3.1b → 3.2 → 3.2b**. Ainda não foi certificado se houve algum JAR NeoForge 1.21.1 com número **3.1**, **3.2a** ou outra etapa removida do filtro corrente; não se presume a inexistência de artefatos só porque não aparecem na primeira página. As releases 3.0 e 3.2b descritas anteriormente permanecem documentadas, **mas a alegação de fechamento exaustivo da seção anterior fica formalmente revogada**.
 
 **Situação final e fail-closed:** a pesquisa avançou até o último arquivo conhecido 3.2b, porém **a auditoria por release exata ainda NÃO está integralmente certificada**: falta confirmar os changelogs próprios de 3.1b e 3.2 nos binários NeoForge 1.21.1 (ou equivalência de artefatos), 3.2b contra notas cross-target, e a ausência de outras releases aplicáveis entre 3.0 e 3.2b. **O item 20 deve permanecer no Bloco de Notas** até resolver essas lacunas e revalidar remotamente. Nenhum JAR, configuração, diretório ou basename foi alterado: a instalação segue **2.7e**.
+
+
+## Correção complementar Punchy 3.x — versões omitidas e proveniência da distribuição (17/11/2026)
+
+**Estado ainda NÃO certificado:** a retificação anterior identificou \`3.1b\` e \`3.2\`. Uma consulta adicional à listagem CurseForge identificou também a publicação **3.2a** para **Minecraft 1.21.1 / NeoForge**, em **10/11/2026**, com nome histórico **\`punchy-3.2a-neoforge-1.21.1.jar\`**. Sua referência de file ID **9537308** consta do catálogo pesquisado, mas a URL individual devolveu erro de acesso/404 nas consultas desta auditoria; não afirmar inspeção de changelog próprio desse binário.
+
+**Sequência histórica candidata após 2.8g (NeoForge 1.21.1), com proveniência distinguida:**
+
+| Etapa | Evidência disponível | Status técnico |
+|---|---|---|
+| **3.0 (29/10)** | [CurseForge file 9359456](https://www.curseforge.com/minecraft/mc-mods/punchy/files/9359456), [Modrinth versão oficial 3.0 NeoForge 1.21.1](https://modrinth.com/mod/punchy-fpa/version/83nCNSX4) | Changelog específico do arquivo; já documentado na seção anterior |
+| **3.1b (02/11)** | Referência histórica CurseForge file **9408722** e changelog do autor em [Fabric 1.21.1 file 9408720](https://www.curseforge.com/minecraft/mc-mods/punchy/files/9408720) / [NeoForge 26.1 file 9408712](https://www.curseforge.com/minecraft/mc-mods/punchy/files/9408712) | O arquivo NeoForge 1.21.1 específico **não está atualmente acessível para confirmação direta**; não presumir equivalência de classes/assets |
+| **3.2 (07/11)** | Referência histórica CurseForge file **9500870**; [nota do autor de 3.2 para NeoForge 26.3](https://www.curseforge.com/minecraft/mc-mods/punchy/files/9500837) | A ficha exata NeoForge 1.21.1 **não está atualmente acessível**; distinguir conteúdo geral da série e features exclusivas de outros alvos |
+| **3.2a (10/11)** | Registro da distribuição **NeoForge 1.21.1** (referência file **9537308**) e [changelog oficial detalhado da mesma 3.2a em Forge 1.21.1, file 9537307](https://www.curseforge.com/minecraft/mc-mods/punchy/files/9537307) | Publicação intermediária omitida nas revisões anteriores; **changelog do próprio binário NeoForge ainda não recuperado** |
+| **3.2b (12/11)** | [Modrinth release oficial NeoForge 1.21.1, versão aVZEe0j8](https://modrinth.com/mod/punchy-fpa/version/aVZEe0j8), filename \`punchy-3.2b-neoforge-1.21.1.jar\`; [API oficial com changelog e SHA-1](https://api.modrinth.com/v2/project/8aoMKplv/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D) | **Changelog primário associado ao arquivo exato recuperado**, encerrando a lacuna de proveniência de 3.2b |
+
+**Sobre 3.1a / 3.1:** não foi confirmado um arquivo distinto \`3.1\` ou \`3.1a\` para NeoForge **Minecraft 1.21.1**. A presença desses rótulos em outros Minecraft/loaders não é prova de release neste alvo, mas tampouco a ausência das versões na listagem corrente demonstra que nunca existiram.
+
+### Delta relevante de 3.2a segundo o autor (cautela cross-loader)
+
+O [changelog 3.2a do arquivo Forge **Minecraft 1.21.1**](https://www.curseforge.com/minecraft/mc-mods/punchy/files/9537307) classifica a atualização como **hotfix 3.2** e descreve:
+
+- **Remo do barco reformulado:** movimentos de remada acompanham o tempo de animação dos paddles vanilla; braços acompanham direção/visão e rotação, com revezamento das mãos em ataque/uso de itens, incluindo offhand e escudo. O jogador pode interagir e atacar enquanto rema sem suas mãos ficarem ocupadas indevidamente.
+- **Quebra/compatibilidade com resource packs de remada:** novos clips \`oar_row\`, \`oar_row_back\`, \`oar_row_left\`, \`oar_row_right\` e \`oar_rest\`; clips antigos \`rowing\` e \`rowing_back\` deixam de executar **em primeira pessoa**. Pacotes visuais customizados devem migrar seus clips. \`oar_rest\` recebe objeto \`oar\` com placements \`rest\` e \`stroke\`, e \`disable_arm_tuning\` funciona em clips overlay.
+- **Prioridade de modelos de resource packs:** definições personalizadas prevalecem sobre o modelo interno para chests, boats, rafts, minecarts, enchanting table e pistons. \`model parts\` passam a aceitar \`variants\` por conteúdo do item, incluindo \`potion\` e estado \`charged\` de crossbow.
+- **Compatibilidade adicional:** correções da animação/transform em outros mods (incluindo casos associados ao modo Epic Fight e armas), mas **não se pode certificar quais comportamentos exatos estão no binário NeoForge 1.21.1** sem acesso à sua ficha ou inspeção.
+
+**Classificação documental:** as alterações de remada, novos nomes de clips e precedência de modelos são relevantes para resource packs, Hand Editor, primeira pessoa e compatibilidades de render. São notas **primárias do autor da mesma versão e Minecraft, mas no loader Forge**, não uma perícia do arquivo NeoForge.
+
+### Proveniência cruzada corrigida para 3.2b
+
+A consulta à **API oficial do Modrinth**, filtrada por \`game_versions=["1.21.1"]\` e \`loaders=["neoforge"]\`, retornou o artefato \`punchy-3.2b-neoforge-1.21.1.jar\`, version ID \`aVZEe0j8\`, hash SHA-1 do download \`a334fcb563a4a6a283305669ba5c9e8fbc7f6764\`, publicado 12/11/2026 às 15:39:56 UTC, **com o próprio changelog detalhado 3.2b no registro do arquivo exato**. As notas de 3.2b na seção anterior (flicker em comidas modificadas, physics no Hand Editor, Spatial GUI esquerda, Essential sleeves, itens throwable como tridente, Flashback, netherite backtank e \`thrown_charge\`) estão portanto verificadas **documentalmente para a publicação NeoForge 1.21.1**, embora nenhuma análise de bytecode ou QA tenha sido feita.
+
+**Conflito entre catálogos que impede fechamento exaustivo:** na consulta corrente à API oficial Modrinth filtrada por NeoForge 1.21.1, os únicos arquivos da série 3.x retornados foram **3.0 e 3.2b**, ao passo que consultas históricas e páginas indexadas do CurseForge registram 3.1b, 3.2 e 3.2a. As fichas exatas de alguns intermediários retornam 404/403. **Não inferir que foram removidos ou que jamais existiram**. Falta conciliar a cadeia histórica completa com registros confiáveis e recuperar ou provar a equivalência de seus changelogs exatos antes de certificar a auditoria integral. Uma comparação de binários ou histórico oficial completo solucionaria a divergência.
+
+**Decisão fail-closed:** auditoria **PARCIAL** até resolver a inconsistência de catálogo e os changelogs por arquivo NeoForge 1.21.1 de 3.1b/3.2/3.2a. **O item 20 não pode ser retirado do Bloco de Notas.** A versão instalada continua **2.7e**; não alterar o JAR, a bridge \`punchy_epicfight_neoforge.jar\`, o basename \`✅-punchy v2.7e.md\`, o caminho por categorias nem qualquer configuração. A compatibilidade de runtime Epic Fight com 3.x permanece não homologada.
