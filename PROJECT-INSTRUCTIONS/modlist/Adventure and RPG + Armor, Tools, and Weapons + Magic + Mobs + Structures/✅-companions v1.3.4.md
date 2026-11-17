@@ -133,3 +133,16 @@ Os pagamentos configuráveis podem afetar progressão, recipes, KubeJS, obtenç�
 **Fonte:** https://www.curseforge.com/minecraft/mc-mods/companions-mod/files/9056538
 
 **Estado:** runtime físico 1.3.4 preservado; upstream 1.3.6 registrada e testes ainda pendentes.
+
+## Auditoria incremental 1.3.4 → 1.3.8 (17/11/2026)
+
+**Fonte física:** posição #104, `companions-neoforge-1.21.1-1.3.4.jar`, runtime 1.3.4, SHA-1 `23f6e4f27a457a8d016412e495e417c0b36fdcc1`. A candidata upstream **NeoForge 1.21.1 1.3.8** é **não instalada**. Projeto oficial CurseForge **1300341**; pasta temática completa `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` já correta.
+
+| Release NeoForge Minecraft 1.21.1 | Data | Delta relevante | Fonte |
+|---|---|---|---|
+| **1.3.5** | 24/09/2026 | Heal Book passa a curar tamed/passive e danificar undead corretamente; Tamed Minion deixa de sofrer fall damage (detalhes na seção 16). | [CurseForge 8962932](https://www.curseforge.com/minecraft/mc-mods/companions-mod/files/8962932) |
+| **1.3.6** | 04/10/2026 | Corrige crash na animação sweeping dos Gloves; pagamentos da invocação Cornelius em cobre/Nether/End passam a aceitar itens e tags via configuração (seção 17). | [CurseForge 9056538](https://www.curseforge.com/minecraft/mc-mods/companions-mod/files/9056538) |
+| **1.3.7** | 05/11/2026 | Crystallized Blood Scythe aceita encantamentos de armas além de mineração; Eternal Lighter e Wrench aceitam Unbreaking/Mending; trilhas e movimento dos projéteis Blood Slash/Tornado melhorados; weapons/armor aceitam encantamentos vanilla em mesa e anvil. | [CurseForge 9457175](https://www.curseforge.com/minecraft/mc-mods/companions-mod/files/9457175) |
+| **1.3.8** | 16/11/2026 | Livros mágicos podem ser guardados em **chiseled bookshelves**, com impacto de armazenamento e persistência; sem outro delta anunciado na nota específica. | [CurseForge 9640009](https://www.curseforge.com/minecraft/mc-mods/companions-mod/files/9640009) |
+
+**Sequência publicada integral auditada:** 1.3.5 → 1.3.6 → 1.3.7 → 1.3.8, sem pular releases NeoForge 1.21.1. **Gates de instalação:** KnightLib presente 2.0.1 contra manifest do candidato, Heal Book, Cornelius, Gloves/Epic Fight, enchantments, projéteis, chiseled bookshelves, tame/ownership, multiplayer, startup dedicado e save/restart. Não houve instalação ou teste em jogo. **Dossier continua v1.3.4**, coerente com JAR comprovado.

@@ -296,3 +296,19 @@ pode tocar a mesma superfície. A própria release 1.0.6 diz que compat com addo
 **Upstream:** [CurseForge — Create: Apokinetics](https://www.curseforge.com/minecraft/mc-mods/apokinetics) e [release 1.0.6](https://www.curseforge.com/minecraft/mc-mods/apokinetics/files/8790422), além da documentação/config upstream.
 
 **Confiança:** alta para lista de gems, componentes, changelog 1.0.6 e arquitetura. Valores/configs efetivos desta instância devem ser lidos antes de balanceamento ou implementação.
+
+## 19. Auditoria incremental 1.0.6 → 1.0.12 (17/11/2026)
+
+**Baseline físico:** #029, `apokinetics-1.0.6.jar`, mod id `apokinetics`, runtime 1.0.6, SHA-1 `8af4fc7fb17f4d60ead9d0c098d0650d6fdefa68`. Projeto oficial CurseForge **1606442**; categorias completas `Addons + Automation + Create + Magic + Technology`, caminho já correto.
+
+**Publicações para Minecraft 1.21.1 / NeoForge:** após [1.0.6 de 02/09](https://www.curseforge.com/minecraft/mc-mods/apokinetics/files/8790422), o catálogo identifica **apenas 1.0.12 de 01/11/2026**; não há binários individuais de 1.0.7–1.0.11 para esta combinação. O changelog cumulativo da release 1.0.12 é documentado na [página oficial exata](https://www.curseforge.com/minecraft/mc-mods/apokinetics/files/9391726).
+
+**Mudanças materiais anunciadas pela 1.0.12:**
+- Compatibilidade adaptada para **Apotheosis 8.9.0 no Minecraft 1.21.1**; menção a 7.4.8 refere-se exclusivamente ao Minecraft 1.20.1. O snapshot do pack tem Apotheosis 8.8.0: verificar dependency range antes da promoção.
+- **Apokinetic Wrench** ganha modos **Active** (abre socket) e **Passive** (wrench normal do Create, rotate/pickup), alternados com sneak + right-click no ar. **Apokinetic Table** admite inserção superior, extração inferior e alimentação lateral por pipes/funnels com filtro; comparador sinaliza Rotation de 0 a 15, conforme máximo configurado.
+- **Create Attribute Filter** admite níveis Rotation mínimos/exatos; corrigida preservação de qualidade/Rotation de gems em máquinas removidas/movidas e no **Apotheosis Gem Case** (gems de Rotation diferente separadas, menor Rotation consumida primeiro; resultado de upgrade começa em zero).
+- **Factory Scanner/Locator** reformulados visualmente, corrigindo refresh, seleção, renaming e scroll; **Cyber Goggles** mostram RPM, stress e capacity após pylon/gem sem contar bônus duas vezes.
+- Integração nova com máquinas **Create Aeronautics** em **Minecraft 1.21.1**: tipos diversos de propeller, bearings, burners, steam vents, engines, winches, augers, steering, wheels, cannon e borehead ganham efeitos específicos de gems Velocity/Equilibrium/Impact/Ignition/Flowing/Momentum/Conveyance/Yielding. Não presumir suporte universal a addons.
+- Integrações com **Create Crafts & Additions** (Electric/Servo Motor, Alternator, Rolling Mill, Electric Pump, Liquid Blaze Burner, Tesla Coil, Accumulator) e **Create Enchantment Industry** (Printer, Infuser, Gem Cutter, Affix Augmentor, Blaze Enchanter/Forger/Composer, Grindstone/Drain e polimento manual). Precisão/Yielding e energia/throughput exigem QA anti-duplication e de custo.
+
+**Gates:** conferir versões reais do pack, dependências e aparelhos opcionais antes de habilitar comportamento; testar preservação de dados de gems, automação de mesas, comparator, eficiência energética, geração de itens, fluidos, stress, integração Sable/Aeronautics, datapack reload, client e dedicated server. **Nenhum JAR ou config foi alterado.** Auditoria das publicações NeoForge 1.21.1 concluída até **1.0.12**, que não está instalada; basename v1.0.6 preservado.

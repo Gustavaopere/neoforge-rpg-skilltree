@@ -155,3 +155,13 @@ Como integrações são opcionais:
 - Source oficial `Alexthw46/Ars-Unity`, commit exato `a12bf191458f48ae0375d1e1073f24455f654416` (5.0.4b).
 - Histórico upstream que mostra Moon Dial entrando somente em 5.0.5.
 - Guia consolidado de Magia do projeto.
+
+## 14. Auditoria incremental 5.0.4b → 5.0.6 (17/11/2026)
+
+**Baseline físico:** #045, `ars_hex-1.21.1-5.0.4b.jar`, mod id `ars_hex`, runtime 5.0.4b, SHA-1 `2354710ea312e2a6e0fbc3eb2dbafb8e06f10cf4`. Projeto oficial CurseForge **1357380**, autor Alexth99, categorias exatas `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic`. Pasta atual correta.
+
+**Cadeia publicada:** o [catálogo oficial NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/ars-hex-unity/files/all) contém apenas um artefato posterior a 5.0.4b: **5.0.6 (23/10/2026)**. A etapa **5.0.5** aparece no histórico do [source](https://github.com/Alexthw46/Ars-Unity/commit/5f5b9243aa3893f9e208747f89df4d79d6c05e3a), onde se adicionou **Moon Dial**, mas não há JAR 5.0.5 NeoForge 1.21.1 publicado nesse catálogo. Não inventar publicação intermediária nem atribuir Moon Dial à instalação 5.0.4b.
+
+**1.5? Não: atualização da família 5.0.6 — evidência específica:** [CurseForge file 9296988](https://www.curseforge.com/minecraft/mc-mods/ars-hex-unity/files/9296988) confirma que **Soul Shatter** passa a usar **damage type próprio**, para não herdar bypass de invulnerability frames de dano Malum; novo **ritual de fase lunar específica**, em vez de apenas noite; retorno de compatibilidade inicial com **Hexcasting via tags**, com **staff ainda não funcional** por limitação da integração upstream. Mudanças importantes para processamento de damage/iframes e contratos de spell/routine; compat por tags não deve ser descrita como API de staff operacional.
+
+**Regressões para futura instalação:** Soul Shatter/Malum e double-damage/iframes, ritual e fase lunar, Moon Dial, tags Hexcasting somente se presente, Arsenal Ars↔Iron's e optional classloading sem Hexerei. Validar client/dedicado, persistência e multiplayer. **Nenhum teste ou upgrade do JAR** foi executado. Auditoria documental até **5.0.6 concluída**; basename v5.0.4b mantido.

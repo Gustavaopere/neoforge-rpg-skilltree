@@ -101,3 +101,15 @@ Gate de regressão: dedicated-server boot, kinetic charge/cancel/release, spear 
 Fontes upstream: CurseForge Iron's Lib 2.1.1 e 2.2.0 para NeoForge 1.21.1; issue pública `iron431/Irons-Spells-n-Spellbooks#1270` usada apenas como evidência do relato sobre a 2.1.1.
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — Iron's Lib 1.21.1-2.1.0/JAR físico reconfirmado; 2.1.0 permanece a release NeoForge 1.21.1 mais recente localizada. Atributos RPG, Attribute Remapper, transmogs, statues/multiblocks, Apothic boundary, lifecycle, riscos e testes preservados.
+
+## 16. Auditoria incremental 2.1.0 → 2.3.0 (17/11/2026)
+
+**Baseline físico:** #341, `irons_lib-1.21.1-2.1.0.jar`, versão runtime `1.21.1-2.1.0`. O **2.3.0 é candidato não instalado**. Projeto oficial CurseForge **1492763**, autor Iron431; categorias oficiais `API and Library + Cosmetic`, pasta correta.
+
+| Release NeoForge 1.21.1 | Data | Changelog e relevância | Fonte |
+|---|---|---|---|
+| **2.1.1** | 21/09/2026 | Logging aprimorado, uso de memória otimizado; pendência histórica de possível falha de reobfuscation já qualificada como relato externo no dossier, não como teste local. | [Lista oficial de releases](https://www.curseforge.com/minecraft/mc-mods/irons-lib/files/all) |
+| **2.2.0** | 25/09/2026 | **Kinetic Weapon System** (charge attack, `kinetic_weapon`/`use_effects`/`attack_range`, spear animations), **SoulFireHelper** e atributo **Projectile Damage**, distinto de Arrow Damage. Já detalhado na seção 15. | [CurseForge 8973642](https://www.curseforge.com/minecraft/mc-mods/irons-lib/files/8973642) |
+| **2.3.0** | 25/10/2026 | Adiciona **Autumn Knight Transmog** e **Pumpkin Heads Transmog**. O changelog próprio não anuncia outras APIs ou balanceamento; não atribuir mudanças não publicadas. | [CurseForge 9328060](https://www.curseforge.com/minecraft/mc-mods/irons-lib/files/9328060) |
+
+**Cadeia publicada NeoForge 1.21.1 após a instalada:** 2.1.1 → 2.2.0 → 2.3.0. Gates antes de instalar: validar manifest e compatibilidade com Iron's Spells, seus addons e RPG Skill Tree; Kinetic Weapons e charges/iframes, atributos de projectile (sem confundir Arrow Damage), transmogs, serialização, rendering, client e dedicated server. Nenhum teste nem atualização de JAR foi realizado; auditoria documental até **2.3.0 concluída**, nome do dossier v1.21.1-2.1.0 preservado.

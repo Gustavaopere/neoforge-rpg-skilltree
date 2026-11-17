@@ -176,7 +176,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 026 | Amendments | `amendments-1.21-2.1.10-neoforge.jar` | `1.21-2.1.10` | `Cosmetic + Utility & QoL` | 22/10/2026 - 22:00 |
 | 027 | Amplified Nether | `Amplified_Nether_26.2_v1.2.16.jar` | `1.2.16` | `Biomes + Dimensions + World Gen` | 19/09/2026 - 12:06 |
 | 028 | Animal Husbandry | `AnimalHusbandry-neoforge-0.4.1.jar` | `0.4.1` | `Farming + Genetics + Mobs` | 19/09/2026 - 12:06 |
-| 029 | Create: Apokinetics | `apokinetics-1.0.6.jar` | `1.0.6` | `Addons + Automation + Create + Magic + Technology` | 19/09/2026 - 12:06 |
+| 029 | Create: Apokinetics | `apokinetics-1.0.6.jar` | `1.0.6` | `Addons + Automation + Create + Magic + Technology` | 17/11/2026 - 18:34 |
 | 030 | Apotheosis | `Apotheosis-1.21.1-8.8.0.jar` | `8.8.0` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 19/09/2026 - 12:06 |
 | 031 | Apotheotic Creation | `apotheoticcreation-2.0.0.jar` | `2.0.0` | `Automation + Create + Storage + Utility & QoL` | 19/09/2026 - 12:06 |
 | 032 | Apothic Category Compat | `apothic_compat-2.0.2.jar` | `2.0.2` | `Addons + Armor, Tools, and Weapons + Bug Fixes` | 19/09/2026 - 12:06 |
@@ -192,7 +192,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 042 | Ars Creo | `ars_creo-1.21.1-5.4.0.jar` | `5.4.0` | `Magic + Technology` | 19/09/2026 - 16:05 |
 | 043 | Ars Elemancy | `ars_elemancy-1.21.1-1.18.3.jar` | `1.18.3` | `Addons + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:06 |
 | 044 | Ars Elemental | `ars_elemental-1.21.1-0.7.10.1.jar` | `0.7.10.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 17:09 |
-| 045 | Ars Hex Unity | `ars_hex-1.21.1-5.0.4b.jar` | `5.0.4b` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 17:09 |
+| 045 | Ars Hex Unity | `ars_hex-1.21.1-5.0.4b.jar` | `5.0.4b` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 17/11/2026 - 18:34 |
 | 046 | Ars 'n' Spells | `ars_n_spells-3.3.4.jar` | `3.3.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 17/11/2026 - 15:29 |
 | 047 | Ars Nouveau | `ars_nouveau-1.21.1-5.13.1.jar` | `5.13.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Mobs` | 19/09/2026 - 17:09 |
 | 048 | Ars Polymorphia | `ars_polymorphia-1.0.3.jar` | `1.0.3` | `Addons + Magic + Storage + Utility & QoL` | 17/11/2026 - 16:11 |
@@ -251,7 +251,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 101 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 23/09/2026 - 01:02 |
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 23/10/2026 - 13:51 |
 | 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 23/10/2026 - 00:40 |
-| 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 23/09/2026 - 01:13 |
+| 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 17/11/2026 - 18:34 |
 | 105 | Sinytra Connector | `connector-2.0.0-beta.17+1.21.1-full.jar` | `2.0.0-beta.17+1.21.1` | `Technology` | 22/09/2026 - 22:34 |
 | 106 | Connector Extras | `ConnectorExtras-1.12.1+1.21.1.jar` | `1.12.1+1.21.1` | `Addons + API and Library + Technology + Utility & QoL` | 22/09/2026 - 22:34 |
 | 107 | Continuity | `continuity-3.0.0+1.21.neoforge.jar` | `3.0.0+1.21.neoforge` | `API and Library + Cosmetic` | 22/09/2026 - 22:34 |
@@ -488,7 +488,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 338 | Iris Shaders | `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar` | `1.8.14-beta.1+mc1.21.1` | `Cosmetic + Miscellaneous` | 25/09/2026 - 00:26 |
 | 339 | Apotheosis x Iron's Spellbooks Compat | `irons_apothic-2.2.2.jar` | `2.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/10/2026 - 23:21 |
 | 340 | Iron's Gems 'n Jewelry | `irons_jewelry-1.21.1-2.0.2.jar` | `1.21.1-2.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 23:22 |
-| 341 | Iron's Lib | `irons_lib-1.21.1-2.1.0.jar` | `1.21.1-2.1.0` | `API and Library + Cosmetic` | 24/09/2026 - 23:22 |
+| 341 | Iron's Lib | `irons_lib-1.21.1-2.1.0.jar` | `1.21.1-2.1.0` | `API and Library + Cosmetic` | 17/11/2026 - 18:34 |
 | 342 | Iron's Spells 'n Spellbooks | `irons_spellbooks-1.21.1-3.16.3.jar` | `1.21.1-3.16.3` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 25/09/2026 - 01:24 |
 | 343 | KubeJS Iron's Spells | `irons_spells_js-4.0.3.jar` | `4.0.3` | `Addons + Adventure and RPG + KubeJS + Magic + Utility & QoL` | 25/09/2026 - 01:24 |
 | 344 | IronSable | `ironsable-1.2.0.jar` | `1.2.0` | `Addons + Magic` | 25/09/2026 - 01:24 |
