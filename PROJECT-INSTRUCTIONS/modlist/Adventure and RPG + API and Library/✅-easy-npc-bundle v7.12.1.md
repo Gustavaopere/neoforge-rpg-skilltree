@@ -180,3 +180,15 @@ O source [`2c7fb934c6626224220227e6db5150edd891cdd3`](https://github.com/MarkusB
 **Status:** `7.12.1` instalada historicamente; `7.17.0` **candidato coordenado, não instalado, QA pendente**. Os changelogs 7.12.2→7.17.0 foram rastreados como **mudanças da família**, sem presumir a publicação individual de todo número como artefato Bundle.
 
 **Fontes:** [CurseForge Bundle, lista de versões 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?version=1.21.1); [Core 7.17.0, changelog comum no arquivo 9282416 (Fabric; não é binário NeoForge)](https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/9282416/additional-files); [CHANGELOG oficial 1.21.1](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/CHANGELOG.md).
+
+## Auditoria incremental 7.17.1–7.19.0 — 17/11/2026 (somente upstream)
+
+Artefato físico: easy_npc_bundle-neoforge-1.21.1-7.12.1.jar (posição #240); Core #239 e Config UI #241 também continuam no snapshot 7.12.1. O dossier anterior já auditou 7.12.2, 7.13.0, 7.14.0, 7.15.0, 7.16.0 e 7.17.0. A linha oficial NeoForge 1.21.1 chegou a 7.19.0 em 14/11/2026.
+
+- 7.17.1 (24/10): build não inclui mais testes internos, diminuindo o tamanho dos arquivos em até 20%. Sem gameplay novo declarado.
+- 7.18.0 (02/11): projéteis personalizados (damage/trails/impact, bullets, fireballs, items), multishot, efeitos, novo objetivo Projectile Attack sem arma, novos comandos projectile/boss_bar e APIs; visibilidade condicionada por jogador/score, configuração Hide after da boss bar. Preset item passa a ser consumido ao gerar NPC no survival. Corrige perda de NPC com LetMeDespawn, ataques ranged/melee, competição entre objetivos, boss bar persistente após troca de dimensão, scoreboard 0, pick block/spawn egg, skins e GUI; stroll/home/look pausam durante e três segundos depois de combate.
+- 7.19.0 (14/11): corrigidas skin layers invisíveis vazando entre NPCs iguais (#865), poses de zombies/Endermen, cabeças ocultas de villagers com profissão e partes ocultas ao andar; zombified piglins não queimam no sol; fixes de labels, campos, nomenclatura e ordem de botões de pose entre reinícios.
+
+Fonte oficial com seções próprias por versão: https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/CHANGELOG.md ; arquivos reais do Bundle https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?page=1&version=1.21.1 . O changelog funcional é do Core da família, e não prova que o meta-Bundle implementa essas features.
+
+IMPORTANTE: a família 7.16+ exige Easy Model Entities opcional >=2.6.0, mas o último pack físico tem EME 2.4.0. O changelog também informa NeoForge testado 21.1.262 com fixes de segurança. Antes de atualizar o pack, conciliar Core+Bundle+Config UI e seus manifestos, EME, protocolo cliente-servidor, JarJar, objetivos/custom projectiles, persistência e testes em servidor dedicado. A auditoria documental da sequência 7.12.1→7.19.0 está completa; JAR instalado, certificação nominal v7.12.1 e QA foram preservados.

@@ -169,3 +169,9 @@ A crafting inventory é obtida por `player UUID`; seleção é player-specific v
 - Guia consolidado de Magia do projeto.
 - Source oficial `Vonr/Ars-Polymorphia` 1.0.3: `gradle.properties`, `CraftingLecternTileMixin`, `CraftingTerminalWidget`, `PacketResetCraftingResult`.
 - Provider físico atual: Polymorph+ 1.3.1+1.21.1.
+
+## Auditoria upstream Ars Polymorphia 1.0.4 — 17/11/2026 (não instalada)
+
+Snapshot físico #048: ars_polymorphia-1.0.3.jar. O mesmo projeto oficial CurseForge 1197614 publicou a release seguinte 1.0.4 para NeoForge Minecraft 1.21.1 em 04/11/2026, sem versões intermediárias numeradas: https://www.curseforge.com/minecraft/mc-mods/ars-polymorphia/files/9433369 .
+
+O único delta anunciado é "feat: update to ars 5.13.4". Isso é atualização de compatibilidade/build com Ars Nouveau 5.13.4, mas não comprova novas mecânicas de seleção de recipes ou novos comandos. O último snapshot físico do pack contém Ars Nouveau 5.13.1. Antes de trocar o addon, conferir dependências do JAR e ABI com Ars Nouveau/Polymorph+ e testar Crafting Lectern, terminal, seleção/reset de recipe, server packets e reload de datapacks. O comportamento da 1.0.3 e nome certificado do dossier permanecem válidos; 1.0.4 é somente candidato upstream.

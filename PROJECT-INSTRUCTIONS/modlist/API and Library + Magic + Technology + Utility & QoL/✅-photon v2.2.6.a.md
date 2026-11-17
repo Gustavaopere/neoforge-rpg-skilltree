@@ -166,3 +166,13 @@ Fonte upstream: CurseForge Photon file ID 8941291, changelog v2.2.7.
 **Gates:** resource reload, criação/serialização de materials e shader graphs, upload de GLB animado, renderer de GPU/instancing, comparativos on/off de lights e fog, integração com shaders e LDLib/KilaGraph, efeitos em entidades/contraptions/SubLevels quando aplicável, contexto GLSL ES, stutter FPS e classes client-only em dedicated server. **Nenhum binário novo/benchmark foi executado**, e as configurações padrão de luz não foram inferidas.
 
 Fontes upstream: https://www.curseforge.com/minecraft/mc-mods/photon/files/8941291 (2.2.7); https://www.curseforge.com/minecraft/mc-mods/photon/files/9096743 (2.2.8).
+
+## Auditoria incremental Photon 2.2.9–2.2.11 — 17/11/2026 (somente upstream)
+
+JAR físico #442: photon-neoforge-1.21.1-2.2.6.a-all.jar. A revisão de 22/10 já documentou 2.2.7 (animação glTF, particles) e 2.2.8 (luzes dinâmicas, shader graphs, fog, trail). Novos deltas separados das publicações NeoForge 1.21.1:
+
+- 2.2.9 — 24/10/2026: FX instances/prefabs aninhadas com overrides, collisions swept de partículas com entidades/fluids/triggers, FXHelper.preload de efeitos/texturas/shaders, conversão de arquivos .fx para projetos editáveis, manutenção de FXPack; fixes de reload e screen distortion com shader packs; LDLib2 bump 2.2.43. Fonte: https://www.curseforge.com/minecraft/mc-mods/photon/files/9305764
+- 2.2.10 — 01/11/2026: API ParticleEmitter a partir de ParticleConfig; fixes de scene color/depth em editor destacado, reload de glTF, billboard rotation world/custom, window de FXPack e paste em curvas. Fonte: https://www.curseforge.com/minecraft/mc-mods/photon/files/9394280
+- 2.2.11 — 07/11/2026: timeline sections nomeadas com start/loop/end e FXRuntime.sections()/comando /photon fx section; release sections para destroy(false), Drain exit mode, Loop/PingPong lifetime; fixes de timeline que revive efeitos em parada, particle lifetime 0, luzes terminando cedo, playback rate stuttering e remove entity interrompido. Fonte: https://www.curseforge.com/minecraft/mc-mods/photon/files/9489406
+
+Gates físicos: QA de colisões, preloads, shader packs, glTF asset reload, FXPack, sections/start/loop/stop, rendering em Sable/sublevels, LDLib2/KilaGraph e dedicated server. Nenhum JAR foi substituído; conteúdo novo não está ativo no runtime 2.2.6.a. Histórico 2.2.7→2.2.11 documentado integralmente.
