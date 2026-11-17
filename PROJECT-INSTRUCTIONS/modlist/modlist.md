@@ -440,7 +440,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 24/09/2026 - 18:24 |
 | 291 | FTB Teams (NeoForge) | `ftb-teams-neoforge-2101.1.11.jar` | `2101.1.11` | `API and Library` | 24/09/2026 - 18:24 |
 | 292 | FTB Ultimine (NeoForge) | `ftb-ultimine-neoforge-2101.1.15.jar` | `2101.1.15` | `Armor, Tools, and Weapons + Server Utility` | 24/09/2026 - 19:05 |
-| 293 | FTB XMod Compat | `ftb-xmod-compat-neoforge-21.1.11.jar` | `21.1.11` | `API and Library` | 22/10/2026 - 22:00 |
+| 293 | FTB XMod Compat | `ftb-xmod-compat-neoforge-21.1.11.jar` | `21.1.11` | `API and Library` | 17/11/2026 - 17:33 |
 | 294 | Fusion (Connected Textures) | `fusion-1.3.15a-neoforge-mc1.21.1.jar` | `1.3.15+a` (metadata runtime); filename/release `1.3.15a` | `API and Library + Cosmetic` | 24/09/2026 - 19:05 |
 | 295 | Fancy World Animations | `fwa+1.21.1-neoforge-1.2.31.jar` | `1.2.31` | `Cosmetic` | 24/09/2026 - 19:05 |
 | 296 | Fzzy Config | `fzzy_config-0.7.7+1.21+neoforge.jar` | `0.7.7+1.21+neoforge` | `API and Library + Utility & QoL` | 24/09/2026 - 19:05 |
@@ -1100,7 +1100,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 15 | CBC: Advanced technologies crash fix | [Abrir `.md`](./Addons%20%2B%20Create%20%2B%20Technology/%E2%9C%85-cbcat-fix%20v1.0.1.md) | `1.0.1` | 1.1.4 (15/10) | **AUDITORIA DOCUMENTAL 1.0.1→1.1.4 COMPLETA; CATEGORIA CORRIGIDA; QA FÍSICO SEPARADO** |
 | 16 | Vanilla Backport | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Biomes%20%2B%20Mobs%20%2B%20Ores%20and%20Resources%20%2B%20World%20Gen/%E2%9C%85-vanillabackport%20v1.1.7.10.md) | `1.1.7.10` | 1.2 (Release NeoForge 1.21.1, 18/10) | **AUDITORIA DOCUMENTAL; MIGRAÇÃO MAJOR E BRIDGES EXIGEM QA** |
 | 17 | Platform | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-platform%20v1.3.3.md) | `1.3.3` | 1.4 | **PENDENTE** |
-| 18 | FTB XMod Compat | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-ftb-xmod-compat%20v21.1.11.md) | `21.1.11` | 21.1.13 (Release NeoForge 1.21.1, 20/10) | **AUDITORIA DOCUMENTAL; SG Economy API 1.1+** |
+| 18 | FTB XMod Compat | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-ftb-xmod-compat%20v21.1.11.md) | `21.1.11` | 21.1.14 (Release NeoForge 1.21.1, 27/10) | **DOCUMENTAÇÃO REVISADA; UPGRADE BLOQUEADO: FTB Library 2101.1.38+** |
 | 19 | Amendments | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-amendments%20v1.21-2.1.10.md) | `1.21-2.1.10` | 2.2.0 | **PENDENTE** |
 | 20 | Alshanex's Familiars | [Abrir `.md`](./Addons%20%2B%20Magic%20%2B%20Mobs/%E2%9C%85-alshanexs-familiars%20v1.21.1_v4.0.3.md) | `1.21.1_v4.0.3` | 5.0 (Release NeoForge 1.21.1, 21/10) | **AUDITORIA DOCUMENTAL; BACKUP E FAMILIARSLIB EXIGIDOS** |
 | 21 | Create:Tracks+ | [Abrir `.md`](./Create/%E2%9C%85-create-tracks-plus%20v1.0.6b6.md) | `1.0.6b6` | Anunciado beta6; JAR publicado `tracks_plus-1.0.6b7.jar` (15/10) | **BLOQUEADO: ausência de changelog/diff b6→b7** |
@@ -1210,7 +1210,7 @@ Documentados na sequência da lista de pedido, não pela posição física da ta
 | 15 | CBC: Advanced technologies crash fix | 1.0.1 (runtime 1.0.0) | 1.1.4 | Pasta corrigida em 23/10: Addons + Create + Technology; releases 1.1.0/1.1.1/1.1.2/1.1.4 documentadas integralmente; certificação documental concluída |
 | 16 | Vanilla Backport | 1.1.7.10 | 1.2 | Rework amplo; migration/compatibilidades precisam de QA físico |
 | 17 | Platform | 1.3.3 | 1.4 | APIs/Events overhaul documentados conforme granularidade real do release |
-| 18 | FTB XMod Compat | 21.1.11 | 21.1.13 | Correção de JEI 21.1.12 e ruptura de SG Economy API 1.1+ em 21.1.13 |
+| 18 | FTB XMod Compat | 21.1.11 | 21.1.14 | JEI na 21.1.12; SG Economy API 1.1+ na 21.1.13; 21.1.14 requer FTB Library 2101.1.38+ (físico 2101.1.36) |
 | 19 | Amendments | 1.21-2.1.10 | 2.2.0 | 2.1.11 (Polytone) e 2.2.0 (wall/fence/pane, EBE, Iris) |
 | 20 | Alshanex's Familiars | 1.21.1_v4.0.3 | 5.0 | 4.0.4 + Spectrum Update 5.0 e migração para FamiliarsLib, backup de save requerido |
 **Regra de exclusão do Bloco de Notas:** itens 11, 12 e 15 permanecem pendentes por lacunas objetivas; os outros sete só podem ser retirados após merge, CI e re-fetch de `main`. Não confundir auditoria documental com instalação ou QA de runtime.
