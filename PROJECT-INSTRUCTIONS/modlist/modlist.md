@@ -279,7 +279,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 129 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` | `1.2.0` | `Create` | 23/09/2026 - 08:03 |
 | 130 | Create Aeronautics: Throwable Rope Connector | `create_aeronautics_throwable_rope_connector-0.4.3.jar` | `0.4.3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 08:03 |
 | 131 | create aeronautics：toolgun | `create_aeronautics_toolgun-0.3.6.jar` | `0.3.6` | `Utility & QoL` | 23/09/2026 - 08:03 |
-| 132 | Create Aeronautics: Transmission & Linkage | `create_aeronautics_transmission_linkage-0.2.8.jar` | `0.2.8` | `Create + Technology` | 23/09/2026 - 08:34 |
+| 132 | Create Aeronautics: Transmission & Linkage | `create_aeronautics_transmission_linkage-0.2.8.jar` | `0.2.8` | `Create + Technology` | 17/11/2026 - 20:00 |
 | 133 | Create: Aquatic Ambitions | `create_aquatic_ambitions-1.21.1-2.0.4.jar` | `2.0.4` | `Armor, Tools, and Weapons + Automation + Create + Ores and Resources` | 23/09/2026 - 08:34 |
 | 134 | Create: Blocks & Bogies | `create_bb-1.0.8-1.21.1.jar` | `1.0.8` | `Addons + Create + Player Transport + Technology` | 23/09/2026 - 08:34 |
 | 135 | Create: Blaze Burner Fuels | `create_blaze_burner_fuels-1.0.2-neoforge-1.21.1.jar` | `1.0.2` | `Automation + Create + Energy + Ores and Resources + Processing` | 23/09/2026 - 08:34 |
@@ -438,7 +438,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 288 | FTB Chunks (NeoForge) | `ftb-chunks-neoforge-2101.1.22.jar` | `2101.1.22` | `Map and Information + Server Utility` | 24/09/2026 - 18:24 |
 | 289 | FTB Library (NeoForge) | `ftb-library-neoforge-2101.1.36.jar` | `2101.1.36` | `API and Library` | 24/09/2026 - 18:24 |
 | 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 24/09/2026 - 18:24 |
-| 291 | FTB Teams (NeoForge) | `ftb-teams-neoforge-2101.1.11.jar` | `2101.1.11` | `API and Library` | 24/09/2026 - 18:24 |
+| 291 | FTB Teams (NeoForge) | `ftb-teams-neoforge-2101.1.11.jar` | `2101.1.11` | `API and Library` | 17/11/2026 - 20:00 |
 | 292 | FTB Ultimine (NeoForge) | `ftb-ultimine-neoforge-2101.1.15.jar` | `2101.1.15` | `Armor, Tools, and Weapons + Server Utility` | 24/09/2026 - 19:05 |
 | 293 | FTB XMod Compat | `ftb-xmod-compat-neoforge-21.1.11.jar` | `21.1.11` | `API and Library` | 17/11/2026 - 17:33 |
 | 294 | Fusion (Connected Textures) | `fusion-1.3.15a-neoforge-mc1.21.1.jar` | `1.3.15+a` (metadata runtime); filename/release `1.3.15a` | `API and Library + Cosmetic` | 24/09/2026 - 19:05 |
