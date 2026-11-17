@@ -185,7 +185,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 035 | Apothic Enchanting | `ApothicEnchanting-1.21.1-1.6.2.jar` | `1.6.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:04 |
 | 036 | Apothic Spawners | `ApothicSpawners-1.21.1-1.4.0.jar` | `1.4.0` | `Automation + Utility & QoL` | 19/09/2026 - 16:04 |
 | 037 | AppleSkin | `appleskin-neoforge-mc1.21-3.0.9.jar` | `3.0.9+mc1.21` | `Food + Map and Information` | 19/09/2026 - 16:05 |
-| 038 | Apprentice's Codex | `apprentice_codex-0.9.7.1+mc1.21.1.jar` | `0.9.7.1` | `Addons + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:05 |
+| 038 | Apprentice's Codex | `apprentice_codex-0.9.7.1+mc1.21.1.jar` | `0.9.7.1` | `Addons + Armor, Tools, and Weapons + Magic` | 17/11/2026 - 19:59 |
 | 039 | Architectury API | `architectury-13.0.11-neoforge.jar` | `13.0.11` | `API and Library` | 19/09/2026 - 16:05 |
 | 040 | Ars Additions | `ars_additions-1.21.1-21.3.0.jar` | `1.21.1-21.3.0` | `Addons + Magic + Storage + Utility & QoL` | 19/09/2026 - 16:05 |
 | 041 | Ars Controle | `ars_controle-1.21.1-1.6.16.jar` | `1.21.1-1.6.16` | `Addons + Magic` | 19/09/2026 - 16:05 |
