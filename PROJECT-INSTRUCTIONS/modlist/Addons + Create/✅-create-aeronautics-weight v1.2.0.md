@@ -113,3 +113,19 @@ A modlist física mantém `weight-1.2.0.jar`, mod id `weight`, versão `1.2.0`, 
 Os deltas publicados da 1.2.0 permanecem: inventory/container/fluid tank/armor/mob gear mass opcionais, três tiers de tags, `item_weights.json`/`entity_weights.json`, `#weight:tanks`, `#weight:ignored_containers`, 22 opções de config e comandos `/weight reload`/`/weight debug`. Como várias fontes são desabilitadas por padrão, nenhuma foi promovida a ativa sem ler a config real. O estado **Integrado ao Github** e a decisão **Sem decisão** foram preservados. Nenhum hot-reload, mass recomputation, cargo/fluid/armor ou performance test foi executado nesta recatalogação.
 ## 15. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece `weight-1.2.0.jar`, mod id `weight`, versão `1.2.0`, com Sable `2.0.5` e Create Aeronautics `1.3.2` presentes. A 1.2.0 continua a release NeoForge 1.21.1 pertinente localizada. Permanecem confirmados inventory/container/fluid-tank/armor/mob-gear mass opcionais, common-tag tiers, `item_weights.json`/`entity_weights.json`, tags `#weight:tanks` e `#weight:ignored_containers`, 22 opções de config e comandos `/weight reload`/`/weight debug`. Como várias superfícies são desabilitadas por padrão, nenhuma foi promovida a ativa sem config real. Nenhum hot-reload, mass recomputation, cargo/fluid/armor ou performance test foi executado nesta revalidação.
+
+## 16. Auditoria incremental 1.2.0 → 1.2.1 (17/11/2026)
+
+**Baseline físico preservado:** ordem **#569**, `weight-1.2.0.jar`, mod id `weight`, runtime `1.2.0`, SHA-1 `b080eb3ceff4837770856affa207ba12f7627382`. Projeto correto: [Create Aeronautics: Weight, CurseForge **1607986**](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-weight), autor `duble_`, **NeoForge 1.21.1**, categorias oficiais **Addons** + **Create**; a pasta `Addons + Create/` permanece correta.
+
+**Única publicação posterior ao baseline identificada no catálogo específico NeoForge 1.21.1:**
+
+| Versão | Data | Mudanças oficiais e relevância | Evidência |
+|---|---|---|---|
+| **1.2.1** | **31/10/2026** | Introduz **massa individual por fluido** usando o **data map `weight:fluid_mass`**; fluidos com massa declarada passam a contribuir para o peso de blocos com tag `#weight:tanks` **mesmo com a opção global de tank weight desativada**; tanques de fluido multiblock do **Create** passam a ser contados **uma única vez**, evitando multiplicação por cada bloco componente. **Mudança funcional relevante de modelagem da massa**, especialmente para naves com grande volume de tanques/cargas. | [CurseForge, file **9384278**, `weight-1.2.1.jar`](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-weight/files/9384278) |
+
+**Distinção de configuração:** na **1.2.0 instalada**, funções de massa para fluid tanks eram opcionalmente desabilitadas por default. Na **1.2.1 candidata**, o changelog introduz uma exceção intencional: fluidos com massa definida em `weight:fluid_mass` contam em tanques marcados com `#weight:tanks` **mesmo quando tank weight está desligado**. Não transportar essa exceção de cálculo à instalação `1.2.0`.
+
+**Gates de QA antes de trocar JAR:** examinar entradas do data map e tags fornecidas pela 1.2.1, assegurar cálculo exatamente uma vez de tanks multiblock Create, medir variação de massa ao encher/esvaziar tanks Sable/Aeronautics, conferir `/weight debug` e `/weight reload`, e validar startup NeoForge dedicado e cliente com Sable 2.0.5/Aeronautics 1.3.2. Nenhum desses testes nem instalação foi realizado.
+
+**Conclusão documental:** o único delta entre a versão instalada 1.2.0 e o release upstream **1.2.1** foi auditado. Versão física e nome do dossier `✅-create-aeronautics-weight v1.2.0.md` preservados; categoria oficial `Addons + Create` não mudou.

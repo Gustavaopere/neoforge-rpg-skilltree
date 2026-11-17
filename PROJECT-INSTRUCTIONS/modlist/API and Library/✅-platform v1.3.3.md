@@ -122,3 +122,21 @@ Changelog oficial para 1.4: overhaul das APIs existentes e implementação de no
 Gate: recapturar manifests, fazer API/ABI diff com os consumers, incluindo Vanilla Backport (que publicou 1.2 na mesma data), testar registry/service lifecycle, eventos, mixins e dedicated server. A coincidência de datas não prova dependência mínima entre esses JARs. Conservar instalado 1.3.3.
 
 Fonte: https://www.curseforge.com/minecraft/mc-mods/platform/files/9236357 .
+
+## Auditoria incremental — 1.3.3 → 1.4.2 (17/11/2026)
+
+**Autoridade física preservada:** posição **#445**, `Platform-neoforge-1.21.1-1.3.3.jar`, mod id `platform`, runtime `1.3.3`, SHA-1 `4132ad6809008698b7f489a878e5a33a3879bbfd`. Projeto CurseForge oficial **997634**, autor BlackGear, categoria temática única **API and Library**, corretamente representada pelo caminho atual. Candidato upstream confirmado para **NeoForge 1.21.1**: **1.4.2** (não instalado).
+
+| Release específica NeoForge 1.21.1 | Data | Delta publicado e impacto | Fonte primária |
+|---|---|---|---|
+| **1.4** | **18/10/2026** | **Overhaul** das APIs existentes e inclusão de novos eventos/APIs, sem lista de assinaturas ou interfaces removidas no changelog. Risco **alto** de quebra de consumer/ABI até inspeção de código ou JAR. Esta release já tinha revisão parcial no dossier. | [CurseForge 9236357](https://www.curseforge.com/minecraft/mc-mods/platform/files/9236357) |
+| **1.4.1** | **23/10/2026** | Corrige carregamento de **datapacks nas receitas**. Outra nota “Waxables/Oxidables now apply in a later state” é explicitamente marcada **`1.20.1`**: **não atribuir ao runtime alvo 1.21.1**. | [CurseForge 9295857](https://www.curseforge.com/minecraft/mc-mods/platform/files/9295857) |
+| **1.4.2** | **25/10/2026** | Migra `ModelBoundigBoxManager` **de VanillaBackport para Platform** e **remove `HudElementRegistry`**. Essas mudanças de ownership e de API exigem verificar dependências e compatibilidade de consumidores, especialmente VanillaBackport. | [CurseForge 9318519](https://www.curseforge.com/minecraft/mc-mods/platform/files/9318519) |
+
+A publicação **1.3.4** exibida no histórico é para **Minecraft 1.20.1**, portanto **não** é etapa de upgrade para o artefato NeoForge **1.21.1**. A cadeia aplicável aqui é **1.4 → 1.4.1 → 1.4.2**, sem outras releases 1.21.1 posteriores ao baseline identificadas na listagem oficial.
+
+**Implicação direta:** a remoção de `HudElementRegistry` é uma mudança potencialmente incompatível; não presumir que um consumidor antigo continue carregando. A migração de `ModelBoundigBoxManager` afeta o contrato de VanillaBackport e pode exigir upgrade coordenado **Platform + Vanilla Backport**, sem inventar o requisito mínimo de `neoforge.mods.toml`. A correção de recipes/datapack em 1.4.1 deve entrar nos testes com integradores e datapacks do modpack.
+
+**Gates físicos não executados:** diff de classes/assinaturas e manifests, consumer mapping das dependências embarcadas/top-level, bootstrap dedicado e cliente, configs/datapacks/recipes, entity/model render e reload. Nenhum JAR foi substituído; **não** declarar a versão 1.4.2 como instalada. Pasta `API and Library/` e basename `✅-platform v1.3.3.md` ficam inalterados.
+
+**Conclusão documental:** as três publicações aplicáveis após **1.3.3** foram enumeradas e seus changelogs específicos de NeoForge 1.21.1 analisados até **1.4.2**.

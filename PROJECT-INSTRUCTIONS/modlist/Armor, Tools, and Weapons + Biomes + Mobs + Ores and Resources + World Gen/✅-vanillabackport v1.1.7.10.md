@@ -115,3 +115,27 @@ A autoridade física atual mantém `VanillaBackport-neoforge-1.21.1-1.1.7.10.jar
 **Impacto no modpack:** mudança estrutural pode quebrar bridges e consumidores; revalidar em cópia de mundo Platform, Delightful Backport, Dynamic Trees for VanillaBackport, recursos e worldgen, recipes/registries, quests, cliente e dedicado. O requisito mínimo exato de Platform no JAR 1.2 não foi extraído; relação técnica não é prova de dependência declarada. Não alterar o JAR nem renomear dossier sem nova modlist física.
 
 Fonte upstream (artefato NeoForge): https://www.curseforge.com/minecraft/mc-mods/vanillabackport/files/9243543 .
+
+## Auditoria incremental — 1.1.7.10 → 1.2.2 (17/11/2026)
+
+**Autoridade física preservada:** posição **#560**, `VanillaBackport-neoforge-1.21.1-1.1.7.10.jar`, mod id `vanillabackport`, runtime `1.1.7.10` e SHA-1 `eb30efe569cbd5186abf9e5d1e64d4a84895b346`. **Última versão upstream localizada para o alvo:** **1.2.2**, NeoForge Minecraft **1.21.1**, **não instalada**. Projeto oficial CurseForge **417430**, autor BlackGear; categorias verificadas no projeto: **Armor, Tools, and Weapons + Biomes + Mobs + Ores and Resources + World Gen**, pasta atual correspondente. A revisão de **1.2** já documentada acima permanece válida e não foi reescrita.
+
+### Publicações intermediárias oficiais para NeoForge 1.21.1
+
+| Versão | Data | Mudanças efetivamente publicadas / relevância | Fonte exata |
+|---|---|---|---|
+| **1.2** | **18/10/2026** | Grande reestruturação; conteúdos dos drops **Copper Age** e **Mounts of Mayhem**, outras features de **Wilderness Bound**, suporte **Every Compat (Wood Good)** e abas de conteúdo. Reworks significativos de bundles/ender pearls (chunk tickets), pale garden/creaking/resin, cactus flowers e leaf litter, mobs/variações, happy ghasts e tags de equipamentos. O dossier já registrou detalhes; **não** aplicar ao NeoForge 1.21.1 os tópicos explicitamente restritos ao Minecraft 1.20.1. | [CurseForge 9243543](https://www.curseforge.com/minecraft/mc-mods/vanillabackport/files/9243543) |
+| **1.2.1** | **23/10/2026** | Corrige loot tables de slabs de lã/concreto, inflamabilidade de poplar woodset, regra de dried ghasts que passa a usar a tag biome `minecraft:nether`, mobs montados gerando com spears quando a função estava desativada, recipes de tingimento de harnesses/cushions/slabs/stairs migradas de listas hardcoded para **tags**, fallback de registry removido e duplicação do encantamento lunge nas abas criativas. **Relevante** para datapacks, worldgen, recipes, integração de registries e configurações. | [CurseForge 9295989](https://www.curseforge.com/minecraft/mc-mods/vanillabackport/files/9295989) |
+| **1.2.2** | **25/10/2026** | Corrige **crash** ao guardar item do **L_Ender Cataclysm** em shelf; **copper golems** não se afogam mais; **spears** passam a ter compatibilidade com **Better Combat**; copper chains/lanterns usam tag convencional de copper nuggets. **Relevante** para integração com Cataclysm, combate e receitas/tags. | [CurseForge 9318571](https://www.curseforge.com/minecraft/mc-mods/vanillabackport/files/9318571) |
+
+A sequência de releases individuais posteriores ao baseline para o alvo NeoForge 1.21.1 é **1.2 → 1.2.1 → 1.2.2**, sem publicação intermediária adicional identificada no catálogo oficial. Não inferir features, entidades ou IDs não descritos nos changelogs ou extraídos do JAR.
+
+### Consequências específicas para o pack
+
+- O snapshot contém **Delightful Backport 1.0** e **Dynamic Trees for VanillaBackport 1.7.0**: mudanças de registries, tags, worldgen, receitas e item families devem ser testadas em conjunto, especialmente o rework do conteúdo pale garden/vegetação.
+- A linha 1.2.x altera muitos sistemas de mundo: exigir **backup do save**, comparação registry-by-registry, datapack/resource reload e geração em chunks novos; não assumir migração inofensiva.
+- A 1.2.2 anuncia fix de crash **L_Ender Cataclysm** e integração com **Better Combat**; tais changelogs não comprovam que consumidores específicos estão presentes e habilitados neste perfil.
+- **Platform 1.4.2**, do mesmo autor, migra `ModelBoundigBoxManager` de VanillaBackport e remove `HudElementRegistry`. Essa notícia exige validar **API/ABI e versões instaladas em conjunto**. A coexistência temporal não é prova de dependency range do JAR; verificar manifests e testar load antes de atualizar qualquer um.
+- Gate ainda aberto: comparar `META-INF/neoforge.mods.toml` da candidata VanillaBackport 1.2.2, integração das bridges, geração de blocos/mobs, recipes e fallback de registry, multiplayer e dedicated server. **Não houve instalação de JAR, execução de testes nem revalidação física posterior ao snapshot.**
+
+**Conclusão documental:** histórico oficial **1.2, 1.2.1 e 1.2.2** auditado e informações materiais incorporadas. Mantidos o **basename `✅-vanillabackport v1.1.7.10.md`**, a pasta já compatível com as categorias CurseForge e o runtime físico **1.1.7.10**; o candidato **1.2.2 é apenas upstream**.

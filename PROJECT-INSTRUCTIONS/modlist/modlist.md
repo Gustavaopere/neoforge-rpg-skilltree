@@ -592,7 +592,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 442 | Photon | `photon-neoforge-1.21.1-2.2.6.a-all.jar` | `2.2.6.a` | `API and Library + Magic + Technology + Utility & QoL` | 17/11/2026 - 16:11 |
 | 443 | Pickable Health Orbs | `pickable_orbs-1.21.1-1.0.0.jar` | `1.21.1-1.0.0` | `Adventure and RPG + Magic + Utility & QoL` | 26/09/2026 - 02:32 |
 | 444 | Placebo | `Placebo-1.21.1-9.9.2.jar` | `9.9.2` | `API and Library` | 26/09/2026 - 02:32 |
-| 445 | Platform | `Platform-neoforge-1.21.1-1.3.3.jar` | `1.3.3` | `API and Library` | 22/10/2026 - 21:59 |
+| 445 | Platform | `Platform-neoforge-1.21.1-1.3.3.jar` | `1.3.3` | `API and Library` | 17/11/2026 - 18:22 |
 | 446 | playerAnimator | `player-animation-lib-forge-2.0.4+1.21.1.jar` | `2.0.4+1.21.1` | `API and Library + Cosmetic` | 26/09/2026 - 02:33 |
 | 447 | Player Animation Library | `PlayerAnimationLibNeoforge-1.1.6+mc.1.21.1.jar` | `1.1.6+mc.1.21.1` | `API and Library` | 26/09/2026 - 02:33 |
 | 448 | Polymorph+ | `polymorph_plus-neoforge-1.3.1+1.21.1.jar` | `1.3.1+1.21.1` | `Miscellaneous + Utility & QoL` | 22/10/2026 - 22:55 |
@@ -707,7 +707,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 557 | Vampiric Ageing - A Vampirism Addon | `vampiricageing-1.21-1.4.21.jar` | `1.21-1.4.21` | `Magic` | 28/09/2026 - 01:09 |
 | 558 | Vampirism - Become a vampire! | `Vampirism-1.21-1.10.13.jar` | `1.10.13` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 28/09/2026 - 01:09 |
 | 559 | Vampirism Integrations | `vampirism_integrations-1.21.1-1.10.2.jar` | `1.10.2` | `Magic + Miscellaneous` | 28/09/2026 - 01:09 |
-| 560 | Vanilla Backport | `VanillaBackport-neoforge-1.21.1-1.1.7.10.jar` | `1.1.7.10` | `Armor, Tools, and Weapons + Biomes + Mobs + Ores and Resources + World Gen` | 22/10/2026 - 21:57 |
+| 560 | Vanilla Backport | `VanillaBackport-neoforge-1.21.1-1.1.7.10.jar` | `1.1.7.10` | `Armor, Tools, and Weapons + Biomes + Mobs + Ores and Resources + World Gen` | 17/11/2026 - 18:22 |
 | 561 | Village Spawn Point | `villagespawnpoint-1.21.1-4.6.jar` | `4.6` | `Adventure and RPG + World Gen` | 28/09/2026 - 01:09 |
 | 562 | Vintage Improvenents - SSW Edition | `vintageimprovements-1.21.1-0.0.0.7.jar` | `1.21.1-0.0.0.7` | `Addons + Create` | 28/09/2026 - 02:10 |
 | 563 | VS / Sable Hose Connectors | `VS-Sable-HoseConnectors-0.1.8-1.21.1.jar` | `0.1.8` | `Addons + Create + Industrial Craft + Storage + Technology` | 28/09/2026 - 02:10 |
@@ -716,7 +716,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 566 | Wayward Attributes | `wayward_attributes-1.21.1-1.1.1.jar` | `1.1.1` | `API and Library + Cosmetic` | 28/09/2026 - 02:10 |
 | 567 | YDM's Weapon Master | `weaponmaster_ydm-1.21.1-neoforge-4.2.7.jar` | `4.2.7` | `Cosmetic` | 28/09/2026 - 02:10 |
 | 568 | Weapons of Miracles - epic fight | `WeaponsOfMiracles-2.0.178.jar` | `2.0.178` | `Addons + Adventure and RPG + Armor, Tools, and Weapons` | 28/09/2026 - 02:10 |
-| 569 | Create Aeronautics: Weight | `weight-1.2.0.jar` | `1.2.0` | `Addons + Create` | 28/09/2026 - 02:10 |
+| 569 | Create Aeronautics: Weight | `weight-1.2.0.jar` | `1.2.0` | `Addons + Create` | 17/11/2026 - 18:22 |
 | 570 | Werewolves - Become a Beast! | `Werewolves-1.21-2.0.3.3.jar` | `2.0.3.3` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 28/09/2026 - 02:10 |
 | 571 | Wind's Spellbooks : Iron's Spells 'n Spellbooks Addon | `wind_spellbooks-1.0.5.jar` | `1.0.5` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 28/09/2026 - 02:10 |
 | 572 | WorldWeaver: New Dawn | `worldweaver-21.0.25.jar` | `21.0.25` | `API and Library + Biomes + Utility & QoL + World Gen` | 22/10/2026 - 22:26 |
