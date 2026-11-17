@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/entityculling
 - **Procedência:** modlist.txt física atual — 587 entradas top-level incluindo o modloader — confirma `entityculling-neoforge-1.10.5-mc1.21.1.jar`, mod id `entityculling`, runtime 1.10.5 e SHA-1 `420d0006dbc0a20b1c2dd0b3c7c20ddb5cc51fcf`. CurseForge/GitHub oficiais mostram 1.11.2 como atualização NeoForge 1.21.1 publicada em 21/09/2026; isso não altera a autoridade física da versão atualmente instalada.
 - **Observações:** Runtime físico atual permanece 1.10.5, com `TRansition 1.0.21` e `TRender 1.0.15` JarJar. Há atualização oficial 1.11.2 para NeoForge 1.21.1 publicada em 21/09/2026. A linha 1.11.0/1.11.1/1.11.2 reestrutura a coleta de dados de (block)entities para reduzir crashes de acesso assíncrono, corrige `getRenderBoundingBox` no NeoForge e inclui hotfixes de 1.11.1; esses deltas ainda NÃO estão ativos no pack físico.
-- **Atualização/Status:** REAUDITADO EM 29/09/2026 — a autoridade física atual continua `entityculling-neoforge-1.10.5-mc1.21.1.jar` / runtime `1.10.5`. As releases upstream 1.11.0/1.11.1/1.11.2 permanecem registradas como atualização disponível, não como divergência da versão instalada. O risco Sable/Create Aeronautics continua documentado e não impede a certificação da migração.
+- **Atualização/Status:** AUDITORIA INCREMENTAL DOCUMENTAL 17/11/2026 — último JAR físico permanece `entityculling-neoforge-1.10.5-mc1.21.1.jar`. Histórico 1.11.0→1.11.3 preservado, seguido de 1.12.0 (12/11) e 1.12.1 (13/11) verificados para NeoForge 1.21.1; melhorias de culling/cache e API para integrações registadas na seção 18. Nenhum teste com Sable/Create Aeronautics foi executado e não foi atribuída a correção da issue #299 a essas releases.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa Sodium/ImmediatelyFast/BetterFpsDist em outra superfície: EntityCulling decide visibility de entities/block entities. Não deve alterar tick, simulation distance, AI ou physics.
 - **Data da última decisão:** 2026-08-26
@@ -147,3 +147,17 @@ O issue já documentado **#299**, sobre players/entities desaparecendo em Sable/
 
 **Estado:** 1.11.3 registrada como release posterior; último JAR físico comprovado permanece 1.10.5.
 
+## 18. Auditoria incremental 1.12.0 e 1.12.1 — não instaladas (17/11/2026)
+
+O snapshot físico de referência continua em **1.10.5** (`entityculling-neoforge-1.10.5-mc1.21.1.jar`). As seções 16 e 17 já cobrem as releases **1.11.0, 1.11.1, 1.11.2 e 1.11.3**; as duas publicações NeoForge **1.21.1** seguintes aparecem no [catálogo oficial CurseForge filtrado para 1.21.1](https://www.curseforge.com/minecraft/mc-mods/entityculling/files/all?page=1&pageSize=20&version=1.21.1):
+
+| Release NeoForge 1.21.1 | Data | Deltas oficiais compartilhados entre plataformas e interpretação |
+|---|---|---|
+| **1.12.0** | **12/11/2026** | Release ampla de performance/refactor: expande a **bounding box de culling em função da velocidade** (fix #281), melhora cache e reduz alocações, corrige exibição de nametags de entidades não vivas (#355), modulariza a implementação para futuras alternativas de culling. O changelog global inclui ajuste de atributos de entidades com tick culling (#350), proteção ao redor do jogador contra tick-culling (#347), atualização de peek de shulkers, e alterações específicas do Fabric e do MC 26.3. **Não atribuir partes específicas dessas plataformas ao runtime NeoForge 1.21.1 sem validação de source/binário.** |
+| **1.12.1** | **13/11/2026** | Introduz API para **mods terceiros implementarem culling personalizado sem Mixins** (#358). Relevante para integrações visualmente complexas, mas a existência da API não demonstra suporte automático nem resolução do problema Sable/Create Aeronautics #299. |
+
+**Evidências primárias:** [CurseForge, listagem NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/entityculling/files/all?page=1&pageSize=20&version=1.21.1); notas oficiais do autor publicadas no [Modrinth 1.12.0](https://modrinth.com/mod/entityculling/version/MYrVvddp) e [Modrinth 1.12.1](https://modrinth.com/mod/entityculling/version/kHxKicVG); comparação upstream [1.11.3…1.12.0](https://github.com/tr7zw/EntityCulling/compare/1.11.3...1.12.0) e [1.12.0…1.12.1](https://github.com/tr7zw/EntityCulling/compare/1.12.0...1.12.1). As páginas Modrinth citadas são de artefatos Fabric com changelog de release **compartilhado**: a elegibilidade do artefato NeoForge foi verificada **separadamente no CurseForge**.
+
+**Regressão necessária:** manter os testes de frustum/whitelist/bounding box, incluindo movimento rápido e câmera girando; comparar CPU/client tick e ganho de render; repetir cenário multiplayer com Sable/Create Aeronautics, transformações/sublevels e EMF/ETF; verificar API de culling antes de substituir workarounds. A versão 1.12.0 possui mudanças técnicas significativas, porém **nenhuma dessas duas releases foi instalada ou testada no pack nesta auditoria**.
+
+**Resultado documental:** releases posteriores até **1.12.1** revisadas sem lacuna entre a última versão já documentada (1.11.3) e o alvo; atualização física e QA continuam **pendentes**.

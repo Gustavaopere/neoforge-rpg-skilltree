@@ -20,6 +20,16 @@
 | 416 | [Dungeons Delight](https://www.curseforge.com/minecraft/mc-mods/dungeons-delight) | `1.5.1` (metadata interna `1.5.0`) | [1.5.2](https://www.curseforge.com/minecraft/mc-mods/dungeons-delight/files/9446248), [1.5.3](https://www.curseforge.com/minecraft/mc-mods/dungeons-delight/files/9614702) | Changelogs fechados; drop Stained Scrap e preview visual opcional; **divergência no campo filename da página 1.5.3**; binário/QA não verificados |
 | 543 | [Thirst Was Reclaimed](https://www.curseforge.com/minecraft/mc-mods/thirst-was-reclaimed) | `1.21.1-3.0.5` | [3.0.6](https://www.curseforge.com/minecraft/mc-mods/thirst-was-reclaimed/files/8893710), [3.0.7](https://www.curseforge.com/minecraft/mc-mods/thirst-was-reclaimed/files/9593285) | Changelogs fechados; Sophisticated Core/Brewin' and Chewin' purity; homologação física e regressão pendentes |
 
+
+### Consulta documental — Entity Culling e MezzConfig (17/11/2026)
+
+> Revisão documental upstream, **sem alteração da modlist física**. A tabela numerada de 587 top-level abaixo continua com versões e nomes JAR do último snapshot; `Última edição` dos respectivos dossiers registra esta revisão de conteúdo.
+
+| Nº físico | Mod | Versão no último inventário | Histórico auditado até | Pendências não documentais |
+|---:|---|---|---|---|
+| **257** | [Entity Culling Fabric/Forge](https://www.curseforge.com/minecraft/mc-mods/entityculling) | `1.10.5` | [1.11.0, 1.11.1, 1.11.2, 1.11.3, 1.12.0 e **1.12.1**](https://www.curseforge.com/minecraft/mc-mods/entityculling/files/all?page=1&pageSize=20&version=1.21.1) | QA Sable/Create Aeronautics, regressão frustum/whitelist, nova API e instalação |
+| **394** | [MezzConfig](https://www.curseforge.com/minecraft/mc-mods/mezzconfig) | `0.5.9` top-level; `0.5.6` JarJar JEI | **0.5.10 → 0.7.1 Beta**; [changelog oficial cumulativo](https://www.curseforge.com/minecraft/mc-mods/mezzconfig/files/9527937) | Reconciliação JEI/JarJar e testes de migration, atomic saves e listeners |
+
 ## Adições pós-snapshot físico — 02/10/2026
 
 > Estas entradas foram confirmadas pelo usuário como adicionadas **depois** de `modlist(1).txt`. Os filenames/versões abaixo são os artefatos upstream atuais usados como alvo documental; **não são promovidos a autoridade física** até novo dump do perfil. Por isso não recebem número físico nem `✅-`.
@@ -322,7 +332,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 23/10/2026 - 14:33 |
 | 255 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
 | 256 | [ETF] Entity Texture Features - [Fabric & Forge] | `entity_texture_features-7.2.1-1.21-neoforge.jar` | `7.2.1` | `Cosmetic + Utility & QoL` | 22/10/2026 - 22:49 |
-| 257 | Entity Culling Fabric/Forge | `entityculling-neoforge-1.10.5-mc1.21.1.jar` | `1.10.5` | `Miscellaneous + Utility & QoL` | 29/09/2026 - 02:57 |
+| 257 | Entity Culling Fabric/Forge | `entityculling-neoforge-1.10.5-mc1.21.1.jar` | `1.10.5` | `Miscellaneous + Utility & QoL` | 17/11/2026 - 15:09 |
 | 258 | EpheroLib | `EpheroLib-1.21.1-NEO-FORGE-1.2.0.jar` | `1.2.0` | `API and Library` | 24/09/2026 - 16:02 |
 | 259 | Epic Fight: Curios Compat 4.0 | `Epic Fight x Curios Compat 2.2.jar` | `2.2 (distribuição/filename); metadata runtime 1.4` | `Addons + Bug Fixes + Cosmetic` | 24/10/2026 - 01:00 |
 | 260 | Epic Fight | `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` | `21.17.3.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 24/09/2026 - 16:02 |
@@ -459,7 +469,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 391 | MineColonies: Jade crops addon | `mcjadecrops-1.1.1300.jar` | `1.1.1300` | `Addons + Farming + Utility & QoL` | 25/09/2026 - 12:00 |
 | 392 | Mechanicals Lib | `mechanicals-1.21.1-1.1.6.jar` | `1.1.6` | `API and Library` | 25/09/2026 - 12:31 |
 | 393 | Melody | `melody_neoforge_1.0.10_MC_1.21.jar` | `1.0.10` | `API and Library` | 25/09/2026 - 12:31 |
-| 394 | MezzConfig | `mezz_config-1.21.1-neoforge-0.5.9.jar` | `0.5.9` | `API and Library` | 20/09/2026 - 01:38 |
+| 394 | MezzConfig | `mezz_config-1.21.1-neoforge-0.5.9.jar` | `0.5.9` | `API and Library` | 17/11/2026 - 15:09 |
 | 395 | MineColonies | `minecolonies-1.1.1387-1.21.1-snapshot.jar` | `1.1.1387-1.21.1-snapshot` | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 22/10/2026 - 19:45 |
 | 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 23/10/2026 - 00:43 |
 | 397 | Tweaks addon for MineColonies | `MineColonies_Tweaks-1.21.1-3.33.jar` | `3.33` | `Addons + Utility & QoL` | 25/09/2026 - 12:31 |

@@ -17,7 +17,7 @@
 - **Sobreposição:** Não substitui a authority dos consumers. MezzConfig fornece plumbing de configuração/validação/sync; cada mod consumidor continua definindo significado, permissões e efeitos de seus valores.
 - **Observações:** O catálogo usa o top-level 0.5.9. A cópia 0.5.6 em META-INF/jarjar do JEI não é entrada top-level separada. O upstream avançou até 0.6.7 para NeoForge 1.21.1 em 03/10/2026, mas nenhuma dessas builds substitui o version pin físico até a modlist/JAR confirmar a atualização.
 - **Procedência:** modlist física atual (MezzConfig top-level 0.5.9; JEI 19.56.0.440 com MezzConfig 0.5.6 via JarJar) + CurseForge oficial 0.5.9→0.6.7 + source oficial mezz/MezzConfig e histórico multiversion.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 0.5.9. A travessia 0.5.10→0.6.7 foi revalidada para NeoForge 1.21.1; 0.6.7 é a latest publicada no CurseForge nesta rodada e seus deltas foram incorporados sem atribuí-los ao runtime instalado.
+- **Atualização/Status:** AUDITORIA INCREMENTAL DOCUMENTAL 17/11/2026 — o baseline físico top-level continua 0.5.9, com JEI 19.56.0.440 embarcando MezzConfig 0.5.6 via JarJar. Histórico prévio 0.5.10→0.6.7 preservado e versões posteriores 0.6.8, 0.6.9, 0.6.10, 0.6.11, 0.7.0 e 0.7.1 verificadas no changelog oficial cumulativo e documentadas na seção 15. 0.7.1 Beta para NeoForge 1.21.1 é somente alvo upstream; promoção física/compatibilidade JEI não homologadas.
 - **Histórico da decisão:** Entrada criada em 20/09/2026 porque MezzConfig passou a existir como mod top-level físico. Nenhuma decisão curatorial adicional foi inferida apenas da presença da biblioteca.
 - **Data da última decisão:** 2026-09-20
 
@@ -186,3 +186,22 @@ Fontes externas:
 <callout icon="🔒" color="gray_bg">
 	Boundary canônico: **MezzConfig = infraestrutura de configuração/validação/sync; o mod consumidor = significado da opção e autoridade da mecânica configurada**.
 </callout>
+
+## 15. Auditoria incremental 0.6.8 → 0.7.1 — não instaladas (17/11/2026)
+
+**Autoridade física preservada:** `mezz_config-1.21.1-neoforge-0.5.9.jar` (top-level 0.5.9). A seção 8 já documenta individualmente 0.5.10, 0.5.11, 0.5.12, 0.6.0, 0.6.1, 0.6.2, 0.6.3, 0.6.4, 0.6.5, 0.6.6 e 0.6.7. O cabeçalho e a nota de 03/10 dessa seção descrevem **aquele snapshot de pesquisa**, não o estado do upstream hoje. A publicação oficial [0.7.1 Beta para NeoForge 1.21.1, CurseForge file 9527937](https://www.curseforge.com/minecraft/mc-mods/mezzconfig/files/9527937) é datada de **09/11/2026**, usa `mezz_config-1.21.1-neoforge-0.7.1-standalone.jar` e publica um changelog cumulativo com os seis deltas subsequentes:
+
+| Versão intermediária | Mudança publicada pelo autor | Relevância para o dossier |
+|---|---|---|
+| **0.6.8** | Separa estados de gravação **staged/committed**; acrescenta retry em falhas de file sharing no Windows; corrige testes de paths e replacement e quoting de argumentos Windows CI. | **Relevante** para atomicidade/recovery e configuração no Windows; alterações de testes/CI não justificam novas mecânicas. |
+| **0.6.9** | Usa **AtomicFile** para operações de configuração; dispara listeners **fora dos locks de schema**; inclui tradução chinesa simplificada; bump de versão. | **Relevante** para atomicidade, potencial contenção/deadlock e ordering de callbacks. Tradução/bump não mudam authority da configuração. |
+| **0.6.10** | Exposição de **immutable sorting snapshots**. | **Relevante para consumers** que leem ordenação dinâmica: snapshot imutável; não inferir mutabilidade ou callbacks além do contrato publicado. |
+| **0.6.11** | Exposição das **localization keys** de descrição de configurações. | **Relevante** para GUI, tradução e consumers que exibem descrições; não implica atualização automática de resource packs. |
+| **0.7.0** | Exposição de tipos de valor estáveis para **config serializers**. | **Relevante para API pública e serializers de consumers**; exige validação de assinaturas reais ao migrar código. |
+| **0.7.1** | Resolve **API baselines a partir de artefatos já publicados** e realiza bump para 0.7.1. | Predominantemente **build/publicação**; não há novo comportamento de gameplay comprovado nessa etapa isolada. |
+
+**Aplicação ao pack:** MezzConfig é biblioteca, não provider da semântica dos parâmetros. Após promover o top-level, testar listener disparado exatamente uma vez e fora de lock, rollback/atomic save (inclusive arquivo aberto no Windows), snapshots de sorting, traduções, serializers e migration com valores rejeitados. Reconciliar o top-level com o `MezzConfig 0.5.6` em `META-INF/jarjar/` do JEI físico; a distribuição e o changelog **não comprovam** que o conjunto JEI/MezzConfig e demais consumers atuais é ABI-compatível. Não tratar dependências embarcadas como mods top-level adicionais.
+
+**Evidências primárias:** [CurseForge: 0.7.1 NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/mezzconfig/files/9527937), seção *What's new* com headings separados para cada release, e [source do autor mezz/MezzConfig](https://github.com/mezz/MezzConfig), que define a API pública sob `net.mezzdev.config.api`. Não foi extraído o JAR distribuído nem executado ambiente cliente/dedicated server. A enumeração dos headings não prova isoladamente que cada versão teve um binário NeoForge 1.21.1 publicado; comprova a sequência técnica do upstream.
+
+**Resultado documental:** histórico completo de mudanças relevantes **0.5.9 → 0.7.1** registrado, sem substituir a versão instalada ou afirmar homologação física.
