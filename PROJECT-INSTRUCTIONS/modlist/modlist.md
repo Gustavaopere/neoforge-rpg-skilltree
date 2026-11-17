@@ -10,6 +10,16 @@
 >
 > A posição de cada linha é obtida por correspondência exata com o JAR top-level instalado na autoridade física. Dependências embarcadas em `META-INF/jarjar/` ou `META-INF/jars/` não recebem linhas próprias.
 
+
+## Auditoria incremental de releases — 17/11/2026
+
+> Esta consulta **não altera** o inventário físico de 587 entradas: as versões listadas como upstream são candidatas documentadas, **não** JARs novos instalados. As duas linhas físicas #416 e #543 abaixo preservam os filenames/versões comprovados no último snapshot; `Última edição` reflete somente as revisões documentais efetivamente realizadas.
+
+| Nº físico | Projeto | Instalado no último snapshot | Releases posteriores auditadas | Resultado |
+|---:|---|---|---|---|
+| 416 | [Dungeons Delight](https://www.curseforge.com/minecraft/mc-mods/dungeons-delight) | `1.5.1` (metadata interna `1.5.0`) | [1.5.2](https://www.curseforge.com/minecraft/mc-mods/dungeons-delight/files/9446248), [1.5.3](https://www.curseforge.com/minecraft/mc-mods/dungeons-delight/files/9614702) | Changelogs fechados; drop Stained Scrap e preview visual opcional; **divergência no campo filename da página 1.5.3**; binário/QA não verificados |
+| 543 | [Thirst Was Reclaimed](https://www.curseforge.com/minecraft/mc-mods/thirst-was-reclaimed) | `1.21.1-3.0.5` | [3.0.6](https://www.curseforge.com/minecraft/mc-mods/thirst-was-reclaimed/files/8893710), [3.0.7](https://www.curseforge.com/minecraft/mc-mods/thirst-was-reclaimed/files/9593285) | Changelogs fechados; Sophisticated Core/Brewin' and Chewin' purity; homologação física e regressão pendentes |
+
 ## Adições pós-snapshot físico — 02/10/2026
 
 > Estas entradas foram confirmadas pelo usuário como adicionadas **depois** de `modlist(1).txt`. Os filenames/versões abaixo são os artefatos upstream atuais usados como alvo documental; **não são promovidos a autoridade física** até novo dump do perfil. Por isso não recebem número físico nem `✅-`.
@@ -471,7 +481,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 413 | Multi-Piston | `multipiston-1.2.58-1.21.1.jar` | `1.2.58-1.21.1` | `Adventure and RPG + Cosmetic + Player Transport + Redstone` | 25/09/2026 - 14:00 |
 | 414 | My Nether's Delight | `MyNethersDelight-1.21.1-1.10.4.1.jar` | `1.10.4.1` | `Cosmetic + Farming + Food` | 25/09/2026 - 14:00 |
 | 415 | Nature's Compass | `NaturesCompass-1.21.1-3.4.0-neoforge.jar` | `1.21.1-3.4.0-neoforge` | `Armor, Tools, and Weapons + Biomes + Map and Information + Technology` | 25/09/2026 - 14:00 |
-| 416 | Dungeons Delight | `neoforge-dungeonsdelight-1.21.1-1.5.1.jar` | `1.5.1 (distribuição); metadata interna 1.5.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Food + Magic` | 17/09/2026 - 21:40 |
+| 416 | Dungeons Delight | `neoforge-dungeonsdelight-1.21.1-1.5.1.jar` | `1.5.1 (distribuição); metadata interna 1.5.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Food + Magic` | 17/11/2026 - 14:45 |
 | 417 | RunicLib | `neoforge-runiclib-1.21.1-5.0.7.jar` | `5.0.7` | `API and Library + Magic + Utility & QoL` | 25/09/2026 - 14:00 |
 | 418 | Create: Northstar - Redux | `Northstar-0.6.5+1.21.1.jar` | `0.6.5+1.21.1` | `Addons + Create + Dimensions + KubeJS + Technology` | 16/09/2026 - 18:39 |
 | 419 | Not Enough Glyphs | `not_enough_glyphs-1.21.1-4.6.2.jar` | `4.6.2` | `Addons + Magic + Utility & QoL` | 18/09/2026 - 08:51 |
@@ -598,7 +608,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 540 | Terralith | `Terralith_1.21.x_v2.6.2.jar` | `2.6.2` | `Biomes + Structures + World Gen` | 27/09/2026 - 23:18 |
 | 541 | Create: TFMG Community Edition | `tfmg-1.21.1-1.3.1-community.jar` | `1.3.1-community` | `Addons + Armor, Tools, and Weapons + Create + Ores and Resources + Technology` | 27/09/2026 - 22:58 |
 | 542 | ThirstWasFixed | `thirstwasfixed-2.1.6.jar` | `2.1.6` | `Addons + Bug Fixes` | 22/10/2026 - 23:19 |
-| 543 | Thirst Was Reclaimed | `ThirstWasReclaimed-1.21.1-3.0.5.jar` | `1.21.1-3.0.5` | `Food` | 28/09/2026 - 00:04 |
+| 543 | Thirst Was Reclaimed | `ThirstWasReclaimed-1.21.1-3.0.5.jar` | `1.21.1-3.0.5` | `Food` | 17/11/2026 - 14:45 |
 | 544 | Corail Tombstone | `tombstone-neoforge-1.21.1-9.5.6.jar` | `9.5.6` | `Adventure and RPG + Magic + Mobs + Utility & QoL` | 28/09/2026 - 00:04 |
 | 545 | Tom's Simple Storage Mod | `toms_storage-1.21-2.4.2.jar` | `2.4.2` | `Storage + Technology` | 28/09/2026 - 00:04 |
 | 546 | TownTalk | `towntalk-1.2.0.jar` | `1.2.0` | `Addons + Adventure and RPG + Cosmetic + Utility & QoL` | 28/09/2026 - 00:27 |

@@ -16,7 +16,7 @@
 - **Sobreposição:** Compartilha domínio culinário com outros addons Farmer's Delight, mas possui loop próprio de monster-food/combat; comparar efeitos/recipes concretos antes de qualquer decisão de redundância.
 - **Observações:** Distribuição física/release oficial 1.5.1 (`neoforge-dungeonsdelight-1.21.1-1.5.1.jar`), mas o metadata interno reporta 1.5.0. A divergência foi reconciliada pela hierarquia canônica: arquivo/release física prevalece para a versão catalogada.
 - **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + release oficial Dungeon's Delight 1.5.1 para NeoForge 1.21.1 + metadata interno 1.5.0 registrado como divergência conhecida.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — distribuição física 1.5.1 reconfirmada; metadata interno 1.5.0 preservado como divergência conhecida. Farmer's Delight 1.3.4, RunicLib 5.0.7 e NeoForge 21.1.250 permanecem compatíveis com os mínimos documentados.
+- **Atualização/Status:** AUDITORIA UPSTREAM DOCUMENTAL REVALIDADA EM 17/11/2026 — JAR físico de referência permanece `neoforge-dungeonsdelight-1.21.1-1.5.1.jar` (metadata interno 1.5.0). Publicações intermediárias NeoForge 1.21.1 1.5.2 (04/11) e 1.5.3 (14/11) verificadas individualmente no CurseForge; fix de Stained Scrap e pack visual opcional registrados adiante, sem alegar atualização física ou QA.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-27
 
@@ -152,3 +152,19 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Changelog 1.5.0: Ricochet Cleaver, Gunk Arrow, foods, Rotbulb, Dungeon Stove, Rot and Steel, Monster Cooking e ID migration.
 - **Divergência resolvida:** o arquivo/release é 1.5.1, mas o metadata interno permanece 1.5.0. Pela hierarquia do projeto, JAR físico e release oficial prevalecem para a versão catalogada.
 - **Limite:** conteúdo histórico não explicitamente sustentado para a linha atual não foi promovido a claim operacional.
+
+
+## 18. Auditoria de versões 1.5.2 e 1.5.3 — NeoForge 1.21.1 (17/11/2026)
+
+A **versão instalada de referência permanece 1.5.1** (arquivo físico `neoforge-dungeonsdelight-1.21.1-1.5.1.jar`; metadata interna 1.5.0). Esta seção documenta apenas versões upstream posteriores, sem alterar o JAR ou o identificador do dossier.
+
+| Versão publicada | Data CurseForge | Delta oficial e relevância documental |
+|---|---|---|
+| **1.5.2** | 04/11/2026 | Reitera Farmer's Delight **1.3.4+** como requisito, adiciona tradução **pt_br**, atualiza **ja_jp** e anuncia correção da ausência de **Stained Scrap** em Spawners e Rotten Spawners. A correção de drop é relevante para aquisição/progressão; as traduções são informativas. |
+| **1.5.3** | 14/11/2026 | O autor esclarece que a correção do drop anterior foi revertida/quebrada novamente e publica novo **fix de Stained Scrap**; inclui o resource pack interno **Dungeon's Delight Retextured: First Slice** com retexturas preliminares e **não ativadas por padrão**. Não equivale ao lançamento de Dungeon's Delight 2.0. Mantém Farmer's Delight **1.3.4+** como mínimo declarado. |
+
+**Risco de versão e evidência:** a [página CurseForge de file ID 9614702](https://www.curseforge.com/minecraft/mc-mods/dungeons-delight/files/9614702) identifica a release como **1.5.3** no título e no changelog, porém o campo textual **File name** aparece como `neoforge-dungeonsdelight-1.21.1-1.5.2.jar`. É uma divergência da página que **não foi conciliada por inspeção do binário**. O artefato exato da distribuição 1.5.3 e seus metadados devem ser conferidos antes de substituir o JAR físico.
+
+**Implicações para o pack:** testar o drop de Stained Scrap com Spawners/Rotten Spawners em mundo com loot tables/overrides do pack; preservar a apresentação visual atual, pois First Slice é opcional; verificar interações com resource packs existentes antes de habilitar a prévia. A exigência Farmer's Delight 1.3.4+ corresponde ao baseline documentado do pack, mas compatibilidade binária, dedicated server e gameplay **não foram testados**.
+
+**Fontes oficiais de cada versão:** [1.5.2 / file 9446248](https://www.curseforge.com/minecraft/mc-mods/dungeons-delight/files/9446248) e [1.5.3 / file 9614702](https://www.curseforge.com/minecraft/mc-mods/dungeons-delight/files/9614702). **Auditoria documental de changelogs 1.5.1→1.5.3 concluída; atualização da instalação e QA permanecem pendentes.**
