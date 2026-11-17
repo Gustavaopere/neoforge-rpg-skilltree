@@ -1,6 +1,6 @@
 # Cold Sweat: Altitude — 0.7.0
 
-> **Adição pós-snapshot físico — 02/10/2026.** O usuário confirmou que adicionou **Cold Sweat: Altitude** ao perfil. O snapshot físico disponível no projeto, `modlist(1).txt` de 16/09/2026, é anterior a essa instalação e ainda não contém o JAR. A build relatada/documentada permanece `coldsweat_altitude-0.7.0.jar` / `0.7.0`, enquanto o upstream avançou para `0.8.1` em 01/10/2026. Portanto esta ficha mantém **0.7.0 como version pin não fisicamente revalidado** e registra 0.8.0/0.8.1 apenas como upstream não instalado; não inventa SHA-1, metadata física nem ordem de JAR antes de um novo snapshot.
+> **Adição pós-snapshot físico — 02/10/2026.** O usuário confirmou que adicionou **Cold Sweat: Altitude** ao perfil. O snapshot físico disponível no projeto, `modlist(1).txt` de 16/09/2026, é anterior a essa instalação e ainda não contém o JAR. A build relatada/documentada permanece `coldsweat_altitude-0.7.0.jar` / `0.7.0`, enquanto o upstream avançou para `0.8.2` em 02/11/2026. Portanto esta ficha mantém **0.7.0 como version pin não fisicamente revalidado** e registra 0.8.0/0.8.1/0.8.2 apenas como upstream não instalado; não inventa SHA-1, metadata física nem ordem de JAR antes de um novo snapshot.
 
 > **Status de certificação:** **SEM `✅-`**. Não existe ficha canônica correspondente recuperável no Notion e a nova instalação ainda não foi re-fetched por modlist/JAR físico atualizado.
 
@@ -15,14 +15,14 @@
 - **Licença publicada da release:** MIT
 - **Categoria:** Addons; Adventure and RPG; Biomes; Dimensions; Utility & QoL
 - **Estado no pack:** Adicionado pelo usuário em 02/10/2026; confirmação física detalhada pendente
-- **Estado da pesquisa:** Documentação upstream verificada até 0.8.1; artefato físico pós-snapshot pendente
+- **Estado da pesquisa:** Documentação upstream verificada até 0.8.2 em 17/11/2026; artefato físico pós-snapshot e certificação Notion pendentes
 - **Decisão:** Manter/adicionar
 - **Função:** camada configurável de temperatura por altitude para Cold Sweat, com bandas Y, gradientes, shelter e integração explícita com Create Aeronautics/Sable. A linha upstream 0.8.x adiciona wind exposure e Windproof Lining, mas essas funções não são atribuídas ao runtime 0.7.0.
 - **Dependência funcional obrigatória:** Cold Sweat. A build 0.7.0 documentava **Cold Sweat 2.4.1+**; o snapshot físico do pack contém `ColdSweat-2.4.3.1.jar`. Para 0.8.1, o changelog declara rebuild/teste contra 2.4.3.1, enquanto a descrição pública atual diz “Requires Cold Sweat 2.4.4 or newer”; essa divergência upstream deve ser tratada fail-closed em qualquer promoção.
 - **Fonte principal:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat-altitude
 - **Código-fonte:** https://github.com/sprocketaudio/Cold-Sweat-Altitude
 - **Release 0.7.0:** https://www.curseforge.com/minecraft/mc-mods/cold-sweat-altitude/files/8754518
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — version pin documental permanece 0.7.0 sem confirmação física pós-snapshot; upstream publicou 0.8.0 e a correção 0.8.1. A 0.8.1 é a latest pública 1.21.1/NeoForge e não foi promovida como instalada.
+- **Atualização/Status:** AUDITORIA DOCUMENTAL INCREMENTAL EM 17/11/2026 — baseline relatado 0.7.0 permanece sem confirmação física pós-snapshot; publicações oficiais 0.8.0, 0.8.1 e 0.8.2 revalidadas. A 0.8.2 é a última release pública NeoForge 1.21.1 localizada e não foi promovida como instalada; sem ✅ devido a ausência de Notion canônico e inventário físico.
 
 # Dossiê operacional — padrão Alex's Mobs
 
@@ -294,7 +294,7 @@ Nenhum teste foi marcado como executado nesta auditoria documental.
 
 ## 18. Evidências e grau de confiança
 
-**Alta confiança — linha pública:** CurseForge confirma 0.8.1 como latest 1.21.1/NeoForge, file ID 9027134; a build documentada 0.7.0 permanece sem revalidação física pós-snapshot.
+**Alta confiança — linha pública:** CurseForge confirma 0.8.2 como latest 1.21.1/NeoForge em 17/11/2026, file ID 9409293; a build documentada 0.7.0 permanece sem revalidação física pós-snapshot.
 
 **Alta confiança — comportamento publicado:** página oficial/source descrevem bandas, gradientes, shelter, actionbar, Aeronautics/Sable, config/comandos e, na linha 0.8.x, wind exposure + Windproof Lining.
 
@@ -303,3 +303,24 @@ Nenhum teste foi marcado como executado nesta auditoria documental.
 **Pendente:** o novo JAR instalado de Cold Sweat: Altitude ainda não foi re-fetched da máquina/perfil; portanto SHA-1, metadata efetivamente carregada e ordem física permanecem não certificados.
 
 > **Boundary canônico:** Cold Sweat é o owner térmico; Cold Sweat: Altitude acrescenta a dimensão de **altitude** ao ambiente, com configuração e compatibilidade de nave, sem substituir o sistema corporal.
+
+## 19. Release 0.8.2 — auditoria incremental (17/11/2026, não instalada)
+
+**Projeto correto:** [Cold Sweat: Altitude no CurseForge, ID 1528631](https://www.curseforge.com/minecraft/mc-mods/cold-sweat-altitude), do autor **SprocketGames**. A publicação atual contém exatamente cinco categorias temáticas: **Addons**, **Adventure and RPG**, **Biomes**, **Dimensions** e **Utility & QoL**. A subpasta atual corresponde a esse conjunto, mas **nenhuma movimentação estrutural é permitida** enquanto este dossier continuar sem certificação ✅- e sem versão física comprovada.
+
+**Cadeia NeoForge Minecraft 1.21.1 após 0.7.0, sem lacunas identificadas no catálogo oficial:**
+
+| Versão | Data | Fonte primária | Mudança e relevância |
+|---|---|---|---|
+| **0.8.0** | 30/09/2026 | [CurseForge file 9022836](https://www.curseforge.com/minecraft/mc-mods/cold-sweat-altitude/files/9022836) | Introduz **Windproof Lining**, wind exposure configurável por banda, indicador de proteção na interface de insulation, suppress condicional do modifier nativo de elevation do Cold Sweat, diagnóstico de vento/abrigo/hearth e novos defaults de balanceamento. Esta build foi acidentalmente compilada contra um Cold Sweat de desenvolvimento não publicado; **não usar como candidata de instalação**. |
+| **0.8.1** | 01/10/2026 | [CurseForge file 9027134](https://www.curseforge.com/minecraft/mc-mods/cold-sweat-altitude/files/9027134) | **Rebuild** da 0.8.0 contra Cold Sweat público **2.4.3.1**; autor confirma testes com Create Aeronautics **1.3.2** e Sable NeoForge **2.0.5**, inclusive hearth em ships montados. **Nenhum delta de gameplay/balanceamento** ante a 0.8.0. |
+| **0.8.2** | 02/11/2026 | [CurseForge file 9409293](https://www.curseforge.com/minecraft/mc-mods/cold-sweat-altitude/files/9409293) | **Reduz o mínimo de NeoForge de 21.1.252 para 21.1.235.** O changelog informa explicitamente **nenhuma mudança de gameplay ou balanceamento**. É uma alteração relevante de elegibilidade técnica para o loader, não um novo sistema térmico. |
+
+**Compatibilidade e divergências:**
+
+- O último snapshot do pack documenta **NeoForge 21.1.250**, que **satisfaz numericamente o mínimo 21.1.235 anunciado pela 0.8.2**; a antiga restrição 21.1.252 ficaria acima do loader conhecido. Essa comparação numérica não equivale a inspeção de metadados do JAR 0.8.2 nem a execução de startup.
+- O último snapshot físico do pack é anterior à adição de Altitude e mantém **Cold Sweat 2.4.3.1**. A release 0.8.1 declara rebuild/teste com 2.4.3.1; porém a [descrição atual do projeto](https://www.curseforge.com/minecraft/mc-mods/cold-sweat-altitude) ainda afirma **"Requires Cold Sweat 2.4.4 or newer"**. Essa divergência permanece **bloqueada** até a verificação de `META-INF/neoforge.mods.toml` do JAR candidato 0.8.2 e teste com o provider Cold Sweat instalado.
+- O [source público em `main`](https://github.com/sprocketaudio/Cold-Sweat-Altitude/blob/main/gradle.properties) consultado em 17/11/2026 ainda fixa `mod_version=0.8.1`, `neo_version=21.1.252` e `cold_sweat_version=2.4.3.1`. Portanto esse source **não é pin de compilação para 0.8.2** e não desfaz a evidência de publicação do CurseForge.
+- A linha 0.8.x altera wind chill/protection e ownership da altitude. Gates permanecem: proteção Windproof Lining/persistência por armadura, temperatura por banda e shelter, hearth/burners em ships Aeronautics/Sable, ausência de double application de elevation, coexistência com clima/bioma/Volcanoes e smoke client/dedicated server. Nenhum teste de gameplay, cliente, servidor ou JAR foi realizado nesta auditoria.
+
+**Status de certificação: PENDENTE / FAIL-CLOSED.** A adição de Altitude em 02/10/2026 foi informada pelo usuário, mas falta o **snapshot físico atualizado** para confirmar nome top-level, SHA, metadata interna, versão e posição na modlist instalada. Também falta uma ficha Notion canônica recuperável, conforme ressalva histórica no começo deste dossier. **Preservar integralmente o nome `cold-sweat-altitude v0.7.0.md`, sem prefixo ✅-, e não criar entrada de mod top-level certificado no índice mestre `modlist.md`.** A auditoria das novas publicações pode ser considerada revisada até 0.8.2, mas **a certificação documental e a atualização física ainda não estão concluídas**.
