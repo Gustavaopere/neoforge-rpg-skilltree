@@ -447,3 +447,18 @@ A nota autoral [3.1b em Fabric 1.21.1](https://www.curseforge.com/minecraft/mc-m
 Na consulta atual, a [API oficial do Modrinth filtrada para `1.21.1` e `neoforge`](https://api.modrinth.com/v2/project/8aoMKplv/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D) contém 3.0 e 3.2b, mas **não** as etapas históricas 3.1b/3.2/3.2a presentes em referências CurseForge e documentadas acima. A ausência do índice corrente não comprova inexistência histórica. O fabricante documenta 3.2 como suportado para NeoForge 1.21.1, e o hash/release exata 3.2b já está registrado na revisão anterior.
 
 **Resultado fail-closed:** a auditoria das notas autorais disponíveis está mais completa, mas **não permite afirmar que todos os changelogs dos artefatos NeoForge 1.21.1 intermediários foram verificados** nem descartar outros arquivos arquivados/retirados. **A certificação documental do item 20 permanece PENDENTE**, assim como testes de compatibilidade Epic Fight, First Person Model, shaders, perfil e resource packs. **Não remover da lista de auditoria.** Nenhum arquivo físico, configuração ou índice de versão foi promovido.
+
+
+## Verificação de proveniência por manifests de terceiros — 17/11/2026
+
+**Investigação exclusiva do item 20; sem promoção física.** A busca por artefatos NeoForge Minecraft 1.21.1 da série 3.x encontrou **manifests de modpacks publicados**, com três identificadores de arquivo CurseForge associados a nomes de JAR e hashes **SHA-1 declarados pelo respectivo manifest**. Trata-se de **fonte secundária**: esses hashes **não foram recalculados nesta auditoria a partir dos próprios binários**, pois as fichas/downloads oficiais intermediários não estavam acessíveis.
+
+| Versão histórica (não instalada) | File ID CurseForge | Filename registrado | SHA-1 registrado por manifest | Exemplo de evidência |
+|---|---:|---|---|---|
+| **3.1b** | **9408722** | punchy-3.1b-neoforge-1.21.1.jar | e1dd21e15c04101b05a5d6dd11369780a7a4a38a | [SolarPunk Colony](https://modpacks.ch/modpacks/1693798/solarpunk-colony), [Magically Vanilla](https://modpacks.ch/modpacks/1692060/magically-vanilla) |
+| **3.2** | **9500870** | punchy-3.2-neoforge-1.21.1.jar | a5d71866d88043a9345cde0dc21c4dd552e5e21c | [Regions — Lost & Discovered](https://modpacks.ch/modpacks/1598554/regions-lost-discovered), [Heaven For All](https://modpacks.ch/modpacks/1793167/heaven-for-all) |
+| **3.2a** | **9537308** | punchy-3.2a-neoforge-1.21.1.jar | 5f11862f5bcf8873719a2bd438b1db9a56e170cf | [RTNO RPG](https://modpacks.ch/modpacks/1798512/rtno-rpg), [Venti RPG](https://modpacks.ch/modpacks/474946/venti-rpg) |
+
+**Avanço verificável:** os três file IDs anteriormente tratados como referências históricas agora contam também com indícios independentes de *instalações reais em modpacks de terceiros* para o loader/versão exatos. Eles deixam de depender somente da grafia do nome de release na listagem. **Limite:** a existência desses manifests não comprova conteúdo interno dos JARs, identidade com a variante Forge/Fabric, changelog aplicado à plataforma, integridade de downloads atuais ou inexistência de builds 3.1/3.1a arquivadas.
+
+**Persistência do bloqueio:** os changelogs exatos NeoForge 1.21.1 de **3.1b, 3.2 e 3.2a** e a exaustividade do catálogo ainda não foram comprovados por fonte primária por artefato ou perícia dos binários. As publicações e alterações upstream acessíveis continuam documentadas nas seções anteriores, com limites de loader explicitados. **Não certificar como integralmente concluída; não liberar o item 20 para exclusão do Bloco de Notas.** Dossier, JAR físico punchy-2.7e-neoforge-1.21.1.jar e pasta/categorias permanecem intocados fora desta adição documental.
