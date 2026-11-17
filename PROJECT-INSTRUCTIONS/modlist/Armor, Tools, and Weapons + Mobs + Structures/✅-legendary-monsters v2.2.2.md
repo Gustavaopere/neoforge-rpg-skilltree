@@ -95,3 +95,16 @@ O snapshot contém **Create #116 `create-1.21.1-6.0.10.jar`**, **Legendary Spell
 - [ ] Somente promover a release após regressões, backup de mundo/config, verificação de JAR e rollback documentado; **atualizar depois o filename e a versão dos catálogos** quando a mudança física estiver realmente confirmada.
 
 **Decisão:** preservar a propriedade histórica **Sem decisão**; registrar **2.2.3 disponível, mas não instalado**. Nenhum mod JAR, script, datapack, shader, resource pack, mundo, config ou `modlist.md` foi alterado nesta reauditoria, e nenhum teste runtime foi declarado aprovado.
+
+## 15. Auditoria incremental 2.2.2 → 2.2.4 (17/11/2026)
+
+**Versão física preservada:** posição #371, `legendary_monsters-2.2.2 MC 1.21.1.jar`; versão pela distribuição **2.2.2**, apesar de a metadata interna historicamente registrada expor **1.21.1**. Não ocultar essa divergência. Projeto CurseForge [Legendary Monsters ID 944035](https://www.curseforge.com/minecraft/mc-mods/legendary-monsters), autor miauczel; categorias temáticas **Armor, Tools, and Weapons + Mobs + Structures**, pasta correta. Último JAR NeoForge **1.21.1 2.2.4 (23/10/2026)**; **não instalado**.
+
+| Release posterior | Data | Mudanças do changelog específico NeoForge 1.21.1 | Fonte oficial |
+|---|---|---|---|
+| **2.2.3** | 17/09/2026 | Nova sprite da animação **Soulstrike** do **Possessed Paladin**; correção de **problema de render com Create**, sem detalhar a causa; outros “few bugs” não especificados. Já analisada na seção 14. | [CurseForge 8902342](https://www.curseforge.com/minecraft/mc-mods/legendary-monsters/files/8902342) |
+| **2.2.4** | 23/10/2026 | Corrige **todos os crashes conhecidos de Small Annihilation Bomb** segundo o autor; **Obliterator +100 HP**; aumenta o **alcance de ataque de Soul Great Sword e Tesseract**; atualiza modelos de **Soul Candle** e algumas texturas. Mudanças relevantes de combate, item e render, sem informações suficientes sobre os gatilhos exatos dos crashes nem os novos alcances numéricos. | [CurseForge 9301784](https://www.curseforge.com/minecraft/mc-mods/legendary-monsters/files/9301784) |
+
+**Cadeia pós-baseline:** 2.2.3 → 2.2.4, ambas as releases oficiais NeoForge Minecraft 1.21.1, sem outros JARs intermediários verificados. O source GitHub público historicamente disponível permanece anterior à linha 2.2.x; não inferir novos IDs, hitboxes ou APIs do binário a partir desse source antigo.
+
+**QA antes da promoção:** testar explosão Small Annihilation Bomb e cancelamento/restart em cópia de mundo, vida do Obliterator, alcance real de Soul Great Sword/Tesseract, Soul Candle, render com Create 6.0.10 e shaders/Iris/Sodium, compatibilidade Legendary Spellbooks 0.3.2, loot/worldgen, server/client e persistência. Nenhum teste de runtime, cópia ou alteração de JAR foi realizado. **Auditoria documental concluída até 2.2.4**; nome do dossier e versão física 2.2.2 mantidos.

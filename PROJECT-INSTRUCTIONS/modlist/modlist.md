@@ -518,7 +518,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 368 | L_Ender's Cataclysm | `L_Ender's Cataclysm 1.21.1-3.33.jar` | `3.33` | `Adventure and RPG + Armor, Tools, and Weapons + Mobs + Structures` | 25/09/2026 - 10:34 |
 | 369 | LambDynamicLights | `lambdynamiclights-4.8.11+1.21.1.jar` | `4.8.11+1.21.1` | `Adventure and RPG + Cosmetic` | 25/09/2026 - 10:34 |
 | 370 | LDLib | `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar` | `2.2.39.a` | `API and Library + Utility & QoL` | 25/09/2026 - 10:34 |
-| 371 | Legendary Monsters | `legendary_monsters-2.2.2 MC 1.21.1.jar` | `2.2.2 (distribuição); metadata interna 1.21.1` | `Armor, Tools, and Weapons + Mobs + Structures` | 25/09/2026 - 10:34 |
+| 371 | Legendary Monsters | `legendary_monsters-2.2.2 MC 1.21.1.jar` | `2.2.2 (distribuição); metadata interna 1.21.1` | `Armor, Tools, and Weapons + Mobs + Structures` | 17/11/2026 - 18:47 |
 | 372 | Legendary Spellbooks | `legendary_spellbooks-1.21.1+neo-0.3.2.jar` | `0.3.2` | `Addons + Magic` | 25/09/2026 - 11:24 |
 | 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `leylines-1.0.3.jar` | `1.0.3` | `Addons + Magic + Structures + World Gen` | 25/09/2026 - 11:24 |
 | 374 | Lionfish API | `lionfishapi-3.1.jar` | `3.1` | `API and Library` | 25/09/2026 - 11:24 |
@@ -535,7 +535,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 385 | Yung Structures Addon for Loot Integrations | `lootintegrations_yungs-1.6.jar` | `1.6 (distribuição); metadata interna 1` | `Addons + Adventure and RPG + Structures` | 25/09/2026 - 12:00 |
 | 386 | LootJS: KubeJS Addon | `lootjs-neoforge-1.21.1-3.7.0.jar` | `1.21.1-3.7.0` | `KubeJS + Map and Information + Server Utility` | 25/09/2026 - 12:00 |
 | 387 | Lootr (Forge & NeoForge) | `lootr-neoforge-1.21.1-1.11.38.125.jar` | `1.21.1-1.11.38.125` | `Server Utility + Structures` | 25/09/2026 - 12:00 |
-| 388 | Lychee (Neo/Forge) | `Lychee-1.21.1-NeoForge-6.7.0.jar` | `6.7.0+neoforge` | `Utility & QoL` | 22/10/2026 - 22:24 |
+| 388 | Lychee (Neo/Forge) | `Lychee-1.21.1-NeoForge-6.7.0.jar` | `6.7.0+neoforge` | `Utility & QoL` | 17/11/2026 - 18:47 |
 | 389 | Malum | `malum-1.21.1-1.8.2.jar` | `1.8.2` | `Armor, Tools, and Weapons + Cosmetic + Magic + Ores and Resources + World Gen` | 25/09/2026 - 12:00 |
 | 390 | Max Health Fix | `maxhealthfix-neoforge-1.21.1-21.1.4.jar` | `21.1.4` | `Adventure and RPG + Armor, Tools, and Weapons + Bug Fixes + Server Utility + Utility & QoL` | 25/09/2026 - 12:00 |
 | 391 | MineColonies: Jade crops addon | `mcjadecrops-1.1.1300.jar` | `1.1.1300` | `Addons + Farming + Utility & QoL` | 25/09/2026 - 12:00 |
@@ -615,7 +615,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `API and Library + Cosmetic + Map and Information` | 24/10/2026 - 19:13 |
 | 466 | Epic Fight X Punchy! Neo | `punchy_epicfight_neoforge.jar` | `1.0.0` | `Addons` | 27/09/2026 - 16:30 |
 | 467 | Puzzles Lib | `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar` | `21.1.60` | `API and Library` | 17/11/2026 - 17:09 |
-| 468 | Quark | `Quark-4.1-484.jar` | `4.1-484` | `Cosmetic + Ores and Resources` | 27/09/2026 - 16:30 |
+| 468 | Quark | `Quark-4.1-484.jar` | `4.1-484` | `Cosmetic + Ores and Resources` | 17/11/2026 - 18:47 |
 | 469 | Ragdoll Reactions | `ragdoll_reactions-1.21.1-0.7.0.jar` | `0.7.0` | `Addons + Cosmetic` | 27/09/2026 - 16:30 |
 | 470 | Steam 'n' Rails Neoforge | `railways-0.3.0-beta.2+neoforge-mc1.21.1.jar` | `0.3.0-beta.2+neoforge-mc1.21.1` | `Addons + Cosmetic + Create + Player Transport + Technology` | 27/09/2026 - 16:30 |
 | 471 | Rechiseled | `rechiseled-1.2.6-neoforge-mc1.21.jar` | `1.2.6` | `Cosmetic` | 27/09/2026 - 16:30 |

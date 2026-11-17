@@ -231,3 +231,25 @@ A **4.1-486** elevou o mínimo do NeoForge a **21.1.252** e embarcou Biolith 3.0
 **Fontes oficiais:** https://github.com/VazkiiMods/Quark/blob/release-4.1-487%2B1.21.1/changelog.md ; https://www.curseforge.com/minecraft/mc-mods/quark/files/all?version=1.21.1
 
 **Estado:** 4.1-487 disponível, **BLOQUEADA** promoção física até loader e dependências compatíveis; nenhum teste runtime realizado.
+
+## 24. Auditoria incremental da release Quark 4.1-488 (17/11/2026)
+
+**Baseline físico imutável:** #468, `Quark-4.1-484.jar`, runtime `4.1-484`. Projeto oficial CurseForge [Quark 243121](https://www.curseforge.com/minecraft/mc-mods/quark), autor Vazkii; categorias temáticas **Cosmetic + Ores and Resources**, pasta correta. **Última release publicada para NeoForge Minecraft 1.21.1: 4.1-488**, em **26/10/2026**, [CurseForge file 9335735](https://www.curseforge.com/minecraft/mc-mods/quark/files/9335735). As releases intermediárias **4.1-485 (16/09), 4.1-486 (02/10), 4.1-487 (05/10)** já foram auditadas nas seções 21–23 e são preservadas. A nova seção cobre **exclusivamente 4.1-488**, fechando a cadeia 485 → 486 → 487 → 488.
+
+### Delta exclusivo de 4.1-488, confirmado no source versionado
+
+[Changelog oficial da tag `release-4.1-488+1.21.1`](https://github.com/VazkiiMods/Quark/blob/release-4.1-488%2B1.21.1/changelog.md):
+
+- **Ancient Tome de Librarian:** corrige trade não concedido quando livro encantado foi criado em anvil. Relevante para villagers/progressão e interação com itens registrados.
+- **Foxhounds:** `quark:PetTime` passa a ser gravado corretamente; ajustes de comportamento de pedir carinho/food e AI evitando alguns estados de inatividade. Corrige parcialmente a preferência por furnaces de cobblestone e o problema de `Dogs Want Love`; o autor **não** afirma correção completa para esses dois.
+- **Fogo do Foxhound:** fazer carinho aplica fogo por **1 s** em vez de 5; aproximar-se de foxhound domesticado que necessita carinho, se `dogsWantLove` ativo, aplica **3 s** em vez de 5. Isso modifica comportamento/dano e pode cruzar sistemas de temperatura/fogo do pack.
+- **Furnaces:** Foxhounds passam a escolher smokers e blast furnaces para dormir; compatibilidade também com fornalhas modded via `AbstractFurnaceBlockEntity`.
+- **Forgotten Hat:** deixa de conceder **1 armor**, um nerf relevante de equipamento.
+- **Tags/AI:** Stoneling, Wraith e Oretoise passam a usar `minecraft:fall_damage_immune` em lugar de hardcode; prioridades de AI de mobs reorganizadas; `PetTime` em wolves/shibas desativado se `dogsWantLove=-1`; glowshroom worldgen mais data-driven.
+- **Expanded Item Interactions:** adiciona tag `counts_as_armor_for_expanded_item_interactions` (e subtags por slot) para equipar itens não-`ArmorItem`; pumpkins e skulls suportados. **Rotation Lock** pode exibir key hint junto à mira, **ligado por padrão**.
+- **Create/modded containers:** Chutes passam a interoperar com transferências de itens modded; tentativa de ordenar container com `SlotItemHandler` agora mostra aviso uma vez por launch, referenciando issue #5675, **sem declarar que o sort passou a funcionar**.
+- Atualizações de tradução **pt_br** e Czech; mudanças localizadas sem impacto nas regras do servidor.
+
+**Bloqueio de promoção física:** a linha 4.1-486 elevou o loader mínimo documentado para **NeoForge 21.1.252**, enquanto o snapshot do pack permanece **21.1.250**. Não há inspeção nova do `neoforge.mods.toml` da 4.1-488 para comprovar redução do requisito; **fail-closed**, portanto 4.1-488 não é candidata instalável confirmada com o loader físico conhecido. Verificar NeoForge, Zeta, Biolith top-level e JarJar, Dynamic Trees Quark, config/worldgen, tags e recipes antes de qualquer upgrade.
+
+**Conclusão documental:** cadeia publicada 4.1-484 → 4.1-488 auditada, sem alteração de JAR, configs, diretório, filename ou conteúdo histórico anterior. Última versão **publicada** 4.1-488; última versão **confirmadamente instalada** 4.1-484; compatibilidade runtime da candidata ainda pendente.

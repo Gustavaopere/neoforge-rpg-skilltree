@@ -158,3 +158,17 @@ Esses pontos devem ser considerados ao depurar datapacks escritos para 6.6.x: co
 **QA antes de qualquer instalação:** datapacks custom e recipes Lychee, replace/return de ingredientes e remainders sem duplicação ou perda, EMI (apenas se presente e confirmado), viewers alternativos como JEI, reload, RecipeManager, cliente versus dedicado. Preservar estado conhecido da versão 6.7.0 e a JarJar embarcada, sem criar entrada física para a dependência aninhada. **Documentação da única Beta posterior concluída; promoção da Beta não aprovada**.
 
 **Fonte:** https://www.curseforge.com/minecraft/mc-mods/lychee/files/9225058 .
+
+## Atualização incremental — Lychee 6.7.0 → 6.7.3 (17/11/2026)
+
+**Baseline físico preservado:** posição #388, `Lychee-1.21.1-NeoForge-6.7.0.jar`, metadata runtime `6.7.0+neoforge`. Projeto oficial CurseForge [Lychee (Neo/Forge), ID 567403](https://www.curseforge.com/minecraft/mc-mods/lychee) do autor Snownee; categoria temática **Utility & QoL**, correspondente ao diretório existente. O arquivo 6.7.3 é uma **release upstream para NeoForge Minecraft 1.21.1**, não instalada.
+
+| Release posterior NeoForge 1.21.1 | Data | Mudança comprovada | Fonte |
+|---|---|---|---|
+| **6.7.1** | 17/10/2026 | Adiciona `ClientSideStrategy.ofEntries`; corrige remanescentes de `set_item air` em receitas **EMI shaped** e adapta os remainders do `ShapedCraftingRecipe` para EMI. Alteração de API/serialização/recipe-viewer relevante a datapacks e automação; simplifica receita de exemplo `crafting3`, sem novidade funcional comprovada no runtime do pack. | [CurseForge 9225058](https://www.curseforge.com/minecraft/mc-mods/lychee/files/9225058) |
+| **6.7.2** | 29/10/2026 | Corrige **crash com a versão mais recente do JEI** (issue oficial #137). Relevante porque JEI é um consumer presente na modlist. | [CurseForge 9361243](https://www.curseforge.com/minecraft/mc-mods/lychee/files/9361243) |
+| **6.7.3** | 06/11/2026 | Corrige execução intermitentemente inoperante do comando/ação `execute` em **singleplayer**; não anuncia novas recipes ou alterações de balanceamento. | [CurseForge 9467621](https://www.curseforge.com/minecraft/mc-mods/lychee/files/9467621) |
+
+**Sequência exaustiva de releases posteriores identificadas para NeoForge 1.21.1:** 6.7.1 → 6.7.2 → 6.7.3. A nota da 6.7.3 contém changelog **cumulativo por versão**, sem empréstimo de Fabric ou de MC 26.x. Não transformar a dependência **fabric-particles-v1 embarcada em JarJar** em mod top-level.
+
+**Gates de instalação não executados:** validar `Kiwi`, JEI/EMI efetivamente presentes e versões, JSON schema/datapack parsing, remainders de shaped crafting, `block_clicking` da 6.7.0, `execute` em singleplayer, resource reload, dispensers, recipe sync e dedicated server. **Auditoria documental concluída até 6.7.3**, versão instalada 6.7.0+neoforge e basename do dossier preservados.
