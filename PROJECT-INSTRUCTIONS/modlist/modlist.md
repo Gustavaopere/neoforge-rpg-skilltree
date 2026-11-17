@@ -79,6 +79,15 @@
 | 203 | [Create : Teleporters](https://www.curseforge.com/minecraft/mc-mods/create-teleporters) | `2.0.2b` (metadata runtime 2.0.2) | [3.0.2](https://www.curseforge.com/minecraft/mc-mods/create-teleporters/files/9407716) | Correção upstream compatibilidade Immersive Aeronautics; testes Sable/portal/save pendentes |
 | 436 | [Particular ✨ Reforged](https://www.curseforge.com/minecraft/mc-mods/particular-reforged) | `1.5.7` | [1.6.1](https://www.curseforge.com/minecraft/mc-mods/particular-reforged/files/all?page=1&pageSize=20&version=1.21.1) | Novos efeitos ambientais da 1.6.0 e opção updateNotice da 1.6.1; performance/compat QA pendentes |
 
+
+### Revisão documental de InsaneLib — 17/11/2026
+
+> Versões upstream não alteram o JAR instalado.
+
+| Nº físico | Mod | Instalado no último snapshot | Upstream auditado até | Gate |
+|---:|---|---|---|---|
+| 331 | [InsaneLib](https://www.curseforge.com/minecraft/mc-mods/insanelib) | `2.4.33.0` | [2.5.3.1](https://www.curseforge.com/minecraft/mc-mods/insanelib/files/9548012) | Alterações de stack limits, API/config, recipes de datapack e network sync; QA ABI/consumers pendente |
+
 ## Adições pós-snapshot físico — 02/10/2026
 
 > Estas entradas foram confirmadas pelo usuário como adicionadas **depois** de `modlist(1).txt`. Os filenames/versões abaixo são os artefatos upstream atuais usados como alvo documental; **não são promovidos a autoridade física** até novo dump do perfil. Por isso não recebem número físico nem `✅-`.
@@ -455,7 +464,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 328 | Immersive Furniture | `immersive_furniture-neoforge-0.3.3+1.21.1.jar` | `0.3.3+1.21.1` | `Cosmetic + Storage` | 24/09/2026 - 22:53 |
 | 329 | Immersive Portal - Iron's Spells 'n Spellbooks Addon | `immersive_portal_irons_spells_n_spellbooks_addon-1.0.1.jar` | `1.0.1` | `Magic + Player Transport` | 24/09/2026 - 22:53 |
 | 330 | Immersive Portals: True Immersion | `immersive_portals_true_immersion-2.0.4.jar` | `2.0.4` | `Addons` | 24/09/2026 - 22:53 |
-| 331 | InsaneLib | `insanelib-2.4.33.0.jar` | `2.4.33.0` | `API and Library` | 22/10/2026 - 19:46 |
+| 331 | InsaneLib | `insanelib-2.4.33.0.jar` | `2.4.33.0` | `API and Library` | 17/11/2026 - 16:15 |
 | 332 | Integrated API | `integrated_api-neoforge-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + API and Library + Structures + World Gen` | 24/09/2026 - 23:17 |
 | 333 | Integrated Cataclysm | `integrated_cataclysm-1.0.6+1.21.1-neoforge.jar` | `1.0.6+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Create + World Gen` | 24/09/2026 - 23:17 |
 | 334 | Integrated Simply Swords | `integrated_simply_swords-1.4.0+1.21.1-neoforge.jar` | `1.4.0+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons` | 24/09/2026 - 23:18 |
