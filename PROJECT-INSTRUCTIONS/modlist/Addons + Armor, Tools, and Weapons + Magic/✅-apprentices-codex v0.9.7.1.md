@@ -256,3 +256,59 @@ Apprentice's Codex não é duplicata de **Spell Codex**: este addon adiciona spe
 **Estado upstream:** a última build exibida para NeoForge 1.21.1 continua **`0.9.7.1` Beta** (30/08/2026), idêntica ao JAR no snapshot. **Decisão:** manter enquanto não houver release mais nova compatível e aprovada. **Gate:** Iron's Spells 3.16.3, Create 6.0.10, Spell Dispenser em automação/redstone e contraptions, single-source casting/mana/progressão, datapack schema, compatibilidade de Arcane in a Jar e restart de mundo; especialmente relevante se o pack migrar versão dos provedores. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/apprentices-codex/files/all?version=1.21.1
 
 > **Autoridade e limites:** revisão documental baseada no último inventário físico histórico, sem novo dump de JARs/SHA e sem testes in-game nesta execução. Não alterar versão instalada, filename ou modlist sem evidência física atual.
+
+
+## Auditoria incremental — versões NeoForge 1.21.1 após 0.9.7.1 até 1.0.1 (17/11/2026)
+
+**Autoridade física preservada:** modlist instalada #038, JAR top-level \`apprentice_codex-0.9.7.1+mc1.21.1.jar\`, mod id \`apprenticecodex\`, runtime **0.9.7.1**, SHA-1 histórico \`b514315add32b93b0049c8673075627d7ef812e0\`. A contagem de **83 spells** e os IDs descritos acima derivam do source *da versão instalada* (pin \`305ea6a\`), **não** constituem contagem certificada da linha 1.0.1. Não reescrever este roster como se as versões novas estivessem instaladas.
+
+**Identidade:** [Apprentice's Codex (CurseForge 1450885)](https://www.curseforge.com/minecraft/mc-mods/apprentices-codex), autor Aquid / source hexqua; categorias oficiais **Addons + Armor, Tools, and Weapons + Magic**, já equivalentes à pasta atual. O [catálogo de arquivos NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/apprentices-codex/files/all?page=1&pageSize=20&showAlphaFiles=hide&sortBy=dateCreated&sortOrder=desc) foi percorrido entre o baseline 0.9.7.1 e o último JAR listado. Cadeia pós-baseline de artefatos **NeoForge 1.21.1**: **0.9.8.1 (27/09) → 1.0.0 (10/10) → 1.0.1 (01/11)**. A 0.9.8.2 disponível no catálogo é **Forge 1.20.1**, não uma etapa NeoForge 1.21.1.
+
+### 0.9.8.1 — Beta, 27/09/2026
+
+[Nota da release oficial, file ID 8990953](https://www.curseforge.com/minecraft/mc-mods/apprentices-codex/files/8990953). **Mudança de grande porte, exige backup do mundo** segundo o autor, devido a reestruturações internas de itens.
+
+- **Oito spells novos:** Thermal Slice, Lightning Arrow, Bloody Arrow, Sacred Arrow, Lunar Aim, Echo Arrow, Lock-on Ray e Quick Blink. Não atribuir sua presença ao roster físico 0.9.7.1.
+- **Equipamentos e itens novos:** Spell-Reaper's Scythe, Full-auto Rapidcast Spellrifle, Charm of Monarch Bond, Emblem of Undying, Mana Maneuver Gear, Quickcast Scroll Cartridge, Mantle of Shooting Star e um Transducer oculto condicionado à presença de Malum.
+- **Balanceamento de spells:** Thermal Process distingue dano não bloqueado por Fire Resistance de debuff bloqueável; Combustion Jet também passa a causar dano mesmo diante dessa resistência e incendeia antes do dano. Harvest Moon com Craftsman's Delight pode tosquiar ovelhas.
+- **Transcendence reformulado:** nível máximo 1 e bônus fixo +1; muda o conjunto de itens elegíveis, retira o efeito de itens antigos agora inelegíveis e elimina exclusão mútua com Surge/Attunement.
+- **Elemental Bow reformulado:** exige scroll, passa a ter 3 adjustment slots e 1 scroll slot; overheat compartilhado entre escolas por padrão, com recuperação do comportamento antigo via Recovery Rune. Remove bônus de níveis via enchantments exceto Transcendence e altera compatibilidade de datapacks.
+- **Multi-purpose Staffrifle reformulado:** separa a função rapid-fire no novo item; passa a usar scroll e adjustment slots, cast imbuído, recoil, menor deslocamento durante ADS e limita spells com cast time.
+- **Economia e cooldown:** retorno padrão de cartuchos 20%, ou 90% com Spellcaster's Ammo Pouch; cooldown de Spellguns específicos passa a somar cast time; Twin Bladed Channeling Staff altera Channeling/Riptide e cooldown.
+- **Spell wheel e scrolls:** itens multi-scroll passam a usar armazenamento e prioridade próprios; fontes distintas do mesmo spell podem aparecer separadamente no wheel, ainda compartilhando cooldown. Scrollcaster Gauntlet passa a usar spell selecionado no wheel por padrão; configuração no Workbench recupera o comportamento anterior.
+- **Compat/integrações e QA:** novas receitas exibidas em JEI para Arcanum In a Jar; Storage Stabilizer abre Ender Chest ao clicar no inventário mediante gasto de mana; alterados drops de acessórios (não mais em Ominous Vaults), acesso a Silver Ring, interações Malum/Protection Spell Supporter e controles de movimento. Corrigidos crash com terceira mão, dano letal que escapava de proteção Malum Soul Ward, Echo Cast, Mirage Avoidance, Plunder apenas 1.21.1 e workaround de pesca para Malum **1.8.2** especificamente; este último coincide com a versão histórica do pack.
+
+**Impacto documental: ALTO** — conteúdo jogável, balanceamento, migração de itens/scrolls, economia de munição, integração JEI/Malum e persistência.
+
+### 1.0.0 — Release, 10/10/2026
+
+[Nota específica do arquivo NeoForge 1.21.1, ID 9115440](https://www.curseforge.com/minecraft/mc-mods/apprentices-codex/files/9115440).
+
+- Introduz **Apprentice's Memo**, manual in-game que usa **Patchouli** (opcional, mas fortemente recomendado); o snapshot físico da modlist registra Patchouli #438. A maior parte das antigas descrições de itens foi removida do JEI por essa mudança.
+- **Silent Assassin:** dano passa a ser fixo, sem escalar com spell power; mudam multiplicador de headshot, bônus por vida quase cheia e é removido o bônus de stealth.
+- **Commence Fire:** multiplicador de headshot e número de recasts tornam-se fixos; corrige orientação eventual da arma.
+- **Fly Swatter:** lock-on por recasts, trajetória de projéteis, explosão, dano e limite de alvos retrabalhados.
+- **Quick Arms:** intervalo mínimo 0,25 s entre tiros, balas atravessam i-frames de dano, recasts dependem só do spell level.
+- **Heavenly Fist:** coleta materiais de ametista sem exigir Craftsman's Delight; o addon segue exigido para efeitos de enchantment.
+- Corrige dano anormalmente baixo contra Ender Dragon, otimiza mana de Echo Cast do Full-auto Rapidcast Spellrifle, corrige partículas e efeitos de movimentação de Craftsman's Delight. Os dois fixes de Mixin identificados como **exclusivos de 1.20.1** não são atribuídos a NeoForge 1.21.1.
+
+**Impacto documental: ALTO** — documentação migrada ao manual, alterações de fórmula/cadência de combate e dependência opcional de Patchouli.
+
+### 1.0.1 — Release, 01/11/2026
+
+[Nota específica do arquivo NeoForge 1.21.1, ID 9391553](https://www.curseforge.com/minecraft/mc-mods/apprentices-codex/files/9391553).
+
+- Adiciona **Mana Force Release Device** (série de armas acessíveis na progressão de ferro), **Gauntlets of Psychic-drive** e, **somente com addons correspondentes**, Ring-Bearing Ring (L_Ender's Cataclysm), Commence Magi Module, Spellbound Arms Module e Mana Stabilizer Module (Iron's Arms 'n Artifice). A existência dessas integrações não comprova que seus requisitos opcionais estejam instalados.
+- **Magi-Agent's Hood** passa a afetar também o consumo de munição dos guns de Iron's Arms 'n Artifice quando esse mod está presente.
+- Melhora a detecção de acertos de **Shock** e seus efeitos visuais; em Minecraft 1.21.1, **Magic Bullet Rune** integra Iron's Gems 'n Jewelry.
+- Corrige ataques que atingiam jogadores no modo Spectator e erros de verificação de spells imbuídos de outros mods.
+- **Accessories Compatibility Layer:** o autor declara *unsupported* problemas futuros quando este mod estiver instalado, emite aviso no chat ao login (1.21.1) e remove a restrição de versão do workaround. É **gate de compatibilidade**, não evidência de incompatibilidade reproduzida no pack.
+- **Divergência de rótulo do artefato:** o catálogo exibe \`apprentice_codex-1.0.1+mc1.21.1.jar\`, enquanto o campo “File name” na página do ID 9391553 informa \`apprentice_codex-1.0.1-mc1.21.1.jar\`. Preservar essa diferença documental; não presumir o nome físico do candidato sem baixar/verificar o binário.
+
+**Impacto documental: ALTO** — novos itens/progressão e integrações condicionais, segurança de alvo Spectator e política de suporte.
+
+### Gates de promoção física — não executados
+
+**Nenhum JAR foi substituído, nem testes de jogo/migração foram realizados.** Antes de qualquer upgrade, conferir manifest e hashes dos JARs candidatos, requisitos de NeoForge/Iron's Spells/Create/Patchouli/Malum, existência real dos consumidores opcionais, permissões do servidor e compatibilidade com accessories. Fazer backup e restaurar *em cópia* mundo, inventories, item NBT, enchantments antigos, scrolls, Spell Wheel, Elemental Bow/Staffrifle, Spell Dispenser em contraptions, Spellcaster Workbench, datapacks/recipes, efeitos Malum, mana/XP/cooldown de cast automatizado e progressão. Validar client + dedicated server e multiplayer em condições reais.
+
+**Resultado documental:** todas as **três publicações NeoForge 1.21.1 posteriores à versão instalada 0.9.7.1** identificadas no catálogo oficial foram auditadas por seus changelogs específicos, até **1.0.1**. O dossier mantém **\`✅-apprentices-codex v0.9.7.1.md\`**, sua pasta original e versão física; promoção do runtime 1.0.1 permanece **pendente de testes e de reconciliação do binário**.
