@@ -19,7 +19,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ars-n-spells
 - **Procedência:** modlist física atual + CurseForge oficial Ars 'n Spells 3.3.1–3.3.4; release 3.3.4 NeoForge 1.21.1 file ID 8881108, 14/09/2026; source-level audit da baseline 3.3.0 já documentada.
 - **Observações:** Runtime físico 3.3.4. Baseline técnica 3.3.0 preservada, com deltas oficiais 3.3.1–3.3.4. A 3.3.4 consolida payment/cast lifecycle, recovery debit/refund, protocolo 7, carrier revisions, Curios mirroring toggle e restaura blank-scroll drops.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 3.3.4; a release 3.3.5 continua latest NeoForge 1.21.1 e foi reaberta integralmente. Além do fix de payment boundary, foram incorporados channel payment, ars_primary regen/ceiling, cooldown cross-cast, combat-stat parity, curio discounts, blacklist e config migration.
+- **Atualização/Status:** AUDITORIA DOCUMENTAL DE RELEASES 17/11/2026 — instalado 3.3.4. Histórico prévio 3.3.5–3.3.7 preservado; versões 3.4.0 e 3.4.1 (NeoForge 1.21.1) auditadas, com novos glyphs do Iron's, Glyph Press, cast Touch server-authoritative, itens/Source/JEI, comandos e migração de rede. 3.4.1 requer update conjunto de cliente e servidor. Ver seção 32; nenhum JAR físico alterado.
 - **Decisão:** Manter
 - **Histórico da decisão:** Manter. Em 07/09/2026 a ficha foi reconstruída contra a 3.3.0 real; corrigida definitivamente a hipótese de redundância genérica: esta bridge possui cross-cast, spell wheel, mana/scaling/progression e contracts próprios entre Ars e Iron's.
 - **Sobreposição:** Toca mana/scaling/progression que outras bridges podem tentar unificar. Enquanto ativa, não duplicar esses domínios em integração própria nem confundi-la com Ars Polymorphia/Ars Hex, que têm responsabilidades diferentes.
@@ -470,3 +470,25 @@ Validar mana default com glyphs + tier + Curios + equipamentos, os quatro outros
 **Gates:** mana dual pool/LP/refund, channel cost pago exatamente uma vez, carrier staff versus hotkey, caches, migration de configs 3.3.4, scroll duplication/bind, escolas e providers Ars Elemental quando presentes, Curios/JEI, packet compatibility e restart. Upstream GameTests não são QA do modpack; nenhuma versão física foi alterada. Seções 26 e 31 permanecem a referência técnica granular.
 
 Fontes oficiais: https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9009833 ; https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9048029 ; https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9064804.
+
+## 32. Novidades 3.4.0 e 3.4.1 — NeoForge 1.21.1; não instaladas (17/11/2026)
+
+**Base física:** `ars_n_spells-3.3.4.jar`. As seções 26 e 31 já cobrem individualmente as versões 3.3.5, 3.3.6 e 3.3.7; os dois incrementos posteriores disponíveis para **NeoForge 1.21.1** são:
+
+### 3.4.0 (21/10/2026; [CurseForge file 9280543](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9280543))
+
+- **Touch targeting e cast/authority:** os carriers Ars exportados para scroll Iron's, item inscrito ou spellbook vinculado (wheel/hotkey/staff) acertam alvo como no spellbook Ars original. Touch em bloco deixa de contar como falha/cancelar cooldown; miss limpo não gasta recursos, não treina school nem inicia cooldown. Self, Projectile e Sensitive seguem a semântica do alvo; **servidor determina o alvo**, cliente apenas fornece intenção comparável. Scrolls e books legados são tratados sem recriação.
+- **Glyphs Iron's importados em Ars Nouveau:** para os dois builds Iron's testados pelo upstream, o autor documenta 111 player spells com 777 glyphs distribuídos por níveis. Cada glyph possui nível/tier e restrições de forma Self/Touch/Projectile/Underfoot; `Amplify`/`Dampen` respeitam faixa válida. Mana e multiplicador de cross-cast são pagos **uma vez**; Iron's mantém learning requirements/cooldowns compartilhados por spell e canais de charged/channelled. Non-player casters não executam glyphs importados. Glyphs de spell desativada ou dependência ausente persistem **dormentes**, sem trocar identidade.
+- **Glyph Press:** converte scroll Iron's único e válido em glyph no nível específico; inputs incluem blank plate, Source/gems por tier e scroll. Capacidade 4.000 Source e abastecimento por jars próximos; transações/cancelamento, drops e refunds precisam ser exactly-once, inclusive com hoppers (automação de itens, não início de trabalho). JEI e livro in-game exibem as conversões.
+- **Configuração/diagnóstico:** comandos `/ans glyph inspect` e operações administrativas `catalog`, `coverage`, `mappings`, `press <pos>`. Novas chaves server `enable_iron_glyphs`, `enable_glyph_press`, `iron_glyph_mana_bonus_policy`, limites de efeitos e sessões e custo/radius da máquina; datapacks `data/<namespace>/ans_iron_glyphs/`, tag `ars_n_spells:glyph_press_catalysts` e /reload transacional que preserva snapshot anterior quando inválido. Não afirmar tais recursos no 3.3.4 instalado.
+
+### 3.4.1 (14/11/2026; [CurseForge file 9611964](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9611964))
+
+- **Uninscription (#14):** corrige falso reconhecimento do livro como outra fonte de spell; preserva título, capacidade e spells do livro.
+- **Gates server-authoritative:** glyphs do Iron's passam a respeitar schools, requisitos de aprendizado, limites de nível e restrições configurados no servidor. Suporte a níveis até **10 apenas quando habilitados**. `Amplify` rejeita cast acima do máximo sem consumir recursos.
+- **Bônus e addons:** modifiers de equipamentos/Curios e casting cost se aplicam coerentemente; addons Iron's podem fornecer catálogos próprios, com identidade de glyphs protegida contra remoção/troca de catálogo.
+- **Glyph Press:** fixes para receitas com/sem catalysts, catalysts de datapacks, refunds de Source e reload. JEI deve atualizar a lista sem duplicatas ou dados stale.
+- **Lifecycle e observabilidade:** melhorias para cast interrompido, dimensão/reconnect, falha de efeito, sincronização e validação. Comandos `/ans glyph report`, `explain`, `validate`, `last`.
+- **Obrigatório atualizar ambos os lados:** o autor registra mudanças de protocolo: **cliente e dedicated server devem estar na mesma versão 3.4.1**.
+
+**Riscos e QA necessários:** verificar o conjunto de versões Ars/Iron's e addons do pack, spellbooks/scrolls legados, targeting com permissões, debits/cooldowns exatamente uma vez, Glyph Press/persistência/Source, datapack invalid/reload, JEI e sincronização client/server. Testes upstream não certificam esta instância. **Histórico 3.3.4→3.3.5→3.3.6→3.3.7→3.4.0→3.4.1 auditado; upgrade físico/QA não homologados.**

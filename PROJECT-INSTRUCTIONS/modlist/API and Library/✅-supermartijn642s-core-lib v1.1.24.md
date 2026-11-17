@@ -19,7 +19,7 @@
 - **Observações:** mod id `supermartijn642corelib`; runtime 1.1.24; Client & Server. Sem gameplay autônomo. Decisão Sem decisão preservada até mapear consumers reais.
 - **Procedência:** modlist.txt física atual consultada em 13/09/2026 + Modrinth oficial Core Lib 1.1.24 revalidado em 13/09/2026 + ImmediatelyFast 1.6.13 físico. Nenhum teste runtime foi executado.
 - **Fonte:** https://modrinth.com/mod/supermartijn642s-core-lib/version/1.1.24-neoforge-mc1.21 ; https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.1.24; CurseForge publicou Core Lib 1.1.24a para NeoForge 1.21/1.21.1 em 21/09/2026.
+- **Atualização/Status:** AUDITORIA DOCUMENTAL DE RELEASES 17/11/2026 — instalado 1.1.24 (último dump físico). Sequência oficial 1.1.24a, 1.1.24b, 1.1.25, 1.1.26, 1.1.26a (NeoForge MC 1.21–1.21.1) revista no changelog cumulativo CurseForge 9447150. Delta de widgets, render/scissor, profiles, teleport, packets e blockstates registrado na seção 18; build físico/QA não promovidos.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-27
 
@@ -135,3 +135,19 @@ Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-co
 
 **Estado:** 1.1.25 somente upstream; JAR físico continua 1.1.24.
 
+
+## 18. Histórico upstream 1.1.24a → 1.1.26a — não instalado (17/11/2026)
+
+**Instalado:** `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar`, runtime 1.1.24. **Última release compatível localizada:** `supermartijn642corelib-1.1.26a-neoforge-mc1.21.jar`, publicada em 05/11/2026 e explicitamente marcada para **NeoForge 1.21/1.21.1** ([CurseForge file 9447150](https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib/files/9447150)). O changelog publicado nessa release enumera todos os deltas desde 1.1.24:
+
+| Publicação | Delta oficial e relevância |
+|---|---|
+| **1.1.24a** | `TextComponents#block` passa a permitir que o próprio bloco crie o text component em vez de usar somente sua translation key: relevante para nomes de blocos e exibição dos consumers. **Retificação:** a seção 17 histórica atribui à 1.1.24a um fix de obfuscation de `CustomSlot#isActive`, não corroborado pelo changelog cumulativo oficial desse arquivo. |
+| **1.1.24b** | Corrige itens ausentes da busca do inventário criativo (visibilidade de itens); corrige aviso de missing refmap (diagnóstico/packaging). |
+| **1.1.25** | Widgets principais em `WidgetScreen`/`WidgetContainerScreen` podem ter offset; novos `Widget#right`/`#bottom` e correção de `ObjectBaseWidget#left`/`ObjectBaseContainerWidget#left`. Já documentado na seção 17; impacto em layout, hitboxes e scroll. |
+| **1.1.26** | Introduz `PlayerProfileCache` (nome/UUID/skins), `Teleporter` (transportar entidades) e `StackedWidget` com interação em camadas; controles de tamanho/posição de `ScissorWidget` e mais estilos em `TextFieldWidget`. Corrige cursores em widget/drag, `mousePressed` de filhos de `AbstractButtonWidget`, foco de children/remoção, scrollbar sem foco e `ClientUtils#closeScreen` em screens sem container. |
+| **1.1.26a** | Opção de rotação z-axis para variantes em `BlockStateGenerator` e checagem de bloco carregado antes de lidar com `BlockEntityBasePacket`. Relevante para render/model generation e lifecycle de chunk/packet. |
+
+**Integrações e QA pendentes:** não confundir helpers da library com gameplay próprio. Regressar consumers físicos de UI/BlockEntity, ImmediatelyFast, campos de texto, mouse, inventário criativo, teleporte/chunk unload/reload, comportamento de `BlockEntityBasePacket` e dedicated server. O arquivo upstream prova as mudanças anunciadas, mas não a compatibilidade ABI dos consumers instalados nem aplicação dos testes. **Versão física/dossier continuam em 1.1.24.**
+
+**Fontes primárias:** [arquivo 9447150, release 1.1.26a para NeoForge 1.21.1 e changelog cumulativo](https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib/files/9447150); [repositório do autor](https://github.com/SuperMartijn642/SuperMartijn642sCoreLib). Auditoria documental da sequência publicada concluída.

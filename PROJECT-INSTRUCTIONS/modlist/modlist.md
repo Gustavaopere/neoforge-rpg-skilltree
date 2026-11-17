@@ -30,6 +30,17 @@
 | **257** | [Entity Culling Fabric/Forge](https://www.curseforge.com/minecraft/mc-mods/entityculling) | `1.10.5` | [1.11.0, 1.11.1, 1.11.2, 1.11.3, 1.12.0 e **1.12.1**](https://www.curseforge.com/minecraft/mc-mods/entityculling/files/all?page=1&pageSize=20&version=1.21.1) | QA Sable/Create Aeronautics, regressão frustum/whitelist, nova API e instalação |
 | **394** | [MezzConfig](https://www.curseforge.com/minecraft/mc-mods/mezzconfig) | `0.5.9` top-level; `0.5.6` JarJar JEI | **0.5.10 → 0.7.1 Beta**; [changelog oficial cumulativo](https://www.curseforge.com/minecraft/mc-mods/mezzconfig/files/9527937) | Reconciliação JEI/JarJar e testes de migration, atomic saves e listeners |
 
+
+### Revisão de versões upstream — 17/11/2026 (lote parcial)
+
+> As versões abaixo são **candidatas documentadas**. A instalação física conhecida mantém os JARs originais; nomes e posições na tabela mestre seguem inalterados.
+
+| Nº físico | Mod | Versão física | Versão NeoForge 1.21.1 auditada | Estado |
+|---:|---|---|---|---|
+| 046 | [Ars 'n' Spells](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells) | `3.3.4` | [3.4.1](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9611964) | Histórico 3.3.5–3.4.1 fechado; Glyph Press e glyphs Iron's apenas upstream, upgrade de cliente+servidor coordenado |
+| 420 | [Not Enough Animations](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations) | `1.12.4` | [1.12.7](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations/files/9396193) | Histórico 1.12.5–1.12.7 fechado; testes client-side pendentes |
+| 535 | [SuperMartijn642's Core Lib](https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib) | `1.1.24` | [1.1.26a](https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib/files/9447150) | Histórico 1.1.24a/24b/25/26/26a fechado; consumers e ABI pendentes |
+
 ## Adições pós-snapshot físico — 02/10/2026
 
 > Estas entradas foram confirmadas pelo usuário como adicionadas **depois** de `modlist(1).txt`. Os filenames/versões abaixo são os artefatos upstream atuais usados como alvo documental; **não são promovidos a autoridade física** até novo dump do perfil. Por isso não recebem número físico nem `✅-`.
@@ -121,7 +132,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 043 | Ars Elemancy | `ars_elemancy-1.21.1-1.18.3.jar` | `1.18.3` | `Addons + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:06 |
 | 044 | Ars Elemental | `ars_elemental-1.21.1-0.7.10.1.jar` | `0.7.10.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 17:09 |
 | 045 | Ars Hex Unity | `ars_hex-1.21.1-5.0.4b.jar` | `5.0.4b` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 17:09 |
-| 046 | Ars 'n' Spells | `ars_n_spells-3.3.4.jar` | `3.3.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 22/10/2026 - 19:45 |
+| 046 | Ars 'n' Spells | `ars_n_spells-3.3.4.jar` | `3.3.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 17/11/2026 -  15:2 |
 | 047 | Ars Nouveau | `ars_nouveau-1.21.1-5.13.1.jar` | `5.13.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Mobs` | 19/09/2026 - 17:09 |
 | 048 | Ars Polymorphia | `ars_polymorphia-1.0.3.jar` | `1.0.3` | `Addons + Magic + Storage + Utility & QoL` | 19/09/2026 - 17:10 |
 | 049 | Ars Sable | `ars_sable-1.21.1-1.1.2.jar` | `1.1.2` | `Addons + API and Library + Magic + Utility & QoL` | 19/09/2026 - 17:11 |
@@ -495,7 +506,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 417 | RunicLib | `neoforge-runiclib-1.21.1-5.0.7.jar` | `5.0.7` | `API and Library + Magic + Utility & QoL` | 25/09/2026 - 14:00 |
 | 418 | Create: Northstar - Redux | `Northstar-0.6.5+1.21.1.jar` | `0.6.5+1.21.1` | `Addons + Create + Dimensions + KubeJS + Technology` | 16/09/2026 - 18:39 |
 | 419 | Not Enough Glyphs | `not_enough_glyphs-1.21.1-4.6.2.jar` | `4.6.2` | `Addons + Magic + Utility & QoL` | 18/09/2026 - 08:51 |
-| 420 | Not Enough Animations | `notenoughanimations-neoforge-1.12.4-mc1.21.1.jar` | `1.12.4` | `Cosmetic + Map and Information` | 25/09/2026 - 14:00 |
+| 420 | Not Enough Animations | `notenoughanimations-neoforge-1.12.4-mc1.21.1.jar` | `1.12.4` | `Cosmetic + Map and Information` | 17/11/2026 -  15:2 |
 | 421 | [NTGL] NukaTeam's Gun Lib | `ntgl-1.21.1-3.2.0.jar` | `3.2.0` | `API and Library + Armor, Tools, and Weapons` | 25/09/2026 - 14:00 |
 | 422 | Nutritional Balance | `nutritionalbalance-1.21.1-7.0.3.jar` | `1.21.1-7.0.3` | `Adventure and RPG + Food` | 29/09/2026 - 23:37 |
 | 423 | Nyf's Spiders | `nyfsspiders-neoforge-1.21.1-3.0.1.jar` | `3.0.1` | `Mobs` | 25/09/2026 - 14:28 |
@@ -610,7 +621,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 532 | Create: Deep Seas - Lava Fix | `submarinefix-1.0.1.jar` | `1.0.1` | `Bug Fixes + Create` | 27/09/2026 - 22:58 |
 | 533 | Subtle Effects | `SubtleEffects-neoforge-1.21.1-1.14.3.jar` | `1.14.3` | `Cosmetic + Miscellaneous` | 27/09/2026 - 22:58 |
 | 534 | SuperMartijn642's Config Lib | `supermartijn642configlib-1.1.8-neoforge-mc1.21.jar` | `1.1.8` | `API and Library` | 27/09/2026 - 22:58 |
-| 535 | SuperMartijn642's Core Lib | `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` | `1.1.24` | `API and Library` | 27/09/2026 - 22:58 |
+| 535 | SuperMartijn642's Core Lib | `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` | `1.1.24` | `API and Library` | 17/11/2026 -  15:2 |
 | 536 | Supplementaries | `supplementaries-1.21.1-3.9.9-neoforge.jar` | `1.21.1-3.9.9` | `Cosmetic + Miscellaneous + Redstone + Storage` | 22/10/2026 - 22:24 |
 | 537 | Tectonic | `tectonic-3.0.28-neoforge-21.1.jar` | `3.0.28` | `World Gen` | 27/09/2026 - 23:18 |
 | 538 | TenshiLib (Forge/NeoForge) | `tenshilib-1.21.1-2.3.0.b-neoforge.jar` | `1.21.1-2.3.0.b-neoforge` | `API and Library` | 27/09/2026 - 23:18 |

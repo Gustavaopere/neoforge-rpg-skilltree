@@ -16,7 +16,7 @@
 - **Sobreposição:** Compartilha presentation layer com Epic Fight, First Person Model, CPM, Punchy e animation APIs, mas não é equivalente a esses sistemas. Conflitos devem ser tratados por pose/feature específica.
 - **Observações:** Runtime 1.12.4, file ID 8274908, Release NeoForge 1.21.1 de 18/06/2026. Embedded: TRansition 1.0.21 + TRender 1.0.15. Não altera authority server-side de gameplay.
 - **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial confirmando `notenoughanimations-neoforge-1.12.4-mc1.21.1.jar` para NeoForge 1.21.1 + metadata física dos embedded TRansition 1.0.21/TRender 1.0.15.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 1.12.4; CurseForge publicou 1.12.5 e o hotfix 1.12.6 para NeoForge 1.21.1 em 19/09/2026.
+- **Atualização/Status:** AUDITORIA DOCUMENTAL DE RELEASES 17/11/2026 — instalado 1.12.4. Seção 18 já trata 1.12.5/1.12.6; 1.12.7 (NeoForge 1.21.1, 01/11) revista individualmente: animação de lanterna, prioridade da offhand, bloqueio, reconhecimento de mapas e mixins mais precisos. Versão física/testes client-side não alterados; ver seção 19.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-26
 
@@ -149,3 +149,18 @@ A autoridade física continua em **1.12.4**. Para NeoForge 1.21.1, o upstream pu
 Para este pack, o regression gate deve priorizar crawling/poses, lanternas, spear/trident + offhand crossbow e coexistência com FirstPerson, Punchy, Epic Fight e demais layers de player animation/render.
 
 Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/not-enough-animations/files/8925075
+
+## 19. Versão 1.12.7 — NeoForge 1.21.1, não instalada (17/11/2026)
+
+**Base física:** `notenoughanimations-neoforge-1.12.4-mc1.21.1.jar`. A seção 18 já inclui os deltas de **1.12.5** (lanternas, spear/trident e crossbow offhand, localização) e **1.12.6** (hotfix de crash em crawling). A nova publicação **1.12.7 para NeoForge 1.21.1** é `notenoughanimations-neoforge-1.12.7-mc1.21.1.jar`, publicada em **01/11/2026**, [CurseForge file 9396193](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations/files/9396193).
+
+**Deltas verificados individualmente:**
+- Corrige animação de **lanterna** travada/choppy.
+- Corrige prioridade de **ocultar offhand** durante pose de lanterna/mapa, relevante para modelos de braço/dual wield e animações simultâneas.
+- Aumenta o **ângulo máximo de pose de bloqueio**, sem mudar checagem real de dano do servidor.
+- Identifica mapas pelo tipo `MapItem` em vez de HashSet predefinido; mudanças de render e modded maps devem ser testadas, sem garantir suporte universal.
+- Usa **mixins mais precisos nos rotation angles**, reduzindo possibilidade de interferência. Melhoria de tradução chinesa é localização sem impacto operacional adicional.
+
+**Regressões:** lanternas ao caminhar, troca rápida offhand/mapa/crossbow, escudo em ângulos extremos, crawling, animação de jogador em multiplayer, compatibilidade com Epic Fight/CPM/Punchy/FirstPerson e reload de recursos. TRansition/TRender embarcados continuam sendo partes internas do JAR, não novos mods top-level. Mod **client-side**, não assume ownership server-side. Sem execução de QA físico.
+
+**Fontes:** [release 1.12.7 oficial para NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations/files/9396193) e [compare 1.12.6...1.12.7](https://github.com/tr7zw/NotEnoughAnimations/compare/1.12.6...1.12.7). **Cadeia documental 1.12.4→1.12.5→1.12.6→1.12.7 concluída; versão instalada preservada.**
