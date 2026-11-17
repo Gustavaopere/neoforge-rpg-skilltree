@@ -99,3 +99,17 @@ JEED apresenta informações de efeitos/status em viewers JEI/REI/EMI. Conferir 
 
 **Estado:** 2.3.4/2.3.5 registrados como upstream; física 2.3.2 preservada; testes pendentes.
 
+## Auditoria final JEED 2.3.2 → 2.3.6 (17/11/2026)
+
+**Baseline físico preservado:** posição #348, `jeed-1.21-2.3.2.jar`, mod id `jeed`, runtime `1.21-2.3.2`, SHA-1 `144ffaf459b58db14614a7e1ef3425c2594e30b6`. Projeto oficial [Just Enough Effect Descriptions (JEED), CurseForge 532286](https://www.curseforge.com/minecraft/mc-mods/just-enough-effect-descriptions-jeed), categorias temáticas **Addons + Map and Information**, pasta correta. Candidata mais recente **NeoForge Minecraft 1.21.1: 1.21-2.3.6 (13/11/2026)**; **não instalada**.
+
+| Versão posterior | Fonte oficial e escopo | Impacto documental |
+|---|---|---|
+| **2.3.3** (source/release do autor em 24/07) | [Commit de release `563f67d3698`](https://github.com/MehVahdJukaar/JustEnoughEffectDescriptions/commit/563f67d3698aeb4e0e400d8207f9cb8e44c8a3431d); já documentado na seção 15. **Não foi identificado JAR específico CurseForge NeoForge 1.21.1**. | Null-checks de JEI_RUNTIME/JEI_HELPERS, tradução japonesa/es_ar/ru_ru/zh_cn e correção de URL Maven de build; não transformar source-only em binário CurseForge. |
+| **2.3.4**, 17/09/2026 | [Source: commits de tooltip](https://github.com/MehVahdJukaar/JustEnoughEffectDescriptions/commit/3f6b83fe9801d23be00c9013927bae4adb973ac5), [CurseForge catálogo](https://www.curseforge.com/minecraft/mc-mods/just-enough-effect-descriptions-jeed/files/all). | Correção de renderização de tooltip com ordem após screen rendering; altera a UI, não os efeitos server-side. Já documentado. |
+| **2.3.5**, 06/10/2026 | [CurseForge 9079612](https://www.curseforge.com/minecraft/mc-mods/just-enough-effect-descriptions-jeed/files/9079612). | Nota própria repete **fixed tooltip rendering**, sem evidência que permita precisar qual situação adicional. Já documentado. |
+| **2.3.6**, 13/11/2026 | [CurseForge 9587512, arquivo exato NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/just-enough-effect-descriptions-jeed/files/9587512). | Corrige **efeitos do beacon clicáveis com EMI ativado**. Mudança de interatividade do viewer: não presumir que EMI existe fisicamente no pack, cujo JEI registrado é 19.56.0.440. |
+
+**Sequência verificada:** 2.3.3 no histórico de source do autor, 2.3.4 → 2.3.5 → 2.3.6 no catálogo público específico NeoForge 1.21.1. Ausência de artefato CurseForge 2.3.3 não permite inventar uma publicação, mas seu source/release foi inspecionado e documentado. Nenhuma mudança de gameplay/efeitos do servidor é atribuída ao JEED, que é **camada de UI informativa**.
+
+**Gate de QA não executado:** JEI 19.56.0.440 instalado, plugin registration, REI/EMI apenas se realmente presentes, hover/click de efeitos de beacon, descrições de efeitos de mods, tooltips com Stylish Effects, tela de poções, tradução pt_BR, reload e overlays. Nenhum JAR/ZIP/config mudou. **Auditoria documental concluída até 2.3.6**; dossier mantém `✅-just-enough-effects-descriptions v1.21-2.3.2.md` com versão física 1.21-2.3.2.
