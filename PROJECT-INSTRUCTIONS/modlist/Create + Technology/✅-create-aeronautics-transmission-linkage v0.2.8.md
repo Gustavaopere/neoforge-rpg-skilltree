@@ -53,3 +53,19 @@ Criação/remoção de vínculo, settings de regulator e state de bearing precis
 Nenhum teste foi marcado como aprovado.
 ## 9. Evidências e limite
 A publicação oficial confirma 0.2.8, Client & Server, os principais componentes e a melhoria de unloading. Fórmulas internas de torque/constraint não foram pinadas e não são reimplementadas nesta ficha.
+
+
+## Auditoria incremental NeoForge 1.21.1 — 0.2.8 → 0.2.9 (17/11/2026)
+
+**Baseline físico preservado:** posição #132, JAR \`create_aeronautics_transmission_linkage-0.2.8.jar\`, mod id \`aeronautics_utility_objects\`, runtime \`0.2.8\`, SHA-1 histórico \`bccaf90652905ae5f28dcc7e1134099d188ca020\`. A última release publicada para o mesmo Minecraft e loader é **0.2.9**, em **01/11/2026**, [CurseForge file ID 9392020](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-transmission-linkage/files/9392020). Projeto oficial [CurseForge 1548056](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-transmission-linkage), categorias temáticas **Create + Technology**, já refletidas no diretório.
+
+**Sequência pós-baseline:** apenas **0.2.9** (publicação verificada na lista específica NeoForge 1.21.1). Changelog literal do autor documenta três mudanças:
+1. Corrige interferência do mod com **cenas Ponder integradas ao Create**; é correção de apresentação/demonstração.
+2. Remove o lembrete de instalação do **Toolgun**; não implica remoção ou instalação de dependência.
+3. Corrige **interações indevidas com hydraulic e pneumatic rods por meio de estruturas físicas**. Relevante para o limite entre rod/linkage e bodies móveis, sem assumir quais chamadas internas ou constraints foram alteradas.
+
+**Classificação:** item (3) afeta diretamente a coerência de interações físicas e tem impacto técnico; (1) é relevante para UX/documentação de Ponder; (2) é ajuste informativo menor. Não foram anunciados componentes novos, parâmetros de força ou APIs alteradas; não inventar tais mudanças.
+
+**Gate de homologação:** depois de backup em cópia do pack, verificar Ponder do Create 6.0.10, rotação/força/carga de joints e rod assemblies, hydraulic/pneumatic rods fixos e móveis, interações entre estrutura externa e Sable/contraptions, descarregamento/recarregamento de veículo, persistência de vínculos após restart e conflito multiplayer; inspecionar manifest/dependências de 0.2.9. **Nenhum JAR, config ou mundo foi alterado e nenhum teste in-game foi executado.**
+
+**Conclusão documental:** a única publicação posterior à **0.2.8 instalada** foi auditada pelo changelog oficial, até **0.2.9**. Dossier e índice preservam o basename **\`✅-create-aeronautics-transmission-linkage v0.2.8.md\`**, caminho e versão física; upgrade de runtime pendente de QA.
