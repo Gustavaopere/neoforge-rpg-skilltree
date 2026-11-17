@@ -127,3 +127,16 @@ Não presumir integração de qualquer outro mod apenas por exibir grupos/partie
 **Classes auditadas:** `TeamManagerImpl`, `ServerConfig`, `TeamProperties` e changelog da linha 2101.1.x.
 **Modlist física:** confirma o JAR instalado e as versões dos consumidores FTB atuais.
 **Não foram executados testes de runtime nesta catalogação.**
+
+
+## Auditoria incremental NeoForge Minecraft 1.21.1 — 2101.1.11 → 2101.1.12 (17/11/2026)
+
+**Autoridade física preservada:** posição #291, JAR \`ftb-teams-neoforge-2101.1.11.jar\`, mod id \`ftbteams\`, runtime \`2101.1.11\`, SHA-1 histórico \`62b65f752d0326edd13244e58d5f2aec035da4e9\`. Projeto oficial [FTB Teams (NeoForge), CurseForge ID 404468](https://www.curseforge.com/minecraft/mc-mods/ftb-teams-forge), categoria temática **API and Library**, já refletida na pasta.
+
+**Última release específica NeoForge 1.21.1:** **2101.1.12**, publicada **04/11/2026**, arquivo \`ftb-teams-neoforge-2101.1.12.jar\`, [nota oficial do file 9434081](https://www.curseforge.com/minecraft/mc-mods/ftb-teams-forge/files/9434081). **Cadeia de publicações posteriores ao baseline: somente 2101.1.12.**
+
+**Delta individual:** correção de um bug de **\`team_stages\`**, propriedade de equipe que **vazava stages entre equipes diferentes**. Impacto potencial relevante para progressão, gating de quests, pré-requisitos de conteúdo, permissões/visibilidade e outros consumidores que avaliam \`team_stages\`: o changelog prova o bug/fix da propriedade, **não** demonstra concretamente exploração, violação de claim ou fuga de stages no mundo do pack. A authority continua no FTB Teams; FTB Chunks conserva claims e FTB Quests conserva progressão de quests.
+
+**QA antes de qualquer troca de JAR:** snapshot/backup de \`ftbteams.snbt\` e arquivos por team, comparar \`team_stages\` em duas equipes isoladas antes/depois de concessões e remoções, mudar membership de jogadores, migrar owner/officers, logout/relogin e reinício, conferir FTB Quests/Chunks com team context e carga em servidor dedicado. Verificar o manifest e a ABI de FTB Library 2101.1.36 e consumidores antes de promover 2101.1.12. **Nenhum teste runtime, save, config ou JAR foi modificado nesta auditoria.**
+
+**Resultado documental:** auditoria do changelog da **única nova publicação 2101.1.12** concluída; basename **\`✅-ftb-teams v2101.1.11.md\`** e versão física 2101.1.11 preservados; homologação/upgrade físico pendentes.
