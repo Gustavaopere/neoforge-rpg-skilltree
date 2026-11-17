@@ -103,3 +103,15 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Descrição oficial: API para custom fires, overlay/damage/properties, propagação, efeitos e enchantments data-driven.
 - Consumer causal comprovado: Soul Fire'd 6.1.0, fisicamente presente e documentado como Required de Prometheus 1.2.5.
 - **Limite:** custom fire types/datapacks locais não foram enumerados; não foi inferida dependência a partir de exemplos upstream.
+
+## Reconciliação documental Prometheus v1.2.5 — 17/11/2026
+
+**Autoridade física preservada:** posição #459, `prometheus-neoforge-1.21-1.2.5.jar`, mod id `prometheus`, versão `1.2.5`; a build do snapshot é identificada pela linha **1.21** e não se transforma artificialmente em arquivo 1.21.1. Projeto oficial [Prometheus, CurseForge ID 1365195](https://www.curseforge.com/minecraft/mc-mods/prometheus) do autor CrystalSpider; categorias atuais **Adventure and RPG + API and Library + Cosmetic + Utility & QoL**, pasta já correta.
+
+**Revalidação de releases:** o catálogo oficial de **NeoForge Minecraft 1.21.1** continua indicando **v1.2.5** como a versão mais recente em **17/11/2026**; arquivo de distribuição mais novo [CurseForge 9285782](https://www.curseforge.com/minecraft/mc-mods/prometheus/files/9285782), publicado **22/10/2026**, nome exato `prometheus-neoforge-1.21.1-1.2.5.jar`. **Não há versão semântica posterior a 1.2.5 a auditar nesse alvo.** O nome do artefato atualizado diferencia Minecraft **1.21.1** do nome do JAR físico `1.21`; nenhuma equivalência byte-a-byte entre os dois arquivos foi inspecionada, e por isso **não afirmar que representam o mesmo binário ou que houve instalação nova**. A nota da release 9285782 aponta para o changelog oficial, sem mudanças adicionais de gameplay individualizadas na ficha da publicação.
+
+**Dependências e consumidores:** a [página oficial](https://www.curseforge.com/minecraft/mc-mods/prometheus) lista **Cobweb como dependência requerida**; o snapshot físico do projeto registra **Cobweb 1.4.0** em #099, satisfazendo a presença nominal (versão mínima efetiva do novo JAR não foi extraída). **Soul Fire'd 6.1.0** permanece consumer comprovado e fisicamente presente. Prometheus registra tipos de fogo customizados com efeitos reais client/server, propagação, dano, overlays e API. A release da distribuição com mesmo número de versão **não demonstra mudanças nas regras de fogo** nem torna dispensáveis as integrações do consumer.
+
+**Gate futuro separado:** comparar manifest e hash do novo binário se houver desejo de substituição, dependencies, boot client/dedicado, Soul Fire'd e Cobweb, tipo de fogo ao atravessar entidades/projéteis, rain extinguish, tags/datapack reload e persistência. Nenhum JAR, config ou teste em jogo foi modificado/executado aqui.
+
+**Conclusão documental:** revalidação concluída: não foi encontrada versão **superior a 1.2.5** para NeoForge 1.21.1, e a existência de novo arquivo de distribuição com filename de game version mais específico ficou registrada, mantendo instalada **1.2.5** e o basename do dossier `✅-prometheus v1.2.5.md`.

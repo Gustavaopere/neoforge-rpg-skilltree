@@ -606,7 +606,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 456 | Prickle | `prickle-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `API and Library + Server Utility + Utility & QoL` | 26/09/2026 - 03:24 |
 | 457 | KubeJS Metalworks (KubeJS Addon for Productive Metalworks) | `productive-metalworks-kubejs-addon-1.0.0.jar` | `1.0.0` | `Addons + API and Library + KubeJS` | 26/09/2026 - 03:24 |
 | 458 | Productive Metalworks | `productivemetalworks-1.21.1-1.15.1.jar` | `1.21.1-1.15.1` | `Ores and Resources + Processing` | 26/09/2026 - 03:24 |
-| 459 | Prometheus | `prometheus-neoforge-1.21-1.2.5.jar` | `1.2.5` | `Adventure and RPG + API and Library + Cosmetic + Utility & QoL` | 26/09/2026 - 03:24 |
+| 459 | Prometheus | `prometheus-neoforge-1.21-1.2.5.jar` | `1.2.5` | `Adventure and RPG + API and Library + Cosmetic + Utility & QoL` | 17/11/2026 - 18:55 |
 | 460 | Create: Protection Pixel | `protection_pixel-2.2.1-neoforge-1.21.1.jar` | `2.2.1` | `Adventure and RPG + Armor, Tools, and Weapons + Create + MCreator` | 26/09/2026 - 03:24 |
 | 461 | Puddles & Floods | `puddleflood-1.1.5+1.21.1-neoforge.jar` | `1.1.5` | `Cosmetic` | 26/09/2026 - 03:24 |
 | 462 | Pufferfish's Unofficial Additions | `pufferfish_unofficial_additions-1.21.1-2.2.8.jar` | `2.2.8` | `Addons` | 29/09/2026 - 23:37 |
