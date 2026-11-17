@@ -19,7 +19,7 @@
 - **Observações:** Release 21.1.60 NeoForge 1.21.1 de 07/09/2026. Changelog da família backporta ColorCollection, VariantUtils, ProjectileHelper e helpers de gift/shearing loot.
 - **Procedência:** modlist.txt física canônica atual de 10/09/2026 + CurseForge oficial Puzzles Lib 21.1.60 + consumers Portable Hole/Overflowing Bars já auditados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/puzzles-lib
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 21.1.60. A linha NeoForge 1.21.1 avançou por 21.1.61 até 21.1.62 em 29/09/2026; ambos os deltas intermediários foram revisados.
+- **Atualização/Status:** REVISÃO DOCUMENTAL EM 17/11/2026 — versão física 21.1.60 preservada; após 21.1.61–21.1.65 auditadas, release 21.1.66 NeoForge de 26/10 restaura transitive access wideners. QA e instalação pendentes.
 - **Histórico da decisão:** 2026-08-26 — classificado como Dependência por consumer confirmado. 2026-09-10 — runtime 21.1.60 e relações revalidados; Estado da pesquisa fechado de Rever para Verificado.
 - **Data da última decisão:** 2026-09-10
 
@@ -213,3 +213,11 @@ Instalado 21.1.60; nova release oficial NeoForge 1.21.1 21.1.65 (21/10/2026). Ca
 | 21.1.65 | Evita callback de bônus encantado de loot executar duas vezes na build NeoForge. |
 QA pendente: callbacks de loot encantado sem dupla aplicação, Portable Hole, Overflowing Bars, capabilities persistentes, reconexão e servidor dedicado. O inventário físico 21.1.60 permanece inalterado.
 Fontes: https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.65-mc1.21.1 ; https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.64-mc1.21.1 ; https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.63-mc1.21.1 ; https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.62-mc1.21.1 .
+
+## Release 21.1.66 — atualização upstream (17/11/2026, não instalada)
+
+**Autoridade física** #467: `PuzzlesLib-v21.1.60-mc1.21.1-NeoForge.jar`, versão 21.1.60. O dossier já contém revisão por release das publicações **21.1.61, 21.1.62, 21.1.63, 21.1.64 e 21.1.65**, incluindo rebind de capabilities, transitive access wideners, caching de event listener e enchanted loot bonus NeoForge. O próximo incremento, **21.1.66-mc1.21.1**, foi publicado em **26/10/2026** como `puzzleslib-v21.1.66-mc1.21.1+neoforge.jar` ([CurseForge 9331322](https://www.curseforge.com/minecraft/mc-mods/puzzles-lib/files/9331322), [release source](https://github.com/Fuzss/puzzles-lib/releases/tag/v21.1.66-mc1.21.1)).
+
+**Changelog da 21.1.66:** **restaura transitive access wideners ausentes**. Embora também mencionados em 21.1.63, a publicação **21.1.66** confirma correção adicional nesta superfície: importante para **acesso a métodos/classes internamente expostos a consumers**, e para evitar `IllegalAccessError`/falhas de classloading em addons. Não inferir que todos os consumers haviam falhado nem que bug tenha sido reproduzido no pack. Sem novas mecânicas ou conteúdo de gameplay anunciado nesta release.
+
+**QA pendente:** testar consumidor Portable Hole e Overflowing Bars, outros projetos que dependem de Puzzles Lib, registry access/event callbacks, encantamentos sem double loot, server+client boot e recursos carregados. Não confundir JAR `+fabric` homônimo ou a linha Forge separada com `+neoforge`. **Linha 21.1.60→21.1.61→21.1.62→21.1.63→21.1.64→21.1.65→21.1.66 documentalmente completa; versão instalada preservada.**

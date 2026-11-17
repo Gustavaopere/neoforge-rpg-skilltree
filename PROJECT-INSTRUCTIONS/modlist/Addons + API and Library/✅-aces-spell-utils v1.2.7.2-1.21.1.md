@@ -17,7 +17,7 @@
 - **Observações:** Não inferir fórmulas exatas dos 13 atributos só pelo nome. Para perk/gear, inspecionar registry ID, min/max/default e ponto de aplicação no runtime/source. Boss Music Managers antigos estão deprecated em 1.2.7.2; novas integrações devem preferir as interfaces/manager rework aplicáveis ao consumer.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge oficial Ace's Spell Utils, release 1.2.7.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `aces_spell_utils-1.2.7.2-1.21.1.jar` / `1.2.7.2-1.21.1`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/aces-spell-utils
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #3: `aces_spell_utils-1.2.7.2-1.21.1.jar` / `1.2.7.2-1.21.1` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** REVISÃO DOCUMENTAL EM 17/11/2026 — físico 1.2.7.2-1.21.1; releases NeoForge 1.2.7.3/1.2.7.4/1.2.7.5 auditadas (classes/bases de spell, boss UUID/music e spear-like items). Sem instalação/QA; ver seção final.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 
@@ -404,3 +404,15 @@ Executar spellcasting mobs, phases e item abilities em dedicated server. Qualque
 A consulta oficial em 13/10 ainda mostra 1.2.7.2 (02/09/2026) como release compatível. Não há nova release NeoForge 1.21.1 demonstrada; portanto a alegação genérica de atualização não permite inventar versão ou changelog. É uma API auxiliar para addons Iron's Spells 'n Spellbooks: risco de ABI de spells, registry de schools, casts, data components e dependentes. Somente promover se houver publicação/artefato atualizado comprovado e smoke test client/dedicated server.
 
 **Autoridade física:** estado histórico do JAR documentado neste dossiê e `modlist(1).txt` permanece intacto; novo dump do pack, hashes, metadata e testes runtime não foram fornecidos. **Decisão:** candidato upstream (ou revalidação sem release nova), não uma atualização instalada. **Filename:** preservar prefixo ✅ e versão física histórica no nome até evidência da instalação.
+
+## Releases 1.2.7.3, 1.2.7.4 e 1.2.7.5 — 17/11/2026 (upstream, não instaladas)
+
+**Instalado no último snapshot físico** #003: `aces_spell_utils-1.2.7.2-1.21.1.jar` (runtime 1.2.7.2-1.21.1). São três publicações posteriores **NeoForge Minecraft 1.21.1** para o projeto oficial Ace's Spell Utils (CurseForge 1299492):
+
+| Versão | Data e fonte oficial | Diferença com impacto documental |
+|---|---|---|
+| **1.2.7.3** | 05/10/2026, [CurseForge file 9073632](https://www.curseforge.com/minecraft/mc-mods/aces-spell-utils/files/9073632) | Adiciona **Merchant Trade utils**, `ExtendedAbstractSpell` (mais funções de feitiços), `AdvancedTeleportSpell`, **config client para impact frames**, método de servidor para checar advancement e renderer de armor transmog emissivo. Atualiza tag de **slash spell** para incluir Shadow Slash e faz `AbstractSummonSpell` herdar de Extended Abstract Spell. Relevante para consumers, compat de classes/bases, feitiços e rendering. |
+| **1.2.7.4** | 11/10/2026, [CurseForge file 9136190](https://www.curseforge.com/minecraft/mc-mods/aces-spell-utils/files/9136190) | Fix de `GenericBossEntity` que retornava UUID nulo, deixando a música do boss **tocar indefinidamente**. Alteração material ao lifecycle/limpeza de boss music. |
+| **1.2.7.5** | 23/10/2026, [CurseForge file 9300944](https://www.curseforge.com/minecraft/mc-mods/aces-spell-utils/files/9300944) | Novas bases de item **`ExtendedSpearLikeItem`** e **`MagicSpearLikeItem`** para addons/consumers; não presume item jogável independente da biblioteca. |
+
+**Riscos:** base API de spells/summons muda entre versões; revisar compatibilidade de addons consumidor, registry de schools, renderers GeckoLib, boss lifecycle/UUID, impacto visual, Merchant trades e nova base de spear. O pack ainda possui Iron's Spellbooks 3.16.3, mas o CurseForge de release **não prova** ABI testada com todos addons físicos. Dedicated server boot + cliente, combate e persistência pendentes. **Changelogs intermediários individuais auditados, versão/JAR físico 1.2.7.2 mantido.**

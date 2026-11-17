@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-cobblestone
 - **Procedência:** modlist.txt física atual de 11/09/2026 + runtime completo `createcobblestone` 1.5.0+neoforge-1.21.1-153 + CurseForge oficial revalidado em 12/09/2026; build 153 de 29/08/2026 continua a release NeoForge 1.21.1 mais recente. Source branch 1.21.1-neoforge permanece referência funcional.
 - **Observações:** Runtime físico preservado integralmente: `1.5.0+neoforge-1.21.1-153`. Source branch `1.21.1-neoforge` declara mod base 1.5.0; README confirma 5 generator types, configs e datapacks custom.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #177: createcobblestone-1.5.0+neoforge-1.21.1-153.jar / runtime completo 1.5.0+neoforge-1.21.1-153 reconfirmados como latest Release NeoForge 1.21.1; generator types, RPM↔SU defaults, datapack types, storage/reload e performance gates permanecem atuais.
+- **Atualização/Status:** REVISÃO DOCUMENTAL EM 17/11/2026 — instalação física 1.5.0+neoforge-1.21.1-153 preservada; release 1.5.1 publicada em 25/10 corrige renderização de generators quando Flywheel não é usado, principalmente shaders. Nenhum teste de runtime; ver seção final.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Compartilha geração renovável de stone/cobblestone com outras rotas, mas sua superfície específica é máquina Create configurável/data-driven orientada a reduzir custo de tick. Comparar SU, throughput e MSPT real.
 - **Data da última decisão:** 2026-08-30
@@ -100,3 +100,11 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 19. Evidências e limites
 A modlist física confirma artefato/runtime completo com build suffix. O repositório oficial branch `1.21.1-neoforge` declara mod 1.5.0 e MC 1.21.1; README confirma tipos, config, custom datapacks e default 8 RPM/8 SU. Config local do pack não foi lida nesta etapa, portanto defaults são rotulados como defaults, não policy atual confirmada.
 > 🔒 **Boundary canônico:** Create supplies RPM/stress; Create Cobblestone owns a conversão cinética em geração de resource. Throughput/custo devem sempre vir da config/type carregados, e o principal valor técnico do addon é reduzir o custo de tick de farms tradicionais.
+
+## Release 1.5.1 — atualização upstream (17/11/2026, não instalada)
+
+**Autoridade física** #176: `createcobblestone-1.5.0+neoforge-1.21.1-153.jar`, versão 1.5.0+neoforge-1.21.1-153. **Único incremento NeoForge 1.21.1 publicado depois desta versão:** `createcobblestone-1.5.1+neoforge-1.21.1-160.jar` (Release, 25/10/2026), [CurseForge file 9323646](https://www.curseforge.com/minecraft/mc-mods/create-cobblestone/files/9323646).
+
+**Changelog oficial da 1.5.1:** corrige **renderização incorreta de generators quando Flywheel não está em uso**, situação comum com shaders ou outros mods incompatíveis com Flywheel. Relevância: compatibilidade do renderer/malha do gerador visual sob shaders, **não** demonstra mudança de stress, RPM, throughput, recipes, buffer, datapack generator types ou cálculo server-side. Nenhuma versão intermediária publicada para NeoForge 1.21.1 entre 1.5.0 e 1.5.1 foi identificada na lista oficial.
+
+**Validação pendente:** gerador em execução com Flywheel ativo/inativo, shader on/off, Create 6.0.10, materiais/transforms e culling (Entity Culling, FWA), chunk unload, resource reload e dedicated server; conferir Create API/manifesto antes de substituir binário. Nenhum teste de FPS/produção foi realizado. **Histórico auditado até 1.5.1; instalação 1.5.0 preservada.**

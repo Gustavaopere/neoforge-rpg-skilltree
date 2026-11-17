@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/createnuclear
 - **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createnuclear` 1.3.2-beta.3 + CurseForge oficial revalidado em 12/09/2026; 1.3.2-beta.3 de 13/12/2025 continua a build NeoForge 1.21.1 mais recente. O projeto possui Create Nuclear 2.0.0 mais novo para Minecraft 1.20.1, fora do alvo desta ficha.
 - **Observações:** JAR/mod id/runtime 1.3.2-beta.3 e source matching `Create-Nuclear-Team/CreateNuclearNeoForge` main confirmados. Deltas exatos 1.3.2: refactor de Coal Dust tags/recipes e atualização de glass tags/recipes para Reinforced Glass. Conteúdo V2 posterior não foi atribuído à build instalada.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #198: createnuclear-1.3.2-beta.3-neoforge.jar / runtime 1.3.2-beta.3 reconfirmados como a build Beta NeoForge 1.21.1 mais recente. A linha V2 mais nova do projeto permanece exclusiva de Minecraft 1.20.1 e não é retroprojetada nesta ficha.
+- **Atualização/Status:** REVISÃO DOCUMENTAL EM 17/11/2026 — físico 1.3.2-beta.3 preservado; V2 2.0.0 já examinada e nova 2.0.1 NeoForge 1.21.1 auditada (fix SU multiplication, outputs, blueprints, TFMG Nitrate). Migração de reatores antigos requer desmontagem e backup antes de update; nenhum teste/upgrade feito.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Histórico: houve sugestão anterior de remoção por adicionar uma ramificação nuclear completa e por a build estar em beta; posteriormente o usuário manteve addons Create de que gosta. Esse histórico não equivale a uma decisão atual. O mod permanece instalado e sem decisão final.
 - **Sobreposição:** Create: New Age 1.2.0 e Create Crafts & Additions 1.7.0 compartilham geração/conversão de energia, mas Nuclear possui reactor/radiation/fuel chain própria. Auditar loops SU/FE e custos, não presumir redundância.
@@ -137,3 +137,18 @@ A modlist física confirma JAR/mod id/runtime 1.3.2-beta.3. O source oficial `ma
 **Fonte primária:** https://www.curseforge.com/minecraft/mc-mods/createnuclear/files/9056910 ; https://www.curseforge.com/minecraft/mc-mods/createnuclear
 
 **Decisão:** **NÃO promover automaticamente a V2**. Último runtime físico comprovado continua 1.3.2-beta.3.
+
+## Complemento da V2 2.0.1 — NeoForge 1.21.1 (17/11/2026, não instalada)
+
+**Artefato físico** #197: `createnuclear-1.3.2-beta.3-neoforge.jar`, versão 1.3.2-beta.3, e **não** a linha 2.x. O dossier já documentava extensamente a revolução **2.0.0 V2** para NeoForge 1.21.1 ([Release oficial 9056910](https://www.curseforge.com/minecraft/mc-mods/createnuclear/files/9056910), publicada 04/10/2026). O catálogo NeoForge 1.21.1 apresenta **somente as releases posteriores 2.0.0 e 2.0.1**, sem versão 1.3.3 oficial intermediária; a mais recente é **2.0.1** (07/11/2026, `createnuclear-2.0.1-neoforge.jar`, [CurseForge file 9492137](https://www.curseforge.com/minecraft/mc-mods/createnuclear/files/9492137)). Não confundir 2.0.2 **Forge 1.20.1** com o NeoForge 1.21.1.
+
+**Deltas da 2.0.1, após as mudanças V2 já documentadas:**
+- **Reatores:** outputs param de girar ao desmontar; corrige multiplicação/duplicação de capacidade de stress **SU** ao salvar e recarregar com reator ligado; corrige possível crash ao colocar/remover output enquanto transmite rotação; bloqueia inserção de **Blueprint sem rods** no controller.
+- **Áudio e interface:** som de ativação limitado à proximidade (antes perceptível além de 10 chunks), substituídos efeitos de áudio de ativação, operação, parada, montagem/desmontagem; tooltip Blueprint usa os **keybinds Sneak e Use reais** do jogador, não `Shift + Right Click` fixo.
+- **Radiação/render:** corrige partes incorretas/invisíveis do traje anti-radiação por combinação de armaduras, textura espelhada da bota direita, e airflow de fan processing enriquecido passa a emitir partículas de **radiação** no lugar de água.
+- **Worldgen e compat:** bioma Irradiated Land passa a exibir nome **Wasteland** em minimapas; compat opcional **Create: The Factory Must Grow (TFMG)** altera a obtenção de **Nitrate**: lava o **Limesand** do TFMG quando presente em vez de esmagar Limestone, evitando concorrência de recipes. Essa integração é condicional à presença/versionamento de TFMG e pode alterar chains de automação.
+- **Build:** corrige dependência Create: Dragons Plus no build, amplia suporte de desenvolvimento/testes a mapas/renderer/mods. A nota de licença da release não é uma alteração de gameplay e não autoriza inferir efeitos de instalação.
+
+**ALERTA de migração preservado da seção 30:** para ir de **1.3.2-beta.3 para a V2**, desmontar **TODOS os reatores ativos no mundo antigo antes da troca**, fazer backup e validar em cópia. Risco de corrupção/meltdown segundo orientação do autor. A 2.0.1 corrige doubling de stress, **não prova segurança de mundos antigos** ou migração automática de reactores V1. Conferir Create 6.0.10, Sable/Aeronautics, TFMG, recipes, radiação em mobs, blueprints, buffer e SU, fans, dimensões e restarts.
+
+**Conclusão documental:** cadeia física **1.3.2-beta.3→2.0.0→2.0.1** auditada; nenhuma instalação, migração, QA ou aprovação de uso em save real ocorreu. O nome do dossier e JAR permanecem 1.3.2-beta.3.
