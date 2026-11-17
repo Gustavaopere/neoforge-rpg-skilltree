@@ -497,7 +497,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 392 | Mechanicals Lib | `mechanicals-1.21.1-1.1.6.jar` | `1.1.6` | `API and Library` | 25/09/2026 - 12:31 |
 | 393 | Melody | `melody_neoforge_1.0.10_MC_1.21.jar` | `1.0.10` | `API and Library` | 25/09/2026 - 12:31 |
 | 394 | MezzConfig | `mezz_config-1.21.1-neoforge-0.5.9.jar` | `0.5.9` | `API and Library` | 17/11/2026 - 15:09 |
-| 395 | MineColonies | `minecolonies-1.1.1387-1.21.1-snapshot.jar` | `1.1.1387-1.21.1-snapshot` | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 17/11/2026 -  15:54 |
+| 395 | MineColonies | `minecolonies-1.1.1387-1.21.1-snapshot.jar` | `1.1.1387-1.21.1-snapshot` | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 17/11/2026 - 15:54 |
 | 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 23/10/2026 - 00:43 |
 | 397 | Tweaks addon for MineColonies | `MineColonies_Tweaks-1.21.1-3.33.jar` | `3.33` | `Addons + Utility & QoL` | 25/09/2026 - 12:31 |
 | 398 | Miner's Delight + | `minersdelight-1.21.1-1.4.5.jar` | `1.4.5` | `Cosmetic + Farming + Food` | 25/09/2026 - 12:31 |
