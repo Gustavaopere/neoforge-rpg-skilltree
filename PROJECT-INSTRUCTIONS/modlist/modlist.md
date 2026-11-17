@@ -712,7 +712,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 562 | Vintage Improvenents - SSW Edition | `vintageimprovements-1.21.1-0.0.0.7.jar` | `1.21.1-0.0.0.7` | `Addons + Create` | 28/09/2026 - 02:10 |
 | 563 | VS / Sable Hose Connectors | `VS-Sable-HoseConnectors-0.1.8-1.21.1.jar` | `0.1.8` | `Addons + Create + Industrial Craft + Storage + Technology` | 28/09/2026 - 02:10 |
 | 564 | Waystones | `waystones-neoforge-1.21.1-21.1.45.jar` | `21.1.45` | `Adventure and RPG + Magic + Player Transport + Server Utility` | 28/09/2026 - 02:28 |
-| 565 | Waystones: Sable (Create Aeronautics Addon) | `waystonessable-1.0.7.jar` | `1.0.7` | `Addons + Create` | 28/09/2026 - 02:10 |
+| 565 | Waystones: Sable (Create Aeronautics Addon) | `waystonessable-1.0.7.jar` | `1.0.7` | `Addons + Create` | 17/11/2026 - 20:05 |
 | 566 | Wayward Attributes | `wayward_attributes-1.21.1-1.1.1.jar` | `1.1.1` | `API and Library + Cosmetic` | 28/09/2026 - 02:10 |
 | 567 | YDM's Weapon Master | `weaponmaster_ydm-1.21.1-neoforge-4.2.7.jar` | `4.2.7` | `Cosmetic` | 28/09/2026 - 02:10 |
 | 568 | Weapons of Miracles - epic fight | `WeaponsOfMiracles-2.0.178.jar` | `2.0.178` | `Addons + Adventure and RPG + Armor, Tools, and Weapons` | 28/09/2026 - 02:10 |
