@@ -49,6 +49,14 @@
 |---:|---|---|---|---|
 | 021 | [Alex's Mobs Continued](https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued) | `2.1.13` | [2.3.0](https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued/files/all?gameVersionTypeId=6&page=1&pageSize=20&showAlphaFiles=hide) | Revisão completa de spawn heights, Mimicube item duplication, mobs aquáticos, pets e configs; **QA físico pendente** |
 
+### Consulta documental — MineColonies 17/11/2026
+
+> O JAR top-level e versão física do inventário #395 continuam em `1.1.1387-1.21.1-snapshot`; somente a documentação de releases upstream foi atualizada.
+
+| Nº físico | Mod | Versão instalada do snapshot | Release NeoForge 1.21.1 auditada até | Status |
+|---:|---|---|---|---|
+| 395 | [MineColonies](https://www.curseforge.com/minecraft/mc-mods/minecolonies) | `1.1.1387-1.21.1-snapshot` | [**1.1.1420 Release**, 15/11/2026](https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9624268) | Histórico 1.1.1392→1.1.1420 auditado; **Structurize físico 1.0.833 abaixo do mínimo 1.0.837**; upgrade e QA bloqueados |
+
 ## Adições pós-snapshot físico — 02/10/2026
 
 > Estas entradas foram confirmadas pelo usuário como adicionadas **depois** de `modlist(1).txt`. Os filenames/versões abaixo são os artefatos upstream atuais usados como alvo documental; **não são promovidos a autoridade física** até novo dump do perfil. Por isso não recebem número físico nem `✅-`.
@@ -489,7 +497,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 392 | Mechanicals Lib | `mechanicals-1.21.1-1.1.6.jar` | `1.1.6` | `API and Library` | 25/09/2026 - 12:31 |
 | 393 | Melody | `melody_neoforge_1.0.10_MC_1.21.jar` | `1.0.10` | `API and Library` | 25/09/2026 - 12:31 |
 | 394 | MezzConfig | `mezz_config-1.21.1-neoforge-0.5.9.jar` | `0.5.9` | `API and Library` | 17/11/2026 - 15:09 |
-| 395 | MineColonies | `minecolonies-1.1.1387-1.21.1-snapshot.jar` | `1.1.1387-1.21.1-snapshot` | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 22/10/2026 - 19:45 |
+| 395 | MineColonies | `minecolonies-1.1.1387-1.21.1-snapshot.jar` | `1.1.1387-1.21.1-snapshot` | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 17/11/2026 -  15:54 |
 | 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 23/10/2026 - 00:43 |
 | 397 | Tweaks addon for MineColonies | `MineColonies_Tweaks-1.21.1-3.33.jar` | `3.33` | `Addons + Utility & QoL` | 25/09/2026 - 12:31 |
 | 398 | Miner's Delight + | `minersdelight-1.21.1-1.4.5.jar` | `1.4.5` | `Cosmetic + Farming + Food` | 25/09/2026 - 12:31 |
