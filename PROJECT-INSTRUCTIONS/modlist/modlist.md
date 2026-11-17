@@ -41,6 +41,14 @@
 | 420 | [Not Enough Animations](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations) | `1.12.4` | [1.12.7](https://www.curseforge.com/minecraft/mc-mods/not-enough-animations/files/9396193) | Histórico 1.12.5–1.12.7 fechado; testes client-side pendentes |
 | 535 | [SuperMartijn642's Core Lib](https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib) | `1.1.24` | [1.1.26a](https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib/files/9447150) | Histórico 1.1.24a/24b/25/26/26a fechado; consumers e ABI pendentes |
 
+### Consulta de upstream — Alex's Mobs Continued (17/11/2026)
+
+> Auditoria documental adicional para a **versão 2.3.0 NeoForge 1.21.1**, publicada em 07/11. A instalação física #021 continua 2.1.13; sem mudança de JAR. A cadeia intermediária 2.1.14–2.2.4 já estava auditada.
+
+| Nº físico | Mod | Instalado no snapshot | Último upstream auditado | Resultado |
+|---:|---|---|---|---|
+| 021 | [Alex's Mobs Continued](https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued) | `2.1.13` | [2.3.0](https://www.curseforge.com/minecraft/mc-mods/alexs-mobs-continued/files/all?gameVersionTypeId=6&page=1&pageSize=20&showAlphaFiles=hide) | Revisão completa de spawn heights, Mimicube item duplication, mobs aquáticos, pets e configs; **QA físico pendente** |
+
 ## Adições pós-snapshot físico — 02/10/2026
 
 > Estas entradas foram confirmadas pelo usuário como adicionadas **depois** de `modlist(1).txt`. Os filenames/versões abaixo são os artefatos upstream atuais usados como alvo documental; **não são promovidos a autoridade física** até novo dump do perfil. Por isso não recebem número físico nem `✅-`.
@@ -107,7 +115,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 018 | Create Aeronautics: Alcubierre | `alcubierre-1.2.6.jar` | `1.2.6` | `Addons + Create` | 18/09/2026 - 15:31 |
 | 019 | Alex's Caves Continued | `alexscaves-1.0.10-neoforge+1.21.1.jar` | `1.0.10` | `World Gen` | 22/10/2026 - 21:57 |
 | 020 | Alex's Delight | `alexsdelight-1.6.jar` | `1.6` | `Addons + Food` | 18/09/2026 - 15:31 |
-| 021 | Alex's Mobs Continued | `alexsmobs-2.1.13-neoforge+1.21.1.jar` | `2.1.13` | `Mobs` | 22/10/2026 - 19:50 |
+| 021 | Alex's Mobs Continued | `alexsmobs-2.1.13-neoforge+1.21.1.jar` | `2.1.13` | `Mobs` | 17/11/2026 - 15:42 |
 | 022 | Almost Unified | `almostunified-neoforge-1.21.1-1.4.2.jar` | `1.21.1-1.4.2` | `API and Library + KubeJS + Ores and Resources + Processing + Server Utility` | 18/09/2026 - 15:31 |
 | 023 | Alshanex's Familiars | `alshanex_familiars-1.21.1_v4.0.3.jar` | `1.21.1_v4.0.3` | `Addons + Magic + Mobs` | 22/10/2026 - 22:01 |
 | 024 | Alternate Current | `alternate_current-mc1.21-1.9.0.jar` | `1.9.0` | `Redstone + Server Utility + Technology + Utility & QoL` | 19/09/2026 - 12:06 |
