@@ -103,3 +103,16 @@ Regression gates adicionais:
 - [ ] seleção por mouse não duplica/omite quests;
 - [ ] colar imagens não causa NPE;
 - [ ] scrolling por setas funciona sem alterar state do servidor.
+
+## Auditoria incremental — 18/11/2026 — 2101.1.37 a 2101.1.39
+
+Baseline físico #290: `ftb-quests-neoforge-2101.1.36.jar`, runtime 2101.1.36; CurseForge 289412 (FTBTeam), categorias **Adventure and RPG + API and Library + Map and Information + Server Utility**. O [catálogo oficial](https://www.curseforge.com/minecraft/mc-mods/ftb-quests-forge/files/all?page=1&pageSize=20&version=1.21.1) e as páginas individuais confirmam a cadeia NeoForge 1.21.1 abaixo.
+
+| Release | Delta relevante |
+|---|---|
+| [2101.1.37](https://www.curseforge.com/minecraft/mc-mods/ftb-quests-forge/files/9298629), 23/10/2026 | Nova Interaction task, concluída por clique direito em bloco/entidade; filtros por ID, tag ou blockstate com propriedades. Scroll da GUI preservado por capítulo. Fallback de recompensa compartilhada configurável por tipo, com modo default herdado da configuração geral. Corrige conclusão de chapters com Quest Link e execução de comandos via sources não jogadores autorizados (ex. Custom NPCs); esclarece rótulo Per-Team Reward. |
+| [2101.1.38](https://www.curseforge.com/minecraft/mc-mods/ftb-quests-forge/files/9405148), 02/11/2026 | Título de recompensa Currency passa a ser localizável; corrige funcionamento dessa recompensa com FTB Library/XMod Compat recentes, crash de loot crates e proteção contra crash de reload de quest shapes por mixins de terceiros. |
+| [2101.1.39](https://www.curseforge.com/minecraft/mc-mods/ftb-quests-forge/files/9650792), 16/11/2026 | Redimensionamento/rotação interativos de quests e imagens; WebP estático e animado (fundos apenas estáticos), melhor aspect ratio via FTB Library 2101.1.40+. Observation task passa a aceitar fluid blocks; linhas de dependência configuráveis por vínculo, inclusive Quest Link; Custom task pode abrir Recipe Focus Item no viewer. Pacotes de edição passam a alcançar todos os jogadores; servidor endurece validação de progresso de observação. Correções de geometria das conexões, traduções, busca criativa e tooltips. |
+
+### Implicações de integração
+No pack, FTB Library física 2101.1.36 é anterior à versão de referência das melhorias de imagens (.40+); conferir requisitos reais no metadata antes da promoção e atualizar a stack em conjunto. Interaction task é uma nova superfície de progressão: não equivale a consumo/produção bem-sucedida; deduplicar eventos, testar tags/blockstates, permissões e tasks custom. Verificar rewards por equipe e tipo, Currency, loot crates, quest links, progressão de observação validada pelo servidor, scripts, edição simultânea e JEI/REI. Preservar IDs e saves. Auditoria documental concluída até .39; nenhum upgrade, edição do quest book ou QA executado.
