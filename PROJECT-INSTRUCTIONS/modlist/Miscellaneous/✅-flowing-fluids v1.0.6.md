@@ -67,3 +67,11 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Modlist física: `flowing_fluids-1.0.6-1.21-neoforge.jar`; compat Sable 1.0.2 também presente.
 - Upstream oficial: finite-fluid physics, Create compatibility e fixes 1.0.6 descritos acima.
 - Config efetiva do pack não foi lida nesta etapa; features opcionais permanecem fail-closed até inspeção/runtime QA.
+
+## Auditoria incremental — 18/11/2026 — 1.0.8
+
+**Baseline físico:** #283, `flowing_fluids-1.0.6-1.21-neoforge.jar`, mod ID `flowing_fluids`, versão 1.0.6. Projeto CurseForge 1108809, categoria Miscellaneous. O [catálogo oficial filtrado por 1.21.1](https://www.curseforge.com/minecraft/mc-mods/flowing-fluids/files/all?page=1&pageSize=20&version=1.21.1) mostra 1.0.8-neoforge-1.21, Release em 06/11/2026, diretamente após 1.0.6. A etapa 1.0.7 corresponde ao port 26.2 segundo o [changelog upstream](https://github.com/Traben-0/flowing_fluids/blob/HEAD/CHANGELOG.MD); não há publicação 1.0.7 para NeoForge 1.21.1 na listagem.
+
+**1.0.8:** o changelog oficial identifica port 26.3 e correção de funcionamento das water wheels do Create. Apenas o segundo ponto é funcionalmente pertinente ao alvo 1.21.1, sujeito à validação do binário; o port não altera o alvo do pack. Não atribuir alteração específica de fórmula de torque/fluxo sem evidência.
+
+**Gate:** water wheels com e sem fluxo, regras river_only/river_only_opposite quando configuradas, conservação de volume, pipes e hose pulleys, Sable/compat 1.0.2, startup dedicado e restart. Ficha individual do arquivo 1.0.8 não recuperada; catálogo com loader/MC/data e changelog oficial por versão são as bases da auditoria. Sem promoção física nem testes.
