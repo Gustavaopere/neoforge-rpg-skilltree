@@ -159,3 +159,17 @@ Fonte oficial: https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge
 
 **Estado:** **AUDITORIA DOCUMENTAL PENDENTE** por falta de changelogs individuais 21.0.26, 21.0.28 e 21.0.29 (e dados físicos novos). A documentação foi complementada **sem** certificar falsamente a cadeia inteira, sem renomear/mover o dossier e sem atualizar JARs. O dossier já tinha ✅ por auditoria histórica da versão instalada; isso não equivale a homologação de 21.0.31.
 
+## Fechamento do histórico 21.0.26–21.0.31 — 18/11/2026
+
+A [API de versões oficial do Modrinth para New Dawn, filtrada em NeoForge/1.21.1](https://api.modrinth.com/v2/project/R8uGDQpB/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D) recuperou 19 registros desse canal, com exatamente seis posteriores à 21.0.25. O projeto CurseForge 1422284 ([catálogo](https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/all)) confirma 21.0.31 e categorias API and Library + Biomes + Utility & QoL + World Gen. As três lacunas anteriores foram resolvidas. Datas abaixo são uploads UTC; não extrapolar notas de Fabric ou Minecraft 26.x.
+
+| Release | Data | Changelog primário e delta |
+|---|---|---|
+| [21.0.26](https://modrinth.com/mod/worldweaver-neoforge/version/x1laXrzF) | 04/10/2026 | Corrige biomas de BetterEnd ausentes na criação do mundo; BetterNether mascarava o defeito, e /reload era contorno temporário. |
+| [21.0.27](https://modrinth.com/mod/worldweaver-neoforge/version/lL7lvfic) | 14/10/2026 | Modrinth detalha serialização de presets com contexto de registries ativo, correção da ordem de camadas em presets flat e advancements de desbloqueio para receitas registradas em runtime. O registro anterior do CurseForge cita registro de biomas End e reload de biome sources; preservar como evidência histórica dessa plataforma, sem afirmar equivalência byte a byte entre artefatos. |
+| [21.0.28](https://modrinth.com/mod/worldweaver-neoforge/version/YWSPRS64) | 19/10/2026 | Aplicação de encantamentos passa a escrever diretamente em item data components, incluindo encantamentos armazenados em livros. |
+| [21.0.29](https://modrinth.com/mod/worldweaver-neoforge/version/1aLkwcmX) | 20/10/2026 | Integração embutida com Nether Descent: preserva distribuição climática/vertical e surface rules, respeita configurações de worldgen e dispensa datapack standalone de compatibilidade WorldWeaver/Nether Descent. Não remover datapacks sem verificar a instalação efetiva. |
+| [21.0.30](https://modrinth.com/mod/worldweaver-neoforge/version/21KphEsG) | 24/10/2026 | Corrige serialização de placement e structures dependente de locale. |
+| [21.0.31](https://modrinth.com/mod/worldweaver-neoforge/version/KxUUeX9u) | 07/11/2026 | Adiciona compatibilidade com Biolith. |
+
+**Impacto:** testar End sem BetterNether, presets customizados/flat, livros encantados e data components, desbloqueio de recipes dinâmicas, Nether Descent quando presente e datapack de compat, locale, Biolith quando presente, BetterX/BCLib/TerraBlender, novos chunks, saves e reinicialização. Decisão Manter e versão física histórica #572 `worldweaver-21.0.25.jar` preservadas. **Auditoria documental concluída até 21.0.31;** instalação e QA não realizados. O arquivo e a pasta permanecem inalterados.

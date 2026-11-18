@@ -12,6 +12,14 @@
 
 
 
+## Fechamento de lacunas de upstream — 18/11/2026 (Gadgets & Gizmos, WorldWeaver e Polymorph+)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
+|---:|---|---|---|---|
+| 298 | Create Aeronautics: Gadgets & Gizmos | `1.2.2` | [2.0.3](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/SeokxTA4) | Concluído documentalmente; API confirma 25 publicações pós-baseline com datas/IDs, deltas anteriores e 1.2.9 complementada. Migração major de grafos/QA pendentes. |
+| 448 | Polymorph+ | `1.3.1+1.21.1` | [1.5.0](https://modrinth.com/mod/polymorph_plus/version/63hk99pO) | Concluído documentalmente; cinco releases oficiais 1.21.1 NeoForge verificadas; 1.4.3 apenas source no catálogo Modrinth. QA pendente. |
+| 572 | WorldWeaver: New Dawn | `21.0.25` | [21.0.31](https://modrinth.com/mod/worldweaver-neoforge/version/KxUUeX9u) | Concluído documentalmente; seis releases 21.0.26–.31 com datas e notas oficiais; QA BetterX coordenado pendente. |
+
 ## Auditoria incremental — 18/11/2026 (Immersive Furniture, Enhanced AI e Oracle Index)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
@@ -567,7 +575,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 295 | Fancy World Animations | `fwa+1.21.1-neoforge-1.2.31.jar` | `1.2.31` | `Cosmetic` | 17/11/2026 - 17:59 |
 | 296 | Fzzy Config | `fzzy_config-0.7.7+1.21+neoforge.jar` | `0.7.7+1.21+neoforge` | `API and Library + Utility & QoL` | 24/09/2026 - 19:05 |
 | 297 | Gabou's Libs | `gaboulibs-neoforge-1.9.jar` | `1.9` | `API and Library` | 24/09/2026 - 19:05 |
-| 298 | Create Aeronautics: Gadgets & Gizmos | `gadgets-and-gizmos-bundled-V1.2.2.jar` | `1.2.2` | `Addons + Create` | 17/11/2026 - 22:52 |
+| 298 | Create Aeronautics: Gadgets & Gizmos | `gadgets-and-gizmos-bundled-V1.2.2.jar` | `1.2.2` | `Addons + Create` | 18/11/2026 - 11:28 |
 | 299 | Create: Garnished | `garnished-2.1.9.2+1.21.1-neoforged.jar` | `2.1.9.2` | `Addons + Automation + Create + Food` | 24/09/2026 - 19:05 |
 | 300 | Gaze - A Malum Addon | `gaze-1.1.7.1.jar` | `1.1.7.1` | `Addons` | 24/09/2026 - 19:05 |
 | 301 | GeckoLib | `geckolib-neoforge-1.21.1-4.9.2.jar` | `4.9.2` | `API and Library` | 24/09/2026 - 19:05 |
@@ -717,7 +725,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 445 | Platform | `Platform-neoforge-1.21.1-1.3.3.jar` | `1.3.3` | `API and Library` | 17/11/2026 - 18:22 |
 | 446 | playerAnimator | `player-animation-lib-forge-2.0.4+1.21.1.jar` | `2.0.4+1.21.1` | `API and Library + Cosmetic` | 26/09/2026 - 02:33 |
 | 447 | Player Animation Library | `PlayerAnimationLibNeoforge-1.1.6+mc.1.21.1.jar` | `1.1.6+mc.1.21.1` | `API and Library` | 26/09/2026 - 02:33 |
-| 448 | Polymorph+ | `polymorph_plus-neoforge-1.3.1+1.21.1.jar` | `1.3.1+1.21.1` | `Miscellaneous + Utility & QoL` | 18/11/2026 - 07:45 |
+| 448 | Polymorph+ | `polymorph_plus-neoforge-1.3.1+1.21.1.jar` | `1.3.1+1.21.1` | `Miscellaneous + Utility & QoL` | 18/11/2026 - 11:28 |
 | 449 | Polytone | `polytone-1.21-4.4.0-neoforge.jar` | `1.21-4.4.0` | `Cosmetic + Utility & QoL` | 22/10/2026 - 23:21 |
 | 450 | Pondus Inventory [Sable] | `pondus_inventory_fi-0.15-Beta.jar` | `0.15-Beta` | `Addons + API and Library + Utility & QoL` | 26/09/2026 - 02:33 |
 | 451 | Create Aeronautics: Portable Engine Liquid Fuel | `portable_engine_liquid_fuel-2.0.0-neoforge-1.21.1.jar` | `2.0.0` | `Addons + Create + MCreator + Utility & QoL` | 26/09/2026 - 02:34 |
@@ -841,7 +849,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 569 | Create Aeronautics: Weight | `weight-1.2.0.jar` | `1.2.0` | `Addons + Create` | 17/11/2026 - 18:22 |
 | 570 | Werewolves - Become a Beast! | `Werewolves-1.21-2.0.3.3.jar` | `2.0.3.3` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 28/09/2026 - 02:10 |
 | 571 | Wind's Spellbooks : Iron's Spells 'n Spellbooks Addon | `wind_spellbooks-1.0.5.jar` | `1.0.5` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 28/09/2026 - 02:10 |
-| 572 | WorldWeaver: New Dawn | `worldweaver-21.0.25.jar` | `21.0.25` | `API and Library + Biomes + Utility & QoL + World Gen` | 17/11/2026 - 22:53 |
+| 572 | WorldWeaver: New Dawn | `worldweaver-21.0.25.jar` | `21.0.25` | `API and Library + Biomes + Utility & QoL + World Gen` | 18/11/2026 - 11:28 |
 | 573 | WunderLib: New Dawn | `wunderlib-21.0.10.jar` | `21.0.10` | `API and Library + Utility & QoL` | 23/10/2026 - 15:15 |
 | 574 | YetAnotherConfigLib | `yet_another_config_lib_v3-3.8.2+1.21.1-neoforge.jar` | `3.8.2+1.21.1-neoforge` | `API and Library` | 28/09/2026 - 08:36 |
 | 575 | Fundamental Principles - Iron's Spells Addon | `ypfundamentals-1.1.7.1.jar` | `1.1.7.1` | `Addons + Adventure and RPG + Magic + Mobs` | 30/09/2026 - 10:20 |

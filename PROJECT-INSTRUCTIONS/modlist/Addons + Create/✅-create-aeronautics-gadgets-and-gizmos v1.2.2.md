@@ -275,3 +275,38 @@ O **CurseForge** parou publicamente em **2.0.0-Pre-Release-4 (19/10/2026)**; o m
 
 **Status:** a identificação da 1.2.6 deixou de ser bloqueio. A evolução 2.0 foi documentada a partir das páginas oficiais e a versão final 2.0.3 foi verificada; **certificação estrita do histórico 2.0 inteiro ainda PENDENTE**, pois faltam o inventário exaustivo com datas civis exatas das builds intermediárias e a reconciliação técnica da família 2.x com o pack. A instalação histórica é `1.2.2`; este dossier não autoriza promoção física. Não declarar que todos os releases e testes foram definitivamente fechados.
 
+## Fechamento do inventário de publicações — 18/11/2026
+
+**Identidade e versão física:** #298, `gadgets-and-gizmos-bundled-V1.2.2.jar`, wrapper `createthrusters_bundled`, 1.2.2. A [API pública de versões do projeto Modrinth Sza3GgEL](https://api.modrinth.com/v2/project/Sza3GgEL/version) retornou 62 registros; a entrada 1.2.2 (MjBMc4RD) corresponde ao SHA-1 físico histórico `1694bb6f99100557faf80fece178a2a4dd4892de`. Após essa entrada, há **25 artefatos publicados, todos NeoForge 1.21.1**, incluindo as duas linhas contemporâneas, beta e alpha. A [listagem CurseForge oficial](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-gadgets-and-gizmos/files/all) e a classificação Addons + Create foram confrontadas com o projeto correto. A consulta anterior havia documentado os deltas mas não confirmado as datas de todo o histórico: o inventário abaixo resolve a lacuna. Datas referem-se ao upload Modrinth (UTC), não ao cabeçalho do changelog nem ao horário de edição do dossier.
+
+| Versão | Upload UTC em 2026 | Publicação oficial |
+|---|---|---|
+| 1.2.3 | 17/09/2026 | [aadW5uNY](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/aadW5uNY) |
+| 1.2.4 | 18/09/2026 | [VY2Sg3qY](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/VY2Sg3qY) |
+| 1.2.5 | 26/09/2026 | [S4f9BlLI](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/S4f9BlLI) |
+| 1.2.6 | 04/10/2026 | [PXctFUSv](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/PXctFUSv) |
+| 1.2.7 | 05/10/2026 | [HhiEx5tk](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/HhiEx5tk) |
+| 2.0.0-Beta-1 | 05/10/2026 | [PRxR5qrC](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/PRxR5qrC) |
+| 2.0.0-Beta-1.1 | 05/10/2026 | [9ci2hEic](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/9ci2hEic) |
+| 1.2.8 | 09/10/2026 | [D1zhtUJo](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/D1zhtUJo) |
+| 2.0.0-Beta-2 | 09/10/2026 | [19E5dCzP](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/19E5dCzP) |
+| 2.0.0-Beta-3 | 11/10/2026 | [otoj8TZS](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/otoj8TZS) |
+| 1.2.9 (alpha) | 11/10/2026 | [VTxjWBGy](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/VTxjWBGy) |
+| 1.2.10 | 12/10/2026 | [MgD655V5](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/MgD655V5) |
+| 2.0.0-Beta-3.1 | 12/10/2026 | [JF0rSDEY](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/JF0rSDEY) |
+| 2.0-prerelease | 13/10/2026 | [EzkOG8cF](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/EzkOG8cF) |
+| 2.0.0-Beta-4 | 15/10/2026 | [nAmjf9LH](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/nAmjf9LH) |
+| 2.0-pre-release-2 | 15/10/2026 | [HYi0Szs6](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/HYi0Szs6) |
+| 2.0-pre-release-3 | 16/10/2026 | [uVEW4V1J](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/uVEW4V1J) |
+| 2.0.0-Beta-5 | 16/10/2026 | [mYi0ANUx](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/mYi0ANUx) |
+| 2.0.0-Beta-6 | 19/10/2026 | [5scU0i96](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/5scU0i96) |
+| 2.0-pre-release-4 | 19/10/2026 | [wkJ6vtdp](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/wkJ6vtdp) |
+| 2.0.0-Pre-Release-5 | 25/10/2026 | [IDR4lPuz](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/IDR4lPuz) |
+| 2.0.0 | 04/11/2026 | [aP8QzV0K](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/aP8QzV0K) |
+| 2.0.1 | 06/11/2026 | [bJgeGffn](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/bJgeGffn) |
+| 2.0.2 | 08/11/2026 | [j64Uveca](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/j64Uveca) |
+| 2.0.3 | 09/11/2026 | [SeokxTA4](https://modrinth.com/mod/create-aeronautics-gadgets-and-gizmos/version/SeokxTA4) |
+
+**Correções e complementos documentais:** 2.0.0 teve notas datadas de 03/11, mas upload em 04/11 UTC. As betas não sucedem todas as releases 1.2.x: foram publicadas em paralelo. A 1.2.9, distribuída como alpha e rotulada insegura, continha receita temporária de Oxidized Solid Fuel, correção de receitas mecânicas EMI, remoção de duplicação/armazenamento do grafo no Network Linker, seletor Scalar/Redstone nos Output nodes, ajuste do Advanced HUD Text Input e offset dos Smart Glasses pela roda do mouse. Não instalar essa build. As 1.2.3–1.2.8, 1.2.10 e pré-releases/betas já têm alterações individualizadas no histórico acima; conciliar as notas cumulativas sem contar duas vezes uma mudança. Em 2.0.1, além dos fixes previamente registrados, Redstone Link do tablet corrige atualização de frequência dos sliders e combinações de teclas modificadoras voltam a ser reconhecidas; em 2.0.3, Scissor Arm passa a usar machado de madeira ou superior em vez de picareta de ferro. O autor alerta para bugs potenciais da automação Worker e texturas provisórias de Smart Vault/Tank/Battery. Último arquivo confirmado `gadgets-and-gizmos-bundled-2.0.3.jar`, SHA-1 de distribuição `c5973b6e8f2e95537257fc809cc051336631f5cd` (API do Modrinth; não é hash de instalação).
+
+**Conclusão documental:** lista publicada e changelogs da cadeia conciliados com a análise anterior. Mantida a certificação da versão física histórica, não promovida a 2.0.3. Migração manual de Get/Set Data, grafos, permissões e testes de ABI/dependências, incluindo Create/Aeronautics/Sable, ainda são gates de instalação. Nenhum runtime ou download binário foi testado. A conclusão documental é distinta da homologação física.
