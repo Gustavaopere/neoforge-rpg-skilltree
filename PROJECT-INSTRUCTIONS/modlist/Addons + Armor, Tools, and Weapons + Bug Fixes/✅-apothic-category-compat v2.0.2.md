@@ -211,3 +211,17 @@ Auditoria correta:
 **Upstream principal:** [CurseForge — Apothic Category Compat](https://www.curseforge.com/minecraft/mc-mods/apothic-category-compat) e [arquivo 2.0.2 NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/apothic-category-compat/files/8219980).
 
 **Confiança:** alta para a lista de overrides, dependência, data-map architecture e limitações 2.0.2, pois estão declaradas diretamente na release. Aplicação aos ports Continued permanece dependente de verificação de registry IDs/runtime.
+
+## Auditoria incremental upstream — 18/11/2026 — 2.1.0
+
+**Autoridade física histórica preservada:** #032, `apothic_compat-2.0.2.jar`, mod id `apothic_compat`, runtime 2.0.2. O [projeto oficial](https://www.curseforge.com/minecraft/mc-mods/apothic-category-compat), ID 1516278, e a [listagem de publicações](https://www.curseforge.com/minecraft/mc-mods/apothic-category-compat/files/all?page=1&pageSize=20&showAlphaFiles=hide&sortBy=dateCreated&sortOrder=desc) confirmam que, após 2.0.2 (09/06), há somente **[2.1.0](https://www.curseforge.com/minecraft/mc-mods/apothic-category-compat/files/8264124)** (17/06/2026, NeoForge 1.21.1, `apothic_category_compat-2.1.0.jar`). Não há release intermediária publicada para esse alvo no intervalo consultado.
+
+**Deltas relevantes da 2.1.0:**
+- Bidentes de Lands of Icaria passam à categoria trident. Cerca de 30 cajados de mods como Iron's Spellbooks, Twilight Forest, Ice and Fire e Forbidden Arcanus passam à categoria `apothic_compats:staff` se **Apothic Compats e Malum** estiverem ambos carregados. Foices de Lands of Icaria passam à categoria `apothic_compats:scythe` sob a mesma condição; não presumir presença desses providers.
+- Ferramentas de função dupla (Void Forge/Infernal Forge de Cataclysm e gavels de Forbidden Arcanus) entram na categoria melee weapon por meio da tag de itens `#apothic_category_compat:weapon_pickaxes`. A opção `weapon_pickaxes_as_melee` vem habilitada; desabilitá-la preserva classificação breaker. Datapacks podem ampliar essa tag.
+- O projeto muda de nome/slug para Apothic Category Compat; o autor declara migração automática da configuração no primeiro boot. Conferir consumidores e referências ao mod ID antigo em scripts/manifests antes de promover a build. A documentação upstream indica comando `/acc reload` para blacklist e `/reload` vanilla para o data map, inclusive após alterar a opção das ferramentas. Não aplicar regras de categorização de Forge 1.20.1 ao canal NeoForge 1.21.1.
+- A descrição oficial atual registra NeoForge 21.1.x e Apotheosis 8.5+; o último snapshot contém Apotheosis 8.8.0. A categorização e a blacklist são server-side, com sincronização de categorias pelo Apotheosis. Nenhum requisito de integração opcional deve ser convertido em hard dependency sem metadata da build.
+
+**Gates:** backup e migração da configuração; conferir IDs e tags em ports Continued; validar category final dos staffs/scythes e ferramentas duais, presença/ausência dos dois providers, precedência frente a Apothic Compats/datapacks, reload correto e ausência de mudanças indevidas em equipamentos existentes. Categorias CurseForge verificadas: Addons + Armor, Tools, and Weapons + Bug Fixes, correspondentes à pasta atual.
+
+**Estado:** auditoria documental concluída até 2.1.0; versão física, caminho e certificação do baseline preservados. Nenhum JAR substituído ou teste executado.

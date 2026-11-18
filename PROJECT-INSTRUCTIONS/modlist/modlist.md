@@ -12,6 +12,14 @@
 
 
 
+## Auditoria incremental — 18/11/2026 (Apothic Category Compat, Stats & Power e ModernFix)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
+|---:|---|---|---|---|
+| 032 | Apothic Category Compat | `2.0.2` | [2.1.0](https://www.curseforge.com/minecraft/mc-mods/apothic-category-compat/files/8264124) | Concluído documentalmente; novas categorias condicionais, ferramenta dual, tag, configuração e migração. QA pendente. |
+| 161 | Create: Stats & Power | `1.13.1` | [1.16.0](https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/9287207) | Parcial: delta da 1.16.0 documentado; intervalo 1.15.0–1.15.33 ainda não conciliado. |
+| 402 | ModernFix | `5.27.24+mc1.21.1` | [5.27.27](https://www.curseforge.com/minecraft/mc-mods/modernfix/files/9309399) | Parcial: três releases confirmadas e deltas do source; atribuição exata entre builds 5.27.25/26 pendente. |
+
 ## Auditoria incremental — 18/11/2026 (Climbable Ropes e revalidação Epic Fight: Curios Compat)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
@@ -285,7 +293,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 029 | Create: Apokinetics | `apokinetics-1.0.6.jar` | `1.0.6` | `Addons + Automation + Create + Magic + Technology` | 17/11/2026 - 18:34 |
 | 030 | Apotheosis | `Apotheosis-1.21.1-8.8.0.jar` | `8.8.0` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 19/09/2026 - 12:06 |
 | 031 | Apotheotic Creation | `apotheoticcreation-2.0.0.jar` | `2.0.0` | `Automation + Create + Storage + Utility & QoL` | 19/09/2026 - 12:06 |
-| 032 | Apothic Category Compat | `apothic_compat-2.0.2.jar` | `2.0.2` | `Addons + Armor, Tools, and Weapons + Bug Fixes` | 19/09/2026 - 12:06 |
+| 032 | Apothic Category Compat | `apothic_compat-2.0.2.jar` | `2.0.2` | `Addons + Armor, Tools, and Weapons + Bug Fixes` | 18/11/2026 - 10:26 |
 | 033 | Apothic Compats | `apothic_compats-0.2.4.2.jar` | `0.2.4.2` | `Addons + Armor, Tools, and Weapons` | 23/10/2026 - 15:31 |
 | 034 | Apothic Attributes | `ApothicAttributes-1.21.1-2.10.1.jar` | `2.10.1` | `Adventure and RPG + API and Library` | 19/09/2026 - 16:04 |
 | 035 | Apothic Enchanting | `ApothicEnchanting-1.21.1-1.6.2.jar` | `1.6.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:04 |
@@ -414,7 +422,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 158 | Create Stuff & Additions Curios Jetpacks | `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar` | `1.2.4 (distribuição); metadata interna 1.2.22` | `Addons + Create` | 23/09/2026 - 11:23 |
 | 159 | Create Stuff & Netherite Additions | `create_sna-1.2-neoforge-1.21.1.jar` | `1.2` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Player Transport` | 23/09/2026 - 11:23 |
 | 160 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` | `1.0 (distribuição); metadata interna vazia` | `Addons + Create + Processing` | 23/09/2026 - 11:23 |
-| 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 23/10/2026 - 00:27 |
+| 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 18/11/2026 - 10:26 |
 | 162 | Create Deep Seas | `create_submarine-2.2.4.jar` | `2.2.4` | `Addons + Create` | 23/10/2026 - 13:52 |
 | 163 | Create : Misc & Things | `create_things_and_misc-4.1.1-neoforge-1.21.1.jar` | `4.1.1` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 12:37 |
 | 164 | Create: Tweaked Controllers | `create_tweaked_controllers-1.21.1-1.2.7.jar` | `1.21.1-1.2.7` | `Addons + Create + Redstone + Technology` | 23/09/2026 - 12:37 |
@@ -655,7 +663,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 399 | Ragdoll mob corpses | `mob_ragdoll_corpse-1.1.5.jar` | `1.1.5` | `Addons + Mobs` | 25/09/2026 - 12:31 |
 | 400 | Mobstein : Revive animals and necromancy! | `mobstein-5.4.4-neoforge-1.21.1.jar` | `5.4.4` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Mobs` | 25/09/2026 - 12:31 |
 | 401 | Model Gap Fix | `modelfix-1.21-1.10.jar` | `1.21-1.10` | `API and Library + Cosmetic + Utility & QoL` | 25/09/2026 - 12:31 |
-| 402 | ModernFix | `modernfix-neoforge-5.27.24+mc1.21.1.jar` | `5.27.24+mc1.21.1` | `Performance + Server Utility + Utility & QoL` | 25/09/2026 - 13:25 |
+| 402 | ModernFix | `modernfix-neoforge-5.27.24+mc1.21.1.jar` | `5.27.24+mc1.21.1` | `Performance + Server Utility + Utility & QoL` | 18/11/2026 - 10:26 |
 | 403 | Modern UI | `ModernUI-NeoForge-1.21.1-3.13.0.1-universal.jar` | `3.13.0.1` | `API and Library + Cosmetic + Miscellaneous + Utility & QoL` | 25/09/2026 - 13:25 |
 | 404 | Modonomicon | `modonomicon-1.21.1-neoforge-1.120.4.jar` | `1.120.4` | `Adventure and RPG + API and Library + Map and Information` | 25/09/2026 - 13:25 |
 | 405 | MonoLib | `monolib-neoforge-1.21.1-4.1.0.jar` | `4.1.0` | `API and Library + Education + Utility & QoL` | 25/09/2026 - 13:25 |

@@ -215,3 +215,17 @@ Fonte upstream: CurseForge file ID 8906784, `create_stats-1.14.5.jar`, release N
 **Verificação de intervalo:** o catálogo oficial de arquivos NeoForge 1.21.1 lista **somente esses dois artefatos** após 1.13.1; nenhum pacote 1.14.0–1.14.4 ou 1.14.6 foi publicado nessa lista. Portanto, a revisão documental **1.13.1→1.14.5→1.15.0 está completa**, sem inventar releases intermediárias a partir da sequência numérica.
 
 Fontes primárias: https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/all?version=1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/9074215 . **JAR físico não alterado;** permanece o gate de smoke test/backup de mundo antes da eventual promoção, que não faz parte desta conferência documental.
+
+## Auditoria incremental parcial — 18/11/2026 — 1.16.0
+
+**Autoridade física histórica:** #161, `create_stats-1.13.1.jar`, runtime 1.13.1. A [publicação oficial 1.16.0](https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/9287207) de 22/10/2026 confirma NeoForge 1.21.1 e o [projeto oficial](https://www.curseforge.com/minecraft/mc-mods/create-stats-power) mantém a última release 1.16.0. Categorias: Addons + Create.
+
+O changelog de 1.16.0 declara expressamente comparação com 1.15.33 (não com 1.15.0). Deltas comprovados:
+- Universal Power Coupler redesenhado como mecanismo de troca de baterias animado, com controle de direção de transferência (puxar/enviar/desligar), demonstração Ponder, registro no JEI e no Student's Manual.
+- Expansão da integração energética via cabos/conectores próprios de Create Crafts & Additions, Create: New Age, Mekanism, Immersive Engineering, Ender IO e Powah; a energia FE armazenada no Coupler é conservada ao quebrá-lo. Não inferir que todos esses mods estejam instalados.
+- Corrigidos crash ao conectar dois Couplers consecutivos, transferência que falhava com certos conectores/máquinas/baterias, indicadores e luzes travados, perda de fio ao minerar sua extremidade, stutter de animações em mundos antigos e bug crítico de VCC Mk IV Aerial em naves de grande porte.
+- O autor exige upgrade coordenado de servidor e clientes.
+
+**Gate:** conservação de energia, limites e direção FE, quebra/recolocação, combinações de conectores de mods realmente presentes, dois Couplers, VCC Aerial em diferentes dimensões de aeronaves, mundos existentes e multiplayer.
+
+**Lacuna:** não foi possível recuperar uma listagem atual completa entre 1.15.0 e 1.16.0; a referência a 1.15.33 demonstra uma versão de comparação upstream, mas não comprova que tenha sido publicada no CurseForge ou que nenhuma outra build intermediária exista. Não declarar o intervalo inteiro concluído. Não alterar o JAR, versão física, nome do dossier ou caminho. QA pendente.
