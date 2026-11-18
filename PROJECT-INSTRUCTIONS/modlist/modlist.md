@@ -208,7 +208,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 058 | Atlas API | `atlas_api-1.21.1-1.2.0.jar` | `1.21.1-1.2.0` | `API and Library` | 19/09/2026 - 18:06 |
 | 059 | AttributeFix | `attributefix-neoforge-1.21.1-21.1.3.jar` | `21.1.3` | `Bug Fixes + Utility & QoL` | 19/09/2026 - 18:06 |
 | 060 | Azimuth API | `azimuth-1.4.8.jar` | `1.4.8` | `Addons + API and Library + Create` | 18/09/2026 - 10:38 |
-| 061 | AzureLib | `azurelib-neo-1.21.1-3.1.11.jar` | `3.1.11` | `API and Library` | 22/10/2026 - 22:26 |
+| 061 | AzureLib | `azurelib-neo-1.21.1-3.1.11.jar` | `3.1.11` | `API and Library` | 17/11/2026 - 22:10 |
 | 062 | Create: Backpack Pixel | `backpack_pixel-1.2.0-neoforge-1.21.1.jar` | `1.2.0` | `Addons + Armor, Tools, and Weapons + Create + Storage + Technology` | 19/09/2026 - 18:06 |
 | 063 | Backported Spells: Iron's Spells x Vanilla Backport | `backportedspellbooks-0.1.2.jar` | `0.1.2 (distribuição/filename); metadata runtime 0.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 18:23 |
 | 064 | Balm | `balm-neoforge-1.21.1-21.0.65.jar` | `21.0.65` | `API and Library` | 19/09/2026 - 21:35 |
@@ -810,7 +810,7 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 06 | Placebo | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-placebo%20v9.9.2.md) | `9.9.2` | `9.9.4` | PENDENTE: consumer linkage com Apotheosis/Apothic |
 | 07 | Ace's Spell Utils | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library/%E2%9C%85-aces-spell-utils%20v1.2.7.2-1.21.1.md) | `1.2.7.2-1.21.1` | `1.2.7.2-1.21.1` | REVALIDADO: sem nova release 1.21.1 demonstrada |
 | 08 | Supplementaries | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous%20%2B%20Redstone%20%2B%20Storage/%E2%9C%85-supplementaries%20v1.21.1-3.9.9.md) | `1.21.1-3.9.9` | `4.1.2` | **Auditoria documental 3.9.9→4.1.2 concluída em 17/11**; instalação 3.9.9 preservada; homologação de Moonlight/Amendments e QA pendentes |
-| 09 | AzureLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-azurelib%20v3.1.11.md) | `3.1.11` | `3.1.19 Release; 3.1.20-alpha.1 pré-release` | PENDENTE: alpha não equivale a estabilidade |
+| 09 | AzureLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-azurelib%20v3.1.11.md) | `3.1.11` | `3.2.8 (09/11)` | **CONCLUÍDO DOCUMENTALMENTE 17/11**: 3.1.12–3.2.8 (incluindo alpha) com changelogs por release; instalado 3.1.11; QA/upgrade pendentes |
 | 10 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1 (JAR); metadata sem versão` | `7.15.0` | 7.15.0 BLOQUEADO: EME 2.4.0 abaixo do mínimo opcional `[2.5.0,3.0.0)`; 7.14.0 CANDIDATO CONDICIONAL: EME opcional `[2.4.0,3.0.0)`, sem validação binária/runtime |
 | 11 | Create Aeronautics: Gadgets & Gizmos | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-aeronautics-gadgets-and-gizmos%20v1.2.2.md) | `1.2.2` | `1.2.10` | PENDENTE: v1.2.9 desaconselhada pelo upstream; revalidar bundle e lógica |
 | 12 | Reliquified Artifacts | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-artifacts%20v1.0.8.md) | `1.0.8` | `1.0.9 Beta` | PENDENTE: Relics/Artifacts/Curios e efeitos sem duplicação |
@@ -1093,7 +1093,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 08 | InsaneLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-insanelib%20v2.4.33.0.md) | `2.4.33.0` | 2.4.33.1 | **PENDENTE** |
 | 09 | Create: Teleporters | [Abrir `.md`](./Create%20%2B%20Energy%2C%20Fluid%2C%20and%20Item%20Transport%20%2B%20Technology/%E2%9C%85-create-teleporters-remastered%20v2.0.2b.md) | `2.0.2b` | 3.0.1b | **PENDENTE** |
 | 10 | Petrolpark Library | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Create/%E2%9C%85-petrolparks-library%20v1.5.11.md) | `1.5.11` | 1.5.11 Release estável; 1.5.12 Beta (19/10) | **1.5.11 Release mantida; 1.5.12 Beta bloqueada para promoção** |
-| 11 | Punchy! - First person animations | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 2.8g (18/10) | **AUDITORIA DOCUMENTAL FECHADA EM 24/10**: cadeia 2.7e→2.8→2.8a→2.8b→2.8c→2.8d→2.8e→2.8f→2.8g revisada; JARs 2.8/2.8a (NeoForge 1.21.1) baixados, SHA-512 conferido, diff de 445 arquivos: 5 modificados (4 classes de interface/config + metadata), 0 adicionados/removidos. **Runtime físico permanece 2.7e; QA/upgrade pendentes** |
+| 11 | Punchy! - First person animations | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | 3.2b (12/11) | **AUDITORIA DOCUMENTAL CONCLUÍDA EM 17/11**: releases NeoForge 1.21.1 até 3.2b, incluindo 3.1b/3.2/3.2a arquivadas, verificadas com changelogs por file ID; runtime 2.7e e QA da bridge Epic Fight pendentes | **AUDITORIA DOCUMENTAL FECHADA EM 24/10**: cadeia 2.7e→2.8→2.8a→2.8b→2.8c→2.8d→2.8e→2.8f→2.8g revisada; JARs 2.8/2.8a (NeoForge 1.21.1) baixados, SHA-512 conferido, diff de 445 arquivos: 5 modificados (4 classes de interface/config + metadata), 0 adicionados/removidos. **Runtime físico permanece 2.7e; QA/upgrade pendentes** |
 | 12 | Sophisticated Core | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-sophisticated-core%20v1.5.1.md) | `1.5.1` | 1.5.17.2426 Release (21/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10; 1.5.15 E 1.5.16 VINCULADAS A COMMITS COM mod_version; QA/INSTALAÇÃO PENDENTES** |
 | 13 | Alex's Caves Continued | [Abrir `.md`](./World%20Gen/%E2%9C%85-alexs-caves-continued%20v1.0.10.md) | `1.0.10` | 1.0.10 | **REVALIDADO** |
 | 14 | Puzzles Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-puzzles-lib%20v21.1.60.md) | `21.1.60` | 21.1.65 | **PENDENTE** |
@@ -1108,7 +1108,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 23 | Lychee [Neo/Forge] | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-lychee-tweaker%20v6.7.0%2Bneoforge.md) | `6.7.0+neoforge` | 6.7.1 Beta (17/10) | **AUDITORIA DOCUMENTAL CONCLUÍDA; Beta não promovida** |
 | 24 | EMF Compat: Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic/%E2%9C%85-emf-compat-core%20v2.0.0.md) | `2.0.0` | 2.3.2 (NeoForge 1.21.1, 16/10) | **BLOQUEADO: delta individual 2.3.1 não isolado** |
 | 25 | Supplementaries | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous%20%2B%20Redstone%20%2B%20Storage/%E2%9C%85-supplementaries%20v1.21.1-3.9.9.md) | `1.21.1-3.9.9` | 4.0.2 (16/10) | **AUDITORIA DOCUMENTAL CONCLUÍDA; QA físico pendente** |
-| 26 | AzureLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-azurelib%20v3.1.11.md) | `3.1.11` | 3.1.22; 3.1.23-alpha.2 (nome Alpha, CF Type R) | **BLOQUEADO: builds 3.1.19–3.1.23 sem changelog individual** |
+| 26 | AzureLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-azurelib%20v3.1.11.md) | `3.1.11` | 3.2.8 (09/11) | **RESOLVIDO DOCUMENTALMENTE 17/11**: changelogs exatos 3.1.19–3.2.8 auditados; alpha segregada; instalado 3.1.11, runtime pendente |
 | 27 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1` | 7.17.0 | **CONCLUÍDA DOCUMENTALMENTE NA PR #925; QA coordenado pendente** |
 | 28 | Create Aeronautics: Gadgets & Gizmos | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-aeronautics-gadgets-and-gizmos%20v1.2.2.md) | `1.2.2` | 1.2.10; 2.0.0 Pre-Release 3 | **BLOQUEADO: 1.2.6 sem changelog isolado; 1.2.9 insegura** |
 | 29 | WorldWeaver: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Biomes%20%2B%20Utility%20%26%20QoL%20%2B%20World%20Gen/%E2%9C%85-worldweaver-new-dawn%20v21.0.25.md) | `21.0.25` | 21.0.29 (20/10) | **BLOQUEADO: changelogs 21.0.26–21.0.29 não individualizados** |
@@ -1203,7 +1203,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 Documentados na sequência da lista de pedido, não pela posição física da tabela superior. Fontes e changelogs relevantes estão em cada dossier. Todas as instalações continuam na versão histórica. QA, metadata do JAR upstream e migração de save não foram executados.
 | Pedido | Projeto | Versão física | Publicação upstream NeoForge 1.21.1 | Estado da auditoria documental |
 |---:|---|---|---|---|
-| 11 | Punchy! - First person animations | 2.7e | 2.8g | **AUDITORIA DOCUMENTAL FECHADA EM 24/10**: cadeia 2.7e→2.8→2.8a→2.8b→2.8c→2.8d→2.8e→2.8f→2.8g revisada; JARs 2.8/2.8a (NeoForge 1.21.1) baixados, SHA-512 conferido, diff de 445 arquivos: 5 modificados (4 classes de interface/config + metadata), 0 adicionados/removidos. **Runtime físico permanece 2.7e; QA/upgrade pendentes** |
+| 11 | Punchy! - First person animations | 2.7e | 3.2b (12/11) | **AUDITORIA DOCUMENTAL CONCLUÍDA EM 17/11**: releases NeoForge 1.21.1 até 3.2b, incluindo 3.1b/3.2/3.2a arquivadas, verificadas com changelogs por file ID; runtime 2.7e e QA da bridge Epic Fight pendentes |
 | 12 | Sophisticated Core | 1.5.1 | 1.5.17.2426 | PESQUISA DE CHANGELOG CONCLUÍDA: 1.5.15 cache de wrappers, 1.5.16 leftovers de crafting; commits modificam mod_version; sem análise de bytecode ou QA |
 | 13 | Alex's Caves Continued | 1.0.10 | 1.0.10 | REVALIDADO; intervalo vazio |
 | 14 | Puzzles Lib | 21.1.60 | 21.1.65 | Cadeia 21.1.61→21.1.65 revisada, callback encantado NeoForge |
@@ -1225,7 +1225,7 @@ Ordem abaixo é a do pedido, não a posição física. Este lote documenta somen
 | 23 | Lychee [Neo/Forge] | 6.7.0 | 6.7.1 Beta, 17/10 | Histórico documental fechado; EMI remainders e ClientSideStrategy |
 | 24 | EMF Compat: Core | 2.0.0 | 2.3.0, 2.3.1, 2.3.2 | **BLOQUEADO** — não foi isolado changelog/diff da 2.3.1 |
 | 25 | Supplementaries | 3.9.9 | 4.0.0, 4.0.1, 4.0.2 | Histórico revisado por file NeoForge; risco pulley dupe, novos blocks e config |
-| 26 | AzureLib | 3.1.11 | 3.1.12–3.1.22; 3.1.20-alpha.1 e 3.1.23-alpha.2 segregadas | **BLOQUEADO** — releases recentes ainda sem changelog individual |
+| 26 | AzureLib | 3.1.11 | 3.1.12–3.2.8; alphas 3.1.20/3.1.23 segregadas | **RESOLVIDO DOCUMENTALMENTE 17/11**; versão instalada 3.1.11, upgrade não homologado |
 | 27 | Easy NPC: Core | 7.12.1 (metadata runtime sem versão) | 7.12.2–7.17.0 | Histórico já auditado na PR #925; não refeito nem movido |
 | 28 | Create Aeronautics: Gadgets & Gizmos | 1.2.2 | 1.2.3–1.2.10; 1.2.9 unsafe; linha 2.0.0 pre-release | **BLOQUEADO** — delta 1.2.6 individual ausente |
 | 29 | WorldWeaver: New Dawn | 21.0.25 | 21.0.26–21.0.29 | **BLOQUEADO** — publicação confirmada sem changelogs individuados |
