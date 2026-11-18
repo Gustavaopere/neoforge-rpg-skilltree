@@ -72,6 +72,19 @@
 | 449 | Polytone | `1.21-4.4.0` | [5.3.8](https://www.curseforge.com/minecraft/mc-mods/polytone/files/9519538) | PENDENTE: publicações posteriores a 5.2.0 ainda exigem auditoria individual; não promover. |
 | 564 | Waystones | `21.1.45` | [21.1.47](https://www.curseforge.com/minecraft/mc-mods/waystones/files/all?page=1&version=1.21.1) | Fechado documental: .46/.47 auditadas; rede, ownership, runas, grupos e opção de teleport removida. Delta .47 corroborado por source multiloader versionado; QA pendente. |
 
+## Auditoria incremental — 18/11/2026 (MineColonies Compatibility, Animal Husbandry, Subtle Effects, Somake Spells, FTB Quests e Create: Radars)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
+|---:|---|---|---|---|
+| 028 | Animal Husbandry | `0.4.1` | [0.6.0](https://www.curseforge.com/minecraft/mc-mods/animal-husbandry/files/9285066) | Fechado documental: 0.4.2, 0.5.0 e 0.6.0; ownership, farmhands e ledger; correção de evidência sobre gestação. |
+| 154 | Create: Radars | `0.4.9.4-1.21.1` | [5.1.1](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9632878) | Fechado documental: seis releases; mudanças estruturais, remoção de Pitch Gearbox e migração de links requerem staging e backup. |
+| 290 | FTB Quests (NeoForge) | `2101.1.36` | [2101.1.39](https://www.curseforge.com/minecraft/mc-mods/ftb-quests-forge/files/9650792) | Fechado documental: .37/.38/.39, interaction task, observação, imagens, recompensas e compatibilidade. |
+| 396 | Compatibility addon for MineColonies | `3.57` | [3.61 Beta](https://www.curseforge.com/minecraft/mc-mods/minecolonies-compatibility/files/9454723) | Fechado documental: .58 a .61; correção teach cutting recipe e Polymorph+; stack-alvo atualizado. |
+| 513 | Somake Spells - Iron's Spells Addon | `1.0.9` | [1.1.0](https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon/files/9535391) | Fechado documental: 1.0.9-fix e 1.1.0; novos spells/equipamentos, migração JSON de atributos e dependências removidas. |
+| 533 | Subtle Effects | `1.14.3` | [1.15.3](https://www.curseforge.com/minecraft/mc-mods/subtle-effects/files/all?version=1.21.1) | Catálogo e source versionado confirmados; 1.15.2-hotfix.1 apenas Fabric, refactors .3 documentados. Página individual .3 não recuperada; pendente confirmação do changelog do artefato. |
+
+> Baseline físico preservado; nenhuma instalação, alteração de configuração ou homologação in-game executada.
+
 ## Auditoria incremental de releases — 17/11/2026
 
 > Esta consulta **não altera** o inventário físico de 587 entradas: as versões listadas como upstream são candidatas documentadas, **não** JARs novos instalados. As duas linhas físicas #416 e #543 abaixo preservam os filenames/versões comprovados no último snapshot; `Última edição` reflete somente as revisões documentais efetivamente realizadas.
@@ -236,7 +249,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 025 | AmbientSounds 6 | `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` | `6.3.8` | `Miscellaneous` | 23/10/2026 - 15:22 |
 | 026 | Amendments | `amendments-1.21-2.1.10-neoforge.jar` | `1.21-2.1.10` | `Cosmetic + Utility & QoL` | 17/11/2026 - 18:38 |
 | 027 | Amplified Nether | `Amplified_Nether_26.2_v1.2.16.jar` | `1.2.16` | `Biomes + Dimensions + World Gen` | 19/09/2026 - 12:06 |
-| 028 | Animal Husbandry | `AnimalHusbandry-neoforge-0.4.1.jar` | `0.4.1` | `Farming + Genetics + Mobs` | 19/09/2026 - 12:06 |
+| 028 | Animal Husbandry | `AnimalHusbandry-neoforge-0.4.1.jar` | `0.4.1` | `Farming + Genetics + Mobs` | 18/11/2026 - 08:58 |
 | 029 | Create: Apokinetics | `apokinetics-1.0.6.jar` | `1.0.6` | `Addons + Automation + Create + Magic + Technology` | 17/11/2026 - 18:34 |
 | 030 | Apotheosis | `Apotheosis-1.21.1-8.8.0.jar` | `8.8.0` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 19/09/2026 - 12:06 |
 | 031 | Apotheotic Creation | `apotheoticcreation-2.0.0.jar` | `2.0.0` | `Automation + Create + Storage + Utility & QoL` | 19/09/2026 - 12:06 |
@@ -362,7 +375,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 151 | Create Optical | `create_optical-0.4.2.jar` | `0.4.2` | `Addons + Create + Technology` | 23/09/2026 - 10:20 |
 | 152 | Create: Pattern Schematics | `create_pattern_schematics-2.0.10.jar` | `2.0.10` | `Automation + Create + Structures + Utility & QoL` | 23/09/2026 - 11:22 |
 | 153 | Create: Pillager Arise | `create_pillagers_arise NeoForge 1.21.1-132.36.jar` | `132.36` | `Create + Mobs + Structures + World Gen` | 23/09/2026 - 11:22 |
-| 154 | Create: Radars | `create_radar-0.4.9.4-1.21.1.jar` | `0.4.9.4-1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Map and Information + Technology` | 23/09/2026 - 11:22 |
+| 154 | Create: Radars | `create_radar-0.4.9.4-1.21.1.jar` | `0.4.9.4-1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Map and Information + Technology` | 18/11/2026 - 08:58 |
 | 155 | Create: Ratatouille | `create_ratatouille-1.21.1-1.4.0.jar` | `1.4.0` | `Addons + Automation + Create + Farming + Food` | 23/09/2026 - 11:23 |
 | 156 | Create Recycle Everything (Continued) | `create_recycle_everything-2.1.0.jar` | `2.1.0 (distribuição); metadata interna 1.1` | `Addons + Create + Ores and Resources + Processing + Utility & QoL` | 23/09/2026 - 11:23 |
 | 157 | Create: Rock & Stone | `create_rns-1.3.1-1.21.1-6.jar` | `1.3.1-1.21.1-6` | `Addons + Automation + Create + Ores and Resources + Processing` | 23/09/2026 - 11:23 |
@@ -498,7 +511,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 287 | Fragmentum [NeoForge Edition] | `fragmentum-neoforge-1.21.1-2.4.4.jar` | `2.4.4` | `API and Library` | 22/10/2026 - 23:19 |
 | 288 | FTB Chunks (NeoForge) | `ftb-chunks-neoforge-2101.1.22.jar` | `2101.1.22` | `Map and Information + Server Utility` | 24/09/2026 - 18:24 |
 | 289 | FTB Library (NeoForge) | `ftb-library-neoforge-2101.1.36.jar` | `2101.1.36` | `API and Library` | 24/09/2026 - 18:24 |
-| 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 24/09/2026 - 18:24 |
+| 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 18/11/2026 - 08:55 |
 | 291 | FTB Teams (NeoForge) | `ftb-teams-neoforge-2101.1.11.jar` | `2101.1.11` | `API and Library` | 17/11/2026 - 20:00 |
 | 292 | FTB Ultimine (NeoForge) | `ftb-ultimine-neoforge-2101.1.15.jar` | `2101.1.15` | `Armor, Tools, and Weapons + Server Utility` | 24/09/2026 - 19:05 |
 | 293 | FTB XMod Compat | `ftb-xmod-compat-neoforge-21.1.11.jar` | `21.1.11` | `API and Library` | 17/11/2026 - 17:33 |
@@ -604,7 +617,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 393 | Melody | `melody_neoforge_1.0.10_MC_1.21.jar` | `1.0.10` | `API and Library` | 25/09/2026 - 12:31 |
 | 394 | MezzConfig | `mezz_config-1.21.1-neoforge-0.5.9.jar` | `0.5.9` | `API and Library` | 17/11/2026 - 15:09 |
 | 395 | MineColonies | `minecolonies-1.1.1387-1.21.1-snapshot.jar` | `1.1.1387-1.21.1-snapshot` | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 17/11/2026 - 15:54 |
-| 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 23/10/2026 - 00:43 |
+| 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 18/11/2026 - 08:55 |
 | 397 | Tweaks addon for MineColonies | `MineColonies_Tweaks-1.21.1-3.33.jar` | `3.33` | `Addons + Utility & QoL` | 17/11/2026 - 17:09 |
 | 398 | Miner's Delight + | `minersdelight-1.21.1-1.4.5.jar` | `1.4.5` | `Cosmetic + Farming + Food` | 25/09/2026 - 12:31 |
 | 399 | Ragdoll mob corpses | `mob_ragdoll_corpse-1.1.5.jar` | `1.1.5` | `Addons + Mobs` | 25/09/2026 - 12:31 |
@@ -721,7 +734,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 510 | SmartBrainLib (Forge/Fabric/Quilt) | `SmartBrainLib-neoforge-1.21.1-1.16.11.jar` | `1.16.11` | `API and Library` | 27/09/2026 - 19:02 |
 | 511 | Snow! Real Magic! ⛄ (Neo/Forge) | `SnowRealMagic-1.21.1-NeoForge-12.2.2.jar` | `12.2.2+neoforge` | `Cosmetic + Utility & QoL + World Gen` | 18/11/2026 - 08:24 |
 | 512 | Sodium | `sodium-neoforge-0.8.13+mc1.21.1.jar` | `0.8.13+mc1.21.1` | `Performance` | 27/09/2026 - 20:56 |
-| 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 20:56 |
+| 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 18/11/2026 - 08:55 |
 | 514 | Thirst Upgrade for Sophisticated Backpacks (Thirst Was Taken) | `sophisticated-thirst-upgrade.jar` | `0.1.8` | `Miscellaneous` | 27/09/2026 - 21:19 |
 | 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 20:56 |
 | 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 23/10/2026 - 01:13 |
@@ -741,7 +754,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 530 | Strut Your Stuff (Struts) | `struts-1.3.1.jar` | `1.3.1` | `API and Library` | 27/09/2026 - 22:12 |
 | 531 | Stylish Effects | `StylishEffects-v21.1.3-1.21.1-NeoForge.jar` | `21.1.3` | `Cosmetic + Map and Information + Utility & QoL` | 27/09/2026 - 22:12 |
 | 532 | Create: Deep Seas - Lava Fix | `submarinefix-1.0.1.jar` | `1.0.1` | `Bug Fixes + Create` | 27/09/2026 - 22:58 |
-| 533 | Subtle Effects | `SubtleEffects-neoforge-1.21.1-1.14.3.jar` | `1.14.3` | `Cosmetic + Miscellaneous` | 27/09/2026 - 22:58 |
+| 533 | Subtle Effects | `SubtleEffects-neoforge-1.21.1-1.14.3.jar` | `1.14.3` | `Cosmetic + Miscellaneous` | 18/11/2026 - 08:58 |
 | 534 | SuperMartijn642's Config Lib | `supermartijn642configlib-1.1.8-neoforge-mc1.21.jar` | `1.1.8` | `API and Library` | 27/09/2026 - 22:58 |
 | 535 | SuperMartijn642's Core Lib | `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` | `1.1.24` | `API and Library` | 17/11/2026 - 15:29 |
 | 536 | Supplementaries | `supplementaries-1.21.1-3.9.9-neoforge.jar` | `1.21.1-3.9.9` | `Cosmetic + Miscellaneous + Redstone + Storage` | 17/11/2026 - 22:01 |
