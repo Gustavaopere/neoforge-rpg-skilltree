@@ -161,3 +161,46 @@ Linha pública NeoForge 1.21.1 entrou em 4.0.0 (11/10) e recebeu 4.0.1 (11/10). 
 **QA de migração:** blocos/redstone/GUI novos, Grouper em circuitos, cannon/chunk travel, ropes/pulley com inventários e duplicação, blackboard multiblock persistente, naval raid/AI, Amendments + Moonlight generated resource pack + Polytone, sinal de luz/shaders, multiplayer e servidor dedicado. **Versão física 3.9.9 preservada.** Sem inspeção do JAR, testes ou aprovação de mudança major.
 
 **Fontes (artefatos NeoForge exatos):** https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9139628 ; https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9140379 ; https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9211734 .
+
+
+## Auditoria de releases NeoForge 1.21.1 — 4.0.2 → 4.1.2 (17/11/2026)
+
+**Autoridade física preservada:** Supplementaries na posição **#536** da modlist instalada, arquivo top-level `supplementaries-1.21.1-3.9.9-neoforge.jar`, versão efetiva **1.21.1-3.9.9**, SHA-1 físico anteriormente conciliado `06ed05381a5653d90398dc6ebf3ad1154add6374`. A versão **4.1.2**, publicada em **15/11/2026**, é **candidata upstream**, não está instalada e não foi homologada em runtime.
+
+**Projeto oficial:** [Supplementaries, CurseForge 412082](https://www.curseforge.com/minecraft/mc-mods/supplementaries), autor MehVahdJukaar. Categorias temáticas atuais confirmadas diretamente na página de release: **Cosmetic + Miscellaneous + Redstone + Storage**; diretório já correto, sem necessidade de movimentação ou renomeação.
+
+### Sequência integral após 3.9.9, com rastreabilidade
+
+| Release NeoForge 1.21.1 | Data oficial | File ID / fonte | Resultado da revisão individual |
+|---|---|---|---|
+| **4.0.0** | 11/10/2026 | [9139628](https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9139628) | Já auditada no intervalo anterior; introduz Pigñata, Grouper, entrada de jogador em cannon, blackboard 3×3 e outras mecânicas |
+| **4.0.1** | 11/10/2026 | [9140379](https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9140379) | Já auditada; nota majoritariamente cumulativa, inclui compatibilidade Polytone/Polylight; não reapresentar recursos 4.0.0 como inéditos |
+| **4.0.2** | 16/10/2026 | [9211734](https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9211734) | Já auditada; mais integração de luzes coloridas Polytone e **correção de duplicação por Pulley** |
+| **4.1.0** | 13/11/2026 | [9597653](https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9597653) | Página oficial individual examinada; publica o conjunto de recursos 4.1 descrito abaixo |
+| **4.1.1** | 13/11/2026 | [9600719](https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9600719) | Página oficial individual examinada; **repete literalmente o mesmo elenco de novidades de 4.1.0**, sem delta incremental isolado no changelog |
+| **4.1.2** | 15/11/2026 | [9632829](https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9632829) | Página oficial individual examinada; repete o elenco 4.1.0/4.1.1 e acrescenta **correção de pistões explicitamente Fabric**, **não aplicável automaticamente ao NeoForge** |
+
+**Exaustividade do catálogo:** o índice oficial CurseForge para [Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/all?version=1.21.1) e a listagem geral atual apresentam, entre **4.0.2 e 4.1.2**, exatamente as publicações **4.1.0 → 4.1.1 → 4.1.2** no loader NeoForge; não há na listagem atual uma **4.0.3–4.0.x** publicada para este alvo. As seis releases pós-3.9.9 foram tratadas individualmente neste dossiê e na auditoria precedente. A conclusão é do **catálogo documental público verificado**, não prova matemática de inexistência de algum arquivo privado ou retirado.
+
+### Mudanças funcionais relevantes da série 4.1 (notas oficiais cumulativas)
+
+- **Redstone Lantern** adicionada; exige revisar sinais, iluminação e conflito de recipes quando presente no mundo.
+- **Cannons** recebem animação própria ao disparar e melhorias; jogador disparado pode **atingir e causar dano a entidades atravessadas**; **Pigñatas** podem ser arremessadas; novo **advancement do cannon**. Testar dano, permissões/claims e interação em servidor, inclusive com efeitos de combate.
+- Novos encantamentos **Whimsy** e **Carousel** para **Quivers** e **Lunch Baskets**; verificar disponibilidade, balanceamento e interações com o sistema de enchantments do pack.
+- Integração condicional do efeito **Slimed** com **mud balls do Environmental** (somente se a integração correspondente estiver presente); quando *vanilla backport* está ativo, todos os **Copper Sconces** passam a ser registrados.
+- **Soap** passa a remover **armor trims**, alteração destrutiva de cosmético que pede teste de intenção/consumo do item e preservação de outros componentes.
+- Nova opção de configuração para renderização **2D de Flags**; **Ash** deixa de apagar fogo ao pousar; **tags dos recursos desabilitados** passam a ser desativadas junto ao respectivo toggle. Essa última mudança pode afetar receitas, tags e datapacks que dependam dos itens/blocos desligados.
+- O autor menciona várias correções menores sem especificá-las; **não deduzir classes, bugs ou efeito prático não publicados**. O changelog 4.1.2 menciona um *piston fix* **Fabric**, que não deve ser vendido como fix comprovado no NeoForge.
+
+**Precisão entre releases:** as notas 4.1.0 e 4.1.1 repetem a mesma lista, e 4.1.2 apenas a estende com um item explicitamente Fabric; por isso é **impossível atribuir mudanças de código exclusivas à transição 4.1.0→4.1.1 ou 4.1.1→4.1.2 sem comparação dos JARs/source**. O resultado verificável é a **revisão completa de cada publicação e seus changelogs autorais**, não a afirmação de ausência comprovada de alterações internas. Essa limitação não impede o registro documental das novidades acumuladas.
+
+### Matriz de homologação para futura atualização física
+
+- [ ] Verificar atualização concomitante de **Moonlight Lib** e **Amendments** à versão efetivamente exigida pela release candidata, sem presumir que a dependência histórica 3.6.3 é compatível.
+- [ ] Validar backups e carregamento de mundos com Pigñata, Grouper, Blackboard, Redstone Lantern, Pulley, Cannon e inventários; conferir IDs, recipes e sincronização.
+- [ ] Ensaiar damage/proteção/claims do **cannon com passageiro** e Pigñata em servidor, evitando bypass de PvP e de proteções.
+- [ ] Verificar **Whimsy/Carousel**, remoção de trims por Soap, sinal redstone, Flag 2D, Ash e os feature toggles que retiram tags.
+- [ ] Regressões com **Polytone** (luzes coloridas), **Create/Sable** (contraptions, Pulley), render/resource packs e usuário multiplayer.
+- [ ] Conferir JAR candidato, metadata e SHA e executar smoke client/server antes de promover a versão instalada no dossiê/índice.
+
+**Estado documental:** auditoria das **seis releases posteriores à instalação 3.9.9 até a candidata 4.1.2** concluída com limites explícitos de notas cumulativas. **Não significa upgrade instalado nem testes aprovados.** O basename `✅-supplementaries v1.21.1-3.9.9.md`, o JAR físico e a categoria real permanecem inalterados.
