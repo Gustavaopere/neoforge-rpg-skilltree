@@ -12,6 +12,14 @@
 
 
 
+## Auditoria incremental — 18/11/2026 (Aeronautics Player Tilt)
+
+> Atualização documental; versão física e caminho preservados.
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
+|---:|---|---|---|---|
+| 011 | Aeronautics Player Tilt | `0.2.0` | [0.3.1](https://www.curseforge.com/minecraft/mc-mods/aero-player-tilt/files/9455293) | 0.2.4, 0.2.5, 0.3.0 e 0.3.1 revisadas; 0.3.0 pelo changelog oficial Modrinth; API, filtros de entidades, colisão e câmera documentados; QA físico pendente. |
+
 ## Auditoria incremental — 18/11/2026 (Architectury API e Balm)
 
 > Atualização documental; versões físicas e caminhos preservados.
@@ -242,7 +250,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 008 | Advancement Plaques [Neo/Forge] | `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar` | `1.6.8` | `Cosmetic + Map and Information + Miscellaneous + Utility & QoL` | 22/09/2026 - 13:40 |
 | 009 | SnackPirate's Aeromancy Additions | `aero_additions-1.2.8.jar` | `1.2.8` | `Addons + Magic` | 22/09/2026 - 13:40 |
 | 010 | Aeronautics Camera Sync | `aero_cam_sync-1.4.0.jar` | `1.4.0` | `Addons + Cosmetic + Create` | 22/09/2026 - 13:40 |
-| 011 | Aeronautics Player Tilt | `aero_player_tilt-0.2.0.jar` | `0.2.0` | `Addons + Cosmetic + Create` | 23/10/2026 - 00:21 |
+| 011 | Aeronautics Player Tilt | `aero_player_tilt-0.2.0.jar` | `0.2.0` | `Addons + Cosmetic + Create` | 18/11/2026 - 09:40 |
 | 012 | Create Aeronautics and Connected Fluid Vessel Compatability | `aeroconnectedfluidvessel-1.0.0.jar` | `1.0.0` | `Create + Utility & QoL` | 18/09/2026 - 15:31 |
 | 013 | Copycats+ aeronautics weight | `aerocopycats-1.1.1.jar` | `1.1.1` (distribuição/filename); metadata interna `1.1.0` | `Addons + Create + Utility & QoL` | 18/09/2026 - 15:31 |
 | 014 | Create Aeronautics: Compatibility | `aeronauticscompat-1.1.3.jar` | `1.1.3` | `Addons + Create + Utility & QoL` | 18/09/2026 - 15:31 |
