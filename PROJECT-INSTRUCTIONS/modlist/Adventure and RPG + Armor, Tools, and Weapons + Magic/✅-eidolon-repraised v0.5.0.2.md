@@ -209,3 +209,17 @@ A versão **0.5.0.2 Release** de 09/05/2026 permanece a última publicação ofi
 **Gate:** save backups para locator rituals, progressão do Ars Ecclesia/Codex, chanting interrupted/unload and restart, mana decrement exactly-once, thrall ownership Jade e permissions, Deathbringer Scythe, links recipes/datapacks, server-dedicated e spells em multiplayer; Sable/Aeronautics sublevel se usados. Separar publicação upstream de comportamento efetivamente instalado.
 
 **Fontes primárias por release NeoForge:** https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/8964998 ; https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/9009395 ; https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/9148441 ; https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/9224421 .
+
+## Auditoria incremental de 18/11/2026 — publicação 0.5.0.8 e divergência do título
+
+**Autoridade física inalterada:** #246, `eidolon_repraised-1.21.1-0.5.0.2.jar`, mod ID `eidolon_repraised`, runtime 0.5.0.2. Projeto Alexth99, CurseForge 870250, categorias **Adventure and RPG + Armor, Tools, and Weapons + Magic**. Não se confunde com Eidolon original nem com versões Forge 1.20.1.
+
+A cadeia anterior de 0.5.0.4 (24/09), 0.5.0.5 (29/09), 0.5.0.6 (12/10) e 0.5.0.7 (17/10) já está individualizada na seção anterior. A publicação mais recente, [CurseForge file ID 9332315](https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/9332315), **26/10/2026**, apresenta uma divergência explícita:
+
+- Título/label de distribuição: `Eidolon_:Repraised 1.21.1-0.5.0.7`.
+- Campo File name: `eidolon_repraised-1.21.1-0.5.0.8.jar`; arquivo adicional de source: `eidolon_repraised-1.21.1-0.5.0.8-sources.jar`.
+- Loader NeoForge, Minecraft 1.21.1 também 1.21; Release. A metadata interna do binário novo não foi extraída.
+
+**Delta publicado:** o comando de consulta de receita pela tecla R sobre spawn eggs passa a exibir o ritual de invocação correspondente, conforme a nota oficial. É uma alteração relevante da descoberta/documentação in-game de rituals; não há anúncio de novos rituais, mudança de custo, resultado, ownership ou regras de spawn. Validar consulta no recipe viewer e ritual/data packs, sem assumir que visualizar recipe equivale a executar invocação.
+
+**Conclusão documental:** cadeia de publicações examinadas de 0.5.0.4 a 0.5.0.8 (última por filename, título divergente), sem publicação 0.5.0.3 confirmada. [Projeto oficial](https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised) não anuncia versão posterior nesta consulta. O prefixo e versão instalada do dossier permanecem 0.5.0.2. QA de Curios, locator rituals, chants, mana, Deathbringer e receita de summon, manifests e instalação separados e pendentes. Não houve teste/instalação.
