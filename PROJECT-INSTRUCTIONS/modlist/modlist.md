@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 18/11/2026 (Trees e Leylines)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
+|---:|---|---|---|---|
+| 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `1.0.3` | [1.1.2](https://www.curseforge.com/minecraft/mc-mods/leylines-irons-spells-n-spellbooks-addon/files/9579676) | 1.1.0–1.1.2 auditadas; **pendência estrutural**: categoria Biomes nova, referências ao caminho antigo não integralmente verificadas; caminho físico mantido. QA pendente. |
+| 427 | Oh The Trees You'll Grow | `5.3.2` | [5.3.6](https://github.com/CorgiTaco-MC/Oh-The-Trees-Youll-Grow/blob/929789fe3f92a82796c34783dfecc8f4f2988466/CHANGELOG.md) | Concluído documentalmente; 5.3.3–5.3.6 auditadas no source oficial 1.21.1 e catálogo NeoForge; ticks/altura/memória; QA pendente. |
+
 ## Auditoria incremental — 18/11/2026 (Aeronautics Player Tilt)
 
 > Atualização documental; versão física e caminho preservados.
@@ -612,7 +619,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 370 | LDLib | `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar` | `2.2.39.a` | `API and Library + Utility & QoL` | 18/11/2026 - 07:44 |
 | 371 | Legendary Monsters | `legendary_monsters-2.2.2 MC 1.21.1.jar` | `2.2.2 (distribuição); metadata interna 1.21.1` | `Armor, Tools, and Weapons + Mobs + Structures` | 17/11/2026 - 18:47 |
 | 372 | Legendary Spellbooks | `legendary_spellbooks-1.21.1+neo-0.3.2.jar` | `0.3.2` | `Addons + Magic` | 25/09/2026 - 11:24 |
-| 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `leylines-1.0.3.jar` | `1.0.3` | `Addons + Magic + Structures + World Gen` | 25/09/2026 - 11:24 |
+| 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `leylines-1.0.3.jar` | `1.0.3` | `Addons + Magic + Structures + World Gen` | 18/11/2026 - 10:06 |
 | 374 | Lionfish API | `lionfishapi-3.1.jar` | `3.1` | `API and Library` | 25/09/2026 - 11:24 |
 | 375 | Lithostitched | `lithostitched-1.8.0+beta6-neoforge-21.1.jar` | `1.8.0+beta6` | `API and Library + Miscellaneous + World Gen` | 23/10/2026 - 02:00 |
 | 376 | Load My F***ing Tags | `lmft-1.1.1+1.21.9-neoforge.jar` | `1.1.1+1.21.9` | `Miscellaneous + Server Utility` | 25/09/2026 - 11:24 |
@@ -666,7 +673,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 424 | Obscure Tooltips | `obscure_tooltips-neoforge-1.21.1-4.2.4.jar` | `4.2.4` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Map and Information` | 25/09/2026 - 14:28 |
 | 425 | ShatterLib \| OctoLib | `OctoLib-NEOFORGE-0.6.2+1.21.jar` | `0.6.2` | `API and Library` | 25/09/2026 - 14:28 |
 | 426 | Oh The Biomes We've Gone | `Oh-The-Biomes-Weve-Gone-NeoForge-2.6.0.jar` | `2.6.0` | `Biomes + Farming + Mobs + Structures + World Gen` | 25/09/2026 - 14:28 |
-| 427 | Oh The Trees You'll Grow | `Oh-The-Trees-Youll-Grow-neoforge-1.21.1-5.3.2.jar` | `5.3.2` | `API and Library + Biomes + Structures + World Gen` | 25/09/2026 - 14:28 |
+| 427 | Oh The Trees You'll Grow | `Oh-The-Trees-Youll-Grow-neoforge-1.21.1-5.3.2.jar` | `5.3.2` | `API and Library + Biomes + Structures + World Gen` | 18/11/2026 - 10:06 |
 | 428 | Oracle Index | `oracle_index-neoforge-1.4.0.jar` | `1.4.0` | `API and Library + Education + Map and Information + Utility & QoL` | 17/09/2026 - 22:51 |
 | 429 | Overflowing Bars | `OverflowingBars-v21.1.1-1.21.1-NeoForge.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 25/09/2026 - 14:28 |
 | 430 | oωo (owo-lib) | `owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar` | `0.12.15.5-beta.1+1.21` | `API and Library` | 22/10/2026 - 22:49 |
