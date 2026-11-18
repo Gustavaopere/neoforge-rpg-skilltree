@@ -158,3 +158,14 @@ State per-player de buffs/recasts/cooldowns não pode vazar. Summons precisam de
 - auditoria interna anterior: 22/22 spell registrations por school;
 - GitHub público `AceTheEldritchKing/Discerning_The_Eldritch` consultado, mas o `master` acessível está materialmente atrás do runtime 1.4.4; não foi usado para preencher IDs ausentes.
 > **Boundary canônico:** DTE fornece conteúdo; ISS continua sendo o framework mágico. Em qualquer divergência de inventário, o JAR físico 1.4.4 e seu registry runtime prevalecem sobre marketing ou source público desatualizado.
+
+## Auditoria incremental de 18/11/2026 — Discerning The Eldritch 1.4.4 → 1.4.5
+
+**Baseline físico:** #220, `discerning_the_eldritch-1.4.4-1.21.jar`, ID `discerning_the_eldritch`, runtime 1.4.4-1.21. Projeto oficial Ace_The_Eldritch_King, CurseForge 1143065; categorias **Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic**. O [catálogo completo](https://www.curseforge.com/minecraft/mc-mods/discerning-the-eldritch/files/all) confirma que a única publicação posterior à instalada para NeoForge 1.21.1 é **1.4.5**, de 02/11/2026.
+
+**Delta oficial [file 9401492](https://www.curseforge.com/minecraft/mc-mods/discerning-the-eldritch/files/9401492):**
+- Novo conjunto de armadura **Starvoid**, novo **Starstruck Sheath**, armas **Starmetal Scythe**, **Starmetal Odachi** e **Gore Lance**.
+- Armaduras **Crimson Stag** e **Apothic Acolyte** recebem novos modelos e texturas. Isso não prova alteração de atributos.
+- O autor remove **Soul Fire'd** como dependência da build 1.4.5. Não remover fisicamente o mod do pack: seus demais consumidores e dependências precisam ser avaliados independentemente. A metadata exata do novo JAR não foi extraída.
+
+**Relevância:** novo gear exige revisão de progression, recipes/loot, atributos, animações, weapon categories/skills e compatibilidade Epic Fight/ISS; não inventar IDs, receitas, stats, habilidades ou forma de obtenção. As antigas divergências de contagem/inventário de spells permanecem explícitas e não são resolvidas por esse changelog. QA com ISS, ASU, AzureLib, Soul Fire'd quando presente, dedicated server e resource packs pendente. Auditoria da cadeia de releases concluída documentalmente; instalação e homologação não executadas.
