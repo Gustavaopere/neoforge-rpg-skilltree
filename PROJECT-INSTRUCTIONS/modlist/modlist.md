@@ -386,7 +386,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 236 | Dynamic Trees Plus | `DynamicTreesPlus-neoforge-1.21.1-1.3.2.jar` | `1.3.2` | `Addons + Biomes + Cosmetic + Farming + World Gen` | 24/09/2026 - 11:14 |
 | 237 | Create: Dynamic Village | `dynamicvillage-0.9-1.21.1.jar` | `0.9` | `Cosmetic + Create + Structures + Technology + World Gen` | 24/09/2026 - 11:14 |
 | 238 | Easy Model Entities | `easy_model_entities-neoforge-1.21.1-2.4.0.jar` | `2.4.0 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library + Automation + Mobs + Utility & QoL` | 22/10/2026 - 22:49 |
-| 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 22/10/2026 - 18:52 |
+| 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 17/11/2026 - 22:45 |
 | 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 17/11/2026 - 16:11 |
 | 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 23/10/2026 - 01:19 |
 | 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
@@ -811,7 +811,7 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 07 | Ace's Spell Utils | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library/%E2%9C%85-aces-spell-utils%20v1.2.7.2-1.21.1.md) | `1.2.7.2-1.21.1` | `1.2.7.2-1.21.1` | REVALIDADO: sem nova release 1.21.1 demonstrada |
 | 08 | Supplementaries | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous%20%2B%20Redstone%20%2B%20Storage/%E2%9C%85-supplementaries%20v1.21.1-3.9.9.md) | `1.21.1-3.9.9` | `4.1.2` | **Auditoria documental 3.9.9→4.1.2 concluída em 17/11**; instalação 3.9.9 preservada; homologação de Moonlight/Amendments e QA pendentes |
 | 09 | AzureLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-azurelib%20v3.1.11.md) | `3.1.11` | `3.2.8 (09/11)` | **CONCLUÍDO DOCUMENTALMENTE 17/11**: 3.1.12–3.2.8 (incluindo alpha) com changelogs por release; instalado 3.1.11; QA/upgrade pendentes |
-| 10 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1 (JAR); metadata sem versão` | `7.15.0` | 7.15.0 BLOQUEADO: EME 2.4.0 abaixo do mínimo opcional `[2.5.0,3.0.0)`; 7.14.0 CANDIDATO CONDICIONAL: EME opcional `[2.4.0,3.0.0)`, sem validação binária/runtime |
+| 10 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1 (JAR); metadata sem versão` | `7.19.0` | **AUDITORIA DOCUMENTAL 7.12.2–7.19.0 CONCLUÍDA 17/11**; instalado 7.12.1 (metadata vazia); promoção exige compatibilidade EME (atual 2.4.0, upstream 7.16+ indica 2.6.0+), alinhar Core/Bundle/Config UI e QA; sem instalação física |
 | 11 | Create Aeronautics: Gadgets & Gizmos | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-aeronautics-gadgets-and-gizmos%20v1.2.2.md) | `1.2.2` | `1.2.10` | PENDENTE: v1.2.9 desaconselhada pelo upstream; revalidar bundle e lógica |
 | 12 | Reliquified Artifacts | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-artifacts%20v1.0.8.md) | `1.0.8` | `1.0.9 Beta` | PENDENTE: Relics/Artifacts/Curios e efeitos sem duplicação |
 | 13 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.0.8.md) | `21.0.8` | `21.0.9` | PENDENTE: novos movesets EpicFight Nightfall + Extra; animações cidadãos |
@@ -1109,7 +1109,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 24 | EMF Compat: Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic/%E2%9C%85-emf-compat-core%20v2.0.0.md) | `2.0.0` | 2.3.2 (NeoForge 1.21.1, 16/10) | **BLOQUEADO: delta individual 2.3.1 não isolado** |
 | 25 | Supplementaries | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous%20%2B%20Redstone%20%2B%20Storage/%E2%9C%85-supplementaries%20v1.21.1-3.9.9.md) | `1.21.1-3.9.9` | 4.0.2 (16/10) | **AUDITORIA DOCUMENTAL CONCLUÍDA; QA físico pendente** |
 | 26 | AzureLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-azurelib%20v3.1.11.md) | `3.1.11` | 3.2.8 (09/11) | **RESOLVIDO DOCUMENTALMENTE 17/11**: changelogs exatos 3.1.19–3.2.8 auditados; alpha segregada; instalado 3.1.11, runtime pendente |
-| 27 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1` | 7.17.0 | **CONCLUÍDA DOCUMENTALMENTE NA PR #925; QA coordenado pendente** |
+| 27 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1` | 7.19.0 | **7.12.2–7.17.0 auditadas na PR #925; 7.17.1–7.19.0 auditadas em 17/11; QA coordenado pendente** |
 | 28 | Create Aeronautics: Gadgets & Gizmos | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-aeronautics-gadgets-and-gizmos%20v1.2.2.md) | `1.2.2` | 1.2.10; 2.0.0 Pre-Release 3 | **BLOQUEADO: 1.2.6 sem changelog isolado; 1.2.9 insegura** |
 | 29 | WorldWeaver: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Biomes%20%2B%20Utility%20%26%20QoL%20%2B%20World%20Gen/%E2%9C%85-worldweaver-new-dawn%20v21.0.25.md) | `21.0.25` | 21.0.29 (20/10) | **BLOQUEADO: changelogs 21.0.26–21.0.29 não individualizados** |
 | 30 | ImmediatelyFast | [Abrir `.md`](./Performance%20%2B%20Utility%20%26%20QoL/%E2%9C%85-immediatelyfast%20v1.6.14%2B1.21.1.md) | `1.6.14+1.21.1` | 1.6.15 (13/10) | **AUDITORIA DOCUMENTAL CONCLUÍDA; QA visual pendente** |
@@ -1226,7 +1226,7 @@ Ordem abaixo é a do pedido, não a posição física. Este lote documenta somen
 | 24 | EMF Compat: Core | 2.0.0 | 2.3.0, 2.3.1, 2.3.2 | **BLOQUEADO** — não foi isolado changelog/diff da 2.3.1 |
 | 25 | Supplementaries | 3.9.9 | 4.0.0, 4.0.1, 4.0.2 | Histórico revisado por file NeoForge; risco pulley dupe, novos blocks e config |
 | 26 | AzureLib | 3.1.11 | 3.1.12–3.2.8; alphas 3.1.20/3.1.23 segregadas | **RESOLVIDO DOCUMENTALMENTE 17/11**; versão instalada 3.1.11, upgrade não homologado |
-| 27 | Easy NPC: Core | 7.12.1 (metadata runtime sem versão) | 7.12.2–7.17.0 | Histórico já auditado na PR #925; não refeito nem movido |
+| 27 | Easy NPC: Core | 7.12.1 (metadata runtime sem versão) | 7.12.2–7.19.0 | 7.12.2–7.17.0 auditadas na PR #925; 7.17.1–7.19.0 complementadas em 17/11; sem novo JAR e sem movimentação |
 | 28 | Create Aeronautics: Gadgets & Gizmos | 1.2.2 | 1.2.3–1.2.10; 1.2.9 unsafe; linha 2.0.0 pre-release | **BLOQUEADO** — delta 1.2.6 individual ausente |
 | 29 | WorldWeaver: New Dawn | 21.0.25 | 21.0.26–21.0.29 | **BLOQUEADO** — publicação confirmada sem changelogs individuados |
 | 30 | ImmediatelyFast | 1.6.14+1.21.1 | 1.6.15 | Histórico documental fechado: Iron's spell cooldown render + tela Cosmetica |
