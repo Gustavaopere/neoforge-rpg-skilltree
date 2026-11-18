@@ -181,3 +181,25 @@ Impacto para o pack: este artefato toca attributes, optional-mod gating e progre
 Gate de promoção: staffs/spellbooks/weapons/armor com config default e alterada; main/off-hand; Red Soul Lantern com spells válidos e inválidos; Born in Chaos Missioner combat; Cataclysm integration; boot com optional providers presentes/ausentes; JEI; relog/restart; ausência de duplicate attribute modifiers.
 
 Fonte upstream: CurseForge file ID 8952876, `somakespells-1.0.9-fix.jar`, NeoForge 1.21.1.
+
+## Auditoria incremental — 18/11/2026 — 1.1.0
+
+Baseline físico #513: `somakespells-1.0.9-1.21.1.jar`, runtime 1.0.9. Projeto TeenLe, CurseForge 1461634, categorias **Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic**. O [catálogo oficial](https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon/files/all) demonstra somente duas publicações NeoForge 1.21.1 após a instalada: [1.0.9-fix](https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon/files/8952876) de 23/09 (já individualizada na seção 24) e [1.1.0](https://www.curseforge.com/minecraft/mc-mods/somake-spells-irons-spells-addon/files/9535391) de 10/11/2026. O fix_altar de Forge 1.20.1 não pertence à cadeia.
+
+### Conteúdo e spells 1.1.0
+Nova aba criativa de scrolls; Jade Equilibrium Spell Book (Magic From the East), Pumpkin Hammer (Infernal Fire), materiais Glacium Ingot/Plate/Core associados a Frostmaw de Mowzie's Mobs e recipe de Glacium Greataxe. Spells anunciados:
+
+| Escola | Deltas |
+|---|---|
+| Fire | Devil Trigger: transformação com explosão e bônus de dano. |
+| Aqua | Inverted Sea: suspende/retarda alvos, depois implosão e repulsão. |
+| Ender | Lady of the Void: aprisionamento e esmagamento por vínculo espectral. |
+| Blood | Crimson Marionette (controle); Crimson Depths (atração, sangramento e cura proporcional); Withered Heart (dano periódico e redução de cura recebida em 25%). |
+| Lightning | Conductive Detonator (até cinco cargas, substitui Lightning Strike); Crawling Current (substitui Lightning Spark); Lightning Field (domínio com seis condutores). |
+
+Incinerator Slash é renomeado/reformulado como Incinerator Judgment; Eruption, Pumpkin Bomb, Funeral Bloom, Lightning Swarm e os oito spells Spirit listados pelo autor recebem revisões de mecânica/usabilidade/balanceamento. Bloodbound Blade passa a aceitar espada equipada, não somente na mão de cast. Abyssal Burn recebe novos efeitos visuais, e Withered Rose Vortex ganha opção `enableWitheredRoseVortexBuff`. Modelos/texturas e tooltips de equipamentos/material foram revistos.
+
+### Migração obrigatória de balanceamento
+**A configuração antiga de atributos de armas, armaduras, staffs e spellbooks deixa de ser carregada.** O novo modelo usa regras JSON para inserir, substituir e remover atributos registrados, inclusive em Curios; inclui exemplos/presets para Ignitium Armor, Ceranium Armor e The Incinerator. Migrar overrides em staging antes da promoção, revisar exatamente uma aplicação de modifiers, IDs renomeados/substituídos, gates de progression/loot, recipes e compatibilidade ISS/Epic Fight. A 1.1.0 remove dependências, mixins e opções relativas a FamiliarsLib/Alshanex Familiars; não remover tais mods do pack sem verificar outros consumidores.
+
+Cadeia documental fechada até 1.1.0; o JAR físico permanece 1.0.9. Não houve alteração de configs, JARs ou teste de execução.
