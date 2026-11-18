@@ -94,3 +94,15 @@ A versão física já documenta o cache por conjunto de mods/item, predicados de
 
 **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-filters-anywhere
 
+## Auditoria incremental de 18/11/2026 — Create: Filters Anywhere 2.6.0 → 2.7.0
+
+**Baseline físico:** #186, `createfiltersanywhere-1.21.1-2.6.0.jar`, runtime 2.6.0. Projeto do the_iwolfking, CurseForge 1212722, categorias **Addons + Create** confirmadas. A [listagem oficial](https://www.curseforge.com/minecraft/mc-mods/create-filters-anywhere/files/all?page=1&pageSize=20) identifica apenas 2.7.0 após 2.6.0 para NeoForge 1.21.1; nenhuma publicação intermediária demonstrada.
+
+**2.7.0 — 05/10/2026, [arquivo 9072375](https://www.curseforge.com/minecraft/mc-mods/create-filters-anywhere/files/9072375):**
+- Pipez: filtros suportados passam a funcionar nos item pipes; cartões de upgrade Pipez passam a ser itens de filtro compatíveis.
+- Railcraft Reborn: novos adapters do Item Loader e Item Unloader.
+- Ars Nouveau: filtros suportados no Storage Lectern por item frames de inventários; scrolls de permissão e de bloqueio também passam a ser filtros aceitos.
+- FTB Quests: filtros aceitos como filtros FTB, possibilitando que uma tarefa aceite qualquer item que satisfaça o predicado, inclusive itens laváveis conforme as recipes do Create.
+- Pequenas otimizações de avaliação e tentativa de evitar crashes quando falta o level necessário ao filtro do Create. O autor ainda pede relatos de warnings/crashes nesse caminho; não afirmar correção universal.
+
+**Impacto no pack:** Ars Nouveau 5.13.1 e FTB Quests 2101.1.36 estão documentados no snapshot. Os adapters não devem alterar por conta própria a authority de quests ou Storage Lectern. Verificar que filtros de tarefa não aceitem itens proibidos por progressão, não dupliquem settlement e reavaliem recipes dinâmicas/reload; validar mundo nulo, cache por item versus estado mutável, item frames e scrolls, integração Sophisticated e Create 6.0.10. Pipez e Railcraft são gates condicionais à presença dos providers. A release não foi instalada/testada. Cadeia publicada auditada e documentação complementada.
