@@ -71,3 +71,11 @@ Integrações próprias devem inspecionar source/JAR/tag correspondente antes de
 - changelog 5.8.2: remove data files destinados a versões anteriores a 1.20.1;
 - nenhuma API concreta não documentada foi promovida por inferência.
 > 🔧 Boundary canônico: CraftedCore fornece **infraestrutura compartilhada**; gameplay final permanece sob authority dos mods consumidores.
+
+## Auditoria incremental — 18/11/2026 — 5.8.3
+
+**Baseline físico:** #113, `craftedcore-5.8.2.jar`, mod ID `craftedcore`, runtime 5.8.2. Projeto ToCraft, CurseForge 923377, categoria API and Library. O [catálogo oficial](https://www.curseforge.com/minecraft/mc-mods/crafted-core/files/all) lista a publicação **1.21-neoforge-5.8.3**, NeoForge Minecraft 1.21/1.21.1, Release de 30/10/2026. É a sucessora da 5.8.2 nessa linha; builds 1.21.2+ e 8.x para 26.x não são o alvo.
+
+O [release oficial 5.8.3](https://github.com/ToCraft/CraftedCore/releases/tag/5.8.3), publicado na mesma data, registra correção de carregamento de datapacks (contribuição ordzai). Não há outra mecânica ou API anunciada; o subsistema já documentado de recursos compartilhados passa a ter esse gate específico de regressão. A correção não comprova qual arquivo ou datapack do pack era afetado.
+
+**Gate:** consumers instalados, bootstrap client/dedicated server, carregamento de datapacks, /reload e restart, resources e compatibilidade binária. Não foi extraída metadata do candidato, nem executado teste de runtime. Versão física e nome do dossier preservados; revisão documental da publicação concluída.
