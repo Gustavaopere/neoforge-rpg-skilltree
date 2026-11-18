@@ -282,3 +282,14 @@ Testar saúde/produção de animais por dia e densidade; medicine e immunity exp
 
 **Estado:** 0.4.2 e 0.5.0 documentadas; sem instalação/testes afirmados.
 
+## Auditoria incremental — 18/11/2026 — 0.6.0 (Farmhands)
+
+Baseline físico #028: `AnimalHusbandry-neoforge-0.4.1.jar`, runtime 0.4.1. Projeto RiftLabs, CurseForge 1550564, categorias **Farming + Genetics + Mobs**. A sequência oficial 0.4.2 (19/09), 0.5.0 (08/10), já auditadas acima, avança até [0.6.0](https://www.curseforge.com/minecraft/mc-mods/animal-husbandry/files/9285066), NeoForge 1.21.1 Release de 22/10/2026.
+
+- Suporte explícito a servidor dedicado e LAN, com correção de crash no startup relacionado aos itens/armaduras próprios.
+- Farm Ledger reformulado: páginas de estatísticas, saúde/genética, produção dos últimos sete dias e navegação entre progenitores; alcance de inspeção de 32 passa a 128 blocos.
+- Domesticação estabelece ownership persistente e impede ações não autorizadas sobre animais, incluindo alimentação, reprodução, inspeção e dano. Sistema Farmhand compartilha acesso mediante interação com outro jogador usando o Ledger e sincroniza permissões com o rebanho.
+- Necessidades, queda de happiness e temporizadores de gestação ficam suspensos enquanto todos os proprietários e farmhands estão offline. A documentação anterior que não comprovava temporizadores de gestação na versão instalada não é retroativamente alterada.
+- Transferência por deeds: interação com animal usando livro cria documento de transferência; o documento destaca o animal correspondente, e o adquirente pode assumir sua propriedade, revogando autorizações antigas.
+
+Impacto: mudança significativa da economia/segurança multiplayer. Validar ownership e claims, delegação/revogação, dois compradores simultâneos, reconhecimento de animal e transferências sem duplicar, stasis offline mesmo em chunk carregado, linhagens e produção, raio do Ledger/MSPT, compatibilidade com Cold Sweat e stack agrícola. Não inferir IDs, schema interno ou hard dependencies não publicados. Fonte complementar indicada pelo autor: https://athisworkshop.dev/wiki/animal-husbandry/#changelog . Nenhum teste ou instalação; manter 0.4.1 no nome.
