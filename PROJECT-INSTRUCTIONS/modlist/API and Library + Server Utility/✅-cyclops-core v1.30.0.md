@@ -150,3 +150,14 @@ String binding = keyBinding.getTranslatedKeyMessage().getString();
 
 **Resultado documental:** intervalo `1.30.0 → 1.30.0-1205 Beta` investigado com comparação de commits 1:1 e as restrições de confiança declaradas. A diferença técnica foi especificada; pode ser removido o **item #45 da lista de pesquisas documentais**, sem afirmar instalação ou certificação binária.
 **Fontes:** https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files/all?version=1.21.1 ; https://github.com/CyclopsMC/CyclopsCore/commit/3e43a02bc .
+
+## Auditoria incremental — 18/11/2026 — 1.30.1 e 1.30.2
+
+**Baseline físico:** #213, `cyclopscore-1.21.1-neoforge-1.30.0.jar`, runtime 1.30.0. Projeto CyclopsMC, CurseForge 232758, categorias API and Library + Server Utility. A beta 1.30.0-1205 de 18/10 já foi investigada por diff na seção anterior. O catálogo oficial de 1.21.1 e a listagem geral mais recente confirmam as releases 1.30.1 e 1.30.2 para NeoForge.
+
+| Publicação | Delta oficial |
+|---|---|
+| [1.30.1](https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files/9383688), 31/10/2026 | Corrige rótulos de teclas nos apêndices dos infobooks (#255), promovendo o mesmo delta da beta auditada. |
+| [1.30.2](https://github.com/CyclopsMC/CyclopsCore/releases/tag/1.21.1-1.30.2), 15/11/2026 | Corrige corrupção do registry de loot e IDs de pacote duplicados durante carregamento paralelo de mods (#263/#262/#258). Limita tamanhos de listas/mapas e evita inicialização de classes na decodificação de pacotes (#260; GHSA-4jfp-83qj-mr8r). Aumenta robustez concorrente do codec de mapas e detalha logs de falha. |
+
+**Relevância:** 1.30.2 contém hardening de segurança de networking e correções de concorrência de alta prioridade no pack grande. Não assumir exposição efetiva de qualquer servidor nem alterar o JAR automaticamente. QA de boot paralelo, codecs/listas/mapas, registries/loot, sincronização de consumers CyclopsMC, infobooks e multiplayer; coordenar versões client/server. Fonte versionada: https://github.com/CyclopsMC/CyclopsCore/blob/1.21.1-1.30.2/CHANGELOG-1.21.1.md ; [catálogo](https://www.curseforge.com/minecraft/mc-mods/cyclops-core/files/all). Cadeia documental 1.30.0 → beta 1205 → 1.30.1 → 1.30.2 reconciliada; sem QA ou instalação.
