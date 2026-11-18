@@ -12,6 +12,14 @@
 
 
 
+## Auditoria incremental — 18/11/2026 (Subtle Effects, Collective e Sophisticated Backpacks)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
+|---:|---|---|---|---|
+| 103 | Collective | `8.39` | [8.87](https://www.curseforge.com/minecraft/mc-mods/collective/files/9628280) | Documentação concluída; 22 releases pós-8.65 verificadas. Registro duplicado 8.54 tem mesmo SHA-1. QA pendente. |
+| 516 | Sophisticated Backpacks | `3.26.3` | [3.26.21.2249](https://modrinth.com/mod/sophisticated-backpacks/version/tJnK2DE1) | Documentação concluída; seis releases posteriores à 3.26.14, incluindo fix de autorização de inventário. QA coordenado pendente. |
+| 533 | Subtle Effects | `1.14.3` | [1.15.3](https://modrinth.com/mod/subtle-effects/version/1Cj3QYAu) | Documentação concluída; hotfix.1 NeoForge recuperado e changelog 1.15.3 confirmado; networking/registro Fzzy e mudanças de configurações da 1.15.0 complementados. QA pendente. |
+
 ## Auditoria incremental — 18/11/2026 (Paladin, PartiCull, Fantasizing, Polytone e JEI)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
@@ -390,7 +398,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 100 | CodeChicken Lib 1.8.+ | `CodeChickenLib-1.21.1-4.6.1.529.jar` | `4.6.1.529` | `API and Library` | 23/09/2026 - 01:02 |
 | 101 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 23/09/2026 - 01:02 |
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 23/10/2026 - 13:51 |
-| 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 23/10/2026 - 00:40 |
+| 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 18/11/2026 - 12:08 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 17/11/2026 - 18:34 |
 | 105 | Sinytra Connector | `connector-2.0.0-beta.17+1.21.1-full.jar` | `2.0.0-beta.17+1.21.1` | `Technology` | 22/09/2026 - 22:34 |
 | 106 | Connector Extras | `ConnectorExtras-1.12.1+1.21.1.jar` | `1.12.1+1.21.1` | `Addons + API and Library + Technology + Utility & QoL` | 22/09/2026 - 22:34 |
@@ -803,7 +811,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 18/11/2026 - 08:55 |
 | 514 | Thirst Upgrade for Sophisticated Backpacks (Thirst Was Taken) | `sophisticated-thirst-upgrade.jar` | `0.1.8` | `Miscellaneous` | 27/09/2026 - 21:19 |
 | 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 20:56 |
-| 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 23/10/2026 - 01:13 |
+| 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 18/11/2026 - 12:08 |
 | 517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `0.2.0` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `1.5.1` | `API and Library` | 17/11/2026 - 18:59 |
 | 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `1.5.91` | `Storage` | 23/10/2026 - 15:06 |
@@ -820,7 +828,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 530 | Strut Your Stuff (Struts) | `struts-1.3.1.jar` | `1.3.1` | `API and Library` | 27/09/2026 - 22:12 |
 | 531 | Stylish Effects | `StylishEffects-v21.1.3-1.21.1-NeoForge.jar` | `21.1.3` | `Cosmetic + Map and Information + Utility & QoL` | 27/09/2026 - 22:12 |
 | 532 | Create: Deep Seas - Lava Fix | `submarinefix-1.0.1.jar` | `1.0.1` | `Bug Fixes + Create` | 27/09/2026 - 22:58 |
-| 533 | Subtle Effects | `SubtleEffects-neoforge-1.21.1-1.14.3.jar` | `1.14.3` | `Cosmetic + Miscellaneous` | 18/11/2026 - 08:58 |
+| 533 | Subtle Effects | `SubtleEffects-neoforge-1.21.1-1.14.3.jar` | `1.14.3` | `Cosmetic + Miscellaneous` | 18/11/2026 - 12:08 |
 | 534 | SuperMartijn642's Config Lib | `supermartijn642configlib-1.1.8-neoforge-mc1.21.jar` | `1.1.8` | `API and Library` | 27/09/2026 - 22:58 |
 | 535 | SuperMartijn642's Core Lib | `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` | `1.1.24` | `API and Library` | 17/11/2026 - 15:29 |
 | 536 | Supplementaries | `supplementaries-1.21.1-3.9.9-neoforge.jar` | `1.21.1-3.9.9` | `Cosmetic + Miscellaneous + Redstone + Storage` | 17/11/2026 - 22:01 |

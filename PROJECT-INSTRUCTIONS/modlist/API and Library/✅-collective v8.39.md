@@ -196,3 +196,34 @@ Fonte primária para versões, datas, loader e classificação `API and Library`
 - **Testes de regressão na futura instalação:** dedicated server/cliente, mudanças de side, multiplayer/handshake, load concorrente, translation UI, save/restart, backups de config, conversão e paths, eventos de bloco/spawn, respawn anchor, mods Serilum instalados, All Loot Drops se presente.
 
 **Resultado auditável:** diferencial documental `8.39 → 8.65` **reconciliado versão por versão no histórico primário da branch 1.21.1**; ainda **não foi efetuada atualização física para 8.65 nem QA em runtime**. Este dossier pode sair da lista de **pendências de pesquisa/atualização documental**; testes de instalação, se decididos, são outra etapa. Fontes: https://github.com/Serilum/Collective/commits/1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/collective/files/all?version=1.21.1 .
+
+## Auditoria incremental — 18/11/2026 — 8.66 a 8.87
+
+**Baseline físico histórico:** #103, `collective-1.21.1-8.39.jar`. Identidade Serilum, CurseForge 342584, [categoria oficial API and Library](https://www.curseforge.com/minecraft/mc-mods/collective). O [catálogo Modrinth NeoForge 1.21.1](https://api.modrinth.com/v2/project/collective/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D) retorna 83 registros. O [CurseForge 9628280](https://www.curseforge.com/minecraft/mc-mods/collective/files/9628280) confirma 8.87. A cadeia anterior até 8.65 está no dossier; o catálogo inclui dois registros 8.54 ([ctAQiJ7R](https://modrinth.com/mod/collective/version/ctAQiJ7R) e [cc14vl5v](https://modrinth.com/mod/collective/version/cc14vl5v)), ambos com mesmo changelog, filename e SHA-1 `e0c472d6e18836ed69e1eb772945799147398430`; não são dois deltas binários. Ausência de 8.48/8.55 no alvo corroborada. A seguir, 22 publicações posteriores a 8.65, datas UTC de 2026:
+
+| Versão | Data | Delta primário e aplicabilidade |
+|---|---|---|
+| [8.66](https://modrinth.com/mod/collective/version/4AOFDAhQ) | 26/10/2026 | Fecha conexões do update checker/download de traduções; em 1.21.1, entidades copiadas deixam de compartilhar dados Collective com a original. |
+| [8.67](https://modrinth.com/mod/collective/version/i8fXkqej) | 26/10/2026 | Corrige possível congelamento do servidor durante geração de drops para All Loot Drops. |
+| [8.68](https://modrinth.com/mod/collective/version/iOfXOH1b) | 28/10/2026 | Botão Folder abre config/serilum/ e corrige tradução do filtro de mobs; fix de ícone é exclusivo de 26.1. |
+| [8.69](https://modrinth.com/mod/collective/version/DjCiHvZ6) | 29/10/2026 | Traduções; novo serviço de condições de modelos é exclusivo de 26.1+. Sem novo delta funcional 1.21.1 publicado. |
+| [8.70](https://modrinth.com/mod/collective/version/mCK0HSBA) | 30/10/2026 | Seletores de configuração suportam efeitos e encantamentos. |
+| [8.71](https://modrinth.com/mod/collective/version/AyOGVoeq) | 30/10/2026 | Ícones de efeitos/encantamentos/dimensões; cache compartilhável de campfires, incluindo modded, passa à biblioteca. |
+| [8.72](https://modrinth.com/mod/collective/version/E1JoWIGl) | 31/10/2026 | Corrige função compartilhada de respawn; ajuste de ícones exclusivo de 26.1.2 NeoForge. |
+| [8.73](https://modrinth.com/mod/collective/version/cEipGYbJ) | 01/11/2026 | Corrige busca de vila para spawn central; busca de estruturas com timeout, seletores de estruturas e cache entre mundos. |
+| [8.74](https://modrinth.com/mod/collective/version/a4ynmRRM) | 02/11/2026 | Entradas ponderadas em listas de configuração, com proporção exibida no hover. |
+| [8.75](https://modrinth.com/mod/collective/version/JsrQpNp7) | 03/11/2026 | Traduções; correção de estilo de chat exclusiva de Fabric. |
+| [8.76](https://modrinth.com/mod/collective/version/D28g5k6P) | 03/11/2026 | Função de keypress ignora tecla mantida/tela aberta; copia propriedades compartilhadas de block states; funções de ajuda de comandos. |
+| [8.77](https://modrinth.com/mod/collective/version/qSQaLB3S) | 03/11/2026 | Confirmação de comandos destrutivos/em lote, configurável por commandsAskForConfirmation. |
+| [8.78](https://modrinth.com/mod/collective/version/qUoWFABx) | 04/11/2026 | Sincroniza toggle de ativação entre config individual, lista Collective e bundles. |
+| [8.79](https://modrinth.com/mod/collective/version/v2Smf44T) | 04/11/2026 | Funções para IDs de blocos, itens e entidades por registry do level; fix de teleporte limitado a 26.1+. |
+| [8.80](https://modrinth.com/mod/collective/version/COyiO7dz) | 05/11/2026 | Rastreio de blocos colocados por jogadores sob demanda dos consumidores; otimiza checagem de mod presente. |
+| [8.81](https://modrinth.com/mod/collective/version/uCFreeKh) | 05/11/2026 | Não carrega recipes de mods desativados; corrige links no chat e preserva efeitos/nome/persistência de mobs substituídos; busca inventário inclui bundles e adiciona sincronização server-client de configurações. |
+| [8.82](https://modrinth.com/mod/collective/version/hGykhNgy) | 06/11/2026 | Opções de Create World para consumidores; confirma reset; melhora busca de piso em Nether/End/cavernas modded; corrige first join com spawnRadius=0. |
+| [8.83](https://modrinth.com/mod/collective/version/PavxlsaQ) | 07/11/2026 | Mais opções de criação de mundo, funções de spawn point e validação de pesos no comando de config; fixes bônus chest específicos de Fabric/26.1+ excluídos. |
+| [8.84](https://modrinth.com/mod/collective/version/3UYXTEpg) | 08/11/2026 | Aba Extra Config Files, edição remota de configuração por administradores, seletores de cor de chat/som, resets/listas fixas e opções de criação de mundo; flicker fix exclusivo 26.1+. |
+| [8.85](https://modrinth.com/mod/collective/version/sMzlSb4G) | 09/11/2026 | Defaults condicionais a outros mods e evento de bone meal para suporte a dispenser. |
+| [8.86](https://modrinth.com/mod/collective/version/ry7LvdEb) | 10/11/2026 | Melhora compat de schematics, posições/passengers de entidades, dados de blocos em .schem recentes e nomes de dimensões em seletor. |
+| [8.87](https://modrinth.com/mod/collective/version/MvfIbC5P) | 15/11/2026 | Notas de correção de evento de item destruído (Fabric) e packet a jogador sem Collective (Forge); não atribuir automaticamente a NeoForge. |
+
+**Implicações:** configuração de consumidores e permissões tornam-se superfície de administração remota; validar controle de acesso, sincronização e migração JSON/config/serilum, toggles, confirmação de comandos, cache/listas, eventos, respawn/spawnRadius e Village Spawn Point, preservação de dados de entidades, receitas de mods desativados, schematics e performance. Não inferir instalação de consumidores citados apenas nas notas. Fonte complementar: [histórico oficial do autor](https://serilum.com/mods?changelog=collective). Auditoria documental concluída até 8.87; instalação e QA não executados.

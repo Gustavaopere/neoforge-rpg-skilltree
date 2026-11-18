@@ -317,3 +317,18 @@ A cadeia **efetivamente publicada** após 3.26.3 consiste em `3.26.4.2162` (27/0
 **Novas implicações para a documentação:** linked storage compartilhado pode alterar a cardinalidade de inventário do controller; Mob Catcher envolve autorização de remoção; tank wrappers e sincronização de slots têm risco de vazamento de memória ou duplicação visual; loot de Trial Spawners deve permanecer sob autoridade do jogo; migração de mundo e chunk unload não podem corromper `ItemStack`/components.
 
 **Gate coordenado antes de instalar:** validar Sophisticated Core da mesma janela, Sophisticated Storage, Sophisticated Backpacks: Ars Compat `arssophisticatedcompat-0.3.0.jar`, integração Create, Sophisticated JEI Index, Sophisticated Thirst Upgrade e Thirst Was Reclaimed; testar linked groups, upgrades de fluidos, claim restrictions, relog/restart, trial spawners, menus sob carga e conservation/anti-dupe. **Documentação de releases até 3.26.14 registrada; runtime continua 3.26.3.**
+
+## Auditoria incremental — 18/11/2026 — 3.26.15 a 3.26.21
+
+**Baseline físico histórico:** #516, `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`, mod id sophisticatedbackpacks, runtime 3.26.3. O [catálogo oficial Modrinth filtrado NeoForge 1.21.1](https://api.modrinth.com/v2/project/sophisticated-backpacks/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D) retorna 189 registros e corrobora o histórico 3.26.4–3.26.14. As seis novas publicações são as abaixo; 3.26.16 não aparece como artefato separado nesse catálogo. Categorias [CurseForge 422301](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks): Armor, Tools, and Weapons + Storage. Não confundir builds 2254/2255 para Minecraft 26.x com a 2249 deste alvo.
+
+| Versão publicada | Upload UTC | Mudança |
+|---|---|---|
+| [3.26.15.2227](https://modrinth.com/mod/sophisticated-backpacks/version/3SXYeyvp) | 25/10/2026 | Corrige crashes no tooltip de fluidos e perda de vínculos de mochilas durante transferência de fluidos. |
+| [3.26.17.2232](https://modrinth.com/mod/sophisticated-backpacks/version/7V3OGECb) | 27/10/2026 | Preserva o modo de ordenação de linked storage e corrige o layout de slots após substituição de Tank/Battery upgrades. |
+| [3.26.18.2235](https://modrinth.com/mod/sophisticated-backpacks/version/bobu0WI6) | 30/10/2026 | Corrige requisições forjadas que contornavam restrições de acesso ao inventário. Relevância alta para multiplayer e autorização. |
+| [3.26.19.2243](https://modrinth.com/mod/sophisticated-backpacks/version/4JH1U61x) | 31/10/2026 | EMI passa a exibir exemplos de upgrade de tier sem tingimento para combinações de cores não indexadas, preserva busca por cores predefinidas e corrige transferência da crafting table. |
+| [3.26.20.2244](https://modrinth.com/mod/sophisticated-backpacks/version/DY0e8WVr) | 04/11/2026 | Corrige perda de configurações de upgrades na migração de mundos de 1.20.1. |
+| [3.26.21.2249](https://modrinth.com/mod/sophisticated-backpacks/version/tJnK2DE1) | 09/11/2026 | Corrige reprodução do jukebox da mochila persistindo após a morte. |
+
+**Gates adicionais:** acesso autorizado/negado no servidor, multiplayer, grupos vinculados em transferência de fluidos, modos de ordenação, substituição de upgrades e layouts, morte/relog, receitas de tingimento/upgrade e EMI caso presente. A atualização deve ser coordenada com Core, Storage e bridges/consumers já documentados, respeitando metadata do JAR candidato; não afirmar requisito mínimo sem manifesto. Auditoria documental da sequência publicada concluída até 3.26.21.2249. Sem alteração física, sem execução runtime.
