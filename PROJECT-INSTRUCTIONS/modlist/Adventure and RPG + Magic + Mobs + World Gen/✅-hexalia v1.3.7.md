@@ -129,3 +129,10 @@ Ritual Table com receitas antigas/novas; disponibilidade e gasto de energia ambi
 
 **Decisão:** atualizar nota técnica e classificar **1.3.8.1 como upstream não instalada**, mantendo físico 1.3.7 até novo inventário e QA.
 
+## Auditoria incremental — 18/11/2026 — 1.3.8.2
+
+**Baseline físico:** #314, `hexalia-neoforge-1.3.7.jar`, runtime 1.3.7. Projeto AstralyaStudios, CurseForge 962878; categorias Adventure and RPG + Magic + Mobs + World Gen. O [catálogo oficial](https://www.curseforge.com/minecraft/mc-mods/hexalia/files/all) confirma a cadeia pós-instalada 1.3.8 (05/10), 1.3.8.1 (06/10) e [1.3.8.2](https://www.curseforge.com/minecraft/mc-mods/hexalia/files/9355770) (28/10/2026), todas releases NeoForge 1.21.1. Os dois primeiros deltas estão detalhados na seção anterior.
+
+**1.3.8.2:** melhora dicas para obtenção de acessórios no Verdant Grimoire; corrige Cacofeys que ficavam presos após colher culturas e não entregavam os itens aos baús vinculados. A correção de Bloodlust com Thirst Was Taken e Thirst Was Taken 2 é explicitamente restrita ao Forge 1.20.1 e não deve ser atribuída ao alvo. A publicação apresenta label com `+neoforge`, mas campo File name `hexalia-1.3.8.2-1.21.1-neoforge.jar`; não extrapolar metadata interna.
+
+QA: ciclo de colheita/entrega por Cacofey, baú cheio/trocado, reinício e unload, conservação de drops e claims, progressão/acessórios e Grimoire; manter gates de ritual da 1.3.8. Nenhuma promoção ou teste de runtime. Cadeia de releases documentada.
