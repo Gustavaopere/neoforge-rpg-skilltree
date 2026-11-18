@@ -76,3 +76,18 @@ Validar construção/desmontagem do multiblock, chunk unload/reload, contraption
 - changelog 0.4.9.4: moving-target tolerance/config, Sodium mitigation e fix sem Aeronautics;
 - changelog 0.4.9.4: known issues de cannon/Aeronautics, alignment e CBC.
 > 🔒 Boundary canônico: **Radars decide detecção/track/orientação; o provider de arma decide munição, projectile e dano**. Integrações devem consumir o mesmo contato causal, não criar um segundo firing path.
+
+## Auditoria incremental — 18/11/2026 — 5.0 a 5.1.1
+
+Baseline físico #154: `create_radar-0.4.9.4-1.21.1.jar`, versão 0.4.9.4-1.21.1. Identidade e categorias oficiais preservadas. A [lista de arquivos](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/all) confirma seis publicações NeoForge 1.21.1 posteriores:
+
+| Release | Delta material |
+|---|---|
+| [5.0 Beta](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9318048), 25/10 | Sky Radar, Sonar, Directional Jammer, Pitch Gearbox e Advanced Proximity Fuze; compatibilidade de Pitch/Yaw com Swivel Bearings, configurações de som/retenção de alvo e limites de rotação, compass vinculado ao alvo selecionado, interferência temporária de fireworks, melhorias Ponder/API/monitor, seleção e persistência em montagem/desmontagem Sable. Atualiza compatibilidade dos addons CBC:MW, CBC:AT e CBC:MS. |
+| [5.0.1 Beta](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9326137), 25/10 | Remove a possibilidade de dois datalinks entre Network Controller e Pitch Controller; corrige monitores multiblocos, links múltiplos e crash de renderização. |
+| [5.0.2 Beta](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9339115), 27/10 | Ajustes de binocular para velocidade de ships Sable, obstrução, atualização de opções da rede, consistência de alinhamento, disparo prematuro, suavização da API Pitch/Yaw e correções do controller desvinculado; receitas de RWR e Directional Jammer. |
+| [5.0.3 Release](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9359310), 29/10 | Corrige render do Network Block Filterer, datalinks fantasma e alinhamento de Swivel; reformula configuração do jammer e remove obstrução do binocular exceto ships Sable. Autor alerta sobre quebra de links na migração de 4.9. |
+| [5.1.0 Beta](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9566545), 11/11 | Controllers passam a rotacionar mounts via shafts; **Pitch Gearbox adicionado em 5.0 é removido**. Ordem de ligação mudou; múltiplos Fire Controllers por mount, rejeição de links em orientação inválida, correção de cálculos presos, espectadores não detectados, persistência de redes em assembly/disassembly, ajustes em identificação, swivels e sublevels aninhados (sublevels conectados tratados como um ship). |
+| [5.1.1 Release](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9632878), 15/11 | Corrige travamento ao salvar, ciclo de vida dos links em chunks descarregados, flexibiliza condições de disparo e corrige recipe do Directional Jammer. |
+
+**Gate de migração:** backup integral e staging com saves reais, especialmente vindo de <5.1.0; verificar redes/datalinks existentes, blocos removidos, reconexão e chunks unload/reload, orientação e permissões, integração Create/Sable/Aeronautics/Create Aero Radar/Radiologistics e CBC. Não presumir compatibilidade de APIs/configs anteriores. Versão instalada preservada; nenhum JAR ou save modificado. Auditoria documental individual da cadeia concluída; QA físico pendente.
