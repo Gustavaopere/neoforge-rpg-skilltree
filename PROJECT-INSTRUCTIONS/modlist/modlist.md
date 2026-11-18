@@ -11,6 +11,17 @@
 > A posição de cada linha é obtida por correspondência exata com o JAR top-level instalado na autoridade física. Dependências embarcadas em `META-INF/jarjar/` ou `META-INF/jars/` não recebem linhas próprias.
 
 
+## Auditoria incremental — 18/11/2026
+
+> Atualização exclusivamente documental; o inventário físico histórico e as versões no nome dos dossiers permanecem inalterados.
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
+|---:|---|---|---|---|
+| 069 | Better Library | `1.0.111` | [1.0.113](https://www.curseforge.com/minecraft/mc-mods/better-library/files/9319311) | **Concluído documentalmente**; 1.0.112 não publicada para o alvo na listagem consultada; QA de consumidores/config/POI/trades pendente. |
+| 262 | Minecolonies: Epicfied (Epic Colonies) | `21.0.8` | [21.1.4](https://www.curseforge.com/minecraft/mc-mods/minecolonies-epicfied-epic-colonies/files/9641684) | **Concluído documentalmente**; oito releases incluindo hotfix 21.0.912; QA de atributos/combate e dependências pendente. |
+| 432 | Paladin Spells - Iron's Spells Addon | `1.21.1-1.1.1` | [1.1.4](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9392196) | **Pendente estrutural**; releases 1.1.2–1.1.4 auditadas; categorias atuais Addons + Adventure and RPG + Magic divergem da pasta histórica Addons + Magic. Busca de referências ao caminho antigo incompleta; não mover nem certificar até validar os links. |
+
+
 ## Auditoria incremental de releases — 17/11/2026
 
 > Esta consulta **não altera** o inventário físico de 587 entradas: as versões listadas como upstream são candidatas documentadas, **não** JARs novos instalados. As duas linhas físicas #416 e #543 abaixo preservam os filenames/versões comprovados no último snapshot; `Última edição` reflete somente as revisões documentais efetivamente realizadas.
@@ -216,7 +227,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 066 | BCLib: New Dawn | `bclib-21.0.26.jar` | `21.0.26` | `API and Library + Biomes + Utility & QoL + World Gen` | 17/11/2026 - 16:11 |
 | 067 | Create: Bells & Whistles | `bellsandwhistles-0.4.7-1.21.1.jar` | `0.4.7-1.21.1` | `Cosmetic + Create + Player Transport + Technology + Utility & QoL` | 19/09/2026 - 21:35 |
 | 068 | Better Advanced Tooltips | `better-advanced-tooltips-2101.1.0-build.5.jar` | `2101.1.0-build.5` | `API and Library + Map and Information + Utility & QoL` | 19/09/2026 - 21:35 |
-| 069 | Better Library | `better_lib-neoforge-1.21.1-1.0.111.jar` | `1.0.111` | `API and Library + Server Utility + Utility & QoL` | 19/09/2026 - 21:35 |
+| 069 | Better Library | `better_lib-neoforge-1.21.1-1.0.111.jar` | `1.0.111` | `API and Library + Server Utility + Utility & QoL` | 18/11/2026 - 07:24 |
 | 070 | Better Modlist | `better_modlist-21.1.1.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 23/10/2026 - 02:01 |
 | 071 | BetterEnd: New Dawn | `BetterEnd-21.0.34.jar` | `21.0.34` | `Biomes + Cosmetic + Mobs + Structures + World Gen` | 24/10/2026 - 20:32 |
 | 072 | Better Fps - Render Distance | `betterfpsdist-1.21.1-6.1.jar` | `6.1` | `Cosmetic + Miscellaneous` | 19/09/2026 - 21:46 |
@@ -409,7 +420,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 259 | Epic Fight: Curios Compat 4.0 | `Epic Fight x Curios Compat 2.2.jar` | `2.2 (distribuição/filename); metadata runtime 1.4` | `Addons + Bug Fixes + Cosmetic` | 24/10/2026 - 01:00 |
 | 260 | Epic Fight | `epic-fight-21.17.3.1-mc1.21.1-neoforge.jar` | `21.17.3.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 24/09/2026 - 16:02 |
 | 261 | Epic Fight - Epic-API | `epic_api-21.3.1.jar` | `21.3.1` | `API and Library` | 24/09/2026 - 16:02 |
-| 262 | Minecolonies: Epicfied (Epic Colonies) | `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar` | `21.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 22/10/2026 - 22:49 |
+| 262 | Minecolonies: Epicfied (Epic Colonies) | `EpicColonies-NeoForge-1.21.1-EFM-21.16.4-21.0.8.jar` | `21.0.8` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 18/11/2026 - 07:23 |
 | 263 | Epic Fight - Mod Compat | `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` | `1.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Mobs` | 24/09/2026 - 16:58 |
 | 264 | Epic Fight - Pehkui FIX | `epicfightpehkuiincompatibilityfix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 24/09/2026 - 16:58 |
 | 265 | Ender's Spells and Stuff: Requiem | `ess_requiem-0.1.7.jar` | `0.1.7` | `Addons` | 24/09/2026 - 16:58 |
@@ -579,7 +590,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 429 | Overflowing Bars | `OverflowingBars-v21.1.1-1.21.1-NeoForge.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 25/09/2026 - 14:28 |
 | 430 | oωo (owo-lib) | `owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar` | `0.12.15.5-beta.1+1.21` | `API and Library` | 22/10/2026 - 22:49 |
 | 431 | Ozymandias' Sundries | `ozymandias_sundries-0.0.5.jar` | `0.0.5 (distribuição/publicação); metadata interna 0.0.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 14:28 |
-| 432 | Paladin Spells - Iron's Spells Addon | `paladin_spells-1.21.1-1.1.1.jar` | `1.21.1-1.1.1` | `Addons + Magic` | 25/09/2026 - 15:17 |
+| 432 | Paladin Spells - Iron's Spells Addon | `paladin_spells-1.21.1-1.1.1.jar` | `1.21.1-1.1.1` | `Addons + Magic` | 18/11/2026 - 07:23 |
 | 433 | ParCool! ~ Minecraft Parkour ~ | `ParCool-1.21.1-4.0.0.3.jar` | `4.0.0.3` | `Adventure and RPG + Miscellaneous + Utility & QoL` | 23/10/2026 - 01:43 |
 | 434 | Particle Effects | `ParticleEffects-1.5.0+1.21.1+neoforge.jar` | `1.5.0+1.21.1+neoforge` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
 | 435 | Particle Rain | `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` | `4.0.0-beta.11` | `Cosmetic` | 25/09/2026 - 15:17 |
@@ -814,7 +825,7 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 10 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1 (JAR); metadata sem versão` | `7.19.0` | **AUDITORIA DOCUMENTAL 7.12.2–7.19.0 CONCLUÍDA 17/11**; instalado 7.12.1 (metadata vazia); promoção exige compatibilidade EME (atual 2.4.0, upstream 7.16+ indica 2.6.0+), alinhar Core/Bundle/Config UI e QA; sem instalação física |
 | 11 | Create Aeronautics: Gadgets & Gizmos | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-aeronautics-gadgets-and-gizmos%20v1.2.2.md) | `1.2.2` | `2.0.3` (Modrinth NeoForge 1.21.1); CurseForge até `2.0.0-Pre-Release-4` | **PENDENTE**: 1.2.6 recuperada no CurseForge; história 2.0.0 pre/beta documentada; 2.0.0 é major breaking (reconfiguração manual Get/Set Data), QA e reconciliação completa do histórico 2.0 ainda não concluídos |
 | 12 | Reliquified Artifacts | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-artifacts%20v1.0.8.md) | `1.0.8` | `1.0.9 Beta` | PENDENTE: Relics/Artifacts/Curios e efeitos sem duplicação |
-| 13 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.0.8.md) | `21.0.8` | `21.0.9` | PENDENTE: novos movesets EpicFight Nightfall + Extra; animações cidadãos |
+| 13 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.0.8.md) | `21.0.8` | `21.1.4` | **AUDITORIA DOCUMENTAL FECHADA 18/11**; hotfix 21.0.912 e releases 21.1.3/.4 reconciliados; QA Epic Fight/MineColonies pendente |
 | 14 | Easy Model Entities | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Automation%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-easy-model-entities%20v2.4.0.md) | `2.4.0` | `2.4.0 para NeoForge 1.21.1` | REVALIDADO (source 2.5.0 1.21.1, binário não localizado): EME 2.4.0 NeoForge 1.21.1; incompatível com faixa de Core/UI 7.15.0 quando presente |
 | 15 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | `1.3.2+1.21.1` | PENDENTE: receitas/GUI/JEI/KubeJS |
 | 16 | Eidolon: Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | `0.5.0.2` | REVALIDADO: sem nova release 1.21.1 demonstrada |
@@ -1115,7 +1126,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 30 | ImmediatelyFast | [Abrir `.md`](./Performance%20%2B%20Utility%20%26%20QoL/%E2%9C%85-immediatelyfast%20v1.6.14%2B1.21.1.md) | `1.6.14+1.21.1` | 1.6.15 (13/10) | **AUDITORIA DOCUMENTAL CONCLUÍDA; QA visual pendente** |
 | 31 | Advanced Loot Info (ALI) | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-advanced-loot-info%20v2.1.0.md) | `2.1.0` | 2.5.0 Beta (16/10; cadeia 2.2.0→2.5.0) | **AUDITORIA DOCUMENTAL FECHADA; Beta não instalada** |
 | 32 | owo (owo-lib) | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-owo-lib%20v0.12.15.5-beta.1%2B1.21.md) | `0.12.15.5-beta.1+1.21` | 0.12.15.6-beta.1+1.21 (Beta, NeoForge) | **AUDITORIA DOCUMENTAL FECHADA; Beta não instalada** |
-| 33 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.0.8.md) | `21.0.8` | 21.1.2 (17/10; 21.0.9→21.1.2) | **AUDITORIA DOCUMENTAL FECHADA; validar EFM/MineColonies** |
+| 33 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.0.8.md) | `21.0.8` | 21.1.4 (16/11; 21.0.9→21.1.4) | **AUDITORIA DOCUMENTAL FECHADA 18/11**, com hotfix 21.0.912; validar EFM/MineColonies |
 | 34 | Easy Model Entities | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Automation%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-easy-model-entities%20v2.4.0.md) | `2.4.0` | 2.6.0 (NeoForge 1.21.1; 2.5.0 intermediária) | **AUDITORIA DOCUMENTAL FECHADA; Easy NPC coordenado** |
 | 35 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | 1.4.1 (NeoForge 1.21.1) | **AUDITORIA DOCUMENTAL FECHADA; source 1.21.1 pinado, QA JEI pendente** |
 | 36 | Sable: Ragdoll - Patch | [Abrir `.md`](./Bug%20Fixes/%E2%9C%85-sable-ragdolls-patch%20v1.9.md) | `1.9` | 1.9.1 (Release NeoForge 1.21.1, 19/10) | **CORRIGIDO E AUDITADO; alpha cape transparency** |
@@ -1239,7 +1250,7 @@ Esta matriz complementar preserva a numeração do pedido, distinta da ordem fí
 |---:|---|---|---|---|
 | 31 | Advanced Loot Info (ALI) | 2.1.0 | 2.2.0, 2.3.0, 2.4.0, 2.5.0 Beta | FECHADO documental; Beta não instalada |
 | 32 | owo (owo-lib) | 0.12.15.5-beta.1+1.21 | 0.12.15.6-beta.1+1.21 Beta | FECHADO documental; Beta não instalada |
-| 33 | Minecolonies: Epicfied (Epic Colonies) | 21.0.8 | 21.0.9, 21.0.91, 21.1.0, 21.1.1, 21.1.2 | FECHADO documental; QA Epic Fight/MineColonies pendente |
+| 33 | Minecolonies: Epicfied (Epic Colonies) | 21.0.8 | 21.0.9, 21.0.91, 21.0.912, 21.1.0, 21.1.1, 21.1.2, 21.1.3, 21.1.4 | FECHADO documental em 18/11; QA Epic Fight/MineColonies pendente |
 | 34 | Easy Model Entities | 2.4.0 (metadata runtime ausente) | 2.5.0, 2.6.0 | FECHADO documental; homologar conjunto Easy NPC/EME |
 | 35 | Polymorph+ | 1.3.1+1.21.1 | 1.3.2, 1.4.0 (source 1.21.1), 1.4.1 JAR NeoForge 1.21.1 | FECHADO documental por commits upstream 1.21.1; JAR 1.4.0 não individualizado, QA pendente |
 | 36 | Sable: Ragdoll - Patch | 1.9 | 1.9.1 Release (19/10), cape alpha | FECHADO documental; retificado anterior sem bump |
