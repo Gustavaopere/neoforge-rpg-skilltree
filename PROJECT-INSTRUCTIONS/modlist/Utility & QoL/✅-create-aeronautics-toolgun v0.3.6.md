@@ -61,3 +61,15 @@ Usar a Toolgun ou abrir blueprint não prova construção concluída. Progressã
 Nenhum teste foi marcado como aprovado.
 ## 10. Evidências e limite
 A publicação oficial confirma a Release 0.3.6, o escopo toolgun/blueprint/magnetic manipulation, o vehicle radar clicável e as melhorias de query/preview/printing para veículos grandes. O projeto público não fornece nesta evidência um catálogo exato de todos os modos/configs da build; esses detalhes permanecem fora da ficha até source/runtime específico.
+
+## Auditoria incremental — 18/11/2026 — 0.3.7 a 0.3.9
+
+**Baseline físico:** #131, `create_aeronautics_toolgun-0.3.6.jar`, runtime 0.3.6. Projeto enxv233, CurseForge 1521349; categoria Utility & QoL. A [listagem oficial](https://www.curseforge.com/minecraft/mc-mods/create-aeronauticstoolgun/files/all) identifica exatamente três publicações adicionais para NeoForge 1.21.1.
+
+| Release | Delta material |
+|---|---|
+| [0.3.7](https://www.curseforge.com/minecraft/mc-mods/create-aeronauticstoolgun/files/9385188), 31/10/2026 | Compatibilidade Create: Fire Control; seleção de alcance passa a Ctrl+scroll, correção de caixa amarela sob Iris. Teleporte da toolgun no survival exige nível de permissão 2. Container passa a armazenar veículo com duração e barra de progresso, verificações contra perda/duplicação e preview de posicionamento. Backup automático com capacidade padrão 256 MiB, remoção dos mais antigos ao exceder limite, configurável/desativável. Correção de persistência de blocos, itens e ângulos acima de flaps em Synaxis e de quantidades de stacks grandes ao restaurar. |
+| [0.3.8](https://www.curseforge.com/minecraft/mc-mods/create-aeronauticstoolgun/files/9432094), 04/11/2026 | Corrige compatibilidade com Create: Coasters Simulated. |
+| [0.3.9](https://www.curseforge.com/minecraft/mc-mods/create-aeronauticstoolgun/files/9472360), 06/11/2026 | Compatibilidade Let it Walk!; configurações de limite de blocos do container de veículos e força da magnetic gun em survival. |
+
+**Gate:** validar permissões no servidor, conservação de inventários e fluidos, interrupção do armazenamento, duplicação em ações concorrentes, recuperação por backup, limite/rotação de backups, preview Iris, reconstituição de ângulos/estado de crafts e limites de força/tamanho. As integrações opcionais dependem da presença e versão de cada provider, não são novas hard dependencies presumidas. Dossier físico preservado; sem troca de JAR/config ou teste.
