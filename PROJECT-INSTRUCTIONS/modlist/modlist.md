@@ -683,7 +683,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 533 | Subtle Effects | `SubtleEffects-neoforge-1.21.1-1.14.3.jar` | `1.14.3` | `Cosmetic + Miscellaneous` | 27/09/2026 - 22:58 |
 | 534 | SuperMartijn642's Config Lib | `supermartijn642configlib-1.1.8-neoforge-mc1.21.jar` | `1.1.8` | `API and Library` | 27/09/2026 - 22:58 |
 | 535 | SuperMartijn642's Core Lib | `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` | `1.1.24` | `API and Library` | 17/11/2026 - 15:29 |
-| 536 | Supplementaries | `supplementaries-1.21.1-3.9.9-neoforge.jar` | `1.21.1-3.9.9` | `Cosmetic + Miscellaneous + Redstone + Storage` | 22/10/2026 - 22:24 |
+| 536 | Supplementaries | `supplementaries-1.21.1-3.9.9-neoforge.jar` | `1.21.1-3.9.9` | `Cosmetic + Miscellaneous + Redstone + Storage` | 17/11/2026 - 22:01 |
 | 537 | Tectonic | `tectonic-3.0.28-neoforge-21.1.jar` | `3.0.28` | `World Gen` | 27/09/2026 - 23:18 |
 | 538 | TenshiLib (Forge/NeoForge) | `tenshilib-1.21.1-2.3.0.b-neoforge.jar` | `1.21.1-2.3.0.b-neoforge` | `API and Library` | 27/09/2026 - 23:18 |
 | 539 | TerraBlender (NeoForge) | `TerraBlender-neoforge-1.21.1-4.1.0.8.jar` | `4.1.0.8` | `API and Library + Biomes + World Gen` | 27/09/2026 - 22:58 |
@@ -809,7 +809,7 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 05 | VS / Sable Hose Connectors | [Abrir `.md`](./Addons%20%2B%20Create%20%2B%20Industrial%20Craft%20%2B%20Storage%20%2B%20Technology/%E2%9C%85-vs-sable-hose-connectors%20v0.1.8.md) | `0.1.8` | `0.2.2` | PENDENTE: novas interações sem wrench, config e transferência atômica |
 | 06 | Placebo | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-placebo%20v9.9.2.md) | `9.9.2` | `9.9.4` | PENDENTE: consumer linkage com Apotheosis/Apothic |
 | 07 | Ace's Spell Utils | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library/%E2%9C%85-aces-spell-utils%20v1.2.7.2-1.21.1.md) | `1.2.7.2-1.21.1` | `1.2.7.2-1.21.1` | REVALIDADO: sem nova release 1.21.1 demonstrada |
-| 08 | Supplementaries | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous%20%2B%20Redstone%20%2B%20Storage/%E2%9C%85-supplementaries%20v1.21.1-3.9.9.md) | `1.21.1-3.9.9` | `4.0.1` | PENDENTE: migração entre linhas 3.x/4.x; Moonlight/Amendments |
+| 08 | Supplementaries | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous%20%2B%20Redstone%20%2B%20Storage/%E2%9C%85-supplementaries%20v1.21.1-3.9.9.md) | `1.21.1-3.9.9` | `4.1.2` | **Auditoria documental 3.9.9→4.1.2 concluída em 17/11**; instalação 3.9.9 preservada; homologação de Moonlight/Amendments e QA pendentes |
 | 09 | AzureLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-azurelib%20v3.1.11.md) | `3.1.11` | `3.1.19 Release; 3.1.20-alpha.1 pré-release` | PENDENTE: alpha não equivale a estabilidade |
 | 10 | Easy NPC: Core | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc%20v7.12.1.md) | `7.12.1 (JAR); metadata sem versão` | `7.15.0` | 7.15.0 BLOQUEADO: EME 2.4.0 abaixo do mínimo opcional `[2.5.0,3.0.0)`; 7.14.0 CANDIDATO CONDICIONAL: EME opcional `[2.4.0,3.0.0)`, sem validação binária/runtime |
 | 11 | Create Aeronautics: Gadgets & Gizmos | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-aeronautics-gadgets-and-gizmos%20v1.2.2.md) | `1.2.2` | `1.2.10` | PENDENTE: v1.2.9 desaconselhada pelo upstream; revalidar bundle e lógica |
