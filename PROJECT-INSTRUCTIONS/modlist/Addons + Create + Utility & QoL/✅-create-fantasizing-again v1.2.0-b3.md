@@ -90,3 +90,16 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 17. Evidências e limites
 A modlist física confirma o JAR e runtime `1.2.0-b3`. CurseForge oficial confirma Beta, Client & Server e os fixes beta3. O repositório oficial `Ironnoob73/Create-FantasizingAgain`, branch `main` contemporâneo à publicação, confirma engines, Crate/Fluid Barrel, Block Placer, configs e Powder Snow capability. O branch não é tag imutável do binário; classes/valores são evidência da linha atual, enquanto comportamento final deve ser validado no runtime físico.
 > 🔒 Boundary canônico: **Fantasizing owns seus engines/tools/storage/recipes; Create owns stress e infraestrutura cinética; inventories/entities externos permanecem sob seus providers**. Integridade de fluidos, crates e operações em lote é o gate principal da beta3.
+
+## Auditoria incremental — 18/11/2026 — 1.2.1
+
+O [inventário Modrinth do autor, filtrado para NeoForge 1.21.1](https://api.modrinth.com/v2/project/UvrmqS41/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D) contém 14 registros. O arquivo da [beta3](https://modrinth.com/mod/create-fantasizing-again/version/xaayBxRe) corresponde ao SHA-1 físico histórico `aac8f1460d2b5d21019c8b944b26dc0c184952c0`, e há uma única publicação posterior nesse catálogo: **[1.2.1](https://modrinth.com/mod/create-fantasizing-again/version/K7O1CgV2)**, 01/11/2026. O [CurseForge 1279337, file 9394143](https://www.curseforge.com/minecraft/mc-mods/create-fantasizing-again/files/9394143) confirma a release NeoForge 1.21.1, filename `create_fantasizing-1.21.1-1.2.1.jar` e o mesmo changelog. A pasta Addons + Create + Utility & QoL corresponde às categorias atuais do projeto.
+
+**Mudanças relevantes para o pack:**
+- **Block Placer:** passa a consumir a quantidade correta de blocos quando coloca estados que exigem múltiplos itens, como lajes duplas e conjuntos de velas. Revalidar conservação de itens, operações em lote e permissões; não presumir que outros bugs de duplicação foram corrigidos.
+- **Sturdy Girder:** pode funcionar como base de trilho; testar integração com Create e construção/proteção de ferrovias.
+- **Progressão:** adiciona sistema de advancements e modifica algumas receitas. O changelog não identifica quais receitas; comparar os datapacks/JARs antes de revisar custos ou perks concretos.
+- **Compatibilidade:** remove integração Encased; conferir se há consumidores efetivos no pack antes de alterar conteúdo dependente.
+- Melhora animações JEI dos Refined Radiance/Shadow Steel Tunnels, tutorial Ponder do Alternative Chromatic Compound e inclui tutorial do Fluid Barrel. Mudanças de apresentação/ensino, não evidência de alteração dos custos ou do processamento.
+
+**Conclusão documental:** versão física histórica #143 `1.2.0-b3` e decisão Manter preservadas. A antiga indicação de 1.1.3 como release estável mais recente foi supersedida por 1.2.1. Homologar em cópia do mundo, testar receitas, advancements, inventários/fluidos, claims, Block Placer e lifecycle das contraptions. Nenhuma instalação ou teste foi realizado. 

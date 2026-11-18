@@ -239,3 +239,22 @@ A branch 5.0.x altera a semântica de presentation e interação com recursos; o
 **Gates:** resource packs de colormap/lightmap/sounds.json, particles, biome variants, cores e voxel volume, condition expressions, F3+T e troca de shader, Veil se presente, Moonlight resource generation, Amendments e Supplementaries com colored lights/Polylight. Verificar conteúdo presente no pack antes de afirmar conflito concreto. Sem promoção física. A descrição imprecisa da API de 5.1.3 permanece **limitação explícita da fonte**, mas todas as releases publicadas na linha estão individualizadas.
 
 Fontes: https://www.curseforge.com/minecraft/mc-mods/polytone/files/all?gameVersionTypeId=6&page=1 ; https://www.curseforge.com/minecraft/mc-mods/polytone/files/9163586 ; https://www.curseforge.com/minecraft/mc-mods/polytone/files/9211009 ; https://www.curseforge.com/minecraft/mc-mods/polytone/files/9269715 ; https://github.com/MehVahdJukaar/polytone/commits .
+
+## Auditoria incremental — 18/11/2026 — 5.2.1 a 5.3.8
+
+**Baseline físico histórico:** #449, `polytone-1.21-4.4.0-neoforge.jar`. A [API oficial do Modrinth, projeto 3qAYkBMB, NeoForge 1.21.1](https://api.modrinth.com/v2/project/3qAYkBMB/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D) retorna 140 registros do alvo. A sequência desde a instalação corrobora as revisões anteriores: 4.5.0, 4.5.1, 4.5.2, 4.5.3, 5.0.0, 5.0.1, 5.0.2, 5.0.3, 5.0.5, 5.1.1, 5.1.2, 5.1.3, 5.2.0; não há artefato 5.0.4 no catálogo desse alvo. A publicação 4.4.0 também confirma a substituição de MVEL pela biblioteca Nexp, já identificada no inventário JarJar do dossier. As dez releases posteriores a 5.2.0 são discriminadas abaixo, com datas UTC do Modrinth. O [CurseForge file 9519538](https://www.curseforge.com/minecraft/mc-mods/polytone/files/9519538) confirma 5.3.8 como release NeoForge 1.21.1 de 09/11/2026; as categorias oficiais Cosmetic + Utility & QoL permanecem iguais.
+
+| Release | Data UTC | Delta publicado pelo autor |
+|---|---|---|
+| [5.2.1](https://modrinth.com/mod/polytone/version/rUVuJTya) | 23/10/2026 | Opção de configuração para gerar cores da luz a partir da textura do bloco. |
+| [5.2.2](https://modrinth.com/mod/polytone/version/e2jk5FD8) | 24/10/2026 | Novos controles em `colors.json` para relâmpagos e estrelas. |
+| [5.3.0](https://modrinth.com/mod/polytone/version/7eIANTDW) | 25/10/2026 | Remove código de shadowmap; expande `polytoneRenderingApi` para modificações de core shaders e troca mixins ModifyConstant por tipos mais compatíveis. A eventual transferência de shadowmap para outro mod é apenas possibilidade citada pelo autor, não nova dependência. |
+| [5.3.1](https://modrinth.com/mod/polytone/version/TC5ah7E6) | 25/10/2026 | Luz colorida não pode definir brilho acima do nível real de luz do bloco; lógica vanilla passa a limitar esse brilho. |
+| [5.3.2](https://modrinth.com/mod/polytone/version/rG3ZSKiV) | 27/10/2026 | Configuração de distância de renderização do céu. |
+| [5.3.4](https://modrinth.com/mod/polytone/version/6mPQONys) | 28/10/2026 | Exclui mais identificadores de versões novas para possibilitar carregamento parcial de resource packs sem overlays apropriados para versões antigas. Não garante compatibilidade total. |
+| [5.3.5](https://modrinth.com/mod/polytone/version/tJidfm5U) | 07/11/2026 | Quando Veil está presente, pré-processadores de shader usam sua árvore sintática em vez de substituições por regex. |
+| [5.3.6](https://modrinth.com/mod/polytone/version/bwz3WiDF) | 07/11/2026 | Correção adicional de Veil; nota não identifica o defeito. |
+| [5.3.7](https://modrinth.com/mod/polytone/version/zCDNRiQK) | 08/11/2026 | Corrige crash com Voxy; não presumir que Voxy esteja instalado. |
+| [5.3.8](https://modrinth.com/mod/polytone/version/Ty5Aowoi) | 09/11/2026 | Nota oficial genérica de correções adicionais, sem mecanismo identificado; não inventar novas funcionalidades. |
+
+Não há 5.3.3 publicada nesse catálogo filtrado. **Gate:** migração de resource packs que dependam de shadowmap, brilho colorido, geração de cor por textura, relâmpagos/estrelas, distância do céu, IDs/overlays, shader preprocessing com/sem Veil, Voxy se presente, F3+T e troca de packs; preservar QA com Amendments/Moonlight/Supplementaries/Iris e verificar JarJar do candidato. Notas genéricas de 5.3.6 e 5.3.8 registradas sem atribuir comportamento não publicado. Auditoria documental concluída até 5.3.8 segundo os changelogs oficiais disponíveis; não houve atualização física, testes in-game ou inspeção do novo JAR.

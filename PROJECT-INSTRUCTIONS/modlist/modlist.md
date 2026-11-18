@@ -12,6 +12,16 @@
 
 
 
+## Auditoria incremental — 18/11/2026 (Paladin, PartiCull, Fantasizing, Polytone e JEI)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
+|---:|---|---|---|---|
+| 143 | Create: Fantasizing Again | `1.2.0-b3` | [1.2.1](https://www.curseforge.com/minecraft/mc-mods/create-fantasizing-again/files/9394143) | Documentação concluída; única publicação posterior no catálogo Modrinth; avanços, receitas, consumo Block Placer, Sturdy Girder e remoção Encased. QA pendente. |
+| 349 | Just Enough Items (JEI) | `19.56.0.440` | [19.70.0.469 Beta](https://www.curseforge.com/minecraft/mc-mods/jei/files/9393327) | Pendente; catálogo oficial confirma builds .462/.463/.464/.465/.467/.468/.469, ainda sem conciliação completa desde .457; Modrinth não contém as novas builds. |
+| 432 | Paladin Spells - Iron's Spells Addon | `1.21.1-1.1.1` | [1.1.4](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9392196) | Pendente estrutural; categorias Addons + Adventure and RPG + Magic revalidadas; busca de referências GitHub retorna incomplete_results=true, clone local indisponível por DNS. Não mover. |
+| 437 | PartiCull | `2.0` | [2.2](https://www.curseforge.com/minecraft/mc-mods/particull/files/9437517) | Pendente; [API Modrinth](https://api.modrinth.com/v2/project/particull/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D) contém somente 2.0 e 2.2; release 2.2 sem changelog em ambas plataformas, sem source público vinculado. Falta delta técnico ou comparação binária. |
+| 449 | Polytone | `1.21-4.4.0` | [5.3.8](https://www.curseforge.com/minecraft/mc-mods/polytone/files/9519538) | Documentação concluída; dez novas releases pós-5.2.0 individualizadas, shadowmap removido e iluminação/Veil alteradas; notas genéricas preservadas como limitação. QA pendente. |
+
 ## Fechamento de lacunas de upstream — 18/11/2026 (Gadgets & Gizmos, WorldWeaver e Polymorph+)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
@@ -420,7 +430,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 140 | Create: Curios Backtank | `create_curios_backtank-neoforge-1.21.1-1.0.1.jar` | `1.0.1` | `Addons + Armor, Tools, and Weapons + Automation + Create` | 23/10/2026 - 02:18 |
 | 141 | Create: Deep Dark | `create_deep_dark-3.0.2-neoforge-1.21.1.jar` | `3.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Biomes + Create + Ores and Resources` | 23/09/2026 - 08:35 |
 | 142 | Create: Factory | `create_factory-0.7b-1.21.1.jar` | `0.7b-1.21.1` | `Automation + Create + Food` | 23/09/2026 - 10:19 |
-| 143 | Create: Fantasizing Again | `create_fantasizing-1.21.1-1.2.0-b3.jar` | `1.2.0-b3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 10:19 |
+| 143 | Create: Fantasizing Again | `create_fantasizing-1.21.1-1.2.0-b3.jar` | `1.2.0-b3` | `Addons + Create + Utility & QoL` | 18/11/2026 - 11:37 |
 | 144 | Create : New Furnitures | `create_furnitures-1.1.2-neoforge-1.21.1.jar` | `1.1.2` | `Addons + Cosmetic + Create + Structures + Utility & QoL` | 23/09/2026 - 10:19 |
 | 145 | Create Jetpack | `create_jetpack-forge-5.2.1.jar` | `5.2.1` | `Addons + Armor, Tools, and Weapons + Technology` | 23/09/2026 - 10:19 |
 | 146 | Create: Curios Jetpack & Backtank | `create_jetpack_curios-1.2.0-neoforge-1.21.1.jar` | `1.2.0` | `Armor, Tools, and Weapons + Create + Player Transport + Technology + Utility & QoL` | 23/09/2026 - 10:19 |
@@ -726,7 +736,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 446 | playerAnimator | `player-animation-lib-forge-2.0.4+1.21.1.jar` | `2.0.4+1.21.1` | `API and Library + Cosmetic` | 26/09/2026 - 02:33 |
 | 447 | Player Animation Library | `PlayerAnimationLibNeoforge-1.1.6+mc.1.21.1.jar` | `1.1.6+mc.1.21.1` | `API and Library` | 26/09/2026 - 02:33 |
 | 448 | Polymorph+ | `polymorph_plus-neoforge-1.3.1+1.21.1.jar` | `1.3.1+1.21.1` | `Miscellaneous + Utility & QoL` | 18/11/2026 - 11:28 |
-| 449 | Polytone | `polytone-1.21-4.4.0-neoforge.jar` | `1.21-4.4.0` | `Cosmetic + Utility & QoL` | 22/10/2026 - 23:21 |
+| 449 | Polytone | `polytone-1.21-4.4.0-neoforge.jar` | `1.21-4.4.0` | `Cosmetic + Utility & QoL` | 18/11/2026 - 11:37 |
 | 450 | Pondus Inventory [Sable] | `pondus_inventory_fi-0.15-Beta.jar` | `0.15-Beta` | `Addons + API and Library + Utility & QoL` | 26/09/2026 - 02:33 |
 | 451 | Create Aeronautics: Portable Engine Liquid Fuel | `portable_engine_liquid_fuel-2.0.0-neoforge-1.21.1.jar` | `2.0.0` | `Addons + Create + MCreator + Utility & QoL` | 26/09/2026 - 02:34 |
 | 452 | Portable Hole | `PortableHole-v21.1.0-1.21.1-NeoForge.jar` | `21.1.0` | `Armor, Tools, and Weapons + Player Transport` | 26/09/2026 - 03:23 |
