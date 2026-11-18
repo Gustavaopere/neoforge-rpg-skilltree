@@ -133,3 +133,17 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Página oficial: Bulwark, Taunt, Sworn Protector, Bedrock Skin e Ram, todos no eixo Holy/tank.
 - Changelog 1.1.1: fixes de duração/cooldown, server classloading e Bulwark; lineage 0.33/0.342: Taunt/Protector e remoção de Patchouli dependency.
 - **Limite:** fórmulas numéricas internas, raio, porcentagens e registry IDs não publicados não foram inventados; extrair do JAR/config antes de scripting/balanceamento fino.
+
+## Auditoria incremental — 18/11/2026 — 1.1.1 a 1.1.4
+
+**Baseline físico:** posição #432, `paladin_spells-1.21.1-1.1.1.jar`, runtime `1.21.1-1.1.1`, mod id `paladin_spells`. O projeto oficial de Kaufko (CurseForge ID 1593269) publicou a release 1.1.4 em 01/11/2026 para NeoForge 1.21.1. A listagem e o changelog cumulativo da publicação 1.1.4 confirmam as três releases posteriores individualmente.
+
+| Release | Data de publicação | Alterações e relevância |
+|---|---|---|
+| [1.1.2](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9353238/additional-files) | 28/10/2026 | Correção do fechamento indevido da Inscription Table ao visualizar certos spells; alteração do ícone de Bulwark e descrição de Sworn Protector. Relevante para inscrição, acesso a spells e clareza da UI; mudança de descrição não prova mudança da fórmula. |
+| [1.1.3](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9389314) | 31/10/2026 | Ajusta dano e direção do knockback de Ram. Relevante para combate e balanceamento; valores numéricos não divulgados. |
+| [1.1.4](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9392196) | 01/11/2026 | Ram só pode ser conjurado no chão; corrige timing do som e texto de Bedrock Skin (redução, não redirecionamento), adiciona ícones para efeitos. O requisito de estar no chão e o knockback da 1.1.3 devem ser considerados no design de perks de mobilidade; não inferir alteração de mitigação do texto. |
+
+**Gate:** Iron's Spells 3.16.3 do inventário, Inscription Table, Ram grounded/airborne, hit settlement e knockback com Epic Fight, dano e armor scaling, Sworn Protector sem redirect duplicado, Bedrock Skin e dedicated-server classloading. Versão upstream não instalada. Nenhum JAR/config/teste runtime foi alterado.
+
+**Fontes oficiais:** [catálogo](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/all); [changelog por versão da 1.1.4](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9392196). O projeto atualmente apresenta as categorias **Addons + Adventure and RPG + Magic** (https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon). O dossier ainda está na pasta histórica Addons + Magic: a busca de referências ao caminho antigo no GitHub retornou resultados incompletos, impedindo validar uma movimentação segura. **PENDENTE estrutural, sem certificação nova:** cadeia de publicações revisada; não liberar o item nesta rodada enquanto a correção de pasta e links não for validada.
