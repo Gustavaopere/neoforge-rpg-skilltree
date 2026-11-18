@@ -12,6 +12,14 @@
 
 
 
+## Auditoria incremental — 18/11/2026 (Immersive Furniture, Enhanced AI e Oracle Index)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
+|---:|---|---|---|---|
+| 252 | Enhanced AI | `4.2.3.0` | [4.2.7.2](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9509081) | Documentação concluída; 4.2.6.0/4.2.7.0/.1/.2 revisadas; migração server.toml e InsaneLib 2.5.0.0-alpha exigida. Promoção física bloqueada até conciliar biblioteca/config. |
+| 328 | Immersive Furniture | `0.3.3+1.21.1` | [0.4.1](https://www.curseforge.com/minecraft/mc-mods/immersive-furniture/files/9457770) | Documentação concluída; 0.3.4/0.4.0/0.4.1 revisadas; editor/biblioteca, atlas, Sable e Dynamic Trees; QA pendente. |
+| 428 | Oracle Index | `1.4.0` | [1.4.1](https://www.curseforge.com/minecraft/mc-mods/oracle-index/files/9506889) | Documentação concluída; navegação e barras de rolagem; 2.0.1 exclusiva de MC 26.1.2; QA pendente. |
+
 ## Auditoria incremental — 18/11/2026 (Apothic Category Compat, Stats & Power e ModernFix)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
@@ -513,7 +521,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 249 | EMF Compat: Iron's Spells 'n Spellbooks | `emf_compat_iron_spells_1.21.1_2.0.0.jar` | `2.0.0` | `Addons + Bug Fixes` | 17/11/2026 - 18:50 |
 | 250 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 24/09/2026 - 14:02 |
 | 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 24/09/2026 - 14:02 |
-| 252 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 23/10/2026 - 01:41 |
+| 252 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 18/11/2026 - 10:52 |
 | 253 | Enhanced Boss Bars (Fabric/Forge/NeoForge) | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 24/10/2026 - 14:58 |
 | 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 23/10/2026 - 14:33 |
 | 255 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
@@ -589,7 +597,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 325 | Integrated Mowzie's Mobs | `IMM v1.3.0-1.21.1.jar` | `1.3.0` | `Adventure and RPG + Structures + World Gen` | 24/09/2026 - 22:53 |
 | 326 | ImmediatelyFast | `ImmediatelyFast-NeoForge-1.6.14+1.21.1.jar` | `1.6.14+1.21.1` | `Performance + Utility & QoL` | 22/10/2026 - 22:24 |
 | 327 | Immersive Aeronautics - Immersive Portals + Create: Aeronautics | `Immersive-Aeronautics1.1.4-1.21.1-NeoForge.jar` | `1.1.4` | `Create` | 24/09/2026 - 22:53 |
-| 328 | Immersive Furniture | `immersive_furniture-neoforge-0.3.3+1.21.1.jar` | `0.3.3+1.21.1` | `Cosmetic + Storage` | 24/09/2026 - 22:53 |
+| 328 | Immersive Furniture | `immersive_furniture-neoforge-0.3.3+1.21.1.jar` | `0.3.3+1.21.1` | `Cosmetic + Storage` | 18/11/2026 - 10:52 |
 | 329 | Immersive Portal - Iron's Spells 'n Spellbooks Addon | `immersive_portal_irons_spells_n_spellbooks_addon-1.0.1.jar` | `1.0.1` | `Magic + Player Transport` | 24/09/2026 - 22:53 |
 | 330 | Immersive Portals: True Immersion | `immersive_portals_true_immersion-2.0.4.jar` | `2.0.4` | `Addons` | 24/09/2026 - 22:53 |
 | 331 | InsaneLib | `insanelib-2.4.33.0.jar` | `2.4.33.0` | `API and Library` | 17/11/2026 - 16:15 |
@@ -689,7 +697,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 425 | ShatterLib \| OctoLib | `OctoLib-NEOFORGE-0.6.2+1.21.jar` | `0.6.2` | `API and Library` | 25/09/2026 - 14:28 |
 | 426 | Oh The Biomes We've Gone | `Oh-The-Biomes-Weve-Gone-NeoForge-2.6.0.jar` | `2.6.0` | `Biomes + Farming + Mobs + Structures + World Gen` | 25/09/2026 - 14:28 |
 | 427 | Oh The Trees You'll Grow | `Oh-The-Trees-Youll-Grow-neoforge-1.21.1-5.3.2.jar` | `5.3.2` | `API and Library + Biomes + Structures + World Gen` | 18/11/2026 - 10:06 |
-| 428 | Oracle Index | `oracle_index-neoforge-1.4.0.jar` | `1.4.0` | `API and Library + Education + Map and Information + Utility & QoL` | 17/09/2026 - 22:51 |
+| 428 | Oracle Index | `oracle_index-neoforge-1.4.0.jar` | `1.4.0` | `API and Library + Education + Map and Information + Utility & QoL` | 18/11/2026 - 10:52 |
 | 429 | Overflowing Bars | `OverflowingBars-v21.1.1-1.21.1-NeoForge.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 25/09/2026 - 14:28 |
 | 430 | oωo (owo-lib) | `owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar` | `0.12.15.5-beta.1+1.21` | `API and Library` | 22/10/2026 - 22:49 |
 | 431 | Ozymandias' Sundries | `ozymandias_sundries-0.0.5.jar` | `0.0.5 (distribuição/publicação); metadata interna 0.0.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 14:28 |

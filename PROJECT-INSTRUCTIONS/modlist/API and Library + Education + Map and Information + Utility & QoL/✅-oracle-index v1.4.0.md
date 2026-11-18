@@ -143,3 +143,11 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Changelog oficial 1.4.0: tables, block quotes, GitHub-style alerts, hover text, image attributes/captions, enhanced code blocks, code tabs, audio/video links, callout variants, translatability e correções de layout/render; a 1.3.1 anterior documenta otimização de imagens e fix da inclusão do access widener NeoForge.
 - Descrição oficial: viewer de documentação compatível com o formato/diretórios do [ModdedMC.wiki](http://ModdedMC.wiki).
 - **Limite:** a função exata de cada biblioteca NLP/embedding no pipeline da 1.4.0 e qualquer comportamento de rede não foram inferidos sem source/documentação explícita.
+
+## Auditoria incremental — 18/11/2026 — 1.4.1
+
+Baseline físico histórico #428: `oracle_index-neoforge-1.4.0.jar`, runtime 1.4.0. [Release 1.4.1 do autor rearth](https://www.curseforge.com/minecraft/mc-mods/oracle-index/files/9506889), 08/11/2026, file 9506889, confirma NeoForge Minecraft 1.21.1. A mesma página distingue expressamente a linha 2.0.1 para Minecraft 26.1.2, que não é candidata para este pack. Nenhuma release intermediária da linha 1.4.x foi identificada. Categorias oficiais verificadas: API and Library + Education + Map and Information + Utility & QoL, sem alteração de pasta.
+
+**Delta 1.4.1:** barras de rolagem arrastáveis; clique na trilha desloca a posição de leitura e hover sinaliza o controle. Melhoria de navegação em páginas grandes e conteúdo Markdown com tabelas/callouts, sem mudança de autoridade de gameplay nem novas dependências declaradas. Testar páginas longas, arraste, clique, hover, GUI scale, reabertura e resource reload; não inferir alterações de embeddings ou networking.
+
+**Estado:** revisão documental concluída para o alvo 1.21.1; versão física, decisão Opcional e certificação preservadas. Nenhum teste in-game ou substituição de JAR.
