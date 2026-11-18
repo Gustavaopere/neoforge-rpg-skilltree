@@ -173,3 +173,17 @@ Fontes upstream: CurseForge files 8905916 (3.6.5), 8929425 (3.6.6), 8940361 (3.6
 **Upstream NeoForge 1.21.1:** **3.7.2**, release de 10/10/2026 (`moonlight-1.21.1-3.7.2-neoforge`); JAR histórico permanece **3.6.4**. A cadeia 3.6.5–3.7.1 está detalhada acima; não inventar deltas da 3.7.2 sem consultar changelog granular. **Gate transversal:** Supplementaries, Amendments 2.1.11, Polytone 5.0.5, CodecUI, dynamic generated assets, registries/wood types, Cartography Table, configs, resource/datapack reload, shader and resource-pack order, client+dedicated-server, save/restart. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/selene/files/all?version=1.21.1
 
 > **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
+
+## Auditoria incremental de 18/11/2026 — 3.7.2 a 3.8.3
+
+**Autoridade física:** #407, `moonlight-1.21.1-3.6.4-neoforge.jar`, mod ID `moonlight`, runtime literal `1.21.1-3.6.4`. Projeto oficial Moonlight Lib (Selene), CurseForge 499980, categoria **API and Library**. Última release identificada: **3.8.3**, de 09/11/2026, para NeoForge 1.21.1. Não misturar com 4.x de Minecraft 26.x. Histórico anterior já documenta 3.6.5–3.7.1.
+
+| Release | Data / arquivo oficial | Delta e relevância |
+|---|---|---|
+| **3.7.2** | 10/10/2026, [9122548](https://www.curseforge.com/minecraft/mc-mods/selene/files/9122548/additional-files) | Autor relata duas correções menores, sem identificar subsistemas. Não inferir nova API ou mecânica; nota pública consultada integralmente. |
+| **3.8.0** | 03/11/2026, [9426244](https://www.curseforge.com/minecraft/mc-mods/selene/files/9426244) | Corrige modelos customizados no NeoForge, acrescenta suporte de configuração `defineVec2` e leitura de condições NeoForge em tags. Relevante para resource/data packs, geração de conteúdo e condições de carregamento. |
+| **3.8.1** | 04/11/2026, [9436226](https://www.curseforge.com/minecraft/mc-mods/selene/files/9436226) | Configurações passam a suportar imagens; corrige problemas de config não detalhados. Regressar telas e preservação de valores; não atribuir mudança de gameplay automática. |
+| **3.8.2** | 05/11/2026, [9458248](https://www.curseforge.com/minecraft/mc-mods/selene/files/9458248) | Introduz registro de plugins, explicitamente requerido por Every Compat; confirmar presença e requisitos da versão exata do consumer antes de promover isoladamente. |
+| **3.8.3** | 09/11/2026, [9519534](https://www.curseforge.com/minecraft/mc-mods/selene/files/9519534) | Corrige lifecycle e pequenos vazamentos restritos à tela de mundos; não implica otimização geral do servidor. |
+
+**Cadeia documental fechada:** 3.6.5 → 3.6.6 → 3.6.7 → 3.6.8 → 3.6.9 → 3.7.0 → 3.7.1 → 3.7.2 → 3.8.0 → 3.8.1 → 3.8.2 → 3.8.3, conforme [listagem de arquivos 1.21.1](https://www.curseforge.com/minecraft/mc-mods/selene/files/all?page=1&version=1.21.1). Para a 3.7.2, o changelog publicado não identifica os dois fixes; nenhuma implicação funcional adicional é atribuída. O gate de compatibilidade permanece: Supplementaries 3.9.9 no inventário (4.1.2 apenas candidata), Amendments, Every Compat se presente, CodecUI embarcada, reload de recursos e de dados, tags condicionais, models, configs com imagens, registro único de plugins e dedicated server. Não alterar a composição dos JarJar sem inspeção. Nenhum JAR, config ou teste em jogo foi alterado.
