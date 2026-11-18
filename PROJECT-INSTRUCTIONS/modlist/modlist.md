@@ -59,6 +59,19 @@
 | 437 | PartiCull | `2.0` | [2.2](https://www.curseforge.com/minecraft/mc-mods/particull/files/9437517) | PENDENTE: publicação NeoForge 1.21.1 de 04/11 sem changelog; cadeia intermediária e delta não confirmados. Dossier preservado. |
 | 511 | Snow! Real Magic! | `12.2.2+neoforge` | [12.2.5 Beta](https://www.curseforge.com/minecraft/mc-mods/snow-real-magic/files/9389751) | Fechado documental: .3 complementada com srm_variants e FarmersDelightCompat, .4/.5 auditadas; beta não promovida. |
 
+## Auditoria incremental — 18/11/2026 (Waystones, Polytone, Toolgun, JEI, IronSable e Hexalia)
+
+> Baseline físico histórico preservado; nenhuma instalação ou homologação executada.
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
+|---:|---|---|---|---|
+| 131 | create aeronautics：toolgun | `0.3.6` | [0.3.9](https://www.curseforge.com/minecraft/mc-mods/create-aeronauticstoolgun/files/9472360) | Fechado documental: .7/.8/.9 auditadas; permissões, backups, duração/segurança de armazenamento e compatibilidades. QA pendente. |
+| 314 | Hexalia | `1.3.7` | [1.3.8.2](https://www.curseforge.com/minecraft/mc-mods/hexalia/files/9355770) | Fechado documental: dicas de acessórios e fix de entrega de colheita por Cacofeys; correção Forge 1.20.1 segregada. QA pendente. |
+| 344 | IronSable | `1.2.0` | [1.2.1](https://www.curseforge.com/minecraft/mc-mods/ironsable/files/9112778) | Fechado documental: Puppet Chain e crash de Kinetic Barrier; QA pendente. |
+| 349 | Just Enough Items (JEI) | `19.56.0.440` | [19.70.0.469 Beta](https://www.curseforge.com/minecraft/mc-mods/jei/files/all?page=1&pageSize=20&version=1.21.1) | PENDENTE: novas builds após 19.69.0.457 ainda exigem identificação e auditoria incremental individual. |
+| 449 | Polytone | `1.21-4.4.0` | [5.3.8](https://www.curseforge.com/minecraft/mc-mods/polytone/files/9519538) | PENDENTE: publicações posteriores a 5.2.0 ainda exigem auditoria individual; não promover. |
+| 564 | Waystones | `21.1.45` | [21.1.47](https://www.curseforge.com/minecraft/mc-mods/waystones/files/all?page=1&version=1.21.1) | Fechado documental: .46/.47 auditadas; rede, ownership, runas, grupos e opção de teleport removida. Delta .47 corroborado por source multiloader versionado; QA pendente. |
+
 ## Auditoria incremental de releases — 17/11/2026
 
 > Esta consulta **não altera** o inventário físico de 587 entradas: as versões listadas como upstream são candidatas documentadas, **não** JARs novos instalados. As duas linhas físicas #416 e #543 abaixo preservam os filenames/versões comprovados no último snapshot; `Última edição` reflete somente as revisões documentais efetivamente realizadas.
@@ -326,7 +339,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 128 | Create Aeronautics: Automated Logistics | `create_aeronautics_automated_logistics-0.6.2.jar` | `0.6.2` | `Addons + Automation + Create` | 25/10/2026 - 00:41 |
 | 129 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` | `1.2.0` | `Create` | 23/09/2026 - 08:03 |
 | 130 | Create Aeronautics: Throwable Rope Connector | `create_aeronautics_throwable_rope_connector-0.4.3.jar` | `0.4.3` | `Addons + Create + Utility & QoL` | 23/09/2026 - 08:03 |
-| 131 | create aeronautics：toolgun | `create_aeronautics_toolgun-0.3.6.jar` | `0.3.6` | `Utility & QoL` | 23/09/2026 - 08:03 |
+| 131 | create aeronautics：toolgun | `create_aeronautics_toolgun-0.3.6.jar` | `0.3.6` | `Utility & QoL` | 18/11/2026 - 08:32 |
 | 132 | Create Aeronautics: Transmission & Linkage | `create_aeronautics_transmission_linkage-0.2.8.jar` | `0.2.8` | `Create + Technology` | 17/11/2026 - 20:00 |
 | 133 | Create: Aquatic Ambitions | `create_aquatic_ambitions-1.21.1-2.0.4.jar` | `2.0.4` | `Armor, Tools, and Weapons + Automation + Create + Ores and Resources` | 23/09/2026 - 08:34 |
 | 134 | Create: Blocks & Bogies | `create_bb-1.0.8-1.21.1.jar` | `1.0.8` | `Addons + Create + Player Transport + Technology` | 23/09/2026 - 08:34 |
@@ -509,7 +522,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 311 | Guide-API Village and Pillage | `Guide-API-VP-1.21.1-2.3.0.jar` | `2.3.0` | `API and Library + Map and Information` | 24/09/2026 - 21:04 |
 | 312 | Hazen 'N Stuff | `hazennstuff-1.4.0.14.jar` | `1.4.0.14` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 21:57 |
 | 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 17/11/2026 - 17:09 |
-| 314 | Hexalia | `hexalia-neoforge-1.3.7.jar` | `1.3.7` | `Adventure and RPG + Magic + Mobs + World Gen` | 27/09/2026 - 03:14 |
+| 314 | Hexalia | `hexalia-neoforge-1.3.7.jar` | `1.3.7` | `Adventure and RPG + Magic + Mobs + World Gen` | 18/11/2026 - 08:32 |
 | 315 | Ice And Fire: Dragon Care | `Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar` | `1.3.1 - 1.21.1v` | `Addons` | 27/09/2026 - 03:14 |
 | 316 | IceAndFire Community Edition | `iceandfire-2.1.2.jar` | `2.1.2` | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 27/09/2026 - 03:14 |
 | 317 | Ice and Fire X Epic Fight | `iceandfire-ce-epicfight-armor-compat-1.0.0.jar` | `1.0.0` | `Addons + Armor, Tools, and Weapons + Bug Fixes + Cosmetic` | 24/09/2026 - 22:20 |
@@ -539,7 +552,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 341 | Iron's Lib | `irons_lib-1.21.1-2.1.0.jar` | `1.21.1-2.1.0` | `API and Library + Cosmetic` | 17/11/2026 - 18:34 |
 | 342 | Iron's Spells 'n Spellbooks | `irons_spellbooks-1.21.1-3.16.3.jar` | `1.21.1-3.16.3` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 25/09/2026 - 01:24 |
 | 343 | KubeJS Iron's Spells | `irons_spells_js-4.0.3.jar` | `4.0.3` | `Addons + Adventure and RPG + KubeJS + Magic + Utility & QoL` | 25/09/2026 - 01:24 |
-| 344 | IronSable | `ironsable-1.2.0.jar` | `1.2.0` | `Addons + Magic` | 25/09/2026 - 01:24 |
+| 344 | IronSable | `ironsable-1.2.0.jar` | `1.2.0` | `Addons + Magic` | 18/11/2026 - 08:32 |
 | 345 | IronSable X Wind's Spellbooks | `ironsable-wind-1.0.0.jar` | `1.0.0` | `Magic` | 25/09/2026 - 01:24 |
 | 346 | Magic From The East | `iss_magicfromtheeast-1.1.5.jar` | `1.1.5` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + World Gen` | 25/09/2026 - 01:24 |
 | 347 | Jade 🔍 | `Jade-1.21.1-NeoForge-15.10.6.jar` | `15.10.6+neoforge` | `Map and Information + Utility & QoL` | 25/09/2026 - 01:24 |
@@ -759,7 +772,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 561 | Village Spawn Point | `villagespawnpoint-1.21.1-4.6.jar` | `4.6` | `Adventure and RPG + World Gen` | 28/09/2026 - 01:09 |
 | 562 | Vintage Improvenents - SSW Edition | `vintageimprovements-1.21.1-0.0.0.7.jar` | `1.21.1-0.0.0.7` | `Addons + Create` | 28/09/2026 - 02:10 |
 | 563 | VS / Sable Hose Connectors | `VS-Sable-HoseConnectors-0.1.8-1.21.1.jar` | `0.1.8` | `Addons + Create + Industrial Craft + Storage + Technology` | 28/09/2026 - 02:10 |
-| 564 | Waystones | `waystones-neoforge-1.21.1-21.1.45.jar` | `21.1.45` | `Adventure and RPG + Magic + Player Transport + Server Utility` | 28/09/2026 - 02:28 |
+| 564 | Waystones | `waystones-neoforge-1.21.1-21.1.45.jar` | `21.1.45` | `Adventure and RPG + Magic + Player Transport + Server Utility` | 18/11/2026 - 08:32 |
 | 565 | Waystones: Sable (Create Aeronautics Addon) | `waystonessable-1.0.7.jar` | `1.0.7` | `Addons + Create` | 17/11/2026 - 20:05 |
 | 566 | Wayward Attributes | `wayward_attributes-1.21.1-1.1.1.jar` | `1.1.1` | `API and Library + Cosmetic` | 28/09/2026 - 02:10 |
 | 567 | YDM's Weapon Master | `weaponmaster_ydm-1.21.1-neoforge-4.2.7.jar` | `4.2.7` | `Cosmetic` | 28/09/2026 - 02:10 |
