@@ -110,3 +110,13 @@ A geração ocorre no servidor, mas o impacto é global: mudanças de peso, núm
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 20. Evidências e limites
 Evidências usadas: modlist física atual; CurseForge oficial da release `lootintegrations-1.21.1-4.7.jar`; página oficial do projeto; source upstream `someaddons/LootIntegrations`; commit `1a5b83f7...` rotulado como mudança 4.7; `LootModifierManager`, `GlobalLootModifierIntegration`, `CommonConfiguration` e `neoforge.mods.toml`; presença física de Cupboard 4.1. **Limite:** o Gradle do commit 4.7 ainda declara 4.6, portanto a equivalência byte-for-byte com o JAR publicado não foi afirmada.
+
+## Auditoria incremental de 18/11/2026 — Loot Integrations 4.7 → 4.9
+
+**Baseline físico:** #380, `lootintegrations-1.21.1-4.7.jar`, mod ID `lootintegrations`, runtime 4.7. O projeto oficial de someaddon (CurseForge 580689) mantém as categorias **Adventure and RPG + Server Utility**. A [listagem filtrada por Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/loot-integrations/files/all?page=1&version=1.21.1) mostra 4.7 seguida diretamente de **4.9** para NeoForge; a 4.8 de outros alvos não é publicação confirmada para este MC/loader.
+
+**4.9 — 13/11/2026, [arquivo 9600289](https://www.curseforge.com/minecraft/mc-mods/loot-integrations/files/9600289):**
+- A supressão de geração de mapas durante geração de loot passa a alcançar também a criação manual nesse contexto. É extensão do controle anterior que evita buscas custosas por estruturas; não interpretar como desativação global de mapas em jogo.
+- Chamadas repetidas de geração de loot passam a reutilizar resultados em vez de repetir o trabalho, incluindo a análise de loot tables no carregamento do mundo pelo Ars Nouveau. O inventário físico contém Ars Nouveau 5.13.1, portanto é uma superfície de desempenho concreta. Não inferir escopo ou tempo de vida do cache além da nota publicada.
+
+**Gate de atualização:** Cupboard, addons Loot Integrations, Lootr, LootJS, Ars Nouveau, recursão e limites de loot, reload e isolamento do contexto de geração, aleatoriedade e distribuição de recompensas, map suppression e comparação de tempo de world load/MSPT. Não presumir que resultados reutilizados na análise equivalham a inventários compartilhados entre jogadores. A versão 4.9 não foi instalada ou analisada binariamente; nenhum teste de runtime executado. Cadeia pública pós-4.7 do alvo documentada, sem renomear o dossier ou alterar o snapshot físico.
