@@ -186,3 +186,15 @@ Impacto: é um hardening de observabilidade/performance de log, não uma mudanç
 Gate de promoção 12.2.2→12.2.3: world load em área nevada; chunk unload/reload; restart; covered blocks com block entities; observar `latest.log` sem spam DUMMY; confirmar contained-state restore, accumulation/melting, fence/wall e Ecliptic integration sem regressão.
 
 Fonte upstream: CurseForge file ID 8988910, `SnowRealMagic-1.21.1-NeoForge-12.2.3.jar`.
+
+## Auditoria incremental — 18/11/2026 — 12.2.3 a 12.2.5
+
+**Baseline físico:** #511, `SnowRealMagic-1.21.1-NeoForge-12.2.2.jar`, metadata `12.2.2+neoforge`. Projeto Snownee, CurseForge 308663, categorias Cosmetic + Utility & QoL + World Gen. O catálogo informa 12.2.3 como release estável mais recente de 1.21.1 e 12.2.5 como beta mais recente. Não confundir com 26.1.x.
+
+| Publicação NeoForge 1.21.1 | Delta oficial e relevância |
+|---|---|
+| [12.2.3](https://www.curseforge.com/minecraft/mc-mods/snow-real-magic/files/8988910), 27/09/2026, Release | Complementa a seção 31: além do fix de spam DUMMY block entity, permite definir variantes nevosas em `srm_variants` em alternativa aos arquivos .mcmeta e inclui FarmersDelightCompat. Revisar resource packs/modelos, compatibilidade de blocos e culturas; não inferir IDs ou regras exatas de compatibilidade. |
+| [12.2.4](https://www.curseforge.com/minecraft/mc-mods/snow-real-magic/files/9357109), 28/10/2026, Beta | Corrige ausência de blocos cobertos por neve na geração de mundo. Relevante para chunks novos; não pressupor retrogeração. |
+| [12.2.5](https://www.curseforge.com/minecraft/mc-mods/snow-real-magic/files/9389751), 31/10/2026, Beta | Blocos sob outros blocos que não bloqueiam chuva passam a poder ser convertidos em variantes nevadas. Validar precipitação/oclusão, preservação do bloco contido e regras de cobertura. |
+
+**Gate:** Kiwi, Ecliptic Seasons e MultiMod Patch, Farmer's Delight quando presente, variantes de modelos e precedence de packs, worldgen e chunks novos/existentes, derretimento/acúmulo, restoreOriginalBlocks, multiplayer/restart. Documentação de releases concluída até 12.2.5; não promover beta automaticamente. Nenhum JAR/config/save/teste em jogo alterado.
