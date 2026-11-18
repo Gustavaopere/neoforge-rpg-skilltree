@@ -33,6 +33,19 @@
 | 407 | Moonlight Lib | `1.21.1-3.6.4` | [3.8.3](https://www.curseforge.com/minecraft/mc-mods/selene/files/9519534) | **Fechado documental**; 3.7.2 changelog genérico, 3.8.0–3.8.3 individualizadas; QA de consumers/registry/config pendente. |
 | 448 | Polymorph+ | `1.3.1+1.21.1` | [1.5.0 no source](https://github.com/Aminoquiz/polymorph_plus/commit/be85539c823f9756dccf7481b57a712ee9886159) | **Pendente**; 1.4.0 binário confirmado no Modrinth, deltas source 1.4.2/1.4.3/1.5.0 auditados, inventário de publicações oficiais ainda incompleto. |
 
+## Auditoria incremental — 18/11/2026 (ETF, Loot Integrations, LazyTick, Ecliptic Seasons, DTE e Filters Anywhere)
+
+> Somente documentação; nenhuma alteração dos JARs instalados ou da ordem física. ETF foi revalidado no catálogo e changelog; sem delta funcional novo aplicável, preserva-se a última edição significativa do dossier.
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
+|---:|---|---|---|---|
+| 186 | Create: Filters Anywhere | `2.6.0` | [2.7.0](https://www.curseforge.com/minecraft/mc-mods/create-filters-anywhere/files/9072375) | **Fechado documental**; integração Ars Nouveau/FTB Quests/Pipez/Railcraft e proteção de level nulo; QA de filtros pendente. |
+| 191 | Create:LazyTick | `2.6.25-6.0.10` | [2.7.33](https://www.curseforge.com/minecraft/mc-mods/create-lazytick/files/9357886) | **Fechado documental**; releases 2.7.31/.32/.33 complementadas; QA de cache, Deployer, funnels e dedicated server pendente. |
+| 220 | Discerning The Eldritch | `1.4.4-1.21` | [1.4.5](https://www.curseforge.com/minecraft/mc-mods/discerning-the-eldritch/files/9401492) | **Fechado documental**; novas armas/armaduras/Sheath e remoção upstream da dependência Soul Fire'd; IDs/atributos e runtime pendentes. |
+| 243 | Ecliptic Seasons | `0.15.0-rc-3-1` | [0.15.5.1](https://github.com/TeamTeaMC/Ecliptic-Seasons/commit/79515abad078fc5d3d3f86c8bf7977c3f776a695) | **Fechado documental**; .5/.5.1 identificadas no catálogo, deltas por commits versionados do alvo NeoForge; sem fichas individuais recuperadas; QA e equivalência binária pendentes. |
+| 256 | ETF | `7.2.1` | [7.2.7](https://www.curseforge.com/minecraft/mc-mods/entity-texture-features-fabric/files/all?page=1&pageSize=20&version=1.21.1) | **Revalidado**; release 03/11, [changelog oficial](https://github.com/Traben-0/Entity_Texture_Features/blob/ETF-Main/CHANGELOG.MD) limita correções de pixels encantados da skin/memória a 1.21.9+; só traduções genéricas no alvo. Sem mudança material no dossier; QA pendente. |
+| 380 | Loot Integrations | `4.7` | [4.9](https://www.curseforge.com/minecraft/mc-mods/loot-integrations/files/9600289) | **Fechado documental**; sem 4.8 publicada para o alvo no catálogo consultado; geração de mapas e chamadas repetidas de loot; QA de economia/Ars Nouveau pendente. |
+
 ## Auditoria incremental de releases — 17/11/2026
 
 > Esta consulta **não altera** o inventário físico de 587 entradas: as versões listadas como upstream são candidatas documentadas, **não** JARs novos instalados. As duas linhas físicas #416 e #543 abaixo preservam os filenames/versões comprovados no último snapshot; `Última edição` reflete somente as revisões documentais efetivamente realizadas.
@@ -355,12 +368,12 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 183 | Create: Enchantable Machinery | `createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar` | `3.6.0` | `Addons + Create + Technology + Utility & QoL` | 23/09/2026 - 23:51 |
 | 184 | Create: Ender Transmission | `createendertransmission-2.1.1-1.21.1.jar` | `2.1.1-1.21.1` | `Addons + Technology` | 23/09/2026 - 23:51 |
 | 185 | Create: Fast SchematicCannon | `CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar` | `2.6.1-neoforge` | `Addons + Bug Fixes + Create` | 23/09/2026 - 23:51 |
-| 186 | Create: Filters Anywhere | `createfiltersanywhere-1.21.1-2.6.0.jar` | `2.6.0` | `Addons + Create` | 23/09/2026 - 23:51 |
+| 186 | Create: Filters Anywhere | `createfiltersanywhere-1.21.1-2.6.0.jar` | `2.6.0` | `Addons + Create` | 18/11/2026 - 08:01 |
 | 187 | Create: Fishery Industry | `createfisheryindustry-5.1.2.jar` | `5.1.2` | `Addons + Create` | 23/09/2026 - 23:51 |
 | 188 | Create: Food | `createfood-neoforge-1.21.1-2.7.1.jar` | `2.7.1` | `Automation + Create + Food` | 23/09/2026 - 23:51 |
 | 189 | Create Goggles (Create Plus) | `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar` | `6.1.1` | `Addons + Armor, Tools, and Weapons + Create` | 23/09/2026 - 23:51 |
 | 190 | Create JEI Compat | `createjeicompat-1.0.3.jar` | `1.0.3` | `Create` | 23/09/2026 - 23:51 |
-| 191 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 22/10/2026 - 22:55 |
+| 191 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 18/11/2026 - 08:01 |
 | 192 | Create: Liquid Fuel | `createliquidfuel-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 24/09/2026 - 00:20 |
 | 193 | Create: Mechanical Companion | `createmechanicalcompanion-1.9-neoforge-1.21.1.jar` | `1.9 (artefato/publicação); metadata runtime vazia` | `Addons + Adventure and RPG + Create + Mobs + Technology` | 24/09/2026 - 00:20 |
 | 194 | Create: Metallurgy | `createmetallurgy-1.0.3-1.21.1.jar` | `1.0.3` | `Addons + Automation + Create + Processing + Technology` | 24/09/2026 - 00:20 |
@@ -389,7 +402,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 217 | Create: Design n' Decor | `Design-n-Decor-1.21.1-2.2b.jar` | `2.2b` | `Addons + Cosmetic + Create + Storage + Utility & QoL` | 24/09/2026 - 01:22 |
 | 218 | Destroy | `destroy-1.21.1-0.4.3.jar` | `0.4.3` | `Sem projeto CurseForge confirmado` | 20/09/2026 - 22:25 |
 | 219 | Dimensional Sable | `dimensional_sable-1.0.5.jar` | `1.0.5` | `Sem projeto CurseForge confirmado` | 20/09/2026 - 22:25 |
-| 220 | Discerning The Eldritch | `discerning_the_eldritch-1.4.4-1.21.jar` | `1.4.4-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 01:22 |
+| 220 | Discerning The Eldritch | `discerning_the_eldritch-1.4.4-1.21.jar` | `1.4.4-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 18/11/2026 - 08:01 |
 | 221 | Dis-Enchanting Table | `disenchanting_table-merged-1.21.1-5.0.2.jar` | `5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Ores and Resources + Technology` | 24/09/2026 - 01:22 |
 | 222 | Distant Horizons: A Level of Detail mod | `DistantHorizons-3.2.0-b-1.21.1-fabric-neoforge.jar` | `3.2.0-b` | `Utility & QoL` | 24/09/2026 - 10:44 |
 | 223 | Create: Dreams n' Desires | `DnDesires-1.21.1-2.3a-BETA.jar` | `2.3a-BETA` | `Armor, Tools, and Weapons + Automation + Create + Utility & QoL + World Gen` | 24/09/2026 - 10:44 |
@@ -412,7 +425,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 17/11/2026 - 16:11 |
 | 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 23/10/2026 - 01:19 |
 | 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
-| 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 22/10/2026 - 23:19 |
+| 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 18/11/2026 - 08:02 |
 | 244 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
 | 245 | Epic Fight x Iron's Spells: Enhanced Animations | `efiscompat-3.1.0.jar` | `3.1.0` | `Cosmetic + Miscellaneous` | 24/09/2026 - 14:02 |
 | 246 | Eidolon : Repraised | `eidolon_repraised-1.21.1-0.5.0.2.jar` | `0.5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 18/11/2026 - 07:44 |
@@ -549,7 +562,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 377 | Epic Fight x Better Lock On: Movement & Camera Fixes | `lockonmovementfix-neoforge-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes + Utility & QoL` | 25/09/2026 - 11:24 |
 | 378 | Lodestone | `lodestone-1.21.1-1.8.2.jar` | `1.8.2` | `API and Library` | 25/09/2026 - 11:24 |
 | 379 | Loot Journal: Pickup Notifier [Forge Edition] | `loot_journal-neoforge-1.21.1-6.2.1.jar` | `6.2.1` | `Adventure and RPG + Cosmetic + Utility & QoL` | 25/09/2026 - 11:24 |
-| 380 | Loot Integrations | `lootintegrations-1.21.1-4.7.jar` | `4.7` | `Adventure and RPG + Server Utility` | 25/09/2026 - 11:24 |
+| 380 | Loot Integrations | `lootintegrations-1.21.1-4.7.jar` | `4.7` | `Adventure and RPG + Server Utility` | 18/11/2026 - 08:01 |
 | 381 | Loot Integrations: L_Ender 's Cataclysm | `lootintegrations_cataclysm-1.2.jar` | `1.2 (distribuição); metadata interna 1` | `Addons + Structures` | 25/09/2026 - 11:24 |
 | 382 | Loot Integrations: Ice and Fire | `lootintegrations_iceandfire-1.2.jar` | `1.2` | `Addons + Structures` | 25/09/2026 - 12:00 |
 | 383 | Loot Integrations: Integrated Dungeons, Villages & Strongholds & Cataclysm | `lootintegrations_integrated-1.5.jar` | `1.5 (distribuição); metadata interna 1` | `Addons + Structures` | 25/09/2026 - 12:00 |
@@ -1142,10 +1155,10 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 35 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | 1.5.0 (source 1.21.1) | **PENDENTE**: 1.4.0 binário confirmado Modrinth; source 1.4.2–1.5.0 auditado; fechamento da lista oficial de releases pendente |
 | 36 | Sable: Ragdoll - Patch | [Abrir `.md`](./Bug%20Fixes/%E2%9C%85-sable-ragdolls-patch%20v1.9.md) | `1.9` | 1.9.1 (Release NeoForge 1.21.1, 19/10) | **CORRIGIDO E AUDITADO; alpha cape transparency** |
 | 37 | Eidolon : Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | 0.5.0.8 (26/10; filename, título 0.5.0.7) | **AUDITORIA DOCUMENTAL FECHADA 18/11**; locator/summon ritual QA |
-| 38 | [ETF] Entity Texture Features - [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-texture-features%20v7.2.1.md) | `7.2.1` | 7.2.6 (15/10; 7.2.2→7.2.6) | **AUDITORIA DOCUMENTAL FECHADA; EMF/ETF render QA** |
+| 38 | [ETF] Entity Texture Features - [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-texture-features%20v7.2.1.md) | `7.2.1` | 7.2.7 (03/11; 7.2.2→7.2.7) | **REVALIDADO 18/11; 7.2.7 sem delta funcional anunciado para 1.21.1**, apenas traduções não detalhadas; EMF/ETF render QA |
 | 39 | Reliquified Ars Nouveau | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-ars-nouveau%20v0.8.1.md) | `0.8.1` | 0.8.1 Beta (sem publicação posterior NeoForge 1.21.1) | **REVALIDADO; zero versões intermediárias** |
-| 40 | Create:LazyTick | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-lazy-tick%20v2.6.25-6.0.10.md) | `2.6.25-6.0.10` | 2.7.30 / Create 6.0.10 (28/09) | **AUDITORIA DOCUMENTAL FECHADA; Modrinth histórico 2.6.25→2.7.30** |
-| 41 | Ecliptic Seasons | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Farming%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ecliptic-seasons%20v0.15.0-rc-3-1.md) | `0.15.0-rc-3-1` | 0.15.4.1 Beta (NeoForge 1.21.1, 16/10) | **AUDITORIA DOCUMENTAL FECHADA; Beta não promovida** |
+| 40 | Create:LazyTick | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-lazy-tick%20v2.6.25-6.0.10.md) | `2.6.25-6.0.10` | 2.7.33 / Create 6.0.10 (29/10) | **AUDITORIA DOCUMENTAL FECHADA 18/11**; .31–.33 complementadas; QA de automação pendente |
+| 41 | Ecliptic Seasons | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Farming%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ecliptic-seasons%20v0.15.0-rc-3-1.md) | `0.15.0-rc-3-1` | 0.15.5.1 (NeoForge 1.21.1, 02/11) | **AUDITORIA DOCUMENTAL FECHADA 18/11**; deltas .5 e .5.1 do source versionado; QA de clima/config/chunks pendente |
 | 42 | Fragmentum ✿ NeoForge | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | 5.4.0 (NeoForge 1.21.1, 16/10) | **AUDITORIA DOCUMENTAL FECHADA; migração 2.x→5.x exige QA** |
 | 43 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | 2.2.1 (NeoForge 1.21.1, 15/10) | **AUDITORIA DOCUMENTAL FECHADA; ParCool/ABI não homologados** |
 | 44 | FamiliarsLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-familiarslib%20v1.21.1-1.7.md) | `1.21.1-1.7` | 1.8 (NeoForge 1.21.1, 24/09) | **AUDITORIA DOCUMENTAL FECHADA; metadata divergente preservada** |
@@ -1266,9 +1279,9 @@ Esta matriz complementar preserva a numeração do pedido, distinta da ordem fí
 | 35 | Polymorph+ | 1.3.1+1.21.1 | 1.3.2–1.4.1; source 1.4.2/1.4.3/1.5.0 | PENDENTE: 1.4.0 JAR confirmado Modrinth, etapas posteriores versionadas no source; inventário oficial de publicações incompleto |
 | 36 | Sable: Ragdoll - Patch | 1.9 | 1.9.1 Release (19/10), cape alpha | FECHADO documental; retificado anterior sem bump |
 | 37 | Eidolon : Repraised | 0.5.0.2 | 0.5.0.4, 0.5.0.5, 0.5.0.6, 0.5.0.7, 0.5.0.8 (filename) | FECHADO documental 18/11; título da última publicação divergente; checar rituais locator/summon/mana |
-| 38 | [ETF] Entity Texture Features | 7.2.1 | 7.2.2, 7.2.3, 7.2.4, 7.2.5, 7.2.6 | FECHADO documental; render/shaders/EMF QA |
+| 38 | [ETF] Entity Texture Features | 7.2.1 | 7.2.2, 7.2.3, 7.2.4, 7.2.5, 7.2.6, 7.2.7 | FECHADO documental 18/11; fixes 7.2.7 limitados a 1.21.9+ e traduções; dossier preservado; render/shaders/EMF QA |
 | 39 | Reliquified Ars Nouveau | 0.8.1 Beta | 0.8.1 Beta, sem release posterior para 1.21.1 | REVALIDADO; intervalo vazio |
-| 40 | Create:LazyTick | 2.6.25-6.0.10 | 2.7.29, 2.7.30 / Create 6.0.10 | FECHADO documental: Modrinth changelog cumulativo lista 2.6.25→2.7.29→2.7.30; QA pendente |
+| 40 | Create:LazyTick | 2.6.25-6.0.10 | 2.7.29, 2.7.30, 2.7.31, 2.7.32, 2.7.33 / Create 6.0.10 | FECHADO documental 18/11; sequência confirmada, .32 correção Fabric segregada; QA pendente |
 **Regra para o Bloco de Notas, após CI+merge+re-fetch:** os **dez itens 31–40** podem sair da lista de pendências de auditoria **documental**, porque as publicações intermediárias são agora cobertas por changelog oficial ou commits upstream versionados da linha NeoForge 1.21.1. O JAR 1.4.0 Polymorph+ não foi individualizado como download: source 1.21.1 versionado é a evidência do delta. Esta revisão **não comprova atualização física, hashes de novos JARs, segurança de upgrade ou testes in-game**.
 
 
@@ -1276,7 +1289,7 @@ Esta matriz complementar preserva a numeração do pedido, distinta da ordem fí
 Esta matriz segue a numeração do pedido, não a posição física da tabela de 587 mods. **Somente dossiers com ✅ e versão física explícita foram editados (#41–#49).** O dossier #50 SEM ✅ permanece intocado, sem promoção de elegibilidade. Toda versão nova é publicação upstream documental, não JAR instalado/homologado.
 | Pedido | Mod | Versão física | Upstream NeoForge 1.21.1 | Auditoria documental |
 |---:|---|---|---|---|
-| 41 | Ecliptic Seasons | 0.15.0-rc-3-1 | 0.15.1→0.15.4.1 Beta | Fechada; 0.15.4 corrige plantio no inverno; 0.15.4.1 rebalanceia chuva |
+| 41 | Ecliptic Seasons | 0.15.0-rc-3-1 | 0.15.1→0.15.5.1 | FECHADA documental 18/11; .4/.4.1 já auditadas, .5/.5.1 conferidas nos commits 1.21.1; não promovida fisicamente |
 | 42 | Fragmentum NeoForge | 2.4.4 | 5.0.0→5.1.1→5.2.0→5.3.0→5.4.0 | Fechada documental; breaking Kotlin/registries e opção Lite, migração física sem QA |
 | 43 | ThirstWasFixed | 2.1.6 | 2.2.0→2.2.1 | Fechada documental; atributo ParCool e config Linux |
 | 44 | FamiliarsLib | filename 1.7.1 / metadata 1.21.1-1.7 | 1.8 | Fechada documental; storage 10→50 e backup |
