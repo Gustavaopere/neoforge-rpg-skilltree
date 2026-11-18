@@ -113,3 +113,11 @@ Para uma biblioteca desse tipo, os testes são de **integração dos dependentes
 - [CurseForge — Architectury API 13.0.11 NeoForge](https://www.curseforge.com/minecraft/mc-mods/architectury-api/files/8492726)
 - [Source oficial — Architectury API](https://github.com/architectury/architectury-api)
 - Modlist física do projeto — authority da instalação top-level.
+
+## Auditoria incremental upstream 13.0.12 — 18/11/2026
+
+**Autoridade física preservada:** #039, `architectury-13.0.11-neoforge.jar`, runtime 13.0.11. A [listagem NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/architectury-api/files/all?gameVersionTypeId=6&page=1&pageSize=20&version=1.21.1) confirma 13.0.12 como única publicação posterior nessa linha. [Release 13.0.12](https://www.curseforge.com/minecraft/mc-mods/architectury-api/files/9608861), 14/11/2026, Minecraft 1.21/1.21.1, NeoForge, aponta para o histórico oficial da branch 1.21.
+
+O [commit de correção](https://github.com/architectury/architectury-api/commit/9dff412a887cd1896eaf3024f8066af438f8fb22), integrado pelo [merge #754](https://github.com/architectury/architectury-api/commit/4d2c77918d08c312fe58a024cf909bb3ff00ff8e), altera exclusivamente `fabric/.../GameInstanceImpl.java`: preserva a referência rastreada ao servidor integrado durante shutdown quando a referência do cliente já foi liberada. A revisão do diff confirma que não há alteração de código NeoForge nesse delta; não atribuir esse fix Fabric à implementação NeoForge. Nenhuma nova API de gameplay identificada. Para este pack a mudança não exige reescrita das superfícies técnicas existentes; permanece o gate de boot client/dedicated e shutdown dos consumers. Categoria CurseForge: API and Library, pasta preservada.
+
+**Estado:** auditoria documental até 13.0.12 concluída; instalação permanece 13.0.11 no último snapshot e testes de integração não executados.

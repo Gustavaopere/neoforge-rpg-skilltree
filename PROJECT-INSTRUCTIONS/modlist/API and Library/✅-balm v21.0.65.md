@@ -120,3 +120,11 @@ Impacto: consumidores que registram ou observam block entities por Balm podem ma
 Gate de promoção 21.0.65→21.0.66: dedicated server; carregar/descarregar repetidamente chunks com block entities de consumers Balm; dimension change; restart; heap/reference observation; garantir callback exatamente uma vez e ausência de stale references/duplicate handlers.
 
 Fonte upstream: CurseForge file ID 8969738, Balm 21.0.66 para NeoForge 1.21.1.
+
+## Auditoria incremental upstream 21.0.67 — 18/11/2026
+
+**Autoridade física preservada:** #064, `balm-neoforge-1.21.1-21.0.65.jar`, runtime 21.0.65. A [listagem NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/balm/files/all?gameVersionTypeId=6&page=1&pageSize=20&version=1.21.1) confirma somente 21.0.66 e 21.0.67 após 21.0.65. A [21.0.66](https://www.curseforge.com/minecraft/mc-mods/balm/files/8969738), 25/09, já documentada acima, corrige vazamento de memória em `BlockEntityOnLoadCallback`.
+
+A [21.0.67](https://www.curseforge.com/minecraft/mc-mods/balm/files/9406246), 02/11/2026, release NeoForge 1.21.1, introduz por backport o suporte ao parâmetro `lootTableId` em `BalmLootModifier`. Trata-se de alteração relevante de API: permite que consumidores que implementem modificadores de loot recebam o identificador da tabela, possibilitando distinguir tabelas no processamento. A semântica concreta do loot continua no consumidor; não há evidência de mudança automática no loot do pack, nem de que versões antigas de consumidores utilizem a nova superfície. Não assumir assinatura exata ou compatibilidade binária sem compilar contra a versão-alvo. Gate: regressão de loot em tabelas vanilla/modded e datapacks, reload de dados, compatibilidade de consumidores existentes, dedicated server, teste de lifecycle de block entities da 21.0.66. KumaAPI embarcado confirmado apenas para o JAR físico histórico, não extrapolado à nova build. Categoria CurseForge: API and Library, pasta preservada.
+
+**Estado:** auditoria documental até 21.0.67 concluída; instalação/homologação pendentes.
