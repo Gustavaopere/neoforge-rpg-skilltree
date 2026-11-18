@@ -103,3 +103,18 @@ Validar:
 
 > 📚 Exaustividade proporcional: as três superfícies públicas confirmadas — config, first join e live message — estão documentadas com authority/lifecycle/riscos. Nenhum API interno foi inventado.
 
+## Auditoria incremental — 18/11/2026 — 1.0.111 a 1.0.113
+
+**Baseline físico:** #069, `better_lib-neoforge-1.21.1-1.0.111.jar`, mod id `better_lib`, runtime 1.0.111. Projeto oficial de Reggarf, CurseForge ID 1150683, categorias **API and Library + Server Utility + Utility & QoL**, diretório preservado.
+
+**Releases catalogadas:** a sequência de publicações NeoForge aplicáveis a 1.21.1 após 1.0.111 contém **1.0.113** (25/10/2026, file ID 9319311). As publicações 1.0.112 listadas na transição são para 1.21.11, 1.21.9/10 e 1.21.6–1.21.8; não há publicação 1.0.112 demonstrada para NeoForge 1.21.1. Tampouco 2.1.3 de MC 26.x é atualização do alvo. Não inventar uma release intermediária nem transferir suas mudanças entre versões do Minecraft.
+
+### 1.0.113 — delta oficial para NeoForge 1.21.1
+- Sistema de popups configuráveis de boas-vindas ao iniciar o jogo/entrar no mundo, incluindo mensagens, links e avisos; preservar separação entre apresentação e concessão de rewards, não confiar em conteúdo remoto como comando.
+- Reformulação da UI de configurações com sliders, seleção de cores e visualização/edição de ajustes de outros mods pela interface comum. Não assumir que todos os mods consumidores disponibilizam configs ou autorizam escrita server-side por essa superfície.
+- Correções de profissões customizadas de villagers, workstations e trades; relevante para o lifecycle de jobs e para mods consumidores, sem inferir novas profissões/trades próprios da biblioteca.
+- Ajustes de estabilidade multi-loader e responsividade/campos de texto, sem alteração de mecânicas específica adicional comprovada.
+
+**Gates:** validar consumidores e dependências da versão candidata, migração de config, autoridade cliente/servidor sobre ajustes, popups offline/reconnect/restart, profissão/POI/trades customizados, dedicated server e possíveis alterações do empacotamento (tamanho publicado aumentou de aproximadamente 285 KB para 2,4 MB; conteúdo binário e JarJar não inspecionados). Sem execução de testes ou substituição do JAR.
+
+**Fontes oficiais:** [catálogo NeoForge](https://www.curseforge.com/minecraft/mc-mods/better-library/files/all?gameVersionTypeId=6&page=1&pageSize=20), [arquivo 1.0.113 e changelog](https://www.curseforge.com/minecraft/mc-mods/better-library/files/9319311), [projeto](https://www.curseforge.com/minecraft/mc-mods/better-library). **Auditoria documental encerrada até 1.0.113**; a versão histórica instalada 1.0.111 permanece no nome e no inventário, e a promoção física exige QA.
