@@ -141,3 +141,21 @@ WorldWeaver fornece infraestrutura para BetterEnd/BetterNether/BCLib/WunderLib. 
 **QA coordenado:** BCLib: New Dawn, BetterEnd, BetterNether, WunderLib, TerraBlender e worlds com chunks existentes e novos, preservação de biome placement externo, registries, datafixers, End/Nether, datapack reload e seed repetível. **BLOQUEADO para afirmar auditoria completa release-by-release** até localizar changelogs/tags ou diff source de 21.0.26, 21.0.27, 21.0.28 e 21.0.29; nenhuma alteração física foi feita.
 
 Fonte oficial: https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/all ; https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge .
+
+## Complemento incremental 17/11/2026 — WorldWeaver 21.0.26–21.0.31
+
+**Escopo:** projeto CurseForge correto [WorldWeaver: New Dawn (NeoForge)](https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge), distinto do WorldWeaver original Fabric. Categorias oficiais **API and Library + Biomes + Utility & QoL + World Gen**, já refletidas na pasta. O último JAR físico histórico (#572) permanece **`worldweaver-21.0.25.jar`**, `wover` `21.0.25`; nenhum inventário físico novo nem runtime foi obtido. **Release mais recente confirmada para 1.21.1 NeoForge nesta pesquisa: 21.0.31 (07/11/2026)**. Publicações de Minecraft 1.21.11/26.x não são aplicáveis.
+
+| Release | Data registrada e evidência oficial | Impacto funcional verificável / lacuna |
+|---|---|---|
+| **21.0.26** | 04/10/2026 conforme levantamento documental anterior; página exata do arquivo não recuperada nesta revisão. | **PENDENTE:** changelog individual não confirmado; não atribuir mudanças cumulativas. |
+| **21.0.27** | **14/10/2026**, [CurseForge file ID 9172424](https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/9172424). | **RELEVANTE:** corrige registro incompleto de biomas de End quando BetterNether está ausente, melhora compatibilidade de fontes/estruturas de End externas e recarrega biome sources após tags aplicadas pelo loader. Supre especificamente lacuna antes registrada na auditoria de 22/10. |
+| **21.0.28** | **19/10/2026**, publicação NeoForge 1.21.1 confirmada na [listagem oficial](https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/all). | **PENDENTE:** changelog granular associado ao arquivo não obtido; não inventar fix. |
+| **21.0.29** | **20/10/2026**, publicação NeoForge 1.21.1 confirmada na [listagem oficial](https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/all). | **PENDENTE:** changelog granular não obtido; não atribuir automaticamente as mudanças anunciadas no projeto. |
+| **21.0.30** | **24/10/2026**, [CurseForge file ID 9306568](https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/9306568). | **RELEVANTE:** corrige placement e serialização de estruturas sensíveis ao locale do sistema (incluindo turco); testar geração em servidor com locales distintos. |
+| **21.0.31** | **07/11/2026**, [CurseForge file ID 9490293](https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/9490293). | **RELEVANTE:** acrescenta compatibilidade com **Biolith**; não assumir que Biolith esteja instalado ou que substitua integração TerraBlender. |
+
+**Gate de compatibilidade coordenado ainda pendente:** identificar contratos de versão e changelog por build do stack BetterEnd: New Dawn, BetterNether: New Dawn, BCLib: New Dawn, WunderLib e TerraBlender; verificar instâncias com e sem BetterNether, End biome sources externos, Biolith caso presente, seed/presets reais, condições sem Biolith, locale inglês/turco, registries/tags, worldgen em novos chunks e em save existente, restart, reload, dedicado e compat de NeoForge. Estas verificações **não foram executadas**.
+
+**Estado:** **AUDITORIA DOCUMENTAL PENDENTE** por falta de changelogs individuais 21.0.26, 21.0.28 e 21.0.29 (e dados físicos novos). A documentação foi complementada **sem** certificar falsamente a cadeia inteira, sem renomear/mover o dossier e sem atualizar JARs. O dossier já tinha ✅ por auditoria histórica da versão instalada; isso não equivale a homologação de 21.0.31.
+
