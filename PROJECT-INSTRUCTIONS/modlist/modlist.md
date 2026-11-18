@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 18/11/2026 (Climbable Ropes e revalidação Epic Fight: Curios Compat)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
+|---:|---|---|---|---|
+| 095 | Climbable Ropes for Create Aeronautics | `2.1.3` | [2.2.2](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes/files/9529382) | Concluído documentalmente; retirada da exigência de Player Animator em 2.2.0; 2.2.1 (source) e 2.2.2 auditadas. QA pendente. |
+| 259 | Epic Fight: Curios Compat 4.0 | `2.2` distribuição / `1.4` metadata | [4.0](https://www.curseforge.com/minecraft/mc-mods/epicfightcurioscompat/files/9296370) | Revalidado: 3.0, 3.1 e 4.0 já documentadas; catálogo oficial mantém 4.0 como última release NeoForge 1.21.1; sem mudança de conteúdo ou data de edição do dossier. QA pendente. |
+
 ## Auditoria incremental — 18/11/2026 (Trees e Leylines)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
@@ -341,7 +348,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 092 | Chipped | `chipped-neoforge-1.21.1-4.0.2.jar` | `4.0.2` | `Cosmetic` | 23/09/2026 - 01:02 |
 | 093 | Chunky (Forge/NeoForge) | `Chunky-NeoForge-1.4.23.jar` | `1.4.23` | `Dimensions + Server Utility + World Gen` | 23/09/2026 - 01:02 |
 | 094 | Citadel | `citadel-2.7.1-1.21.1.jar` | `2.7.1` | `API and Library + Miscellaneous` | 23/09/2026 - 01:13 |
-| 095 | Climbable Ropes for Create Aeronautics | `climbable_ropes-2.1.3.jar` | `2.1.3` | `Addons + Create` | 23/10/2026 - 01:17 |
+| 095 | Climbable Ropes for Create Aeronautics | `climbable_ropes-2.1.3.jar` | `2.1.3` | `Addons + Create` | 18/11/2026 - 10:15 |
 | 096 | Clockwork | `clockwork-neoforge-1.21.1-1.1.4.jar` | `1.1.4` | `Cosmetic + Mobs + Technology` | 23/09/2026 - 01:02 |
 | 097 | Cloth Config API (Fabric/Forge/NeoForge) | `cloth-config-15.0.140-neoforge.jar` | `15.0.140` | `API and Library` | 23/09/2026 - 01:02 |
 | 098 | Clumps | `Clumps-neoforge-1.21.1-19.0.0.1.jar` | `19.0.0.1` | `Server Utility + Storage + Utility & QoL` | 23/09/2026 - 01:02 |
