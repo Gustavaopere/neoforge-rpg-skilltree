@@ -131,3 +131,15 @@ Fontes upstream: CurseForge file IDs 8970326 (2.7.29) e 8995867 (2.7.30); source
 A [página oficial de versão no Modrinth](https://modrinth.com/mod/createlazytick/version/1.21.1-2.7.30-6.0.10) contém um histórico **cumulativo** nesta ordem: **v2.7.30**, **v2.7.29**, **v2.6.25**, **v2.5.21**. Portanto, 2.7.29 e 2.7.30 são **ambas** as publicações da sequência informada desde a versão instalada neste canal. Nenhum passo 2.7.26/27/28 é afirmado sem publicação. As notas oficiais de 2.7.29 e 2.7.30 registradas acima correspondem aos JARs NeoForge 1.21.1/6.0.10 ID 8970326 e 8995867, e nenhuma instalação foi feita.
 
 **Status de revisão:** histórico completo conforme a série de releases oficiais disponível, **verificação de performance, world save, shaders, ABI e servidor dedicado pendente**. A separação entre documentação fechada e atualização física permanece explícita.
+
+## Auditoria incremental de 18/11/2026 — Create:LazyTick 2.7.31–2.7.33
+
+**Baseline físico:** #191, `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar`, runtime 2.6.25-6.0.10. Projeto Pink_Cats (CurseForge 1409401), categorias **Addons + Bug Fixes + Create**. A [listagem oficial](https://www.curseforge.com/minecraft/mc-mods/create-lazytick/files/all?gameVersionTypeId=6&page=1&pageSize=20&showAlphaFiles=hide) confirma a continuidade **2.7.31 → 2.7.32 → 2.7.33**, todas para Minecraft 1.21.1/Create 6.0.10 com filename NeoForge. A cadeia 2.7.29–2.7.30 já foi individualizada acima.
+
+| Release | Evidência e mudança |
+|---|---|
+| [2.7.31](https://www.curseforge.com/minecraft/mc-mods/create-lazytick/files/9188038), 15/10/2026 | Corrige mudança de modos do Lazy Tick Clock em servidor dedicado, desacoplando feedback de configurações de tooltip exclusivas do cliente. |
+| [2.7.32](https://www.curseforge.com/minecraft/mc-mods/create-lazytick/files/9298663), 23/10/2026 | Correção de inicialização vinculada a mappings da versão Fabric (não atribuir ao NeoForge); estabilidade genérica sem delta funcional especificado. |
+| [2.7.33](https://www.curseforge.com/minecraft/mc-mods/create-lazytick/files/9357886), 29/10/2026 | Corrige aceitação incorreta de ingredientes de sequenced assembly pelo cache do Deployer (issues 47/48). Elimina buscas de vizinhos dos funnels mantendo transferências da Portable Storage Interface e velocidade de saída de Deployer; reduz trabalho de diagnóstico de saw e lookups redundantes de cache do Spout. |
+
+**Relevância:** 2.7.31 e 2.7.33 afetam autoridade client/server e correção da automação, não apenas FPS/TPS. Testar sequência de montagem com ingredientes corretos/incorretos, cache/reload, conservação de itens, máquinas móveis com Portable Storage Interface, funnels e Deployer, fluidos/Spout, saw, Lazy Tick Clock no servidor dedicado, regressões anteriores e comparação MSPT. A 2.7.32 não justifica nova mecânica no dossier. Cadeia documental atualizada até 2.7.33; preservar baseline instalado, não afirmar promoção, compatibilidade binária ou QA executado.
