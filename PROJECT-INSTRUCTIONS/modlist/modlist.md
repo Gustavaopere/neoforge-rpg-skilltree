@@ -22,6 +22,17 @@
 | 432 | Paladin Spells - Iron's Spells Addon | `1.21.1-1.1.1` | [1.1.4](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9392196) | **Pendente estrutural**; releases 1.1.2–1.1.4 auditadas; categorias atuais Addons + Adventure and RPG + Magic divergem da pasta histórica Addons + Magic. Busca de referências ao caminho antigo incompleta; não mover nem certificar até validar os links. |
 
 
+## Auditoria incremental — 18/11/2026 (LDLib, Moonlight, Eidolon e Polymorph+)
+
+> Base física e basenames preservados; apenas atualização documental.
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
+|---:|---|---|---|---|
+| 246 | Eidolon : Repraised | `0.5.0.2` | [0.5.0.8 por filename](https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/9332315) | **Fechado documental**; título 0.5.0.7 divergente, changelog de consulta de ritual via spawn egg; QA/manifest pendentes. |
+| 370 | LDLib | `2.2.39.a` | [2.2.46.a](https://www.curseforge.com/minecraft/mc-mods/ldlib/files/9495128) | **Fechado documental**; 2.2.46 base identificada no source, sem JAR independente demonstrado; QA de consumers/persistência/RPC pendente. |
+| 407 | Moonlight Lib | `1.21.1-3.6.4` | [3.8.3](https://www.curseforge.com/minecraft/mc-mods/selene/files/9519534) | **Fechado documental**; 3.7.2 changelog genérico, 3.8.0–3.8.3 individualizadas; QA de consumers/registry/config pendente. |
+| 448 | Polymorph+ | `1.3.1+1.21.1` | [1.5.0 no source](https://github.com/Aminoquiz/polymorph_plus/commit/be85539c823f9756dccf7481b57a712ee9886159) | **Pendente**; 1.4.0 binário confirmado no Modrinth, deltas source 1.4.2/1.4.3/1.5.0 auditados, inventário de publicações oficiais ainda incompleto. |
+
 ## Auditoria incremental de releases — 17/11/2026
 
 > Esta consulta **não altera** o inventário físico de 587 entradas: as versões listadas como upstream são candidatas documentadas, **não** JARs novos instalados. As duas linhas físicas #416 e #543 abaixo preservam os filenames/versões comprovados no último snapshot; `Última edição` reflete somente as revisões documentais efetivamente realizadas.
@@ -404,7 +415,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 22/10/2026 - 23:19 |
 | 244 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
 | 245 | Epic Fight x Iron's Spells: Enhanced Animations | `efiscompat-3.1.0.jar` | `3.1.0` | `Cosmetic + Miscellaneous` | 24/09/2026 - 14:02 |
-| 246 | Eidolon : Repraised | `eidolon_repraised-1.21.1-0.5.0.2.jar` | `0.5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/10/2026 - 22:49 |
+| 246 | Eidolon : Repraised | `eidolon_repraised-1.21.1-0.5.0.2.jar` | `0.5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 18/11/2026 - 07:44 |
 | 247 | EMF Compat: Core | `emf_compat_core_1.21.1_2.0.0.jar` | `2.0.0` | `API and Library + Cosmetic` | 17/11/2026 - 18:50 |
 | 248 | EMF Compat: Create | `emf_compat_create_1.21.1_2.0.0.jar` | `2.0.0` | `Bug Fixes + Cosmetic` | 24/09/2026 - 14:02 |
 | 249 | EMF Compat: Iron's Spells 'n Spellbooks | `emf_compat_iron_spells_1.21.1_2.0.0.jar` | `2.0.0` | `Addons + Bug Fixes` | 17/11/2026 - 18:50 |
@@ -528,7 +539,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 367 | KubeJS Delight | `kubejsdelight-1.1.6.jar` | `1.1.6` | `KubeJS` | 25/09/2026 - 10:34 |
 | 368 | L_Ender's Cataclysm | `L_Ender's Cataclysm 1.21.1-3.33.jar` | `3.33` | `Adventure and RPG + Armor, Tools, and Weapons + Mobs + Structures` | 25/09/2026 - 10:34 |
 | 369 | LambDynamicLights | `lambdynamiclights-4.8.11+1.21.1.jar` | `4.8.11+1.21.1` | `Adventure and RPG + Cosmetic` | 25/09/2026 - 10:34 |
-| 370 | LDLib | `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar` | `2.2.39.a` | `API and Library + Utility & QoL` | 25/09/2026 - 10:34 |
+| 370 | LDLib | `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar` | `2.2.39.a` | `API and Library + Utility & QoL` | 18/11/2026 - 07:44 |
 | 371 | Legendary Monsters | `legendary_monsters-2.2.2 MC 1.21.1.jar` | `2.2.2 (distribuição); metadata interna 1.21.1` | `Armor, Tools, and Weapons + Mobs + Structures` | 17/11/2026 - 18:47 |
 | 372 | Legendary Spellbooks | `legendary_spellbooks-1.21.1+neo-0.3.2.jar` | `0.3.2` | `Addons + Magic` | 25/09/2026 - 11:24 |
 | 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `leylines-1.0.3.jar` | `1.0.3` | `Addons + Magic + Structures + World Gen` | 25/09/2026 - 11:24 |
@@ -565,7 +576,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 404 | Modonomicon | `modonomicon-1.21.1-neoforge-1.120.4.jar` | `1.120.4` | `Adventure and RPG + API and Library + Map and Information` | 25/09/2026 - 13:25 |
 | 405 | MonoLib | `monolib-neoforge-1.21.1-4.1.0.jar` | `4.1.0` | `API and Library + Education + Utility & QoL` | 25/09/2026 - 13:25 |
 | 406 | Monsters & Spellbooks: Iron's Spells 'n Spellbooks Addon | `monsterspellbooks-0.0.16.3.jar` | `0.0.16.3` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 25/09/2026 - 13:25 |
-| 407 | Moonlight Lib | `moonlight-1.21.1-3.6.4-neoforge.jar` | `1.21.1-3.6.4` | `API and Library` | 17/09/2026 - 00:06 |
+| 407 | Moonlight Lib | `moonlight-1.21.1-3.6.4-neoforge.jar` | `1.21.1-3.6.4` | `API and Library` | 18/11/2026 - 07:44 |
 | 408 | More Relics | `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` | `1.7.7-forRelics-0.12.8-1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 13:25 |
 | 409 | Mouse Tweaks | `MouseTweaks-neoforge-mc1.21-2.26.1.jar` | `2.26.1` | `Miscellaneous + Storage + Utility & QoL` | 25/09/2026 - 13:25 |
 | 410 | Mowzie's Cataclysm | `mowzies_cataclysm-1.2.2.jar` | `1.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 13:25 |
@@ -606,7 +617,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 445 | Platform | `Platform-neoforge-1.21.1-1.3.3.jar` | `1.3.3` | `API and Library` | 17/11/2026 - 18:22 |
 | 446 | playerAnimator | `player-animation-lib-forge-2.0.4+1.21.1.jar` | `2.0.4+1.21.1` | `API and Library + Cosmetic` | 26/09/2026 - 02:33 |
 | 447 | Player Animation Library | `PlayerAnimationLibNeoforge-1.1.6+mc.1.21.1.jar` | `1.1.6+mc.1.21.1` | `API and Library` | 26/09/2026 - 02:33 |
-| 448 | Polymorph+ | `polymorph_plus-neoforge-1.3.1+1.21.1.jar` | `1.3.1+1.21.1` | `Miscellaneous + Utility & QoL` | 22/10/2026 - 22:55 |
+| 448 | Polymorph+ | `polymorph_plus-neoforge-1.3.1+1.21.1.jar` | `1.3.1+1.21.1` | `Miscellaneous + Utility & QoL` | 18/11/2026 - 07:45 |
 | 449 | Polytone | `polytone-1.21-4.4.0-neoforge.jar` | `1.21-4.4.0` | `Cosmetic + Utility & QoL` | 22/10/2026 - 23:21 |
 | 450 | Pondus Inventory [Sable] | `pondus_inventory_fi-0.15-Beta.jar` | `0.15-Beta` | `Addons + API and Library + Utility & QoL` | 26/09/2026 - 02:33 |
 | 451 | Create Aeronautics: Portable Engine Liquid Fuel | `portable_engine_liquid_fuel-2.0.0-neoforge-1.21.1.jar` | `2.0.0` | `Addons + Create + MCreator + Utility & QoL` | 26/09/2026 - 02:34 |
@@ -827,8 +838,8 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 12 | Reliquified Artifacts | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-artifacts%20v1.0.8.md) | `1.0.8` | `1.0.9 Beta` | PENDENTE: Relics/Artifacts/Curios e efeitos sem duplicação |
 | 13 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.0.8.md) | `21.0.8` | `21.1.4` | **AUDITORIA DOCUMENTAL FECHADA 18/11**; hotfix 21.0.912 e releases 21.1.3/.4 reconciliados; QA Epic Fight/MineColonies pendente |
 | 14 | Easy Model Entities | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Automation%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-easy-model-entities%20v2.4.0.md) | `2.4.0` | `2.4.0 para NeoForge 1.21.1` | REVALIDADO (source 2.5.0 1.21.1, binário não localizado): EME 2.4.0 NeoForge 1.21.1; incompatível com faixa de Core/UI 7.15.0 quando presente |
-| 15 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | `1.3.2+1.21.1` | PENDENTE: receitas/GUI/JEI/KubeJS |
-| 16 | Eidolon: Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | `0.5.0.2` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 15 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | `1.5.0+1.21.1` (source) | **PENDENTE**: commits 1.4.2–1.5.0 auditados; falta inventário oficial de publicações para o alvo |
+| 16 | Eidolon: Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | `0.5.0.8` (filename; título 0.5.0.7) | **FECHADO documental 18/11**; cadeia 0.5.0.4–0.5.0.8 revisada; manifest/QA pendentes |
 | 17 | Fragmentum [NeoForge] | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | `5.3.0` | BLOQUEADO: mudança incompatível de API/Kotlin/registries desde 5.0 |
 | 18 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | `2.1.6` | REVALIDADO: sem nova release 1.21.1 demonstrada |
 | 19 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | `5.1.1` | PENDENTE: voxel volume/Veil, shaders, packs; compat de Amendments |
@@ -1128,9 +1139,9 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 32 | owo (owo-lib) | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-owo-lib%20v0.12.15.5-beta.1%2B1.21.md) | `0.12.15.5-beta.1+1.21` | 0.12.15.6-beta.1+1.21 (Beta, NeoForge) | **AUDITORIA DOCUMENTAL FECHADA; Beta não instalada** |
 | 33 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.0.8.md) | `21.0.8` | 21.1.4 (16/11; 21.0.9→21.1.4) | **AUDITORIA DOCUMENTAL FECHADA 18/11**, com hotfix 21.0.912; validar EFM/MineColonies |
 | 34 | Easy Model Entities | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Automation%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-easy-model-entities%20v2.4.0.md) | `2.4.0` | 2.6.0 (NeoForge 1.21.1; 2.5.0 intermediária) | **AUDITORIA DOCUMENTAL FECHADA; Easy NPC coordenado** |
-| 35 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | 1.4.1 (NeoForge 1.21.1) | **AUDITORIA DOCUMENTAL FECHADA; source 1.21.1 pinado, QA JEI pendente** |
+| 35 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.3.1%2B1.21.1.md) | `1.3.1+1.21.1` | 1.5.0 (source 1.21.1) | **PENDENTE**: 1.4.0 binário confirmado Modrinth; source 1.4.2–1.5.0 auditado; fechamento da lista oficial de releases pendente |
 | 36 | Sable: Ragdoll - Patch | [Abrir `.md`](./Bug%20Fixes/%E2%9C%85-sable-ragdolls-patch%20v1.9.md) | `1.9` | 1.9.1 (Release NeoForge 1.21.1, 19/10) | **CORRIGIDO E AUDITADO; alpha cape transparency** |
-| 37 | Eidolon : Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | 0.5.0.7 (17/10; 0.5.0.4/.5/.6/.7) | **AUDITORIA DOCUMENTAL FECHADA; locator ritual QA** |
+| 37 | Eidolon : Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | 0.5.0.8 (26/10; filename, título 0.5.0.7) | **AUDITORIA DOCUMENTAL FECHADA 18/11**; locator/summon ritual QA |
 | 38 | [ETF] Entity Texture Features - [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-texture-features%20v7.2.1.md) | `7.2.1` | 7.2.6 (15/10; 7.2.2→7.2.6) | **AUDITORIA DOCUMENTAL FECHADA; EMF/ETF render QA** |
 | 39 | Reliquified Ars Nouveau | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-ars-nouveau%20v0.8.1.md) | `0.8.1` | 0.8.1 Beta (sem publicação posterior NeoForge 1.21.1) | **REVALIDADO; zero versões intermediárias** |
 | 40 | Create:LazyTick | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-lazy-tick%20v2.6.25-6.0.10.md) | `2.6.25-6.0.10` | 2.7.30 / Create 6.0.10 (28/09) | **AUDITORIA DOCUMENTAL FECHADA; Modrinth histórico 2.6.25→2.7.30** |
@@ -1252,9 +1263,9 @@ Esta matriz complementar preserva a numeração do pedido, distinta da ordem fí
 | 32 | owo (owo-lib) | 0.12.15.5-beta.1+1.21 | 0.12.15.6-beta.1+1.21 Beta | FECHADO documental; Beta não instalada |
 | 33 | Minecolonies: Epicfied (Epic Colonies) | 21.0.8 | 21.0.9, 21.0.91, 21.0.912, 21.1.0, 21.1.1, 21.1.2, 21.1.3, 21.1.4 | FECHADO documental em 18/11; QA Epic Fight/MineColonies pendente |
 | 34 | Easy Model Entities | 2.4.0 (metadata runtime ausente) | 2.5.0, 2.6.0 | FECHADO documental; homologar conjunto Easy NPC/EME |
-| 35 | Polymorph+ | 1.3.1+1.21.1 | 1.3.2, 1.4.0 (source 1.21.1), 1.4.1 JAR NeoForge 1.21.1 | FECHADO documental por commits upstream 1.21.1; JAR 1.4.0 não individualizado, QA pendente |
+| 35 | Polymorph+ | 1.3.1+1.21.1 | 1.3.2–1.4.1; source 1.4.2/1.4.3/1.5.0 | PENDENTE: 1.4.0 JAR confirmado Modrinth, etapas posteriores versionadas no source; inventário oficial de publicações incompleto |
 | 36 | Sable: Ragdoll - Patch | 1.9 | 1.9.1 Release (19/10), cape alpha | FECHADO documental; retificado anterior sem bump |
-| 37 | Eidolon : Repraised | 0.5.0.2 | 0.5.0.4, 0.5.0.5, 0.5.0.6, 0.5.0.7 | FECHADO documental; checar rituais locator/mana |
+| 37 | Eidolon : Repraised | 0.5.0.2 | 0.5.0.4, 0.5.0.5, 0.5.0.6, 0.5.0.7, 0.5.0.8 (filename) | FECHADO documental 18/11; título da última publicação divergente; checar rituais locator/summon/mana |
 | 38 | [ETF] Entity Texture Features | 7.2.1 | 7.2.2, 7.2.3, 7.2.4, 7.2.5, 7.2.6 | FECHADO documental; render/shaders/EMF QA |
 | 39 | Reliquified Ars Nouveau | 0.8.1 Beta | 0.8.1 Beta, sem release posterior para 1.21.1 | REVALIDADO; intervalo vazio |
 | 40 | Create:LazyTick | 2.6.25-6.0.10 | 2.7.29, 2.7.30 / Create 6.0.10 | FECHADO documental: Modrinth changelog cumulativo lista 2.6.25→2.7.29→2.7.30; QA pendente |
