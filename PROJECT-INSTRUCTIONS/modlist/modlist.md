@@ -46,6 +46,19 @@
 | 256 | ETF | `7.2.1` | [7.2.7](https://www.curseforge.com/minecraft/mc-mods/entity-texture-features-fabric/files/all?page=1&pageSize=20&version=1.21.1) | **Revalidado**; release 03/11, [changelog oficial](https://github.com/Traben-0/Entity_Texture_Features/blob/ETF-Main/CHANGELOG.MD) limita correções de pixels encantados da skin/memória a 1.21.9+; só traduções genéricas no alvo. Sem mudança material no dossier; QA pendente. |
 | 380 | Loot Integrations | `4.7` | [4.9](https://www.curseforge.com/minecraft/mc-mods/loot-integrations/files/9600289) | **Fechado documental**; sem 4.8 publicada para o alvo no catálogo consultado; geração de mapas e chamadas repetidas de loot; QA de economia/Ars Nouveau pendente. |
 
+## Auditoria incremental — 18/11/2026 (PartiCull, Snow Real Magic, CraftedCore, Flowing Fluids, Cyclops Core, Fantasizing Again)
+
+> Snapshot físico preservado. Não foi feita promoção dos JARs nem homologação de runtime.
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
+|---:|---|---|---|---|
+| 113 | CraftedCore | `5.8.2` | [5.8.3](https://github.com/ToCraft/CraftedCore/releases/tag/5.8.3) | Fechado documental: correção de carregamento de datapacks, publicação NeoForge 1.21.1 comprovada no catálogo CurseForge; QA pendente. |
+| 143 | Create: Fantasizing Again | `1.2.0-b3` | 1.2.0-beta3 no [catálogo CurseForge consultado](https://www.curseforge.com/minecraft/mc-mods/create-fantasizing-again/files/all?page=1&pageSize=20&version=1.21.1) | PENDENTE: listagem CF recuperada anterior à sinalização de atualização recente no [Modrinth](https://modrinth.com/mod/create-fantasizing-again/versions), cujo inventário não carregou. Não certificar ausência de publicação nova. |
+| 213 | Cyclops Core | `1.30.0` | [1.30.2](https://github.com/CyclopsMC/CyclopsCore/blob/1.21.1-1.30.2/CHANGELOG-1.21.1.md) | Fechado documental: beta -1205, 1.30.1 e 1.30.2; correções de concorrência e segurança de networking; QA pendente. |
+| 283 | Flowing Fluids | `1.0.6` | [1.0.8](https://www.curseforge.com/minecraft/mc-mods/flowing-fluids/files/all?page=1&pageSize=20&version=1.21.1) | Fechado documental via catálogo e changelog upstream: 1.0.7 é port 26.2 sem arquivo para o alvo; fix water wheels em 1.0.8; ficha individual não recuperada, QA pendente. |
+| 437 | PartiCull | `2.0` | [2.2](https://www.curseforge.com/minecraft/mc-mods/particull/files/9437517) | PENDENTE: publicação NeoForge 1.21.1 de 04/11 sem changelog; cadeia intermediária e delta não confirmados. Dossier preservado. |
+| 511 | Snow! Real Magic! | `12.2.2+neoforge` | [12.2.5 Beta](https://www.curseforge.com/minecraft/mc-mods/snow-real-magic/files/9389751) | Fechado documental: .3 complementada com srm_variants e FarmersDelightCompat, .4/.5 auditadas; beta não promovida. |
+
 ## Auditoria incremental de releases — 17/11/2026
 
 > Esta consulta **não altera** o inventário físico de 587 entradas: as versões listadas como upstream são candidatas documentadas, **não** JARs novos instalados. As duas linhas físicas #416 e #543 abaixo preservam os filenames/versões comprovados no último snapshot; `Última edição` reflete somente as revisões documentais efetivamente realizadas.
@@ -295,7 +308,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 110 | CorgiLib | `Corgilib-NeoForge-1.21.1-5.0.0.9.jar` | `5.0.0.9` | `API and Library` | 22/09/2026 - 22:35 |
 | 111 | Cosmetic Armor Reworked | `cosmeticarmorreworked-1.21.1-v1-neoforge.jar` | `1.21.1-v1-neoforge` | `Cosmetic` | 22/09/2026 - 22:35 |
 | 112 | Customizable Player Models OSC Compat | `cpm-osc-compat-1.7.2.jar` | `1.7.2` | `Addons + API and Library + Cosmetic` | 22/09/2026 - 23:33 |
-| 113 | CraftedCore | `craftedcore-5.8.2.jar` | `5.8.2` | `API and Library` | 22/09/2026 - 23:33 |
+| 113 | CraftedCore | `craftedcore-5.8.2.jar` | `5.8.2` | `API and Library` | 18/11/2026 - 08:24 |
 | 114 | Crash Assistant | `CrashAssistant-neoforge-1.20.6-1.21.4-1.11.12.jar` | `1.11.12` | `Bug Fixes + Miscellaneous + Performance + Server Utility + Utility & QoL` | 22/09/2026 - 23:33 |
 | 115 | Create: Quality Of Life | `Create Quality of Life-1.21.1-1.6.3-fix1.jar` | `1.6.3-fix1` | `Create + Utility & QoL` | 22/09/2026 - 23:33 |
 | 116 | Create | `create-1.21.1-6.0.10.jar` | `6.0.10` | `Armor, Tools, and Weapons + Cosmetic + Redstone + Technology` | 22/09/2026 - 23:33 |
@@ -395,7 +408,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 24/09/2026 - 00:44 |
 | 211 | Curios API | `curios-neoforge-9.5.1+1.21.1.jar` | `9.5.1+1.21.1` | `Adventure and RPG + API and Library + Armor, Tools, and Weapons` | 24/09/2026 - 00:44 |
 | 212 | Customizable Player Models | `CustomPlayerModels-1.21-0.6.27a.jar` | `0.6.27a` | `Cosmetic` | 24/09/2026 - 01:22 |
-| 213 | Cyclops Core | `cyclopscore-1.21.1-neoforge-1.30.0.jar` | `1.30.0` | `API and Library + Server Utility` | 23/10/2026 - 00:42 |
+| 213 | Cyclops Core | `cyclopscore-1.21.1-neoforge-1.30.0.jar` | `1.30.0` | `API and Library + Server Utility` | 18/11/2026 - 08:24 |
 | 214 | Deeper and Darker: Spellbooks | `darkermagic-1.3.3-1.21.1-ver.b.jar` | `1.3.3-1.21.1` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 01:22 |
 | 215 | Deeper and Darker | `deeperdarker-neoforge-1.21.1-1.4.1.jar` | `1.4.1` | `Biomes + Dimensions + Mobs + Ores and Resources + Structures` | 24/09/2026 - 01:22 |
 | 216 | VanillaBackport X Farmer's Delight Compat | `Delightful-Backport-1.0-1.21.1-neoforge.jar` | `1.0` | `Addons + Food` | 24/09/2026 - 01:22 |
@@ -465,7 +478,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 280 | FerriteCore ((Neo)Forge) | `ferritecore-7.0.3-neoforge.jar` | `7.0.3` | `Performance` | 24/09/2026 - 17:37 |
 | 281 | Fire's Ender Expansion | `firesenderexpansion-2.4.1.jar` | `2.4.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 17:37 |
 | 282 | First-person Model | `firstperson-neoforge-2.7.2-mc1.21.1.jar` | `2.7.2` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 24/09/2026 - 18:26 |
-| 283 | Flowing Fluids | `flowing_fluids-1.0.6-1.21-neoforge.jar` | `1.0.6` | `Miscellaneous` | 24/09/2026 - 18:27 |
+| 283 | Flowing Fluids | `flowing_fluids-1.0.6-1.21-neoforge.jar` | `1.0.6` | `Miscellaneous` | 18/11/2026 - 08:24 |
 | 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 24/09/2026 - 18:23 |
 | 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 24/09/2026 - 18:24 |
 | 286 | Forgified Fabric API | `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar` | `0.116.15+2.3.5+1.21.1` | `Technology` | 22/10/2026 - 19:46 |
@@ -693,7 +706,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 508 | Create Slice & Dice | `sliceanddice-4.3.3-neoforge.jar` | `4.3.3` | `Addons + Farming + Technology` | 27/09/2026 - 19:01 |
 | 509 | Create: Smart Bounds | `smart_bounds-1.0.0.jar` | `1.0.0` | `Bug Fixes + Create + Performance + Technology` | 27/09/2026 - 19:02 |
 | 510 | SmartBrainLib (Forge/Fabric/Quilt) | `SmartBrainLib-neoforge-1.21.1-1.16.11.jar` | `1.16.11` | `API and Library` | 27/09/2026 - 19:02 |
-| 511 | Snow! Real Magic! ⛄ (Neo/Forge) | `SnowRealMagic-1.21.1-NeoForge-12.2.2.jar` | `12.2.2+neoforge` | `Cosmetic + Utility & QoL + World Gen` | 27/09/2026 - 19:02 |
+| 511 | Snow! Real Magic! ⛄ (Neo/Forge) | `SnowRealMagic-1.21.1-NeoForge-12.2.2.jar` | `12.2.2+neoforge` | `Cosmetic + Utility & QoL + World Gen` | 18/11/2026 - 08:24 |
 | 512 | Sodium | `sodium-neoforge-0.8.13+mc1.21.1.jar` | `0.8.13+mc1.21.1` | `Performance` | 27/09/2026 - 20:56 |
 | 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 27/09/2026 - 20:56 |
 | 514 | Thirst Upgrade for Sophisticated Backpacks (Thirst Was Taken) | `sophisticated-thirst-upgrade.jar` | `0.1.8` | `Miscellaneous` | 27/09/2026 - 21:19 |
