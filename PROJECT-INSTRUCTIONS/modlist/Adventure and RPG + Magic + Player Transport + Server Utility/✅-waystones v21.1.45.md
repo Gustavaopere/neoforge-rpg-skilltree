@@ -155,3 +155,16 @@ Impacto: os comandos novos permitem mutação administrativa explícita de coold
 Gate de promoção 21.1.45→21.1.46: cooldown add/set em um e vários jogadores; identifiers simultâneos; relog/restart; bound scroll para destino ativado e não ativado; warp requirement permitido/bloqueado com mensagem; XP cost zero/não-zero; cross-dimension; Waystones:Sable; JourneyMap marker sem alterar authority.
 
 Fonte upstream: CurseForge file ID 8969751, `waystones-neoforge-1.21.1-21.1.46.jar`.
+
+## Auditoria incremental — 18/11/2026 — 21.1.47
+
+**Baseline físico:** #564, `waystones-neoforge-1.21.1-21.1.45.jar`, runtime 21.1.45. CurseForge 245755; categorias Adventure and RPG + Magic + Player Transport + Server Utility. A [listagem oficial Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/waystones/files/all?page=1&version=1.21.1) confirma 21.1.46 (25/09, já auditada acima) e 21.1.47 (15/11) como as publicações NeoForge posteriores ao instalado.
+
+**21.1.47:** source oficial branch 1.21.1, [commit de versão f367136](https://github.com/TwelveIterations/Waystones/commit/f367136978678d1783e191bada518e58072dbe9f), e [comparação de versões](https://github.com/TwelveIterations/Waystones/compare/9d280c1ac8d036516a2927e3d2cad8054e491074...f367136978678d1783e191bada518e58072dbe9f):
+- Versionamento da rede atualizado: coordenar clientes e servidor, sem presumir compatibilidade de protocolo misto.
+- Desativar waystone para seu proprietário reseta a propriedade; validar reativação, índices, equipes e permissões.
+- Definições `waystone_runes` e modelos individuais das runas permitem personalização visual via resource packs.
+- Limite de 64 grupos personalizados; revisar saves/configs existentes antes de migrar.
+- Removida opção `fixVanillaTeleportBug` porque interferia amplamente no movimento de entidades; o contorno do bug vanilla permanece nos teleportes iniciados pelo Waystones. Erros de teleporte inválido também foram subdivididos para diagnóstico no source.
+
+A nota de release compartilhada é corroborada pelo [arquivo Fabric da mesma versão](https://www.curseforge.com/minecraft/mc-mods/waystones/files/9626092) e pelos commits da branch multiloader, cujo gradle.properties confirma Minecraft 1.21.1, NeoForge e 21.1.47. O arquivo NeoForge foi confirmado no catálogo, sem inspeção binária. Gate: Balm, JourneyMap/JMI, Waystones:Sable, cooldown/custos/scrolls da .46, ownership, grupos, recursos visuais, atualização simultânea client/server e movimento de entidades. Nada foi instalado ou homologado.
