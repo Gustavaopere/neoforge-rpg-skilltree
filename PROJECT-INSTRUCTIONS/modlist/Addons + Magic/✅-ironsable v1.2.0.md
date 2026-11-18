@@ -81,3 +81,11 @@ Validar cast/cancel, ship assembly/disassembly, player mount/dismount, sublevel/
 **Publicação NeoForge 1.21.1:** `ironsable-1.2.1.jar` em **09/10/2026**, posterior ao último JAR físico documentado **`ironsable-1.2.0.jar`**. A release oficial confirma o artefato, mas seu changelog técnico granular não foi confirmado nesta rodada: não imputar spells/forças adicionais por inferência. **Gate:** Iron's Spells 3.16.3, Sable 2.0.5, Wind's Spellbooks 1.0.5, Create Aeronautics, 7 spells próprios e 10 overrides de física anteriores, ownership de mana/damage/cooldown pelo ISS, physics force exactly-once, multi-caster/ships e lifecycle de tether/stasis, dimension/assembly, chunk unload, save e dedicated server. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/ironsable/files/all
 
 > **Limite:** revisão documental baseada no último snapshot físico; nenhuma instalação de JAR ou validação in-game nesta execução.
+
+## Auditoria incremental — 18/11/2026 — 1.2.1
+
+**Baseline físico:** #344, `ironsable-1.2.0.jar`, runtime 1.2.0. Projeto duble_, CurseForge 1625528; categorias Addons + Magic. O [catálogo oficial](https://www.curseforge.com/minecraft/mc-mods/ironsable/files/all) confirma que a sucessora única para NeoForge 1.21.1 é [1.2.1, file 9112778](https://www.curseforge.com/minecraft/mc-mods/ironsable/files/9112778), 09/10/2026.
+
+A nota granular que faltava na revisão de 11/10 confirma dois pontos: novo feitiço **Puppet Chain** e correção de crash ao usar **Kinetic Barrier**. Não inferir escola, ID, mana, duração, níveis, efeitos ou regras exatas de Puppet Chain sem registry/source/binário correspondente. O inventário de sete spells próprios continua representando a versão instalada; não modificar sua contagem histórica.
+
+QA antes da promoção: spell registry, cast/interrupção, alvos e ownership, tether/lifecycle se aplicável ao novo feitiço, Kinetic Barrier, Sable/Aeronautics, ISS, multiplayer e forças aplicadas uma única vez. Cadeia pública documental concluída, não instalada; nenhum teste em jogo.
