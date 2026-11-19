@@ -154,3 +154,16 @@ No pack grande com PartiCull, Iris/shader, AmbientSounds, Subtle Effects e Parti
 **Revalidação:** upstream já coberto integralmente até **Particle Rain v4.0.2 Release** NeoForge 1.21.1, de 10/10/2026; JAR físico histórico permanece **4.0.0-beta.11**. **Matriz crítica beta→release:** 4.0.2 corrige consulta incorreta de heightmap collision, partículas de velocidade invisíveis sem vento e chuva sob estruturas altas em alguns servers; diferenciar fixes Fabric/26.3 não aplicáveis automaticamente a NeoForge 1.21.1. **Gate:** visual-only owner, Particle Rain vs Subtle Effects/PartiCull/WeatherX/Iris, partículas + shaders, max world height, haze/fog/dust storm, feedback sonoro AmbientSounds, resource pack F3+T, config migration e perf/FPS. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/all?version=1.21.1
 
 > **Estado:** atualização documental sem qualquer substituição de JAR, edição da autoridade física ou teste in-game nesta execução.
+
+## Auditoria incremental — 19/11/2026 — 4.0.3
+
+**Autoridade física histórica:** #435, `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar`. O [projeto CurseForge 421897](https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/all) mantém Cosmetic como categoria e indica 4.0.3 como release mais recente NeoForge 1.21.1. As publicações [4.0.0](https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/9085223), [4.0.1](https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/9085994) e [4.0.2](https://modrinth.com/mod/particle-rain/version/RxfaR4ud) foram revalidadas contra a seção 16, sem duplicar conteúdo.
+
+**[4.0.3 — 04/11/2026](https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/9430176):** adiciona comando `/particlerain biometags` e informação de tags de bioma na tela de debug, úteis para personalização. O autor relata redução de dez vezes nas tentativas de spawn superficial, corrigindo competição com partículas do céu que diminuía a chuva; densidades relativas de shrubs, fog e dust haze foram compensadas. Não interpretar isso como benchmark local nem como redução de dez vezes na carga total.
+
+A migração de configuração é relevante: opções de densidade e máximo de partículas convergem para particle amount; densidade de tormenta passa a multiplicador de spawn; renderização climática vanilla passa a controles separados de chuva e neve. Sliders percentuais deixam de exibir frações. Preservar backup e conferir defaults/valores migrados em vez de assumir equivalência.
+
+A direção do vento foi invertida para acompanhar nuvens; tonalidade da neblina passa a variar progressivamente com a chuva. Corrige som de vento e tempestades de areia em biomas fora do Overworld, tags Forge indevidas em NeoForge/Fabric e corrupção de sprites de chuva/neve por alocação de memória no carregamento de textura. O changelog também cita fix de transparência Iris **limitado a 1.21.9+**, não atribuído ao alvo 1.21.1.
+
+**QA:** manter gates de configuração, shaders, PartiCull, Subtle Effects, Particular, resource reload, dimensões/biomas e medir FPS/overdraw com clima equivalente. Conferir novos controles de precipitação vanilla e comportamento sob tormenta; não pressupor Ad Astra instalado. Auditoria de changelogs até 4.0.3 concluída; nenhuma instalação ou teste runtime. Basename e pasta físicos preservados.
+

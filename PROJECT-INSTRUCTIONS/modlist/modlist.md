@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 19/11/2026 (Farmer's Spell e Particle Rain)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
+|---:|---|---|---|---|
+| 275 | Farmer's Spell 'n Spell Book | `1.0.5.1-1.21.1` | [1.0.7.1](https://www.curseforge.com/minecraft/mc-mods/farmers-spell/files/9419045) | Documentação concluída; 1.0.6.0 revalidada, 1.0.7.0/.1 auditadas: novos cultivos/foods/spell, receitas Create, mana dos anéis e Chaos Slash. QA pendente. |
+| 435 | Particle Rain | `4.0.0-beta.11` | [4.0.3](https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/9430176) | Documentação concluída; 4.0.0–.2 revalidadas, 4.0.3: config, biome tags, spawn, sprites, dimensões e vento. QA pendente. |
+
 ## Auditoria incremental — 19/11/2026 (ParCool e ShatterLib | OctoLib)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
@@ -586,7 +593,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 272 | Factory Construction Registry Probe | `factory_construction_registry_probe-0.1.0.jar` | `0.1.0` | `— (dossier ausente; categoria não atribuída)` | — |
 | 273 | FamiliarsLib | `familiarslib-1.21.1-1.7.1.jar` | `1.7.1 do JAR/publicação; metadata runtime 1.21.1-1.7` | `API and Library` | 22/10/2026 - 23:20 |
 | 274 | Fantasy Armor (Medieval Series) | `fantasy_armor-neoforge-1.2.4-1.21.1.jar` | `1.2.4-1.21.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic` | 24/09/2026 - 17:35 |
-| 275 | Farmer's Spell 'n Spell Book | `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` | `1.0.5.1-1.21.1` | `Farmer's Delight + Food + Magic` | 24/09/2026 - 17:35 |
+| 275 | Farmer's Spell 'n Spell Book | `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar` | `1.0.5.1-1.21.1` | `Farmer's Delight + Food + Magic` | 19/11/2026 - 19:30 |
 | 276 | Farmer's Delight | `FarmersDelight-1.21.1-1.3.4.jar` | `1.3.4` | `Cosmetic + Farming + Food` | 24/09/2026 - 17:35 |
 | 277 | Farmer's Delight: Extended | `farmersdelight_extended-1.21.1-0.2.2.jar` | `1.21.1-0.2.2` | `Addons + Create + Food` | 24/09/2026 - 17:36 |
 | 278 | Farmers Structures | `FarmersStructures-1.0.6-1.21.1_neoforge.jar` | `1.0.6` | `Addons + Farming + MCreator + Structures + World Gen` | 24/09/2026 - 17:36 |
@@ -746,7 +753,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 432 | Paladin Spells - Iron's Spells Addon | `paladin_spells-1.21.1-1.1.1.jar` | `1.21.1-1.1.1` | `Addons + Magic` | 18/11/2026 - 07:23 |
 | 433 | ParCool! ~ Minecraft Parkour ~ | `ParCool-1.21.1-4.0.0.3.jar` | `4.0.0.3` | `Adventure and RPG + Miscellaneous + Utility & QoL` | 19/11/2026 - 19:11 |
 | 434 | Particle Effects | `ParticleEffects-1.5.0+1.21.1+neoforge.jar` | `1.5.0+1.21.1+neoforge` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
-| 435 | Particle Rain | `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` | `4.0.0-beta.11` | `Cosmetic` | 25/09/2026 - 15:17 |
+| 435 | Particle Rain | `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` | `4.0.0-beta.11` | `Cosmetic` | 19/11/2026 - 19:30 |
 | 436 | Particular ✨ Reforged | `particular-1.21.1-NeoForge-1.5.7.jar` | `1.5.7` | `Cosmetic` | 17/11/2026 - 16:14 |
 | 437 | PartiCull: Particle Fix | `PartiCull-neoforge-1.21.1-v2.0.jar` | `2.0` | `Performance + Utility & QoL` | 25/09/2026 - 15:17 |
 | 438 | Patchouli | `Patchouli-1.21.1-93-NEOFORGE.jar` | `1.21.1-93-NEOFORGE` | `API and Library` | 25/09/2026 - 15:17 |

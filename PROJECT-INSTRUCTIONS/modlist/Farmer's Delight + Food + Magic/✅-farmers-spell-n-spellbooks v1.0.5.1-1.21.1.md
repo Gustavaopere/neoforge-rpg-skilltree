@@ -134,3 +134,23 @@ A autoridade física continua em **Farmer's Spell 'n Spell Book 1.0.5.1**. O Cur
 - [ ] JEI/Create/KubeJS recipes/tags não ficam stale após `/reload`.
 
 Fonte upstream: CurseForge Farmer's Spell 'n Spell Book 1.0.6.0, file ID 9008722, NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.
+
+## Auditoria incremental — 19/11/2026 — 1.0.7.0 e 1.0.7.1
+
+**Autoridade física histórica:** #275, `farmers-spell-n-spellbook-1.0.5.1-1.21.1.jar`. O [catálogo oficial CurseForge 1631240](https://www.curseforge.com/minecraft/mc-mods/farmers-spell/files/all) identifica exatamente três releases NeoForge 1.21.1 posteriores à física: [1.0.6.0](https://www.curseforge.com/minecraft/mc-mods/farmers-spell/files/9008722) (29/09, já documentada na seção 17), 1.0.7.0 e 1.0.7.1. A 1.0.6_2 publicada para Forge 1.20.1 não é artefato do alvo. Categorias oficiais Farmer's Delight + Food + Magic, pasta preservada.
+
+### [1.0.7.0 — 28/10/2026](https://www.curseforge.com/minecraft/mc-mods/farmers-spell/files/9350536)
+
+- Novo cultivo Frost Egg Bush, Amethyst Beetroot Crates, feast Dragon-Skin Aspic com fatias, Fried Frost Egg, Frosted Tamago Sushi, Mithril Cheese e Mithril Knife. Novas superfícies de coleta, processamento e alimentação; não inventar IDs ou receitas.
+- Novo spell White Altar Bloom. Rebalanceamento de Goodberry, Phantom Loot, Preserve Circle, Seal Coat, Bad Apple e Chaos Slash; os números exatos não constam nas notas.
+- Foodgeist ganha comportamento sentado, invocação no stove e animações adicionais. Descrições de blocos expansíveis via Shift; receitas Create de filling/emptying, relevantes para automação.
+- Regras de plantio de Amethyst Beetroot e Frost Egg passam a ser data-driven, assim como blacklist de blocos para Harvest Sickle; validar datapacks e reload antes de adotar IDs/schemas.
+- Mudanças de efeitos de alimentos, receitas, Foodgeist gifts, loot tags e recursos audiovisuais. Corrige encoding da chance de loot de Wheat Tome e ingredientes de affinity rings.
+- A correção explícita para 1.21.1 restaura bônus de mana máxima dos Foodgeist Ring e Gluttonous Bond Ring durante Nourished ou Comforted; testar equip/unequip, expiração, morte e relog sem bônus duplicado ou stale.
+
+### [1.0.7.1 — 03/11/2026](https://www.curseforge.com/minecraft/mc-mods/farmers-spell/files/9419045)
+
+Corrige textura e orientação incorretas de Chaos Slash. É correção de apresentação relevante à leitura visual do spell; a nota não comprova alteração de dano, trajetória lógica ou targeting.
+
+**Gates:** manter QA de Iron's/FD, Alchemist Pot, piston dupe, food servings e Goodberry; testar novos cultivos, Harvest Sickle/data reload, mana dos anéis e efeitos condicionais, Foodgeist e ownership, filling/emptying Create, JEI/KubeJS e percepção visual de Chaos Slash. Auditoria documental das releases publicadas até 1.0.7.1 concluída; sem promoção física, teste runtime ou mudança de basename.
+
