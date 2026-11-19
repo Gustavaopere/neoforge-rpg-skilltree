@@ -34,7 +34,7 @@
 | Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
 |---:|---|---|---|---|
 | 143 | Create: Fantasizing Again | `1.2.0-b3` | [1.2.1](https://www.curseforge.com/minecraft/mc-mods/create-fantasizing-again/files/9394143) | Documentação concluída; única publicação posterior no catálogo Modrinth; avanços, receitas, consumo Block Placer, Sturdy Girder e remoção Encased. QA pendente. |
-| 349 | Just Enough Items (JEI) | `19.56.0.440` | [19.70.0.469 Beta](https://www.curseforge.com/minecraft/mc-mods/jei/files/9393327) | Pendente; catálogo oficial confirma builds .462/.463/.464/.465/.467/.468/.469, ainda sem conciliação completa desde .457; Modrinth não contém as novas builds. |
+| 349 | Just Enough Items (JEI) | `19.56.0.440` | [19.70.0.469 Beta](https://www.curseforge.com/minecraft/mc-mods/jei/files/9393327) | Pendente; catálogo confirma .462/.463/.464/.465/.467/.468/.469; comparação oficial dos pins .457→.469 retornou 22 commits (delta agregado registrado). Atribuição por build e inventário .458–.461 ainda não conciliados; QA pendente. |
 | 432 | Paladin Spells - Iron's Spells Addon | `1.21.1-1.1.1` | [1.1.4](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9392196) | Pendente estrutural; categorias Addons + Adventure and RPG + Magic revalidadas; busca de referências GitHub retorna incomplete_results=true, clone local indisponível por DNS. Não mover. |
 | 437 | PartiCull | `2.0` | [2.2](https://www.curseforge.com/minecraft/mc-mods/particull/files/9437517) | Pendente; [API Modrinth](https://api.modrinth.com/v2/project/particull/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D) contém somente 2.0 e 2.2; release 2.2 sem changelog em ambas plataformas, sem source público vinculado. Falta delta técnico ou comparação binária. |
 | 449 | Polytone | `1.21-4.4.0` | [5.3.8](https://www.curseforge.com/minecraft/mc-mods/polytone/files/9519538) | Documentação concluída; dez novas releases pós-5.2.0 individualizadas, shadowmap removido e iluminação/Veil alteradas; notas genéricas preservadas como limitação. QA pendente. |
@@ -653,7 +653,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 346 | Magic From The East | `iss_magicfromtheeast-1.1.5.jar` | `1.1.5` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + World Gen` | 25/09/2026 - 01:24 |
 | 347 | Jade 🔍 | `Jade-1.21.1-NeoForge-15.10.6.jar` | `15.10.6+neoforge` | `Map and Information + Utility & QoL` | 25/09/2026 - 01:24 |
 | 348 | Just Enough Effect Descriptions (JEED) | `jeed-1.21-2.3.2.jar` | `1.21-2.3.2` | `Addons + Map and Information` | 17/11/2026 - 18:54 |
-| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 24/10/2026 - 17:49 |
+| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 19/11/2026 - 00:38 |
 | 350 | JinxedLib | `jinxedlib-neoforge-1.21.1-1.0.4.jar` | `1.0.4` | `API and Library + Server Utility + Utility & QoL` | 25/09/2026 - 01:25 |
 | 351 | JourneyMap Integration | `jmi-neoforge-1.21.1-1.9.jar` | `1.21.1-1.9` | `Addons + Map and Information` | 25/09/2026 - 01:25 |
 | 352 | JourneyMap | `journeymap-neoforge-1.21.1-6.0.8.jar` | `1.21.1-6.0.8` | `Map and Information` | 25/09/2026 - 02:10 |
