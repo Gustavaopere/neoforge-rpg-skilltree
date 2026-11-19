@@ -12,6 +12,15 @@
 
 
 
+## Auditoria incremental — 19/11/2026 (Easy NPC Config UI, Goety, BetterNether e Streams Reflowing)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
+|---:|---|---|---|---|
+| 074 | BetterNether: New Dawn | `21.0.26` | [21.0.30](https://www.curseforge.com/minecraft/mc-mods/betternether-neoforge/files/9306678) | Documentação concluída; respawn statue, Patchouli e traduções; QA New Dawn pendente. |
+| 241 | Easy NPC: Config UI | `7.12.1` | [7.20.0](https://modrinth.com/mod/easy-npc-config-ui/version/x2X1dzmL) | Documentação concluída; quatro releases pós-7.17, projéteis, visibilidade, UI e persistência; promoção coordenada pendente. |
+| 305 | Goety - The Dark Arts | `3.1.4` | [3.2.3](https://www.curseforge.com/minecraft/mc-mods/goety/files/9668015) | Documentação concluída; 3.2.2/3.2.3 e source pinado, Crypt, novos blocos, Grave Monstrosity, scroll cloning; QA pendente. |
+| 528 | Streams Reflowing | `2.13.5` | [2.17.5](https://modrinth.com/mod/streams-reflowing/version/9Phpmmh2) | Documentação concluída; seis publicações após 2.15.2; ferramentas/commands reflow-carve, dimensões, bank styles e compatibilidade; QA de mundo pendente. |
+
 ## Auditoria incremental — 18/11/2026 (Subtle Effects, Collective e Sophisticated Backpacks)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
@@ -369,7 +378,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 071 | BetterEnd: New Dawn | `BetterEnd-21.0.34.jar` | `21.0.34` | `Biomes + Cosmetic + Mobs + Structures + World Gen` | 24/10/2026 - 20:32 |
 | 072 | Better Fps - Render Distance | `betterfpsdist-1.21.1-6.1.jar` | `6.1` | `Cosmetic + Miscellaneous` | 19/09/2026 - 21:46 |
 | 073 | Epic Fight - Better lock on | `betterlockon-2.0.8-neoforge.jar` | `2.0.8-neoforge` | `Addons + Adventure and RPG` | 19/09/2026 - 21:35 |
-| 074 | BetterNether: New Dawn | `BetterNether-21.0.26.jar` | `21.0.26` | `Biomes + Cosmetic + Mobs + Structures + World Gen` | 23/10/2026 - 01:20 |
+| 074 | BetterNether: New Dawn | `BetterNether-21.0.26.jar` | `21.0.26` | `Biomes + Cosmetic + Mobs + Structures + World Gen` | 19/11/2026 - 00:31 |
 | 075 | Create: Big Contraptions | `bigcontraptions-neoforge-1.0.jar` | `1.0` | `Create + Utility & QoL` | 19/09/2026 - 23:37 |
 | 076 | Biolith | `biolith-neoforge-3.0.14.jar` | `3.0.14` | `Biomes + World Gen` | 19/09/2026 - 23:37 |
 | 077 | Create: Bits 'n' Bobs | `bits_n_bobs-2.3.5.jar` | `2.3.5` | `Addons + Cosmetic + Create + Utility & QoL` | 18/09/2026 - 10:11 |
@@ -536,7 +545,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 238 | Easy Model Entities | `easy_model_entities-neoforge-1.21.1-2.4.0.jar` | `2.4.0 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library + Automation + Mobs + Utility & QoL` | 22/10/2026 - 22:49 |
 | 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 17/11/2026 - 22:45 |
 | 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 17/11/2026 - 16:11 |
-| 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 23/10/2026 - 01:19 |
+| 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 19/11/2026 - 00:31 |
 | 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
 | 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 18/11/2026 - 08:02 |
 | 244 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
@@ -600,7 +609,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 302 | Global Packs | `globalpacks-neoforge-1.21.1-21.0.6.jar` | `21.0.6` | `Map and Information + Utility & QoL` | 24/09/2026 - 21:04 |
 | 303 | Glodium | `Glodium-1.21-2.2-neoforge.jar` | `1.21-2.2-neoforge` | `API and Library` | 24/09/2026 - 21:04 |
 | 304 | GroovyModLoader (GML) | `gml-6.0.2.jar` | `6.0.2` | `API and Library` | 24/09/2026 - 21:04 |
-| 305 | Goety - The Dark Arts | `goety-3.1.4.jar` | `3.1.4` | `Adventure and RPG + Magic + Mobs + Structures` | 24/10/2026 - 20:40 |
+| 305 | Goety - The Dark Arts | `goety-3.1.4.jar` | `3.1.4` | `Adventure and RPG + Magic + Mobs + Structures` | 19/11/2026 - 00:31 |
 | 306 | Goety Cataclysm | `goety_cataclysm-1.21.1-1.8.2.jar` | `1.21.1-1.8.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 21:04 |
 | 307 | Goety Iron | `GoetyIron-1.21.1-NeoForge-3.1.jar` | `3.1` | `Magic + Mobs` | 24/09/2026 - 21:04 |
 | 308 | Grappling Hook Mod: Skybound | `grapplemod-1.1+1.21.1.neoforge.jar` | `1.1+1.21.1.neoforge` | `Player Transport + Skyblock + Utility & QoL` | 24/09/2026 - 21:04 |
@@ -823,7 +832,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 525 | Spell Codex: Iron's Spells 'n Spellbooks Addon | `specs_irons_spellbooks-1.6.5.jar` | `1.6.5` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 23/10/2026 - 15:23 |
 | 526 | SpellActionbar | `spell_actionbar-1.1.4.jar` | `1.1.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
 | 527 | StarbuncleMania | `starbunclemania-1.21.1-1.5.8.jar` | `1.5.8` | `Addons + Automation + Energy, Fluid, and Item Transport + Magic` | 27/09/2026 - 22:12 |
-| 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 23/10/2026 - 01:43 |
+| 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 19/11/2026 - 00:31 |
 | 529 | Structurize | `structurize-1.0.833-1.21.1-snapshot.jar` | `1.0.833-1.21.1-snapshot` | `Cosmetic + Server Utility + Structures` | 27/09/2026 - 22:12 |
 | 530 | Strut Your Stuff (Struts) | `struts-1.3.1.jar` | `1.3.1` | `API and Library` | 27/09/2026 - 22:12 |
 | 531 | Stylish Effects | `StylishEffects-v21.1.3-1.21.1-NeoForge.jar` | `21.1.3` | `Cosmetic + Map and Information + Utility & QoL` | 27/09/2026 - 22:12 |
