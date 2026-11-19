@@ -315,3 +315,17 @@ A [release oficial ParCool 4.0.1.1 NeoForge 1.21.1, File ID 9068414](https://www
 5. **Sable/Create Aeronautics**: teste movimento em contraptions, nested levels, walls/dodge/fall, chunk unload, morte/respawn, mudança de dimensão, multiplayer e dedicated server, sem player desync/anti-cheat falso.
 
 **Resultado:** a sequência publicada relevante de NeoForge 1.21.1 foi examinada individualmente até 4.0.1.6, com limites explícitos para notas transversais de 4.0.0.4/5 e artefatos inexistentes no canal 1.21.1. **Candidato 4.0.1.6, físico 4.0.0.3**, e QA runtime/instalação ainda não realizada. A auditoria documental de releases pode ser encerrada, mantendo gates de compatibilidade separados.
+
+## Auditoria incremental — 19/11/2026 — 4.0.2.0
+
+**Autoridade física histórica:** #433, `ParCool-1.21.1-4.0.0.3.jar` / 4.0.0.3. O [catálogo oficial NeoForge](https://www.curseforge.com/minecraft/mc-mods/parcool/files/all?gameVersionTypeId=6&page=1&pageSize=20&showAlphaFiles=hide) confirma que [4.0.2.0](https://www.curseforge.com/minecraft/mc-mods/parcool/files/9415760), publicada em 03/11/2026, sucede diretamente 4.0.1.6 entre releases/betas NeoForge 1.21.1 listadas. O projeto CurseForge #482378 mantém as categorias Adventure and RPG + Miscellaneous + Utility & QoL, sem mudança de pasta.
+
+**Delta relevante da 4.0.2.0 (não instalado):**
+- Novas opções de configuração permitem habilitar ações que requerem FastRun também com sprint e ajustar a disponibilidade de perfect Breakfall. Breakfall pode ser executado enquanto o jogador está agachado; não inferir valores de mitigação não publicados.
+- Indicador de estado das ações no HUD e novo atributo ChargeJump Power; não inventar o registry ID ou fórmula do atributo, validar binding e balanceamento antes de usar em perks.
+- Ações de interação com paredes ficam menos eficazes em blocos escorregadios; Horizontal Wall Run passa a ter prioridade sobre Slide Down.
+- A nota referencia [issue #523](https://github.com/alRex-U/ParCool/issues/523): servidor aceitava pacotes de ação com UUID de outro jogador, com risco relatado de consumo de stamina alheia. É alteração relevante de autoridade multiplayer; testar identidade do remetente e isolamento de stamina, sem presumir que a solução interna ou todos os vetores estejam comprovados pelo changelog.
+- Corrige FastSwim e iluminação do grappling hook; [issue #533](https://github.com/alRex-U/ParCool/issues/533) registra toggle keys agindo como hold no Forge 1.20.1. A nota da publicação NeoForge 1.21.1 também cita a issue; validar comportamento toggle/hold nesse alvo, sem afirmar que o bug foi reproduzido localmente.
+
+**Gates:** preservar os gates anteriores de Curios, TWF, Epic Fight, Sable, configuração/árvore de ações e dedicated server. Adicionar regressão de UUID/remetente, stamina de jogadores distintos, sprint/FastRun, perfect Breakfall/sneak, ChargeJump Power, blocos escorregadios, prioridades, HUD, toggle e FastSwim. A sequência de notas publicada foi complementada até 4.0.2.0; não foram executados testes de instalação ou comparação binária. Basename e JAR físico permanecem 4.0.0.3.
+

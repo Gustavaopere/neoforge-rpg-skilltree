@@ -93,3 +93,17 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - Modrinth oficial: 0.6.2, library compartilhada; changelog exato `Added particle trails`.
 - Catálogo do pack: Relics consumer confirmado.
 - **Limite:** internals de networking e cada API usada por Relics não foram inventados sem source pinado.
+
+## Auditoria incremental — 19/11/2026 — 0.6.3 e 0.6.3.2
+
+**Autoridade física histórica:** #425, `OctoLib-NEOFORGE-0.6.2+1.21.jar`, metadata 0.6.2. O projeto [ShatterLib | OctoLib](https://www.curseforge.com/minecraft/mc-mods/shatterbyte-lib), ID 916747, mantém categoria oficial API and Library; o nome atual do projeto não altera o mod id ou o filename físico.
+
+O [catálogo oficial](https://www.curseforge.com/minecraft/mc-mods/shatterbyte-lib/files/all?page=1&pageSize=20&showAlphaFiles=hide) e as fichas individuais registram:
+- [0.6.3 — 06/11/2026](https://www.curseforge.com/minecraft/mc-mods/shatterbyte-lib/files/9478818), NeoForge 1.21.1/1.21: correção da validação de listas vazias em configurações. Relevante para YAML e consumers que aceitam coleções vazias; não inferir mudança de schema.
+- [0.6.3.1 — 12/11/2026](https://www.curseforge.com/minecraft/mc-mods/shatterbyte-lib/files/9575477): publicação Fabric 1.21.1/1.21, atualização de metadata Fabric, sem publicação NeoForge 1.21.1 identificada nesta listagem. Não atribuir a alteração ao alvo.
+- [0.6.3.2 — 13/11/2026](https://www.curseforge.com/minecraft/mc-mods/shatterbyte-lib/files/9588915), NeoForge 1.21.1: correção de falhas intermitentes no reload de configurações. Relevante para lifecycle e persistência de consumers; o changelog não detalha mecanismo ou garantia de sincronização.
+
+As fichas candidatas mostram título com `+1.21` e filename com `-1.21`; não confundir essa diferença com metadata runtime efetivamente medida. Não atribuir à linha 1.21.1 as builds 1.21.4, 1.21.8, 1.21.11 ou 26.x do mesmo projeto.
+
+**QA:** validar Relics, boot cliente/servidor, listas YAML vazias/válidas/inválidas, reload repetido, restart e consistência dos consumers. Verificar manifestos e bibliotecas embarcadas da candidata antes de promover. Changelogs das publicações NeoForge identificadas revisados até 0.6.3.2; não demonstrada instalação ou equivalência binária. Preservar JAR, basename e pasta referentes a 0.6.2.
+
