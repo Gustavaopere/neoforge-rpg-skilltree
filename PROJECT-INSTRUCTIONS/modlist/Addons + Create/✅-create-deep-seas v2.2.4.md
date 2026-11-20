@@ -253,3 +253,45 @@ Fontes upstream: CurseForge Create Deep Seas 1.21.1, sequência 3.0.0→3.3.0; s
 8. **Smoke tests:** dedicated server Java 21 / NeoForge 1.21.1, dois jogadores, reboot, unload/reload de ships, diferentes oceanos, Create 6.0.10/Aeronautics 1.3.2/Sable 2.0.5, crash logs, conflitos com mod de shaders/GUI/performace.
 
 **Conclusão documental:** a sequência **2.2.4 → 3.0.0 → 3.1.0 → 3.2.0 → 3.3.0 → 3.4.0 → 3.4.1 → 3.4.2 → 3.4.3 → 3.4.4 → 3.4.5** está agora descrita, com os seis changelogs experimentais NeoForge 1.21.1 separados e links diretos aos artefatos. A pesquisa das publicações até **22/10/2026** pode ser **retirada da fila documental**, mas a adoção, verificação de binários/dependências e compatibilidade do save **não estão aprovadas/testadas**. O mod instalado é **2.2.4**, o arquivo `.md` continua **✅-create-deep-seas v2.2.4.md**. Reabrir a pesquisa se surgir release posterior à 3.4.5.
+
+## Atualização documental final — 20/11/2026 — 3.4.6 (source), 3.4.7 e 3.4.8
+
+**Autoridade física preservada:** `create_submarine-2.2.4.jar` / mod id `create_submarine`, versão `2.2.4`, posição física #162. O [catálogo oficial](https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/all) para NeoForge 1.21.1 mantém **3.4.8 Release (13/11/2026)** como publicação mais recente. As seções anteriores cobrem individualmente todas as versões 3.0.0, 3.1.0, 3.2.0, 3.3.0 e 3.4.0–3.4.5, incluindo 3.4.1/3.4.2 Alpha. A afirmação histórica de “3.3.0 última Release, 3.4.5 última Beta” descrevia somente o estado em 22/10/2026 e **está superada por 3.4.8 Release**. Não foram identificadas novas publicações compatíveis entre 3.4.8 e esta auditoria.
+
+### 3.4.6 — changelog source, sem JAR próprio publicado identificado
+
+O [`changelog.md` oficial](https://github.com/MaxCreateMC/Create-Deep-Seas/blob/main/changelog.md) e o [`gradle.properties` do source](https://github.com/MaxCreateMC/Create-Deep-Seas/blob/main/gradle.properties) registram `mod_version=3.4.6`. **A 3.4.6 não aparece como arquivo de distribuição independente no catálogo CurseForge consultado**; seu changelog é reproduzido *dentro da publicação 3.4.7*, e as mudanças devem ser tratadas como cumulativas no candidato distribuído 3.4.7, sem inventar release 3.4.6. O changelog dessa etapa acrescenta:
+
+- Vortex Engine com `lightResolution` (resolução inteira, meia ou 1/4), fusão de fontes distantes no estilo Pixel, sombras de todos os sub-levels Sable, sombras de entidades, geometrias parciais coerentes, `reflections` (desligada por padrão) e `temporalAccumulation` (desligada por padrão). Menu gráfico reorganizado, estilo mais legível; alteração de resolução e acumulação afeta nitidez/performance e comportamento de shaders.
+- O botão de ativação/desativação do Vortex passa a exigir **restart**, e desabilitá-lo remove o módulo de renderização em vez de apenas ocultar output. Isso altera o ciclo de vida da configuração client-side.
+- Tag de fluido extensível `create_submarine:water` adiciona compatibilidade de High Seas/Deep Seas com água salgada, de rio e de nascente do TerraFirmaCraft. Não presumir TFC instalado: a tag é contrato opcional para datapacks/compat.
+- Correção grave em servidores: água e porões secos de barcos podiam ser apagados a cada tick por outra dimensão, provocando afundamento/capsize, selfRighting inefetivo e players se afogando em porões secos (#131). Fixes de sail baixada ainda gerando empuxo, sombra cintilante de vegetação fina, névoa espessa com Complementary e luz de mar visível fora de naves via Iris Flywheel/Veil Compat (#128/#130); traduções de morte em descompressão, sufocamento ou pressão (#127).
+- Remoções: estilos **Volumes, Vanilla e Hybrid** do Vortex. Restam **Flood e Pixel**; configurações antigas de estilo removido caem em **Flood**, devendo ser testada a migração de configs.
+
+### 3.4.7 Beta — 04/11/2026, file 9436715
+
+[Changelog oficial da publicação 3.4.7](https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/9436715), NeoForge 1.21.1, contém a 3.4.6 acima **e** as correções próprias:
+
+- Nova opção servidor `ballastRighting`, com intensidade de autorretificação do casco via ballast; valor `0` desliga o efeito (#137).
+- Evita crash `Body has been removed` na remoção de ship com sail ou rudder.
+- Remove spikes de desempenho a cada refresh da câmera Vista junto de casco oxigenado (#138).
+- Corrige propellers 2×2 e 3×3 lançando o submarino ao sair da água; Boat Engine aplicando impulso acima/fora d'água; e Oar of Boat movendo navio mesmo quando o jogador está em bloco externo, não embarcado.
+- Corrige sun shafts, caustics e plankton do Vortex em locais errados (sob teto sem céu, waterfalls/terra, ou ao mergulhar sob blocos).
+- Corrige rope/halyard de sail aumentada após rigging não baixando até o fim quando winch está em outro ponto da embarcação; FPS baixo com muitos sub-levels de um único bloco; empuxo lateral do vento que inclinava naves e deriva/rotação involuntária com rudder centralizado (#139).
+
+**Boundary:** ballast, empuxo, propulsão, entrada de controle, flooding e estado do navio pertencem à física/server authority Sable; Vortex/câmera/render são cliente. Não assumir implantação sem smoke tests.
+
+### 3.4.8 Release — 13/11/2026, file 9601142
+
+[Changelog oficial 3.4.8](https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/9601142), NeoForge 1.21.1, divulga exclusivamente quatro bugfixes relevantes:
+
+1. Servidores deixam de travar por vários segundos quando um navio termina em coordenadas absurdas (#145). Testar entradas inválidas e cleanup sem loop ou bloqueio de tick.
+2. Boat Engine deixa de balançar o navio de um lado para outro — regressão introduzida na 3.4.7 (#144).
+3. Steel Cable deixa de ser artificialmente limitado ao comprimento de rope do mod Simulated quando usado em Rope Winch (#147), alterando compatibilidade mecânica entre providers.
+4. Decompression Chamber deixa de deixar slabs, stairs e outros blocos indevidamente **waterlogged** após a drenagem; preservar state de waterlogging e volume de água.
+
+**Conclusão da cadeia:** não existe publicação 3.4.6 individual comprovada; é uma seção de changelog upstream incorporada na 3.4.7 Beta, seguida pela 3.4.8 Release. Todas as publicações CurseForge posteriores à instalação 2.2.4 até a 3.4.8 estão individualizadas no dossier, sem pular os canais Alpha/Beta. O nome `✅-create-deep-seas v2.2.4.md` e a categoria oficial **Addons + Create** continuam exatos. Os demais itens da ficha não foram sobrescritos.
+
+**Gates fora da conclusão documental:** preservar backup de mundo, avaliar pressão Hybrid/Realistic e liquidação de hull/oxygen/ballast, migração de configs Vortex, gráficos com Iris, server boot e 2 players, link rope Simulated, Vista, TFC opcional, compat Sable/Create/Aeronautics, algoritmos de waterlogging, chunks/retorno de dimensões, e overlap com Deep Seas Lava Fix. Validar a exigência de Sodium e outros providers na versão candidata pelo artefato e install stack reais antes de qualquer troca. **Nenhum JAR foi instalado ou teste de runtime executado.**
+
+**STATUS: CONCLUÍDO — DOCUMENTAÇÃO VERIFICADA até 3.4.8 Release.** A promoção física 2.2.4→3.4.8 continua pendente; tratar estabilidade de 3.4.8 como classificação Release do autor, não homologação própria.

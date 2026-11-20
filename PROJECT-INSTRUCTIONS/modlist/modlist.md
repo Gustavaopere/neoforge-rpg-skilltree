@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 20/11/2026 (Create Deep Seas — fechamento)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
+|---:|---|---|---|---|
+| 162 | Create Deep Seas [BETA] | `2.2.4` | [3.4.8 Release](https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/9601142) | **Concluído documentalmente:** 3.4.0–3.4.5 já auditadas; changelog de 3.4.6 source sem distribuição própria, 3.4.7 Beta e 3.4.8 Release individualizados. Mecânicas/renderer, compat e fixes de server/physics/waterlogging documentados; instalação e QA pendentes. |
+
+
 ## Auditoria incremental — 20/11/2026 (IceAndFire CE — fechamento)
 
 | Nº físico | Mod | Instalado (snapshot) | Upstream documentado | Situação |
@@ -565,7 +572,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 159 | Create Stuff & Netherite Additions | `create_sna-1.2-neoforge-1.21.1.jar` | `1.2` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Player Transport` | 23/09/2026 - 11:23 |
 | 160 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` | `1.0 (distribuição); metadata interna vazia` | `Addons + Create + Processing` | 23/09/2026 - 11:23 |
 | 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 18/11/2026 - 10:26 |
-| 162 | Create Deep Seas | `create_submarine-2.2.4.jar` | `2.2.4` | `Addons + Create` | 23/10/2026 - 13:52 |
+| 162 | Create Deep Seas | `create_submarine-2.2.4.jar` | `2.2.4` | `Addons + Create` | 20/11/2026 - 18:47 |
 | 163 | Create : Misc & Things | `create_things_and_misc-4.1.1-neoforge-1.21.1.jar` | `4.1.1` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 12:37 |
 | 164 | Create: Tweaked Controllers | `create_tweaked_controllers-1.21.1-1.2.7.jar` | `1.21.1-1.2.7` | `Addons + Create + Redstone + Technology` | 23/09/2026 - 12:37 |
 | 165 | Create: Ultimate Factory | `create_ultimate_factory-2.2.4-neoforge-1.21.1.jar` | `2.2.4` | `Create + Farming + Processing + Server Utility + Technology` | 23/09/2026 - 12:38 |
