@@ -73,3 +73,16 @@ O runtime físico continua exatamente `villagespawnpoint-1.21.1-4.6.jar`, mod id
 Versões 4.7 existem para linhas posteriores do Minecraft e **não são tratadas como atualização aplicável ao runtime 1.21.1**. Nenhuma criação de mundo, busca de village, seed determinism, spawn safety ou compatibilidade com settlements modded foi testada nesta recatalogação.
 ## 12. Revalidação física e upstream — 13/09/2026
 O runtime físico permanece `villagespawnpoint-1.21.1-4.6.jar`, versão `4.6`, em ambiente server-side. A file list oficial continua tratando `4.6` como a release aplicável ao Minecraft 1.21.1; versões `4.7` localizadas pertencem a linhas posteriores do jogo e não são update automático deste runtime. O boundary permanece o mesmo: Village Spawn Point escolhe o world spawn inicial, mas não gera villages nem assume ownership dos settlements encontrados. Nenhuma criação de mundo, busca de village, seed determinism, spawn safety ou compatibilidade com settlements modded foi testada nesta revalidação.
+
+## Auditoria parcial — 20/11/2026 — novas versões 4.8 a 6.1
+
+O projeto oficial CurseForge 347381 (Serilum) mantém categorias Adventure and RPG + World Gen. O snapshot físico #561 continua `villagespawnpoint-1.21.1-4.6.jar`. A conclusão histórica de que 4.6 era a última publicação aplicável não deve ser usada como estado upstream atual.
+
+Publicações NeoForge 1.21.1 localizadas:
+- [4.8, file ID 9032289](https://www.curseforge.com/minecraft/mc-mods/village-spawn-point/files/9032289): identificada na busca do catálogo, nota técnica individual não acessível.
+- [5.0 — 01/11/2026](https://www.curseforge.com/minecraft/mc-mods/village-spawn-point/files/9394057): evita travamento na criação quando a busca não encontra village e corrige posicionamento fora/abaixo do centro. Suporta spawn de jogadores novos em villages subterrâneas; opções `blacklistedVillageStructures`, `maximumVillageSearchSeconds` e `spawnNewPlayersInsideUndergroundVillages`. `locateVillageTag` torna-se seletor de estruturas com múltiplos destinos; ativação/desativação passa a valer no próximo mundo novo sem reinício. A correção de compatibilidade Biome Spawn Point identificada especificamente como Fabric não é atribuída ao alvo NeoForge.
+- [6.0 — 07/11/2026](https://www.curseforge.com/minecraft/mc-mods/village-spawn-point/files/9490279): inclui opção Spawn in Village na tela de criação do mundo e corrige interferência de Biome Spawn Point desativado na escolha da village. Correção de baú bônus declarada apenas para Fabric não é atribuída a NeoForge.
+- [6.1, file ID 9518255](https://www.curseforge.com/minecraft/mc-mods/village-spawn-point/files/9518255), também [Modrinth VXApkWmo](https://modrinth.com/mod/village-spawn-point/version/VXApkWmo): publicação localizada nos índices; nota individual não recuperada.
+
+**Gates:** testar seeds sem village acessível, limite de tempo, vilas subterrâneas, centro/segurança, blacklist por estrutura, migração de `locateVillageTag`, novos mundos com opção ligada/desligada e coexistência com Biome Spawn Point (se presente). Validar dedicated server separado da tela client-side. Não alterar spawn de mundos existentes por inferência. **Pendente:** notas exatas 4.8 e 6.1 e catálogo integral (incluindo possíveis publicações intermediárias). Sem instalação ou testes.
+

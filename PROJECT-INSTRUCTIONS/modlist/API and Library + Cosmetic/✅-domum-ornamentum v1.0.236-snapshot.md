@@ -135,3 +135,12 @@ Material selection e crafting precisam ser confirmados pelo servidor. Dois clien
 - README oficial: skinnable blocks, non-ticking block entity/model loader e API jar;
 - `ModBlocks.java` do branch exato para registries/famílias.
 > **Boundary canônico:** Domum Ornamentum é authority da forma decorativa e de seu material/skin state. Schematic/build systems devem preservar esse state; renderização cliente não é a fonte de verdade.
+
+## Auditoria incremental — 20/11/2026 — 1.0.237-snapshot
+
+O [catálogo oficial do projeto 527361](https://www.curseforge.com/minecraft/mc-mods/domum-ornamentum/files/all) lista a versão física 1.0.236-snapshot, de 01/09/2026, imediatamente antes da única publicação posterior para NeoForge 1.21.1, [1.0.237-snapshot, de 01/11/2026, file ID 9394376](https://www.curseforge.com/minecraft/mc-mods/domum-ornamentum/files/9394376), Beta. A release estável 1.0.231 é anterior ao baseline físico. As categorias oficiais permanecem API and Library + Cosmetic.
+
+O changelog desse artefato remete ao [PR #354](https://github.com/ldtteam/Domum-Ornamentum/pull/354), que encerra a [issue #353](https://github.com/ldtteam/Domum-Ornamentum/issues/353). O relato reproduziu uma porta decorativa visualmente equivalente rejeitada pela requisição de construção do MineColonies devido à diferença entre `type: "FULL"` (dado legado) e `type: "full"` (item novo). No diff oficial do PR, merge `fad921d930b90b3ee5110f032c020df204900d69`, a migração em `SelfUpgradingBlockItem.java` converte o valor da propriedade legada Type em minúsculas antes de transferi-lo para `DataComponents.BLOCK_STATE`. É um fix de migração de item, não uma alteração das receitas, do catálogo de blocos ou uma garantia de reparo de todo dado já migrado.
+
+**Impacto no pack:** validar pedidos de portas e outros itens com variante legada, especialmente schematics que contenham itens em molduras; comparar componentes, material/texture data e aceitação pelo construtor, sem presumir que o defeito reportado em outras versões de MineColonies/Structurize foi reproduzido neste pack. Manter gates de persistência, upgrade de snapshots e dependências efetivas. Auditoria documental da única publicação posterior concluída; sem instalação, comparação binária ou teste em mundo. JAR histórico, basename e pasta preservados.
+

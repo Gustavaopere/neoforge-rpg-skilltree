@@ -133,3 +133,16 @@ Este delta toca diretamente a fronteira client/server e registry serialization; 
 - [ ] Multiblock preview mantém o batching fix já documentado na 1.120.4.
 
 Fontes upstream: releases oficiais `klikli-dev/modonomicon` 1.120.5, 1.120.6 e 1.120.7. Nenhum teste acima foi executado nesta atualização documental.
+
+## Auditoria parcial — 20/11/2026 — publicações posteriores à 1.120.7
+
+A autoridade física #404 continua `modonomicon-1.21.1-neoforge-1.120.4.jar`. As versões 1.120.5/.6/.7 permanecem documentadas na seção 14. As seguintes publicações do projeto CurseForge 538392 foram confirmadas individualmente para NeoForge 1.21.1; categorias oficiais Adventure and RPG + API and Library + Map and Information mantidas.
+
+| Publicação | Delta documentado |
+|---|---|
+| [1.122.0 — 29/10/2026](https://www.curseforge.com/minecraft/mc-mods/modonomicon/files/9364289) | Introduz condições de carregamento para a linha 1.21.1 (commit `89e0eb7`, PR #417). Relevante para disponibilidade condicional de conteúdo data-driven; não inventar schema, escopo ou sintaxe sem documentação exata. |
+| [1.123.0 — 31/10/2026](https://www.curseforge.com/minecraft/mc-mods/modonomicon/files/9384356) | Atualiza versões dos loaders (commit `7f9881b`); demais notas referem-se a cache de datagen, arquivos gerados e CI. Confirmar mínimos reais de runtime antes de promover. |
+| [1.123.1 — 16/11/2026](https://www.curseforge.com/minecraft/mc-mods/modonomicon/files/9646793) | Melhora o tratamento de erros na construção de livros (commit `1a662c4`); não atribuir comportamento específico de recovery não publicado. |
+
+**Pendência documental:** a listagem filtrada CurseForge e a API Modrinth não retornaram o inventário integral; não foi possível excluir publicações intermediárias entre 1.120.7 e 1.122.0. As consultas aos nomes de tags hipotéticos também retornaram 404, o que não prova inexistência de publicações. Manter item pendente. Regressões: load conditions, books unknown/unbuilt, logs de falha no build, reload, estado de progressão e consumidores reais; confirmar loader/dependências. Nenhum teste ou promoção física.
+
