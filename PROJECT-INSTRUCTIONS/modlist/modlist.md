@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 20/11/2026 (Create: Stats & Power — fechamento)
+
+| Nº físico | Mod oficial | Instalado (snapshot) | Upstream auditado | Situação |
+|---:|---|---|---|---|
+| 161 | Create: Stats & Power | `1.13.1` | [1.14.5](https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/8906784), [1.15.0](https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/9074215), [1.16.0](https://www.curseforge.com/minecraft/mc-mods/create-stats-power/files/9287207) | **Concluído documentalmente:** todos os releases após 1.13.1 auditados; 1.15.33/1.15.37 são referências de desenvolvimento, não JARs públicos comprovados. Source 1.15.37→1.16.0 verificado; QA de FE/contraptions e instalação pendentes. |
+
+
 ## Auditoria incremental — 20/11/2026 (Cold Sweat — fechamento)
 
 | Nº físico | Mod | JAR / versão instalada | Atualização auditada | Conclusão |
@@ -578,7 +585,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 158 | Create Stuff & Additions Curios Jetpacks | `create_sa_curios_jetpacks-neoforge-1.21.1-1.2.4.jar` | `1.2.4 (distribuição); metadata interna 1.2.22` | `Addons + Create` | 23/09/2026 - 11:23 |
 | 159 | Create Stuff & Netherite Additions | `create_sna-1.2-neoforge-1.21.1.jar` | `1.2` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Player Transport` | 23/09/2026 - 11:23 |
 | 160 | Create: Sophisticated Backpacks Compat | `create_sophback_compat-1.0.jar` | `1.0 (distribuição); metadata interna vazia` | `Addons + Create + Processing` | 23/09/2026 - 11:23 |
-| 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 18/11/2026 - 10:26 |
+| 161 | Create: Stats & Power | `create_stats-1.13.1.jar` | `1.13.1` | `Addons + Create` | 20/11/2026 - 19:07 |
 | 162 | Create Deep Seas | `create_submarine-2.2.4.jar` | `2.2.4` | `Addons + Create` | 20/11/2026 - 18:47 |
 | 163 | Create : Misc & Things | `create_things_and_misc-4.1.1-neoforge-1.21.1.jar` | `4.1.1` | `Addons + Armor, Tools, and Weapons + Create + MCreator + Technology` | 23/09/2026 - 12:37 |
 | 164 | Create: Tweaked Controllers | `create_tweaked_controllers-1.21.1-1.2.7.jar` | `1.21.1-1.2.7` | `Addons + Create + Redstone + Technology` | 23/09/2026 - 12:37 |
