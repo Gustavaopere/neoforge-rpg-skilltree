@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 20/11/2026 (Structurize — fechamento)
+
+| Nº físico | Projeto | Versão física | Upstream auditado | Resultado |
+|---:|---|---|---|---|
+| 529 | Structurize | `1.0.833-1.21.1-snapshot` | [1.0.840 Release](https://www.curseforge.com/minecraft/mc-mods/structurize/files/9680037) | **Concluído documentalmente:** 1.0.835/837/838/839/840 e snapshots correspondentes inventariados; sete commits comparados por tags, correções de renderização, placement, validação e segurança de caminhos; upgrade físico e QA pendentes. |
+
+
 ## Auditoria incremental — 20/11/2026 (Cyber Goggles, IceAndFire CE e Structurize)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream pesquisado | Resultado |
@@ -918,7 +925,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 526 | SpellActionbar | `spell_actionbar-1.1.4.jar` | `1.1.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
 | 527 | StarbuncleMania | `starbunclemania-1.21.1-1.5.8.jar` | `1.5.8` | `Addons + Automation + Energy, Fluid, and Item Transport + Magic` | 27/09/2026 - 22:12 |
 | 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 19/11/2026 - 00:31 |
-| 529 | Structurize | `structurize-1.0.833-1.21.1-snapshot.jar` | `1.0.833-1.21.1-snapshot` | `Cosmetic + Server Utility + Structures` | 20/11/2026 - 18:37 |
+| 529 | Structurize | `structurize-1.0.833-1.21.1-snapshot.jar` | `1.0.833-1.21.1-snapshot` | `Cosmetic + Server Utility + Structures` | 20/11/2026 - 18:40 |
 | 530 | Strut Your Stuff (Struts) | `struts-1.3.1.jar` | `1.3.1` | `API and Library` | 27/09/2026 - 22:12 |
 | 531 | Stylish Effects | `StylishEffects-v21.1.3-1.21.1-NeoForge.jar` | `21.1.3` | `Cosmetic + Map and Information + Utility & QoL` | 27/09/2026 - 22:12 |
 | 532 | Create: Deep Seas - Lava Fix | `submarinefix-1.0.1.jar` | `1.0.1` | `Bug Fixes + Create` | 27/09/2026 - 22:58 |
