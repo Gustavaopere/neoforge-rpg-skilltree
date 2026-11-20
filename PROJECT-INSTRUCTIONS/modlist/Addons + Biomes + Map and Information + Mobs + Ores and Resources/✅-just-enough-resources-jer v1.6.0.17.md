@@ -73,3 +73,15 @@ Validar client boot, JEI plugin registration, world join, data/resource reload, 
 - **Changelog:** tradução portuguesa #518 em 1.6.0.17.
 - **Limite:** nenhum arquivo de worldgen/loot efetivo do pack foi inferido a partir da UI; dados exibidos precisam de confirmação para decisões de progressão.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
+
+## Auditoria parcial — 20/11/2026 — novas distribuições 1.6.0
+
+O snapshot #356 permanece `JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar`, Alpha. Projeto CurseForge 240630, categorias oficiais Addons + Biomes + Map and Information + Mobs + Ores and Resources confirmadas na [ficha oficial 1.6.0.66](https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer/files/9452611). O [catálogo de 1.21.1](https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer/files/all?page=1&pageSize=20&version=1.21.1) omite alphas; a consulta com alphas explícitos falhou. Não confundir a última release estável .57 com a última build de qualquer canal.
+
+| Publicação confirmada | Delta declarado pelo autor |
+|---|---|
+| [1.6.0.54 — 23/10/2026, Beta](https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer/files/9301525) | Ajuste de infraestrutura de publicação CurseForge/Forge no backport 1.21.1, commit cd328c2; não há mudança funcional NeoForge comprovada pela nota. |
+| [1.6.0.57 — 24/10/2026, Release](https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer/files/9311693) | Tratamento de slots vazios no RichTooltipCallback (3989533, #580), relevante à apresentação de loot e receitas/itens; não alterar gameplay. |
+| [1.6.0.66 — 05/11/2026, Alpha](https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer/files/9452611) | Localização das condições de nível de luz (9ed14ea, #606), conteúdo textual de consulta, não alteração de spawn. |
+
+**Bloqueio:** faltam o inventário completo de builds Alpha posteriores a .17 e os deltas das intermediárias entre os arquivos identificados. Não deduzir que todos os números de build foram publicados nem que as notas acima sejam cumulativas. Testar tooltip com slots vazios, localização, JEI e worldgen customizado; nenhuma atualização do JAR ou QA. Manter na fila de auditoria.

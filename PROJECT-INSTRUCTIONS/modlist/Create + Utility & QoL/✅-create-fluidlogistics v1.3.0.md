@@ -93,3 +93,25 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 O arquivo físico continua em `fluidlogistics-1.3.0-mc1.21.1.jar` / `1.3.0`. A listagem oficial do CurseForge para Minecraft 1.21.1 continua apontando **1.3.0** como release mais recente (file ID `8894053`), portanto não existe sequência intermediária posterior à versão já documentada para incorporar neste ciclo.
 
 Os quatro deltas da 1.3.0 permanecem os mesmos já registrados no dossiê: otimização do render de fluid packages, processamento paralelo no Mechanical Fluid Gun, correção do toggle de Blaze Cooler conversion e correção do empty bucket extra em bulk cooling. Nenhum teste runtime adicional foi executado nesta revalidação documental.
+
+## Auditoria incremental — 20/11/2026 — 1.3.1 e 1.3.2
+
+**Autoridade física histórica:** #285, `fluidlogistics-1.3.0-mc1.21.1.jar` (1.3.0). O [catálogo oficial CurseForge 1475079](https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic/files/all) consultado identifica as releases NeoForge 1.21.1 1.3.1 (30/09/2026) e 1.3.2 (27/10/2026) após 1.3.0 de 16/09. As distribuições Forge 1.20.1 e JARs de sources não são entradas adicionais de runtime. Categorias Create + Utility & QoL preservadas. Projeto distinto de Create: Fluid.
+
+### 1.3.1 — 30/09/2026
+
+O [changelog do commit de release 1.3.1](https://github.com/yision1/CreateFluidLogistics/blob/d85aaa2db5f06610a03cdbb5e6a53b348b188da5/CHANGELOG.md) do mantenedor registra:
+- Flow Meter (medidor de fluxo), Redstone Fluid Valve (válvula controlada por redstone) e Potato Server (não inferir função ou receita além do nome).
+- Fluid Packagers passam a extrair mel de colmeias.
+- Corrige sinal redstone do Stock Link que não reduzia a prioridade de Fluid Packager.
+
+São mudanças relevantes para automação e seleção de destinos; testar conservação de fluido, prioridade sob pedidos concorrentes, extração de mel e operação dos novos componentes. A existência e plataforma da release foram verificadas no catálogo CurseForge; a nota técnica vem do commit de release oficial, não de diff byte a byte do JAR.
+
+### [1.3.2 — 27/10/2026, arquivo 9340866](https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic/files/9340866)
+
+- Adiciona Oscillating Steam Engine e Package List Filter; introduz Snow Golem Freezer em substituição ao Blaze Cooler. Validar recipes, referências de schematics e comportamento de saves existentes; a nota não especifica a migração de IDs.
+- Hand pointer mostra localização de Stock Links em chunks descarregados; isto não implica que force-load seja efetuado.
+- Altera armazenamento de fluido em packages, regras de conexão do Copper Frogport e aumenta limite do alvo de reposição do Fluid Factory Gauge. Validar rotas, inserção/extração e migração do estado persistente; não inventar novo teto numérico.
+- Ajusta cálculo de TPS do Potato Server, adiciona idiomas e corrige conversão indevida de Fluid Gauge em Item Gauge após primeira colocação, além de loading/sync de configs.
+
+**Gates:** testar upgrades de save/schematic e configurações, conservação de volumes, reabastecimento e prioridades, Frost/Blaze Cooler migration, novos dispositivos, reload/restart, links descarregados e Create 6.0.10 com addons de logística presentes. A documentação das duas releases está reconciliada; não foi determinada equivalência binária dos artefatos nem realizada instalação ou QA. A versão física permanece 1.3.0.

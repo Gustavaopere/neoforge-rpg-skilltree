@@ -275,3 +275,29 @@ O primeiro delta é uma mudança explícita de autorização: consumidores FTB q
 - [ ] NBT editor, `CursorType.MOVE`, keymaps e registry sync da 2101.1.36 permanecem funcionais.
 
 Fonte upstream: CurseForge FTB Library 2101.1.37, file ID 9008089. Nenhum teste acima foi executado nesta atualização documental.
+
+## Auditoria incremental — 20/11/2026 — 2101.1.37 a 2101.1.40
+
+**Autoridade física histórica:** #289, `ftb-library-neoforge-2101.1.36.jar`. O [catálogo CurseForge do projeto 404465](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/all) registra quatro releases NeoForge 1.21.1 posteriores ao baseline (.37/.38/.39/.40), não incluindo as linhas 26.x. Categorias oficiais API and Library preservadas.
+
+### [2101.1.37 — 29/09/2026, arquivo 9008089](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/9008089)
+
+Revalidada a seção 20: edição de server config por `SyncConfigToServerPacket` exige nível 4 em vez de 2; seletor de itens em JEI mode omite itens da tag `c:hidden_from_recipe_viewers`. Sem novo delta além do já registrado.
+
+### [2101.1.38 — 27/10/2026, arquivo 9344121](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/9344121)
+
+- **Quebra explícita de API em CurrencyProvider:** valores passam de int para long; o autor exige **FTB XMod Compat 21.1.13 ou posterior**. O snapshot registra XMod Compat 21.1.11, abaixo do requisito; não promover a Library isoladamente. Consumidores próprios que implementam a abstração precisam reconciliar tipos, sem truncamento ou overflow.
+- Amplia APIs de UI/config: `AbstractButtonListScreen#ExtendedSearch`, `ColorValue` e `SNBTConfig#addColor`, `Button.Builder`, seletores modais de item/fluido para telas de menus; utilitários de componentes de texto, tooltips/panels, e `LowerButtonPanel` reutilizável.
+- Corrige renderização de MenuScreenWrapper e painéis modais. A atualização da UI é transversal aos consumidores FTB.
+
+### [2101.1.39 — 28/10/2026, arquivo 9350706](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/9350706)
+
+Hotfix da versão incorreta de FTB XMod Compat declarada em metadata NeoForge/Fabric. Não interpretar como eliminação da incompatibilidade de CurrencyProvider da .38; verificar intervalos efetivos do JAR antes do upgrade.
+
+### [2101.1.40 — 16/11/2026, arquivo 9650381](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/9650381)
+
+- Suporte a WebP estático e animado, `WebPIcon`, `AnimatedImageWidget`, consulta de resolução de aspect ratio para assets assíncronos e novos ícones resize/pause. Descoberta de imagens passa a considerar texture atlases e proporções, relevante para FTB Quests.
+- `BaseValue#fromFileOnly` permite restringir edição de determinados valores ao arquivo de configuração, camada defensiva adicional à exigência de permissão 4. Não admitir que todo valor seja editável mesmo por operador.
+- Ajuste da renderização de modais em BaseScreen restaura segurança de sobrescrever drawForeground sem chamada a super, segundo o mantenedor.
+
+**Gates:** atualizar/confirmar XMod Compat em conjunto, testar consumidores FTB, moedas acima do intervalo int e ABI, autorização 2/4 e opções file-only, modais em menus, seletores JEI, atlas/resource reload, WebP de diferentes proporções, NBT/config sync e minimapa. O [changelog de FTB Chunks .23](https://www.curseforge.com/minecraft/mc-mods/ftb-chunks-forge/files/9374151) relata correção dos menus contextuais com Library recente; validar coordenadamente. Auditoria documental das quatro releases concluída, mas promoção física e QA não realizados. Basename e versão física 2101.1.36 preservados.

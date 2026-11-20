@@ -234,3 +234,20 @@ Claims são team-owned, não simplesmente player-owned. Testar mudança de equip
 **Changelog oficial:** 2101.1.22 e releases 2101.1.x relevantes para segurança/lifecycle.
 **Modlist física:** confirma JAR, mod id, versão e presença das integrações FTB/Aeronautics do pack.
 **Não foram executados testes de runtime nesta catalogação.** A matriz acima é requisito futuro de validação.
+
+## Auditoria incremental — 20/11/2026 — 2101.1.23 e 2101.1.24
+
+**Autoridade física histórica:** #288, `ftb-chunks-neoforge-2101.1.22.jar`. O [catálogo CurseForge do projeto 314906](https://www.curseforge.com/minecraft/mc-mods/ftb-chunks-forge/files/all) apresenta a sequência NeoForge 1.21.1 2101.1.22 → .23 → .24; o último arquivo é de 13/11/2026. Não confundir com 26.1.2 ou Fabric. Categorias oficiais Map and Information + Server Utility mantidas.
+
+### [2101.1.23 — 30/10/2026, arquivo 9374151](https://www.curseforge.com/minecraft/mc-mods/ftb-chunks-forge/files/9374151)
+
+- Controle server-side da geração automática de portais Nether quando o jogador não tem autorização para colocar blocos no destino. Nova opção `nether_portal_creation`: `no_portal` (default, permite teleporte sem construir o portal de saída), `allow` (comportamento vanilla) e `failure` (impede teleporte). Validar saída segura, destino protegido e retorno, preservando as regras de ownership de claims.
+- Administradores podem visualizar claims privados quando os editam através de `/ftbchunks admin open_claim_gui_as ...`; bypass ativo permite visualizar todos os claims e passa a gerar lembrete no login. Não expandir visibilidade de usuários comuns.
+- Correções: comando `/ftbchunks admin unclaim_dimension`; menus contextuais com Library recente; potencial vazamento de memória na quantização de cores do mapa. Ajuste para região preta é descrito pelo autor como tentativa sem reprodução confirmada.
+- O mixin de proteção de propagação de fogo troca Redirect por WrapOperation para melhorar interoperabilidade; controle de spawn de mobs em chunks force-loaded troca injeção cancelável por ModifyReturnValue para reduzir overhead. Não atribuir ganho de TPS medido sem benchmark.
+
+### [2101.1.24 — 13/11/2026, arquivo 9594476](https://www.curseforge.com/minecraft/mc-mods/ftb-chunks-forge/files/9594476)
+
+Corrige escurecimento dos ícones fallback vermelho/branco de entidades e aplicação indevida da configuração client-side Entity Heads quando desativada. São correções de apresentação, sem mudança comprovada em proteção, spawn ou tracking lógico.
+
+**Gates:** testar policy de portal nos três valores, claims de terceiros, bypass/visibilidade e lembrete de login, unclaim por dimensão, spread de fogo com outros mods, force-load/spawn, mapas, menus contextuais e ícones. Coordenar QA com FTB Library .38–.40 e XMod Compat, inclusive bridges de Create Aeronautics e mods de proteção. A auditoria documental por release está concluída; compatibilidade binária e instalação não confirmadas. Basename e versão física 2101.1.22 preservados.

@@ -12,6 +12,15 @@
 
 
 
+## Auditoria incremental — 20/11/2026 (FluidLogistics, FTB Library, FTB Chunks e JER)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado/identificado | Resultado |
+|---:|---|---|---|---|
+| 285 | Create: FluidLogistics | `1.3.0` | [1.3.2](https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic/files/9340866) | Concluído documentalmente; 1.3.1/.2 individualizadas em catálogo, changelog de release GitHub e CurseForge; novos componentes, substituição de cooler, logística/config. QA pendente. |
+| 288 | FTB Chunks (NeoForge) | `2101.1.22` | [2101.1.24](https://www.curseforge.com/minecraft/mc-mods/ftb-chunks-forge/files/9594476) | Concluído documentalmente; .23/.24 auditadas: política de portais, claims/admin, interoperabilidade/performance e ícones. QA pendente. |
+| 289 | FTB Library (NeoForge) | `2101.1.36` | [2101.1.40](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/9650381) | Concluído documentalmente; .37–.40 auditadas; API CurrencyProvider incompatível com XMod Compat 21.1.11 registrado, requer 21.1.13+; QA coordenado pendente. |
+| 356 | Just Enough Resources (JER) | `1.6.0.17` | [1.6.0.66 Alpha](https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer/files/9452611) | Parcial: .54, .57 (release estável) e .66 documentadas, inventário Alpha incompleto. |
+
 ## Auditoria incremental — 20/11/2026 (Domum Ornamentum, Modonomicon e Village Spawn Point)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado/identificado | Resultado |
@@ -636,11 +645,11 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 282 | First-person Model | `firstperson-neoforge-2.7.2-mc1.21.1.jar` | `2.7.2` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 24/09/2026 - 18:26 |
 | 283 | Flowing Fluids | `flowing_fluids-1.0.6-1.21-neoforge.jar` | `1.0.6` | `Miscellaneous` | 18/11/2026 - 08:24 |
 | 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 24/09/2026 - 18:23 |
-| 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 24/09/2026 - 18:24 |
+| 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 20/11/2026 - 00:35 |
 | 286 | Forgified Fabric API | `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar` | `0.116.15+2.3.5+1.21.1` | `Technology` | 22/10/2026 - 19:46 |
 | 287 | Fragmentum [NeoForge Edition] | `fragmentum-neoforge-1.21.1-2.4.4.jar` | `2.4.4` | `API and Library` | 22/10/2026 - 23:19 |
-| 288 | FTB Chunks (NeoForge) | `ftb-chunks-neoforge-2101.1.22.jar` | `2101.1.22` | `Map and Information + Server Utility` | 24/09/2026 - 18:24 |
-| 289 | FTB Library (NeoForge) | `ftb-library-neoforge-2101.1.36.jar` | `2101.1.36` | `API and Library` | 24/09/2026 - 18:24 |
+| 288 | FTB Chunks (NeoForge) | `ftb-chunks-neoforge-2101.1.22.jar` | `2101.1.22` | `Map and Information + Server Utility` | 20/11/2026 - 00:35 |
+| 289 | FTB Library (NeoForge) | `ftb-library-neoforge-2101.1.36.jar` | `2101.1.36` | `API and Library` | 20/11/2026 - 00:35 |
 | 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 18/11/2026 - 08:55 |
 | 291 | FTB Teams (NeoForge) | `ftb-teams-neoforge-2101.1.11.jar` | `2101.1.11` | `API and Library` | 17/11/2026 - 20:00 |
 | 292 | FTB Ultimine (NeoForge) | `ftb-ultimine-neoforge-2101.1.15.jar` | `2101.1.15` | `Armor, Tools, and Weapons + Server Utility` | 24/09/2026 - 19:05 |
@@ -707,7 +716,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 353 | Jupiter | `jupiter-2.3.7-1.21.1-neoforge.jar` | `2.3.7` | `API and Library + Server Utility + Utility & QoL` | 25/09/2026 - 02:10 |
 | 354 | Just Enough Breeding (JEBr) | `justenoughbreeding-neoforge-1.21.1-3.2.1.jar` | `3.2.1` | `Addons + Map and Information + Mobs + Utility & QoL` | 25/09/2026 - 02:10 |
 | 355 | Just Enough Professions (JEP) | `JustEnoughProfessions-neoforge-1.21.1-4.0.5.jar` | `4.0.5` | `Addons + Map and Information + Utility & QoL` | 25/09/2026 - 02:10 |
-| 356 | Just Enough Resources (JER) | `JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar` | `1.6.0.17` | `Addons + Biomes + Map and Information + Mobs + Ores and Resources` | 25/09/2026 - 02:10 |
+| 356 | Just Enough Resources (JER) | `JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar` | `1.6.0.17` | `Addons + Biomes + Map and Information + Mobs + Ores and Resources` | 20/11/2026 - 00:35 |
 | 357 | KilaGraph | `kilagraph-neoforge-1.21.1-21.1.0.14.jar` | `21.1.0.14` | `API and Library + Utility & QoL` | 25/09/2026 - 02:10 |
 | 358 | Kiwi 🥝 (Neo/Forge) | `Kiwi-1.21.1-NeoForge-15.8.7.jar` | `15.8.7+neoforge` | `API and Library` | 25/09/2026 - 02:11 |
 | 359 | Knight Lib | `knightlib-neoforge-1.21.1-2.0.1.jar` | `2.0.1` | `API and Library` | 23/10/2026 - 14:20 |
