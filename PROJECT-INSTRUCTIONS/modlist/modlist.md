@@ -12,6 +12,13 @@
 
 
 
+## Fechamento estrutural — 20/11/2026 (Leylines e Paladin Spells)
+
+| Nº físico | Projeto | Instalada no snapshot | Upstream já auditado | Situação documental |
+|---:|---|---|---|---|
+| 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `1.0.3` | `1.1.2` (1.1.0–1.1.2) | Dossier preservado, pasta atualizada para `Addons + Biomes + Magic + Structures + World Gen` conforme categorias oficiais CurseForge; verificação de referências Markdown concluída; versão física não alterada. |
+| 432 | Paladin Spells - Iron's Spells Addon | `1.21.1-1.1.1` | `1.21.1-1.1.4` (1.1.2–1.1.4) | Dossier preservado, pasta atualizada para `Addons + Adventure and RPG + Magic` conforme categorias oficiais CurseForge; verificação de referências Markdown concluída; versão física não alterada. |
+
 ## Auditoria incremental — 20/11/2026 (JEI — horizonte 19.71.x)
 
 | Nº físico | Projeto | Versão instalada | Nova Beta NeoForge 1.21.1 | Situação |
@@ -811,7 +818,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 370 | LDLib | `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar` | `2.2.39.a` | `API and Library + Utility & QoL` | 18/11/2026 - 07:44 |
 | 371 | Legendary Monsters | `legendary_monsters-2.2.2 MC 1.21.1.jar` | `2.2.2 (distribuição); metadata interna 1.21.1` | `Armor, Tools, and Weapons + Mobs + Structures` | 17/11/2026 - 18:47 |
 | 372 | Legendary Spellbooks | `legendary_spellbooks-1.21.1+neo-0.3.2.jar` | `0.3.2` | `Addons + Magic` | 25/09/2026 - 11:24 |
-| 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `leylines-1.0.3.jar` | `1.0.3` | `Addons + Magic + Structures + World Gen` | 18/11/2026 - 10:06 |
+| 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `leylines-1.0.3.jar` | `1.0.3` | `Addons + Biomes + Magic + Structures + World Gen` | 18/11/2026 - 10:06 |
 | 374 | Lionfish API | `lionfishapi-3.1.jar` | `3.1` | `API and Library` | 25/09/2026 - 11:24 |
 | 375 | Lithostitched | `lithostitched-1.8.0+beta6-neoforge-21.1.jar` | `1.8.0+beta6` | `API and Library + Miscellaneous + World Gen` | 23/10/2026 - 02:00 |
 | 376 | Load My F***ing Tags | `lmft-1.1.1+1.21.9-neoforge.jar` | `1.1.1+1.21.9` | `Miscellaneous + Server Utility` | 25/09/2026 - 11:24 |
@@ -870,7 +877,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 429 | Overflowing Bars | `OverflowingBars-v21.1.1-1.21.1-NeoForge.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 25/09/2026 - 14:28 |
 | 430 | oωo (owo-lib) | `owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar` | `0.12.15.5-beta.1+1.21` | `API and Library` | 22/10/2026 - 22:49 |
 | 431 | Ozymandias' Sundries | `ozymandias_sundries-0.0.5.jar` | `0.0.5 (distribuição/publicação); metadata interna 0.0.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 14:28 |
-| 432 | Paladin Spells - Iron's Spells Addon | `paladin_spells-1.21.1-1.1.1.jar` | `1.21.1-1.1.1` | `Addons + Magic` | 18/11/2026 - 07:23 |
+| 432 | Paladin Spells - Iron's Spells Addon | `paladin_spells-1.21.1-1.1.1.jar` | `1.21.1-1.1.1` | `Addons + Adventure and RPG + Magic` | 18/11/2026 - 07:23 |
 | 433 | ParCool! ~ Minecraft Parkour ~ | `ParCool-1.21.1-4.0.0.3.jar` | `4.0.0.3` | `Adventure and RPG + Miscellaneous + Utility & QoL` | 19/11/2026 - 19:11 |
 | 434 | Particle Effects | `ParticleEffects-1.5.0+1.21.1+neoforge.jar` | `1.5.0+1.21.1+neoforge` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
 | 435 | Particle Rain | `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` | `4.0.0-beta.11` | `Cosmetic` | 19/11/2026 - 19:30 |
