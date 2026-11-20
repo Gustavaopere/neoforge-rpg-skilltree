@@ -136,3 +136,15 @@ Regression gates:
 - [ ] configs grandes em Neo decodificam sem exception;
 - [ ] configs `NoGui` permanecem ocultas;
 - [ ] packet registration e server↔client sync permanecem estáveis.
+
+## 17. Auditoria incremental concluída — 20/11/2026 — 0.7.7+fix1 NeoForge 1.21.1
+
+**Versão instalada documentada:** `fzzy_config-0.7.7+1.21+neoforge.jar`, `0.7.7+1.21+neoforge`, posição física #296 do snapshot. O JAR não foi alterado. **Única publicação posterior localizada para NeoForge 1.21/1.21.1:** [0.7.7+fix1+1.21+neoforge, file ID 9326327](https://www.curseforge.com/minecraft/mc-mods/fzzy-config/files/9326327), 25/10/2026, Release. O changelog desse arquivo repete a lista cumulativa da 0.7.7; ela não deve ser atribuída ao hotfix.
+
+**Código oficial que fecha o delta:** [fzzyhmstrs/fconfig commit 624ea21da3](https://github.com/fzzyhmstrs/fconfig/commit/624ea21da3), de 25/10/2026, branch `neo/1.21`, identificado como `neo 1.21-1.21.5 fix blur depth test`. O commit altera **simultaneamente** `gradle.properties` de `modVersion = 0.7.7` para `0.7.7+fix1` e `src/main/kotlin/me/fzzyhmstrs/fzzy_config/util/RenderUtil.kt` para chamar `RenderSystem.disableDepthTest()` imediatamente antes de `MinecraftClient.getInstance().gameRenderer.renderBlur(delta)`. É uma correção de estado de profundidade no processamento de blur da interface de configuração, não alteração de sincronização, serialização, validação ou API pública. O diff oficial determina a diferença relevante omitida pelo changelog cumulativo. A análise de fonte não equivale à inspeção binária do JAR de distribuição.
+
+**Cadeia de publicações:** a release base 0.7.7 foi publicada em setembro; o commit 624ea21da3 corresponde ao hotfix 0.7.7+fix1 lançado em 25/10. O [histórico upstream NeoForge 1.21](https://github.com/fzzyhmstrs/fconfig/commits/neo/1.21/) apresenta depois, em 03/11, somente atualização do plugin de publicação de 2.2.3 para 2.2.4, sem mudança de código da configuração identificada nesse commit. Não foi encontrada publicação 0.7.7+fix2 para esse alvo. Diferenciar releases com sufixo para outras versões do Minecraft.
+
+**Relevância e QA:** verificar blur em menus, popups, tooltips, overlays e estado de profundidade no renderizado, inclusive com demais mods de interface; testar cliente/dedicated server, consumidores, configurações server-synced, reload, e metadados/SHA do candidato antes de promover a instalação. O hotfix não está comprovadamente instalado. Nenhum teste runtime foi realizado.
+
+**Status: CONCLUÍDO — DOCUMENTAÇÃO VERIFICADA** (release sucessora identificada, diferença source demonstrada e dossier atualizado). **Instalação/QA pendentes**, fora do critério de retirada da lista documental. O prefixo `✅-`, a versão física, o nome do arquivo e o caminho de categorias foram preservados.

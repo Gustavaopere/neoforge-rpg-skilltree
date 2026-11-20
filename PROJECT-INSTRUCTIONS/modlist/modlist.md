@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 20/11/2026 (Fzzy Config)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream verificado | Resultado |
+|---:|---|---|---|---|
+| 296 | Fzzy Config | `0.7.7+1.21+neoforge` | [0.7.7+fix1](https://www.curseforge.com/minecraft/mc-mods/fzzy-config/files/9326327) | **Documentação concluída:** source commit [624ea21](https://github.com/fzzyhmstrs/fconfig/commit/624ea21da3) faz bump da versão e corrige blur depth test. Instalação física e QA pendentes. |
+
+
 ## Auditoria incremental — 20/11/2026 (KubeJS)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
@@ -669,7 +676,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 293 | FTB XMod Compat | `ftb-xmod-compat-neoforge-21.1.11.jar` | `21.1.11` | `API and Library` | 17/11/2026 - 17:33 |
 | 294 | Fusion (Connected Textures) | `fusion-1.3.15a-neoforge-mc1.21.1.jar` | `1.3.15+a` (metadata runtime); filename/release `1.3.15a` | `API and Library + Cosmetic` | 24/09/2026 - 19:05 |
 | 295 | Fancy World Animations | `fwa+1.21.1-neoforge-1.2.31.jar` | `1.2.31` | `Cosmetic` | 17/11/2026 - 17:59 |
-| 296 | Fzzy Config | `fzzy_config-0.7.7+1.21+neoforge.jar` | `0.7.7+1.21+neoforge` | `API and Library + Utility & QoL` | 24/09/2026 - 19:05 |
+| 296 | Fzzy Config | `fzzy_config-0.7.7+1.21+neoforge.jar` | `0.7.7+1.21+neoforge` | `API and Library + Utility & QoL` | 20/11/2026 - 18:36 |
 | 297 | Gabou's Libs | `gaboulibs-neoforge-1.9.jar` | `1.9` | `API and Library` | 24/09/2026 - 19:05 |
 | 298 | Create Aeronautics: Gadgets & Gizmos | `gadgets-and-gizmos-bundled-V1.2.2.jar` | `1.2.2` | `Addons + Create` | 18/11/2026 - 11:28 |
 | 299 | Create: Garnished | `garnished-2.1.9.2+1.21.1-neoforged.jar` | `2.1.9.2` | `Addons + Automation + Create + Food` | 24/09/2026 - 19:05 |
