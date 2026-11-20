@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 20/11/2026 (JEI — horizonte 19.71.x)
+
+| Nº físico | Projeto | Versão instalada | Nova Beta NeoForge 1.21.1 | Situação |
+|---:|---|---|---|---|
+| 349 | Just Enough Items (JEI) | `19.56.0.440` | [19.71.0.475](https://www.curseforge.com/minecraft/mc-mods/jei/files/all) (20/11) | **PENDENTE:** Betas 19.71.0.470, .472, .473, .474, .475 identificadas; changelog 19.71.0 cumulativo indica MezzConfig standalone 0.7.1, mas a atribuição por JAR NeoForge e lacunas de publicações intermediárias impedem conclusão. |
+
+
 ## Auditoria incremental — 20/11/2026 (Integrated API — parcial)
 
 | Nº físico | Projeto | Instalada | Target documentado | Estado |
@@ -780,7 +787,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 346 | Magic From The East | `iss_magicfromtheeast-1.1.5.jar` | `1.1.5` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + World Gen` | 25/09/2026 - 01:24 |
 | 347 | Jade 🔍 | `Jade-1.21.1-NeoForge-15.10.6.jar` | `15.10.6+neoforge` | `Map and Information + Utility & QoL` | 25/09/2026 - 01:24 |
 | 348 | Just Enough Effect Descriptions (JEED) | `jeed-1.21-2.3.2.jar` | `1.21-2.3.2` | `Addons + Map and Information` | 17/11/2026 - 18:54 |
-| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 19/11/2026 - 00:38 |
+| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 20/11/2026 - 19:12 |
 | 350 | JinxedLib | `jinxedlib-neoforge-1.21.1-1.0.4.jar` | `1.0.4` | `API and Library + Server Utility + Utility & QoL` | 25/09/2026 - 01:25 |
 | 351 | JourneyMap Integration | `jmi-neoforge-1.21.1-1.9.jar` | `1.21.1-1.9` | `Addons + Map and Information` | 25/09/2026 - 01:25 |
 | 352 | JourneyMap | `journeymap-neoforge-1.21.1-6.0.8.jar` | `1.21.1-6.0.8` | `Map and Information` | 25/09/2026 - 02:10 |
