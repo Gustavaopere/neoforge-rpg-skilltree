@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 20/11/2026 (Cold Sweat — fechamento)
+
+| Nº físico | Mod | JAR / versão instalada | Atualização auditada | Conclusão |
+|---:|---|---|---|---|
+| 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` / `2.4.3.1` | [2.4.4](https://www.curseforge.com/minecraft/mc-mods/cold-sweat/files/9215368) e [2.4.5 NeoForge](https://www.curseforge.com/minecraft/mc-mods/cold-sweat/files/9391557) | **Concluído documentalmente:** 2.4.4 com migração térmica e 2.4.5 com lifecycle/atributos/insulation, HUD e nova semântica da Hearth. Instalação e QA pendentes. |
+
+
 ## Auditoria incremental — 20/11/2026 (Create Deep Seas — fechamento)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
@@ -512,7 +519,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 099 | Cobweb | `cobweb-neoforge-1.21-1.4.0.jar` | `1.4.0` | `API and Library` | 23/09/2026 - 01:02 |
 | 100 | CodeChicken Lib 1.8.+ | `CodeChickenLib-1.21.1-4.6.1.529.jar` | `4.6.1.529` | `API and Library` | 23/09/2026 - 01:02 |
 | 101 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 23/09/2026 - 01:02 |
-| 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 23/10/2026 - 13:51 |
+| 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 20/11/2026 - 19:05 |
 | 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 18/11/2026 - 12:08 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.4.jar` | `1.3.4` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 17/11/2026 - 18:34 |
 | 105 | Sinytra Connector | `connector-2.0.0-beta.17+1.21.1-full.jar` | `2.0.0-beta.17+1.21.1` | `Technology` | 22/09/2026 - 22:34 |
