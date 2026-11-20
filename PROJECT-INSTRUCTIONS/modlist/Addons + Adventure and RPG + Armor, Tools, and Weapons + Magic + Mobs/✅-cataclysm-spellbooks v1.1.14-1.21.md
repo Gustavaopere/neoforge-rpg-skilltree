@@ -182,3 +182,16 @@ Validar:
 - relações atuais do projeto: AzureLib, Iron's Spells 'n Spellbooks e L_Ender's Cataclysm como required dependencies;
 - source oficial 1.21.1 público consultado, porém ainda declarando 1.1.11; usado apenas como contexto arquitetural, não como prova binária da 1.1.14.
 > 🔒 Fail-closed: **1.1.14 é a authority de versão física, mas não há source pin público 1.1.14 equivalente na evidência consultada.** IDs, estrutura exata do novo caminho do Strange Disc, registry/recipe do brewing de manuscripts e detalhes binários herdados do boss/spells só entram como contrato depois de inspeção do JAR/runtime ou source/tag correspondente.
+
+## Auditoria incremental — 19/11/2026 — 1.1.15 Beta
+
+**Autoridade física histórica:** #087, `cataclysm_spellbooks-1.1.14-1.21.jar`, runtime `1.1.14-1.21`. O [catálogo oficial do projeto 1099461](https://www.curseforge.com/minecraft/mc-mods/cataclysm-spellbooks/files/all?page=1&pageSize=20&showAlphaFiles=hide&sortBy=dateCreated&sortOrder=desc) confirma apenas uma publicação posterior ao artefato físico para NeoForge 1.21.1: [1.1.15 Beta, 26/10/2026, file ID 9332055](https://www.curseforge.com/minecraft/mc-mods/cataclysm-spellbooks/files/9332055). Não confundir a beta com a release estável 1.1.11 ou com 1.2.9 Forge 1.20.1. O conjunto de categorias oficiais permanece Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs.
+
+A nota específica do mantenedor registra três mudanças:
+
+- Correção de crash de Monolith; o changelog não identifica a causa ou o caminho de execução, portanto não atribuir a uma classe/mixin específico.
+- Integração com FTB Chunks: Dimensional Rift passa a respeitar a proteção de chunks. É uma correção relevante de autorização de alteração do mundo. A proteção continua pertencendo ao provider de claims; o addon deve consultar suas permissões. No baseline físico 1.1.14 não presumir esse comportamento novo. A nota não demonstra cobertura dos demais spells nem estabelece FTB Chunks como nova dependência obrigatória.
+- Hijack recebe um ícone para o spell. Mudança de apresentação, sem evidência de alteração do custo, efeito ou targeting.
+
+**Gates de promoção:** reproduzir o crash Monolith em cenário controlado; testar Dimensional Rift em área livre, claim próprio, aliado e terceiro sem permissão, inclusive na fronteira de chunks, com multiplayer e dedicated server; confirmar que o bloqueio não altera blocos protegidos; conferir integração e dependências na metadata efetiva do candidato; testar ícone de Hijack e resource reload. Preservar os demais gates de mana/dano, Strange Disc, brewing, boss/summons e AzureLib/Iron's/Cataclysm. Não inferir IDs novos nem uma implementação interna por changelog. Auditoria documental das publicações até 1.1.15 encerrada; teste runtime e promoção física pendentes. Nenhuma alteração de JAR, basename ou pasta.
+

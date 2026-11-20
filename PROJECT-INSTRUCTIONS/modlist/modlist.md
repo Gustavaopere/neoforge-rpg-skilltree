@@ -12,6 +12,15 @@
 
 
 
+## Auditoria incremental — 19/11/2026 (Cataclysm: Spellbooks, revalidações e lacuna Fzzy Config)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado/identificado | Resultado |
+|---:|---|---|---|---|
+| 071 | BetterEnd: New Dawn | `21.0.34` | [21.0.39](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/9306604) | Revalidado; [catálogo](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/all) mostra novas publicações de 10/11 somente para outras versões de Minecraft, não sucessoras NeoForge 1.21.1. Dossier já contém auditoria de .35–.39, comparação de JARs Modrinth .38/.39 e metadata. Sem nova edição significativa; QA pendente. |
+| 087 | Cataclysm: Spellbooks | `1.1.14-1.21` | [1.1.15 Beta](https://www.curseforge.com/minecraft/mc-mods/cataclysm-spellbooks/files/9332055) | Documentação concluída; correção de Monolith, proteção de chunks FTB para Dimensional Rift e ícone de Hijack. QA pendente. |
+| 253 | Enhanced Boss Bars (Fabric/Forge/NeoForge) | `1.0.0` | [1.1.3](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/9292243) | Revalidado; [catálogo](https://www.curseforge.com/minecraft/mc-mods/enhanced-boss-bars/files/all?gameVersionTypeId=6&page=1&pageSize=20&showAlphaFiles=hide) mantém 1.1.3 de 22/10 para NeoForge 1.21.1; publicação de 07/11 é Fabric. Dossier já contém notas de 1.1.0–1.1.3, inclusive fechamento da lacuna 1.1.1. Sem nova edição significativa; QA pendente. |
+| 296 | Fzzy Config | `0.7.7+1.21+neoforge` | [0.7.7+fix1+1.21+neoforge](https://www.curseforge.com/minecraft/mc-mods/fzzy-config/files/9326327) | Pendente: única publicação posterior identificada no [catálogo](https://www.curseforge.com/minecraft/mc-mods/fzzy-config/files/all?page=1&pageSize=20&showAlphaFiles=hide&version=1.21.1), 25/10; notas idênticas às da [0.7.7 física](https://www.curseforge.com/minecraft/mc-mods/fzzy-config/files/8883390). Não atribuir mudanças cumulativas ao hotfix sem source/diff de artefatos. Dossier e data preservados. |
+
 ## Auditoria incremental — 19/11/2026 (Farmer's Spell e Particle Rain)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
@@ -405,7 +414,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 084 | Born in Chaos | `born_in_chaos_[Neoforge]_1.21.1_1.7.6.jar` | `1.7.6` | `Adventure and RPG + Armor, Tools, and Weapons + Mobs + Structures + World Gen` | 29/09/2026 - 23:37 |
 | 085 | Butchercraft | `butchercraft-2.6.5.jar` | `2.6.5` | `Food` | 23/09/2026 - 00:58 |
 | 086 | Caelus API | `caelus-neoforge-7.0.1+1.21.1.jar` | `7.0.1+1.21.1` | `API and Library` | 23/09/2026 - 00:58 |
-| 087 | Cataclysm: Spellbooks | `cataclysm_spellbooks-1.1.14-1.21.jar` | `1.1.14-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 23/09/2026 - 00:58 |
+| 087 | Cataclysm: Spellbooks | `cataclysm_spellbooks-1.1.14-1.21.jar` | `1.1.14-1.21` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 19/11/2026 - 22:29 |
 | 088 | Cataclysm x YUNG's Better Nether Fortresses Compat | `cataclysmfortresses-1.21.1-NeoForge.jar` | `1.21.1` | `Addons + Bug Fixes` | 23/09/2026 - 00:58 |
 | 089 | Create Big Cannons: Advanced Technologies | `cbc_at_Neoforge_1.21.1_0.1.4c.jar` | `0.1.4c-1.21.1` | `Armor, Tools, and Weapons + Create` | 23/09/2026 - 00:58 |
 | 090 | CBC: Advanced technologies crash fix | `cbcatfix-1.21.1-neoforge-1.0.1.jar` | `1.0.1 (distribuição/filename); metadata runtime 1.0.0` | `Addons + Create + Technology` | 23/10/2026 - 00:27 |
