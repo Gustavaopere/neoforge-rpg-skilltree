@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 20/11/2026 (Cyber Goggles e IceAndFire CE)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
+|---:|---|---|---|---|
+| 179 | Create: Cyber Goggles | `8.6.3` | [8.8.1](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9660524); [8.7.0 Release](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9335247) | Parcial: lacuna 8.6.7 fechada (preview 3D); 8.7.0 e 8.8.0 Beta documentadas; notas 8.8.1 e cadeia posterior ainda não verificadas. QA pendente. |
+| 316 | IceAndFire Community Edition | `2.1.2` | [2.2](https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9455119) | Parcial: catálogo confirma 2.1.3, 2.1.4 e 2.2; última release com mudanças relevantes de rede, Dragon Forge, summoning, AI e multiplayer documentada. Changelog genérico 2.1.3 exige delta técnico. QA pendente. |
+
 ## Auditoria incremental — 20/11/2026 (FluidLogistics, FTB Library, FTB Chunks e JER)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado/identificado | Resultado |
@@ -539,7 +546,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 176 | Create Cobblestone | `createcobblestone-1.5.0+neoforge-1.21.1-153.jar` | `1.5.0+neoforge-1.21.1-153` | `Addons + Automation + Create + Performance + Technology` | 17/11/2026 - 17:09 |
 | 177 | CreateColonies | `createcolonies-2.0.6.jar` | `2.0.6` | `Addons + Adventure and RPG + Automation + Create` | 23/09/2026 - 14:27 |
 | 178 | Create Contraption Terminals | `createcontraptionterminals-1.21-1.4.0.jar` | `1.4.0` | `Create + Storage + Utility & QoL` | 23/09/2026 - 14:27 |
-| 179 | Create: Cyber Goggles | `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` | `8.6.3` | `Create + Utility & QoL` | 23/09/2026 - 14:27 |
+| 179 | Create: Cyber Goggles | `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` | `8.6.3` | `Create + Utility & QoL` | 20/11/2026 - 00:58 |
 | 180 | Create Deco | `createdeco-2.1.3.jar` | `2.1.3` | `Addons + Cosmetic + Create` | 23/09/2026 - 14:27 |
 | 181 | Create Diesel Generators | `createdieselgenerators-1.21.1-1.3.15.jar` | `1.21.1-1.3.15` | `Addons + Create + Processing + Technology` | 23/09/2026 - 14:27 |
 | 182 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 23/09/2026 - 23:50 |
@@ -676,7 +683,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 17/11/2026 - 17:09 |
 | 314 | Hexalia | `hexalia-neoforge-1.3.7.jar` | `1.3.7` | `Adventure and RPG + Magic + Mobs + World Gen` | 18/11/2026 - 08:32 |
 | 315 | Ice And Fire: Dragon Care | `Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar` | `1.3.1 - 1.21.1v` | `Addons` | 27/09/2026 - 03:14 |
-| 316 | IceAndFire Community Edition | `iceandfire-2.1.2.jar` | `2.1.2` | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 27/09/2026 - 03:14 |
+| 316 | IceAndFire Community Edition | `iceandfire-2.1.2.jar` | `2.1.2` | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 20/11/2026 - 00:58 |
 | 317 | Ice and Fire X Epic Fight | `iceandfire-ce-epicfight-armor-compat-1.0.0.jar` | `1.0.0` | `Addons + Armor, Tools, and Weapons + Bug Fixes + Cosmetic` | 24/09/2026 - 22:20 |
 | 318 | Ice And Fire: Dread Land | `iceandfire_dreadland-0.1.2.jar` | `0.1.2` | `Addons + Adventure and RPG + Biomes + Dimensions` | 24/09/2026 - 22:20 |
 | 319 | Iceberg [Neo/Forge] | `Iceberg-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `API and Library` | 27/09/2026 - 03:14 |

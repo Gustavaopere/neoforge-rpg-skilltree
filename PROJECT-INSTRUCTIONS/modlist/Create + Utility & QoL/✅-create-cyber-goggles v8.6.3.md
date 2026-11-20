@@ -166,7 +166,7 @@ Fontes upstream: CurseForge 8.6.4 file ID 8952040, 8.6.5 file ID 8980429 e 8.6.6
 
 A autoridade física continua **8.6.3**, `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar`, com Create 6.0.10. O histórico de **8.6.4 → 8.6.5 → 8.6.6** está preservado na seção 26 (tooltip registry, fade/Aeronautics navigation e fix dedicated-server).
 
-- **8.6.7 — 05/10/2026:** release pública identificada para NeoForge 1.21.1; as fontes consultadas não permitiram isolar com segurança changelog técnico próprio. Não atribuir recursos por inferência.
+- **8.6.7 — 05/10/2026 (CurseForge file 9067133):** introduz pré-visualização tridimensional de schematics, com painel giratório e zoom junto à Schematic Table e preview por Alt-hover no tooltip do item. Informação de apresentação, sem alterar o blueprint autoritativo. [Fonte](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9067133).
 - **8.6.8 — 05/10/2026 (CurseForge file 9068331):** autor registra **Fix #100** e **mudança na estrutura de configurações**. O número da issue, isoladamente, não comprova o sintoma. A modificação de config exige verificar migração de opções e defaults antigos.
 - **8.6.9 — 06/10/2026 (CurseForge file 9081110):** otimiza interação de **fill** e altera o **zoom default do preview**, afetando UI/QoL e uso client-side.
 
@@ -176,3 +176,12 @@ A autoridade física continua **8.6.3**, `CreateCyberGoggles-1.21.1-8.6.3-NeoFor
 
 **Fontes:** https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/all?version=1.21.1 ; https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9068331 ; https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9081110
 
+## 28. Auditoria incremental — 20/11/2026
+
+Base física histórica: 8.6.3 Beta (#179), sem confirmação de substituição posterior. O catálogo [NeoForge](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/all?gameVersionTypeId=6&page=1&pageSize=20&showAlphaFiles=hide) confirma a sequência 8.6.4–8.6.9 já documentada; a lacuna de 8.6.7 foi corrigida acima. Novos arquivos para Minecraft 1.21.1 / Create 6.0.10:
+
+- **8.7.0 — 26/10/2026, Release:** campos de quantidade aceitam expressões; multiplicador global ajusta os valores da tela; opção abrevia grandes contagens. Overlay de forças agrupa e limita setas para reduzir custo de renderização. Preview de filtros passa a ser somente leitura, com registro extensível de telas de preview e correção da propagação indevida de caracteres. [Changelog](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9335247).
+- **8.8.0 — 11/11/2026, Beta:** visualização e cálculo de vazão em componentes de fluidos; localização de telas de configuração dos mods relacionados ao Create; correções de tooltip de table cloth e melhorias de renderização. A tela de reposição utiliza framework compartilhado de UI; bloqueio de configs restaurado; corrigidos erros de packets no fechamento do Redstone Requester. [Changelog](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9553576).
+- **8.8.1:** distribuição NeoForge 1.21.1 identificada pelo [file 9660524](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9660524); notas não recuperadas. A cadeia após 8.8.0 ainda não está integralmente reconciliada; não promover nem considerar a auditoria encerrada.
+
+**Relevância:** as mudanças afetam UX de schematics, filtros, interpretação de vazão e overlays, integração de previews e lifecycle de UI/packets, não transferem ownership de Create para o cliente. QA: validar quantidades inválidas/limites, preview read-only, vazão contra valores reais do Create, agrupamento de forças, resource reload, bloqueio de configurações, fechamento da tela de requester, compatibilidade JEI e ausência do addon no dedicated server. Nenhum teste executado. A release estável identificada é 8.7.0; não confundir Beta nem versão candidata com instalação.
