@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 20/11/2026 (IceAndFire CE — fechamento)
+
+| Nº físico | Mod | Instalado (snapshot) | Upstream documentado | Situação |
+|---:|---|---|---|---|
+| 316 | IceAndFire Community Edition | `2.1.2` | [2.2.1-bugfix](https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9718410) | **Concluído documentalmente:** source da 2.1.3 reconciliado por quatro commits e `mod_version`; 2.1.4, 2.2, 2.2.1 e 2.2.1-bugfix individualizadas; novas correções de hitbox, IA/flight, forge, cadáver e anti-dupe registradas. Instalação/QA pendentes. |
+
+
 ## Auditoria incremental — 20/11/2026 (Structurize — fechamento)
 
 | Nº físico | Projeto | Versão física | Upstream auditado | Resultado |
@@ -712,7 +719,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 17/11/2026 - 17:09 |
 | 314 | Hexalia | `hexalia-neoforge-1.3.7.jar` | `1.3.7` | `Adventure and RPG + Magic + Mobs + World Gen` | 18/11/2026 - 08:32 |
 | 315 | Ice And Fire: Dragon Care | `Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar` | `1.3.1 - 1.21.1v` | `Addons` | 27/09/2026 - 03:14 |
-| 316 | IceAndFire Community Edition | `iceandfire-2.1.2.jar` | `2.1.2` | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 20/11/2026 - 18:37 |
+| 316 | IceAndFire Community Edition | `iceandfire-2.1.2.jar` | `2.1.2` | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 20/11/2026 - 18:45 |
 | 317 | Ice and Fire X Epic Fight | `iceandfire-ce-epicfight-armor-compat-1.0.0.jar` | `1.0.0` | `Addons + Armor, Tools, and Weapons + Bug Fixes + Cosmetic` | 24/09/2026 - 22:20 |
 | 318 | Ice And Fire: Dread Land | `iceandfire_dreadland-0.1.2.jar` | `0.1.2` | `Addons + Adventure and RPG + Biomes + Dimensions` | 24/09/2026 - 22:20 |
 | 319 | Iceberg [Neo/Forge] | `Iceberg-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `API and Library` | 27/09/2026 - 03:14 |
