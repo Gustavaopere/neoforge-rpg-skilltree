@@ -172,3 +172,10 @@ Structurize é dependência direta do MineColonies e manipula blueprints/placeme
 - [ ] Link sessions multiplayer continuam sincronizando preview/ownership.
 
 Fonte upstream: CurseForge Structurize 1.0.835-1.21.1-snapshot, file ID 9017852, changelog com PRs #855 e #847. Nenhum teste acima foi executado nesta atualização documental.
+## Atualização incremental — 20/11/2026: 1.0.840 NeoForge 1.21.1
+
+A [publicação 1.0.840](https://www.curseforge.com/minecraft/mc-mods/structurize/files/9680037) (file ID 9680037) é Release para NeoForge 1.21.1 de **18/11/2026**, posterior à 1.0.835-snapshot anteriormente documentada. O CurseForge informa dependências mínimas **BlockUI 1.0.191-1.21.1-snapshot** e **Domum Ornamentum 1.0.203-1.21.1-snapshot**; o projeto instalado possui esses mods, mas essa informação não comprova a versão física atual sem recapturar o inventário.
+
+O changelog da publicação aponta para **Full Changelog** no upstream sem individualizar mudanças na página. Não foi reconstruído, nesta passagem, um inventário exaustivo de builds 1.0.836–1.0.839, nem demonstrado que todos os números tiveram JAR publicado. Exige reconciliação de tags/PRs/commits e avaliação de alterações em blueprint/placement, substitutions, MineColonies e lifecycle de mundo antes de promover a versão.
+
+**Status PENDENTE:** 1.0.840 localizada, auditoria de publicações intermediárias incompleta. Baseline físico 1.0.833-1.21.1-snapshot e basename preservados; nenhuma alteração de arquivo JAR ou execução de testes.

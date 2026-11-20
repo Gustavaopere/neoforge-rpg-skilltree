@@ -129,3 +129,12 @@ O [catálogo CurseForge para 1.21.1](https://www.curseforge.com/minecraft/mc-mod
   - Recuperação do terreno transformado por random tick e seleção de blocos de aldeias pixie corrigidas; caches de bestiary e modelos de estátuas, isolamento de NBT/render e reload corrigidos; recipes Farmer's Delight passam a respeitar ausência do provider; harvest levels, armadura de montaria, dread lich spawn e quebra de boats por dragões corrigidos.
 
 **QA de promoção:** validar migração de configs, Dragon Forge exactly-once, ownership e invocação interdimensional com dois jogadores, descarregamento de chunks e cleanup de tickets, compatibilidade Farmer's Delight, Dragon Care, Dread Land e bridge Epic Fight, e abertura de cópia de mundo. Não presumir ABI compatível pela ausência de nota de breaking change. Nenhum JAR foi substituído ou teste executado. A lacuna técnica da 2.1.3 permanece aberta; auditoria documental parcial, nome e versão física históricos preservados.
+## Auditoria incremental — 20/11/2026: 2.2.1 bugfix NeoForge 1.21.1
+
+O [CurseForge file 9718410](https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9718410) confirma **IceAndFireCE-2.2.1-bugfix-1.21.1-neoforge.jar**, Release publicada em **20/11/2026**, posterior à 2.2 de 05/11. Não confundir com 2.2.1 para Minecraft 26.1.2.
+
+- Corrige Fire, Ice e Lightning Dragons mirando incorretamente a entrada da **Dragon Forge** em coordenadas muito altas devido a arredondamento float; o cálculo do centro do bloco mantém precisão double.
+- Restaura a coleta de cadáveres após fix de death-state #284: loot com mão vazia, coleta de sangue com garrafa e extração final de crânio. O targeting requer mirar a região central do corpo.
+- Evita que um único clique com a mão principal/secundária colete duas vezes em NeoForge (proteção contra duplicação de drop).
+
+**QA antes de instalar:** Dragon Forge distante da origem; harvesting de dragões em vários estados e com mão direita/esquerda, dois jogadores, chunk unload/reload e interações com addons de loot/perks. A publicação mais recente não está comprovadamente instalada. Versão física documentada continua 2.1.2 e arquivo certificado preservado. **Auditoria ainda PENDENTE:** a 2.1.3 continua com changelog genérico sem comparação técnica isolada de source/JAR; não declarar todo o intervalo auditado.

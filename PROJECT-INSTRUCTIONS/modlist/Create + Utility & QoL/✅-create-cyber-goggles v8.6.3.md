@@ -185,3 +185,13 @@ Base física histórica: 8.6.3 Beta (#179), sem confirmação de substituição 
 - **8.8.1:** distribuição NeoForge 1.21.1 identificada pelo [file 9660524](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9660524); notas não recuperadas. A cadeia após 8.8.0 ainda não está integralmente reconciliada; não promover nem considerar a auditoria encerrada.
 
 **Relevância:** as mudanças afetam UX de schematics, filtros, interpretação de vazão e overlays, integração de previews e lifecycle de UI/packets, não transferem ownership de Create para o cliente. QA: validar quantidades inválidas/limites, preview read-only, vazão contra valores reais do Create, agrupamento de forças, resource reload, bloqueio de configurações, fechamento da tela de requester, compatibilidade JEI e ausência do addon no dedicated server. Nenhum teste executado. A release estável identificada é 8.7.0; não confundir Beta nem versão candidata com instalação.
+## 29. Auditoria incremental — 20/11/2026: 8.8.1 e source posterior
+
+A [publicação 8.8.1 Beta de 17/11/2026](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9660524) corresponde ao NeoForge 1.21.1 / Create 6.0.10 e contém changelog oficial, fechando a lacuna da seção 28:
+- Nova configuração permite caminhar durante sneak sobre contraptions móveis, sem transferir autoridade de física para o cliente.
+- Nova configuração faz jogador e câmera acompanharem a rotação da contraption; regressões a verificar: câmera, input, desmontagem e integração com Sable/Aeronautics.
+- Correção de internacionalização das configurações; conferir opção traduzida e fallback.
+
+**Cadeia posterior no código oficial:** [bump para 8.8.2 em 19/11/2026](https://github.com/ForgeStove/CreateCyberGoggles/commit/16ca27f9b37e1eca76ef299f94b3f12a766d2525), precedido por commits que corrigem desvio incorreto da câmera em contraptions, otimizam escalonamento de quantidades e proteção de bordas da estrutura móvel. Há também [bump para 8.8.3 em 20/11](https://github.com/ForgeStove/CreateCyberGoggles/commit/029932f68622c8e941c5d1bb95fc1b2cb5c6c81e), com atualização de biblioteca de configuração. O `gradle.properties` da branch `1.21.1/NeoForge` declara modVersion 8.8.3, loader 21.1.265 e Create mínimo 6.0.10. **Bump do source não certifica publicação do JAR**: a correspondência das builds 8.8.2 e 8.8.3 com releases oficiais CurseForge/Modrinth ainda não foi verificada; catálogo secundário aponta 8.8.2, mas não substitui source de distribuição.
+
+**Status: PENDENTE.** Atualização 8.8.1 documentada; confirmar publicação final de 8.8.2/8.8.3, changelogs por build, sem confundir código dev com arquivo distribuído. Versão física e nome do dossier continuam 8.6.3; nenhum teste ou JAR foi alterado.
