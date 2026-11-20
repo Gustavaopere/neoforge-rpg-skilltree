@@ -12,6 +12,12 @@
 
 
 
+## Auditoria incremental — 20/11/2026 (KubeJS)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream auditado | Resultado |
+|---:|---|---|---|---|
+| 363 | KubeJS | `2101.7.2-build.377` | [2101.7.2-build.381 Release](https://www.curseforge.com/minecraft/mc-mods/kubejs/files/9396059) / [build.382 dev](https://kubejs.com/downloads/dev-builds) | **Documentação concluída** para releases após .377; fonte 2101 com quatro commits individualizados, dev .382 destacada, sem promoção física; QA de scripts/addons pendente. |
+
 ## Auditoria incremental — 20/11/2026 (Cyber Goggles e IceAndFire CE)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
@@ -730,7 +736,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 360 | Konkrete | `konkrete_neoforge_1.9.9_MC_1.21.jar` | `1.9.9` | `API and Library` | 25/09/2026 - 02:11 |
 | 361 | Kotlin for Forge | `kotlinforforge-5.12.0-all.jar` | `5.12.0` | `API and Library` | 25/09/2026 - 02:11 |
 | 362 | KubeJS Create | `kubejs-create-neoforge-2101.3.1-build.18.jar` | `2101.3.1-build.18` | `KubeJS` | 25/09/2026 - 10:33 |
-| 363 | KubeJS | `kubejs-neoforge-2101.7.2-build.377.jar` | `2101.7.2-build.377` | `API and Library + KubeJS + Map and Information + Server Utility + World Gen` | 25/09/2026 - 10:33 |
+| 363 | KubeJS | `kubejs-neoforge-2101.7.2-build.377.jar` | `2101.7.2-build.377` | `API and Library + KubeJS + Map and Information + Server Utility + World Gen` | 20/11/2026 - 18:16 |
 | 364 | KubeJS Curios | `kubejs_curios_neoforge_1.21.1-1.0.4.jar` | `1.0.4` | `KubeJS` | 25/09/2026 - 10:33 |
 | 365 | KubeJS Additions | `kubejsadditions-neoforge-1.21.1-6.0.0.jar` | `1.21.1-6.0.0` | `API and Library + Energy, Fluid, and Item Transport + KubeJS + Utility & QoL` | 25/09/2026 - 10:33 |
 | 366 | KubeJS Ars Nouveau | `kubejsarsnouveau-1.3.2.jar` | `1.3.2` | `KubeJS + Magic` | 25/09/2026 - 10:33 |
