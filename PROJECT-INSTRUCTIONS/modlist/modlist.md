@@ -12,6 +12,14 @@
 
 
 
+## Auditoria incremental — 19/11/2026 (EMF Compat: Create e triagem upstream)
+
+| Nº físico | Projeto | Instalado (snapshot) | Upstream identificado | Resultado |
+|---:|---|---|---|---|
+| 162 | Create Deep Seas | `2.2.4` | [3.4.8](https://www.curseforge.com/minecraft/mc-mods/create-deep-seas/files/9601142) | Pendente: release de 13/11 para NeoForge 1.21.1; cadeia intermediária ainda não reconciliada nesta rodada. |
+| 248 | EMF Compat: Create | `2.0.0` | [2.1.1](https://www.curseforge.com/minecraft/mc-mods/emf-compat-create/files/9524683) | Notas oficiais 2.1.0 e 2.1.1 individualizadas; Core 2.3.0 exigido na 2.1.0, hats, Barehanded e colisões de estado de pose. Catálogo filtrado indisponível; QA coordenado pendente. |
+| 332 | Integrated API | `1.8.2` | [1.9.2](https://www.curseforge.com/minecraft/mc-mods/integrated-api/files/all) | Pendente: catálogo comprova 1.9.1 (12/10) e 1.9.2 (11/11) NeoForge 1.21.1; cadeia integral e changelogs exatos ainda não reconciliados. |
+
 ## Auditoria incremental — 19/11/2026 (Cataclysm: Spellbooks, revalidações e lacuna Fzzy Config)
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado/identificado | Resultado |
@@ -575,7 +583,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 245 | Epic Fight x Iron's Spells: Enhanced Animations | `efiscompat-3.1.0.jar` | `3.1.0` | `Cosmetic + Miscellaneous` | 24/09/2026 - 14:02 |
 | 246 | Eidolon : Repraised | `eidolon_repraised-1.21.1-0.5.0.2.jar` | `0.5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 18/11/2026 - 07:44 |
 | 247 | EMF Compat: Core | `emf_compat_core_1.21.1_2.0.0.jar` | `2.0.0` | `API and Library + Cosmetic` | 17/11/2026 - 18:50 |
-| 248 | EMF Compat: Create | `emf_compat_create_1.21.1_2.0.0.jar` | `2.0.0` | `Bug Fixes + Cosmetic` | 24/09/2026 - 14:02 |
+| 248 | EMF Compat: Create | `emf_compat_create_1.21.1_2.0.0.jar` | `2.0.0` | `Bug Fixes + Cosmetic` | 19/11/2026 - 23:11 |
 | 249 | EMF Compat: Iron's Spells 'n Spellbooks | `emf_compat_iron_spells_1.21.1_2.0.0.jar` | `2.0.0` | `Addons + Bug Fixes` | 17/11/2026 - 18:50 |
 | 250 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 24/09/2026 - 14:02 |
 | 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 24/09/2026 - 14:02 |

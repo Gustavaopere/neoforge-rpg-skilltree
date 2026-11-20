@@ -99,3 +99,22 @@ Outros jogadores precisam ver a pose correta do rider a partir do movement state
 **Upstream NeoForge 1.21.1:** `emf_compat_create_neoforge_1.21.1_2.1.0.jar`, **release de 08/10/2026**; JAR físico histórico `emf_compat_create_1.21.1_2.0.0.jar` (2.0.0). Não imputar alteração exata de pose/assembly à 2.1.0 sem changelog granular ou inspeção source. **Gate coordenado:** EMF Compat Core 2.0.0, EMF 3.3.5, ETF 7.2.1, Create 6.0.10, Create Aeronautics/Sable, Climbable Ropes. Validar Skyhook, chain/rope ride, mount/dismount, first/third person, outros observadores, pose precedence e restauração após stop/relog/reload F3+T, dedicado não assumir pose como gameplay authority. **Fonte:** https://www.curseforge.com/minecraft/mc-mods/emf-compat-create/files/all
 
 > **Estado:** atualização documental sem substituição de JAR, edição da autoridade física ou teste in-game nesta execução.
+
+## Auditoria incremental — 19/11/2026 — 2.1.0 e 2.1.1
+
+**Autoridade física histórica:** #248, `emf_compat_create_1.21.1_2.0.0.jar`, runtime 2.0.0. Projeto CurseForge 1605167, categorias oficiais Bug Fixes + Cosmetic e ambiente Client, confirmados na [ficha 2.1.1](https://www.curseforge.com/minecraft/mc-mods/emf-compat-create/files/9524683). A pasta e o basename físicos permanecem. O [catálogo](https://www.curseforge.com/minecraft/mc-mods/emf-compat-create/files/all) e as fichas individuais sustentam a sequência identificada 2.0.0 → 2.1.0 → 2.1.1 para NeoForge 1.21.1; a última ficha indica 2.1.1 como release mais recente do alvo. A consulta filtrada do catálogo e a API Modrinth não responderam; as notas exatas das duas distribuições foram recuperadas no CurseForge, sem inferir publicações adicionais.
+
+### [2.1.0 — 08/10/2026, file 9103410](https://www.curseforge.com/minecraft/mc-mods/emf-compat-create/files/9103410)
+
+- Requisito publicado de **EMF Compat Core 2.3.0**. O snapshot físico contém Core 2.0.0, portanto não promover a 2.1.0 isoladamente; reconciliar todo o conjunto de bridges e a metadata dos candidatos.
+- Corrige posição de engineer/logistics hats do Create em mobs com Fresh Animations; a opção Hats on mobs controla essa compatibilidade visual.
+- Acrescenta integração com Barehanded em Minecraft 1.21.1; verificar se o provider está presente antes de considerar o recurso ativo.
+- Nota de Skyhook com face/animação congelada é explicitamente Fabric; a publicação Forge 1.20.1 com Skyhook, hats e Stuff 'N Additions não demonstra alteração exclusiva do binário NeoForge 1.21.1.
+
+### [2.1.1 — 09/11/2026, file 9524683](https://www.curseforge.com/minecraft/mc-mods/emf-compat-create/files/9524683)
+
+- Elimina risco de colisão de nomes de campos de estado de pose entre addons de compatibilidade em Forge/NeoForge. A nota especifica cobertura adicional em NeoForge para handles, grappling hooks e ragdolls. Relevante para coexistência de bridges; não atribuir alteração à física ou autoridade de movimento.
+- Restringe instalação das builds Fabric/NeoForge em versões posteriores incompatíveis de Minecraft. Não extrapolar o intervalo de metadata sem ler o manifest.
+
+**QA pendente:** conferir requisitos reais de Core e EMF e promover coordenadamente; validar hats em mobs com Fresh Animations, Barehanded caso presente, Skyhook, chains/ropes, handles, grappling hooks e ragdolls, coexistência de addons, restauração de pose, first/third person, F3+T e relog. A nota de 2.1.1 não publica novo mínimo de Core; confirmar no JAR antes de promover. Nenhum JAR instalado foi modificado ou teste runtime executado.
+
