@@ -90,3 +90,18 @@ Outro cliente deve enxergar o set correto sem influenciar os stats do wearer. Eq
 - source oficial `kend1e/FANTASY-ARMOR`, árvore `appNeoForge/1.21.1`: `FAArmorSet`, `FAArmorItems`, `FAItems`, creative tab e configs de attributes/effects.
 
 > **Boundary canônico:** Fantasy Armor é authority dos **itens, stats/effects configurados e assets dos próprios sets**; outros mods podem renderizar ou consumir esse state, mas não devem criar uma segunda fonte de verdade.
+
+## Auditoria incremental — 20/11/2026 — 1.3 e 1.3.1
+
+**Autoridade física histórica:** #274, `fantasy_armor-neoforge-1.2.4-1.21.1.jar`, runtime 1.2.4-1.21.1. O [catálogo oficial NeoForge do projeto 1083998](https://www.curseforge.com/minecraft/mc-mods/fantasy-armor/files/all?gameVersionTypeId=6&page=1&pageSize=20) identifica duas publicações posteriores destinadas a 1.21.1: 1.3 e 1.3.1. A 1.2.5 localizada é Forge 1.21.11, e as 1.3.2/1.3.3 são Forge 1.12.2; não pertencem à sequência alvo. Categorias oficiais Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic, pasta preservada.
+
+### [1.3 — 25/10/2026](https://www.curseforge.com/minecraft/mc-mods/fantasy-armor/files/9327033)
+
+Novo conjunto **Dawncrest**, tooltip descritiva de Moon Crystal e ampliação das traduções, incluindo português brasileiro. A contagem histórica de 29 sets deve continuar vinculada à árvore anteriormente auditada; não afirmar uma contagem binária exata para a candidata sem enumerar seu registry. O mantenedor anuncia revisão do tratamento de configurações e da atualização de atributos da armadura, com recomendação explícita de revisar settings após o upgrade. Preservar backup dos TOMLs e verificar migração, defaults, aplicação/remoção de atributos e efeitos em todos os slots. A alteração de receitas sem formato fixo é explicitamente de Minecraft 1.19.4, e não deve ser atribuída à 1.21.1.
+
+### [1.3.1 — 02/11/2026](https://www.curseforge.com/minecraft/mc-mods/fantasy-armor/files/9407990)
+
+Corrige lavagem de cor da armadura em caldeirão com água: remove o tingimento, consome um nível de água e mantém os outros dados do equipamento. Relevante para persistência do item, especialmente com atributos/componentes de outros mods. Verificar durabilidade, encantamentos, dados adicionais e resultado autoritativo no servidor antes/depois da lavagem; a nota não comprova compatibilidade específica com todo addon.
+
+**QA pendente:** Dawncrest, Moon Crystal, traduções, migração de configs, atributos/effects equip/unequip, lavagem e preservação de componentes, Epic Fight, Cosmetic Armor, FirstPerson, reload, multiplayer. A auditoria documental das duas releases foi concluída; não houve instalação, comparação binária ou teste runtime. Basename e JAR histórico 1.2.4-1.21.1 preservados.
+

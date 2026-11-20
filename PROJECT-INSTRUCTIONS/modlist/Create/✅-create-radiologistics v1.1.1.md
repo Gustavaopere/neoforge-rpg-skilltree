@@ -83,3 +83,12 @@ Validar computer load/save, variable persistence, antenna changes, jammer enter/
 - CurseForge oficial: Main Computer, antennas, Redstone Link Module, Memory, Gyroscope, Jammer, Audio, helmet/screen e integrações CBC/Radars/Aeronautics;
 - release 1.1.1: Beta, fixes Radars/Ponder/MP3/3D gizmos; Smart Optical Sensor, Servo Motor, novos nodes e coding help.
 > 🔒 Boundary canônico: **Radiologistics calcula e transmite; cada provider integrado continua decidindo a semântica do dado/ação final**. Persistência e comandos precisam convergir uma única vez no servidor.
+
+## Auditoria parcial — 20/11/2026 — novas publicações
+
+A autoridade física #201 permanece `CreateRadiologistics-1.1.1.jar`. O catálogo CurseForge recuperado nesta rodada é antigo (quatro betas até 02/07), embora o [perfil oficial do autor](https://www.curseforge.com/members/maqwr_/projects) registre atualização do projeto em 20/10/2026, com categoria Create. Portanto não usar a listagem antiga para declarar 1.1.1 latest.
+
+A [publicação oficial Modrinth 1.1.3, ID itGbK3IZ](https://modrinth.com/mod/create-radiologistics/version/1.1.3), Beta NeoForge 1.21.1, confirma correção de interação indevida com cliente em servidor, restauração de funcionalidade anterior do servo motor e aumento da distância máxima do Smart Optical Sensor para **500 blocos**. O changelog não detalha o mecanismo do fix de servidor nem o contrato dos nodes do servo; testar dedicated boot, controle de servo e limites de sensor (não confundir com alcance de antenas).
+
+Há indícios de 1.1.2 e 1.1.4 em listagens secundárias/modpacks, inclusive [changelog de Create_Craft&Quiet](https://www.curseforge.com/minecraft/modpacks/create-craft-quiet/files/9625612/additional-files), mas a consulta às páginas individuais oficiais dessas versões não retornou conteúdo e a listagem Modrinth não expôs a tabela. Não assumir datas, compatibilidade ou alterações dessas builds. **Pendente:** recuperar catálogo integral, confirmar as distribuições intermediárias/mais recentes e seus changelogs. Não promover o JAR nem liberar a auditoria documental ainda.
+

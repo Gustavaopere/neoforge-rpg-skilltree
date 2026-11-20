@@ -153,3 +153,17 @@ A coexistência com o mod-base Iron's Spells 'n Spellbooks 3.16.3 é conhecida n
 
 **Estado:** revalidado sem upgrade; nenhum artefato físico ou hash modificado.
 
+## Auditoria parcial — 20/11/2026 — 1.3.4 a 1.4.0
+
+**Autoridade física histórica:** #472, `recolor_tablet-1.3.3+1.21.1.jar`. O [catálogo oficial CurseForge 1650140](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor/files/all) lista cinco publicações posteriores NeoForge 1.21.1, quatro betas e uma release estável. Categorias oficiais Cosmetic + Magic mantidas.
+
+| Publicação | Evidência e delta |
+|---|---|
+| [1.3.4 — 26/09/2026](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor/files/8981099) | Beta confirmada em catálogo; página individual não retornou changelog nesta consulta. Pendente. |
+| [1.3.5 — 27/09/2026](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor/files/8990033) | Corrige falha na abertura de creative tabs com determinados itens quando certos elementos têm tonalidade personalizada. |
+| [1.3.6 — 27/09/2026](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor/files/8993158) | Corrige crashes associados a Sinytra Connector (grafado Synthra na nota) e falhas de recolor de armas do Iron's base em certas condições. Não assumir Connector instalado. |
+| [1.3.7 — 04/10/2026](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor/files/9063132) | Compatibilidade com armaduras e demais itens do Iron's base; correção de crash por incompatibilidade de versão de Cataclysm. |
+| [1.4.0 — 25/10/2026](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor/files/9326516) | Release estável confirmada no catálogo; página de changelog individual não retornou conteúdo. Pendente. |
+
+**Gates adicionais:** creative tabs com cores customizadas, armas e armaduras do Iron's, Cataclysm instalado, addons de spells, sincronização por caster, render e gameplay inalterado. **Não declarar auditoria completa:** faltam os deltas de 1.3.4 e 1.4.0. Nenhuma alteração de instalação.
+
