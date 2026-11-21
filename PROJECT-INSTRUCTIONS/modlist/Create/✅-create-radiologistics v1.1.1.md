@@ -92,3 +92,12 @@ A [publicação oficial Modrinth 1.1.3, ID itGbK3IZ](https://modrinth.com/mod/cr
 
 Há indícios de 1.1.2 e 1.1.4 em listagens secundárias/modpacks, inclusive [changelog de Create_Craft&Quiet](https://www.curseforge.com/minecraft/modpacks/create-craft-quiet/files/9625612/additional-files), mas a consulta às páginas individuais oficiais dessas versões não retornou conteúdo e a listagem Modrinth não expôs a tabela. Não assumir datas, compatibilidade ou alterações dessas builds. **Pendente:** recuperar catálogo integral, confirmar as distribuições intermediárias/mais recentes e seus changelogs. Não promover o JAR nem liberar a auditoria documental ainda.
 
+## Auditoria incremental parcial — 21/11/2026 — confirmação da release 1.1.4
+
+**Autoridade física preservada:** posição #201, `CreateRadiologistics-1.1.1.jar`, NeoForge 1.21.1. O [CurseForge oficial, projeto 1556290, arquivo 9265504](https://www.curseforge.com/minecraft/mc-mods/create-radiologistics/files/9265504) confirma a publicação **1.1.4 Beta em 20/10/2026**, para **NeoForge 1.21.1**, com categoria temática **Create**. Essa publicação substitui a hipótese não confirmada de 1.1.4 registrada na auditoria parcial de 20/11. A release 1.1.3 já está documentada na seção anterior pelo changelog primário do Modrinth.
+
+**Changelog oficial específico da 1.1.4:** correções de (i) dependências declaradas pelo mod; (ii) tela transparente; (iii) giroscópio, que o próprio autor qualifica como **“maybe”**, portanto **não verificado como definitivamente corrigido**; (iv) custom node; e (v) informações dos canhões. O arquivo não detalha causas, valores, APIs nem a implementação. Verificar inicialização no servidor e cliente, interface transparente, precisão do giroscópio em contraptions, serialização/execução de nodes customizados e dados de canhões com Create Big Cannons. Não atribuir a uma build anterior.
+
+**Bloqueio remanescente:** a cadeia completa entre 1.1.1 e 1.1.4 exige confirmação individual da distribuição 1.1.2 e de seu changelog; não é possível declarar auditoria integral só com 1.1.3/1.1.4. Nenhum JAR, metadata ou teste in-game foi modificado. **PENDENTE — não liberar para remoção do Bloco de Notas.**
+
+**Fonte primária:** [CurseForge 1.1.4](https://www.curseforge.com/minecraft/mc-mods/create-radiologistics/files/9265504), seção *What's new*.

@@ -115,3 +115,22 @@ São mudanças relevantes para automação e seleção de destinos; testar conse
 - Ajusta cálculo de TPS do Potato Server, adiciona idiomas e corrige conversão indevida de Fluid Gauge em Item Gauge após primeira colocação, além de loading/sync de configs.
 
 **Gates:** testar upgrades de save/schematic e configurações, conservação de volumes, reabastecimento e prioridades, Frost/Blaze Cooler migration, novos dispositivos, reload/restart, links descarregados e Create 6.0.10 com addons de logística presentes. A documentação das duas releases está reconciliada; não foi determinada equivalência binária dos artefatos nem realizada instalação ou QA. A versão física permanece 1.3.0.
+
+## Auditoria incremental — 21/11/2026 — Create: FluidLogistics 1.3.3 (NeoForge 1.21.1)
+
+**Versão física preservada:** posição #285 no snapshot `modlist(1).txt`, `fluidlogistics-1.3.0-mc1.21.1.jar` / 1.3.0. A cadeia 1.3.1 (30/09) e 1.3.2 (27/10) foi auditada individualmente na seção anterior. A publicação posterior [Create: FluidLogistic 1.3.3 — CurseForge file ID 9712748](https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic/files/9712748) é **Release de 20/11/2026** para **NeoForge 1.21.1** (arquivo publicado `fluidlogistics-1.3.3-mc1.21.1.jar`). Trata-se do projeto oficial CurseForge 1475079, de yision1, com categorias temáticas **Create + Utility & QoL**, sem mudança da pasta documental.
+
+### Delta oficial, individualizado da 1.3.3
+1. **Oscillating Steam Engines:** passam a poder compartilhar um mesmo eixo (*shaft*). Verificar torque/rotação em montagem com múltiplos motores e se o estado dos componentes é preservado após chunk unload/reload. O changelog não estabelece novos números de geração.
+2. **Snow Golem Freezer:** recebe renderização de *flywheel*, com impacto de apresentação/representação da máquina; não presumir nova receita ou alteração térmica por causa do renderer.
+3. **Repackager:** corrige o comportamento que não combinava *fluid packages* e *item packages* em um mesmo pacote. Importante para logística híbrida e integridade dos pedidos, sobretudo com múltiplos destinos e repackaging concorrente.
+4. **Package List Filter:** corrige falha de correspondência ao examinar fluidos **contidos dentro de packages**. Verificar filtros positivos/negativos, pedidos mistos e rejeição correta, sem extrair fluidos apenas para inspeção de UI.
+5. **Stock Keeper screen:** restaura sons ausentes ao ajustar pedidos de fluido. É correção de feedback de interface, sem evidência de alteração do pedido no servidor.
+6. **Multi-Fluid Access Ports:** corrige perda do drop de filtros quando o bloco é quebrado. Verificar drops/estado do filtro em survival e após reinício, sem duplicar conteúdo.
+
+### Aplicação ao modpack e limites
+O efeito prático mais importante é a correção de **repackaging misto**, **match de filtro de fluidos** e **devolução de filtros**. A mudança de eixo e o renderer precisam de validação com Create 6.0.10. O changelog oficial não apresenta novas dependências nem alteração de schema ou migração de saves; portanto, esses aspectos permanecem desconhecidos, em vez de serem declarados preservados.
+
+**Cadeia documental auditada:** 1.3.0 instalada → 1.3.1 → 1.3.2 → **1.3.3** (última release verificada em 21/11/2026). Conferido o changelog da versão-alvo; nenhuma release intermediária adicional identificada entre 1.3.2 e 1.3.3 no catálogo consultado. **Auditoria documental concluída até 1.3.3; upgrade físico e QA in-game NÃO executados.** Não alterar nome do dossier, JAR ou versão instalada na tabela.
+
+**Fonte primária:** [CurseForge, arquivo 9712748, versão 1.3.3 NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic/files/9712748) — seção *What's new*, seis itens explicitamente atribuídos à publicação de 20/11/2026.

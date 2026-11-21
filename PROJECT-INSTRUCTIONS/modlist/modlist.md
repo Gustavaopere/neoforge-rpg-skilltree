@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 21/11/2026 (Create: Radiologistics e FluidLogistics)
+
+| Nº físico | Projeto | Versão instalada no snapshot | Última publicação auditada | Estado |
+|---:|---|---|---|---|
+| 201 | Create : radiologistics | `1.1.1` | [1.1.4 Beta](https://www.curseforge.com/minecraft/mc-mods/create-radiologistics/files/9265504) (20/10) | **PENDENTE:** changelog 1.1.4 e compatibilidade NeoForge 1.21.1 verificados; falta completar versão intermediária 1.1.2. Versão física preservada. |
+| 285 | Create: FluidLogistics | `1.3.0` | [1.3.3 Release](https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic/files/9712748) (20/11) | **CONCLUÍDO documentalmente:** 1.3.1 e 1.3.2 previamente auditadas; changelog 1.3.3 individualizado (eixo de motores, freezer, repackaging, filtros, som UI, drops). Upgrade físico e QA pendentes. |
+
 ## Fechamento estrutural — 20/11/2026 (Leylines e Paladin Spells)
 
 | Nº físico | Projeto | Instalada no snapshot | Upstream já auditado | Situação documental |
@@ -646,7 +653,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 198 | Create: Ornithopter Glider | `createornithopterglider-1.2.0-1.21.1.jar` | `1.2.0-1.21.1 (runtime/filename); publicação 1.2.0+1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL` | 23/10/2026 - 15:15 |
 | 199 | Create: Prismatic Shine | `createprism-1.2.2.jar` | `1.2.2` | `Addons + Create` | 24/09/2026 - 00:20 |
 | 200 | Create Propulsion: Simulated | `createpropulsion-1.1.5.jar` | `1.1.5` | `Addons + Create + Player Transport + Technology` | 24/09/2026 - 00:20 |
-| 201 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 20/11/2026 - 00:10 |
+| 201 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 21/11/2026 - 00:16 |
 | 202 | Create: Schematic Checker | `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar` | `2.27.45-6.0` | `Addons + Bug Fixes + Create` | 24/09/2026 - 00:44 |
 | 203 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 17/11/2026 - 16:14 |
 | 204 | Create: Transmission! | `createtransmission-1.2.2+neoforge-create6-1.21.1.jar` | `1.2.2+neoforge-create6-1.21.1` | `Addons + Cosmetic + Create + Technology + Utility & QoL` | 24/09/2026 - 00:44 |
@@ -730,7 +737,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 282 | First-person Model | `firstperson-neoforge-2.7.2-mc1.21.1.jar` | `2.7.2` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 24/09/2026 - 18:26 |
 | 283 | Flowing Fluids | `flowing_fluids-1.0.6-1.21-neoforge.jar` | `1.0.6` | `Miscellaneous` | 18/11/2026 - 08:24 |
 | 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 24/09/2026 - 18:23 |
-| 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 20/11/2026 - 00:35 |
+| 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 21/11/2026 - 00:16 |
 | 286 | Forgified Fabric API | `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar` | `0.116.15+2.3.5+1.21.1` | `Technology` | 22/10/2026 - 19:46 |
 | 287 | Fragmentum [NeoForge Edition] | `fragmentum-neoforge-1.21.1-2.4.4.jar` | `2.4.4` | `API and Library` | 22/10/2026 - 23:19 |
 | 288 | FTB Chunks (NeoForge) | `ftb-chunks-neoforge-2101.1.22.jar` | `2101.1.22` | `Map and Information + Server Utility` | 20/11/2026 - 00:35 |
