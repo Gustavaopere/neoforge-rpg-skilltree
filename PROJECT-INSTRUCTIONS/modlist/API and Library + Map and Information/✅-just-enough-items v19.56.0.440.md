@@ -429,3 +429,46 @@ Os **commits mais recentes citados no topo de cada uma das páginas** permitem i
 
 **Status: PENDENTE**, com a lacuna de existência da **.471 fechada** e seu fix de API documentado; faltam os deltas exatos das demais builds. Conservar nome do dossier, categorias **API and Library + Map and Information**, JAR instalado e versão física. **Não retirar nº 79 do Bloco de Notas.**
 
+## Inventário oficial exaustivo de publicações NeoForge 1.21.1 após .440 — 21/11/2026
+
+O [catálogo **CurseForge oficial do JEI, projeto `238222`, filtrado simultaneamente por **NeoForge / Minecraft 1.21.1** (50 resultados por página)](https://www.curseforge.com/minecraft/mc-mods/jei/files/all?gameVersionTypeId=6&page=1&pageSize=50&version=1.21.1) foi recuperado, incluindo Alphas/Betas, **com a publicação mais recente `19.71.0.475`**. A primeira página contém o **baseline físico .440 e TODAS AS 30 distribuições posteriores** até .475, com JARs NeoForge top-level e IDs distintos; o registro imediatamente anterior é a .439. Assim, **não há** arquivos oficiais adicionais de NeoForge 1.21.1 entre .440 e .475 escondidos por paginação. Salto de número não é publicação (por exemplo: **.442/.443, .452, .459 e .466** não figuram nessa lista). **Datas e IDs abaixo são do catálogo, não estimativas.**
+
+| Versão oficial (NeoForge 1.21.1) | Publicação | File ID | Evidência documental resumida / limite |
+|---|---|---:|---|
+| [`19.56.0.441`](https://www.curseforge.com/minecraft/mc-mods/jei/files/8895652) | 16/09/2026 | 8895652 | debug de ingredientes de barra de dano; render de decorations por trás de tooltips |
+| [`19.57.0.444`](https://www.curseforge.com/minecraft/mc-mods/jei/files/8929207) | 20/09/2026 | 8929207 | MezzConfig e funções já investigadas; lista cumulativa da linha .57 |
+| [`19.57.0.445`](https://www.curseforge.com/minecraft/mc-mods/jei/files/8932766) | 20/09/2026 | 8932766 | fix de tecla de busca, migração de config e controles de receita (linha .57) |
+| [`19.57.0.446`](https://www.curseforge.com/minecraft/mc-mods/jei/files/8941263) | 21/09/2026 | 8941263 | metadata de integração opcional MezzConfig GUI; já documentada |
+| [`19.57.0.447`](https://www.curseforge.com/minecraft/mc-mods/jei/files/8946440) | 22/09/2026 | 8946440 | sugestão de GUI MezzConfig e melhorias de bookmarks |
+| [`19.57.0.448`](https://www.curseforge.com/minecraft/mc-mods/jei/files/8963335) | 24/09/2026 | 8963335 | release notifier 0.3.0 / CI; sem mecânica nova comprovada |
+| [`19.57.0.449`](https://www.curseforge.com/minecraft/mc-mods/jei/files/8964989) | 24/09/2026 | 8964989 | release notifier 0.3.1 / CI; sem mecânica nova comprovada |
+| [`19.57.0.450`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9009406) | 29/09/2026 | 9009406 | fix tela de configuração sem Mod Menu em Fabric: não atribuir a NeoForge |
+| [`19.57.0.451`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9068136) | 05/10/2026 | 9068136 | cache de artefatos e consolidação CI; changelog cumulativo |
+| [`19.64.0.453`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9146042) | 12/10/2026 | 9146042 | scroll grids, navegação, IDs de receitas; cumulativo |
+| [`19.64.0.454`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9173201) | 14/10/2026 | 9173201 | fix de mouse navigation em ingredientes |
+| [`19.64.0.455`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9205121) | 16/10/2026 | 9205121 | testes/validação de linkage, além das mudanças cumulativas .64 |
+| [`19.69.0.456`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9254760) | 19/10/2026 | 9254760 | busca Lucene, refresh em runtime, overlays e atalhos |
+| [`19.69.0.457`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9267535) | 20/10/2026 | 9267535 | publicação verificada, changelog cumulativo já documentado |
+| [`19.70.0.458`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9318777) | 25/10/2026 | 9318777 | helpers de sprites GUI e validação de bytecode |
+| [`19.70.0.460`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9322591) | 25/10/2026 | 9322591 | navegação teclado e caches de ingredient codec; changelog cumulativo |
+| [`19.70.0.461`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9343790) | 27/10/2026 | 9343790 | changelog granular não recuperado |
+| [`19.70.0.462`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9351272) | 28/10/2026 | 9351272 | fix de hotkey de busca e exclusão de module descriptors sombreados |
+| [`19.70.0.463`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9352308) | 28/10/2026 | 9352308 | changelog granular não recuperado |
+| [`19.70.0.464`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9353559) | 28/10/2026 | 9353559 | CI de testes Fabric; changelog cumulativo |
+| [`19.70.0.465`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9362430) | 29/10/2026 | 9362430 | changelog granular não recuperado |
+| [`19.70.0.467`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9363414) | 29/10/2026 | 9363414 | changelog granular não recuperado |
+| [`19.70.0.468`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9374500) | 30/10/2026 | 9374500 | changelog granular não recuperado |
+| [`19.70.0.469`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9393327) | 01/11/2026 | 9393327 | navegação Escape, chat links, snapshots e otimizações; cumulativo |
+| [`19.71.0.470`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9701110) | 19/11/2026 | 9701110 | dependência standalone MezzConfig e alterações acumuladas da linha .71 |
+| [`19.71.0.471`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9715164) | 20/11/2026 | 9715164 | fix #4631: editores legados listam apenas configs JEI cliente com arquivo |
+| [`19.71.0.472`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9716338) | 20/11/2026 | 9716338 | changelog granular NeoForge não recuperado |
+| [`19.71.0.473`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9716649) | 20/11/2026 | 9716649 | changelog granular NeoForge não recuperado |
+| [`19.71.0.474`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9717406) | 20/11/2026 | 9717406 | changelog granular NeoForge não recuperado |
+| [`19.71.0.475`](https://www.curseforge.com/minecraft/mc-mods/jei/files/9717805) | 20/11/2026 | 9717805 | última Beta confirmada; changelog granular NeoForge não recuperado |
+
+**Como interpretar a última coluna:** as entradas iniciais e vários deltas funcionais já estão cobertos nas seções anteriores deste dossier; para releases cujo arquivo publica um **changelog cumulativo de linha**, os itens mencionados **não são atribuídos exclusivamente àquele JAR** sem comparação com a release imediatamente anterior. Onde a página individual devolveu erro HTTP/recuperação, a lacuna foi mantida expressamente, **sem classificar o conteúdo como apenas bugfix ou CI**. As 30 distribuições foram **inventariadas individualmente**, mas **não** foram 30 changelogs individualmente validados até o final. A revisão direta conseguiu ler páginas específicas de **.441, .445, .447, .449, .450, .451, .453, .454, .455, .456, .458, .460, .462, .464 e .469**, enquanto outras foram bloqueadas no acesso ou dependem de source/per-build já documentado.
+
+**Riscos materiais que permanecem:** a mudança da linha .70 para .71 tem impacto em **standalone MezzConfig 0.7.1+** (contra **0.5.9 top-level físico**), sombreamento de módulos Java e ABI, integrações JEI/JER, atalhos/IME, renderização de sprites e resource packs Excalibur/Mandala, menu fake e transferências de receitas. Em particular o source da branch **`1.21.1`** inclui commits de testes de interface após 19/11, mas **sem mapa confiável build→commit para cada Beta .472/.473/.474/.475**, não é possível inferir que todas elas tenham sido exclusivamente de CI.
+
+**Estado: AUDITORIA DE DISTRIBUIÇÕES COMPLETA; AUDITORIA TÉCNICA GRANULAR POR BUILD AINDA PENDENTE.** Resolver notas oficiais faltantes e confirmar fronteiras exatas das builds .461/.463/.465/.467/.468 e .472–.475 antes de certificar a evolução documental integral. **JAR instalado `jei-1.21.1-neoforge-19.56.0.440.jar`, posição #349**, categorias, basename e loader do pack permanecem iguais; nenhum artefato foi baixado, instalado ou testado. **Não retirar o MOD 79 do Bloco de Notas.**
+
