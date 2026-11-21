@@ -47,7 +47,7 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 | 35 | Excalibur \| Waystones Support | `Excalibur Waystones 1.1.zip` | `1.1` | `Medieval + Miscellaneous + Mod Support + Traditional` | `Medieval + Miscellaneous + Mod Support + Traditional/✅-excalibur-waystones-support v1.1.md` | 18/09/2026 - 11:04 |
 | 36 | Excalibur | `Excalibur_V26.1_01.zip` | `V26.1_01` | `Animated + Medieval + Traditional` | `Animated + Medieval + Traditional/excalibur V26.1_01.md` | 29/09/2026 - 17:25 |
 | 37 | Fresh Animations | `FreshAnimations_v1.10.4.zip` | `1.10.4` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations v1.10.4.md` | 21/11/2026 - 01:23 |
-| 38 | Fresh Animations: Extensions | `FA+All_Extensions-v1.8.1.zip` | `1.8.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-extensions v1.8.1.md` | 21/11/2026 - 01:23 |
+| 38 | Fresh Animations: Extensions | `FA+All_Extensions-v1.8.1.zip` | `1.8.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-extensions v1.8.1.md` | 21/11/2026 - 01:24 |
 | 39 | Fresh Animations: Player Extension | `FA+Player-v1.1.zip` | `1.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-player-extension v1.1.md` | 29/09/2026 - 17:25 |
 | 40 | Fresh Illager Mod Compats | `4.3 FA Illager Mod Compats.zip` | `4.3` | `Animated + Mod Support` | `Animated + Mod Support/fresh-illager-mod-compats v4.3.md` | 29/09/2026 - 17:25 |
 | 41 | Golems Refreshed + Fresh Animations | `golems-refreshed-fa-v2.1.zip` | `2.1` | `Traditional` | `Traditional/✅-golems-refreshed-fresh-animations v2.1.md` | 29/09/2026 - 17:42 |
