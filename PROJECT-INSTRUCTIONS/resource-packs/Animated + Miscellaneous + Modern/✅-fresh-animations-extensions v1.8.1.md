@@ -96,7 +96,7 @@ CurseForge oficial confirma `FA+All_Extensions-v1.8.1.zip`, suporte a 1.21.1, os
 | Spiders Edit | 2.3 | Migração ao formato FA 1.11 e correção de modelos quebrados |
 | Objects | 2.1.3 | Atualização de `pack.mcmeta` |
 
-As notas do autor afirmam adaptação de vários modelos ao **formato Fresh Animations 1.11**. Isso não comprova compatibilidade visual perfeita quando o bundle candidato 1.10 é combinado com o **Fresh Animations 1.10.4 registrado no perfil**; conferir os dois artefatos e EMF/ETF no mesmo staging.
+O changelog é **multiversão**: a inclusão de uma novidade nessa lista não prova, isoladamente, que uma variante exclusiva de uma geração posterior do Minecraft (por exemplo, um mob ou textura ausente em 1.21.1) exista ou seja carregada no perfil 1.21.1. Atribuir uma textura específica à variante do jogo requer inspeção dos paths do ZIP e do jogo-alvo. As notas do autor afirmam adaptação de vários modelos ao **formato Fresh Animations 1.11**. Isso não comprova compatibilidade visual perfeita quando o bundle candidato 1.10 é combinado com o **Fresh Animations 1.10.4 registrado no perfil**; conferir os dois artefatos e EMF/ETF no mesmo staging.
 
 ### 1.10.1 — 31/10/2026, Release
 
