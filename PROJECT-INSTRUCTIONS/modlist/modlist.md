@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 21/11/2026 (TFMG Community Edition e Copycats+)
+
+| Nº físico | Projeto / dossier | Versão instalada | Publicação upstream auditada | Estado |
+|---:|---|---|---|---|
+| 109 | Create: Copycats+ | `3.0.9+mc.1.21.1-neoforge` | [3.0.11 (08/11, NeoForge 1.21.1)](https://www.curseforge.com/minecraft/mc-mods/copycats/files/9504789) | **CONCLUÍDO documentalmente:** 3.0.10 não foi publicada para o alvo 1.21.1 NeoForge; 3.0.11, 5 fixes individualizados. QA/upgrade físico pendentes. |
+| 541 | Create: TFMG Community Edition | `1.3.1-community` | [1.3.3a (06/11, NeoForge 1.21.1)](https://www.curseforge.com/minecraft/mc-mods/tfmg-community-edition/files/9482161) | **CONCLUÍDO documentalmente:** 1.3.2, 1.3.2a, 1.3.3 e 1.3.3a auditadas; alterações de registry/APIs, engines, Blast Furnace, vats/recipes e JEI. QA/upgrade físico pendentes. |
+
 ## Fechamento incremental — 21/11/2026 (Modonomicon)
 
 | Nº físico | Mod | Instalado | Upstream auditado | Estado documental |
@@ -567,7 +574,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 106 | Connector Extras | `ConnectorExtras-1.12.1+1.21.1.jar` | `1.12.1+1.21.1` | `Addons + API and Library + Technology + Utility & QoL` | 22/09/2026 - 22:34 |
 | 107 | Continuity | `continuity-3.0.0+1.21.neoforge.jar` | `3.0.0+1.21.neoforge` | `API and Library + Cosmetic` | 22/09/2026 - 22:34 |
 | 108 | Controlling | `Controlling-neoforge-1.21.1-19.0.5.jar` | `19.0.5` | `Cosmetic + Utility & QoL` | 22/09/2026 - 22:34 |
-| 109 | Create: Copycats+ | `copycats-3.0.9+mc.1.21.1-neoforge.jar` | `3.0.9+mc.1.21.1-neoforge` | `Cosmetic + Create + Utility & QoL` | 22/09/2026 - 22:35 |
+| 109 | Create: Copycats+ | `copycats-3.0.9+mc.1.21.1-neoforge.jar` | `3.0.9+mc.1.21.1-neoforge` | `Cosmetic + Create + Utility & QoL` | 21/11/2026 - 00:20 |
 | 110 | CorgiLib | `Corgilib-NeoForge-1.21.1-5.0.0.9.jar` | `5.0.0.9` | `API and Library` | 22/09/2026 - 22:35 |
 | 111 | Cosmetic Armor Reworked | `cosmeticarmorreworked-1.21.1-v1-neoforge.jar` | `1.21.1-v1-neoforge` | `Cosmetic` | 22/09/2026 - 22:35 |
 | 112 | Customizable Player Models OSC Compat | `cpm-osc-compat-1.7.2.jar` | `1.7.2` | `Addons + API and Library + Cosmetic` | 22/09/2026 - 23:33 |
@@ -999,7 +1006,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 538 | TenshiLib (Forge/NeoForge) | `tenshilib-1.21.1-2.3.0.b-neoforge.jar` | `1.21.1-2.3.0.b-neoforge` | `API and Library` | 27/09/2026 - 23:18 |
 | 539 | TerraBlender (NeoForge) | `TerraBlender-neoforge-1.21.1-4.1.0.8.jar` | `4.1.0.8` | `API and Library + Biomes + World Gen` | 27/09/2026 - 22:58 |
 | 540 | Terralith | `Terralith_1.21.x_v2.6.2.jar` | `2.6.2` | `Biomes + Structures + World Gen` | 27/09/2026 - 23:18 |
-| 541 | Create: TFMG Community Edition | `tfmg-1.21.1-1.3.1-community.jar` | `1.3.1-community` | `Addons + Armor, Tools, and Weapons + Create + Ores and Resources + Technology` | 27/09/2026 - 22:58 |
+| 541 | Create: TFMG Community Edition | `tfmg-1.21.1-1.3.1-community.jar` | `1.3.1-community` | `Addons + Armor, Tools, and Weapons + Create + Ores and Resources + Technology` | 21/11/2026 - 00:20 |
 | 542 | ThirstWasFixed | `thirstwasfixed-2.1.6.jar` | `2.1.6` | `Addons + Bug Fixes` | 22/10/2026 - 23:19 |
 | 543 | Thirst Was Reclaimed | `ThirstWasReclaimed-1.21.1-3.0.5.jar` | `1.21.1-3.0.5` | `Food` | 17/11/2026 - 14:45 |
 | 544 | Corail Tombstone | `tombstone-neoforge-1.21.1-9.5.6.jar` | `9.5.6` | `Adventure and RPG + Magic + Mobs + Utility & QoL` | 28/09/2026 - 00:04 |

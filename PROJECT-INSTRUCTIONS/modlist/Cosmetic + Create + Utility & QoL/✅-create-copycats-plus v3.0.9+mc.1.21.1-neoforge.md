@@ -71,3 +71,18 @@ Copycat placement é construção/decoração. Não inferir progressão simplesm
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 12. Evidências e limites
 A release 3.0.9 e seu alvo NeoForge 1.21.1 estão confirmados oficialmente. O changelog público da linha 3.0.x sustenta as superfícies de CT, placement, schematics, contraptions, light updates e ghost-block regressions. Como o source crawl não expôs um changelog detalhado específico da 3.0.9, esta ficha não atribui a 3.0.9 mudanças não demonstradas; usa a build física como authority de versão e a linha 3.0.x como evidência arquitetural.
+
+## 13. Auditoria incremental concluída — 21/11/2026 — 3.0.11 (NeoForge 1.21.1)
+
+**Autoridade física preservada:** `copycats-3.0.9+mc.1.21.1-neoforge.jar`, versão física `3.0.9+mc.1.21.1-neoforge`, posição #109. O catálogo [CurseForge, projeto Copycats+ 968398, arquivos para Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/copycats/files/all?version=1.21.1) mostra **sete publicações** desse alvo, com sequência recente **3.0.9 (06/09/2026) → 3.0.11 (08/11/2026)**. **Não existe artefato 3.0.10 para NeoForge 1.21.1 nesse catálogo**: a 3.0.10 pertence à linha 1.20.1 (Forge/Fabric) e não foi considerada versão intermediária instalada/compatível. A [3.0.11 para NeoForge 1.21.1, file ID 9504789](https://www.curseforge.com/minecraft/mc-mods/copycats/files/9504789), é Release do mesmo projeto com as categorias oficiais **Cosmetic + Create + Utility & QoL**, já correspondentes à pasta.
+
+**Changelog exato da 3.0.11:** [CHANGELOG.md oficial do repositório copycats-plus/copycats, seção 3.0.11 (08/11)](https://github.com/copycats-plus/copycats/blob/multiloader/CHANGELOG.md). Esta publicação contém **cinco correções** e não anuncia novos blocos ou mecânicas:
+1. Copycat **Bytes** não devem causar crash quando recebem nome de propriedade inválido (issue #371).
+2. Copycat **Byte Panels** recebem a mesma defesa contra nome de propriedade inválido (issue #441).
+3. Corrige **NullPointerException no armazenamento de itens de material**, relevante para copycats já existentes, transição de chunks, mundos antigos e materiais nulos (issue #430 / PR #433). O changelog não garante migração universal de todos os NBTs malformados.
+4. Corrige **fall particles** inválidas ao caminhar/cair em superfícies de copycats (issues #238/#373, PR #393), alterando feedback visual sem alterar o estado do bloco.
+5. Corrige **tags ausentes de doors/trapdoors**, relevante para seleção por tags, lógica de ferramentas/receitas ou consumidores que consultem essas tags (issue #377 / PR #383).
+
+**Relevância para o pack:** concentrar testes de upgrade em saves existentes com Byte/Byte Panel, *multistate copycats* e material armazenado nulo; confirmar ausência de crash em carregamento, schematics e contraptions; conferir tags de doors/trapdoors e feedback de partículas. A 3.0.11 não é evidência de correção das issues de sobreposição física de Byte Panel em contraptions sem validação específica. A compatibilidade com **Create 6.0.10**, Aero Copycats e Extra Copycats requer testes separados; nenhuma dessas dependências foi modificada.
+
+**Resultado:** para o alvo Minecraft 1.21.1 NeoForge, o intervalo documental **3.0.9 → 3.0.11** foi integralmente reconciliado entre catálogo CurseForge e changelog GitHub; a numeração 3.0.10 não corresponde a uma publicação desse alvo. **Auditoria documental concluída**, sem instalação ou QA runtime. Basename, versão física e pasta mantidos.

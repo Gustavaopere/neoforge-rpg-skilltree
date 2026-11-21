@@ -1,11 +1,11 @@
-# Create: The Factory Must Grow
+# Create: TFMG Community Edition
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#541**: JAR `tfmg-1.21.1-1.3.1-community.jar`, mod id `tfmg`, runtime `1.3.1-community`, SHA-1 `c9047467b660bed0b7b2c87cb2d40e33946c9ae5`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco
 
-- **Mod:** Create: The Factory Must Grow
+- **Mod:** Create: TFMG Community Edition (fork da obra original Create: TFMG)
 - **Arquivo JAR:** `tfmg-1.21.1-1.3.1-community.jar`
 - **Versão 1.21.1:** 1.3.1-community
 - **Estado no pack:** Integrado ao Github
@@ -235,3 +235,40 @@ A autoridade física continua em **TFMG Community Edition 1.3.1-community**. O u
 - [ ] CBC/JEI não exibem rotas duplicadas ou recipes antigas residuais.
 
 Fontes upstream: CurseForge TFMG Community Edition 1.3.2 file ID 9013173 e 1.3.2a file ID 9013465. Nenhum teste acima foi executado nesta atualização documental.
+
+## 21. Auditoria incremental concluída — 21/11/2026 — 1.3.3 e 1.3.3a (Community Edition)
+
+**Instalado no snapshot físico:** `tfmg-1.21.1-1.3.1-community.jar` (versão `1.3.1-community`, posição #541). **Alvo upstream:** [1.3.3a (CurseForge 9482161)](https://www.curseforge.com/minecraft/mc-mods/tfmg-community-edition/files/9482161), Release de 06/11/2026 para **Minecraft 1.21.1, NeoForge**, do projeto **Create: TFMG Community Edition**, CurseForge 1653026. Não substituir pela distribuição original de Create: TFMG; trata-se de um fork independente. Categorias verificadas no projeto: **Addons + Armor, Tools, and Weapons + Create + Ores and Resources + Technology**, correspondentes ao diretório atual. A cadeia **1.3.1 → 1.3.2 → 1.3.2a → 1.3.3 → 1.3.3a** foi individualizada: os deltas .2/.2a constam na seção 20, enquanto .3/.3a são acrescentados abaixo.
+
+### [1.3.3 — 03/11/2026, CurseForge 9413167](https://www.curseforge.com/minecraft/mc-mods/tfmg-community-edition/files/9413167)
+
+**Correções práticas verificadas:**
+- **Blast Furnace Output:** preserva *item components* nos resultados em vez de resetá-los; relevante para processamento de materiais com componentes e pipelines de armazenamento.
+- **Coke Oven:** capacidade de processamento volta a escalar conforme o tamanho da estrutura; aferir rendimento/tempo versus tamanho, sem extrapolar valores não publicados.
+- **Electric Posts com concreto:** não se convertem incorretamente em cabos encapsulados quando o concreto seca.
+- **Exaustão:** engines/fireboxes passam a emitir `carbon_dioxide` em vez de `flowing_carbon_dioxide`; rever pipes, fluid handlers e receitas que reconheçam a espécie do fluido.
+- **Drops e estabilidade:** double slabs devolvem duas slabs; crash relacionado a *thermite grenades* corrigido.
+
+**Mudanças de gameplay, máquinas e interfaces:**
+- Inputs de receitas passam a usar tags onde aplicável; adicionadas composições para Crushed Lead/Nickel; **fluid compositions** passam ao namespace `tfmg`. Revalidar scripts/datapacks e graph JEI que referenciam IDs antigos.
+- Multimeter passa a caber no slot Curios `belt`; *diagonal cables* podem ser horizontais; o tanque de combustível de *Firebox* agora permite extração.
+- Engines devolvem componentes e upgrades ao serem destruídos; Golden Turbo tem ajuste visual de velocidade/ângulo; Simple Large Engines passam a ter tag de combustível própria. Fuel testing recebe ajuste defensivo contra tags inválidas.
+- Blast Furnace Output passa a usar `ForceableFluidTank` bloqueando inserção, adota temporização compartilhada de máquinas, modifica durações de receita e não emite fumaça quando há top hatch.
+- Categorias de receitas JEI passam a aparecer identificadas como **TFMG**, e não Create. Oil Wells/Deposits ganham configs de feature; fluidos recebem tags; o upstream remove a marcação explícita de incompatibilidade com *Create: The Factory Must WORK! 2.1.2* (não presumir que ele está instalado). Texturas industriais são revisadas.
+
+**API/compatibilidade (quebras e novas interfaces):**
+- Introduz `IHaveMultimeterInformation`; `IElectric` passa a estendê-la em lugar de `IHaveGoggleInformation`. Consumers compilados contra a API anterior precisam ser reavaliados.
+- IDs de operações de Vat **`tfmg:mixing` → `tfmg:mixer`** e **`tfmg:freezing` → `tfmg:freezer`**, inclusive constantes `MIXING`→`MIXER` e `FREEZING`→`FREEZER`. Dados, scripts e receitas com IDs antigos exigem migração explícita.
+- Introduz o componente de dados `tfmg:engine_upgrade`, registry e tag generator de upgrades; contratos de geração elétrica passam a interface, engines passam a expor item handlers registrados e engine fuels podem definir fluido de exaustão específico (padrão CO2).
+
+### [1.3.3a — 06/11/2026, CurseForge 9482161](https://www.curseforge.com/minecraft/mc-mods/tfmg-community-edition/files/9482161)
+
+- Corrige o *clone item stack* de Glass Pipes com materiais diferentes, afetando coleta/clonagem e item mostrado/obtido.
+- Cast Iron Block deixa de estabelecer conexão visual inválida com Aluminium Block.
+- Corrige **crash por `IndexOutOfBounds` no Blast Furnace** ao processar receita com apenas um resultado.
+- Engines de **um bloco** passam a consumir combustível corretamente; priorizar regressão contra geração de energia sem consumo ou consumo incorreto.
+- Melhora a categoria JEI de Industrial Blasting. Arquivos de licença/contribuição são incluídos no empacotamento, sem mudança de gameplay demonstrada.
+
+**Gates de upgrade:** receitas antigas com namespaces/IDs de Vat precisam ser inspecionadas antes da troca de JAR; testar backup de save, oil worldgen em chunks novos, fluid amounts, Blast Furnace/Output com componente de item e receita de resultado único, Coke Oven grande/pequeno, engine/exhaust/turbo e consumo em motor de um bloco, interfaces `IHaveMultimeterInformation`, Curios belt, Multimeter, JEI e integração Create 6.0.10/Sable 2.0.5. Exigir testes no servidor dedicado e em multiplayer. Não foi realizada validação binária dos JARs candidatos, alteração de jogo ou QA.
+
+**Conclusão:** as publicações subsequentes **1.3.2, 1.3.2a, 1.3.3 e 1.3.3a**, identificadas no catálogo oficial para NeoForge 1.21.1, estão individualmente documentadas até 1.3.3a. **Pesquisa documental concluída; instalação e QA pendentes.** Preservados JAR, versão física `1.3.1-community`, basename e pasta do dossier.
