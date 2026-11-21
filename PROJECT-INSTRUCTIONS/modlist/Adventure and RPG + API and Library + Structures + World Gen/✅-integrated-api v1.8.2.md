@@ -77,7 +77,7 @@ Validar datapack load, registry setup, `/reload`, world creation, geração de c
 - **Modlist física de 17/09/2026:** `integrated_api-neoforge-1.21.1-1.8.2.jar`, mod id `integrated_api`, versão 1.8.2.
 - **Release oficial 1.8.2:** adiciona ceiling structure type.
 - **Histórico 1.8.0:** upside-down terrain adaptation permanece capability herdada da linha.
-- **Documentação oficial:** contraption compat, conditional replacement, cartographer maps, limite 256, jigsaw manager e opções JSON.
+- **Documentação oficial:** contraption compat, conditional replacement, cartographer maps, limite dimensional `512` e comprimento máximo do nome da estrutura `256` demonstrados no source `common-1.21.1` (sem teste do JAR físico), jigsaw manager e opções JSON.
 - **Integrated Patches:** continua ausente da modlist física atual e não é tratado como feature embutida/dependência própria da API.
 - **Runtime:** nenhum teste acima foi executado nesta catalogação.
 

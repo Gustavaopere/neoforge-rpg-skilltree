@@ -105,16 +105,20 @@ O ZIP não foi inventariado asset por asset; cobertura além do que o upstream d
 
 > Boundary canônico: **Sophisticated controla inventories/upgrades; Excalibur Sophisticated Support controla somente a apresentação dos assets substituídos**.
 
-## 12. Revalidação upstream — 02/10/2026
+## 12. Auditoria incremental — 1.1 → 1.2 (Minecraft 1.21.1; 21/11/2026)
 
-- **Instalado/documentado:** `Excalibur Sophisticated v1.1.zip` / versão `1.1`.
-- **Upstream atual:** `Excalibur Sophisticated v1.1.zip`, ainda a release mais recente publicada pelo projeto em 01/06/2026.
-- Não existe release posterior a `1.1` para percorrer nesta auditoria.
-- Permanecem válidos no upstream os três alvos declarados: **Sophisticated Core**, **Sophisticated Backpacks** e **Sophisticated Storage**, além da cobertura de GUIs, icons, chests/barrels/limited barrels, upgrades e itens adicionais já registrada neste dossiê.
-- Portanto, **não há atualização de versão a aplicar** ao arquivo físico/documentado nesta rodada.
+**Versão física preservada:** `Excalibur Sophisticated v1.1.zip` / `1.1`, conforme a captura histórica do perfil em 08/09/2026. Este registro documental **não** comprova a instalação do ZIP `1.2` e não altera arquivos de resource pack.
 
-Fonte upstream revalidada:
-- https://www.curseforge.com/minecraft/texture-packs/excalibur-sophisticated-support
+**Publicações e mudanças individualmente conferidas:**
+
+- **1.1 — 01/06/2026 (baseline instalada):** [arquivo oficial CurseForge 8182224](https://www.curseforge.com/minecraft/texture-packs/excalibur-sophisticated-support/files/8182224), `Excalibur Sophisticated v1.1.zip`, Release compatível com 1.21.1. Changelog: retexturização visual do **mob catcher upgrade**. Esse conteúdo pertence à baseline; não atribuí-lo à 1.2.
+- **1.2 — 16/09/2026 (disponível; NÃO instalada):** [publicação oficial Modrinth 1.2](https://modrinth.com/resourcepack/excalibur-sophisticated-support/version/1.2) e [CurseForge file 8896181](https://www.curseforge.com/minecraft/texture-packs/excalibur-sophisticated-support/files/8896181), arquivo publicado como `Excalibur Sophisticated v1.2.zip`, Release compatível com **Minecraft 1.21.1**. Changelog do autor: retexturização de **todos os itens de conversão dos stack upgrades** de **Sophisticated Backpacks** e **Sophisticated Storage**. São assets visuais desses itens; não modificam a capacidade dos slots, o funcionamento dos upgrades, receitas, quantidades persistidas nem o servidor.
+
+**Cadeia auditada:** `1.1 → 1.2`; não foi identificada versão intermediária distinta na sequência pública consultada para este alvo. A verificação da 1.2 corrige a afirmação histórica desta seção de que a 1.1 ainda seria a última publicação em outubro: essa informação estava obsoleta.
+
+**Impacto prático:** a 1.2 é candidata para reduzir divergência de textura dos itens de conversão de stack upgrades no pack com Backpacks `3.26.3` e Storage `1.5.91`. Sem inspeção dos ZIPs, não afirmar nomes de `assets/`, alteração específica de `pack.mcmeta`, ausência de colisão com outros retextures nem suporte testado para cada GUI/provider instalado. Verificar diffs de recursos, ordem de prioridade acima do Excalibur base, eventuais conflitos com Create Style Sophisticated Backpacks, reload e icons dos upgrades; **nenhum teste visual ou substituição de ZIP foi executado**.
+
+**Status:** release 1.2 e seu delta publicado **documentados**, versão física 1.1 **preservada**. O bloqueio histórico de certificação descrito na seção 13 permanece registrado; **não foi consultado o Notion nesta auditoria**. O dossier continua sem prefixo `✅-` e não será movido ou promovido ao índice de elegíveis enquanto a certificação estiver incompleta.
 
 ## 13. Bloqueio de certificação Notion → GitHub — 02/10/2026
 
