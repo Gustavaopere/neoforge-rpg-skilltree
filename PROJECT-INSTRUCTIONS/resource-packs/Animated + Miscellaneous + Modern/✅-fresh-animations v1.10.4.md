@@ -185,3 +185,19 @@ A seção anterior **"75 / 90 mobs complete (26.3)"** contém adições extensas
 - **PROMOÇÃO DE ZIP / QA — NÃO APROVADA.** Não foram baixados nem abertos os ZIPs; não foram comparados os hashes locais, `pack.mcmeta` do ZIP distribuído, modelos, texturas, `.properties` removidos, `assets/`, precedência de outros packs ou compatibilidade visual em execução com **EMF 3.3.5 + ETF 7.2.1**. Permanecem bloqueados os testes de F3+T, relog, animações por mob, efeitos de compats Refreshed/Excalibur, regressões visuais, shaders e multiplayer. Identidade criptográfica das publicações **não demonstra equivalência ao arquivo físico instalado**.
 
 **Autoridade preservada:** ZIP real top-level `FreshAnimations_v1.10.4.zip`, versão instalada `1.10.4`, posição física RP #37, dossier `✅-fresh-animations v1.10.4.md` mantido em `Animated + Miscellaneous + Modern`. A reorganização de pastas não foi executada. As declarações anteriores *“RP #2 ainda não deve ser apagado”* estavam usando critérios de **QA/binário**: passam a permanecer válidas **para a homologação da atualização**, mas não para a fila estrita de changelogs certificados. Nenhum arquivo de pack, código, workflow ou configuração foi alterado nesta etapa.
+
+## Auditoria incremental — 21/11/2026 — Fresh Animations 1.11.2 - 1.20+
+
+**Baseline instalado histórico:** `FreshAnimations_v1.10.4.zip` / `1.10.4`. O dossier acima já documenta a cadeia **1.10.4 → 1.11.0 - 1.20+ → 1.11.1 - 1.20+**, com fontes e changelogs próprios. Foi localizada a publicação seguinte, sem confundi-la com a variante **26.1+**.
+
+**1.11.2 — 01/11/2026:** [CurseForge oficial, file ID 9394023](https://www.curseforge.com/minecraft/texture-packs/fresh-animations/files/9394023), título **FA 1.11.2 - 1.20+**, **Release**, arquivo **`FreshAnimations_v1.11.2_1.20.zip`**. A listagem **inclui Minecraft 1.21.1 explicitamente**. Changelog da publicação:
+
+- Corrigida a inconsistência de **modelos de aranhas entre versões**.
+- Corrigidas as **posições das guias/leashes** em **lhamas** e **allays**.
+- Ajustadas **animações de abelhas**.
+- Ajustada a **textura de zombified piglin bebê**.
+- A nota **“fixed cave spider using normal spider animations in 26.1+”** é **expressamente exclusiva da linha 26.1+**; **não é atribuída ao Minecraft 1.21.1**.
+
+**Interpretação no perfil:** as correções e ajustes comprovados são visuais e podem interagir com **Fresh Animations: Extensions** (Spiders Edit) e com os retextures de mobs instalados; AI, pathfinding, comportamento de mobs e salvamento continuam do Minecraft/servidor. Para validar substituição, comparar ZIPs `1.11.1 - 1.20+` e `1.11.2 - 1.20+`, seus `assets/`/`pack.mcmeta` e prioridade, testar aranhas, lhamas, allays, abelhas e piglins bebês com EMF/ETF, F3+T, shaders e relog.
+
+**Estado:** a auditoria **dos changelogs oficiais das versões compatíveis** desde 1.10.4 foi estendida e está **concluída até 1.11.2 - 1.20+**. Nenhum arquivo de ZIP desta nova release foi aberto, nenhum checksum do ZIP físico foi conferido e nenhum teste in-game foi feito nesta rodada; promoção/QA continuam em aberto. Preservados ZIP documentado 1.10.4, prefixo ✅, basename e categoria.
