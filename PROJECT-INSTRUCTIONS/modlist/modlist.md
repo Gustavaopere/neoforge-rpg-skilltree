@@ -12,6 +12,12 @@
 
 
 
+## Auditoria incremental concluída — 21/11/2026 (Recolor)
+
+| Nº físico | Mod | Instalada (JAR exato) | Última NeoForge 1.21.1 auditada | Resultado |
+|---:|---|---|---|---|
+| 472 | Iron's Spells 'n Spellbooks: Recolor | `1.3.3+1.21.1` / `recolor_tablet-1.3.3+1.21.1.jar` | [1.4.0, 25/10/2026](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor/files/9326516) | **CONCLUÍDO documentalmente:** versões 1.3.4, .5, .6, .7 e 1.4.0 individualizadas; .4 corrige Chilled/Frozen e adiciona Amendments/Hazen, 1.4.0 reformula recoloração e integra T.O Magic 'n Extras. Instalação e QA não executados. |
+
 ## Auditoria incremental parcial — 21/11/2026 (JER, intermediárias .60/.63)
 
 | Nº físico | Projeto | Versão física | Publicações identificadas | Situação |
@@ -968,7 +974,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 469 | Ragdoll Reactions | `ragdoll_reactions-1.21.1-0.7.0.jar` | `0.7.0` | `Addons + Cosmetic` | 27/09/2026 - 16:30 |
 | 470 | Steam 'n' Rails Neoforge | `railways-0.3.0-beta.2+neoforge-mc1.21.1.jar` | `0.3.0-beta.2+neoforge-mc1.21.1` | `Addons + Cosmetic + Create + Player Transport + Technology` | 27/09/2026 - 16:30 |
 | 471 | Rechiseled | `rechiseled-1.2.6-neoforge-mc1.21.jar` | `1.2.6` | `Cosmetic` | 27/09/2026 - 16:30 |
-| 472 | Iron's Spells 'n Spellbooks: Recolor | `recolor_tablet-1.3.3+1.21.1.jar` | `1.3.3+1.21.1` | `Cosmetic + Magic` | 20/11/2026 - 00:10 |
+| 472 | Iron's Spells 'n Spellbooks: Recolor | `recolor_tablet-1.3.3+1.21.1.jar` | `1.3.3+1.21.1` | `Cosmetic + Magic` | 21/11/2026 - 01:03 |
 | 473 | Reese's Sodium Options | `reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar` | `2.2.3+mc1.21.1` | `Miscellaneous` | 27/09/2026 - 17:03 |
 | 474 | Relics | `relics-1.21.1-0.12.8.jar` | `0.12.8` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Ores and Resources` | 17/11/2026 - 18:40 |
 | 475 | Reliquified L_Ender 's Cataclysm new relics fix | `reliquified-lenders-cataclysm-new-relics-fix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes + Server Utility` | 27/09/2026 - 17:03 |

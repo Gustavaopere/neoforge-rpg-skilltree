@@ -167,3 +167,28 @@ A coexistência com o mod-base Iron's Spells 'n Spellbooks 3.16.3 é conhecida n
 
 **Gates adicionais:** creative tabs com cores customizadas, armas e armaduras do Iron's, Cataclysm instalado, addons de spells, sincronização por caster, render e gameplay inalterado. **Não declarar auditoria completa:** faltam os deltas de 1.3.4 e 1.4.0. Nenhuma alteração de instalação.
 
+## Fechamento da auditoria 1.3.4 a 1.4.0 — 21/11/2026 (NeoForge 1.21.1)
+
+**Autoridade física preservada:** entrada #472, JAR `recolor_tablet-1.3.3+1.21.1.jar`, runtime **1.3.3+1.21.1**, sem substituição do arquivo, certificação adicional, alteração de basename ou movimentação. Projeto inequívoco: **[Iron's Spells 'n Spellbooks: Recolor, Eraphious, CurseForge ID 1650140](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor)**, distinto do mod-base Iron's Spells. Categorias oficiais atuais: **Cosmetic + Magic**, já refletidas pelo diretório.
+
+A auditoria anterior identificou e documentou individualmente as **cinco** publicações NeoForge 1.21.1 após 1.3.3: **1.3.4 (26/09) → 1.3.5 (27/09) → 1.3.6 (27/09) → 1.3.7 (04/10) → 1.4.0 (25/10/2026)**. Os changelogs de 1.3.5, 1.3.6 e 1.3.7 já estão individualizados na tabela anterior. Duas lacunas foram fechadas mediante recuperação das notas oficiais das páginas do **JAR específico NeoForge 1.21.1**:
+
+### [1.3.4 Beta — 26/09/2026, File ID 8981099](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor/files/8981099)
+
+O autor descreve **três** alterações, sem detalhar sua implementação:
+
+1. **Chilled e Frozen passam a respeitar a recoloração**, corrigindo efeitos anteriormente fora do mecanismo visual;
+2. adiciona **patch de compatibilidade com Amendments**; o comportamento exato da integração não é declarado e não se deve inferir registro de novos itens ou de novas spells;
+3. **armaduras de Hazen 'N Stuff passam a ser recoloridas**. A presença real desse mod na instalação precisa ser confirmada antes de tratar o efeito como ativo.
+
+Nenhuma mudança de dano, duração de status, atributos de armadura, custos de mana ou autoridade de combate é anunciada. Os efeitos gráficos devem continuar vinculados corretamente ao caster e aos estados server-authoritative.
+
+### [1.4.0 Release — 25/10/2026, File ID 9326516](https://www.curseforge.com/minecraft/mc-mods/irons-spells-n-spellbooks-recolor/files/9326516)
+
+1. **Integração visual com armaduras do addon T.O Magic 'n Extras**.
+2. **Reformulação geral de como o sistema aplica recoloração** (formulação expressa do próprio changelog: *Reworked how everything gets recolored*). O autor **não publica**, na nota, detalhes de packets, shaders, armazenamento, mixins, algoritmos nem alterações de IDs. Registrar o impacto como **refatoração ampla com risco de regressão visual**, não uma lista inventada de novas mecânicas.
+
+**QA exigido antes de instalar a candidata 1.4.0:** comparar lado a lado spells, Chilled/Frozen, armas e armaduras Iron's, Hazen 'N Stuff e T.O Magic 'n Extras quando presentes, compatibilidade com Amendments e Cataclysm, coloração por caster em multiplayer, relog/reload, presença de resource packs/shaders e manutenção de gameplay/dano. Testar em cópia do pack, com backup de dados visuais persistidos; nenhuma mudança do JAR ou teste runtime foi executado. Diferenciar bugs exclusivos de Sinytra Connector de problemas confirmados na instalação NeoForge nativa.
+
+**Conclusão documental:** todos os cinco releases intermediários/posteriores aplicáveis ao **Minecraft 1.21.1 / NeoForge** estão agora auditados por changelog do autor, incluindo as duas lacunas anteriores. **Auditoria documental CONCLUÍDA até 1.4.0; promoção de JAR e QA não realizados.** Permanecem `✅-irons-spells-n-spellbooks-recolor v1.3.3+1.21.1.md` e a versão física 1.3.3+1.21.1. As referências primárias de cada arquivo constam na tabela da auditoria anterior e nos dois links acima.
+
