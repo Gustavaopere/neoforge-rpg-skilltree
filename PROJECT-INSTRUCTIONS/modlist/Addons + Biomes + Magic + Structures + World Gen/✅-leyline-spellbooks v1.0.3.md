@@ -1,8 +1,8 @@
-# Leyline Spellbooks
+# Leylines: Iron's Spells 'n Spellbooks Addon
 
 ## Propriedades do registro
 
-- **Mod:** Leyline Spellbooks
+- **Mod:** Leylines: Iron's Spells 'n Spellbooks Addon
 - **Arquivo JAR:** leylines-1.0.3.jar
 - **Versão 1.21.1:** 1.0.3
 - **Categoria:** Magia, RPG, Exploração, Worldgen
@@ -10,14 +10,14 @@
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack:** Integrado ao Github
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/leyline-spellbooks
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/leylines-irons-spells-n-spellbooks-addon
 - **Função:** Addon de Iron's Spells com escola Leyline, pillars noturnos, Leyline Rifts com encontros em ondas, spells próprios, Codex/Staff e recompensas temáticas.
 - **Dependências:** Iron's Spells 'n Spellbooks é dependência obrigatória; runtime físico usa 3.16.3. NeoForge 1.21.1.
 - **Compatibilidade/Riscos:** Sem source público exato localizado. Riscos: worldgen density/overlap, rift/wave duplication após reload, portal persistence, reward/XP duplication, spell-provider drift com Iron's 3.16.3 e efeitos temporais em multiplayer.
 - **Sobreposição:** Expande Iron's Spells; Iron's permanece authority de mana/cast/cooldown e spell engine. Leyline é authority de seus pillars, rifts, encounters, spells/conteúdo e rewards próprios.
 - **Observações:** Release 1.0.3 confirmada para 1.21.1. Conteúdo nominal documentado oficialmente foi catalogado; classes, registry IDs e contagens internas não foram inventados sem source correspondente.
-- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial Leylines 1.0.3 NeoForge 1.21.1, ainda a release mais recente localizada + descrição oficial do conteúdo; source público exato continua não localizado.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Leyline Spellbooks 1.0.3/JAR físico reconfirmado; 1.0.3 permanece a release NeoForge 1.21.1 mais recente localizada. Pillars/rifts, wave encounters, spells, rewards, Iron's boundary e source gap preservados.
+- **Procedência:** modlist.txt física reconferida em 13/09/2026 + CurseForge oficial Leylines 1.0.3 NeoForge 1.21.1 (mais recente localizada em 13/09/2026) + descrição oficial do conteúdo; source público exato continua não localizado.
+- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — Leyline Spellbooks 1.0.3/JAR físico reconfirmado; 1.0.3 permanece a versão física identificada no snapshot de 25/09/2026, mas a release NeoForge 1.21.1 mais recente é 1.1.2 (12/11/2026), com 1.1.0–1.1.2 auditadas documentalmente. Pillars/rifts, wave encounters, spells, rewards e boundaries com Iron's preservados.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #373: JAR `leylines-1.0.3.jar`, mod id `leylines`, runtime `1.0.3`, SHA-1 `dfa6908731f432905caaaa1e53b4aedeaa26ed59`.
@@ -83,4 +83,4 @@ A ficha usa a modlist física e a página/release oficial 1.0.3, incluindo a des
 
 **QA e integração:** reconciliar dependência TerraBlender e Iron's antes de promover a 1.1.2; verificar worldgen dos chunks novos, distribuição de pillars, trading e drops sem duplicação, alvo/ownership e cleanup do summon em multiplayer, morte/logout/restart, comportamento diurno e quests/perks baseados em encontros. Nenhum teste ou instalação executado.
 
-**Estrutura:** categorias oficiais atuais verificadas diretamente nas páginas CurseForge: Addons + Biomes + Magic + Structures + World Gen. A pasta atual carece de Biomes. A busca de referências ao caminho antigo retornou resultado incompleto; por fail-closed o arquivo não foi movido. Auditoria do conteúdo até 1.1.2 realizada; conclusão estrutural pendente até inspeção confiável dos links e movimentação.
+**Estado documental e estrutural — 21/11/2026:** as versões 1.1.0, 1.1.1 e 1.1.2 foram auditadas. A pasta atual `Addons + Biomes + Magic + Structures + World Gen` corresponde às categorias oficiais CurseForge, inclusive Biomes. A movimentação e a revisão de referências foram registradas como concluídas em 20/11/2026 no índice mestre; a pendência estrutural de 18/11 foi superada. A versão física do snapshot permanece `leylines-1.0.3.jar`; 1.1.2 é release mais recente **não instalada**. Nenhum teste de worldgen, cliente ou servidor foi executado nesta reconciliação.

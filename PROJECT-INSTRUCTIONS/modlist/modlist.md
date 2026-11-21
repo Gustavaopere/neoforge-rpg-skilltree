@@ -176,7 +176,7 @@
 |---:|---|---|---|---|
 | 143 | Create: Fantasizing Again | `1.2.0-b3` | [1.2.1](https://www.curseforge.com/minecraft/mc-mods/create-fantasizing-again/files/9394143) | Documentação concluída; única publicação posterior no catálogo Modrinth; avanços, receitas, consumo Block Placer, Sturdy Girder e remoção Encased. QA pendente. |
 | 349 | Just Enough Items (JEI) | `19.56.0.440` | [19.70.0.469 Beta](https://www.curseforge.com/minecraft/mc-mods/jei/files/9393327) | Pendente; catálogo confirma .462/.463/.464/.465/.467/.468/.469; comparação oficial dos pins .457→.469 retornou 22 commits (delta agregado registrado). Atribuição por build e inventário .458–.461 ainda não conciliados; QA pendente. |
-| 432 | Paladin Spells - Iron's Spells Addon | `1.21.1-1.1.1` | [1.1.4](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9392196) | Pendente estrutural; categorias Addons + Adventure and RPG + Magic revalidadas; busca de referências GitHub retorna incomplete_results=true, clone local indisponível por DNS. Não mover. |
+| 432 | Paladin Spells - Iron's Spells Addon | `1.21.1-1.1.1` | [1.1.4](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9392196) | **Histórico 18/11, superado em 20/11:** categorias validadas, dossier já movido para `Addons + Adventure and RPG + Magic` e referências revisadas. QA e atualização física pendentes. |
 | 437 | PartiCull | `2.0` | [2.2](https://www.curseforge.com/minecraft/mc-mods/particull/files/9437517) | Pendente; [API Modrinth](https://api.modrinth.com/v2/project/particull/version?loaders=%5B%22neoforge%22%5D&game_versions=%5B%221.21.1%22%5D) contém somente 2.0 e 2.2; release 2.2 sem changelog em ambas plataformas, sem source público vinculado. Falta delta técnico ou comparação binária. |
 | 449 | Polytone | `1.21-4.4.0` | [5.3.8](https://www.curseforge.com/minecraft/mc-mods/polytone/files/9519538) | Documentação concluída; dez novas releases pós-5.2.0 individualizadas, shadowmap removido e iluminação/Veil alteradas; notas genéricas preservadas como limitação. QA pendente. |
 
@@ -215,7 +215,7 @@
 
 | Nº físico | Projeto | Instalado (snapshot) | Upstream auditado até | Resultado |
 |---:|---|---|---|---|
-| 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `1.0.3` | [1.1.2](https://www.curseforge.com/minecraft/mc-mods/leylines-irons-spells-n-spellbooks-addon/files/9579676) | 1.1.0–1.1.2 auditadas; **pendência estrutural**: categoria Biomes nova, referências ao caminho antigo não integralmente verificadas; caminho físico mantido. QA pendente. |
+| 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `1.0.3` | [1.1.2](https://www.curseforge.com/minecraft/mc-mods/leylines-irons-spells-n-spellbooks-addon/files/9579676) | **Histórico 18/11, superado em 20/11:** 1.1.0–1.1.2 auditadas; dossier agora em pasta com Biomes e referências revisadas. QA e atualização física ainda pendentes. |
 | 427 | Oh The Trees You'll Grow | `5.3.2` | [5.3.6](https://github.com/CorgiTaco-MC/Oh-The-Trees-Youll-Grow/blob/929789fe3f92a82796c34783dfecc8f4f2988466/CHANGELOG.md) | Concluído documentalmente; 5.3.3–5.3.6 auditadas no source oficial 1.21.1 e catálogo NeoForge; ticks/altura/memória; QA pendente. |
 
 ## Auditoria incremental — 18/11/2026 (Aeronautics Player Tilt)
@@ -243,7 +243,7 @@
 |---:|---|---|---|---|
 | 069 | Better Library | `1.0.111` | [1.0.113](https://www.curseforge.com/minecraft/mc-mods/better-library/files/9319311) | **Concluído documentalmente**; 1.0.112 não publicada para o alvo na listagem consultada; QA de consumidores/config/POI/trades pendente. |
 | 262 | Minecolonies: Epicfied (Epic Colonies) | `21.0.8` | [21.1.4](https://www.curseforge.com/minecraft/mc-mods/minecolonies-epicfied-epic-colonies/files/9641684) | **Concluído documentalmente**; oito releases incluindo hotfix 21.0.912; QA de atributos/combate e dependências pendente. |
-| 432 | Paladin Spells - Iron's Spells Addon | `1.21.1-1.1.1` | [1.1.4](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9392196) | **Pendente estrutural**; releases 1.1.2–1.1.4 auditadas; categorias atuais Addons + Adventure and RPG + Magic divergem da pasta histórica Addons + Magic. Busca de referências ao caminho antigo incompleta; não mover nem certificar até validar os links. |
+| 432 | Paladin Spells - Iron's Spells Addon | `1.21.1-1.1.1` | [1.1.4](https://www.curseforge.com/minecraft/mc-mods/paladin-spells-irons-spells-addon/files/9392196) | **Histórico 18/11, superado em 20/11:** releases 1.1.2–1.1.4 auditadas e movimentação para categorias corretas concluída. QA e atualização física pendentes. |
 
 
 ## Auditoria incremental — 18/11/2026 (LDLib, Moonlight, Eidolon e Polymorph+)
@@ -818,7 +818,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 370 | LDLib | `ldlib2-neoforge-1.21.1-2.2.39.a-all.jar` | `2.2.39.a` | `API and Library + Utility & QoL` | 18/11/2026 - 07:44 |
 | 371 | Legendary Monsters | `legendary_monsters-2.2.2 MC 1.21.1.jar` | `2.2.2 (distribuição); metadata interna 1.21.1` | `Armor, Tools, and Weapons + Mobs + Structures` | 17/11/2026 - 18:47 |
 | 372 | Legendary Spellbooks | `legendary_spellbooks-1.21.1+neo-0.3.2.jar` | `0.3.2` | `Addons + Magic` | 25/09/2026 - 11:24 |
-| 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `leylines-1.0.3.jar` | `1.0.3` | `Addons + Biomes + Magic + Structures + World Gen` | 18/11/2026 - 10:06 |
+| 373 | Leylines: Iron's Spells 'n Spellbooks Addon | `leylines-1.0.3.jar` | `1.0.3` | `Addons + Biomes + Magic + Structures + World Gen` | 21/11/2026 - 00:08 |
 | 374 | Lionfish API | `lionfishapi-3.1.jar` | `3.1` | `API and Library` | 25/09/2026 - 11:24 |
 | 375 | Lithostitched | `lithostitched-1.8.0+beta6-neoforge-21.1.jar` | `1.8.0+beta6` | `API and Library + Miscellaneous + World Gen` | 23/10/2026 - 02:00 |
 | 376 | Load My F***ing Tags | `lmft-1.1.1+1.21.9-neoforge.jar` | `1.1.1+1.21.9` | `Miscellaneous + Server Utility` | 25/09/2026 - 11:24 |
@@ -877,7 +877,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 429 | Overflowing Bars | `OverflowingBars-v21.1.1-1.21.1-NeoForge.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 25/09/2026 - 14:28 |
 | 430 | oωo (owo-lib) | `owo-lib-neoforge-0.12.15.5-beta.1+1.21.jar` | `0.12.15.5-beta.1+1.21` | `API and Library` | 22/10/2026 - 22:49 |
 | 431 | Ozymandias' Sundries | `ozymandias_sundries-0.0.5.jar` | `0.0.5 (distribuição/publicação); metadata interna 0.0.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 14:28 |
-| 432 | Paladin Spells - Iron's Spells Addon | `paladin_spells-1.21.1-1.1.1.jar` | `1.21.1-1.1.1` | `Addons + Adventure and RPG + Magic` | 18/11/2026 - 07:23 |
+| 432 | Paladin Spells - Iron's Spells Addon | `paladin_spells-1.21.1-1.1.1.jar` | `1.21.1-1.1.1` | `Addons + Adventure and RPG + Magic` | 21/11/2026 - 00:08 |
 | 433 | ParCool! ~ Minecraft Parkour ~ | `ParCool-1.21.1-4.0.0.3.jar` | `4.0.0.3` | `Adventure and RPG + Miscellaneous + Utility & QoL` | 19/11/2026 - 19:11 |
 | 434 | Particle Effects | `ParticleEffects-1.5.0+1.21.1+neoforge.jar` | `1.5.0+1.21.1+neoforge` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
 | 435 | Particle Rain | `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` | `4.0.0-beta.11` | `Cosmetic` | 19/11/2026 - 19:30 |
