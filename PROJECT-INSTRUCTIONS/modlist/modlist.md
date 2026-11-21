@@ -841,7 +841,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 329 | Immersive Portal - Iron's Spells 'n Spellbooks Addon | `immersive_portal_irons_spells_n_spellbooks_addon-1.0.1.jar` | `1.0.1` | `Magic + Player Transport` | 24/09/2026 - 22:53 |
 | 330 | Immersive Portals: True Immersion | `immersive_portals_true_immersion-2.0.4.jar` | `2.0.4` | `Addons` | 24/09/2026 - 22:53 |
 | 331 | InsaneLib | `insanelib-2.4.33.0.jar` | `2.4.33.0` | `API and Library` | 17/11/2026 - 16:15 |
-| 332 | Integrated API | `integrated_api-neoforge-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + API and Library + Structures + World Gen` | 20/11/2026 - 19:08 |
+| 332 | Integrated API | `integrated_api-neoforge-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + API and Library + Structures + World Gen` | 21/11/2026 - 13:17 |
 | 333 | Integrated Cataclysm | `integrated_cataclysm-1.0.6+1.21.1-neoforge.jar` | `1.0.6+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Create + World Gen` | 24/09/2026 - 23:17 |
 | 334 | Integrated Simply Swords | `integrated_simply_swords-1.4.0+1.21.1-neoforge.jar` | `1.4.0+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons` | 24/09/2026 - 23:18 |
 | 335 | Integrated Stronghold | `integrated_stronghold-1.1.4+1.21.1-neoforge.jar` | `1.1.4+1.21.1-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Create + Structures + World Gen` | 25/09/2026 - 00:26 |
@@ -858,7 +858,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 346 | Magic From The East | `iss_magicfromtheeast-1.1.5.jar` | `1.1.5` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + World Gen` | 25/09/2026 - 01:24 |
 | 347 | Jade 🔍 | `Jade-1.21.1-NeoForge-15.10.6.jar` | `15.10.6+neoforge` | `Map and Information + Utility & QoL` | 25/09/2026 - 01:24 |
 | 348 | Just Enough Effect Descriptions (JEED) | `jeed-1.21-2.3.2.jar` | `1.21-2.3.2` | `Addons + Map and Information` | 17/11/2026 - 18:54 |
-| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 21/11/2026 - 01:08 |
+| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 21/11/2026 - 13:20 |
 | 350 | JinxedLib | `jinxedlib-neoforge-1.21.1-1.0.4.jar` | `1.0.4` | `API and Library + Server Utility + Utility & QoL` | 25/09/2026 - 01:25 |
 | 351 | JourneyMap Integration | `jmi-neoforge-1.21.1-1.9.jar` | `1.21.1-1.9` | `Addons + Map and Information` | 25/09/2026 - 01:25 |
 | 352 | JourneyMap | `journeymap-neoforge-1.21.1-6.0.8.jar` | `1.21.1-6.0.8` | `Map and Information` | 25/09/2026 - 02:10 |
@@ -911,7 +911,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 399 | Ragdoll mob corpses | `mob_ragdoll_corpse-1.1.5.jar` | `1.1.5` | `Addons + Mobs` | 25/09/2026 - 12:31 |
 | 400 | Mobstein : Revive animals and necromancy! | `mobstein-5.4.4-neoforge-1.21.1.jar` | `5.4.4` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Mobs` | 25/09/2026 - 12:31 |
 | 401 | Model Gap Fix | `modelfix-1.21-1.10.jar` | `1.21-1.10` | `API and Library + Cosmetic + Utility & QoL` | 25/09/2026 - 12:31 |
-| 402 | ModernFix | `modernfix-neoforge-5.27.24+mc1.21.1.jar` | `5.27.24+mc1.21.1` | `Performance + Server Utility + Utility & QoL` | 18/11/2026 - 10:26 |
+| 402 | ModernFix | `modernfix-neoforge-5.27.24+mc1.21.1.jar` | `5.27.24+mc1.21.1` | `Performance + Server Utility + Utility & QoL` | 21/11/2026 - 13:15 |
 | 403 | Modern UI | `ModernUI-NeoForge-1.21.1-3.13.0.1-universal.jar` | `3.13.0.1` | `API and Library + Cosmetic + Miscellaneous + Utility & QoL` | 25/09/2026 - 13:25 |
 | 404 | Modonomicon | `modonomicon-1.21.1-neoforge-1.120.4.jar` | `1.120.4` | `Adventure and RPG + API and Library + Map and Information` | 21/11/2026 - 00:17 |
 | 405 | MonoLib | `monolib-neoforge-1.21.1-4.1.0.jar` | `4.1.0` | `API and Library + Education + Utility & QoL` | 25/09/2026 - 13:25 |
@@ -946,7 +946,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 434 | Particle Effects | `ParticleEffects-1.5.0+1.21.1+neoforge.jar` | `1.5.0+1.21.1+neoforge` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
 | 435 | Particle Rain | `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` | `4.0.0-beta.11` | `Cosmetic` | 19/11/2026 - 19:30 |
 | 436 | Particular ✨ Reforged | `particular-1.21.1-NeoForge-1.5.7.jar` | `1.5.7` | `Cosmetic` | 17/11/2026 - 16:14 |
-| 437 | PartiCull: Particle Fix | `PartiCull-neoforge-1.21.1-v2.0.jar` | `2.0` | `Performance + Utility & QoL` | 21/11/2026 - 12:40 |
+| 437 | PartiCull: Particle Fix | `PartiCull-neoforge-1.21.1-v2.0.jar` | `2.0` | `Performance + Utility & QoL` | 21/11/2026 - 13:16 |
 | 438 | Patchouli | `Patchouli-1.21.1-93-NEOFORGE.jar` | `1.21.1-93-NEOFORGE` | `API and Library` | 25/09/2026 - 15:17 |
 | 439 | Pehkui | `Pehkui-3.8.3+1.21-neoforge.jar` | `3.8.3+1.21-neoforge` | `API and Library` | 25/09/2026 - 15:17 |
 | 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 22/10/2026 - 19:46 |
