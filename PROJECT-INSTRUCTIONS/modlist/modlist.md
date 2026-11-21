@@ -12,6 +12,13 @@
 
 
 
+## Auditoria parcial — 21/11/2026 (JEI .471 e Cyber Goggles 8.8.2/8.8.3)
+
+| Nº físico | Mod | Instalada | Intervalo oficial examinado | Estado |
+|---:|---|---|---|---|
+| 179 | Create: Cyber Goggles | `8.6.3` / `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` | Source [8.8.2](https://github.com/ForgeStove/CreateCyberGoggles/commit/16ca27f9b37e1eca76ef299f94b3f12a766d2525) (câmera, multiplicador e bordas); source [8.8.3](https://github.com/ForgeStove/CreateCyberGoggles/commit/029932f68622c8e941c5d1bb95fc1b2cb5c6c81e) (FlexConfig 0.3.0) | **PENDENTE:** confirmar distribuição primária NeoForge 1.21.1 dos JARs 8.8.2/8.8.3; último arquivo CurseForge diretamente verificado 8.8.1. |
+| 349 | Just Enough Items (JEI) | `19.56.0.440` / `jei-1.21.1-neoforge-19.56.0.440.jar` | [19.71.0.471 NeoForge confirmada](https://www.curseforge.com/minecraft/mc-mods/jei/files/all?gameVersionTypeId=6&page=1): [fix #4631](https://github.com/mezz/JustEnoughItems/commit/09ed2aeba3d26dab215569d1252ce99d7d1afc8f) de editor legado; latest 19.71.0.475 | **PENDENTE:** atribuição granular das demais betas e dependências MezzConfig 0.7.1 vs 0.5.9 físico. |
+
 ## Auditoria incremental concluída — 21/11/2026 (Recolor)
 
 | Nº físico | Mod | Instalada (JAR exato) | Última NeoForge 1.21.1 auditada | Resultado |
@@ -681,7 +688,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 176 | Create Cobblestone | `createcobblestone-1.5.0+neoforge-1.21.1-153.jar` | `1.5.0+neoforge-1.21.1-153` | `Addons + Automation + Create + Performance + Technology` | 17/11/2026 - 17:09 |
 | 177 | CreateColonies | `createcolonies-2.0.6.jar` | `2.0.6` | `Addons + Adventure and RPG + Automation + Create` | 23/09/2026 - 14:27 |
 | 178 | Create Contraption Terminals | `createcontraptionterminals-1.21-1.4.0.jar` | `1.4.0` | `Create + Storage + Utility & QoL` | 23/09/2026 - 14:27 |
-| 179 | Create: Cyber Goggles | `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` | `8.6.3` | `Create + Utility & QoL` | 20/11/2026 - 18:37 |
+| 179 | Create: Cyber Goggles | `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` | `8.6.3` | `Create + Utility & QoL` | 21/11/2026 - 01:08 |
 | 180 | Create Deco | `createdeco-2.1.3.jar` | `2.1.3` | `Addons + Cosmetic + Create` | 23/09/2026 - 14:27 |
 | 181 | Create Diesel Generators | `createdieselgenerators-1.21.1-1.3.15.jar` | `1.21.1-1.3.15` | `Addons + Create + Processing + Technology` | 23/09/2026 - 14:27 |
 | 182 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 23/09/2026 - 23:50 |
@@ -851,7 +858,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 346 | Magic From The East | `iss_magicfromtheeast-1.1.5.jar` | `1.1.5` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + World Gen` | 25/09/2026 - 01:24 |
 | 347 | Jade 🔍 | `Jade-1.21.1-NeoForge-15.10.6.jar` | `15.10.6+neoforge` | `Map and Information + Utility & QoL` | 25/09/2026 - 01:24 |
 | 348 | Just Enough Effect Descriptions (JEED) | `jeed-1.21-2.3.2.jar` | `1.21-2.3.2` | `Addons + Map and Information` | 17/11/2026 - 18:54 |
-| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 20/11/2026 - 19:12 |
+| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 21/11/2026 - 01:08 |
 | 350 | JinxedLib | `jinxedlib-neoforge-1.21.1-1.0.4.jar` | `1.0.4` | `API and Library + Server Utility + Utility & QoL` | 25/09/2026 - 01:25 |
 | 351 | JourneyMap Integration | `jmi-neoforge-1.21.1-1.9.jar` | `1.21.1-1.9` | `Addons + Map and Information` | 25/09/2026 - 01:25 |
 | 352 | JourneyMap | `journeymap-neoforge-1.21.1-6.0.8.jar` | `1.21.1-6.0.8` | `Map and Information` | 25/09/2026 - 02:10 |
