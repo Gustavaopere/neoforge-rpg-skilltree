@@ -710,7 +710,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 198 | Create: Ornithopter Glider | `createornithopterglider-1.2.0-1.21.1.jar` | `1.2.0-1.21.1 (runtime/filename); publicação 1.2.0+1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL` | 23/10/2026 - 15:15 |
 | 199 | Create: Prismatic Shine | `createprism-1.2.2.jar` | `1.2.2` | `Addons + Create` | 24/09/2026 - 00:20 |
 | 200 | Create Propulsion: Simulated | `createpropulsion-1.1.5.jar` | `1.1.5` | `Addons + Create + Player Transport + Technology` | 24/09/2026 - 00:20 |
-| 201 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 21/11/2026 - 12:40 |
+| 201 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 21/11/2026 - 12:42 |
 | 202 | Create: Schematic Checker | `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar` | `2.27.45-6.0` | `Addons + Bug Fixes + Create` | 24/09/2026 - 00:44 |
 | 203 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 17/11/2026 - 16:14 |
 | 204 | Create: Transmission! | `createtransmission-1.2.2+neoforge-create6-1.21.1.jar` | `1.2.2+neoforge-create6-1.21.1` | `Addons + Cosmetic + Create + Technology + Utility & QoL` | 24/09/2026 - 00:44 |
