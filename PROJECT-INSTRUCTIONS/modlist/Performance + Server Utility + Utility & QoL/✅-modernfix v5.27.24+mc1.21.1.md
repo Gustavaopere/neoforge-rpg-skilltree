@@ -125,3 +125,39 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 **Relevância:** worldgen/cache e concorrência na geração de estruturas, compatibilidade com JARs assinados, reload de modelos/blockstates e resource packs/idiomas. Testar junto aos mods que manipulam estruturas/worldgen e recursos dinâmicos, sem pressupor presença de C2ME. Avaliar retenção de memória e tempo de carregamento com baseline controlado.
 
 **Limite:** commits da branch e datas dos artefatos não estabelecem equivalência binária nem atribuição exata entre as duas publicações de 08/10; não certificar cada delta como contido em um JAR específico sem pin/tag/manifesto verificável. Releases identificadas, auditoria granular ainda pendente. Nenhuma alteração física ou teste realizado.
+
+## Fechamento documental por versionamento Git first-parent — ModernFix 5.27.24 → 5.27.27 (21/11/2026)
+
+**Conciliação exata da linhagem NeoForge 1.21.1:** os três arquivos subsequentes ao JAR top-level instalado `modernfix-neoforge-5.27.24+mc1.21.1.jar` são [5.27.25 (CurseForge ID 9101699, 08/10/2026)](https://www.curseforge.com/minecraft/mc-mods/modernfix/files/9101699), [5.27.26 (ID 9101836, 08/10/2026)](https://www.curseforge.com/minecraft/mc-mods/modernfix/files/9101836) e [5.27.27 (ID 9309399, 24/10/2026)](https://www.curseforge.com/minecraft/mc-mods/modernfix/files/9309399), todos **Release, Minecraft 1.21.1, NeoForge**. Não confundir `+mc1.21.1` com arquivos `+mc26.1.2` ou `+mc1.20.1`.
+
+O [gerador de versão oficial `GitVersionSource.kt`](https://github.com/embeddedt/ModernFix/blob/a5882ba3c779e185115ac37e95c81dd8beb7e44b/buildSrc/src/main/kotlin/GitVersionSource.kt) compõe a versão como **`release_line.txt + "." + número de commits na primeira linha de parentes desde a mudança de release_line.txt + "+mc" + minecraft_version`**; `release_line.txt` é **`5.27`** nos quatro commits abaixo, e `gradle.properties` dos merges fixa **`minecraft_version=1.21.1` / `enabled_platforms=neoforge`**. A cadeia de **primeiros pais** de Git foi conferida diretamente:
+- baseline **5.27.24**: [`e5ede992`](https://github.com/embeddedt/ModernFix/commit/e5ede9929c359adbe9629e4e59f1c2f83263225c), **31/08/2026 02:32 UTC**, correspondente ao arquivo instalado publicado nessa data;
+- **5.27.25**: [merge `0b987b80`](https://github.com/embeddedt/ModernFix/commit/0b987b80a2b1a011d7c07bf5dae2ea3156dd7da2), **08/10 20:00 UTC**, primeiro pai `e5ede992`, publicação .25 pouco depois;
+- **5.27.26**: [merge `1957e779`](https://github.com/embeddedt/ModernFix/commit/1957e7798d9b0c51dfacec1cd39a74c58b4dd2b5), **08/10 20:26 UTC**, primeiro pai `0b987b80`, publicação .26 pouco depois;
+- **5.27.27**: [merge `a5882ba3`](https://github.com/embeddedt/ModernFix/commit/a5882ba3c779e185115ac37e95c81dd8beb7e44b), **24/10 13:21 UTC**, primeiro pai `1957e779`, publicação .27 no mesmo dia.
+
+Essa cadeia e a regra de versionamento **resolvem a atribuição documental por build** que estava bloqueada na seção anterior; as três [comparações Git oficiais](https://github.com/embeddedt/ModernFix/compare/e5ede9929c359adbe9629e4e59f1c2f83263225c...0b987b80a2b1a011d7c07bf5dae2ea3156dd7da2) são descritas abaixo. A correspondência foi aferida por código/source, first-parent e datas, **não** por decompilação ou SHA binário dos JARs distribuídos.
+
+### 5.27.25 — 08/10/2026 — performance de worldgen, estruturas e C2ME
+
+[Diff oficial da branch `1.21.1`, baseline .24 → merge .25](https://github.com/embeddedt/ModernFix/compare/e5ede9929c359adbe9629e4e59f1c2f83263225c...0b987b80a2b1a011d7c07bf5dae2ea3156dd7da2): **três commits técnicos**:
+- [`5c1318b1`](https://github.com/embeddedt/ModernFix/commit/5c1318b1c651df3e8611f3abc98b7e1825ac0401): fallback para executor de tarefas quando a geração de *stronghold rings* não estiver cacheada; evita assumir disponibilidade do cache.
+- [`aa3fff59`](https://github.com/embeddedt/ModernFix/commit/aa3fff5971affbce1ca0501960158d41c11349b3): não desliga indevidamente `mixin.perf.cache_strongholds` na presença de **C2ME**. A simples correção de compatibilidade condicional **não prova que C2ME esteja instalado** nesta modlist.
+- [`c3fa11c2`](https://github.com/embeddedt/ModernFix/commit/c3fa11c28623bd77d609e6dd84d36a9098d23818): substitui construção lazy da árvore climática **RTree** por builder eager mais eficiente, reduzindo a possibilidade de inicialização tardia inconsistente; efeitos e métricas de geração precisam ser testados com seed fixa.
+
+### 5.27.26 — 08/10/2026 — preservação de assinatura de outros JARs
+
+[Diff oficial entre os merges .25 e .26](https://github.com/embeddedt/ModernFix/compare/0b987b80a2b1a011d7c07bf5dae2ea3156dd7da2...1957e7798d9b0c51dfacec1cd39a74c58b4dd2b5): um único commit de mudança funcional, [`cf04b47d`](https://github.com/embeddedt/ModernFix/commit/cf04b47d10ac5c6a748b177ce0348a3b1e4a9871), em **`ManifestCompactor.java`**, impede compactar indevidamente o manifesto de **JARs assinados**. Isso preserva metadata de assinatura e reduz risco de validação incorreta; não altera mecânicas ou itens do pack.
+
+### 5.27.27 — 24/10/2026 — resources, structures e reload
+
+[Diff oficial entre os merges .26 e .27](https://github.com/embeddedt/ModernFix/compare/1957e7798d9b0c51dfacec1cd39a74c58b4dd2b5...a5882ba3c779e185115ac37e95c81dd8beb7e44b): três commits técnicos e um de documentação:
+- [`1df6471b`](https://github.com/embeddedt/ModernFix/commit/1df6471ba9ff98c8b031c8978f56ba38baa0c931) (**11/10**): ao carregar blockstates dinamicamente, isola **somente a cópia malformada** do resource pack, sem inutilizar indiscriminadamente as demais fontes válidas; relevante para overlays e packs com JSON defeituoso.
+- [`355755b1`](https://github.com/embeddedt/ModernFix/commit/355755b17342ab576cb182c0abbcd699f628797e) (**19/10**): permite que requisições duplicadas de carregamento de *structure templates* concorram, removendo espera serial indevida. Conferir cache/reload e resultados de worldgen com consumers de estruturas; **não** afirmar ganho de FPS ou estabilidade numérica sem benchmark.
+- [`246d72e0`](https://github.com/embeddedt/ModernFix/commit/246d72e0e6580dc4ec5593990af22ece3b664522) (**24/10**): materializa o mapa de traduções dinâmicas antes do fechamento dos packs no **resource reload**, evitando referências a ZIP já fechado. Regressão pertinente ao The Brazilian Localization Project, sobreposição de traduções, `F3+T` e menus modded.
+- [`441fe622`](https://github.com/embeddedt/ModernFix/commit/441fe62210157ae62e925eaa2ea95c43652836ad) (**24/10**): documentação de projeto, sem nova mecânica de gameplay.
+
+**Escopo e conclusão:** a [wiki oficial do ModernFix](https://github.com/embeddedt/ModernFix/wiki/Changelog) explica o regime de *continuous deployment* e que releases de patch concentram correções de recursos existentes. A lista de commits em **primeiro-pai da branch 1.21.1**, o gerador determinístico de versão e as três distribuições CurseForge identificam cada intervalo sem misturar os deltas com a branch `1.20`. **Auditoria documental da cadeia 5.27.24 → 5.27.25 → 5.27.26 → 5.27.27: CONCLUÍDA.** A versão **instalada e certificada segue 5.27.24+mc1.21.1**, com o mesmo nome/caminho/JAR; nenhum binário ou config foi alterado.
+
+**Gate separado de upgrade físico:** confirmar SHA/metadata/patch set dos JARs reais; preservar backup de configs e mundo; testar dedicated server e cliente em NeoForge 21.1.248, `mixin.perf.dynamic_resources`, comparação de gerações de estruturas, operações com resource packs e idiomas (especialmente Brazilian Project 1.3.0 físico), `/reload`, `F3+T`, C2ME **somente se estiver instalado**, Create Teleporters, boot/memória e mixin collisions. **Não foi feito QA em runtime.** Após confirmação do GitHub, o **MOD 103** pode ser removido **apenas da lista de auditoria documental**, não da eventual fila de atualização física.
+
