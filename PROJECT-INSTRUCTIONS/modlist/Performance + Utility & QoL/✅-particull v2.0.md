@@ -89,3 +89,13 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 - CurseForge/Modrinth oficiais: NeoForge 1.21.1 v2.0, ambiente Client e descrição do controle dinâmico conforme FPS.
 - Documentação oficial: config in-game com três opções e Target FPS sincronizado ao monitor.
 - **Limite:** o ganho upstream de até cerca de 30% é contextual e não foi reproduzido nesta instância; dois campos da config não foram nomeados pela documentação auditada e não foram inventados.
+
+## Auditoria incremental parcial — 21/11/2026 — distribuição NeoForge 1.21.1 v2.2
+
+**Instalação documentada, não substituída:** #437, `PartiCull-neoforge-1.21.1-v2.0.jar`, runtime `2.0`. O [CurseForge oficial do projeto PartiCull, ID 1280903](https://www.curseforge.com/minecraft/mc-mods/particull/files/9437517) confirma **`PartiCull-neoforge-1.21.1-v2.2.jar`**, **Release**, publicada em **04/11/2026**, **file ID 9437517**, para **Minecraft 1.21.1 e NeoForge**, ambiente **Client**. As categorias temáticas oficiais seguem **Performance + Utility & QoL**, correspondendo à pasta atual. Trata-se de **versão disponível**, não da versão instalada.
+
+**Changelog da publicação 2.2:** a própria página oficial informa expressamente **“File has no changelog”**. A descrição geral do projeto explica culling de partículas conforme FPS, mas não atribui adições, correções, alterações de configuração ou compatibilidade especificamente à 2.2. Sem changelog por versão, source pinado ou comparação técnica dos JARs 2.0→2.2, **não é possível declarar quais mudanças ocorreram nem que foram apenas bugfixes**. A diferença de numeração tampouco demonstra, por si, a publicação de uma 2.1 compatível.
+
+**Gate documental e de promoção:** recuperar evidência primária do delta 2.0→2.2 (notas do autor, source tag ou comparação dos binários oficiais); conferir metadata, dependências e configuração do artefato NeoForge exato; somente então avaliar riscos de supressão de telegraphs de combate, Particle Rain, Particular, spells e shaders e testes A/B de FPS, comportamento em relog e recuperação do culling. Nenhum JAR foi instalado ou testado nesta revisão.
+
+**Estado: PENDENTE (fail-closed).** A publicação upstream e a ausência de changelog foram confirmadas; a auditoria incremental das mudanças **não** foi concluída. Preservar versão física 2.0, basename certificado, categorias e diretório. **Não retirar PartiCull nº 70 do Bloco de Notas.**
