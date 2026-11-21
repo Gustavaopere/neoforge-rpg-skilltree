@@ -12,6 +12,12 @@
 
 
 
+## Fechamento incremental — 21/11/2026 (Modonomicon)
+
+| Nº físico | Mod | Instalado | Upstream auditado | Estado documental |
+|---:|---|---|---|---|
+| 404 | Modonomicon | `1.120.4` | [1.123.1 NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/modonomicon/files/9646793) | **CONCLUÍDO:** releases 1.120.5, .6, .7, .8, 1.121.0, 1.122.0, 1.123.0 e 1.123.1 individualizadas com GitHub Releases e changelogs upstream. QA e instalação física pendentes. |
+
 ## Auditoria incremental — 21/11/2026 (Create: Radiologistics e FluidLogistics)
 
 | Nº físico | Projeto | Versão instalada no snapshot | Última publicação auditada | Estado |
@@ -856,7 +862,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 401 | Model Gap Fix | `modelfix-1.21-1.10.jar` | `1.21-1.10` | `API and Library + Cosmetic + Utility & QoL` | 25/09/2026 - 12:31 |
 | 402 | ModernFix | `modernfix-neoforge-5.27.24+mc1.21.1.jar` | `5.27.24+mc1.21.1` | `Performance + Server Utility + Utility & QoL` | 18/11/2026 - 10:26 |
 | 403 | Modern UI | `ModernUI-NeoForge-1.21.1-3.13.0.1-universal.jar` | `3.13.0.1` | `API and Library + Cosmetic + Miscellaneous + Utility & QoL` | 25/09/2026 - 13:25 |
-| 404 | Modonomicon | `modonomicon-1.21.1-neoforge-1.120.4.jar` | `1.120.4` | `Adventure and RPG + API and Library + Map and Information` | 20/11/2026 - 00:17 |
+| 404 | Modonomicon | `modonomicon-1.21.1-neoforge-1.120.4.jar` | `1.120.4` | `Adventure and RPG + API and Library + Map and Information` | 21/11/2026 - 00:17 |
 | 405 | MonoLib | `monolib-neoforge-1.21.1-4.1.0.jar` | `4.1.0` | `API and Library + Education + Utility & QoL` | 25/09/2026 - 13:25 |
 | 406 | Monsters & Spellbooks: Iron's Spells 'n Spellbooks Addon | `monsterspellbooks-0.0.16.3.jar` | `0.0.16.3` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 25/09/2026 - 13:25 |
 | 407 | Moonlight Lib | `moonlight-1.21.1-3.6.4-neoforge.jar` | `1.21.1-3.6.4` | `API and Library` | 18/11/2026 - 07:44 |

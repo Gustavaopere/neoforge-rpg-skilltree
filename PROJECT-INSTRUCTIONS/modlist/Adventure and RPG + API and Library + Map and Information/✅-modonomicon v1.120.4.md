@@ -146,3 +146,21 @@ A autoridade física #404 continua `modonomicon-1.21.1-neoforge-1.120.4.jar`. As
 
 **Pendência documental:** a listagem filtrada CurseForge e a API Modrinth não retornaram o inventário integral; não foi possível excluir publicações intermediárias entre 1.120.7 e 1.122.0. As consultas aos nomes de tags hipotéticos também retornaram 404, o que não prova inexistência de publicações. Manter item pendente. Regressões: load conditions, books unknown/unbuilt, logs de falha no build, reload, estado de progressão e consumidores reais; confirmar loader/dependências. Nenhum teste ou promoção física.
 
+## Fechamento documental — 21/11/2026 — versões 1.120.8 e 1.121.0 conciliadas
+
+**Instalação física mantida:** `modonomicon-1.21.1-neoforge-1.120.4.jar`, posição #404 no snapshot; versão `1.120.4` permanece no nome do dossier e no índice. A revisão das [GitHub Releases oficiais da linha 1.21.1](https://github.com/klikli-dev/modonomicon/releases) identificou as publicações sequenciais **1.120.5 → 1.120.6 → 1.120.7 → 1.120.8 → 1.121.0 → 1.122.0 → 1.123.0 → 1.123.1** posteriores à versão física. As .5/.6/.7 já estão na seção 14; 1.122.0, 1.123.0 e 1.123.1 já estão individualizadas na auditoria parcial de 20/11. A lacuna intermediária identificada naquele relatório corresponde às duas releases a seguir:
+
+### [1.120.8 — 27/10/2026, release GitHub da linha 1.21.1](https://github.com/klikli-dev/modonomicon/releases/tag/release/v1.21.1-1.120.8)
+
+A correção oficial [`d8602c7`](https://github.com/klikli-dev/modonomicon/commit/d8602c755c93ddc342c369cc7cc8137987aadb96) impede que o **preview de multiblocos altere a seed do random do nível cliente** (*do not reseed client level random in multiblock preview*). É relevante para determinismo de apresentações e para evitar efeitos colaterais do preview em outras operações client-side. Não interpretar como alteração de seed de geração do mundo no servidor sem evidência adicional. Testar abrir/fechar diversos previews de multibloco, renderização e outros consumidores de random do cliente.
+
+### [1.121.0 — 28/10/2026, release GitHub da linha 1.21.1](https://github.com/klikli-dev/modonomicon/releases/tag/release/v1.21.1-1.121.0)
+
+Changelog oficial registra:
+- **Navegação:** as páginas do livro passam a poder ser viradas com as teclas de seta ([`6c61254`](https://github.com/klikli-dev/modonomicon/commit/6c612544d96eb1fffe91b5da47c713a52c1c54ad)).
+- **Interface:** corrige entradas fantasma nos backgrounds de categorias do modo *index* ([`e253be7`](https://github.com/klikli-dev/modonomicon/commit/e253be7085be8adc4183b333ad4df5132864eba2)).
+- **Bookmarks:** corrige o botão de favorito que funcionava apenas uma vez ([`4013470`](https://github.com/klikli-dev/modonomicon/commit/4013470dd1b7c6b0d4321e40390211e18f665092)). Testar múltiplas marcações e remoções sucessivas, persistência e navegação entre entradas.
+
+**Conciliação da cadeia até 1.123.1:** as GitHub Releases oficiais distinguem cada versão da linha Minecraft 1.21.1 da sequência acima, sem evidência de outra GitHub Release 1.21.1 intermediária no intervalo auditado. O [artefato CurseForge 1.123.1 para NeoForge 1.21.1](https://www.curseforge.com/minecraft/mc-mods/modonomicon/files/9646793) confirma o alvo publicado em 16/11/2026; diferenças entre outros loaders/versões 26.x **não** foram transferidas para este dossier. As mudanças adicionais 1.122.0–1.123.1 permanecem descritas na seção anterior.
+
+**Resultado:** auditoria **documental das publicações upstream identificadas até 1.123.1 concluída**. Não implica equivalência binária inspecionada de cada publicação nem homologação do upgrade. Seguem pendentes os testes de consumidores, datapacks, sincronização, bookmarks, preview e mundo salvo. **Nenhuma instalação ou teste de jogo foi realizado**, sem alterar JAR nem certificar versão-alvo como instalada.
