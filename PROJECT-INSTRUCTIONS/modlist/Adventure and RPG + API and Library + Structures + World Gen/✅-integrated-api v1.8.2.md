@@ -16,7 +16,7 @@
 - **Sobreposição:** Não é mod de estruturas independente; centraliza infraestrutura usada por vários Integrated. Não duplicar jigsaw/terrain/data logic nos consumers sem necessidade, e não atribuir automaticamente a um consumer bugs que pertencem à API compartilhada.
 - **Observações:** Runtime físico permanece 1.8.2. A release 1.9.0 para NeoForge 1.21.1, publicada em 21/09/2026, adiciona Trial Spawner processor; Integrated Patches segue não instalado.
 - **Procedência:** modlist física atual + Integrated API 1.8.2 instalada + CurseForge oficial 1.9.0 (file ID 8943419) para NeoForge 1.21.1 + documentação oficial já auditada do ecossistema Integrated. Revalidado em 01/10/2026.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Integrated API 1.8.2. A única release 1.21.1 posterior localizada é 1.9.0; o novo Trial Spawner processor foi incorporado como superfície de worldgen/data não instalada.
+- **Atualização/Status:** PENDENTE — runtime físico permanece Integrated API `1.8.2`; releases NeoForge 1.21.1 `1.9.0` (Trial Spawner processor, 21/09/2026), `1.9.1` (correções de trades/mapas e logspam, 12/10/2026) e `1.9.2` (11/11/2026, sem changelog específico) foram identificadas. A evolução cumulativa do source até `1.9.2` foi registrada abaixo, mas o delta binário exclusivo de `1.9.2` ainda não foi certificado; nenhuma versão nova foi instalada ou testada.
 - **Data da última decisão:** 2026-08-26
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #332: JAR `integrated_api-neoforge-1.21.1-1.8.2.jar`, mod id `integrated_api`, runtime `1.8.2`, SHA-1 `e0a0e44235b98f21a05ebbe0171fe8487319a173`.
