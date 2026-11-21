@@ -101,3 +101,18 @@ Há indícios de 1.1.2 e 1.1.4 em listagens secundárias/modpacks, inclusive [ch
 **Bloqueio remanescente:** a cadeia completa entre 1.1.1 e 1.1.4 exige confirmação individual da distribuição 1.1.2 e de seu changelog; não é possível declarar auditoria integral só com 1.1.3/1.1.4. Nenhum JAR, metadata ou teste in-game foi modificado. **PENDENTE — não liberar para remoção do Bloco de Notas.**
 
 **Fonte primária:** [CurseForge 1.1.4](https://www.curseforge.com/minecraft/mc-mods/create-radiologistics/files/9265504), seção *What's new*.
+
+## Conciliação incremental — 21/11/2026 — distribuição 1.1.2 confirmada
+
+A [lista integral de arquivos do projeto oficial no CurseForge (projeto 1556290)](https://www.curseforge.com/minecraft/mc-mods/create-radiologistics/files/all), consultada com resultados atualizados, **enumera sete publicações**; as quatro da sequência pertinente são:
+
+| Versão NeoForge 1.21.1 | Data informada no catálogo | Situação da nota técnica |
+|---|---|---|
+| **1.1.1** (baseline instalado) | 02/07/2026 | Recursos/fixes já registrados neste dossier |
+| **1.1.2**, `CreateRadiologistics-1.1.2.jar` | **20/09/2026** | **Arquivo distribuído confirmado oficialmente; changelog específico não recuperado** |
+| **1.1.3**, `CreateRadiologistics-1.1.3.jar` | **28/09/2026** | Notas primárias do autor no [Modrinth 1.1.3](https://modrinth.com/mod/create-radiologistics/version/1.1.3): correção de interação client/server, restabelecimento do servo motor e sensor óptico até 500 blocos |
+| **1.1.4**, `CreateRadiologistics-1.1.4.jar` | **20/10/2026** | Notas primárias do [CurseForge 1.1.4 (ID 9265504)](https://www.curseforge.com/minecraft/mc-mods/create-radiologistics/files/9265504): ajustes de dependências, transparent screen, gyro (*maybe*), custom node e cannon info |
+
+**Correção das auditorias anteriores:** a existência, filename, data e compatibilidade **NeoForge 1.21.1** da **1.1.2** deixam de ser hipótese; a tabela atual de distribuições não mostra outra release entre 1.1.1 e 1.1.4. Entretanto **continua impossível atestar o conteúdo técnico introduzido na 1.1.2**, pois o catálogo de arquivos fornece metadata, não uma nota por versão. Nenhuma mudança da 1.1.3 ou 1.1.4 foi retroatribuída à 1.1.2. Esta lacuna demanda changelog próprio, evidência de source pinado ou comparação dos JARs oficiais antes de certificação da auditoria integral.
+
+**Status: PARCIAL, fail-closed.** Versão instalada permanece **1.1.1**, posição **#201**, sem modificação de JAR, nome certificado, categoria **Create**, arquivos de configuração ou QA. **Não liberar o nº 124 do Bloco de Notas.**
