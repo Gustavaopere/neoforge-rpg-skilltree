@@ -116,3 +116,32 @@ A [lista integral de arquivos do projeto oficial no CurseForge (projeto 1556290)
 **Correção das auditorias anteriores:** a existência, filename, data e compatibilidade **NeoForge 1.21.1** da **1.1.2** deixam de ser hipótese; a tabela atual de distribuições não mostra outra release entre 1.1.1 e 1.1.4. Entretanto **continua impossível atestar o conteúdo técnico introduzido na 1.1.2**, pois o catálogo de arquivos fornece metadata, não uma nota por versão. Nenhuma mudança da 1.1.3 ou 1.1.4 foi retroatribuída à 1.1.2. Esta lacuna demanda changelog próprio, evidência de source pinado ou comparação dos JARs oficiais antes de certificação da auditoria integral.
 
 **Status: PARCIAL, fail-closed.** Versão instalada permanece **1.1.1**, posição **#201**, sem modificação de JAR, nome certificado, categoria **Create**, arquivos de configuração ou QA. **Não liberar o nº 124 do Bloco de Notas.**
+
+## Fechamento documental do intervalo 1.1.1 → 1.1.4 — 21/11/2026
+
+**Cadeia de publicações oficialmente enumeradas:** a [lista CurseForge do projeto 1556290](https://www.curseforge.com/minecraft/mc-mods/create-radiologistics/files/all) confirma que os únicos arquivos NeoForge 1.21.1 posteriores ao baseline 1.1.1 e até a publicação mais recente de 20/10/2026 são **1.1.2 (20/09, CurseForge file ID 8930397) → 1.1.3 (28/09, file ID 8998071) → 1.1.4 (20/10, file ID 9265504)**. O [Modrinth oficial **1.1.2**](https://modrinth.com/mod/create-radiologistics/version/1.1.2), da mesma autoria, disponibiliza o JAR NeoForge e **o changelog específico que faltava**. A janela inteira passa a ter notas primárias por versão. Os conteúdos abaixo são **upstream e não instalados**.
+
+### 1.1.2 — novas funcionalidades e correções da publicação
+
+- **Editor e execução por nodes:** adiciona **Helmet Audioset** para saída de áudio individual ao usuário do Pilot Helmet; os **2D Gizmos** ganham parâmetros `rotation`, `x_offset` e `y_offset` para instrumentos customizados. Corrige persistência do grafo de nodes, conexões e contornos visuais que desapareciam ao fechar o editor sobre contraptions/aircraft; também corrige entrada de links e o atalho **Shift+A**, que inseria um `A` indevido na busca rápida. Inclui dicas para entradas/saídas de nodes.
+- **Câmeras, monitoramento e telas:** permite conectar **múltiplas câmeras Vista** a um mesmo Main Computer por **Wire**; corrige a camada de gizmos da saída de câmera. O sistema de **Display Links** passa a admitir múltiplos links ligados ao computador, com correção do respectivo node.
+- **Telemetria e orientação:** padroniza sinais e convenções de **Pitch** (`+` para cima, `-` para baixo), **Yaw** e **Roll** nos nodes PosToRot, RotToPos, HelmetRotation, Gyroscope e Camera. Corrige bugs de **Gyroscope**, Redstone Links/IDs, integração **Radars** e node Ponders. É uma alteração de contrato semântico relevante: programas que dependam de rotações antigas devem ser testados antes de importar grafos/saves.
+- **Áudio:** correções do Audio Module/Audio Player passam a exigir **URL direta de áudio MP3 ou OGG** conforme o changelog, com informações de tempo atual e final. Links de páginas compartilhadas do Discord/Google Drive/GitHub não devem ser presumidos streams válidos sem serem **diretos para o arquivo**; a release também menciona fixes server-side e Sable. Testar timeout/falha de URL sem travar o dedicated server.
+- **Servo, Sable e integração:** o autor classifica o **Servo Motor como WIP** nesta versão, cita direct rotation, adiciona **Servo Bearing** e corrige bugs dessa peça. Reduz *logspam* Sable e otimiza salvamento de sublevels. Não presumir que a configuração ou o protocolo da versão 1.1.1 permaneçam plenamente compatíveis.
+
+**Fonte primária integral:** [Modrinth — Radiologistics 1.1.2, versão NeoForge 1.21.1](https://modrinth.com/mod/create-radiologistics/version/1.1.2), artefato distribuído `CreateRadiologistics-1.1.2.jar`.
+
+### 1.1.3 — 28/09/2026
+
+O [changelog primário da 1.1.3](https://modrinth.com/mod/create-radiologistics/version/1.1.3), já parcialmente registrado acima, especifica: correção do mod que exigia cliente no servidor; restauração da **funcionalidade anterior do servo motor**, após a condição WIP descrita na 1.1.2; distância máxima do **Smart Optical Sensor aumentada para 500 blocos**. Este limite é do sensor, **não** do rádio ou das antenas. Não extrapolar a correção para outras versões nem interpretar a menção a cliente/servidor como prova de sincronização testada no pack.
+
+### 1.1.4 — 20/10/2026
+
+O [changelog específico do arquivo NeoForge 1.21.1, CurseForge 9265504](https://www.curseforge.com/minecraft/mc-mods/create-radiologistics/files/9265504) informa fixes de **dependências declaradas**, **Transparent Screen**, **custom node** e **cannon info**. A correção do **Gyroscope** está literalmente qualificada como **“maybe”** pelo autor e **não** deve ser tratada como correção inequívoca. Essa publicação não descreve novos nodes/itens além da cadeia já documentada.
+
+### Gate de integração e decisão
+
+As interfaces mais sensíveis ao upgrade são **serialização de programas**, convenções de orientação e coordenadas em Aeronautics/Sable, múltiplas câmeras Vista/Display Links, áudio remoto privado e fluxo de Servo Motor/Servo Bearing, integração Radars e Create Big Cannons, módulos client/server, configuração e declaração de dependências. Validar em **cópia** do perfil Minecraft **1.21.1 / NeoForge 21.1.248**, com Create **6.0.10** e os providers opcionais realmente presentes. Os avisos WIP e *maybe* são limites explícitos da fonte.
+
+**AUDITORIA DOCUMENTAL DE CHANGELOGS POR RELEASE: CONCLUÍDA até a candidata 1.1.4.** A pendência anterior sobre a 1.1.2 está **superada pela publicação primária do autor**, com metadata de distribuição NeoForge confirmada pelo CurseForge. **A instalação física/QA não foi homologada**, pois nenhum JAR novo, metadata `neoforge.mods.toml`, dependência resolvida, configuração, save nem runtime foi testado. **Versão instalada continua 1.1.1**, nome do dossier e pasta **Create** preservados. Após verificação de persistência GitHub, **mod nº 124 pode ser apagado do Bloco de Notas de auditoria documental**, não de uma eventual lista separada de upgrades físicos.
+
