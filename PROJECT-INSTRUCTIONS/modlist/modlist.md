@@ -12,6 +12,12 @@
 
 
 
+## Auditoria incremental parcial — 21/11/2026 (Just Enough Resources)
+
+| Nº físico | Mod | Instalada | Upstream examinado | Situação |
+|---:|---|---|---|---|
+| 356 | Just Enough Resources (JER) | `1.6.0.17` / `JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar` | [1.6.0.66 Alpha](https://www.curseforge.com/minecraft/mc-mods/just-enough-resources-jer/files/9452611), branch 1.21.1 do source | **PENDENTE**: source acrescenta previews animados de mobs, default de blacklist `reactive`, tratamento de slots vazios e localização pt-BR, mas a cadeia integral de artefatos e atribuição por build não foram comprovadas. |
+
 ## Auditoria incremental — 21/11/2026 (Spell Codex)
 
 | Nº físico | Projeto | JAR físico / versão instalada | Alvo upstream NeoForge 1.21.1 | Situação |
@@ -833,7 +839,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 353 | Jupiter | `jupiter-2.3.7-1.21.1-neoforge.jar` | `2.3.7` | `API and Library + Server Utility + Utility & QoL` | 25/09/2026 - 02:10 |
 | 354 | Just Enough Breeding (JEBr) | `justenoughbreeding-neoforge-1.21.1-3.2.1.jar` | `3.2.1` | `Addons + Map and Information + Mobs + Utility & QoL` | 25/09/2026 - 02:10 |
 | 355 | Just Enough Professions (JEP) | `JustEnoughProfessions-neoforge-1.21.1-4.0.5.jar` | `4.0.5` | `Addons + Map and Information + Utility & QoL` | 25/09/2026 - 02:10 |
-| 356 | Just Enough Resources (JER) | `JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar` | `1.6.0.17` | `Addons + Biomes + Map and Information + Mobs + Ores and Resources` | 20/11/2026 - 00:35 |
+| 356 | Just Enough Resources (JER) | `JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar` | `1.6.0.17` | `Addons + Biomes + Map and Information + Mobs + Ores and Resources` | 21/11/2026 - 00:32 |
 | 357 | KilaGraph | `kilagraph-neoforge-1.21.1-21.1.0.14.jar` | `21.1.0.14` | `API and Library + Utility & QoL` | 25/09/2026 - 02:10 |
 | 358 | Kiwi 🥝 (Neo/Forge) | `Kiwi-1.21.1-NeoForge-15.8.7.jar` | `15.8.7+neoforge` | `API and Library` | 25/09/2026 - 02:11 |
 | 359 | Knight Lib | `knightlib-neoforge-1.21.1-2.0.1.jar` | `2.0.1` | `API and Library` | 23/10/2026 - 14:20 |
