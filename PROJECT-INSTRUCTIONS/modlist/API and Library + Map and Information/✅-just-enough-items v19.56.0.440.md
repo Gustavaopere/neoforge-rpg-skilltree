@@ -472,3 +472,24 @@ O [catálogo **CurseForge oficial do JEI, projeto `238222`, filtrado simultaneam
 
 **Estado: AUDITORIA DE DISTRIBUIÇÕES COMPLETA; AUDITORIA TÉCNICA GRANULAR POR BUILD AINDA PENDENTE.** Resolver notas oficiais faltantes e confirmar fronteiras exatas das builds .461/.463/.465/.467/.468 e .472–.475 antes de certificar a evolução documental integral. **JAR instalado `jei-1.21.1-neoforge-19.56.0.440.jar`, posição #349**, categorias, basename e loader do pack permanecem iguais; nenhum artefato foi baixado, instalado ou testado. **Não retirar o MOD 79 do Bloco de Notas.**
 
+## Verificação do contrato de dependências NeoForge do JEI 19.71.0 — 21/11/2026
+
+**Evidência primária adicional, com revisão de código pinada:** o [`gradle.properties` do JEI na branch oficial `1.21.1`, commit `32205cfc26771cf62a1720629c9560f2471046e7`](https://github.com/mezz/JustEnoughItems/blob/32205cfc26771cf62a1720629c9560f2471046e7/gradle.properties), confrontado com o [template `NeoForge/src/main/resources/META-INF/neoforge.mods.toml` da mesma revisão](https://github.com/mezz/JustEnoughItems/blob/32205cfc26771cf62a1720629c9560f2471046e7/NeoForge/src/main/resources/META-INF/neoforge.mods.toml), identifica os **ranges declarados**, sem depender de versões de outras branches:
+
+| Propriedade de build da revisão 1.21.1 | Valor verificado no código-fonte | Consequência documental |
+|---|---|---|
+| `minecraftVersion` | `1.21.1` | Alvo correto do pack; não transpor dados de 26.x |
+| `modJavaVersion` | `21` | Compilação alvo Java 21 |
+| `neoforgeVersion` | `21.1.251` | **Versão de desenvolvimento/build**, não é a versão mínima declarada |
+| `neoforgeVersionRange` | `[21.1.238,)` | NeoForge físico **21.1.248 está dentro da faixa mínima declarada**; não comprova boot nem compatibilidade integral |
+| `mezzConfigVersion` | `0.7.1` | Versão de dependência usada no build |
+| `mezzConfigVersionRange` | `[0.6.10,1.0.0)` | **MezzConfig top-level físico 0.5.9 está abaixo do mínimo requerido** para a linha de código candidata |
+| `mezzConfigGuiVersion` | `mc1.21.1-0.7.1` | Versão de build da GUI de configuração |
+| `mezzConfigGuiMinimumVersion` / `MaximumVersion` | `0.7.1` / `0.8` | Faixa potencial do addon **opcional**, dependente da interpolação real do `mezzConfigGuiVersionRange` |
+
+O template do manifesto declara `mezz_config` **`required`, `side=BOTH`**, `mezz_config_gui` **`optional`, `side=CLIENT`** e `neoforge` e `minecraft` **`required`, `side=BOTH`**. A [pipeline oficial de Jenkins `1.21.1`](https://github.com/mezz/JustEnoughItems/blob/32205cfc26771cf62a1720629c9560f2471046e7/.jenkins/Jenkinsfile) gera builds Forge/Fabric/NeoForge e usa `BUILD_NUMBER` do CI na publicação; por isso um salto numérico não implica um artefato NeoForge ausente nem constitui changelog.
+
+**Retificação sobre dependências:** menções anteriores a “MezzConfig **0.7.1+ obrigatório**” não devem ser interpretadas como faixa de metadata da revisão acima: o **mínimo declarado em fonte é 0.6.10**, enquanto **0.7.1** é o pin de build. A incompatibilidade do **0.5.9 instalado** com o *mínimo declarado* é inequívoca; a compatibilidade dos demais componentes e do JAR final não foi testada. O teste de runtime **NeoForge 21.1.248** continua necessário, apesar de ele satisfazer a faixa do manifesto.
+
+**Status:** o inventário dos **30 binários NeoForge 1.21.1** permanece fechado, e agora os *version ranges* do código-fonte candidato estão conciliados. **Ainda não há auditoria granular concluída das Betas e CI builds listadas na seção anterior**; este complemento **não** libera a versão 19.71.0.475 nem o MOD 79 do Bloco de Notas. Não atualizar JAR, arquivos de configuração, pasta, basename nem certificação existente. **Importante:** o texto de `gradle.properties` foi lido no commit indicado; o **manifesto interpolado do binário distribuído 19.71.0.475 não foi extraído**.
+
