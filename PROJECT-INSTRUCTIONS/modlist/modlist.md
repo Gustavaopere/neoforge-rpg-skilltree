@@ -12,6 +12,13 @@
 
 
 
+## Auditoria incremental — 21/11/2026 (Apothic Compats e Village Spawn Point)
+
+| Nº físico | Projeto | JAR instalado / versão física | Alvo upstream NeoForge 1.21.1 | Estado documental |
+|---:|---|---|---|---|
+| 033 | Apothic Compats | `apothic_compats-0.2.4.2.jar` / `0.2.4.2` | [0.2.6.1, 14/11/2026](https://www.curseforge.com/minecraft/mc-mods/apothic-compats/files/9620253) | **CONCLUÍDO:** 0.2.4.3→0.2.6 individualizadas antes; 0.2.6.1 adiciona recoiled/expeditious, migração para atributos nativos e Artifice 1.2.0. **Upgrade bloqueado** por dependências Apotheosis 8.9.0/QA, preservado 8.8.0 físico. |
+| 561 | Village Spawn Point | `villagespawnpoint-1.21.1-4.6.jar` / `4.6` | [6.1, 08/11/2026](https://www.curseforge.com/minecraft/mc-mods/village-spawn-point/files/9518255) | **CONCLUÍDO:** versões 4.8/5.0/6.0/6.1 com changelogs por JAR; 5.0 corrige world creation e adiciona novos seletores/limites, 6.0 adiciona opção Create World, 6.1 corrige integração Biome Spawn Point. QA físico pendente. |
+
 ## Auditoria incremental parcial — 21/11/2026 (Just Enough Resources)
 
 | Nº físico | Mod | Instalada | Upstream examinado | Situação |
@@ -516,7 +523,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 030 | Apotheosis | `Apotheosis-1.21.1-8.8.0.jar` | `8.8.0` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 19/09/2026 - 12:06 |
 | 031 | Apotheotic Creation | `apotheoticcreation-2.0.0.jar` | `2.0.0` | `Automation + Create + Storage + Utility & QoL` | 19/09/2026 - 12:06 |
 | 032 | Apothic Category Compat | `apothic_compat-2.0.2.jar` | `2.0.2` | `Addons + Armor, Tools, and Weapons + Bug Fixes` | 18/11/2026 - 10:26 |
-| 033 | Apothic Compats | `apothic_compats-0.2.4.2.jar` | `0.2.4.2` | `Addons + Armor, Tools, and Weapons` | 23/10/2026 - 15:31 |
+| 033 | Apothic Compats | `apothic_compats-0.2.4.2.jar` | `0.2.4.2` | `Addons + Armor, Tools, and Weapons` | 21/11/2026 - 00:47 |
 | 034 | Apothic Attributes | `ApothicAttributes-1.21.1-2.10.1.jar` | `2.10.1` | `Adventure and RPG + API and Library` | 19/09/2026 - 16:04 |
 | 035 | Apothic Enchanting | `ApothicEnchanting-1.21.1-1.6.2.jar` | `1.6.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:04 |
 | 036 | Apothic Spawners | `ApothicSpawners-1.21.1-1.4.0.jar` | `1.4.0` | `Automation + Utility & QoL` | 19/09/2026 - 16:04 |
@@ -1044,7 +1051,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 558 | Vampirism - Become a vampire! | `Vampirism-1.21-1.10.13.jar` | `1.10.13` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 28/09/2026 - 01:09 |
 | 559 | Vampirism Integrations | `vampirism_integrations-1.21.1-1.10.2.jar` | `1.10.2` | `Magic + Miscellaneous` | 28/09/2026 - 01:09 |
 | 560 | Vanilla Backport | `VanillaBackport-neoforge-1.21.1-1.1.7.10.jar` | `1.1.7.10` | `Armor, Tools, and Weapons + Biomes + Mobs + Ores and Resources + World Gen` | 17/11/2026 - 18:22 |
-| 561 | Village Spawn Point | `villagespawnpoint-1.21.1-4.6.jar` | `4.6` | `Adventure and RPG + World Gen` | 20/11/2026 - 00:17 |
+| 561 | Village Spawn Point | `villagespawnpoint-1.21.1-4.6.jar` | `4.6` | `Adventure and RPG + World Gen` | 21/11/2026 - 00:47 |
 | 562 | Vintage Improvenents - SSW Edition | `vintageimprovements-1.21.1-0.0.0.7.jar` | `1.21.1-0.0.0.7` | `Addons + Create` | 28/09/2026 - 02:10 |
 | 563 | VS / Sable Hose Connectors | `VS-Sable-HoseConnectors-0.1.8-1.21.1.jar` | `0.1.8` | `Addons + Create + Industrial Craft + Storage + Technology` | 28/09/2026 - 02:10 |
 | 564 | Waystones | `waystones-neoforge-1.21.1-21.1.45.jar` | `21.1.45` | `Adventure and RPG + Magic + Player Transport + Server Utility` | 18/11/2026 - 08:32 |
