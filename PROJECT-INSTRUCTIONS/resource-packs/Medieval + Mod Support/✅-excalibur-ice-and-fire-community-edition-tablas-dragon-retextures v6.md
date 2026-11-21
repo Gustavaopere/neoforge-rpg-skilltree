@@ -106,3 +106,21 @@ O projeto CE do mesmo autor informa cobertura visual de dragões Fire, Ice e Lig
 **Fontes oficiais:** https://www.curseforge.com/minecraft/texture-packs/excalibur-ice-and-fire-community-edition-tablas ; https://www.curseforge.com/minecraft/texture-packs/excalibur-ice-and-fire-community-edition-tablas/files/9042500
 
 **Status:** versão pública **v7**, último ZIP histórico documentado **v6**; nenhuma instalação física, comparação de hashes ou teste visual foi executado. A alegada inexistência pública da v6 **foi corrigida**.
+
+## Auditoria incremental — 21/11/2026 — Tabla's Dragon Retextures CE v6 → v7
+
+**Instalação histórica preservada:** `1.21.1_G's_Dragons_Retextured_I&F-CE.v6.zip` / **v6** (#23 no catálogo de resource packs), destinada ao **Ice and Fire: Community Edition**; **não confundir com pacote para a versão original de Ice and Fire**. A seção anterior já comprova a publicação **v7** em **03/10/2026**, mas registrava como pendente o changelog granular. Essa lacuna foi resolvida pela [página oficial específica do CurseForge, file ID 9042500](https://www.curseforge.com/minecraft/texture-packs/excalibur-ice-and-fire-community-edition-tablas/files/9042500): **Release para Minecraft 1.21.1**, arquivo `Gs ReDraco_CE_1.21.1_v7.zip`.
+
+### Novidades e correções da v7, conforme o autor
+
+- **Todos os dragões:** corrige texturas de dentes e corrige o funcionamento de texturas de boca introduzidas anteriormente.
+- **Dragão Fire dourado/gilded:** retextura renovada, inclusive variante macho; novos efeitos/texturas emissivas com identificação de conteúdo exclusivo **Syric** no changelog.
+- **Dragões Ice safira e prata:** chifres ligeiramente alongados.
+- **Itens de escamas Ice:** retexturas das variantes azul, prata, safira e branca.
+- **Ovo de dragão gilded:** novas texturas do bloco e do ícone.
+- **Renomeação do pacote:** o autor passa a usar convenção `Gs ReDraco-IaF/CE` para distinguir projeto original e **Community Edition**; muda também imagem de apresentação da versão.
+- **Radar de dragões:** o changelog anuncia novos *dragon radars* **em outro resource pack separado**. **Não** atribuir esse conteúdo ao ZIP CE v7 sem evidência de inclusão.
+
+**Impacto no RPG 1.21.1:** diferenças no visual de stages/variantes, item icons e emissive layers, com risco concreto de prioridade frente a **True Dovah**, Excalibur base e outros retextures; testar especificamente dragões Fire gilded (macho), Ice prata/safira, escamas e ovos com/sem shaders e ao piscar/dormir. O pacote não altera AI, dano, loot, breed, taming ou atributos dos dragões; essas superfícies permanecem com o Ice and Fire CE.
+
+**Resultado:** a auditoria **documental do changelog v6 → v7** está **concluída**, sem etapas de versão intermediária publicadas para essa linha segundo o catálogo oficial consultado. **Homologação de ZIP não concluída**: não foram baixados/comparados os arquivos v6/v7 para validar hashes, `pack.mcmeta`, conteúdo de assets, ativação, prioridade ou regressão visual. A versão física anotada, nome certificado `v6` e pasta **Medieval + Mod Support** permanecem intactos.
