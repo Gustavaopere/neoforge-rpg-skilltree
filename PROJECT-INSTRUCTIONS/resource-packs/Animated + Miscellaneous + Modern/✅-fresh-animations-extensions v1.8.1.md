@@ -78,3 +78,28 @@ Nenhum teste foi marcado como aprovado.
 CurseForge oficial confirma `FA+All_Extensions-v1.8.1.zip`, suporte a 1.21.1, os seis módulos incluídos e a correção de villagers. O catálogo não extrapola cobertura além desses recursos publicados.
 
 > Boundary canônico: **as Extensions controlam somente apresentação dos assets que incluem; Minecraft/Fresh Animations base e demais mods mantêm suas authorities funcionais**.
+
+## Auditoria incremental — 21/11/2026 — All Extensions 1.10/1.10.1 (Minecraft 1.21.1)
+
+**Base física preservada:** `FA+All_Extensions-v1.8.1.zip` / versão `1.8.1`, recurso #38. O catálogo oficial [CurseForge — arquivos do projeto](https://www.curseforge.com/minecraft/texture-packs/fresh-animations-extensions/files/all) inclui as releases intermediárias **1.9, 1.9.1 e 1.9.2**, mas as apresenta **exclusivamente para Minecraft 26.1–26.3**, não para 1.21.1. A [página exata da 1.9](https://www.curseforge.com/minecraft/texture-packs/fresh-animations-extensions/files/8005143) declara expressamente **remoção do suporte pré-26.1**. Por isso **não projetar os assets dessa linha 26.x sobre o perfil 1.21.1** nem tratá-los como atualizações compatíveis omitidas.
+
+### 1.10 — 31/10/2026, Release
+
+[CurseForge file ID 9381532](https://www.curseforge.com/minecraft/texture-packs/fresh-animations-extensions/files/9381532), **`FA-All_Extensions-v1.10.zip`**, lista explicitamente **Minecraft 1.21.1** entre versões suportadas. O changelog oficial relaciona as seis extensões integradas:
+
+| Módulo | Versão na 1.10 | Delta informado |
+|---|---|---|
+| Details | 2.4 | Novos modelos/texturas de bebês de porcos, ovelhas, vacas, mooshrooms, donkey/mule; variantes de filhotes e muddy pigs; ajustes de villagers/zombie villagers bebês, armaduras, baús de lhamas/jumentos, modelos de lhamas/vacas; correções de modelos, z-fighting de sobrancelha/pupila de iron golem e UV dos chifres de vaca fria |
+| Emissive | 1.7 | Efeitos para classic bat, zombie villager e drowned bebês, lobos e abelhas bebês zangados, piglin/zombified piglin e hoglin/zoglin bebês |
+| Quivers | 2.3 | Migração de modelos ao formato FA 1.11 e correção de modelos quebrados |
+| Creeper Edit | 2.2 | Migração ao formato FA 1.11 e correção de modelos quebrados |
+| Spiders Edit | 2.3 | Migração ao formato FA 1.11 e correção de modelos quebrados |
+| Objects | 2.1.3 | Atualização de `pack.mcmeta` |
+
+As notas do autor afirmam adaptação de vários modelos ao **formato Fresh Animations 1.11**. Isso não comprova compatibilidade visual perfeita quando o bundle candidato 1.10 é combinado com o **Fresh Animations 1.10.4 registrado no perfil**; conferir os dois artefatos e EMF/ETF no mesmo staging.
+
+### 1.10.1 — 31/10/2026, Release
+
+[CurseForge file ID 9389506](https://www.curseforge.com/minecraft/texture-packs/fresh-animations-extensions/files/9389506), arquivo **`FA-All_Extensions-v1.10.1.zip`**, também inclui **Minecraft 1.21.1**. O autor mantém os cinco módulos Details 2.4, Objects 2.1.3, Quivers 2.3, Emissive 1.7, Creeper Edit 2.2; altera **Spiders Edit 2.3 → 2.3.1**, corrigindo **modelos de aranhas quebrados em conjunto com Fresh Animations 1.11**. Não confundir esta correção visual com mudança de AI/combate.
+
+**Conclusão da auditoria de changelogs:** as duas publicações **compatíveis identificadas após 1.8.1**, 1.10 e 1.10.1, foram individualizadas com data, arquivo, suporte, componentes e mudanças do autor. A linha 1.9.x foi explicitamente excluída por compatibilidade, não ignorada. O estágio **documental das notas de release** está **concluído até 1.10.1**. **Não equivale a aprovação de atualização**: não foram baixados ou comparados os ZIPs 1.8.1/1.10/1.10.1, nem verificados `pack.mcmeta`, asset paths, hashes atuais, load order ou QA com FA 1.10.4/1.11.x, EMF 3.3.5, ETF 7.2.1 e overlays Refreshed. Sem alterar versão física, prefixo, nome ou diretório do dossier.
