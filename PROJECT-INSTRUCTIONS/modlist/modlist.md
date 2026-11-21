@@ -12,6 +12,12 @@
 
 
 
+## Auditoria incremental — 21/11/2026 (Sophisticated Storage)
+
+| Nº físico | Mod | Instalada | Upstream auditada | Estado |
+|---:|---|---|---|---|
+| 519 | Sophisticated Storage | `1.5.91` (`sophisticatedstorage-1.21.1-1.5.91.2127.jar`) | [1.6.20.2239 NeoForge 1.21.1 (18/11)](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/all?page=1&pageSize=20&version=1.21.1) | **CONCLUÍDO documentalmente:** 1.6.10/.11/.13/.15/.16/.17/.18/.19/.20 auditadas, incluindo tanques empilháveis e correção de perda de itens na conversão chest→shulker. **Upgrade físico BLOQUEADO:** Sophisticated Core 1.5.1 instalada é inferior ao mínimo 1.5.35 da Storage 1.6.20; QA pendente. |
+
 ## Auditoria incremental — 21/11/2026 (TFMG Community Edition e Copycats+)
 
 | Nº físico | Projeto / dossier | Versão instalada | Publicação upstream auditada | Estado |
@@ -984,7 +990,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 18/11/2026 - 12:08 |
 | 517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `0.2.0` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `1.5.1` | `API and Library` | 17/11/2026 - 18:59 |
-| 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `1.5.91` | `Storage` | 23/10/2026 - 15:06 |
+| 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `1.5.91` | `Storage` | 21/11/2026 - 00:23 |
 | 520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar` | `0.1.21` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 521 | Soul fire'd | `soul-fire-d-neoforge-1.21-6.1.0.jar` | `6.1.0` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Utility & QoL` | 27/09/2026 - 20:57 |
 | 522 | Sound Physics: Aeronautics | `sound-physics-remastered-neoforge-1.4.0.1.jar` | `1.4.0.1` | `Create + Utility & QoL` | 27/09/2026 - 22:12 |
