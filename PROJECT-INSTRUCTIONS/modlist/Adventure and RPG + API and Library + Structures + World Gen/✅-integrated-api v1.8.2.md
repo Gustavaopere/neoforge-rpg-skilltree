@@ -5,7 +5,7 @@
 - **Mod:** Integrated API
 - **Arquivo JAR:** `integrated_api-neoforge-1.21.1-1.8.2.jar`
 - **Versão 1.21.1:** `1.8.2`
-- **Categoria:** Biblioteca, Worldgen
+- **Categoria:** `Adventure and RPG + API and Library + Structures + World Gen` — conjunto completo das categorias temáticas oficiais do [projeto CurseForge 817709](https://www.curseforge.com/minecraft/mc-mods/integrated-api); não confundir com uma descrição funcional abreviada.
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack:** Integrado ao Github

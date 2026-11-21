@@ -5,7 +5,7 @@
 - **Mod:** PartiCull
 - **Arquivo JAR:** PartiCull-neoforge-1.21.1-v2.0.jar
 - **Versão 1.21.1:** 2.0
-- **Categoria:** Visual, QoL
+- **Categoria:** `Performance + Utility & QoL` — categorias temáticas oficiais do [projeto CurseForge 1280903](https://www.curseforge.com/minecraft/mc-mods/particull); não confundir com as tags conceituais do Modrinth.
 - **Decisão:** Sem decisão
 - **Estado da pesquisa:** Verificado
 - **Estado no pack:** Integrado ao Github
