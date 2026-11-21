@@ -12,6 +12,12 @@
 
 
 
+## Auditoria incremental — 21/11/2026 (Spell Codex)
+
+| Nº físico | Projeto | JAR físico / versão instalada | Alvo upstream NeoForge 1.21.1 | Situação |
+|---:|---|---|---|---|
+| 525 | Spell Codex: Iron's Spells 'n Spellbooks Addon | `specs_irons_spellbooks-1.6.5.jar` / `1.6.5` | [1.6.14, 12/11/2026](https://www.curseforge.com/minecraft/mc-mods/spell-codex-irons-spells-n-spellbooks-addon/files/9578422) | **CONCLUÍDO documentalmente:** 1.6.6/.7/.8/.9/.10/.13 anteriormente auditadas, 1.6.14 individualizada (reload, custos de XP, sintaxe e resolução por tier). **Instalação bloqueada:** Actionbar física 1.1.4 inferior ao requisito 1.1.7+; QA pendente. |
+
 ## Auditoria incremental — 21/11/2026 (Sophisticated Storage)
 
 | Nº físico | Mod | Instalada | Upstream auditada | Estado |
@@ -996,7 +1002,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 522 | Sound Physics: Aeronautics | `sound-physics-remastered-neoforge-1.4.0.1.jar` | `1.4.0.1` | `Create + Utility & QoL` | 27/09/2026 - 22:12 |
 | 523 | Sounds | `sounds-2.4.22+lts+1.21.1-neoforge.jar` | `2.4.22+lts` | `Adventure and RPG + Cosmetic + Utility & QoL` | 27/09/2026 - 22:12 |
 | 524 | spark | `spark-1.10.124-neoforge.jar` | `1.10.124` | `Server Utility` | 27/09/2026 - 22:12 |
-| 525 | Spell Codex: Iron's Spells 'n Spellbooks Addon | `specs_irons_spellbooks-1.6.5.jar` | `1.6.5` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 23/10/2026 - 15:23 |
+| 525 | Spell Codex: Iron's Spells 'n Spellbooks Addon | `specs_irons_spellbooks-1.6.5.jar` | `1.6.5` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 21/11/2026 - 00:29 |
 | 526 | SpellActionbar | `spell_actionbar-1.1.4.jar` | `1.1.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
 | 527 | StarbuncleMania | `starbunclemania-1.21.1-1.5.8.jar` | `1.5.8` | `Addons + Automation + Energy, Fluid, and Item Transport + Magic` | 27/09/2026 - 22:12 |
 | 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 19/11/2026 - 00:31 |
