@@ -1,22 +1,24 @@
-# Petrolpark's Library
+# Petrolpark's Library — instalada 1.5.11 Release | upstream auditada 1.5.12 Beta (não instalada)
 
 ## Propriedades do registro
 
 - **Mod:** Petrolpark's Library
-- **Arquivo JAR:** petrolpark-1.21.1-1.5.11.jar
-- **Versão 1.21.1:** 1.5.11
+- **Arquivo JAR instalado:** `petrolpark-1.21.1-1.5.11.jar`
+- **Versão instalada (Minecraft 1.21.1):** `1.5.11` — classificada **Release (R)** pelo CurseForge.
+- **Versão upstream mais recente auditada:** `1.5.12` — **19/10/2026, Beta (B), NÃO INSTALADA**; changelog oficial informa somente atualização de compatibilidade com JEI.
+- **Decisão sobre atualização física:** manter `1.5.11` até evidência de benefício/compatibilidade com JEI `19.56.0.440` e Destroy `0.4.3` do pack; sem upgrade realizado.
 - **Categoria:** Biblioteca, Tecnologia
 - **Decisão:** Dependência
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** Verificado para JAR instalado `1.5.11` e range estático de Destroy `0.4.3`; changelog da Beta `1.5.12` auditado, mas **comparação de binários e testes runtime não feitos**.
+- **Estado no pack:** `1.5.11` instalada e integrada ao GitHub; Beta `1.5.12` **apenas documentada**, sem alteração de JAR.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/petrolpark-library
 - **Função:** Biblioteca/framework do ecossistema Petrolpark usada por addons Create e projetos como Destroy para recursos compartilhados.
 - **Dependências:** NeoForge 1.21.1. Consumer físico confirmado: Destroy 0.4.3, cujo manifest do port 1.21.1 exige Petrolpark `[1.5.0,1.6.0)`; a física 1.5.11 continua dentro dessa faixa formal.
-- **Compatibilidade/Riscos:** A compat estática Destroy↔Petrolpark permanece comprovada pelo range `[1.5.0,1.6.0)`, mas runtime/linkage continua QA pendente. Riscos em API/ABI, JEI, data propagation, recipe scanning, Create optional surfaces e beta churn.
+- **Compatibilidade/Riscos:** A faixa estática de Destroy `[1.5.0,1.6.0)` inclui a `1.5.11` instalada e também a `1.5.12` Beta, mas **não comprova integração funcional** desta Beta com JEI `19.56.0.440`/Destroy. A `1.5.12` contém apenas ajuste de JEI declarado no changelog; sem benefício funcional adicional verificado. Riscos de API/ABI, JEI, data propagation, reload, Create e QA de runtime permanecem.
 - **Sobreposição:** Library específica do ecossistema Petrolpark; não substituível por libraries Create genéricas. É load-bearing enquanto Destroy permanecer.
 - **Observações:** JAR físico `petrolpark-1.21.1-1.5.11.jar`, mod id `petrolpark`, runtime 1.5.11. Release oficial (canal **Release**, não Beta) NeoForge 1.21.1 de 14/09/2026, file ID 8878365. Changelog 1.5.11: `Update to latest JEI`. JEI físico atual: 19.56.0.440.
 - **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + CurseForge oficial Petrolpark 1.5.11 + source read-only do port Destroy `NHblock714/Destroy@1.21.1-neo`, já auditado, com `versionRange="[1.5.0,1.6.0)"`. Nenhum runtime/linkage test executado.
-- **Atualização/Status:** READITADO EM 25/09/2026 — Petrolpark 1.5.11/JAR físico reconfirmado. O range formal do Destroy 0.4.3 `[1.5.0,1.6.0)` continua satisfeito; JEI 19.56.0.440 permanece a superfície de regressão documentada.
+- **Atualização/Status:** **22/11/2026 — Beta upstream 1.5.12 auditada no `.md`**; a release informa **“Update to latest JEI”**, sem declaração granular de funcionalidades. Foi corrigido o canal da física `1.5.11` para **Release (R)**. O JAR físico permanece `petrolpark-1.21.1-1.5.11.jar`; nenhuma atualização física ou QA de JEI/Destroy foi realizada.
 - **Histórico da decisão:** 2026-08-26 — origem/versionamento reconciliados e classificado como Dependência por Destroy instalado. 2026-09-10 — Dependência preservada; dossiê concluído para runtime 1.5.10, mas Estado da pesquisa mantido em Rever até prova source-level do range de Destroy 0.4.3. 2026-09-11 — source exato do port Destroy 0.4.3 confirmou dependência Petrolpark `[1.5.0,1.6.0)`; 1.5.10 satisfaz a faixa e Estado da pesquisa passou a Verificado, com runtime QA ainda pendente.
 - **Data da última decisão:** 2026-09-10
 
