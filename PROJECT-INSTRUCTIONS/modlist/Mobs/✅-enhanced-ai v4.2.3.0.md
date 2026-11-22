@@ -200,3 +200,31 @@ Baseline físico histórico #252: `enhancedai-4.2.3.0.jar`; 4.2.4.0 e 4.2.5.0 j�
 - **[4.2.7.2 — 08/11/2026](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9509081):** drop de bandeira de líder reduzido de garantido para 25%, condicionado à morte do líder por jogador. Rever quests/farming que dependam desse drop; não atribuir mudança à build física.
 
 **Bloqueio de promoção física:** último snapshot registra InsaneLib #331 `insanelib-2.4.33.0.jar`, inferior à exigência declarada a partir de 4.2.6.0. Não atualizar Enhanced AI isoladamente. Fazer backup e diff de configs, migrar valores explicitamente, testar overrides de mundo, sincronização e reload, miners/claims/tags, shielding/Epic Fight, MPR e pânico, estatística de drops e TPS. Confirmar manifesto e compatibilidade da biblioteca antes de instalar. Auditoria documental concluída; instalação e testes não executados.
+
+## Auditoria incremental upstream — Enhanced AI 4.3.1.0 → 4.3.2.0-beta → 4.3.3.0 (22/11/2026; não instaladas)
+
+**Físico:** #252 `enhancedai-4.2.3.0.jar`, runtime 4.2.3.0. O dossier já examinou **4.2.4.0–4.2.7.2**, com migração de COMMON para SERVER config e hard dependency **InsaneLib >=2.5.0.0-alpha** a partir de 4.2.6.0. O modpack ainda registra InsaneLib 2.4.33.0; isso é bloqueio de promoção até revalidar todos os requisitos.
+
+A enumeração oficial para **Minecraft 1.21.1 / NeoForge** entre 4.2.7.2 e a nova release compreende as três distribuições abaixo (o upstream traz seção lógica **4.3.0.0** no changelog 4.3.1.0, mas **não publica artefato 4.3.0.0 individual** nesta linha; não inventar arquivo).
+
+### 4.3.1.0 — 19/11/2026, [CurseForge file 9701292](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9701292), Release
+
+O [changelog oficial do arquivo](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9701292) contém **duas seções lógicas**, 4.3.0.0 e 4.3.1.0:
+
+- **4.3.0.0 (changelog incluído na 4.3.1.0):** novos sistemas **Villager Golem Repair** (armorers/toolsmiths/weaponsmiths reparam Iron Golems com menos de 75% da vida, em raio até 16 blocos, regenerando 25 HP, cooldown 2 s; restrições de horário/ameaça) e **Villager Eat to Heal** (villagers abaixo de 75% HP consomem comidas do inventário, cura proporcional à nutrition, 30 s de cooldown). Novas tags `enhancedai:can_repair_golems`, `enhancedai:villager/can_repair_golems`, `enhancedai:villager/repairable_golems`, `enhancedai:villager/eats_to_heal` e `enhancedai:villager/healing_food`. Melhora IA de subir/centralizar em escadas, velocidade/som de climbing, ataque durante escalada e mineração enquanto escala; corrige blacklist de spawn sem efeito.
+- **4.3.1.0:** **Bee Hive Navigation**, bees procuram colmeias antes de se perder (regresso após >12 blocos, esquecem ao passar de 48 blocos ou se o chunk estiver descarregado; `wanderHomeDistance`/`hiveForgetDistance` configuráveis), Angry Creepers passam a ter **50% de resistência a knockback**, e o Follow Range Override deixa de alcançar **Villagers e Wandering Traders**. NPCs antigos mantêm o atributo gravado; o autor indica a recuperação via `/execute as @e[type=minecraft:villager] run attribute @s minecraft:generic.follow_range base set 48`, comando a empregar **somente após backup e teste**, pois altera entidades existentes.
+
+### 4.3.2.0-beta — 20/11/2026, [CurseForge file 9723162](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9723162), Beta
+
+- Adiciona **Lunge at Target** em melee mobs que estejam a 3–5 blocos, após telegraph de 8 ticks, com cooldown por dificuldade **8/5/4 s** (Easy/Normal/Hard), exigindo alvo à vista e diferença de altura até 1,5 blocos. Nova tag `enhancedai:mobs/can_lunge`.
+- **Grabbing Phantoms**: phantoms carregam entidade atingida, soltando após receber hits, com aplicação de **Slow Falling** 10 s; tag `enhancedai:phantom/grab_targets`.
+- Skeleton/Zombie Horses deixam de ser hostis; configs existentes precisam ser migradas (remover `#enhancedai:config/hostile_horses` da lista `custom_hostile.json` ou regenerar o arquivo).
+- Mobs com Fire Resistance deixam de entrar em pânico quando pegam fogo.
+
+### 4.3.3.0 — 21/11/2026, [CurseForge file 9740957](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9740957), Release
+
+- **Stay Near Dismount:** horses, donkeys, mules e llamas domesticados passam a se manter a até **10 blocos** (config `range`) do ponto de desmontagem, voltando se forem deslocados; montar novamente ou usar leash altera o anchor. Nova tag `enhancedai:animal/stay_near_dismount`.
+- Na integração **MPR**, mobs aquáticos deixam de satisfazer `enhancedai:in_overworld_cave` enquanto submersos, prevenindo bônus indevidos de vida/follow range em guardians e chance indevida de zombie miner ao nascer em água.
+- Os demais eventuais detalhes da mesma publicação precisam ser confirmados pelo changelog integral; estas notas não alegam inspeção do binário nem garantem que não existam outras correções.
+
+**Impacto/QA:** combate de melee (lunges), phantoms transportando players, creepers explosivos, villager repair/eat em colônias e aldeias, bee pathfinding/hives, ambient hostile spawns, InsaneLib, configs migradas, datapack tags, mob targeting de outros mods, multiplayer/servidor e impacto TPS. **Sem atualização física nem validação de gameplay.** Preservar versão documentada instalada 4.2.3.0 e pasta Mobs.

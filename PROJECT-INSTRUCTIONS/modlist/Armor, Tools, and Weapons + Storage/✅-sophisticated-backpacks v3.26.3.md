@@ -332,3 +332,11 @@ A cadeia **efetivamente publicada** após 3.26.3 consiste em `3.26.4.2162` (27/0
 | [3.26.21.2249](https://modrinth.com/mod/sophisticated-backpacks/version/tJnK2DE1) | 09/11/2026 | Corrige reprodução do jukebox da mochila persistindo após a morte. |
 
 **Gates adicionais:** acesso autorizado/negado no servidor, multiplayer, grupos vinculados em transferência de fluidos, modos de ordenação, substituição de upgrades e layouts, morte/relog, receitas de tingimento/upgrade e EMI caso presente. A atualização deve ser coordenada com Core, Storage e bridges/consumers já documentados, respeitando metadata do JAR candidato; não afirmar requisito mínimo sem manifesto. Auditoria documental da sequência publicada concluída até 3.26.21.2249. Sem alteração física, sem execução runtime.
+
+## Auditoria incremental upstream — Sophisticated Backpacks 3.26.22.2257 (22/11/2026; não instalada)
+
+A referência física top-level permanece #516 `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`, runtime 3.26.3. O dossier já percorre até **3.26.21.2249** (09/11/2026), incluindo as releases e notas intermediárias daquela série; não reatribuir suas mudanças à versão posterior.
+
+**3.26.22.2257 — 18/11/2026**, [CurseForge oficial, file ID 9692576](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/9692576): artefato `sophisticatedbackpacks-1.21.1-3.26.22.2257.jar`, **Release, NeoForge 1.21.1**. O changelog discriminado para esta publicação registra exclusivamente correção de **crashes ao abrir ou navegar/seek em replays do ReplayMod**. Não anunciar capacidade de armazenamento, novos upgrades ou melhora genérica de desempenho não citada. A numeração de builds 26.x (por exemplo 3.26.22.2260) pertence a outro Minecraft, e não é intercambiável.
+
+**Impacto e QA:** regressar replay abrir/seek/retroceder com backpacks e UI abertas ou visíveis, ciclo de renderização, reload e mods de câmera. A compatibilidade real com ReplayMod e Sophisticated Core deve ser verificada no perfil instalado. Nenhum JAR, pack/config, teste ou benchmark foi alterado/executado; manter certificação, baseline v3.26.3 e pasta oficial `Armor, Tools, and Weapons + Storage`.
