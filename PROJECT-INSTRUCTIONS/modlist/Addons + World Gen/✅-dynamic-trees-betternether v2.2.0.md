@@ -1,4 +1,6 @@
-# Dynamic Trees - BetterNether
+# Dynamic Trees - BetterNether — 2.2.0 (última versão NeoForge 1.21.1 identificada)
+
+> **Estado vigente — 22/11/2026:** `2.2.0` instalado conforme declaração do usuário e JAR `dtbetternether-1.21.1-2.2.0.jar`. [Release oficial NeoForge 1.21.1, file 8826435](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betternether/files/8826435). Sem versão posterior aplicável confirmada; manter nome e índice inalterados, exceto `Última edição`.
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#227**: JAR `dtbetternether-1.21.1-2.2.0.jar`, mod id `dtbetternether`, runtime `2.2.0`, SHA-1 `782f527007e23a172f577dcc4dc4d447a1a788cf`.
 
@@ -12,11 +14,11 @@
 - **Dependências:** Source 2.2.0: Dynamic Trees 1.7.1, Dynamic Trees Plus 1.5.0, Better Nether 21.0.23 e BCLib 21.0.25. Runtime físico atual: Dynamic Trees 1.7.2, Dynamic Trees Plus 1.3.2, Better Nether 21.0.26 e BCLib 21.0.26. Drift DTP abaixo do baseline source continua regression gate explícito.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Version drift misto: Dynamic Trees Plus 1.3.2 no runtime está abaixo do baseline 1.5.0 do source, enquanto DT/Better Nether/BCLib estão acima. Soma-se divergência de distribuição: build física/source 2.2.0 está à frente do latest público CurseForge 1.21.1 (2.1.0). Não rebaixar nem assumir equivalência de artefatos sem validar origem/binário.
+- **Compatibilidade/Riscos:** A release 2.2.0 está publicada oficialmente no CurseForge para NeoForge 1.21.1 (file 8826435). O registro antigo que afirmava latest 2.1.0 estava desatualizado e foi corrigido. Divergências entre versões de DTP/DT/BetterNether/BCLib descritas em snapshots anteriores permanecem como informações históricas a reconciliar com os manifestos efetivos, não bloqueiam a sincronização de 2.2.0.
 - **Fonte:** https://github.com/dannykim2011/DynamicTrees-BetterNether/tree/1.21.1
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `dtbetternether-1.21.1-2.2.0.jar` / runtime 2.2.0 e o stack atual. Source oficial branch 1.21.1 matching 2.2.0 revalidado em 21/09/2026. CurseForge público para 1.21.1 permanece em 2.1.0; physical/source e distribuição pública são mantidos separados fail-closed.
-- **Observações:** Runtime/source matching 2.2.0 preservados. Em 12/09/2026, CurseForge público para Minecraft 1.21.1 ainda expõe 2.1.0 como release mais recente, enquanto a modlist contém `dtbetternether-1.21.1-2.2.0.jar` e o branch source 1.21.1 declara 2.2.0. Trata-se de divergência de distribuição/origem, não motivo para rebaixar o pack.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 21/09/2026 — lote físico #226: dtbetternether-1.21.1-2.2.0.jar / runtime 2.2.0 e source branch 1.21.1 matching reconfirmados. Divergência atual: distribuição pública CurseForge para 1.21.1 ainda mostra 2.1.0 como latest; a modlist física/source 2.2.0 permanecem authority local.
+- **Observações:** versão 2.2.0 e JAR `dtbetternether-1.21.1-2.2.0.jar` agora confirmados também por [CurseForge file 8826435](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betternether/files/8826435), publicação Release NeoForge 1.21.1. A afirmação de 12/09 de que o catálogo terminava em 2.1.0 tornou-se obsoleta; registros históricos posteriores continuam nos trechos datados.
+- **Atualização/Status:** 22/11/2026 — atualização solicitada, versão `2.2.0` **inalterada por já ser a última Release aplicável** no catálogo oficial NeoForge 1.21.1 (file 8826435). Corrigido o falso alerta histórico de ausência da versão 2.2.0 no CurseForge. Fonte de instalação declarada pelo usuário; nenhum teste de runtime/JAR novo executado.
 - **Decisão:** Manter
 - **Histórico da decisão:** Decisão `Manter` preservada. Em 08/09/2026, a ficha foi reconciliada para o runtime físico 2.2.0 e reconstruída com source 1.21.1 da mesma versão.
 - **Sobreposição:** Adapta/substitui a geração arbórea/fúngica do Better Nether para Dynamic Trees. Não substitui Better Nether, BCLib ou Dynamic Trees; seu papel é integração e worldgen replacement.
@@ -155,3 +157,7 @@ O ponto mais sensível é **Dynamic Trees Plus 1.3.2 no runtime contra 1.5.0 no 
 - source oficial branch `1.21.1`, `gradle.properties` 2.2.0;
 - species/family/seed/growth/rooty-soil/worldgen/mushroom files do branch exato.
 > **Boundary canônico:** Better Nether fornece biomas e conteúdo; Dynamic Trees fornece a engine; DT Better Nether adapta species/fungi e controla a substituição de worldgen.
+
+## Revalidação de catálogo e instalação declarada — 22/11/2026
+
+A publicação [Dynamic Trees - BetterNether 1.21.1-2.2.0, file 8826435](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betternether/files/8826435) encerra a antiga discrepância entre a source 2.2.0 e o catálogo que, em setembro, mostrava 2.1.0. **Versão solicitada e atualmente declarada: 2.2.0**, já registrada no filename, no título e no índice. Não há intervalo posterior confirmado a auditar nesta data. As versões de dependências em outros dossiers podem mudar em lotes posteriores. Não afirmar que worldgen/mushrooms/trees foram validados no jogo.
