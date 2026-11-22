@@ -1,4 +1,4 @@
-# Create Aeronautics: Throwable Rope Connector
+# Create Aeronautics: Throwable Rope Connector — 0.4.3 (atual em 22/11/2026)
 
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#130**: JAR `create_aeronautics_throwable_rope_connector-0.4.3.jar`, mod id `create_aeronautics_throwable_rope_connector`, runtime `0.4.3`, SHA-1 `63fcbbc960461d42a59b417665fb938c79919514`.
 
@@ -16,7 +16,7 @@
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-throwable-rope-connector
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_aeronautics_throwable_rope_connector` 0.4.3 + CurseForge/Modrinth oficiais da release 0.4.3 revalidados em 20/09/2026.
 - **Observações:** JAR físico `create_aeronautics_throwable_rope_connector-0.4.3.jar`, mod id `create_aeronautics_throwable_rope_connector`, runtime 0.4.3. Release NeoForge 1.21.1 de 10/08/2026, Client & Server; 0.4.3 corrige aiming do Mounted Rope Launcher em contraptions Sable, especialmente ship-to-ship. Config oficial separa throwing/launcher/mounted/general/visual e suporta automação redstone opcional.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #129: create_aeronautics_throwable_rope_connector-0.4.3.jar / 0.4.3 confirmados; fix de Mounted Rope Launcher aiming, config groups e automação redstone permanecem atuais.
+- **Atualização/Status:** 22/11/2026 — solicitação do usuário conferida: CurseForge file 8618590 continua a última distribuição oficial NeoForge 1.21.1, `create_aeronautics_throwable_rope_connector-0.4.3.jar`, versão `0.4.3`. Nenhuma versão posterior compatível a incorporar; dossier e nome permanecem corretos. Confirmação de instalação é declaração do usuário; o JAR local não foi inspecionado.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Climbable Ropes trata escalada; este addon trata lançamento remoto e acoplamento de Rope Connector para veículos físicos. Funções complementares.
 
