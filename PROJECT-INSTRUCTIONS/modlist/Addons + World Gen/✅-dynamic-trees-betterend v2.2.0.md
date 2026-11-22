@@ -9,14 +9,14 @@
 - **Versão 1.21.1:** `2.2.0`
 - **Categoria:** Compat, Worldgen
 - **Função:** Bridge Dynamic Trees ↔ Better End que registra species/families/seeds, growth logic, rooty soils, feature cancellation e worldgen dinâmico para a vegetação arbórea do Better End.
-- **Dependências:** Source 2.2.0: Dynamic Trees 1.7.1, Dynamic Trees Plus 1.5.0, Better End 21.0.32 e BCLib 21.0.25. Runtime físico atual: Dynamic Trees 1.7.2, Dynamic Trees Plus 1.3.2, Better End 21.0.34 e BCLib 21.0.26. O drift de DTP abaixo do baseline source permanece explícito.
+- **Dependências:** **Fonte exata corrigida:** `gradle.properties` do commit oficial da linha **2.2.0**, próximo à publicação, declara Dynamic Trees **1.7.2**, Dynamic Trees Plus **1.3.2** e Better End **21.0.26** (BCLib via file ID CurseForge **8362495**). Runtime físico: Dynamic Trees **1.7.2**, Dynamic Trees Plus **1.3.2**, Better End **21.0.34** e BCLib **21.0.26**. A alegação anterior de DTP mínimo 1.5.0 para o JAR 2.2.0 não se sustenta nessa source. Manifest da 2.2.0: DTP opcional a partir de 1.3.2; DT obrigatório 1.7.2+; BetterEnd obrigatório 21.0.26+.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Version drift misto entre source e runtime: Dynamic Trees Plus 1.3.2 está abaixo do baseline 1.5.0 do source 2.2.0, enquanto DT/Better End/BCLib estão acima. Somam-se riscos de tree static+dynamic duplication, feature-canceller failure, species/tag/rooty-soil drift, mushroom/cap felling/rendering e worldgen seams.
+- **Compatibilidade/Riscos:** O **falso bloqueio** de DTP 1.3.2 < 1.5.0 foi resolvido contra a source correspondente à 2.2.0: DTP 1.3.2 satisfaz a faixa opcional `[1.3.2,)`. O pack também satisfaz formalmente os ranges DT `[1.7.2,)` e BetterEnd `[21.0.26,)` dessa source. Permanecem riscos de tree static+dynamic duplication, feature-canceller failure, species/tag/rooty-soil drift, mushroom/cap felling/rendering e worldgen seams; range estático não equivale a testes de boot/save.
 - **Fonte:** https://github.com/dannykim2011/DynamicTrees-BetterEnd/tree/1.21.1
 - **Procedência:** modlist.txt física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `dtbetterend-1.21.1-2.2.0.jar` / runtime 2.2.0 e o stack atual. Source oficial branch 1.21.1 matching + CurseForge oficial File ID 8826408 revalidados em 21/09/2026; 2.2.0 continua a release NeoForge 1.21.1 mais recente.
-- **Observações:** Referência histórica 2.0.0h2 foi superada pelo runtime físico 2.2.0. Source 2.2.0 usa DT 1.7.1 / DTP 1.5.0 / Better End 21.0.32 / BCLib 21.0.25; o runtime atual usa DT 1.7.2 / DTP 1.3.2 / Better End 21.0.34 / BCLib 21.0.26. O drift de DTP é regressão prioritária, não incompatibilidade comprovada.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 21/09/2026 — lote físico #225: dtbetterend-1.21.1-2.2.0.jar / runtime 2.2.0 reconfirmados como latest Release NeoForge 1.21.1. Drift físico DTP 1.3.2 abaixo do baseline source 1.5.0 permanece regression gate, não incompatibilidade comprovada.
+- **Observações:** Referência histórica 2.0.0h2 foi superada pelo runtime físico 2.2.0. Source oficial versionada **2.2.0** usa DT 1.7.2 / DTP 1.3.2 / BetterEnd 21.0.26 (BCLib artifact 8362495); runtime atual usa DT 1.7.2 / DTP 1.3.2 / BetterEnd 21.0.34 / BCLib 21.0.26. Nenhuma exigência de DTP 1.5.0 pode ser atribuída à 2.2.0 com base nessa source.
+- **Atualização/Status:** Histórico da revalidação de 21/09/2026: JAR físico #226 `dtbetterend-1.21.1-2.2.0.jar` / runtime 2.2.0 era a última release NeoForge 1.21.1 **naquela data**. A source exata foi reconciliada em 22/11/2026: DT e DTP físicos cumprem o piso da source 2.2.0; as versões 2.3.0/2.4.0 posteriores foram tratadas separadamente no fim deste dossier.
 - **Decisão:** Manter
 - **Histórico da decisão:** Decisão `Manter` preservada. Em 08/09/2026, a ficha foi reconciliada para o runtime físico 2.2.0 e reconstruída com source 1.21.1 da mesma versão.
 - **Sobreposição:** Substitui/adapta a geração arbórea do Better End para Dynamic Trees. Não substitui Better End nem Dynamic Trees; seu papel é a bridge e prevenção de duplicação entre árvores estáticas/dinâmicas.
@@ -29,12 +29,12 @@ Dynamic Trees for Better End é uma **bridge de worldgen/content** entre Dynamic
 ## 2. Source pin
 O source oficial `dannykim2011/DynamicTrees-BetterEnd`, branch `1.21.1`, declara exatamente:
 - `mod_version=2.2.0`;
-- Dynamic Trees `1.7.1`;
-- Dynamic Trees Plus `1.5.0`;
-- Better End `21.0.32`;
-- BCLib `21.0.25`;
+- Dynamic Trees `1.7.2`;
+- Dynamic Trees Plus `1.3.2`;
+- Better End `21.0.26`;
+- BCLib (artefato de build CurseForge ID `8362495`; não inferir mínimo obrigatório pelo gradle);
 - NeoForge `21.1.172`.
-O runtime físico atual do pack usa Dynamic Trees 1.7.2, Dynamic Trees Plus 1.3.2, Better End 21.0.34 e BCLib 21.0.26. O drift é misto: DT/Better End/BCLib estão acima do baseline do source, enquanto Dynamic Trees Plus 1.3.2 está abaixo do baseline 1.5.0. Isso é **regression gate explícito**, não prova automática de incompatibilidade.
+O runtime físico usa Dynamic Trees 1.7.2, Dynamic Trees Plus 1.3.2, Better End 21.0.34 e BCLib 21.0.26. O **falso drift DTP 1.5.0** deixa de ser tratado como gate. A source 2.2.0 comprova mínimo DT 1.7.2 / BetterEnd 21.0.26 e DTP opcional 1.3.2; o stack físico está dentro desses ranges declarados. Runtime/geração continuam sem QA.
 ## 3. Authority / ownership
 - **Better End:** biomas, materiais, blocos e árvores/vegetação originais.
 - **Dynamic Trees:** engine de growth, branches, leaves, rooty soil, seeds e worldgen tree replacement.
@@ -134,8 +134,8 @@ Validar:
 ## 13. Multiplayer
 Tree growth/felling/loot deve ocorrer uma vez no servidor. Dois jogadores derrubando a mesma árvore não podem produzir double loot nem deixar branch network órfã.
 ## 14. Version drift atual
-O branch 2.2.0 foi compilado contra DT 1.7.1 / DTP 1.5.0 / Better End 21.0.32 / BCLib 21.0.25, enquanto o pack usa 1.7.2 / 1.3.2 / 21.0.34 / 21.0.26.
-O ponto mais sensível é **Dynamic Trees Plus 1.3.2 no runtime contra 1.5.0 no baseline do source**. A divergência atinge superfícies de species/worldgen e precisa de smoke-test com a combinação física atual. Não rebaixar ou atualizar dependências apenas para igualar o buildscript sem evidência runtime.
+O source oficial de 2.2.0 declara DT 1.7.2 / DTP 1.3.2 (opcional) / Better End 21.0.26, enquanto o pack usa DT 1.7.2 / DTP 1.3.2 / Better End 21.0.34. BCLib é um artefato de build, não um mínimo runtime explícito no template da bridge.
+**Correção da inconsistência documental:** o DTP 1.3.2 instalado está **no piso efetivamente declarado da source 2.2.0**. Não existe bloqueio estático de DTP nessa combinação física. Continuam necessários smoke-tests de species/worldgen e árvore-fungi para validar comportamento, sem qualquer alteração de JAR para igualar indevidamente um buildscript antigo.
 ## 15. Riscos
 1. árvore estática e dinâmica gerarem juntas;
 2. species não resolver após ID/tag drift;
@@ -190,3 +190,11 @@ A [publicação oficial 2.4.0](https://www.curseforge.com/minecraft/mc-mods/dyna
 **Gates de QA futuros:** obter JARs exatos 2.3.0/2.4.0, inspecionar manifests/registries/resources e comparar com 2.2.0; atualizar Better End/BCLib/WorldWeaver de forma coordenada **somente após verificação**; testar startup cliente/servidor, chunks novos e antigos, saplings, árvores/fauna fúngica, mounds e rooty soil, árvores umbrella em geração/crescimento, blocos com entidade, liquids e coexistência de BetterNether; verificar ausência de geração duplicada, destruição de estruturas pré-existentes, queda de drops e inconsistências após save/reload. **Não houve edição de JAR, configuração ou teste em runtime.**
 
 **Fontes:** [CurseForge 2.3.0](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betterend/files/9681813); [CurseForge 2.4.0](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betterend/files/9716886); [diff source 2.2.0→2.3.0](https://github.com/dannykim2011/DynamicTrees-BetterEnd/compare/911d7bbfe910b5cad91dff059fa8eea9f6baf7d6...47802eac7e0bc606c7e91705fffff7907434ba8a); [build 2.3.0](https://github.com/dannykim2011/DynamicTrees-BetterEnd/blob/47802eac7e0bc606c7e91705fffff7907434ba8a/gradle.properties); [manifest template](https://github.com/dannykim2011/DynamicTrees-BetterEnd/blob/47802eac7e0bc606c7e91705fffff7907434ba8a/src/main/resources/META-INF/neoforge.mods.toml).
+
+## 19. Fechamento da compatibilidade física 2.2.0 e rota documentada para 2.3.0 — 22/11/2026
+
+**Resolvido por prova source-level:** a [source oficial da linha 2.2.0 em setembro, commit `a2123de`](https://github.com/dannykim2011/DynamicTrees-BetterEnd/blob/a2123de22268e9729a090fb1e376f3ec94d58592/gradle.properties) declara `mod_version=2.2.0`, Dynamic Trees **1.7.2**, DTP **1.3.2** e BetterEnd **21.0.26**. O [manifest correspondente](https://github.com/dannykim2011/DynamicTrees-BetterEnd/blob/a2123de22268e9729a090fb1e376f3ec94d58592/src/main/resources/META-INF/neoforge.mods.toml) formaliza ranges requeridos de DT **[1.7.2,)** e BetterEnd **[21.0.26,)** e DTP **opcional [1.3.2,)**. O inventário físico #235/#236/#071 apresenta respectivamente **1.7.2/1.3.2/21.0.34**: **não existe o falso bloqueio DTP 1.5.0 antes indicado**. Reconciliar source e manifest **não é afirmar que o cliente/servidor foram executados ou que JAR instalado corresponde byte a byte à árvore Git**.
+
+**Rota de dependências para a 2.3.0:** a [source 2.3.0, `gradle.properties`](https://github.com/dannykim2011/DynamicTrees-BetterEnd/blob/47802eac7e0bc606c7e91705fffff7907434ba8a/gradle.properties) muda o mínimo formal `betterend` para **21.0.39**, que corresponde ao projeto *BetterEnd: New Dawn* [`BetterEnd-21.0.39.jar`, file 9306604](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/9306604). A mesma fonte resolve como dependências de compilação o [BCLib **21.0.29**, file 9511338](https://www.curseforge.com/minecraft/mc-mods/bclib-neoforge/files/9511338) e [WorldWeaver **21.0.31**, file 9490293](https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/9490293), além do WunderLib File **9172421**. **Esses são IDs de builds upstream verificáveis, não uma instalação feita no pack nem prova de mínimos transitivos formais.** O pack atual registra BetterEnd **21.0.34**, BCLib **21.0.26**, WorldWeaver **21.0.25** e WunderLib **21.0.10**; toda migração precisaria ser coordenada com as dependências reais dos novos artefatos e demais addons.
+
+**Decisão operacional:** o conjunto físico com **dtbetterend 2.2.0** satisfaz os ranges da source 2.2.0 e **não exige troca de DTP**; manter é a ação documentalmente sustentada. Para adotar 2.3.0, a atualização coordenada de BetterEnd é condição mínima demonstrada. Para **2.4.0**, os file IDs oficiais existem, mas a ausência de changelog/source correspondente impede afirmar quais diferenças funcionais foram incluídas; somente análise do arquivo de release poderá fechar esse delta. Isso não invalida a certificação do 2.2.0 instalado, que permanece identificado no filename; também não autoriza substituir JARs ou marcar testes de worldgen/save como aprovados.
