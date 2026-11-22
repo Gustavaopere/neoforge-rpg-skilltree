@@ -198,3 +198,16 @@ Fonte upstream: CurseForge file ID 8988910, `SnowRealMagic-1.21.1-NeoForge-12.2.
 | [12.2.5](https://www.curseforge.com/minecraft/mc-mods/snow-real-magic/files/9389751), 31/10/2026, Beta | Blocos sob outros blocos que não bloqueiam chuva passam a poder ser convertidos em variantes nevadas. Validar precipitação/oclusão, preservação do bloco contido e regras de cobertura. |
 
 **Gate:** Kiwi, Ecliptic Seasons e MultiMod Patch, Farmer's Delight quando presente, variantes de modelos e precedence de packs, worldgen e chunks novos/existentes, derretimento/acúmulo, restoreOriginalBlocks, multiplayer/restart. Documentação de releases concluída até 12.2.5; não promover beta automaticamente. Nenhum JAR/config/save/teste em jogo alterado.
+
+## Atualização documental incremental — Snow! Real Magic! 12.2.7 (22/11/2026; somente upstream)
+
+**Físico preservado:** #511 `SnowRealMagic-1.21.1-NeoForge-12.2.2.jar` / `12.2.2+neoforge`. A análise anterior já percorreu as distribuições **12.2.3 (27/09/2026), 12.2.4 (28/10/2026) e 12.2.5 beta (31/10/2026)** e suas diferenças de render, worldgen e conversão para variantes snowy. A **12.2.6** encontrada em 1.21.1 foi **Fabric**, não publicação intermediária NeoForge verificada.
+
+**12.2.7 — 21/11/2026**, [CurseForge NeoForge 1.21.1, file ID 9730215](https://www.curseforge.com/minecraft/mc-mods/snow-real-magic/files/9730215), filename `SnowRealMagic-1.21.1-NeoForge-12.2.7.jar`, **Release**. O changelog oficial específico informa:
+- Correção de **shapes de oclusão incorretos** (issue #491);
+- Correção de **face culling** em **vertical slabs** cobertos de neve e em **fences**;
+- Correção de **z-fighting** nas laterais de **snowy fence gates**;
+- **Step height maior ao caminhar sobre neve** (issue #450), relevante à movimentação/colisão do jogador;
+- Sincronização de strings de localização geradas com a configuração de debug; inclusão de **enchanted vertical slabs** entre dependências de desenvolvimento, **sem prova de mod dependência obrigatória para jogadores**.
+
+**Escopo:** a própria publicação 12.2.7 mostra notas cumulativas de 12.2.3–12.2.5, que **não** foram contadas como correções exclusivas da 12.2.7. Não importar changelogs de versões Fabric ou Minecraft 26.x. Antes de upgrade, revisar metadata, Snowy Spirit/servidor, Blocos snow-covered e regras de geração, step height, packs de modelos, culling e shaders; testar interações em world saves com Vertical Slabs/Amendments e worldgen com reload. **Não foi instalado nem testado** o JAR novo, e o basename certificado e a categoria oficial permanecem inalterados.

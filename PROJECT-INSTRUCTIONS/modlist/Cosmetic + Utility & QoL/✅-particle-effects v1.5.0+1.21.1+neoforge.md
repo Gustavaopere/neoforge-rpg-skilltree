@@ -100,3 +100,12 @@ O changelog compartilhado da 1.6.0 contém:
 Como o upstream não discrimina quais rendering fixes afetam especificamente 1.21.1, não invento bugs ou partículas concretas. O regression gate permanece visual: blending/depth, cleanup de partículas, resource packs, shaders Iris, PartiCull, invisibility e dimension/relog.
 
 Fonte upstream: CurseForge file ID 8948428, `ParticleEffects-1.6.0+1.21.1+neoforge.jar`.
+
+## Auditoria incremental — Particle Effects 1.6.0 → 1.7.0 (22/11/2026; upstream)
+
+**Físico:** #434 `ParticleEffects-1.5.0+1.21.1+neoforge.jar`, versão `1.5.0+1.21.1+neoforge`. As próximas publicações oficiais do projeto para **Minecraft 1.21.1 / NeoForge**, distintas dos builds 26.x/Fabric/Forge, são:
+
+- **1.6.0 — 22/09/2026**: [CurseForge file 8948428](https://www.curseforge.com/minecraft/mc-mods/particle-effects/files/8948428), filename `ParticleEffects-1.6.0+1.21.1+neoforge.jar`. A descrição resumida no arquivo anuncia **correções menores de renderização**; também contém a nota geral “port to 26.3”, que **não** é uma alteração Minecraft 1.21.1. Não atribuir ao binário 1.21.1 mudanças de APIs/efeitos exclusivas da 26.3 nem inventar quais glitches foram resolvidos.
+- **1.7.0 — 20/11/2026**: [catálogo CurseForge oficial do projeto](https://www.curseforge.com/minecraft/mc-mods/particle-effects/files/all) lista a release **`[neoforge/1.21.1] Particle Effects v1.7.0`**, para o alvo correto. O changelog geral distribuído nas builds 1.7.0 anuncia **compatibilidade com Item Particles** e **atualização da compatibilidade com Inventory Particles após a mudança no layout de resources**. A lista pública por arquivo para este target foi verificada, mas **não foi inspecionado o novo JAR** para assegurar a implementação/ativação exata de cada hook.
+
+**Relevância no pack:** o mod modifica partículas de status visual no cliente; compatibilidades opcionais não provam que Item Particles ou Inventory Particles estejam instalados. Os efeitos de gameplay e estados server-side permanecem sob autoridade dos providers. QA: status effects em HUD/mundo, partículas em combates Iron's/Ars, Particle Rain/Particular, culling por PartiCull, shaders, recarregamento de resource packs, presença/ausência dos dois mods opcionais e impacto em FPS. **Nenhuma instalação, inspeção binária ou QA ocorreu.** Baseline v1.5.0 e categorias oficiais preservadas.
