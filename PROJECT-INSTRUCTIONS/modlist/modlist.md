@@ -1,6 +1,12 @@
 
 # Índice incremental da modlist certificada e organizada
 
+## Fechamento documental do item original 3 — Create: Cyber Goggles (22/11/2026)
+
+A versão **8.8.3** para NeoForge Minecraft 1.21.1 já foi registrada no dossier certificado e na linha física #179 deste índice, com JAR `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar`, verificado no [Modrinth oficial do desenvolvedor](https://modrinth.com/mod/create-cyber-goggles/version/pbHCUgry). O projeto [CurseForge 1233804](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles) possui categorias **Create** e **Utility & QoL**; o último arquivo individual que esta verificação localizou **no CurseForge** para NeoForge 1.21.1 é [8.8.1, ID 9660524](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9660524). **Não foi comprovada publicação 8.8.3 no CurseForge**, nem inspeção do arquivo local. Essa discrepância de origem permanece documentada e distinta da sincronização de versão instalada declarada pelo usuário. Não alterar a versão para 8.8.1 por causa dessa discrepância. A tabela histórica de auditorias pode conter gates anteriores superados; o presente registro e os campos iniciais do dossier representam o estado documental vigente.
+
+
+
 ## Lote declarado — itens 3, 20, 21 e 22 — 22/11/2026
 
 **Instalações declaradas pelo usuário:** as versões do inventário são documentais; não se fez nova leitura do diretório `mods/`. A posição ordinal é a do inventário histórico de 587 entradas.
@@ -866,7 +872,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 176 | Create Cobblestone | `createcobblestone-1.5.0+neoforge-1.21.1-153.jar` | `1.5.0+neoforge-1.21.1-153` | `Addons + Automation + Create + Performance + Technology` | 17/11/2026 - 17:09 |
 | 177 | CreateColonies | `createcolonies-2.0.6.jar` | `2.0.6` | `Addons + Adventure and RPG + Automation + Create` | 23/09/2026 - 14:27 |
 | 178 | Create Contraption Terminals | `createcontraptionterminals-1.21-1.4.0.jar` | `1.4.0` | `Create + Storage + Utility & QoL` | 23/09/2026 - 14:27 |
-| 179 | Create: Cyber Goggles | `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar` (Modrinth oficial; CurseForge 8.8.3 não comprovado) | `8.8.3` | `Create + Utility & QoL` | 22/11/2026 - 15:59 |
+| 179 | Create: Cyber Goggles | `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar` ([Modrinth oficial](https://modrinth.com/mod/create-cyber-goggles/version/pbHCUgry); 8.8.3 no CurseForge sem ID confirmado, último arquivo CF diretamente identificado 8.8.1/9660524) | `8.8.3` (instalação declarada; JAR físico/metadata não relidos) | `Create + Utility & QoL` | 22/11/2026 - 19:59 |
 | 180 | Create Deco | `createdeco-2.1.3.jar` | `2.1.3` | `Addons + Cosmetic + Create` | 23/09/2026 - 14:27 |
 | 181 | Create: Diesel Generators | `createdieselgenerators-1.21.1-1.3.16.jar` | `1.21.1-1.3.16` | `Addons + Create + Processing + Technology` | 22/11/2026 - 15:59 |
 | 182 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 23/09/2026 - 23:50 |
