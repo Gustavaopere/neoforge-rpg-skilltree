@@ -271,3 +271,24 @@ A incompatibilidade que sustentava a remoção histórica **não é mais atual**
 
 O estado documental é **instalado / integrado ao catálogo**, com decisão **Manter** preservada. Isso não converte os testes de gameplay, persistência, multiplayer, evolução e migração em resultados aprovados: esses gates continuam explicitamente pendentes até execução própria.
 
+## 15. Auditoria incremental upstream — More Relics 1.8.0 (22/11/2026; release de 21/11; não instalada)
+
+**Identidade e estado físico:** a autoridade do pack permanece **#408**, JAR top-level `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar`, versão `1.7.7-forRelics-0.12.8-1.0`, compilação Beta destinada a **Relics 0.12.8**; o pack também possui Relics **0.12.8**. A release posterior do mesmo projeto CurseForge **1269280**, `morerelics-1.8.0-1.21.1.jar` (**File ID 9735896**, 21/11/2026), está classificada como **Release para Minecraft 1.21.1 / NeoForge**, mas **não está instalada**. O catálogo consultado identificou esse salto depois da Beta específica 1.7.7, sem outra publicação intermediária NeoForge 1.21.1 posterior à Beta. O `morerelics-1.8.0-1.20.1.jar` (**9735906**) é um artefato Forge diferente e não pode ser confundido com o NeoForge.
+
+### Changelog específico da 1.8.0 — atribuição por release
+
+- **Adições:** o autor anuncia **Homesick** e **Homeward**. O changelog não explicita sua classe/registry ID, forma de obtenção nem valores mecânicos; não atribuir propriedades ou loot inventados.
+- **Evolução de relics:** o resultado tenta equipar primeiro diretamente em um slot **Curios**, antes de recorrer ao inventário ou ao drop por falta de espaço. A ordem de fallback, controle de slots e transação de inventário mudam, com risco de item perdido/duplicado sob inventário cheio, slot incompatível e reconexão.
+- **Made in Heaven:** ajuste positivo nas duas habilidades ativas: **Charred** passa de **15 para 45 segundos** e acumula até **8 stacks** nas duas habilidades. São mudanças de duração/acúmulo, relevantes a dano, balanceamento, cooldown e persistência do efeito; o changelog não quantifica dano por stack.
+- **Configuração de loot:** relics que não nascem pelo sistema de loot do Relics (ex.: **Slumbering Amulet**) passam a admitir ajustes via config. Verificar defaults/chaves no JAR candidato; não inferir efeito retroativo em chests já gerados.
+- **Axolotl Cream:** não deve mais acumular consigo mesmo; o changelog não especifica como essa regra interage com efeitos antigos ou stacks armazenados.
+- **Twin Fangs:** corrige estado permanentemente travado/bloqueado que podia inutilizar o relic.
+- **Localização:** tradução espanhola incluída na distribuição NeoForge; não é funcionalidade de gameplay.
+
+### Compatibilidade impeditiva e decisão fail-closed
+
+**O aviso de compatibilidade do próprio autor é explícito:** a **1.8.0 Release** destina-se à versão **não Beta de Relics**. Para **Relics 0.12.11**, o autor orienta usar a variante Beta More Relics identificada como `for-0.12.8`; isso reforça que a 1.8.0 regular **não foi declarada compatível com Relics 0.12.8** do pack. O nome **1.8.0** não a torna substituta segura da variante instalada. **Promoção física bloqueada** até existir build para a linha Beta correta, ou prova binária/metadata e QA específicos que resolvam a incompatibilidade. Não alterar a certificação, filename físico, versão instalada, a pasta `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` nem outras linhas da modlist.
+
+**QA condicionado ao desbloqueio:** conferir manifests/versões de Relics, Curios, ShatterLib/OctoLib e Architectury; equipamentos de evolução e fallback com inventário cheio; persistência de Curios/relog; evolução/loot entre dimensões; acumulação/duração de Charred; alterações de config em Slumbering Amulet; Axolotl Cream e Twin Fangs; loot, redes, multiplayer e proteção contra dupes em saves pré-existentes. Não foi obtido/inspecionado o JAR 1.8.0 e nenhum teste de runtime foi executado. **Auditoria documental do changelog da release 1.8.0 concluída; upgrade físico não autorizado.**
+
+**Fontes oficiais:** [More Relics 1.8.0 NeoForge 1.21.1 — CurseForge File 9735896](https://www.curseforge.com/minecraft/mc-mods/more-relics/files/9735896); [Beta instalada para Relics 0.12.8 — File 8859015](https://www.curseforge.com/minecraft/mc-mods/more-relics/files/8859015); [página oficial do projeto e aviso de linha não-Beta](https://www.curseforge.com/minecraft/mc-mods/more-relics).
