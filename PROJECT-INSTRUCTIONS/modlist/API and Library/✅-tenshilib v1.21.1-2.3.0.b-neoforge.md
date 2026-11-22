@@ -134,3 +134,11 @@ Como TenshiLib é biblioteca, o risco não está em gameplay próprio, mas em co
 - [ ] OBB/hit detection existente permanece alinhado ao servidor.
 
 Fonte upstream: CurseForge TenshiLib 2.3.1, file ID 8990097, NeoForge 1.21.1. Nenhum teste acima foi executado nesta atualização documental.
+
+## Auditoria incremental upstream — TenshiLib 2.4.0 (22/11/2026; não instalada)
+
+A baseline física permanece #538 `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, runtime `1.21.1-2.3.0.b-neoforge`. A release intermediária **2.3.1** para NeoForge 1.21.1 já está auditada na seção 16 (models, entity data sync, FollowEntity, Molang, widgets e backport MC-273361); não atribuir suas mudanças à 2.4.0.
+
+**2.4.0 — 18/11/2026**: [arquivo CurseForge 9690639](https://www.curseforge.com/minecraft/mc-mods/tenshilib/files/9690639), **`tenshilib-1.21.1-2.4.0-neoforge.jar`**, Release para Minecraft 1.21.1/NeoForge. O [`Changelog.md` do autor na branch 1.21](https://github.com/Flemmli97/TenshiLib/blob/1.21/Changelog.md) registra especificamente **reescrita do sistema de modelos para não depender internamente dos modelos vanilla**, passando a oferecer **UV por face de modelos geométricos**. Isso é mudança de API/representação e renderização de modelos para bibliotecas/consumers; não implica mudança de mecânicas server-side ou de hitboxes sem prova de código.
+
+**Riscos e testes:** verificar ABI dos consumidores de modelos/animações TenshiLib, resource loading, geometrias face-specific, textura/UV, shaders, transformações de modelos, sincronização de entidades, render em multiplayer e carregamento em dedicated server sem classes client-only. O versionamento de modelo e eventuais migrações não foram inspecionados no JAR; não presumir compatibilidade binária. **Nenhum arquivo físico, configuração ou teste foi executado**, preservando pasta `API and Library` e basename instalado.

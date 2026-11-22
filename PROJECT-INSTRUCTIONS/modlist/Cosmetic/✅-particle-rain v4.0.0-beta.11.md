@@ -167,3 +167,15 @@ A direção do vento foi invertida para acompanhar nuvens; tonalidade da neblina
 
 **QA:** manter gates de configuração, shaders, PartiCull, Subtle Effects, Particular, resource reload, dimensões/biomas e medir FPS/overdraw com clima equivalente. Conferir novos controles de precipitação vanilla e comportamento sob tormenta; não pressupor Ad Astra instalado. Auditoria de changelogs até 4.0.3 concluída; nenhuma instalação ou teste runtime. Basename e pasta físicos preservados.
 
+## Auditoria incremental upstream — Particle Rain 4.0.4 (22/11/2026; não instalada)
+
+O JAR instalado permanece #435 `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` / `4.0.0-beta.11`. A sequência **4.0.0→4.0.1→4.0.2→4.0.3** já foi auditada no dossier, incluindo alterações de densidade, vento, config e biomas da 4.0.3; não a duplicar nesta etapa.
+
+A [**4.0.4**, CurseForge file 9707371](https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/9707371), publicada em **19/11/2026**, fornece `particlerain-4.0.4-1.21.1-neoforge.jar` para **NeoForge 1.21.1**. O changelog oficial anuncia uma **revisão de compatibilidade** com **Sable/Create Aeronautics, Puddles & Floods, Iris, Rain Shield e Ecliptic Seasons**:
+- Partículas do tipo `block` passam a surgir sobre faces adjacentes a blocos sem colisão quando elegíveis; **ripples** podem aparecer em poças de Puddles & Floods.
+- Chuva normal e intensa ganham **fade conforme a intensidade de cada condição climática**; partículas respeitam cancelamentos de chuva por **Rain Shield**.
+- Correção da velocidade de partículas de clima indevidamente controlada por **Sable sublevels**, que causava partículas presas; correções de animação de colisão acelerada 2×, jitter de interpolação e chuva pesada aparecendo durante transições de céu limpo.
+- Corrige queda acentuada de densidade durante movimento por atualização esparsa do multiplicador de deslocamento, opção `Don't tint water particles when using shaderpack` que não alcançava partículas vanilla e campos de texto de config cortados ao abrir GUI.
+- Corrige renderização vanilla de chuva quando desativada com **Ecliptic Seasons** em versões abaixo de `mc21.1`. O changelog também cita **suporte NeoForge 1.21.9+**, que não deve ser tratado como mudança exclusiva de 1.21.1.
+
+**QA:** clima em sublevels e contraptions, dimensões, chuva/shaders Iris, precipitação junto a Puddles & Floods, mods opcionais realmente instalados, Ecliptic Seasons, texturas em resource reload, Particle Effects/PartiCull/Particular, FPS e multiplayer com dois observadores. Não presumir que uma integração opcional esteja presente. **A distribuição não foi instalada ou testada**; pasta `Cosmetic` e baseline permanecem.

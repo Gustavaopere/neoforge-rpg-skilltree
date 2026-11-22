@@ -99,3 +99,18 @@ Validar:
 - changelog 1.3.2: JEI/creative-tab fixes e mass correction do Swivel Bearing;
 - catálogo histórico: decisão formal `Manter` desde 30/08/2026.
 > 🔒 Boundary canônico: **Aeronautics controla o vehicle integration; Sable controla a camada física; Create controla primitives cinéticas/contraptions**. Addons devem respeitar esse trio de authorities.
+
+## Auditoria incremental upstream — Create Aeronautics 1.3.3 (22/11/2026; não instalada)
+
+Baseline top-level #117 `create-aeronautics-bundled-1.21.1-1.3.2.jar` / `1.3.2`. Os componentes embarcados do bundle (Sable/Simulated/Offroad/Aeronautics, conforme o artefato exato) **não** geram registros top-level autônomos na tabela.
+
+A [**1.3.3, arquivo oficial CurseForge 9711672**](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics/files/9711672), publicada em **20/11/2026** para NeoForge/Minecraft 1.21.1, distribui `create-aeronautics-bundled-1.21.1-1.3.3.jar`. O changelog específico documenta:
+- Novas **receitas para tingir Envelopes**.
+- Nova configuração para **desativar o rendering de Hot Air**; este rendering é desativado automaticamente quando shaders **Iris** estão ativos.
+- Corrige **beams e ropes** renderizados incorretamente pelo **Creative Physics Staff** e pelo **Plunger Launcher** com Iris; corrige VFX de **Levitite** em certas rotações e textos das notificações de música.
+- Remove blocos internos da lista de rotação do menu de wrench.
+- Corrige caso no qual **Swivel Bearings perdiam constraint após reload**; é relevante à persistência/physics de contraptions em saves.
+- Corrige **Honey Glue** que não ignorava explosões, causando lag.
+- Acrescenta **validações server-side de distância e itens em diversos packets**, relevante à autorização e integridade de multiplayer. O changelog não lista os packets exatos; não presumir proteção completa sem inspeção de source.
+
+**QA e compatibilidade:** Create 6.0.10, Sable 2.0.5 no histórico, aeronaves persistidas, constraints, physics/reload, superfícies Honey Glue, bombas/lançadores e Iris shaders, data/control packets, ACL e teste com cliente malformado em staging. Conferir manifest dos JARs 1.3.2/1.3.3 e embedded modules; **sem instalação, teste, mudança de config ou indexação de submods embarcados**. Categorias oficiais e basename físico mantidos.

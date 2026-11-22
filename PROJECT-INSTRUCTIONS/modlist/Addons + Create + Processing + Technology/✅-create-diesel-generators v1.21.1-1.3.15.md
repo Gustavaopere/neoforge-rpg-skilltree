@@ -84,3 +84,15 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 20. Evidências e limites
 A modlist física e o source exato confirmam runtime 1.21.1-1.3.15. O source confirma os principais motores, pumpjack, distillation, burner, fermenter, canister e fluid registry. O changelog oficial confirma Andesite Girder Struts e scaling de distillers. Config local, fuel values e throughput numérico não foram inventados.
 > 🔒 **Boundary canônico:** CDG owns petróleo/refino/fuel semantics; Create owns cinética. Toda conversão item/fluid→processamento→stress deve conservar recursos exatamente uma vez.
+
+## Auditoria incremental upstream — Create: Diesel Generators 1.3.16 (22/11/2026; não instalada)
+
+Instalado fisicamente: #181 `createdieselgenerators-1.21.1-1.3.15.jar`, versão `1.21.1-1.3.15`. A [**1.3.16**, CurseForge file 9739370](https://www.curseforge.com/minecraft/mc-mods/create-diesel-generators/files/9739370), publicada em **21/11/2026**, é Release para **NeoForge 1.21.1**, artefato `createdieselgenerators-1.21.1-1.3.16.jar`. Todas as notas específicas da publicação oficial:
+- Corrige **engine throttle** que não alterava a **stress capacity**; afeta diretamente cinética/Create, capacidade disponível e balanceamento de motores.
+- Corrige **log spam durante criação do índice JEI**; relevante ao startup e reload.
+- Corrige **crash ao tingir Copycats**.
+- Implementa **multiplicador da taxa de queima por turbocharging**, relevante a consumo de combustível e eficiência.
+- Impõe **limite à capacidade de aquecimento de boilers por burner**, relevante à escala de produção de steam/stress.
+- Adiciona **comprimento máximo configurável de oil barrels**, [PR #382](https://github.com/GeorgeVI/Create-Diesel-Generators/pull/382). A publicação também cita limpeza de código, sem detalhar mudança de contrato.
+
+**QA:** comparar stress/torque e taxa de burn com throttle/turbo, boiler heating caps, cadeia oil/diesel/canisters, refino, oil barrels configurados, Copycats, JEI, save/restart, contraptions Create/Sable e multiplayer server-authoritative; verificar os defaults no próprio JAR, não inventar valores. A fonte não fornece ranges de compatibilidade do perfil com os demais addons. **Nenhum JAR ou config alterado nem gameplay testado**. Categoria e versão física preservadas.

@@ -71,3 +71,13 @@ Claim, acesso e force-loading são infraestrutura, não milestones por si. Não 
 Nenhum teste foi marcado como aprovado nesta auditoria documental.
 ## 11. Evidências e limite
 CurseForge oficial confirma o Contraption Claim Block, claim/force-load/access/allies, bloqueio de ferramentas Create, one-block-per-ship e requisitos Aeronautics + FTB Chunks + FTB Teams. A release 1.2.0 de 15/09/2026 registra update to latest Sable e fix para Save & Quit stuck. Os valores efetivos da config do pack não foram lidos nesta ficha.
+
+## Auditoria incremental upstream — Create Aeronautics: FTB Chunks 1.2.1 (22/11/2026; não instalada)
+
+Físico #129 `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` / 1.2.0. A [release oficial **1.2.1**, CurseForge 9663793](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-ftb-chunks/files/9663793) foi publicada em **17/11/2026** para **NeoForge Minecraft 1.21.1**, filename `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.1.jar`. Changelog por arquivo:
+- Corrige **crash de servidor e possível travamento no encerramento após remover force-load de uma ship**.
+- Compatibilidade declarada com **Sable 2.0.5 ou superior** (antes apenas 2.0.5).
+- Corrige o terreno abaixo de ship force-loaded, que antes podia **descarregar após 15 s**.
+- Atualiza o ambiente do autor para **Create Aeronautics 1.3.2, FTB Chunks 2101.1.24 e NeoForge 21.1.266**. Essas versões citadas no build **não comprovam intervalos de dependência do artefato**; o perfil histórico registra NeoForge **21.1.250**, portanto o loader deve ser conciliado por metadata e testes, sem presumir compatibilidade nem bloquear como requisito obrigatório sem `versionRange` comprovado.
+
+**QA:** force-load/unload/reload/restart, terreno e chunks sob ships, claims ACL, allies/groups/team, persistência de sublevels e constraints, snapshots de Sable e FTB Chunks realmente instalados, desligamento dedicado com/sem barcos em movimento e FTB permission checks. Não promover o upgrade sem backup/teste e inspeção de JAR/metadados; **sem alteração física**. Arquivo e pasta `Create` preservados.

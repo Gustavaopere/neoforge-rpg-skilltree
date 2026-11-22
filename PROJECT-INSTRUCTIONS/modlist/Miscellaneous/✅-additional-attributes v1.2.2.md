@@ -390,3 +390,9 @@ Fishing Lure e Fishing Luck aparecem com o mesmo ID na documentação.
 **Fonte interna:** guia completo gameplay/sistemas.
 
 **Confiança:** alta para Harvest, Apothic Crafting, spell-level semantics, innate/keep-scroll e fix 1.2.2. Fishing Luck ID é explicitamente **não resolvido** devido à inconsistência documental e precisa de inspeção do runtime.
+
+## Auditoria incremental com lacuna — Additional Attributes 1.2.3 (22/11/2026; não instalada)
+
+A baseline física continua #005 `additional_attributes-1.21.1-1.2.2.jar`, versão `1.2.2`, Minecraft 1.21.1 / NeoForge. A [release oficial **1.2.3**, CurseForge 9687889](https://www.curseforge.com/minecraft/mc-mods/additional-attributes/files/9687889), de **18/11/2026**, é apresentada para o mesmo jogo/loader. A nota de arquivo recuperada informa que **uma correção já existia havia cerca de seis meses, mas só agora foi publicada**. **A descrição recuperada não identifica inequivocamente o bug, os métodos afetados ou o resultado em gameplay**; não classificar como correção de Fishing Luck, Harvest, Keep Scroll, Iron's ou qualquer API sem prova. Foi confirmada a publicação, **não a natureza técnica do delta** nem a compatibilidade real com os consumers.
+
+**Gate fail-closed:** obter o changelog completo não truncado ou commit/tag correspondente à 1.2.3, ou comparar ambos os JARs oficiais (metadados, classes, registro de atributos, valores e configurações), antes de decidir sobre alteração de mecânica documentada. Regressar testes existentes para `skip_innate`, Harvest, Keep Scroll, Apothic Crafting, school/spell levels e identidade de Fishing Luck se o upgrade for candidato. **Auditoria da mudança funcional ainda bloqueada**, sem instalação, sem nova certificação e sem renomear/mover o dossier.

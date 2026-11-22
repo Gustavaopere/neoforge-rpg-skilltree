@@ -155,3 +155,18 @@ Antes de promover 3.0.0 em mundo principal, inventories/storage/chunks contendo 
 - [ ] `/reload`, restart e primeiro launch mantêm registry/config consistentes.
 
 Fonte upstream: CurseForge Create: Food 3.0.0, file ID 8995951. Nenhum teste acima foi executado nesta atualização documental.
+
+## Auditoria incremental upstream — Create: Food 3.1.0 (22/11/2026; não instalada)
+
+A versão física segue #188 `createfood-neoforge-1.21.1-2.7.1.jar` / `2.7.1`. O dossier já audita a transição **3.0.0** e suas **quebras de IDs, receitas, config, fluid handling e migração de saves**; esse gate permanece e não se resolve pelo lançamento posterior.
+
+A [**3.1.0**, CurseForge file 9723450](https://www.curseforge.com/minecraft/mc-mods/create-food/files/9723450), **20/11/2026**, é a distribuição Release `createfood-neoforge-1.21.1-3.1.0.jar` para NeoForge 1.21.1, sucessora de 3.0.0 (28/09/2026). Changelog específico:
+- **Resource packs integrados** passam a aparecer somente quando o mod compatível está presente; atualiza localização russa.
+- Atualiza múltiplas cadeias de receitas ([lista upstream](https://github.com/average_anime/Create-Food)) e **reequilibra food nutrition, saturation e effects**, incluindo carnes cozidas e alimentos compostos (toast, donuts, pastries) para não oferecerem menos que seus insumos.
+- Nova config `cooking_pot_display` (default **true**) exibe conteúdo das panelas de **Farmer's Delight** de forma semelhante à basin Create; bolhas somente quando aquecido com fluido dentro.
+- **Display plates** não exigem mais Create ou Farmer's Delight, convertem múltiplas porções e suportam placeable blocks de outros mods; garrafa vazia (`bottle_block`) preserva shape anterior, alternado por `Shift + RMB` com mão vazia.
+- **Rolling pins** na tag `c:tools/rolling_pin` passam a usar pressing, unheated single-ingredient compacting e receitas de baking mat de Ube's Delight; nova configuração `enable_rolling_pin` (default true) sem remover corte de faca; `display_interactions_exclude` também impede tools em plates, útil para bloquear prensagem acidental de ingots.
+- Novos displays de `salt_dough`, `pizza_dough` e `raw_pizzas`; compat com cheesecake de Farmer's Delight. Bowls de Delightful/Cultural Creators podem converter 4 porções, e sopas vanilla devolvem bowl em crafting.
+- Corrige `Farmer's Respite coffee_bean` sem tag e `espresso_powder` inacessível; `ground_mushroom` usa `c:any_sliced_mushrooms`; `sequenced_assembly` aceita recipes de KubeJS-Create; `create:milling` ganha `processing_time` e receitas `create:deploying/filling` ausentes retornam; corrige perda de porções de plates, medidas de sorvete, condições de massa, tags e hide_items.
+
+**Migração/QA:** backup de inventários e blocos da era 2.7.1, IDs 3.0.0, dados de pot/plate/food storage, receitas datadriven e KubeJS, effects/nutrition econômicos, consumidores Create/Farmer's Delight e addons, outputs/containers, `/reload`, restart, dedicados e clientes. Providers opcionais só operam se estiverem instalados. **Não houve instalação, save conversion ou testes**; basename v2.7.1 e categoria `Automation + Create + Food` preservados.
