@@ -3,7 +3,7 @@
 ## Propriedades do registro
 
 - **Mod:** Complementary Shaders - Reimagined
-- **Arquivo JAR:** ComplementaryReimagined_[r5.9.zip](http://r5.9.zip)
+- **Arquivo ZIP (última evidência física):** `ComplementaryReimagined_r5.9.zip`
 - **Versão 1.21.1:** r5.9
 - **Tipo de conteúdo:** Shader
 - **Categoria:** Visual
@@ -69,3 +69,19 @@ Evidências confirmadas:
 O único dado que continua ausente é um inventário físico posterior a 08/09/2026 do diretório `shaderpacks`. O sufixo `r5.9.3` do Euphoria Patcher demonstra alinhamento de compatibilidade do patcher, mas não prova que o ZIP do Complementary foi substituído. Pelo protocolo fail-closed, sem essa prova o arquivo GitHub não recebe `✅-` nem versão r5.9.3 no filename.
 
 > 🔒 Boundary canônico: **Complementary controla renderização visual; Minecraft e os mods controlam integralmente gameplay e estado do mundo**.
+
+## Auditoria documental incremental — r5.10 (22/11/2026; shader ZIP não instalado nem inspecionado)
+
+**Baseline física histórica preservada:** `ComplementaryReimagined_r5.9.zip` (captura do diretório `shaderpacks/` de 08/09/2026). Não existe nova listagem física confirmando a substituição; o rótulo `r5.9.3` de **Euphoria Patcher** registra compatibilidade do patcher e **não prova** o shader ZIP instalado. Este dossier não recebe `✅-` nem mudança de versão no filename.
+
+**Distribuições intermediárias:** a pesquisa anterior já identificou e documentou `r5.9.1` (11/09/2026), `r5.9.2` (14/09/2026) e `r5.9.3` (15/09/2026), com registro histórico distinto da baseline r5.9. O [histórico oficial do autor](https://www.complementary.dev/changelogs/) confirma a publicação seguinte **r5.10 em 18/11/2026**, sem outra versão nomeada entre r5.9.3 e r5.10.
+
+**r5.10, 18/11/2026, distribuição oficial:** [CurseForge file ID 9687811](https://www.curseforge.com/minecraft/shaders/complementary-reimagined/files/9687811), filename `ComplementaryReimagined_r5.10.zip`, **Release**, marcada explicitamente para **Minecraft 1.21.1** e pipeline **Iris/OptiFine**, entre diversas versões do jogo. O texto público específico anuncia:
+- **Dynamic Colored Lighting**: itens largados e várias entidades especiais podem emitir iluminação colorida dinâmica; testar execução e performance sob Iris, independentemente de efeitos lógicos de gameplay.
+- Revisão da iluminação de **itens segurados** (*held lighting*), integrações com mods, novas opções de configuração, correções e melhorias diversas **sem inventário técnico individualizado na descrição resumida**.
+- Suporte a features recentes de **Minecraft 26.3 e 26.4**, com referência à atmosfera especial das **Ice Caves**. **Não atribuir mecânicas ou recursos exclusivos dessas versões modernas ao Minecraft 1.21.1**. O mesmo ZIP ser listado para 1.21.1 não prova que todos os passes, uniforms ou blocos novos se apliquem à plataforma histórica.
+
+**Gates de interoperabilidade e QA:** não substituir ZIP até confirmar inventário físico atual, versão e checksums; validar versão Iris do perfil, combinações com **Euphoria Patcher 1.10.5-r5.9.3** instalado versus eventual Patcher **1.11.2-r5.10** apenas publicado, sem misturar stack. Executar compilação GLSL, preset migration, lighting/coloured lights, VFX, transparência, nuvens, chuva, partículas, dimensões e frame-time para GPU/driver do usuário, incluindo regressão em Iris on/off e shaders mods. Nada disso foi executado.
+
+**Limite documental:** a página oficial e o histórico confirmam versão/compatibilidade e o escopo resumido; **não foram baixados, extraídos, comparados ou validados os ZIPs r5.9/r5.10**, e não houve confirmação de todas as mudanças internas nem benchmark. A pesquisa de publicações alcançou r5.10, mas **a homologação técnica do ZIP, compatibilidade real com o stack e presença física continuam bloqueadas**. **Sem alteração da pasta `Vanilla` ou concessão de certificado.**
+

@@ -8,12 +8,12 @@ As subpastas usam as categorias atuais do projeto correspondente no CurseForge, 
 
 | Nº | Nome | Último arquivo físico confirmado | Versão física confirmada | Upstream revalidado | Estado | Pasta / categorias | Dossier | Última edição |
 |---:|---|---|---|---|---|---|---|---|
-| 1 | Complementary Shaders - Reimagined | `ComplementaryReimagined_r5.9.zip` | `r5.9` em 08/09/2026 | `r5.9.3` revalidado em 29/09/2026 | bloqueado — inventário físico atual de `shaderpacks/` ausente | `Vanilla` | `Vanilla/complementary-shaders-reimagined.md` | 29/09/2026 |
+| 1 | Complementary Shaders - Reimagined | `ComplementaryReimagined_r5.9.zip` | `r5.9` em 08/09/2026 | `r5.10` publicado em 18/11/2026 (Iris/OptiFine, inclui Minecraft 1.21.1) | bloqueado — inventário físico atual de `shaderpacks/` ausente; QA r5.10 não executado | `Vanilla` | `Vanilla/complementary-shaders-reimagined.md` | 22/11/2026 - 01:05 |
 
 ## Estado
 
 - Dossiers existentes em `shaders/`: **1**
 - Entradas neste índice: **1**
-- A versão upstream `r5.9.3` foi revalidada em 29/09/2026 e não é tratada como versão instalada sem nova evidência física.
+- A versão upstream `r5.10` (18/11/2026) foi conferida documentalmente em 22/11/2026; não é tratada como versão instalada nem aprovada para o stack real sem nova evidência física e QA.
 - Categoria integralmente auditada, porém com **1 item bloqueado / 0 certificados** por ausência de inventário físico atual de `shaderpacks/`.
 - Dossier organizado em subpasta temática: **1/1**.
