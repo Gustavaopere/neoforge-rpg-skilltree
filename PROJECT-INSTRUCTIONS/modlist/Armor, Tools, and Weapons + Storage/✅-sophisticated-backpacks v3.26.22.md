@@ -1,25 +1,31 @@
-# Sophisticated Backpacks
+# Sophisticated Backpacks — 3.26.22 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#516**: JAR `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`, mod id `sophisticatedbackpacks`, runtime `3.26.3`, SHA-1 `c9cef1451d73c5afef78a637c593634f55e757fc`.
+> **Estado vigente, sincronização documental em 22/11/2026:** versão 3.26.3 → **3.26.22**. JAR de distribuição identificado: `sophisticatedbackpacks-1.21.1-3.26.22.2257.jar`. Instalação declarada pelo usuário; o JAR top-level local e seu metadata não foram relidos. [Publicação de referência](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/9692576).
+> **Delta auditado:** Releases 3.26.4–3.26.21 foram documentadas individualmente no dossier; 3.26.22.2257 corrige crashes ao abrir ou navegar replays do ReplayMod. O último componente .2257 é o build do JAR; versão base documental 3.26.22, sem leitura do metadata interno.
+> **Dependências/risco:** Sophisticated Core e integrações de Storage, Create, Ars, JEI e Thirst requerem conciliação documental nos respectivos lotes. Versões mínimas exatas da build não foram determinadas por leitura de manifesto; não bloquear esta sincronização. State persistente de inventários e linked storage: validar anti-dupe/perda, autorizações, upgrade e ReplayMod no pack real.
+> **Limite das evidências:** documentos históricos abaixo descrevem o snapshot físico de setembro de 2026. Os estados antigos não substituem a versão declarada vigente; sem testes de runtime, multiplayer, saves ou compatibilidade. O detalhamento das versões intermediárias consta das seções históricas de auditoria abaixo.
+
+
+> **Snapshot físico histórico — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#516**: JAR `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`, mod id `sophisticatedbackpacks`, runtime `3.26.3`, SHA-1 `c9cef1451d73c5afef78a637c593634f55e757fc`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco
 
 - **Mod:** Sophisticated Backpacks
-- **Arquivo JAR:** `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`
-- **Versão 1.21.1:** 3.26.3
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado pelo usuário):** `sophisticatedbackpacks-1.21.1-3.26.22.2257.jar` ([fonte](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/9692576)).
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `3.26.22` (versão anterior `3.26.3`; novo metadata não extraído).
+- **Estado no pack:** `3.26.22` declarado instalado pelo usuário em 22/11/2026; inventário GitHub sincronizado, sem inspeção local.
+- **Estado da pesquisa:** versão-alvo oficialmente identificada e cadeia intermediária documentada nas auditorias do dossier; ressalvas de changelog, artefato e QA descritas acima.
 - **Decisão:** Manter
 - **Categoria:** Armazenamento, Automação
 - **Função:** Storage portátil e colocável modular, com tiers/capacidade e upgrades funcionais de coleta, filtragem, alimentação, crafting/processamento, fluidos/energia e automação, além de settings persistentes.
-- **Dependências:** Sophisticated Core 1.5.1 é required e está presente. Integrações físicas: Sophisticated JEI Index 1.2.3, Sophisticated Thirst Upgrade 0.1.8, Sophisticated Backpacks Create Integration 0.2.0 e Create 6.0.10.
+- **Dependências:** Sophisticated Core e integrações de Storage, Create, Ars, JEI e Thirst requerem conciliação documental nos respectivos lotes. Versões mínimas exatas da build não foram determinadas por leitura de manifesto; não bloquear esta sincronização.
 - **Sobreposição:** É o storage portátil modular do stack Sophisticated. Cruza em conveniência com outros backpacks e com redes estacionárias, mas não equivale a Tom's/Sophisticated Storage nem aos addons Create.
-- **Compatibilidade/Riscos:** Core de storage portátil stateful. Riscos: inventory/upgrades dupe ou loss em place/pickup/death, nested storage recursion, filter/settings drift, automation double-processing, capability sync e Create contraption/linked-storage state. A 3.26.3 corrige stack overflow quando Create Packagers acessam Inception backpacks; linked storage introduzido na linha 3.26.2 continua regression gate.
-- **Observações:** JAR físico `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar`, runtime 3.26.3. O delta oficial da build atual corrige stack overflow quando Create Packagers acessam Inception backpacks.
-- **Procedência:** modlist(1).txt física atual de 27/09/2026 + SHA-1 físico + CurseForge File ID 8845926 (runtime 3.26.3.2158) + releases oficiais 3.26.4.2162, 3.26.5.2171, 3.26.6.2174 e 3.26.7.2182 + source oficial `P3pp3rF1y/SophisticatedBackpacks` para o delta 3.26.4 + integrações Sophisticated atuais do pack.
+- **Compatibilidade/Riscos:** State persistente de inventários e linked storage: validar anti-dupe/perda, autorizações, upgrade e ReplayMod no pack real. Requisitos globais do pack pendentes de sincronização documental; sem QA.
+- **Observações vigentes:** JAR oficial `sophisticatedbackpacks-1.21.1-3.26.22.2257.jar`; State persistente de inventários e linked storage: validar anti-dupe/perda, autorizações, upgrade e ReplayMod no pack real. Snapshot anterior é histórico.
+- **Procedência:** posição #516 do snapshot físico histórico; declaração de instalação do usuário e publicação [upstream](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/9692576). Nenhum hash/metadata novo local coletado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/8845926
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — autoridade física permanece Sophisticated Backpacks 3.26.3.2158. A sequência posterior foi revalidada até 3.26.7.2182; a nova 3.26.7 corrige perda de item data durante migração de mundos e foi incorporada abaixo sem alterar a versão instalada.
+- **Atualização/Status:** 22/11/2026 — `3.26.3` → `3.26.22` por declaração do usuário. Releases 3.26.4–3.26.21 foram documentadas individualmente no dossier; 3.26.22.2257 corrige crashes ao abrir ou navegar replays do ReplayMod. O último componente .2257 é o build do JAR; versão base documental 3.26.22, sem leitura do metadata interno.
 - **Histórico da decisão:** Mantido como núcleo de armazenamento portátil. Confirmado carregado em 22/08/2026 na versão 3.25.78. A revisão separou o mod-base de addons que apenas facilitam upgrades ou fornecem kits gratuitos.
 - **Data da última decisão:** 2026-08-22
 

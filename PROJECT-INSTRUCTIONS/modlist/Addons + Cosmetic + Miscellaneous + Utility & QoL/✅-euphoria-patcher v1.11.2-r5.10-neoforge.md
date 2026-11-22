@@ -1,25 +1,31 @@
-# Euphoria Patcher
+# Euphoria Patches — 1.11.2-r5.10-neoforge (versão instalada declarada em 22/11/2026)
+
+> **Estado vigente, sincronização documental em 22/11/2026:** versão 1.10.5-r5.9.3-neoforge → **1.11.2-r5.10-neoforge**. JAR de distribuição identificado: `EuphoriaPatcher-1.11.2-r5.10-neoforge.jar`. Instalação declarada pelo usuário; o JAR top-level local e seu metadata não foram relidos. [Publicação de referência](https://www.curseforge.com/minecraft/mc-mods/euphoria-patches/files/9708040).
+> **Delta auditado:** 1.11.0 adota Complementary r5.10 e introduz suporte visual a dimensões, modded fog, LabPBR SSS e POM puddles; 1.11.1 corrige terreno invisível em Minecraft 26.1.x Linux, sem comprovação de impacto em 1.21.1; 1.11.2 acrescenta opções de reflexo e corrige animação de nuvens, gamerule advance time, Mesa e stutter em dias elevados.
+> **Dependências/risco:** Complementary Shaders r5.10 é base alvo do patcher; versão do ZIP de shader do usuário não foi reinspecionada. Iris é carregador no cliente. Sem dependência obrigatória de servidor. JAR oficial lista 1.21.1 entre versões suportadas, além de versões 26.x. Validar GLSL, shader ZIP e GPU.
+> **Limite das evidências:** documentos históricos abaixo descrevem o snapshot físico de setembro de 2026. Os estados antigos não substituem a versão declarada vigente; sem testes de runtime, multiplayer, saves ou compatibilidade. O detalhamento das versões intermediárias consta das seções históricas de auditoria abaixo.
+
 
 ## Propriedades do registro
 
 - **Mod:** Euphoria Patcher
-- **Arquivo JAR:** `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar`
-- **Versão 1.21.1:** `1.10.5-r5.9.3-neoforge`
+- **Arquivo JAR instalado (declarado pelo usuário):** `EuphoriaPatcher-1.11.2-r5.10-neoforge.jar` ([fonte](https://www.curseforge.com/minecraft/mc-mods/euphoria-patches/files/9708040)).
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.11.2-r5.10-neoforge` (versão anterior `1.10.5-r5.9.3-neoforge`; novo metadata não extraído).
 - **Categoria:** Visual
 - **Função:** Client-side patcher/installer que detecta Complementary Shaders Reimagined/Unbound compatível e gera/gerencia a variante Euphoria Patches com features e settings opcionais.
-- **Dependências:** Requer um Complementary Shaders base compatível e loader de shaders no cliente. Iris 1.8.14-beta.1 está fisicamente presente; a modlist de mods não comprova que o shaderpack Complementary esteja instalado.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** O artefato físico atual é `1.10.5-r5.9.3-neoforge`. A página oficial do próprio File ID 8884680 é internamente inconsistente: o cabeçalho do changelog diz `Updated to Complementary Shaders r5.9.2 + Euphoria Patches 1.10.5`, enquanto a seção `Key Shader Changes` diz `Updated to Complementary Shaders r5.9.3`. Portanto nenhum desses dois textos, isoladamente, é usado como prova da revisão física do ZIP Complementary. Riscos: base incompatível, patched archive stale, Iris beta/render regressions, config/preset migration, modded-material properties ausentes, dimension-cache RAM e custo de features habilitadas. Não possui gameplay authority.
+- **Dependências:** Complementary Shaders r5.10 é base alvo do patcher; versão do ZIP de shader do usuário não foi reinspecionada. Iris é carregador no cliente. Sem dependência obrigatória de servidor.
+- **Estado no pack:** `1.11.2-r5.10-neoforge` declarado instalado pelo usuário em 22/11/2026; inventário GitHub sincronizado, sem inspeção local.
+- **Estado da pesquisa:** versão-alvo oficialmente identificada e cadeia intermediária documentada nas auditorias do dossier; ressalvas de changelog, artefato e QA descritas acima.
+- **Compatibilidade/Riscos:** JAR oficial lista 1.21.1 entre versões suportadas, além de versões 26.x. Validar GLSL, shader ZIP e GPU. Requisitos globais do pack pendentes de sincronização documental; sem QA.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/euphoria-patches
-- **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar`, mod id `euphoria_patcher`, runtime `1.10.5-r5.9.3-neoforge` e SHA-1 `2b3f92878d6867fa0199937da25ba882b9db7902`. Modrinth/CurseForge e changelog oficial revalidados em 21/09/2026 mantêm a mesma build; a presença/versão física do shaderpack Complementary continua sendo autoridade separada.
-- **Observações:** Runtime físico 1.10.5-r5.9.3-neoforge. Deltas relevantes da linha permanecem documentados. Nuance revalidada em 21/09/2026: a página oficial da versão 1.10.5-r5.9.3-neoforge contém simultaneamente referências a Complementary Shaders r5.9.2 e r5.9.3; o catálogo preserva essa contradição upstream e não afirma a revisão do ZIP Complementary apenas a partir do sufixo do Patcher.
-- **Atualização/Status:** REAUDITADO EM 21/09/2026 — lote físico #265: `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` / runtime `1.10.5-r5.9.3-neoforge` reconfirmados na modlist física atual de 587 entradas top-level incluindo o modloader. A build continua atual; o File ID 8884680 contém referências contraditórias a Complementary r5.9.2 e r5.9.3, portanto a revisão física do shaderpack permanece autoridade separada.
+- **Procedência:** posição #266 do snapshot físico histórico; declaração de instalação do usuário e publicação [upstream](https://www.curseforge.com/minecraft/mc-mods/euphoria-patches/files/9708040). Nenhum hash/metadata novo local coletado.
+- **Observações vigentes:** JAR oficial `EuphoriaPatcher-1.11.2-r5.10-neoforge.jar`; JAR oficial lista 1.21.1 entre versões suportadas, além de versões 26.x. Validar GLSL, shader ZIP e GPU. Snapshot anterior é histórico.
+- **Atualização/Status:** 22/11/2026 — `1.10.5-r5.9.3-neoforge` → `1.11.2-r5.10-neoforge` por declaração do usuário. 1.11.0 adota Complementary r5.10 e introduz suporte visual a dimensões, modded fog, LabPBR SSS e POM puddles; 1.11.1 corrige terreno invisível em Minecraft 26.1.x Linux, sem comprovação de impacto em 1.21.1; 1.11.2 acrescenta opções de reflexo e corrige animação de nuvens, gamerule advance time, Mesa e stutter em dias elevados.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa Complementary Shaders e Iris; não duplica EMF/ETF, EntityCulling ou gameplay lighting. Bugs precisam ser isolados entre shader base, patch Euphoria e loader Iris.
 - **Data da última decisão:** 2026-08-26
 
-> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #266: JAR `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar`, mod id `euphoria_patcher`, runtime `1.10.5-r5.9.3-neoforge`, SHA-1 `2b3f92878d6867fa0199937da25ba882b9db7902`.
+> **Snapshot físico histórico — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #266: JAR `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar`, mod id `euphoria_patcher`, runtime `1.10.5-r5.9.3-neoforge`, SHA-1 `2b3f92878d6867fa0199937da25ba882b9db7902`.
 
 # Dossiê operacional — padrão Alex's Mobs
 > **Runtime físico confirmado:** `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` · mod id `euphoria_patcher` · versão `1.10.5-r5.9.3-neoforge` · NeoForge 1.21.1 · client-side. O pack possui **Iris 1.8.14-beta.1**; a presença de um Complementary shaderpack compatível não é inferida da modlist de mods.

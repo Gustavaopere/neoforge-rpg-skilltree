@@ -1,25 +1,31 @@
-# StreamsReflowing
+# Streams Reflowing — 2.17.5 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#528**: JAR `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`, mod id `streamsreflowing`, runtime `2.13.5`, SHA-1 `30b4203fee5ae9605e4c8631032910d0907e0820`.
+> **Estado vigente, sincronização documental em 22/11/2026:** versão 2.13.5 → **2.17.5**. JAR de distribuição identificado: `StreamsReflowing-1.21.1-neoforge-2.17.5.jar`. Instalação declarada pelo usuário; o JAR top-level local e seu metadata não foram relidos. [Publicação de referência](https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9639263).
+> **Delta auditado:** Dossier audita 2.13.7, 2.13.8, 2.14.1/4, 2.15.0/2, 2.16.2, 2.17.0/1/3/4/5. Novos comandos /streams reflow e carve, pré-visualização/undo, Flow/Carve Wands, bank styles, compatibilidades com Caves Reflowing, Flowing Fluids, Subtle Effects e correções de river freezing; 2.17.5 corrige colocação de tocos/troncos em bank styles.
+> **Dependências/risco:** Mods de terreno, dimensões, Flowing Fluids, Caves Reflowing e Subtle Effects são integrações potenciais; conferir presença/versões em seus lotes. Não é impeditivo de versionamento documental. Comandos reflow/carve modificam terreno existente. Backup/cópia de mundo e validação de claims/undo são mandatórios antes de testar. Arquivo 9639263 identificado por registros de distribuição, mas página individual CurseForge não foi carregada nesta revisão; versão e changelog também constam da publicação oficial do autor no Modrinth.
+> **Limite das evidências:** documentos históricos abaixo descrevem o snapshot físico de setembro de 2026. Os estados antigos não substituem a versão declarada vigente; sem testes de runtime, multiplayer, saves ou compatibilidade. O detalhamento das versões intermediárias consta das seções históricas de auditoria abaixo.
+
+
+> **Snapshot físico histórico — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#528**: JAR `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`, mod id `streamsreflowing`, runtime `2.13.5`, SHA-1 `30b4203fee5ae9605e4c8631032910d0907e0820`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco
 
 - **Mod:** StreamsReflowing
-- **Arquivo JAR:** `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`
-- **Versão 1.21.1:** 2.13.5
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado pelo usuário):** `StreamsReflowing-1.21.1-neoforge-2.17.5.jar` ([fonte](https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9639263)).
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `2.17.5` (versão anterior `2.13.5`; novo metadata não extraído).
+- **Estado no pack:** `2.17.5` declarado instalado pelo usuário em 22/11/2026; inventário GitHub sincronizado, sem inspeção local.
+- **Estado da pesquisa:** versão-alvo oficialmente identificada e cadeia intermediária documentada nas auditorias do dossier; ressalvas de changelog, artefato e QA descritas acima.
 - **Decisão:** Sem decisão
 - **Categoria:** Worldgen
 - **Função:** Sistema de hidrologia/worldgen com streams que seguem relevo, lakes/ponds em diferentes elevações, corrente direcional opcional em rivers e organic water flow configurável.
-- **Dependências:** Standalone segundo documentação oficial; sem hard dependency central. Runtime físico 2.13.5 NeoForge 1.21.1. Integra por comportamento com terrain/worldgen providers, Create, Supplementaries, Sable e outros sistemas de água; a linha upstream 2.13.6+ contém correções explícitas para várias dessas superfícies.
+- **Dependências:** Mods de terreno, dimensões, Flowing Fluids, Caves Reflowing e Subtle Effects são integrações potenciais; conferir presença/versões em seus lotes. Não é impeditivo de versionamento documental.
 - **Sobreposição:** Cruza com mods atuais de terrain/river/worldgen; incompatibilidades específicas devem ser avaliadas contra os providers realmente instalados, não contra arquitetura TFC removida.
-- **Compatibilidade/Riscos:** Chunkgen/presets, carving em terrain/structures, seams old/new chunks, river tags modded, competição hidrológica, Sable/current lifecycle e carga de partículas. Os gates antigos de Create water wheel/restart permanecem; upstream 2.13.6–2.14.1 adiciona correções fortes de memória, lake/stream joining, world-creation fail-safe, compatibility de fluids/Sable e uma revisão ampla de bank styling/terrain fit.
-- **Observações:** Runtime físico 2.13.5. A linha 1.21.1/NeoForge posterior foi revalidada em 01/10/2026: artefatos públicos 2.13.7, 2.13.8 e 2.14.1; o changelog cumulativo da 2.13.7 também contém o estado 2.13.6, embora não haja artefato 1.21.1 separado 2.13.6 na listagem atual.
-- **Procedência:** modlist física atual + CurseForge/Modrinth oficiais. Runtime instalado permanece `StreamsReflowing-1.21.1-neoforge-2.13.5.jar`. A sequência posterior 2.13.6 (changelog), 2.13.7, 2.13.8 e 2.14.1 foi comparada integralmente em 01/10/2026; nenhum teste de seed/chunkgen/corrente/restart foi executado.
+- **Compatibilidade/Riscos:** Comandos reflow/carve modificam terreno existente. Backup/cópia de mundo e validação de claims/undo são mandatórios antes de testar. Arquivo 9639263 identificado por registros de distribuição, mas página individual CurseForge não foi carregada nesta revisão; versão e changelog também constam da publicação oficial do autor no Modrinth. Requisitos globais do pack pendentes de sincronização documental; sem QA.
+- **Observações vigentes:** JAR oficial `StreamsReflowing-1.21.1-neoforge-2.17.5.jar`; Comandos reflow/carve modificam terreno existente. Backup/cópia de mundo e validação de claims/undo são mandatórios antes de testar. Arquivo 9639263 identificado por registros de distribuição, mas página individual CurseForge não foi carregada nesta revisão; versão e changelog também constam da publicação oficial do autor no Modrinth. Snapshot anterior é histórico.
+- **Procedência:** posição #528 do snapshot físico histórico; declaração de instalação do usuário e publicação [upstream](https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9639263). Nenhum hash/metadata novo local coletado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/streams-reflowing ; https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/all?version=1.21.1
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.13.5. Todos os deltas posteriores disponíveis até 2.14.1 foram percorridos, incluindo 2.13.6 preservada no changelog cumulativo, e os impactos relevantes foram incorporados abaixo.
+- **Atualização/Status:** 22/11/2026 — `2.13.5` → `2.17.5` por declaração do usuário. Dossier audita 2.13.7, 2.13.8, 2.14.1/4, 2.15.0/2, 2.16.2, 2.17.0/1/3/4/5. Novos comandos /streams reflow e carve, pré-visualização/undo, Flow/Carve Wands, bank styles, compatibilidades com Caves Reflowing, Flowing Fluids, Subtle Effects e correções de river freezing; 2.17.5 corrige colocação de tocos/troncos em bank styles.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-27
 

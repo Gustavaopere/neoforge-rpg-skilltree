@@ -14,6 +14,25 @@
 
 
 
+
+## Lote 22 e 40–48 — sincronização declarada em 22/11/2026
+
+**Autoridade:** pedido do usuário confirma a instalação das versões-alvo documentadas para NeoForge 1.21.1; não houve leitura dos novos JARs locais. As posições são preservadas da modlist física histórica, as versões-alvo têm publicação oficial identificada, e as divergências de dependências com entradas ainda antigas aguardam seus próprios lotes. O caso Raven's RPG Resource Orbs (#22 da lista de atualização) permanece fora da tabela por ausência de dossier certificado e posição física top-level.
+
+| Item do pedido | Nº histórico | Mod | Versão declarada | Publicação oficial | Ressalva |
+|---:|---:|---|---|---|---|
+| 40 | 044 | Ars Elemental | `0.7.11.3` | [Fonte](https://www.curseforge.com/minecraft/mc-mods/ars-elemental/files/9716535) | Beta 1.21.1; riscos Ars Nouveau/Sauce |
+| 41 | 516 | Sophisticated Backpacks | `3.26.22` | [Fonte](https://www.curseforge.com/minecraft/mc-mods/sophisticated-backpacks/files/9692576) | Versão base 3.26.22, JAR build .2257 |
+| 42 | 095 | Climbable Ropes for Create Aeronautics | `2.2.3` | [Fonte](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes/files/9733043) | Compatibilidade runtime não testada |
+| 43 | 266 | Euphoria Patches | `1.11.2-r5.10-neoforge` | [Fonte](https://www.curseforge.com/minecraft/mc-mods/euphoria-patches/files/9708040) | Compatibilidade runtime não testada |
+| 44 | 241 | Easy NPC: Config UI | `7.20.0` | [Fonte](https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui/files/all) | Compatibilidade runtime não testada |
+| 45 | 305 | Goety - The Dark Arts | `3.2.3` | [Fonte](https://www.curseforge.com/minecraft/mc-mods/goety/files/9668015) | Compatibilidade runtime não testada |
+| 46 | 528 | Streams Reflowing | `2.17.5` | [Fonte](https://www.curseforge.com/minecraft/mc-mods/streams-reflowing/files/9639263) | Página individual CurseForge indisponível; changelog/versão corroborados na publicação oficial Modrinth |
+| 47 | 252 | Enhanced AI | `4.3.3.0` | [Fonte](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9740957) | Compatibilidade runtime não testada |
+| 48 | 179 | Create: Cyber Goggles | `8.8.3` | [Fonte](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge) | JAR 8.8.3 sem basename verificado; catálogo CurseForge não confirmou publicação, distribuição oficial Modrinth citada |
+
+A documentação técnica incremental existente nos dossiers foi preservada; o cabeçalho/campos vigentes e os filenames foram sincronizados. O versionamento documental não pressupõe que as dependências do inventário antigo já tenham sido atualizadas.
+
 ## Lote 22 e 31–39 — atualização declarada e auditada em 22/11/2026
 
 A solicitação do usuário constitui a declaração de atualização das versões NeoForge 1.21.1 indicadas neste lote. Os JARs foram registrados pelo nome de distribuição pesquisado (não lidos diretamente na instalação local). Requisitos de dependências de outros lotes não impedem a atualização documental; não houve QA de cliente/servidor.
@@ -626,7 +645,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 041 | Ars Controle | `ars_controle-1.21.1-1.6.16.jar` | `1.21.1-1.6.16` | `Addons + Magic` | 19/09/2026 - 16:05 |
 | 042 | Ars Creo | `ars_creo-1.21.1-5.4.0.jar` | `5.4.0` | `Magic + Technology` | 19/09/2026 - 16:05 |
 | 043 | Ars Elemancy | `ars_elemancy-1.21.1-1.18.3.jar` | `1.18.3` | `Addons + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:06 |
-| 044 | Ars Elemental | `ars_elemental-1.21.1-0.7.10.1.jar` | `0.7.10.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/11/2026 - 00:55 |
+| 044 | Ars Elemental | `ars_elemental-1.21.1-0.7.11.3.jar` | `0.7.11.3` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/11/2026 - 15:25 |
 | 045 | Ars Hex Unity | `ars_hex-1.21.1-5.0.4b.jar` | `5.0.4b` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 17/11/2026 - 18:34 |
 | 046 | Ars 'n' Spells | `ars_n_spells-3.3.4.jar` | `3.3.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 22/11/2026 - 00:44 |
 | 047 | Ars Nouveau | `ars_nouveau-1.21.1-5.13.1.jar` | `5.13.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Mobs` | 19/09/2026 - 17:09 |
@@ -677,7 +696,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 092 | Chipped | `chipped-neoforge-1.21.1-4.0.2.jar` | `4.0.2` | `Cosmetic` | 23/09/2026 - 01:02 |
 | 093 | Chunky (Forge/NeoForge) | `Chunky-NeoForge-1.4.23.jar` | `1.4.23` | `Dimensions + Server Utility + World Gen` | 23/09/2026 - 01:02 |
 | 094 | Citadel | `citadel-2.7.1-1.21.1.jar` | `2.7.1` | `API and Library + Miscellaneous` | 23/09/2026 - 01:13 |
-| 095 | Climbable Ropes for Create Aeronautics | `climbable_ropes-2.1.3.jar` | `2.1.3` | `Addons + Create` | 18/11/2026 - 10:15 |
+| 095 | Climbable Ropes for Create Aeronautics | `climbable_ropes-2.2.3.jar` | `2.2.3` | `Addons + Create` | 22/11/2026 - 15:25 |
 | 096 | Clockwork | `clockwork-neoforge-1.21.1-1.1.4.jar` | `1.1.4` | `Cosmetic + Mobs + Technology` | 23/09/2026 - 01:02 |
 | 097 | Cloth Config API (Fabric/Forge/NeoForge) | `cloth-config-15.0.140-neoforge.jar` | `15.0.140` | `API and Library` | 23/09/2026 - 01:02 |
 | 098 | Clumps | `Clumps-neoforge-1.21.1-19.0.0.1.jar` | `19.0.0.1` | `Server Utility + Storage + Utility & QoL` | 23/09/2026 - 01:02 |
@@ -761,7 +780,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 176 | Create Cobblestone | `createcobblestone-1.5.0+neoforge-1.21.1-153.jar` | `1.5.0+neoforge-1.21.1-153` | `Addons + Automation + Create + Performance + Technology` | 17/11/2026 - 17:09 |
 | 177 | CreateColonies | `createcolonies-2.0.6.jar` | `2.0.6` | `Addons + Adventure and RPG + Automation + Create` | 23/09/2026 - 14:27 |
 | 178 | Create Contraption Terminals | `createcontraptionterminals-1.21-1.4.0.jar` | `1.4.0` | `Create + Storage + Utility & QoL` | 23/09/2026 - 14:27 |
-| 179 | Create: Cyber Goggles | `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` | `8.6.3` | `Create + Utility & QoL` | 21/11/2026 - 12:50 |
+| 179 | Create: Cyber Goggles | **JAR novo não verificado** (8.8.3 oficial Modrinth) | `8.8.3` | `Create + Utility & QoL` | 22/11/2026 - 15:25 |
 | 180 | Create Deco | `createdeco-2.1.3.jar` | `2.1.3` | `Addons + Cosmetic + Create` | 23/09/2026 - 14:27 |
 | 181 | Create Diesel Generators | `createdieselgenerators-1.21.1-1.3.15.jar` | `1.21.1-1.3.15` | `Addons + Create + Processing + Technology` | 22/11/2026 - 01:02 |
 | 182 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 23/09/2026 - 23:50 |
@@ -823,7 +842,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 238 | Easy Model Entities | `easy_model_entities-neoforge-1.21.1-2.4.0.jar` | `2.4.0 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library + Automation + Mobs + Utility & QoL` | 22/10/2026 - 22:49 |
 | 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.20.0.jar` | `7.20.0 (JAR/usuário; metadata nova não lida)` | `Adventure and RPG + API and Library` | 22/11/2026 - 08:10 |
 | 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 22/11/2026 - 00:44 |
-| 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 19/11/2026 - 00:31 |
+| 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.20.0.jar` | `7.20.0` | `Utility & QoL` | 22/11/2026 - 15:25 |
 | 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
 | 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 18/11/2026 - 08:02 |
 | 244 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
@@ -834,7 +853,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 249 | EMF Compat: Iron's Spells 'n Spellbooks | `emf_compat_iron_spells_1.21.1_2.0.0.jar` | `2.0.0` | `Addons + Bug Fixes` | 17/11/2026 - 18:50 |
 | 250 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 24/09/2026 - 14:02 |
 | 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 24/09/2026 - 14:02 |
-| 252 | Enhanced AI | `enhancedai-4.2.3.0.jar` | `4.2.3.0` | `Mobs` | 22/11/2026 - 00:59 |
+| 252 | Enhanced AI | `enhancedai-4.3.3.0.jar` | `4.3.3.0` | `Mobs` | 22/11/2026 - 15:25 |
 | 253 | Enhanced Boss Bars (Fabric/Forge/NeoForge) | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 24/10/2026 - 14:58 |
 | 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 23/10/2026 - 14:33 |
 | 255 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
@@ -848,7 +867,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 263 | Epic Fight - Mod Compat | `epicfightcompat-1.1.0-mc1.21.1-neoforge.jar` | `1.1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Mobs` | 24/09/2026 - 16:58 |
 | 264 | Epic Fight - Pehkui FIX | `epicfightpehkuiincompatibilityfix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 24/09/2026 - 16:58 |
 | 265 | Ender's Spells and Stuff: Requiem | `ess_requiem-0.1.7.jar` | `0.1.7` | `Addons` | 24/09/2026 - 16:58 |
-| 266 | Euphoria Patches | `EuphoriaPatcher-1.10.5-r5.9.3-neoforge.jar` | `1.10.5-r5.9.3-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 22/11/2026 - 00:59 |
+| 266 | Euphoria Patches | `EuphoriaPatcher-1.11.2-r5.10-neoforge.jar` | `1.11.2-r5.10-neoforge` | `Addons + Cosmetic + Miscellaneous + Utility & QoL` | 22/11/2026 - 15:25 |
 | 267 | ExpandAbility | `expandability-12.0.0.jar` | `12.0.0` | `API and Library` | 24/09/2026 - 16:58 |
 | 268 | Expanded Delight | `expandeddelight-0.1.4.jar` | `0.1.4` | `Addons + Farming + Food + Ores and Resources` | 24/09/2026 - 16:58 |
 | 269 | Explorer's Compass | `ExplorersCompass-1.21.1-3.4.0-neoforge.jar` | `1.21.1-3.4.0-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Map and Information + Structures` | 24/09/2026 - 16:58 |
@@ -887,7 +906,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 302 | Global Packs | `globalpacks-neoforge-1.21.1-21.0.6.jar` | `21.0.6` | `Map and Information + Utility & QoL` | 24/09/2026 - 21:04 |
 | 303 | Glodium | `Glodium-1.21-2.2-neoforge.jar` | `1.21-2.2-neoforge` | `API and Library` | 24/09/2026 - 21:04 |
 | 304 | GroovyModLoader (GML) | `gml-6.0.2.jar` | `6.0.2` | `API and Library` | 24/09/2026 - 21:04 |
-| 305 | Goety - The Dark Arts | `goety-3.1.4.jar` | `3.1.4` | `Adventure and RPG + Magic + Mobs + Structures` | 19/11/2026 - 00:31 |
+| 305 | Goety - The Dark Arts | `goety-3.2.3.jar` | `3.2.3` | `Adventure and RPG + Magic + Mobs + Structures` | 22/11/2026 - 15:25 |
 | 306 | Goety Cataclysm | `goety_cataclysm-1.21.1-1.8.2.jar` | `1.21.1-1.8.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 21:04 |
 | 307 | Goety Iron | `GoetyIron-1.21.1-NeoForge-3.1.jar` | `3.1` | `Magic + Mobs` | 24/09/2026 - 21:04 |
 | 308 | Grappling Hook Mod: Skybound | `grapplemod-1.1+1.21.1.neoforge.jar` | `1.1+1.21.1.neoforge` | `Player Transport + Skyblock + Utility & QoL` | 24/09/2026 - 21:04 |
@@ -1098,7 +1117,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 18/11/2026 - 08:55 |
 | 514 | Thirst Upgrade for Sophisticated Backpacks (Thirst Was Taken) | `sophisticated-thirst-upgrade.jar` | `0.1.8` | `Miscellaneous` | 27/09/2026 - 21:19 |
 | 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 20:56 |
-| 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 22/11/2026 - 00:59 |
+| 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.22.2257.jar` | `3.26.22` (JAR build .2257; metadata não relido) | `Armor, Tools, and Weapons + Storage` | 22/11/2026 - 15:25 |
 | 517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `0.2.0` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `1.5.1` | `API and Library` | 22/11/2026 - 00:44 |
 | 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `1.5.91` | `Storage` | 21/11/2026 - 00:23 |
@@ -1110,7 +1129,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 525 | Spell Codex: Iron's Spells 'n Spellbooks Addon | `specs_irons_spellbooks-1.6.5.jar` | `1.6.5` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 21/11/2026 - 00:29 |
 | 526 | SpellActionbar | `spell_actionbar-1.1.4.jar` | `1.1.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
 | 527 | StarbuncleMania | `starbunclemania-1.21.1-1.5.8.jar` | `1.5.8` | `Addons + Automation + Energy, Fluid, and Item Transport + Magic` | 27/09/2026 - 22:12 |
-| 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.13.5.jar` | `2.13.5` | `Biomes + Cosmetic + World Gen` | 19/11/2026 - 00:31 |
+| 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.17.5.jar` | `2.17.5` | `Biomes + Cosmetic + World Gen` | 22/11/2026 - 15:25 |
 | 529 | Structurize | `structurize-1.0.833-1.21.1-snapshot.jar` | `1.0.833-1.21.1-snapshot` | `Cosmetic + Server Utility + Structures` | 20/11/2026 - 18:40 |
 | 530 | Strut Your Stuff (Struts) | `struts-1.3.1.jar` | `1.3.1` | `API and Library` | 27/09/2026 - 22:12 |
 | 531 | Stylish Effects | `StylishEffects-v21.1.3-1.21.1-NeoForge.jar` | `21.1.3` | `Cosmetic + Map and Information + Utility & QoL` | 27/09/2026 - 22:12 |
@@ -1260,8 +1279,8 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 21 | Subtle Effects | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous/%E2%9C%85-subtle-effects%20v1.14.3.md) | `1.14.3` | `1.15.1` | PENDENTE: partículas e correções de servidor específicas de 1.21.1 |
 | 22 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | `8.47` | PENDENTE: changes específicas do target não isoladas; Serilum consumers |
 | 23 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | `0.2.0` | REVALIDADO: sem nova release 1.21.1 demonstrada |
-| 24 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.3.md) | `3.26.3` | `3.26.12.2208` | PENDENTE: Core ≥1.5.9, Mob Catcher upgrade/linked groups, anti-dupe |
-| 25 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.12.1.md) | `7.12.1` | `7.15.0` | 7.15.0 BLOQUEADO: EME 2.4.0 instalada historicamente não satisfaz `[2.5.0,3.0.0)`; 7.14.0 CANDIDATO CONDICIONAL: EME opcional `[2.4.0,3.0.0)`, dependências/UI e testes pendentes |
+| 24 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.22.md) | `3.26.3` | `3.26.12.2208` | PENDENTE: Core ≥1.5.9, Mob Catcher upgrade/linked groups, anti-dupe |
+| 25 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.20.0.md) | `7.12.1` | `7.15.0` | 7.15.0 BLOQUEADO: EME 2.4.0 instalada historicamente não satisfaz `[2.5.0,3.0.0)`; 7.14.0 CANDIDATO CONDICIONAL: EME opcional `[2.4.0,3.0.0)`, dependências/UI e testes pendentes |
 | 26 | Crystal Chronicles — Iron's Spells | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Dimensions%20%2B%20Magic/%E2%9C%85-crystal-chronicles%20v0.1.3-alpha.md) | `0.1.3-alpha` | `0.1.4-alpha` | PENDENTE: versão alpha, magia e worldgen |
 | 27 | BlockUI | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-blockui%20v1.0.212-1.21.1-snapshot.md) | `1.0.212-1.21.1-snapshot` | `1.0.212-1.21.1-snapshot` | REVALIDADO: possível republicação; conferir file ID/SHA, sem bump |
 | 28 | Sophisticated Storage Create Integration | [Abrir `.md`](./Addons%20%2B%20Storage/%E2%9C%85-sophisticated-storage-create-integration%20v0.1.21.md) | `0.1.21` | `0.1.23.246` | PENDENTE: Storage ≥1.6.3 + Create ≥6.0.7 no source, linked groups/QA |
@@ -1421,7 +1440,7 @@ A rechecagem dos **dois projetos oficiais distintos** mantidos por LuminaCherry 
 
 **Próximo gate:** confirmar um loader atualizado apenas com novo dump físico ou comprovação equivalente; obter manifesto do `9071404` e comparar o mínimo resolvido; avaliar source/JAR exato do `sophisticatedthirst` e SUA; cenários de backpack em movimento/colocado, radius 3, filtros, purity, save/restart, dois jogadores, recursos adicionais e plano de migração/reversão. **Nenhum mod foi adicionado/removido, nenhum runtime foi executado e nenhuma atualização física foi certificada nesta pesquisa.**
 
-**Dossiês cruzados:** [#514 Thirst Upgrade](./Miscellaneous/%E2%9C%85-sophisticated-thirst-upgrade%20v0.1.8.md), [#543 Reclaimed](./Food/%E2%9C%85-thirst-was-reclaimed%20v3.0.5.md), [#516 Backpacks](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.3.md).
+**Dossiês cruzados:** [#514 Thirst Upgrade](./Miscellaneous/%E2%9C%85-sophisticated-thirst-upgrade%20v0.1.8.md), [#543 Reclaimed](./Food/%E2%9C%85-thirst-was-reclaimed%20v3.0.5.md), [#516 Backpacks](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.22.md).
 
 
 ## Contrato source de tanques — Reclaimed 3.0.6 × Sophisticated Core 1.5.11 (13/10/2026)
@@ -1572,15 +1591,15 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.65 (22/10) | **AUDITORIA DOCUMENTAL 8.39→8.65 COMPLETA (8.48/8.55 NÃO PUBLICADAS 1.21.1); QA FÍSICO SEPARADO** |
 | 53 | Create: Stats & Power | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-stats-power%20v1.13.1.md) | `1.13.1` | 1.15.0 | **AUDITORIA DOCUMENTAL 1.13.1→1.14.5→1.15.0 CONCLUÍDA; QA FÍSICO SEPARADO** |
 | 54 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | 0.2.3 (11/10) | **DELTAS DOCUMENTADOS 0.2.1→0.2.3; QA FÍSICO SEPARADO** |
-| 55 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.3.md) | `3.26.3` | 3.26.14.2222 | **RELEASES 3.26.4–3.26.14 DOCUMENTADAS POR SOURCE; PROMOÇÃO FÍSICA COORDENADA PENDENTE** |
-| 56 | Climbable Ropes for Create Aeronautics | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-climbable-ropes-for-create-aeronautics%20v2.1.3.md) | `2.1.3` | 2.2.0 (19/10, Modrinth oficial/source) | **2.1.4 E 2.2.0 REVISADAS; ANIMAÇÃO IK PROCEDURAL; QA FÍSICO SEPARADO** |
+| 55 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.22.md) | `3.26.3` | 3.26.14.2222 | **RELEASES 3.26.4–3.26.14 DOCUMENTADAS POR SOURCE; PROMOÇÃO FÍSICA COORDENADA PENDENTE** |
+| 56 | Climbable Ropes for Create Aeronautics | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-climbable-ropes-for-create-aeronautics%20v2.2.3.md) | `2.1.3` | 2.2.0 (19/10, Modrinth oficial/source) | **2.1.4 E 2.2.0 REVISADAS; ANIMAÇÃO IK PROCEDURAL; QA FÍSICO SEPARADO** |
 | 57 | Epic Fight: Curios Compat 4.0 | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Cosmetic/%E2%9C%85-epic-fight-curios-compat%20v1.4.md) | `1.4` | 4.0 Release NeoForge 1.21.1 (23/10; file ID 9296370) | **PESQUISA DOCUMENTAL 2.2 → 3.0 → 3.1 → 4.0 CONCLUÍDA EM 24/10; JAR 2.2/METADATA 1.4 INSTALADOS, MANIFEST E QA PENDENTES** |
-| 58 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.12.1.md) | `7.12.1` | 7.17.0 | **RELEASES 7.13–7.17 DOCUMENTADAS; PROTOCOLO CLIENT/SERVER COORDENADO; QA FÍSICO SEPARADO** |
-| 59 | Goety - The Dark Arts | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Mobs%20%2B%20Structures/%E2%9C%85-goety%20v3.1.4.md) | `3.1.4` | 3.2.1 | **AUDITORIA DOCUMENTAL FECHADA EM 24/10**: NeoForge 1.21.1 3.1.4→3.1.5→3.1.5.1→3.2.0→3.2.1; JARs oficiais 3.2.0/3.2.1 obtidos, SHA-512 conferidos, diff central ZIP +792/−11/2.001 modificados. Conteúdo novo Enchanter/Rogueguard/Flame Construct/End Mineral demonstrado por classes/assets; manifesto da 3.2.1 confirma Implementation-Version 3.2.1. Source `main` ainda 3.2.0, funcionalidades/ABI/QA separados. **JAR físico permanece 3.1.4** |
+| 58 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.20.0.md) | `7.12.1` | 7.17.0 | **RELEASES 7.13–7.17 DOCUMENTADAS; PROTOCOLO CLIENT/SERVER COORDENADO; QA FÍSICO SEPARADO** |
+| 59 | Goety - The Dark Arts | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Mobs%20%2B%20Structures/%E2%9C%85-goety%20v3.2.3.md) | `3.1.4` | 3.2.1 | **AUDITORIA DOCUMENTAL FECHADA EM 24/10**: NeoForge 1.21.1 3.1.4→3.1.5→3.1.5.1→3.2.0→3.2.1; JARs oficiais 3.2.0/3.2.1 obtidos, SHA-512 conferidos, diff central ZIP +792/−11/2.001 modificados. Conteúdo novo Enchanter/Rogueguard/Flame Construct/End Mineral demonstrado por classes/assets; manifesto da 3.2.1 confirma Implementation-Version 3.2.1. Source `main` ainda 3.2.0, funcionalidades/ABI/QA separados. **JAR físico permanece 3.1.4** |
 | 60 | BetterNether: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betternether-new-dawn%20v21.0.26.md) | `21.0.26` | 21.0.29 (19/10) | **21.0.27→21.0.29 REVISADAS COM DIFF SOURCE; QA NEW DAWN SEPARADO** |
-| 61 | Streams Reflowing | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20World%20Gen/%E2%9C%85-streamsreflowing%20v2.13.5.md) | `2.13.5` | 2.15.2 | **RELEASES 2.13.8/2.14.1/2.14.4/2.15.0/2.15.2 REVISADAS; CONFIG .toml→.properties E ENVIO OPCIONAL DA SEED DOCUMENTADOS; QA FÍSICO SEPARADO** |
+| 61 | Streams Reflowing | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20World%20Gen/%E2%9C%85-streamsreflowing%20v2.17.5.md) | `2.13.5` | 2.15.2 | **RELEASES 2.13.8/2.14.1/2.14.4/2.15.0/2.15.2 REVISADAS; CONFIG .toml→.properties E ENVIO OPCIONAL DA SEED DOCUMENTADOS; QA FÍSICO SEPARADO** |
 | 62 | Reliquified Iron's Spells 'n Spellbooks | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-irons-spells-n-spellbooks%20v0.2.7.md) | `0.2.7` | 0.2.8 Beta | **0.2.8 BETA REVISADA INTEGRALMENTE; DIMENSION SEAL/ANIMATED TEXTURES/ABILITY ICONS DOCUMENTADOS; QA FÍSICO SEPARADO** |
-| 63 | Enhanced AI | [Abrir `.md`](./Mobs/%E2%9C%85-enhanced-ai%20v4.2.3.0.md) | `4.2.3.0` | 4.2.5.0 (20/10) | **4.2.4.0 E 4.2.5.0 REVISADAS COM CHANGELOGS EXATOS; QA FÍSICO SEPARADO** |
+| 63 | Enhanced AI | [Abrir `.md`](./Mobs/%E2%9C%85-enhanced-ai%20v4.3.3.0.md) | `4.2.3.0` | 4.2.5.0 (20/10) | **4.2.4.0 E 4.2.5.0 REVISADAS COM CHANGELOGS EXATOS; QA FÍSICO SEPARADO** |
 | 64 | ParCool! ~ Minecraft Parkour ~ | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-parcool%20v4.0.0.3.md) | `4.0.0.3` | 4.0.1.6 | **4.0.0.6/4.0.1.0/.1/.2/.5/.6 REVISADAS; CURIOS OBRIGATÓRIO NO UPSTREAM; QA FÍSICO SEPARADO** |
 | 65 | Skin Layers 3D | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic/%E2%9C%85-3d-skin-layers%20v1.11.2.md) | `1.11.2` | 1.11.4 (18/10; NeoForge 1.21.1 verificado) | **AUDITORIA 1.11.2→1.11.3→1.11.4 COMPLETA; FALSO BLOQUEIO DE CATÁLOGO CORRIGIDO; QA FÍSICO SEPARADO** |
 | 66 | Lithostitched | [Abrir `.md`](./API%20and%20Library%20%2B%20Miscellaneous%20%2B%20World%20Gen/%E2%9C%85-lithostitched%20v1.8.0%2Bbeta6.md) | `1.8.0+beta6` | 1.8.1 | **BETA6→1.8.0→1.8.1 DOCUMENTADAS; NOVOS TARGETS API/TAGS/STRUCTURE PROCESSORS; QA DE WORLDGEN SEPARADO** |
@@ -1715,7 +1734,7 @@ Esta matriz segue a numeração do pedido, não a posição física da tabela de
 
 ## Fechamento da auditoria documental #59 — Goety (24/10/2026)
 
-O dossier canônico [`✅-goety v3.1.4.md`](./Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Mobs%20%2B%20Structures/%E2%9C%85-goety%20v3.1.4.md) cobre as quatro releases posteriores à **3.1.4 instalada** para **NeoForge 1.21.1**: **3.1.5, 3.1.5.1, 3.2.0 e 3.2.1**. Como a 3.2.1 declara backport de conteúdo do Goety **2.5.59.2 / Minecraft 1.20.1**, foram recuperados também os changelogs dessa origem (**2.5.59.0/1/2**) sem tratá-los como releases instaláveis de 1.21.1. A última lacuna documental de proveniência foi enfrentada com downloads dos JARs **Modrinth oficiais 3.2.0 e 3.2.1**, hashes SHA-512 medidos, comparação ZIP por caminho/CRC32/tamanho e leitura de manifesto do binário candidato 3.2.1.
+O dossier canônico [`✅-goety v3.2.3.md`](./Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Mobs%20%2B%20Structures/%E2%9C%85-goety%20v3.2.3.md) cobre as quatro releases posteriores à **3.1.4 instalada** para **NeoForge 1.21.1**: **3.1.5, 3.1.5.1, 3.2.0 e 3.2.1**. Como a 3.2.1 declara backport de conteúdo do Goety **2.5.59.2 / Minecraft 1.20.1**, foram recuperados também os changelogs dessa origem (**2.5.59.0/1/2**) sem tratá-los como releases instaláveis de 1.21.1. A última lacuna documental de proveniência foi enfrentada com downloads dos JARs **Modrinth oficiais 3.2.0 e 3.2.1**, hashes SHA-512 medidos, comparação ZIP por caminho/CRC32/tamanho e leitura de manifesto do binário candidato 3.2.1.
 
 **Resultados do diff central:** `21.096 → 21.877` entradas ZIP, **792 adicionadas, 11 removidas, 2.001 alteradas e 19.084 sem alteração de CRC32/tamanho**. Entre os recursos/classes efetivamente novos: Enchanter (30 arquivos), Rogueguard (9 arquivos), Flame Construct (17 classes), End Mineral Fluid (6 classes), End Limestone e Ominous Decree. O **manifesto JAR 3.2.1 contém `Implementation-Version: 3.2.1`**; o source público `Vivideru/Goety-3` permanece em `mod_version=3.2.0` e por isso não é invocado como pin binário da 3.2.1. A metadata indica Curios >=9.5.1 obrigatório; há dependência opcional de Apotheosis. A correspondência funcional de cada fix importado, compatibilidade de addons e estabilidade em mundo/saves **não foram executadas ou alegadas**.
 

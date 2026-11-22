@@ -1,22 +1,28 @@
-# Enhanced AI
+# Enhanced AI — 4.3.3.0 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#252**: JAR `enhancedai-4.2.3.0.jar`, mod id `enhancedai`, runtime `4.2.3.0`, SHA-1 `763e60f869129a37cb7659e1a25bd3f50f6bd9ea`.
+> **Estado vigente, sincronização documental em 22/11/2026:** versão 4.2.3.0 → **4.3.3.0**. JAR de distribuição identificado: `enhancedai-4.3.3.0.jar`. Instalação declarada pelo usuário; o JAR top-level local e seu metadata não foram relidos. [Publicação de referência](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9740957).
+> **Delta auditado:** Auditorias anteriores cobrem 4.2.4.0–4.2.7.2; 4.3.1.0 incorpora Villager Golem Repair, Villager Eat to Heal, Bee Hive Navigation e ajustes de creeper; 4.3.2.0 Beta adiciona lunge e Grabbing Phantoms; 4.3.3.0 adiciona Stay Near Dismount para equinos/llamas e corrige classificações em MPR. Não há JAR público separado de 4.3.0.0 no intervalo identificado.
+> **Dependências/risco:** InsaneLib >=2.5.0.0-alpha informada na linha 4.2.6.0+; snapshot histórico 2.4.33.0. Dependência aguardando sincronização documental em lote posterior, não impedimento desta atualização. Configurações COMMON migradas para SERVER; necessário reconciliar antes de testes. Novos goals/AI, mob tags, configuração e multiplayer exigem QA; não foi realizado.
+> **Limite das evidências:** documentos históricos abaixo descrevem o snapshot físico de setembro de 2026. Os estados antigos não substituem a versão declarada vigente; sem testes de runtime, multiplayer, saves ou compatibilidade. O detalhamento das versões intermediárias consta das seções históricas de auditoria abaixo.
+
+
+> **Snapshot físico histórico — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#252**: JAR `enhancedai-4.2.3.0.jar`, mod id `enhancedai`, runtime `4.2.3.0`, SHA-1 `763e60f869129a37cb7659e1a25bd3f50f6bd9ea`.
 
 ## Propriedades do registro
 
 - **Mod:** Enhanced AI
-- **Arquivo JAR:** `enhancedai-4.2.3.0.jar`
-- **Versão 1.21.1:** `4.2.3.0`
+- **Arquivo JAR instalado (declarado pelo usuário):** `enhancedai-4.3.3.0.jar` ([fonte](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9740957)).
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `4.3.3.0` (versão anterior `4.2.3.0`; novo metadata não extraído).
 - **Categoria:** Mobs, RPG
 - **Função:** Reformula e amplia comportamentos de IA de mobs, sobretudo hostis vanilla, com módulos configuráveis de perseguição, combate, anti-cheese, breaching/mining/sniping e outras respostas ao ambiente.
-- **Dependências:** InsaneLib 2.4.33.0 está fisicamente presente e é a biblioteca exigida pela linha publicada do Enhanced AI. Runtime físico: Enhanced AI 4.2.3.0 / NeoForge 1.21.1.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Altera goals/comportamentos e pode aumentar dificuldade e custo de CPU. Modded mobs não devem ser assumidos como afetados automaticamente; cruzar com Epic Fight/entity patches e outros AI mods por goal duplication, pathfinding excessivo, block interaction inesperado e double-processing. A upstream 4.2.4.0 altera probabilidades do MPR Data Pack conforme profundidade/lua cheia e corrige módulos de combat/targeting/swimming, portanto merece regressão de dificuldade e AI state.
+- **Dependências:** InsaneLib >=2.5.0.0-alpha informada na linha 4.2.6.0+; snapshot histórico 2.4.33.0. Dependência aguardando sincronização documental em lote posterior, não impedimento desta atualização. Configurações COMMON migradas para SERVER; necessário reconciliar antes de testes.
+- **Estado no pack:** `4.3.3.0` declarado instalado pelo usuário em 22/11/2026; inventário GitHub sincronizado, sem inspeção local.
+- **Estado da pesquisa:** versão-alvo oficialmente identificada e cadeia intermediária documentada nas auditorias do dossier; ressalvas de changelog, artefato e QA descritas acima.
+- **Compatibilidade/Riscos:** Novos goals/AI, mob tags, configuração e multiplayer exigem QA; não foi realizado. Requisitos globais do pack pendentes de sincronização documental; sem QA.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/enhanced-ai
-- **Procedência:** modlist física atual confirma `enhancedai-4.2.3.0.jar`, mod id `enhancedai`, runtime 4.2.3.0, SHA-1 `763e60f869129a37cb7659e1a25bd3f50f6bd9ea` e InsaneLib físico. CurseForge oficial revalidado em 01/10/2026 mostra 4.2.4.0 como única release 1.21.1 posterior a 4.2.3.0.
-- **Observações:** Runtime físico 4.2.3.0. A upstream 4.2.4.0 corrige Blow up on death, Fisher e Better Drowning Swimming Up, limita teleport de targets por Enderman ao follow range e muda o MPR Data Pack para equipment/enchants escalarem com profundidade e lua cheia; não está instalada.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece Enhanced AI 4.2.3.0. A única release posterior 4.2.4.0 foi comparada e seus deltas relevantes foram incorporados abaixo.
+- **Procedência:** posição #252 do snapshot físico histórico; declaração de instalação do usuário e publicação [upstream](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9740957). Nenhum hash/metadata novo local coletado.
+- **Observações vigentes:** JAR oficial `enhancedai-4.3.3.0.jar`; Novos goals/AI, mob tags, configuração e multiplayer exigem QA; não foi realizado. Snapshot anterior é histórico.
+- **Atualização/Status:** 22/11/2026 — `4.2.3.0` → `4.3.3.0` por declaração do usuário. Auditorias anteriores cobrem 4.2.4.0–4.2.7.2; 4.3.1.0 incorpora Villager Golem Repair, Villager Eat to Heal, Bee Hive Navigation e ajustes de creeper; 4.3.2.0 Beta adiciona lunge e Grabbing Phantoms; 4.3.3.0 adiciona Stay Near Dismount para equinos/llamas e corrige classificações em MPR. Não há JAR público separado de 4.3.0.0 no intervalo identificado.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Enhanced AI muda comportamento/IA; AI-Improvements reduz custo de processamento de IA. Epic Fight pode patchar entidades/combate. Essas superfícies se cruzam, mas não são equivalentes; validar ownership de goals e combat state.
 - **Data da última decisão:** 2026-08-30

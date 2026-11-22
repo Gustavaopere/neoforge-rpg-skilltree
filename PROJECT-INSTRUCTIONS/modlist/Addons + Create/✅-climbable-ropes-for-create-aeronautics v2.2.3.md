@@ -1,25 +1,31 @@
-# Climbable Ropes for Create Aeronautics
+# Climbable Ropes for Create Aeronautics — 2.2.3 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#95**: JAR `climbable_ropes-2.1.3.jar`, mod id `climbable_ropes`, runtime `2.1.3`, SHA-1 `70ec457cb47e3772baf76e5e7c19872dbd4537f9`.
+> **Estado vigente, sincronização documental em 22/11/2026:** versão 2.1.3 → **2.2.3**. JAR de distribuição identificado: `climbable_ropes-2.2.3.jar`. Instalação declarada pelo usuário; o JAR top-level local e seu metadata não foram relidos. [Publicação de referência](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes/files/9733043).
+> **Delta auditado:** Releases 2.1.4, 2.2.0, 2.2.1 e 2.2.2 já auditadas: substituição de Player Animator por pose procedural e correções de escalada em cordas inclinadas. 2.2.3 atualiza Create Aeronautics para 1.3.3 e NeoForge de desenvolvimento para 21.1.247, e corrige cópias/cadáveres/estátuas de jogador imitando a pose de escalada.
+> **Dependências/risco:** Create Aeronautics 1.3.3 consta como versão de build upstream em 2.2.3; não tratar como requisito mínimo do JAR sem manifest. Dependência aguardando sincronização documental em lote posterior. Player Animator deixou de ser requisito deste addon a partir de 2.2.0, mas pode atender outros mods. Verificar Sable/Aeronautics, multiplayer, rope grip, cadáveres/estátuas, poses e contraptions móveis; sem QA.
+> **Limite das evidências:** documentos históricos abaixo descrevem o snapshot físico de setembro de 2026. Os estados antigos não substituem a versão declarada vigente; sem testes de runtime, multiplayer, saves ou compatibilidade. O detalhamento das versões intermediárias consta das seções históricas de auditoria abaixo.
+
+
+> **Snapshot físico histórico — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#95**: JAR `climbable_ropes-2.1.3.jar`, mod id `climbable_ropes`, runtime `2.1.3`, SHA-1 `70ec457cb47e3772baf76e5e7c19872dbd4537f9`.
 
 ## Propriedades do registro
 
 - **Mod:** Climbable Ropes for Create Aeronautics
-- **Arquivo JAR:** `climbable_ropes-2.1.3.jar`
-- **Versão 1.21.1:** `2.1.3`
+- **Arquivo JAR instalado (declarado pelo usuário):** `climbable_ropes-2.2.3.jar` ([fonte](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes/files/9733043)).
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `2.2.3` (versão anterior `2.1.3`; novo metadata não extraído).
 - **Categoria:** QoL; Tecnologia
 - **Decisão:** Sem decisão
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** versão-alvo oficialmente identificada e cadeia intermediária documentada nas auditorias do dossier; ressalvas de changelog, artefato e QA descritas acima.
+- **Estado no pack:** `2.2.3` declarado instalado pelo usuário em 22/11/2026; inventário GitHub sincronizado, sem inspeção local.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes
 - **Função:** Addon de Create Aeronautics/Simulated que permite agarrar e escalar cordas verticais/plunger ropes com movimento, slide, jump-off e animação sincronizada de escalada.
-- **Dependências:** Voltado a Create Aeronautics/Simulated. Player Animator 2.0.4+1.21.1 é confirmado pela documentação oficial da branch como library MIT embarcada via jar-in-jar; uma cópia top-level pode coexistir, com NeoForge resolvendo a versão aplicável.
-- **Compatibilidade/Riscos:** State de climbing/movement precisa permanecer server-coherent enquanto animação é client-side. 2.1.3 corrige drift em contraptions móveis, herança de velocity no dismount e override da hanging pose por FA-PE; 2.1.1 já corrigia respawn/dimension, disconnect stale pose e render cancellation. Riscos com mobility/input/camera/player-render mods e rope physics do Aeronautics.
+- **Dependências:** Create Aeronautics 1.3.3 consta como versão de build upstream em 2.2.3; não tratar como requisito mínimo do JAR sem manifest. Dependência aguardando sincronização documental em lote posterior. Player Animator deixou de ser requisito deste addon a partir de 2.2.0, mas pode atender outros mods.
+- **Compatibilidade/Riscos:** Verificar Sable/Aeronautics, multiplayer, rope grip, cadáveres/estátuas, poses e contraptions móveis; sem QA. Requisitos globais do pack pendentes de sincronização documental; sem QA.
 - **Sobreposição:** Mecânica específica de escalada em ropes do stack Aeronautics. Pode cruzar Parkour/mobility/camera/player animation mods, mas não substitui genericamente sistemas de corda ou climb.
-- **Observações:** JAR físico atual `climbable_ropes-2.1.3.jar`, mod id `climbable_ropes`, runtime 2.1.3. A 2.1.3 corrige drift/velocity em Create contraptions móveis e conflito de hanging pose com FA-PE; Player Animator 2.0.4+1.21.1 permanece embarcado via jar-in-jar.
-- **Procedência:** modlist(1).txt física atual de 20/09/2026 + CurseForge oficial Climbable Ropes 2.1.3 + changelogs oficiais 2.1.1/2.1.3 + metadata física do Player Animator 2.0.4+1.21.1 embarcado via jar-in-jar e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `climbable_ropes-2.1.3.jar` / `2.1.3`; Player Animator embarcado continua não top-level.
+- **Observações vigentes:** JAR oficial `climbable_ropes-2.2.3.jar`; Verificar Sable/Aeronautics, multiplayer, rope grip, cadáveres/estátuas, poses e contraptions móveis; sem QA. Snapshot anterior é histórico.
+- **Procedência:** posição #095 do snapshot físico histórico; declaração de instalação do usuário e publicação [upstream](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes/files/9733043). Nenhum hash/metadata novo local coletado.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026 uma leitura anterior reconciliou provisoriamente o dossiê à 2.1.1; a modlist física mais recente de 08/09/2026 confirma `climbable_ropes-2.1.3.jar`. A conclusão válida sobre Player Animator permanece: a cópia embarcada via jar-in-jar não torna automaticamente redundante eventual cópia top-level exigida por outros consumers.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — registro histórico da reconciliação física #94 na numeração então registrada; posição física atual #95: `climbable_ropes-2.1.3.jar` / `2.1.3` conferidos contra a modlist então vigente; fixes de drift/velocity, hanging pose/FA-PE, lifecycle 2.1.1 e Player Animator 2.0.4+1.21.1 embarcado via jar-in-jar preservados.
+- **Atualização/Status:** 22/11/2026 — `2.1.3` → `2.2.3` por declaração do usuário. Releases 2.1.4, 2.2.0, 2.2.1 e 2.2.2 já auditadas: substituição de Player Animator por pose procedural e correções de escalada em cordas inclinadas. 2.2.3 atualiza Create Aeronautics para 1.3.3 e NeoForge de desenvolvimento para 21.1.247, e corrige cópias/cadáveres/estátuas de jogador imitando a pose de escalada.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
@@ -143,3 +149,8 @@ Qualquer attachment temporário deve ser descartado quando a entidade/rope deixa
 - **2.2.2 — 09/11/2026:** [CurseForge file 9529382](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes/files/9529382), NeoForge 1.21.1. Corrige deriva e inversão da pose sobre cordas quase horizontais ao girar a câmera, continuação indevida da descida depois de os pés atingirem a extremidade da corda e alcance da pegada em cordas inclinadas/jogadores escalados. [Release upstream](https://github.com/matejhozlar/Create-Aeronautics-Climbable-Ropes/commit/7e32599203d6b708d5b0fd9386cb118eceb0d216).
 
 **Gates de promoção:** validar versões de Sable/Aeronautics efetivas, presença de Player Animator para outros consumidores, escalada com Pehkui, cordas planas, inclinadas e curvas, câmera girando, limite inferior, contraptions móveis, multiplayer e regressões de IK. Nenhum JAR instalado ou teste runtime executado. Dossiê e caminho preservam a versão histórica instalada; auditoria documental até 2.2.2 concluída.
+
+
+## Atualização documental declarada — Climbable Ropes 2.2.3 (22/11/2026)
+
+[CurseForge file 9733043](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-climbable-ropes/files/9733043), 21/11/2026, Release NeoForge 1.21.1, `climbable_ropes-2.2.3.jar`: atualização do ambiente de build para Create Aeronautics 1.3.3 e NeoForge 21.1.247; corrige entidades que imitam o jogador (cadáveres, estátuas e cópias desenhadas por outros mods) herdando erroneamente a pose de escalada. Não assumir que 1.3.3 seja requisito mínimo do manifest sem leitura do binário. As publicações intermediárias 2.1.4–2.2.2 permanecem auditadas nas seções anteriores. QA não executado.

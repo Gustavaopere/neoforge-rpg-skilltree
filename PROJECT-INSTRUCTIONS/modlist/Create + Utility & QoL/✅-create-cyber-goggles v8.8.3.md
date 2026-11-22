@@ -1,22 +1,28 @@
-# Create: Cyber Goggles
+# Create: Cyber Goggles — 8.8.3 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#179**: JAR `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar`, mod id `create_cyber_goggles`, runtime `8.6.3`, SHA-1 `7f27bcf2fa179135fcca6a5a61c8b120cba76b84`.
+> **Estado vigente, sincronização documental em 22/11/2026:** versão 8.6.3 → **8.8.3**. **JAR de distribuição não identificado com segurança; não reconstruir o basename.** Instalação declarada pelo usuário; o JAR top-level local e seu metadata não foram relidos. [Publicação de referência](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge).
+> **Delta auditado:** Dossier já documenta builds 8.6.4–8.8.3: pré-visualização 3D de schematics, controles numéricos/Requester, fluxo de fluidos, câmera em contraptions, overlay e animações; 8.8.2 corrige desvio de câmera/quantidades/bordas e 8.8.3 atualiza FlexConfig para 0.3.0 (jarJar no source). Publicação 8.8.3 do autor no Modrinth consta na auditoria do repositório; a atualização exata no CurseForge não pôde ser revalidada no catálogo consultado.
+> **Dependências/risco:** Build source usa NeoForge 21.1.265, sem comprovação de range mínimo do JAR; FlexConfig 0.3.0 é embarcada. Create >=6.0.10 citado no source. Dependências aguardam reconciliação, sem impedir atualização declarativa. **Basename do JAR 8.8.3 não confirmado de forma independente.** Não inferir por padrão a partir de 8.8.1 ou de source. Versão documentada 8.8.3 declarada, JAR exato pendente; não declarar cópia local verificada.
+> **Limite das evidências:** documentos históricos abaixo descrevem o snapshot físico de setembro de 2026. Os estados antigos não substituem a versão declarada vigente; sem testes de runtime, multiplayer, saves ou compatibilidade. O detalhamento das versões intermediárias consta das seções históricas de auditoria abaixo.
+
+
+> **Snapshot físico histórico — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#179**: JAR `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar`, mod id `create_cyber_goggles`, runtime `8.6.3`, SHA-1 `7f27bcf2fa179135fcca6a5a61c8b120cba76b84`.
 
 ## Propriedades do registro
 
 - **Mod:** Create: Cyber Goggles
-- **Arquivo JAR:** `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar`
-- **Versão 1.21.1:** `8.6.3`
+- **Arquivo JAR instalado (declarado pelo usuário):** não verificado — JAR exato da versão 8.8.3 pendente ([fonte](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge)).
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `8.8.3` (versão anterior `8.6.3`; novo metadata não extraído).
 - **Categoria:** QoL, Visual, Tecnologia
 - **Função:** Mod client-side de assistência para Create, com goggles e recursos de informação/visualização/QoL voltados a máquinas e redes Create.
-- **Dependências:** Client-side sobre Create 6.0.10; pack físico usa NeoForge 21.1.250 e JEI 19.56.0.440. Source branch 8.6.3 declara Create mínimo 6.0.10 e usa JEI 19.56.0.439 no ambiente de desenvolvimento.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Riscos: regressão de mixin com JEI (#92, corrigida em 8.6.3); overlay divergir do server state; `Image is not allocated` regression; Requester undo/recipe transfer duplicar ação; tooltip/provider conflict; shader/post-process conflicts; Aeronautics body stale; Create internals drift. A upstream 8.6.4 refatora goggle tooltips para registry extensível; 8.6.5 corrige tooltip fade e completa a navegação Aeronautics #97; 8.6.6 corrige o crash de dedicated server do issue #102 causado por carregamento de `LocalPlayer` no lado servidor.
+- **Dependências:** Build source usa NeoForge 21.1.265, sem comprovação de range mínimo do JAR; FlexConfig 0.3.0 é embarcada. Create >=6.0.10 citado no source. Dependências aguardam reconciliação, sem impedir atualização declarativa.
+- **Estado no pack:** `8.8.3` declarado instalado pelo usuário em 22/11/2026; inventário GitHub sincronizado, sem inspeção local.
+- **Estado da pesquisa:** versão-alvo oficialmente identificada e cadeia intermediária documentada nas auditorias do dossier; ressalvas de changelog, artefato e QA descritas acima.
+- **Compatibilidade/Riscos:** **Basename do JAR 8.8.3 não confirmado de forma independente.** Não inferir por padrão a partir de 8.8.1 ou de source. Versão documentada 8.8.3 declarada, JAR exato pendente; não declarar cópia local verificada. Requisitos globais do pack pendentes de sincronização documental; sem QA.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles
-- **Procedência:** modlist física atual confirma `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar` / 8.6.3. A auditoria anterior estabeleceu pin matching do branch oficial à 8.6.3 naquele momento; o branch `1.21.1/NeoForge` avançou depois para as releases 8.6.4/8.6.5 e não é mais um pin exato do JAR instalado. CurseForge 8.6.4/8.6.5/8.6.6 e GitHub PRs #98/#99 + issues #97/#102 foram revalidados em 03/10/2026.
-- **Observações:** Runtime físico permanece 8.6.3 Beta. Upstream posterior publicou 8.6.4, 8.6.5 e 8.6.6 como Releases: 8.6.4 incorpora traduções e uma nova registry API para composição de goggle tooltips; 8.6.5 corrige tooltip fade e adiciona/fecha a feature #97 de distância para navigation items do Aeronautics; 8.6.6 corrige o invalid-dist crash de dedicated server do issue #102.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 8.6.3 Beta. A sequência 8.6.4 → 8.6.5 → 8.6.6 foi auditada; 8.6.6 é a latest 1.21.1 e corrige o crash de dedicated server rastreado no issue #102.
+- **Procedência:** posição #179 do snapshot físico histórico; declaração de instalação do usuário e publicação [upstream](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge). Nenhum hash/metadata novo local coletado.
+- **Observações vigentes:** nome do JAR da nova versão pendente de confirmação; **Basename do JAR 8.8.3 não confirmado de forma independente.** Não inferir por padrão a partir de 8.8.1 ou de source. Versão documentada 8.8.3 declarada, JAR exato pendente; não declarar cópia local verificada. Snapshot anterior é histórico.
+- **Atualização/Status:** 22/11/2026 — `8.6.3` → `8.8.3` por declaração do usuário. Dossier já documenta builds 8.6.4–8.8.3: pré-visualização 3D de schematics, controles numéricos/Requester, fluxo de fluidos, câmera em contraptions, overlay e animações; 8.8.2 corrige desvio de câmera/quantidades/bordas e 8.8.3 atualiza FlexConfig para 0.3.0 (jarJar no source). Publicação 8.8.3 do autor no Modrinth consta na auditoria do repositório; a atualização exata no CurseForge não pôde ser revalidada no catálogo consultado.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não é equivalente a Create Goggles/equipamentos físicos: Cyber Goggles é assistência client-side. Pode sobrepor UI/overlays de Jade/JEI/outros, mas não owns gameplay state.
 - **Data da última decisão:** 2026-09-20
@@ -222,3 +228,8 @@ A [publicação 8.8.1 Beta de 17/11/2026](https://www.curseforge.com/minecraft/m
 
 **Resultado:** **auditoria documental das releases 8.6.4 a 8.8.3 concluída**, com as publicações oficiais e changelogs de cada versão relevante identificados e as correções anteriores preservadas. As declarações nas seções 28/29 de que 8.8.2 e 8.8.3 não tinham JAR confirmado passam a ser **históricas e ficam superadas por esta evidência**. **Versão instalada permanece 8.6.3**, JAR `CreateCyberGoggles-1.21.1-8.6.3-NeoForge.jar`, posição #179. **Sem alteração de JAR, versão no nome, pasta ou configurações e sem QA/runtime**. Depois de re-fetch da persistência, **item 109 pode sair somente da lista de auditorias documentais**; qualquer decisão de instalar 8.8.3 continua sujeita ao gate de loader/FlexConfig e testes in-game.
 
+
+
+## Conciliação pendente do nome do JAR 8.8.3 — 22/11/2026
+
+O source e a publicação do mesmo autor no Modrinth permitem identificar `8.8.3` NeoForge 1.21.1 como versão documental declarada. O nome exato do artefato não foi obtido neste lote; a versão 8.8.1 do CurseForge distribui `create_cyber_goggles-1.21.1-8.8.1-neoforge.jar`, mas **este fato não prova** o nome do arquivo 8.8.3. Não preencher por extrapolação, nem afirmar distribuição 8.8.3 no CurseForge sem confirmação. Preservar divergência e concluir o campo quando o filename oficial estiver acessível.

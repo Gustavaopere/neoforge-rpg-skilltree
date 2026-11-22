@@ -1,6 +1,12 @@
-# Ars Elemental
+# Ars Elemental — 0.7.11.3 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#44**: `ars_elemental-1.21.1-0.7.10.1.jar`, mod id `ars_elemental`, runtime `0.7.10.1`, SHA-1 `a1e4021177aae0e16c1f7c6487a82f0b68bbade3`.
+> **Estado vigente, sincronização documental em 22/11/2026:** versão 0.7.10.1 → **0.7.11.3**. JAR de distribuição identificado: `ars_elemental-1.21.1-0.7.11.3.jar`. Instalação declarada pelo usuário; o JAR top-level local e seu metadata não foram relidos. [Publicação de referência](https://www.curseforge.com/minecraft/mc-mods/ars-elemental/files/9716535).
+> **Delta auditado:** 0.7.10.3 corrige Prism API/Oxidize AoE; 0.7.10.4 atualiza SauceLib; 0.7.11.0 Beta acrescenta Carian Phalanx, Spell Horn, ajustes de Life Link e worldgen; 0.7.11.3 Beta corrige crash de servidor e traduções. 0.7.10.2, 0.7.11.1 e 0.7.11.2 não tiveram artefato público individual comprovado.
+> **Dependências/risco:** Ars Nouveau 5.13.2.1418 citado no ambiente de build do upstream, a conciliar com o registro histórico 5.13.1; SauceLib distribuída/embarcada exige verificação do manifesto. Dependência aguardando sincronização documental em lote posterior; não impede esta atualização. Beta oficial 1.21.1 NeoForge. Regressões: Prism API, Oxidize AoE, Phalanx, Spell Horn, Life Link, worldgen e startup dedicado.
+> **Limite das evidências:** documentos históricos abaixo descrevem o snapshot físico de setembro de 2026. Os estados antigos não substituem a versão declarada vigente; sem testes de runtime, multiplayer, saves ou compatibilidade. O detalhamento das versões intermediárias consta das seções históricas de auditoria abaixo.
+
+
+> **Snapshot físico histórico — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#44**: `ars_elemental-1.21.1-0.7.10.1.jar`, mod id `ars_elemental`, runtime `0.7.10.1`, SHA-1 `a1e4021177aae0e16c1f7c6487a82f0b68bbade3`.
 
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `ars_elemental-1.21.1-0.7.10.1.jar`, versão `0.7.10.1`. A URL da própria página Notion foi removida; o conteúdo canônico foi preservado.
 
@@ -12,20 +18,20 @@
 ## Propriedades do banco
 
 - **Mod:** Ars Elemental
-- **Arquivo JAR:** `ars_elemental-1.21.1-0.7.10.1.jar`
-- **Versão 1.21.1:** 0.7.10.1
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado pelo usuário):** `ars_elemental-1.21.1-0.7.11.3.jar` ([fonte](https://www.curseforge.com/minecraft/mc-mods/ars-elemental/files/9716535)).
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `0.7.11.3` (versão anterior `0.7.10.1`; novo metadata não extraído).
+- **Estado no pack:** `0.7.11.3` declarado instalado pelo usuário em 22/11/2026; inventário GitHub sincronizado, sem inspeção local.
+- **Estado da pesquisa:** versão-alvo oficialmente identificada e cadeia intermediária documentada nas auditorias do dossier; ressalvas de changelog, artefato e QA descritas acima.
 - **Decisão:** Manter
 - **Categoria:** Magia, RPG
 - **Função:** Expansão elemental de Ars Nouveau com 39 glyphs/spell parts normais na build 0.7.10.1, 8 rituals, 3 familiars, 3 perks, 12 armor sets, casters e mappings de resistências Air/Earth/Fire/Water.
-- **Dependências:** Ars Nouveau 5.13.1. Sauce permanece jarjar/embedded; Ars Elemancy 1.18.3 consome a base elemental sem transferir authority.
+- **Dependências:** Ars Nouveau 5.13.2.1418 citado no ambiente de build do upstream, a conciliar com o registro histórico 5.13.1; SauceLib distribuída/embarcada exige verificação do manifesto. Dependência aguardando sincronização documental em lote posterior; não impede esta atualização.
 - **Sobreposição:** Complementa Ars Nouveau e fornece a base elemental consumida por Ars Elemancy. Não duplicar schools/perks/resistances em integração própria.
-- **Compatibilidade/Riscos:** Addon de Ars Nouveau com schools, glyphs, familiars, perks, armor e rituals. Riscos: school power/resistance double-dip, perk duplication, spell/turret causalidade, Sauce jarjar drift e source/publication skew. Upstream público chegou a 0.7.10.3; o source passou por 0.7.10.2 intermediário e 0.7.10.3 exige Ars Nouveau atualizado.
-- **Observações:** Runtime físico permanece 0.7.10.1. O branch oficial 1.21 passou por **0.7.10.2** no source e chegou a **0.7.10.3**; o CurseForge publica 0.7.10.3 diretamente após 0.7.10.1, sem artefato público 0.7.10.2 localizado.
-- **Procedência:** modlist física atual + source oficial `Alexthw46/Ars-Elemental` branch 1.21 para 0.7.10.1→0.7.10.2→0.7.10.3 + CurseForge oficial 0.7.10.3. A autoridade instalada permanece 0.7.10.1.
+- **Compatibilidade/Riscos:** Beta oficial 1.21.1 NeoForge. Regressões: Prism API, Oxidize AoE, Phalanx, Spell Horn, Life Link, worldgen e startup dedicado. Requisitos globais do pack pendentes de sincronização documental; sem QA.
+- **Observações vigentes:** JAR oficial `ars_elemental-1.21.1-0.7.11.3.jar`; Beta oficial 1.21.1 NeoForge. Regressões: Prism API, Oxidize AoE, Phalanx, Spell Horn, Life Link, worldgen e startup dedicado. Snapshot anterior é histórico.
+- **Procedência:** posição #044 do snapshot físico histórico; declaração de instalação do usuário e publicação [upstream](https://www.curseforge.com/minecraft/mc-mods/ars-elemental/files/9716535). Nenhum hash/metadata novo local coletado.
 - **Fonte:** https://github.com/Alexthw46/Ars-Elemental
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Ars Elemental físico permanece 0.7.10.1. O estado intermediário de source **0.7.10.2** e a release pública **0.7.10.3** foram auditados separadamente; 0.7.10.3 não deve ser promovido isoladamente sem reconciliar Ars Nouveau.
+- **Atualização/Status:** 22/11/2026 — `0.7.10.1` → `0.7.11.3` por declaração do usuário. 0.7.10.3 corrige Prism API/Oxidize AoE; 0.7.10.4 atualiza SauceLib; 0.7.11.0 Beta acrescenta Carian Phalanx, Spell Horn, ajustes de Life Link e worldgen; 0.7.11.3 Beta corrige crash de servidor e traduções. 0.7.10.2, 0.7.11.1 e 0.7.11.2 não tiveram artefato público individual comprovado.
 - **Histórico da decisão:** Manter. Ficha reconstruída em 07/09/2026 contra o commit exato da build 0.7.10.1 para impedir contaminação por features da 0.7.10.2 upstream.
 - **Data da última decisão:** 2026-09-07
 

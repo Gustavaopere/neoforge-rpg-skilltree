@@ -1,26 +1,32 @@
-# Goety
+# Goety - The Dark Arts — 3.2.3 (versão instalada declarada em 22/11/2026)
+
+> **Estado vigente, sincronização documental em 22/11/2026:** versão 3.1.4 → **3.2.3**. JAR de distribuição identificado: `goety-3.2.3.jar`. Instalação declarada pelo usuário; o JAR top-level local e seu metadata não foram relidos. [Publicação de referência](https://www.curseforge.com/minecraft/mc-mods/goety/files/9668015).
+> **Delta auditado:** A sequência 3.1.5–3.2.3 foi auditada no dossier com mudanças de progressão, Crypt, Cursed Plinth, Sealer, Polar Crystal e, na 3.2.3, Grave Monstrosity, Monstrous Core, novos materiais, scroll cloning e ajustes de servants/worldgen. O source 3.2.2→3.2.3 foi comparado; não equivale a teste de binário.
+> **Dependências/risco:** Integrações Goety Iron e Goety Cataclysm são documentadas separadamente, sem afirmar ABI atual verificada. Dependências eventualmente defasadas aguardam reconciliação de seus próprios dossiers. Mod stateful de magia/worldgen. QA: saves, research, mobs e estruturas, ownership, encantos, multiplayer e claims.
+> **Limite das evidências:** documentos históricos abaixo descrevem o snapshot físico de setembro de 2026. Os estados antigos não substituem a versão declarada vigente; sem testes de runtime, multiplayer, saves ou compatibilidade. O detalhamento das versões intermediárias consta das seções históricas de auditoria abaixo.
+
 
 ## Propriedades do registro
 
 - **Mod:** Goety
-- **Arquivo JAR:** `goety-3.1.4.jar`
-- **Versão 1.21.1:** `3.1.4`
+- **Arquivo JAR instalado (declarado pelo usuário):** `goety-3.2.3.jar` ([fonte](https://www.curseforge.com/minecraft/mc-mods/goety/files/9668015)).
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `3.2.3` (versão anterior `3.1.4`; novo metadata não extraído).
 - **Categoria:** Magia, RPG, Exploração, Mobs
 - **Decisão:** Sem decisão
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** versão-alvo oficialmente identificada e cadeia intermediária documentada nas auditorias do dossier; ressalvas de changelog, artefato e QA descritas acima.
+- **Estado no pack:** `3.2.3` declarado instalado pelo usuário em 22/11/2026; inventário GitHub sincronizado, sem inspeção local.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/goety/files/8689429
 - **Função:** Provider mágico de Soul Energy, Focus casting por Wands/Staffs, servants/minions, rituals, Research, brewing/witchcraft, artifices, mobs/structures e progressão associada.
-- **Dependências:** Goety base 3.1.4. Integrações físicas relevantes: Patchouli 1.21.1-93-NEOFORGE, Curios 9.5.1+1.21.1 e JEI; addons separados Goety Iron 3.1 e Goety Cataclysm 1.21.1-1.8.2.
-- **Compatibilidade/Riscos:** Release física 3.1.4 exata. Há source público 1.21.1+ auditável, mas nenhum pin público exato 3.1.4 foi estabelecido. Riscos: confundir registry de outra build com runtime 3.1.4, Soul Energy/cast duplication, servant lifecycle/ownership, ritual partial settlement, Research mirror drift, addon ABI drift e regressão Prisoner item pickup. A upstream 3.1.5 introduziu uma regressão de structures não gerando, corrigida em 3.1.5.1; a 3.2.0 amplia novamente a superfície de worldgen, servants e boss content.
+- **Dependências:** Integrações Goety Iron e Goety Cataclysm são documentadas separadamente, sem afirmar ABI atual verificada. Dependências eventualmente defasadas aguardam reconciliação de seus próprios dossiers.
+- **Compatibilidade/Riscos:** Mod stateful de magia/worldgen. QA: saves, research, mobs e estruturas, ownership, encantos, multiplayer e claims. Requisitos globais do pack pendentes de sincronização documental; sem QA.
 - **Sobreposição:** Cobertura forte em necromancia, summons, souls, rituals e várias escolas elementais/void. Recursos permanecem provider-specific: Goety Soul Energy não é Malum spirits, Eidolon souls, Vampirism blood nem recurso Black Arcana.
-- **Observações:** A linha pública 3.1.0/3.1.1 registra 123 itens Focus em 10 categorias; a lista oficial Wiki de 110 nomes continua válida como subconjunto documental, não como claim do JAR 3.1.4. O runtime físico 3.1.4 corrige principalmente crash de servidor quando Prisoner pega item. Upstream posterior: 3.1.5 é uma atualização ampla de paridade/Howling, 3.1.5.1 corrige estruturas que deixaram de gerar na 3.1.5 e 3.2.0 publica The Windy Update; nenhuma dessas versões está instalada.
-- **Procedência:** modlist(1).txt física atual confirma `goety-3.1.4.jar`, mod id `goety`, runtime `3.1.4` e SHA-1 `a0770e180e4e8b1b87d8fa9c8356e9dbf34d82a7`. CurseForge oficial revalidado em 03/10/2026 mostra a sequência 1.21.1/NeoForge `3.1.4 → 3.1.5 → 3.1.5.1 → 3.2.0`; source público continua tratado fail-closed quanto à equivalência exata do JAR físico.
+- **Observações vigentes:** JAR oficial `goety-3.2.3.jar`; Mod stateful de magia/worldgen. QA: saves, research, mobs e estruturas, ownership, encantos, multiplayer e claims. Snapshot anterior é histórico.
+- **Procedência:** posição #305 do snapshot físico histórico; declaração de instalação do usuário e publicação [upstream](https://www.curseforge.com/minecraft/mc-mods/goety/files/9668015). Nenhum hash/metadata novo local coletado.
 - **Histórico da decisão:** 07/09/2026: auditoria Phase 2 avançada. Release pública exata 3.1.4 fixada; inventário oficial Wiki normalizado em 110 Focuses base/10 categorias, 12 Wands/Staffs, 13 ritual types e 10 Research lines; baseline 109→110 corrigido por Order Focus. 10/09/2026: PR #174 reconciliou a linha pública Vivideru/Goety-3 1.21.1 em checkpoints 3.1.0/3.1.1, com blob estável de `ModItems.java` e 123 registros ativos de itens Focus; os 110 nomes da Wiki passam a ser subconjunto documental. Exact 3.1.4 JAR↔source, reachability/deduplicação, mechanics/API e runtime QA permanecem pendentes/fail-closed.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece Goety 3.1.4. As releases posteriores `3.1.5 → 3.1.5.1 → 3.2.0` foram comparadas em ordem e os deltas operacionais relevantes foram incorporados abaixo.
+- **Atualização/Status:** 22/11/2026 — `3.1.4` → `3.2.3` por declaração do usuário. A sequência 3.1.5–3.2.3 foi auditada no dossier com mudanças de progressão, Crypt, Cursed Plinth, Sealer, Polar Crystal e, na 3.2.3, Grave Monstrosity, Monstrous Core, novos materiais, scroll cloning e ajustes de servants/worldgen. O source 3.2.2→3.2.3 foi comparado; não equivale a teste de binário.
 - **Data da última decisão:** 2026-09-10
 
-> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #305: JAR `goety-3.1.4.jar`, mod id `goety`, runtime `3.1.4`, SHA-1 `a0770e180e4e8b1b87d8fa9c8356e9dbf34d82a7`.
+> **Snapshot físico histórico — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #305: JAR `goety-3.1.4.jar`, mod id `goety`, runtime `3.1.4`, SHA-1 `a0770e180e4e8b1b87d8fa9c8356e9dbf34d82a7`.
 
 <callout icon="🔬" color="purple_bg">
 	**PADRÃO ALEX'S MOBS — ESCOPO CANÔNICO.** Runtime físico: `goety-3.1.4.jar`, mod id `goety`, NeoForge 1.21.1. A release pública **3.1.4** é pinada exatamente. A linha pública 1.21.1+ `Vivideru/Goety-3` foi auditada nos checkpoints 3.1.0 e 3.1.1, onde `ModItems.java` mantém um blob estável com **123 registros ativos de itens Focus**. A lista oficial da Wiki com 110 nomes é preservada como subconjunto documental. Não há pin público exato de source 3.1.4 estabelecido; portanto equivalência JAR↔source, reachability, mechanics, APIs e internals específicos da 3.1.4 permanecem fail-closed.

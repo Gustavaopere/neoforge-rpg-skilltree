@@ -1,22 +1,28 @@
-# Easy NPC: Config UI
+# Easy NPC: Config UI — 7.20.0 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#241**: JAR `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_config_ui`, runtime `7.12.1`, SHA-1 `84eb6b0500d9be672d6999df1ff57271a573c389`.
+> **Estado vigente, sincronização documental em 22/11/2026:** versão 7.12.1 → **7.20.0**. JAR de distribuição identificado: `easy_npc_config_ui-neoforge-1.21.1-7.20.0.jar`. Instalação declarada pelo usuário; o JAR top-level local e seu metadata não foram relidos. [Publicação de referência](https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui/files/all).
+> **Delta auditado:** Versões 7.13.0–7.20.0 revistas no dossier: 7.17.1 remove testes dos JARs, 7.18.0 amplia configuração de projéteis, boss bars e condições de visibilidade, 7.19.0 corrige skin/poses e 7.20.0 corrige crashes por IDs inválidos e comportamentos vanilla imprevistos. Notas da família Core não são automaticamente funcionalidades internas do JAR UI.
+> **Dependências/risco:** Easy NPC: Core deve ser sincronizado com a mesma linha de versão, bem como possíveis bundles; o histórico documental do Core já registra 7.20.0. Conferir duplicação do módulo UI e handshake. Testar configuração, skin, permissões, presets e persistência de NPCs; sem execução de runtime.
+> **Limite das evidências:** documentos históricos abaixo descrevem o snapshot físico de setembro de 2026. Os estados antigos não substituem a versão declarada vigente; sem testes de runtime, multiplayer, saves ou compatibilidade. O detalhamento das versões intermediárias consta das seções históricas de auditoria abaixo.
+
+
+> **Snapshot físico histórico — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#241**: JAR `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_config_ui`, runtime `7.12.1`, SHA-1 `84eb6b0500d9be672d6999df1ff57271a573c389`.
 
 ## Propriedades do registro
 
 - **Mod:** Easy NPC: Config UI
-- **Arquivo JAR:** `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar`
-- **Versão 1.21.1:** `7.12.1`
+- **Arquivo JAR instalado (declarado pelo usuário):** `easy_npc_config_ui-neoforge-1.21.1-7.20.0.jar` ([fonte](https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui/files/all)).
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `7.20.0` (versão anterior `7.12.1`; novo metadata não extraído).
 - **Categoria:** QoL, Visual
 - **Função:** Módulo gráfico de configuração do Easy NPC que fornece screens/controles para editar NPCs e a camada de networking necessária ao fluxo de configuração, mantendo o Core como authority do NPC state.
-- **Dependências:** Easy NPC Core; NeoForge 1.21.1. Runtime físico: Config UI 7.12.1. Bundle 7.12.1 também está instalado e declara a composição Core + Config UI.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Riscos de UI/API/network drift se Config UI e Core estiverem desalinhados, edição de state stale, double-submit sob latency, permissões insuficientes, screen client-only carregada no servidor e assumir que fechar/salvar UI já equivale a commit sem confirmação server-side. A upstream 7.13.0 altera o network protocol e exige cliente/servidor na mesma versão; 7.14.0 corrige sync tardio de pose/settings/trading/sound. Portanto a linha nova não deve ser promovida isoladamente sobre Core/Bundle 7.12.1.
+- **Dependências:** Easy NPC: Core deve ser sincronizado com a mesma linha de versão, bem como possíveis bundles; o histórico documental do Core já registra 7.20.0. Conferir duplicação do módulo UI e handshake.
+- **Estado no pack:** `7.20.0` declarado instalado pelo usuário em 22/11/2026; inventário GitHub sincronizado, sem inspeção local.
+- **Estado da pesquisa:** versão-alvo oficialmente identificada e cadeia intermediária documentada nas auditorias do dossier; ressalvas de changelog, artefato e QA descritas acima.
+- **Compatibilidade/Riscos:** Testar configuração, skin, permissões, presets e persistência de NPCs; sem execução de runtime. Requisitos globais do pack pendentes de sincronização documental; sem QA.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui
-- **Procedência:** modlist física atual confirma `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_config_ui` e runtime `7.12.1`; Core filename e Bundle físicos também estão em 7.12.1. Changelogs oficiais 7.12.0/7.12.1 sustentam os deltas instalados; CurseForge oficial do Config UI foi revalidado em 03/10/2026 e publica 7.13.0 e 7.14.0 para NeoForge 1.21.1 como atualizações posteriores não instaladas.
-- **Observações:** Config UI 7.12.1 permanece o runtime físico. O salto instalado 7.11.0→7.12.1 cobre preset browser/import/export/restore/administração. As releases upstream 7.13.0/7.14.0 acrescentam correções de dialog buttons, skin error handling, preset search, protocolo de rede e sincronização imediata/tardia de settings; não estão instaladas.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 7.12.1. A sequência posterior 1.21.1/NeoForge é 7.13.0 → 7.14.0; os deltas foram incorporados sem alterar versão instalada nem filename.
+- **Procedência:** posição #241 do snapshot físico histórico; declaração de instalação do usuário e publicação [upstream](https://www.curseforge.com/minecraft/mc-mods/easy-npc-config-ui/files/all). Nenhum hash/metadata novo local coletado.
+- **Observações vigentes:** JAR oficial `easy_npc_config_ui-neoforge-1.21.1-7.20.0.jar`; Testar configuração, skin, permissões, presets e persistência de NPCs; sem execução de runtime. Snapshot anterior é histórico.
+- **Atualização/Status:** 22/11/2026 — `7.12.1` → `7.20.0` por declaração do usuário. Versões 7.13.0–7.20.0 revistas no dossier: 7.17.1 remove testes dos JARs, 7.18.0 amplia configuração de projéteis, boss bars e condições de visibilidade, 7.19.0 corrige skin/poses e 7.20.0 corrige crashes por IDs inválidos e comportamentos vanilla imprevistos. Notas da família Core não são automaticamente funcionalidades internas do JAR UI.
 - **Decisão:** Dependência
 - **Sobreposição:** Sobreposição apenas de superfície administrativa com comandos/config wand: todos editam o mesmo Core. Não deve haver duas cópias de configuração autoritativa.
 - **Data da última decisão:** 2026-09-06
