@@ -204,3 +204,12 @@ Linha pública NeoForge 1.21.1 entrou em 4.0.0 (11/10) e recebeu 4.0.1 (11/10). 
 - [ ] Conferir JAR candidato, metadata e SHA e executar smoke client/server antes de promover a versão instalada no dossiê/índice.
 
 **Estado documental:** auditoria das **seis releases posteriores à instalação 3.9.9 até a candidata 4.1.2** concluída com limites explícitos de notas cumulativas. **Não significa upgrade instalado nem testes aprovados.** O basename `✅-supplementaries v1.21.1-3.9.9.md`, o JAR físico e a categoria real permanecem inalterados.
+
+## Auditoria incremental upstream — Supplementaries 4.1.3 → 4.1.4 (22/11/2026; não instaladas)
+
+A baseline física continua #536 `supplementaries-1.21.1-3.9.9-neoforge.jar` / `1.21.1-3.9.9`. As seis releases entre **3.9.9 e 4.1.2** já foram individualmente revisadas nas seções anteriores; **não repetir** seus changelogs cumulativos como se fossem novidades desta revisão.
+
+- **4.1.3 — 18/11/2026**, [arquivo oficial CurseForge 9687485, NeoForge/Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9687485), `supplementaries-1.21.1-4.1.3-neoforge.jar`. O changelog público discrimina apenas **“fixes”**, sem nomear comportamento, classe, bug, impacto ou mod específico. **Não** é possível concluir quais bugs foram corrigidos ou assumir apenas bugs sem efeito em gameplay; falta fonte mais detalhada ou diff binário/source pinado.
+- **4.1.4 — 20/11/2026**, [arquivo oficial CurseForge 9724360, NeoForge/Minecraft 1.21.1](https://www.curseforge.com/minecraft/mc-mods/supplementaries/files/9724360), `supplementaries-1.21.1-4.1.4-neoforge.jar`. A nota específica é **“removed a warn”**. Sem localização/mensagem do warning e diff versionado, não inferir correção de crash, alteração de gameplay, configuração ou remoção de feature.
+
+A cronologia pública pós-4.1.2 para o alvo contém **4.1.3 e 4.1.4**, ambas registradas sem inventar deltas ocultos. **QA/upgrade condicionado** à compatibilidade atual de Moonlight Lib/Amendments, especialmente dados de itens/blocos e world saves do Supplementaries 4.1, tags, Soap/removal de trims, canhões e sinais redstone descritos anteriormente. Não houve download/diff dos JARs 4.1.3/4.1.4, instalação ou teste. **Baseline e categorias oficiais preservadas.**

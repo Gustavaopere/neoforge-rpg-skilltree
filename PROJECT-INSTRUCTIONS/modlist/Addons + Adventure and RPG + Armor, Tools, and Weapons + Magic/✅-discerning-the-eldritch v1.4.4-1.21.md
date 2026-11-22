@@ -169,3 +169,17 @@ State per-player de buffs/recasts/cooldowns não pode vazar. Summons precisam de
 - O autor remove **Soul Fire'd** como dependência da build 1.4.5. Não remover fisicamente o mod do pack: seus demais consumidores e dependências precisam ser avaliados independentemente. A metadata exata do novo JAR não foi extraída.
 
 **Relevância:** novo gear exige revisão de progression, recipes/loot, atributos, animações, weapon categories/skills e compatibilidade Epic Fight/ISS; não inventar IDs, receitas, stats, habilidades ou forma de obtenção. As antigas divergências de contagem/inventário de spells permanecem explícitas e não são resolvidas por esse changelog. QA com ISS, ASU, AzureLib, Soul Fire'd quando presente, dedicated server e resource packs pendente. Auditoria da cadeia de releases concluída documentalmente; instalação e homologação não executadas.
+
+## Auditoria incremental upstream — Discerning The Eldritch 1.4.6 (22/11/2026; não instalada)
+
+O arquivo top-level permanece `discerning_the_eldritch-1.4.4-1.21.jar`, runtime `1.4.4-1.21`, #220. O dossier já audita a etapa **1.4.5**, incluindo gear Starvoid, Starmetal e remoção da hard dependency de Soul Fire'd; não repetida aqui.
+
+A publicação [**1.4.6**, CurseForge file 9709805](https://www.curseforge.com/minecraft/mc-mods/discerning-the-eldritch/files/9709805), **20/11/2026**, é **NeoForge / Minecraft 1.21.1**, com o seguinte changelog exclusivo:
+- Corrige **crash de Soul Set Ablaze** ao matar várias entidades; relevante a casts de área/multitarget, morte e dano concorrente no servidor.
+- Corrige **tag quebrada com item não utilizado**, relevante a datapacks, recipes e filtros de itens, sem inventar o ID da tag.
+- Adiciona traduções ausentes, atualiza a localização **chinesa** e **compatibilidade BC** para itens faltantes; a sigla BC **não é expandida pelo changelog**, portanto não atribuir projeto/contrato específico sem outra fonte.
+- Adiciona integração com **Malum** para **scythes**, importante para classificação de armas e weapon compat quando Malum está presente.
+- **Shards of Malice** passam a empilhar em **64** unidades; muda inventário, loot, storage e transferências.
+- Autor declara que o projeto passou a **All Rights Reserved**, fato jurídico de distribuição, não nova mecânica. Não copiar assets/source sob pressuposto de licença anterior.
+
+**QA:** executar Soul Set Ablaze com várias mortes na mesma ação, despawn e summons, tags/datapack reload, stacks de Shards 1/64, scythes Malum, addon ISS/ASU, armor/attacks Epic Fight, servidor e multiplayer. Não atribuir a 1.4.6 as novidades de 1.4.5, já registradas. **Sem instalação, QA, backup ou mudança na categoria oficial.**

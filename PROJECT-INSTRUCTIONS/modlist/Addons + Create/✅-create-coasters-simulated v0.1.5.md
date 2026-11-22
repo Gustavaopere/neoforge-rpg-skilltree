@@ -139,3 +139,15 @@ Nenhum teste foi marcado como aprovado nesta auditoria.
 ## 16. Revalidação física — 11/09/2026
 A modlist física atual continua contendo exatamente `simulatedcoasters-0.1.5.jar`, com mod id `simulatedcoasters` e runtime `0.1.5`. O stack obrigatório permanece Create `6.0.10` + Sable `2.0.5`; Create Aeronautics `1.3.2` continua presente como integração opcional.
 Nenhuma evidência desta revalidação exige reescrever o dossiê anterior: as boundaries de authority, os fixes 0.1.5 e a matriz de testes permanecem válidos. Os testes continuam **não executados** nesta auditoria documental.
+
+## Auditoria incremental upstream — Create: Coasters Simulated 0.1.6 (22/11/2026; não instalada)
+
+A baseline física #505 é `simulatedcoasters-0.1.5.jar`, versão `0.1.5`, para Create 6.0.10 e Sable 2.0.5, com Aeronautics presente como integração opcional.
+
+A **primeira release posterior 0.1.6**, [CurseForge 9654233](https://www.curseforge.com/minecraft/mc-mods/create-coasters-simulated/files/9654233), publicada em **16/11/2026** para Minecraft 1.21.1 / NeoForge, fornece `simulatedcoasters-0.1.6.jar`. Changelog autoral exclusivo:
+- **Major Improvements to TPS** — melhoria significativa de desempenho de tick **anunciada**, não medida no pack.
+- **Fixed issue causing several expensive plot scans on all sublevels every tick** — corrige varreduras onerosas de plots executadas **a cada tick em todos os sublevels**.
+
+**Impacto:** custo assintótico potencialmente alto quando há múltiplas regiões/sublevels e estruturas rollercoaster; testar MSPT/TPS em número crescente de sublevels, simultaneidade de rides, cart physics/linking, colisão, chain lifts, movimento em chunks, world restart e multiplayer, observando paridade de gameplay com 0.1.5. Não extrapolar o changelog para remoção de outras rotinas sem análise binária.
+
+**Resultado:** delta de performance documentado; sem instalação, bench próprio, diff de classes, aprovação de upgrades ou alteração dos arquivos. Pasta `Addons + Create` e basename `v0.1.5` mantidos.

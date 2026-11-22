@@ -359,3 +359,15 @@ A cadeia intermediária **7.12.2 → 7.13.0 → 7.14.0 → 7.15.0 → 7.16.0 →
 
 **Conclusão da pesquisa documental:** todas as versões listadas no histórico entre a instalação 7.12.1 e a publicação 7.19.0 estão descritas no dossier, incluindo a 7.17.1 (sem mudança funcional). **Somente a atualização documental foi concluída.** Atualização de JARs, homologação do conjunto, backups/migração e runtime permanecem pendentes.
 
+## Auditoria incremental upstream — Easy NPC: Core 7.20.0 (22/11/2026; não instalada)
+
+**JAR do Core top-level:** #239 `easy_npc-neoforge-1.21.1-7.12.1.jar`. O número **7.12.1 vem do filename/publicação**; o metadata/runtime registrado no inventário é **sem versão**, divergência que não deve ser escondida. A cadeia **7.12.2–7.19.0** já foi auditada acima. O [CurseForge Core com filtro 1.21.1](https://www.curseforge.com/minecraft/mc-mods/easy-npc-core/files/all?version=1.21.1) publicou **`easy_npc-neoforge-1.21.1-7.20.0.jar`** em **18/11/2026**.
+
+O [changelog do desenvolvedor, branch 1.21.1, seção 7.20.0](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/CHANGELOG.md) documenta:
+- Correção de crash para skin ID ausente e de NPCs/spawners/presets que falhavam ao carregar quando outros mods deixavam IDs persistidos inválidos.
+- Correção de perda de NPC sobre o ombro ao interromper a soltura.
+- Proteção contra transformações vanilla indevidas de NPCs por raio, congelamento, afogamento ou ataques de zombies; evita bebês e passageiros involuntários, efeitos/equipamentos aleatórios e perda do gear configurado em presets.
+- Itens recolhidos somente quando a habilidade/config permite; skeleton NPCs deixam de recorrer indevidamente a melee/ranged vanilla; correções em comportamentos específicos de enderman, slime, fox, chicken, cat, creeper e ghast.
+- Otimização da seleção de NPCs-alvo por hostis em processamento server-side; **sem benchmark reproduzido na instância**.
+
+**Impacto documental:** integridade de entidades/skins/presets, ownership de shoulder e equipamentos, combate e performance de alvos, principalmente em mundo persistente com mods interferentes. **Gate adicional:** o pack mantém Core/Bundle/Config UI `7.12.1` e EME `2.4.0`, enquanto a linha recente documentou EME 2.6.0+ como dependência/integração opcional. Não misturar módulos nem homologar sem manifestos, backup/restore, migração, serialização, cenas combate/scoreboard, cliente/servidor e comportamento de skins. **Nenhum JAR foi instalado, nenhuma alteração de runtime foi testada; nome e categoria do dossier preservados.**

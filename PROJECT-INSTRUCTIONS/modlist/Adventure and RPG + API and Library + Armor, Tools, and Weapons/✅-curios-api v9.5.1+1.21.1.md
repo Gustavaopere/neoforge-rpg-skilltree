@@ -123,3 +123,20 @@ O [source 9.5.1 de `EquipCurioTrigger`](https://github.com/TheIllusiveC4/Curios/
 - **Última publicada para MC1.21.1/NeoForge:** `9.5.1+1.21.1`, conferida no CurseForge oficial em 13/10/2026.
 - **Decisão curatorial:** `Sem decisão`, inalterada; esta edição documenta evidências e riscos, **não** aprova novo upgrade/removal.
 - **Estado:** dossiê atualizado documentalmente; verificação física direta, QA dedicado e atribuição causal da issue permanecem **pendentes/não verificados**.
+
+## Auditoria incremental upstream — Curios API 9.6.0+1.21.1 (22/11/2026; **loader incompatível no baseline histórico**)
+
+**Instalação de referência:** #211 `curios-neoforge-9.5.1+1.21.1.jar` / `9.5.1+1.21.1`. O inventário físico histórico do modpack registra NeoForge `21.1.250` (contrato base anterior 21.1.248). A nova [release oficial **9.6.0+1.21.1**, file 9694505](https://www.curseforge.com/minecraft/mc-mods/curios/files/9694505) foi publicada em **19/11/2026**, com changelog datado pelo desenvolvedor **18/11/2026**. O arquivo está marcado Minecraft 1.21.1 / NeoForge, mas sua **exigência mínima de NeoForge é 21.1.265**: não classificar como instalável no loader físico registrado.
+
+**Changelog oficial por versão (9.6.0):**
+- **Quick-move na GUI Curios** passa a priorizar slots específicos (por exemplo, ring) em vez do slot genérico `curio`; isso influencia o resultado de shift-click quando há slots compatíveis concorrentes.
+- Hooks de **Fortune e Looting** migram para os **eventos oficiais NeoForge API**, alterando a superfície de integração com loot/atributos.
+- **Parsing de entidades Curios de datapacks** corrigido; validar resoluções de IDs e comportamento de reload.
+- **Tooltip de itens** na tela Curios corrigido.
+- **Transient ItemStack desync** que causava desconexões de clientes corrigido.
+- Atualização de localização **pt_br**.
+- Aumento do **NeoForge mínimo para 21.1.265**, requisito bloqueante para o ambiente histórico `21.1.250`.
+
+**Bloqueio fail-closed de promoção:** sem atualizar NeoForge (operação não autorizada neste lote) e revalidar todo o modpack, **9.6.0 não é upgrade compatível com a combinação exata atualmente registrada**. Confirmar novo snapshot físico e os intervalos de loaders; só então inspecionar metadata/JAR candidato e testar equip/unequip/shift-click, Fortune/Looting, datapacks, caches, morte/relog, migração de mundo, multiplayer e todos os consumers. Relato upstream #616 da baseline 9.5.1 continua hipótese não reproduzida e não prova que 9.6.0 o corrige.
+
+**Resultado:** publicação 9.6.0 auditada documentalmente, **não elegível para promoção sobre o NeoForge histórico do pack**. JAR, versão do dossier, categorias oficiais e certificação preservados.
