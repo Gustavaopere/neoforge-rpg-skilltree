@@ -1,5 +1,7 @@
 # The Brazilian Localization Project [PT-BR] — 1.6.0 (instalação declarada em 22/11/2026)
 
+> **Categorias temáticas atuais no CurseForge:** `Data Packs`, `Miscellaneous` e `Mod Support`. Organização em `Data Packs + Miscellaneous + Mod Support`; apenas o diretório e a categorização documental foram ajustados, preservando data da edição significativa de 22/11/2026 - 16:39 e demais evidências.
+
 > **Estado vigente conforme declaração do usuário:** 1.3.0 → **1.6.0**, ZIP distribuído no [CurseForge](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9655760) `The-Brazilian-Project-1.21.1-1.6.0.zip` para Minecraft 1.21.1. O mesmo autor publicou no Modrinth o ZIP `The Brazilian Project [1.21.1-1.6.0].zip`; nomes divergentes não comprovam equivalência binária. A declaração confirma a atualização documental, não substitui leitura/hash do ZIP instalado.
 
 > **Auditoria:** 1.4.0, 1.5.2 e 1.6.0 estão individualizadas nas seções históricas. O source 1.6.0 declara `pack_format: 34` e contém JSONs de traduções em namespaces ModernFix, JEI, Moonlight, MezzConfig, Create Goggles e Mowzie's Mobs; a inspeção integral do ZIP publicado e dos placeholders no pack permanece pendente.
@@ -29,7 +31,7 @@
 - **Estado no pack:** `1.6.0` declarada instalada pelo usuário em 22/11/2026; ZIP local não reinspecionado.
 - **Estado da pesquisa:** publicações intermediárias e partes do source auditadas; ZIP local/QA e equivalência Modrinth-CurseForge não confirmados.
 - **Decisão:** Sem decisão
-- **Categoria:** QoL
+- **Categorias temáticas oficiais CurseForge:** `Data Packs` + `Miscellaneous` + `Mod Support` — conjunto integral conferido no projeto CurseForge 1465500 em 22/11/2026; categoria técnica de classe `Resource Packs` excluída.
 - **Função:** Resource pack de localização PT-BR para Minecraft modded que preenche traduções ausentes e revisa inconsistências/terminologia de traduções existentes.
 - **Dependências:** Minecraft 1.21.1 e os mods cujas localization keys o pack traduz. Não cria dependência funcional; ausência de tradução deve cair em chave/idioma fallback sem alterar gameplay.
 - **Sobreposição:** Pode substituir `pt_br.json`/localization resources fornecidos pelos próprios mods ou por outros translation packs. A prioridade de resource pack determina qual string vence por chave.
