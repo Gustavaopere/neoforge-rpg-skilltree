@@ -12,6 +12,14 @@
 
 
 
+## Revalidação dirigida — 22/11/2026 (Petrolpark, Dynamic Trees - BetterEnd, Create: Metalwork)
+
+| Nº físico | Projeto | JAR instalado e versão física | Upstream documentado | Fechamento documental / bloqueio físico |
+|---:|---|---|---|---|
+| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` / `2.0.0` | [3.0.0 Release (28/09)](https://www.curseforge.com/minecraft/mc-mods/create-metalwork/files/8995820) | **PARCIAL:** source fixada na 3.0.0 documenta registries condicionais, recipes de 90 mB, opções de Basin 4 fluidos, rendimentos e compatibilidades; `2.0.0→3.0.0` ainda carece de diff dos JARs para identificar modificações exatas. Nenhuma promoção física. |
+| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` / `2.2.0` | [2.3.0 (18/11)](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betterend/files/9681813), [2.4.0 (20/11)](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betterend/files/9716886) | **PARCIAL:** source 2.3.0 modifica mounds, proteção de árvores e umbrella worldgen; manifesta Better End `>=21.0.39`, mas físico é `21.0.34`. Publicação 2.4.0 sem changelog/source correspondente; diff binário, requisitos e QA pendentes. |
+| 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` / `1.5.11` | [1.5.12 Beta (19/10)](https://www.curseforge.com/minecraft/mc-mods/petrolpark-library/files/9259866) | **CONCLUÍDO DOCUMENTALMENTE:** 1.5.11 instalada classificada **Release (R)**; 1.5.12 **Beta (B)** declara apenas compatibilidade JEI. Sem prova de benefício funcional para JEI/Destroy físicos, não promover automaticamente; QA/instalação pendentes. |
+
 ## Auditoria incremental — 22/11/2026 (More Relics 1.8.0)
 
 | Nº físico | Mod | Instalada | Alvo upstream NeoForge 1.21.1 | Estado |
@@ -710,7 +718,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 192 | Create: Liquid Fuel | `createliquidfuel-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 24/09/2026 - 00:20 |
 | 193 | Create: Mechanical Companion | `createmechanicalcompanion-1.9-neoforge-1.21.1.jar` | `1.9 (artefato/publicação); metadata runtime vazia` | `Addons + Adventure and RPG + Create + Mobs + Technology` | 24/09/2026 - 00:20 |
 | 194 | Create: Metallurgy | `createmetallurgy-1.0.3-1.21.1.jar` | `1.0.3` | `Addons + Automation + Create + Processing + Technology` | 24/09/2026 - 00:20 |
-| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` | `2.0.0` | `Automation + Create + Energy, Fluid, and Item Transport + Processing` | 24/09/2026 - 00:20 |
+| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` | `2.0.0` | `Automation + Create + Energy, Fluid, and Item Transport + Processing` | 22/11/2026 - 07:09 |
 | 196 | Create Missiles | `createmissiles-1.0.3+neoforge-1.21.1.jar` | `1.0.3` | `Addons + Create + Map and Information + Structures + Technology` | 24/09/2026 - 00:20 |
 | 197 | Create Nuclear | `createnuclear-1.3.2-beta.3-neoforge.jar` | `1.3.2-beta.3` | `Addons + Create + Energy + Ores and Resources + Technology` | 17/11/2026 - 17:09 |
 | 198 | Create: Ornithopter Glider | `createornithopterglider-1.2.0-1.21.1.jar` | `1.2.0-1.21.1 (runtime/filename); publicação 1.2.0+1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL` | 23/10/2026 - 15:15 |
@@ -741,7 +749,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 223 | Create: Dreams n' Desires | `DnDesires-1.21.1-2.3a-BETA.jar` | `2.3a-BETA` | `Armor, Tools, and Weapons + Automation + Create + Utility & QoL + World Gen` | 24/09/2026 - 10:44 |
 | 224 | Domum Ornamentum | `domum-ornamentum-1.0.236-snapshot-main.jar` | `1.0.236-snapshot` | `API and Library + Cosmetic` | 20/11/2026 - 00:17 |
 | 225 | Dreamless Spells and Spellbooks | `dreamless_spells-1.1.9.jar` | `1.1.9` | `Addons + Armor, Tools, and Weapons + Magic + Ores and Resources` | 24/09/2026 - 10:44 |
-| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
+| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 22/11/2026 - 07:08 |
 | 227 | Dynamic Trees - BetterNether | `dtbetternether-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
 | 228 | Dynamic Trees - Oh The Biomes We've Gone | `dtbwg-1.1.0-BETA02.jar` | `1.1.0-BETA02` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
 | 229 | Dynamic Trees - Quark | `dtquark-2.6.1.jar` | `2.6.1` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
@@ -955,7 +963,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 437 | PartiCull | `PartiCull-neoforge-1.21.1-v2.0.jar` | `2.0` | `Performance + Utility & QoL` | 21/11/2026 - 23:12 |
 | 438 | Patchouli | `Patchouli-1.21.1-93-NEOFORGE.jar` | `1.21.1-93-NEOFORGE` | `API and Library` | 25/09/2026 - 15:17 |
 | 439 | Pehkui | `Pehkui-3.8.3+1.21-neoforge.jar` | `3.8.3+1.21-neoforge` | `API and Library` | 25/09/2026 - 15:17 |
-| 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 22/10/2026 - 21:50 |
+| 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 22/11/2026 - 07:07 |
 | 441 | Presence Footsteps x Sable (Aeronautics Compat) | `pfsable-1.0.jar` | `1.0` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
 | 442 | Photon | `photon-neoforge-1.21.1-2.2.6.a-all.jar` | `2.2.6.a` | `API and Library + Magic + Technology + Utility & QoL` | 22/11/2026 - 00:44 |
 | 443 | Pickable Health Orbs | `pickable_orbs-1.21.1-1.0.0.jar` | `1.21.1-1.0.0` | `Adventure and RPG + Magic + Utility & QoL` | 26/09/2026 - 02:32 |
