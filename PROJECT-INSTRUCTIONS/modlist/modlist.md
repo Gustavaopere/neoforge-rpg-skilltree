@@ -718,7 +718,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 192 | Create: Liquid Fuel | `createliquidfuel-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 24/09/2026 - 00:20 |
 | 193 | Create: Mechanical Companion | `createmechanicalcompanion-1.9-neoforge-1.21.1.jar` | `1.9 (artefato/publicação); metadata runtime vazia` | `Addons + Adventure and RPG + Create + Mobs + Technology` | 24/09/2026 - 00:20 |
 | 194 | Create: Metallurgy | `createmetallurgy-1.0.3-1.21.1.jar` | `1.0.3` | `Addons + Automation + Create + Processing + Technology` | 24/09/2026 - 00:20 |
-| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` | `2.0.0` | `Automation + Create + Energy, Fluid, and Item Transport + Processing` | 22/11/2026 - 07:18 |
+| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` | `2.0.0` | `Automation + Create + Energy, Fluid, and Item Transport + Processing` | 22/11/2026 - 07:24 |
 | 196 | Create Missiles | `createmissiles-1.0.3+neoforge-1.21.1.jar` | `1.0.3` | `Addons + Create + Map and Information + Structures + Technology` | 24/09/2026 - 00:20 |
 | 197 | Create Nuclear | `createnuclear-1.3.2-beta.3-neoforge.jar` | `1.3.2-beta.3` | `Addons + Create + Energy + Ores and Resources + Technology` | 17/11/2026 - 17:09 |
 | 198 | Create: Ornithopter Glider | `createornithopterglider-1.2.0-1.21.1.jar` | `1.2.0-1.21.1 (runtime/filename); publicação 1.2.0+1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL` | 23/10/2026 - 15:15 |
@@ -749,7 +749,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 223 | Create: Dreams n' Desires | `DnDesires-1.21.1-2.3a-BETA.jar` | `2.3a-BETA` | `Armor, Tools, and Weapons + Automation + Create + Utility & QoL + World Gen` | 24/09/2026 - 10:44 |
 | 224 | Domum Ornamentum | `domum-ornamentum-1.0.236-snapshot-main.jar` | `1.0.236-snapshot` | `API and Library + Cosmetic` | 20/11/2026 - 00:17 |
 | 225 | Dreamless Spells and Spellbooks | `dreamless_spells-1.1.9.jar` | `1.1.9` | `Addons + Armor, Tools, and Weapons + Magic + Ores and Resources` | 24/09/2026 - 10:44 |
-| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 22/11/2026 - 07:17 |
+| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 22/11/2026 - 07:23 |
 | 227 | Dynamic Trees - BetterNether | `dtbetternether-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
 | 228 | Dynamic Trees - Oh The Biomes We've Gone | `dtbwg-1.1.0-BETA02.jar` | `1.1.0-BETA02` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
 | 229 | Dynamic Trees - Quark | `dtquark-2.6.1.jar` | `2.6.1` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
@@ -931,7 +931,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 405 | MonoLib | `monolib-neoforge-1.21.1-4.1.0.jar` | `4.1.0` | `API and Library + Education + Utility & QoL` | 25/09/2026 - 13:25 |
 | 406 | Monsters & Spellbooks: Iron's Spells 'n Spellbooks Addon | `monsterspellbooks-0.0.16.3.jar` | `0.0.16.3` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 25/09/2026 - 13:25 |
 | 407 | Moonlight Lib | `moonlight-1.21.1-3.6.4-neoforge.jar` | `1.21.1-3.6.4` | `API and Library` | 18/11/2026 - 07:44 |
-| 408 | More Relics | `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` | `1.7.7-forRelics-0.12.8-1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/11/2026 - 07:17 |
+| 408 | More Relics | `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` | `1.7.7-forRelics-0.12.8-1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/11/2026 - 07:23 |
 | 409 | Mouse Tweaks | `MouseTweaks-neoforge-mc1.21-2.26.1.jar` | `2.26.1` | `Miscellaneous + Storage + Utility & QoL` | 25/09/2026 - 13:25 |
 | 410 | Mowzie's Cataclysm | `mowzies_cataclysm-1.2.2.jar` | `1.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 13:25 |
 | 411 | Mowzie's Mobs | `mowziesmobs-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 25/09/2026 - 13:25 |
@@ -963,7 +963,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 437 | PartiCull | `PartiCull-neoforge-1.21.1-v2.0.jar` | `2.0` | `Performance + Utility & QoL` | 21/11/2026 - 23:12 |
 | 438 | Patchouli | `Patchouli-1.21.1-93-NEOFORGE.jar` | `1.21.1-93-NEOFORGE` | `API and Library` | 25/09/2026 - 15:17 |
 | 439 | Pehkui | `Pehkui-3.8.3+1.21-neoforge.jar` | `3.8.3+1.21-neoforge` | `API and Library` | 25/09/2026 - 15:17 |
-| 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 22/11/2026 - 07:07 |
+| 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 22/11/2026 - 07:24 |
 | 441 | Presence Footsteps x Sable (Aeronautics Compat) | `pfsable-1.0.jar` | `1.0` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
 | 442 | Photon | `photon-neoforge-1.21.1-2.2.6.a-all.jar` | `2.2.6.a` | `API and Library + Magic + Technology + Utility & QoL` | 22/11/2026 - 00:44 |
 | 443 | Pickable Health Orbs | `pickable_orbs-1.21.1-1.0.0.jar` | `1.21.1-1.0.0` | `Adventure and RPG + Magic + Utility & QoL` | 26/09/2026 - 02:32 |
