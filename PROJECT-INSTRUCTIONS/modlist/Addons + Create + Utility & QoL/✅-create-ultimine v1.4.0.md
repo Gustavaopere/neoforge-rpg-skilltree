@@ -1,22 +1,33 @@
-# Create Ultimine
+# Create Ultimine — 1.4.0 (instalação declarada em 22/11/2026)
+
+> **Vigente em 22/11/2026:** `1.3.2` → **`1.4.0`**; JAR oficial publicado `createultimine-1.21.1-neoforge-1.4.0.jar`, [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-ultimine/files/9682486). Instalação confirmada pela declaração do usuário, não por leitura do JAR local ou metadados da nova build.
+
+> **Auditoria das publicações intermediárias:** 1.3.3 é uma etapa publicada com correção de right_click_wrench, mas o CurseForge marca Minecraft 1.20.1 apesar do filename 1.21.1; esta divergência de plataforma é mantida como lacuna histórica. A Release 1.4.0 para NeoForge 1.21.1 substitui a chave global de manual application por configurações por receita e adiciona aplicação de Copycat; o autor recomenda regenerar a config com backup e comparação de valores.
+
+> **Dependências aguardando sincronização documental:** Create >=6.0.10 e FTB Ultimine >=2101.1.14 na fonte matching anterior; compatibilidade do manifesto da nova build ainda deve ser conferida. Diferenças com mods de lotes futuros ficam em sincronização documental, não bloqueiam a atualização.
+
+> **Riscos/limites de evidência:** Os handlers afetam aplicação manual e Wrench em área: testar anti-dupe, consumo de itens, claims/permissões, configs removidas e novas, multiplayer e restauro de estado isPressed.
+
+> **Snapshot físico histórico (posição #205):** createultimine-1.21.1-neoforge-1.3.2.jar, 1.3.2; dados referentes à modlist física anterior à declaração de atualização.
+
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#205**: JAR `createultimine-1.21.1-neoforge-1.3.2.jar`, mod id `createultimine`, runtime `1.3.2`, SHA-1 `5257686b00b3c1ed79737411577914eac182dde4`.
 
 ## Propriedades do registro
 
 - **Mod:** Create Ultimine
-- **Arquivo JAR:** `createultimine-1.21.1-neoforge-1.3.2.jar`
-- **Versão 1.21.1:** `1.3.2`
+- **Arquivo JAR instalado (declarado pelo usuário):** `createultimine-1.21.1-neoforge-1.4.0.jar` — [distribuição](https://www.curseforge.com/minecraft/mc-mods/create-ultimine/files/9682486); local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.4.0` (antes `1.3.2`; metadata do novo JAR não lido).
 - **Categoria:** Compat, QoL
 - **Função:** Bridge Create + FTB Ultimine que registra handlers de right-click para aplicar Manual Application recipes e interações de Wrench do Create sobre a seleção de blocos do Ultimine.
-- **Dependências:** Create 6.0.10+ + FTB Ultimine 2101.1.14+ obrigatórios segundo source matching 1.3.2; pack físico usa NeoForge 21.1.248 + Create 6.0.10 + FTB Ultimine 2101.1.15.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Riscos: private-field/API drift do FTB Ultimine; `isPressed` não restaurado; right-click/event duplicado; Manual Application consumir/aplicar de forma não conservativa; item esgotado ainda processar posições; recipe cache stale; Wrench face/context incorreto; config/claims; drift 2101.1.15 vs 2101.1.14-dev.
+- **Dependências:** Create >=6.0.10 e FTB Ultimine >=2101.1.14 na fonte matching anterior; compatibilidade do manifesto da nova build ainda deve ser conferida. Diferenças com mods de lotes futuros ficam em sincronização documental, não bloqueiam a atualização.
+- **Estado no pack:** `1.4.0` declarado instalado pelo usuário em 22/11/2026; inventário documental sincronizado; sem inspeção local.
+- **Estado da pesquisa:** versão-alvo e distribuição verificadas; lançamentos intermediários documentados no dossier; lacunas e limites declarados no cabeçalho.
+- **Compatibilidade/Riscos:** Os handlers afetam aplicação manual e Wrench em área: testar anti-dupe, consumo de itens, claims/permissões, configs removidas e novas, multiplayer e restauro de estado isPressed.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-ultimine
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createultimine` 1.3.2 + CurseForge oficial/source matching revalidados em 12/09/2026; 1.3.2 de 14/05/2026 continua a release NeoForge 1.21.1 mais recente.
-- **Observações:** JAR/mod id/runtime 1.3.2 confirmados. Source matching registra `ManualApplication` e `WrenchUse`; config server-side possui `manual_application` e `right_click_wrench`, ambos default true. 1.3.2 corrige crash por acesso inválido a private field do Ultimine.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #207: createultimine-1.21.1-neoforge-1.3.2.jar / runtime 1.3.2 reconfirmados como latest Release NeoForge 1.21.1; RightClickHandler API, Manual Application, Wrench delegation, `isPressed` restoration e private-field crash fix permanecem atuais.
+- **Procedência:** posição física histórica #205; declaração de instalação em 22/11/2026 e publicação oficial [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-ultimine/files/9682486); nenhum JAR local atual reinspecionado.
+- **Observações vigentes:** distribuição `createultimine-1.21.1-neoforge-1.4.0.jar`; versão `1.4.0` declarada instalada, sem metadata/SHA local. Dados anteriores na documentação detalhada são históricos.
+- **Atualização/Status:** 22/11/2026 — `1.3.2` → `1.4.0` documentado. 1.3.3 é uma etapa publicada com correção de right_click_wrench, mas o CurseForge marca Minecraft 1.20.1 apesar do filename 1.21.1; esta divergência de plataforma é mantida como lacuna histórica. A Release 1.4.0 para NeoForge 1.21.1 substitui a chave global de manual application por configurações por receita e adiciona aplicação de Copycat; o autor recomenda regenerar a config com backup e comparação de valores.
 - **Decisão:** Sem decisão
 - **Sobreposição:** FTB Ultimine 2101.1.15 é provider base da seleção/shape; Create Ultimine é bridge e não duplicata. Create continua owner das Manual Application recipes e Wrench semantics.
 

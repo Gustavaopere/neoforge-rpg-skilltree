@@ -1,22 +1,33 @@
-# Particle Rain
+# Particle Rain — 4.0.4 (instalação declarada em 22/11/2026)
+
+> **Vigente em 22/11/2026:** `4.0.0-beta.11` → **`4.0.4`**; JAR oficial publicado `particlerain-4.0.4-1.21.1-neoforge.jar`, [CurseForge](https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/9707371). Instalação confirmada pela declaração do usuário, não por leitura do JAR local ou metadados da nova build.
+
+> **Auditoria das publicações intermediárias:** Dossier audita versões 4.0.0, 4.0.1, 4.0.2 e 4.0.3, incluindo densidade, vento, migração de configuração, comando /particlerain biometags e correções de tags e texturas. 4.0.4 aprimora interações com Sable, poças, Iris, Rain Shield e Ecliptic Seasons, com fade de chuva, correção de velocidade em sublevels e jitter/interpolação. Correções explícitas de 1.21.9+ não foram atribuídas a 1.21.1.
+
+> **Dependências aguardando sincronização documental:** Interações com Ecliptic Seasons, Sable/Aeronautics, Iris, Particular, Particle Effects e Rain Shield dependem da presença e versões dos consumers. A atualização documental não exige seu lote previamente concluído.
+
+> **Riscos/limites de evidência:** Camada visual de clima, configurações renomeadas e densidade/overdraw; testar reload, transições chuva/neve, partículas em sublevels e shaders sem afirmar QA.
+
+> **Snapshot físico histórico (posição #435):** particlerain-4.0.0-beta.11+1.21.1-neoforge.jar, 4.0.0-beta.11; dados referentes à modlist física anterior à declaração de atualização.
+
 
 ## Propriedades do registro
 
 - **Mod:** Particle Rain
-- **Arquivo JAR:** particlerain-4.0.0-beta.11+1.21.1-neoforge.jar
-- **Versão 1.21.1:** 4.0.0-beta.11
+- **Arquivo JAR instalado (declarado pelo usuário):** `particlerain-4.0.4-1.21.1-neoforge.jar` — [distribuição](https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/9707371); local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `4.0.4` (antes `4.0.0-beta.11`; metadata do novo JAR não lido).
 - **Categoria:** Visual, QoL
 - **Decisão:** Sem decisão
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** versão-alvo e distribuição verificadas; lançamentos intermediários documentados no dossier; lacunas e limites declarados no cabeçalho.
+- **Estado no pack:** `4.0.4` declarado instalado pelo usuário em 22/11/2026; inventário documental sincronizado; sem inspeção local.
 - **Fonte:** https://modrinth.com/mod/particle-rain/version/v4-beta.11%2B1.21.1-neoforge
 - **Função:** Overhaul visual de clima/atmosfera por partículas: chuva/neve, wind, haze/mist, dust/sandstorm e efeitos configuráveis por contexto, sem substituir a lógica climática de outros providers.
-- **Dependências:** NeoForge 1.21.1. A camada funcional é visual/client-side; nenhuma hard dependency externa adicional foi estabelecida para a build física beta 11.
-- **Compatibilidade/Riscos:** Beta. Riscos: overdraw/performance, obstruction config, biome-border culling, shader fog/blending, PartiCull e composição com outros VFX. Não confundir weather particles com autoridade de seasons/temperature.
+- **Dependências:** Interações com Ecliptic Seasons, Sable/Aeronautics, Iris, Particular, Particle Effects e Rain Shield dependem da presença e versões dos consumers. A atualização documental não exige seu lote previamente concluído.
+- **Compatibilidade/Riscos:** Camada visual de clima, configurações renomeadas e densidade/overdraw; testar reload, transições chuva/neve, partículas em sublevels e shaders sem afirmar QA.
 - **Sobreposição:** Complementa Particle Effects/Particular e é cullável por PartiCull; ownership principal é clima/atmosfera visual, não MobEffects nem gameplay climático.
-- **Observações:** Runtime 4.0.0-beta.11, publicação oficial NeoForge 1.21.1 de 24/08/2026. Beta 11 corrige biome-border particle culling, ajusta wind e adiciona null check/config fixes, entre outros deltas.
-- **Procedência:** modlist(1).txt física reconferida em 25/09/2026 + Modrinth oficial beta 11 + source/changelog oficial PigCart/particle-rain.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — Particle Rain 4.0.0-beta.11/JAR físico reconfirmado; beta boundary, biome-border culling, wind, shaders e lifecycle preservados.
+- **Observações vigentes:** distribuição `particlerain-4.0.4-1.21.1-neoforge.jar`; versão `4.0.4` declarada instalada, sem metadata/SHA local. Dados anteriores na documentação detalhada são históricos.
+- **Procedência:** posição física histórica #435; declaração de instalação em 22/11/2026 e publicação oficial [CurseForge](https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/9707371); nenhum JAR local atual reinspecionado.
+- **Atualização/Status:** 22/11/2026 — `4.0.0-beta.11` → `4.0.4` documentado. Dossier audita versões 4.0.0, 4.0.1, 4.0.2 e 4.0.3, incluindo densidade, vento, migração de configuração, comando /particlerain biometags e correções de tags e texturas. 4.0.4 aprimora interações com Sable, poças, Iris, Rain Shield e Ecliptic Seasons, com fade de chuva, correção de velocidade em sublevels e jitter/interpolação. Correções explícitas de 1.21.9+ não foram atribuídas a 1.21.1.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-10
 

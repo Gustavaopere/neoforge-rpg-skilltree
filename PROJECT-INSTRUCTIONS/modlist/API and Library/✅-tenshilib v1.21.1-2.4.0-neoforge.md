@@ -1,4 +1,15 @@
-# TenshiLib
+# TenshiLib (Forge/NeoForge) — 1.21.1-2.4.0-neoforge (instalação declarada em 22/11/2026)
+
+> **Vigente em 22/11/2026:** `1.21.1-2.3.0.b-neoforge` → **`1.21.1-2.4.0-neoforge`**; JAR oficial publicado `tenshilib-1.21.1-2.4.0-neoforge.jar`, [CurseForge](https://www.curseforge.com/minecraft/mc-mods/tenshilib/files/9690639). Instalação confirmada pela declaração do usuário, não por leitura do JAR local ou metadados da nova build.
+
+> **Auditoria das publicações intermediárias:** 2.3.1 já documentada: render callback, tratamento de erro em modelos/animações, FollowEntity, correções Molang/sync e backport de invisibilidade em teleport; 2.4.0 reescreve sistema de modelos para não depender internamente dos modelos vanilla e permite UV por face em geometrias. Alterações Fabric-only não são atribuídas automaticamente ao NeoForge.
+
+> **Dependências aguardando sincronização documental:** TenshiLib fornece APIs consumidas por mods do ecossistema flemmli97. O consumidor causal e o requisito mínimo do manifesto devem ser reconciliados em lote posterior; não declarar consumer identificado sem evidência.
+
+> **Riscos/limites de evidência:** Mudança de API de modelagem pode afetar animação, UV/face, shaders, OBB e sync; verificar dedicated server, resource loading e client/server.
+
+> **Snapshot físico histórico (posição #538):** tenshilib-1.21.1-2.3.0.b-neoforge.jar, 1.21.1-2.3.0.b-neoforge; dados referentes à modlist física anterior à declaração de atualização.
+
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#538**: JAR `tenshilib-1.21.1-2.3.0.b-neoforge.jar`, mod id `tenshilib`, runtime `1.21.1-2.3.0.b-neoforge`, SHA-1 `bfca9fc41cb68368173ddb57655af9a2f471d021`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
@@ -6,20 +17,20 @@
 ## Propriedades do banco
 
 - **Mod:** TenshiLib
-- **Arquivo JAR:** `tenshilib-1.21.1-2.3.0.b-neoforge.jar`
-- **Versão 1.21.1:** 1.21.1-2.3.0.b-neoforge
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado pelo usuário):** `tenshilib-1.21.1-2.4.0-neoforge.jar` — [distribuição](https://www.curseforge.com/minecraft/mc-mods/tenshilib/files/9690639); local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.21.1-2.4.0-neoforge` (antes `1.21.1-2.3.0.b-neoforge`; metadata do novo JAR não lido).
+- **Estado no pack:** `1.21.1-2.4.0-neoforge` declarado instalado pelo usuário em 22/11/2026; inventário documental sincronizado; sem inspeção local.
+- **Estado da pesquisa:** versão-alvo e distribuição verificadas; lançamentos intermediários documentados no dossier; lacunas e limites declarados no cabeçalho.
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca
 - **Função:** Core library do ecossistema flemmli97 com animation system client/server, parsing de modelos/animações Bedrock, OBB hit detection, registro cross-loader, parser matemático e utilidades compartilhadas.
-- **Dependências:** NeoForge 1.21.1; biblioteca consumida por outros projetos do autor. Consumidores causais específicos devem ser resolvidos antes de remoção.
+- **Dependências:** TenshiLib fornece APIs consumidas por mods do ecossistema flemmli97. O consumidor causal e o requisito mínimo do manifesto devem ser reconciliados em lote posterior; não declarar consumer identificado sem evidência.
 - **Sobreposição:** Não compete com outras bibliotecas em termos de gameplay; fornece infraestrutura própria exigida pelos mods que a declaram.
-- **Compatibilidade/Riscos:** Hidden dependency/API drift; animation sync e OBB server/client mismatch; parsing de assets Bedrock. A build física 2.3.0.b corrige o TOML NeoForge da 2.3.0. A upstream 2.3.1 altera render/model hooks, FollowEntity, Molang e entity-data sync, portanto qualquer promoção precisa ser testada contra consumers reais do pack.
-- **Observações:** mod id `tenshilib`; runtime metadata `1.21.1-2.3.0.b-neoforge`; release identifier físico `2.3.0.b`. Upstream publicou 2.3.1 para NeoForge 1.21.1 em 27/09/2026 com mudanças de render callback/model errors, FollowEntity, Molang, suggestion widgets, entity data sync e backport de MC-273361; deltas Fabric-only não são tratados como runtime NeoForge.
-- **Procedência:** modlist física atual + CurseForge oficial TenshiLib 2.3.0.b instalada e 2.3.1 para NeoForge 1.21.1, revalidado em 01/10/2026. Consumer causal específico continua não resolvido; nenhum teste runtime foi executado.
+- **Compatibilidade/Riscos:** Mudança de API de modelagem pode afetar animação, UV/face, shaders, OBB e sync; verificar dedicated server, resource loading e client/server.
+- **Observações vigentes:** distribuição `tenshilib-1.21.1-2.4.0-neoforge.jar`; versão `1.21.1-2.4.0-neoforge` declarada instalada, sem metadata/SHA local. Dados anteriores na documentação detalhada são históricos.
+- **Procedência:** posição física histórica #538; declaração de instalação em 22/11/2026 e publicação oficial [CurseForge](https://www.curseforge.com/minecraft/mc-mods/tenshilib/files/9690639); nenhum JAR local atual reinspecionado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/tenshilib
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — JAR físico permanece `tenshilib-1.21.1-2.3.0.b-neoforge.jar`. A release 2.3.1 foi comparada e os deltas relevantes para NeoForge foram incorporados abaixo.
+- **Atualização/Status:** 22/11/2026 — `1.21.1-2.3.0.b-neoforge` → `1.21.1-2.4.0-neoforge` documentado. 2.3.1 já documentada: render callback, tratamento de erro em modelos/animações, FollowEntity, correções Molang/sync e backport de invisibilidade em teleport; 2.4.0 reescreve sistema de modelos para não depender internamente dos modelos vanilla e permite UV por face em geometrias. Alterações Fabric-only não são atribuídas automaticamente ao NeoForge.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 
 

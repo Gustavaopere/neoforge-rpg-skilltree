@@ -1,23 +1,34 @@
-# Additional Attributes
+# Additional Attributes — 1.2.3 (instalação declarada em 22/11/2026)
+
+> **Vigente em 22/11/2026:** `1.2.2` → **`1.2.3`**; JAR oficial publicado `additional_attributes-1.21.1-1.2.3.jar`, [CurseForge](https://www.curseforge.com/minecraft/mc-mods/additional-attributes/files/9687889). Instalação confirmada pela declaração do usuário, não por leitura do JAR local ou metadados da nova build.
+
+> **Auditoria das publicações intermediárias:** A 1.2.3 é publicação oficial 18/11/2026 NeoForge 1.21.1. O autor menciona uma correção antiga publicada agora, mas não identifica no changelog recuperado qual bug, método ou atributo foi modificado. Não atribuir falsamente correções a Harvest, Fishing Luck, Keep Scroll, Iron's ou Apothic. A cadeia entre 1.2.2 e 1.2.3 tem essa única release pública identificada.
+
+> **Dependências aguardando sincronização documental:** Integrações com Iron's Spells e Apothic Attributes são opcionais conforme histórico; consumidor e metadata nova não foram lidos. Não bloquear versionamento documental por dependências ainda pendentes em outros lotes.
+
+> **Riscos/limites de evidência:** **Lacuna técnica:** diff funcional 1.2.2→1.2.3 não comprovado. Preservar alerta Fishing Luck ID/Respiration e verificar registry real antes de usar em perks/datapacks. QA não realizado.
+
+> **Snapshot físico histórico (posição #005):** additional_attributes-1.21.1-1.2.2.jar, 1.2.2; dados referentes à modlist física anterior à declaração de atualização.
+
 
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#5**: `additional_attributes-1.21.1-1.2.2.jar`, mod id `additional_attributes`, runtime `1.2.2`.
 ## Propriedades do registro
 
 - **Mod:** Additional Attributes
-- **Arquivo JAR:** `additional_attributes-1.21.1-1.2.2.jar`
-- **Versão 1.21.1:** 1.2.2
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado pelo usuário):** `additional_attributes-1.21.1-1.2.3.jar` — [distribuição](https://www.curseforge.com/minecraft/mc-mods/additional-attributes/files/9687889); local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.2.3` (antes `1.2.2`; metadata do novo JAR não lido).
+- **Estado no pack:** `1.2.3` declarado instalado pelo usuário em 22/11/2026; inventário documental sincronizado; sem inspeção local.
+- **Estado da pesquisa:** versão-alvo e distribuição verificadas; lançamentos intermediários documentados no dossier; lacunas e limites declarados no cabeçalho.
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca, RPG
 - **Função:** Provider de atributos mecânicos e bridges data-driven. Em 1.21.1 expõe Looting, Fishing Lure/Luck (documentação pública contém possível typo no ID de Fishing Luck), Harvest, Apothic Crafting, spell-level modifiers para Iron's em escopo geral/escola/spell, innate schools/spells e `keep_scroll`. 1.2.2 move `skip_innate` para server-side e corrige innate spells em dedicated server. Respiration foi removido na linha 1.21 por existir oxygen attribute vanilla.
-- **Dependências:** Projeto sem hard dependency obrigatória externa publicada; Iron's Spells aparece como optional dependency na release 1.2.2. Integrações Apothic/Iron's ativam apenas quando providers correspondentes existem. Pack atual possui Iron's 3.16.3 e Apotheosis/Apothic Attributes, portanto ambas as superfícies são relevantes.
+- **Dependências:** Integrações com Iron's Spells e Apothic Attributes são opcionais conforme histórico; consumidor e metadata nova não foram lidos. Não bloquear versionamento documental por dependências ainda pendentes em outros lotes.
 - **Sobreposição:** Pufferfish's Attributes, Apothic Attributes, Iron's gear/addons e RPG Skill Tree podem afetar grandezas finais semelhantes. Additional Attributes não os substitui: registra atributos específicos e bridges. Apothic Crafting não é o mesmo que affix generation normal do Apotheosis; é chance aplicada a itens craftados.
-- **Compatibilidade/Riscos:** Alto risco de double-dipping com outros attributes/perks que alterem loot, harvest, affix rarity ou spell level. Documentação 1.21 mistura exemplos antigos `spell_school_*`/`spell_type_*` com nota de migração para `school/<namespace>/<path>` e `spell/<namespace>/<path>`; usar sintaxe 1.21 e verificar IDs no registry antes de código. A página pública mostra Fishing Luck com o mesmo ID de Fishing Lure, provável typo documental; fail-closed até confirmar JAR. `spell_general` + school + spell são agregados antes do cálculo; negativos podem reduzir level a 0 e impedir cast.
-- **Observações:** Dois pontos de documentação exigem cuidado: Respiration ainda aparece em subseção antiga apesar da nota 1.21 dizer que foi removido; Fishing Luck é listado com o mesmo ID de Fishing Lure. Não 'corrigir' por adivinhação. Antes de perk/datapack, inspecionar registry real do JAR 1.2.2.
-- **Procedência:** modlist.txt física atual de 11/09/2026 + Modrinth oficial Additional Attributes 1.2.2 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `additional_attributes-1.21.1-1.2.2.jar` / `1.2.2`; sem divergência física.
+- **Compatibilidade/Riscos:** **Lacuna técnica:** diff funcional 1.2.2→1.2.3 não comprovado. Preservar alerta Fishing Luck ID/Respiration e verificar registry real antes de usar em perks/datapacks. QA não realizado.
+- **Observações vigentes:** distribuição `additional_attributes-1.21.1-1.2.3.jar`; versão `1.2.3` declarada instalada, sem metadata/SHA local. Dados anteriores na documentação detalhada são históricos.
+- **Procedência:** posição física histórica #005; declaração de instalação em 22/11/2026 e publicação oficial [CurseForge](https://www.curseforge.com/minecraft/mc-mods/additional-attributes/files/9687889); nenhum JAR local atual reinspecionado.
 - **Fonte:** https://modrinth.com/mod/additional-attributes
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #5: `additional_attributes-1.21.1-1.2.2.jar` / `1.2.2` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.
+- **Atualização/Status:** 22/11/2026 — `1.2.2` → `1.2.3` documentado. A 1.2.3 é publicação oficial 18/11/2026 NeoForge 1.21.1. O autor menciona uma correção antiga publicada agora, mas não identifica no changelog recuperado qual bug, método ou atributo foi modificado. Não atribuir falsamente correções a Harvest, Fishing Luck, Keep Scroll, Iron's ou Apothic. A cadeia entre 1.2.2 e 1.2.3 tem essa única release pública identificada.
 - **Histórico da decisão:**
 - **Data da última decisão:** 2026-09-07
 

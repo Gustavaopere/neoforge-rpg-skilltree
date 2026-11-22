@@ -1,22 +1,33 @@
-# Create Diesel Generators
+# Create: Diesel Generators — 1.21.1-1.3.16 (instalação declarada em 22/11/2026)
+
+> **Vigente em 22/11/2026:** `1.21.1-1.3.15` → **`1.21.1-1.3.16`**; JAR oficial publicado `createdieselgenerators-1.21.1-1.3.16.jar`, [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-diesel-generators/files/9739370). Instalação confirmada pela declaração do usuário, não por leitura do JAR local ou metadados da nova build.
+
+> **Auditoria das publicações intermediárias:** 1.3.16 (21/11/2026) corrige throttle que não atualizava stress capacity, spam do indexador JEI e crash ao tingir Copycats; implementa multiplicador de fuel burn por turbocharging, impõe limite de boiler heating por burner e permite comprimento máximo configurável para oil barrels. A 1.3.15 histórica documenta distillation/heat scaling e Andesite Girder Struts.
+
+> **Dependências aguardando sincronização documental:** Create 6.0.x na fonte da versão anterior; consumidores de fluid tags e integração com Sable/Aeronautics/Copycats precisam conciliação documental posterior se divergentes, sem bloquear esta atualização.
+
+> **Riscos/limites de evidência:** Testar conservação de petróleo/combustível, stress capacity, turbo fuel rate, boiler limit, barrel max length e contraptions; não atribuir valores numéricos não publicados.
+
+> **Snapshot físico histórico (posição #181):** createdieselgenerators-1.21.1-1.3.15.jar, 1.21.1-1.3.15; dados referentes à modlist física anterior à declaração de atualização.
+
 
 > **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#181**: JAR `createdieselgenerators-1.21.1-1.3.15.jar`, mod id `createdieselgenerators`, runtime `1.21.1-1.3.15`, SHA-1 `7f751dabfa83c141c1d13025cd16f06553ba459b`.
 
 ## Propriedades do registro
 
 - **Mod:** Create Diesel Generators
-- **Arquivo JAR:** `createdieselgenerators-1.21.1-1.3.15.jar`
-- **Versão 1.21.1:** `1.21.1-1.3.15`
+- **Arquivo JAR instalado (declarado pelo usuário):** `createdieselgenerators-1.21.1-1.3.16.jar` — [distribuição](https://www.curseforge.com/minecraft/mc-mods/create-diesel-generators/files/9739370); local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.21.1-1.3.16` (antes `1.21.1-1.3.15`; metadata do novo JAR não lido).
 - **Categoria:** Tecnologia, Automação
 - **Função:** Adiciona motores diesel, petróleo bruto, refino, combustíveis e infraestrutura industrial para gerar potência cinética com combustíveis líquidos.
-- **Dependências:** Create obrigatório; upstream 1.3.15 permanece na linha Create 6.0.x e o pack físico usa NeoForge 21.1.248 + Create 6.0.10. Integrações opcionais com Sable/Aeronautics continuam sujeitas a version drift.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Riscos: fuel/fluid double-accounting; pumpjack state em chunk/restart; distillation scaling por heat sources; multiblock dupe/loss; fluid tag overlap; burner heat stale; contraption double-processing; Sable/Aeronautics drift.
+- **Dependências:** Create 6.0.x na fonte da versão anterior; consumidores de fluid tags e integração com Sable/Aeronautics/Copycats precisam conciliação documental posterior se divergentes, sem bloquear esta atualização.
+- **Estado no pack:** `1.21.1-1.3.16` declarado instalado pelo usuário em 22/11/2026; inventário documental sincronizado; sem inspeção local.
+- **Estado da pesquisa:** versão-alvo e distribuição verificadas; lançamentos intermediários documentados no dossier; lacunas e limites declarados no cabeçalho.
+- **Compatibilidade/Riscos:** Testar conservação de petróleo/combustível, stress capacity, turbo fuel rate, boiler limit, barrel max length e contraptions; não atribuir valores numéricos não publicados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-diesel-generators
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createdieselgenerators` 1.21.1-1.3.15 + CurseForge oficial revalidado em 12/09/2026; 1.3.15 de 30/07/2026 continua a release NeoForge 1.21.1 mais recente. Source oficial matching permanece referência funcional.
-- **Observações:** JAR `createdieselgenerators-1.21.1-1.3.15.jar`, mod id `createdieselgenerators`, runtime `1.21.1-1.3.15`. Source matching confirma Plant Oil, Crude Oil, Biodiesel, Diesel, Gasoline, Ethanol, concrete fluids e principais máquinas.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — lote físico #182: createdieselgenerators-1.21.1-1.3.15.jar / runtime 1.21.1-1.3.15 reconfirmados como latest Release NeoForge 1.21.1; pumpjack, distillation scaling, burner/heat, fuel/fluid conservation e contraption boundaries permanecem atuais.
+- **Procedência:** posição física histórica #181; declaração de instalação em 22/11/2026 e publicação oficial [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-diesel-generators/files/9739370); nenhum JAR local atual reinspecionado.
+- **Observações vigentes:** distribuição `createdieselgenerators-1.21.1-1.3.16.jar`; versão `1.21.1-1.3.16` declarada instalada, sem metadata/SHA local. Dados anteriores na documentação detalhada são históricos.
+- **Atualização/Status:** 22/11/2026 — `1.21.1-1.3.15` → `1.21.1-1.3.16` documentado. 1.3.16 (21/11/2026) corrige throttle que não atualizava stress capacity, spam do indexador JEI e crash ao tingir Copycats; implementa multiplicador de fuel burn por turbocharging, impõe limite de boiler heating por burner e permite comprimento máximo configurável para oil barrels. A 1.3.15 histórica documenta distillation/heat scaling e Andesite Girder Struts.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Overlap com outros sistemas industriais/petroquímicos deve ser comparado por fluid tags, refinery recipes e geração de energia. Não é redundância automática por compartilhar oil/diesel.
 

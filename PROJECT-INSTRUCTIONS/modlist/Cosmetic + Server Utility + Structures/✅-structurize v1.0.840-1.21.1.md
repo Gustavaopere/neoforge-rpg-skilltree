@@ -1,4 +1,15 @@
-# Structurize
+# Structurize — 1.0.840-1.21.1 (instalação declarada em 22/11/2026)
+
+> **Vigente em 22/11/2026:** `1.0.833-1.21.1-snapshot` → **`1.0.840-1.21.1`**; JAR oficial publicado `structurize-1.0.840-1.21.1.jar`, [CurseForge](https://www.curseforge.com/minecraft/mc-mods/structurize/files/9680037). Instalação confirmada pela declaração do usuário, não por leitura do JAR local ou metadados da nova build.
+
+> **Auditoria das publicações intermediárias:** Histórico do dossier cobre 1.0.835, 1.0.837, 1.0.838, 1.0.839-snapshot/release e 1.0.840-snapshot/release, com source pinned e comparação de sete commits. Mudanças incluem iterador de placement, tolerância no rendering de blueprint, validações de permissão, paths e symlinks contra traversal, fix de NPE e validações de nomes/extensions .blueprint. 1.0.840 final é Release para 1.21.1 NeoForge.
+
+> **Dependências aguardando sincronização documental:** MineColonies, BlockUI e Domum Ornamentum são consumers do stack; manifesto do file 9680037 cita BlockUI >=1.0.191-1.21.1-snapshot e Domum Ornamentum >=1.0.203-1.21.1-snapshot. Divergências de entradas futuras são pendência de sincronização documental, não veto.
+
+> **Riscos/limites de evidência:** Blueprints e placement modificam mundo; reforços de validação não significam garantia de segurança. Testar ACL em multiplayer, scans/path traversal, preview e unload/restart.
+
+> **Snapshot físico histórico (posição #529):** structurize-1.0.833-1.21.1-snapshot.jar, 1.0.833-1.21.1-snapshot; dados referentes à modlist física anterior à declaração de atualização.
+
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#529**: JAR `structurize-1.0.833-1.21.1-snapshot.jar`, mod id `structurize`, runtime `1.0.833-1.21.1-snapshot`, SHA-1 `e81934809824cb1435b8221313a143480379893a`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
@@ -6,20 +17,20 @@
 ## Propriedades do banco
 
 - **Mod:** Structurize
-- **Arquivo JAR:** `structurize-1.0.833-1.21.1-snapshot.jar`
-- **Versão 1.21.1:** 1.0.833-1.21.1-snapshot
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado pelo usuário):** `structurize-1.0.840-1.21.1.jar` — [distribuição](https://www.curseforge.com/minecraft/mc-mods/structurize/files/9680037); local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.0.840-1.21.1` (antes `1.0.833-1.21.1-snapshot`; metadata do novo JAR não lido).
+- **Estado no pack:** `1.0.840-1.21.1` declarado instalado pelo usuário em 22/11/2026; inventário documental sincronizado; sem inspeção local.
+- **Estado da pesquisa:** versão-alvo e distribuição verificadas; lançamentos intermediários documentados no dossier; lacunas e limites declarados no cabeçalho.
 - **Decisão:** Dependência
 - **Categoria:** Biblioteca
 - **Função:** Infraestrutura de blueprints/scans/preview/placement estrutural usada pelo MineColonies, com Scan Tool, Build Tool, blueprint packs, sincronização client-server e load balancing de operações.
-- **Dependências:** Release 1.0.833 exige BlockUI 1.0.191-snapshot+ e Domum Ornamentum 1.0.203-snapshot+. Runtime físico: BlockUI 1.0.211, Domum 1.0.236, MineColonies 1.1.1381 e Structurize 1.0.833, todos 1.21.1 snapshots compatíveis com os mínimos publicados.
+- **Dependências:** MineColonies, BlockUI e Domum Ornamentum são consumers do stack; manifesto do file 9680037 cita BlockUI >=1.0.191-1.21.1-snapshot e Domum Ornamentum >=1.0.203-1.21.1-snapshot. Divergências de entradas futuras são pendência de sincronização documental, não veto.
 - **Sobreposição:** Tem ferramentas de construção/schematic, mas sua função de biblioteca para MineColonies é distinta do Schematicannon do Create.
-- **Compatibilidade/Riscos:** Build Beta/snapshot. Riscos: drift entre MineColonies/Structurize/BlockUI/Domum, large scans, placement permissions, operações parciais em unload/restart, missing mod blocks e diferenças preview↔placement. Upstream 1.0.835 inclui fix de event e alinha handling com solid substitution block; atualizar o stack de forma coordenada.
-- **Observações:** mod id `structurize`; runtime físico `1.0.833-1.21.1-snapshot`. Upstream publicou `1.0.835-1.21.1-snapshot` em 30/09/2026; não há artefato 1.21.1 1.0.834 visível na listagem atual. Changelog 1.0.835 contém `fix event (#855)` e `use same handle as solid substitution block (#847)`.
-- **Procedência:** modlist física atual + CurseForge oficial Structurize 1.0.833 instalada e 1.0.835 snapshot publicada para NeoForge 1.21.1 + stack físico MineColonies/BlockUI/Domum. Revalidado em 01/10/2026; config de operações por tick e testes runtime continuam não executados.
+- **Compatibilidade/Riscos:** Blueprints e placement modificam mundo; reforços de validação não significam garantia de segurança. Testar ACL em multiplayer, scans/path traversal, preview e unload/restart.
+- **Observações vigentes:** distribuição `structurize-1.0.840-1.21.1.jar`; versão `1.0.840-1.21.1` declarada instalada, sem metadata/SHA local. Dados anteriores na documentação detalhada são históricos.
+- **Procedência:** posição física histórica #529; declaração de instalação em 22/11/2026 e publicação oficial [CurseForge](https://www.curseforge.com/minecraft/mc-mods/structurize/files/9680037); nenhum JAR local atual reinspecionado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/structurize ; https://www.curseforge.com/minecraft/mc-mods/structurize/files/8829722
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Structurize físico permanece 1.0.833 snapshot. A release 1.0.835 foi comparada; os dois fixes publicados foram registrados fail-closed, sem ampliar seu significado além do changelog upstream.
+- **Atualização/Status:** 22/11/2026 — `1.0.833-1.21.1-snapshot` → `1.0.840-1.21.1` documentado. Histórico do dossier cobre 1.0.835, 1.0.837, 1.0.838, 1.0.839-snapshot/release e 1.0.840-snapshot/release, com source pinned e comparação de sete commits. Mudanças incluem iterador de placement, tolerância no rendering de blueprint, validações de permissão, paths e symlinks contra traversal, fix de NPE e validações de nomes/extensions .blueprint. 1.0.840 final é Release para 1.21.1 NeoForge.
 - **Histórico da decisão:** 2026-08-27 — classificado como Dependência após confirmação do requisito Structurize \>=1.0.832 pelo MineColonies atualmente instalado.
 - **Data da última decisão:** 2026-08-27
 

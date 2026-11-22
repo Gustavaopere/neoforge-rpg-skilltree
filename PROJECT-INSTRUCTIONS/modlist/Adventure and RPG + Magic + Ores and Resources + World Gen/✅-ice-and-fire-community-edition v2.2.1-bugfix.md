@@ -1,22 +1,33 @@
-# Ice And Fire Community Edition
+# IceAndFire Community Edition — 2.2.1-bugfix (instalação declarada em 22/11/2026)
+
+> **Vigente em 22/11/2026:** `2.1.2` → **`2.2.1-bugfix`**; JAR oficial publicado `IceAndFireCE-2.2.1-bugfix-1.21.1-neoforge.jar`, [CurseForge](https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9718410). Instalação confirmada pela declaração do usuário, não por leitura do JAR local ou metadados da nova build.
+
+> **Auditoria das publicações intermediárias:** A auditoria do dossier distingue 2.1.3, 2.1.4, 2.2, 2.2.1 e 2.2.1-bugfix, incluindo correções de hits e flight de criaturas, worldgen/roosts, Dragon Forge e compatibilidade. O hotfix 2.2.1-bugfix de 20/11/2026 corrige mira de dragões em Dragon Forge em coordenadas grandes (precisão double), restaura coleta em cadáveres e impede harvesting duplicado com ambas as mãos.
+
+> **Dependências aguardando sincronização documental:** GeckoLib, Curios, Jupiter e Integration embarcada permanecem a conciliar com os respectivos dossiers e o manifesto desta build; addons Dragon Care, Dread Land e Epic Fight armor compat precisam de QA próprio. Dependências ainda antigas no índice não impedem atualização documental.
+
+> **Riscos/limites de evidência:** Fork/community edition, não substituir por projeto original. Riscos de save e registry/entity IDs, migração de dragões, worldgen, forge e double harvest. Release oficial 1.21.1 NeoForge confirmada.
+
+> **Snapshot físico histórico (posição #316):** iceandfire-2.1.2.jar, 2.1.2; dados referentes à modlist física anterior à declaração de atualização.
+
 
 ## Propriedades do registro
 
 - **Mod:** Ice And Fire Community Edition
-- **Arquivo JAR:** `iceandfire-2.1.2.jar`
-- **Versão 1.21.1:** `2.1.2`
+- **Arquivo JAR instalado (declarado pelo usuário):** `IceAndFireCE-2.2.1-bugfix-1.21.1-neoforge.jar` — [distribuição](https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9718410); local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `2.2.1-bugfix` (antes `2.1.2`; metadata do novo JAR não lido).
 - **Categoria:** Mobs, Worldgen, Exploração, RPG
 - **Decisão:** Sem decisão
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** versão-alvo e distribuição verificadas; lançamentos intermediários documentados no dossier; lacunas e limites declarados no cabeçalho.
+- **Estado no pack:** `2.2.1-bugfix` declarado instalado pelo usuário em 22/11/2026; inventário documental sincronizado; sem inspeção local.
 - **Fonte:** https://github.com/IAFEnvoy/IceAndFire-CE/tree/1.21.1
 - **Função:** Provider principal Ice and Fire CE: dragões Fire/Ice/Lightning, criaturas míticas, tame/growth/combat, equipment, Dragon Forge, structures/worldgen, recipes/loot/trades, Bestiary e progressão.
-- **Dependências:** NeoForge 21.1.248; source 2.1.2 declara GeckoLib, Curios e Integration 0.2. Jupiter 2.3.7 está presente como config system. Addons físicos: Dragon Care 1.3.1, Dread Land 0.1.2 e armor compat Epic Fight 1.0.0.
-- **Compatibilidade/Riscos:** Riscos: save migration entre forks, registry/entity missing mappings, tame/owner/growth state, Dragon Forge dupe/partial settlement, worldgen collisions, Jupiter config drift, GeckoLib rendering, attachment state e addon ABI drift. Epic Fight não tem suporte nativo completo; há bridge de armadura separada.
+- **Dependências:** GeckoLib, Curios, Jupiter e Integration embarcada permanecem a conciliar com os respectivos dossiers e o manifesto desta build; addons Dragon Care, Dread Land e Epic Fight armor compat precisam de QA próprio. Dependências ainda antigas no índice não impedem atualização documental.
+- **Compatibilidade/Riscos:** Fork/community edition, não substituir por projeto original. Riscos de save e registry/entity IDs, migração de dragões, worldgen, forge e double harvest. Release oficial 1.21.1 NeoForge confirmada.
 - **Sobreposição:** Sobreposição de categoria com outros mob/worldgen mods não implica redundância. Dragões, tame/growth, Dragon Forge, Bestiary e estruturas IAF permanecem provider-specific. Epic Fight base não é full-compat sem bridges específicas.
-- **Observações:** JAR físico contém `integration-neoforge-0.2.jar` como JarJar interno; source declara `integration_version=0.2`. Source registra entidades/dragon types/items/blocks/attachments/recipes/loot/trades/features/structures/processors/etc. CE não inclui a série Myrmex segundo documentação oficial.
-- **Procedência:** modlist.txt física anexada e reconferida em 12/09/2026 + source oficial IAFEnvoy/IceAndFire-CE branch 1.21.1 exatamente em mod_version 2.1.2 / NeoForge 21.1.248 + documentação/release oficial 2.1.2 + revalidação de versões em 12/09/2026. A linha 2.2-alpha.3 observada é para Minecraft 26.1.2, não aplicável ao pack.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 12/09/2026 — Ice And Fire Community Edition 2.1.2/JAR físicos reconfirmados; 2.1.2 permanece a release aplicável mais recente para Minecraft 1.21.1. Release posterior 2.2-alpha.3 localizada é para Minecraft 26.1.2. Registrado também o fix 2.1.2 de `dread mob spawn`; addons, JarJar Integration 0.2 e boundaries preservados.
+- **Observações vigentes:** distribuição `IceAndFireCE-2.2.1-bugfix-1.21.1-neoforge.jar`; versão `2.2.1-bugfix` declarada instalada, sem metadata/SHA local. Dados anteriores na documentação detalhada são históricos.
+- **Procedência:** posição física histórica #316; declaração de instalação em 22/11/2026 e publicação oficial [CurseForge](https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9718410); nenhum JAR local atual reinspecionado.
+- **Atualização/Status:** 22/11/2026 — `2.1.2` → `2.2.1-bugfix` documentado. A auditoria do dossier distingue 2.1.3, 2.1.4, 2.2, 2.2.1 e 2.2.1-bugfix, incluindo correções de hits e flight de criaturas, worldgen/roosts, Dragon Forge e compatibilidade. O hotfix 2.2.1-bugfix de 20/11/2026 corrige mira de dragões em Dragon Forge em coordenadas grandes (precisão double), restaura coleta em cadáveres e impede harvesting duplicado com ambas as mãos.
 - **Data da última decisão:** 2026-08-30
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #316: JAR `iceandfire-2.1.2.jar`, mod id `iceandfire`, runtime `2.1.2`, SHA-1 `0786f4142b7cabd958688f68beef3e63e9c0ae8b`.

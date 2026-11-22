@@ -15,6 +15,27 @@
 
 
 
+
+## Lote 22, 48 e 49–56 — atualizações declaradas em 22/11/2026
+
+O pedido do usuário confirma a instalação das versões-alvo **para o inventário documental**. As posições e JARs anteriores provêm do snapshot físico histórico, mas novos arquivos locais e seus hashes não foram relidos. Dependências de outros lotes ainda podem constar desatualizadas e ficam como pendência de reconciliação, não como impeditivo de versionamento. O item **22 Raven's RPG Resource Orbs** continua sem dossier certificado e sem posição top-level física verificável, portanto **não** foi adicionado à tabela principal.
+
+A pendência do item 48 foi resolvida para o nome de distribuição: `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar` consta da publicação oficial [Modrinth 8.8.3](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge), versão id `pbHCUgry`. A publicação equivalente no CurseForge não foi confirmada; não se inventou File ID CurseForge.
+
+| Item solicitado | Nº físico histórico | Nome oficial | Versão documental declarada | Fonte | Observação |
+|---:|---:|---|---|---|---|
+| 48 | 179 | Create: Cyber Goggles | `8.8.3` | [Modrinth](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge) | JAR resolvido, CurseForge 8.8.3 não confirmado |
+| 49 | 316 | IceAndFire Community Edition | `2.2.1-bugfix` | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9718410) | Runtime e metadata local não reinspecionados |
+| 50 | 205 | Create Ultimine | `1.4.0` | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-ultimine/files/9682486) | 1.3.3 tem inconsistência de tag Minecraft 1.20.1 no CurseForge |
+| 51 | 538 | TenshiLib (Forge/NeoForge) | `1.21.1-2.4.0-neoforge` | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/tenshilib/files/9690639) | Runtime e metadata local não reinspecionados |
+| 52 | 435 | Particle Rain | `4.0.4` | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/particle-rain/files/9707371) | Runtime e metadata local não reinspecionados |
+| 53 | 529 | Structurize | `1.0.840-1.21.1` | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/structurize/files/9680037) | Comparação de tags/source preservada no dossier |
+| 54 | 117 | Create Aeronautics | `1.3.3` | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics/files/9711672) | Runtime e metadata local não reinspecionados |
+| 55 | 181 | Create: Diesel Generators | `1.21.1-1.3.16` | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-diesel-generators/files/9739370) | Runtime e metadata local não reinspecionados |
+| 56 | 005 | Additional Attributes | `1.2.3` | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/additional-attributes/files/9687889) | Changelog funcional do patch insuficiente; lacuna registrada |
+
+As auditorias intermediárias preexistentes foram preservadas e os campos vigentes no início dos dossiers e da tabela mestre foram sincronizados. Não foi homologado runtime de Minecraft ou alterado JAR, config ou save local.
+
 ## Lote 22 e 40–48 — sincronização declarada em 22/11/2026
 
 **Autoridade:** pedido do usuário confirma a instalação das versões-alvo documentadas para NeoForge 1.21.1; não houve leitura dos novos JARs locais. As posições são preservadas da modlist física histórica, as versões-alvo têm publicação oficial identificada, e as divergências de dependências com entradas ainda antigas aguardam seus próprios lotes. O caso Raven's RPG Resource Orbs (#22 da lista de atualização) permanece fora da tabela por ausência de dossier certificado e posição física top-level.
@@ -606,7 +627,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 002 | A Good Place | `a_good_place-1.21-1.2.5-neoforge.jar` | `1.21-1.2.5` | `Cosmetic + Magic + Utility & QoL` | 22/09/2026 - 13:39 |
 | 003 | Ace's Spell Utils | `aces_spell_utils-1.2.7.2-1.21.1.jar` | `1.2.7.2-1.21.1` | `Addons + API and Library` | 17/11/2026 - 17:09 |
 | 004 | Acolyte : Iron's Spells 'n Spellbooks Addon | `acolyte-1.0.3.jar` | `1.0.3` | `Adventure and RPG + Magic + Mobs + Structures` | 22/09/2026 - 13:39 |
-| 005 | Additional Attributes | `additional_attributes-1.21.1-1.2.2.jar` | `1.2.2` | `Miscellaneous` | 22/11/2026 - 01:02 |
+| 005 | Additional Attributes | `additional_attributes-1.21.1-1.2.3.jar` | `1.2.3` | `Miscellaneous` | 22/11/2026 - 15:59 |
 | 006 | Advanced Core Info (ACI) | `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar` | `1.1.0` | `API and Library` | 23/10/2026 - 02:19 |
 | 007 | Advanced Loot Info (ALI) | `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar` | `2.1.0` | `Addons + API and Library + Map and Information` | 22/10/2026 - 22:49 |
 | 008 | Advancement Plaques [Neo/Forge] | `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar` | `1.6.8` | `Cosmetic + Map and Information + Miscellaneous + Utility & QoL` | 22/09/2026 - 13:40 |
@@ -718,7 +739,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 114 | Crash Assistant | `CrashAssistant-neoforge-1.20.6-1.21.4-1.11.12.jar` | `1.11.12` | `Bug Fixes + Miscellaneous + Performance + Server Utility + Utility & QoL` | 22/09/2026 - 23:33 |
 | 115 | Create: Quality Of Life | `Create Quality of Life-1.21.1-1.6.3-fix1.jar` | `1.6.3-fix1` | `Create + Utility & QoL` | 22/09/2026 - 23:33 |
 | 116 | Create | `create-1.21.1-6.0.10.jar` | `6.0.10` | `Armor, Tools, and Weapons + Cosmetic + Redstone + Technology` | 22/09/2026 - 23:33 |
-| 117 | Create Aeronautics | `create-aeronautics-bundled-1.21.1-1.3.2.jar` | `1.3.2` | `Adventure and RPG + Automation + Player Transport + Redstone + Technology` | 22/11/2026 - 01:02 |
+| 117 | Create Aeronautics | `create-aeronautics-bundled-1.21.1-1.3.3.jar` | `1.3.3` | `Adventure and RPG + Automation + Player Transport + Redstone + Technology` | 22/11/2026 - 15:59 |
 | 118 | Create: Central Kitchen | `create-central-kitchen-2.6.0.jar` | `2.6.0` | `Addons + Create + Food + Technology` | 22/09/2026 - 23:34 |
 | 119 | Create Confectionery | `create-confectionery1.21.1_v1.1.3b.jar` | `1.1.3b (distribuição/filename); metadata runtime 1.1.3.` | `Addons + Cosmetic + Create + Food + MCreator` | 22/09/2026 - 23:34 |
 | 120 | Create: Enchantment Industry | `create-enchantment-industry-2.5.3b.jar` | `2.5.3b` | `Addons + Create + Storage + Technology` | 22/09/2026 - 23:34 |
@@ -780,9 +801,9 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 176 | Create Cobblestone | `createcobblestone-1.5.0+neoforge-1.21.1-153.jar` | `1.5.0+neoforge-1.21.1-153` | `Addons + Automation + Create + Performance + Technology` | 17/11/2026 - 17:09 |
 | 177 | CreateColonies | `createcolonies-2.0.6.jar` | `2.0.6` | `Addons + Adventure and RPG + Automation + Create` | 23/09/2026 - 14:27 |
 | 178 | Create Contraption Terminals | `createcontraptionterminals-1.21-1.4.0.jar` | `1.4.0` | `Create + Storage + Utility & QoL` | 23/09/2026 - 14:27 |
-| 179 | Create: Cyber Goggles | **JAR novo não verificado** (8.8.3 oficial Modrinth) | `8.8.3` | `Create + Utility & QoL` | 22/11/2026 - 15:25 |
+| 179 | Create: Cyber Goggles | `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar` (Modrinth oficial; CurseForge 8.8.3 não comprovado) | `8.8.3` | `Create + Utility & QoL` | 22/11/2026 - 15:59 |
 | 180 | Create Deco | `createdeco-2.1.3.jar` | `2.1.3` | `Addons + Cosmetic + Create` | 23/09/2026 - 14:27 |
-| 181 | Create Diesel Generators | `createdieselgenerators-1.21.1-1.3.15.jar` | `1.21.1-1.3.15` | `Addons + Create + Processing + Technology` | 22/11/2026 - 01:02 |
+| 181 | Create: Diesel Generators | `createdieselgenerators-1.21.1-1.3.16.jar` | `1.21.1-1.3.16` | `Addons + Create + Processing + Technology` | 22/11/2026 - 15:59 |
 | 182 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 23/09/2026 - 23:50 |
 | 183 | Create: Enchantable Machinery | `createenchantablemachinery-3.6.0+mc1.21.1-neoforge.jar` | `3.6.0` | `Addons + Create + Technology + Utility & QoL` | 23/09/2026 - 23:51 |
 | 184 | Create: Ender Transmission | `createendertransmission-2.1.1-1.21.1.jar` | `2.1.1-1.21.1` | `Addons + Technology` | 23/09/2026 - 23:51 |
@@ -806,7 +827,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 202 | Create: Schematic Checker | `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar` | `2.27.45-6.0` | `Addons + Bug Fixes + Create` | 24/09/2026 - 00:44 |
 | 203 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 17/11/2026 - 16:14 |
 | 204 | Create: Transmission! | `createtransmission-1.2.2+neoforge-create6-1.21.1.jar` | `1.2.2+neoforge-create6-1.21.1` | `Addons + Cosmetic + Create + Technology + Utility & QoL` | 24/09/2026 - 00:44 |
-| 205 | Create Ultimine | `createultimine-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `Addons + Create + Utility & QoL` | 22/11/2026 - 00:59 |
+| 205 | Create Ultimine | `createultimine-1.21.1-neoforge-1.4.0.jar` | `1.4.0` | `Addons + Create + Utility & QoL` | 22/11/2026 - 15:59 |
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 24/10/2026 - 01:34 |
 | 207 | CreativeCore | `CreativeCore_NEOFORGE_v2.13.55_mc1.21.1.jar` | `2.13.55` | `API and Library` | 22/11/2026 - 07:43 |
 | 208 | Crystal Chronicles - Iron's Spells 'n Spellbooks | `crystal_chronicles-0.1.3-alpha.jar` | `0.1.3-alpha` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Dimensions + Magic` | 24/09/2026 - 00:44 |
@@ -917,7 +938,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 17/11/2026 - 17:09 |
 | 314 | Hexalia | `hexalia-neoforge-1.3.7.jar` | `1.3.7` | `Adventure and RPG + Magic + Mobs + World Gen` | 18/11/2026 - 08:32 |
 | 315 | Ice And Fire: Dragon Care | `Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar` | `1.3.1 - 1.21.1v` | `Addons` | 27/09/2026 - 03:14 |
-| 316 | IceAndFire Community Edition | `iceandfire-2.1.2.jar` | `2.1.2` | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 20/11/2026 - 18:45 |
+| 316 | IceAndFire Community Edition | `IceAndFireCE-2.2.1-bugfix-1.21.1-neoforge.jar` | `2.2.1-bugfix` | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 22/11/2026 - 15:59 |
 | 317 | Ice and Fire X Epic Fight | `iceandfire-ce-epicfight-armor-compat-1.0.0.jar` | `1.0.0` | `Addons + Armor, Tools, and Weapons + Bug Fixes + Cosmetic` | 24/09/2026 - 22:20 |
 | 318 | Ice And Fire: Dread Land | `iceandfire_dreadland-0.1.2.jar` | `0.1.2` | `Addons + Adventure and RPG + Biomes + Dimensions` | 24/09/2026 - 22:20 |
 | 319 | Iceberg [Neo/Forge] | `Iceberg-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `API and Library` | 27/09/2026 - 03:14 |
@@ -1036,7 +1057,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 432 | Paladin Spells - Iron's Spells Addon | `paladin_spells-1.21.1-1.1.1.jar` | `1.21.1-1.1.1` | `Addons + Adventure and RPG + Magic` | 21/11/2026 - 00:08 |
 | 433 | ParCool! ~ Minecraft Parkour ~ | `ParCool-1.21.1-4.0.0.3.jar` | `4.0.0.3` | `Adventure and RPG + Miscellaneous + Utility & QoL` | 19/11/2026 - 19:11 |
 | 434 | Particle Effects | `ParticleEffects-1.7.0-1.21.1-neoforge.jar` | `1.7.0` | `Cosmetic + Utility & QoL` | 22/11/2026 - 09:01 |
-| 435 | Particle Rain | `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` | `4.0.0-beta.11` | `Cosmetic` | 22/11/2026 - 01:02 |
+| 435 | Particle Rain | `particlerain-4.0.4-1.21.1-neoforge.jar` | `4.0.4` | `Cosmetic` | 22/11/2026 - 15:59 |
 | 436 | Particular ✨ Reforged | `particular-1.21.1-NeoForge-1.5.7.jar` | `1.5.7` | `Cosmetic` | 17/11/2026 - 16:14 |
 | 437 | PartiCull | `PartiCull-neoforge-1.21.1-v2.0.jar` | `2.0` | `Performance + Utility & QoL` | 21/11/2026 - 23:12 |
 | 438 | Patchouli | `Patchouli-1.21.1-93-NEOFORGE.jar` | `1.21.1-93-NEOFORGE` | `API and Library` | 25/09/2026 - 15:17 |
@@ -1130,7 +1151,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 526 | SpellActionbar | `spell_actionbar-1.1.4.jar` | `1.1.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 27/09/2026 - 22:12 |
 | 527 | StarbuncleMania | `starbunclemania-1.21.1-1.5.8.jar` | `1.5.8` | `Addons + Automation + Energy, Fluid, and Item Transport + Magic` | 27/09/2026 - 22:12 |
 | 528 | Streams Reflowing | `StreamsReflowing-1.21.1-neoforge-2.17.5.jar` | `2.17.5` | `Biomes + Cosmetic + World Gen` | 22/11/2026 - 15:25 |
-| 529 | Structurize | `structurize-1.0.833-1.21.1-snapshot.jar` | `1.0.833-1.21.1-snapshot` | `Cosmetic + Server Utility + Structures` | 20/11/2026 - 18:40 |
+| 529 | Structurize | `structurize-1.0.840-1.21.1.jar` | `1.0.840-1.21.1` | `Cosmetic + Server Utility + Structures` | 22/11/2026 - 15:59 |
 | 530 | Strut Your Stuff (Struts) | `struts-1.3.1.jar` | `1.3.1` | `API and Library` | 27/09/2026 - 22:12 |
 | 531 | Stylish Effects | `StylishEffects-v21.1.3-1.21.1-NeoForge.jar` | `21.1.3` | `Cosmetic + Map and Information + Utility & QoL` | 27/09/2026 - 22:12 |
 | 532 | Create: Deep Seas - Lava Fix | `submarinefix-1.0.1.jar` | `1.0.1` | `Bug Fixes + Create` | 27/09/2026 - 22:58 |
@@ -1139,7 +1160,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 535 | SuperMartijn642's Core Lib | `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` | `1.1.24` | `API and Library` | 22/11/2026 - 00:44 |
 | 536 | Supplementaries | `supplementaries-1.21.1-4.1.4-neoforge.jar` | `1.21.1-4.1.4` | `Cosmetic + Miscellaneous + Redstone + Storage` | 22/11/2026 - 08:09 |
 | 537 | Tectonic | `tectonic-3.0.28-neoforge-21.1.jar` | `3.0.28` | `World Gen` | 27/09/2026 - 23:18 |
-| 538 | TenshiLib (Forge/NeoForge) | `tenshilib-1.21.1-2.3.0.b-neoforge.jar` | `1.21.1-2.3.0.b-neoforge` | `API and Library` | 22/11/2026 - 01:02 |
+| 538 | TenshiLib (Forge/NeoForge) | `tenshilib-1.21.1-2.4.0-neoforge.jar` | `1.21.1-2.4.0-neoforge` | `API and Library` | 22/11/2026 - 15:59 |
 | 539 | TerraBlender (NeoForge) | `TerraBlender-neoforge-1.21.1-4.1.0.8.jar` | `4.1.0.8` | `API and Library + Biomes + World Gen` | 27/09/2026 - 22:58 |
 | 540 | Terralith | `Terralith_1.21.x_v2.6.2.jar` | `2.6.2` | `Biomes + Structures + World Gen` | 27/09/2026 - 23:18 |
 | 541 | Create: TFMG Community Edition | `tfmg-1.21.1-1.3.1-community.jar` | `1.3.1-community` | `Addons + Armor, Tools, and Weapons + Create + Ores and Resources + Technology` | 21/11/2026 - 00:20 |

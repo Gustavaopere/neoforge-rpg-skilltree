@@ -1,25 +1,36 @@
-# Create Aeronautics
+# Create Aeronautics — 1.3.3 (instalação declarada em 22/11/2026)
+
+> **Vigente em 22/11/2026:** `1.3.2` → **`1.3.3`**; JAR oficial publicado `create-aeronautics-bundled-1.21.1-1.3.3.jar`, [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics/files/9711672). Instalação confirmada pela declaração do usuário, não por leitura do JAR local ou metadados da nova build.
+
+> **Auditoria das publicações intermediárias:** A 1.3.3 adiciona receita de dye de Envelopes e opção de rendering de Hot Air desligado automaticamente com Iris; corrige rendering de beams/ropes, Levitite, menu Wrench, constraint de Swivel Bearings após reload, lag de explosões em Honey Glue e introduz validações server-side de distância e itens em packets. A versão anterior 1.3.2 já tinha mass correction/JEI/creative tab fixes.
+
+> **Dependências aguardando sincronização documental:** Create e Sable são providers do stack. Módulos aeronautics/offroad/simulated embarcados no JAR bundled não são mods top-level nem devem virar entradas próprias. Outras integrações Aeronautics aguardam lotes correspondentes.
+
+> **Riscos/limites de evidência:** Veículos e contraptions exigem validação de massa, persistência de constraints, inventário, reload e autorização multiplayer; não houve execução do jogo.
+
+> **Snapshot físico histórico (posição #117):** create-aeronautics-bundled-1.21.1-1.3.2.jar, 1.3.2; dados referentes à modlist física anterior à declaração de atualização.
+
 
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#117**: JAR `create-aeronautics-bundled-1.21.1-1.3.2.jar`, mod id `aeronautics_bundled`, runtime `1.3.2`, SHA-1 `ddbe9cbc25e8f663218aa1e9fdfc4b99f0e11e4b`.
 
 ## Propriedades do registro
 
 - **Mod:** Create Aeronautics
-- **Arquivo JAR:** `create-aeronautics-bundled-1.21.1-1.3.2.jar`
-- **Versão 1.21.1:** `1.3.2`
+- **Arquivo JAR instalado (declarado pelo usuário):** `create-aeronautics-bundled-1.21.1-1.3.3.jar` — [distribuição](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics/files/9711672); local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.3.3` (antes `1.3.2`; metadata do novo JAR não lido).
 - **Categoria:** Tecnologia; Exploração
 - **Decisão:** Manter
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** versão-alvo e distribuição verificadas; lançamentos intermediários documentados no dossier; lacunas e limites declarados no cabeçalho.
+- **Estado no pack:** `1.3.3` declarado instalado pelo usuário em 22/11/2026; inventário documental sincronizado; sem inspeção local.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics
 - **Função:** Extensão física de Create que usa Sable para transformar estruturas de blocos em veículos e contraptions físicas, cobrindo aeronaves, carros, drones, balões e outros assemblies móveis construídos pelo jogador.
-- **Dependências:** Create + Sable. O host top-level `create-aeronautics-bundled-1.21.1-1.3.2.jar` embarca três módulos 1.3.2: `aeronautics` (Create Aeronautics), `offroad` (Create Offroad) e `simulated` (Create Simulated). São componentes jar-in-jar subordinados ao bundle, não top-level separados.
-- **Compatibilidade/Riscos:** Núcleo do stack físico/veicular. Riscos em mass/inertia, assembly/disassembly, block entities, controls, collision, Sable sublevels e addons que mixinam a física. 1.3.2 corrige mass do Swivel Bearing após assembly e JEI/creative-tab compatibility.
+- **Dependências:** Create e Sable são providers do stack. Módulos aeronautics/offroad/simulated embarcados no JAR bundled não são mods top-level nem devem virar entradas próprias. Outras integrações Aeronautics aguardam lotes correspondentes.
+- **Compatibilidade/Riscos:** Veículos e contraptions exigem validação de massa, persistência de constraints, inventário, reload e autorização multiplayer; não houve execução do jogo.
 - **Sobreposição:** Sable fornece a camada física/sublevel subjacente; Create fornece primitives de contraption/kinetics; Aeronautics define o vehicle/physics integration. Addons Aero estendem esse stack e não substituem o bundle.
-- **Observações:** Top-level mod id `aeronautics_bundled`, runtime 1.3.2. Jar-in-jar físico: `dev.eriksonn.aeronautics...1.3.2.jar` → mod id `aeronautics`; `dev.ryanhcode.offroad...1.3.2.jar` → `offroad`; `dev.simulated_team.simulated...1.3.2.jar` → `simulated`. Decisão `Manter` preservada.
-- **Procedência:** modlist(1).txt física atual de 20/09/2026 + runtime bundle 1.3.2 + inventário jar-in-jar físico + CurseForge/Modrinth oficiais Create Aeronautics e decisão histórica já auditados. Reconciliação final: host/runtime permanecem exatamente `create-aeronautics-bundled-1.21.1-1.3.2.jar` / `1.3.2`; módulos `aeronautics`, `offroad` e `simulated` 1.3.2 continuam subordinados ao bundle e não top-level.
+- **Observações vigentes:** distribuição `create-aeronautics-bundled-1.21.1-1.3.3.jar`; versão `1.3.3` declarada instalada, sem metadata/SHA local. Dados anteriores na documentação detalhada são históricos.
+- **Procedência:** posição física histórica #117; declaração de instalação em 22/11/2026 e publicação oficial [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics/files/9711672); nenhum JAR local atual reinspecionado.
 - **Histórico da decisão:** Decisão formal `Manter` registrada em 30/08/2026: Create Aeronautics foi escolhido como núcleo do sistema de contraptions físicas/aeronaves. Em 08/09/2026, a decisão foi preservada e a ficha reconciliada à build física 1.3.2.
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #116: `create-aeronautics-bundled-1.21.1-1.3.2.jar` / `1.3.2` conferidos contra a modlist atual; physics/vehicle authority, assembly/mass, Sable boundary, módulos jar-in-jar e decisão `Manter` preservados.
+- **Atualização/Status:** 22/11/2026 — `1.3.2` → `1.3.3` documentado. A 1.3.3 adiciona receita de dye de Envelopes e opção de rendering de Hot Air desligado automaticamente com Iris; corrige rendering de beams/ropes, Levitite, menu Wrench, constraint de Swivel Bearings após reload, lag de explosões em Honey Glue e introduz validações server-side de distância e itens em packets. A versão anterior 1.3.2 já tinha mass correction/JEI/creative tab fixes.
 - **Data da última decisão:** 2026-08-30
 
 # Dossiê operacional — padrão Alex's Mobs
