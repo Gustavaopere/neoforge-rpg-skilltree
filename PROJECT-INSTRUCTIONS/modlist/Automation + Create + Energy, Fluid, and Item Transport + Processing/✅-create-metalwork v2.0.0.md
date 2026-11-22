@@ -1,4 +1,4 @@
-# Create: Metalwork
+# Create: Metalwork — instalado 2.0.0 | upstream auditada 3.0.0 (não instalada)
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#195**: JAR `createmetalwork-2.0.0.jar`, mod id `createmetalwork`, runtime `2.0.0`, SHA-1 `e53cb0ce472f6abc299c7545df5259bdb136de0`.
 
@@ -6,17 +6,19 @@
 
 - **Mod:** Create: Metalwork
 - **Arquivo JAR:** `createmetalwork-2.0.0.jar`
-- **Versão 1.21.1:** `2.0.0`
+- **Versão instalada (Minecraft 1.21.1):** `2.0.0`
+- **Versão upstream mais recente documentada:** `3.0.0` — **28/09/2026, Release NeoForge 1.21.1, NÃO INSTALADA**. Fonte exata 3.0.0 comparada com as notas públicas da linha 2.0; diff binário 2.0.0→3.0.0 não executado.
+- **Conteúdo novo verificado na documentação 3.0.0:** registros condicionais, ampla matriz de integração, `expanded_basin_fluids`, rotas/ratios de processamento; não atribuir automaticamente todos esses itens como *novidades exclusivas* frente à 2.0.0.
 - **Categoria:** Metalurgia, Automação, Tecnologia
 - **Função:** Adiciona novos fluidos/crushed ores e rotas metalúrgicas do Create voltadas a aumentar rendimento de ingots por minério.
 - **Dependências:** Create obrigatório. Pack físico usa NeoForge 21.1.248 + Create 6.0.10; Almost Unified 1.4.2 está presente e continua relevante para variant unification. Big Cannons 5.11.7, Dreams n' Desires 2.3a-BETA e Northstar 0.6.4 permanecem superfícies concretas de compatibilidade.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Estado no pack:** `2.0.0` instalada e integrada ao GitHub; versão `3.0.0` **somente auditada**, sem substituição do JAR ou configs.
+- **Estado da pesquisa:** Verificado para JAR/versão física `2.0.0` e para fontes primárias documentais da linha `3.0.0`; **comparação exata dos JARs e QA de migração não realizados**.
 - **Compatibilidade/Riscos:** Riscos: receitas paralelas com rendimentos incompatíveis; conversion loops; molten fluid amounts semanticamente diferentes; Almost Unified escolher variante inadequada; drift de CBC/DnD/Northstar; KubeJS stale recipes; regressão do crash Lithium se o provider for adicionado.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-metalwork
-- **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createmetalwork` 2.0.0 + CurseForge oficial revalidado em 12/09/2026; 2.0.0 de 03/12/2025 continua a release NeoForge 1.21.1 mais recente. Source público antigo não é tratado como implementação binária da 2.0.0.
-- **Observações:** JAR/mod id/runtime 2.0.0 confirmados. Release exata NeoForge 1.21.1 corrige crash com Lithium. O repositório público localizado permanece na linha antiga 1.20.1/1.0.0 e não foi usado como implementação binária da 2.0.0.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.0.0. CurseForge publicou Create: Metalwork 3.0.0 para NeoForge 1.21.1 em 28/09/2026; trata-se de nova linha major e o changelog público não fornece um diff granular 2.0.0→3.0.0, portanto a atualização deve ser validada por comportamento/config e não por inferência.
+- **Procedência:** snapshot físico de setembro de 2026 confirma `createmetalwork-2.0.0.jar` na posição #195. A verificação em 12/09 reconhecia 2.0.0 como latest **naquela data**; em 28/09/2026 foi publicada 3.0.0 NeoForge 1.21.1. Auditoria de 22/11 incorpora changelogs oficiais 2.0.0-beta/2.0.0 e source 3.0.0 fixada em commit `fd3ba9a`; nenhuma comparação binária entre JARs foi executada.
+- **Observações:** JAR/mod id/runtime `2.0.0` confirmados; release 2.0.0 corrige crash com Lithium. Existe source **nova implementação 3.0.0** no repositório oficial `AverageAnime/create-metalwork-multiloader`, commit `fd3ba9a` de 28/09/2026. O projeto antigo `AverageAnime/create-metalwork` contém código histórico que não foi tratado como source binária exata da 2.0.0. Features 3.0.0 devem ser lidas como **upstream não instalada**.
+- **Atualização/Status:** **22/11/2026 — upstream 3.0.0 documentada no `.md`**, com configuração de registries condicionais, opções do Basin, routes/ratios, overlaps e comparação com notas 2.0.0-beta/2.0.0. **Versão efetivamente instalada permanece 2.0.0**. A 3.0.0 é uma nova linha sem changelog diferencial completo; diff dos JARs e runtime QA não feitos, sem alterar filename, JAR, configs ou save.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Histórico não operacional: uma auditoria anterior centrada em TFC sugeriu remoção por criar rota metálica concorrente. TFC não está na modlist atual, portanto esse fundamento não é aplicável à decisão presente. O mod permanece instalado e sem decisão final.
 - **Sobreposição:** Forte overlap econômico/material com Create Metallurgy 1.0.3 e Productive Metalworks 1.15.1. Não há duplicata automática: comparar crushed ores, molten forms, recipe ratios e máquinas; Almost Unified pode unificar variantes sem resolver rendimento.
