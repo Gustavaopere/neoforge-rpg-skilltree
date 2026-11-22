@@ -949,7 +949,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 437 | PartiCull | `PartiCull-neoforge-1.21.1-v2.0.jar` | `2.0` | `Performance + Utility & QoL` | 21/11/2026 - 23:12 |
 | 438 | Patchouli | `Patchouli-1.21.1-93-NEOFORGE.jar` | `1.21.1-93-NEOFORGE` | `API and Library` | 25/09/2026 - 15:17 |
 | 439 | Pehkui | `Pehkui-3.8.3+1.21-neoforge.jar` | `3.8.3+1.21-neoforge` | `API and Library` | 25/09/2026 - 15:17 |
-| 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 22/10/2026 - 19:46 |
+| 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 22/10/2026 - 21:50 |
 | 441 | Presence Footsteps x Sable (Aeronautics Compat) | `pfsable-1.0.jar` | `1.0` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
 | 442 | Photon | `photon-neoforge-1.21.1-2.2.6.a-all.jar` | `2.2.6.a` | `API and Library + Magic + Technology + Utility & QoL` | 22/11/2026 - 00:44 |
 | 443 | Pickable Health Orbs | `pickable_orbs-1.21.1-1.0.0.jar` | `1.21.1-1.0.0` | `Adventure and RPG + Magic + Utility & QoL` | 26/09/2026 - 02:32 |
@@ -982,7 +982,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 470 | Steam 'n' Rails Neoforge | `railways-0.3.0-beta.2+neoforge-mc1.21.1.jar` | `0.3.0-beta.2+neoforge-mc1.21.1` | `Addons + Cosmetic + Create + Player Transport + Technology` | 27/09/2026 - 16:30 |
 | 471 | Rechiseled | `rechiseled-1.2.6-neoforge-mc1.21.jar` | `1.2.6` | `Cosmetic` | 27/09/2026 - 16:30 |
 | 472 | Iron's Spells 'n Spellbooks: Recolor | `recolor_tablet-1.3.3+1.21.1.jar` | `1.3.3+1.21.1` | `Cosmetic + Magic` | 21/11/2026 - 01:03 |
-| 473 | Reese's Sodium Options | `reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar` | `2.2.3+mc1.21.1` | `Miscellaneous` | 27/09/2026 - 17:03 |
+| 473 | Reese's Sodium Options | `reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar` | `2.2.3+mc1.21.1` | `Miscellaneous` | 01/10/2026 - 00:44 |
 | 474 | Relics | `relics-1.21.1-0.12.8.jar` | `0.12.8` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Ores and Resources` | 17/11/2026 - 18:40 |
 | 475 | Reliquified L_Ender 's Cataclysm new relics fix | `reliquified-lenders-cataclysm-new-relics-fix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes + Server Utility` | 27/09/2026 - 17:03 |
 | 476 | Reliquified Ars Nouveau | `reliquified_ars_nouveau-1.21.1-0.8.1.jar` | `0.8.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/10/2026 - 22:49 |
