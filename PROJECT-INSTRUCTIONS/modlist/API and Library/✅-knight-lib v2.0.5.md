@@ -1,26 +1,39 @@
-# Knight Lib
+# Knight Lib — 2.0.5 (versão instalada declarada em 22/11/2026)
+
+> **Estado vigente — declaração do usuário de 22/11/2026:** `2.0.1` → **`2.0.5`**, NeoForge 1.21.1; JAR oficialmente publicado `knightlib-neoforge-1.21.1-2.0.5.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/9190296)). Arquivo real local, SHA e metadata não relidos. Posição física histórica #359.
+
+> **Auditoria:** Auditoria por publicação já registra 2.0.2 (particle keyframe locators em shaderpacks), 2.0.3 (UV mirrored east/west), 2.0.4 (automaton modular, Creative/Spectator targeting, plain states, DamageSource e forced exits) e 2.0.5 (Sodium não deve congelar texturas animadas no primeiro frame). Fonte: arquivos CurseForge NeoForge 1.21.1 e upstream Xylonity.
+
+> **Dependências:** Companions! 1.3.4 é consumidor histórico e exige Knight Lib >=2.0.1, mas isso não certifica compatibilidade ABI da 2.0.5 com o consumer; demais integrações devem ser testadas.
+
+> **Riscos:** Mudança da API de automaton na 2.0.4: testar Companions!, AI de consumidores, state transitions, render/shaders, networking, dedicated server e multiplayer. Sem QA real.
+
+> **Contexto histórico:** registros abaixo com “instalado”, “atual” ou “não instalado” anteriores a 22/11/2026 descrevem o snapshot de setembro ou auditorias antigas. Os campos vigentes e esta declaração prevalecem. Não foram realizados testes de runtime, save ou multiplayer.
+
+---
+
 
 ## Propriedades do registro
 
 - **Mod:** Knight Lib
-- **Arquivo JAR:** knightlib-neoforge-1.21.1-2.0.1.jar
-- **Versão 1.21.1:** 2.0.1
+- **Arquivo JAR instalado (declarado):** `knightlib-neoforge-1.21.1-2.0.5.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/9190296)), sem leitura do arquivo local.
+- **Versão instalada declarada:** `2.0.5` (anterior `2.0.1`, NeoForge/Minecraft 1.21.1); metadata novo não lido.
 - **Categoria:** Biblioteca
 - **Decisão:** Sem decisão
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
-- **Fonte:** https://github.com/Xylonity/Knight-Lib/tree/1.21.1
+- **Estado da pesquisa:** alvo/JAR e cadeia histórica conferidos conforme seção vigente; lacunas específicas indicadas sem certificação indevida.
+- **Estado no pack:** `2.0.5` declarada instalada pelo usuário, como autoridade do inventário documental; JAR local e QA não verificados.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/9190296
 - **Função:** Biblioteca multiloader de utilidades compartilhadas para networking, configs, eventos, AI, bossbars, camera shake, shaders, spawns, loot, persistent sounds, entity data e registration; bridge concreta para Companions! no pack.
-- **Dependências:** NeoForge 1.21.1. Consumer físico confirmado: Companions! 1.3.4. O changelog oficial de Companions! 1.3.4 eleva explicitamente a versão mínima requerida de Knight Lib para 2.0.1; GeckoLib permanece dependência do consumer, não da própria Knight Lib.
-- **Compatibilidade/Riscos:** Library de ampla superfície. Riscos: networking/config/event ABI drift, hot-reload, bossbar links stale, entity data/schema drift, AI/OBB/render paths e consumer incompatível. Runtime físico 2.0.1; upstream 2.0.2 corrige particle keyframe locators com shaderpacks e 2.0.3 corrige box UV espelhado com faces east/west trocadas.
+- **Dependências:** Companions! 1.3.4 é consumidor histórico e exige Knight Lib >=2.0.1, mas isso não certifica compatibilidade ABI da 2.0.5 com o consumer; demais integrações devem ser testadas.
+- **Compatibilidade/Riscos:** Mudança da API de automaton na 2.0.4: testar Companions!, AI de consumidores, state transitions, render/shaders, networking, dedicated server e multiplayer. Sem QA real.
 - **Sobreposição:** Não é substituível por biblioteca genérica sem adaptar consumers. Companions! 1.3.4 é dependente concreto e exige Knight Lib 2.0.1 como versão mínima. Similaridade funcional de networking/config/event APIs com outras libs não implica ABI compatível.
 - **Observações:** Runtime físico permanece 2.0.1 e Companions! 1.3.4 exige ≥2.0.1. Releases posteriores 2.0.2 (20/09/2026) e 2.0.3 (23/09/2026) foram verificadas; ambas são fixes de rendering/model/particle, não instaladas.
 - **Procedência:** modlist física atual + Knight Lib 2.0.1 instalada + CurseForge oficial 2.0.2 e 2.0.3 NeoForge 1.21.1 + source Xylonity/Knight-Lib + consumer Companions! 1.3.4. Revalidado em 03/10/2026.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece Knight Lib 2.0.1. As releases 2.0.2 e 2.0.3 foram comparadas em sequência e registradas abaixo.
+- **Atualização/Status:** 22/11/2026 — `2.0.1` → `2.0.5` por declaração de instalação. Auditoria por publicação já registra 2.0.2 (particle keyframe locators em shaderpacks), 2.0.3 (UV mirrored east/west), 2.0.4 (automaton modular, Creative/Spectator targeting, plain states, DamageSource e forced exits) e 2.0.5 (Sodium não deve congelar texturas animadas no primeiro frame). Fonte: arquivos CurseForge NeoForge 1.21.1 e upstream Xylonity.
 - **Histórico da decisão:** 2026-08-26 — registro inicial com Knight Lib 1.x e consumer Companions!. 2026-09-10 — Knight Lib 1.6.1 documentada com correção de bossbar links em world reload. 2026-09-12 — Notion registrou 1.6.2 e 2.0.1 como updates externos e bloqueou promoção automática por salto major. 2026-09-16 — modlist física confirma Knight Lib 2.0.1 e Companions! 1.3.4; o changelog do consumer confirma 2.0.1 como versão mínima requerida.
 - **Data da última decisão:** 2026-08-26
 
-> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #359: JAR `knightlib-neoforge-1.21.1-2.0.1.jar`, mod id `knightlib`, runtime `2.0.1`, SHA-1 `9a51107e51ef97c81089836382ab50b418ebda53`.
+> **Snapshot físico histórico — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #359: JAR `knightlib-neoforge-1.21.1-2.0.1.jar`, mod id `knightlib`, runtime `2.0.1`, SHA-1 `9a51107e51ef97c81089836382ab50b418ebda53`.
 
 <callout icon="🛡️" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico atual: `knightlib-neoforge-1.21.1-2.0.1.jar`, mod id `knightlib`, versão `2.0.1`. O pack contém **Companions! 1.3.4**, cujo changelog oficial declara que a versão mínima requerida de Knight Lib foi elevada para **2.0.1**. Isso substitui o antigo estado em que 1.6.1 era física e 2.0.1 aparecia apenas como version gate externo.
@@ -155,3 +168,14 @@ Changelog do **JAR NeoForge 1.21.1 exato**, file ID **9190296**: **corrige Sodiu
 **Conclusão documental:** a cadeia **2.0.1 → 2.0.2 → 2.0.3 → 2.0.4 → 2.0.5** está documentada com changelogs por artefato da combinação correta. **A pesquisa das alterações publicadas está concluída para o catálogo de 23/10/2026**, mas **nenhum JAR foi promovido** e a compatibilidade/ABI com Companions! **não foi validada**. Pode sair da lista de *pesquisa documental*; manter gate próprio para instalação/QA futura.
 
 **Fontes:** https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/all ; https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/9036237 ; https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/9190296 .
+
+
+## Sincronização documental de 22/11/2026 — Knight Lib 2.0.5
+
+**Estado atual declarado:** `2.0.1` → `2.0.5`; arquivo oficial `knightlib-neoforge-1.21.1-2.0.5.jar` (NeoForge 1.21.1), https://www.curseforge.com/minecraft/mc-mods/knight-lib/files/9190296. Posição original #359. Nenhum novo JAR, hash ou metadata do PC foi consultado.
+
+**Versões auditadas / lacunas:** Auditoria por publicação já registra 2.0.2 (particle keyframe locators em shaderpacks), 2.0.3 (UV mirrored east/west), 2.0.4 (automaton modular, Creative/Spectator targeting, plain states, DamageSource e forced exits) e 2.0.5 (Sodium não deve congelar texturas animadas no primeiro frame). Fonte: arquivos CurseForge NeoForge 1.21.1 e upstream Xylonity.
+
+**Dependências aguardando sincronização e testes:** Companions! 1.3.4 é consumidor histórico e exige Knight Lib >=2.0.1, mas isso não certifica compatibilidade ABI da 2.0.5 com o consumer; demais integrações devem ser testadas. Divergências em outros dossiers ainda não atualizados são pendências documentais, não bloqueio automático nem prova de compatibilidade.
+
+**Riscos e limites:** Mudança da API de automaton na 2.0.4: testar Companions!, AI de consumidores, state transitions, render/shaders, networking, dedicated server e multiplayer. Sem QA real.

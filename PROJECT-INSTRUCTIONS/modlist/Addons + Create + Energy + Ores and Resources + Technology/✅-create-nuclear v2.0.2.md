@@ -1,22 +1,35 @@
-# Create Nuclear
+# Create Nuclear — 2.0.2 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#197**: JAR `createnuclear-1.3.2-beta.3-neoforge.jar`, mod id `createnuclear`, runtime `1.3.2-beta.3`, SHA-1 `c4349006fd07e614b0de3c5982d7f0d0a818c98c`.
+> **Estado vigente — declaração do usuário de 22/11/2026:** `1.3.2-beta.3` → **`2.0.2`**, NeoForge 1.21.1; JAR oficialmente publicado `createnuclear-2.0.2-neoforge.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/createnuclear/files/9750470)). Arquivo real local, SHA e metadata não relidos. Posição física histórica #197.
+
+> **Auditoria:** As versões 2.0.0 (V2: reatores de tiers 2/3, heat/coolant, radiação, Thorium/Nitrate/Nitrogen e mudanças em worldgen) e 2.0.1 (outputs, SU, blueprint e TFMG) já foram auditadas. A 2.0.2 (22/11) faz outputs pararem quando o controller desaparece e persistirem seu vínculo após reload; adiciona KubeJS opcional para receitas/estatísticas de rods e coolants com evento fluidRodStats, além de telemetria LOCAL desativada por padrão, controlada por /cn telemetry (permissão 2), com sessões em debug/createnuclear/telemetry e configs por módulo.
+
+> **Dependências:** Create obrigatório; compatibilidade opcional com KubeJS (novas receitas e fluidRodStats), Create: Dragons Plus e TFMG sob condições especificadas nas respectivas versões. Não inferir mínimos de loader por build metadata de terceiros.
+
+> **Riscos:** ALERTA DE MIGRAÇÃO DO AUTOR: reatores V1 ainda montados ao atualizar para V2 podem causar corrupção/meltdown. A atualização já foi declarada; NÃO carregar save principal antes de avaliar risco, preservar backups, verificar desmontagem prévia e testar numa cópia. Telemetria mascarando dados conforme publicação, sem envio externo anunciado. Nenhum teste de mundo, reactor/SU, KubeJS ou multiplayer foi executado.
+
+> **Contexto histórico:** registros abaixo com “instalado”, “atual” ou “não instalado” anteriores a 22/11/2026 descrevem o snapshot de setembro ou auditorias antigas. Os campos vigentes e esta declaração prevalecem. Não foram realizados testes de runtime, save ou multiplayer.
+
+---
+
+
+> **Snapshot físico histórico — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#197**: JAR `createnuclear-1.3.2-beta.3-neoforge.jar`, mod id `createnuclear`, runtime `1.3.2-beta.3`, SHA-1 `c4349006fd07e614b0de3c5982d7f0d0a818c98c`.
 
 ## Propriedades do registro
 
 - **Mod:** Create Nuclear
-- **Arquivo JAR:** `createnuclear-1.3.2-beta.3-neoforge.jar`
-- **Versão 1.21.1:** `1.3.2-beta.3`
+- **Arquivo JAR instalado (declarado):** `createnuclear-2.0.2-neoforge.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/createnuclear/files/9750470)), sem leitura do arquivo local.
+- **Versão instalada declarada:** `2.0.2` (anterior `1.3.2-beta.3`, NeoForge/Minecraft 1.21.1); metadata novo não lido.
 - **Categoria:** Tecnologia, Automação
 - **Função:** Expande o Create com tecnologia nuclear, incluindo reatores, radiação, recursos e sistemas de geração/uso de energia associados.
-- **Dependências:** Create obrigatório; pack físico usa NeoForge 21.1.248 + Create 6.0.10 e Curios 9.5.1. Source matching da build foi desenvolvido contra Create 6.0.7, portanto o drift para 6.0.10 continua exigindo smoke-test. A build permanece Beta/experimental.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Riscos: reactor/rod state stale; fuel depletion/ejection replay; neutron/criticality desync; steam/fluid dupe; SU overflow/readout; Coal Dust/Reinforced Glass tag drift; HEV/Hazmat state stale; Curios meter duplication; Create API drift; loops energéticos com New Age/CC&A; retroprojeção indevida da linha V2.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/createnuclear
+- **Dependências:** Create obrigatório; compatibilidade opcional com KubeJS (novas receitas e fluidRodStats), Create: Dragons Plus e TFMG sob condições especificadas nas respectivas versões. Não inferir mínimos de loader por build metadata de terceiros.
+- **Estado no pack:** `2.0.2` declarada instalada pelo usuário, como autoridade do inventário documental; JAR local e QA não verificados.
+- **Estado da pesquisa:** alvo/JAR e cadeia histórica conferidos conforme seção vigente; lacunas específicas indicadas sem certificação indevida.
+- **Compatibilidade/Riscos:** ALERTA DE MIGRAÇÃO DO AUTOR: reatores V1 ainda montados ao atualizar para V2 podem causar corrupção/meltdown. A atualização já foi declarada; NÃO carregar save principal antes de avaliar risco, preservar backups, verificar desmontagem prévia e testar numa cópia. Telemetria mascarando dados conforme publicação, sem envio externo anunciado. Nenhum teste de mundo, reactor/SU, KubeJS ou multiplayer foi executado.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/createnuclear/files/9750470
 - **Procedência:** modlist.txt física atual de 11/09/2026 + runtime `createnuclear` 1.3.2-beta.3 + CurseForge oficial revalidado em 12/09/2026; 1.3.2-beta.3 de 13/12/2025 continua a build NeoForge 1.21.1 mais recente. O projeto possui Create Nuclear 2.0.0 mais novo para Minecraft 1.20.1, fora do alvo desta ficha.
 - **Observações:** JAR/mod id/runtime 1.3.2-beta.3 e source matching `Create-Nuclear-Team/CreateNuclearNeoForge` main confirmados. Deltas exatos 1.3.2: refactor de Coal Dust tags/recipes e atualização de glass tags/recipes para Reinforced Glass. Conteúdo V2 posterior não foi atribuído à build instalada.
-- **Atualização/Status:** REVISÃO DOCUMENTAL EM 17/11/2026 — físico 1.3.2-beta.3 preservado; V2 2.0.0 já examinada e nova 2.0.1 NeoForge 1.21.1 auditada (fix SU multiplication, outputs, blueprints, TFMG Nitrate). Migração de reatores antigos requer desmontagem e backup antes de update; nenhum teste/upgrade feito.
+- **Atualização/Status:** 22/11/2026 — `1.3.2-beta.3` → `2.0.2` por declaração de instalação. As versões 2.0.0 (V2: reatores de tiers 2/3, heat/coolant, radiação, Thorium/Nitrate/Nitrogen e mudanças em worldgen) e 2.0.1 (outputs, SU, blueprint e TFMG) já foram auditadas. A 2.0.2 (22/11) faz outputs pararem quando o controller desaparece e persistirem seu vínculo após reload; adiciona KubeJS opcional para receitas/estatísticas de rods e coolants com evento fluidRodStats, além de telemetria LOCAL desativada por padrão, controlada por /cn telemetry (permissão 2), com sessões em debug/createnuclear/telemetry e configs por módulo.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Histórico: houve sugestão anterior de remoção por adicionar uma ramificação nuclear completa e por a build estar em beta; posteriormente o usuário manteve addons Create de que gosta. Esse histórico não equivale a uma decisão atual. O mod permanece instalado e sem decisão final.
 - **Sobreposição:** Create: New Age 1.2.0 e Create Crafts & Additions 1.7.0 compartilham geração/conversão de energia, mas Nuclear possui reactor/radiation/fuel chain própria. Auditar loops SU/FE e custos, não presumir redundância.
@@ -152,3 +165,14 @@ A modlist física confirma JAR/mod id/runtime 1.3.2-beta.3. O source oficial `ma
 **ALERTA de migração preservado da seção 30:** para ir de **1.3.2-beta.3 para a V2**, desmontar **TODOS os reatores ativos no mundo antigo antes da troca**, fazer backup e validar em cópia. Risco de corrupção/meltdown segundo orientação do autor. A 2.0.1 corrige doubling de stress, **não prova segurança de mundos antigos** ou migração automática de reactores V1. Conferir Create 6.0.10, Sable/Aeronautics, TFMG, recipes, radiação em mobs, blueprints, buffer e SU, fans, dimensões e restarts.
 
 **Conclusão documental:** cadeia física **1.3.2-beta.3→2.0.0→2.0.1** auditada; nenhuma instalação, migração, QA ou aprovação de uso em save real ocorreu. O nome do dossier e JAR permanecem 1.3.2-beta.3.
+
+
+## Sincronização documental de 22/11/2026 — Create Nuclear 2.0.2
+
+**Estado atual declarado:** `1.3.2-beta.3` → `2.0.2`; arquivo oficial `createnuclear-2.0.2-neoforge.jar` (NeoForge 1.21.1), https://www.curseforge.com/minecraft/mc-mods/createnuclear/files/9750470. Posição original #197. Nenhum novo JAR, hash ou metadata do PC foi consultado.
+
+**Versões auditadas / lacunas:** As versões 2.0.0 (V2: reatores de tiers 2/3, heat/coolant, radiação, Thorium/Nitrate/Nitrogen e mudanças em worldgen) e 2.0.1 (outputs, SU, blueprint e TFMG) já foram auditadas. A 2.0.2 (22/11) faz outputs pararem quando o controller desaparece e persistirem seu vínculo após reload; adiciona KubeJS opcional para receitas/estatísticas de rods e coolants com evento fluidRodStats, além de telemetria LOCAL desativada por padrão, controlada por /cn telemetry (permissão 2), com sessões em debug/createnuclear/telemetry e configs por módulo.
+
+**Dependências aguardando sincronização e testes:** Create obrigatório; compatibilidade opcional com KubeJS (novas receitas e fluidRodStats), Create: Dragons Plus e TFMG sob condições especificadas nas respectivas versões. Não inferir mínimos de loader por build metadata de terceiros. Divergências em outros dossiers ainda não atualizados são pendências documentais, não bloqueio automático nem prova de compatibilidade.
+
+**Riscos e limites:** ALERTA DE MIGRAÇÃO DO AUTOR: reatores V1 ainda montados ao atualizar para V2 podem causar corrupção/meltdown. A atualização já foi declarada; NÃO carregar save principal antes de avaliar risco, preservar backups, verificar desmontagem prévia e testar numa cópia. Telemetria mascarando dados conforme publicação, sem envio externo anunciado. Nenhum teste de mundo, reactor/SU, KubeJS ou multiplayer foi executado.

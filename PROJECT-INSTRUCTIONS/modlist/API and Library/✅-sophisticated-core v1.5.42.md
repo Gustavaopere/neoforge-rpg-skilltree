@@ -1,25 +1,38 @@
-# Sophisticated Core
+# Sophisticated Core — 1.5.42 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#518**: JAR `sophisticatedcore-1.21.1-1.5.1.2341.jar`, mod id `sophisticatedcore`, runtime `1.5.1`, SHA-1 `a256b4d3c1218754a3172253e6bda644551be6a5`.
+> **Estado vigente — declaração do usuário de 22/11/2026:** `1.5.1` → **`1.5.42`**, NeoForge 1.21.1; JAR oficialmente publicado `sophisticatedcore-1.21.1-1.5.42.2496.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9758568)). Arquivo real local, SHA e metadata não relidos. Posição física histórica #518.
+
+> **Auditoria:** Source/release chain 1.5.2–1.5.38 está documentada nas auditorias anteriores; 1.5.39.2489 corrige crash de worldgen quando pesos de tiers de backpacks somam zero. A 1.5.42.2496 (22/11) corrige linked storages perdidos por controllers após chunk unload, layout de colunas ocultas e crash de Stonecutter Upgrade ao mudar input. Não foram individualizados os deltas próprios de eventuais etapas intermediárias 1.5.40 e 1.5.41: lacuna de auditoria granular expressa, sem falsificar release ou funcionalidade.
+
+> **Dependências:** Biblioteca de Sophisticated Backpacks (3.26.22 declarado), Sophisticated Storage (1.6.20 declarado), integrações e demais consumidores; ranges mínimos exatos dependem de metadata dos JARs e não podem ser inventados.
+
+> **Riscos:** Shared linked inventory/fluid storage, concessões/segurança de acesso, memory slots, anti-dupe, stonecutter, compat Backpacks/Storage e multiplayer. Versão base documental 1.5.42, sufixo JAR .2496; metadata novo não inspecionado nem QA executado.
+
+> **Contexto histórico:** registros abaixo com “instalado”, “atual” ou “não instalado” anteriores a 22/11/2026 descrevem o snapshot de setembro ou auditorias antigas. Os campos vigentes e esta declaração prevalecem. Não foram realizados testes de runtime, save ou multiplayer.
+
+---
+
+
+> **Snapshot físico histórico — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#518**: JAR `sophisticatedcore-1.21.1-1.5.1.2341.jar`, mod id `sophisticatedcore`, runtime `1.5.1`, SHA-1 `a256b4d3c1218754a3172253e6bda644551be6a5`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco
 
 - **Mod:** Sophisticated Core
-- **Arquivo JAR:** `sophisticatedcore-1.21.1-1.5.1.2341.jar`
-- **Versão 1.21.1:** 1.5.1
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado):** `sophisticatedcore-1.21.1-1.5.42.2496.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9758568)), sem leitura do arquivo local.
+- **Versão instalada declarada:** `1.5.42` (anterior `1.5.1`, NeoForge/Minecraft 1.21.1); metadata novo não lido.
+- **Estado no pack:** `1.5.42` declarada instalada pelo usuário, como autoridade do inventário documental; JAR local e QA não verificados.
+- **Estado da pesquisa:** alvo/JAR e cadeia histórica conferidos conforme seção vigente; lacunas específicas indicadas sem certificação indevida.
 - **Decisão:** Manter
 - **Categoria:** Biblioteca
 - **Função:** Shared core/library for the Sophisticated ecosystem, centralizing reusable inventory/storage, upgrade, filtering/settings, serialization/sync and common infrastructure consumed by Backpacks/Storage/addons.
-- **Dependências:** Library itself is the required base for Sophisticated Backpacks 3.26.3, Sophisticated Storage 1.5.91 and their integrations currently installed. Other addons also consume Sophisticated APIs.
+- **Dependências:** Biblioteca de Sophisticated Backpacks (3.26.22 declarado), Sophisticated Storage (1.6.20 declarado), integrações e demais consumidores; ranges mínimos exatos dependem de metadata dos JARs e não podem ser inventados.
 - **Sobreposição:** Infrastructure library; no standalone storage system to compare. Removing it while consumers remain would break the Sophisticated stack.
-- **Compatibilidade/Riscos:** Shared library structurally required by the installed Sophisticated stack. Risks: ABI/API drift, shared serialization/config regression, upgrade registry mismatch, packet/component sync errors and consumer version skew. Direct consumers physically present include Backpacks 3.26.3, Storage 1.5.91 and both Create integrations.
+- **Compatibilidade/Riscos:** Shared linked inventory/fluid storage, concessões/segurança de acesso, memory slots, anti-dupe, stonecutter, compat Backpacks/Storage e multiplayer. Versão base documental 1.5.42, sufixo JAR .2496; metadata novo não inspecionado nem QA executado.
 - **Observações:** JAR físico `sophisticatedcore-1.21.1-1.5.1.2341.jar`, runtime 1.5.1. It has no independent gameplay proposition; value/necessity derives from consumers. Previous 1.4.x/1.5.1.2333 references are historical.
 - **Procedência:** modlist(1).txt física atual de 27/09/2026 + CurseForge official Sophisticated Core 1.5.1.2341 + direct installed consumers in current modlist.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/8839323
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece 1.5.1 / build 2341. CurseForge publicou Sophisticated Core 1.5.2.2343 para NeoForge 1.21.1 em 27/09/2026; o delta principal confirmado no source é shared linked storage support.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9758568
+- **Atualização/Status:** 22/11/2026 — `1.5.1` → `1.5.42` por declaração de instalação. Source/release chain 1.5.2–1.5.38 está documentada nas auditorias anteriores; 1.5.39.2489 corrige crash de worldgen quando pesos de tiers de backpacks somam zero. A 1.5.42.2496 (22/11) corrige linked storages perdidos por controllers após chunk unload, layout de colunas ocultas e crash de Stonecutter Upgrade ao mudar input. Não foram individualizados os deltas próprios de eventuais etapas intermediárias 1.5.40 e 1.5.41: lacuna de auditoria granular expressa, sem falsificar release ou funcionalidade.
 - **Histórico da decisão:** Mantido as core estrutural do ecossistema Sophisticated. Revalidated on 11/09/2026 against physical runtime 1.5.1.2341 and direct installed consumers.
 - **Data da última decisão:** 2026-08-22
 
@@ -410,3 +423,14 @@ A baseline #518 permanece `sophisticatedcore-1.21.1-1.5.1.2341.jar`, runtime `1.
 A nova [release **1.5.39.2489** para NeoForge Minecraft 1.21.1, file ID 9692552](https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9692552), **18/11/2026**, traz uma correção específica: **evita crash de mundo quando os pesos configurados de todos os tiers de backpacks somam zero**. O [commit upstream da branch 1.21.x](https://github.com/P3pp3rF1y/SophisticatedCore/commit/72d9f83f1b62401609c5842ff595b4511b2bf3dc) descreve o mesmo erro. Não inferir novas funções de armazenamento de uma correção de pesos. A série de Minecraft 26.x não é alvo válido do pack 1.21.1.
 
 **QA:** validar patch no binário, pesos zero/válidos, worldgen e loot, Sophisticated Backpacks/Storage, outros consumers, migração de configs, instância dedicada e multiplayer. Nenhum JAR foi instalado/testado. Nome v1.5.1 e pasta `API and Library` inalterados.
+
+
+## Sincronização documental de 22/11/2026 — Sophisticated Core 1.5.42
+
+**Estado atual declarado:** `1.5.1` → `1.5.42`; arquivo oficial `sophisticatedcore-1.21.1-1.5.42.2496.jar` (NeoForge 1.21.1), https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9758568. Posição original #518. Nenhum novo JAR, hash ou metadata do PC foi consultado.
+
+**Versões auditadas / lacunas:** Source/release chain 1.5.2–1.5.38 está documentada nas auditorias anteriores; 1.5.39.2489 corrige crash de worldgen quando pesos de tiers de backpacks somam zero. A 1.5.42.2496 (22/11) corrige linked storages perdidos por controllers após chunk unload, layout de colunas ocultas e crash de Stonecutter Upgrade ao mudar input. Não foram individualizados os deltas próprios de eventuais etapas intermediárias 1.5.40 e 1.5.41: lacuna de auditoria granular expressa, sem falsificar release ou funcionalidade.
+
+**Dependências aguardando sincronização e testes:** Biblioteca de Sophisticated Backpacks (3.26.22 declarado), Sophisticated Storage (1.6.20 declarado), integrações e demais consumidores; ranges mínimos exatos dependem de metadata dos JARs e não podem ser inventados. Divergências em outros dossiers ainda não atualizados são pendências documentais, não bloqueio automático nem prova de compatibilidade.
+
+**Riscos e limites:** Shared linked inventory/fluid storage, concessões/segurança de acesso, memory slots, anti-dupe, stonecutter, compat Backpacks/Storage e multiplayer. Versão base documental 1.5.42, sufixo JAR .2496; metadata novo não inspecionado nem QA executado.

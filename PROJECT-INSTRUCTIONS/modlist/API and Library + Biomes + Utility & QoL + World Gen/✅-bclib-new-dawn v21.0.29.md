@@ -1,8 +1,21 @@
-# BCLib: New Dawn
+# BCLib: New Dawn — 21.0.29 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#66**: `bclib-21.0.26.jar`, mod id `bclib`, runtime `21.0.26`, SHA-1 `06cc971fd149d7dae65c75792798b98be7439141`.
+> **Estado vigente — declaração do usuário de 22/11/2026:** `21.0.26` → **`21.0.29`**, NeoForge 1.21.1; JAR oficialmente publicado `bclib-21.0.29.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/bclib-neoforge/files/9511338)). Arquivo real local, SHA e metadata não relidos. Posição física histórica #066.
 
-> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `bclib-21.0.26.jar`, versão `21.0.26`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+> **Auditoria:** Auditoria histórica cobre 21.0.27 (saplings com BehaviourSapling compostáveis), 21.0.28 (sincronização do anvil, VoxelShapes de plantas de parede, bounds de estruturas e arrays de random offsets) e 21.0.29 (corrige setas ausentes no anvil quando há múltiplas receitas com os mesmos ingredientes). Não atribuir a 21.0.29 mudanças da 21.0.28.
+
+> **Dependências:** BCLib é base comum de BetterEnd/BetterNether; WorldWeaver e WunderLib possuem responsabilidades complementares. Requisitos exatos de consumidores devem ser conciliados com metadata do JAR distribuído.
+
+> **Riscos:** Alterações em GUI/anvil, structures/worldgen e dados compartilhados BetterX; testar receitas concorrentes, mirrored/rotated structures, reload e antigos saves em cópia. Instalação declarada; não afirmar QA realizado.
+
+> **Contexto histórico:** registros abaixo com “instalado”, “atual” ou “não instalado” anteriores a 22/11/2026 descrevem o snapshot de setembro ou auditorias antigas. Os campos vigentes e esta declaração prevalecem. Não foram realizados testes de runtime, save ou multiplayer.
+
+---
+
+
+> **Snapshot físico histórico — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#66**: `bclib-21.0.26.jar`, mod id `bclib`, runtime `21.0.26`, SHA-1 `06cc971fd149d7dae65c75792798b98be7439141`.
+
+> **Reauditoria física histórica — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `bclib-21.0.26.jar`, versão `21.0.26`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na origem:** Integrado ao Github
@@ -12,20 +25,20 @@
 ## Propriedades do banco
 
 - **Mod:** BCLib: New Dawn
-- **Arquivo JAR:** bclib-21.0.26.jar
-- **Versão 1.21.1:** 21.0.26
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado):** `bclib-21.0.29.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/bclib-neoforge/files/9511338)), sem leitura do arquivo local.
+- **Versão instalada declarada:** `21.0.29` (anterior `21.0.26`, NeoForge/Minecraft 1.21.1); metadata novo não lido.
+- **Estado no pack:** `21.0.29` declarada instalada pelo usuário, como autoridade do inventário documental; JAR local e QA não verificados.
+- **Estado da pesquisa:** alvo/JAR e cadeia histórica conferidos conforme seção vigente; lacunas específicas indicadas sem certificação indevida.
 - **Decisão:** Sem decisão
 - **Categoria:** Biblioteca, Worldgen
 - **Função:** Biblioteca foundation do ecossistema BetterX/New Dawn para registries, worldgen, materiais/blocos e compatibilidades compartilhadas de BetterEnd/BetterNether.
-- **Dependências:** Stack BetterX/New Dawn; pack confirma BetterEnd 21.0.34 e BetterNether 21.0.26 como consumidores físicos.
+- **Dependências:** BCLib é base comum de BetterEnd/BetterNether; WorldWeaver e WunderLib possuem responsabilidades complementares. Requisitos exatos de consumidores devem ser conciliados com metadata do JAR distribuído.
 - **Sobreposição:** Biblioteca de worldgen/infraestrutura; não é substituível automaticamente por Biolith, TerraBlender ou outras APIs.
-- **Compatibilidade/Riscos:** Registry/holder stale, conflito entre frameworks de worldgen, fog/distant-terrain client compat e version drift com BetterEnd/BetterNether. Não substituir por outra worldgen library por similaridade.
+- **Compatibilidade/Riscos:** Alterações em GUI/anvil, structures/worldgen e dados compartilhados BetterX; testar receitas concorrentes, mirrored/rotated structures, reload e antigos saves em cópia. Instalação declarada; não afirmar QA realizado.
 - **Observações:** 21.0.26 adiciona suporte reutilizável a Chiseled Bookshelf para custom wood sets; 21.0.25 documenta compat OBE para BetterX chests e Voxy/distant-terrain.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/changelog oficial BCLib: New Dawn 21.0.26 + BetterEnd 21.0.34 e BetterNether 21.0.26 físicos e fontes já auditadas. Reconciliação final: JAR/runtime permanecem exatamente `bclib-21.0.26.jar` / `21.0.26`; sem divergência física.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bclib-new-dawn
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #66: `bclib-21.0.26.jar` / `21.0.26` conferidos contra a modlist atual; BetterX/New Dawn authority, BetterEnd/BetterNether consumers e worldgen lifecycle preservados.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/bclib-neoforge/files/9511338
+- **Atualização/Status:** 22/11/2026 — `21.0.26` → `21.0.29` por declaração de instalação. Auditoria histórica cobre 21.0.27 (saplings com BehaviourSapling compostáveis), 21.0.28 (sincronização do anvil, VoxelShapes de plantas de parede, bounds de estruturas e arrays de random offsets) e 21.0.29 (corrige setas ausentes no anvil quando há múltiplas receitas com os mesmos ingredientes). Não atribuir a 21.0.29 mudanças da 21.0.28.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, a auditoria confirmou BCLib: New Dawn 21.0.26 como foundation do stack BetterX e registrou BetterEnd/BetterNether como consumidores físicos. Em 09/09/2026, as três versões foram revalidadas no snapshot atual, sem converter dependência estrutural em decisão curatorial.
 - **Data da última decisão:** não definida
 
@@ -132,3 +145,14 @@ Fontes primárias pinadas: https://github.com/Reijin2312/BCLib-New-Dawn/commit/5
 Instalado no snapshot #066: bclib-21.0.26.jar. As releases 21.0.27 e 21.0.28 já foram auditadas na revisão 22/10 (saplings compostáveis, recipe anvil/client-server, geração de estruturas e random offsets). O arquivo oficial seguinte para NeoForge Minecraft 1.21.1 é bclib-21.0.29.jar, de 08/11/2026: https://www.curseforge.com/minecraft/mc-mods/bclib-neoforge/files/9511338 .
 
 Delta isolado do changelog 21.0.29: corrige setas ausentes no anvil ao haver múltiplas receitas usando os mesmos ingredientes. É relevante para seleção de receitas/GUI com BetterX e outros mods; não há nova mecânica de mundo/bioma anunciada nesta release. Testar recipes concorrentes de anvil, mudança de saída, datapack reload, coexistência com BetterEnd/BetterNether/WorldWeaver e integridade de inventário. Documentação completa 21.0.26→21.0.29; atualização física/QA pendentes e v21.0.26 preservada no dossier.
+
+
+## Sincronização documental de 22/11/2026 — BCLib: New Dawn 21.0.29
+
+**Estado atual declarado:** `21.0.26` → `21.0.29`; arquivo oficial `bclib-21.0.29.jar` (NeoForge 1.21.1), https://www.curseforge.com/minecraft/mc-mods/bclib-neoforge/files/9511338. Posição original #066. Nenhum novo JAR, hash ou metadata do PC foi consultado.
+
+**Versões auditadas / lacunas:** Auditoria histórica cobre 21.0.27 (saplings com BehaviourSapling compostáveis), 21.0.28 (sincronização do anvil, VoxelShapes de plantas de parede, bounds de estruturas e arrays de random offsets) e 21.0.29 (corrige setas ausentes no anvil quando há múltiplas receitas com os mesmos ingredientes). Não atribuir a 21.0.29 mudanças da 21.0.28.
+
+**Dependências aguardando sincronização e testes:** BCLib é base comum de BetterEnd/BetterNether; WorldWeaver e WunderLib possuem responsabilidades complementares. Requisitos exatos de consumidores devem ser conciliados com metadata do JAR distribuído. Divergências em outros dossiers ainda não atualizados são pendências documentais, não bloqueio automático nem prova de compatibilidade.
+
+**Riscos e limites:** Alterações em GUI/anvil, structures/worldgen e dados compartilhados BetterX; testar receitas concorrentes, mirrored/rotated structures, reload e antigos saves em cópia. Instalação declarada; não afirmar QA realizado.

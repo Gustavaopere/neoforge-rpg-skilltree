@@ -1,25 +1,38 @@
-# WorldWeaver: New Dawn
+# WorldWeaver: New Dawn — 21.0.31 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 28/09/2026.** Ordem física **#572**: JAR `worldweaver-21.0.25.jar`, mod id `wover`, runtime `21.0.25`, SHA-1 `b274b0bb221739d52a0f52bc969bd64d691f8bbc`.
+> **Estado vigente — declaração do usuário de 22/11/2026:** `21.0.25` → **`21.0.31`**, NeoForge 1.21.1; JAR oficialmente publicado `worldweaver-21.0.31.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/9490293)). Arquivo real local, SHA e metadata não relidos. Posição física histórica #572.
+
+> **Auditoria:** Auditoria anterior individualiza 21.0.26 (biomas BetterEnd ausentes na criação), 21.0.27 (serialização/presets e receitas dinâmicas), 21.0.28 (encantamentos em item data components), 21.0.29 (integração Nether Descent), 21.0.30 (serialização de estruturas sensível a locale) e 21.0.31 (Biolith). Todas as seis publicações foram rastreadas no Modrinth oficial do autor e no CurseForge da continuação New Dawn; não atribuir essas mudanças à linha original Fabric.
+
+> **Dependências:** Biblioteca BetterX/New Dawn com BetterEnd, BetterNether, BCLib e WunderLib; Biolith e Nether Descent são integrações condicionais, não obrigatórias por mera existência da biblioteca.
+
+> **Riscos:** Worldgen, registry reload e compatibilidade de End/Nether, Biolith e Nether Descent. Backup, reprodução de seeds com e sem BetterNether, locale turco, chunks existentes/novos e QA client/server não executados.
+
+> **Contexto histórico:** registros abaixo com “instalado”, “atual” ou “não instalado” anteriores a 22/11/2026 descrevem o snapshot de setembro ou auditorias antigas. Os campos vigentes e esta declaração prevalecem. Não foram realizados testes de runtime, save ou multiplayer.
+
+---
+
+
+> **Snapshot físico histórico — 28/09/2026.** Ordem física **#572**: JAR `worldweaver-21.0.25.jar`, mod id `wover`, runtime `21.0.25`, SHA-1 `b274b0bb221739d52a0f52bc969bd64d691f8bbc`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco
 
 - **Mod:** WorldWeaver: New Dawn
-- **Arquivo JAR:** `worldweaver-21.0.25.jar`
-- **Versão 1.21.1:** 21.0.25
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado):** `worldweaver-21.0.31.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/9490293)), sem leitura do arquivo local.
+- **Versão instalada declarada:** `21.0.31` (anterior `21.0.25`, NeoForge/Minecraft 1.21.1); metadata novo não lido.
+- **Estado no pack:** `21.0.31` declarada instalada pelo usuário, como autoridade do inventário documental; JAR local e QA não verificados.
+- **Estado da pesquisa:** alvo/JAR e cadeia histórica conferidos conforme seção vigente; lacunas específicas indicadas sem certificação indevida.
 - **Decisão:** Manter
 - **Categoria:** Biblioteca, Worldgen
 - **Função:** Biblioteca de worldgen do stack BetterX/New Dawn, responsável por infraestrutura e compatibilidade de distribuição de biomas/presets consumida por BetterEnd/BetterNether.
-- **Dependências:** Stack atual: BetterEnd 21.0.34, BetterNether 21.0.26, BCLib 21.0.26 e WunderLib 21.0.10. WorldWeaver 21.0.25 é componente complementar, não redundante automático.
+- **Dependências:** Biblioteca BetterX/New Dawn com BetterEnd, BetterNether, BCLib e WunderLib; Biolith e Nether Descent são integrações condicionais, não obrigatórias por mera existência da biblioteca.
 - **Sobreposição:** Infraestrutura complementar a BCLib/WunderLib/TerraBlender; não é substituto de BetterEnd/BetterNether nem redundância automática por categoria.
-- **Compatibilidade/Riscos:** Riscos: biome distribution/preset drift, mixin interaction e consumer coupling. Troubleshooting histórico não provou defeito isolado do WorldWeaver; não continuar downgrade sem reprodução. 21.0.25 corrige TerraBlender/Nether Descent e distribuição BetterNether/vanilla.
+- **Compatibilidade/Riscos:** Worldgen, registry reload e compatibilidade de End/Nether, Biolith e Nether Descent. Backup, reprodução de seeds com e sem BetterNether, locale turco, chunks existentes/novos e QA client/server não executados.
 - **Observações:** Mod id `wover`, runtime 21.0.25. Decision `Manter` preservada. Worldgen infrastructure não gera Mastery; quests devem usar identity final do biome/provider.
 - **Procedência:** modlist.txt física atual consultada em 13/09/2026 + CurseForge/Modrinth oficiais WorldWeaver: New Dawn 21.0.25 revalidados em 13/09/2026 + stack BetterEnd 21.0.34, BetterNether 21.0.26, BCLib 21.0.26 e WunderLib 21.0.10. A 21.0.25 continua a latest release NeoForge 1.21.1 de 07/08/2026. Decisão Manter preservada; nenhum runtime worldgen QA executado.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 13/09/2026 — WorldWeaver 21.0.25 permanece exatamente instalado e continua a latest release NeoForge 1.21.1; BetterX/New Dawn, biome compatibility, preset/distribution fixes e decisão Manter preservados.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/9490293
+- **Atualização/Status:** 22/11/2026 — `21.0.25` → `21.0.31` por declaração de instalação. Auditoria anterior individualiza 21.0.26 (biomas BetterEnd ausentes na criação), 21.0.27 (serialização/presets e receitas dinâmicas), 21.0.28 (encantamentos em item data components), 21.0.29 (integração Nether Descent), 21.0.30 (serialização de estruturas sensível a locale) e 21.0.31 (Biolith). Todas as seis publicações foram rastreadas no Modrinth oficial do autor e no CurseForge da continuação New Dawn; não atribuir essas mudanças à linha original Fabric.
 - **Histórico da decisão:** Durante troubleshooting em 22/08/2026, 21.0.25 e 21.0.24 foram testados enquanto uma camada externa de worldgen ainda participava da falha. Após remover essa camada, BetterX/New Dawn voltou a funcionar e WorldWeaver 21.0.25 foi restaurado. Decisão vigente: MANTER; não continuar downgrade.
 - **Data da última decisão:** 2026-08-22
 
@@ -173,3 +186,14 @@ A [API de versões oficial do Modrinth para New Dawn, filtrada em NeoForge/1.21.
 | [21.0.31](https://modrinth.com/mod/worldweaver-neoforge/version/KxUUeX9u) | 07/11/2026 | Adiciona compatibilidade com Biolith. |
 
 **Impacto:** testar End sem BetterNether, presets customizados/flat, livros encantados e data components, desbloqueio de recipes dinâmicas, Nether Descent quando presente e datapack de compat, locale, Biolith quando presente, BetterX/BCLib/TerraBlender, novos chunks, saves e reinicialização. Decisão Manter e versão física histórica #572 `worldweaver-21.0.25.jar` preservadas. **Auditoria documental concluída até 21.0.31;** instalação e QA não realizados. O arquivo e a pasta permanecem inalterados.
+
+
+## Sincronização documental de 22/11/2026 — WorldWeaver: New Dawn 21.0.31
+
+**Estado atual declarado:** `21.0.25` → `21.0.31`; arquivo oficial `worldweaver-21.0.31.jar` (NeoForge 1.21.1), https://www.curseforge.com/minecraft/mc-mods/worldweaver-neoforge/files/9490293. Posição original #572. Nenhum novo JAR, hash ou metadata do PC foi consultado.
+
+**Versões auditadas / lacunas:** Auditoria anterior individualiza 21.0.26 (biomas BetterEnd ausentes na criação), 21.0.27 (serialização/presets e receitas dinâmicas), 21.0.28 (encantamentos em item data components), 21.0.29 (integração Nether Descent), 21.0.30 (serialização de estruturas sensível a locale) e 21.0.31 (Biolith). Todas as seis publicações foram rastreadas no Modrinth oficial do autor e no CurseForge da continuação New Dawn; não atribuir essas mudanças à linha original Fabric.
+
+**Dependências aguardando sincronização e testes:** Biblioteca BetterX/New Dawn com BetterEnd, BetterNether, BCLib e WunderLib; Biolith e Nether Descent são integrações condicionais, não obrigatórias por mera existência da biblioteca. Divergências em outros dossiers ainda não atualizados são pendências documentais, não bloqueio automático nem prova de compatibilidade.
+
+**Riscos e limites:** Worldgen, registry reload e compatibilidade de End/Nether, Biolith e Nether Descent. Backup, reprodução de seeds com e sem BetterNether, locale turco, chunks existentes/novos e QA client/server não executados.

@@ -1,8 +1,21 @@
-# BetterEnd: New Dawn
+# BetterEnd: New Dawn — 21.0.39 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#71**: `BetterEnd-21.0.34.jar`, mod id `betterend`, runtime `21.0.34`, SHA-1 `149b73179ea63bf777315a7c850b2eba65c554bd`.
+> **Estado vigente (declaração do usuário de 22/11/2026):** `21.0.34` → **`21.0.39`**, NeoForge 1.21.1, JAR exato oficialmente distribuído `BetterEnd-21.0.39.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/9306604)). A instalação foi declarada, e não aferida por leitura de JAR local. Posição física original #071 preservada.
 
-> **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `BetterEnd-21.0.34.jar`, versão `21.0.34`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
+> **Atualizações auditadas:** 21.0.35–21.0.39 já auditadas individualmente no dossier, inclusive comparação de JARs 21.0.38/21.0.39 e leitura de META-INF/neoforge.mods.toml. A 21.0.39 corrige cálculo de distância da Crashed Ship, modelos de vasos/chorus e localização russa. Requisitos do JAR: NeoForge >=21.1.176, BCLib >=21.0.14, WoVer >=21.0.16 e WunderLib >=21.0.9.
+
+> **Dependências:** BCLib: New Dawn, WorldWeaver: New Dawn e WunderLib: New Dawn; versões de BCLib/WorldWeaver aguardam sincronização neste lote.
+
+> **Riscos e QA:** Worldgen do End, registries e estruturas; conferir backup, geração em chunks novos/antigos, presets, cliente/dedicated server. Nenhuma validação runtime foi executada.
+
+> **Temporalidade:** as referências antigas à versão “atual” e os hashes físicos abaixo são do snapshot anterior à declaração de 22/11/2026. Nenhum teste de runtime, saves ou multiplayer foi realizado.
+
+---
+
+
+> **Snapshot físico histórico — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#71**: `BetterEnd-21.0.34.jar`, mod id `betterend`, runtime `21.0.34`, SHA-1 `149b73179ea63bf777315a7c850b2eba65c554bd`.
+
+> **Reauditoria física histórica — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `BetterEnd-21.0.34.jar`, versão `21.0.34`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na origem:** Integrado ao Github
@@ -12,20 +25,20 @@
 ## Propriedades do banco
 
 - **Mod:** BetterEnd: New Dawn
-- **Arquivo JAR:** BetterEnd-21.0.34.jar
-- **Versão 1.21.1:** 21.0.34
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado):** `BetterEnd-21.0.39.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/9306604)); arquivo local não relido.
+- **Versão instalada declarada:** `21.0.39` (anterior `21.0.34`, Minecraft 1.21.1/NeoForge; metadata local não relida).
+- **Estado no pack:** versão `21.0.39` declarada instalada pelo usuário para inventário documental; compatibilidade real não testada.
+- **Estado da pesquisa:** versão-alvo e filename confirmados em fonte oficial; auditoria histórica de versões intermediárias preservada, com lacunas explicitadas quando aplicável.
 - **Decisão:** Manter
 - **Categoria:** Worldgen, Exploração, Mobs
 - **Função:** Grande expansão do End no stack BetterX/New Dawn: biomas, flora, materiais, mobs, estruturas, embarcações, worldgen e progressão/equipamentos próprios.
-- **Dependências:** BCLib: New Dawn + WorldWeaver: New Dawn + WunderLib: New Dawn. No pack: BCLib 21.0.26, WorldWeaver 21.0.25 e WunderLib 21.0.10 estão fisicamente presentes.
+- **Dependências:** BCLib: New Dawn, WorldWeaver: New Dawn e WunderLib: New Dawn; versões de BCLib/WorldWeaver aguardam sincronização neste lote.
 - **Sobreposição:** Provider amplo do End. Pode coexistir com estruturas/expansões adicionais, mas conflitos devem ser avaliados por biome/structure/feature concreta; não é substituível por uma library de worldgen.
-- **Compatibilidade/Riscos:** Worldgen amplo do End. Riscos: conflito de biome/feature/structure placement, registry/holder stale, transição de versões em mundos existentes, render/particle client-side e sobreposição de End com YUNG's Better End Island/outros mods. 21.0.34 corrige crash de partículas server-side; a upstream 21.0.35 corrige cave-biome generation e adiciona configs ausentes para desativar dois biomas novos.
+- **Compatibilidade/Riscos:** Worldgen do End, registries e estruturas; conferir backup, geração em chunks novos/antigos, presets, cliente/dedicated server. Nenhuma validação runtime foi executada.
 - **Observações:** Runtime físico 21.0.34 NeoForge 1.21.1. Upstream publicou 21.0.35 em 16/09/2026 com fix de geração de cave biomes e opções de configuração ausentes para desativar dois biomas novos; não está instalada.
 - **Procedência:** modlist física atual + metadata runtime + Modrinth/CurseForge oficiais BetterEnd: New Dawn 21.0.34 instalada e 21.0.35 posterior + stack New Dawn já auditado. Revalidado em 01/10/2026; JAR/runtime permanecem `BetterEnd-21.0.34.jar` / `21.0.34`.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/betterend-new-dawn
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — BetterEnd físico permanece 21.0.34. A release 21.0.35 foi comparada e os deltas de cave-biome generation/config foram incorporados abaixo.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/9306604
+- **Atualização/Status:** 22/11/2026 — `21.0.34` → `21.0.39`. 21.0.35–21.0.39 já auditadas individualmente no dossier, inclusive comparação de JARs 21.0.38/21.0.39 e leitura de META-INF/neoforge.mods.toml. A 21.0.39 corrige cálculo de distância da Crashed Ship, modelos de vasos/chorus e localização russa. Requisitos do JAR: NeoForge >=21.1.176, BCLib >=21.0.14, WoVer >=21.0.16 e WunderLib >=21.0.9.
 - **Histórico da decisão:** Em 22/08/2026, BetterEnd foi desativado temporariamente apenas para isolamento junto de WorldWeaver e BetterNether. Após identificar e remover FirmaTerrain 1.0.0, o stack BetterX/New Dawn foi reativado e funcionou. Decisão final desta investigação: MANTER BetterEnd; a desativação anterior foi apenas diagnóstica.
 - **Data da última decisão:** 2026-08-22
 
@@ -391,3 +404,14 @@ O arquivo **`META-INF/neoforge.mods.toml`** foi lido **diretamente dentro dos JA
 **Histórico por release de 21.0.34 a 21.0.39: FECHADO COMO AUDITORIA DOCUMENTAL.** A última lacuna objetiva (qual o delta exato de entrada ZIP no JAR 21.0.39 e se os mínimos das bibliotecas se mantiveram) foi abordada por **comparação real de distribuição e metadata**. O changelog anterior 21.0.35→21.0.38 permanece detalhado nas seções acima; divergências de descrição cumulativa não são promovidas a recursos inéditos.
 
 **Liberar o item 69. BetterEnd: New Dawn somente da lista de pesquisas DOCUMENTAIS, depois de re-fetch do commit/índice persistido.** A troca física de **21.0.34 → 21.0.39**, migração de registries/worldgen e validação de save **NÃO** estão homologadas. Gates pendentes e separados: backup e teste em cópia do mundo; conferir JAR físico atual e SHA; dependências reais atuais; dedicated server e cliente; novas regiões do End e estruturas Crashed Ship/Eternal Portal; código de biomas, palettes, tags, datapack reload, conflito com outros mods de geração (YUNG's/WorldWeaver/etc.); renderização de vasos/chorus; respawn e inventário; restart/multiplayer; rollback. **Nenhum código, JAR, modpack, config, save, categoria ou nome do dossier foi alterado nesta auditoria.**
+
+
+## Sincronização documental — 22/11/2026 — BetterEnd: New Dawn 21.0.39
+
+**Autoridade atual:** declaração do usuário de instalação de `BetterEnd-21.0.39.jar` para NeoForge 1.21.1, publicada em https://www.curseforge.com/minecraft/mc-mods/betterend-neoforge/files/9306604. O JAR top-level local, SHA e metadata da nova versão não foram lidos; posição histórica #071 preservada.
+
+**Cadeia auditada e diferenças:** 21.0.35–21.0.39 já auditadas individualmente no dossier, inclusive comparação de JARs 21.0.38/21.0.39 e leitura de META-INF/neoforge.mods.toml. A 21.0.39 corrige cálculo de distância da Crashed Ship, modelos de vasos/chorus e localização russa. Requisitos do JAR: NeoForge >=21.1.176, BCLib >=21.0.14, WoVer >=21.0.16 e WunderLib >=21.0.9.
+
+**Dependências e pendências:** BCLib: New Dawn, WorldWeaver: New Dawn e WunderLib: New Dawn; versões de BCLib/WorldWeaver aguardam sincronização neste lote. Dependências não sincronizadas em outros lotes aguardam reconciliação documental; isso não autoriza inferir incompatibilidade do jogo nem impede esta atualização.
+
+**Riscos:** Worldgen do End, registries e estruturas; conferir backup, geração em chunks novos/antigos, presets, cliente/dedicated server. Nenhuma validação runtime foi executada. Testes de servidor/cliente, backups e worldgen/multiplayer, quando aplicáveis, não foram executados.

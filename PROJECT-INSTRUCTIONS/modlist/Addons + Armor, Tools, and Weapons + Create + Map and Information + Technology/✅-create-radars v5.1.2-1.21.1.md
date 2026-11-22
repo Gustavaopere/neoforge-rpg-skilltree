@@ -1,22 +1,35 @@
-# Create: Radars
+# Create: Radars — 5.1.2 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#154**: JAR `create_radar-0.4.9.4-1.21.1.jar`, mod id `create_radar`, runtime `0.4.9.4-1.21.1`, SHA-1 `9726fced4bf86c9e2c0ea09b35bc39ed3ac007b6`.
+> **Estado vigente (declaração do usuário de 22/11/2026):** `0.4.9.4-1.21.1` → **`5.1.2`**, NeoForge 1.21.1, JAR exato oficialmente distribuído `create_radar-5.1.2-1.21.1.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9758334)). A instalação foi declarada, e não aferida por leitura de JAR local. Posição física original #154 preservada.
+
+> **Atualizações auditadas:** Versões 5.0–5.1.1 já individualizadas em auditoria anterior. A série 5.0 acrescentou Sky Radar, Sonar, Jammer e controladores; em 5.1.0, Pitch Gearbox foi removido e mudou a lógica de ligações; 5.1.1 corrigiu save/links/chunks. O changelog da 5.1.2 (22/11) confirma correção de varredura invertida do radar, sem prova de outros deltas próprios.
+
+> **Dependências:** Create; integrações Create Big Cannons, Sable/Aeronautics, Create Aero Radar e Radiologistics requerem verificação de API/config e não bloqueiam a sincronização documental.
+
+> **Riscos e QA:** Salto major de 0.4.9.4 para 5.1.2 implica risco de perda de datalinks/contraption e mudanças de ordem de montagem. Necessário backup/staging, monitorar orientação/targeting/fire controllers, CBC, sublevels, unload/reload e multiplayer.
+
+> **Temporalidade:** as referências antigas à versão “atual” e os hashes físicos abaixo são do snapshot anterior à declaração de 22/11/2026. Nenhum teste de runtime, saves ou multiplayer foi realizado.
+
+---
+
+
+> **Snapshot físico histórico — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#154**: JAR `create_radar-0.4.9.4-1.21.1.jar`, mod id `create_radar`, runtime `0.4.9.4-1.21.1`, SHA-1 `9726fced4bf86c9e2c0ea09b35bc39ed3ac007b6`.
 
 ## Propriedades do registro
 
 - **Mod:** Create: Radars
-- **Arquivo JAR:** create_radar-0.4.9.4-1.21.1.jar
-- **Versão 1.21.1:** 0.4.9.4-1.21.1
+- **Arquivo JAR instalado (declarado):** `create_radar-5.1.2-1.21.1.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9758334)); arquivo local não relido.
+- **Versão instalada declarada:** `5.1.2` (anterior `0.4.9.4-1.21.1`, Minecraft 1.21.1/NeoForge; metadata local não relida).
 - **Categoria:** Tecnologia, Automação
 - **Função:** Sistema Create de vigilância e controle de armamento com radar multibloco configurável, monitor multibloco e cannon controller para detectar/rastrear alvos e orientar armas.
-- **Dependências:** Create obrigatório. Integrações concretas do stack incluem Create Big Cannons e Create Aeronautics; Create Aero Radar consome este provider. Pack físico usa NeoForge 21.1.250 + Create 6.0.10.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** 0.4.9.4 melhora firing tolerance para alvos móveis, mas o próprio changelog mantém riscos conhecidos: cannon em Aeronautics pode apontar direção aleatória, pode disparar antes do alinhamento e há relatos com versões novas de CBC. Testar targeting/owner/contraption antes de automatizar fogo.
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-radars
+- **Dependências:** Create; integrações Create Big Cannons, Sable/Aeronautics, Create Aero Radar e Radiologistics requerem verificação de API/config e não bloqueiam a sincronização documental.
+- **Estado no pack:** versão `5.1.2` declarada instalada pelo usuário para inventário documental; compatibilidade real não testada.
+- **Estado da pesquisa:** versão-alvo e filename confirmados em fonte oficial; auditoria histórica de versões intermediárias preservada, com lacunas explicitadas quando aplicável.
+- **Compatibilidade/Riscos:** Salto major de 0.4.9.4 para 5.1.2 implica risco de perda de datalinks/contraption e mudanças de ordem de montagem. Necessário backup/staging, monitorar orientação/targeting/fire controllers, CBC, sublevels, unload/reload e multiplayer.
+- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9758334
 - **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_radar` 0.4.9.4-1.21.1 + CurseForge oficial revalidado em 20/09/2026; 0.4.9.4 continua a release mais recente para NeoForge 1.21.1.
 - **Observações:** mod id `create_radar`; runtime 0.4.9.4-1.21.1; release NeoForge 1.21.1 Client & Server. 0.4.9.4 adiciona configs de tolerância para alvo móvel e corrige ferramentas quebrando sem Aeronautics; problemas conhecidos de cannon/Aeronautics permanecem.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #153: create_radar-0.4.9.4-1.21.1.jar / 0.4.9.4-1.21.1 confirmados como latest NeoForge 1.21.1; radar/monitor/cannon-control, moving-target tolerance e known issues Aeronautics/CBC permanecem atuais.
+- **Atualização/Status:** 22/11/2026 — `0.4.9.4-1.21.1` → `5.1.2`. Versões 5.0–5.1.1 já individualizadas em auditoria anterior. A série 5.0 acrescentou Sky Radar, Sonar, Jammer e controladores; em 5.1.0, Pitch Gearbox foi removido e mudou a lógica de ligações; 5.1.1 corrigiu save/links/chunks. O changelog da 5.1.2 (22/11) confirma correção de varredura invertida do radar, sem prova de outros deltas próprios.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Create: Radars 0.4.9.4-1.21.1 foi reconfirmado como `Instalado` e reconstruído ao padrão técnico; presença e uso como infraestrutura de Create Aero Radar não foram convertidos em decisão curatorial.
 - **Sobreposição:** Radars é provider de detecção/visualização/controle; Create Aero Radar é integração que usa esse provider. Outros sensores/logic mods podem consumir os dados, mas não são duplicatas automáticas.
@@ -91,3 +104,14 @@ Baseline físico #154: `create_radar-0.4.9.4-1.21.1.jar`, versão 0.4.9.4-1.21.1
 | [5.1.1 Release](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9632878), 15/11 | Corrige travamento ao salvar, ciclo de vida dos links em chunks descarregados, flexibiliza condições de disparo e corrige recipe do Directional Jammer. |
 
 **Gate de migração:** backup integral e staging com saves reais, especialmente vindo de <5.1.0; verificar redes/datalinks existentes, blocos removidos, reconexão e chunks unload/reload, orientação e permissões, integração Create/Sable/Aeronautics/Create Aero Radar/Radiologistics e CBC. Não presumir compatibilidade de APIs/configs anteriores. Versão instalada preservada; nenhum JAR ou save modificado. Auditoria documental individual da cadeia concluída; QA físico pendente.
+
+
+## Sincronização documental — 22/11/2026 — Create: Radars 5.1.2
+
+**Autoridade atual:** declaração do usuário de instalação de `create_radar-5.1.2-1.21.1.jar` para NeoForge 1.21.1, publicada em https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9758334. O JAR top-level local, SHA e metadata da nova versão não foram lidos; posição histórica #154 preservada.
+
+**Cadeia auditada e diferenças:** Versões 5.0–5.1.1 já individualizadas em auditoria anterior. A série 5.0 acrescentou Sky Radar, Sonar, Jammer e controladores; em 5.1.0, Pitch Gearbox foi removido e mudou a lógica de ligações; 5.1.1 corrigiu save/links/chunks. O changelog da 5.1.2 (22/11) confirma correção de varredura invertida do radar, sem prova de outros deltas próprios.
+
+**Dependências e pendências:** Create; integrações Create Big Cannons, Sable/Aeronautics, Create Aero Radar e Radiologistics requerem verificação de API/config e não bloqueiam a sincronização documental. Dependências não sincronizadas em outros lotes aguardam reconciliação documental; isso não autoriza inferir incompatibilidade do jogo nem impede esta atualização.
+
+**Riscos:** Salto major de 0.4.9.4 para 5.1.2 implica risco de perda de datalinks/contraption e mudanças de ordem de montagem. Necessário backup/staging, monitorar orientação/targeting/fire controllers, CBC, sublevels, unload/reload e multiplayer. Testes de servidor/cliente, backups e worldgen/multiplayer, quando aplicáveis, não foram executados.
