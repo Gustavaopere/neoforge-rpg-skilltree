@@ -1,0 +1,164 @@
+# Create: Coasters Simulated — 0.1.6 (instalação declarada 22/11/2026)
+
+> **Estado vigente — 22/11/2026:** versão `0.1.6`, JAR oficial `simulatedcoasters-0.1.6.jar`; **atualização declarada pelo usuário**. [Arquivo CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-coasters-simulated/files/9654233). A modlist física antiga continua fonte da posição ordinal, não da versão atual declarada.
+
+> **Conteúdo e dependências:** 0.1.6 (16/11/2026): removidas varreduras caras de plots que ocorriam a cada tick em todos os sublevels; melhoria de TPS divulgada pelo autor, sem benchmark local. Preservados contratos de tracks, carts, chain lifts, rivets/balloons, Create e Sable. Requisitos de outros módulos pendentes em lotes posteriores não impedem esta atualização documental.
+
+
+> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#505**: JAR `simulatedcoasters-0.1.5.jar`, mod id `simulatedcoasters`, runtime `0.1.5`, SHA-1 `4d3381b781a1129f793358b8ae13e0abcd2e655b`.
+- **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
+
+## Propriedades do banco
+
+- **Mod:** Create: Coasters Simulated
+- **Arquivo JAR instalado (declaração do usuário):** `simulatedcoasters-0.1.6.jar`; [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-coasters-simulated/files/9654233).
+- **Versão instalada declarada:** `0.1.6` (anterior `0.1.5`), Minecraft 1.21.1 / NeoForge.
+- **Estado no pack:** `0.1.6` declarada instalada pelo usuário; GitHub sincronizado, JAR local não foi inspecionado.
+- **Estado da pesquisa:** releases até `0.1.6` auditadas documentalmente; nenhum teste runtime ou QA de dependências do conjunto executado.
+- **Decisão:** Sem decisão
+- **Categoria:** Tecnologia
+- **Função:** Addon Create/Sable para roller coasters físicas: tracks/anchorpoints, loops/inversions/jumps, chain lifts, carts/linking, rivets e balloons em sublevels físicos.
+- **Dependências:** Obrigatórias upstream e satisfeitas: Create 6.0.10+ e Sable 2.0.5. Create Aeronautics 1.3.2 está fisicamente presente e continua optional dependency upstream, não requisito de boot.
+- **Sobreposição:** Sobreposição parcial com o ecossistema Create/Sable de veículos e física: Coasters Simulated controla tracks, carts, links, rivets e balloons; Sable controla physics/sublevels e Create controla rotação. Aeronautics é composição opcional, não substituto; tracks/carts de coaster não devem ser tratados como equivalentes a trains ou Create Tracks+.
+- **Compatibilidade/Riscos:** Riscos principais permanecem: sublevel disappearance/duplication, cart-link snapping, track preview lag, chain-lift rotational conflict e chunk/sublevel desync. 0.1.5 corrige glue entre riveted sublevels, self-glue, balloons e preview inválido, além de FPS/cart-link/snap improvements.
+- **Observações vigentes:** `simulatedcoasters-0.1.6.jar` / `0.1.6` conforme declaração; antigas referências a `0.1.5` são snapshots históricos.
+- **Procedência:** posição e JAR anteriores do snapshot físico; versão `0.1.6` declarada pelo usuário e filename oficial [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-coasters-simulated/files/9654233). Sem leitura direta do PC.
+- **Fonte:** https://modrinth.com/mod/create-coasters-simulated ; https://modrinth.com/mod/create-coasters-simulated/version/PGhQoSBq ; https://www.curseforge.com/minecraft/mc-mods/create-coasters-simulated/files/8655742
+- **Atualização/Status:** 22/11/2026 — `0.1.5` → `0.1.6`; nome do dossier e JAR oficial sincronizados. 0.1.6 (16/11/2026): removidas varreduras caras de plots que ocorriam a cada tick em todos os sublevels; melhoria de TPS divulgada pelo autor, sem benchmark local. Preservados contratos de tracks, carts, chain lifts, rivets/balloons, Create e Sable.
+- **Histórico da decisão:**
+- **Data da última decisão:**
+
+# Dossiê operacional — padrão Alex's Mobs
+
+> **ESCOPO CANÔNICO.** Runtime físico: `simulatedcoasters-0.1.5.jar`, mod id `simulatedcoasters`, versão `0.1.5`. Create: Coasters Simulated adiciona **montanhas-russas físicas sobre Create + Sable**, com tracks, carts, linking, chain lifts, rivets e balloons; Create Aeronautics é opcional.
+
+## 1. Identidade, versão e papel
+- **Mod:** Create: Coasters Simulated.
+- **JAR físico:** `simulatedcoasters-0.1.5.jar`.
+- **Mod id:** `simulatedcoasters`.
+- **Versão instalada:** `0.1.5`.
+- **Loader/jogo:** NeoForge 1.21.1.
+- **Ambiente:** Client & Server.
+- **Papel:** adicionar roller coasters com física, curvas livres, loops/inversions, chain lifts, jumps e carts físicos ao ecossistema Create.
+## 2. Dependências e stack físico
+Dependências publicadas para a linha inicial/current:
+- **Create 6.0.10+ para 1.21.1** — obrigatório.
+- **Sable** — obrigatório; biblioteca/sistema físico usado pelo mod.
+- **Create Aeronautics** — opcional, não exigido para o mod iniciar.
+No pack atual:
+- Create `6.0.10` está presente;
+- Sable `2.0.5` está presente;
+- Create Aeronautics `1.3.2` está presente.
+Portanto o stack físico satisfaz os requisitos e também ativa um cenário de compatibilidade opcional relevante.
+## 3. Authority e ownership
+- **Coasters Simulated:** tracks, carts, links, rivets, balloons e regras próprias da coaster.
+- **Sable:** física/sublevels usados pelas estruturas móveis.
+- **Create:** rotação, mecânicas de Create e integração de chain lift/input quando aplicável.
+- **Aeronautics:** mecanismos aéreos/sublevel ecosystem, mas não dependency obrigatória da coaster.
+A ficha não atribui ao addon authority geral sobre contraptions Create ou physics Sable fora de seus objetos.
+## 4. Conteúdo funcional confirmado
+A documentação oficial lista como features existentes:
+- **Roller Coaster Tracks / Track Anchorpoint Blocks**;
+- suporte a **loops, inversions, chain lifts e jumps**;
+- **dyable tracks**;
+- **carts** e **cart linking**;
+- **rivets** que mantêm sublevels unidos;
+- **balloons** como utilitário para mover assembled contraptions.
+O projeto descreve a física como gravity-driven: chain lifts elevam os carts e a gravidade conduz o restante do percurso.
+## 5. Track geometry e placement
+Os tracks permitem curvas e geometrias próprias de coaster, incluindo loops/inversions. Changelogs anteriores e 0.1.5 mostram que o placement preview e o snapping são partes sensíveis do sistema:
+- 0.1.5 ampliou o ângulo em que carts fazem snap para tracks;
+- preview de placement inválido agora abandona segmentos absurdamente longos para evitar lag intenso;
+- versões anteriores trabalharam smoothing/contexto de curvas, inclusive círculos/90° turns.
+Esses comportamentos devem ser tratados como UX/geometry do addon, não como rail vanilla/Create train track equivalence.
+## 6. Carts e linking
+Carts são objetos físicos próprios e podem ser linked. Na 0.1.5:
+- cart links ficaram ligeiramente mais resistentes a snap/break;
+- outline visual dos cart blocks foi melhorado;
+- angle de snap para track foi ampliado.
+O link deve sobreviver ao percurso normal sem converter dois carts em state duplicado ou perder um membro do conjunto após chunk transition.
+## 7. Rivets e sublevels
+Rivets mantêm sublevels/partes físicas unidos. A 0.1.5 corrige dois casos críticos:
+- tentar colar **dois sublevels rivetados separados** não deve mais fazer o sublevel desaparecer;
+- um sublevel rivetado não pode ser colado a si mesmo.
+A 0.1.4 também corrigiu crash ao destruir rivet que segurava apenas weightless blocks. Esses itens mostram que lifecycle de assembly/desassembly é área de alto risco.
+## 8. Balloons
+Balloons são utilitários para movimentar assembled contraptions/sublevels. A 0.1.5 corrige caso em que balloons caíam no chão em vez de **pop** corretamente.
+Versões anteriores também ajustaram stack size, tether point e remoção com wrench. Não extrapolar estes objetos como sistema geral de buoyancy do Sable; o escopo documentado é utilitário do addon.
+## 9. Chain lifts e Create rotational input
+Chain lifts fornecem ganho de energia/altura aos carts, após o qual a gravidade assume. O changelog 0.1.4 cita comportamento de mismatched rotation: o input vizinho mais fraco é destruído em vez do anchorpoint. Isso demonstra integração com torque/rotação Create e requer regressão com redes rotacionais complexas.
+## 10. Client / server e multiplayer
+O projeto é Client & Server porque:
+- geometria, carts, links e sublevel state precisam de autoridade compartilhada/servidor;
+- o cliente renderiza tracks, outlines e movimento;
+- multiplayer deve manter posição, velocidade, linking e assembly consistentes para todos os observadores.
+Não usar posição visual client-only como única prova de state físico correto.
+## 11. Lifecycle
+Validar:
+- placement/edit de tracks;
+- construção de loops/inversions/jumps;
+- spawn/placement de carts;
+- snap do cart ao track;
+- link/unlink de carts;
+- chain lift start/stop e input rotacional conflitante;
+- rivet attach/detach;
+- glue entre sublevels válidos e inválidos;
+- balloons attach/remove/pop;
+- chunk unload/reload;
+- save/restart;
+- dimension/relog;
+- colisão/descarrilamento/jump e recuperação.
+## 12. Integrações concretas no pack
+- **Create 6.0.10:** requisito obrigatório e provider de rotação/mecânicas Create.
+- **Sable 2.0.5:** requisito físico obrigatório.
+- **Create Aeronautics 1.3.2:** opcional upstream, mas presente; testar sublevel coexistence, rivets/glue e transporte.
+- **ServerCore:** pode alterar entity/chunk processing; carts físicos precisam continuar tickando corretamente.
+- **Iris / performance mods:** 0.1.5 possui melhorias críticas de FPS e placement preview; testar rendering/performance em layouts grandes.
+## 13. Riscos técnicos
+1. **Early-release complexity:** apesar de o autor considerar o mod relativamente estável, a página mantém aviso de bugs/performance esperáveis nas primeiras semanas.
+2. **Sublevel disappearance/duplication:** área historicamente corrigida em 0.1.5.
+3. **Cart link snapping:** física extrema/jumps podem romper links ou desyncar composição.
+4. **Track preview lag:** segmentos inválidos enormes já causaram custo intenso; 0.1.5 adiciona bailout.
+5. **Rotational conflict:** chain lift sob inputs incompatíveis pode destruir componente e precisa de teste determinístico.
+6. **Chunk boundaries:** carts rápidos/linkados e sublevels precisam sobreviver a unload/load.
+7. **Aeronautics interaction:** dois sistemas que operam sublevels/physics podem criar ownership ambiguities se glue/rivet for usado fora do fluxo esperado.
+## 14. Matriz de testes
+- [ ] Dedicated server boot com Create 6.0.10 + Sable 2.0.5 + Coasters 0.1.5.
+- [ ] Aeronautics removido em ambiente de teste: Coasters continua iniciando, confirmando optional dependency.
+- [ ] Track reto, curva, loop, inversion e jump.
+- [ ] Chain lift com rotação correta e rotação conflitante.
+- [ ] Cart snap em diferentes ângulos.
+- [ ] Dois+ carts linked em loop/jump sem snap indevido.
+- [ ] Rivet attach/destroy, inclusive weightless blocks.
+- [ ] Glue entre dois riveted sublevels sem desaparecimento.
+- [ ] Tentativa de self-glue é rejeitada sem corrupção.
+- [ ] Balloons attach/remove/pop corretamente.
+- [ ] Invalid absurdly-long track preview não gera lag severo.
+- [ ] Chunk unload/reload e server restart preservam track/cart/link/sublevel state.
+- [ ] Multiplayer com dois observadores sem position/link desync.
+Nenhum teste foi marcado como aprovado nesta auditoria.
+## 15. Evidências
+- Modlist física canônica de 08/09/2026: JAR/mod id/versões do stack.
+- Modrinth oficial: requisitos Create 6.0.10+, Sable obrigatório e Aeronautics opcional; feature list.
+- CurseForge/Modrinth release 0.1.5: FPS, cart outlines/links/snap angle, riveted sublevels, balloons e placement-preview fixes.
+## 16. Revalidação física — 11/09/2026
+A modlist física atual continua contendo exatamente `simulatedcoasters-0.1.5.jar`, com mod id `simulatedcoasters` e runtime `0.1.5`. O stack obrigatório permanece Create `6.0.10` + Sable `2.0.5`; Create Aeronautics `1.3.2` continua presente como integração opcional.
+Nenhuma evidência desta revalidação exige reescrever o dossiê anterior: as boundaries de authority, os fixes 0.1.5 e a matriz de testes permanecem válidos. Os testes continuam **não executados** nesta auditoria documental.
+
+## Auditoria incremental upstream — Create: Coasters Simulated 0.1.6 (22/11/2026; não instalada)
+
+A baseline física #505 é `simulatedcoasters-0.1.5.jar`, versão `0.1.5`, para Create 6.0.10 e Sable 2.0.5, com Aeronautics presente como integração opcional.
+
+A **primeira release posterior 0.1.6**, [CurseForge 9654233](https://www.curseforge.com/minecraft/mc-mods/create-coasters-simulated/files/9654233), publicada em **16/11/2026** para Minecraft 1.21.1 / NeoForge, fornece `simulatedcoasters-0.1.6.jar`. Changelog autoral exclusivo:
+- **Major Improvements to TPS** — melhoria significativa de desempenho de tick **anunciada**, não medida no pack.
+- **Fixed issue causing several expensive plot scans on all sublevels every tick** — corrige varreduras onerosas de plots executadas **a cada tick em todos os sublevels**.
+
+**Impacto:** custo assintótico potencialmente alto quando há múltiplas regiões/sublevels e estruturas rollercoaster; testar MSPT/TPS em número crescente de sublevels, simultaneidade de rides, cart physics/linking, colisão, chain lifts, movimento em chunks, world restart e multiplayer, observando paridade de gameplay com 0.1.5. Não extrapolar o changelog para remoção de outras rotinas sem análise binária.
+
+**Resultado:** delta de performance documentado; sem instalação, bench próprio, diff de classes, aprovação de upgrades ou alteração dos arquivos. Pasta `Addons + Create` e basename `v0.1.5` mantidos.
+
+## Sincronização documental — 22/11/2026
+
+**Atualização declarada:** `0.1.5` → `0.1.6`; JAR `simulatedcoasters-0.1.6.jar`. 0.1.6 (16/11/2026): removidas varreduras caras de plots que ocorriam a cada tick em todos os sublevels; melhoria de TPS divulgada pelo autor, sem benchmark local. Preservados contratos de tracks, carts, chain lifts, rivets/balloons, Create e Sable.
+
+**Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-coasters-simulated/files/9654233. As expressões “não instalado” nas seções antigas retratam o snapshot anterior ao pedido atual; não implicam que o JAR novo tenha sido testado ou extraído do computador.
