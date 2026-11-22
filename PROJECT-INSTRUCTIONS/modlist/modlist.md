@@ -16,15 +16,15 @@
 
 | Nº físico | Projeto | JAR instalado e versão física | Upstream documentado | Fechamento documental / bloqueio físico |
 |---:|---|---|---|---|
-| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` / `2.0.0` | [3.0.0 Release (28/09)](https://www.curseforge.com/minecraft/mc-mods/create-metalwork/files/8995820) | **PARCIAL:** source fixada na 3.0.0 documenta registries condicionais, recipes de 90 mB, opções de Basin 4 fluidos, rendimentos e compatibilidades; `2.0.0→3.0.0` ainda carece de diff dos JARs para identificar modificações exatas. Nenhuma promoção física. |
-| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` / `2.2.0` | [2.3.0 (18/11)](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betterend/files/9681813), [2.4.0 (20/11)](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betterend/files/9716886) | **PARCIAL:** source 2.3.0 modifica mounds, proteção de árvores e umbrella worldgen; manifesta Better End `>=21.0.39`, mas físico é `21.0.34`. Publicação 2.4.0 sem changelog/source correspondente; diff binário, requisitos e QA pendentes. |
+| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` / `2.0.0` | [3.0.0 Release (28/09)](https://www.curseforge.com/minecraft/mc-mods/create-metalwork/files/8995820) | **CONCILIADO COM FONTES PRIMÁRIAS:** 2.0.0-beta já documentava solidificação em água e compatibilidade com Ironworks/Simple Ore Doubling; 2.0.0 Release registra correção de Lithium; source versionada 3.0.0 comprova configurações, quatro fluidos no Basin, ratios e matriz ampliada. **Delta exato entre JARs 2.0.0 e 3.0.0 não demonstrado**; não simular migração/testes. |
+| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` / `2.2.0` | [2.3.0 (18/11)](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betterend/files/9681813), [2.4.0 (20/11)](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betterend/files/9716886) | **FALSO BLOQUEIO DTP CORRIGIDO:** source oficial 2.2.0 declara DTP 1.3.2 opcional, DT 1.7.2+, BetterEnd 21.0.26+; stack físico atende ranges. Source 2.3.0 exige BetterEnd 21.0.39+ e muda worldgen; 2.4.0 não possui changelog/source pin, portanto **sem promoção nem QA**. |
 | 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` / `1.5.11` | [1.5.12 Beta (19/10)](https://www.curseforge.com/minecraft/mc-mods/petrolpark-library/files/9259866) | **CONCLUÍDO DOCUMENTALMENTE:** 1.5.11 instalada classificada **Release (R)**; 1.5.12 **Beta (B)** declara apenas compatibilidade JEI. Sem prova de benefício funcional para JEI/Destroy físicos, não promover automaticamente; QA/instalação pendentes. |
 
 ## Auditoria incremental — 22/11/2026 (More Relics 1.8.0)
 
 | Nº físico | Mod | Instalada | Alvo upstream NeoForge 1.21.1 | Estado |
 |---:|---|---|---|---|
-| 408 | More Relics | `1.7.7-forRelics-0.12.8-1.0` / `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` | [1.8.0 (21/11/2026)](https://www.curseforge.com/minecraft/mc-mods/more-relics/files/9735896) | **AUDITORIA DOCUMENTAL CONCLUÍDA** para a release nova: Homesick, Homeward, autoequip Curios na evolução, Made in Heaven/Charred, loot configurável, Axolotl Cream e fix Twin Fangs. **UPGRADE FÍSICO BLOQUEADO:** 1.8.0 regular declara Relics não-Beta, enquanto o pack usa Relics 0.12.8 e a variante Beta especial 1.7.7. Nenhum JAR ou save alterado; QA pendente. |
+| 408 | More Relics | `1.7.7-forRelics-0.12.8-1.0` / `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` | [1.8.0 regular (21/11/2026)](https://www.curseforge.com/minecraft/mc-mods/more-relics/files/9735896) | **ALVO COMPATÍVEL RESOLVIDO:** manter 1.7.7 Beta específica para Relics 0.12.8. A 1.8.0 regular declara Relics 0.10.7.8 (linha não-Beta), portanto não é upgrade compatível do pack. Novidades documentadas: Homesick em End Cities, evolução Homeward, equip Curios, Charred, loot config e correções. Nenhum JAR/save alterado. |
 
 ## Auditoria parcial — 21/11/2026 (JEI .471 e Cyber Goggles 8.8.2/8.8.3)
 
@@ -718,7 +718,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 192 | Create: Liquid Fuel | `createliquidfuel-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 24/09/2026 - 00:20 |
 | 193 | Create: Mechanical Companion | `createmechanicalcompanion-1.9-neoforge-1.21.1.jar` | `1.9 (artefato/publicação); metadata runtime vazia` | `Addons + Adventure and RPG + Create + Mobs + Technology` | 24/09/2026 - 00:20 |
 | 194 | Create: Metallurgy | `createmetallurgy-1.0.3-1.21.1.jar` | `1.0.3` | `Addons + Automation + Create + Processing + Technology` | 24/09/2026 - 00:20 |
-| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` | `2.0.0` | `Automation + Create + Energy, Fluid, and Item Transport + Processing` | 22/11/2026 - 07:09 |
+| 195 | Create: Metalwork | `createmetalwork-2.0.0.jar` | `2.0.0` | `Automation + Create + Energy, Fluid, and Item Transport + Processing` | 22/11/2026 - 07:18 |
 | 196 | Create Missiles | `createmissiles-1.0.3+neoforge-1.21.1.jar` | `1.0.3` | `Addons + Create + Map and Information + Structures + Technology` | 24/09/2026 - 00:20 |
 | 197 | Create Nuclear | `createnuclear-1.3.2-beta.3-neoforge.jar` | `1.3.2-beta.3` | `Addons + Create + Energy + Ores and Resources + Technology` | 17/11/2026 - 17:09 |
 | 198 | Create: Ornithopter Glider | `createornithopterglider-1.2.0-1.21.1.jar` | `1.2.0-1.21.1 (runtime/filename); publicação 1.2.0+1.21.1` | `Addons + Armor, Tools, and Weapons + Create + Player Transport + Utility & QoL` | 23/10/2026 - 15:15 |
@@ -749,7 +749,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 223 | Create: Dreams n' Desires | `DnDesires-1.21.1-2.3a-BETA.jar` | `2.3a-BETA` | `Armor, Tools, and Weapons + Automation + Create + Utility & QoL + World Gen` | 24/09/2026 - 10:44 |
 | 224 | Domum Ornamentum | `domum-ornamentum-1.0.236-snapshot-main.jar` | `1.0.236-snapshot` | `API and Library + Cosmetic` | 20/11/2026 - 00:17 |
 | 225 | Dreamless Spells and Spellbooks | `dreamless_spells-1.1.9.jar` | `1.1.9` | `Addons + Armor, Tools, and Weapons + Magic + Ores and Resources` | 24/09/2026 - 10:44 |
-| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 22/11/2026 - 07:08 |
+| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 22/11/2026 - 07:17 |
 | 227 | Dynamic Trees - BetterNether | `dtbetternether-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
 | 228 | Dynamic Trees - Oh The Biomes We've Gone | `dtbwg-1.1.0-BETA02.jar` | `1.1.0-BETA02` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
 | 229 | Dynamic Trees - Quark | `dtquark-2.6.1.jar` | `2.6.1` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
@@ -931,7 +931,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 405 | MonoLib | `monolib-neoforge-1.21.1-4.1.0.jar` | `4.1.0` | `API and Library + Education + Utility & QoL` | 25/09/2026 - 13:25 |
 | 406 | Monsters & Spellbooks: Iron's Spells 'n Spellbooks Addon | `monsterspellbooks-0.0.16.3.jar` | `0.0.16.3` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 25/09/2026 - 13:25 |
 | 407 | Moonlight Lib | `moonlight-1.21.1-3.6.4-neoforge.jar` | `1.21.1-3.6.4` | `API and Library` | 18/11/2026 - 07:44 |
-| 408 | More Relics | `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` | `1.7.7-forRelics-0.12.8-1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/11/2026 - 06:57 |
+| 408 | More Relics | `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar` | `1.7.7-forRelics-0.12.8-1.0` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/11/2026 - 07:17 |
 | 409 | Mouse Tweaks | `MouseTweaks-neoforge-mc1.21-2.26.1.jar` | `2.26.1` | `Miscellaneous + Storage + Utility & QoL` | 25/09/2026 - 13:25 |
 | 410 | Mowzie's Cataclysm | `mowzies_cataclysm-1.2.2.jar` | `1.2.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 13:25 |
 | 411 | Mowzie's Mobs | `mowziesmobs-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 25/09/2026 - 13:25 |
