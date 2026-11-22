@@ -1,26 +1,37 @@
-# Modonomicon
+# Modonomicon — 1.123.1 (instalação declarada em 22/11/2026)
+
+> **Versão vigente declarada pelo usuário:** 1.120.4 → **1.123.1**, arquivo oficial `modonomicon-1.21.1-neoforge-1.123.1.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/modonomicon/files/9646793)). O novo JAR local e seu metadata/SHA não foram inspecionados nesta sessão.
+
+> **Deltas da cadeia de publicações:** Publicações 1.120.5/.6/.7/.8, 1.121.0, 1.122.0, 1.123.0 e 1.123.1 auditadas no dossier: smithing page, save state de livros, random do cliente no multiblock preview, setas de navegação, categorias e bookmark; 1.122.0 introduz load conditions, 1.123.0 atualiza loader e 1.123.1 melhora erros de construção de livros.
+
+> **Dependências pendentes:** Consumo por livros/guias de mods; bibliotecas CommonMark embarcadas não são top-level; consumidores reais/ranges devem ser conciliados sem bloquear atualização.
+
+> **Compatibilidade e QA:** Book unlock e bookmarks, load conditions, preview, datapacks/reload, progresso, multiplayer; sem teste de JAR novo.
+
+> **Leitura do histórico:** referências antigas a versão 'física atual', 'instalada' ou 'não instalada' abaixo descrevem o snapshot e a auditoria anterior, não o estado documental declarado agora. A posição física 404 e o JAR antigo `modonomicon-1.21.1-neoforge-1.120.4.jar` são mantidos como rastreabilidade.
+
 
 ## Propriedades do registro
 
 - **Mod:** Modonomicon
-- **Arquivo JAR:** modonomicon-1.21.1-neoforge-1.120.4.jar
-- **Versão 1.21.1:** 1.120.4
+- **Arquivo JAR instalado (declarado pelo usuário):** `modonomicon-1.21.1-neoforge-1.123.1.jar` — publicado no [CurseForge](https://www.curseforge.com/minecraft/mc-mods/modonomicon/files/9646793); arquivo local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.123.1` (antes `1.120.4`; metadata da nova build não extraído).
 - **Categoria:** Biblioteca, QoL
 - **Decisão:** Sem decisão
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** versão-alvo e artefato oficial confirmados; publicações intermediárias documentadas nas seções históricas; binário e QA pendentes.
+- **Estado no pack:** `1.123.1` instalado segundo declaração do usuário; documentação sincronizada, sem inspeção local.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/modonomicon | https://github.com/klikli-dev/modonomicon
 - **Função:** Framework data-driven para livros/guias in-game com categories, entries, pages, condições/progressão e preview de multiblocos.
-- **Dependências:** NeoForge 1.21.1. Necessidade depende dos consumers que registram livros. Nenhum consumer inequívoco foi comprovado na modlist física nesta passagem; Occultism não está presente. CommonMark 0.29.0 e extensões são JarJars internos do host.
-- **Compatibilidade/Riscos:** Framework data-driven. Riscos: schema/ID drift, unlock/first-read/save state, reload, clientbound registry access e multiblock rendering. Runtime 1.120.4; upstream 1.120.5 corrige offset de smithing recipe page, 1.120.6 corrige registry access em clientbound packets no Forge e 1.120.7 corrige save-state errors para books unknown/unbuilt.
+- **Dependências:** Consumo por livros/guias de mods; bibliotecas CommonMark embarcadas não são top-level; consumidores reais/ranges devem ser conciliados sem bloquear atualização.
+- **Compatibilidade/Riscos:** Book unlock e bookmarks, load conditions, preview, datapacks/reload, progresso, multiplayer; sem teste de JAR novo.
 - **Sobreposição:** Coexiste com Patchouli/GuideME; não são substituições drop-in porque consumers dependem de APIs/formats específicos.
-- **Observações:** Runtime físico permanece 1.120.4. Releases posteriores oficiais para 1.21.1: 1.120.5 (22/09), 1.120.6 (24/09) e 1.120.7 (25/09/2026). Os três deltas são fixes específicos e foram incorporados abaixo.
-- **Procedência:** modlist física atual + publicação/source oficial `klikli-dev/modonomicon`; releases GitHub `release/v1.21.1-1.120.5`, `1.120.6` e `1.120.7` foram revalidadas em 01/10/2026. Runtime físico permanece 1.120.4.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Modonomicon físico permanece 1.120.4. A cadeia 1.120.5→1.120.6→1.120.7 foi comparada em ordem e os fixes foram incorporados abaixo.
+- **Observações vigentes:** arquivo publicado `modonomicon-1.21.1-neoforge-1.123.1.jar` declarado instalado, sem SHA local; snapshot 1.120.4 apenas histórico.
+- **Procedência:** posição histórica #404, declaração de atualização em 22/11/2026 e [publicação oficial](https://www.curseforge.com/minecraft/mc-mods/modonomicon/files/9646793); nenhum arquivo local novo foi lido.
+- **Atualização/Status:** 22/11/2026 — `1.120.4` → `1.123.1`; Publicações 1.120.5/.6/.7/.8, 1.121.0, 1.122.0, 1.123.0 e 1.123.1 auditadas no dossier: smithing page, save state de livros, random do cliente no multiblock preview, setas de navegação, categorias e bookmark; 1.122.0 introduz load conditions, 1.123.0 atualiza loader e 1.123.1 melhora erros de construção de livros.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-09-10
 
-> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #404: JAR `modonomicon-1.21.1-neoforge-1.120.4.jar`, mod id `modonomicon`, runtime `1.120.4`, SHA-1 `1377fec77ba0cb3e4adda0da9ce2f14847e21e40`.
+> **Snapshot físico histórico — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #404: JAR `modonomicon-1.21.1-neoforge-1.120.4.jar`, mod id `modonomicon`, runtime `1.120.4`, SHA-1 `1377fec77ba0cb3e4adda0da9ce2f14847e21e40`.
 
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `modonomicon-1.21.1-neoforge-1.120.4.jar`, mod id `modonomicon`, versão `1.120.4`. O upstream possui branch de release `release/v1.21.1-1.120.4`; o workflow dessa branch aponta ao commit `9ec9fe54eb422ff519a9a4af961faf8efc11f1a3`, que corrige batching do preview de multiblock em 1.21.1. O `gradle.properties` acessível nesse ref ainda mostra `mod_version=1.110.0`; portanto ele **não** é usado como prova isolada de versionamento. A versão exata é sustentada pelo JAR físico/publicação, preservando a divergência de source metadata.

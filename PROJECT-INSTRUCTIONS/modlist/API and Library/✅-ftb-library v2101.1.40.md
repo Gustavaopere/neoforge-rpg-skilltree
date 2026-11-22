@@ -1,25 +1,36 @@
-# FTB Library
+# FTB Library (NeoForge) — 2101.1.40 (instalação declarada em 22/11/2026)
+
+> **Versão vigente declarada pelo usuário:** 2101.1.36 → **2101.1.40**, arquivo oficial `ftb-library-neoforge-2101.1.40.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/9650381)). O novo JAR local e seu metadata/SHA não foram inspecionados nesta sessão.
+
+> **Deltas da cadeia de publicações:** Cadeia .37–.40 auditada: permissões de configuração elevadas 2→4, filtro JEI, quebra de API CurrencyProvider int→long, correção da versão declarada de XMod Compat e adição de WebP, widgets, ícones, modais e opções file-only.
+
+> **Dependências pendentes:** FTB XMod Compat >=21.1.13 exigido desde .38; snapshot registra 21.1.11. Dependência aguardando sincronização documental posterior, sem impedir atualização. Outros consumidores FTB requerem conciliação de ABI.
+
+> **Compatibilidade e QA:** Mudanças em permissionamento, tipos CurrencyProvider, networking/config, UI e assets; testes de cliente/servidor não executados.
+
+> **Leitura do histórico:** referências antigas a versão 'física atual', 'instalada' ou 'não instalada' abaixo descrevem o snapshot e a auditoria anterior, não o estado documental declarado agora. A posição física 289 e o JAR antigo `ftb-library-neoforge-2101.1.36.jar` são mantidos como rastreabilidade.
+
 
 ## Propriedades do registro
 
 - **Mod:** FTB Library
-- **Arquivo JAR:** `ftb-library-neoforge-2101.1.36.jar`
-- **Versão 1.21.1:** `2101.1.36`
+- **Arquivo JAR instalado (declarado pelo usuário):** `ftb-library-neoforge-2101.1.40.jar` — publicado no [CurseForge](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/9650381); arquivo local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `2101.1.40` (antes `2101.1.36`; metadata da nova build não extraído).
 - **Categoria:** Biblioteca
 - **Decisão:** Sem decisão
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** versão-alvo e artefato oficial confirmados; publicações intermediárias documentadas nas seções históricas; binário e QA pendentes.
+- **Estado no pack:** `2101.1.40` instalado segundo declaração do usuário; documentação sincronizada, sem inspeção local.
 - **Fonte:** https://github.com/FTBTeam/FTB-Library/tree/1.21.1/main
 - **Função:** Core/biblioteca do ecossistema FTB: UI/widgets/panels/sidebar, configuração e SNBT, networking/sync, NBT editor, registry/resource selectors, text/icons/math e APIs compartilhadas por FTB Chunks, Quests, Teams, Ultimine e XMod Compat.
-- **Dependências:** Ecossistema FTB/Architectury conforme consumidor. Pack instala FTB Chunks 2101.1.22, FTB Quests 2101.1.36, FTB Teams 2101.1.11, FTB Ultimine 2101.1.15 e FTB XMod Compat 21.1.11. FTB Chunks 2101.1.21+ requer Library 2101.1.34+; 2101.1.36 atende.
-- **Compatibilidade/Riscos:** Biblioteca central: risco de ABI/version skew, packet/codec mismatch, client classloading, registry/config permission e shared-UI drift. Runtime físico 2101.1.36; upstream 2101.1.37 eleva `SyncConfigToServerPacket` de permission level 2 para 4 e faz o item selector em JEI mode ignorar `c:hidden_from_recipe_viewers`.
+- **Dependências:** FTB XMod Compat >=21.1.13 exigido desde .38; snapshot registra 21.1.11. Dependência aguardando sincronização documental posterior, sem impedir atualização. Outros consumidores FTB requerem conciliação de ABI.
+- **Compatibilidade/Riscos:** Mudanças em permissionamento, tipos CurrencyProvider, networking/config, UI e assets; testes de cliente/servidor não executados.
 - **Sobreposição:** Infraestrutura compartilhada, não substituto de FTB Quests/Teams/Chunks/Ultimine. Pode sobrepor visualmente tooltips/sidebar/UI de outros mods; item_modname é false por default justamente porque outros mods costumam adicionar esse tooltip.
-- **Observações:** Runtime físico permanece 2101.1.36. A release 2101.1.37 de 29/09/2026 endurece permissão de edição de server config e corrige a superfície de seleção de itens em JEI mode.
-- **Procedência:** modlist física atual confirma FTB Library 2101.1.36. CurseForge oficial revalidado em 02/10/2026 confirma 2101.1.37 NeoForge 1.21.1, file ID 9008089, como release posterior.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 02/10/2026 — runtime físico permanece 2101.1.36. O delta 2101.1.37 foi incorporado abaixo.
+- **Observações vigentes:** arquivo publicado `ftb-library-neoforge-2101.1.40.jar` declarado instalado, sem SHA local; snapshot 2101.1.36 apenas histórico.
+- **Procedência:** posição histórica #289, declaração de atualização em 22/11/2026 e [publicação oficial](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/9650381); nenhum arquivo local novo foi lido.
+- **Atualização/Status:** 22/11/2026 — `2101.1.36` → `2101.1.40`; Cadeia .37–.40 auditada: permissões de configuração elevadas 2→4, filtro JEI, quebra de API CurrencyProvider int→long, correção da versão declarada de XMod Compat e adição de WebP, widgets, ícones, modais e opções file-only.
 - **Data da última decisão:** 2026-08-26
 
-> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #289: JAR `ftb-library-neoforge-2101.1.36.jar`, mod id `ftblibrary`, runtime `2101.1.36`, SHA-1 `07b5bf1c6ac5160a6cfe1b39ed8c1465dc151b00`.
+> **Snapshot físico histórico — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #289: JAR `ftb-library-neoforge-2101.1.36.jar`, mod id `ftblibrary`, runtime `2101.1.36`, SHA-1 `07b5bf1c6ac5160a6cfe1b39ed8c1465dc151b00`.
 
 <callout icon="🔎" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `ftb-library-neoforge-2101.1.36.jar`, mod id `ftblibrary`, versão instalada `2101.1.36`, Minecraft 1.21.1 / NeoForge. O source detalhado foi auditado enquanto a linha 1.21.1 correspondia à 2101.1.35; o delta 2101.1.36 é atribuído ao changelog oficial, sem projetar source não revalidado. FTB Library é infraestrutura compartilhada: **não é autoridade sobre quests, teams, claims ou ultimine**; esses domínios pertencem aos mods consumidores.

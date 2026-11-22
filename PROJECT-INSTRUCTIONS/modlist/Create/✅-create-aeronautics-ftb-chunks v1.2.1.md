@@ -1,22 +1,33 @@
-# Create Aeronautics: FTB Chunks
+# Create Aeronautics: FTB Chunks — 1.2.1 (instalação declarada em 22/11/2026)
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#129**: JAR `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar`, mod id `create_aeronautics_ftb_chunks`, runtime `1.2.0`, SHA-1 `d505c3675adb535a23b2abc794e034bc809098d4`.
+> **Versão vigente declarada pelo usuário:** 1.2.0 → **1.2.1**, arquivo oficial `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.1.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-ftb-chunks/files/9663793)). O novo JAR local e seu metadata/SHA não foram inspecionados nesta sessão.
+
+> **Deltas da cadeia de publicações:** Corrige crash/travamento no shutdown após retirada de force-load de navio e terreno que descarregava após 15 s; compatibilidade Sable 2.0.5+ declarada. O ambiente de desenvolvimento cita Aeronautics 1.3.2/Chunks 2101.1.24/NeoForge 21.1.266, não um mínimo de manifesto confirmado.
+
+> **Dependências pendentes:** Aeronautics, Sable, FTB Chunks e FTB Teams; versões do stack ainda em sincronização documental por lote. Não impede esta atualização.
+
+> **Compatibilidade e QA:** Claims e permissões Private/Allies/Public, quota de force-load, navios em movimento, chunks, restart e shutdown ainda sem QA.
+
+> **Leitura do histórico:** referências antigas a versão 'física atual', 'instalada' ou 'não instalada' abaixo descrevem o snapshot e a auditoria anterior, não o estado documental declarado agora. A posição física 129 e o JAR antigo `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` são mantidos como rastreabilidade.
+
+
+> **Snapshot físico histórico — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#129**: JAR `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar`, mod id `create_aeronautics_ftb_chunks`, runtime `1.2.0`, SHA-1 `d505c3675adb535a23b2abc794e034bc809098d4`.
 
 ## Propriedades do registro
 
 - **Mod:** Create Aeronautics: FTB Chunks
-- **Arquivo JAR:** create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar
-- **Versão 1.21.1:** 1.2.0
+- **Arquivo JAR instalado (declarado pelo usuário):** `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.1.jar` — publicado no [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-ftb-chunks/files/9663793); arquivo local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.2.1` (antes `1.2.0`; metadata da nova build não extraído).
 - **Categoria:** Compat, Tecnologia
 - **Função:** Integra subníveis/veículos físicos do Create Aeronautics com claims, permissões e force-loading do FTB Chunks/FTB Teams.
-- **Dependências:** Obrigatórias e fisicamente presentes: Create Aeronautics 1.3.2 + FTB Chunks 2101.1.22 + FTB Teams 2101.1.11.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Riscos: claim órfão/remapeado incorretamente em ship movement, force-load/physics performance, quota, ACL stale após team changes, bypass por wrench/glue/kinetic breaker e regressão de shutdown/save em sublevels. `allow_plot_chunk_force_load` e `allow_physics_force_load` vêm OFF por padrão upstream; não assumir o estado runtime sem ler a config física. A 1.2.0 atualiza para latest Sable e corrige Save & Quit stuck, tornando shutdown/restart um regression gate explícito.
+- **Dependências:** Aeronautics, Sable, FTB Chunks e FTB Teams; versões do stack ainda em sincronização documental por lote. Não impede esta atualização.
+- **Estado no pack:** `1.2.1` instalado segundo declaração do usuário; documentação sincronizada, sem inspeção local.
+- **Estado da pesquisa:** versão-alvo e artefato oficial confirmados; publicações intermediárias documentadas nas seções históricas; binário e QA pendentes.
+- **Compatibilidade/Riscos:** Claims e permissões Private/Allies/Public, quota de force-load, navios em movimento, chunks, restart e shutdown ainda sem QA.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-ftb-chunks
-- **Procedência:** modlist.txt física atual de 16/09/2026 + runtime `create_aeronautics_ftb_chunks` 1.2.0 + publicação oficial 1.2.0 de 15/09/2026 já auditada. Revalidação física/documental em 20/09/2026.
-- **Observações:** JAR físico `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar`, mod id `create_aeronautics_ftb_chunks`, runtime 1.2.0. Release oficial NeoForge 1.21.1 de 15/09/2026: update to latest Sable e fix do problema de Save & Quit ficar travado. Os settings `allow_plot_chunk_force_load` e `allow_physics_force_load` permanecem relevantes; a config física do pack é authority do estado efetivo.
-- **Atualização/Status:** REVALIDADO EM 20/09/2026 — lote físico #128: create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar / 1.2.0 confirmados; update para Sable atual e correção de save & quit preso permanecem registrados.
+- **Procedência:** posição histórica #129, declaração de atualização em 22/11/2026 e [publicação oficial](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-ftb-chunks/files/9663793); nenhum arquivo local novo foi lido.
+- **Observações vigentes:** arquivo publicado `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.1.jar` declarado instalado, sem SHA local; snapshot 1.2.0 apenas histórico.
+- **Atualização/Status:** 22/11/2026 — `1.2.0` → `1.2.1`; Corrige crash/travamento no shutdown após retirada de force-load de navio e terreno que descarregava após 15 s; compatibilidade Sable 2.0.5+ declarada. O ambiente de desenvolvimento cita Aeronautics 1.3.2/Chunks 2101.1.24/NeoForge 21.1.266, não um mínimo de manifesto confirmado.
 - **Decisão:** Sem decisão
 - **Histórico da decisão:** 2026-09-18 — runtime físico atualizado para 1.2.0; nenhuma decisão curatorial nova.
 - **Sobreposição:** Complementa Aeronautics e FTB Chunks; não substitui nenhum deles.

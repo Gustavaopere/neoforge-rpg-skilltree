@@ -1,25 +1,36 @@
-# Create FluidLogistics
+# Create: FluidLogistics — 1.3.3 (instalação declarada em 22/11/2026)
+
+> **Versão vigente declarada pelo usuário:** 1.3.0 → **1.3.3**, arquivo oficial `fluidlogistics-1.3.3-mc1.21.1.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic/files/9712748)). O novo JAR local e seu metadata/SHA não foram inspecionados nesta sessão.
+
+> **Deltas da cadeia de publicações:** 1.3.1 e 1.3.2 estão auditadas; 1.3.3 permite eixos compartilhados por Oscillating Steam Engines, atualiza flywheel do Snow Golem Freezer, corrige repackaging conjunto de fluidos+itens, filtragem de fluid packages, áudio de Stock Keeper e drops de filtros dos Multi-Fluid Access Ports.
+
+> **Dependências pendentes:** Create 6.0.10 na baseline do modpack; outros addons de logística e seus requisitos permanecem a conciliar; sem hard minimum novo inventado.
+
+> **Compatibilidade e QA:** Preservação de volumes, repackaging e filtros, energia cinética, estoque, sync, unload/restart e multiplayer ainda não testados.
+
+> **Leitura do histórico:** referências antigas a versão 'física atual', 'instalada' ou 'não instalada' abaixo descrevem o snapshot e a auditoria anterior, não o estado documental declarado agora. A posição física 285 e o JAR antigo `fluidlogistics-1.3.0-mc1.21.1.jar` são mantidos como rastreabilidade.
+
 
 ## Propriedades do registro
 
 - **Mod:** Create FluidLogistics
-- **Arquivo JAR:** `fluidlogistics-1.3.0-mc1.21.1.jar`
-- **Versão 1.21.1:** `1.3.0`
+- **Arquivo JAR instalado (declarado pelo usuário):** `fluidlogistics-1.3.3-mc1.21.1.jar` — publicado no [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic/files/9712748); arquivo local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.3.3` (antes `1.3.0`; metadata da nova build não extraído).
 - **Categoria:** Tecnologia, Automação
 - **Decisão:** Sem decisão
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** versão-alvo e artefato oficial confirmados; publicações intermediárias documentadas nas seções históricas; binário e QA pendentes.
+- **Estado no pack:** `1.3.3` instalado segundo declaração do usuário; documentação sincronizada, sem inspeção local.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic
 - **Função:** Expande o sistema logístico do Create 6 para fluidos: empacotamento, endereçamento, transporte, armazenamento multi-fluido, requesters, hatches, pumps e ferramentas auxiliares.
-- **Dependências:** Create 6.0.10 no pack. A build 1.3.0 é addon Client & Server para o sistema logístico do Create; nenhuma hard dependency adicional é afirmada sem metadata do JAR/source exato.
-- **Compatibilidade/Riscos:** Build física 1.3.0 é Release para NeoForge 1.21.1. Riscos principais: roteamento/endereço incorreto de fluid packages, duplicação/perda em packager↔unpackager/transporter, multi-fluid state stale, automação infinita indevida, paralelismo do Mechanical Fluid Gun e drift com Create 6.0.10. Testar requesters, tanks, schematics, bulk cooling e unload/restart.
+- **Dependências:** Create 6.0.10 na baseline do modpack; outros addons de logística e seus requisitos permanecem a conciliar; sem hard minimum novo inventado.
+- **Compatibilidade/Riscos:** Preservação de volumes, repackaging e filtros, energia cinética, estoque, sync, unload/restart e multiplayer ainda não testados.
 - **Sobreposição:** Complementa a logística nativa do Create com fluid packages e infraestrutura multi-fluido. Pode se cruzar com outros addons de logística/fluidos, mas não é redundância automática; comparar por rota/handler concreto.
-- **Observações:** JAR físico `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, runtime 1.3.0. Release oficial NeoForge 1.21.1 de 16/09/2026. Delta 1.3.0: optimize package fluid rendering; Mechanical Fluid Gun processa itens em paralelo; fix do disable blaze cooler conversion; fix de empty bucket extra no bulk cooling.
-- **Procedência:** modlist.txt física atual de 21/09/2026 — 587 entradas top-level incluindo o modloader — confirma `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, runtime `1.3.0` e SHA-1 `011435bbefe9ab979719fa138252d52261837d33`. A versão física não mudou nesta rodada; as evidências técnicas já registradas permanecem preservadas.
+- **Observações vigentes:** arquivo publicado `fluidlogistics-1.3.3-mc1.21.1.jar` declarado instalado, sem SHA local; snapshot 1.3.0 apenas histórico.
+- **Procedência:** posição histórica #285, declaração de atualização em 22/11/2026 e [publicação oficial](https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic/files/9712748); nenhum arquivo local novo foi lido.
 - **Histórico da decisão:** 2026-09-18 — runtime físico atualizado para 1.3.0; nenhuma decisão curatorial nova.
-- **Atualização/Status:** UPSTREAM REVALIDADO EM 02/10/2026 — runtime físico permanece 1.3.0 e a 1.3.0 continua sendo a release NeoForge 1.21.1 mais recente no CurseForge; não há release posterior a percorrer.
+- **Atualização/Status:** 22/11/2026 — `1.3.0` → `1.3.3`; 1.3.1 e 1.3.2 estão auditadas; 1.3.3 permite eixos compartilhados por Oscillating Steam Engines, atualiza flywheel do Snow Golem Freezer, corrige repackaging conjunto de fluidos+itens, filtragem de fluid packages, áudio de Stock Keeper e drops de filtros dos Multi-Fluid Access Ports.
 
-> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #285: JAR `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, runtime `1.3.0`, SHA-1 `011435bbefe9ab979719fa138252d52261837d33`.
+> **Snapshot físico histórico — 24/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #285: JAR `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, runtime `1.3.0`, SHA-1 `011435bbefe9ab979719fa138252d52261837d33`.
 
 <callout icon="💧" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `fluidlogistics-1.3.0-mc1.21.1.jar`, mod id `fluidlogistics`, versão `1.3.0`, NeoForge 1.21.1. Create: FluidLogistics estende a logística do Create 6 para transporte e endereçamento de **fluidos**. A build instalada é Release oficial publicada em 16/09/2026.

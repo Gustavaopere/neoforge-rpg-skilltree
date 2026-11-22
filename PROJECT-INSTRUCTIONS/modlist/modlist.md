@@ -1,3 +1,4 @@
+
 # Índice incremental da modlist certificada e organizada
 
 > A autoridade física mais recente disponível continua sendo `modlist(1).txt`, com **587 entradas top-level** incluindo o modloader. Em **02/10/2026**, o usuário confirmou duas adições posteriores a esse snapshot — **Cold Sweat: Altitude** e **Create: Bionics** — elevando o inventário conhecido do perfil para **589 mods**, enquanto um novo dump físico ainda não está disponível. A tabela numerada abaixo permanece congelada nas 587 posições físicas verificadas; as duas adições pós-snapshot ficam registradas separadamente até que JAR, metadata, SHA e ordem possam ser re-fetched. Entradas sem dossier ou sem projeto correspondente permanecem explícitas como exceções, em vez de serem omitidas ou receberem dados físicos inventados.
@@ -15,6 +16,20 @@
 
 
 
+
+
+## Lote 57–62 — atualização documental declarada em 22/11/2026
+
+A declaração do usuário estabelece as versões instaladas para fins de inventário, sem inspeção local. Posições ordinais preservam a modlist física histórica. Raven's RPG Resource Orbs (#22 do pedido) permanece sem dossier certificado e posição top-level confirmada, não recebe linha inventada.
+
+- Item 57, físico #129: Create Aeronautics: FTB Chunks `1.2.0` → `1.2.1` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-ftb-chunks/files/9663793)); dependências pendentes de conciliação não impedem a atualização documental.
+- Item 58, físico #404: Modonomicon `1.120.4` → `1.123.1` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/modonomicon/files/9646793)); dependências pendentes de conciliação não impedem a atualização documental.
+- Item 59, físico #188: Create: Food `2.7.1` → `3.1.0` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-food/files/9723450)); dependências pendentes de conciliação não impedem a atualização documental.
+- Item 60, físico #289: FTB Library (NeoForge) `2101.1.36` → `2101.1.40` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/ftb-library-forge/files/9650381)); dependências pendentes de conciliação não impedem a atualização documental.
+- Item 61, físico #285: Create: FluidLogistics `1.3.0` → `1.3.3` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-fluidlogistic/files/9712748)); dependências pendentes de conciliação não impedem a atualização documental.
+- Item 62, físico #519: Sophisticated Storage `1.5.91` → `1.6.20` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/9692522)); dependências pendentes de conciliação não impedem a atualização documental.
+
+**Pendências documentais:** Sophisticated Storage requer Sophisticated Core >=1.5.35, enquanto o último snapshot registra 1.5.1; FTB Library 2101.1.38+ requer XMod Compat >=21.1.13, enquanto o snapshot registra 21.1.11. Nenhum JAR local, configuração, save ou teste de Minecraft foi alterado.
 
 ## Lote 22, 48 e 49–56 — atualizações declaradas em 22/11/2026
 
@@ -751,7 +766,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 126 | Create Utilities J | `Create-Utilities-J-1.21.1-0.3.4+1.21.1.jar` | `0.3.4+1.21.1` | `Automation + Create` | 23/09/2026 - 08:03 |
 | 127 | Create Aero Radars | `create_aero_radar-0.1.1-1.21.1.jar` | `0.1.1-1.21.1` | `Create + Technology` | 23/09/2026 - 08:03 |
 | 128 | Create Aeronautics: Automated Logistics | `create_aeronautics_automated_logistics-0.6.2.jar` | `0.6.2` | `Addons + Automation + Create` | 25/10/2026 - 00:41 |
-| 129 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.0.jar` | `1.2.0` | `Create` | 22/11/2026 - 01:02 |
+| 129 | Create Aeronautics: FTB Chunks | `create_aeronautics_ftb_chunks-1.21.1-NeoForge-1.2.1.jar` | `1.2.1` | `Create` | 22/11/2026 - 16:39 |
 | 130 | Create Aeronautics: Throwable Rope Connector | `create_aeronautics_throwable_rope_connector-0.4.3.jar` | `0.4.3` | `Addons + Create + Utility & QoL` | 22/11/2026 - 07:43 |
 | 131 | create aeronautics：toolgun | `create_aeronautics_toolgun-0.3.6.jar` | `0.3.6` | `Utility & QoL` | 18/11/2026 - 08:32 |
 | 132 | Create Aeronautics: Transmission & Linkage | `create_aeronautics_transmission_linkage-0.2.8.jar` | `0.2.8` | `Create + Technology` | 17/11/2026 - 20:00 |
@@ -810,7 +825,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 185 | Create: Fast SchematicCannon | `CreateFastSchematicCannon-2.6.1-neoforge-1.21.1.jar` | `2.6.1-neoforge` | `Addons + Bug Fixes + Create` | 23/09/2026 - 23:51 |
 | 186 | Create: Filters Anywhere | `createfiltersanywhere-1.21.1-2.6.0.jar` | `2.6.0` | `Addons + Create` | 18/11/2026 - 08:01 |
 | 187 | Create: Fishery Industry | `createfisheryindustry-5.1.2.jar` | `5.1.2` | `Addons + Create` | 23/09/2026 - 23:51 |
-| 188 | Create: Food | `createfood-neoforge-1.21.1-2.7.1.jar` | `2.7.1` | `Automation + Create + Food` | 22/11/2026 - 01:02 |
+| 188 | Create: Food | `createfood-neoforge-1.21.1-3.1.0.jar` | `3.1.0` | `Automation + Create + Food` | 22/11/2026 - 16:39 |
 | 189 | Create Goggles (Create Plus) | `creategoggles-1.21.1-6.1.1-[NEOFORGE].jar` | `6.1.1` | `Addons + Armor, Tools, and Weapons + Create` | 23/09/2026 - 23:51 |
 | 190 | Create JEI Compat | `createjeicompat-1.0.3.jar` | `1.0.3` | `Create` | 23/09/2026 - 23:51 |
 | 191 | Create:LazyTick | `CreateLazyTick-2.6.25-6.0.10-neoforge-1.21.1.jar` | `2.6.25-6.0.10` | `Addons + Bug Fixes + Create` | 18/11/2026 - 08:01 |
@@ -907,11 +922,11 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 282 | First-person Model | `firstperson-neoforge-2.7.2-mc1.21.1.jar` | `2.7.2` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic` | 24/09/2026 - 18:26 |
 | 283 | Flowing Fluids | `flowing_fluids-1.0.6-1.21-neoforge.jar` | `1.0.6` | `Miscellaneous` | 18/11/2026 - 08:24 |
 | 284 | Create: Fluid | `fluid-2.1.6.jar` | `2.1.6` | `Addons + Create` | 24/09/2026 - 18:23 |
-| 285 | Create: FluidLogistics | `fluidlogistics-1.3.0-mc1.21.1.jar` | `1.3.0` | `Create + Utility & QoL` | 21/11/2026 - 00:16 |
+| 285 | Create: FluidLogistics | `fluidlogistics-1.3.3-mc1.21.1.jar` | `1.3.3` | `Create + Utility & QoL` | 22/11/2026 - 16:39 |
 | 286 | Forgified Fabric API | `forgified-fabric-api-0.116.15+2.3.5+1.21.1.jar` | `0.116.15+2.3.5+1.21.1` | `Technology` | 22/10/2026 - 19:46 |
 | 287 | Fragmentum [NeoForge Edition] | `fragmentum-neoforge-1.21.1-2.4.4.jar` | `2.4.4` | `API and Library` | 22/10/2026 - 23:19 |
 | 288 | FTB Chunks (NeoForge) | `ftb-chunks-neoforge-2101.1.22.jar` | `2101.1.22` | `Map and Information + Server Utility` | 20/11/2026 - 00:35 |
-| 289 | FTB Library (NeoForge) | `ftb-library-neoforge-2101.1.36.jar` | `2101.1.36` | `API and Library` | 20/11/2026 - 00:35 |
+| 289 | FTB Library (NeoForge) | `ftb-library-neoforge-2101.1.40.jar` | `2101.1.40` | `API and Library` | 22/11/2026 - 16:39 |
 | 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.39.jar` | `2101.1.39` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 22/11/2026 - 09:03 |
 | 291 | FTB Teams (NeoForge) | `ftb-teams-neoforge-2101.1.11.jar` | `2101.1.11` | `API and Library` | 17/11/2026 - 20:00 |
 | 292 | FTB Ultimine (NeoForge) | `ftb-ultimine-neoforge-2101.1.15.jar` | `2101.1.15` | `Armor, Tools, and Weapons + Server Utility` | 24/09/2026 - 19:05 |
@@ -1026,7 +1041,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 401 | Model Gap Fix | `modelfix-1.21-1.10.jar` | `1.21-1.10` | `API and Library + Cosmetic + Utility & QoL` | 25/09/2026 - 12:31 |
 | 402 | ModernFix | `modernfix-neoforge-5.27.24+mc1.21.1.jar` | `5.27.24+mc1.21.1` | `Performance + Server Utility + Utility & QoL` | 21/11/2026 - 13:15 |
 | 403 | Modern UI | `ModernUI-NeoForge-1.21.1-3.13.0.1-universal.jar` | `3.13.0.1` | `API and Library + Cosmetic + Miscellaneous + Utility & QoL` | 25/09/2026 - 13:25 |
-| 404 | Modonomicon | `modonomicon-1.21.1-neoforge-1.120.4.jar` | `1.120.4` | `Adventure and RPG + API and Library + Map and Information` | 21/11/2026 - 00:17 |
+| 404 | Modonomicon | `modonomicon-1.21.1-neoforge-1.123.1.jar` | `1.123.1` | `Adventure and RPG + API and Library + Map and Information` | 22/11/2026 - 16:39 |
 | 405 | MonoLib | `monolib-neoforge-1.21.1-4.1.0.jar` | `4.1.0` | `API and Library + Education + Utility & QoL` | 25/09/2026 - 13:25 |
 | 406 | Monsters & Spellbooks: Iron's Spells 'n Spellbooks Addon | `monsterspellbooks-0.0.16.3.jar` | `0.0.16.3` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 25/09/2026 - 13:25 |
 | 407 | Moonlight Lib | `moonlight-1.21.1-3.6.4-neoforge.jar` | `1.21.1-3.6.4` | `API and Library` | 18/11/2026 - 07:44 |
@@ -1141,7 +1156,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.22.2257.jar` | `3.26.22` (JAR build .2257; metadata não relido) | `Armor, Tools, and Weapons + Storage` | 22/11/2026 - 15:25 |
 | 517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `0.2.0` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `1.5.1` | `API and Library` | 22/11/2026 - 00:44 |
-| 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `1.5.91` | `Storage` | 21/11/2026 - 00:23 |
+| 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.6.20.2239.jar` | `1.6.20` (JAR build .2239, metadata não relido) | `Storage` | 22/11/2026 - 16:39 |
 | 520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar` | `0.1.21` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 521 | Soul fire'd | `soul-fire-d-neoforge-1.21-6.1.0.jar` | `6.1.0` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Utility & QoL` | 27/09/2026 - 20:57 |
 | 522 | Sound Physics: Aeronautics | `sound-physics-remastered-neoforge-1.4.0.1.jar` | `1.4.0.1` | `Create + Utility & QoL` | 27/09/2026 - 22:12 |
@@ -1306,7 +1321,7 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 27 | BlockUI | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-blockui%20v1.0.212-1.21.1-snapshot.md) | `1.0.212-1.21.1-snapshot` | `1.0.212-1.21.1-snapshot` | REVALIDADO: possível republicação; conferir file ID/SHA, sem bump |
 | 28 | Sophisticated Storage Create Integration | [Abrir `.md`](./Addons%20%2B%20Storage/%E2%9C%85-sophisticated-storage-create-integration%20v0.1.21.md) | `0.1.21` | `0.1.23.246` | PENDENTE: Storage ≥1.6.3 + Create ≥6.0.7 no source, linked groups/QA |
 | 29 | Integrated API | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-integrated-api%20v1.8.2.md) | `1.8.2` | `1.9.0` | PENDENTE: consumers Integrated Structures e registries worldgen |
-| 30 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.5.91.md) | `1.5.91` | `1.6.5.2176` | PENDENTE: 1.6.5 corrige crash sem Backpacks; Core ≥1.5.9, groups/QA |
+| 30 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.6.20.md) | `1.5.91` | `1.6.5.2176` | PENDENTE: 1.6.5 corrige crash sem Backpacks; Core ≥1.5.9, groups/QA |
 
 > **Auditoria de rastreabilidade — 13/10/2026:** os 30 links da coluna **Dossiê técnico** foram reconciliados com caminhos existentes na `main`; cada filename `✅-... vX.md` retém a **última evidência física histórica**, não a release candidata. O endereço CurseForge `easy-npc/files/9151672` citado nos dossiês Easy NPC corresponde a um JAR **Fabric**: ele é fonte do changelog comum, mas **NÃO** é o artefato NeoForge. Verificar o JAR NeoForge 1.21.1 e manter o bloqueio EME 2.5.0+ até publicação compatível comprovada.
 
@@ -1635,7 +1650,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 75 | Create: Creating Space | [Abrir `.md`](./Create%20%2B%20Dimensions%20%2B%20Player%20Transport%20%2B%20Technology%20%2B%20World%20Gen/%E2%9C%85-creating-space%20v1.7.22.md) | `1.7.22` | 1.7.23 Release (21/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 24/10: RELEASE TAG v1.21.1-1.7.23, JAR SHA-256 E PRS #130–132 IDENTIFICADOS; BACKLOG RENÚMERADO #17; HASH CROSS-PLATFORM E QA/PROMOÇÃO PENDENTES** |
 | 76 | [EMF] Entity Model Features [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-model-features%20v3.3.5.md) | `3.3.5` | 3.3.12 Release (15/10) | **PESQUISA DOCUMENTAL 3.3.6–3.3.12 CONCLUÍDA EM 23/10; ETF 7.2.6 E QA GRÁFICO PENDENTES** |
 | 77 | Vampirism Iron's Spells Compatibility | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Food%20%2B%20Magic/%E2%9C%85-vampire-spells-addon%20v1.21.1-0.0.9.md) | `1.21.1-0.0.9` | 0.0.10 Release (17/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10; CONFIGS HOLY/BLOOD SCHOOL DETALHADAS; QA E PROMOÇÃO PENDENTES** |
-| 78 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.5.91.md) | `1.5.91` | 1.6.9.2199 Release (23/10) | **PESQUISA DOCUMENTAL 1.6.0–1.6.9 CONCLUÍDA EM 23/10; CORE ≥1.5.12, BACKPACKS/CREATE E QA ANTI-DUPE PENDENTES** |
+| 78 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.6.20.md) | `1.5.91` | 1.6.9.2199 Release (23/10) | **PESQUISA DOCUMENTAL 1.6.0–1.6.9 CONCLUÍDA EM 23/10; CORE ≥1.5.12, BACKPACKS/CREATE E QA ANTI-DUPE PENDENTES** |
 | 79 | WunderLib: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-wunderlib-neoforge%20v21.0.10.md) | `21.0.10` | 21.0.11 Release (14/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10: BUMP/BUILD E METADATA DO SOURCE IDENTIFICADOS; BYTECODE E QA NEW DAWN PENDENTES** |
 | 80 | Create: Ornithopter Glider | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Create%20%2B%20Player%20Transport%20%2B%20Utility%20%26%20QoL/%E2%9C%85-create-ornithopter-glider%20v1.2.0-1.21.1.md) | `1.2.0-1.21.1` | 1.2.0+1.21.1 Release (03/06) | **REVALIDADO EM 23/10: SEM UPGRADE NEOFORGE 1.21.1; CHANGELOG DA VERSÃO FÍSICA CERTIFICADO; QA IN-GAME PENDENTE** |
 | 81 | AmbientSounds 6 | [Abrir `.md`](./Miscellaneous/%E2%9C%85-ambientsounds-6%20v6.3.8.md) | `6.3.8` | 6.3.11 Release (19/10) | **PESQUISA DOCUMENTAL 6.3.9–6.3.11 CONCLUÍDA EM 23/10; CREATIVECORE/QA DE ÁUDIO PENDENTES** |

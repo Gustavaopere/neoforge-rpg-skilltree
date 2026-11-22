@@ -1,25 +1,36 @@
-# Sophisticated Storage
+# Sophisticated Storage — 1.6.20 (instalação declarada em 22/11/2026)
 
-> **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#519**: JAR `sophisticatedstorage-1.21.1-1.5.91.2127.jar`, mod id `sophisticatedstorage`, runtime `1.5.91`, SHA-1 `74d5c0a411edfdd521c800fd8813f53c0f9a6f30`.
+> **Versão vigente declarada pelo usuário:** 1.5.91 → **1.6.20**, arquivo oficial `sophisticatedstorage-1.21.1-1.6.20.2239.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/9692522)). O novo JAR local e seu metadata/SHA não foram inspecionados nesta sessão.
+
+> **Deltas da cadeia de publicações:** Histórico audita 1.6.0–1.6.20: linked storage, sync, permissões, tanques empilháveis, dropPacked e correção de perda de itens e upgrades na conversão de baú empacotado em shulker. 1.6.20 é versão-base e .2239 é build do JAR; metadata nova não lida.
+
+> **Dependências pendentes:** Source de Storage 1.6.20 requer Sophisticated Core >=1.5.35. Snapshot documental anterior ainda registra Core 1.5.1: dependência aguardando sincronização documental, NÃO impede esta atualização. Integração Create/Backpacks precisa de QA.
+
+> **Compatibilidade e QA:** Alto risco de item/fluid dupes, perda de upgrades e conversão de saves; linked groups e tanques verticais devem ser testados em mundo copiado.
+
+> **Leitura do histórico:** referências antigas a versão 'física atual', 'instalada' ou 'não instalada' abaixo descrevem o snapshot e a auditoria anterior, não o estado documental declarado agora. A posição física 519 e o JAR antigo `sophisticatedstorage-1.21.1-1.5.91.2127.jar` são mantidos como rastreabilidade.
+
+
+> **Snapshot físico histórico — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#519**: JAR `sophisticatedstorage-1.21.1-1.5.91.2127.jar`, mod id `sophisticatedstorage`, runtime `1.5.91`, SHA-1 `74d5c0a411edfdd521c800fd8813f53c0f9a6f30`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 
 ## Propriedades do banco
 
 - **Mod:** Sophisticated Storage
-- **Arquivo JAR:** `sophisticatedstorage-1.21.1-1.5.91.2127.jar`
-- **Versão 1.21.1:** 1.5.91
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Arquivo JAR instalado (declarado pelo usuário):** `sophisticatedstorage-1.21.1-1.6.20.2239.jar` — publicado no [CurseForge](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/9692522); arquivo local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.6.20` (antes `1.5.91`; metadata da nova build não extraído).
+- **Estado no pack:** `1.6.20` instalado segundo declaração do usuário; documentação sincronizada, sem inspeção local.
+- **Estado da pesquisa:** versão-alvo e artefato oficial confirmados; publicações intermediárias documentadas nas seções históricas; binário e QA pendentes.
 - **Decisão:** Manter
 - **Categoria:** Armazenamento, Automação
 - **Função:** Stationary modular storage with tiered barrels/chests/shulker boxes, capacity and functional upgrades, filters/settings, sorting/memorized slots, controller interaction and storage tools.
-- **Dependências:** Sophisticated Core 1.5.1 está fisicamente presente. Sophisticated Storage Create Integration 0.1.21 permanece integração física. A entrada Ars `arssophisticatedcompat-0.3.0.jar` (#054) foi **reidentificada como Sophisticated Backpacks: Ars Compat**; não é extensão direta do Storage (errata 13/10/2026). A upstream Storage 1.6.0+ exige Sophisticated Core >=1.5.2, portanto a promoção não é compatível com o Core físico atual.
+- **Dependências:** Source de Storage 1.6.20 requer Sophisticated Core >=1.5.35. Snapshot documental anterior ainda registra Core 1.5.1: dependência aguardando sincronização documental, NÃO impede esta atualização. Integração Create/Backpacks precisa de QA.
 - **Sobreposição:** Local/upgradable stationary storage. No snapshot físico atual, Tom's Storage 2.4.2 é o provider de rede ativo relevante; AE2 e Refined Storage estão ausentes top-level e permanecem apenas comparações/integrations upstream dormentes. Backpacks continua sobreposição portátil, não equivalente a networked crafting.
-- **Compatibilidade/Riscos:** Stateful stationary storage. Risks: inventory/upgrades loss/dupe, compression/compacting recipe conflicts, controller routing, packed-drop duplication, filter/memory drift, network/capability sync and Create contraption serialization. Compression and compacting are mutually dangerous when combined in conflicting configurations.
-- **Observações:** Runtime físico permanece 1.5.91. Upstream 1.6.0 adiciona Linked Storage por Ender Linker, com inventário/settings/upgrades compartilhados; 1.6.1 corrige perda de item data durante migração de mundos. Somente o storage principal executa upgrades por tick e recebe tier upgrade; linked storages não podem ser packed.
-- **Procedência:** modlist física atual confirma Storage 1.5.91.2127 + Core 1.5.1. CurseForge oficial e source `P3pp3rF1y/SophisticatedStorage` branch `1.21.x` revalidados em 03/10/2026 confirmam a linha Storage 1.6.0→1.6.1 e o requisito Core >=1.5.2.
+- **Compatibilidade/Riscos:** Alto risco de item/fluid dupes, perda de upgrades e conversão de saves; linked groups e tanques verticais devem ser testados em mundo copiado.
+- **Observações vigentes:** arquivo publicado `sophisticatedstorage-1.21.1-1.6.20.2239.jar` declarado instalado, sem SHA local; snapshot 1.5.91 apenas histórico.
+- **Procedência:** posição histórica #519, declaração de atualização em 22/11/2026 e [publicação oficial](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/9692522); nenhum arquivo local novo foi lido.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/8762100
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — Storage físico permanece 1.5.91. A sequência upstream agora chega a 1.6.1.2147; 1.6.1 corrige perda de item data durante migração de mundos e continua exigindo promoção coordenada do Sophisticated Core.
+- **Atualização/Status:** 22/11/2026 — `1.5.91` → `1.6.20`; Histórico audita 1.6.0–1.6.20: linked storage, sync, permissões, tanques empilháveis, dropPacked e correção de perda de itens e upgrades na conversão de baú empacotado em shulker. 1.6.20 é versão-base e .2239 é build do JAR; metadata nova não lida.
 - **Histórico da decisão:** Mantido como armazenamento estacionário do stack Sophisticated. Em 11/09/2026 revalidado na versão física 1.5.91.2127 e documentado no padrão técnico completo.
 - **Data da última decisão:** 2026-08-22
 

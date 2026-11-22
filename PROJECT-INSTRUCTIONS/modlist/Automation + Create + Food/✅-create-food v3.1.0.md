@@ -1,22 +1,33 @@
-# Create: Food
+# Create: Food — 3.1.0 (instalação declarada em 22/11/2026)
 
-> **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#188**: JAR `createfood-neoforge-1.21.1-2.7.1.jar`, mod id `createfood`, runtime `2.7.1`, SHA-1 `e23381ca8d6e7c95bdea48d4a2b54b817a50eb5a`.
+> **Versão vigente declarada pelo usuário:** 2.7.1 → **3.1.0**, arquivo oficial `createfood-neoforge-1.21.1-3.1.0.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-food/files/9723450)). O novo JAR local e seu metadata/SHA não foram inspecionados nesta sessão.
+
+> **Deltas da cadeia de publicações:** A 3.0.0 migra IDs, removendo itens antigos e alterando recipes/config/fluids; 3.1.0 condiciona packs integrados à presença de addons, reequilibra nutrição, inclui cooking_pot_display, rolling pins, plates, tag de pressing e integração com Farmer's Delight/KubeJS. Deltas intermediários preservados no dossier.
+
+> **Dependências pendentes:** Create, Farmer's Delight, Central Kitchen/Ratatouille quando presentes; integração e migrações de receita dependem de conciliação documental, não bloqueio.
+
+> **Compatibilidade e QA:** Mudança de IDs pode perder itens de saves existentes; preservar backup antes de jogar. Testar recipes, fluids, containers, nutrition, effects, data packs e compat.
+
+> **Leitura do histórico:** referências antigas a versão 'física atual', 'instalada' ou 'não instalada' abaixo descrevem o snapshot e a auditoria anterior, não o estado documental declarado agora. A posição física 188 e o JAR antigo `createfood-neoforge-1.21.1-2.7.1.jar` são mantidos como rastreabilidade.
+
+
+> **Snapshot físico histórico — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#188**: JAR `createfood-neoforge-1.21.1-2.7.1.jar`, mod id `createfood`, runtime `2.7.1`, SHA-1 `e23381ca8d6e7c95bdea48d4a2b54b817a50eb5a`.
 
 ## Propriedades do registro
 
 - **Mod:** Create: Food
-- **Arquivo JAR:** `createfood-neoforge-1.21.1-2.7.1.jar`
-- **Versão 1.21.1:** `2.7.1`
+- **Arquivo JAR instalado (declarado pelo usuário):** `createfood-neoforge-1.21.1-3.1.0.jar` — publicado no [CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-food/files/9723450); arquivo local não relido.
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `3.1.0` (antes `2.7.1`; metadata da nova build não extraído).
 - **Categoria:** Comida, Automação, Tecnologia
 - **Função:** Grande addon culinário do Create, com muitos alimentos, ingredientes e cadeias de produção/automação, além de compatibilidades condicionais.
-- **Dependências:** Create + Farmer's Delight continuam a base prática do conteúdo; pack físico usa NeoForge 21.1.248 + Create 6.0.10 + Farmer's Delight 1.3.4. Central Kitchen 2.6.0 e Ratatouille 1.4.0 permanecem integrações/overlaps culinários relevantes.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Runtime físico 2.7.1. Upstream 3.0.0 é migração de alto impacto: renomeia IDs com remoção de itens existentes (`small_bowl`, rice bowls, breakfast plates), reorganiza cross-mod compat em addons/config, altera basin fluids/interactions, effects/nutrition e muitas recipes. Riscos: perda de itens/blocos em mundo existente, common config/registry mismatch, dupe em fluid/effects/containers e overlap culinário.
+- **Dependências:** Create, Farmer's Delight, Central Kitchen/Ratatouille quando presentes; integração e migrações de receita dependem de conciliação documental, não bloqueio.
+- **Estado no pack:** `3.1.0` instalado segundo declaração do usuário; documentação sincronizada, sem inspeção local.
+- **Estado da pesquisa:** versão-alvo e artefato oficial confirmados; publicações intermediárias documentadas nas seções históricas; binário e QA pendentes.
+- **Compatibilidade/Riscos:** Mudança de IDs pode perder itens de saves existentes; preservar backup antes de jogar. Testar recipes, fluids, containers, nutrition, effects, data packs e compat.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-food
-- **Procedência:** modlist física atual confirma Create: Food 2.7.1. CurseForge oficial 1.21.1 revalidado em 01/10/2026 mostra salto direto 2.7.1→3.0.0, file ID 8995951, sem release 1.21.1 intermediária posterior à instalada.
-- **Observações:** Runtime físico permanece 2.7.1. A release 3.0.0 de 28/09/2026 altera config, IDs persistentes, recipes, nutrition/effects, basin IO, display interactions e compat content; não deve ser promovida sem plano de migração de mundo.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece 2.7.1. A release 3.0.0 foi comparada integralmente; os deltas de migração/registry/config e os fixes de dupe/container/effects foram incorporados abaixo.
+- **Procedência:** posição histórica #188, declaração de atualização em 22/11/2026 e [publicação oficial](https://www.curseforge.com/minecraft/mc-mods/create-food/files/9723450); nenhum arquivo local novo foi lido.
+- **Observações vigentes:** arquivo publicado `createfood-neoforge-1.21.1-3.1.0.jar` declarado instalado, sem SHA local; snapshot 2.7.1 apenas histórico.
+- **Atualização/Status:** 22/11/2026 — `2.7.1` → `3.1.0`; A 3.0.0 migra IDs, removendo itens antigos e alterando recipes/config/fluids; 3.1.0 condiciona packs integrados à presença de addons, reequilibra nutrição, inclui cooking_pot_display, rolling pins, plates, tag de pressing e integração com Farmer's Delight/KubeJS. Deltas intermediários preservados no dossier.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Stack culinário denso com Farmer's Delight 1.3.4, Central Kitchen 2.6.0, Ratatouille 1.4.0 e outros. Equivalência deve ser comparada por ingredients, fluids, tags e recipe outputs; não há duplicata global presumida.
 
