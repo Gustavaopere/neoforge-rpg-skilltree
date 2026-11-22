@@ -1,12 +1,39 @@
-# EntityCulling
+# Entity Culling Fabric/Forge — 1.12.2 (instalação declarada em 22/11/2026)
 
-> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#257**: JAR `entityculling-neoforge-1.10.5-mc1.21.1.jar`, mod id `entityculling`, runtime `1.10.5`, SHA-1 `420d0006dbc0a20b1c2dd0b3c7c20ddb5cc51fcf`.
+> **Estado vigente (declaração do usuário):** atualização `1.10.5` → **`1.12.2`**, arquivo oficial `entityculling-neoforge-1.12.2-mc1.21.1.jar` ([publicação verificada](https://www.curseforge.com/minecraft/mc-mods/entityculling/files/9752280)). A presença do binário novo foi declarada pelo usuário; o JAR no computador, seu hash e os metadados internos não foram lidos. Ordem física histórica #257 preservada.
+
+> **Cadeia de releases e deltas:** Versões intermediárias 1.11.0, 1.11.1, 1.11.2, 1.11.3, 1.12.0 e 1.12.1 já auditadas individualmente: thread safety, getRenderBoundingBox, frustum whitelist, bounding boxes dependentes de movimento, cache e API de culling extensível. A 1.12.2 (22/11) possui publicação NeoForge Minecraft 1.21.1 (CF file ID 9752280) e filename confirmado no catálogo da mesma distribuição; a descrição específica de alterações 1.12.1→1.12.2 não foi recuperada com precisão suficiente, portanto não declarar correção de #299 ou mudança de API não demonstrada. As linhas MC26.x usam outros binários.
+
+> **Dependências e proveniência:** NeoForge 1.21.1 client-side; bibliotecas TRansition/TRender previamente embarcadas em jarjar continuam componentes não top-level. Versão dos componentes embarcados no novo JAR não inspecionada.
+
+> **Riscos e QA:** Issue #299 Sable/Create Aeronautics: entities/players desaparecem em sublevels multiplayer; NÃO comprovadamente corrigida por 1.12.2. Cuidado whitelist/frustum, bounding boxes, EMF/ETF, performance e Sable. QA não feito.
+
+> **Leitura temporal:** todas as declarações antigas de versão 'atual', 'instalada' ou 'não instalada' nos trechos históricos abaixo se referem ao snapshot físico anterior ou à auditoria feita naquele momento. Não se sobrepõem à instalação declarada acima.
+
+## Metadados documentais vigentes
+
+- **Mod oficial:** Entity Culling Fabric/Forge
+- **Arquivo JAR instalado (declarado):** `entityculling-neoforge-1.12.2-mc1.21.1.jar` — https://www.curseforge.com/minecraft/mc-mods/entityculling/files/9752280
+- **Versão instalada declarada (NeoForge 1.21.1):** `1.12.2` (antes `1.10.5`); metadata nova não lida.
+- **Estado no pack (vigente):** `1.12.2` declarado instalado; nenhuma cópia local lida.
+- **Estado da pesquisa (vigente):** versões/cadeia e source já auditados; limites da última release e QA descritos no topo.
+- **Dependências (vigentes):** NeoForge 1.21.1 client-side; bibliotecas TRansition/TRender previamente embarcadas em jarjar continuam componentes não top-level. Versão dos componentes embarcados no novo JAR não inspecionada.
+- **Compatibilidade/Riscos (vigentes):** Issue #299 Sable/Create Aeronautics: entities/players desaparecem em sublevels multiplayer; NÃO comprovadamente corrigida por 1.12.2. Cuidado whitelist/frustum, bounding boxes, EMF/ETF, performance e Sable. QA não feito.
+- **Procedência (vigente):** posição física histórica #257, declaração do usuário e publicação oficial https://www.curseforge.com/minecraft/mc-mods/entityculling/files/9752280; nenhum novo SHA local.
+- **Atualização/Status (vigente):** 22/11/2026, `1.10.5` → `1.12.2` declarada instalada; versões intermediárias e caveats descritas nesta ficha.
+
+---
+
+> **Histórico do dossier anterior:** versão-base `1.10.5`; preservado para a rastreabilidade de funcionalidades, requisitos, decisões e auditorias anteriores.
+
+
+> **Snapshot físico histórico — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#257**: JAR `entityculling-neoforge-1.10.5-mc1.21.1.jar`, mod id `entityculling`, runtime `1.10.5`, SHA-1 `420d0006dbc0a20b1c2dd0b3c7c20ddb5cc51fcf`.
 
 ## Propriedades do registro
 
-- **Mod:** EntityCulling
-- **Arquivo JAR:** `entityculling-neoforge-1.10.5-mc1.21.1.jar`
-- **Versão 1.21.1:** `1.10.5`
+- **Mod (nome vigente):** Entity Culling Fabric/Forge
+- **Arquivo JAR (vigente declarado):** `entityculling-neoforge-1.12.2-mc1.21.1.jar`; nome do antigo JAR `entityculling-neoforge-1.10.5-mc1.21.1.jar` somente histórico.
+- **Versão 1.21.1 (vigente declarada):** `1.12.2`; versão histórica `1.10.5`.
 - **Categoria:** Performance
 - **Função:** Client-side performance mod que evita renderizar entities e block entities ocultas/occluded, reduzindo custo de rendering sem alterar tick, AI ou state gameplay.
 - **Dependências:** Cliente NeoForge 1.21.1. O JAR físico embarca `TRansition 1.0.21` e `TRender 1.0.15` sob META-INF; são dependências internas, não mods top-level. Sable/Create Aeronautics estão presentes e formam uma regressão multiplayer conhecida.
@@ -15,7 +42,7 @@
 - **Compatibilidade/Riscos:** Issue upstream #299 reproduz jogadores/entidades desaparecendo e reaparecendo em Sable/Create Aeronautics sublevels no multiplayer; remover EntityCulling resolveu o relato. Skip/whitelist é mitigation antes de remover o mod inteiro. Riscos adicionais: bounding boxes incomuns, render outside bounds, false-positive culling, race/cache após reload e interação com render frameworks.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/entityculling
 - **Procedência:** modlist.txt física atual — 587 entradas top-level incluindo o modloader — confirma `entityculling-neoforge-1.10.5-mc1.21.1.jar`, mod id `entityculling`, runtime 1.10.5 e SHA-1 `420d0006dbc0a20b1c2dd0b3c7c20ddb5cc51fcf`. CurseForge/GitHub oficiais mostram 1.11.2 como atualização NeoForge 1.21.1 publicada em 21/09/2026; isso não altera a autoridade física da versão atualmente instalada.
-- **Observações:** Runtime físico atual permanece 1.10.5, com `TRansition 1.0.21` e `TRender 1.0.15` JarJar. Há atualização oficial 1.11.2 para NeoForge 1.21.1 publicada em 21/09/2026. A linha 1.11.0/1.11.1/1.11.2 reestrutura a coleta de dados de (block)entities para reduzir crashes de acesso assíncrono, corrige `getRenderBoundingBox` no NeoForge e inclui hotfixes de 1.11.1; esses deltas ainda NÃO estão ativos no pack físico.
+- **Observações (vigentes):** versão `1.12.2`, JAR `entityculling-neoforge-1.12.2-mc1.21.1.jar`; antigas observações sobre 1.10.5 são históricas.
 - **Atualização/Status:** AUDITORIA INCREMENTAL DOCUMENTAL 17/11/2026 — último JAR físico permanece `entityculling-neoforge-1.10.5-mc1.21.1.jar`. Histórico 1.11.0→1.11.3 preservado, seguido de 1.12.0 (12/11) e 1.12.1 (13/11) verificados para NeoForge 1.21.1; melhorias de culling/cache e API para integrações registadas na seção 18. Nenhum teste com Sable/Create Aeronautics foi executado e não foi atribuída a correção da issue #299 a essas releases.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Complementa Sodium/ImmediatelyFast/BetterFpsDist em outra superfície: EntityCulling decide visibility de entities/block entities. Não deve alterar tick, simulation distance, AI ou physics.

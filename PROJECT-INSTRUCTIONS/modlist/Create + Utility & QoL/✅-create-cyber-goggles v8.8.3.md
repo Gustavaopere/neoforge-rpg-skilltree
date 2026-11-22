@@ -1,5 +1,7 @@
 # Create: Cyber Goggles — 8.8.3 (versão instalada declarada em 22/11/2026)
 
+> **Retificação 22/11/2026:** o basename oficial foi obtido do Modrinth do desenvolvedor (version ID `pbHCUgry`): `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar`. A afirmação anterior de que o nome ainda era desconhecido no corpo histórico está superada. Não afirmar que o arquivo 8.8.3 foi publicado especificamente no CurseForge.
+
 > **Vigente em 22/11/2026:** 8.6.3 → **8.8.3** (Beta), JAR oficialmente publicado `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar` no [Modrinth do autor](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge), versão ID `pbHCUgry`. A instalação foi declarada pelo usuário; o arquivo top-level local não foi relido.
 > **Auditoria de versões:** sequência 8.6.4–8.8.3 documentada abaixo. A publicação 8.8.2 corrige desvio de câmera, scaling e bordas; 8.8.3 atualiza FlexConfig 0.3.0. A 8.8.3 consta do Modrinth oficial; **o mesmo número de publicação não foi confirmado no catálogo CurseForge**.
 > **Dependências/risco:** FlexConfig 0.3.0 embarcada (jarJar) segundo source, Create >=6.0.10. O source usa NeoForge 21.1.265 no build, sem range mínimo do JAR comprovado. QA e conciliação documental de dependencies continuam pendentes; não impedem a atualização documental.
@@ -11,18 +13,18 @@
 ## Propriedades do registro
 
 - **Mod:** Create: Cyber Goggles
-- **Arquivo JAR instalado (declarado pelo usuário):** não verificado — JAR exato da versão 8.8.3 pendente ([fonte](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge)).
+- **Arquivo JAR instalado (declarado pelo usuário):** `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar` — [Modrinth oficial do autor, version ID pbHCUgry](https://modrinth.com/mod/create-cyber-goggles/version/pbHCUgry). A distribuição 8.8.3 no CurseForge não foi confirmada; arquivo local não inspecionado.
 - **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `8.8.3` (versão anterior `8.6.3`; novo metadata não extraído).
 - **Categoria:** QoL, Visual, Tecnologia
 - **Função:** Mod client-side de assistência para Create, com goggles e recursos de informação/visualização/QoL voltados a máquinas e redes Create.
 - **Dependências:** Build source usa NeoForge 21.1.265, sem comprovação de range mínimo do JAR; FlexConfig 0.3.0 é embarcada. Create >=6.0.10 citado no source. Dependências aguardam reconciliação, sem impedir atualização declarativa.
 - **Estado no pack:** `8.8.3` declarado instalado pelo usuário em 22/11/2026; inventário GitHub sincronizado, sem inspeção local.
 - **Estado da pesquisa:** versão-alvo oficialmente identificada e cadeia intermediária documentada nas auditorias do dossier; ressalvas de changelog, artefato e QA descritas acima.
-- **Compatibilidade/Riscos:** **Basename do JAR 8.8.3 não confirmado de forma independente.** Não inferir por padrão a partir de 8.8.1 ou de source. Versão documentada 8.8.3 declarada, JAR exato pendente; não declarar cópia local verificada. Requisitos globais do pack pendentes de sincronização documental; sem QA.
+- **Compatibilidade/Riscos:** Basename de `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar` verificado pela API do Modrinth do próprio autor, sem equivalência comprovada a distribuição CurseForge 8.8.3 nem checksum local. FlexConfig 0.3.0 embarcada no source; NeoForge 21.1.265 do build não é automaticamente range obrigatório. QA e dependency alignment pendentes.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles
 - **Procedência:** posição #179 do snapshot físico histórico; declaração de instalação do usuário e publicação [upstream](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge). Nenhum hash/metadata novo local coletado.
 - **Observações vigentes:** nome do JAR da nova versão pendente de confirmação; **Basename do JAR 8.8.3 não confirmado de forma independente.** Não inferir por padrão a partir de 8.8.1 ou de source. Versão documentada 8.8.3 declarada, JAR exato pendente; não declarar cópia local verificada. Snapshot anterior é histórico.
-- **Atualização/Status:** 22/11/2026 — `8.6.3` → `8.8.3` por declaração do usuário. Dossier já documenta builds 8.6.4–8.8.3: pré-visualização 3D de schematics, controles numéricos/Requester, fluxo de fluidos, câmera em contraptions, overlay e animações; 8.8.2 corrige desvio de câmera/quantidades/bordas e 8.8.3 atualiza FlexConfig para 0.3.0 (jarJar no source). Publicação 8.8.3 do autor no Modrinth consta na auditoria do repositório; a atualização exata no CurseForge não pôde ser revalidada no catálogo consultado.
+- **Atualização/Status:** versão 8.8.3 mantida conforme declaração do usuário, basename exato conciliado com Modrinth oficial, CurseForge 8.8.3 não confirmado e QA local pendente.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Não é equivalente a Create Goggles/equipamentos físicos: Cyber Goggles é assistência client-side. Pode sobrepor UI/overlays de Jade/JEI/outros, mas não owns gameplay state.
 - **Data da última decisão:** 2026-09-20

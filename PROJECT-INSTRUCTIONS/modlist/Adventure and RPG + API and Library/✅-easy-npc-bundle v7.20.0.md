@@ -1,12 +1,39 @@
-# Easy NPC: Bundle
+# Easy NPC — 7.20.0 (instalação declarada em 22/11/2026)
 
-> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#240**: JAR `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_bundle`, runtime `7.12.1`, SHA-1 `2aaf47e6d2f586b8e7bafaf12b7c1f18eedd4d65`.
+> **Estado vigente (declaração do usuário):** atualização `7.12.1` → **`7.20.0`**, arquivo oficial `easy_npc_bundle-neoforge-1.21.1-7.20.0.jar` ([publicação verificada](https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?version=1.21.1)). A presença do binário novo foi declarada pelo usuário; o JAR no computador, seu hash e os metadados internos não foram lidos. Ordem física histórica #240 preservada.
+
+> **Cadeia de releases e deltas:** Auditadas no próprio dossier as versões intermediárias 7.12.2–7.19.0. A publicação 7.20.0 de 18/11/2026 para NeoForge Minecraft 1.21.1 é meta-Bundle, não mod provider adicional: acompanha fixes do Core em skins/presets/entidades, transformações vanilla indevidas e permissão de item pickup, melhora target acquisition. A versão 7.21.0 observada em 22/11 tem artefato Fabric 1.21.1; não confundir com distribuição NeoForge 1.21.1, cuja última comprovada é 7.20.0.
+
+> **Dependências e proveniência:** Core Easy NPC #239 já consta 7.20.0; Config UI #241 também 7.20.0; Easy Model Entities 2.4.0 na modlist histórica e 2.6.0+ é citado como integração opcional pela série 7.16+. Ranges do bundle final e jarjar não inspecionados, não bloquear a atualização.
+
+> **Riscos e QA:** Três módulos devem evitar mod IDs duplicados, conflitos de JarJar e clientes/servidores com protocolos divergentes; testar NPC skins, owner, spawners, quests, shoulder, backups/restore, multiplayer sem supor QA aprovado.
+
+> **Leitura temporal:** todas as declarações antigas de versão 'atual', 'instalada' ou 'não instalada' nos trechos históricos abaixo se referem ao snapshot físico anterior ou à auditoria feita naquele momento. Não se sobrepõem à instalação declarada acima.
+
+## Metadados documentais vigentes
+
+- **Mod oficial:** Easy NPC
+- **Arquivo JAR instalado (declarado):** `easy_npc_bundle-neoforge-1.21.1-7.20.0.jar` — https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?version=1.21.1
+- **Versão instalada declarada (NeoForge 1.21.1):** `7.20.0` (antes `7.12.1`); metadata nova não lida.
+- **Estado no pack (vigente):** `7.20.0` declarado instalado; nenhuma cópia local lida.
+- **Estado da pesquisa (vigente):** versões/cadeia e source já auditados; limites da última release e QA descritos no topo.
+- **Dependências (vigentes):** Core Easy NPC #239 já consta 7.20.0; Config UI #241 também 7.20.0; Easy Model Entities 2.4.0 na modlist histórica e 2.6.0+ é citado como integração opcional pela série 7.16+. Ranges do bundle final e jarjar não inspecionados, não bloquear a atualização.
+- **Compatibilidade/Riscos (vigentes):** Três módulos devem evitar mod IDs duplicados, conflitos de JarJar e clientes/servidores com protocolos divergentes; testar NPC skins, owner, spawners, quests, shoulder, backups/restore, multiplayer sem supor QA aprovado.
+- **Procedência (vigente):** posição física histórica #240, declaração do usuário e publicação oficial https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?version=1.21.1; nenhum novo SHA local.
+- **Atualização/Status (vigente):** 22/11/2026, `7.12.1` → `7.20.0` declarada instalada; versões intermediárias e caveats descritas nesta ficha.
+
+---
+
+> **Histórico do dossier anterior:** versão-base `7.12.1`; preservado para a rastreabilidade de funcionalidades, requisitos, decisões e auditorias anteriores.
+
+
+> **Snapshot físico histórico — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#240**: JAR `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_bundle`, runtime `7.12.1`, SHA-1 `2aaf47e6d2f586b8e7bafaf12b7c1f18eedd4d65`.
 
 ## Propriedades do registro
 
-- **Mod:** Easy NPC: Bundle
-- **Arquivo JAR:** `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar`
-- **Versão 1.21.1:** `7.12.1`
+- **Mod (nome vigente):** Easy NPC
+- **Arquivo JAR (vigente declarado):** `easy_npc_bundle-neoforge-1.21.1-7.20.0.jar`; nome do antigo JAR `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` somente histórico.
+- **Versão 1.21.1 (vigente declarada):** `7.20.0`; versão histórica `7.12.1`.
 - **Categoria:** RPG, QoL
 - **Função:** Meta-package/bundle da família Easy NPC que declara/organiza a instalação alinhada do Core e Config UI; não implementa um segundo sistema de NPC nem substitui os módulos funcionais.
 - **Dependências:** Easy NPC Core + Easy NPC Config UI; NeoForge 1.21.1. No pack atual, Core, Bundle e Config UI existem como três JARs top-level separados e alinhados pelo filename/release 7.12.1.
@@ -15,7 +42,7 @@
 - **Compatibilidade/Riscos:** Risco principal é misturar versões diferentes da família ou interpretar Bundle como provider de gameplay. A linha 7.13.0 altera o protocolo de rede e exige client/server alinhados; 7.14.0 corrige replicação tardia no Core/UI. A forma de empacotamento exata requer inspeção do JAR: o build NeoForge 7.15.0 indica dependências publicadas separadamente, mas a descrição de metadados do Bundle ainda menciona Jar-in-Jar. Mod IDs duplicados e classloading continuam riscos que devem ser testados, não resultados já demonstrados.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all
 - **Procedência:** modlist física atual de 21/09/2026 — 587 mods incluindo o modloader — confirma `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar`, mod id `easy_npc_bundle` e runtime `7.12.1`, junto de Core/Config UI na mesma linha. CurseForge 1.21.1 foi revalidado em 03/10/2026 até Bundle 7.14.0.
-- **Observações:** Bundle 7.12.1 está fisicamente alinhado ao Core/Config UI 7.12.1. Upstream publicou Bundle 7.13.0 e 7.14.0; o meta-package continua com semântica de distribuição/dependência, enquanto gameplay/persistência pertencem ao Core.
+- **Observações (vigentes):** versão `7.20.0`, JAR `easy_npc_bundle-neoforge-1.21.1-7.20.0.jar`; antigas observações sobre 7.12.1 são históricas.
 - **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 03/10/2026 — runtime físico permanece Bundle 7.12.1. As releases próprias posteriores 1.21.1 são 7.13.0 e 7.14.0; qualquer promoção deve manter Core/Bundle/Config UI coordenados.
 - **Decisão:** Dependência
 - **Sobreposição:** Não é duplicata funcional do Easy NPC Core. A sobreposição de nome é de distribuição: Bundle agrega dependências, Core fornece NPCs, Config UI fornece a interface.

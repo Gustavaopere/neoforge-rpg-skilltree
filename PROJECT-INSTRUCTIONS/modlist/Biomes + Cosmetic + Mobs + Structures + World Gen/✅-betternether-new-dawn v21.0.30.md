@@ -1,6 +1,33 @@
-# BetterNether: New Dawn
+# BetterNether: New Dawn — 21.0.30 (instalação declarada em 22/11/2026)
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#74**: JAR `BetterNether-21.0.26.jar`, mod id `betternether`, runtime `21.0.26`, SHA-1 `69bb15fd21d3ffe6bf18fed83c17d7cdd85b7c85`.
+> **Estado vigente (declaração do usuário):** atualização `21.0.26` → **`21.0.30`**, arquivo oficial `BetterNether-21.0.30.jar` ([publicação verificada](https://www.curseforge.com/minecraft/mc-mods/betternether-neoforge/files/9306678)). A presença do binário novo foi declarada pelo usuário; o JAR no computador, seu hash e os metadados internos não foram lidos. Ordem física histórica #074 preservada.
+
+> **Cadeia de releases e deltas:** Auditoria histórica distingue todas as releases 21.0.27 (config desabilitar Gloomwood), 21.0.28 (backports, correções de Nether Cities, flora e loot), 21.0.29 (bonemeal em wall plants, tags e sons de mushrooms, transparência de fireflies e traduções), 21.0.30 (fix de Respawner Statues, recursos Patchouli, traduções japonesas e Gloomwood). Versão 21.0.30 Release de 24/10 é a última para NeoForge 1.21.1 identificada. Não confundir com o projeto BetterNether original.
+
+> **Dependências e proveniência:** BCLib: New Dawn, WorldWeaver: New Dawn e WunderLib: New Dawn, respectivos requisitos devem ser conciliados em lotes seguintes; Dynamic Trees - BetterNether 2.4.0h do mesmo lote usa BetterNether 21.0.30 como baseline source.
+
+> **Riscos e QA:** Alteração de worldgen em Nether existente: backup de save, splits de chunk, tags/loot, cidades, plantas e respawn, Patchouli e shaders. QA não feito.
+
+> **Leitura temporal:** todas as declarações antigas de versão 'atual', 'instalada' ou 'não instalada' nos trechos históricos abaixo se referem ao snapshot físico anterior ou à auditoria feita naquele momento. Não se sobrepõem à instalação declarada acima.
+
+## Metadados documentais vigentes
+
+- **Mod oficial:** BetterNether: New Dawn
+- **Arquivo JAR instalado (declarado):** `BetterNether-21.0.30.jar` — https://www.curseforge.com/minecraft/mc-mods/betternether-neoforge/files/9306678
+- **Versão instalada declarada (NeoForge 1.21.1):** `21.0.30` (antes `21.0.26`); metadata nova não lida.
+- **Estado no pack (vigente):** `21.0.30` declarado instalado; nenhuma cópia local lida.
+- **Estado da pesquisa (vigente):** versões/cadeia e source já auditados; limites da última release e QA descritos no topo.
+- **Dependências (vigentes):** BCLib: New Dawn, WorldWeaver: New Dawn e WunderLib: New Dawn, respectivos requisitos devem ser conciliados em lotes seguintes; Dynamic Trees - BetterNether 2.4.0h do mesmo lote usa BetterNether 21.0.30 como baseline source.
+- **Compatibilidade/Riscos (vigentes):** Alteração de worldgen em Nether existente: backup de save, splits de chunk, tags/loot, cidades, plantas e respawn, Patchouli e shaders. QA não feito.
+- **Procedência (vigente):** posição física histórica #074, declaração do usuário e publicação oficial https://www.curseforge.com/minecraft/mc-mods/betternether-neoforge/files/9306678; nenhum novo SHA local.
+- **Atualização/Status (vigente):** 22/11/2026, `21.0.26` → `21.0.30` declarada instalada; versões intermediárias e caveats descritas nesta ficha.
+
+---
+
+> **Histórico do dossier anterior:** versão-base `21.0.26`; preservado para a rastreabilidade de funcionalidades, requisitos, decisões e auditorias anteriores.
+
+
+> **Snapshot físico histórico — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#74**: JAR `BetterNether-21.0.26.jar`, mod id `betternether`, runtime `21.0.26`, SHA-1 `69bb15fd21d3ffe6bf18fed83c17d7cdd85b7c85`.
 
 > **Reauditoria física — 19/09/2026.** JAR top-level reconfirmado na modlist física atual: `BetterNether-21.0.26.jar`, versão `21.0.26`. Paridade Notion → GitHub revalidada; URL da própria página Notion removida.
 > **Registro histórico da reauditoria de 19/09/2026:** o arquivo registrava ordem #73 na contagem então usada de 586 mods top-level. A autoridade física atual está no callout acima e fixa BetterNether: New Dawn em **#74 incluindo o modloader**. O ordinal #74 embutido em `Atualização/Status` permanece como conteúdo de paridade.
@@ -12,9 +39,9 @@
 
 ## Propriedades do banco
 
-- **Mod:** BetterNether: New Dawn
-- **Arquivo JAR:** BetterNether-21.0.26.jar
-- **Versão 1.21.1:** 21.0.26
+- **Mod (nome vigente):** BetterNether: New Dawn
+- **Arquivo JAR (vigente declarado):** `BetterNether-21.0.30.jar`; nome do antigo JAR `BetterNether-21.0.26.jar` somente histórico.
+- **Versão 1.21.1 (vigente declarada):** `21.0.30`; versão histórica `21.0.26`.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Manter
@@ -23,7 +50,7 @@
 - **Dependências:** BCLib: New Dawn + WorldWeaver: New Dawn + WunderLib: New Dawn. No pack: BCLib 21.0.26, WorldWeaver 21.0.25 e WunderLib 21.0.10 estão presentes.
 - **Sobreposição:** Provider amplo do Nether. Pode coexistir com outras estruturas/biomas quando placements não conflitam; BCLib/TerraBlender/Lithostitched são infraestruturas e não substitutos automáticos.
 - **Compatibilidade/Riscos:** Worldgen amplo do Nether: riscos em biome/structure placement, parallel worldgen, chunk borders, registry reload, loot e coexistência com outros mods da dimensão. 21.0.26 inclui melhorias de thread safety em cities/destruction structures. A upstream 21.0.27 adiciona a config ausente para desligar Gloomwood; mudança de config/worldgen deve ser validada apenas em geração futura/chunks novos.
-- **Observações:** 21.0.26 continua sendo o runtime físico e confirma Gloomwood, Gloomsculk, mega lava lakes, giant trees, equipamentos/brewing e thread safety já documentados. A única release NeoForge 1.21.1 posterior localizada é 21.0.27, que adiciona a opção de configuração que faltava para desabilitar Gloomwood.
+- **Observações (vigentes):** versão `21.0.30`, JAR `BetterNether-21.0.30.jar`; antigas observações sobre 21.0.26 são históricas.
 - **Procedência:** modlist física atual + metadata runtime confirmam `BetterNether-21.0.26.jar` / `21.0.26`. Modrinth/CurseForge oficiais sustentam o runtime e o stack New Dawn já documentado; CurseForge revalidado em 01/10/2026 publica 21.0.27 para NeoForge 1.21.1 como atualização posterior não instalada.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/betternether-new-dawn
 - **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — runtime físico permanece BetterNether 21.0.26. A release 21.0.27 foi comparada e seu novo controle de configuração para Gloomwood foi incorporado abaixo.

@@ -1,10 +1,37 @@
-# MineColonies
+# MineColonies — 1.1.1423-1.21.1-snapshot (instalação declarada em 22/11/2026)
+
+> **Estado vigente (declaração do usuário):** atualização `1.1.1387-1.21.1-snapshot` → **`1.1.1423-1.21.1-snapshot`**, arquivo oficial `minecolonies-1.1.1423-1.21.1-snapshot.jar` ([publicação verificada](https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9750650)). A presença do binário novo foi declarada pelo usuário; o JAR no computador, seu hash e os metadados internos não foram lidos. Ordem física histórica #395 preservada.
+
+> **Cadeia de releases e deltas:** O histórico já audita 1.1.1392–1.1.1420 (Release de 15/11), incluindo decisões de AI/policies, pedidos, esquemas e acesso. A nova snapshot 1.1.1423 (22/11) corrige atribuição de trabalho dos cidadãos (PR #11893) e traz mudança descrita pelo autor como feature/height dif (PR #11898), além do merge da branch 1.21; não inferir qual regra de altura mudou sem diff específico. Não foi comprovada uma publicação intermediária 1.1.1421 ou 1.1.1422 separada para NeoForge 1.21.1 no catálogo analisado.
+
+> **Dependências e proveniência:** Requisitos do release GitHub 1.1.1423: Structurize >=1.0.837, MultiPiston >=1.2.51, BlockUI >=1.0.199, Domum Ornamentum >=1.0.223. Structurize já consta 1.0.840 no índice atualizado de 22/11; não repetir o falso alerta histórico 1.0.833. Demais consumidores e addons MineColonies serão reconciliados em seus lotes.
+
+> **Riscos e QA:** Alto risco de migração/serialização de colônias, jobs, builder scheduling, AI, economia, permissões e addons; backup de mundo e testes server/client necessários, não executados.
+
+> **Leitura temporal:** todas as declarações antigas de versão 'atual', 'instalada' ou 'não instalada' nos trechos históricos abaixo se referem ao snapshot físico anterior ou à auditoria feita naquele momento. Não se sobrepõem à instalação declarada acima.
+
+## Metadados documentais vigentes
+
+- **Mod oficial:** MineColonies
+- **Arquivo JAR instalado (declarado):** `minecolonies-1.1.1423-1.21.1-snapshot.jar` — https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9750650
+- **Versão instalada declarada (NeoForge 1.21.1):** `1.1.1423-1.21.1-snapshot` (antes `1.1.1387-1.21.1-snapshot`); metadata nova não lida.
+- **Estado no pack (vigente):** `1.1.1423-1.21.1-snapshot` declarado instalado; nenhuma cópia local lida.
+- **Estado da pesquisa (vigente):** versões/cadeia e source já auditados; limites da última release e QA descritos no topo.
+- **Dependências (vigentes):** Requisitos do release GitHub 1.1.1423: Structurize >=1.0.837, MultiPiston >=1.2.51, BlockUI >=1.0.199, Domum Ornamentum >=1.0.223. Structurize já consta 1.0.840 no índice atualizado de 22/11; não repetir o falso alerta histórico 1.0.833. Demais consumidores e addons MineColonies serão reconciliados em seus lotes.
+- **Compatibilidade/Riscos (vigentes):** Alto risco de migração/serialização de colônias, jobs, builder scheduling, AI, economia, permissões e addons; backup de mundo e testes server/client necessários, não executados.
+- **Procedência (vigente):** posição física histórica #395, declaração do usuário e publicação oficial https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9750650; nenhum novo SHA local.
+- **Atualização/Status (vigente):** 22/11/2026, `1.1.1387-1.21.1-snapshot` → `1.1.1423-1.21.1-snapshot` declarada instalada; versões intermediárias e caveats descritas nesta ficha.
+
+---
+
+> **Histórico do dossier anterior:** versão-base `1.1.1387-1.21.1-snapshot`; preservado para a rastreabilidade de funcionalidades, requisitos, decisões e auditorias anteriores.
+
 
 ## Propriedades do registro
 
-- **Mod:** MineColonies
-- **Arquivo JAR:** minecolonies-1.1.1387-1.21.1-snapshot.jar
-- **Versão 1.21.1:** 1.1.1387-1.21.1-snapshot
+- **Mod (nome vigente):** MineColonies
+- **Arquivo JAR (vigente declarado):** `minecolonies-1.1.1423-1.21.1-snapshot.jar`; nome do antigo JAR `minecolonies-1.1.1387-1.21.1-snapshot.jar` somente histórico.
+- **Versão 1.21.1 (vigente declarada):** `1.1.1423-1.21.1-snapshot`; versão histórica `1.1.1387-1.21.1-snapshot`.
 - **Categoria:** RPG, Automação, Worldgen, Armazenamento
 - **Tipo de conteúdo:** Mod
 - **Decisão:** Sem decisão
@@ -15,13 +42,13 @@
 - **Dependências:** Release 1.1.1387 exige Structurize \>=1.0.832, Multi-Piston \>=1.2.51, BlockUI \>=1.0.199 e Domum Ornamentum \>=1.0.223. Pack físico atual: 1.0.833 / 1.2.58 / 1.0.212 / 1.0.236, todos acima dos mínimos. Opcionais publicados: JEI \>=19.19.6.235, JourneyMap \>=1.21.1-6.0.0-beta.29 e Dynamic Trees \>=1.5.0-BETA07; pack usa 19.56.0.440 / 1.21.1-6.0.8 / 1.7.2.
 - **Compatibilidade/Riscos:** Snapshot central de colônias. Riscos: churn de API, requests/logística, drift com Structurize/BlockUI/Domum/Multi-Piston e addons Compatibility 3.57/Tweaks 3.33/Jade crops 1.1.1300, colony-data migration, chunk/entity lifecycle, performance/pathfinding, permission bypass e View stale. Há gap atual 1.1.1387→1.1.1403; upstream 1.1.1403 não é o runtime instalado.
 - **Sobreposição:** MineColonies é authority da colônia. Structurize/BlockUI/Domum/Multi-Piston fornecem infraestrutura especializada. Jade crops apenas apresenta crops; Compatibility/Tweaks estendem comportamento/integrações. O bridge Let's Do está ausente da modlist física atual. Sistemas próprios de RPG/quests não devem espelhar colony research/job/permission como authority paralela.
-- **Observações:** Runtime físico/tag auditada `v1.21.1-1.1.1387-snapshot`, publicada em 13/09/2026, commit `495c35113698c2a48c58fcbd0cfbd5568b23a67e`, CurseForge file 8872247. Em 01/10/2026 upstream/CurseForge publicou `1.1.1403-1.21.1-snapshot`; atualização não aplicada. As snapshots públicas intermediárias 1392, 1393, 1394, 1395, 1396, 1397, 1399 e 1402 foram revisadas; regressão deve cobrir Compatibility 3.57, Tweaks 3.33 e Jade crops 1.1.1300. O bridge Let's Do não está presente na modlist física atual.
+- **Observações (vigentes):** versão `1.1.1423-1.21.1-snapshot`, JAR `minecolonies-1.1.1423-1.21.1-snapshot.jar`; antigas observações sobre 1.1.1387-1.21.1-snapshot são históricas.
 - **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + release/tag oficial GitHub `v1.21.1-1.1.1387-snapshot` commit `495c35113698c2a48c58fcbd0cfbd5568b23a67e` + CurseForge oficial file 8872247 + sequência upstream 1.1.1392→1.1.1403 revisada em 01/10/2026.
 - **Atualização/Status:** AUDITORIA INCREMENTAL DOCUMENTAL 17/11/2026 — último JAR físico confirmado permanece `minecolonies-1.1.1387-1.21.1-snapshot.jar`. Histórico de 1.1.1392 até 1.1.1405 já auditado, seguido das publicações 1.1.1406, 1.1.1407, 1.1.1410, 1.1.1411, 1.1.1412, 1.1.1413, 1.1.1414, 1.1.1416, 1.1.1418, 1.1.1419, 1.1.1420-snapshot e 1.1.1420 Release. Versão 1.1.1420 é candidata upstream, não instalada. Mínimo Structurize subiu para 1.0.837, acima de 1.0.833 no snapshot físico; promoção depende de atualização coordenada e QA. Seção 24.
 - **Histórico da decisão:** 
 - **Data da última decisão:** 2026-08-30
 
-> **Autoridade física atual — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #395: JAR `minecolonies-1.1.1387-1.21.1-snapshot.jar`, mod id `minecolonies`, runtime `1.1.1387-1.21.1-snapshot`, SHA-1 `07752c101305dde5e4621cda39b5d7607f614871`.
+> **Snapshot físico histórico — 25/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física #395: JAR `minecolonies-1.1.1387-1.21.1-snapshot.jar`, mod id `minecolonies`, runtime `1.1.1387-1.21.1-snapshot`, SHA-1 `07752c101305dde5e4621cda39b5d7607f614871`.
 
 <callout icon="🏛️" color="blue_bg">
 	**ESCOPO CANÔNICO.** Runtime físico: `minecolonies-1.1.1387-1.21.1-snapshot.jar`, mod id `minecolonies`, exatamente a snapshot oficial `v1.21.1-1.1.1387-snapshot`, publicada em 13/09/2026. A tag oficial e o asset binário têm o mesmo nome do JAR instalado. Esta ficha usa essa tag como authority de source e não projeta código posterior da branch `1.21`.

@@ -1,6 +1,33 @@
-# Amendments
+# Amendments — 1.21-2.3.0 (instalação declarada em 22/11/2026)
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#26**: `amendments-1.21-2.1.10-neoforge.jar`, mod id `amendments`, runtime `1.21-2.1.10`, SHA-1 `d0cae2882177b7ad285021b48c128ddcc7022464`.
+> **Estado vigente (declaração do usuário):** atualização `1.21-2.1.10` → **`1.21-2.3.0`**, arquivo oficial `amendments-1.21-2.3.0-neoforge.jar` ([publicação verificada](https://www.curseforge.com/minecraft/mc-mods/amendments/files/9751471)). A presença do binário novo foi declarada pelo usuário; o JAR no computador, seu hash e os metadados internos não foram lidos. Ordem física histórica #026 preservada.
+
+> **Cadeia de releases e deltas:** Histórico do dossier percorre 2.1.11 e 2.2.0–2.2.7, incluindo Polytone, novos behaviors/slots e suporte a 3D projectiles opcional, sem afirmar delta exclusivo .6→.7 quando notas idênticas. A 2.3.0 (22/11/2026, NeoForge 1.21.1, file 9751471) adiciona animação de movimento na superfície da água quando o personagem permanece em pé e não está nadando ('treading water'). Esse é o delta explicitamente divulgado para a distribuição consultada; não extrapolar outros fixes não descritos.
+
+> **Dependências e proveniência:** Moonlight Lib conforme distribuição e Supplementaries para integrações condicionais. A baseline documentada do pack é Moonlight 3.6.4/Supplementaries 3.9.9; versões posteriores em índices devem ser reconciliadas sem bloquear.
+
+> **Riscos e QA:** Renderização/animação em água, projectiles 3D, resource pack reload, cauldrons/lecterns/lanterns, block entities, Polytone/Moonlight, overlap com shaders. Sem testes runtime.
+
+> **Leitura temporal:** todas as declarações antigas de versão 'atual', 'instalada' ou 'não instalada' nos trechos históricos abaixo se referem ao snapshot físico anterior ou à auditoria feita naquele momento. Não se sobrepõem à instalação declarada acima.
+
+## Metadados documentais vigentes
+
+- **Mod oficial:** Amendments
+- **Arquivo JAR instalado (declarado):** `amendments-1.21-2.3.0-neoforge.jar` — https://www.curseforge.com/minecraft/mc-mods/amendments/files/9751471
+- **Versão instalada declarada (NeoForge 1.21.1):** `1.21-2.3.0` (antes `1.21-2.1.10`); metadata nova não lida.
+- **Estado no pack (vigente):** `1.21-2.3.0` declarado instalado; nenhuma cópia local lida.
+- **Estado da pesquisa (vigente):** versões/cadeia e source já auditados; limites da última release e QA descritos no topo.
+- **Dependências (vigentes):** Moonlight Lib conforme distribuição e Supplementaries para integrações condicionais. A baseline documentada do pack é Moonlight 3.6.4/Supplementaries 3.9.9; versões posteriores em índices devem ser reconciliadas sem bloquear.
+- **Compatibilidade/Riscos (vigentes):** Renderização/animação em água, projectiles 3D, resource pack reload, cauldrons/lecterns/lanterns, block entities, Polytone/Moonlight, overlap com shaders. Sem testes runtime.
+- **Procedência (vigente):** posição física histórica #026, declaração do usuário e publicação oficial https://www.curseforge.com/minecraft/mc-mods/amendments/files/9751471; nenhum novo SHA local.
+- **Atualização/Status (vigente):** 22/11/2026, `1.21-2.1.10` → `1.21-2.3.0` declarada instalada; versões intermediárias e caveats descritas nesta ficha.
+
+---
+
+> **Histórico do dossier anterior:** versão-base `1.21-2.1.10`; preservado para a rastreabilidade de funcionalidades, requisitos, decisões e auditorias anteriores.
+
+
+> **Snapshot físico histórico — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#26**: `amendments-1.21-2.1.10-neoforge.jar`, mod id `amendments`, runtime `1.21-2.1.10`, SHA-1 `d0cae2882177b7ad285021b48c128ddcc7022464`.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
@@ -13,9 +40,9 @@ O snapshot canônico do Notion, fechado em 11/09/2026, registra Moonlight `3.6.3
 
 ## Propriedades do banco
 
-- **Mod:** Amendments
-- **Arquivo JAR:** `amendments-1.21-2.1.10-neoforge.jar`
-- **Versão 1.21.1:** 1.21-2.1.10
+- **Mod (nome vigente):** Amendments
+- **Arquivo JAR (vigente declarado):** `amendments-1.21-2.3.0-neoforge.jar`; nome do antigo JAR `amendments-1.21-2.1.10-neoforge.jar` somente histórico.
+- **Versão 1.21.1 (vigente declarada):** `1.21-2.3.0`; versão histórica `1.21-2.1.10`.
 - **Estado no pack:** Integrado ao Github
 - **Estado da pesquisa:** Verificado
 - **Decisão:** Sem decisão
@@ -24,7 +51,7 @@ O snapshot canônico do Notion, fechado em 11/09/2026, registra Moonlight `3.6.3
 - **Dependências:** Moonlight Lib/Selene conforme release/ecossistema; o pack instala `moonlight-1.21.1-3.6.4-neoforge.jar`. Supplementaries é integração condicional para banner patterns em hanging signs e está instalado (`1.21.1-3.9.9`).
 - **Sobreposição:** O próprio projeto nasceu da fusão de Carpeted Stairs, Better Lilypads, Better Jukeboxes e algumas features antigas de Supplementaries. Sobreposição com Supplementaries é deliberada/parcial; não é duplicata total.
 - **Compatibilidade/Riscos:** Toca blocos vanilla muito usados e pode cruzar com Supplementaries, resource packs/model overrides, mods de fluidos/cauldrons, jukeboxes, signs e villagers. Cauldrons aceitam qualquer líquido e recipes data-driven, portanto validar fluids modded, automation e potion effects. Moonlight generated pack/mod assets precisam ter prioridade adequada para evitar cauldron water branca/brewing stand vermelho. A UI de trades foi adicionada em 2.1.10 e deve ser testada com mods que alteram villager trades.
-- **Observações:** FAQ upstream esclarece que cauldrons não fazem brewing vanilla; fazem liquid mixing, potion/dye mixing e crafting por interação. Não confundir os dois sistemas. Prioridade do generated resource pack de Moonlight é requisito visual de troubleshooting.
+- **Observações (vigentes):** versão `1.21-2.3.0`, JAR `amendments-1.21-2.3.0-neoforge.jar`; antigas observações sobre 1.21-2.1.10 são históricas.
 - **Procedência:** modlist.txt física atual de 11/09/2026 + CurseForge/documentação oficiais Amendments 2.1.10 + Moonlight 3.6.3 + Supplementaries 3.9.8 e fontes já auditadas no dossiê. Reconciliação final: JAR/runtime permanecem exatamente `amendments-1.21-2.1.10-neoforge.jar` / `1.21-2.1.10`; sem divergência física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/amendments
 - **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 11/09/2026 — reconciliação final física #26: `amendments-1.21-2.1.10-neoforge.jar` / `1.21-2.1.10` conferidos contra a modlist atual; corpo técnico, decisão e estado preservados.

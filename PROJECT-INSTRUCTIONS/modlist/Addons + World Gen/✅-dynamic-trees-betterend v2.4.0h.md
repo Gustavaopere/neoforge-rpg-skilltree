@@ -1,12 +1,39 @@
-# Dynamic Trees - BetterEnd — instalada 2.2.0 | upstream publicada 2.4.0 (não instalada)
+# Dynamic Trees - BetterEnd — 2.4.0h (instalação declarada em 22/11/2026)
 
-> **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#226**: JAR `dtbetterend-1.21.1-2.2.0.jar`, mod id `dtbetterend`, runtime `2.2.0`, SHA-1 `665bbb5b7d39917def3f02d13ecf7e1fe5876084`.
+> **Estado vigente (declaração do usuário):** atualização `2.2.0` → **`2.4.0h`**, arquivo oficial `dtbetterend-1.21.1-2.4.0h.jar` ([publicação verificada](https://modrinth.com/mod/dynamictrees-betterend/version/bpaCRQFQ)). A presença do binário novo foi declarada pelo usuário; o JAR no computador, seu hash e os metadados internos não foram lidos. Ordem física histórica #226 preservada.
+
+> **Cadeia de releases e deltas:** Auditoria histórica de 2.3.0: revisão de worldgen, species, mounds/rooty soils, proteção de blocos/entidades e alteração de Umbrella Tree (altura máxima 50→25, novos JoCodes). As publicações 2.4.0 (20/11) e 2.4.0h (22/11) para NeoForge 1.21.1 estão verificadas; ambas sem changelog de mudanças específicas, portanto não atribuir funcionalidades imaginadas às duas. O source oficial branch 1.21.1 já declara mod_version=2.4.0h, compilado com DT 1.7.2, DTP 1.3.2, BetterEnd 21.0.39 e NeoForge 21.1.267. Hash SHA-1 publicado no Modrinth para a 2.4.0h: 3a84d1702ac1a4bf5d9ca49fbd9af7e98e5c467c (não recalculado em JAR local).
+
+> **Dependências e proveniência:** Dynamic Trees 1.7.2, Dynamic Trees Plus opcional 1.3.2 e BetterEnd: New Dawn 21.0.39 usados no source 2.4.0h; o snapshot documental BetterEnd 21.0.34 é anterior e aguarda o item 11 da fila. BCLib/WorldWeaver/WunderLib e loader no source são baselines de build, não mínimos formados por inspeção do JAR novo; sem bloqueio documental.
+
+> **Riscos e QA:** Geração de árvores em novos/antigos chunks, umbrella trees, species/fungi, rooty soil, block entities e flora; risco de conflito com BetterEnd novo. QA/runtime não executados.
+
+> **Leitura temporal:** todas as declarações antigas de versão 'atual', 'instalada' ou 'não instalada' nos trechos históricos abaixo se referem ao snapshot físico anterior ou à auditoria feita naquele momento. Não se sobrepõem à instalação declarada acima.
+
+## Metadados documentais vigentes
+
+- **Mod oficial:** Dynamic Trees - BetterEnd
+- **Arquivo JAR instalado (declarado):** `dtbetterend-1.21.1-2.4.0h.jar` — https://modrinth.com/mod/dynamictrees-betterend/version/bpaCRQFQ
+- **Versão instalada declarada (NeoForge 1.21.1):** `2.4.0h` (antes `2.2.0`); metadata nova não lida.
+- **Estado no pack (vigente):** `2.4.0h` declarado instalado; nenhuma cópia local lida.
+- **Estado da pesquisa (vigente):** versões/cadeia e source já auditados; limites da última release e QA descritos no topo.
+- **Dependências (vigentes):** Dynamic Trees 1.7.2, Dynamic Trees Plus opcional 1.3.2 e BetterEnd: New Dawn 21.0.39 usados no source 2.4.0h; o snapshot documental BetterEnd 21.0.34 é anterior e aguarda o item 11 da fila. BCLib/WorldWeaver/WunderLib e loader no source são baselines de build, não mínimos formados por inspeção do JAR novo; sem bloqueio documental.
+- **Compatibilidade/Riscos (vigentes):** Geração de árvores em novos/antigos chunks, umbrella trees, species/fungi, rooty soil, block entities e flora; risco de conflito com BetterEnd novo. QA/runtime não executados.
+- **Procedência (vigente):** posição física histórica #226, declaração do usuário e publicação oficial https://modrinth.com/mod/dynamictrees-betterend/version/bpaCRQFQ; nenhum novo SHA local.
+- **Atualização/Status (vigente):** 22/11/2026, `2.2.0` → `2.4.0h` declarada instalada; versões intermediárias e caveats descritas nesta ficha.
+
+---
+
+> **Histórico do dossier anterior:** versão-base `2.2.0`; preservado para a rastreabilidade de funcionalidades, requisitos, decisões e auditorias anteriores.
+
+
+> **Snapshot físico histórico — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#226**: JAR `dtbetterend-1.21.1-2.2.0.jar`, mod id `dtbetterend`, runtime `2.2.0`, SHA-1 `665bbb5b7d39917def3f02d13ecf7e1fe5876084`.
 
 ## Propriedades do registro
 
-- **Mod:** Dynamic Trees - BetterEnd
-- **Arquivo JAR:** `dtbetterend-1.21.1-2.2.0.jar`
-- **Versão instalada (Minecraft 1.21.1):** `2.2.0`
+- **Mod (nome vigente):** Dynamic Trees - BetterEnd
+- **Arquivo JAR (vigente declarado):** `dtbetterend-1.21.1-2.4.0h.jar`; nome do antigo JAR `dtbetterend-1.21.1-2.2.0.jar` somente histórico.
+- **Versão instalada (Minecraft 1.21.1; declarada):** `2.4.0h`; base histórica `2.2.0`.
 - **Versões upstream posteriores examinadas:** `2.3.0` (alterações source documentadas) → `2.4.0` (**20/11/2026**, Release publicada, **NÃO INSTALADA**, changelog não fornecido).
 - **Última versão com requisitos da source confirmados e satisfeitos pelo pack:** `2.2.0`. A source `2.3.0` declara BetterEnd `21.0.39+`, acima do `21.0.34` instalado; não foi verificado o manifest binário da `2.4.0`.
 - **Categoria:** Compat, Worldgen
@@ -17,7 +44,7 @@
 - **Compatibilidade/Riscos:** O **falso bloqueio** de DTP 1.3.2 < 1.5.0 foi resolvido contra a source correspondente à 2.2.0: DTP 1.3.2 satisfaz a faixa opcional `[1.3.2,)`. O pack também satisfaz formalmente os ranges DT `[1.7.2,)` e BetterEnd `[21.0.26,)` dessa source. Permanecem riscos de tree static+dynamic duplication, feature-canceller failure, species/tag/rooty-soil drift, mushroom/cap felling/rendering e worldgen seams; range estático não equivale a testes de boot/save.
 - **Fonte:** https://github.com/dannykim2011/DynamicTrees-BetterEnd/tree/1.21.1
 - **Procedência:** snapshot físico de 21–25/09/2026 com 587 top-levels confirma `dtbetterend-1.21.1-2.2.0.jar` / runtime 2.2.0. Em 21/09, a 2.2.0 era a última release conhecida; em 22/11, foram documentadas as posteriores 2.3.0 (file 9681813) e 2.4.0 (file 9716886). Source versionada `1.21.1` no commit `47802eac` só comprova a 2.3.0, e não a 2.4.0.
-- **Observações:** Referência histórica 2.0.0h2 foi superada pelo runtime físico 2.2.0. Source oficial versionada **2.2.0** usa DT 1.7.2 / DTP 1.3.2 / BetterEnd 21.0.26 (BCLib artifact 8362495); runtime atual usa DT 1.7.2 / DTP 1.3.2 / BetterEnd 21.0.34 / BCLib 21.0.26. Nenhuma exigência de DTP 1.5.0 pode ser atribuída à 2.2.0 com base nessa source.
+- **Observações (vigentes):** versão `2.4.0h`, JAR `dtbetterend-1.21.1-2.4.0h.jar`; antigas observações sobre 2.2.0 são históricas.
 - **Atualização/Status:** **22/11/2026 — upstream examinada até 2.4.0**, incluindo comparação do source 2.2.0→2.3.0. **Instalação permanece 2.2.0**. Corrigido o antigo falso requisito de Dynamic Trees Plus 1.5.0: DTP 1.3.2 atende a source 2.2.0. A 2.3.0 exige BetterEnd 21.0.39+ e a 2.4.0 não possui changelog/source pin confirmado; sem atualização de JAR ou QA de worldgen.
 - **Decisão:** Manter
 - **Histórico da decisão:** Decisão `Manter` preservada. Em 08/09/2026, a ficha foi reconciliada para o runtime físico 2.2.0 e reconstruída com source 1.21.1 da mesma versão.
