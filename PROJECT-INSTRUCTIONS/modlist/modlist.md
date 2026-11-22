@@ -1,6 +1,15 @@
 
 # Índice incremental da modlist certificada e organizada
 
+## Fechamento — Raven's RPG Resource Orbs (pedido nº 22) — 22/11/2026
+
+**Pendência resolvida por correspondência oficial de renomeação:** a página do CurseForge define Raven's RPG Resource Orbs como **formerly Dynamic RPG Resource Bars**; o [JAR antigo 0.7.1](https://www.curseforge.com/minecraft/mc-mods/ravens-resource-orbs/files/6964564) e o [JAR novo 1.0.4](https://www.curseforge.com/minecraft/mc-mods/ravens-resource-orbs/files/9720393) pertencem ao mesmo projeto **1188180**. O mod já existia na modlist física sob o nome antigo, posição **#232**. O dossier `✅-dynamic-rpg-resource-bars v0.7.1.md` foi versionado para `✅-ravens-rpg-resource-orbs v1.0.4.md`, na **mesma combinação de cinco categorias CurseForge**. Não foi criado um mod novo ou posição artificial.
+
+**Instalação declarada:** versão `1.0.4` Beta (NeoForge 1.21.1), JAR `ravens_resource_orbs-neoforge-1.0.4-1.21.1.jar`. O usuário declarou ter atualizado via CurseForge; arquivo real não foi relido. A versão 0.9.x na linha 26.1.2 não equivale a distribuição 1.21.1; o port 1.0.0 e as correções 1.0.1–1.0.4 estão detalhados no dossier.
+
+**Riscos:** Fzzy Config é requerida no template de metadata; versão-source NeoForge 21.1.265 supera o loader 21.1.250 do snapshot do índice. A discrepância exige sincronização posterior e testes, mas **não impediu** a atualização documental solicitada. A linha anterior do item nº 22 como “bloqueado por ausência de posição” é agora uma **conclusão histórica corrigida**; o número 22 é a posição na lista do usuário, enquanto a posição na modlist física é 232.
+
+
 > A autoridade física mais recente disponível continua sendo `modlist(1).txt`, com **587 entradas top-level** incluindo o modloader. Em **02/10/2026**, o usuário confirmou duas adições posteriores a esse snapshot — **Cold Sweat: Altitude** e **Create: Bionics** — elevando o inventário conhecido do perfil para **589 mods**, enquanto um novo dump físico ainda não está disponível. A tabela numerada abaixo permanece congelada nas 587 posições físicas verificadas; as duas adições pós-snapshot ficam registradas separadamente até que JAR, metadata, SHA e ordem possam ser re-fetched. Entradas sem dossier ou sem projeto correspondente permanecem explícitas como exceções, em vez de serem omitidas ou receberem dados físicos inventados.
 >
 > Em **03/10/2026**, o usuário determinou uma nova alteração de estado-alvo: **adicionar Create: AeroWarptics 1.3.0 e remover Create Aeronautics: Alcubierre 1.2.6**. Como não existe dump físico posterior à ordem, a troca é registrada abaixo como **solicitada/pós-snapshot**, sem falsificar presença ou ausência física. Se ambas as ações tiverem sido executadas localmente, o efeito líquido na contagem é zero; isso só será certificado no próximo inventário.
@@ -20,7 +29,7 @@
 
 ## Lote 57–62 — atualização documental declarada em 22/11/2026
 
-A declaração do usuário estabelece as versões instaladas para fins de inventário, sem inspeção local. Posições ordinais preservam a modlist física histórica. Raven's RPG Resource Orbs (#22 do pedido) permanece sem dossier certificado e posição top-level confirmada, não recebe linha inventada.
+A declaração do usuário estabelece as versões instaladas para fins de inventário, sem inspeção local. Posições ordinais preservam a modlist física histórica. Raven's RPG Resource Orbs (#22 do pedido) permanece sem dossier certificado e posição top-level confirmada, não recebe linha inventada. **ERRATA 22/11/2026 - 17:32:** correspondência estabelecida ao antigo Dynamic RPG Resource Bars, posição física #232 e dossier certificado agora versionado 1.0.4. A afirmação de ausência acima é histórica e superada.
 
 - Item 57, físico #129: Create Aeronautics: FTB Chunks `1.2.0` → `1.2.1` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-ftb-chunks/files/9663793)); dependências pendentes de conciliação não impedem a atualização documental.
 - Item 58, físico #404: Modonomicon `1.120.4` → `1.123.1` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/modonomicon/files/9646793)); dependências pendentes de conciliação não impedem a atualização documental.
@@ -33,7 +42,7 @@ A declaração do usuário estabelece as versões instaladas para fins de invent
 
 ## Lote 22, 48 e 49–56 — atualizações declaradas em 22/11/2026
 
-O pedido do usuário confirma a instalação das versões-alvo **para o inventário documental**. As posições e JARs anteriores provêm do snapshot físico histórico, mas novos arquivos locais e seus hashes não foram relidos. Dependências de outros lotes ainda podem constar desatualizadas e ficam como pendência de reconciliação, não como impeditivo de versionamento. O item **22 Raven's RPG Resource Orbs** continua sem dossier certificado e sem posição top-level física verificável, portanto **não** foi adicionado à tabela principal.
+O pedido do usuário confirma a instalação das versões-alvo **para o inventário documental**. As posições e JARs anteriores provêm do snapshot físico histórico, mas novos arquivos locais e seus hashes não foram relidos. Dependências de outros lotes ainda podem constar desatualizadas e ficam como pendência de reconciliação, não como impeditivo de versionamento. O item **22 Raven's RPG Resource Orbs** continua sem dossier certificado e sem posição top-level física verificável, portanto **não** foi adicionado à tabela principal. **ERRATA 22/11/2026 - 17:32:** correspondência estabelecida ao antigo Dynamic RPG Resource Bars, posição física #232 e dossier certificado agora versionado 1.0.4. A afirmação de ausência acima é histórica e superada.
 
 A pendência do item 48 foi resolvida para o nome de distribuição: `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar` consta da publicação oficial [Modrinth 8.8.3](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge), versão id `pbHCUgry`. A publicação equivalente no CurseForge não foi confirmada; não se inventou File ID CurseForge.
 
@@ -53,7 +62,7 @@ As auditorias intermediárias preexistentes foram preservadas e os campos vigent
 
 ## Lote 22 e 40–48 — sincronização declarada em 22/11/2026
 
-**Autoridade:** pedido do usuário confirma a instalação das versões-alvo documentadas para NeoForge 1.21.1; não houve leitura dos novos JARs locais. As posições são preservadas da modlist física histórica, as versões-alvo têm publicação oficial identificada, e as divergências de dependências com entradas ainda antigas aguardam seus próprios lotes. O caso Raven's RPG Resource Orbs (#22 da lista de atualização) permanece fora da tabela por ausência de dossier certificado e posição física top-level.
+**Autoridade:** pedido do usuário confirma a instalação das versões-alvo documentadas para NeoForge 1.21.1; não houve leitura dos novos JARs locais. As posições são preservadas da modlist física histórica, as versões-alvo têm publicação oficial identificada, e as divergências de dependências com entradas ainda antigas aguardam seus próprios lotes. O caso Raven's RPG Resource Orbs (#22 da lista de atualização) permanece fora da tabela por ausência de dossier certificado e posição física top-level. **ERRATA 22/11/2026 - 17:32:** correspondência estabelecida ao antigo Dynamic RPG Resource Bars, posição física #232 e dossier certificado agora versionado 1.0.4. A afirmação de ausência acima é histórica e superada.
 
 | Item do pedido | Nº histórico | Mod | Versão declarada | Publicação oficial | Ressalva |
 |---:|---:|---|---|---|---|
@@ -87,7 +96,7 @@ A solicitação do usuário constitui a declaração de atualização das versõ
 
 **Limites de evidência:** GTBC's SpellLib 3.0.0 não oferece changelog granular recuperado nesta revisão; a linha JEI 19.56.0.440 → 19.76.1.478 possui 30 distribuições anteriores inventariadas, mas não tem todos os changelogs individuais fechados, e o basename da nova Beta JEI ainda requer conferência independente do arquivo individual. Não inferir conteúdo não publicado nem certificar homologação de runtime.
 
-**Item 22 — Raven's RPG Resource Orbs:** a publicação oficial 1.0.4 Beta NeoForge 1.21.1 foi identificada ([file 9720393](https://www.curseforge.com/minecraft/mc-mods/ravens-resource-orbs/files/9720393)), mas **nenhum dossier ✅- com versão nem entrada/posição top-level correspondente** existe no inventário histórico. O item permanece fora da tabela certificada sem posição inventada.
+**Item 22 — Raven's RPG Resource Orbs:** a publicação oficial 1.0.4 Beta NeoForge 1.21.1 foi identificada ([file 9720393](https://www.curseforge.com/minecraft/mc-mods/ravens-resource-orbs/files/9720393)), mas **nenhum dossier ✅- com versão nem entrada/posição top-level correspondente** existe no inventário histórico. O item permanece fora da tabela certificada sem posição inventada. **ERRATA 22/11/2026 - 17:32:** Identificado o antigo projeto Dynamic RPG Resource Bars: dossier ✅- elegível e entrada física #232; sincronizados para Raven's RPG Resource Orbs 1.0.4 no mesmo projeto 1188180. A negativa nesta nota é histórica e foi superada.
 
 ## Lote 21–30 — sincronização documental declarada (22/11/2026)
 
@@ -105,7 +114,7 @@ A solicitação do usuário constitui a declaração de atualização das versõ
 | 29 | 220 | Discerning The Eldritch | `1.4.6-1.21` | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/discerning-the-eldritch/files/all) |
 | 30 | 352 | JourneyMap | `1.21.1-6.0.9` | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/journeymap/files/all) |
 
-**Item 22, Raven's RPG Resource Orbs:** identificado no [CurseForge file 9720393](https://www.curseforge.com/minecraft/mc-mods/ravens-resource-orbs/files/9720393), versão Beta NeoForge 1.0.4 / Minecraft 1.21.1, `ravens_resource_orbs-neoforge-1.0.4-1.21.1.jar`. **Não inserido na tabela certificada**: nenhum dossier ✅- com versão nem posição top-level constava da árvore/index anterior; o protocolo de organização proíbe fabricar elegibilidade e numeração. Diferente de dependência interlotes, esta é uma lacuna objetiva do inventário canônico.
+**Item 22, Raven's RPG Resource Orbs:** identificado no [CurseForge file 9720393](https://www.curseforge.com/minecraft/mc-mods/ravens-resource-orbs/files/9720393), versão Beta NeoForge 1.0.4 / Minecraft 1.21.1, `ravens_resource_orbs-neoforge-1.0.4-1.21.1.jar`. **Não inserido na tabela certificada**: nenhum dossier ✅- com versão nem posição top-level constava da árvore/index anterior; o protocolo de organização proíbe fabricar elegibilidade e numeração. Diferente de dependência interlotes, esta é uma lacuna objetiva do inventário canônico. **ERRATA 22/11/2026 - 17:32:** Identificado o antigo projeto Dynamic RPG Resource Bars: dossier ✅- elegível e entrada física #232; sincronizados para Raven's RPG Resource Orbs 1.0.4 no mesmo projeto 1188180. A negativa nesta nota é histórica e foi superada.
 
 ## Lote 11–20 — atualização declarada pelo usuário e persistida em 22/11/2026
 
@@ -869,7 +878,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 229 | Dynamic Trees - Quark | `dtquark-2.6.1.jar` | `2.6.1` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
 | 230 | Dynamic Trees - Terralith | `dtterralith-1.3.0.jar` | `1.3.0` | `Addons + Biomes + World Gen` | 24/09/2026 - 10:44 |
 | 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.8.0.jar` | `1.8.0` | `Addons + World Gen` | 22/11/2026 - 09:02 |
-| 232 | Dynamic RPG Resource Bars | `dynamic_resource_bars-neoforge-0.7.1-1.21.1.jar` | `0.7.1` | `Adventure and RPG + API and Library + Cosmetic + Magic + Utility & QoL` | 24/09/2026 - 11:14 |
+| 232 | Raven's RPG Resource Orbs (antigo Dynamic RPG Resource Bars) | `ravens_resource_orbs-neoforge-1.0.4-1.21.1.jar` | `1.0.4` Beta (filename `1.0.4-1.21.1`; metadata novo não relido) | `Adventure and RPG + API and Library + Cosmetic + Magic + Utility & QoL` | 22/11/2026 - 17:32 |
 | 233 | Dynamic Brightness | `DynamicBrightness-neoforge-1.3.1.jar` | `1.3.1` | `Utility & QoL` | 24/09/2026 - 11:14 |
 | 234 | Dynamic Trees Addon Lib | `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` | `0.2.0-BETA03` | `Addons + API and Library + Cosmetic` | 24/09/2026 - 11:14 |
 | 235 | Dynamic Trees | `dynamictrees-neoforge-1.21.1-1.7.2.jar` | `1.7.2` | `Biomes + Cosmetic + Farming + World Gen` | 24/09/2026 - 11:14 |
