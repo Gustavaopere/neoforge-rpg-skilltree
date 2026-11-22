@@ -109,3 +109,16 @@ Gate de regressão: rice submerso, multipart crops, mint/powdery crops, Leteos C
 **Fontes GitHub upstream:** `DragonsPlusMinecraft/CreateIntegratedFarming`, branch `1.21.1/6.0.0-dev`; commits `0ff12d225518d2e3ca136a4e23ca57529d51616d` (1.4.2), `56ab765f2b6eca550688662226416530215908c9`, `9287105cacea5868c27e5da41f087a22f3fb50e7`, `b9b9063ada56b77c855b299d67c74365cd559f15`, `ba810e72b1bd6352952b672e43762c0b7ada7a13` e `1f63780108d1d51f3b2c9ebdf4bb0cd5cb3f5906` (1.4.3); `gradle.properties` exige `create_dragons_plus_version_range = [1.11.9,)`.
 
 > **Atualização/Status — valor histórico preservado do Notion:** PADRÃO ALEX'S MOBS REVALIDADO EM 20/09/2026 — reconciliação final física #122: `create-integrated-farming-1.4.1c.jar` / `1.4.1c` confirmados; o conteúdo 1.4.1b foi preservado e o delta oficial 1.4.1c (hotfix de crash intermitente do Vacuum Harvester no cliente) foi incorporado.
+
+## Auditoria incremental upstream — Create: Integrated Farming 1.4.4 (22/11/2026; não instalada)
+
+**Baseline física:** #123 `create-integrated-farming-1.4.1c.jar` / `1.4.1c`. O dossier já auditou individualmente as releases **1.4.2 e 1.4.3**, sem promovê-las à instalação.
+
+A [release oficial **1.4.4**, CurseForge 9676613](https://www.curseforge.com/minecraft/mc-mods/create-integrated-farming/files/9676613), publicada em **18/11/2026** para Minecraft **1.21.1 / NeoForge**, acrescenta/atualiza integrações:
+- **Nova integração Hybrid Aquatic**, incluindo captura por Fishing Net quando provider compatível estiver presente.
+- **Confluence: Otherworld** atualizada para a linha **1.2.9** do provider.
+- **Hearth and Harvest** atualizado para o harvest das culturas conforme mudanças de sua linha 1.4.
+- **Starcatcher** atualizado para **3.2+**, corrigindo Fishing Net.
+- O [histórico da branch oficial 1.21.1/6.0.0-dev](https://github.com/DragonsPlusMinecraft/CreateIntegratedFarming/commits/1.21.1%2F6.0.0-dev) também registra correção de **drops de pesca específicos de entidade** quando Fishing Nets estão em contraptions Create ou vessels Sable (commit `b0d53d69`). A [nota oficial 1.4.4](https://github.com/DragonsPlusMinecraft/CreateIntegratedFarming/blob/1.21.1/6.0.0-dev/CHANGELOG.md) resume essas mudanças de integração. Não presumir presence física dos providers opcionais.
+
+**Bloqueio de promoção preservado:** a linha 1.4.3+ exige **Create: Dragons Plus 1.11.9+**, mas o inventário físico documenta **`CreateDragonsPlus-1.11.8b.jar`**. Logo, não atualizar isoladamente. Checar metadata exata da 1.4.4 antes de qualquer upgrade. Em staging, testar Fishing Net em contraptions e Sable vessels, coleta de drops, Hybrid Aquatic, Starcatcher 3.2+, Confluence, Hearth and Harvest, Vanilla/FB rice, scripts agrícolas, Fluid/Spout, world reload, restart e multiplayer. **Nenhum JAR, asset ou configuração alterado; nome e categoria preservados.**

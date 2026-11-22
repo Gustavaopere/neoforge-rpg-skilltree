@@ -344,3 +344,14 @@ O histórico entre a versão física e a mais recente já está coberto na seç�
 
 **Estado:** versão upstream já documentada; 1.1.2 segue como física. Nenhum teste executado.
 
+## Auditoria incremental upstream — Ars Sable 1.2.0 → 1.2.1 (22/11/2026; não instaladas)
+
+**Instalado:** #049 `ars_sable-1.21.1-1.1.2.jar`, versão `1.1.2`; no último snapshot do pack, Sable 2.0.5 e Ars Nouveau 5.13.1. As releases anteriores **1.1.3** e **1.1.4** já foram auditadas neste dossier.
+
+**1.2.0 — 03/10/2026:** a [publicação oficial NeoForge 1.21.1, CurseForge 9052149](https://www.curseforge.com/minecraft/mc-mods/ars-sable/files/9052149), introduz o glyph **Miniaturize**, que transforma um **Sable sublevel em item**. Isso pode mudar diretamente a representação/persistência de estruturas físicas, e exige verificação de ownership, inventário, serialização e integridade de objetos no mundo.
+
+**1.2.1 — 16/11/2026:** a [publicação oficial NeoForge 1.21.1, CurseForge 9642466](https://www.curseforge.com/minecraft/mc-mods/ars-sable/files/9642466), informa **compatibilidade com a versão mais recente de Ars Nouveau**. A nota não especifica novos métodos, o número mínimo de Ars ou mudanças detalhadas de API; **não presumir** que o Ars 5.13.1 físico satisfaça o requisito sem metadata/QA.
+
+**Separação de fontes/versionamento:** o [`changelog.md` na branch principal do repositório oficial](https://github.com/baileyholl/ars-sable/blob/main/changelog.md) também menciona um `Target Simulated Level Glyph` e efeitos de força sobre níveis inteiros (Gravity/Knockback/Launch/Leap/Pull/Rotate), mas esse texto **não apresenta pin inequívoco** para as distribuições 1.2.0 ou 1.2.1: **não** atribuir o recurso a nenhum desses JARs sem correspondência de build verificada.
+
+**Gates:** backup de saves, serialização e recall de sublevels convertidos em item, tentativas de duplicação/perda, contas/permissões multiplayer, lançamento em sublevel, force loading/reload, Starbuncles e Source/warp/Planarium; manifest/ABI com Sable 2.0.5 e Ars 5.13.1. **Version pin e categoria atual preservados; nenhum JAR novo instalado ou teste executado.**

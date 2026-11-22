@@ -146,3 +146,15 @@ Os pagamentos configuráveis podem afetar progressão, recipes, KubeJS, obtenç�
 | **1.3.8** | 16/11/2026 | Livros mágicos podem ser guardados em **chiseled bookshelves**, com impacto de armazenamento e persistência; sem outro delta anunciado na nota específica. | [CurseForge 9640009](https://www.curseforge.com/minecraft/mc-mods/companions-mod/files/9640009) |
 
 **Sequência publicada integral auditada:** 1.3.5 → 1.3.6 → 1.3.7 → 1.3.8, sem pular releases NeoForge 1.21.1. **Gates de instalação:** KnightLib presente 2.0.1 contra manifest do candidato, Heal Book, Cornelius, Gloves/Epic Fight, enchantments, projéteis, chiseled bookshelves, tame/ownership, multiplayer, startup dedicado e save/restart. Não houve instalação ou teste em jogo. **Dossier continua v1.3.4**, coerente com JAR comprovado.
+
+## Auditoria incremental upstream — Companions! 1.3.9 (22/11/2026; não instalada)
+
+Baseline física #104 `companions-neoforge-1.21.1-1.3.4.jar`, runtime `1.3.4`. As distribuições intermediárias **1.3.5, 1.3.6, 1.3.7 e 1.3.8** já estão discriminadas no dossier e não foram repetidas.
+
+A [release oficial 1.3.9 para NeoForge 1.21.1, CurseForge 9732364](https://www.curseforge.com/minecraft/mc-mods/companions-mod/files/9732364), de **21/11/2026**, concentra-se no **Black Hole**:
+- Impede a entidade/efeito de atravessar paredes ou tetos ao atingir um bloco.
+- Ao encontrar superfícies de **água ou lava**, o Black Hole passa a parar na superfície em vez de afundar até o fundo.
+- Corrige o **flash visual de abertura** e o **som de liberação**, que não eram disparados.
+- Corrige nuvens renderizadas indevidamente **sobre** o Black Hole.
+
+**Impacto e teste:** colisão e posição do Black Hole em blocos/fluidos influenciam legibilidade espacial e comportamento de combate; validar cliente/servidor, física, visuais e sons com shaders, save/relog, spawn em água/lava e interação com outros efeitos. O changelog não anuncia mobs, itens, boss ou progressão novos nesta release. **Instalação 1.3.4 e pasta já categorizada preservadas; QA 1.3.9 não executado.**

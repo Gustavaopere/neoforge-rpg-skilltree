@@ -113,3 +113,15 @@ Fontes upstream: CurseForge Iron's Lib 2.1.1 e 2.2.0 para NeoForge 1.21.1; issue
 | **2.3.0** | 25/10/2026 | Adiciona **Autumn Knight Transmog** e **Pumpkin Heads Transmog**. O changelog próprio não anuncia outras APIs ou balanceamento; não atribuir mudanças não publicadas. | [CurseForge 9328060](https://www.curseforge.com/minecraft/mc-mods/irons-lib/files/9328060) |
 
 **Cadeia publicada NeoForge 1.21.1 após a instalada:** 2.1.1 → 2.2.0 → 2.3.0. Gates antes de instalar: validar manifest e compatibilidade com Iron's Spells, seus addons e RPG Skill Tree; Kinetic Weapons e charges/iframes, atributos de projectile (sem confundir Arrow Damage), transmogs, serialização, rendering, client e dedicated server. Nenhum teste nem atualização de JAR foi realizado; auditoria documental até **2.3.0 concluída**, nome do dossier v1.21.1-2.1.0 preservado.
+
+## Auditoria incremental upstream — Iron's Lib 2.4.0 (22/11/2026; não instalada)
+
+**Versão física** #341: `irons_lib-1.21.1-2.1.0.jar` / `1.21.1-2.1.0`. O dossier anterior já audita as versões NeoForge 1.21.1 **2.1.1 → 2.2.0 → 2.3.0**.
+
+A [release **2.4.0**, CurseForge 9687938](https://www.curseforge.com/minecraft/mc-mods/irons-lib/files/9687938), de **18/11/2026**, compatível com o alvo, documenta:
+- **Novas poses de estátua:** `Salute`, `Scout Salute`, `Dinnerbone`, `Him`, `Dafoe I`, `Dafoe II`, `Mantis` e `Perched`.
+- **Receita de Patreon Statue** a partir de `Chiseled Stone Bricks` no **Stonecutter**.
+- **Melhoria da rolagem** da tela de seleção de poses das estátuas.
+- Correção de um **problema em servidores com uptime prolongado**; o changelog não detalha o mecanismo, e não é seguro atribuir causa específica a memory leak ou networking.
+
+**QA:** recipe/Stonecutter, poses, assets/transmog, rolagem e escala de GUI, save/reload de estátuas e restart/uptime; possíveis consumers Iron's Spells, Iron's Apothic e Gems n' Jewelry, além de atributos e compatibilidade ABI. Inspecionar ranges dos JARs candidatos antes de atualizar. **Nenhuma instalação/QA foi executada; pastas e versão física inalteradas.**

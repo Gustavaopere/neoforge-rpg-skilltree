@@ -348,3 +348,14 @@ Fonte upstream: CurseForge Alshanex's Familiars file ID 8966342, release v4.0.4 
 | 5.0 — migração de conteúdo | Familiar House, Familiar Bed e Shrinkinator **migraram para FamiliarsLib**. Antigos shards continuam utilizáveis porém não são mais obtidos normalmente; rituais passam a usar eggs, receita do Tome of Alignment e advancements mudam. Também há melhorias de sitting animations e summoned placement. |
 **AVISO oficial:** fazer backup do mundo antes de atualizar; 5.0 pode quebrar saves. Em staging, cotejar a versão **realmente exigida** de FamiliarsLib pelo binário 5.0 (não presumir que 1.8 seja suficiente), NBT/data components dos itens relocados, registry e block entities, recipes, armazenamento 10/25/50, retaming/recall, owners/AI, filtros e estações, multiplayer/dedicated, re-login e dimension travel. Para rollback, restaurar mundo e ambos os JARs em conjunto. Nova versão não instalada.
 Fontes: https://www.curseforge.com/minecraft/mc-mods/alshanexs-familiars/files/8966342 ; https://www.curseforge.com/minecraft/mc-mods/alshanexs-familiars/files/9276628 .
+
+## Auditoria incremental upstream — Alshanex's Familiars 5.1 (22/11/2026; não instalada)
+
+**Físico:** #023 `alshanex_familiars-1.21.1_v4.0.3.jar`, versão `1.21.1_v4.0.3`. A auditoria anterior já cobre **4.0.4** (refatoração do armazenamento e até 50 familiars) e **5.0 Spectrum Update** (customização, Familiar Compendium, novas estações e migração de blocos para FamiliarsLib). Esses deltas permanecem referenciados, sem serem apresentados como conteúdo instalado.
+
+A [release **5.1** de 18/11/2026, CurseForge file 9681347](https://www.curseforge.com/minecraft/mc-mods/alshanexs-familiars/files/9681347), para Minecraft 1.21.1 / NeoForge, informa:
+- **Todas as telas do mod foram reformuladas** com contribuição de VeroxUniverse.
+- Corrige recebimento **múltiplo** do guia inicial, que deve ser entregue somente uma vez.
+- Adiciona **configuração para desativar o guia recebido no início**.
+
+**Mudanças de interface/config e QA:** validar redesenho das telas, guia novo e migração em personagens/mundos antigos, o valor default da opção no JAR candidato, multiplayer e persistência; assegurar que várias sessões não dupliquem livros. Manter também os gates da 5.0: backup de mundo, dados de familiars, armazenamento, Pandora's Box, novos registries e migração de Familiar House/Bed/Shrinkinator para **FamiliarsLib**. A física possui FamiliarsLib 1.7.1 e não foi comprovada como suficiente para 5.0/5.1: ler os requisitos exatos de metadata antes de instalar. **Sem promoção, JARs, configs, save ou teste; manter filename físico e categoria oficial.**

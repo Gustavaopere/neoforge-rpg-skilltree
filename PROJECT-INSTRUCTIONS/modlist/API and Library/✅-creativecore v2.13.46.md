@@ -137,3 +137,13 @@ Fontes upstream: CurseForge CreativeCore 2.13.47/2.13.48 para NeoForge 1.21.1; `
 **Gates de promoção:** consumers CreativeMD (LittleTiles, LittleFrames, AmbientSounds apenas se presentes), GUI/config e networking em cliente/dedicado, permissões e abertura remota de container, hand swap e conservação de itens, persistência de inventories, origins/voxel shapes transformadas e colisões de Sable 2.0.5, resource reload, desempenho e regressões no multiplayer. Backup e validação de manifests/compatibilidade são obrigatórios antes de substituir o JAR. **Nenhum JAR, config, workflow ou save foi alterado nesta auditoria.** 
 
 **Resultado documental:** mudanças upstream relevantes até **2.13.54** incorporadas, baseline físico **2.13.46** preservado; basename `✅-creativecore v2.13.46.md` e pasta **API and Library** inalterados.
+
+## Auditoria incremental upstream — CreativeCore 2.13.55 (22/11/2026; não instalada)
+
+**Baseline:** #207 `CreativeCore_NEOFORGE_v2.13.46_mc1.21.1.jar`, `2.13.46`. O dossier já auditou as etapas de source **2.13.47–2.13.54**, incluindo as mudanças de validação/permissão de GUIs da 2.13.53 e 2.13.54.
+
+A [release oficial NeoForge Minecraft 1.21.1 **2.13.55**, CurseForge 9720383](https://www.curseforge.com/minecraft/mc-mods/creativecore/files/9720383), de **20/11/2026**, sucede a 2.13.54. O [`changelog.txt` da branch oficial `1.21`](https://github.com/CreativeMD/CreativeCore/blob/1.21/changelog.txt) registra especificamente:
+- **Adicionado `BoxEdge`** à infraestrutura geométrica.
+- **Reorganizados métodos de renderização em `RenderBox`**.
+
+**Impacto:** mudança de APIs de geometria/render que pode alterar o contrato de consumers em compilação/ABI ou visualização; o changelog não declara remoção de métodos nem garante compatibilidade binária. Regressar LittleTiles/LittleFrames e outros consumers CreativeMD comprovadamente presentes, modelos inclinados, camadas de render, origens Sable, caixas voxel, GUI, multiplayer e dedicada; confirmar a metadata e eventuais chamadas afetadas nos JARs. **Sem instalação ou teste, mantendo nome `v2.13.46` e pasta `API and Library`.**
