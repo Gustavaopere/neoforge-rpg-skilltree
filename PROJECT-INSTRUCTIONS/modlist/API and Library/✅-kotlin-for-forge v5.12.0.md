@@ -74,3 +74,11 @@ Nenhum teste foi marcado como aprovado nesta auditoria documental.
 - repositório/changelog oficial: função do language loader, contratos Kotlin e histórico 5.x;
 - issues #160/#162: apenas sinal de risco upstream, explicitamente não tratado como incompatibilidade comprovada.
 A lista exata de mods consumidores de KFF nesta instância não foi inferida do inventário; para remoção, auditar metadata individual dos JARs dependentes.
+
+## Auditoria incremental — Kotlin for Forge 5.13.0 (22/11/2026; upstream)
+
+A instalação física fica em #361, outer JAR `kotlinforforge-5.12.0-all.jar`, `kffmod` interno 5.12.0. A [release **5.13.0** do CurseForge, file ID 9641139](https://www.curseforge.com/minecraft/mc-mods/kotlin-for-forge/files/9641139), publicada em **16/11/2026**, fornece `kotlinforforge-5.13.0-all.jar` para NeoForge 1.21.1.
+
+O arquivo CurseForge não contém changelog específico, mas o [changelog oficial do branch 5.x](https://github.com/thedarkcolour/KotlinForForge/blob/5.x/changelog.md) declara atualização de **Kotlin 2.4.0 para 2.4.21** e de **kotlinx serialization 1.11.0 para 1.13.0**. Nenhuma mudança de coroutines é expressamente indicada na nota; sua versão concreta no JAR candidato ainda exige inspeção.
+
+**Riscos/gates:** compatibilidade binária e serialização dos consumers Kotlin, language-provider bootstrap, `META-INF/jarjar/` e versões de `kfflang/kfflib/kffmod` internos; client/server cold boot, Create 6.0.10, classes Kotlin e persistência. Componentes embarcados não são mods top-level. Não há JAR 5.13.0 instalado, teste ou certificação de compatibilidade. Preservar nome v5.12.0 e categoria `API and Library`.

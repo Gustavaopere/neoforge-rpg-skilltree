@@ -151,3 +151,11 @@ Fonte upstream: https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-co
 **Integrações e QA pendentes:** não confundir helpers da library com gameplay próprio. Regressar consumers físicos de UI/BlockEntity, ImmediatelyFast, campos de texto, mouse, inventário criativo, teleporte/chunk unload/reload, comportamento de `BlockEntityBasePacket` e dedicated server. O arquivo upstream prova as mudanças anunciadas, mas não a compatibilidade ABI dos consumers instalados nem aplicação dos testes. **Versão física/dossier continuam em 1.1.24.**
 
 **Fontes primárias:** [arquivo 9447150, release 1.1.26a para NeoForge 1.21.1 e changelog cumulativo](https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib/files/9447150); [repositório do autor](https://github.com/SuperMartijn642/SuperMartijn642sCoreLib). Auditoria documental da sequência publicada concluída.
+
+## Auditoria incremental — SuperMartijn642's Core Lib 1.1.26b (22/11/2026; upstream)
+
+A baseline top-level permanece #535 `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar`. O dossier já cobre separadamente **1.1.24a, 1.1.24b, 1.1.25, 1.1.26 e 1.1.26a**.
+
+A publicação [**1.1.26b**, file ID 9689805](https://www.curseforge.com/minecraft/mc-mods/supermartijn642s-core-lib/files/9689805), **18/11/2026**, destina-se a **NeoForge 1.21/1.21.1**. A correção **exclusiva** da versão é fazer `ScreenUtils#withScissor` **levar em conta a translação da model-view stack**: retângulos de clipping devem corresponder à posição efetivamente desenhada de widgets transformados. As notas restantes da release são cumulativas e já foram auditadas para as versões precedentes. A build 1.1.26c direcionada a Minecraft 1.21.5 não equivale a uma build 1.21.1.
+
+**QA:** conferir overlays, clippings, tooltip, foco/hitboxes, mudanças de GUI scale, ImmediatelyFast e telas de consumers da biblioteca. Sem teste de compatibilidade de ABI ou alteração dos JARs, configs e saves. Nome v1.1.24 e pasta `API and Library` mantidos.

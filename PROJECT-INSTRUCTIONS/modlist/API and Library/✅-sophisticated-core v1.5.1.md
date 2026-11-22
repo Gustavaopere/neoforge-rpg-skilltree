@@ -402,3 +402,11 @@ A sequência documental fica agora **1.5.14.2413 → 1.5.15.2417 (wrapper cache/
 **Gate de promoção física obrigatório:** Sophisticated Backpacks **3.26.3**, Sophisticated Storage **1.5.91**, addons Create, Thirst Was Reclaimed e JEI físico devem ser testados em cópia do pack e mundo. Inspecionar `neoforge.mods.toml` / dependências de cada JAR candidato, version skew e save migration, multiplayer, controllers/claims, inventário remanescente e slots reservados, deadlocks/CME, fluid transactions, magnet/quests, Ender Links, recipes com JEI/EMI, client e dedicated server. **Nenhum teste ou upgrade foi realizado.**
 
 **Resultado documental:** a sequência de **12 publicações após 1.5.17** foi conciliada, e **todas as etapas de source 1.5.18–1.5.38** foram examinadas individualmente com versão do `gradle.properties` e commit do autor. **O JAR e o nome de dossier `✅-sophisticated-core v1.5.1.md` continuam na instalação 1.5.1**, com atualização física pendente e não presumida.
+
+## Auditoria incremental — Sophisticated Core 1.5.39.2489 (22/11/2026; upstream)
+
+A baseline #518 permanece `sophisticatedcore-1.21.1-1.5.1.2341.jar`, runtime `1.5.1`. As etapas de source/distribuição **1.5.2–1.5.38** já estão auditadas acima.
+
+A nova [release **1.5.39.2489** para NeoForge Minecraft 1.21.1, file ID 9692552](https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9692552), **18/11/2026**, traz uma correção específica: **evita crash de mundo quando os pesos configurados de todos os tiers de backpacks somam zero**. O [commit upstream da branch 1.21.x](https://github.com/P3pp3rF1y/SophisticatedCore/commit/72d9f83f1b62401609c5842ff595b4511b2bf3dc) descreve o mesmo erro. Não inferir novas funções de armazenamento de uma correção de pesos. A série de Minecraft 26.x não é alvo válido do pack 1.21.1.
+
+**QA:** validar patch no binário, pesos zero/válidos, worldgen e loot, Sophisticated Backpacks/Storage, outros consumers, migração de configs, instância dedicada e multiplayer. Nenhum JAR foi instalado/testado. Nome v1.5.1 e pasta `API and Library` inalterados.

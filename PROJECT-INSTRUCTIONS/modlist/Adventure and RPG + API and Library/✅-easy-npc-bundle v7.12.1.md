@@ -192,3 +192,16 @@ Artefato físico: easy_npc_bundle-neoforge-1.21.1-7.12.1.jar (posição #240); C
 Fonte oficial com seções próprias por versão: https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/CHANGELOG.md ; arquivos reais do Bundle https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?page=1&version=1.21.1 . O changelog funcional é do Core da família, e não prova que o meta-Bundle implementa essas features.
 
 IMPORTANTE: a família 7.16+ exige Easy Model Entities opcional >=2.6.0, mas o último pack físico tem EME 2.4.0. O changelog também informa NeoForge testado 21.1.262 com fixes de segurança. Antes de atualizar o pack, conciliar Core+Bundle+Config UI e seus manifestos, EME, protocolo cliente-servidor, JarJar, objetivos/custom projectiles, persistência e testes em servidor dedicado. A auditoria documental da sequência 7.12.1→7.19.0 está completa; JAR instalado, certificação nominal v7.12.1 e QA foram preservados.
+
+## Auditoria incremental — Easy NPC: Bundle 7.20.0 (22/11/2026; upstream)
+
+**Instalado:** `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` (#240); Core e Config UI também permanecem `7.12.1` no inventário físico. As etapas 7.12.2–7.19.0 já foram auditadas neste dossier.
+
+O [catálogo oficial do Bundle](https://www.curseforge.com/minecraft/mc-mods/easy-npc/files/all?version=1.21.1) inclui **`easy_npc_bundle-neoforge-1.21.1-7.20.0.jar`, publicado em 18/11/2026**. O [changelog upstream da família 1.21.1](https://github.com/MarkusBordihn/BOs-Easy-NPC/blob/1.21.1/CHANGELOG.md) descreve na seção 7.20.0 **correções do Core**, não gameplay implementado isoladamente pelo meta-Bundle:
+
+- Corrige crash por skin ID ausente e falhas de carga de NPCs, spawners ou presets com IDs danificados por outros mods.
+- Impede perda de NPCs de ombro após interrupção de liberação; conversões indevidas para mobs vanilla por raio, congelamento, afogamento ou zumbificação; spawn aleatório de bebês, passageiros, equipamentos ou efeitos.
+- Corrige coleta de itens sem permissão, ataques vanilla extras de skeletons; comportamentos indesejados de endermen, slimes, foxes, chickens, cats, creepers e ghasts.
+- Reduz trabalho de procura de NPCs-alvo por mobs hostis no servidor (ganho não medido neste modpack).
+
+**Upgrade coordenado:** validar Core + Bundle + Config UI + Easy Model Entities, limites de dependência e `META-INF/jarjar/`, backup dos NPCs, load/save, armamento, IA, skins, shoulder, cliente/servidor e redes. Nenhuma versão candidata foi instalada ou testada; manter basename v7.12.1 e categorias existentes.

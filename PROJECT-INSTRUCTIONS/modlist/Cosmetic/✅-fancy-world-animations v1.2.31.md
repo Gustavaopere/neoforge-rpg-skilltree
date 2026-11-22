@@ -158,3 +158,11 @@ O caso crítico é mudança rápida de state por redstone ou dois jogadores inte
 - **QA ainda não executada:** lançamento de cliente; servidor dedicado sem dependência indevida; testes com mods de render/culling instalados; itemframes, bells, cauldrons, lecterns, chests, signs, jukeboxes, lanternas; reload, reconnect, chunk unload, updates rápidos e smoke visual com shaders. Não houve substituição de JAR, medição de CPU/FPS ou teste de save.
 
 **Conclusão documental de 17/11/2026:** pesquisa de versões intermediárias concluída e diferenças upstream relevantes registradas até **1.3.7-patch.2**. O único artefato comprovado como instalado continua sendo **`fwa+1.21.1-neoforge-1.2.31.jar` / 1.2.31**; não trocar o nome do dossier para a última release disponível. O dossier permanece no caminho oficial `Cosmetic/`, sem cópia ou mudança de categoria. **Instalação e homologação física continuam pendentes e separadas da auditoria documental.**
+
+## Auditoria incremental — Fancy World Animations 1.3.8 (22/11/2026; upstream)
+
+A baseline física segue `fwa+1.21.1-neoforge-1.2.31.jar` (#295), runtime `1.2.31`. O histórico intermediário até **1.3.7-patch.2** foi auditado anteriormente.
+
+A linha **1.3.8 para NeoForge/Minecraft 1.21.1** está identificada no [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fwa/files/all) e na [branch oficial neoforge-1.21.1](https://github.com/maDU59/FancyWorldAnimations/tree/neoforge-1.21.1), cujo [gradle.properties](https://github.com/maDU59/FancyWorldAnimations/blob/neoforge-1.21.1/gradle.properties) declara `minecraft_version=1.21.1` e `mod_version=1.3.8`. O [changelog da mesma branch](https://github.com/maDU59/FancyWorldAnimations/blob/neoforge-1.21.1/CHANGELOG.md) anuncia **melhorias de performance**, correção de erro/aviso do **EMF** na criação de modelos (#108) e correções diversas (#109). Não detalha as demais mudanças nem informa benchmarks verificáveis; não inventar comportamento ou FPS. `1.3.7-patch.3` da linha Forge 1.20.1 não é um upgrade intermediário comprovado neste alvo.
+
+**QA pendente:** teste em cliente com EntityCulling, EMF, Fusion/Polytone, shaders, modelos de blocos, recarga de recursos e cenas com muitas animações. Não foram instalados ou analisados binários 1.3.8. Versão 1.2.31 e pasta `Cosmetic` permanecem.

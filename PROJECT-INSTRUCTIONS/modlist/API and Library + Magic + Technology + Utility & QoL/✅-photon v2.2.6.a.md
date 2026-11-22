@@ -176,3 +176,11 @@ JAR físico #442: photon-neoforge-1.21.1-2.2.6.a-all.jar. A revisão de 22/10 j�
 - 2.2.11 — 07/11/2026: timeline sections nomeadas com start/loop/end e FXRuntime.sections()/comando /photon fx section; release sections para destroy(false), Drain exit mode, Loop/PingPong lifetime; fixes de timeline que revive efeitos em parada, particle lifetime 0, luzes terminando cedo, playback rate stuttering e remove entity interrompido. Fonte: https://www.curseforge.com/minecraft/mc-mods/photon/files/9489406
 
 Gates físicos: QA de colisões, preloads, shader packs, glTF asset reload, FXPack, sections/start/loop/stop, rendering em Sable/sublevels, LDLib2/KilaGraph e dedicated server. Nenhum JAR foi substituído; conteúdo novo não está ativo no runtime 2.2.6.a. Histórico 2.2.7→2.2.11 documentado integralmente.
+
+## Auditoria incremental — Photon 2.2.11.a (22/11/2026; upstream)
+
+**Instalado:** #442 `photon-neoforge-1.21.1-2.2.6.a-all.jar`, `2.2.6.a`. As versões **2.2.7, 2.2.8, 2.2.9, 2.2.10 e 2.2.11** já foram auditadas no dossier.
+
+A nova [release **2.2.11.a** NeoForge Minecraft 1.21.1, file ID 9684468](https://www.curseforge.com/minecraft/mc-mods/photon/files/9684468), de **18/11/2026**, disponibiliza `photon-neoforge-1.21.1-2.2.11.a-all.jar`. O changelog oficial registra exclusivamente **correção de crash ao redimensionar a janela durante o carregamento inicial dos mods**. Não extrapolar efeitos para gameplay, shaders ou desempenho.
+
+**QA recomendado:** inicialização/redimensionamento, depois testes anteriores de FX prefabs/sections, shader packs, glTF, FXPack, LDLib2, GPU/render e dedicated server sem classes client-only. Não ocorreu instalação nem QA. Mantidas versão física e pasta oficial.

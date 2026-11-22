@@ -492,3 +492,23 @@ Fontes oficiais: https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files
 - **Obrigatório atualizar ambos os lados:** o autor registra mudanças de protocolo: **cliente e dedicated server devem estar na mesma versão 3.4.1**.
 
 **Riscos e QA necessários:** verificar o conjunto de versões Ars/Iron's e addons do pack, spellbooks/scrolls legados, targeting com permissões, debits/cooldowns exatamente uma vez, Glyph Press/persistência/Source, datapack invalid/reload, JEI e sincronização client/server. Testes upstream não certificam esta instância. **Histórico 3.3.4→3.3.5→3.3.6→3.3.7→3.4.0→3.4.1 auditado; upgrade físico/QA não homologados.**
+
+## Auditoria incremental — Ars 'n Spells 3.4.0, 3.4.1, 3.4.2 (22/11/2026; upstream)
+
+O JAR instalado continua `ars_n_spells-3.3.4.jar` / runtime `3.3.4` na posição física **#046**. As etapas **3.3.5, 3.3.6 e 3.3.7** já estão discriminadas no dossier e não são omitidas.
+
+### 3.4.0 — 21/10/2026, [CurseForge NeoForge 1.21.1 #9280543](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9280543)
+
+Corrige a resolução do `Touch` de Ars spells disparados via scroll/spellbook/implement Iron's: acerto em bloco deve ser cast válido e miss não deve debitar mana, aplicar cooldown ou conceder progresso; resolução de alvo cabe ao servidor. Introduz **spells Iron's como glyphs Ars** com mana, requisitos de aprendizado e cooldown integrados, mantendo glyphs dormentes quando a origem não está presente. O fabricante anunciou **111 spells e 777 glyphs** para o conjunto Iron's testado, sem comprovação de cobertura idêntica no Iron's instalado. O novo **Glyph Press** transforma scrolls em glyphs com Source e catalisadores; defaults publicados: tiers I/II/III com respectivamente 1/2/4 gems e 500/1500/3000 Source, capacidade 4000; cancelar deve devolver insumos. Adiciona configurações de Imported Iron's Glyphs, `data/<namespace>/ans_iron_glyphs/`, tag `ars_n_spells:glyph_press_catalysts`, comandos `/ans glyph inspect/catalog/coverage/mappings/press` e integrações com receitas/JEI. Inspecionar a semântica real do candidato antes de atualizar a economia.
+
+### 3.4.1 — 14/11/2026, [CurseForge NeoForge 1.21.1 #9611964](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9611964)
+
+Corrige uninscription sem confundir spellbook/carrier ou perder dados. Importação respeita escolas, limites server-side, restrições de aprendizado, nível de glyph até **10**, extensões de addon e regras `Amplify`; reforça cálculo de custos/Curios/equipamento. Corrige refund/reload de Glyph Press, estabilidade de identificadores persistentes de glyphs e limpeza de casts interrompidos. JEI volta a atualizar receitas após `/reload` sem duplicação; acrescenta diagnósticos `/ans glyph report/explain/validate/last`. Requer versões de cliente e servidor coordenadas.
+
+### 3.4.2 — 19/11/2026, [CurseForge NeoForge 1.21.1 #9699893](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9699893)
+
+Redesenha o navegador de glyphs importados, agrupando por spell original, com bookmark, filtros de mod/school/tier, favoritos e modos pessoais **Organized, Individual Levels e Hidden**; seção Dormant e catálogo anunciado de **1110 glyphs** (dez níveis, sujeito a config). Ajusta Virtue Ring/Blood Magic, LP/Virtue Aura, mana Ars no modo HYBRID, display, escolas, cooldown, cópia/IDs e fluxo Glyph Press em cenas de dimensão/desconexão/fake players. O upstream afirma executar **372 cenários de teste**, sem qualquer teste local. Cliente e servidor devem estar na mesma versão 3.4.2.
+
+**Conflito explícito entre fontes oficiais:** o texto distribuído com 3.4.2 afirma que **3.4.1 não saiu separadamente** e contém frase de pré-lançamento; os **dois arquivos 3.4.1 e 3.4.2 efetivamente publicados** no CurseForge contradizem a afirmação. Ambas as publicações foram registradas sem inventar resolução do conflito.
+
+**Gate de upgrade:** conferir metadata/JarJar e dependências, catalogação face Iron's 3.16.3 e Ars 5.13.1, Source, mana dos cinco modos, cobrança única, refunds, datapack/JEI reload, save/scroll migration, controle client/server, Curios, addons e multiplayer. Nenhum upgrade/QA foi realizado; v3.3.4 e categorias mantidos.

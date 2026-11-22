@@ -555,7 +555,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 043 | Ars Elemancy | `ars_elemancy-1.21.1-1.18.3.jar` | `1.18.3` | `Addons + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 16:06 |
 | 044 | Ars Elemental | `ars_elemental-1.21.1-0.7.10.1.jar` | `0.7.10.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 19/09/2026 - 17:09 |
 | 045 | Ars Hex Unity | `ars_hex-1.21.1-5.0.4b.jar` | `5.0.4b` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 17/11/2026 - 18:34 |
-| 046 | Ars 'n' Spells | `ars_n_spells-3.3.4.jar` | `3.3.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 17/11/2026 - 15:29 |
+| 046 | Ars 'n' Spells | `ars_n_spells-3.3.4.jar` | `3.3.4` | `Addons + Adventure and RPG + Magic + Utility & QoL` | 22/11/2026 - 00:44 |
 | 047 | Ars Nouveau | `ars_nouveau-1.21.1-5.13.1.jar` | `5.13.1` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Mobs` | 19/09/2026 - 17:09 |
 | 048 | Ars Polymorphia | `ars_polymorphia-1.0.3.jar` | `1.0.3` | `Addons + Magic + Storage + Utility & QoL` | 17/11/2026 - 16:11 |
 | 049 | Ars Sable | `ars_sable-1.21.1-1.1.2.jar` | `1.1.2` | `Addons + API and Library + Magic + Utility & QoL` | 19/09/2026 - 17:11 |
@@ -749,7 +749,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 237 | Create: Dynamic Village | `dynamicvillage-0.9-1.21.1.jar` | `0.9` | `Cosmetic + Create + Structures + Technology + World Gen` | 24/09/2026 - 11:14 |
 | 238 | Easy Model Entities | `easy_model_entities-neoforge-1.21.1-2.4.0.jar` | `2.4.0 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library + Automation + Mobs + Utility & QoL` | 22/10/2026 - 22:49 |
 | 239 | Easy NPC: Core | `easy_npc-neoforge-1.21.1-7.12.1.jar` | `7.12.1 do JAR; metadata runtime sem versão` | `Adventure and RPG + API and Library` | 17/11/2026 - 22:45 |
-| 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 17/11/2026 - 16:11 |
+| 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Adventure and RPG + API and Library` | 22/11/2026 - 00:44 |
 | 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.12.1.jar` | `7.12.1` | `Utility & QoL` | 19/11/2026 - 00:31 |
 | 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
 | 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 18/11/2026 - 08:02 |
@@ -804,7 +804,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 292 | FTB Ultimine (NeoForge) | `ftb-ultimine-neoforge-2101.1.15.jar` | `2101.1.15` | `Armor, Tools, and Weapons + Server Utility` | 24/09/2026 - 19:05 |
 | 293 | FTB XMod Compat | `ftb-xmod-compat-neoforge-21.1.11.jar` | `21.1.11` | `API and Library` | 17/11/2026 - 17:33 |
 | 294 | Fusion (Connected Textures) | `fusion-1.3.15a-neoforge-mc1.21.1.jar` | `1.3.15+a` (metadata runtime); filename/release `1.3.15a` | `API and Library + Cosmetic` | 24/09/2026 - 19:05 |
-| 295 | Fancy World Animations | `fwa+1.21.1-neoforge-1.2.31.jar` | `1.2.31` | `Cosmetic` | 17/11/2026 - 17:59 |
+| 295 | Fancy World Animations | `fwa+1.21.1-neoforge-1.2.31.jar` | `1.2.31` | `Cosmetic` | 22/11/2026 - 00:44 |
 | 296 | Fzzy Config | `fzzy_config-0.7.7+1.21+neoforge.jar` | `0.7.7+1.21+neoforge` | `API and Library + Utility & QoL` | 20/11/2026 - 18:36 |
 | 297 | Gabou's Libs | `gaboulibs-neoforge-1.9.jar` | `1.9` | `API and Library` | 24/09/2026 - 19:05 |
 | 298 | Create Aeronautics: Gadgets & Gizmos | `gadgets-and-gizmos-bundled-V1.2.2.jar` | `1.2.2` | `Addons + Create` | 18/11/2026 - 11:28 |
@@ -870,7 +870,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 358 | Kiwi 🥝 (Neo/Forge) | `Kiwi-1.21.1-NeoForge-15.8.7.jar` | `15.8.7+neoforge` | `API and Library` | 25/09/2026 - 02:11 |
 | 359 | Knight Lib | `knightlib-neoforge-1.21.1-2.0.1.jar` | `2.0.1` | `API and Library` | 23/10/2026 - 14:20 |
 | 360 | Konkrete | `konkrete_neoforge_1.9.9_MC_1.21.jar` | `1.9.9` | `API and Library` | 25/09/2026 - 02:11 |
-| 361 | Kotlin for Forge | `kotlinforforge-5.12.0-all.jar` | `5.12.0` | `API and Library` | 25/09/2026 - 02:11 |
+| 361 | Kotlin for Forge | `kotlinforforge-5.12.0-all.jar` | `5.12.0` | `API and Library` | 22/11/2026 - 00:44 |
 | 362 | KubeJS Create | `kubejs-create-neoforge-2101.3.1-build.18.jar` | `2101.3.1-build.18` | `KubeJS` | 25/09/2026 - 10:33 |
 | 363 | KubeJS | `kubejs-neoforge-2101.7.2-build.377.jar` | `2101.7.2-build.377` | `API and Library + KubeJS + Map and Information + Server Utility + World Gen` | 20/11/2026 - 18:16 |
 | 364 | KubeJS Curios | `kubejs_curios_neoforge_1.21.1-1.0.4.jar` | `1.0.4` | `KubeJS` | 25/09/2026 - 10:33 |
@@ -951,7 +951,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 439 | Pehkui | `Pehkui-3.8.3+1.21-neoforge.jar` | `3.8.3+1.21-neoforge` | `API and Library` | 25/09/2026 - 15:17 |
 | 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 22/10/2026 - 19:46 |
 | 441 | Presence Footsteps x Sable (Aeronautics Compat) | `pfsable-1.0.jar` | `1.0` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
-| 442 | Photon | `photon-neoforge-1.21.1-2.2.6.a-all.jar` | `2.2.6.a` | `API and Library + Magic + Technology + Utility & QoL` | 17/11/2026 - 16:11 |
+| 442 | Photon | `photon-neoforge-1.21.1-2.2.6.a-all.jar` | `2.2.6.a` | `API and Library + Magic + Technology + Utility & QoL` | 22/11/2026 - 00:44 |
 | 443 | Pickable Health Orbs | `pickable_orbs-1.21.1-1.0.0.jar` | `1.21.1-1.0.0` | `Adventure and RPG + Magic + Utility & QoL` | 26/09/2026 - 02:32 |
 | 444 | Placebo | `Placebo-1.21.1-9.9.2.jar` | `9.9.2` | `API and Library` | 26/09/2026 - 02:32 |
 | 445 | Platform | `Platform-neoforge-1.21.1-1.3.3.jar` | `1.3.3` | `API and Library` | 17/11/2026 - 18:22 |
@@ -1027,7 +1027,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 20:56 |
 | 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.3.2158.jar` | `3.26.3` | `Armor, Tools, and Weapons + Storage` | 18/11/2026 - 12:08 |
 | 517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `0.2.0` | `Addons + Storage` | 27/09/2026 - 21:19 |
-| 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `1.5.1` | `API and Library` | 17/11/2026 - 18:59 |
+| 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.1.2341.jar` | `1.5.1` | `API and Library` | 22/11/2026 - 00:44 |
 | 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.5.91.2127.jar` | `1.5.91` | `Storage` | 21/11/2026 - 00:23 |
 | 520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar` | `0.1.21` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 521 | Soul fire'd | `soul-fire-d-neoforge-1.21-6.1.0.jar` | `6.1.0` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Utility & QoL` | 27/09/2026 - 20:57 |
@@ -1044,7 +1044,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 532 | Create: Deep Seas - Lava Fix | `submarinefix-1.0.1.jar` | `1.0.1` | `Bug Fixes + Create` | 27/09/2026 - 22:58 |
 | 533 | Subtle Effects | `SubtleEffects-neoforge-1.21.1-1.14.3.jar` | `1.14.3` | `Cosmetic + Miscellaneous` | 18/11/2026 - 12:08 |
 | 534 | SuperMartijn642's Config Lib | `supermartijn642configlib-1.1.8-neoforge-mc1.21.jar` | `1.1.8` | `API and Library` | 27/09/2026 - 22:58 |
-| 535 | SuperMartijn642's Core Lib | `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` | `1.1.24` | `API and Library` | 17/11/2026 - 15:29 |
+| 535 | SuperMartijn642's Core Lib | `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` | `1.1.24` | `API and Library` | 22/11/2026 - 00:44 |
 | 536 | Supplementaries | `supplementaries-1.21.1-3.9.9-neoforge.jar` | `1.21.1-3.9.9` | `Cosmetic + Miscellaneous + Redstone + Storage` | 17/11/2026 - 22:01 |
 | 537 | Tectonic | `tectonic-3.0.28-neoforge-21.1.jar` | `3.0.28` | `World Gen` | 27/09/2026 - 23:18 |
 | 538 | TenshiLib (Forge/NeoForge) | `tenshilib-1.21.1-2.3.0.b-neoforge.jar` | `1.21.1-2.3.0.b-neoforge` | `API and Library` | 27/09/2026 - 23:18 |
