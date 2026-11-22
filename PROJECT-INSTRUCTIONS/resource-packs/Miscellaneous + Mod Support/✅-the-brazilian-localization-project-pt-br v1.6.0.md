@@ -1,10 +1,17 @@
-# The Brazilian Localization Project [PT-BR]
+# The Brazilian Localization Project [PT-BR] — 1.6.0 (instalação declarada em 22/11/2026)
+
+> **Estado vigente conforme declaração do usuário:** 1.3.0 → **1.6.0**, ZIP distribuído no [CurseForge](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9655760) `The-Brazilian-Project-1.21.1-1.6.0.zip` para Minecraft 1.21.1. O mesmo autor publicou no Modrinth o ZIP `The Brazilian Project [1.21.1-1.6.0].zip`; nomes divergentes não comprovam equivalência binária. A declaração confirma a atualização documental, não substitui leitura/hash do ZIP instalado.
+
+> **Auditoria:** 1.4.0, 1.5.2 e 1.6.0 estão individualizadas nas seções históricas. O source 1.6.0 declara `pack_format: 34` e contém JSONs de traduções em namespaces ModernFix, JEI, Moonlight, MezzConfig, Create Goggles e Mowzie's Mobs; a inspeção integral do ZIP publicado e dos placeholders no pack permanece pendente.
+
+> **Histórico:** todas as menções posteriores a 1.3.0 como 'atual' ou 'instalado', e a 1.6.0 como 'não instalado', descrevem o snapshot/auditoria da época; foram superadas pela declaração de instalação deste lote. Nenhum resource reload ou teste visual foi executado.
+
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
 - **Tipo de conteúdo:** Resource Pack
-- **Arquivo:** `The Brazilian Project [1.21.1-1.3.0].zip`
-- **Versão 1.21.1:** 1.3.0
+- **Arquivo ZIP instalado (declarado):** `The-Brazilian-Project-1.21.1-1.6.0.zip` ([CurseForge](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9655760)).
+- **Versão instalada declarada (Minecraft 1.21.1):** `1.6.0`; snapshot antigo `1.3.0`.
 - **Data da exportação:** 2026-09-11
 
 ## Autoridade e limite físico na exportação
@@ -16,21 +23,21 @@
 ## Propriedades do banco
 
 - **Mod:** The Brazilian Localization Project [PT-BR]
-- **Arquivo JAR:** `The Brazilian Project [1.21.1-1.3.0].zip`
+- **Arquivo ZIP instalado (declarado):** `The-Brazilian-Project-1.21.1-1.6.0.zip` ([CurseForge](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9655760)).
 - **Tipo de conteúdo:** Resource Pack
-- **Versão 1.21.1:** 1.3.0
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
+- **Versão instalada declarada (Minecraft 1.21.1):** `1.6.0`; snapshot antigo `1.3.0`.
+- **Estado no pack:** `1.6.0` declarada instalada pelo usuário em 22/11/2026; ZIP local não reinspecionado.
+- **Estado da pesquisa:** publicações intermediárias e partes do source auditadas; ZIP local/QA e equivalência Modrinth-CurseForge não confirmados.
 - **Decisão:** Sem decisão
 - **Categoria:** QoL
 - **Função:** Resource pack de localização PT-BR para Minecraft modded que preenche traduções ausentes e revisa inconsistências/terminologia de traduções existentes.
 - **Dependências:** Minecraft 1.21.1 e os mods cujas localization keys o pack traduz. Não cria dependência funcional; ausência de tradução deve cair em chave/idioma fallback sem alterar gameplay.
 - **Sobreposição:** Pode substituir `pt_br.json`/localization resources fornecidos pelos próprios mods ou por outros translation packs. A prioridade de resource pack determina qual string vence por chave.
-- **Compatibilidade/Riscos:** Pack de tradução amplo, mas não equivale a 100% de cobertura de todos os mods instalados. Pode sobrescrever traduções PT-BR nativas por prioridade e ficar desatualizado quando mods adicionam/renomeiam localization keys.
-- **Observações:** Arquivo instalado `The Brazilian Project [1.21.1-1.3.0].zip`, versão 1.3.0. A lista oficial 1.21.1 cobre muitos mods presentes no pack, mas não autoriza afirmar cobertura total da modlist.
-- **Procedência:** CurseForge oficial The Brazilian Localization Project 1.3.0 para 1.21.1 + captura Resource Packs do perfil em 08/09/2026 + modlist física atual.
+- **Compatibilidade/Riscos:** conflito de tradução com outros resource packs/strings nativas, prioridade da pilha, placeholders e JSONs; sem F3+T ou conferência do novo ZIP.
+- **Observações vigentes:** nome CurseForge `The-Brazilian-Project-1.21.1-1.6.0.zip`, alternativo Modrinth com espaços/colchetes. Versão declarada 1.6.0 sem hash local.
+- **Procedência:** declaração do usuário em 22/11/2026, [CurseForge 9655760](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9655760) e auditoria do source histórico; nenhum ZIP novo inspecionado.
 - **Fonte:** https://www.curseforge.com/minecraft/texture-packs/brazilian-project
-- **Atualização/Status:** PADRÃO ALEX'S MOBS APLICADO EM 11/09/2026 — Brazilian Localization Project 1.3.0, PT-BR modded, coverage boundary, language-resource priority, riscos e QA catalogados.
+- **Atualização/Status:** 22/11/2026 — `1.3.0` → `1.6.0` conforme declaração de instalação; comparação integral do ZIP distribuído e QA pendentes.
 - **Histórico da decisão:**
 
 # Dossiê operacional — padrão Alex's Mobs

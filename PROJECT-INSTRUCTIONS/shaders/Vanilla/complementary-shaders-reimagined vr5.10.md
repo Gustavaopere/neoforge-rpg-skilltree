@@ -1,21 +1,30 @@
-# Complementary Shaders - Reimagined
+# Complementary Shaders - Reimagined — r5.10 (instalação declarada em 22/11/2026)
+
+> **Estado vigente conforme declaração do usuário:** r5.9 → **r5.10**, shader ZIP oficial `ComplementaryReimagined_r5.10.zip` ([CurseForge file 9687811](https://www.curseforge.com/minecraft/shaders/complementary-reimagined/files/9687811), Release em 18/11/2026, inclui Minecraft 1.21.1/Iris). O antigo `ComplementaryReimagined_r5.9.zip` é apenas a última evidência física de 08/09/2026. A declaração confirma o inventário documental, mas nenhum ZIP novo, checksum ou teste GLSL foi inspecionado nesta sessão.
+
+> **Auditoria:** r5.9.1, r5.9.2, r5.9.3 e r5.10 foram examinadas no histórico. r5.10 adiciona Dynamic Colored Lighting, melhora iluminação de itens segurados e traz opções/correções de render; mudanças exclusivas do Minecraft 26.x não se aplicam automaticamente a 1.21.1.
+
+> **Compatibilidade:** Euphoria Patcher 1.11.2-r5.10 consta atualizado documentalmente em lote anterior. Não foram verificados Iris, shader options, driver/GPU nem execução real. O dossier continua sem selo ✅ por não possuir auditoria binária/QA do ZIP novo; a versão aparece no filename por solicitação expressa de versionamento.
+
+> **Histórico:** afirmações antigas abaixo de que r5.9 é 'atual' ou de que r5.10 não está instalada descrevem o estado de pesquisas anteriores, não a declaração do usuário deste lote.
+
 
 ## Propriedades do registro
 
 - **Mod:** Complementary Shaders - Reimagined
-- **Arquivo ZIP (última evidência física):** `ComplementaryReimagined_r5.9.zip`
-- **Versão 1.21.1:** r5.9
+- **Arquivo ZIP instalado (declarado pelo usuário):** `ComplementaryReimagined_r5.10.zip` ([CurseForge](https://www.curseforge.com/minecraft/shaders/complementary-reimagined/files/9687811)); última evidência física `ComplementaryReimagined_r5.9.zip`.
+- **Versão instalada declarada (Minecraft 1.21.1):** `r5.10` (snapshot anterior `r5.9`).
 - **Tipo de conteúdo:** Shader
 - **Categoria:** Visual
 - **Função:** Shader pack para Minecraft Java que redefine iluminação, sombras, atmosfera, água, céu e pós-processamento preservando a estética vanilla como referência visual.
-- **Dependências:** Pipeline de shaders compatível. Na modlist física de 16/09/2026: Iris 1.8.14-beta.1+mc1.21.1 e Euphoria Patcher 1.10.5-r5.9.3-neoforge. O Patcher atual indica compatibilidade com a linha r5.9.3, mas não substitui a prova física do ZIP Complementary instalado.
-- **Estado no pack:** Integrado ao Github
-- **Estado da pesquisa:** Verificado
-- **Compatibilidade/Riscos:** Shader client-side com custo de GPU e possível interação com mods de renderização, céu, água, partículas e efeitos. A modlist atual usa Iris 1.8.14-beta.1+mc1.21.1 e Euphoria Patcher 1.10.5-r5.9.3-neoforge; o alinhamento do Patcher à linha r5.9.3 não prova, por si só, qual ZIP Complementary está instalado. Exigir inventário físico atual do shaderpack antes de certificar.
+- **Dependências:** pipeline Iris, Euphoria Patcher 1.11.2-r5.10 sincronizado documentalmente e driver/GPU não verificados no perfil.
+- **Estado no pack:** r5.10 declarado instalado pelo usuário em 22/11/2026; sem verificação de ZIP/GLSL.
+- **Estado da pesquisa:** publicação oficial r5.10 confirmada, cadeia histórica auditada; QA e ZIP não inspecionados.
+- **Compatibilidade/Riscos:** GLSL/driver, presets, dynamic colored lights, fog, clouds, particles, FPS e interoperabilidade com Euphoria. Sem homologação.
 - **Fonte:** https://www.curseforge.com/minecraft/shaders/complementary-reimagined
-- **Procedência:** captura física Shaders de 08/09/2026 (Complementary Reimagined r5.9) + modlist física atual (Iris/Euphoria Patcher; Euphoria 1.10.5-r5.9.3-neoforge) + CurseForge oficial Complementary Reimagined r5.9.3, arquivo ID 8884654, publicado em 15/09/2026, com suporte a Minecraft 1.21.1/Iris + upstream oficial revalidado em 29/09/2026. A versão instalada do ZIP shader permanece não confirmada após 08/09.
-- **Observações:** Última captura física disponível: `ComplementaryReimagined_r5.9.zip` em 08/09/2026. Upstream oficial revalidado em 29/09/2026: r5.9.3 continua sendo a release mais recente, arquivo `ComplementaryReimagined_r5.9.3.zip`, publicada em 15/09/2026, com suporte declarado a Minecraft 1.21.1 e Iris. O stack físico atual de mods usa Euphoria Patcher 1.10.5-r5.9.3-neoforge, mas isso não substitui a prova do ZIP instalado.
-- **Atualização/Status:** REAUDITADO EM 29/09/2026 — upstream oficial continua em Complementary Reimagined r5.9.3 (`ComplementaryReimagined_r5.9.3.zip`, publicado em 15/09/2026 e compatível com Minecraft 1.21.1/Iris). A última evidência física disponível do shaderpack continua sendo `ComplementaryReimagined_r5.9.zip` de 08/09/2026; a certificação permanece fail-closed até existir inventário físico atual do diretório `shaderpacks/`.
+- **Procedência:** declaração do usuário em 22/11/2026, [CurseForge 9687811](https://www.curseforge.com/minecraft/shaders/complementary-reimagined/files/9687811), último snapshot físico 08/09/2026.
+- **Observações vigentes:** `ComplementaryReimagined_r5.10.zip` declarada instalada; r5.9/r5.9.3 históricos e sem novo SHA local.
+- **Atualização/Status:** 22/11/2026 — r5.9 → r5.10 declarada instalada. Sem novo ZIP físico inspecionado, QA, benchmark ou selo ✅.
 - **Decisão:** Sem decisão
 - **Sobreposição:** Pode compor ou competir visualmente com mods/packs que alterem sky, clouds, fog, water, particles e iluminação. O shader pipeline tem prioridade visual própria; resource packs continuam fornecendo assets, não lógica do shader.
 
