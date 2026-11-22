@@ -14,6 +14,26 @@
 
 
 
+## Lote 22 e 31–39 — atualização declarada e auditada em 22/11/2026
+
+A solicitação do usuário constitui a declaração de atualização das versões NeoForge 1.21.1 indicadas neste lote. Os JARs foram registrados pelo nome de distribuição pesquisado (não lidos diretamente na instalação local). Requisitos de dependências de outros lotes não impedem a atualização documental; não houve QA de cliente/servidor.
+
+| Item | Nº físico original | Mod | Versão documentada nesta atualização | Status |
+|---:|---:|---|---|---|
+| 31 | 511 | Snow! Real Magic! ⛄ (Neo/Forge) | `12.2.7` | Dossier e índice sincronizados |
+| 32 | 434 | Particle Effects | `1.7.0` | Dossier e índice sincronizados |
+| 33 | 227 | Dynamic Trees - BetterNether | `2.2.0` | Revalidado sem mudança de versão |
+| 34 | 310 | GTBC's SpellLib/API | `3.0.0-1.21.1` | Dossier e índice sincronizados |
+| 35 | 231 | Dynamic Trees - VanillaBackport | `1.8.0` | Dossier e índice sincronizados |
+| 36 | 349 | Just Enough Items (JEI) | `19.76.1.478` | Dossier e índice sincronizados |
+| 37 | 028 | Animal Husbandry | `0.7.0` | Dossier e índice sincronizados |
+| 38 | 533 | Subtle Effects | `1.15.3` | Dossier e índice sincronizados |
+| 39 | 290 | FTB Quests (NeoForge) | `2101.1.39` | Dossier e índice sincronizados |
+
+**Limites de evidência:** GTBC's SpellLib 3.0.0 não oferece changelog granular recuperado nesta revisão; a linha JEI 19.56.0.440 → 19.76.1.478 possui 30 distribuições anteriores inventariadas, mas não tem todos os changelogs individuais fechados, e o basename da nova Beta JEI ainda requer conferência independente do arquivo individual. Não inferir conteúdo não publicado nem certificar homologação de runtime.
+
+**Item 22 — Raven's RPG Resource Orbs:** a publicação oficial 1.0.4 Beta NeoForge 1.21.1 foi identificada ([file 9720393](https://www.curseforge.com/minecraft/mc-mods/ravens-resource-orbs/files/9720393)), mas **nenhum dossier ✅- com versão nem entrada/posição top-level correspondente** existe no inventário histórico. O item permanece fora da tabela certificada sem posição inventada.
+
 ## Lote 21–30 — sincronização documental declarada (22/11/2026)
 
 **Autoridade desta atualização:** o pedido do usuário declara que as versões-alvo NeoForge 1.21.1 já foram atualizadas no CurseForge. As nove linhas da tabela principal e os dossiers versionados foram sincronizados. Os JARs listados são os **filenames oficiais das respectivas publicações**, não hashes/localizações relidos no PC. Dependências com entradas documentais antigas aguardam seu próprio lote, sem paralisar as atualizações efetuadas. A fonte histórica mantém as posições originais.
@@ -590,7 +610,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 025 | AmbientSounds 6 | `AmbientSounds_NEOFORGE_v6.3.8_mc1.21.1.jar` | `6.3.8` | `Miscellaneous` | 23/10/2026 - 15:22 |
 | 026 | Amendments | `amendments-1.21-2.1.10-neoforge.jar` | `1.21-2.1.10` | `Cosmetic + Utility & QoL` | 17/11/2026 - 18:38 |
 | 027 | Amplified Nether | `Amplified_Nether_26.2_v1.2.16.jar` | `1.2.16` | `Biomes + Dimensions + World Gen` | 19/09/2026 - 12:06 |
-| 028 | Animal Husbandry | `AnimalHusbandry-neoforge-0.4.1.jar` | `0.4.1` | `Farming + Genetics + Mobs` | 18/11/2026 - 08:58 |
+| 028 | Animal Husbandry | `AnimalHusbandry-neoforge-0.7.0.jar` | `0.7.0` | `Farming + Genetics + Mobs` | 22/11/2026 - 09:03 |
 | 029 | Create: Apokinetics | `apokinetics-1.0.6.jar` | `1.0.6` | `Addons + Automation + Create + Magic + Technology` | 17/11/2026 - 18:34 |
 | 030 | Apotheosis | `Apotheosis-1.21.1-8.8.0.jar` | `8.8.0` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs` | 19/09/2026 - 12:06 |
 | 031 | Apotheotic Creation | `apotheoticcreation-2.0.0.jar` | `2.0.0` | `Automation + Create + Storage + Utility & QoL` | 19/09/2026 - 12:06 |
@@ -789,11 +809,11 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 224 | Domum Ornamentum | `domum-ornamentum-1.0.236-snapshot-main.jar` | `1.0.236-snapshot` | `API and Library + Cosmetic` | 20/11/2026 - 00:17 |
 | 225 | Dreamless Spells and Spellbooks | `dreamless_spells-1.1.9.jar` | `1.1.9` | `Addons + Armor, Tools, and Weapons + Magic + Ores and Resources` | 24/09/2026 - 10:44 |
 | 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 22/11/2026 - 07:23 |
-| 227 | Dynamic Trees - BetterNether | `dtbetternether-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 24/09/2026 - 10:44 |
+| 227 | Dynamic Trees - BetterNether | `dtbetternether-1.21.1-2.2.0.jar` | `2.2.0` | `Addons + World Gen` | 22/11/2026 - 09:02 |
 | 228 | Dynamic Trees - Oh The Biomes We've Gone | `dtbwg-1.1.0-BETA02.jar` | `1.1.0-BETA02` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
 | 229 | Dynamic Trees - Quark | `dtquark-2.6.1.jar` | `2.6.1` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
 | 230 | Dynamic Trees - Terralith | `dtterralith-1.3.0.jar` | `1.3.0` | `Addons + Biomes + World Gen` | 24/09/2026 - 10:44 |
-| 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.7.0.jar` | `1.7.0` | `Addons + World Gen` | 22/10/2026 - 23:21 |
+| 231 | Dynamic Trees - VanillaBackport | `dtvanillabackport-1.21.1-1.8.0.jar` | `1.8.0` | `Addons + World Gen` | 22/11/2026 - 09:02 |
 | 232 | Dynamic RPG Resource Bars | `dynamic_resource_bars-neoforge-0.7.1-1.21.1.jar` | `0.7.1` | `Adventure and RPG + API and Library + Cosmetic + Magic + Utility & QoL` | 24/09/2026 - 11:14 |
 | 233 | Dynamic Brightness | `DynamicBrightness-neoforge-1.3.1.jar` | `1.3.1` | `Utility & QoL` | 24/09/2026 - 11:14 |
 | 234 | Dynamic Trees Addon Lib | `DynamicTrees-AddonLib-DTteam-neoforge-1.21.1-0.2.0-BETA03.jar` | `0.2.0-BETA03` | `Addons + API and Library + Cosmetic` | 24/09/2026 - 11:14 |
@@ -852,7 +872,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 287 | Fragmentum [NeoForge Edition] | `fragmentum-neoforge-1.21.1-2.4.4.jar` | `2.4.4` | `API and Library` | 22/10/2026 - 23:19 |
 | 288 | FTB Chunks (NeoForge) | `ftb-chunks-neoforge-2101.1.22.jar` | `2101.1.22` | `Map and Information + Server Utility` | 20/11/2026 - 00:35 |
 | 289 | FTB Library (NeoForge) | `ftb-library-neoforge-2101.1.36.jar` | `2101.1.36` | `API and Library` | 20/11/2026 - 00:35 |
-| 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.36.jar` | `2101.1.36` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 18/11/2026 - 08:55 |
+| 290 | FTB Quests (NeoForge) | `ftb-quests-neoforge-2101.1.39.jar` | `2101.1.39` | `Adventure and RPG + API and Library + Map and Information + Server Utility` | 22/11/2026 - 09:03 |
 | 291 | FTB Teams (NeoForge) | `ftb-teams-neoforge-2101.1.11.jar` | `2101.1.11` | `API and Library` | 17/11/2026 - 20:00 |
 | 292 | FTB Ultimine (NeoForge) | `ftb-ultimine-neoforge-2101.1.15.jar` | `2101.1.15` | `Armor, Tools, and Weapons + Server Utility` | 24/09/2026 - 19:05 |
 | 293 | FTB XMod Compat | `ftb-xmod-compat-neoforge-21.1.11.jar` | `21.1.11` | `API and Library` | 17/11/2026 - 17:33 |
@@ -872,7 +892,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 307 | Goety Iron | `GoetyIron-1.21.1-NeoForge-3.1.jar` | `3.1` | `Magic + Mobs` | 24/09/2026 - 21:04 |
 | 308 | Grappling Hook Mod: Skybound | `grapplemod-1.1+1.21.1.neoforge.jar` | `1.1+1.21.1.neoforge` | `Player Transport + Skyblock + Utility & QoL` | 24/09/2026 - 21:04 |
 | 309 | GTBC's Geomancy Plus - Iron's Spells Addon | `gtbcs_geomancy_plus-1.1.0-1.21.1.jar` | `1.1.0-1.21.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 21:04 |
-| 310 | GTBC's SpellLib/API | `gtbcs_spell_lib-2.2.0-1.21.1.jar` | `2.2.0-1.21.1` | `Addons + API and Library` | 24/09/2026 - 21:04 |
+| 310 | GTBC's SpellLib/API | `gtbcs_spell_lib-3.0.0-1.21.1.jar` | `3.0.0-1.21.1` | `Addons + API and Library` | 22/11/2026 - 09:02 |
 | 311 | Guide-API Village and Pillage | `Guide-API-VP-1.21.1-2.3.0.jar` | `2.3.0` | `API and Library + Map and Information` | 24/09/2026 - 21:04 |
 | 312 | Hazen 'N Stuff | `hazennstuff-1.4.0.14.jar` | `1.4.0.14` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 21:57 |
 | 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 17/11/2026 - 17:09 |
@@ -911,7 +931,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 346 | Magic From The East | `iss_magicfromtheeast-1.1.5.jar` | `1.1.5` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic + World Gen` | 25/09/2026 - 01:24 |
 | 347 | Jade 🔍 | `Jade-1.21.1-NeoForge-15.10.6.jar` | `15.10.6+neoforge` | `Map and Information + Utility & QoL` | 25/09/2026 - 01:24 |
 | 348 | Just Enough Effect Descriptions (JEED) | `jeed-1.21-2.3.2.jar` | `1.21-2.3.2` | `Addons + Map and Information` | 17/11/2026 - 18:54 |
-| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.56.0.440.jar` | `19.56.0.440` | `API and Library + Map and Information` | 21/11/2026 - 13:34 |
+| 349 | Just Enough Items (JEI) | `jei-1.21.1-neoforge-19.76.1.478.jar` | `19.76.1.478` | `API and Library + Map and Information` | 22/11/2026 - 09:02 |
 | 350 | JinxedLib | `jinxedlib-neoforge-1.21.1-1.0.4.jar` | `1.0.4` | `API and Library + Server Utility + Utility & QoL` | 25/09/2026 - 01:25 |
 | 351 | JourneyMap Integration | `jmi-neoforge-1.21.1-1.9.jar` | `1.21.1-1.9` | `Addons + Map and Information` | 25/09/2026 - 01:25 |
 | 352 | JourneyMap | `journeymap-neoforge-1.21.1-6.0.9.jar` | `1.21.1-6.0.9` | `Map and Information` | 22/11/2026 - 08:11 |
@@ -996,7 +1016,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 431 | Ozymandias' Sundries | `ozymandias_sundries-0.0.5.jar` | `0.0.5 (distribuição/publicação); metadata interna 0.0.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 25/09/2026 - 14:28 |
 | 432 | Paladin Spells - Iron's Spells Addon | `paladin_spells-1.21.1-1.1.1.jar` | `1.21.1-1.1.1` | `Addons + Adventure and RPG + Magic` | 21/11/2026 - 00:08 |
 | 433 | ParCool! ~ Minecraft Parkour ~ | `ParCool-1.21.1-4.0.0.3.jar` | `4.0.0.3` | `Adventure and RPG + Miscellaneous + Utility & QoL` | 19/11/2026 - 19:11 |
-| 434 | Particle Effects | `ParticleEffects-1.5.0+1.21.1+neoforge.jar` | `1.5.0+1.21.1+neoforge` | `Cosmetic + Utility & QoL` | 22/11/2026 - 00:55 |
+| 434 | Particle Effects | `ParticleEffects-1.7.0-1.21.1-neoforge.jar` | `1.7.0` | `Cosmetic + Utility & QoL` | 22/11/2026 - 09:01 |
 | 435 | Particle Rain | `particlerain-4.0.0-beta.11+1.21.1-neoforge.jar` | `4.0.0-beta.11` | `Cosmetic` | 22/11/2026 - 01:02 |
 | 436 | Particular ✨ Reforged | `particular-1.21.1-NeoForge-1.5.7.jar` | `1.5.7` | `Cosmetic` | 17/11/2026 - 16:14 |
 | 437 | PartiCull | `PartiCull-neoforge-1.21.1-v2.0.jar` | `2.0` | `Performance + Utility & QoL` | 21/11/2026 - 23:12 |
@@ -1073,7 +1093,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 508 | Create Slice & Dice | `sliceanddice-4.3.3-neoforge.jar` | `4.3.3` | `Addons + Farming + Technology` | 27/09/2026 - 19:01 |
 | 509 | Create: Smart Bounds | `smart_bounds-1.0.0.jar` | `1.0.0` | `Bug Fixes + Create + Performance + Technology` | 27/09/2026 - 19:02 |
 | 510 | SmartBrainLib (Forge/Fabric/Quilt) | `SmartBrainLib-neoforge-1.21.1-1.16.11.jar` | `1.16.11` | `API and Library` | 27/09/2026 - 19:02 |
-| 511 | Snow! Real Magic! ⛄ (Neo/Forge) | `SnowRealMagic-1.21.1-NeoForge-12.2.2.jar` | `12.2.2+neoforge` | `Cosmetic + Utility & QoL + World Gen` | 22/11/2026 - 00:55 |
+| 511 | Snow! Real Magic! ⛄ (Neo/Forge) | `SnowRealMagic-1.21.1-NeoForge-12.2.7.jar` | `12.2.7` | `Cosmetic + Utility & QoL + World Gen` | 22/11/2026 - 09:01 |
 | 512 | Sodium | `sodium-neoforge-0.8.13+mc1.21.1.jar` | `0.8.13+mc1.21.1` | `Performance` | 27/09/2026 - 20:56 |
 | 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 18/11/2026 - 08:55 |
 | 514 | Thirst Upgrade for Sophisticated Backpacks (Thirst Was Taken) | `sophisticated-thirst-upgrade.jar` | `0.1.8` | `Miscellaneous` | 27/09/2026 - 21:19 |
@@ -1095,7 +1115,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 530 | Strut Your Stuff (Struts) | `struts-1.3.1.jar` | `1.3.1` | `API and Library` | 27/09/2026 - 22:12 |
 | 531 | Stylish Effects | `StylishEffects-v21.1.3-1.21.1-NeoForge.jar` | `21.1.3` | `Cosmetic + Map and Information + Utility & QoL` | 27/09/2026 - 22:12 |
 | 532 | Create: Deep Seas - Lava Fix | `submarinefix-1.0.1.jar` | `1.0.1` | `Bug Fixes + Create` | 27/09/2026 - 22:58 |
-| 533 | Subtle Effects | `SubtleEffects-neoforge-1.21.1-1.14.3.jar` | `1.14.3` | `Cosmetic + Miscellaneous` | 18/11/2026 - 12:08 |
+| 533 | Subtle Effects | `SubtleEffects-neoforge-1.21.1-1.15.3.jar` | `1.15.3` | `Cosmetic + Miscellaneous` | 22/11/2026 - 09:03 |
 | 534 | SuperMartijn642's Config Lib | `supermartijn642configlib-1.1.8-neoforge-mc1.21.jar` | `1.1.8` | `API and Library` | 27/09/2026 - 22:58 |
 | 535 | SuperMartijn642's Core Lib | `supermartijn642corelib-1.1.24-neoforge-mc1.21.jar` | `1.1.24` | `API and Library` | 22/11/2026 - 00:44 |
 | 536 | Supplementaries | `supplementaries-1.21.1-4.1.4-neoforge.jar` | `1.21.1-4.1.4` | `Cosmetic + Miscellaneous + Redstone + Storage` | 22/11/2026 - 08:09 |
