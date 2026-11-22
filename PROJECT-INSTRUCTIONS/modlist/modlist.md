@@ -1,6 +1,18 @@
 
 # Índice incremental da modlist certificada e organizada
 
+## Lote declarado — itens 3, 20, 21 e 22 — 22/11/2026
+
+**Instalações declaradas pelo usuário:** as versões do inventário são documentais; não se fez nova leitura do diretório `mods/`. A posição ordinal é a do inventário histórico de 587 entradas.
+
+- **20. Collective, físico #103:** `8.39` → **`8.88`** (NeoForge 1.21.1); `collective-1.21.1-8.88.jar`. [Catálogo CurseForge](https://www.curseforge.com/minecraft/mc-mods/collective/files/all?version=1.21.1) confirma publicação Release em 22/11; o basename também aparece em manifesto público associado ao file ID 9754866, mas a página individual CurseForge do arquivo não pôde ser reaberta nesta revisão. A sequência 8.40–8.87 já auditada foi preservada; notas gerais de 8.88 vindas da publicação de Minecraft 26.3 estão marcadas como não necessariamente atribuíveis ao JAR 1.21.1.
+- **21. GeckoLib, físico #301:** `4.9.2` → **`4.9.4`**; `geckolib-neoforge-1.21.1-4.9.4.jar` ([arquivo oficial](https://www.curseforge.com/minecraft/mc-mods/geckolib/files/9748637)). A 4.9.3 já fora auditada; as correções de Molang, renderização, controllers e memory leaks da 4.9.4 foram registradas no dossier.
+- **22. Just Enough Items (JEI), físico #349:** a versão `19.76.1.478` já estava declarada no índice e dossier antes deste lote e permanece a versão mais recente NeoForge 1.21.1 no [catálogo CurseForge](https://www.curseforge.com/minecraft/mc-mods/jei/files/all?version=1.21.1). O histórico registra limitações de changelogs granulares de Betas anteriores e pendência documental de MezzConfig. Nenhum rename efetuado por já corresponder ao alvo.
+- **3. Create: Cyber Goggles, físico #179:** `8.8.3` permanece documentada por [artefato oficial do autor no Modrinth](https://modrinth.com/mod/create-cyber-goggles/version/1.21.1-8.8.3-neoforge), enquanto **não se confirmou arquivo correspondente 8.8.3 no CurseForge**; não inventar file ID nem mudar o dossier só para eliminar a ressalva.
+
+**Escopo:** apenas novos conteúdos e filenames de dois dossiers elegíveis e `modlist.md`; sem modificar outros dossiers, configurações, assets, código, JARs locais ou saves. Testes de runtime não realizados. Dependências ainda documentadas em versões antigas serão conciliadas em seus próprios lotes e não invalidam as atualizações declaradas.
+
+
 ## Lote de atualização declarada — itens 3 e 11–19 (22/11/2026)
 
 O pedido do usuário declara as novas versões instaladas para fins do índice documental, sem inspeção local do JAR. A posição ordinal continua vinculada ao inventário físico histórico. Sete dossiers foram versionados e suas linhas físicas sincronizadas: BetterEnd: New Dawn #071 (21.0.34 → 21.0.39), Create: Radars #154 (0.4.9.4 → 5.1.2), WorldWeaver: New Dawn #572 (21.0.25 → 21.0.31), BCLib: New Dawn #066 (21.0.26 → 21.0.29), Create Nuclear #197 (1.3.2-beta.3 → 2.0.2), Knight Lib #359 (2.0.1 → 2.0.5), Sophisticated Core #518 (1.5.1 → 1.5.42, build do arquivo .2496). As fontes individuais e auditorias de versões intermediárias estão nos respectivos dossiers. Categorias e pastas foram preservadas.
@@ -778,7 +790,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 100 | CodeChicken Lib 1.8.+ | `CodeChickenLib-1.21.1-4.6.1.529.jar` | `4.6.1.529` | `API and Library` | 23/09/2026 - 01:02 |
 | 101 | Codxlib | `codxlib-1.6.0-neoforge+1.21.1.jar` | `1.6.0` | `Utility & QoL` | 23/09/2026 - 01:02 |
 | 102 | Cold Sweat | `ColdSweat-2.4.3.1.jar` | `2.4.3.1` | `Adventure and RPG + Armor, Tools, and Weapons + Utility & QoL` | 20/11/2026 - 19:05 |
-| 103 | Collective | `collective-1.21.1-8.39.jar` | `8.39` | `API and Library` | 18/11/2026 - 12:08 |
+| 103 | Collective | `collective-1.21.1-8.88.jar` (basename também registrado em catálogo externo; página individual CF não reaberta) | `8.88` (declaração do usuário; metadata não relida) | `API and Library` | 22/11/2026 - 19:36 |
 | 104 | Companions! | `companions-neoforge-1.21.1-1.3.9.jar` | `1.3.9` | `Adventure and RPG + Armor, Tools, and Weapons + Magic + Mobs + Structures` | 22/11/2026 - 07:42 |
 | 105 | Sinytra Connector | `connector-2.0.0-beta.17+1.21.1-full.jar` | `2.0.0-beta.17+1.21.1` | `Technology` | 22/09/2026 - 22:34 |
 | 106 | Connector Extras | `ConnectorExtras-1.12.1+1.21.1.jar` | `1.12.1+1.21.1` | `Addons + API and Library + Technology + Utility & QoL` | 22/09/2026 - 22:34 |
@@ -976,7 +988,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 298 | Create Aeronautics: Gadgets & Gizmos | `gadgets-and-gizmos-bundled-V1.2.2.jar` | `1.2.2` | `Addons + Create` | 18/11/2026 - 11:28 |
 | 299 | Create: Garnished | `garnished-2.1.9.2+1.21.1-neoforged.jar` | `2.1.9.2` | `Addons + Automation + Create + Food` | 24/09/2026 - 19:05 |
 | 300 | Gaze - A Malum Addon | `gaze-1.1.7.1.jar` | `1.1.7.1` | `Addons` | 24/09/2026 - 19:05 |
-| 301 | GeckoLib | `geckolib-neoforge-1.21.1-4.9.2.jar` | `4.9.2` | `API and Library` | 24/09/2026 - 19:05 |
+| 301 | GeckoLib | `geckolib-neoforge-1.21.1-4.9.4.jar` | `4.9.4` (declaração do usuário; metadata não relida) | `API and Library` | 22/11/2026 - 19:36 |
 | 302 | Global Packs | `globalpacks-neoforge-1.21.1-21.0.6.jar` | `21.0.6` | `Map and Information + Utility & QoL` | 24/09/2026 - 21:04 |
 | 303 | Glodium | `Glodium-1.21-2.2-neoforge.jar` | `1.21-2.2-neoforge` | `API and Library` | 24/09/2026 - 21:04 |
 | 304 | GroovyModLoader (GML) | `gml-6.0.2.jar` | `6.0.2` | `API and Library` | 24/09/2026 - 21:04 |
@@ -1351,7 +1363,7 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 19 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | `5.1.1` | PENDENTE: voxel volume/Veil, shaders, packs; compat de Amendments |
 | 20 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.76.1.478.md) | `19.56.0.440` | `19.64.0.453 Beta` | PENDENTE: addon APIs, recipe/indexing e integração |
 | 21 | Subtle Effects | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous/%E2%9C%85-subtle-effects%20v1.15.3.md) | `1.14.3` | `1.15.1` | PENDENTE: partículas e correções de servidor específicas de 1.21.1 |
-| 22 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | `8.47` | PENDENTE: changes específicas do target não isoladas; Serilum consumers |
+| 22 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.88.md) | `8.39` | `8.47` | PENDENTE: changes específicas do target não isoladas; Serilum consumers |
 | 23 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | `0.2.0` | REVALIDADO: sem nova release 1.21.1 demonstrada |
 | 24 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.22.md) | `3.26.3` | `3.26.12.2208` | PENDENTE: Core ≥1.5.9, Mob Catcher upgrade/linked groups, anti-dupe |
 | 25 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.20.0.md) | `7.12.1` | `7.15.0` | 7.15.0 BLOQUEADO: EME 2.4.0 instalada historicamente não satisfaz `[2.5.0,3.0.0)`; 7.14.0 CANDIDATO CONDICIONAL: EME opcional `[2.4.0,3.0.0)`, dependências/UI e testes pendentes |
@@ -1662,7 +1674,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 49 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.76.1.478.md) | `19.56.0.440` | 19.64.0.455 Release (16/10); 19.69.0.457 Beta (20/10) | **AUDITORIA DE CHANGELOGS CONCLUÍDA 24/10: GITHUB COMPARE .454→.455 = 2 COMMITS (TESTE FORGE/CI); .456→.457 = 1 COMMIT (VERIFICAÇÃO BYTECODE). LIBERADO PARA RETIRAR #49 DO BLOCO DE NOTAS. UPGRADE FÍSICO BLOQUEADO POR MEZZCONFIG/JARJAR E QA.** |
 | 50 | Create Aeronautics: Automated Logistics | [Abrir `.md`](./Addons%20%2B%20Automation%20%2B%20Create/%E2%9C%85-create-aeronautics-automated-logistics%20v0.6.2.md) | `0.6.2` | **0.7.0 Release** (14/10/2026; NeoForge 1.21.1; CF 9184782) | **PESQUISA 0.6.2→0.7.0 DOCUMENTADA EM 25/10**: Display Links/Airship Station, novas integrações de Cargo Link (Connected Silos, Iron Vaults, Propulsion Platinum Tanks), docking/filas/restore, 2 s de estabilização de cargo, Xaero/Jade e animações. Diff oficial +70/−11/107 modificados; Sable físico 2.0.5 vs upstream testado 2.0.6, JourneyMap 6.0.8 vs 6.0.9, Create: Simulated pendente. **Instalado 0.6.2; QA físico pendente; dossier ✅ revisado documentalmente; instalado 0.6.2.** |
 | 51 | Compatibility addon for MineColonies | [Abrir `.md`](./Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-compatibility%20v3.57.md) | `3.57` | 3.60 Beta (19/10; 3.59 corrigiu teach recipes) | **AUDITORIA DOCUMENTAL 3.57→3.60 COMPLETA; QA FÍSICO SEPARADO** |
-| 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.39.md) | `8.39` | 8.65 (22/10) | **AUDITORIA DOCUMENTAL 8.39→8.65 COMPLETA (8.48/8.55 NÃO PUBLICADAS 1.21.1); QA FÍSICO SEPARADO** |
+| 52 | Collective | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-collective%20v8.88.md) | `8.39` | 8.65 (22/10) | **AUDITORIA DOCUMENTAL 8.39→8.65 COMPLETA (8.48/8.55 NÃO PUBLICADAS 1.21.1); QA FÍSICO SEPARADO** |
 | 53 | Create: Stats & Power | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-stats-power%20v1.13.1.md) | `1.13.1` | 1.15.0 | **AUDITORIA DOCUMENTAL 1.13.1→1.14.5→1.15.0 CONCLUÍDA; QA FÍSICO SEPARADO** |
 | 54 | Aeronautics Player Tilt | [Abrir `.md`](./Addons%20%2B%20Cosmetic%20%2B%20Create/%E2%9C%85-aeronautics-player-tilt%20v0.2.0.md) | `0.2.0` | 0.2.3 (11/10) | **DELTAS DOCUMENTADOS 0.2.1→0.2.3; QA FÍSICO SEPARADO** |
 | 55 | Sophisticated Backpacks | [Abrir `.md`](./Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Storage/%E2%9C%85-sophisticated-backpacks%20v3.26.22.md) | `3.26.3` | 3.26.14.2222 | **RELEASES 3.26.4–3.26.14 DOCUMENTADAS POR SOURCE; PROMOÇÃO FÍSICA COORDENADA PENDENTE** |

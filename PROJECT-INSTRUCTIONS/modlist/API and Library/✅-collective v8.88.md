@@ -1,29 +1,42 @@
-# Collective
+# Collective — 8.88 (versão instalada declarada em 22/11/2026)
 
-> **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#103**: JAR `collective-1.21.1-8.39.jar`, mod id `collective`, runtime `8.39`, SHA-1 `b1153f03c97bccaa6bc11d6199f07f16ef4318ff`.
+> **Estado vigente (declaração do usuário, 22/11/2026):** `8.39` → **`8.88`** para NeoForge Minecraft 1.21.1. JAR da distribuição: `collective-1.21.1-8.88.jar`; projeto oficial [CurseForge](https://www.curseforge.com/minecraft/mc-mods/collective/files/all). Instalação declarada pelo usuário, sem leitura ou hash do JAR local. Posição física histórica #103 preservada.
+
+> **Cadeia de publicações e changelogs:** As versões 8.40–8.65 foram auditadas via histórico oficial da branch upstream 1.21.1, e 8.66–8.87 foram individualizadas no dossier com publicações do autor; preservar essa matriz. A 8.88 (22/11/2026) é uma publicação Release 1.21.1 multicarga Forge/Fabric/Quilt/NeoForge. As notas públicas da 8.88 em artefato oficial de Minecraft 26.3 mencionam correção de desconexão rara durante envio concorrente de dados de entidade e correção de carimbos de data de mods dependentes em formato de 12 horas. A atribuição de ambos os deltas ao JAR específico 1.21.1 não foi comprovada por diff, portanto registrá-los como notas gerais da série 8.88, não afirmar comportamento exclusivo ou um patch 1.21.1 isolado.
+
+> **Dependências e consumers:** Biblioteca compartilhada de mods Serilum; consumidores instalados devem ser reconciliados nos próprios lotes. A série 8.54–8.56 migrou arquivos de configuração JSON/serilum e implementou edição de configs. Não exigir atualização prévia de consumidores para registrar a versão declarada.
+
+> **Riscos e testes:** Validar backup e migração de arquivos config/serilum, edição de configuração no servidor e permissões, comandos destrutivos, sincronização, packet handlers, eventos de spawn/blocks, integridade de dados de entidade em multiplayer e dedicated server. Não houve testes; release 8.88 não certifica compatibilidade do conjunto.
+
+> **Notas temporais:** valores de JAR/runtime e afirmações de “não instalado” das seções históricas abaixo pertencem ao snapshot físico e às auditorias anteriores, não substituindo a atualização documental declarada em 22/11. A nova metadata interna não foi extraída.
+
+---
+
+
+> **Snapshot físico histórico — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#103**: JAR `collective-1.21.1-8.39.jar`, mod id `collective`, runtime `8.39`, SHA-1 `b1153f03c97bccaa6bc11d6199f07f16ef4318ff`.
 
 ## Propriedades do registro
 
-- **Mod:** Collective
-- **Arquivo JAR:** `collective-1.21.1-8.39.jar`
-- **Versão 1.21.1:** `8.39`
+- **Mod:** Collective (nome oficial do projeto CurseForge; slug documental preservado).
+- **Arquivo JAR instalado (declaração):** `collective-1.21.1-8.88.jar` — arquivo de distribuição da atualização NeoForge 1.21.1. Sem inspeção local. Fonte: https://www.curseforge.com/minecraft/mc-mods/collective/files/all
+- **Versão instalada declarada (NeoForge 1.21.1):** `8.88` (anterior `8.39`, posição #103).
 - **Categoria:** Biblioteca
 - **Decisão:** Sem decisão
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
-- **Fonte:** https://www.curseforge.com/minecraft/mc-mods/collective
+- **Estado da pesquisa:** 8.88 e variante 1.21.1/NeoForge identificadas oficialmente; auditorias intermediárias preservadas; lacunas da distribuição sinalizadas.
+- **Estado no pack:** `8.88` declarada instalada pelo usuário; inventário GitHub documental, sem inspeção de binário nem execução de testes.
+- **Fonte atual:** https://www.curseforge.com/minecraft/mc-mods/collective/files/all
 - **Função:** Biblioteca compartilhada com código comum usado pelos mods do ecossistema Serilum; não adiciona um sistema jogável autônomo.
-- **Dependências:** Library Client & Server. Necessidade determinada pelos mods Serilum instalados que declaram Collective; não remover nem substituir por outra API enquanto consumers ativos dependerem dela.
-- **Compatibilidade/Riscos:** Shared library consumer-driven. Riscos: API/version drift, classloading client-only, duplicate callbacks e consumer attribution. Upstream 8.40 altera somente formatação/indentação de source e não publica mudança funcional.
+- **Dependências:** Biblioteca compartilhada de mods Serilum; consumidores instalados devem ser reconciliados nos próprios lotes. A série 8.54–8.56 migrou arquivos de configuração JSON/serilum e implementou edição de configs. Não exigir atualização prévia de consumidores para registrar a versão declarada.
+- **Compatibilidade/Riscos:** Validar backup e migração de arquivos config/serilum, edição de configuração no servidor e permissões, comandos destrutivos, sincronização, packet handlers, eventos de spawn/blocks, integridade de dados de entidade em multiplayer e dedicated server. Não houve testes; release 8.88 não certifica compatibilidade do conjunto.
 - **Sobreposição:** Biblioteca específica de Serilum. Coexistência com outras utility/config/network libraries não implica redundância binária; consumers usam contracts próprios.
-- **Observações:** Runtime físico permanece Collective 8.39. Upstream publicou **8.40** para Minecraft 1.21.1 em 21/09/2026; o changelog registra apenas normalização da indentação dos source files para tabs, sem delta funcional.
-- **Procedência:** modlist física atual + CurseForge oficial Collective 8.39/8.40. A autoridade instalada permanece `collective-1.21.1-8.39.jar`.
+- **Observações vigentes:** JAR declarado `collective-1.21.1-8.88.jar`, versão `8.88`; a versão `8.39` e hashes prévios são referências do inventário histórico. Notas gerais 8.88 em variante 26.3 não comprovam delta individual do JAR 1.21.1.
+- **Procedência vigente:** posição e binário anterior no inventário histórico; versão atual declarada pelo usuário e publicação oficial https://www.curseforge.com/minecraft/mc-mods/collective/files/all. Novo hash e metadata não relidos.
 - **Histórico da decisão:** Sem decisão formal. Em 08/09/2026, Collective 8.39 foi reconfirmado na modlist física e reconstruído como library do ecossistema Serilum. A presença por dependência não foi convertida em decisão curatorial.
-- **Atualização/Status:** ATUALIZAÇÃO UPSTREAM REVALIDADA EM 01/10/2026 — Collective físico permanece 8.39. A release 8.40 foi comparada e não contém mudança funcional publicada.
+- **Atualização/Status:** 22/11/2026 — `8.39` → `8.88` declarada instalada para NeoForge 1.21.1. As versões 8.40–8.65 foram auditadas via histórico oficial da branch upstream 1.21.1, e 8.66–8.87 foram individualizadas no dossier com publicações do autor; preservar essa matriz. A 8.88 (22/11/2026) é uma publicação Release 1.21.1 multicarga Forge/Fabric/Quilt/NeoForge. As notas públicas da 8.88 em artefato oficial de Minecraft 26.3 mencionam correção de desconexão rara durante envio concorrente de dados de entidade e correção de carimbos de data de mods dependentes em formato de 12 horas. A atribuição de ambos os deltas ao JAR específico 1.21.1 não foi comprovada por diff, portanto registrá-los como notas gerais da série 8.88, não afirmar comportamento exclusivo ou um patch 1.21.1 isolado.
 - **Data da última decisão:** não definida
 
 # Dossiê operacional — padrão Alex's Mobs
-> ✅ Versão física confirmada: `collective-1.21.1-8.39.jar`, mod id `collective`, runtime `8.39`, Minecraft 1.21.1. Collective é a **shared library dos mods Serilum**.
+> ✅ Versão física histórica confirmada: `collective-1.21.1-8.39.jar`, mod id `collective`, runtime `8.39`, Minecraft 1.21.1. Collective é a **shared library dos mods Serilum**.
 ## 1. Papel e authority
 Collective concentra código comum reutilizado por mods Serilum. O consumer continua authority de qualquer gameplay, comando, configuração ou evento final.
 A library não deve ser catalogada como feature autônoma apenas porque participa da implementação de vários mods.
@@ -227,3 +240,17 @@ Fonte primária para versões, datas, loader e classificação `API and Library`
 | [8.87](https://modrinth.com/mod/collective/version/MvfIbC5P) | 15/11/2026 | Notas de correção de evento de item destruído (Fabric) e packet a jogador sem Collective (Forge); não atribuir automaticamente a NeoForge. |
 
 **Implicações:** configuração de consumidores e permissões tornam-se superfície de administração remota; validar controle de acesso, sincronização e migração JSON/config/serilum, toggles, confirmação de comandos, cache/listas, eventos, respawn/spawnRadius e Village Spawn Point, preservação de dados de entidades, receitas de mods desativados, schematics e performance. Não inferir instalação de consumidores citados apenas nas notas. Fonte complementar: [histórico oficial do autor](https://serilum.com/mods?changelog=collective). Auditoria documental concluída até 8.87; instalação e QA não executados.
+
+
+
+## Atualização declarada — 22/11/2026 — Collective 8.88
+
+**Autoridade vigente:** a declaração de instalação do usuário é a fonte do estado documental, e a publicação oficial vincula a versão ao projeto correto Minecraft 1.21.1/NeoForge. JAR: `collective-1.21.1-8.88.jar`; posição física histórica #103; source: https://www.curseforge.com/minecraft/mc-mods/collective/files/all. O novo arquivo top-level e seus metadados não foram lidos diretamente na instalação.
+
+**Versões intermediárias e deltas:** As versões 8.40–8.65 foram auditadas via histórico oficial da branch upstream 1.21.1, e 8.66–8.87 foram individualizadas no dossier com publicações do autor; preservar essa matriz. A 8.88 (22/11/2026) é uma publicação Release 1.21.1 multicarga Forge/Fabric/Quilt/NeoForge. As notas públicas da 8.88 em artefato oficial de Minecraft 26.3 mencionam correção de desconexão rara durante envio concorrente de dados de entidade e correção de carimbos de data de mods dependentes em formato de 12 horas. A atribuição de ambos os deltas ao JAR específico 1.21.1 não foi comprovada por diff, portanto registrá-los como notas gerais da série 8.88, não afirmar comportamento exclusivo ou um patch 1.21.1 isolado.
+
+**Dependências e sincronização:** Biblioteca compartilhada de mods Serilum; consumidores instalados devem ser reconciliados nos próprios lotes. A série 8.54–8.56 migrou arquivos de configuração JSON/serilum e implementou edição de configs. Não exigir atualização prévia de consumidores para registrar a versão declarada. A documentação de dependências pode estar atrasada até os seus próprios lotes, sem bloquear esta atualização documental; isso não demonstra compatibilidade real nem QA de runtime.
+
+**Riscos e validações pendentes:** Validar backup e migração de arquivos config/serilum, edição de configuração no servidor e permissões, comandos destrutivos, sincronização, packet handlers, eventos de spawn/blocks, integridade de dados de entidade em multiplayer e dedicated server. Não houve testes; release 8.88 não certifica compatibilidade do conjunto.
+
+**Escopo desta edição:** título, metadados vigentes, histórico de publicações e filename do dossier atualizados, sem alterar os JARs, assets, código, configurações, saves ou workflows do modpack. Informações anteriores de instalação local permanecem marcadas como históricas.
