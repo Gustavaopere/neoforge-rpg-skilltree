@@ -1,23 +1,25 @@
-# More Relics
+# More Relics — instalada 1.7.7-forRelics-0.12.8-1.0 | upstream auditada 1.8.0 (não instalada)
 
 ## Propriedades do registro
 
 - **Mod:** More Relics
-- **Arquivo JAR:** morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar
-- **Versão 1.21.1:** 1.7.7-forRelics-0.12.8-1.0
+- **Arquivo JAR instalado:** `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar`
+- **Versão instalada (Minecraft 1.21.1):** `1.7.7-forRelics-0.12.8-1.0`
+- **Versão upstream mais recente auditada:** `1.8.0` — **21/11/2026, Release regular, NÃO INSTALADA**; exige linha Relics não-Beta (`0.10.7.8`), diferente de Relics `0.12.8` instalado.
+- **Última versão oficialmente compatível identificada para o pack:** `1.7.7-forRelics-0.12.8-1.0`, a build Beta especial atualmente instalada; **não há upgrade físico indicado**.
 - **Categoria:** RPG, Magia
 - **Tipo de conteúdo:** Mod, Addon
 - **Decisão:** Manter
-- **Estado da pesquisa:** Verificado
-- **Estado no pack:** Integrado ao Github
+- **Estado da pesquisa:** Verificado para a instalação `1.7.7-forRelics-0.12.8-1.0` e auditado documentalmente até `1.8.0`; **compatibilidade de 1.8.0 com Relics 0.12.8 não demonstrada**; testes em runtime não executados.
+- **Estado no pack:** Instalado e documentado no GitHub como `1.7.7-forRelics-0.12.8-1.0`; a 1.8.0 está **somente documentada**, sem alteração de JAR, save ou versão física.
 - **Fonte:** https://www.curseforge.com/minecraft/mc-mods/more-relics
 - **Função:** Addon de Relics que adiciona novos relics/acessórios e efeitos próprios ao sistema de progressão de Relics.
 - **Dependências:** Relics, Curios API, Architectury API e biblioteca(s) declaradas pela release, incluindo ShatterLib/OctoLib conforme a página oficial.
-- **Compatibilidade/Riscos:** A build física atual é a variante oficial para Relics 0.12.8, portanto o antigo bloqueio de incompatibilidade com 0.12.x foi resolvido. Permanece o alerta oficial de risco de corrupção para mundos migrados de Relics 0.10.7.8 para 0.12.8, além de riscos de persistência/evolução, combat reentrancy, loot duplication e integração Curios. O pack usa Relics 0.12.8.
+- **Compatibilidade/Riscos:** O par **instalado** More Relics `1.7.7-forRelics-0.12.8-1.0` + Relics `0.12.8` tem suporte oficial específico; **não substituir** pela 1.8.0 Release regular (orientada a Relics `0.10.7.8`). A 1.8.0 documentada acrescenta Homesick (End Cities), evolução Homeward, autoequip Curios, ajustes Made in Heaven/Charred, loot e correções; essas novidades **não estão comprovadas no JAR 1.7.7 instalado**. Permanecem riscos de migração de mundos antigos, save/evolução, combate, loot e integração Curios.
 - **Sobreposição:** Expansão do mesmo ecossistema Relics; não substitui o mod-base. A incompatibilidade histórica com Relics 0.12.x foi resolvida pela build física especial para 0.12.8; os gates atuais são persistência/migração, evolução, combate e loot, não redundância.
 - **Observações:** Runtime físico `1.7.7-forRelics-0.12.8-1.0`, JAR `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar`, SHA-1 `bc220ed291187c97bd1896f1fdd29b2377879ae1`. CurseForge file ID 8859015, Beta NeoForge 1.21.1 de 11/09/2026; conteúdo congelado em 1.7.7 com manutenção por bug fixes.
 - **Procedência:** modlist(1).txt física anexada e reconferida em 25/09/2026 + CurseForge oficial More Relics file 8859015 + relations oficiais (Relics, Curios API, Architectury API, ShatterLib/OctoLib).
-- **Atualização/Status:** PADRÃO ALEX'S MOBS REVALIDADO EM 25/09/2026 — More Relics foi reintroduzido fisicamente no pack pela build especial `morerelics-1.7.7-forRelics-0.12.8-1.0-1.21.1.jar`, mod id `morerelics`, runtime `1.7.7-forRelics-0.12.8-1.0`. CurseForge file 8859015 declara suporte oficial ao Relics 0.12.8. A decisão Manter permanece válida; smoke tests de save/evolução/loot continuam obrigatórios.
+- **Atualização/Status:** **22/11/2026 — upstream 1.8.0 auditada e incorporada neste `.md`** (Homesick→Homeward, ordem Curios na evolução, Charred e demais deltas). **Versão física permanece 1.7.7-forRelics-0.12.8-1.0**, escolhida por ser a variante oficial para Relics 0.12.8. A 1.8.0 regular não foi instalada e não é compatibilidade certificada para essa linha; manter a versão real no filename e no índice. Nenhum smoke test foi executado.
 - **Histórico da decisão:** 2026-09-07 — incorporado como novo mod e decisão explícita do usuário: MANTER. 2026-09-08 — removido do snapshot físico então vigente por incompatibilidade upstream com Relics 0.12.x. 2026-09-11 — upstream publicou build especial com suporte oficial ao Relics 0.12.8. 2026-09-25 — modlist física atual confirma a reintrodução dessa build especial; decisão Manter preservada.
 - **Data da última decisão:** 2026-09-07
 
