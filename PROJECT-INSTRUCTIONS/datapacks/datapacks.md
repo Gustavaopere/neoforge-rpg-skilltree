@@ -13,7 +13,7 @@ As subpastas representam o conjunto completo das categorias temáticas atuais ex
 | 03 | Integrated Dungeons and Structures- Alex's Mobs Integration | `idasalexsmobs-1.13-1.21.1.zip` | `1.13` | `Mod Support` | `Mod Support/✅-integrated-dungeons-and-structures-alexs-mobs-integration.md` | 29/09/2026 - 02:00 |
 | 04 | Integrated Dungeons and Structures- Configuration Datapack | `idasconfig-1.14.0-1.21.1.zip` | `1.14.0` (Release; instalação declarada; metadata não relida) | `Mod Support` | `Mod Support/✅-integrated-dungeons-and-structures-configuration-datapack v1.14.0.md` | 27/11/2026 - 17:58 |
 | 05 | Integrated Stronghold- Alex's Mobs Integration | `intstrong_alexsmobs-1.0.0-1.21.1.zip` | `1.0.0` | `Mod Support` | `Mod Support/✅-integrated-stronghold-alexs-mobs-integration v1.0.0.md` | 18/09/2026 - 11:04 |
-| 06 | Integrated Stronghold- Configuration | `integrated_stronghold_config_neoforge-1.1.4-1.21.1.zip` | `1.1.4` | `Mod Support` | `Mod Support/✅-integrated-stronghold-configuration.md` | 29/09/2026 - 02:00 |
+| 06 | Integrated Stronghold- Configuration | `integrated_stronghold_config_neoforge-1.2.0-1.21.1.zip` | `1.2.0` (Release; instalação declarada; delta binário pendente) | `Mod Support` | `Mod Support/✅-integrated-stronghold-configuration v1.2.0.md` | 27/11/2026 - 18:06 |
 | 07 | Integrated Stronghold- End Remastered Integration | `intstrong_endrem-1.0.0-1.18.2-1.19.2.zip` | `1.0.0` | `Mod Support` | `Mod Support/✅-integrated-stronghold-end-remastered-integration.md` | 29/09/2026 - 02:00 |
 | 08 | Integrated Villages- Configuration | `integrated_villages_config-1.3.3-1.21.1.zip` | `1.3.3` | `Adventure + Fantasy + Mod Support + Utility` | `Adventure + Fantasy + Mod Support + Utility/✅-integrated-villages-configuration.md` | 29/09/2026 - 02:00 |
 | 09 | Iron's Spells 'n Spellbooks Compat | `Irons_Spellbooks_Compat_1.0.0.zip` | `1.0.0` | `Miscellaneous + Mod Support + Utility` | `Miscellaneous + Mod Support + Utility/✅-irons-spells-n-spellbooks-compat.md` | 29/09/2026 - 02:00 |
@@ -30,3 +30,8 @@ As subpastas representam o conjunto completo das categorias temáticas atuais ex
 ## Sincronização documental declarada — 27/11/2026
 
 - 04 Integrated Dungeons and Structures- Configuration Datapack: `1.13.7` → [`1.14.0`](https://www.curseforge.com/minecraft/texture-packs/idas-config/files/9804532); instalação declarada, sem QA. Changelog do ZIP ausente; delta binário pendente.
+
+
+## Sincronização documental declarada — 27/11/2026, 18:06
+
+- 06 Integrated Stronghold- Configuration: `1.1.4` → [`1.2.0`](https://www.curseforge.com/minecraft/texture-packs/integrated-stronghold-config); ZIP confirmado pela página oficial; delta binário e changelog não recuperados. Sem QA, instalação declarada.

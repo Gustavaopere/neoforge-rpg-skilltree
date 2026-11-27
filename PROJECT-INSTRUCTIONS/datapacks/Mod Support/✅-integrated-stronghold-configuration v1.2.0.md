@@ -1,4 +1,23 @@
-# Integrated Stronghold- Configuration
+# Integrated Stronghold- Configuration — v1.2.0
+
+## Estado documental vigente — 27/11/2026
+
+- **Arquivo ZIP instalado declarado:** `integrated_stronghold_config_neoforge-1.2.0-1.21.1.zip`
+- **Versão instalada declarada:** `1.2.0` (Minecraft 1.21.1).
+- **Estado no pack:** atualização declarada pelo usuário em 27/11/2026, sem inspeção do arquivo local.
+- **Estado da pesquisa:** Identidade, versão e filename oficialmente confirmados; delta binário/JSON/NBT, changelog específico, hash, pack.mcmeta e QA não recuperados. Preservado selo herdado da auditoria histórica, sem atribuir certificação integral do delta.
+- **Atualização/Status:** 1.1.4 → 1.2.0. Release 1.2.0 para 1.21.1, publicada 25/11/2026; ZIP exato confirmado no projeto oficial 833654, cujo link de arquivo é https://www.curseforge.com/minecraft/texture-packs/integrated-stronghold-config/files/9804534 . Ficha individual não abriu.
+- **Dependências:** Integrated Stronghold obrigatório; índice de mods #335 já registra 1.2.0+1.21.1-neoforge. Piso exato do ZIP não inspecionado; não declarar compatibilidade de runtime.
+- **Compatibilidade/Riscos:** conforme delta e histórico abaixo; não declarar QA ou compatibilidade global.
+- **Procedência:** declaração de instalação do usuário; [fonte da versão](https://www.curseforge.com/minecraft/texture-packs/integrated-stronghold-config); página oficial do projeto e link de arquivo.
+
+## Auditoria incremental — 1.1.4 → 1.2.0
+
+A página oficial atual confirma 1.2.0 como release para 1.21.1; a listagem de arquivos anterior à publicação registrava 1.1.4 como última da linha. Nenhuma publicação intermediária 1.21.1 foi localizada; não afirmar enumeração exaustiva, pois a listagem atualizada e a ficha individual não foram recuperadas. A descrição oficial continua definindo a função de configuração: spacing/separation (0–4096, separation ≤ spacing), biome tags e integrated_structure_spawners; requer o mod principal. Não atribuir alterações de salas/loot/estruturas do JAR principal ao ZIP de configuração. O conteúdo específico alterado entre 1.1.4 e 1.2.0 não foi demonstrado: comparar estrutura de JSON/NBT e pack.mcmeta, verificar prioridades e gerar chunks novos; não declarar regeneração retroativa ou QA. O pack continua no índice de datapacks por sua natureza operacional. A classe/etiqueta Data Packs é tratada como técnica pelo protocolo deste índice; Mod Support é a pasta existente.
+
+## Histórico documental preservado — anterior à declaração de 27/11/2026
+
+Os campos e gates de versão instalada abaixo são históricos. A seção vigente acima prevalece para inventário e versão declarada; os limites de evidência e riscos históricos permanecem explicitados, sem homologar runtime.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo

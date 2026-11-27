@@ -973,7 +973,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 176 | Create Cobblestone | `createcobblestone-1.5.0+neoforge-1.21.1-153.jar` | `1.5.0+neoforge-1.21.1-153` | `Addons + Automation + Create + Performance + Technology` | 17/11/2026 - 17:09 |
 | 177 | CreateColonies | `createcolonies-2.0.6.jar` | `2.0.6` | `Addons + Adventure and RPG + Automation + Create` | 23/09/2026 - 14:27 |
 | 178 | Create Contraption Terminals | `createcontraptionterminals-1.21-1.4.0.jar` | `1.4.0` | `Create + Storage + Utility & QoL` | 23/09/2026 - 14:27 |
-| 179 | Create: Cyber Goggles | `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar` ([Modrinth oficial](https://modrinth.com/mod/create-cyber-goggles/version/pbHCUgry); 8.8.3 no CurseForge sem ID confirmado, último arquivo CF diretamente identificado 8.8.1/9660524) | `8.8.3` (instalação declarada; JAR físico/metadata não relidos) | `Create + Utility & QoL` | 22/11/2026 - 19:59 |
+| 179 | Create: Cyber Goggles | `create_cyber_goggles-neoforge-1.21.1-8.8.5.jar` (Modrinth do autor; basename corroborado por source e espelho; distribuição específica CurseForge não confirmada) | `8.8.5` (Beta; instalação declarada; origem CurseForge não confirmada) | `Create + Utility & QoL` | 27/11/2026 - 18:06 |
 | 180 | Create Deco | `createdeco-2.1.3.jar` | `2.1.3` | `Addons + Cosmetic + Create` | 23/09/2026 - 14:27 |
 | 181 | Create: Diesel Generators | `createdieselgenerators-1.21.1-1.3.16.jar` | `1.21.1-1.3.16` | `Addons + Create + Processing + Technology` | 22/11/2026 - 15:59 |
 | 182 | Create: Dragons Plus | `CreateDragonsPlus-1.11.8b.jar` | `1.11.8b` | `API and Library + Create + Energy, Fluid, and Item Transport + Processing + Technology` | 23/09/2026 - 23:50 |
@@ -1950,3 +1950,8 @@ O dossier canônico [`✅-goety v3.2.3.md`](./Adventure%20and%20RPG%20%2B%20Magi
 
 - 007 Advanced Loot Info (ALI): `2.1.0` → [`2.6.0`](https://www.curseforge.com/minecraft/mc-mods/advanced-loot-info/files/all); instalação declarada, sem QA. 
 - 061 AzureLib: `3.1.11` → [`3.2.9`](https://www.curseforge.com/minecraft/mc-mods/azurelib/files/all?page=1&pageSize=20&showAlphaFiles=hide&version=1.21.1); instalação declarada, sem QA. 
+
+
+## Sincronização documental declarada — 27/11/2026, 18:06
+
+- 179 Create: Cyber Goggles: `8.8.3` → [`8.8.5`](https://modrinth.com/mod/create-cyber-goggles/version/b39ZaMYw); publicação oficial Modrinth, divergência de origem CurseForge explícita; 8.8.4/8.8.5 auditadas no source. Sem QA, instalação declarada.

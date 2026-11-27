@@ -1,4 +1,31 @@
-# Create: Cyber Goggles — 8.8.3 (versão instalada declarada em 22/11/2026)
+# Create: Cyber Goggles — v8.8.5
+
+## Estado documental vigente — 27/11/2026
+
+- **Arquivo JAR instalado declarado:** `create_cyber_goggles-neoforge-1.21.1-8.8.5.jar`
+- **Versão instalada declarada:** `8.8.5` (Minecraft 1.21.1 / NeoForge).
+- **Estado no pack:** atualização declarada pelo usuário em 27/11/2026, sem inspeção do arquivo local.
+- **Estado da pesquisa:** Identidade e categorias Create + Utility & QoL verificadas no CurseForge; versões 8.8.4 e 8.8.5 auditadas por commits pinados; publicação 8.8.5 oficialmente identificada no Modrinth. Não certificar origem do download, metadata local, ABI ou QA.
+- **Atualização/Status:** 8.8.3 → 8.8.5. Beta 8.8.5, publicação do autor no Modrinth (ID b39ZaMYw) para 1.21.1 / NeoForge; nome do JAR corroborado pelo catálogo espelho e pela regra de build pinada. CurseForge projeto 1233804 atualizado em 25/11, mas ficha individual 8.8.5 não recuperada: origem CurseForge declarada, não comprovada. Source 8.8.6 de 27/11 não prova distribuição.
+- **Dependências:** Create 6.0.10 (alvo da publicação; índice #116 já registra 6.0.10); FlexConfig 0.3.1 embarcada via jarJar no source pinado de 8.8.4/8.8.5. Aeronautics e Sable são integrações; issue #115 ocorreu com Aeronautics 1.3.3 e Sable 2.0.6, sem inferir piso de dependência. Flywheel/Ponder/Registrate passam a compileOnly em 8.8.5; não inferir remoção de requisitos de runtime do Create. Range mínimo de NeoForge do binário não verificado.
+- **Compatibilidade/Riscos:** conforme delta e histórico abaixo; não declarar QA ou compatibilidade global.
+- **Procedência:** declaração de instalação do usuário; [fonte da versão](https://modrinth.com/mod/create-cyber-goggles/version/b39ZaMYw); [projeto e categorias CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles) e source do autor pinado.
+
+## Auditoria incremental — 8.8.3 → 8.8.5
+
+### 8.8.4 — 22/11/2026 — Beta
+
+- [Diff oficial 8.8.3 → 8.8.4](https://github.com/ForgeStove/CreateCyberGoggles/compare/029932f68622c8e941c5d1bb95fc1b2cb5c6c81e...05f5caa36d53669818731a84f1bc349149b6438d): melhoria da apresentação de velocidade cinética; suporte à leitura de unidades cinéticas extras por face no Simulated, com stress/capacity; remoção da opção `enablePhysicsStaff` (uso de physics staff em qualquer modo), incluindo hooks de envio de pacotes que suprimiam operações fora do criativo. FlexConfig passa 0.3.0 → 0.3.1; muda ordem dos componentes do nome do artefato para loader–Minecraft–versão. Registrate de desenvolvimento atualizado; ReplenishScreen usa a nova assinatura de UI. O changelog pinado resume velocidade, FlexConfig e remoção de opção. Publicação corroborada pelo [catálogo Modrinth espelhado](https://www.minecraftresources.info/project/create-cyber-goggles); ficha individual CurseForge não recuperada.
+
+### 8.8.5 — 25/11/2026 — Beta
+
+- [Publicação oficial Modrinth](https://modrinth.com/mod/create-cyber-goggles/version/neoforge-1.21.1-8.8.5) e [diff pinado](https://github.com/ForgeStove/CreateCyberGoggles/compare/05f5caa36d53669818731a84f1bc349149b6438d...6af7d19e4eac5ee4586c8ebe31007b7848027bcf): corrige [issue #115](https://github.com/ForgeStove/CreateCyberGoggles/issues/115), desconexão por pacote inválido após physics staff keybind/scroll/release. Em `ItemSwapUtil`, sincroniza slot local e atualização de inventário criativo ao restaurar o item e ao iniciar swap; não equivale a garantia de segurança de inventário ou ausência de outros problemas. Reposiciona botão AutoReplenish de Create Phantom; muda escopo de dependências Flywheel/Ponder/Registrate para compileOnly e reverte pin Registrate de desenvolvimento. Não tratar mudanças posteriores ao commit de versão como parte da release.
+
+- [Source 8.8.6](https://github.com/ForgeStove/CreateCyberGoggles/commit/208513832f3ea627b0ad15fca0f17c6e3e26d729) permanece não promovido: publicação não confirmada. Preservar QA de câmera, goggles, inventário, Aeronautics/physics staff, multiplayer e configs; nenhum teste executado.
+
+## Histórico documental preservado — anterior à declaração de 27/11/2026
+
+Os campos e gates de versão instalada abaixo são históricos. A seção vigente acima prevalece para inventário e versão declarada; os limites de evidência e riscos históricos permanecem explicitados, sem homologar runtime.
 
 > **Revalidação de procedência — 22/11/2026, 19:59 (America/Sao_Paulo):** a **versão instalada declarada pelo usuário é 8.8.3** e o basename exato do arquivo foi comprovado na publicação [Modrinth do desenvolvedor, ID pbHCUgry](https://modrinth.com/mod/create-cyber-goggles/version/pbHCUgry): `create_cyber_goggles-1.21.1-8.8.3-neoforge.jar`. O projeto correto no [CurseForge, ID 1233804](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles) possui categorias **Create** e **Utility & QoL**; sua última publicação individual **diretamente identificada nesta consulta** para NeoForge 1.21.1 é [8.8.1, file ID 9660524](https://www.curseforge.com/minecraft/mc-mods/create-cyber-goggles/files/9660524). **Não há evidência suficiente de que o arquivo 8.8.3 tenha sido distribuído pelo CurseForge**. A declaração de instalação é mantida sem atribuir ao CurseForge um file ID inexistente ou não verificado. A auditoria 8.6.4–8.8.3 já consta neste dossier; não houve leitura do JAR físico nem QA.
 
