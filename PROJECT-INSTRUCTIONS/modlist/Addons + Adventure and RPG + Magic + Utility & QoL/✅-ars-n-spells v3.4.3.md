@@ -1,4 +1,31 @@
-# Ars 'n' Spells
+# Ars 'n Spells — 3.4.3
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Ars 'n Spells
+- **Arquivo JAR instalado (declarado):** `ars_n_spells-3.4.3.jar`
+- **Versão instalada declarada:** `3.4.3` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #046 (preservada).
+- **Categoria CurseForge / pasta:** Addons + Adventure and RPG + Magic + Utility & QoL.
+- **Função:** Bridge Ars Nouveau ↔ Iron's Spells com conversões, modos de mana, glyphs importados, Glyph Press, Spell Loom, afinidades e cooldowns.
+- **Atualização/Status:** `3.3.4` → `3.4.3`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** Publicações identificadas auditadas com fontes oficiais e evidência histórica; limites de changelog, metadata e procedência descritos abaixo. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Ars Nouveau 5.13.1, Iron's Spells 3.16.4 (provider), Ars Elemental 0.7.11.3, Ars Elemancy 1.18.3 registrados; mínimos específicos da 3.4.3 não comprovados. Curios, JEI e integrações condicionais devem ser reconciliados. Testar ownership server-side, cobrança única, mana e refunds, lifecycle/cooldown, glyph migration, configurações/datapacks, JEI, multiplayer e interações com perks. Sem QA.
+- **Fonte:** [publicação ou página oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9847936).
+- **Procedência:** declaração expressa do usuário e publicação oficial; sem atribuir hash/metadata do novo binário sem inspeção.
+
+## Auditoria incremental das publicações
+
+- 3.3.5, 3.3.6 e 3.3.7: publicações intermediárias já discriminadas nas auditorias históricas deste dossier; reutilizadas sem atribuir novidades não verificadas.
+- 3.4.0 — 21/10, [file 9280543](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9280543): Touch corrige acerto/miss server-side; importação de spells Iron's como glyphs Ars, Glyph Press (Source e catalisadores), datapack ans_iron_glyphs e diagnósticos. Histórico contém defaults e detalhes.
+- 3.4.1 — 14/11, [file 9611964](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9611964): preservação na uninscription, restrições server-side e níveis até 10, Amplify, custos/Curios, refund/reload, IDs persistentes e JEI.
+- 3.4.2 — 19/11, [file 9699893](https://www.curseforge.com/minecraft/mc-mods/ars-n-spells/files/9699893): navegador de glyphs importados agrupados por spell, filtros/favoritos, modos Organized/Individual Levels/Hidden, seção Dormant; melhorias Virtue Ring/Blood Magic, HYBRID, schools, cooldown, Glyph Press e lifecycle. Fonte anterior registra contradição entre notas de lançamento e arquivos efetivamente publicados.
+- 3.4.3 — 27/11: changelog cumulativo reafirma as melhorias de 3.4.1/.2 e anuncia correções de projectiles que erram e bloqueiam recast, cooldown conferido na resolução do impacto (sem cobrança desnecessária em múltiplos hits legítimos), suporte a duração customizada de projéteis, validação de restrições/níveis/escolas server-side, uninscription, Amplify sem consumo se exceder limite, efeitos de equipamentos e Curios, prevenção de casts gratuitos por equip/unequip de Virtue Ring, recursos de Blood Magic/Covenant, regeneração HYBRID, mana bar sincronizada, escola primária para progressão/scaling, cooldown ao retornar do End, refunds/catalisadores/reload do Glyph Press, diagnósticos e sincronização do Spell Loom, spell wheel e IDs persistentes, casts interrompidos e receitas JEI pós-reload. Modos pessoais não alteram aprendizagem. Organized passa a default; catálogo anunciado 1110 glyphs até nível 10, dependente de config/providers. **Protocolo de rede mudou: cliente e servidor devem usar 3.4.3.** O autor declara compatibilidade de dados/saves; não é QA local. A 3.4.3 afirma que .1/.2 não foram publicadas, em conflito com file IDs anteriores; preservar ambos e tratar notas como cumulativas, sem atribuir delta exclusivo não demonstrado.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Versões físicas, candidatas, não instaladas, hashes, dependências e estados históricos não se sobrepõem às propriedades vigentes. 
 
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#46**: `ars_n_spells-3.3.4.jar`, mod id `ars_n_spells`, runtime `3.3.4`, SHA-1 `53966330a468e626cd6469259af6778a5a7d9305`.
 

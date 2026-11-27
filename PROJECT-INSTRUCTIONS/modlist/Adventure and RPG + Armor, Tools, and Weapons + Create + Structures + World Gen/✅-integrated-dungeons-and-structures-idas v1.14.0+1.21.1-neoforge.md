@@ -1,4 +1,27 @@
-# Integrated Dungeons and Structures (IDAS)
+# Integrated Dungeons and Structures — 1.14.0+1.21.1-neoforge
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Integrated Dungeons and Structures
+- **Arquivo JAR instalado (declarado):** `idas-1.14.0-1.21.1-neoforge.jar`
+- **Versão instalada declarada:** `1.14.0+1.21.1-neoforge` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #321 (preservada).
+- **Categoria CurseForge / pasta:** Adventure and RPG + Armor, Tools, and Weapons + Create + Structures + World Gen.
+- **Função:** Provider de estruturas detalhadas com integração de Create, Quark, Supplementaries e outros mods.
+- **Atualização/Status:** `1.13.7+1.21.1-neoforge` → `1.14.0+1.21.1-neoforge`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** Publicações identificadas auditadas com fontes oficiais e evidência histórica; limites de changelog, metadata e procedência descritos abaixo. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Dependências históricas Integrated API, Create, Supplementaries, Quark. Índice #332 Integrated API 1.8.2 (item 50), Create 6.0.10, Supplementaries 4.1.4, Quark 4.1-484 (item 42); novos mínimos não confirmados. Regressão de geração, loot/spawners, processors, missing registries, chunks híbridos e desempenho; datapack de configuração e integração Alex's Mobs não alterados. Sem QA.
+- **Fonte:** [publicação ou página oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/idas/files/9804397).
+- **Procedência:** declaração expressa do usuário e publicação oficial; sem atribuir hash/metadata do novo binário sem inspeção.
+
+## Auditoria incremental das publicações
+
+- 1.14.0 — 25/11/2026: revisão dos arquivos estruturais com objetivo de melhorar performance. Changelog não individualiza templates, processors, loot, novas estruturas ou métricas; não inferir mudanças específicas. Catálogo oficial mostra 1.13.7 seguida de 1.14.0. Selecionado file 9804397 NeoForge; existe também publicação cujo nome indica Fabric (9804393), ainda que catálogo misture rótulos, não selecionada. Rótulo da ficha usa +1.21.1-neoforge e File name usa -1.21.1-neoforge; versão documental conserva convenção histórica; metadata não relida.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Versões físicas, candidatas, não instaladas, hashes, dependências e estados históricos não se sobrepõem às propriedades vigentes. 
 
 ## Propriedades do registro
 

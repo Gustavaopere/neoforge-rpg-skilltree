@@ -1,4 +1,27 @@
-# Zeta
+# Zeta — 1.1-41
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Zeta
+- **Arquivo JAR instalado (declarado):** `Zeta-1.1-41.jar`
+- **Versão instalada declarada:** `1.1-41` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #587 (preservada).
+- **Categoria CurseForge / pasta:** API and Library.
+- **Função:** Biblioteca modular do ecossistema Quark; não atribuir conteúdo de gameplay do consumer à library.
+- **Atualização/Status:** `1.1-40` → `1.1-41`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** Publicações identificadas auditadas com fontes oficiais e evidência histórica; limites de changelog, metadata e procedência descritos abaixo. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** **Incompatibilidade explícita do autor:** Quark <4.1-489 não funciona com Zeta 1.1-41. Índice #468 registra Quark 4.1-484; dependência/consumer aguardando sincronização documental em lote posterior (item 42). Não impede a atualização do dossier, mas não executar a combinação antiga esperando funcionamento. Testar worldgen, classloading, modules/configs e client/server com Quark atualizado. Sem QA.
+- **Fonte:** [publicação ou página oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/zeta/files/9804404).
+- **Procedência:** declaração expressa do usuário e publicação oficial; sem atribuir hash/metadata do novo binário sem inspeção.
+
+## Auditoria incremental das publicações
+
+- 1.1-41 — 25/11/2026, Release: mudanças internas; aviso oficial de incompatibilidade com Quark anterior a 4.1-489. [Release upstream](https://github.com/VazkiiMods/Zeta/releases/tag/release-1.1-41%2B1.21.1) e [compare exato](https://github.com/VazkiiMods/Zeta/compare/release-1.1-40%2B1.21.1...release-1.1-41%2B1.21.1) confirmam troca para getUncachedNoiseBiome para consulta de bioma segura durante geração ([commit b0055db](https://github.com/VazkiiMods/Zeta/commit/b0055dba64821c599017fd6d32337ea98ef9fd0c)), dispensando workaround mixin de Quark; uso de NoneFeatureConfiguration.INSTANCE para evitar null devido a inicialização circular ([commit 569c38e](https://github.com/VazkiiMods/Zeta/commit/569c38ef788f27b5b26e224eb35f8e59fdc7ee13)). Não declarar todos os sintomas resolvidos, nem novas mecânicas. Não localizada outra release NeoForge 1.21.1 no intervalo.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Versões físicas, candidatas, não instaladas, hashes, dependências e estados históricos não se sobrepõem às propriedades vigentes. 
 
 > **Autoridade física atual — 28/09/2026.** Ordem física **#587**: JAR `Zeta-1.1-40.jar`, mod id `zeta`, runtime `1.1-40`, SHA-1 `72f6efe421cfc0547c774ae8241d727b7d996754`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

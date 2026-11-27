@@ -1,4 +1,27 @@
-# Not Enough Glyphs
+# Not Enough Glyphs — 4.6.4
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Not Enough Glyphs
+- **Arquivo JAR instalado (declarado):** `not_enough_glyphs-1.21.1-4.6.4.jar`
+- **Versão instalada declarada:** `4.6.4` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #419 (preservada).
+- **Categoria CurseForge / pasta:** Addons + Magic + Utility & QoL.
+- **Função:** Addon Ars Nouveau: glyphs, formas, filtros, propagadores, contingências, SpellBinder e Book Covers.
+- **Atualização/Status:** `4.6.2` → `4.6.4`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** Publicações identificadas auditadas com fontes oficiais e evidência histórica; limites de changelog, metadata e procedência descritos abaixo. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Ars Nouveau obrigatório (índice 5.13.1); Sauce >=0.0.50 era requisito da 4.6.2, não assumir novo mínimo nem versão JarJar exata. Testar turrets, Propagate Self/Underfoot, glyph ordering, spell persistence e interação com Ars 'n Spells 3.4.3. Sem QA.
+- **Fonte:** [publicação ou página oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/not-enough-glyphs/files/9812830).
+- **Procedência:** declaração expressa do usuário e publicação oficial; sem atribuir hash/metadata do novo binário sem inspeção.
+
+## Auditoria incremental das publicações
+
+- 4.6.4 — 25/11/2026: corrige efeitos inesperados de Propagate Self em turrets, recategoriza Redirect Direction como propagador para preservar ordenação e layout de glyphs. [Commit daf5eb7](https://github.com/Alexthw46/NotEnoughGlyphs/commit/daf5eb75001c9f73c2416bf07fcb64334f88ddc9) confirma correção de colisões de resolve em turrets e uso de mixin/interface para nome apresentado dos glyphs repacked; [commit cc50c11](https://github.com/Alexthw46/NotEnoughGlyphs/commit/cc50c11b787836c4d242b31251788d21550f27b4) confirma alteração para subform. Branch inclui mudanças de tradução, mas não se afirma que cada commit foi empacotado sem pin de build. Changelog oficial pula de 4.6.2 a 4.6.4; 4.6.3 não localizada como publicação separada. Não inventar delta.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Versões físicas, candidatas, não instaladas, hashes, dependências e estados históricos não se sobrepõem às propriedades vigentes. 
 
 ## Propriedades do registro
 

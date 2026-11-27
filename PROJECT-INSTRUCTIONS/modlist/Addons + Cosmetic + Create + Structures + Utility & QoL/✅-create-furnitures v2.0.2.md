@@ -1,4 +1,29 @@
-# Create: Furnitures
+# Create : New Furnitures — 2.0.2
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Create : New Furnitures
+- **Arquivo JAR instalado (declarado):** `create_new_furnitures-2.0.2.jar`
+- **Versão instalada declarada:** `2.0.2` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #144 (preservada).
+- **Categoria CurseForge / pasta:** Addons + Cosmetic + Create + Structures + Utility & QoL.
+- **Função:** Linha 2.0 reescrita: kits de pontes para trilhos Create, postes de iluminação, assentos e mesas modulares. A linha 1.x é histórica e não deve ser usada como autoridade de IDs/receitas da 2.x.
+- **Atualização/Status:** `1.1.2` → `2.0.2`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** Auditoria incremental parcial; versão-alvo e basename oficiais confirmados, reescrita 2.0 documentada, delta específico dos patches não recuperado. Prefixo pré-existente preservado como certificação da baseline histórica, não como certificação integral da nova implementação. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** **RISCO CRÍTICO DE MIGRAÇÃO:** o autor informa expressamente que a 2.0 não converte blocos colocados pela 1.x e desaconselha atualizar mundos que os utilizam. Não abrir mundo de produção sem backup/restauração testada e estratégia de remoção/reconstrução; atualização documental não autoriza conversão de save. Create >=6.0.10, ambos os lados; Create 6.0.10 consta no índice #116. Validar registros antigos/novos (mod_id runtime não medido), seat lifecycle, pontes em curvas/slope, suportes, ferramentas, receitas, persistência e renderização. Não presumir que blocos, receitas ou IDs antigos permanecem. Sem QA.
+- **Fonte:** [publicação ou página oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-new-furnitures).
+- **Procedência:** declaração expressa do usuário e publicação oficial; sem atribuir hash/metadata do novo binário sem inspeção.
+
+## Auditoria incremental das publicações
+
+- 2.0.0 — 25/11/2026, [file 9812449](https://www.curseforge.com/minecraft/mc-mods/create-new-furnitures/files/9812449): reescrita ampla declarada; a descrição oficial atual da linha 2.0 detalha pontes aplicadas a trilhos existentes, seguindo retas, curvas, inclinações e curvas em S; seis materiais (andesite, brass, copper, railway, industrial iron, oxidized copper), quatro estilos selecionáveis por wrench e suportes adaptados ao terreno. Kit na offhand durante colocação de curva ou clique em curva existente; para reta, selecionar extremidades; sneak+clique com kit remove a ponte. Postes multibloco em onze madeiras, cinco formatos mais poste pequeno, altura/rotação/formato ajustáveis por wrench e encaixe de lanternas; quebra devolve o item do poste segundo descrição. Nove tipos de assentos tingíveis; cinco mesas em onze madeiras, união de mesas de mesma altura, pernas de madeira/andesite/industrial iron. Receitas novas e Ponder de ponte; a receita de kit rende oito. Não atribuir todos os recursos a um patch específico da série sem changelog próprio.
+- 2.0.1: publicação intermediária não confirmada (busca por versão e arquivo sem resultado); não presumir que tenha existido ou atribuir correções.
+- 2.0.2 — 25/11/2026: versão Release NeoForge 1.21.1 e basename confirmados no Main File do projeto CurseForge ID 1162995; o link oficial aponta ao [file 9819514](https://www.curseforge.com/minecraft/mc-mods/create-new-furnitures/files/9819514), cuja ficha individual não foi recuperada. Changelog específico .0→.2 não disponível. **Auditoria incremental parcial; versão e JAR sincronizados, sem alegação de certificação integral da reescrita.** A existência de 1.1.3 Forge 1.20.1 não a torna intermediária para NeoForge 1.21.1.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Versões físicas, candidatas, não instaladas, hashes, dependências e estados históricos não se sobrepõem às propriedades vigentes. A linha 1.x foi substituída por uma reescrita: não usar seus IDs, receitas, internals ou comportamento como autoridade da 2.x sem confirmação.
 
 > **Autoridade física atual — 23/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#144**: JAR `create_furnitures-1.1.2-neoforge-1.21.1.jar`, mod id `create_furnitures`, runtime `1.1.2`, SHA-1 `0c10c3a0aac7b095b295d89aca6f76399d9e035f`.
 

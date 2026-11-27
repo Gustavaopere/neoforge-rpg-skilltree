@@ -1,4 +1,27 @@
-# Amendments — 1.21-2.3.0 (instalação declarada em 22/11/2026)
+# Amendments — 1.21-2.3.1
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Amendments
+- **Arquivo JAR instalado (declarado):** `amendments-1.21-2.3.1-neoforge.jar`
+- **Versão instalada declarada:** `1.21-2.3.1` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #026 (preservada).
+- **Categoria CurseForge / pasta:** Cosmetic + Utility & QoL.
+- **Função:** Extensões de interações, animações, visual e comportamento de objetos vanilla; integrações condicionais com outros mods.
+- **Atualização/Status:** `1.21-2.3.0` → `1.21-2.3.1`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** Publicações identificadas auditadas com fontes oficiais e evidência histórica; limites de changelog, metadata e procedência descritos abaixo. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Moonlight Lib (índice #407: 1.21.1-3.6.4, item 40) e integrações condicionais com Supplementaries (índice #536: 1.21.1-4.1.4), conforme histórico; novo mínimo não demonstrado. Verificar hotbar com resource packs, held torch, render em água, 3D projectiles e resource reload. Sem QA.
+- **Fonte:** [publicação ou página oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/amendments/files/9827599).
+- **Procedência:** declaração expressa do usuário e publicação oficial; sem atribuir hash/metadata do novo binário sem inspeção.
+
+## Auditoria incremental das publicações
+
+- 2.3.1 — 26/11/2026: melhora as opções de configuração dos slots da hotbar e corrige renderização da tocha segurada especificamente em NeoForge. Os nomes/defaults exatos das opções não são descritos. A 2.3.0 (22/11) e a cadeia anterior já estão auditadas no histórico; nenhuma publicação intermediária da linha NeoForge 1.21.1 foi localizada. Não misturar com 3.1.0 para MC 26.1.2.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Versões físicas, candidatas, não instaladas, hashes, dependências e estados históricos não se sobrepõem às propriedades vigentes. 
 
 > **Estado vigente (declaração do usuário):** atualização `1.21-2.1.10` → **`1.21-2.3.0`**, arquivo oficial `amendments-1.21-2.3.0-neoforge.jar` ([publicação verificada](https://www.curseforge.com/minecraft/mc-mods/amendments/files/9751471)). A presença do binário novo foi declarada pelo usuário; o JAR no computador, seu hash e os metadados internos não foram lidos. Ordem física histórica #026 preservada.
 

@@ -1,4 +1,27 @@
-# Integrated Villages
+# Integrated Villages — 1.4.0+1.21.1-neoforge
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Integrated Villages
+- **Arquivo JAR instalado (declarado):** `integrated_villages-1.4.0-1.21.1-neoforge.jar`
+- **Versão instalada declarada:** `1.4.0+1.21.1-neoforge` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #336 (preservada).
+- **Categoria CurseForge / pasta:** Adventure and RPG + Create + Magic + Structures + World Gen.
+- **Função:** Overhaul de vilas com estrutura data-driven e integração de outros mods; a linha 1.4.0 acrescenta vila de manguezal.
+- **Atualização/Status:** `1.3.3+1.21.1-neoforge` → `1.4.0+1.21.1-neoforge`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** Publicações identificadas auditadas com fontes oficiais e evidência histórica; limites de changelog, metadata e procedência descritos abaixo. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Dependências históricas Integrated API, Create, Supplementaries; Quark e Farmer's Delight recomendados. Índice Integrated API 1.8.2 (item 50), Create 6.0.10, Supplementaries 4.1.4, Quark 4.1-484 (item 42). Mínimos novos não confirmados. Verificar datapack de configuração de Integrated Villages separadamente (não alterado), locate, biomas de manguezal, geração e densidade, workstations, trades, loot, chunks antigos/novos e save. Sem QA.
+- **Fonte:** [publicação ou página oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/integrated-villages/files/9804662).
+- **Procedência:** declaração expressa do usuário e publicação oficial; sem atribuir hash/metadata do novo binário sem inspeção.
+
+## Auditoria incremental das publicações
+
+- 1.4.0 — 25/11/2026: arquivos estruturais revisados para desempenho e nova vila de manguezal. Não inferir IDs, peças, distribuição por bioma, loot ou ganho de TPS sem ler templates. Catálogo histórico e ficha nova indicam 1.3.3→1.4.0, sem outra publicação intermediária identificada. Divergência explícita: rótulo oficial contém +1.21.1-neoforge; campo File name usa -1.21.1-neoforge. Versão documental segue convenção histórica de rótulo; metadata binária não relida.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Versões físicas, candidatas, não instaladas, hashes, dependências e estados históricos não se sobrepõem às propriedades vigentes. 
 
 ## Propriedades do registro
 

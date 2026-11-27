@@ -1,4 +1,27 @@
-# Create: Fluid
+# Create: Fluid — 2.1.7
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Create: Fluid
+- **Arquivo JAR instalado (declarado):** `fluid-2.1.7.jar`
+- **Versão instalada declarada:** `2.1.7` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #284 (preservada).
+- **Categoria CurseForge / pasta:** Addons + Create.
+- **Função:** Addon de processamento/logística de fluidos, Mechanical Pipette, Copper Sink, Fluid Atomizer, interfaces e packages.
+- **Atualização/Status:** `2.1.6` → `2.1.7`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** Publicações identificadas auditadas com fontes oficiais e evidência histórica; limites de changelog, metadata e procedência descritos abaixo. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Mínimos explícitos da publicação: NeoForge >=21.1.219 e Create >=6.0.8, Minecraft 1.21.1. Create 6.0.10 documentado; Sable 2.0.5 no índice, integração opcional, mínimo específico não declarado. Validar conservação de fluidos/capacidades, water-only com contraptions, atomizer/potion effects, pipelines Sable e transforms, package logistics, overlap com Create FluidLogistics e rollback. Sem QA.
+- **Fonte:** [publicação ou página oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-fluid/files/9791292).
+- **Procedência:** declaração expressa do usuário e publicação oficial; sem atribuir hash/metadata do novo binário sem inspeção.
+
+## Auditoria incremental das publicações
+
+- 2.1.7 — 24/11/2026: capacidade de Copper Sink configurável quando água infinita está desabilitada; armazenamento aceita somente água também em contraptions. Fluid Atomizer recebe quantidade mínima configurável para processamento e opção de habilitar/desabilitar efeitos de poções em entidades. Mechanical Pipette recebe compatibilidade opcional com Sable para atingir blocos em estruturas móveis. Correções de nomes de Slime Fluid, Haunting Fluid e Smoking Fluid colocados, traduções de logística/Smart Re-Packager/Brass Box/roteamento e Ponder, incluindo pt-BR. Não inferir valores/defaults ou chaves de configuração não publicados. Nenhuma versão intermediária separada identificada.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Versões físicas, candidatas, não instaladas, hashes, dependências e estados históricos não se sobrepõem às propriedades vigentes. 
 
 ## Propriedades do registro
 
