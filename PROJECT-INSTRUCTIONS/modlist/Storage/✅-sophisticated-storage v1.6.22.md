@@ -1,4 +1,26 @@
-# Sophisticated Storage — 1.6.20 (instalação declarada em 22/11/2026)
+# Sophisticated Storage — 1.6.22
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Sophisticated Storage
+- **Arquivo JAR instalado (declarado):** `sophisticatedstorage-1.21.1-1.6.22.2244.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.6.22` — Release.
+- **Categoria CurseForge / pasta:** Storage
+- **Ordem física histórica:** #519 (preservada).
+- **Estado da pesquisa:** atualização documental com fontes oficiais e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário; não constitui leitura do JAR local nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/all?page=1&pageSize=20&version=1.21.1).
+- **Dependências / compatibilidade / riscos:** [Source pinado](https://github.com/P3pp3rF1y/SophisticatedStorage/blob/feb548f2094bc836a37bb20995a3a6e8f07a1982/gradle.properties), [template](https://github.com/P3pp3rF1y/SophisticatedStorage/blob/feb548f2094bc836a37bb20995a3a6e8f07a1982/src/main/templates/META-INF/neoforge.mods.toml) e [build](https://github.com/P3pp3rF1y/SophisticatedStorage/blob/feb548f2094bc836a37bb20995a3a6e8f07a1982/build.gradle): Core >=1.5.35, NeoForge >=21.1.229; JEI >=19.9.0 conforme template, Backpacks 3.26.20 é referência de desenvolvimento, não requisito obrigatório demonstrado. Core aguardando sincronização documental posterior (#518; conferir índice); não impede atualização deste dossier. Storage 1.6.22 supera o mínimo 1.6.3 da integração Create 0.1.23 auditada no lote anterior; pendência documental de Storage satisfeita, sem homologação de runtime. Testar waterlogging/packed double chests, contents/upgrades, uso de wrench, Create contraptions e save.
+- **Atualização/Status:** `1.6.20` → `1.6.22`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental e reconciliação
+
+Catálogo NeoForge 1.21.1 lista .20 (18/11) seguida de .22.2244 (25/11); não localizada distribuição separada de .21. O [commit .21](https://github.com/P3pp3rF1y/SophisticatedStorage/commit/628862e0703078020376ad9643e8fa00b04f31a9) eleva mod_version 1.6.20→1.6.21 e corrige waterlogging que apagava baús duplos empacotados e seu conteúdo (ChestBlock). O [commit .22](https://github.com/P3pp3rF1y/SophisticatedStorage/commit/feb548f2094bc836a37bb20995a3a6e8f07a1982) eleva mod_version 1.6.21→1.6.22 e inclui Storage Tool na tag c:tools/wrench (ItemTagProvider e recurso gerado), permitindo uso como chave por integrações que consultam a tag. Não inferir operações concretas de outros mods. Sufixo .2244 identifica build, mod_version 1.6.22 confirmado em source, não metadata binária. Ficha individual CurseForge não recuperada, catálogo oficial confirma basename.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo antecede esta revisão. Menções a versões “atuais”, “físicas”, “não instaladas”, hashes, gates de promoção e dependências se referem ao snapshot respectivo; o cabeçalho vigente prevalece. Não representa nova inspeção binária ou runtime.
 
 > **Versão vigente declarada pelo usuário:** 1.5.91 → **1.6.20**, arquivo oficial `sophisticatedstorage-1.21.1-1.6.20.2239.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/9692522)). O novo JAR local e seu metadata/SHA não foram inspecionados nesta sessão.
 

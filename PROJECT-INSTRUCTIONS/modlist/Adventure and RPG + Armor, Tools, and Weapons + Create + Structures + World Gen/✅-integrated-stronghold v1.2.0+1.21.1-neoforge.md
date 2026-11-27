@@ -1,4 +1,26 @@
-# Integrated Stronghold
+# Integrated Stronghold — 1.2.0+1.21.1-neoforge
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Integrated Stronghold
+- **Arquivo JAR instalado (declarado):** `integrated_stronghold-1.2.0-1.21.1-neoforge.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.2.0+1.21.1-neoforge` — Release.
+- **Categoria CurseForge / pasta:** Adventure and RPG + Armor, Tools, and Weapons + Create + Structures + World Gen
+- **Ordem física histórica:** #335 (preservada).
+- **Estado da pesquisa:** atualização documental com fontes oficiais e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário; não constitui leitura do JAR local nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/integrated-stronghold/files/9804405).
+- **Dependências / compatibilidade / riscos:** Dependências históricas Integrated API, Create, Supplementaries e Quark; versões mínimas novas não confirmadas. Revalidar geração/locate, End Portal, loot/spawners, jigsaw, datapack de configuração, puzzles/traps e chunks novos/existentes; nenhuma alteração nos datapacks neste lote, nem QA.
+- **Atualização/Status:** `1.1.4+1.21.1-neoforge` → `1.2.0+1.21.1-neoforge`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental e reconciliação
+
+1.2.0 (25/11): atualização dos arquivos das estruturas visando desempenho, sem especificar quais templates/peças ou métricas; nenhuma nova sala, loot ou mecânica atribuída. Catálogo completo lista 1.1.4 (24/03) seguida de 1.2.0, sem publicação intermediária para NeoForge 1.21.1. Rótulo CurseForge contém +1.21.1-neoforge, File name oficial usa -1.21.1-neoforge; versão documental preserva a convenção histórica do rótulo, não afirma metadata interna.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo antecede esta revisão. Menções a versões “atuais”, “físicas”, “não instaladas”, hashes, gates de promoção e dependências se referem ao snapshot respectivo; o cabeçalho vigente prevalece. Não representa nova inspeção binária ou runtime.
 
 ## Propriedades do registro
 

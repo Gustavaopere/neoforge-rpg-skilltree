@@ -1,4 +1,26 @@
-# Dynamic Trees - BetterNether — 2.4.0h (instalação declarada em 22/11/2026)
+# Dynamic Trees - BetterNether — 2.4.0h
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Dynamic Trees - BetterNether
+- **Arquivo JAR instalado (declarado):** `dtbetternether-1.21.1-2.4.0h.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `2.4.0h` — Release.
+- **Categoria CurseForge / pasta:** Addons + World Gen
+- **Ordem física histórica:** #227 (preservada).
+- **Estado da pesquisa:** revalidação de distribuição oficial; lacunas de changelog preservadas; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário; não constitui leitura do JAR local nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betternether/files/9752433).
+- **Dependências / compatibilidade / riscos:** Source histórico da 2.4.0h usa DT 1.7.2, DTP 1.3.2, BetterNether 21.0.30 e NeoForge 21.1.267; não converter automaticamente referências de build em mínimos. Reconciliar dependências nos respectivos lotes e validar worldgen, mushrooms, chunks e save; sem QA.
+- **Atualização/Status:** `2.4.0h` já documentada, revalidada sem alteração de versão.
+- **Procedência:** declaração do usuário + publicação oficial; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental e reconciliação
+
+Revalidação: ficha oficial 9752433 de 22/11 confirma nome, NeoForge 1.21.1, Release e categorias; 2.4.0h continua última publicação localizada. A ficha não traz changelog. Retifica a nota histórica final que chamava 2.2.0 de versão vigente: 2.4.0h é a versão já declarada em 22/11 e reafirmada no pedido de 27/11. Os deltas específicos das publicações 2.3.0/2.4.0/2.4.0h continuam lacunas documentadas, não inferir novas espécies ou funcionalidades.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo antecede esta revisão. Menções a versões “atuais”, “físicas”, “não instaladas”, hashes, gates de promoção e dependências se referem ao snapshot respectivo; o cabeçalho vigente prevalece. Não representa nova inspeção binária ou runtime.
 
 > **Estado vigente (declaração do usuário):** atualização `2.2.0` → **`2.4.0h`**, arquivo oficial `dtbetternether-1.21.1-2.4.0h.jar` ([publicação verificada](https://modrinth.com/mod/dynamictrees-betternether/version/Ldf9GQrQ)). A presença do binário novo foi declarada pelo usuário; o JAR no computador, seu hash e os metadados internos não foram lidos. Ordem física histórica #227 preservada.
 

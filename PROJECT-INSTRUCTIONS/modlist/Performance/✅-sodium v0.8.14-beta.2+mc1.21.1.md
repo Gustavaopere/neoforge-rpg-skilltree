@@ -1,4 +1,26 @@
-# Sodium
+# Sodium — 0.8.14-beta.2+mc1.21.1
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Sodium
+- **Arquivo JAR instalado (declarado):** `sodium-neoforge-0.8.14-beta.2-mc1.21.1.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `0.8.14-beta.2+mc1.21.1` — Beta.
+- **Categoria CurseForge / pasta:** Performance
+- **Ordem física histórica:** #512 (preservada).
+- **Estado da pesquisa:** atualização documental com fontes oficiais e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário; não constitui leitura do JAR local nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/sodium/files/9804257).
+- **Dependências / compatibilidade / riscos:** Cliente NeoForge 1.21.1. O requisito documental exato de Reese's Sodium Options 2.2.7-beta.1 por Sodium 0.8.14-beta.2+mc1.21.1 passa a corresponder à instalação declarada; incompatibilidade separada de Reese's com sodiumoptionsapi permanece. Não afirmar que o stack foi testado. Regressar Iris, ETF, culling, Create/Sable, dynamic lights e addons que usam mixins internos, fullscreen/Linux e interface.
+- **Atualização/Status:** `0.8.13+mc1.21.1` → `0.8.14-beta.2+mc1.21.1`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental e reconciliação
+
+[0.8.14-beta.1](https://www.curseforge.com/minecraft/mc-mods/sodium/files/9802885) (25/11): otimização de modelo pitcher plant; correção do estado vertexIndex ao descartar quads translúcidos inválidos; restaura argumentos de linha de comando após janela inicial NeoForge; prefixa membros mixin com sodium$ (pode quebrar addons que dependem dos nomes anteriores); fechamento de VideoSettingsScreen por ESC corrige retorno de telas, inclusive Iris; corrige distância de renderização com câmera fora de chunks carregados; restaura controle de resolução fullscreen Linux. [0.8.14-beta.2](https://www.curseforge.com/minecraft/mc-mods/sodium/files/9804257) (25/11): notas públicas repetem a beta.1, mas [commit 565fdf8](https://github.com/CaffeineMC/sodium/commit/565fdf85149670dfc3272756262cba67e55cf469) corrige aplicação do BakedQuadMixin, [15b07ee](https://github.com/CaffeineMC/sodium/commit/15b07ee17873f49cb96b1778cdc1e18d8a1532c6) atualiza NeoForge para corrigir build com Fabric API, [e6216b3](https://github.com/CaffeineMC/sodium/commit/e6216b39ffac9c6decdfeb53eb6e6fd5dfbbefeb) eleva versão. File name CF usa -mc1.21.1, versão-alvo +mc1.21.1 é convenção da versão do mod e coincide com o range exato declarado pelo consumer Reese's; metadata do JAR local não relida.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo antecede esta revisão. Menções a versões “atuais”, “físicas”, “não instaladas”, hashes, gates de promoção e dependências se referem ao snapshot respectivo; o cabeçalho vigente prevalece. Não representa nova inspeção binária ou runtime.
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#512**: JAR `sodium-neoforge-0.8.13+mc1.21.1.jar`, mod id `sodium`, runtime `0.8.13+mc1.21.1`, SHA-1 `1757289be21ed18db5b0d90703fa3db1b2de5693`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

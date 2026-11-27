@@ -1,4 +1,26 @@
-# Dynamic Trees - BetterEnd — 2.4.0h (instalação declarada em 22/11/2026)
+# Dynamic Trees - BetterEnd — 2.4.0h
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Dynamic Trees - BetterEnd
+- **Arquivo JAR instalado (declarado):** `dtbetterend-1.21.1-2.4.0h.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `2.4.0h` — Release.
+- **Categoria CurseForge / pasta:** Addons + World Gen
+- **Ordem física histórica:** #226 (preservada).
+- **Estado da pesquisa:** revalidação de distribuição oficial; lacunas de changelog preservadas; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário; não constitui leitura do JAR local nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betterend/files/9752449).
+- **Dependências / compatibilidade / riscos:** Preservar a comparação histórica com DT 1.7.2, DTP 1.3.2 opcional na baseline, BetterEnd New Dawn e dependências transitivas BCLib/WorldWeaver/WunderLib; source 2.4.0h usa BetterEnd 21.0.39 e NeoForge 21.1.267 como referências de build. Não presumir mínimos novos nem QA. Worldgen, crescimento e save continuam sem homologação.
+- **Atualização/Status:** `2.4.0h` já documentada, revalidada sem alteração de versão.
+- **Procedência:** declaração do usuário + publicação oficial; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental e reconciliação
+
+Revalidação: ficha oficial 9752449 de 22/11 confirma nome, NeoForge 1.21.1, Release e categorias; 2.4.0h continua última publicação para o alvo localizada. A ficha não possui changelog. Não há bump; a declaração anterior de instalação de 2.4.0h permanece. Deltas de 2.4.0/2.4.0h não discriminados no histórico continuam explicitamente lacunas, não funcionalidades inventadas.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo antecede esta revisão. Menções a versões “atuais”, “físicas”, “não instaladas”, hashes, gates de promoção e dependências se referem ao snapshot respectivo; o cabeçalho vigente prevalece. Não representa nova inspeção binária ou runtime.
 
 > **Estado vigente (declaração do usuário):** atualização `2.2.0` → **`2.4.0h`**, arquivo oficial `dtbetterend-1.21.1-2.4.0h.jar` ([publicação verificada](https://modrinth.com/mod/dynamictrees-betterend/version/bpaCRQFQ)). A presença do binário novo foi declarada pelo usuário; o JAR no computador, seu hash e os metadados internos não foram lidos. Ordem física histórica #226 preservada.
 

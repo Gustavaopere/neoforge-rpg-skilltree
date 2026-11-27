@@ -1,4 +1,26 @@
-# IceAndFire Community Edition — 2.2.1-bugfix (instalação declarada em 22/11/2026)
+# IceAndFire Community Edition — 2.2.2
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** IceAndFire Community Edition
+- **Arquivo JAR instalado (declarado):** `IceAndFireCE-2.2.2-1.21.1-neoforge.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `2.2.2` — Release.
+- **Categoria CurseForge / pasta:** Adventure and RPG + Magic + Ores and Resources + World Gen
+- **Ordem física histórica:** #316 (preservada).
+- **Estado da pesquisa:** atualização documental com fontes oficiais e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário; não constitui leitura do JAR local nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9784982).
+- **Dependências / compatibilidade / riscos:** GeckoLib, Curios, Jupiter e Integration embarcada conforme histórico; mínimos novos não verificados. QA para multipartes, cadáveres, anti-dupe, transformações elementais/compat de tags e addons Dragon Care/Dread Land/Epic Fight; nenhuma homologação.
+- **Atualização/Status:** `2.2.1-bugfix` → `2.2.2`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental e reconciliação
+
+2.2.2 (24/11): reverte as mudanças de indicadores de dano que interferiam na coleta de cadáveres e na seleção de partes do dragão (#284); deixa de incluir a supressão de targeting do indicador. Corrige transformações elementais de gravel/cobblestone via tags de materiais compartilhadas, inclusive blocos tagueados de outros mods (#302). Areia e areia vermelha agora convertem ao gravel elemental correspondente; suspicious sand e blocos de areia com block entity não são alterados. Gravel elemental mantém reversão natural ao gravel vanilla. Não inferir alteração de drop rate/receitas. Cadeia 2.1.3→2.2.1-bugfix permanece histórica; nenhuma publicação intermediária posterior ao hotfix localizada.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo antecede esta revisão. Menções a versões “atuais”, “físicas”, “não instaladas”, hashes, gates de promoção e dependências se referem ao snapshot respectivo; o cabeçalho vigente prevalece. Não representa nova inspeção binária ou runtime.
 
 > **Vigente em 22/11/2026:** `2.1.2` → **`2.2.1-bugfix`**; JAR oficial publicado `IceAndFireCE-2.2.1-bugfix-1.21.1-neoforge.jar`, [CurseForge](https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9718410). Instalação confirmada pela declaração do usuário, não por leitura do JAR local ou metadados da nova build.
 

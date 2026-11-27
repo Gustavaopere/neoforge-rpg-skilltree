@@ -1,4 +1,26 @@
-# ShatterLib | OctoLib
+# ShatterLib | OctoLib — 0.6.3.3
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** ShatterLib | OctoLib
+- **Arquivo JAR instalado (declarado):** `OctoLib-NEOFORGE-0.6.3.3-1.21.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `0.6.3.3` — Release.
+- **Categoria CurseForge / pasta:** API and Library
+- **Ordem física histórica:** #425 (preservada).
+- **Estado da pesquisa:** atualização documental com fontes oficiais e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário; não constitui leitura do JAR local nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/shatterbyte-lib/files/9809320).
+- **Dependências / compatibilidade / riscos:** NeoForge 1.21.1; Relics é consumer conhecido. SnakeYAML 2.2 era embedded na baseline, não assumir versão nova nem promovê-la a mod top-level. Regressão de listas vazias/invalidas, reload YAML, startup cliente/servidor e consumers; sem QA.
+- **Atualização/Status:** `0.6.2` → `0.6.3.3`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental e reconciliação
+
+[0.6.3](https://www.curseforge.com/minecraft/mc-mods/shatterbyte-lib/files/9478818) (06/11): validação de listas vazias. 0.6.3.1 (12/11) localizada apenas para Fabric, não atribuída a NeoForge. [0.6.3.2](https://www.curseforge.com/minecraft/mc-mods/shatterbyte-lib/files/9588915) (13/11): corrige falhas intermitentes de reload de configs. 0.6.3.3 (25/11): melhora lógica de validação de configurações, sem mecanismo ou mudanças de schema detalhados. Rótulo da publicação tem +1.21, File name oficial contém -1.21; metadata interna não inspecionada. Não confundir com a linha 0.7.x de outras versões do jogo.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo antecede esta revisão. Menções a versões “atuais”, “físicas”, “não instaladas”, hashes, gates de promoção e dependências se referem ao snapshot respectivo; o cabeçalho vigente prevalece. Não representa nova inspeção binária ou runtime.
 
 ## Propriedades do registro
 

@@ -1,5 +1,22 @@
 
 
+## Sincronização documental — 27/11/2026 (itens 8, 11–19)
+
+Instalação declarada pelo usuário, sem releitura física. Seis bumps e duas revalidações. Posições físicas históricas preservadas. Dependências e QA não bloqueiam a documentação. As tabelas históricas registram estados de suas datas; as linhas vigentes são a autoridade documental atual.
+
+- #207 CreativeCore: `2.13.55` → [`2.13.56`](https://www.curseforge.com/minecraft/mc-mods/creativecore/files/9788664). [Dossier](API%20and%20Library/%E2%9C%85-creativecore%20v2.13.56.md).
+- #519 Sophisticated Storage: `1.6.20` → [`1.6.22`](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage/files/all?page=1&pageSize=20&version=1.21.1). [Dossier](Storage/%E2%9C%85-sophisticated-storage%20v1.6.22.md).
+- #226 Dynamic Trees - BetterEnd: `2.4.0h` → [`2.4.0h`](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betterend/files/9752449) (já documentada; revalidação). [Dossier](Addons%20%2B%20World%20Gen/%E2%9C%85-dynamic-trees-betterend%20v2.4.0h.md).
+- #227 Dynamic Trees - BetterNether: `2.4.0h` → [`2.4.0h`](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-betternether/files/9752433) (já documentada; revalidação). [Dossier](Addons%20%2B%20World%20Gen/%E2%9C%85-dynamic-trees-betternether%20v2.4.0h.md).
+- #512 Sodium: `0.8.13+mc1.21.1` → [`0.8.14-beta.2+mc1.21.1`](https://www.curseforge.com/minecraft/mc-mods/sodium/files/9804257). [Dossier](Performance/%E2%9C%85-sodium%20v0.8.14-beta.2%2Bmc1.21.1.md).
+- #316 IceAndFire Community Edition: `2.2.1-bugfix` → [`2.2.2`](https://www.curseforge.com/minecraft/mc-mods/iceandfire-ce/files/9784982). [Dossier](Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Ores%20and%20Resources%20%2B%20World%20Gen/%E2%9C%85-ice-and-fire-community-edition%20v2.2.2.md).
+- #425 ShatterLib | OctoLib: `0.6.2` → [`0.6.3.3`](https://www.curseforge.com/minecraft/mc-mods/shatterbyte-lib/files/9809320). [Dossier](API%20and%20Library/%E2%9C%85-shatterlib-octolib%20v0.6.3.3.md).
+- #335 Integrated Stronghold: `1.1.4+1.21.1-neoforge` → [`1.2.0+1.21.1-neoforge`](https://www.curseforge.com/minecraft/mc-mods/integrated-stronghold/files/9804405). [Dossier](Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Create%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-integrated-stronghold%20v1.2.0%2B1.21.1-neoforge.md).
+- #179 Create: Cyber Goggles: mantido 8.8.3. Source oficial 1.21.1/NeoForge já declara [8.8.6](https://github.com/ForgeStove/CreateCyberGoggles/blob/208513832f3ea627b0ad15fca0f17c6e3e26d729/gradle.properties), mas publicação correspondente não recuperada; referências não primárias a 8.8.4/.5 não bastam para declarar nova versão CurseForge. Sem promoção.
+- Integrated Patches: projeto oficial 1690092, [1.2.0](https://www.curseforge.com/minecraft/mc-mods/integrated-patches/files/8995436); não localizado dossier elegível nem posição no índice. Não criar certificação ou posição artificial.
+- Reconciliação entre lotes: Storage 1.6.22 satisfaz o piso declarado 1.6.3 de Storage Create Integration 0.1.23; Core >=1.5.35 continua a reconciliar. Sodium 0.8.14-beta.2+mc1.21.1 corresponde à exigência de Reese's Sodium Options 2.2.7-beta.1; incompatibilidade separada com sodiumoptionsapi permanece. Nenhuma aprovação de execução.
+
+
 ## Sincronização documental — 27/11/2026 (lote 1–10, parcial)
 
 Instalação declarada pelo usuário; JARs físicos e metadata interna não relidos. Posições originais preservadas. Gates antigos são históricos; linhas vigentes governam a versão declarada. Dependências e QA pendentes não bloqueiam a atualização documental.
@@ -916,7 +933,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 204 | Create: Transmission! | `createtransmission-1.2.2+neoforge-create6-1.21.1.jar` | `1.2.2+neoforge-create6-1.21.1` | `Addons + Cosmetic + Create + Technology + Utility & QoL` | 24/09/2026 - 00:44 |
 | 205 | Create Ultimine | `createultimine-1.21.1-neoforge-1.4.0.jar` | `1.4.0` | `Addons + Create + Utility & QoL` | 22/11/2026 - 15:59 |
 | 206 | Create : Creating Space | `creatingspace-1.21.1-1.7.22.jar` | `1.7.22` | `Create + Dimensions + Player Transport + Technology + World Gen` | 24/10/2026 - 01:34 |
-| 207 | CreativeCore | `CreativeCore_NEOFORGE_v2.13.55_mc1.21.1.jar` | `2.13.55` | `API and Library` | 22/11/2026 - 07:43 |
+| 207 | CreativeCore | `CreativeCore_NEOFORGE_v2.13.56_mc1.21.1.jar` | `2.13.56` Release (instalação declarada) | `API and Library` | 27/11/2026 - 15:22 |
 | 208 | Crystal Chronicles - Iron's Spells 'n Spellbooks | `crystal_chronicles-0.1.3-alpha.jar` | `0.1.3-alpha` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Dimensions + Magic` | 24/09/2026 - 00:44 |
 | 209 | Cuisine Delight | `cuisinedelight-1.2.10.jar` | `1.2.10` | `Food + Utility & QoL` | 24/09/2026 - 00:44 |
 | 210 | Cupboard | `cupboard-1.21.1-4.1.jar` | `4.1` | `Utility & QoL` | 24/09/2026 - 00:44 |
@@ -935,8 +952,8 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 223 | Create: Dreams n' Desires | `DnDesires-1.21.1-2.3a-BETA.jar` | `2.3a-BETA` | `Armor, Tools, and Weapons + Automation + Create + Utility & QoL + World Gen` | 24/09/2026 - 10:44 |
 | 224 | Domum Ornamentum | `domum-ornamentum-1.0.236-snapshot-main.jar` | `1.0.236-snapshot` | `API and Library + Cosmetic` | 20/11/2026 - 00:17 |
 | 225 | Dreamless Spells and Spellbooks | `dreamless_spells-1.1.9.jar` | `1.1.9` | `Addons + Armor, Tools, and Weapons + Magic + Ores and Resources` | 24/09/2026 - 10:44 |
-| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.4.0h.jar` | `2.4.0h` | `Addons + World Gen` | 22/11/2026 - 19:13 |
-| 227 | Dynamic Trees - BetterNether | `dtbetternether-1.21.1-2.4.0h.jar` | `2.4.0h` | `Addons + World Gen` | 22/11/2026 - 19:13 |
+| 226 | Dynamic Trees - BetterEnd | `dtbetterend-1.21.1-2.4.0h.jar` | `2.4.0h` Release (instalação declarada; revalidada) | `Addons + World Gen` | 27/11/2026 - 15:22 |
+| 227 | Dynamic Trees - BetterNether | `dtbetternether-1.21.1-2.4.0h.jar` | `2.4.0h` Release (instalação declarada; revalidada) | `Addons + World Gen` | 27/11/2026 - 15:22 |
 | 228 | Dynamic Trees - Oh The Biomes We've Gone | `dtbwg-1.1.0-BETA02.jar` | `1.1.0-BETA02` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
 | 229 | Dynamic Trees - Quark | `dtquark-2.6.1.jar` | `2.6.1` | `Addons + Cosmetic + World Gen` | 24/09/2026 - 10:44 |
 | 230 | Dynamic Trees - Terralith | `dtterralith-1.3.0.jar` | `1.3.0` | `Addons + Biomes + World Gen` | 24/09/2026 - 10:44 |
@@ -1025,7 +1042,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 17/11/2026 - 17:09 |
 | 314 | Hexalia | `hexalia-1.3.8.3-1.21.1-neoforge.jar` | `1.3.8.3` Release (instalação declarada) | `Adventure and RPG + Magic + Mobs + World Gen` | 27/11/2026 - 15:17 |
 | 315 | Ice And Fire: Dragon Care | `Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar` | `1.3.1 - 1.21.1v` | `Addons` | 27/09/2026 - 03:14 |
-| 316 | IceAndFire Community Edition | `IceAndFireCE-2.2.1-bugfix-1.21.1-neoforge.jar` | `2.2.1-bugfix` | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 22/11/2026 - 15:59 |
+| 316 | IceAndFire Community Edition | `IceAndFireCE-2.2.2-1.21.1-neoforge.jar` | `2.2.2` Release (instalação declarada) | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 27/11/2026 - 15:22 |
 | 317 | Ice and Fire X Epic Fight | `iceandfire-ce-epicfight-armor-compat-1.0.0.jar` | `1.0.0` | `Addons + Armor, Tools, and Weapons + Bug Fixes + Cosmetic` | 24/09/2026 - 22:20 |
 | 318 | Ice And Fire: Dread Land | `iceandfire_dreadland-0.1.2.jar` | `0.1.2` | `Addons + Adventure and RPG + Biomes + Dimensions` | 24/09/2026 - 22:20 |
 | 319 | Iceberg [Neo/Forge] | `Iceberg-1.21.1-neoforge-1.3.2.jar` | `1.3.2` | `API and Library` | 27/09/2026 - 03:14 |
@@ -1044,7 +1061,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 332 | Integrated API | `integrated_api-neoforge-1.21.1-1.8.2.jar` | `1.8.2` | `Adventure and RPG + API and Library + Structures + World Gen` | 21/11/2026 - 23:05 |
 | 333 | Integrated Cataclysm | `integrated_cataclysm-1.0.6+1.21.1-neoforge.jar` | `1.0.6+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Create + World Gen` | 24/09/2026 - 23:17 |
 | 334 | Integrated Simply Swords | `integrated_simply_swords-1.4.0+1.21.1-neoforge.jar` | `1.4.0+1.21.1-neoforge` | `Addons + Adventure and RPG + Armor, Tools, and Weapons` | 24/09/2026 - 23:18 |
-| 335 | Integrated Stronghold | `integrated_stronghold-1.1.4+1.21.1-neoforge.jar` | `1.1.4+1.21.1-neoforge` | `Adventure and RPG + Armor, Tools, and Weapons + Create + Structures + World Gen` | 25/09/2026 - 00:26 |
+| 335 | Integrated Stronghold | `integrated_stronghold-1.2.0-1.21.1-neoforge.jar` | `1.2.0+1.21.1-neoforge` Release (instalação declarada) | `Adventure and RPG + Armor, Tools, and Weapons + Create + Structures + World Gen` | 27/11/2026 - 15:22 |
 | 336 | Integrated Villages | `integrated_villages-1.3.3+1.21.1-neoforge.jar` | `1.3.3+1.21.1-neoforge` | `Adventure and RPG + Create + Magic + Structures + World Gen` | 24/09/2026 - 23:21 |
 | 337 | Inventory Sorter | `inventorysorter-1.21.1-24.0.24.jar` | `24.0.24` | `Miscellaneous` | 24/09/2026 - 23:21 |
 | 338 | Iris Shaders | `iris-neoforge-1.8.14-beta.1+mc1.21.1.jar` | `1.8.14-beta.1+mc1.21.1` | `Cosmetic + Miscellaneous` | 25/09/2026 - 00:26 |
@@ -1134,7 +1151,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 422 | Nutritional Balance | `nutritionalbalance-1.21.1-7.0.3.jar` | `1.21.1-7.0.3` | `Adventure and RPG + Food` | 29/09/2026 - 23:37 |
 | 423 | Nyf's Spiders | `nyfsspiders-neoforge-1.21.1-3.0.1.jar` | `3.0.1` | `Mobs` | 25/09/2026 - 14:28 |
 | 424 | Obscure Tooltips | `obscure_tooltips-neoforge-1.21.1-4.2.4.jar` | `4.2.4` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Map and Information` | 25/09/2026 - 14:28 |
-| 425 | ShatterLib \| OctoLib | `OctoLib-NEOFORGE-0.6.2+1.21.jar` | `0.6.2` | `API and Library` | 19/11/2026 - 19:11 |
+| 425 | ShatterLib \| OctoLib | `OctoLib-NEOFORGE-0.6.3.3-1.21.jar` | `0.6.3.3` Release (instalação declarada) | `API and Library` | 27/11/2026 - 15:22 |
 | 426 | Oh The Biomes We've Gone | `Oh-The-Biomes-Weve-Gone-NeoForge-2.6.0.jar` | `2.6.0` | `Biomes + Farming + Mobs + Structures + World Gen` | 25/09/2026 - 14:28 |
 | 427 | Oh The Trees You'll Grow | `Oh-The-Trees-Youll-Grow-neoforge-1.21.1-5.3.2.jar` | `5.3.2` | `API and Library + Biomes + Structures + World Gen` | 18/11/2026 - 10:06 |
 | 428 | Oracle Index | `oracle_index-neoforge-1.4.0.jar` | `1.4.0` | `API and Library + Education + Map and Information + Utility & QoL` | 18/11/2026 - 10:52 |
@@ -1221,14 +1238,14 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 509 | Create: Smart Bounds | `smart_bounds-1.0.0.jar` | `1.0.0` | `Bug Fixes + Create + Performance + Technology` | 27/09/2026 - 19:02 |
 | 510 | SmartBrainLib (Forge/Fabric/Quilt) | `SmartBrainLib-neoforge-1.21.1-1.16.11.jar` | `1.16.11` | `API and Library` | 27/09/2026 - 19:02 |
 | 511 | Snow! Real Magic! ⛄ (Neo/Forge) | `SnowRealMagic-1.21.1-NeoForge-12.2.7.jar` | `12.2.7` | `Cosmetic + Utility & QoL + World Gen` | 22/11/2026 - 09:01 |
-| 512 | Sodium | `sodium-neoforge-0.8.13+mc1.21.1.jar` | `0.8.13+mc1.21.1` | `Performance` | 27/09/2026 - 20:56 |
+| 512 | Sodium | `sodium-neoforge-0.8.14-beta.2-mc1.21.1.jar` | `0.8.14-beta.2+mc1.21.1` Beta (instalação declarada) | `Performance` | 27/11/2026 - 15:22 |
 | 513 | Somake Spells - Iron's Spells Addon | `somakespells-1.0.9-1.21.1.jar` | `1.0.9` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 18/11/2026 - 08:55 |
 | 514 | Thirst Upgrade for Sophisticated Backpacks (Thirst Was Taken) | `sophisticated-thirst-upgrade.jar` | `0.1.8` | `Miscellaneous` | 27/09/2026 - 21:19 |
 | 515 | Sophisticated JEI Index | `sophisticated_jei_index-1.2.3+1.21.1.jar` | `1.2.3` | `Addons + Applied Energistics 2 + Refined Storage + Storage` | 27/09/2026 - 20:56 |
 | 516 | Sophisticated Backpacks | `sophisticatedbackpacks-1.21.1-3.26.22.2257.jar` | `3.26.22` (JAR build .2257; metadata não relido) | `Armor, Tools, and Weapons + Storage` | 22/11/2026 - 15:25 |
 | 517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `0.2.0` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.42.2496.jar` | `1.5.42 (JAR build .2496; metadata local não relida)` | `API and Library` | 22/11/2026 - 19:29 |
-| 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.6.20.2239.jar` | `1.6.20` (JAR build .2239, metadata não relido) | `Storage` | 22/11/2026 - 16:39 |
+| 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.6.22.2244.jar` | `1.6.22` Release (instalação declarada) | `Storage` | 27/11/2026 - 15:22 |
 | 520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.23.246.jar` | `0.1.23` Release (instalação declarada) | `Addons + Storage` | 27/11/2026 - 15:17 |
 | 521 | Soul fire'd | `soul-fire-d-neoforge-1.21-6.1.0.jar` | `6.1.0` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Utility & QoL` | 27/09/2026 - 20:57 |
 | 522 | Sound Physics: Aeronautics | `sound-physics-remastered-neoforge-1.4.0.1.jar` | `1.4.0.1` | `Create + Utility & QoL` | 27/09/2026 - 22:12 |
@@ -1393,7 +1410,7 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 27 | BlockUI | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-blockui%20v1.0.212-1.21.1-snapshot.md) | `1.0.212-1.21.1-snapshot` | `1.0.212-1.21.1-snapshot` | REVALIDADO: possível republicação; conferir file ID/SHA, sem bump |
 | 28 | Sophisticated Storage Create Integration | [Abrir `.md`](./Addons%20%2B%20Storage/%E2%9C%85-sophisticated-storage-create-integration%20v0.1.23.md) | `0.1.21` | `0.1.23.246` | PENDENTE: Storage ≥1.6.3 + Create ≥6.0.7 no source, linked groups/QA |
 | 29 | Integrated API | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-integrated-api%20v1.8.2.md) | `1.8.2` | `1.9.0` | PENDENTE: consumers Integrated Structures e registries worldgen |
-| 30 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.6.20.md) | `1.5.91` | `1.6.5.2176` | PENDENTE: 1.6.5 corrige crash sem Backpacks; Core ≥1.5.9, groups/QA |
+| 30 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.6.22.md) | `1.5.91` | `1.6.5.2176` | PENDENTE: 1.6.5 corrige crash sem Backpacks; Core ≥1.5.9, groups/QA |
 
 > **Auditoria de rastreabilidade — 13/10/2026:** os 30 links da coluna **Dossiê técnico** foram reconciliados com caminhos existentes na `main`; cada filename `✅-... vX.md` retém a **última evidência física histórica**, não a release candidata. O endereço CurseForge `easy-npc/files/9151672` citado nos dossiês Easy NPC corresponde a um JAR **Fabric**: ele é fonte do changelog comum, mas **NÃO** é o artefato NeoForge. Verificar o JAR NeoForge 1.21.1 e manter o bloqueio EME 2.5.0+ até publicação compatível comprovada.
 
@@ -1722,7 +1739,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 75 | Create: Creating Space | [Abrir `.md`](./Create%20%2B%20Dimensions%20%2B%20Player%20Transport%20%2B%20Technology%20%2B%20World%20Gen/%E2%9C%85-creating-space%20v1.7.22.md) | `1.7.22` | 1.7.23 Release (21/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 24/10: RELEASE TAG v1.21.1-1.7.23, JAR SHA-256 E PRS #130–132 IDENTIFICADOS; BACKLOG RENÚMERADO #17; HASH CROSS-PLATFORM E QA/PROMOÇÃO PENDENTES** |
 | 76 | [EMF] Entity Model Features [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-model-features%20v3.3.5.md) | `3.3.5` | 3.3.12 Release (15/10) | **PESQUISA DOCUMENTAL 3.3.6–3.3.12 CONCLUÍDA EM 23/10; ETF 7.2.6 E QA GRÁFICO PENDENTES** |
 | 77 | Vampirism Iron's Spells Compatibility | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Food%20%2B%20Magic/%E2%9C%85-vampire-spells-addon%20v1.21.1-0.0.9.md) | `1.21.1-0.0.9` | 0.0.10 Release (17/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10; CONFIGS HOLY/BLOOD SCHOOL DETALHADAS; QA E PROMOÇÃO PENDENTES** |
-| 78 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.6.20.md) | `1.5.91` | 1.6.9.2199 Release (23/10) | **PESQUISA DOCUMENTAL 1.6.0–1.6.9 CONCLUÍDA EM 23/10; CORE ≥1.5.12, BACKPACKS/CREATE E QA ANTI-DUPE PENDENTES** |
+| 78 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.6.22.md) | `1.5.91` | 1.6.9.2199 Release (23/10) | **PESQUISA DOCUMENTAL 1.6.0–1.6.9 CONCLUÍDA EM 23/10; CORE ≥1.5.12, BACKPACKS/CREATE E QA ANTI-DUPE PENDENTES** |
 | 79 | WunderLib: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-wunderlib-neoforge%20v21.0.10.md) | `21.0.10` | 21.0.11 Release (14/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10: BUMP/BUILD E METADATA DO SOURCE IDENTIFICADOS; BYTECODE E QA NEW DAWN PENDENTES** |
 | 80 | Create: Ornithopter Glider | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Create%20%2B%20Player%20Transport%20%2B%20Utility%20%26%20QoL/%E2%9C%85-create-ornithopter-glider%20v1.2.0-1.21.1.md) | `1.2.0-1.21.1` | 1.2.0+1.21.1 Release (03/06) | **REVALIDADO EM 23/10: SEM UPGRADE NEOFORGE 1.21.1; CHANGELOG DA VERSÃO FÍSICA CERTIFICADO; QA IN-GAME PENDENTE** |
 | 81 | AmbientSounds 6 | [Abrir `.md`](./Miscellaneous/%E2%9C%85-ambientsounds-6%20v6.3.8.md) | `6.3.8` | 6.3.11 Release (19/10) | **PESQUISA DOCUMENTAL 6.3.9–6.3.11 CONCLUÍDA EM 23/10; CREATIVECORE/QA DE ÁUDIO PENDENTES** |

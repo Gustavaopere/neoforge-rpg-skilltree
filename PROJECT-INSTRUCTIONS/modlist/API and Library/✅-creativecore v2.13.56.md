@@ -1,4 +1,26 @@
-# CreativeCore — versão 2.13.55 (atualização declarada em 22/11/2026)
+# CreativeCore — 2.13.56
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** CreativeCore
+- **Arquivo JAR instalado (declarado):** `CreativeCore_NEOFORGE_v2.13.56_mc1.21.1.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `2.13.56` — Release.
+- **Categoria CurseForge / pasta:** API and Library
+- **Ordem física histórica:** #207 (preservada).
+- **Estado da pesquisa:** atualização documental com fontes oficiais e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário; não constitui leitura do JAR local nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/creativecore/files/9788664).
+- **Dependências / compatibilidade / riscos:** NeoForge 1.21.1; mínimos específicos novos não demonstrados. LittleTiles/LittleFrames e consumers de render/GUI requerem regressão de pose, transformações, partial tick, recursos e cliente/servidor; nenhum QA novo executado.
+- **Atualização/Status:** `2.13.55` → `2.13.56`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental e reconciliação
+
+2.13.56 (24/11): corrige reutilização indevida de pose de renderização depois do tick, ocorrência descrita pelo autor como rara. A publicação de 2.13.55 para 1.21.1 NeoForge é a baseline, sem outra intermediária identificada. Não atribuir mudança de API ou novo conteúdo sem evidência.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo antecede esta revisão. Menções a versões “atuais”, “físicas”, “não instaladas”, hashes, gates de promoção e dependências se referem ao snapshot respectivo; o cabeçalho vigente prevalece. Não representa nova inspeção binária ou runtime.
 
 > **Estado vigente — 22/11/2026:** versão `2.13.55`, JAR oficial `CreativeCore_NEOFORGE_v2.13.55_mc1.21.1.jar`, **instalação declarada pelo usuário**; [CurseForge file 9720383](https://www.curseforge.com/minecraft/mc-mods/creativecore/files/9720383). Posição histórica preservada. A confirmação deriva do pedido, não de novo dump do diretório local.
 
