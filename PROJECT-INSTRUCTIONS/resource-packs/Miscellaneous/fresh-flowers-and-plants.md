@@ -1,6 +1,6 @@
 # Fresh Flowers and Plants — 3D UI Beta
 
-> **Registro preliminar, não certificado.** Fora do catálogo auditado. Não atribui selo, posição ou load order. Não é um segundo dossier canônico.
+> **Registro documental inicial, sem certificação integral.** Entrada nº 59 no catálogo de resource packs (ordinal documental, não load order); instalação declarada pelo usuário. Não atribui selo ✅ nem homologação de runtime.
 
 ## Estado documental — 27/11/2026
 
@@ -9,11 +9,13 @@
 - **Arquivo oficial compatível identificado:** `Fresh Flowers and Plants 3D UI.zip`, Beta, file ID 6540018, 17/05/2025.
 - **Versão semântica:** não publicada para esta variante; usar file ID como identificador inequívoco, não como versão semântica.
 - **Minecraft:** suporte explícito a 1.21.1 na ficha individual; resource pack, não mod NeoForge.
-- **Estado no pack:** instalação da versão compatível declarada pelo usuário; seleção de 3D UI inferida do filtro de versão, sem inspeção do ZIP local.
+- **Estado no pack:** atualização declarada pelo usuário; 3D UI é a única publicação com suporte explícito a 1.21.1 identificada na consulta oficial. ZIP local não inspecionado.
 - **Estado da pesquisa:** identidade, publicação, filename e categorias confirmados. pack.mcmeta, modelos, hash e prioridade de carregamento não inspecionados.
 - **Categorias CurseForge:** 16x + Miscellaneous. Pelo protocolo do índice, 16x é resolução técnica; categoria temática Miscellaneous.
-- **Versão anterior:** não documentada.
-- **Atualização/Status:** primeira ficha preliminar; não localizado dossier anterior no catálogo.
+- **Versão anterior:** não documentada; não inferir um bump numérico.
+- **Dossier:** `Miscellaneous/fresh-flowers-and-plants.md`; sem prefixo de certificação.
+- **Dependências:** nenhuma obrigatória identificada nas fontes consultadas; não equivale a validação binária.
+- **Atualização/Status:** 27/11/2026 - 18:53 (America/Sao_Paulo) — inclusão documental inicial no catálogo, nº 59. Histórico de publicações já revisado; nenhuma nova versão compatível encontrada. Sem certificação integral.
 
 ## Função visual
 
@@ -34,7 +36,7 @@ A versão 1.2.1 não deve ser atribuída à variante 3D UI; não há versão int
 - Modelos e texturas podem sobrepor outros resource packs nos mesmos caminhos. A prioridade efetiva determina o resultado.
 - Não há validação de dependência de loader ou de mods de renderização. A descrição do autor indica que suporte a Hold My Items está em desenvolvimento; não afirmar integração concluída.
 - Verificar pack.mcmeta, árvore assets, modelos de item e texturas, renderização em GUI/mão e interação com packs do perfil. Recarregar os recursos para QA quando disponível.
-- O número 1 pertence à lista de solicitação; não é posição no catálogo ou load order. A atribuição de posição documental e ingresso no catálogo ficam pendentes da inclusão formal.
+- O número 1 pertence à lista de solicitação. O número 59 é o ordinal de inclusão no catálogo documental, atribuído ao final para preservar os números 01–58; nenhum deles é load order.
 - Nenhum teste de renderização ou inspeção do ZIP foi executado.
 
 ## Fontes
@@ -42,4 +44,4 @@ A versão 1.2.1 não deve ser atribuída à variante 3D UI; não há versão int
 - [Projeto oficial](https://www.curseforge.com/minecraft/texture-packs/fresh-flowers-and-plants)
 - [Catálogo oficial de arquivos](https://www.curseforge.com/minecraft/texture-packs/fresh-flowers-and-plants/files/all)
 - [Publicação 3D UI](https://www.curseforge.com/minecraft/texture-packs/fresh-flowers-and-plants/files/6540018)
-- [Índice e registro de pendência](../resource-packs/resource-packs.md)
+- [Índice mestre e histórico da inclusão](../resource-packs.md)

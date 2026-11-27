@@ -68,14 +68,15 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 | 56 | True Dovah | `True Dovah.zip` | sem versão semântica própria publicada | `Mod Support` | `Mod Support/✅-true-dovah.md` | 29/09/2026 - 19:07 |
 | 57 | (Unofficial) Mandala's GUI - Dark Mode Mod Compatibility | `Mandala's GUI - Dark Mode Compat 0.3.2.zip` | `0.3.2` | `Miscellaneous + Mod Support` | `Miscellaneous + Mod Support/✅-unofficial-mandalas-gui-dark-mode-mod-compatibility v0.3.2.md` | 29/09/2026 - 19:07 |
 | 58 | Villagers Refreshed | `villagers-refreshed-v2.zip` | `2` | `Miscellaneous + Mod Support + Traditional` | `Miscellaneous + Mod Support + Traditional/✅-villagers-refreshed v2.md` | 29/09/2026 - 19:07 |
+| 59 | Fresh Flowers and Plants | `Fresh Flowers and Plants 3D UI.zip` | 3D UI Beta (sem versão semântica; file 6540018; instalação declarada) | `Miscellaneous` | `Miscellaneous/fresh-flowers-and-plants.md` | 27/11/2026 - 18:53 |
 
 ## Estado incremental
 
-- Dossiers existentes em `resource-packs/`: **58**
-- Entradas neste índice: **58**
-- Corte atual: lotes determinísticos **#1–#6**, itens **01–58**.
+- Dossiers existentes em `resource-packs/`: **59**
+- Entradas neste índice: **59**
+- Corte atual: lotes determinísticos **#1–#6**, itens **01–59**. A entrada 59 é inclusão documental posterior, anexada ao final sem renumerar 01–58; não implica certificação.
 - Categoria `resource-packs/` integralmente percorrida pelo protocolo de revalidação atual.
-- Dossiers organizados em subpastas temáticas: **58/58**.
+- Dossiers organizados em subpastas temáticas: **59/59** (organização não implica certificação integral).
 
 
 ## Gate de promoção dos quatro resource packs priorizados — 10/10/2026
@@ -177,4 +178,4 @@ A [listagem oficial](https://www.curseforge.com/minecraft/texture-packs/fresh-fl
 
 Instalação do projeto atualizada conforme declaração do usuário; 3D UI é o alvo inferido do filtro oficial de 1.21.1, sem inspeção do ZIP local. Não há versão anterior documental, dossier, entrada no índice ou confirmação de prioridade de carregamento. pack.mcmeta, modelos, sobreposição com outros packs e QA não inspecionados. Registro de pesquisa **fora da tabela mestre**; nenhuma posição, pasta ou certificação nova atribuída. Pendente inclusão documental inicial formal; não liberar o item da lista de atualizações enquanto esse requisito permanecer.
 
-**Desdobramento da pendência:** [ficha preliminar de Fresh Flowers and Plants](../pendencias-de-inclusao/fresh-flowers-and-plants.md). Registro individual de evidências criado fora do catálogo certificado; sem entrada na tabela mestre. A pendência de inclusão formal permanece. Não repetir auditoria de publicações sem nova evidência.
+**Desdobramento — 27/11/2026, 18:53:** [dossier individual de Fresh Flowers and Plants](Miscellaneous/fresh-flowers-and-plants.md). A situação preliminar descrita acima foi superada pela inclusão documental nº 59 no catálogo, sem selo de certificação. A variante 3D UI (file 6540018) continua sendo o alvo compatível identificado; sem novo bump, sem inspeção física ou QA. A pendência de auditoria integral permanece separada da fila de atualização de versões.
