@@ -1,4 +1,20 @@
 
+
+## Sincronização documental — 27/11/2026 (lote 1–10, parcial)
+
+Instalação declarada pelo usuário; JARs físicos e metadata interna não relidos. Posições originais preservadas. Gates antigos são históricos; linhas vigentes governam a versão declarada. Dependências e QA pendentes não bloqueiam a atualização documental.
+
+- #395 MineColonies: `1.1.1423-1.21.1-snapshot` → [`1.1.1426-1.21.1-snapshot`](https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9800310). [Dossier](Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Automation%20%2B%20Storage%20%2B%20Structures/%E2%9C%85-minecolonies%20v1.1.1426-1.21.1-snapshot.md).
+- #491 Sable: Ragdoll - Patch: `1.9` → [`1.9.2`](https://www.curseforge.com/minecraft/mc-mods/sable-ragdoll-patch/files/9770322). [Dossier](Bug%20Fixes/%E2%9C%85-sable-ragdolls-patch%20v1.9.2.md).
+- #520 Sophisticated Storage Create Integration: `0.1.21` → [`0.1.23`](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-create-integration/files/9151604). [Dossier](Addons%20%2B%20Storage/%E2%9C%85-sophisticated-storage-create-integration%20v0.1.23.md).
+- #314 Hexalia: `1.3.7` → [`1.3.8.3`](https://www.curseforge.com/minecraft/mc-mods/hexalia/files/9819891). [Dossier](Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Mobs%20%2B%20World%20Gen/%E2%9C%85-hexalia%20v1.3.8.3.md).
+- #440 Petrolpark Library: `1.5.11` → [`1.5.13`](https://www.curseforge.com/minecraft/mc-mods/petrolpark-library/files/9725217). [Dossier](Addons%20%2B%20API%20and%20Library%20%2B%20Create/%E2%9C%85-petrolparks-library%20v1.5.13.md).
+- #473 Reese's Sodium Options: `2.2.3+mc1.21.1` → [`2.2.7-beta.1+mc1.21.1`](https://www.curseforge.com/minecraft/mc-mods/reeses-sodium-options/files/9804580). [Dossier](Miscellaneous/%E2%9C%85-reeses-sodium-options%20v2.2.7-beta.1%2Bmc1.21.1.md).
+- #295 Fancy World Animations: `1.2.31` → [`1.3.10`](https://www.curseforge.com/minecraft/mc-mods/fwa/files/9777751). [Dossier](Cosmetic/%E2%9C%85-fancy-world-animations%20v1.3.10.md).
+- #542 ThirstWasFixed: `2.1.6` → [`2.2.1`](https://www.curseforge.com/minecraft/mc-mods/thirstwasfixed/files/9201004). [Dossier](Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.2.1.md).
+- #243 Ecliptic Seasons: `0.15.0-rc-3-1` → [`0.15.6.0.1`](https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons/files/all). [Dossier](Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Farming%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ecliptic-seasons%20v0.15.6.0.1.md).
+- Create: Cyber Goggles (#179): mantido 8.8.3; possível publicação posterior não confirmada em fonte oficial nesta rodada.
+
 # Índice incremental da modlist certificada e organizada
 
 ## Fechamento documental do item original 3 — Create: Cyber Goggles (22/11/2026)
@@ -936,7 +952,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 240 | Easy NPC | `easy_npc_bundle-neoforge-1.21.1-7.20.0.jar` | `7.20.0` | `Adventure and RPG + API and Library` | 22/11/2026 - 19:13 |
 | 241 | Easy NPC: Config UI | `easy_npc_config_ui-neoforge-1.21.1-7.20.0.jar` | `7.20.0` | `Utility & QoL` | 22/11/2026 - 15:25 |
 | 242 | Ecliptic Seasons: MultiMod Patch | `Ecliptic-Seasons-MultiMod-Patch-1.21.1-neoforge-0.32.1.jar` | `0.32.1` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
-| 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar` | `0.15.0-rc-3-1` | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 18/11/2026 - 08:02 |
+| 243 | Ecliptic Seasons | `EclipticSeasons-1.21.1-neoforge-0.15.6.0.1.jar` | `0.15.6.0.1` Release (instalação declarada) | `Adventure and RPG + Cosmetic + Farming + Utility & QoL` | 27/11/2026 - 15:17 |
 | 244 | Ecliptic Seasons : Bundles | `EclipticSeasons-Bundles-0.18.0.2.jar` | `0.18.0.2` | `Addons + Utility & QoL` | 24/09/2026 - 14:02 |
 | 245 | Epic Fight x Iron's Spells: Enhanced Animations | `efiscompat-3.1.0.jar` | `3.1.0` | `Cosmetic + Miscellaneous` | 24/09/2026 - 14:02 |
 | 246 | Eidolon : Repraised | `eidolon_repraised-1.21.1-0.5.0.2.jar` | `0.5.0.2` | `Adventure and RPG + Armor, Tools, and Weapons + Magic` | 18/11/2026 - 07:44 |
@@ -988,7 +1004,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 292 | FTB Ultimine (NeoForge) | `ftb-ultimine-neoforge-2101.1.15.jar` | `2101.1.15` | `Armor, Tools, and Weapons + Server Utility` | 24/09/2026 - 19:05 |
 | 293 | FTB XMod Compat | `ftb-xmod-compat-neoforge-21.1.11.jar` | `21.1.11` | `API and Library` | 17/11/2026 - 17:33 |
 | 294 | Fusion (Connected Textures) | `fusion-1.3.15a-neoforge-mc1.21.1.jar` | `1.3.15+a` (metadata runtime); filename/release `1.3.15a` | `API and Library + Cosmetic` | 24/09/2026 - 19:05 |
-| 295 | Fancy World Animations | `fwa+1.21.1-neoforge-1.2.31.jar` | `1.2.31` | `Cosmetic` | 22/11/2026 - 00:44 |
+| 295 | Fancy World Animations | `fwa-1.21.1-neoforge-1.3.10.jar` | `1.3.10` Release (instalação declarada) | `Cosmetic` | 27/11/2026 - 15:17 |
 | 296 | Fzzy Config | `fzzy_config-0.7.7+1.21+neoforge.jar` | `0.7.7+1.21+neoforge` | `API and Library + Utility & QoL` | 20/11/2026 - 18:36 |
 | 297 | Gabou's Libs | `gaboulibs-neoforge-1.9.jar` | `1.9` | `API and Library` | 24/09/2026 - 19:05 |
 | 298 | Create Aeronautics: Gadgets & Gizmos | `gadgets-and-gizmos-bundled-V1.2.2.jar` | `1.2.2` | `Addons + Create` | 18/11/2026 - 11:28 |
@@ -1007,7 +1023,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 311 | Guide-API Village and Pillage | `Guide-API-VP-1.21.1-2.3.0.jar` | `2.3.0` | `API and Library + Map and Information` | 24/09/2026 - 21:04 |
 | 312 | Hazen 'N Stuff | `hazennstuff-1.4.0.14.jar` | `1.4.0.14` | `Addons + Armor, Tools, and Weapons + Magic` | 24/09/2026 - 21:57 |
 | 313 | HazentouveLib | `hazentouvelib-1.0.9.jar` | `1.0.9` | `API and Library` | 17/11/2026 - 17:09 |
-| 314 | Hexalia | `hexalia-neoforge-1.3.7.jar` | `1.3.7` | `Adventure and RPG + Magic + Mobs + World Gen` | 18/11/2026 - 08:32 |
+| 314 | Hexalia | `hexalia-1.3.8.3-1.21.1-neoforge.jar` | `1.3.8.3` Release (instalação declarada) | `Adventure and RPG + Magic + Mobs + World Gen` | 27/11/2026 - 15:17 |
 | 315 | Ice And Fire: Dragon Care | `Ice and Fire - Dragon Care-1.3.1 - 1.21.1v.jar` | `1.3.1 - 1.21.1v` | `Addons` | 27/09/2026 - 03:14 |
 | 316 | IceAndFire Community Edition | `IceAndFireCE-2.2.1-bugfix-1.21.1-neoforge.jar` | `2.2.1-bugfix` | `Adventure and RPG + Magic + Ores and Resources + World Gen` | 22/11/2026 - 15:59 |
 | 317 | Ice and Fire X Epic Fight | `iceandfire-ce-epicfight-armor-compat-1.0.0.jar` | `1.0.0` | `Addons + Armor, Tools, and Weapons + Bug Fixes + Cosmetic` | 24/09/2026 - 22:20 |
@@ -1088,7 +1104,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 392 | Mechanicals Lib | `mechanicals-1.21.1-1.1.6.jar` | `1.1.6` | `API and Library` | 25/09/2026 - 12:31 |
 | 393 | Melody | `melody_neoforge_1.0.10_MC_1.21.jar` | `1.0.10` | `API and Library` | 25/09/2026 - 12:31 |
 | 394 | MezzConfig | `mezz_config-1.21.1-neoforge-0.5.9.jar` | `0.5.9` | `API and Library` | 17/11/2026 - 15:09 |
-| 395 | MineColonies | `minecolonies-1.1.1423-1.21.1-snapshot.jar` | `1.1.1423-1.21.1-snapshot` Beta | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 22/11/2026 - 19:13 |
+| 395 | MineColonies | `minecolonies-1.1.1426-1.21.1-snapshot.jar` | `1.1.1426-1.21.1-snapshot` Beta (instalação declarada) | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 27/11/2026 - 15:17 |
 | 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 18/11/2026 - 08:55 |
 | 397 | Tweaks addon for MineColonies | `MineColonies_Tweaks-1.21.1-3.33.jar` | `3.33` | `Addons + Utility & QoL` | 17/11/2026 - 17:09 |
 | 398 | Miner's Delight + | `minersdelight-1.21.1-1.4.5.jar` | `1.4.5` | `Cosmetic + Farming + Food` | 25/09/2026 - 12:31 |
@@ -1133,7 +1149,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 437 | PartiCull | `PartiCull-neoforge-1.21.1-v2.0.jar` | `2.0` | `Performance + Utility & QoL` | 21/11/2026 - 23:12 |
 | 438 | Patchouli | `Patchouli-1.21.1-93-NEOFORGE.jar` | `1.21.1-93-NEOFORGE` | `API and Library` | 25/09/2026 - 15:17 |
 | 439 | Pehkui | `Pehkui-3.8.3+1.21-neoforge.jar` | `3.8.3+1.21-neoforge` | `API and Library` | 25/09/2026 - 15:17 |
-| 440 | Petrolpark's Library | `petrolpark-1.21.1-1.5.11.jar` | `1.5.11` | `Addons + API and Library + Create` | 22/11/2026 - 07:24 |
+| 440 | Petrolpark Library | `petrolpark-1.21.1-1.5.13.jar` | `1.5.13` Beta (instalação declarada) | `Addons + API and Library + Create` | 27/11/2026 - 15:17 |
 | 441 | Presence Footsteps x Sable (Aeronautics Compat) | `pfsable-1.0.jar` | `1.0` | `Cosmetic + Utility & QoL` | 25/09/2026 - 15:17 |
 | 442 | Photon | `photon-neoforge-1.21.1-2.2.6.a-all.jar` | `2.2.6.a` | `API and Library + Magic + Technology + Utility & QoL` | 22/11/2026 - 00:44 |
 | 443 | Pickable Health Orbs | `pickable_orbs-1.21.1-1.0.0.jar` | `1.21.1-1.0.0` | `Adventure and RPG + Magic + Utility & QoL` | 26/09/2026 - 02:32 |
@@ -1166,7 +1182,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 470 | Steam 'n' Rails Neoforge | `railways-0.3.0-beta.2+neoforge-mc1.21.1.jar` | `0.3.0-beta.2+neoforge-mc1.21.1` | `Addons + Cosmetic + Create + Player Transport + Technology` | 27/09/2026 - 16:30 |
 | 471 | Rechiseled | `rechiseled-1.2.6-neoforge-mc1.21.jar` | `1.2.6` | `Cosmetic` | 27/09/2026 - 16:30 |
 | 472 | Iron's Spells 'n Spellbooks: Recolor | `recolor_tablet-1.3.3+1.21.1.jar` | `1.3.3+1.21.1` | `Cosmetic + Magic` | 21/11/2026 - 01:03 |
-| 473 | Reese's Sodium Options | `reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar` | `2.2.3+mc1.21.1` | `Miscellaneous` | 01/10/2026 - 00:44 |
+| 473 | Reese's Sodium Options | `reeses-sodium-options-neoforge-2.2.7-beta.1-mc1.21.1.jar` | `2.2.7-beta.1+mc1.21.1` Beta (instalação declarada) | `Miscellaneous` | 27/11/2026 - 15:17 |
 | 474 | Relics | `relics-1.21.1-0.12.8.jar` | `0.12.8` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Magic + Ores and Resources` | 17/11/2026 - 18:40 |
 | 475 | Reliquified L_Ender 's Cataclysm new relics fix | `reliquified-lenders-cataclysm-new-relics-fix-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes + Server Utility` | 27/09/2026 - 17:03 |
 | 476 | Reliquified Ars Nouveau | `reliquified_ars_nouveau-1.21.1-0.8.1.jar` | `0.8.1` | `Addons + Adventure and RPG + Armor, Tools, and Weapons + Magic` | 22/10/2026 - 22:49 |
@@ -1184,7 +1200,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 488 | Create Additions - Sable Compat | `sable_createaddition_compat-0.1.13.jar` | `0.1.13` | `Addons + Create` | 27/09/2026 - 17:33 |
 | 489 | Sable & Flowing Fluids Compat | `sable_flowing_fluids_compat-1.0.2.jar` | `1.0.2` | `Addons + Bug Fixes` | 27/09/2026 - 17:33 |
 | 490 | Sable: Ragdolls | `sable_player_ragdoll-1.21.1-0.7.5.jar` | `0.7.5` | `Addons + API and Library + Cosmetic + Create` | 27/09/2026 - 17:33 |
-| 491 | Sable: Ragdoll - Patch | `sable_player_ragdoll_patch-1.21.1-1.9.jar` | `1.9` | `Bug Fixes` | 22/10/2026 - 22:49 |
+| 491 | Sable: Ragdoll - Patch | `sable_player_ragdoll_patch-1.21.1-1.9.2.jar` | `1.9.2` Release (instalação declarada) | `Bug Fixes` | 27/11/2026 - 15:17 |
 | 492 | Sable Assembly Fix | `SableAssemblyFix-1.0.0.jar` | `1.0.0` | `Bug Fixes + Create + Server Utility` | 27/09/2026 - 18:15 |
 | 493 | Sable Beyond | `sablebeyond-neoforge-1.21.1-v0.5.0.jar` | `0.5.0` | `Addons + API and Library + Create + KubeJS + Utility & QoL` | 27/09/2026 - 18:16 |
 | 494 | Jade Sable Compat | `sablejade-1.3.0.jar` | `1.3.0` | `Utility & QoL` | 27/09/2026 - 18:35 |
@@ -1213,7 +1229,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 517 | Sophisticated Backpacks Create Integration | `sophisticatedbackpackscreateintegration-1.21.1-0.2.0.168.jar` | `0.2.0` | `Addons + Storage` | 27/09/2026 - 21:19 |
 | 518 | Sophisticated Core | `sophisticatedcore-1.21.1-1.5.42.2496.jar` | `1.5.42 (JAR build .2496; metadata local não relida)` | `API and Library` | 22/11/2026 - 19:29 |
 | 519 | Sophisticated Storage | `sophisticatedstorage-1.21.1-1.6.20.2239.jar` | `1.6.20` (JAR build .2239, metadata não relido) | `Storage` | 22/11/2026 - 16:39 |
-| 520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar` | `0.1.21` | `Addons + Storage` | 27/09/2026 - 21:19 |
+| 520 | Sophisticated Storage Create Integration | `sophisticatedstoragecreateintegration-1.21.1-0.1.23.246.jar` | `0.1.23` Release (instalação declarada) | `Addons + Storage` | 27/11/2026 - 15:17 |
 | 521 | Soul fire'd | `soul-fire-d-neoforge-1.21-6.1.0.jar` | `6.1.0` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Utility & QoL` | 27/09/2026 - 20:57 |
 | 522 | Sound Physics: Aeronautics | `sound-physics-remastered-neoforge-1.4.0.1.jar` | `1.4.0.1` | `Create + Utility & QoL` | 27/09/2026 - 22:12 |
 | 523 | Sounds | `sounds-2.4.22+lts+1.21.1-neoforge.jar` | `2.4.22+lts` | `Adventure and RPG + Cosmetic + Utility & QoL` | 27/09/2026 - 22:12 |
@@ -1235,7 +1251,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 539 | TerraBlender (NeoForge) | `TerraBlender-neoforge-1.21.1-4.1.0.8.jar` | `4.1.0.8` | `API and Library + Biomes + World Gen` | 27/09/2026 - 22:58 |
 | 540 | Terralith | `Terralith_1.21.x_v2.6.2.jar` | `2.6.2` | `Biomes + Structures + World Gen` | 27/09/2026 - 23:18 |
 | 541 | Create: TFMG Community Edition | `tfmg-1.21.1-1.3.1-community.jar` | `1.3.1-community` | `Addons + Armor, Tools, and Weapons + Create + Ores and Resources + Technology` | 21/11/2026 - 00:20 |
-| 542 | ThirstWasFixed | `thirstwasfixed-2.1.6.jar` | `2.1.6` | `Addons + Bug Fixes` | 22/10/2026 - 23:19 |
+| 542 | ThirstWasFixed | `thirstwasfixed-2.2.1.jar` | `2.2.1` Release (instalação declarada) | `Addons + Bug Fixes` | 27/11/2026 - 15:17 |
 | 543 | Thirst Was Reclaimed | `ThirstWasReclaimed-1.21.1-3.0.5.jar` | `1.21.1-3.0.5` | `Food` | 17/11/2026 - 14:45 |
 | 544 | Corail Tombstone | `tombstone-neoforge-1.21.1-9.5.6.jar` | `9.5.6` | `Adventure and RPG + Magic + Mobs + Utility & QoL` | 28/09/2026 - 00:04 |
 | 545 | Tom's Simple Storage Mod | `toms_storage-1.21-2.4.2.jar` | `2.4.2` | `Storage + Technology` | 28/09/2026 - 00:04 |
@@ -1365,7 +1381,7 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 15 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.5.0%2B1.21.1.md) | `1.3.1+1.21.1` | `1.5.0+1.21.1` (source) | **PENDENTE**: commits 1.4.2–1.5.0 auditados; falta inventário oficial de publicações para o alvo |
 | 16 | Eidolon: Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | `0.5.0.8` (filename; título 0.5.0.7) | **FECHADO documental 18/11**; cadeia 0.5.0.4–0.5.0.8 revisada; manifest/QA pendentes |
 | 17 | Fragmentum [NeoForge] | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | `5.3.0` | BLOQUEADO: mudança incompatível de API/Kotlin/registries desde 5.0 |
-| 18 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | `2.1.6` | REVALIDADO: sem nova release 1.21.1 demonstrada |
+| 18 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.2.1.md) | `2.1.6` | `2.1.6` | REVALIDADO: sem nova release 1.21.1 demonstrada |
 | 19 | Polytone | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polytone%20v1.21-4.4.0.md) | `1.21-4.4.0` | `5.1.1` | PENDENTE: voxel volume/Veil, shaders, packs; compat de Amendments |
 | 20 | Just Enough Items (JEI) | [Abrir `.md`](./API%20and%20Library%20%2B%20Map%20and%20Information/%E2%9C%85-just-enough-items%20v19.76.1.478.md) | `19.56.0.440` | `19.64.0.453 Beta` | PENDENTE: addon APIs, recipe/indexing e integração |
 | 21 | Subtle Effects | [Abrir `.md`](./Cosmetic%20%2B%20Miscellaneous/%E2%9C%85-subtle-effects%20v1.15.3.md) | `1.14.3` | `1.15.1` | PENDENTE: partículas e correções de servidor específicas de 1.21.1 |
@@ -1375,7 +1391,7 @@ O mesmo snapshot registra consumidores/bridges que **não podem ser ignorados** 
 | 25 | Easy NPC: Config UI | [Abrir `.md`](./Utility%20%26%20QoL/%E2%9C%85-easy-npc-config-ui%20v7.20.0.md) | `7.12.1` | `7.15.0` | 7.15.0 BLOQUEADO: EME 2.4.0 instalada historicamente não satisfaz `[2.5.0,3.0.0)`; 7.14.0 CANDIDATO CONDICIONAL: EME opcional `[2.4.0,3.0.0)`, dependências/UI e testes pendentes |
 | 26 | Crystal Chronicles — Iron's Spells | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Dimensions%20%2B%20Magic/%E2%9C%85-crystal-chronicles%20v0.1.3-alpha.md) | `0.1.3-alpha` | `0.1.4-alpha` | PENDENTE: versão alpha, magia e worldgen |
 | 27 | BlockUI | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-blockui%20v1.0.212-1.21.1-snapshot.md) | `1.0.212-1.21.1-snapshot` | `1.0.212-1.21.1-snapshot` | REVALIDADO: possível republicação; conferir file ID/SHA, sem bump |
-| 28 | Sophisticated Storage Create Integration | [Abrir `.md`](./Addons%20%2B%20Storage/%E2%9C%85-sophisticated-storage-create-integration%20v0.1.21.md) | `0.1.21` | `0.1.23.246` | PENDENTE: Storage ≥1.6.3 + Create ≥6.0.7 no source, linked groups/QA |
+| 28 | Sophisticated Storage Create Integration | [Abrir `.md`](./Addons%20%2B%20Storage/%E2%9C%85-sophisticated-storage-create-integration%20v0.1.23.md) | `0.1.21` | `0.1.23.246` | PENDENTE: Storage ≥1.6.3 + Create ≥6.0.7 no source, linked groups/QA |
 | 29 | Integrated API | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-integrated-api%20v1.8.2.md) | `1.8.2` | `1.9.0` | PENDENTE: consumers Integrated Structures e registries worldgen |
 | 30 | Sophisticated Storage | [Abrir `.md`](./Storage/%E2%9C%85-sophisticated-storage%20v1.6.20.md) | `1.5.91` | `1.6.5.2176` | PENDENTE: 1.6.5 corrige crash sem Backpacks; Core ≥1.5.9, groups/QA |
 
@@ -1512,7 +1528,7 @@ A rechecagem dos **dois projetos oficiais distintos** mantidos por LuminaCherry 
 
 **Limite de evidência:** Modpacks.ch é terceiro agregador de manifests, **não fonte oficial de SHA autenticado**; coincidência de SHA-1 não equivale a ter re-hashado o JAR do usuário ou executado Minecraft. Nenhuma instalação, remoção, nova aprovação ou teste local realizada. O source Reclaimed correspondente à versão 3.0.5 oferece **evidência estática de compatibilidade antiga parcial**, não demonstra funcionalidade do addon `sophisticatedthirst` nem ABI segura do mixin de purity em Core 1.5.11. O gate físico permanece **BLOQUEADO POR AUSÊNCIA DE ARTEFATOS**.
 
-**Dossiês revalidados:** [Ars Backpacks Compat #054](./Magic%20%2B%20Storage%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ars-sophisticated-compatibility%20v0.3.0.md), [Thirst Upgrade #514](./Miscellaneous/%E2%9C%85-sophisticated-thirst-upgrade%20v0.1.8.md), [Thirst Was Fixed #542](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md), [Thirst Was Reclaimed #543](./Food/%E2%9C%85-thirst-was-reclaimed%20v3.0.5.md).
+**Dossiês revalidados:** [Ars Backpacks Compat #054](./Magic%20%2B%20Storage%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ars-sophisticated-compatibility%20v0.3.0.md), [Thirst Upgrade #514](./Miscellaneous/%E2%9C%85-sophisticated-thirst-upgrade%20v0.1.8.md), [Thirst Was Fixed #542](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.2.1.md), [Thirst Was Reclaimed #543](./Food/%E2%9C%85-thirst-was-reclaimed%20v3.0.5.md).
 
 
 ## Candidato externo bloqueado — Soph Upgrade Addons NeoForge 1.21.1 (13/10/2026)
@@ -1580,7 +1596,7 @@ A rechecagem dos **dois projetos oficiais distintos** mantidos por LuminaCherry 
 | Moonlight | [Mixin 2.1.6](https://github.com/Partonetrain/thirstwasfixed/blob/aec5c8a65596ba8162858b22189057edbaa847d4/src/main/java/info/partonetrain/thirstwasfixed/mixin/moonlight/SoftFluidTankMixin.java): alvos SoftFluidTank.isFluidCompatible e addFluidOntoExisting, pureza mínima em água de purezas diferentes, quando opção habilitada; source 2.2.0 igual. | Alvos diferentes do FluidStack global no candidato Reclaimed 3.0.6, mas testar travessia entre Moonlight/Supplementaries, Create e Sophisticated, componentes, purity e volume. |
 | Mixin bootstrap | [JSON 2.1.6](https://github.com/Partonetrain/thirstwasfixed/blob/aec5c8a65596ba8162858b22189057edbaa847d4/src/main/resources/thirstwasfixed.mixins.json) com required=true, defaultRequire=1 e plugin de compatibilidade condicional. | Verificar bytecode real e dedicated server; source não é prova de aplicação de injector. |
 
-**Decisão:** source 2.2.0 identificado, **NÃO INSTALADO/NÃO APROVADO**; dossiê #542 atualizado apenas com evidências e testes pendentes. [Dossiê completo](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md).
+**Decisão:** source 2.2.0 identificado, **NÃO INSTALADO/NÃO APROVADO**; dossiê #542 atualizado apenas com evidências e testes pendentes. [Dossiê completo](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.2.1.md).
 
 
 **Precisão adicional dos builds ParCool:** [CurseForge 6797814](https://www.curseforge.com/minecraft/mc-mods/parcool/files/6797814) = ParCool **3.4.1.1-NF** (alvo de desenvolvimento do ThirstWasFixed 2.1.6); [CurseForge 9106851](https://www.curseforge.com/minecraft/mc-mods/parcool/files/9106851) = ParCool **4.0.1.2** (alvo de desenvolvimento do source ThirstWasFixed 2.2.0). **Físico do pack: ParCool #433 4.0.0.3**. A versão física está entre os dois targets de desenvolvimento; a presença/ausência de ParCoolAttributes nesse JAR não foi determinada e permanece gate binário obrigatório. Não inferir que a troca de dependência upstream obriga atualização de ParCool na produção.
@@ -1592,7 +1608,7 @@ A rechecagem dos **dois projetos oficiais distintos** mantidos por LuminaCherry 
 
 **Condição de ativação:** [Config.java TWF 2.1.6](https://github.com/Partonetrain/thirstwasfixed/blob/aec5c8a65596ba8162858b22189057edbaa847d4/src/main/java/info/partonetrain/thirstwasfixed/Config.java) declara os defaults de Stamina Bonus/Penalty Requirement iguais a **0**, e `ParCoolHelper.applyModifiers` condiciona acessos ao owner a valores não nulos; a config efetiva **NÃO foi lida**. O [source TWF 2.2.0](https://github.com/Partonetrain/thirstwasfixed/tree/47fb0e7063f9e906aa05da492a938ad45f39cb8c) usa `ParCoolAttributes`, presente já em ParCool 4.0.0.3 source, mas isso **não certifica binary/runtime** nem autoriza update. Range NeoForge ParCool 4.0.0.3 no source `[21.1.248,)` é numericamente atendido por 21.1.250, sem prova de boot do conjunto.
 
-**Decisão operacional:** inspecionar JARs e thresholds reais, aplicar teste de linkage no dedicated server com valores 0/não nulos e verificar modifiers, save/relog; manter versões instaladas no catálogo até demonstração física. O dossiê de [ParCool #433](./Adventure%20and%20RPG%20%2B%20Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-parcool%20v4.0.0.3.md) e o de [TWF #542](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) detalham a matriz. Sem JAR/boot ou atualização física neste lote.
+**Decisão operacional:** inspecionar JARs e thresholds reais, aplicar teste de linkage no dedicated server com valores 0/não nulos e verificar modifiers, save/relog; manter versões instaladas no catálogo até demonstração física. O dossiê de [ParCool #433](./Adventure%20and%20RPG%20%2B%20Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-parcool%20v4.0.0.3.md) e o de [TWF #542](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.2.1.md) detalham a matriz. Sem JAR/boot ou atualização física neste lote.
 
 
 ## ParCool #433 — Curios/Epic Fight #521 versus boot dedicado: problemas distintos (13/10/2026)
@@ -1629,7 +1645,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 
 | Pedido | Projeto | Dossiê | Versão documental/física preservada | Upstream 22/10/2026 | Estado |
 |---:|---|---|---|---|---|
-| 01 | MineColonies | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Automation%20%2B%20Storage%20%2B%20Structures/%E2%9C%85-minecolonies%20v1.1.1423-1.21.1-snapshot.md) | `1.1.1387-1.21.1-snapshot` | 1.1.1403 Release; 1.1.1405-snapshot Beta | **PENDENTE; snapshot BLOQUEADO** |
+| 01 | MineColonies | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Automation%20%2B%20Storage%20%2B%20Structures/%E2%9C%85-minecolonies%20v1.1.1426-1.21.1-snapshot.md) | `1.1.1387-1.21.1-snapshot` | 1.1.1403 Release; 1.1.1405-snapshot Beta | **PENDENTE; snapshot BLOQUEADO** |
 | 02 | Easy NPC | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library/%E2%9C%85-easy-npc-bundle%20v7.20.0.md) | `7.12.1` | 7.17.0 | **COORDENADO com Core/UI/EME** |
 | 03 | Alex's Mobs Continued | [Abrir `.md`](./Mobs/%E2%9C%85-alexs-mobs-continued%20v2.1.13.md) | `2.1.13` | 2.2.4 (Release NeoForge 1.21.1, 19/10) | **PENDENTE QA — nova Release 2.2.4; cadeia 2.1.14→2.2.4 auditada** |
 | 04 | Ars 'n Spells | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Magic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ars-n-spells%20v3.3.4.md) | `3.3.4` | 3.3.7 | **PENDENTE** |
@@ -1638,7 +1654,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 07 | BCLib: New Dawn | [Abrir `.md`](./API%20and%20Library%20%2B%20Biomes%20%2B%20Utility%20%26%20QoL%20%2B%20World%20Gen/%E2%9C%85-bclib-new-dawn%20v21.0.29.md) | `21.0.26` | 21.0.28 | **COORDENADO NEW DAWN** |
 | 08 | InsaneLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-insanelib%20v2.4.33.0.md) | `2.4.33.0` | 2.4.33.1 | **PENDENTE** |
 | 09 | Create: Teleporters | [Abrir `.md`](./Create%20%2B%20Energy%2C%20Fluid%2C%20and%20Item%20Transport%20%2B%20Technology/%E2%9C%85-create-teleporters-remastered%20v2.0.2b.md) | `2.0.2b` | 3.0.1b | **PENDENTE** |
-| 10 | Petrolpark Library | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Create/%E2%9C%85-petrolparks-library%20v1.5.11.md) | `1.5.11` | 1.5.11 Release estável; 1.5.12 Beta (19/10) | **1.5.11 Release mantida; 1.5.12 Beta bloqueada para promoção** |
+| 10 | Petrolpark Library | [Abrir `.md`](./Addons%20%2B%20API%20and%20Library%20%2B%20Create/%E2%9C%85-petrolparks-library%20v1.5.13.md) | `1.5.11` | 1.5.11 Release estável; 1.5.12 Beta (19/10) | **1.5.11 Release mantida; 1.5.12 Beta bloqueada para promoção** |
 | 11 | Punchy! - First person animations | [Abrir `.md`](./API%20and%20Library%20%2B%20Cosmetic%20%2B%20Map%20and%20Information/%E2%9C%85-punchy%20v2.7e.md) | `2.7e` | 3.2b (12/11) | **AUDITORIA DOCUMENTAL CONCLUÍDA EM 17/11**: releases NeoForge 1.21.1 até 3.2b, incluindo 3.1b/3.2/3.2a arquivadas, verificadas com changelogs por file ID; runtime 2.7e e QA da bridge Epic Fight pendentes |
 | 12 | Sophisticated Core | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-sophisticated-core%20v1.5.42.md) | `1.5.1` | 1.5.17.2426 Release (21/10) | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10; 1.5.15 E 1.5.16 VINCULADAS A COMMITS COM mod_version; QA/INSTALAÇÃO PENDENTES** |
 | 13 | Alex's Caves Continued | [Abrir `.md`](./World%20Gen/%E2%9C%85-alexs-caves-continued%20v1.0.10.md) | `1.0.10` | 1.0.10 | **REVALIDADO** |
@@ -1664,14 +1680,14 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 33 | Minecolonies: Epiched (Epic Colonies) | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Cosmetic/%E2%9C%85-epic-colonies%20v21.1.41.md) | `21.0.8` | 21.1.4 (16/11; 21.0.9→21.1.4) | **AUDITORIA DOCUMENTAL FECHADA 18/11**, com hotfix 21.0.912; validar EFM/MineColonies |
 | 34 | Easy Model Entities | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Automation%20%2B%20Mobs%20%2B%20Utility%20%26%20QoL/%E2%9C%85-easy-model-entities%20v2.4.0.md) | `2.4.0` | 2.6.0 (NeoForge 1.21.1; 2.5.0 intermediária) | **AUDITORIA DOCUMENTAL FECHADA; Easy NPC coordenado** |
 | 35 | Polymorph+ | [Abrir `.md`](./Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-polymorph-plus%20v1.5.0%2B1.21.1.md) | `1.3.1+1.21.1` | 1.5.0 (source 1.21.1) | **PENDENTE**: 1.4.0 binário confirmado Modrinth; source 1.4.2–1.5.0 auditado; fechamento da lista oficial de releases pendente |
-| 36 | Sable: Ragdoll - Patch | [Abrir `.md`](./Bug%20Fixes/%E2%9C%85-sable-ragdolls-patch%20v1.9.md) | `1.9` | 1.9.1 (Release NeoForge 1.21.1, 19/10) | **CORRIGIDO E AUDITADO; alpha cape transparency** |
+| 36 | Sable: Ragdoll - Patch | [Abrir `.md`](./Bug%20Fixes/%E2%9C%85-sable-ragdolls-patch%20v1.9.2.md) | `1.9` | 1.9.1 (Release NeoForge 1.21.1, 19/10) | **CORRIGIDO E AUDITADO; alpha cape transparency** |
 | 37 | Eidolon : Repraised | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-eidolon-repraised%20v0.5.0.2.md) | `0.5.0.2` | 0.5.0.8 (26/10; filename, título 0.5.0.7) | **AUDITORIA DOCUMENTAL FECHADA 18/11**; locator/summon ritual QA |
 | 38 | [ETF] Entity Texture Features - [Fabric & Forge] | [Abrir `.md`](./Cosmetic%20%2B%20Utility%20%26%20QoL/%E2%9C%85-entity-texture-features%20v7.2.1.md) | `7.2.1` | 7.2.7 (03/11; 7.2.2→7.2.7) | **REVALIDADO 18/11; 7.2.7 sem delta funcional anunciado para 1.21.1**, apenas traduções não detalhadas; EMF/ETF render QA |
 | 39 | Reliquified Ars Nouveau | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-ars-nouveau%20v0.8.1.md) | `0.8.1` | 0.8.1 Beta (sem publicação posterior NeoForge 1.21.1) | **REVALIDADO; zero versões intermediárias** |
 | 40 | Create:LazyTick | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-lazy-tick%20v2.6.25-6.0.10.md) | `2.6.25-6.0.10` | 2.7.33 / Create 6.0.10 (29/10) | **AUDITORIA DOCUMENTAL FECHADA 18/11**; .31–.33 complementadas; QA de automação pendente |
-| 41 | Ecliptic Seasons | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Farming%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ecliptic-seasons%20v0.15.0-rc-3-1.md) | `0.15.0-rc-3-1` | 0.15.5.1 (NeoForge 1.21.1, 02/11) | **AUDITORIA DOCUMENTAL FECHADA 18/11**; deltas .5 e .5.1 do source versionado; QA de clima/config/chunks pendente |
+| 41 | Ecliptic Seasons | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Farming%20%2B%20Utility%20%26%20QoL/%E2%9C%85-ecliptic-seasons%20v0.15.6.0.1.md) | `0.15.0-rc-3-1` | 0.15.5.1 (NeoForge 1.21.1, 02/11) | **AUDITORIA DOCUMENTAL FECHADA 18/11**; deltas .5 e .5.1 do source versionado; QA de clima/config/chunks pendente |
 | 42 | Fragmentum ✿ NeoForge | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-fragmentum%20v2.4.4.md) | `2.4.4` | 5.4.0 (NeoForge 1.21.1, 16/10) | **AUDITORIA DOCUMENTAL FECHADA; migração 2.x→5.x exige QA** |
-| 43 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.1.6.md) | `2.1.6` | 2.2.1 (NeoForge 1.21.1, 15/10) | **AUDITORIA DOCUMENTAL FECHADA; ParCool/ABI não homologados** |
+| 43 | ThirstWasFixed | [Abrir `.md`](./Addons%20%2B%20Bug%20Fixes/%E2%9C%85-thirst-was-fixed%20v2.2.1.md) | `2.1.6` | 2.2.1 (NeoForge 1.21.1, 15/10) | **AUDITORIA DOCUMENTAL FECHADA; ParCool/ABI não homologados** |
 | 44 | FamiliarsLib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-familiarslib%20v1.21.1-2.1.md) | `1.21.1-1.7` | 1.8 (NeoForge 1.21.1, 24/09) | **AUDITORIA DOCUMENTAL FECHADA; metadata divergente preservada** |
 | 45 | Cyclops Core | [Abrir `.md`](./API%20and%20Library%20%2B%20Server%20Utility/%E2%9C%85-cyclops-core%20v1.30.0.md) | `1.30.0` | 1.30.0-1205 Beta (18/10) | **AUDITORIA DE DIFF BETA 1205 CONCLUÍDA; QA FÍSICO SEPARADO** |
 | 46 | Apotheosis x Iron's Spellbooks Compat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-irons-apothic%20v2.2.2.md) | `2.2.2` | 2.2.8+1.21.1 (17/10) | **AUDITORIA DOCUMENTAL FECHADA; QA spell/affix pendente** |

@@ -1,4 +1,26 @@
-# Ecliptic Seasons
+# Ecliptic Seasons — 0.15.6.0.1
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Ecliptic Seasons
+- **Arquivo JAR instalado (declarado):** `EclipticSeasons-1.21.1-neoforge-0.15.6.0.1.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `0.15.6.0.1` — Release.
+- **Categoria CurseForge / pasta:** Adventure and RPG + Cosmetic + Farming + Utility & QoL
+- **Ordem física histórica:** #243 (preservada).
+- **Estado da pesquisa:** atualização documental baseada nas publicações e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; não constitui leitura do JAR físico nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/ecliptic-seasons/files/all).
+- **Dependências / compatibilidade / riscos:** NeoForge e integrações históricas preservadas; mínimos novos não confirmados. Validar termos solares, tint, Greenhouse Core e ciclos sazonais; equivalência binária não comprovada.
+- **Atualização/Status:** `0.15.0-rc-3-1` → `0.15.6.0.1`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial para o alvo; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental das versões
+
+Cadeia anterior até 0.15.5.1 (02/11); 0.15.5.2 (09/11) aparece para 26.x, não para 1.21.1. 0.15.6 (24/11, Beta): proteção índices tint Sodium, SolarTermChangeEvent dispara em cada mudança com termo anterior correto e correção ícone Greenhouse Core sem level; suporte Sodium 26.3 não atribuído ao alvo. [Source 0.15.6](https://github.com/TeamTeaMC/Ecliptic-Seasons/commit/329ff7b2273bdbdb8cc7de51397937cd1b635f44). 0.15.6.0.1 (26/11, Release) consta no catálogo oficial; [source versionado](https://github.com/TeamTeaMC/Ecliptic-Seasons/commit/2e1f093bd378d8e56acd14f9153368ea0617d5f9) altera build/changelog sem delta funcional novo confirmado. Ficha individual não recuperada; ID não atribuído.
+
+## Histórico documental preservado
+
+> O conteúdo a seguir antecede 27/11/2026. Expressões como “atual”, “físico”, “pendente”, versões de dependências, hashes e decisões de promoção dizem respeito à data do respectivo snapshot. Para versão instalada declarada prevalecem as propriedades vigentes acima. A análise técnica histórica continua útil quando não contradita pelo delta auditado; não constitui nova inspeção binária.
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#243**: JAR `EclipticSeasons-1.21.1-neoforge-0.15.0-rc-3-1.jar`, mod id `eclipticseasons`, runtime `0.15.0-rc-3-1`, SHA-1 `9eef25e33968ef56530bafa043b96da7fd4efcd3`.
 

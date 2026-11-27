@@ -1,4 +1,26 @@
-# Thirst Was Fixed
+# ThirstWasFixed — 2.2.1
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** ThirstWasFixed
+- **Arquivo JAR instalado (declarado):** `thirstwasfixed-2.2.1.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `2.2.1` — Release.
+- **Categoria CurseForge / pasta:** Addons + Bug Fixes
+- **Ordem física histórica:** #542 (preservada).
+- **Estado da pesquisa:** atualização documental baseada nas publicações e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; não constitui leitura do JAR físico nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/thirstwasfixed/files/9201004).
+- **Dependências / compatibilidade / riscos:** ParCool 4.0.0.3 e Reclaimed 3.0.5 históricos; mínimos novos não confirmados. Validar stamina/sede e leitura configuração Linux.
+- **Atualização/Status:** `2.1.6` → `2.2.1`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial para o alvo; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental das versões
+
+2.2.0 (13/10, [arquivo](https://www.curseforge.com/minecraft/mc-mods/thirstwasfixed/files/9153832)): referência de atributo muda para ParCoolAttributes.STAMINA_RECOVERY em vez de Attributes.STAMINA_RECOVERY. 2.2.1 (15/10): correção parsing configuração Linux; auditoria anterior preservada.
+
+## Histórico documental preservado
+
+> O conteúdo a seguir antecede 27/11/2026. Expressões como “atual”, “físico”, “pendente”, versões de dependências, hashes e decisões de promoção dizem respeito à data do respectivo snapshot. Para versão instalada declarada prevalecem as propriedades vigentes acima. A análise técnica histórica continua útil quando não contradita pelo delta auditado; não constitui nova inspeção binária.
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#542**: JAR `thirstwasfixed-2.1.6.jar`, mod id `thirstwasfixed`, runtime `2.1.6`, SHA-1 `94f5ae571e4ab828c8aca8f7f9b26e98c59292d3`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

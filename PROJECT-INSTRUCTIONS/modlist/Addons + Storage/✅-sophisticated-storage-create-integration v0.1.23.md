@@ -1,4 +1,26 @@
-# Sophisticated Storage Create Integration
+# Sophisticated Storage Create Integration — 0.1.23
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Sophisticated Storage Create Integration
+- **Arquivo JAR instalado (declarado):** `sophisticatedstoragecreateintegration-1.21.1-0.1.23.246.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `0.1.23` — Release.
+- **Categoria CurseForge / pasta:** Addons + Storage
+- **Ordem física histórica:** #520 (preservada).
+- **Estado da pesquisa:** atualização documental baseada nas publicações e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; não constitui leitura do JAR físico nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage-create-integration/files/9151604).
+- **Dependências / compatibilidade / riscos:** Mínimos source: Storage 1.6.3, Create 6.0.7, NeoForge 21.1.229. Core 1.5.8 é referência de build, não mínimo direto demonstrado. Storage 1.5.91 e Core 1.5.1 são históricos, pendentes de reconciliação. QA de grupos vinculados, contraptions e inventários pendente.
+- **Atualização/Status:** `0.1.21` → `0.1.23`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial para o alvo; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental das versões
+
+0.1.22.238 (05/10): auditoria anterior preservada. 0.1.23.246 (12/10): grupos de armazenamento vinculados compartilhados entre Backpacks e Storage. [Source](https://github.com/P3pp3rF1y/SophisticatedStorageCreateIntegration/blob/909b0dd1d9a8585d57a71c279f83ec8c378d2091/gradle.properties) declara mod_version 0.1.23; .246 é sufixo do build, não versão runtime confirmada por inspeção.
+
+## Histórico documental preservado
+
+> O conteúdo a seguir antecede 27/11/2026. Expressões como “atual”, “físico”, “pendente”, versões de dependências, hashes e decisões de promoção dizem respeito à data do respectivo snapshot. Para versão instalada declarada prevalecem as propriedades vigentes acima. A análise técnica histórica continua útil quando não contradita pelo delta auditado; não constitui nova inspeção binária.
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#520**: JAR `sophisticatedstoragecreateintegration-1.21.1-0.1.21.209.jar`, mod id `sophisticatedstoragecreateintegration`, runtime `0.1.21`, SHA-1 `d8f72f22459750496008a7c2a39dc865152d075c`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

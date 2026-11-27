@@ -1,4 +1,26 @@
-# Reese's Sodium Options
+# Reese's Sodium Options — 2.2.7-beta.1+mc1.21.1
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Reese's Sodium Options
+- **Arquivo JAR instalado (declarado):** `reeses-sodium-options-neoforge-2.2.7-beta.1-mc1.21.1.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `2.2.7-beta.1+mc1.21.1` — Beta.
+- **Categoria CurseForge / pasta:** Miscellaneous
+- **Ordem física histórica:** #473 (preservada).
+- **Estado da pesquisa:** atualização documental baseada nas publicações e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; não constitui leitura do JAR físico nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/reeses-sodium-options/files/9804580).
+- **Dependências / compatibilidade / riscos:** [Template NeoForge](https://github.com/FlashyReese/reeses-sodium-options/blob/mc1.21.1-2.2.7-beta.1/neoforge/src/main/resources/META-INF/neoforge.mods.toml) e [build](https://github.com/FlashyReese/reeses-sodium-options/blob/mc1.21.1-2.2.7-beta.1/build.gradle.kts): Sodium requerido 0.8.14-beta.2+mc1.21.1 (faixa exata); Controlify opcional >=3.0.0; sodiumoptionsapi incompatível [0,). NeoForge 21.1.267 baseline de build, não mínimo demonstrado. Sodium 0.8.13+mc1.21.1 e Sodium Options API 1.0.10 históricos exigem reconciliação. Conflito é gate runtime, não documental.
+- **Atualização/Status:** `2.2.3+mc1.21.1` → `2.2.7-beta.1+mc1.21.1`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial para o alvo; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental das versões
+
+2.2.4 (16/09): ícones desfazer/reset. 2.2.6 (21/11): navegação de controle pula scrollbars, links suporte, traduções ucraniana/chinesa/espanhola, build/CI/dependências; [diff](https://github.com/FlashyReese/reeses-sodium-options/compare/mc1.21.1-2.2.4...mc1.21.1-2.2.6). Não localizada 2.2.5 para o alvo. 2.2.7-beta.1 (25/11): atualização Sodium, [diff](https://github.com/FlashyReese/reeses-sodium-options/compare/mc1.21.1-2.2.6...mc1.21.1-2.2.7-beta.1). Filename CF usa -mc1.21.1, artefato GitHub e versão gerada pelo source usam +mc1.21.1; metadata binária não relida.
+
+## Histórico documental preservado
+
+> O conteúdo a seguir antecede 27/11/2026. Expressões como “atual”, “físico”, “pendente”, versões de dependências, hashes e decisões de promoção dizem respeito à data do respectivo snapshot. Para versão instalada declarada prevalecem as propriedades vigentes acima. A análise técnica histórica continua útil quando não contradita pelo delta auditado; não constitui nova inspeção binária.
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#473**: JAR `reeses-sodium-options-neoforge-2.2.3+mc1.21.1.jar`, mod id `reeses_sodium_options`, runtime `2.2.3+mc1.21.1`, SHA-1 `904f815b1f5c48703c354d432fcbc3531022337f`. Sodium físico atual permanece `0.8.13+mc1.21.1`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

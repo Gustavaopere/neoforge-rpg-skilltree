@@ -1,4 +1,26 @@
-# Sable Ragdolls Patch
+# Sable: Ragdoll - Patch — 1.9.2
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Sable: Ragdoll - Patch
+- **Arquivo JAR instalado (declarado):** `sable_player_ragdoll_patch-1.21.1-1.9.2.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.9.2` — Release.
+- **Categoria CurseForge / pasta:** Bug Fixes
+- **Ordem física histórica:** #491 (preservada).
+- **Estado da pesquisa:** atualização documental baseada nas publicações e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; não constitui leitura do JAR físico nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/sable-ragdoll-patch/files/9770322).
+- **Dependências / compatibilidade / riscos:** Mínimos exatos novos não confirmados. O antigo ragdoll_corpse 0.3.0 não é automaticamente equivalente a mob_ragdoll_corpse 1.1.5. Validar capas, ragdolls, cadáveres e integração.
+- **Atualização/Status:** `1.9` → `1.9.2`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial para o alvo; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental das versões
+
+1.9.1 (19/10, [arquivo](https://www.curseforge.com/minecraft/mc-mods/sable-ragdoll-patch/files/9255596)): transparência/semitransparência de capas. 1.9.2 (23/11): atualização de compatibilidade com Sable Ragdoll e Sable Ragdoll Corpse recentes.
+
+## Histórico documental preservado
+
+> O conteúdo a seguir antecede 27/11/2026. Expressões como “atual”, “físico”, “pendente”, versões de dependências, hashes e decisões de promoção dizem respeito à data do respectivo snapshot. Para versão instalada declarada prevalecem as propriedades vigentes acima. A análise técnica histórica continua útil quando não contradita pelo delta auditado; não constitui nova inspeção binária.
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#491**: JAR `sable_player_ragdoll_patch-1.21.1-1.9.jar`, mod id `sable_player_ragdoll_patch`, runtime `1.9`, SHA-1 `a1dd6aba1c4f26d5f42efa32518f2aebc026371d`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

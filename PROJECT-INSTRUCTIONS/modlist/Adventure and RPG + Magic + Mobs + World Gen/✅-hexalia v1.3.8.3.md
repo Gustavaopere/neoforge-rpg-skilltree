@@ -1,4 +1,26 @@
-# Hexalia
+# Hexalia — 1.3.8.3
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Hexalia
+- **Arquivo JAR instalado (declarado):** `hexalia-1.3.8.3-1.21.1-neoforge.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.3.8.3` — Release.
+- **Categoria CurseForge / pasta:** Adventure and RPG + Magic + Mobs + World Gen
+- **Ordem física histórica:** #314 (preservada).
+- **Estado da pesquisa:** atualização documental baseada nas publicações e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; não constitui leitura do JAR físico nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/hexalia/files/9819891).
+- **Dependências / compatibilidade / riscos:** NeoForge; Architectury, GeckoLib e Patchouli conforme histórico; mínimos novos não confirmados. QA de render, cura, rituais, colheita e Grimoire pendente.
+- **Atualização/Status:** `1.3.7` → `1.3.8.3`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial para o alvo; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental das versões
+
+1.3.8 (05/10), 1.3.8.1 (06/10) e 1.3.8.2 (28/10, [arquivo](https://www.curseforge.com/minecraft/mc-mods/hexalia/files/9355770)): histórico auditado, incluindo entrega de colheita dos Cacofeys ao baú vinculado. 1.3.8.3 (25/11): renderização Silkweave/Moonweave/Bloomwrap em 1.21.1; Galeberry cura Cacofeys domesticados; entrada de ritual de Rabbage Seeds e melhorias de Grimoire (Siren Kelp, Briar Sickle, acessórios). Alterações de barcos, encantamentos de armadura e Thornbow para 1.20.1 não atribuídas ao alvo. Rótulo CF usa +neoforge, File name usa -neoforge.
+
+## Histórico documental preservado
+
+> O conteúdo a seguir antecede 27/11/2026. Expressões como “atual”, “físico”, “pendente”, versões de dependências, hashes e decisões de promoção dizem respeito à data do respectivo snapshot. Para versão instalada declarada prevalecem as propriedades vigentes acima. A análise técnica histórica continua útil quando não contradita pelo delta auditado; não constitui nova inspeção binária.
 
 ## Propriedades do registro
 

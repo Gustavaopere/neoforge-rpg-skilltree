@@ -1,4 +1,26 @@
-# MineColonies — 1.1.1423-1.21.1-snapshot (instalação declarada em 22/11/2026)
+# MineColonies — 1.1.1426-1.21.1-snapshot
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** MineColonies
+- **Arquivo JAR instalado (declarado):** `minecolonies-1.1.1426-1.21.1-snapshot.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.1.1426-1.21.1-snapshot` — Beta.
+- **Categoria CurseForge / pasta:** Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures
+- **Ordem física histórica:** #395 (preservada).
+- **Estado da pesquisa:** atualização documental baseada nas publicações e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; não constitui leitura do JAR físico nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9800310).
+- **Dependências / compatibilidade / riscos:** Structurize >=1.0.837 (índice registra 1.0.840); MultiPiston >=1.2.51; BlockUI >=1.0.199; Domum Ornamentum >=1.0.223. Opcionais: JEI >=19.19.6.235, JourneyMap >=1.21.1-6.0.0-beta.29, Dynamic Trees >=1.5.0-BETA07. QA de inteligência, receitas e colagem de construções pendente.
+- **Atualização/Status:** `1.1.1423-1.21.1-snapshot` → `1.1.1426-1.21.1-snapshot`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial para o alvo; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental das versões
+
+1.1.1424 (23/11, [arquivo](https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9764643)): correção do cálculo de inteligência e documentação (#11892). Não localizada 1.1.1425 para o alvo. 1.1.1426 (24/11): remoção da receita integrada de tingimento (#11902), correção do cálculo do nível de construção colada (#11901).
+
+## Histórico documental preservado
+
+> O conteúdo a seguir antecede 27/11/2026. Expressões como “atual”, “físico”, “pendente”, versões de dependências, hashes e decisões de promoção dizem respeito à data do respectivo snapshot. Para versão instalada declarada prevalecem as propriedades vigentes acima. A análise técnica histórica continua útil quando não contradita pelo delta auditado; não constitui nova inspeção binária.
 
 > **Estado vigente (declaração do usuário):** atualização `1.1.1387-1.21.1-snapshot` → **`1.1.1423-1.21.1-snapshot`**, arquivo oficial `minecolonies-1.1.1423-1.21.1-snapshot.jar` ([publicação verificada](https://www.curseforge.com/minecraft/mc-mods/minecolonies/files/9750650)). A presença do binário novo foi declarada pelo usuário; o JAR no computador, seu hash e os metadados internos não foram lidos. Ordem física histórica #395 preservada.
 

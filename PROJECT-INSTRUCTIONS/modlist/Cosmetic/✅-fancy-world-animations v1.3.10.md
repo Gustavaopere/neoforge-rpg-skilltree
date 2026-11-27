@@ -1,4 +1,26 @@
-# Fancy World Animations
+# Fancy World Animations — 1.3.10
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Fancy World Animations
+- **Arquivo JAR instalado (declarado):** `fwa-1.21.1-neoforge-1.3.10.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.3.10` — Release.
+- **Categoria CurseForge / pasta:** Cosmetic
+- **Ordem física histórica:** #295 (preservada).
+- **Estado da pesquisa:** atualização documental baseada nas publicações e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; não constitui leitura do JAR físico nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/fwa/files/9777751).
+- **Dependências / compatibilidade / riscos:** NeoForge; build 21.1.222, não mínimo efetivo. Validar animações de blocos, EMF e pistões.
+- **Atualização/Status:** `1.2.31` → `1.3.10`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial para o alvo; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental das versões
+
+Cadeia auditada até 1.3.8 (20/11): desempenho, erros EMF e correções diversas, preservada. 1.3.9 localizada para Forge 1.20.1, não alvo. 1.3.10 (23/11): corrige animação indevida ao colocar portas/alçapões/portões já abertos e mover alçapões abertos com pistão. [Source pinado](https://github.com/maDU59/FancyWorldAnimations/tree/833fcce3ddca2c8fd57c3a60ecb842bbeaaf55f9) declara 1.3.10; 1.3.12 de outra plataforma não elegível. Filename CF usa hífen em vez do + do rótulo.
+
+## Histórico documental preservado
+
+> O conteúdo a seguir antecede 27/11/2026. Expressões como “atual”, “físico”, “pendente”, versões de dependências, hashes e decisões de promoção dizem respeito à data do respectivo snapshot. Para versão instalada declarada prevalecem as propriedades vigentes acima. A análise técnica histórica continua útil quando não contradita pelo delta auditado; não constitui nova inspeção binária.
 
 ## Propriedades do registro
 

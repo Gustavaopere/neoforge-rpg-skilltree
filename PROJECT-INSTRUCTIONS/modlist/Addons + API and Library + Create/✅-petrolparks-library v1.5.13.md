@@ -1,4 +1,26 @@
-# Petrolpark's Library — instalada 1.5.11 Release | upstream auditada 1.5.12 Beta (não instalada)
+# Petrolpark Library — 1.5.13
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Petrolpark Library
+- **Arquivo JAR instalado (declarado):** `petrolpark-1.21.1-1.5.13.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** `1.5.13` — Beta.
+- **Categoria CurseForge / pasta:** Addons + API and Library + Create
+- **Ordem física histórica:** #440 (preservada).
+- **Estado da pesquisa:** atualização documental baseada nas publicações e histórico auditado; metadata interna e runtime não inspecionados.
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; não constitui leitura do JAR físico nem aprovação de QA.
+- **Fonte:** [arquivo/catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/petrolpark-library/files/9725217).
+- **Dependências / compatibilidade / riscos:** Destroy 0.4.3 declara [1.5.0,1.6.0), inclui 1.5.13 sem provar runtime. JEI 19.56.0.440 histórico; mínimo novo não confirmado. Validar startup, receitas, entidades e mixins.
+- **Atualização/Status:** `1.5.11` → `1.5.13`; dependências pendentes serão reconciliadas separadamente.
+- **Procedência:** declaração do usuário + publicação oficial para o alvo; sem inferência de hash ou metadata binária.
+
+## Auditoria incremental das versões
+
+1.5.12 (19/10, [arquivo](https://www.curseforge.com/minecraft/mc-mods/petrolpark-library/files/9259866)): compatibilidade JEI; catálogo atual apresenta Release, divergindo da classificação Beta histórica. 1.5.13 (21/11): correções de montagem prematura de receitas no startup, entidades sem construtor vazio, incompatibilidade Immersive Portals, mixins opcionais sem alvo presente e atualização JEI. Nome oficial atual Petrolpark Library; rótulo histórico Petrolpark's Library.
+
+## Histórico documental preservado
+
+> O conteúdo a seguir antecede 27/11/2026. Expressões como “atual”, “físico”, “pendente”, versões de dependências, hashes e decisões de promoção dizem respeito à data do respectivo snapshot. Para versão instalada declarada prevalecem as propriedades vigentes acima. A análise técnica histórica continua útil quando não contradita pelo delta auditado; não constitui nova inspeção binária.
 
 ## Propriedades do registro
 
