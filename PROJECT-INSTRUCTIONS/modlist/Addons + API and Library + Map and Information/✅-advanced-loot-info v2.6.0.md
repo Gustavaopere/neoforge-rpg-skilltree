@@ -1,4 +1,23 @@
-# Advanced Loot Info
+# Advanced Loot Info (ALI) — v2.6.0
+
+## Estado documental vigente — 27/11/2026
+
+- **Arquivo JAR instalado declarado:** `AdvancedLootInfo-neoforge-1.21.1-2.6.0.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** 2.6.0
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; arquivo local e metadata não reinspecionados.
+- **Estado da pesquisa:** identidade e distribuição confirmadas; changelogs oficiais e cadeia histórica reconciliados; runtime/QA não homologados.
+- **Atualização/Status:** 2.1.0 → 2.6.0. Beta — publicação 25/11/2026; instalação declarada em 27/11, sem leitura do JAR local.
+- **Dependências:** ACI >=1.6 obrigatório no source 2.6.0; índice #006 registra 1.6.0. JEI #349 registra 19.76.1.482; EMI/REI opcionais; LootJS opcional >=1.21.1-3.7.0. ALI Compat, se utilizado, deve ser compatível.
+- **Compatibilidade/Riscos:** requisitos e limites abaixo; instalação declarada não implica compatibilidade global ou teste aprovado.
+- **Procedência:** declaração do usuário + publicação oficial: https://www.curseforge.com/minecraft/mc-mods/advanced-loot-info/files/all .
+
+### Delta de atualização
+
+As publicações 2.2.0, 2.3.0, 2.4.0 e 2.5.0 já estão individualmente auditadas nas seções históricas. A 2.6.0 melhora isolamento de falhas de plugins de terceiros, recuperação de loot/trades preparados após o start, deduplicação de trades no mesmo nível, exibição de tags de blocos e nomes estáveis de tooltips. Interrompe espera do viewer após desconexão e corrige esperas de reload/servidores sem ALI; melhora logs e identificação de loot modded, acelera startup com muitos GLMs. Nova API permite associar tabelas a entidades sem ID correspondente e marcar tabelas roladas por GLM/código; páginas extras explicam a associação e exibem mod/ID. Corrige colisão de traduções entre namespaces. Tradução chinesa tradicional adicionada. Suporte Minecraft 1.19.2 é de outra linha. Fonte: https://github.com/yanny7/AdvancedLootInfo/blob/1.21.1/ali/CHANGELOG.md . O source 2.6.0 declara ACI >=1.6 obrigatório (índice #006 1.6.0), JEI/EMI/REI opcionais no manifesto, LootJS opcional >=1.21.1-3.7.0. JEI #349 consta 19.76.1.482; compatibilidade de runtime não testada. ALI Compat 1.3.1 no source requer ALI >=2.6, se utilizado. Fontes: https://github.com/yanny7/AdvancedLootInfo/blob/1.21.1/gradle.properties e https://github.com/yanny7/AdvancedLootInfo/blob/1.21.1/ali/neoforge/src/main/resources/META-INF/neoforge.mods.toml .
+
+## Histórico documental preservado — anterior à declaração de 27/11/2026
+
+Os campos, snapshots, gates e referências de instalação abaixo representam o estado nas datas da auditoria anterior, não a versão vigente. As conclusões que condicionavam a sincronização documental a nova inspeção física foram supersedidas pela declaração do usuário; os testes técnicos e riscos permanecem válidos como pendências, não como veto documental.
 
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#7**: `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar`, mod id `ali`, runtime `2.1.0`.
 ## Propriedades do registro

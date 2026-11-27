@@ -49,7 +49,7 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 | 37 | Fresh Animations | `FreshAnimations_v1.10.4.zip` | `1.10.4` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations v1.10.4.md` | 21/11/2026 - 01:23 |
 | 38 | Fresh Animations: Extensions | `FA+All_Extensions-v1.8.1.zip` | `1.8.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-extensions v1.8.1.md` | 21/11/2026 - 01:24 |
 | 39 | Fresh Animations: Player Extension | `FA+Player-v1.1.zip` | `1.1` | `Animated + Miscellaneous + Modern` | `Animated + Miscellaneous + Modern/✅-fresh-animations-player-extension v1.1.md` | 29/09/2026 - 17:25 |
-| 40 | Fresh Illager Mod Compats | `4.3 FA Illager Mod Compats.zip` | `4.3` | `Animated + Mod Support` | `Animated + Mod Support/fresh-illager-mod-compats v4.3.md` | 29/09/2026 - 17:25 |
+| 40 | Fresh Illager Mod Compats | `5.1-FA-Illager-Mod-Compats.zip` | `5.1` (Release; instalação declarada; metadata não relida) | `Animated + Mod Support` | `Animated + Mod Support/fresh-illager-mod-compats v5.1.md` | 27/11/2026 - 17:58 |
 | 41 | Golems Refreshed + Fresh Animations | `golems-refreshed-fa-v2.1.zip` | `2.1` | `Traditional` | `Traditional/✅-golems-refreshed-fresh-animations v2.1.md` | 29/09/2026 - 17:42 |
 | 42 | Golems Refreshed | `golems-refreshed-v2.1.zip` | `2.1` | `Traditional` | `Traditional/✅-golems-refreshed v2.1.md` | 29/09/2026 - 17:42 |
 | 43 | Iron's Spells 'n Spellbooks 3D weapons Resource Pack | `3D items.zip` | sem versão semântica publicada | `Animated + Medieval + Mod Support` | `Animated + Medieval + Mod Support/✅-irons-spells-n-spellbooks-3d-weapons-resource-pack.md` | 29/09/2026 - 17:42 |
@@ -162,3 +162,8 @@ A organização estrutural usa as categorias temáticas atuais exibidas pelo pro
 ## Atualização declarada — Brazilian Localization Project, 22/11/2026
 
 Resource Pack nº **1 no pedido** e nº **55 na tabela documental**: 1.3.0 → 1.6.0, [CurseForge file 9655760](https://www.curseforge.com/minecraft/texture-packs/brazilian-project/files/9655760), filename `The-Brazilian-Project-1.21.1-1.6.0.zip`. O Modrinth publica outra grafia do ZIP, sem equivalência de bytes demonstrada. O usuário confirma a instalação para atualização documental, sem leitura local, validação de prioridade ou F3+T.
+
+
+## Sincronização documental declarada — 27/11/2026
+
+- 40 Fresh Illager Mod Compats: `4.3` → [`5.1`](https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/9795350); instalação declarada, sem QA. Lacuna 4.8 preservada, sem atribuir selo.

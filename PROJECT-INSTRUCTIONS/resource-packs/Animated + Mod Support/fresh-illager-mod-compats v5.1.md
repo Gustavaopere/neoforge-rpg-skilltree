@@ -1,4 +1,23 @@
-# Fresh Illager Mod Compats
+# Fresh Illager Mod Compats — v5.1
+
+## Estado documental vigente — 27/11/2026
+
+- **Arquivo ZIP instalado declarado:** `5.1-FA-Illager-Mod-Compats.zip`
+- **Versão instalada declarada (Minecraft 1.21.1):** 5.1
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; arquivo local e metadata não reinspecionados.
+- **Estado da pesquisa:** identidade e distribuição confirmadas; delta documental parcial, lacunas explícitas; runtime/QA não homologados.
+- **Atualização/Status:** 4.3 → 5.1. Release 24/11/2026; instalação declarada; sem inspeção do ZIP nem QA visual; sem novo selo.
+- **Dependências:** Fresh Animations 1.10+, EMF, ETF; Goety é alvo de compatibilidade, não requisito obrigatório universal.
+- **Compatibilidade/Riscos:** requisitos e limites abaixo; instalação declarada não implica compatibilidade global ou teste aprovado.
+- **Procedência:** declaração do usuário + publicação oficial: https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/9795350 .
+
+### Delta de atualização
+
+Cadeia publicada identificada: 4.5, 4.6, 4.7, 4.8, 4.9, 5.0 (auditorias anteriores), 5.1. A lacuna de changelog 4.8 continua registrada; não inventar seu delta. A 5.0 corrige ausência de animações do Illusioner de Friends & Foes (condicional). A 5.1 tenta corrigir Royal Guard invisível; o próprio autor expressa incerteza, portanto não garantir resolução. File ID 9795350 declara Minecraft 1.21.1, filename real com hífens embora título de exibição use espaços. Preservar prioridade acima de Fresh Animations; validar Royal Guard/Goety, Illusioner se presente, F3+T, EMF/ETF e demais overlays. Sem alteração de gameplay.
+
+## Histórico documental preservado — anterior à declaração de 27/11/2026
+
+Os campos, snapshots, gates e referências de instalação abaixo representam o estado nas datas da auditoria anterior, não a versão vigente. As conclusões que condicionavam a sincronização documental a nova inspeção física foram supersedidas pela declaração do usuário; os testes técnicos e riscos permanecem válidos como pendências, não como veto documental.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo

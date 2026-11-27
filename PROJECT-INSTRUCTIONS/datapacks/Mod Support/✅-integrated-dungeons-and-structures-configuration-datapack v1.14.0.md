@@ -1,4 +1,23 @@
-# Integrated Dungeons and Structures- Configuration Datapack
+# Integrated Dungeons and Structures- Configuration Datapack — v1.14.0
+
+## Estado documental vigente — 27/11/2026
+
+- **Arquivo ZIP instalado declarado:** `idasconfig-1.14.0-1.21.1.zip`
+- **Versão instalada declarada (Minecraft 1.21.1):** 1.14.0
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; arquivo local e metadata não reinspecionados.
+- **Estado da pesquisa:** identidade e distribuição confirmadas; delta documental parcial, lacunas explícitas; runtime/QA não homologados.
+- **Atualização/Status:** 1.13.7 → 1.14.0. Release 25/11/2026; instalação declarada; ZIP e delta JSON/NBT não inspecionados.
+- **Dependências:** Integrated Dungeons and Structures (IDAS), índice #321 já sincronizado em 1.14.0+1.21.1-neoforge; piso exato do ZIP não verificado.
+- **Compatibilidade/Riscos:** requisitos e limites abaixo; instalação declarada não implica compatibilidade global ou teste aprovado.
+- **Procedência:** declaração do usuário + publicação oficial: https://www.curseforge.com/minecraft/texture-packs/idas-config/files/9804532 .
+
+### Delta de atualização
+
+File ID 9804532, projeto 663108, Minecraft 1.21.1. A publicação não contém changelog. O índice oficial anteriormente listava 1.13.7 como última publicação desta linha; 1.14.0 é a nova publicação identificada. A dependência no IDAS principal permanece; índice #321 já registra 1.14.0+1.21.1-neoforge. Não atribuir ao ZIP mudanças de estruturas do mod principal. Sem comparação dos ZIPs, diferenças de JSON/NBT, pack.mcmeta e pack_format permanecem desconhecidas. Preservar parâmetros, prioridade de dados e lifecycle como documentação histórica a revalidar. Nenhum QA.
+
+## Histórico documental preservado — anterior à declaração de 27/11/2026
+
+Os campos, snapshots, gates e referências de instalação abaixo representam o estado nas datas da auditoria anterior, não a versão vigente. As conclusões que condicionavam a sincronização documental a nova inspeção física foram supersedidas pela declaração do usuário; os testes técnicos e riscos permanecem válidos como pendências, não como veto documental.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo

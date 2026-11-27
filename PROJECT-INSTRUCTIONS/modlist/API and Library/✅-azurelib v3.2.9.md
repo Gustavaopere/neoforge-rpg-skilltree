@@ -1,4 +1,23 @@
-# AzureLib
+# AzureLib — v3.2.9
+
+## Estado documental vigente — 27/11/2026
+
+- **Arquivo JAR instalado declarado:** `azurelib-neo-1.21.1-3.2.9.jar`
+- **Versão instalada declarada (Minecraft 1.21.1 / NeoForge):** 3.2.9
+- **Estado no pack:** instalação declarada pelo usuário em 27/11/2026; arquivo local e metadata não reinspecionados.
+- **Estado da pesquisa:** identidade e distribuição confirmadas; changelogs oficiais e cadeia histórica reconciliados; runtime/QA não homologados.
+- **Atualização/Status:** 3.1.11 → 3.2.9. Release — publicação 26/11/2026; instalação declarada em 27/11, sem leitura do JAR local.
+- **Dependências:** Biblioteca estrutural para consumidores AzureLib; source 1.21.1 declara NeoForge [21,), Java 21. Revalidar consumidores, não intercambiar com GeckoLib.
+- **Compatibilidade/Riscos:** requisitos e limites abaixo; instalação declarada não implica compatibilidade global ou teste aprovado.
+- **Procedência:** declaração do usuário + publicação oficial: https://www.curseforge.com/minecraft/mc-mods/azurelib/files/all?page=1&pageSize=20&showAlphaFiles=hide&version=1.21.1 .
+
+### Delta de atualização
+
+A auditoria de 17/11 já cobre 3.1.12–3.2.8, inclusive alphas, individualmente. Para 3.2.9, a branch 1.21.1 confirma versão e changelog: AzSpringBone.Builder#maxDeflection(degrees) limita desvio angular; smooth shading para poly_mesh com azurelib:mesh_parts e smooth_angle (default 60), normais calculadas no bake. Corrige inversão/torção de spring bones, avaliação offscreen indevida com saltos do gameTime (janela de captura 250 ms), e simulação duplicada em GUI/HUD; previews reutilizam pose sem avançar controllers, spring/LOD ou capturar hitboxes. Novo MeshPart, PolyMesh#withParts, preservação do construtor anterior e AzRenderContext#isGuiRender(). Relevante para previews de entidades, render e hitboxes animadas, sem concluir compatibilidade de consumidores ou ABI. Fontes: https://github.com/AzureDoom/AzureLib/blob/1.21.1/changelog.md e https://github.com/AzureDoom/AzureLib/blob/1.21.1/gradle.properties . A nota 3.2.9 de 1.20.1 não representa este artefato.
+
+## Histórico documental preservado — anterior à declaração de 27/11/2026
+
+Os campos, snapshots, gates e referências de instalação abaixo representam o estado nas datas da auditoria anterior, não a versão vigente. As conclusões que condicionavam a sincronização documental a nova inspeção física foram supersedidas pela declaração do usuário; os testes técnicos e riscos permanecem válidos como pendências, não como veto documental.
 
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#61**: `azurelib-neo-1.21.1-3.1.11.jar`, mod id `azurelib`, runtime `3.1.11`, SHA-1 `9a168688466b3f924c09a20a2d99febe4588ffa5`.
 
@@ -208,4 +227,4 @@ Fontes: https://www.curseforge.com/minecraft/mc-mods/azurelib/files/all?page=1&p
 - [ ] Testar clone/split/crafting/container de itens animados, resync client/server e reload F3+T; stress de entidades/bones sob LOD e spring colliders
 - [ ] Backup, verificação de metadata/SHA do JAR candidato, cliente/servidor dedicado e regressões reais antes de marcar a versão nova como instalada
 
-**Conclusão documental (não homologação física):** foram auditadas as **21 releases** específicas NeoForge Minecraft 1.21.1 após a 3.1.11: **3.1.12–3.1.19 (8), 3.1.20-alpha.1 (1), 3.1.21–3.1.22 (2), 3.1.23-alpha.2 (1) e 3.2.0–3.2.8 (9)**. Todas as releases aparecem na sequência oficial do catálogo; cada changelog da release exata foi revisado, sendo que 3.1.12–3.1.18 já tinham análise individual anterior no dossier. **Auditoria documental do intervalo encerrada.** A certificação já existente no filename `✅-azurelib v3.1.11.md` permanece vinculada à **versão efetivamente instalada 3.1.11**; *nenhum* JAR, configuração, diretório ou filename foi alterado. O upgrade para 3.2.8 **não** está executado/testado.
+**Conclusão documental (não homologação física):** foram auditadas as **21 releases** específicas NeoForge Minecraft 1.21.1 após a 3.1.11: **3.1.12–3.1.19 (8), 3.1.20-alpha.1 (1), 3.1.21–3.1.22 (2), 3.1.23-alpha.2 (1) e 3.2.0–3.2.8 (9)**. Todas as releases aparecem na sequência oficial do catálogo; cada changelog da release exata foi revisado, sendo que 3.1.12–3.1.18 já tinham análise individual anterior no dossier. **Auditoria documental do intervalo encerrada.** A certificação já existente no filename `✅-azurelib v3.2.9.md` permanece vinculada à **versão efetivamente instalada 3.1.11**; *nenhum* JAR, configuração, diretório ou filename foi alterado. O upgrade para 3.2.8 **não** está executado/testado.
