@@ -1,4 +1,27 @@
-# Sophisticated Core — 1.5.42 (versão instalada declarada em 22/11/2026)
+# Sophisticated Core — 1.5.43
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Sophisticated Core
+- **Arquivo JAR instalado (declarado):** `sophisticatedcore-1.21.1-1.5.43.2504.jar`
+- **Versão instalada declarada:** `1.5.43` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #518 (preservada).
+- **Categoria CurseForge / pasta:** API and Library.
+- **Função:** Biblioteca comum de inventário, upgrades, armazenamento e fluidos do ecossistema Sophisticated.
+- **Atualização/Status:** `1.5.42` → `1.5.43`.
+- **Estado no pack:** instalação declarada pelo usuário, sem nova leitura física.
+- **Estado da pesquisa:** Publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência indicados. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Requisito Core >=1.5.35 da Storage 1.6.22 registrado no lote 2: 1.5.43 satisfaz numericamente; não atesta ABI/runtime. Testar fluid/slot transactions, buckets, upgrades, linked storages/controllers, Storage Create Integration, Backpacks e Thirst Was Reclaimed. Nenhum JAR local ou QA.
+- **Fonte:** [publicação ou catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9806995).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; fontes complementares e limitações descritas abaixo. Não atribuir hashes nem metadata do novo JAR sem inspeção.
+
+## Auditoria incremental e reconciliação
+
+1.5.43.2504 — 25/11/2026, Release: corrige falha de preenchimento de baldes vazios durante smelting de esponja molhada. Catálogo oficial mostra 1.5.42.2496 como predecessor NeoForge 1.21.1, sem outra publicação intermediária. Versão base 1.5.43, build .2504 no JAR; metadata não relida. Auditorias anteriores permanecem históricas, inclusive lacuna de source 1.5.40/.41 que não são publicações independentes demonstradas.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Estado vigente — declaração do usuário de 22/11/2026:** `1.5.1` → **`1.5.42`**, NeoForge 1.21.1; JAR oficialmente publicado `sophisticatedcore-1.21.1-1.5.42.2496.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/sophisticated-core/files/9758568)). Arquivo real local, SHA e metadata não relidos. Posição física histórica #518.
 

@@ -1,4 +1,27 @@
-# Eidolon: Repraised
+# Eidolon : Repraised — 0.5.0.9
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Eidolon : Repraised
+- **Arquivo JAR instalado (declarado):** `eidolon_repraised-1.21.1-0.5.0.9.jar`
+- **Versão instalada declarada:** `0.5.0.9` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #246 (preservada).
+- **Categoria CurseForge / pasta:** Adventure and RPG + Armor, Tools, and Weapons + Magic.
+- **Função:** Sistema de magia ritual, theurgy, alchemy, soul manipulation e equipamentos.
+- **Atualização/Status:** `0.5.0.2` → `0.5.0.9`.
+- **Estado no pack:** instalação declarada pelo usuário, sem nova leitura física.
+- **Estado da pesquisa:** Publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência indicados. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Curios API 9.6.1+1.21.1 sincronizado no lote anterior; mínimo exato não confirmado. Testar locator rituals/datapack migration, chants/mana, necrotic weapons, Sapping Sword, recipe lookup, multiplayer e compat Sable. Sem QA.
+- **Fonte:** [publicação ou catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/eidolon-repraised/files/9825698).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; fontes complementares e limitações descritas abaixo. Não atribuir hashes nem metadata do novo JAR sem inspeção.
+
+## Auditoria incremental e reconciliação
+
+Histórico individualizado: 0.5.0.4 (24/09, unload chant caster e Jade ownership), .5 (29/09, Deathbringer Scythe/undeath), .6 (12/10, locator ritual possível breaking change, links Codex e traduções), .7 (17/10, consumo de mana execCommand), .8 (26/10, file 9332315 tem label .7 divergente do filename .8; consulta de ritual por spawn egg). .3 não localizada. 0.5.0.9 — 26/11/2026, Release, file 9825698: corrige possível crash com armas necróticas e spam de reset de i-frames. [Commit 9624ab6](https://github.com/Alexthw46/Eidolon-Repraised/commit/9624ab6b0cc7c210e32c2f6a7a3f1dde2495c184) corrobora; [85484f2](https://github.com/Alexthw46/Eidolon-Repraised/commit/85484f2804bcff82abb3397d8f384422d7e21898) adiciona pequeno cooldown ao drain da Sapping Sword no intervalo de source, sem alegar pin binário exclusivo. O basename e label .9 coincidem na distribuição; metadata não relida.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#246**: JAR `eidolon_repraised-1.21.1-0.5.0.2.jar`, mod id `eidolon_repraised`, runtime `0.5.0.2`, SHA-1 `1f05ffd2f9fa672dc2ecff3c32de092cdbcde989`.
 

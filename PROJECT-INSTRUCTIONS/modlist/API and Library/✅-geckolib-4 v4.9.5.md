@@ -1,4 +1,27 @@
-# GeckoLib — 4.9.4 (versão instalada declarada em 22/11/2026)
+# GeckoLib — 4.9.5
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** GeckoLib
+- **Arquivo JAR instalado (declarado):** `geckolib-neoforge-1.21.1-4.9.5.jar`
+- **Versão instalada declarada:** `4.9.5` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #301 (preservada).
+- **Categoria CurseForge / pasta:** API and Library.
+- **Função:** Biblioteca de animação/renderização baseada em modelos e controllers de entidades e itens.
+- **Atualização/Status:** `4.9.4` → `4.9.5`.
+- **Estado no pack:** instalação declarada pelo usuário, sem nova leitura física.
+- **Estado da pesquisa:** Publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência indicados. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Reconciliar IceAndFire Community Edition 2.2.2, BWG 2.6.4, Born in Chaos e outros consumers; sem mínimo novo específico confirmado. Validar render buffers, shaders, models, animation controllers, server/client. Sem QA.
+- **Fonte:** [publicação ou catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/geckolib/files/9843659).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; fontes complementares e limitações descritas abaixo. Não atribuir hashes nem metadata do novo JAR sem inspeção.
+
+## Auditoria incremental e reconciliação
+
+4.9.5 — 27/11/2026, Release, file 9843659: proteção de buffer swap foi ajustada para ser mais abrangente e concisa, com intenção declarada de reduzir crashes. Não inferir correção de todos os crashes, mudança de API ou ganho mensurado. 4.9.4 é predecessor na linha, sem outra publicação intermediária confirmada.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Estado vigente — declaração do usuário em 22/11/2026:** `4.9.2` → **`4.9.4`** para Minecraft 1.21.1 / NeoForge; arquivo de distribuição `geckolib-neoforge-1.21.1-4.9.4.jar`, [CurseForge file ID 9748637](https://www.curseforge.com/minecraft/mc-mods/geckolib/files/9748637). O mod ocupa a posição original #301; o novo JAR do computador, seu hash e metadata não foram lidos.
 

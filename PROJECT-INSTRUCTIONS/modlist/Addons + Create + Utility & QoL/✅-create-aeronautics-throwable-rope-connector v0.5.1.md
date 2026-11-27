@@ -1,4 +1,28 @@
-# Create Aeronautics: Throwable Rope Connector — 0.4.3 (atual em 22/11/2026)
+# Create Aeronautics: Throwable Rope Connector — 0.5.1
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Create Aeronautics: Throwable Rope Connector
+- **Arquivo JAR instalado (declarado):** `create_aeronautics_throwable_rope_connector-0.5.1.jar`
+- **Versão instalada declarada:** `0.5.1` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #130 (preservada).
+- **Categoria CurseForge / pasta:** Addons + Create + Utility & QoL.
+- **Função:** Lançamento remoto de rope connectors, acoplamento e redocking de veículos Create Aeronautics.
+- **Atualização/Status:** `0.4.3` → `0.5.1`.
+- **Estado no pack:** instalação declarada pelo usuário, sem nova leitura física.
+- **Estado da pesquisa:** Auditoria incremental com ressalvas explícitas de atribuição/publicação; prefixo histórico preservado, não implica certificação granular integral do delta. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** README 0.5.0: NeoForge >=21.1.228, Create >=6.0.10, Aeronautics bundled >=1.3.0, Sable conforme Aeronautics. Autor testou combinação Create 6.0.10/Aeronautics 1.3.2/Sable 2.0.6/NeoForge 21.1.228, não é QA local. Índice Create 6.0.10, Aeronautics 1.3.3, Sable 2.0.5; testar claim permissions, redocking, munição, transforms, automation e save migration de config.
+- **Fonte:** [publicação ou catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-throwable-rope-connector/files/all).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; fontes complementares e limitações descritas abaixo. Não atribuir hashes nem metadata do novo JAR sem inspeção.
+
+## Auditoria incremental e reconciliação
+
+0.5.0 — 17/11/2026, Release: [source 8aa7592](https://github.com/sprocketaudio/Create-Aeronautics-Throwable-Rope-Connector/commit/8aa759218ea1c4ba8c9e841085c5638442973c65), [README versionado](https://github.com/sprocketaudio/Create-Aeronautics-Throwable-Rope-Connector/blob/8aa759218ea1c4ba8c9e841085c5638442973c65/README.md). Introduz redocking a âncoras existentes desconectadas usando Rope Couplings normais como segundo tipo de munição; handheld seleciona âncora no coupling, mounted conecta automaticamente e consome um coupling. Mounted usa clique esquerdo para disparar, direito para desconectar preservando âncora, Sprint+direito para removê-la se permitido, Sneak para sair. Marcador vermelho recebe pulso de disparo com última mira; âmbar desconecta. Aceita stack único e automação de itens; falhas não consomem munição por padrão. Jade opcional mostra munição/conexão; FTB Chunks opcional protege placement/removal. A opção mountedAnchorReleaseMode foi retirada; release normal sempre preserva âncora.
+- 0.5.1 — 23/11/2026, Release: [source b2d2ae4](https://github.com/sprocketaudio/Create-Aeronautics-Throwable-Rope-Connector/commit/b2d2ae45fa9c6a9f8a36809c8996b5857bb7bd71) corrige rotação do launcher mounted; gradle.properties confirma versão 0.5.1 e Minecraft 1.21.1. Catálogo oficial confirma ambos os artefatos, ficha individual [9781672](https://www.curseforge.com/minecraft/mc-mods/create-aeronautics-throwable-rope-connector/files/9781672) não abriu; deltas sustentados pelo source, sem atribuir inspeção binária.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#130**: JAR `create_aeronautics_throwable_rope_connector-0.4.3.jar`, mod id `create_aeronautics_throwable_rope_connector`, runtime `0.4.3`, SHA-1 `63fcbbc960461d42a59b417665fb938c79919514`.
 

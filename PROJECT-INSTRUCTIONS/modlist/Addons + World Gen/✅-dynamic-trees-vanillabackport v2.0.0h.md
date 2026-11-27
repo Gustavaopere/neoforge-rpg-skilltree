@@ -1,4 +1,27 @@
-# Dynamic Trees - VanillaBackport — 1.8.0 (instalação declarada 22/11/2026)
+# Dynamic Trees - VanillaBackport — 2.0.0h
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Dynamic Trees - VanillaBackport
+- **Arquivo JAR instalado (declarado):** `dtvanillabackport-1.21.1-2.0.0h.jar` — basename corroborado por catálogo secundário, ficha individual oficial não recuperada.
+- **Versão instalada declarada:** `2.0.0h` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #231 (preservada).
+- **Categoria CurseForge / pasta:** Addons + World Gen.
+- **Função:** Compatibiliza Vanilla Backport com Dynamic Trees; Pale Oak e Poplars vermelha/laranja/amarela na linha nova.
+- **Atualização/Status:** `1.8.0` → `2.0.0h`.
+- **Estado no pack:** instalação declarada pelo usuário, sem nova leitura física.
+- **Estado da pesquisa:** Auditoria incremental com ressalvas explícitas de atribuição/publicação; prefixo histórico preservado, não implica certificação granular integral do delta. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** [Metadata template](https://github.com/dannykim2011/DynamicTrees-VanillaBackport/blob/5283b508f5327f27b9a39f0dc260798ee670bd8b/src/main/resources/META-INF/neoforge.mods.toml) + [gradle.properties](https://github.com/dannykim2011/DynamicTrees-VanillaBackport/blob/5283b508f5327f27b9a39f0dc260798ee670bd8b/gradle.properties): DT >=1.7.2, Vanilla Backport >=1.2.2, Platform >=1.4.2, DT Plus opcional >=1.3.2, NeoForge template >=21.1 (build 21.1.267). Índice #235 DT 1.7.2, #236 DT Plus 1.3.2 satisfazem; #560 Vanilla Backport 1.1.7.10 e #445 Platform 1.3.3 abaixo dos mínimos de source. Pendência documental; testar worldgen, Poplar, Creaking Heart, shelf mushroom, chunks novos e provider version skew. Sem QA.
+- **Fonte:** [publicação ou catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-vanillabackport/files/8339928).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; fontes complementares e limitações descritas abaixo. Não atribuir hashes nem metadata do novo JAR sem inspeção.
+
+## Auditoria incremental e reconciliação
+
+1.9.0 — 18/11, source [b32c7e1](https://github.com/dannykim2011/DynamicTrees-VanillaBackport/commit/b32c7e1211d6aaa194b599815e94b6eae8a92f) confirma versão e alvos atualizados; publicação corroborada pela listagem secundária, ficha individual CF não recuperada. 2.0.0 — 19/11, [file 9700444](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-vanillabackport/files/9700444), Release NeoForge 1.21.1, [source 57a891c](https://github.com/dannykim2011/DynamicTrees-VanillaBackport/commit/57a891cfbd34dda35af40d7eaf4aa250417044dd) declara versão. 2.0.0h — 26/11, Main File indicado no painel atualizado do [arquivo oficial histórico 8339928](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-vanillabackport/files/8339928), [source 5283b50](https://github.com/dannykim2011/DynamicTrees-VanillaBackport/commit/5283b508f5327f27b9a39f0dc260798ee670bd8b) declara a versão. Ficha individual .h não recuperada; basename confirmado por [catálogo secundário](https://modpacks.ch/mods/minecraft/1589710/dynamic-trees-vanillabackport?version=1.21.1) e convenção do projeto. Delta acumulado [compare 1.8.0→2.0.0h](https://github.com/dannykim2011/DynamicTrees-VanillaBackport/compare/98ed84c6384131eb93aa138e32b466e4923bc4ec...5283b508f5327f27b9a39f0dc260798ee670bd8b): suporte aos três Poplars, family/cell kit/growth logic e datagen, shelf mushroom block/genfeature presente em source (descrição pública anterior dizia que decoração ainda não incluída), remoção do protector Creaking Heart server-side ao derrubar árvore/cortar outro ramo, alteração do nome do arquivo mixin. Não atribuir cada mudança a um binário específico sem pin de publicação e diff individual. Source não equivale a inspeção do JAR.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Estado vigente — 22/11/2026:** `1.7.0` → **`1.8.0`**, arquivo de distribuição `dtvanillabackport-1.21.1-1.8.0.jar`; a nova versão é considerada instalada conforme declaração expressa do usuário. [Fonte upstream](https://www.curseforge.com/minecraft/mc-mods/dynamictrees-vanillabackport/files/9250399). Sem inspeção local ou testes.
 

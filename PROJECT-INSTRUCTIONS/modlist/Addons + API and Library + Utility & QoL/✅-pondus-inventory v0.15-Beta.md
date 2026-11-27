@@ -1,4 +1,27 @@
-# Pondus Inventory
+# Pondus Inventory [Sable] — 0.15-Beta
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Pondus Inventory [Sable]
+- **Arquivo JAR instalado (declarado):** `pondus_inventory_fi-0.15-Beta.jar`
+- **Versão instalada declarada:** `0.15-Beta` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #450 (preservada).
+- **Categoria CurseForge / pasta:** Addons + API and Library + Utility & QoL.
+- **Função:** Integra inventários e fluidos à massa física de ships/sublevels Sable.
+- **Atualização/Status:** `0.15-Beta` revalidada, sem bump.
+- **Estado no pack:** instalação declarada pelo usuário, sem nova leitura física.
+- **Estado da pesquisa:** Publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência indicados. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Sable 2.0.5 no índice; Sable Companion 1.5.0 embarcado na baseline física, não é top-level. Sem nova inspeção de JAR ou QA de massa/physics.
+- **Fonte:** [publicação ou catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/pondus-inventory/files/all).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; fontes complementares e limitações descritas abaixo. Não atribuir hashes nem metadata do novo JAR sem inspeção.
+
+## Auditoria incremental e reconciliação
+
+Revalidação: catálogo oficial do projeto 1528664 mostra 0.15-Beta, NeoForge 1.21.1, 04/07/2026, classificada como Release apesar do sufixo Beta no filename. Não foi localizada publicação posterior; intervalo vazio. Preservar o mod_id e a auditoria histórica da massa de conteúdo, tags/config e correções de duplicação de subtração.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 ## Propriedades do registro
 

@@ -1,4 +1,27 @@
-# Just Enough Items (JEI) — 19.76.1.478 (instalação declarada 22/11/2026)
+# Just Enough Items (JEI) — 19.76.1.482
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Just Enough Items (JEI)
+- **Arquivo JAR instalado (declarado):** `jei-1.21.1-neoforge-19.76.1.482.jar` — basename corroborado por catálogo secundário, ficha individual oficial não recuperada.
+- **Versão instalada declarada:** `19.76.1.482` — Beta, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #349 (preservada).
+- **Categoria CurseForge / pasta:** API and Library + Map and Information.
+- **Função:** Visualizador de itens/receitas, transferências e API de plugins.
+- **Atualização/Status:** `19.76.1.478` → `19.76.1.482`.
+- **Estado no pack:** instalação declarada pelo usuário, sem nova leitura física.
+- **Estado da pesquisa:** Auditoria incremental com ressalvas explícitas de atribuição/publicação; prefixo histórico preservado, não implica certificação granular integral do delta. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** [gradle.properties da revisão 26/11](https://github.com/mezz/JustEnoughItems/blob/fed98d92a07b8baa0636b50787d544820e8f4436/gradle.properties): NeoForge >=21.1.238, MezzConfig [0.6.10,1.0.0), build 0.7.1, GUI opcional 0.7.1 até <0.8 conforme histórico. Índice #394 MezzConfig 0.5.9 permanece abaixo do mínimo; pendência de sincronização futura, não veto. Testar recipe UI, transferência, plugins, tooltip, IME, dedicated e resource reload. Sem QA.
+- **Fonte:** [publicação ou catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/jei/files/all).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; fontes complementares e limitações descritas abaixo. Não atribuir hashes nem metadata do novo JAR sem inspeção.
+
+## Auditoria incremental e reconciliação
+
+Catálogo oficial identifica 19.76.1.480 e .481 (23/11), .482 (26/11), todos Beta NeoForge 1.21.1; .479 não localizada como publicação separada para o alvo. O CI usa BUILD_NUMBER, não presumir binários omitidos pelo salto numérico. As fichas individuais não foram recuperadas; basename corroborado pela [listagem secundária de arquivos](https://files.xmdhs.com/curseforge/history?id=238222&ver=1.21) e convenção anterior, sem inspeção binária. Source 1.21.1: [c29af1c](https://github.com/mezz/JustEnoughItems/commit/c29af1c783de16f99beb3e6108ba75d80eea80d3) de 22/11 corrige compatibilidade de API para tipos-pai do Minecraft; [2403521](https://github.com/mezz/JustEnoughItems/commit/24035215b9c4635f7bc349e14f3f7f3cf6ac6d07) de 23/11 separa controles de receita de callbacks de plugins (#4632); [fed98d9](https://github.com/mezz/JustEnoughItems/commit/fed98d92a07b8baa0636b50787d544820e8f4436) de 26/11 mantém contagens de itens abaixo de tooltips (#4634). Correspondência temporal e delta acumulado, não pins individuais .480/.481/.482 confirmados. Histórico da .478 registra lacuna anterior de atribuição granular de betas; não certificar retrospectivamente o que não foi provado.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Estado vigente — 22/11/2026:** `19.56.0.440` → **`19.76.1.478`**, arquivo de distribuição `jei-1.21.1-neoforge-19.76.1.478.jar`; a nova versão é considerada instalada conforme declaração expressa do usuário. [Fonte upstream](https://www.curseforge.com/minecraft/mc-mods/jei/files/all?page=1&version=1.21.1). Sem inspeção local ou testes.
 

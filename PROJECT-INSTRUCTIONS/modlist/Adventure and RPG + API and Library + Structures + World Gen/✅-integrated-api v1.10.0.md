@@ -1,4 +1,27 @@
-# Integrated API
+# Integrated API — 1.10.0
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Integrated API
+- **Arquivo JAR instalado (declarado):** `integrated_api-neoforge-1.21.1-1.10.0.jar`
+- **Versão instalada declarada:** `1.10.0` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #332 (preservada).
+- **Categoria CurseForge / pasta:** Adventure and RPG + API and Library + Structures + World Gen.
+- **Função:** API/worldgen de estruturas, processors e datapacks compartilhada por Integrated Structures.
+- **Atualização/Status:** `1.8.2` → `1.10.0`.
+- **Estado no pack:** instalação declarada pelo usuário, sem nova leitura física.
+- **Estado da pesquisa:** Auditoria incremental com ressalvas explícitas de atribuição/publicação; prefixo histórico preservado, não implica certificação granular integral do delta. Sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Reconciliar IDAS 1.14.0, Integrated Stronghold 1.2.0, Integrated Villages 1.4.0 e demais consumers; atualizações documentais já feitas, mínimos exatos de cada consumer não verificados. Testar tags/processors, jigsaw, worldgen, terrain adaptation, trades, datapacks e chunks novos; não presumir correção retroativa ou redundância total de Integrated Patches. Sem QA.
+- **Fonte:** [publicação ou catálogo oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/integrated-api/files/all).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; fontes complementares e limitações descritas abaixo. Não atribuir hashes nem metadata do novo JAR sem inspeção.
+
+## Auditoria incremental e reconciliação
+
+1.9.0 (22/09, file 8943419): trial spawner processor, mudanças de terrain/structure conforme auditoria histórica. 1.9.1 (12/10, file 9151098): pool de mapas wandering trader, múltiplas definições de trades por profissão, redução de logs biome-facing. 1.9.2 (11/11, file 9552190): publicação sem changelog; source [8b7020c](https://github.com/craisinlord/IntegratedAPI/commit/8b7020c3bc145359ea61a91080d77f3e234f518a) delta acumulado; diferença binária exclusiva .2 permanece não demonstrada. 1.10.0 — 25/11, catálogo oficial confirma JAR exato NeoForge 1.21.1; ID individual não recuperado. [Source d453b54](https://github.com/craisinlord/IntegratedAPI/commit/d453b54ba34da256e8c5e52864ce8a34bfff8156), caminhos common-1.21.1: NoTreesInStructuresMixin limita geração natural de árvores próximas a peças de estruturas que pertençam à tag integrada tree_free_structures (distância horizontal 4, tag vazia por default; não bloqueia mudas cultivadas por jogadores); PillarProcessor registrado como integrated_api:pillar_processor estende suporte vertical até solo sólido, incluindo passagem por ar/água/vegetação e blocos em pillar_replaceable. Tags data-driven e utilitário StructurePieceUtils; não assumir que todos os consumers habilitam essas opções. Não confundir com Integrated Patches externo, cuja presença/posição não foi estabelecida.
+
+## Histórico documental preservado
+
+> Os dados abaixo correspondem aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 ## Propriedades do registro
 
