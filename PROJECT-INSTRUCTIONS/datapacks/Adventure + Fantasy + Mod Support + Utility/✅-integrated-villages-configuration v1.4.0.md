@@ -1,4 +1,26 @@
-# Integrated Villages- Configuration
+# Integrated Villages- Configuration — v1.4.0
+
+## Estado documental vigente — 27/11/2026
+
+- **Arquivo ZIP instalado declarado:** `integrated_villages_config-1.4.0-1.21.1.zip` (basename reportado pelo catálogo secundário Modgrade; ficha individual do CurseForge não recuperada).
+- **Versão instalada declarada:** `1.4.0` — Minecraft 1.21.1, no perfil NeoForge.
+- **Estado no pack:** atualização declarada pelo usuário em 27/11/2026; ZIP local não inspecionado.
+- **Estado da pesquisa:** identidade e categorias oficiais confirmadas; publicação recente corroborada por catálogo oficial filtrado e versão/filename por catálogo secundário. File ID, ficha individual, changelog, delta binário e metadata não confirmados. Não atribuir certificação integral do delta; selo herdado refere-se à auditoria histórica.
+- **Atualização/Status:** 1.3.3 → 1.4.0. Catálogo oficial indexado em 27/11 indica atualização de 25/11/2026 para 1.21.1; Modgrade reporta release e filename da mesma data. A página direta do projeto ainda retorna a listagem antiga 1.3.3, divergência explícita. Registro declarativo, não inspeção física.
+- **Dependências:** Integrated Villages obrigatório; índice de mods #336 já registra 1.4.0+1.21.1-neoforge. Piso exato de dependência do ZIP não confirmado; compatibilidade de runtime não demonstrada.
+- **Compatibilidade/Riscos:** overrides de structure sets e tags de biomas, precedência de datapacks, schemas de worldgen e geração futura; não assumir regeneração retroativa nem homologação de saves.
+- **Categorias CurseForge:** Adventure + Fantasy + Mod Support + Utility (classe técnica Data Packs excluída).
+- **Procedência:** declaração do usuário; [projeto oficial 1042146](https://www.curseforge.com/minecraft/data-packs/integrated-villages-configuration), [catálogo oficial 1.21.1 ordenado por última atualização](https://www.curseforge.com/minecraft/search?class=data-packs&page=1&pageSize=50&sortBy=latest+update&version=1.21.1), [perfil oficial do autor](https://www.curseforge.com/members/CraisinLord/projects), [catálogo secundário atualizado](https://modgrade.com/minecraft/datapack/integrated-villages-configuration).
+
+## Auditoria incremental — 1.3.3 → 1.4.0
+
+A lista oficial histórica registra 1.3.3 para 1.21.1 em 28/05/2026. Nenhuma versão intermediária posterior da mesma linha foi localizada; a lista de arquivos recuperada está desatualizada, portanto a ausência de intermediárias não é certificada. O catálogo oficial atualizado registra mudança em 25/11/2026; o catálogo secundário identifica 1.4.0 para 1.21.1 e separadamente 1.4.0 para 1.20.1. Não confundir as duas variantes. Não se obteve a ficha de arquivo, changelog específico ou ZIP para comparação; não inventar file ID, hash, pack_format, conteúdo removido ou alterações individuais.
+
+A descrição oficial mantém a função de configuração do mod principal: spacing e separation (0–4096, separation não superior a spacing) e tags de biomas. Essa é documentação de função, não prova de que cada JSON tenha sido mantido sem alteração na 1.4.0. Alterações do mod principal não são automaticamente atribuíveis ao datapack. A contagem de estruturas/loot/advancements do catálogo secundário não prova quais entradas mudaram desde 1.3.3. Para fechar o delta, comparar ZIPs, pack.mcmeta, JSONs/NBTs, tags, prioridades e schema contra o mod principal. Nenhum teste de runtime realizado; não é veto à sincronização declarativa.
+
+## Histórico documental preservado — anterior à declaração de 27/11/2026
+
+Os campos de instalação e snapshots abaixo pertencem à auditoria histórica de 1.3.3. Não representam a versão vigente. Mantidos integralmente para rastreabilidade.
 
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1
 - **Estado no pack na exportação:** Instalado — Dossiê completo
