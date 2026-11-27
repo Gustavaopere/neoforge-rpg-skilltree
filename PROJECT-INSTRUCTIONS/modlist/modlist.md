@@ -1955,3 +1955,14 @@ O dossier canônico [`✅-goety v3.2.3.md`](./Adventure%20and%20RPG%20%2B%20Magi
 ## Sincronização documental declarada — 27/11/2026, 18:06
 
 - 179 Create: Cyber Goggles: `8.8.3` → [`8.8.5`](https://modrinth.com/mod/create-cyber-goggles/version/b39ZaMYw); publicação oficial Modrinth, divergência de origem CurseForge explícita; 8.8.4/8.8.5 auditadas no source. Sem QA, instalação declarada.
+
+
+## Pendência de inclusão documental — Integrated Patches (27/11/2026)
+
+Item **17 da lista do usuário**, não posição física. Instalação da publicação mais recente compatível declarada pelo usuário; nenhum JAR local inspecionado. O projeto [Integrated Patches — Aarods, ID 1690092](https://www.curseforge.com/minecraft/mc-mods/integrated-patches) tem como alvo Minecraft 1.21.1 / NeoForge, ambiente servidor; categorias oficiais: API and Library + Bug Fixes + Server Utility + Utility & QoL + World Gen. A [listagem oficial](https://www.curseforge.com/minecraft/mc-mods/integrated-patches/files/all) contém três releases para esse alvo:
+
+- [1.0.0 — 10/09/2026, file 8853826](https://www.curseforge.com/minecraft/mc-mods/integrated-patches/files/8853826): publicação inicial; descrição do projeto indica correções na geração de estruturas da família Integrated, mas não atribui todas as correções posteriores a esta versão.
+- [1.1.0 — 19/09/2026, file 8917411](https://www.curseforge.com/minecraft/mc-mods/integrated-patches/files/8917411): corrige truncamento de estruturas grandes, como Tinker Citadel e Collector Museum do IDAS.
+- [1.2.0 — 27/09/2026, file 8995436](https://www.curseforge.com/minecraft/mc-mods/integrated-patches/files/8995436): corrige profundidade excessiva com enhanced_terrain_adaptation, descontinuidade de adaptação nas bordas de chunks e decorações naturais suspensas. JAR oficial: `integrated_patches v1.2.0-1.21.1.jar`. Esta é a versão declarada atual, sem comprovação de versão anterior instalada.
+
+[Integrated API é dependência obrigatória](https://www.curseforge.com/minecraft/mc-mods/integrated-patches/relations/dependencies); #332 registra 1.10.0. Não foi identificado piso exato da dependência no metadata do binário. Compatibilidade com 1.10.0 e demais mods de worldgen, intervenção em estruturas existentes, hooks e QA não foram demonstrados. Nenhum dossier ou posição física localizado na árvore e no índice atuais; o registro acima é apenas evidência de pesquisa e declaração, **fora da tabela mestre de mods certificados**. Sem criar dossier elegível, posição artificial ou selo. Pendente inclusão inicial formal; não liberar o item da lista de atualizações enquanto esse requisito permanecer.

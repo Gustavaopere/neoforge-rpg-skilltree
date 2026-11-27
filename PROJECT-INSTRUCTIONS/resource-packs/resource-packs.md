@@ -167,3 +167,12 @@ Resource Pack nº **1 no pedido** e nº **55 na tabela documental**: 1.3.0 → 1
 ## Sincronização documental declarada — 27/11/2026
 
 - 40 Fresh Illager Mod Compats: `4.3` → [`5.1`](https://www.curseforge.com/minecraft/texture-packs/fresh-illager-mod-compats/files/9795350); instalação declarada, sem QA. Lacuna 4.8 preservada, sem atribuir selo.
+
+
+## Pendência de inclusão documental — Fresh Flowers and Plants (27/11/2026)
+
+Item **1 da lista de Resource Packs do usuário**, não posição no catálogo. [Projeto oficial cybercraft, ID 1267622](https://www.curseforge.com/minecraft/texture-packs/fresh-flowers-and-plants), categorias CurseForge 16x e Miscellaneous (16x é resolução técnica excluída das pastas pelo protocolo local; categoria temática Miscellaneous).
+
+A [listagem oficial](https://www.curseforge.com/minecraft/texture-packs/fresh-flowers-and-plants/files/all) apresenta três publicações. A única com suporte explícito a Minecraft 1.21.1 identificado é [Fresh Flowers and Plants 3D UI.zip — Beta, 17/05/2025, file 6540018](https://www.curseforge.com/minecraft/texture-packs/fresh-flowers-and-plants/files/6540018), **sem versão semântica publicada**. A variante usa modelos 3D nos itens de plantas na mão e GUI. A variante principal pretende manter sprites 2D na GUI e modelos 3D na mão, mas a publicação inicial e a release 1.2.1 de 17/08/2025 não declaram 1.21.1; não inferir compatibilidade nem atribuir versão 1.2.1 à variante Beta. A descrição do projeto cita flores, corais, mudas e outros itens vegetais; não implica substituição dos modelos de blocos no mundo. Suporte a Hold My Items consta como trabalho em andamento, não funcionalidade comprovada.
+
+Instalação do projeto atualizada conforme declaração do usuário; 3D UI é o alvo inferido do filtro oficial de 1.21.1, sem inspeção do ZIP local. Não há versão anterior documental, dossier, entrada no índice ou confirmação de prioridade de carregamento. pack.mcmeta, modelos, sobreposição com outros packs e QA não inspecionados. Registro de pesquisa **fora da tabela mestre**; nenhuma posição, pasta ou certificação nova atribuída. Pendente inclusão documental inicial formal; não liberar o item da lista de atualizações enquanto esse requisito permanecer.
