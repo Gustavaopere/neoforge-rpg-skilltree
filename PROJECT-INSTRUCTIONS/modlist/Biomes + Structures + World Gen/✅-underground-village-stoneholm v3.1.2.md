@@ -1,4 +1,27 @@
-# Underground Village, Stoneholm
+# Underground Villages, Stoneholm (Fabric/Forge/NeoForge) — 3.1.2
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Underground Villages, Stoneholm (Fabric/Forge/NeoForge)
+- **Arquivo JAR instalado (declarado):** `underground_village-neoforge-3.1.2-1.21.1.jar`
+- **Versão instalada declarada:** `3.1.2` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #554 (preservada).
+- **Categoria CurseForge / pasta:** Biomes + Structures + World Gen.
+- **Função:** Reforge de Stoneholm, provider de vilas subterrâneas com geração dependente de bioma.
+- **Atualização/Status:** `2.0` → `3.1.2`.
+- **Estado no pack:** instalação declarada pelo usuário, sem leitura física nova.
+- **Estado da pesquisa:** publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência explicitados, sem certificação de runtime.
+- **Dependências / compatibilidade / riscos:** Better Library 1.0.111 consta em #069 (required na baseline); novo mínimo não confirmado. Testar geração com Tectonic/Terralith/Streams/BWG, locate, densidade, peças enterradas, loot, villager pathfinding, saves e multiplayer; não presumir migração retroativa de chunks. Sem QA.
+- **Fonte:** [publicação oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/underground-villages-stoneholm/files/9838844).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; não inferir hashes nem metadata do JAR novo.
+
+## Auditoria incremental e reconciliação
+
+3.1.2 — 27/11/2026, Release NeoForge 1.21.1 (file 9838844). O autor descreve 14 estilos de vilas subterrâneas vinculados ao bioma de superfície, variação dos materiais de paredes/pisos/pilares, seleção de estilo para biomas modded (configurável), fusão das variantes aquáticas em Ocean Village, decoração com vinhas, spacing revisado, /locate por variante (ex. underground_village:desert_village) e correções de startup dedicado, exposição de salas em encostas, lentidão de locate e peças ausentes. O [catálogo anterior](https://www.curseforge.com/minecraft/mc-mods/underground-villages-stoneholm/files/all) mostra 2.1.0/.1 para MC 26.x, não atribuir a 1.21.1; não localizada publicação intermediária 3.x para NeoForge 1.21.1. Nota na ficha contém texto de pré-lançamento, mas arquivo efetivamente publicado. Não inferir spacing numérico ou novos IDs além dos anunciados.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo corresponde aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#554**: JAR `underground_village-neoforge-1.21.1-2.0.jar`, mod id `underground_village`, runtime `2.0`, SHA-1 `53e65e6e0be47e7ee23e5d52535a595b440a88d3`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

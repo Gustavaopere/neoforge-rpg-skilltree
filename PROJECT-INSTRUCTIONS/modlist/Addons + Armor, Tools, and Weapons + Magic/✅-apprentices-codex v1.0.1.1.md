@@ -1,4 +1,27 @@
-# Apprentice's Codex
+# Apprentice's Codex — 1.0.1.1
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Apprentice's Codex
+- **Arquivo JAR instalado (declarado):** `apprentice_codex-1.0.1.1-mc1.21.1.jar`
+- **Versão instalada declarada:** `1.0.1.1` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #038 (preservada).
+- **Categoria CurseForge / pasta:** Addons + Armor, Tools, and Weapons + Magic.
+- **Função:** Addon de Iron's Spells com equipamento mágico, ferramentas de casting, integrações e progressão.
+- **Atualização/Status:** `0.9.7.1` → `1.0.1.1`.
+- **Estado no pack:** instalação declarada pelo usuário, sem leitura física nova.
+- **Estado da pesquisa:** publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência explicitados, sem certificação de runtime.
+- **Dependências / compatibilidade / riscos:** Iron's Spells 3.16.4 no índice #342, Create, Patchouli e integrações opcionais conforme histórico; mínimos novos não confirmados. Não presumir Magitech/Spectrum presentes; itens condicionais não devem ser apresentados como garantidos no pack. Testar inventário, summons, progressão, scrolls, mana e compat de Accessories; sem QA.
+- **Fonte:** [publicação oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/apprentices-codex/files/9773393).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; não inferir hashes nem metadata do JAR novo.
+
+## Auditoria incremental e reconciliação
+
+0.9.8.1 (27/09, Beta): grandes mudanças em armas, slots/scrolls, enchantments, cooldown, economia de cartuchos, Spell Wheel e integrações; histórico discrimina valores e correções. 1.0.0 (10/10, file 9115440): manual Apprentice's Memo via Patchouli, migração de descrições JEI, mudanças em Silent Assassin, Commence Fire, Fly Swatter, Quick Arms e Heavenly Fist. 1.0.1 (01/11, file 9391553): Mana Force Release Device, Gauntlets of Psychic-drive, módulos condicionais, Shock, integração Jewelry, Spectator e política de suporte de Accessories Compatibility Layer. 1.0.1.1 (23/11, file 9773393): dois equipamentos condicionais a Magitech (Magi-Engineer's Casting Staff-Device e Leg Exoskeleton, este permite caminhar no ar); suporte condicional a enchantments no Enchanter de Spectrum; rendering de partículas luminosas; elimina processamento melee desnecessário de certos summons, corrige atualização de inventário ao clicar Storage Stabilizer/Spellcaster's Accessory Case e clipping da skin em armaduras. Fix Better Combat explicitamente 1.20.1, excluído do alvo. Rótulo +mc1.21.1 versus campo File name -mc1.21.1; metadata não relida. Catálogo confirma as quatro publicações.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo corresponde aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#38**: `apprentice_codex-0.9.7.1+mc1.21.1.jar`, mod id `apprenticecodex`, runtime `0.9.7.1`, SHA-1 `b514315add32b93b0049c8673075627d7ef812e0`.
 
@@ -311,4 +334,4 @@ Apprentice's Codex não é duplicata de **Spell Codex**: este addon adiciona spe
 
 **Nenhum JAR foi substituído, nem testes de jogo/migração foram realizados.** Antes de qualquer upgrade, conferir manifest e hashes dos JARs candidatos, requisitos de NeoForge/Iron's Spells/Create/Patchouli/Malum, existência real dos consumidores opcionais, permissões do servidor e compatibilidade com accessories. Fazer backup e restaurar *em cópia* mundo, inventories, item NBT, enchantments antigos, scrolls, Spell Wheel, Elemental Bow/Staffrifle, Spell Dispenser em contraptions, Spellcaster Workbench, datapacks/recipes, efeitos Malum, mana/XP/cooldown de cast automatizado e progressão. Validar client + dedicated server e multiplayer em condições reais.
 
-**Resultado documental:** todas as **três publicações NeoForge 1.21.1 posteriores à versão instalada 0.9.7.1** identificadas no catálogo oficial foram auditadas por seus changelogs específicos, até **1.0.1**. O dossier mantém **\`✅-apprentices-codex v0.9.7.1.md\`**, sua pasta original e versão física; promoção do runtime 1.0.1 permanece **pendente de testes e de reconciliação do binário**.
+**Resultado documental:** todas as **três publicações NeoForge 1.21.1 posteriores à versão instalada 0.9.7.1** identificadas no catálogo oficial foram auditadas por seus changelogs específicos, até **1.0.1**. O dossier mantém **\`✅-apprentices-codex v1.0.1.1.md\`**, sua pasta original e versão física; promoção do runtime 1.0.1 permanece **pendente de testes e de reconciliação do binário**.

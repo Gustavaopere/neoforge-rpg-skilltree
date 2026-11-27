@@ -1,4 +1,27 @@
-# Quark
+# Quark — 4.1-489
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Quark
+- **Arquivo JAR instalado (declarado):** `Quark-4.1-489.jar`
+- **Versão instalada declarada:** `4.1-489` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #468 (preservada).
+- **Categoria CurseForge / pasta:** Cosmetic + Ores and Resources.
+- **Função:** Modularização de melhorias vanilla, conteúdo, QoL, worldgen e integrações.
+- **Atualização/Status:** `4.1-484` → `4.1-489`.
+- **Estado no pack:** instalação declarada pelo usuário, sem leitura física nova.
+- **Estado da pesquisa:** publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência explicitados, sem certificação de runtime.
+- **Dependências / compatibilidade / riscos:** Zeta 1.1-41 (#587) e Quark 4.1-489 formam o par exigido pelo autor, pendência de versão do lote anterior satisfeita. [Metadata source da tag](https://github.com/VazkiiMods/Quark/blob/release-4.1-489%2B1.21.1/src/main/resources/META-INF/neoforge.mods.toml): NeoForge >=21.1.252, Biolith [3.0.0,3.1.0), Lootr opcional >=1.10.34.86. Índice NeoForge 21.1.250 ainda inferior; não afirmar compatibilidade real. Biolith top-level e nested a verificar, Dynamic Trees Quark, IDAS/Integrated Villages, assets e worldgen requerem QA.
+- **Fonte:** [publicação oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/quark/files/9804438).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; não inferir hashes nem metadata do JAR novo.
+
+## Auditoria incremental e reconciliação
+
+4.1-485 (16/09), 4.1-486 (02/10, NeoForge mínimo 21.1.252, Biolith 3.0.14 embarcada), 4.1-487 (05/10, fix parcial de TinyPotatoModel, hats, invert-click) e 4.1-488 (26/10, Ancient Tome trade, Foxhound PetTime/AI, fogo 1s/3s, furnaces, Forgotten Hat sem armor, tags, chutes e Rotation Lock) já auditadas no histórico. 4.1-489 — 25/11/2026, Release: ajustes menores e texturas novas, requer a Zeta mais recente; versões antigas incompatíveis com ela. [Compare oficial](https://github.com/VazkiiMods/Quark/compare/release-4.1-488%2B1.21.1...release-4.1-489%2B1.21.1) inclui ajustes de render de rotation lock/interpolação de uso, evento de tooltip de encantamento, logo e alterações de assets/otimização de imagens. Não atribuir nova mecânica só por mudança de assets. Catálogo confirma as cinco publicações.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo corresponde aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#468**: JAR `Quark-4.1-484.jar`, mod id `quark`, runtime `4.1-484`, SHA-1 `33e5f73fd94e602649c8072606e1beb59cf6e0ff`. Zeta `1.1-40`, Dynamic Trees `1.7.2`, Dynamic Trees - Quark `2.6.1` e Biolith `3.0.14` top-level permanecem presentes; a cópia Biolith `3.0.10` embarcada no JAR continua tratada separadamente como JarJar.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

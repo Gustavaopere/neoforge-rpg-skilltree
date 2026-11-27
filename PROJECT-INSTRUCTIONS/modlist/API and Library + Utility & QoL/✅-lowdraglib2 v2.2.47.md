@@ -1,4 +1,27 @@
-# LowDragLib2
+# LDLib — 2.2.47
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** LDLib
+- **Arquivo JAR instalado (declarado):** `ldlib2-neoforge-1.21.1-2.2.47-all.jar`
+- **Versão instalada declarada:** `2.2.47` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #370 (preservada).
+- **Categoria CurseForge / pasta:** API and Library + Utility & QoL.
+- **Função:** LDLib2: framework de UI modular, recursos, sincronização/persistência, RPC, rendering e editores; não confundir com LDLib legacy.
+- **Atualização/Status:** `2.2.39.a` → `2.2.47`.
+- **Estado no pack:** instalação declarada pelo usuário, sem leitura física nova.
+- **Estado da pesquisa:** publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência explicitados, sem certificação de runtime.
+- **Dependências / compatibilidade / riscos:** KilaGraph 21.1.0.17 (#357) declara LDLib2 >=2.2.33 e referência de build 2.2.41: 2.2.47 supera ambas numericamente, pendência de versão reconciliada sem atestar ABI. Photon e componentes internos (Taffy/Yoga/Kotlin) requerem revalidação de resolução; não criar entradas JarJar. Testar save/restore, lifecycle de UI, RPC, threads, consumers e editor; sem QA.
+- **Fonte:** [publicação oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/ldlib/files/9786369).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; não inferir hashes nem metadata do JAR novo.
+
+## Auditoria incremental e reconciliação
+
+Histórico auditado: 2.2.40 (12/09), 2.2.41 (21/09), 2.2.42 (04/10), 2.2.43 (22/10, ManagedCodec e correções de undo/listeners), 2.2.44 (24/10, reorderChildren, getContentHost, frame callbacks e RPC), 2.2.45 (31/10, version marks, sync por chunk, persistência e teardown), 2.2.46 (source sem JAR independente demonstrado), 2.2.46.a (07/11, correção SDF). 2.2.47 — 24/11/2026: agrupamento reordenável de recursos no editor, HUD preview em escala de tela e preset, acesso a recursos em worker threads com release/keep e mapas de providers read-only, GizmoView e filtro de handles, expansão programática do StructuredTagEditor, sugestões de nodes priorizadas pelo grupo, ScenarioOptions#skipUnless. Reduz varredura de diretórios/leitura de arquivos e readbacks de depth buffer; corrige save mal sucedido sinalizado como sucesso, lifecycle do editor, escala GUI, cópia de builtin com dois-pontos, layout de dropdowns e campos, drag de gizmo, seleção de abas e scroller. O arquivo principal é a variante -all.jar; o JAR thin e sources adicionais não substituem o top-level histórico.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo corresponde aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 ## Propriedades do registro
 

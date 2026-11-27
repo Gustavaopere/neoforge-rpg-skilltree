@@ -1,4 +1,27 @@
-# Create: Radars — 5.1.2 (versão instalada declarada em 22/11/2026)
+# Create: Radars — 5.1.3
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Create: Radars
+- **Arquivo JAR instalado (declarado):** `create_radar-5.1.3-1.21.1.jar`
+- **Versão instalada declarada:** `5.1.3` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #154 (preservada).
+- **Categoria CurseForge / pasta:** Addons + Armor, Tools, and Weapons + Create + Map and Information + Technology.
+- **Função:** Radar, sonar e integração de detecção/visualização em Create e sublevels.
+- **Atualização/Status:** `5.1.2-1.21.1` → `5.1.3-1.21.1`.
+- **Estado no pack:** instalação declarada pelo usuário, sem leitura física nova.
+- **Estado da pesquisa:** publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência explicitados, sem certificação de runtime.
+- **Dependências / compatibilidade / riscos:** Create 6.0.10 e Sable 2.0.5 documentados; integrações CBC/Aeronautics/Aero Radar/Radiologistics precisam de QA, mínimos novos não demonstrados. Testar detecção e contornos em sublevels conectados, datalinks, persistência e multiplayer. Sem QA.
+- **Fonte:** [publicação oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9785701).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; não inferir hashes nem metadata do JAR novo.
+
+## Auditoria incremental e reconciliação
+
+5.1.3 — 24/11/2026, Release, file 9785701, Main File atual: corrige detecção por RWR e Chaff em sublevels conectados e contorno da silhueta de grandes estruturas quando outro sublevel é conectado. Outro resultado indexado de mesmo basename/file 9783360 retorna 404; não atribuir delta ou distribuição alternativa não verificável. Sem outra versão numérica intermediária confirmada. Cadeia anterior 5.0–5.1.2 preservada; versão-base 5.1.3, sufixo 1.21.1 de distribuição mantido no filename documental; metadata não relida.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo corresponde aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Estado vigente (declaração do usuário de 22/11/2026):** `0.4.9.4-1.21.1` → **`5.1.2`**, NeoForge 1.21.1, JAR exato oficialmente distribuído `create_radar-5.1.2-1.21.1.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/create-radars/files/9758334)). A instalação foi declarada, e não aferida por leitura de JAR local. Posição física original #154 preservada.
 

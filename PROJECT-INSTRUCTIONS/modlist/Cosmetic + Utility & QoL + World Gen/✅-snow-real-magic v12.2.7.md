@@ -1,4 +1,27 @@
-# Snow! Real Magic! ⛄ (Neo/Forge) — 12.2.7 (versão instalada declarada em 22/11/2026)
+# Snow! Real Magic! ⛄ (Neo/Forge) — 12.2.7
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Snow! Real Magic! ⛄ (Neo/Forge)
+- **Arquivo JAR instalado (declarado):** `SnowRealMagic-1.21.1-NeoForge-12.2.7.jar`
+- **Versão instalada declarada:** `12.2.7` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #511 (preservada).
+- **Categoria CurseForge / pasta:** Cosmetic + Utility & QoL + World Gen.
+- **Função:** Snow layers e integração de blocos, models e worldgen.
+- **Atualização/Status:** `12.2.7` revalidada, sem bump.
+- **Estado no pack:** instalação declarada pelo usuário, sem leitura física nova.
+- **Estado da pesquisa:** publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência explicitados, sem certificação de runtime.
+- **Dependências / compatibilidade / riscos:** Kiwi 15.8.7+neoforge consta em #358, Ecliptic Seasons atualizado em lote anterior; conferir mínimos reais e interações. Sem nova leitura binária ou QA.
+- **Fonte:** [publicação oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/snow-real-magic/files/9730215).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; não inferir hashes nem metadata do JAR novo.
+
+## Auditoria incremental e reconciliação
+
+Revalidação do arquivo 9730215, 21/11/2026: permanece a última publicação NeoForge 1.21.1 localizada, Release. A versão 12.2.8 localizada no [projeto Fabric separado](https://www.curseforge.com/minecraft/mc-mods/snow-real-magic-fabric/files/9731323) não se aplica. A cadeia anterior 12.2.3/.4/.5/.7 permanece documentada; não há nova publicação NeoForge confirmada a auditar. Correções vigentes de oclusão, culling, z-fighting e altura de passo na neve.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo corresponde aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Vigente em 22/11/2026:** `12.2.2+neoforge` → **`12.2.7`**, arquivo oficial `SnowRealMagic-1.21.1-NeoForge-12.2.7.jar`; instalação declarada pelo usuário para atualizar a modlist escrita. [Fonte](https://www.curseforge.com/minecraft/mc-mods/snow-real-magic/files/9730215). Nenhuma leitura de JAR local ou teste de Minecraft foi executada.
 

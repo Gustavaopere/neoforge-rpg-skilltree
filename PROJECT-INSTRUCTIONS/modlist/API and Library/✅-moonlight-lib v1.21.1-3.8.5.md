@@ -1,4 +1,27 @@
-# Moonlight Lib
+# Moonlight Lib — 1.21.1-3.8.5
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Moonlight Lib
+- **Arquivo JAR instalado (declarado):** `moonlight-1.21.1-3.8.5-neoforge.jar`
+- **Versão instalada declarada:** `1.21.1-3.8.5` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #407 (preservada).
+- **Categoria CurseForge / pasta:** API and Library.
+- **Função:** Biblioteca transversal de registries, assets/data packs dinâmicos, AI/trades de villagers, animação e configs.
+- **Atualização/Status:** `1.21.1-3.6.4` → `1.21.1-3.8.5`.
+- **Estado no pack:** instalação declarada pelo usuário, sem leitura física nova.
+- **Estado da pesquisa:** publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência explicitados, sem certificação de runtime.
+- **Dependências / compatibilidade / riscos:** Amendments 1.21-2.3.1 e Supplementaries 1.21.1-4.1.4 já registrados: Moonlight sincronizado, mínimos exatos desses consumers não verificados aqui. Every Compat e CodecUI embarcada precisam de revalidação; não alegar versão nested nova. Testar datapacks, trades, resources, tags, plugins e configs; sem QA.
+- **Fonte:** [publicação oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/selene/files/9780727).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; não inferir hashes nem metadata do JAR novo.
+
+## Auditoria incremental e reconciliação
+
+Histórico já individualiza 3.6.5/.6/.7/.8/.9, 3.7.0/.1/.2 (esta última dois fixes genéricos), 3.8.0 (models, defineVec2, tags condicionais), 3.8.1 (imagens em configs), 3.8.2 (registro de plugins), 3.8.3 (09/11, lifecycle/leaks da tela de mundos). Catálogo 1.21.1 mostra 3.8.4 (22/11) apenas Fabric, não contar como publicação NeoForge. 3.8.5 — 23/11, Release NeoForge 1.21.1: correções adicionais em trades, e problema de inclusão de loot tables em datapack dinâmico. O changelog não discrimina o contrato específico de trades. Não misturar com 4.x de MC 26.x.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo corresponde aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 ## Propriedades do registro
 

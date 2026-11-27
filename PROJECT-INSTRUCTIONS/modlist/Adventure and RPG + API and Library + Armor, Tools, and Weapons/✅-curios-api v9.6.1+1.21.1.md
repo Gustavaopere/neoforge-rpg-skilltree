@@ -1,4 +1,27 @@
-# Curios API — 9.6.0+1.21.1 (instalação declarada 22/11/2026)
+# Curios API — 9.6.1+1.21.1
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Curios API
+- **Arquivo JAR instalado (declarado):** `curios-neoforge-9.6.1-1.21.1.jar`
+- **Versão instalada declarada:** `9.6.1+1.21.1` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #211 (preservada).
+- **Categoria CurseForge / pasta:** Adventure and RPG + API and Library + Armor, Tools, and Weapons.
+- **Função:** API de acessórios/equipamento, slots, modifiers, integração de inventário, datapacks e consumers.
+- **Atualização/Status:** `9.6.0+1.21.1` → `9.6.1+1.21.1`.
+- **Estado no pack:** instalação declarada pelo usuário, sem leitura física nova.
+- **Estado da pesquisa:** publicações identificadas e deltas disponíveis auditados/reutilizados; limites de evidência explicitados, sem certificação de runtime.
+- **Dependências / compatibilidade / riscos:** 9.6.0 exigia NeoForge >=21.1.265; índice #001 ainda registra 21.1.250. Mínimo exato da 9.6.1 não verificado; não presumir redução. Pendência do loader mantida sem bloquear documentação. Testar datapacks de entidades, equip/unequip, Curios/Ars 'n Spells 3.4.3, consumidores, modifiers e multiplayer; sem QA.
+- **Fonte:** [publicação oficial CurseForge](https://www.curseforge.com/minecraft/mc-mods/curios/files/9806453).
+- **Procedência:** declaração expressa do usuário e distribuição oficial; não inferir hashes nem metadata do JAR novo.
+
+## Auditoria incremental e reconciliação
+
+9.6.1+1.21.1 — changelog datado 24/11, publicação 25/11/2026: refina parsing de entidades Curios em datapacks; sem descrição de novas regras/schema. A 9.6.0 anterior já auditada inclui prioridade de slots específicos, eventos NeoForge Fortune/Looting e correções de sync. Sem versão intermediária localizada; arquivo principal usa -1.21.1, changelog +1.21.1; não confundir com -api ou -sources adicionais.
+
+## Histórico documental preservado
+
+> O conteúdo abaixo corresponde aos snapshots e auditorias anteriores. Menções a versão física, atual, candidata, não instalada, hashes e dependências são históricas; as propriedades vigentes prevalecem.
 
 > **Estado documental vigente:** `9.5.1+1.21.1` → **`9.6.0+1.21.1`**, JAR `curios-neoforge-9.6.0+1.21.1.jar` ([CurseForge](https://www.curseforge.com/minecraft/mc-mods/curios/files/9694505)), **atualização informada pelo usuário em 22/11/2026**. Não existe verificação independente do JAR na pasta local do usuário.
 
