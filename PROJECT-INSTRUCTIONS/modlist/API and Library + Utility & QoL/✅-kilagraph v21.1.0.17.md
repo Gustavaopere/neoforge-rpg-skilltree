@@ -1,4 +1,29 @@
-# KilaGraph
+# KilaGraph — 21.1.0.17
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** KilaGraph
+- **Arquivo JAR instalado (declarado):** `kilagraph-neoforge-1.21.1-21.1.0.17.jar` — basename corroborado por evidência cruzada; ficha individual CurseForge não recuperada.
+- **Versão instalada declarada:** `21.1.0.17` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #357 (preservada).
+- **Categoria CurseForge / pasta:** API and Library + Utility & QoL.
+- **Função:** Toolkit programável de graphs e shaders sobre LDLib2; API e editor visual para consumers.
+- **Atualização/Status:** `21.1.0.14` → `21.1.0.17`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** auditoria incremental das publicações identificadas; limites de changelog, metadata e procedência indicados abaixo; sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** [gradle.properties](https://github.com/Low-Drag-MC/KilaGraph/blob/1.21/gradle.properties) e [metadata template](https://github.com/Low-Drag-MC/KilaGraph/blob/1.21/src/main/resources/META-INF/neoforge.mods.toml) da branch consultada: NeoForge >=21.1.217, LDLib2 >=2.2.33; build LDLib2 2.2.41, índice #370 2.2.39.a supera piso mas é anterior ao alvo de build (item 38 LDLib). Photon 2.2.6.a tinha JarJar KilaGraph 0.14 no snapshot; divergência top-level/embedded exige verificar resolução real e consumers; não criar entrada para JarJar. Testar graph persistence, tipos enum/pins, side effects de hurt/NBT, callback de escrita, execução off-thread e shader compilation.
+- **Fonte:** [publicação ou catálogo de referência](https://www.curseforge.com/minecraft/mc-mods/kilagraph/files/all).
+- **Procedência:** solicitação expressa de atualização, fontes oficiais e, onde explicitado, corroboradores secundários; não atribuir hash/metadata da versão nova sem leitura do binário.
+
+## Auditoria incremental das publicações
+
+- 21.1.0.15 — 21/09, [arquivo 8941172](https://www.curseforge.com/minecraft/mc-mods/kilagraph/files/8941172), Beta: quaternions/rotações, vetores, matemática, declaração de execução off-thread por node, variable store API, Set Var ligado à declaração, setSampler com parâmetros, correções de ordem/tipo de ports e pins carregados.
+- 21.1.0.16 — 05/10, [arquivo 9070731](https://www.curseforge.com/minecraft/mc-mods/kilagraph/files/9070731), Beta: nearest entity, graph type damage source e nodes de construção/leitura/tag/hurt; NBT Copy e copy pins mantendo mutação in-place como default, cor→vetor RGB, reavaliação de pure nodes por exec consumer, correções de loops/subgraphs/outputs e localização de ports. As builds 26.x .16.a não são desta linha.
+- 21.1.0.17 — 26/11, Release: Enum node, opção de tipo em Equals/Not Equals permitindo valores constantes sem fio, callback EvaluationEnvironment#onVariableSet após SetVar para notificar o host. [Changelog branch 1.21](https://github.com/Low-Drag-MC/KilaGraph/blob/1.21/CHANGELOG.md) confirma o delta. O catálogo CF confirma a versão e loader; ficha individual e ID não recuperados. Basename acima corroborado por [Modgrade](https://modgrade.com/minecraft/mod/kilagraph) e pelo build upstream (mod_version e archivesName de projeto); não alegar inspeção binária nem usar sources.jar adicional como instalado.
+
+## Histórico documental preservado
+
+> Os dados abaixo descrevem o snapshot ou a auditoria na sua data original. Menções a versão física, atual, candidata, bloqueada, não instalada, hashes e requisitos anteriores são históricas; as propriedades vigentes acima prevalecem. A declaração atual não constitui teste de execução.
 
 ## Propriedades do registro
 

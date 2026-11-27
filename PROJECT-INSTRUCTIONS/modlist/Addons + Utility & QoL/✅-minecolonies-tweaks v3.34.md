@@ -1,4 +1,27 @@
-# Tweaks addon for MineColonies
+# Tweaks addon for MineColonies — 3.34
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Tweaks addon for MineColonies
+- **Arquivo JAR instalado (declarado):** `MineColonies_Tweaks-1.21.1-3.34.jar`
+- **Versão instalada declarada:** `3.34` — Beta, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #397 (preservada).
+- **Categoria CurseForge / pasta:** Addons + Utility & QoL.
+- **Função:** Addon de configuração e extensões de jobs/cidadãos, research, requests/recipes, crops, raids, UI e logística de MineColonies.
+- **Atualização/Status:** `3.33` → `3.34`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** auditoria incremental das publicações identificadas; limites de changelog, metadata e procedência indicados abaixo; sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Alvos de build: MineColonies 1.1.1411 snapshot, Structurize 1.0.837 snapshot, Multi-Piston 1.2.58, BlockUI 1.0.212, Domum Ornamentum 1.0.237 snapshot; não presumir mínimos de metadata. O índice vigente registra MineColonies 1.1.1426 e Structurize 1.0.840, ambos posteriores aos alvos, e Domum 1.0.236-snapshot, anterior ao alvo; reconciliação de Domum e QA de mixins/AI/tree/citizens/requests/compatibilidade entre addons continuam pendentes. Não é bloqueio documental.
+- **Fonte:** [publicação ou catálogo de referência](https://www.curseforge.com/minecraft/mc-mods/minecolonies-tweaks/files/9454104).
+- **Procedência:** solicitação expressa de atualização, fontes oficiais e, onde explicitado, corroboradores secundários; não atribuir hash/metadata da versão nova sem leitura do binário.
+
+## Auditoria incremental das publicações
+
+- 3.34 — 05/11, Beta, única publicação NeoForge 1.21.1 posterior a 3.33 identificada. O autor atualizou alvos de dependências e corrigiu crash em TreeMixin ([issue 102](https://github.com/gisellevonbingen-Minecraft/MineColonies_Tweaks/issues/102)). Não há anúncio de novas funcionalidades de gameplay. Reutilizada a auditoria anterior da 3.34.
+
+## Histórico documental preservado
+
+> Os dados abaixo descrevem o snapshot ou a auditoria na sua data original. Menções a versão física, atual, candidata, bloqueada, não instalada, hashes e requisitos anteriores são históricas; as propriedades vigentes acima prevalecem. A declaração atual não constitui teste de execução.
 
 ## Propriedades do registro
 

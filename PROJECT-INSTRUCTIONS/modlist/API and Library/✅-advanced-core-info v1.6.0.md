@@ -1,4 +1,31 @@
-# AdvancedCoreInfo
+# Advanced Core Info (ACI) — 1.6.0
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Advanced Core Info (ACI)
+- **Arquivo JAR instalado (declarado):** `AdvancedCoreInfo-neoforge-1.21.1-1.6.0.jar`
+- **Versão instalada declarada:** `1.6.0` — Beta, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #006 (preservada).
+- **Categoria CurseForge / pasta:** API and Library.
+- **Função:** Biblioteca de registries, tooltip trees, transferência de dados e API para ALI/AWI. Não altera loot ou worldgen por si.
+- **Atualização/Status:** `1.1.0` → `1.6.0`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** auditoria incremental das publicações identificadas; limites de changelog, metadata e procedência indicados abaixo; sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** NeoForge 1.21.1. ALI 2.1.0 ainda registrado em #007; sincronização do item 51 posterior. Não afirmar que ALI antigo aceita a API removida; verificar os consumers e compatibilidade de payloads, configuração e tooltips. AWI ausente no snapshot histórico. Nenhum QA novo.
+- **Fonte:** [publicação ou catálogo de referência](https://www.curseforge.com/minecraft/mc-mods/advanced-core-info/files/all?page=1&pageSize=20&showAlphaFiles=hide&version=1.21.1).
+- **Procedência:** solicitação expressa de atualização, fontes oficiais e, onde explicitado, corroboradores secundários; não atribuir hash/metadata da versão nova sem leitura do binário.
+
+## Auditoria incremental das publicações
+
+- 1.2.0 — 17/09, [arquivo 8906316](https://www.curseforge.com/minecraft/mc-mods/advanced-core-info/files/8906316): ManagedRegistry.entries/classKeyName e deduplicação de relatórios de classes/lambdas e chaves de tooltips.
+- 1.3.0 — 28/09, [arquivo 9002615](https://www.curseforge.com/minecraft/mc-mods/advanced-core-info/files/9002615): Holder não vinculado renderiza registry key, coleta spawns naturais por dimensão/bioma/estrutura e acelera construção de tooltips.
+- 1.4.0 — 06/10, [arquivo 9083066](https://www.curseforge.com/minecraft/mc-mods/advanced-core-info/files/9083066): SpawnInfoFilter, valores de config inválidos com fallback e warnings, NumberExpr substitui RangeValue, linhas por valores finitos como luck, intervalos localizados, grouping de spawn por estrutura, scroll, tradução de registry/tags e correção de overrides sem categoria. 1.4.1 encontrada para 26.3, não para NeoForge 1.21.1.
+- 1.5.0 — 16/10, [arquivo 9212278](https://www.curseforge.com/minecraft/mc-mods/advanced-core-info/files/9212278), Beta: registro de tradução de enum, defaults faltantes, backups de configuração com timestamp próprio, quebra de linhas de tooltip, correção de informação de loot/worldgen ausente; crash entrando diretamente em mundo descrito para Forge, não generalizado.
+- 1.6.0 — 25/11, Beta: shared client registry passa a usar registerData em substituição a getCurrentDataFuture (mudança de contrato API); ManagedRegistry ganha find/reportMissing/reportAutoDetected/shortClassName; getClassTooltip, opção de logging de auto-detection e tradução chinesa tradicional. Suporte a 1.19.2 é de outras builds. [Changelog oficial 1.21.1](https://github.com/yanny7/AdvancedLootInfo/blob/1.21.1/aci/CHANGELOG.md). O catálogo oficial confirma exatamente a versão e basename NeoForge, mas não foi recuperado o ID individual da 1.6.0. Histórico 1.2–1.5 reutilizado.
+
+## Histórico documental preservado
+
+> Os dados abaixo descrevem o snapshot ou a auditoria na sua data original. Menções a versão física, atual, candidata, bloqueada, não instalada, hashes e requisitos anteriores são históricas; as propriedades vigentes acima prevalecem. A declaração atual não constitui teste de execução.
 
 > **Autoridade física atual — 22/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#6**: `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar`, mod id `aci`, runtime `1.1.0`.
 ## Propriedades do registro

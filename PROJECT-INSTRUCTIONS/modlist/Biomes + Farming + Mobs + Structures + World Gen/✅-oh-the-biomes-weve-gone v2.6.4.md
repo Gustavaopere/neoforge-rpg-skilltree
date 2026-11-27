@@ -1,4 +1,30 @@
-# Oh The Biomes We've Gone
+# Oh The Biomes We've Gone — 2.6.4
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Oh The Biomes We've Gone
+- **Arquivo JAR instalado (declarado):** `Oh-The-Biomes-Weve-Gone-NeoForge-2.6.4.jar`
+- **Versão instalada declarada:** `2.6.4` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #426 (preservada).
+- **Categoria CurseForge / pasta:** Biomes + Farming + Mobs + Structures + World Gen.
+- **Função:** Provider de biomas, vegetação, estruturas, materiais e entidades ambientais integrado à geração de mundo.
+- **Atualização/Status:** `2.6.0` → `2.6.4`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** auditoria incremental das publicações identificadas; limites de changelog, metadata e procedência indicados abaixo; sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Dependências históricas obrigatórias CorgiLib, GeckoLib, Oh The Trees You'll Grow, TerraBlender. Índice: CorgiLib 5.0.0.9, GeckoLib 4.9.4, OTTYG 5.3.2, TerraBlender 4.1.0.8; mínimos da 2.6.4 não confirmados. Validar DT BWG, Terralith/Tectonic, JSON worldgen config, bedrock em chunks novos, Pumpkin Warden, smelting e migração de saves; sem QA.
+- **Fonte:** [publicação ou catálogo de referência](https://www.curseforge.com/minecraft/mc-mods/oh-the-biomes-weve-gone/files/9839882).
+- **Procedência:** solicitação expressa de atualização, fontes oficiais e, onde explicitado, corroboradores secundários; não atribuir hash/metadata da versão nova sem leitura do binário.
+
+## Auditoria incremental das publicações
+
+- 2.6.1 — 04/10, Release: BushBlocks compostáveis, ajuste do loot/template de cats do Salem Meeting Point 2 para namespace minecraft, correção de spawn de husks em Frosted Coniferous Forest, receita Black Ice.
+- 2.6.2 — 04/10, Release: restaura consulta de configuração dos NeoForge Biome Modifiers removida acidentalmente.
+- 2.6.3 — 10/10, Release: altera assinatura de scheduled tick; o changelog não discrimina classes ou efeito funcional, não inferir.
+- 2.6.4 — 27/11, Release: corrige Pumpkin Warden saindo/entrando repetidamente na toca durante amanhecer/anoitecer; impede surface rules de invadirem subsolo e substituírem bedrock por blocos BWG; permite fundir Windswept Sand, Cracked Sand e Quicksand Sand em vidro. Changelog cumulativo na ficha 9839882 e [catálogo 1.21.1](https://www.curseforge.com/minecraft/mc-mods/oh-the-biomes-weve-gone/files/all?page=1&pageSize=20&version=1.21.1) sustentam a sequência. Não presumir reparo automático de chunks previamente gerados.
+
+## Histórico documental preservado
+
+> Os dados abaixo descrevem o snapshot ou a auditoria na sua data original. Menções a versão física, atual, candidata, bloqueada, não instalada, hashes e requisitos anteriores são históricas; as propriedades vigentes acima prevalecem. A declaração atual não constitui teste de execução.
 
 ## Propriedades do registro
 

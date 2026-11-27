@@ -1,5 +1,22 @@
 
 
+## Sincronização documental — 27/11/2026 (itens 8, 17, 20–27)
+
+Oito versões declaradas sincronizadas; posições históricas e categorias preservadas. Tabelas anteriores são snapshots, não substituem a tabela vigente. A instalação deriva da declaração do usuário e não de leitura física nova.
+
+- #006 Advanced Core Info (ACI): `1.1.0` → [`1.6.0`](https://www.curseforge.com/minecraft/mc-mods/advanced-core-info/files/all?page=1&pageSize=20&showAlphaFiles=hide&version=1.21.1). [Dossier](API%20and%20Library/%E2%9C%85-advanced-core-info%20v1.6.0.md).
+- #397 Tweaks addon for MineColonies: `3.33` → [`3.34`](https://www.curseforge.com/minecraft/mc-mods/minecolonies-tweaks/files/9454104). [Dossier](Addons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-minecolonies-tweaks%20v3.34.md).
+- #463 Pufferfish's Attributes [Fabric & Forge & NeoForge]: `0.8.3` → [`0.8.4`](https://modrinth.com/mod/attributes/version/lUoRvJpE) (nome de arquivo corroborado por evidência cruzada). [Dossier](Adventure%20and%20RPG%20%2B%20API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-pufferfishs-attributes%20v0.8.4.md).
+- #252 Enhanced AI: `4.3.3.0` → [`4.3.4.0`](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9842952). [Dossier](Mobs/%E2%9C%85-enhanced-ai%20v4.3.4.0.md).
+- #426 Oh The Biomes We've Gone: `2.6.0` → [`2.6.4`](https://www.curseforge.com/minecraft/mc-mods/oh-the-biomes-weve-gone/files/9839882). [Dossier](Biomes%20%2B%20Farming%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-oh-the-biomes-weve-gone%20v2.6.4.md).
+- #357 KilaGraph: `21.1.0.14` → [`21.1.0.17`](https://www.curseforge.com/minecraft/mc-mods/kilagraph/files/all) (nome de arquivo corroborado por evidência cruzada). [Dossier](API%20and%20Library%20%2B%20Utility%20%26%20QoL/%E2%9C%85-kilagraph%20v21.1.0.17.md).
+- #328 Immersive Furniture: `0.3.3+1.21.1` → [`0.5.0`](https://www.curseforge.com/minecraft/mc-mods/immersive-furniture/files/9777712). [Dossier](Cosmetic%20%2B%20Storage/%E2%9C%85-immersive-furniture%20v0.5.0.md).
+- #202 Create: Schematic Checker: `2.27.45-6.0` → [`3.30.63-6.0`](https://www.curseforge.com/minecraft/mc-mods/create-schematicchecker/files/9765447). [Dossier](Addons%20%2B%20Bug%20Fixes%20%2B%20Create/%E2%9C%85-create-schematic-checker%20v3.30.63-6.0.md).
+- #179 Create: Cyber Goggles: mantido 8.8.3; a branch oficial ainda declara 8.8.6, mas a fonte não comprova distribuição; fontes secundárias indicam 8.8.4/.5 e não foi recuperada ficha oficial nova. Não rebaixar, nem atribuir nova versão sem publicação confirmada.
+- Integrated Patches: não localizado dossier elegível nem entrada física correspondente na árvore/índice; não criar certificação ou numeração artificial.
+- Reconciliação: MineColonies 1.1.1426 e Structurize 1.0.840 superam os alvos de build do Tweaks 3.34, Domum 1.0.236 é anterior ao alvo 1.0.237 (não equivale a mínimo de runtime). ALI 2.1.0 deve ser sincronizado no item 51; ACI 1.6.0 remove getCurrentDataFuture. InsaneLib 2.4.33.0 ainda inferior ao requisito histórico de Enhanced AI 2.5.0.0-alpha; LDLib 2.2.39.a supera piso 2.2.33 de KilaGraph, mas é anterior ao alvo de build 2.2.41, com reconciliação do item 38 e JarJar Photon pendentes. Nenhum QA físico aprovado.
+
+
 ## Sincronização documental — 27/11/2026 (itens 8, 11–19)
 
 Instalação declarada pelo usuário, sem releitura física. Seis bumps e duas revalidações. Posições físicas históricas preservadas. Dependências e QA não bloqueiam a documentação. As tabelas históricas registram estados de suas datas; as linhas vigentes são a autoridade documental atual.
@@ -732,7 +749,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 003 | Ace's Spell Utils | `aces_spell_utils-1.2.7.2-1.21.1.jar` | `1.2.7.2-1.21.1` | `Addons + API and Library` | 17/11/2026 - 17:09 |
 | 004 | Acolyte : Iron's Spells 'n Spellbooks Addon | `acolyte-1.0.3.jar` | `1.0.3` | `Adventure and RPG + Magic + Mobs + Structures` | 22/09/2026 - 13:39 |
 | 005 | Additional Attributes | `additional_attributes-1.21.1-1.2.3.jar` | `1.2.3` | `Miscellaneous` | 22/11/2026 - 15:59 |
-| 006 | Advanced Core Info (ACI) | `AdvancedCoreInfo-neoforge-1.21.1-1.1.0.jar` | `1.1.0` | `API and Library` | 23/10/2026 - 02:19 |
+| 006 | Advanced Core Info (ACI) | `AdvancedCoreInfo-neoforge-1.21.1-1.6.0.jar` | `1.6.0` Beta (instalação declarada; metadata não relida) | `API and Library` | 27/11/2026 - 15:28 |
 | 007 | Advanced Loot Info (ALI) | `AdvancedLootInfo-neoforge-1.21.1-2.1.0.jar` | `2.1.0` | `Addons + API and Library + Map and Information` | 22/10/2026 - 22:49 |
 | 008 | Advancement Plaques [Neo/Forge] | `AdvancementPlaques-1.21.1-neoforge-1.6.8.jar` | `1.6.8` | `Cosmetic + Map and Information + Miscellaneous + Utility & QoL` | 22/09/2026 - 13:40 |
 | 009 | SnackPirate's Aeromancy Additions | `aero_additions-1.2.8.jar` | `1.2.8` | `Addons + Magic` | 22/09/2026 - 13:40 |
@@ -928,7 +945,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 199 | Create: Prismatic Shine | `createprism-1.2.2.jar` | `1.2.2` | `Addons + Create` | 24/09/2026 - 00:20 |
 | 200 | Create Propulsion: Simulated | `createpropulsion-1.1.5.jar` | `1.1.5` | `Addons + Create + Player Transport + Technology` | 24/09/2026 - 00:20 |
 | 201 | Create : radiologistics | `CreateRadiologistics-1.1.1.jar` | `1.1.1` | `Create` | 21/11/2026 - 12:42 |
-| 202 | Create: Schematic Checker | `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar` | `2.27.45-6.0` | `Addons + Bug Fixes + Create` | 24/09/2026 - 00:44 |
+| 202 | Create: Schematic Checker | `createschematicchecker-3.30.63-6.0-neoforge-1.21.1.jar` | `3.30.63-6.0` Release (instalação declarada; metadata não relida) | `Addons + Bug Fixes + Create` | 27/11/2026 - 15:28 |
 | 203 | Create : Teleporters | `createteleporters-remastered-2.0.2b-neoforge-1.21.1.jar` | `2.0.2b (filename/publicação); metadata runtime 2.0.2` | `Create + Energy, Fluid, and Item Transport + Technology` | 17/11/2026 - 16:14 |
 | 204 | Create: Transmission! | `createtransmission-1.2.2+neoforge-create6-1.21.1.jar` | `1.2.2+neoforge-create6-1.21.1` | `Addons + Cosmetic + Create + Technology + Utility & QoL` | 24/09/2026 - 00:44 |
 | 205 | Create Ultimine | `createultimine-1.21.1-neoforge-1.4.0.jar` | `1.4.0` | `Addons + Create + Utility & QoL` | 22/11/2026 - 15:59 |
@@ -978,7 +995,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 249 | EMF Compat: Iron's Spells 'n Spellbooks | `emf_compat_iron_spells_1.21.1_2.0.0.jar` | `2.0.0` | `Addons + Bug Fixes` | 17/11/2026 - 18:50 |
 | 250 | Enchantment Descriptions | `enchdesc-neoforge-1.21.1-21.1.11.jar` | `21.1.11` | `Cosmetic + Magic + Map and Information + Utility & QoL` | 24/09/2026 - 14:02 |
 | 251 | Ender's Delight | `endersdelight-1.3.1.jar` | `1.3.1` | `Addons + Farming + Food` | 24/09/2026 - 14:02 |
-| 252 | Enhanced AI | `enhancedai-4.3.3.0.jar` | `4.3.3.0` | `Mobs` | 22/11/2026 - 15:25 |
+| 252 | Enhanced AI | `enhancedai-4.3.4.0.jar` | `4.3.4.0` Release (instalação declarada; metadata não relida) | `Mobs` | 27/11/2026 - 15:28 |
 | 253 | Enhanced Boss Bars (Fabric/Forge/NeoForge) | `enhancedbossbars-1.0.0.jar` | `1.0.0` | `Adventure and RPG + Cosmetic + Miscellaneous + Mobs` | 24/10/2026 - 14:58 |
 | 254 | [EMF] Entity Model Features [Fabric & Forge] | `entity_model_features-3.3.5-1.21-neoforge.jar` | `3.3.5` | `Cosmetic + Mobs + Utility & QoL` | 23/10/2026 - 14:33 |
 | 255 | [ESF] Entity Sound Features | `entity_sound_features-0.8.2-1.21-neoforge.jar` | `0.8.2` | `Cosmetic + Mobs + Utility & QoL` | 24/09/2026 - 16:02 |
@@ -1054,7 +1071,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 325 | Integrated Mowzie's Mobs | `IMM v1.3.0-1.21.1.jar` | `1.3.0` | `Adventure and RPG + Structures + World Gen` | 24/09/2026 - 22:53 |
 | 326 | ImmediatelyFast | `ImmediatelyFast-NeoForge-1.6.14+1.21.1.jar` | `1.6.14+1.21.1` | `Performance + Utility & QoL` | 22/10/2026 - 22:24 |
 | 327 | Immersive Aeronautics - Immersive Portals + Create: Aeronautics | `Immersive-Aeronautics1.1.4-1.21.1-NeoForge.jar` | `1.1.4` | `Create` | 24/09/2026 - 22:53 |
-| 328 | Immersive Furniture | `immersive_furniture-neoforge-0.3.3+1.21.1.jar` | `0.3.3+1.21.1` | `Cosmetic + Storage` | 18/11/2026 - 10:52 |
+| 328 | Immersive Furniture | `immersive_furniture-neoforge-0.5.0-1.21.1.jar` | `0.5.0` Release (instalação declarada; metadata não relida) | `Cosmetic + Storage` | 27/11/2026 - 15:28 |
 | 329 | Immersive Portal - Iron's Spells 'n Spellbooks Addon | `immersive_portal_irons_spells_n_spellbooks_addon-1.0.1.jar` | `1.0.1` | `Magic + Player Transport` | 24/09/2026 - 22:53 |
 | 330 | Immersive Portals: True Immersion | `immersive_portals_true_immersion-2.0.4.jar` | `2.0.4` | `Addons` | 24/09/2026 - 22:53 |
 | 331 | InsaneLib | `insanelib-2.4.33.0.jar` | `2.4.33.0` | `API and Library` | 17/11/2026 - 16:15 |
@@ -1083,7 +1100,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 354 | Just Enough Breeding (JEBr) | `justenoughbreeding-neoforge-1.21.1-3.2.1.jar` | `3.2.1` | `Addons + Map and Information + Mobs + Utility & QoL` | 25/09/2026 - 02:10 |
 | 355 | Just Enough Professions (JEP) | `JustEnoughProfessions-neoforge-1.21.1-4.0.5.jar` | `4.0.5` | `Addons + Map and Information + Utility & QoL` | 25/09/2026 - 02:10 |
 | 356 | Just Enough Resources (JER) | `JustEnoughResources-NeoForge-1.21.1-1.6.0.17.jar` | `1.6.0.17` | `Addons + Biomes + Map and Information + Mobs + Ores and Resources` | 21/11/2026 - 12:52 |
-| 357 | KilaGraph | `kilagraph-neoforge-1.21.1-21.1.0.14.jar` | `21.1.0.14` | `API and Library + Utility & QoL` | 25/09/2026 - 02:10 |
+| 357 | KilaGraph | `kilagraph-neoforge-1.21.1-21.1.0.17.jar` (basename corroborado; ficha individual CF não recuperada) | `21.1.0.17` Release (instalação declarada; metadata não relida) | `API and Library + Utility & QoL` | 27/11/2026 - 15:28 |
 | 358 | Kiwi 🥝 (Neo/Forge) | `Kiwi-1.21.1-NeoForge-15.8.7.jar` | `15.8.7+neoforge` | `API and Library` | 25/09/2026 - 02:11 |
 | 359 | Knight Lib | `knightlib-neoforge-1.21.1-2.0.5.jar` | `2.0.5` | `API and Library` | 22/11/2026 - 19:29 |
 | 360 | Konkrete | `konkrete_neoforge_1.9.9_MC_1.21.jar` | `1.9.9` | `API and Library` | 25/09/2026 - 02:11 |
@@ -1123,7 +1140,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 394 | MezzConfig | `mezz_config-1.21.1-neoforge-0.5.9.jar` | `0.5.9` | `API and Library` | 17/11/2026 - 15:09 |
 | 395 | MineColonies | `minecolonies-1.1.1426-1.21.1-snapshot.jar` | `1.1.1426-1.21.1-snapshot` Beta (instalação declarada) | `Adventure and RPG + Armor, Tools, and Weapons + Automation + Storage + Structures` | 27/11/2026 - 15:17 |
 | 396 | Compatibility addon for MineColonies | `MineColonies_Compatibility-1.21.1-3.57.jar` | `3.57` | `Addons + Utility & QoL` | 18/11/2026 - 08:55 |
-| 397 | Tweaks addon for MineColonies | `MineColonies_Tweaks-1.21.1-3.33.jar` | `3.33` | `Addons + Utility & QoL` | 17/11/2026 - 17:09 |
+| 397 | Tweaks addon for MineColonies | `MineColonies_Tweaks-1.21.1-3.34.jar` | `3.34` Beta (instalação declarada; metadata não relida) | `Addons + Utility & QoL` | 27/11/2026 - 15:28 |
 | 398 | Miner's Delight + | `minersdelight-1.21.1-1.4.5.jar` | `1.4.5` | `Cosmetic + Farming + Food` | 25/09/2026 - 12:31 |
 | 399 | Ragdoll mob corpses | `mob_ragdoll_corpse-1.1.5.jar` | `1.1.5` | `Addons + Mobs` | 25/09/2026 - 12:31 |
 | 400 | Mobstein : Revive animals and necromancy! | `mobstein-5.4.4-neoforge-1.21.1.jar` | `5.4.4` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Mobs` | 25/09/2026 - 12:31 |
@@ -1152,7 +1169,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 423 | Nyf's Spiders | `nyfsspiders-neoforge-1.21.1-3.0.1.jar` | `3.0.1` | `Mobs` | 25/09/2026 - 14:28 |
 | 424 | Obscure Tooltips | `obscure_tooltips-neoforge-1.21.1-4.2.4.jar` | `4.2.4` | `Adventure and RPG + Armor, Tools, and Weapons + Cosmetic + Map and Information` | 25/09/2026 - 14:28 |
 | 425 | ShatterLib \| OctoLib | `OctoLib-NEOFORGE-0.6.3.3-1.21.jar` | `0.6.3.3` Release (instalação declarada) | `API and Library` | 27/11/2026 - 15:22 |
-| 426 | Oh The Biomes We've Gone | `Oh-The-Biomes-Weve-Gone-NeoForge-2.6.0.jar` | `2.6.0` | `Biomes + Farming + Mobs + Structures + World Gen` | 25/09/2026 - 14:28 |
+| 426 | Oh The Biomes We've Gone | `Oh-The-Biomes-Weve-Gone-NeoForge-2.6.4.jar` | `2.6.4` Release (instalação declarada; metadata não relida) | `Biomes + Farming + Mobs + Structures + World Gen` | 27/11/2026 - 15:28 |
 | 427 | Oh The Trees You'll Grow | `Oh-The-Trees-Youll-Grow-neoforge-1.21.1-5.3.2.jar` | `5.3.2` | `API and Library + Biomes + Structures + World Gen` | 18/11/2026 - 10:06 |
 | 428 | Oracle Index | `oracle_index-neoforge-1.4.0.jar` | `1.4.0` | `API and Library + Education + Map and Information + Utility & QoL` | 18/11/2026 - 10:52 |
 | 429 | Overflowing Bars | `OverflowingBars-v21.1.1-1.21.1-NeoForge.jar` | `21.1.1` | `Cosmetic + Utility & QoL` | 25/09/2026 - 14:28 |
@@ -1189,7 +1206,7 @@ A release pública AeroWarptics 1.3.0 é NeoForge 1.21.1 e depende de Create, Cr
 | 460 | Create: Protection Pixel | `protection_pixel-2.2.1-neoforge-1.21.1.jar` | `2.2.1` | `Adventure and RPG + Armor, Tools, and Weapons + Create + MCreator` | 26/09/2026 - 03:24 |
 | 461 | Puddles & Floods | `puddleflood-1.1.5+1.21.1-neoforge.jar` | `1.1.5` | `Cosmetic` | 26/09/2026 - 03:24 |
 | 462 | Pufferfish's Unofficial Additions | `pufferfish_unofficial_additions-1.21.1-2.2.8.jar` | `2.2.8` | `Addons` | 29/09/2026 - 23:37 |
-| 463 | Pufferfish's Attributes [Fabric & Forge & NeoForge] | `puffish_attributes-0.8.3-1.21-neoforge.jar` | `0.8.3` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
+| 463 | Pufferfish's Attributes [Fabric & Forge & NeoForge] | `puffish_attributes-0.8.4-1.21-neoforge.jar` (basename corroborado; ficha individual CF não recuperada) | `0.8.4` Release (instalação declarada; metadata não relida) | `Adventure and RPG + API and Library + Utility & QoL` | 27/11/2026 - 15:28 |
 | 464 | Pufferfish's Skills [Fabric & Forge & NeoForge] | `puffish_skills-0.19.0-1.21-neoforge.jar` | `0.19.0` | `Adventure and RPG + API and Library + Utility & QoL` | 27/09/2026 - 16:30 |
 | 465 | Punchy! - First person animations | `punchy-2.7e-neoforge-1.21.1.jar` | `2.7e` | `API and Library + Cosmetic + Map and Information` | 17/11/2026 - 22:03 |
 | 466 | Epic Fight X Punchy! Neo | `punchy_epicfight_neoforge.jar` | `1.0.0` | `Addons` | 27/09/2026 - 16:30 |
@@ -1724,7 +1741,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 60 | BetterNether: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betternether-new-dawn%20v21.0.30.md) | `21.0.26` | 21.0.29 (19/10) | **21.0.27→21.0.29 REVISADAS COM DIFF SOURCE; QA NEW DAWN SEPARADO** |
 | 61 | Streams Reflowing | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20World%20Gen/%E2%9C%85-streamsreflowing%20v2.17.5.md) | `2.13.5` | 2.15.2 | **RELEASES 2.13.8/2.14.1/2.14.4/2.15.0/2.15.2 REVISADAS; CONFIG .toml→.properties E ENVIO OPCIONAL DA SEED DOCUMENTADOS; QA FÍSICO SEPARADO** |
 | 62 | Reliquified Iron's Spells 'n Spellbooks | [Abrir `.md`](./Addons%20%2B%20Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Magic/%E2%9C%85-reliquified-irons-spells-n-spellbooks%20v0.2.7.md) | `0.2.7` | 0.2.8 Beta | **0.2.8 BETA REVISADA INTEGRALMENTE; DIMENSION SEAL/ANIMATED TEXTURES/ABILITY ICONS DOCUMENTADOS; QA FÍSICO SEPARADO** |
-| 63 | Enhanced AI | [Abrir `.md`](./Mobs/%E2%9C%85-enhanced-ai%20v4.3.3.0.md) | `4.2.3.0` | 4.2.5.0 (20/10) | **4.2.4.0 E 4.2.5.0 REVISADAS COM CHANGELOGS EXATOS; QA FÍSICO SEPARADO** |
+| 63 | Enhanced AI | [Abrir `.md`](./Mobs/%E2%9C%85-enhanced-ai%20v4.3.4.0.md) | `4.2.3.0` | 4.2.5.0 (20/10) | **4.2.4.0 E 4.2.5.0 REVISADAS COM CHANGELOGS EXATOS; QA FÍSICO SEPARADO** |
 | 64 | ParCool! ~ Minecraft Parkour ~ | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Miscellaneous%20%2B%20Utility%20%26%20QoL/%E2%9C%85-parcool%20v4.0.0.3.md) | `4.0.0.3` | 4.0.1.6 | **4.0.0.6/4.0.1.0/.1/.2/.5/.6 REVISADAS; CURIOS OBRIGATÓRIO NO UPSTREAM; QA FÍSICO SEPARADO** |
 | 65 | Skin Layers 3D | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic/%E2%9C%85-3d-skin-layers%20v1.11.2.md) | `1.11.2` | 1.11.4 (18/10; NeoForge 1.21.1 verificado) | **AUDITORIA 1.11.2→1.11.3→1.11.4 COMPLETA; FALSO BLOQUEIO DE CATÁLOGO CORRIGIDO; QA FÍSICO SEPARADO** |
 | 66 | Lithostitched | [Abrir `.md`](./API%20and%20Library%20%2B%20Miscellaneous%20%2B%20World%20Gen/%E2%9C%85-lithostitched%20v1.8.0%2Bbeta6.md) | `1.8.0+beta6` | 1.8.1 | **BETA6→1.8.0→1.8.1 DOCUMENTADAS; NOVOS TARGETS API/TAGS/STRUCTURE PROCESSORS; QA DE WORLDGEN SEPARADO** |
@@ -1732,7 +1749,7 @@ A [issue oficial ParCool #521](https://github.com/alRex-U/ParCool/issues/521) de
 | 68 | Enhanced Boss Bars (Fabric/Forge/NeoForge) | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Cosmetic%20%2B%20Miscellaneous%20%2B%20Mobs/%E2%9C%85-enhanced-boss-bars%20v1.0.0.md) | `1.0.0` | 1.1.3 Release NeoForge 1.21.1 (22/10; file ID 9292243) | **AUDITORIA DOCUMENTAL RELEASE-BY-RELEASE CONCLUÍDA EM 24/10: 1.0.0/1.1.0/1.1.1/1.1.2/1.1.3 COM NOTAS DE CADA ARQUIVO NEOFORGE 1.21.1; #68 LIBERADO PARA REMOÇÃO DO BLOCO DE NOTAS. PROMOÇÃO DO JAR 1.1.3 E QA CONTINUAM BLOQUEADOS** |
 | 69 | BetterEnd: New Dawn | [Abrir `.md`](./Biomes%20%2B%20Cosmetic%20%2B%20Mobs%20%2B%20Structures%20%2B%20World%20Gen/%E2%9C%85-betterend-new-dawn%20v21.0.39.md) | `21.0.34` | 21.0.39 Release (24/10; File ID 9306604) | **AUDITORIA DOCUMENTAL FECHADA EM 24/10**: sequência NeoForge 1.21.1 `21.0.34→.35→.36→.37→.38→.39` documentada; JARs Modrinth .38/.39 obtidos, SHA-512 medidos, diff CRC32/tamanho de 10.469 entradas mostra só 5 alterações (2 classes, ru_ru, refmap, metadata); metadata real .39 confirma os mínimos NeoForge/BCLib/WoVer/WunderLib cumpridos numericamente no snapshot. **Versão física .34; QA/upgrade pendentes** |
 | 70 | Create: Curios Backtank | [Abrir `.md`](./Addons%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Automation%20%2B%20Create/%E2%9C%85-create-curios-backtank%20v1.0.1.md) | `1.0.1` | 1.0.2 | **PESQUISA DOCUMENTAL CONCLUÍDA EM 23/10: RENDERIZAÇÃO E BÔNUS DE LAVA; QA IN-GAME PENDENTE** |
-| 71 | Advanced Core Info (ACI) | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-advanced-core-info%20v1.1.0.md) | `1.1.0` | 1.5.0 Beta | **PESQUISA DOCUMENTAL 1.2–1.5 CONCLUÍDA EM 23/10; BETA NÃO PROMOVIDA, ABI/QA PENDENTES** |
+| 71 | Advanced Core Info (ACI) | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-advanced-core-info%20v1.6.0.md) | `1.1.0` | 1.5.0 Beta | **PESQUISA DOCUMENTAL 1.2–1.5 CONCLUÍDA EM 23/10; BETA NÃO PROMOVIDA, ABI/QA PENDENTES** |
 | 72 | Create Deep Seas [BETA] | [Abrir `.md`](./Addons%20%2B%20Create/%E2%9C%85-create-deep-seas%20v2.2.4.md) | `2.2.4` | 3.3.0 Release; 3.4.5 Beta (22/10) | **PESQUISA 3.0.0–3.4.5 CONCLUÍDA EM 23/10; MIGRAÇÃO/QA DE RELEASE E BETA NÃO APROVADAS** |
 | 73 | Cold Sweat | [Abrir `.md`](./Adventure%20and%20RPG%20%2B%20Armor%2C%20Tools%2C%20and%20Weapons%20%2B%20Utility%20%26%20QoL/%E2%9C%85-cold-sweat%20v2.4.3.1.md) | `2.4.3.1` | 2.4.4 Release (16/10) | **PESQUISA DE CHANGELOG CONCLUÍDA EM 23/10; MIGRAÇÃO TÉRMICA/JEI E QA PENDENTES** |
 | 74 | Knight Lib | [Abrir `.md`](./API%20and%20Library/%E2%9C%85-knight-lib%20v2.0.5.md) | `2.0.1` | 2.0.5 Release (15/10) | **PESQUISA DOCUMENTAL 2.0.2–2.0.5 CONCLUÍDA EM 23/10; API/QA COM COMPANIONS PENDENTES** |

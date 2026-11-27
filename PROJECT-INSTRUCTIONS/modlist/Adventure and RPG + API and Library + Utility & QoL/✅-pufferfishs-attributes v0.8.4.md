@@ -1,4 +1,27 @@
-# Pufferfish's Attributes
+# Pufferfish's Attributes [Fabric & Forge & NeoForge] — 0.8.4
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Pufferfish's Attributes [Fabric & Forge & NeoForge]
+- **Arquivo JAR instalado (declarado):** `puffish_attributes-0.8.4-1.21-neoforge.jar` — basename corroborado por evidência cruzada; ficha individual CurseForge não recuperada.
+- **Versão instalada declarada:** `0.8.4` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #463 (preservada).
+- **Categoria CurseForge / pasta:** Adventure and RPG + API and Library + Utility & QoL.
+- **Função:** Provider independente de atributos dinâmicos para RPG, resistência/dano, velocidade, stamina e outros stats; consumidores devem vincular IDs efetivos e não apenas nomes.
+- **Atualização/Status:** `0.8.3` → `0.8.4`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** auditoria incremental das publicações identificadas; limites de changelog, metadata e procedência indicados abaixo; sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** NeoForge 1.21.1. Sem novos mínimos de dependências demonstrados; testar fórmulas de resistência e shred, dano de fontes distintas, ordem dos modifiers de Apothic/Additional Attributes/Epic Fight, sincronização e persistência. O changelog não discrimina a implementação da correção; não inferir fórmulas. Não declarar equivalência com outros atributos.
+- **Fonte:** [publicação ou catálogo de referência](https://modrinth.com/mod/attributes/version/lUoRvJpE).
+- **Procedência:** solicitação expressa de atualização, fontes oficiais e, onde explicitado, corroboradores secundários; não atribuir hash/metadata da versão nova sem leitura do binário.
+
+## Auditoria incremental das publicações
+
+- 0.8.4 — publicação da família 23/11/2026 no CurseForge; [versão oficial Modrinth lUoRvJpE](https://modrinth.com/mod/attributes/version/lUoRvJpE) confirma Release NeoForge 1.21–1.21.1 e as alterações: correção dos atributos de resistance shred e atualização de tradução ucraniana. Sem outra versão intermediária identificada. A publicação CurseForge de 0.8.4 para outra linha do Minecraft traz o mesmo changelog; não foi recuperada a ficha individual 1.21.1. O basename exato acima é corroborado pela [lista de mudanças publicada pelo FTB Evolution 1.49.0 no CurseForge](https://www.curseforge.com/minecraft/modpacks/ftb-evolution/files/9830038), que explicita o mesmo par antigo/novo, mas avisa que a lista é gerada automaticamente. Não atribuir File ID nem data exata da publicação NeoForge 1.21.1 do CurseForge sem ficha. [Projeto CurseForge](https://www.curseforge.com/minecraft/mc-mods/puffish-attributes) confirma identidade e categorias.
+
+## Histórico documental preservado
+
+> Os dados abaixo descrevem o snapshot ou a auditoria na sua data original. Menções a versão física, atual, candidata, bloqueada, não instalada, hashes e requisitos anteriores são históricas; as propriedades vigentes acima prevalecem. A declaração atual não constitui teste de execução.
 
 > **Autoridade física atual — 27/09/2026.** `modlist(1).txt` contém 587 entradas top-level incluindo o modloader; este item ocupa a ordem física **#463**: JAR `puffish_attributes-0.8.3-1.21-neoforge.jar`, mod id `puffish_attributes`, runtime `0.8.3`, SHA-1 `9e6a87f790fc9281ea2685f8d4f6435d0d7c6d1f`. NeoForge atual: `21.1.250`.
 - **Banco de origem:** Auditoria Mestre da Modlist — NeoForge 1.21.1

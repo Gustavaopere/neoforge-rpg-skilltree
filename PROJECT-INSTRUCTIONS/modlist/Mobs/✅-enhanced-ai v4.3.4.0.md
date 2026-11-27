@@ -1,4 +1,28 @@
-# Enhanced AI — 4.3.3.0 (versão instalada declarada em 22/11/2026)
+# Enhanced AI — 4.3.4.0
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Enhanced AI
+- **Arquivo JAR instalado (declarado):** `enhancedai-4.3.4.0.jar`
+- **Versão instalada declarada:** `4.3.4.0` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #252 (preservada).
+- **Categoria CurseForge / pasta:** Mobs.
+- **Função:** Módulos configuráveis de IA de mobs, objetivos de combate e comportamentos de animais e aldeões.
+- **Atualização/Status:** `4.3.3.0` → `4.3.4.0`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** auditoria incremental das publicações identificadas; limites de changelog, metadata e procedência indicados abaixo; sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** InsaneLib >=2.5.0.0-alpha era requisito documentado na linha 4.2.6.0+; índice #331 ainda registra 2.4.33.0. Novo mínimo específico não confirmado; pendência de sincronização da biblioteca, sem impedir a atualização. Configuração COMMON→SERVER histórica. Testar lunge, phantom targeting/capture, comportamento de explosões e integração com Explosion Overhaul se presente, proteção de builds e TPS.
+- **Fonte:** [publicação ou catálogo de referência](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9842952).
+- **Procedência:** solicitação expressa de atualização, fontes oficiais e, onde explicitado, corroboradores secundários; não atribuir hash/metadata da versão nova sem leitura do binário.
+
+## Auditoria incremental das publicações
+
+- 4.3.3.1 — 23/11, [arquivo 9772559](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9772559), Release: força horizontal do lunge multiplicada por dois para compensar resistência do chão. Não equivale necessariamente a duplicar distância percorrida.
+- 4.3.4.0 — 27/11, Release: phantoms procuram jogadores horizontalmente dentro de follow range (vanilla 16 blocos), reduzindo círculos sem ataque; posição de entidades capturadas pode ser configurada para ficar pendurada abaixo ou montada acima; integração Angry/Breaching creepers passa a atuar através de Explosion Overhaul, aumentando knockback e destruição de blocos para Angry e destruição para Breaching. Não atribuir nomes de chaves de configuração não publicados. Cadeia 4.2.3.0→4.3.3.0 preservada nas auditorias anteriores.
+
+## Histórico documental preservado
+
+> Os dados abaixo descrevem o snapshot ou a auditoria na sua data original. Menções a versão física, atual, candidata, bloqueada, não instalada, hashes e requisitos anteriores são históricas; as propriedades vigentes acima prevalecem. A declaração atual não constitui teste de execução.
 
 > **Estado vigente, sincronização documental em 22/11/2026:** versão 4.2.3.0 → **4.3.3.0**. JAR de distribuição identificado: `enhancedai-4.3.3.0.jar`. Instalação declarada pelo usuário; o JAR top-level local e seu metadata não foram relidos. [Publicação de referência](https://www.curseforge.com/minecraft/mc-mods/enhanced-ai/files/9740957).
 > **Delta auditado:** Auditorias anteriores cobrem 4.2.4.0–4.2.7.2; 4.3.1.0 incorpora Villager Golem Repair, Villager Eat to Heal, Bee Hive Navigation e ajustes de creeper; 4.3.2.0 Beta adiciona lunge e Grabbing Phantoms; 4.3.3.0 adiciona Stay Near Dismount para equinos/llamas e corrige classificações em MPR. Não há JAR público separado de 4.3.0.0 no intervalo identificado.

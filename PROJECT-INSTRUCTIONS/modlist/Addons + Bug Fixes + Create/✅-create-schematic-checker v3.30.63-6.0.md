@@ -1,4 +1,28 @@
-# Create: Schematic Checker
+# Create: Schematic Checker — 3.30.63-6.0
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Create: Schematic Checker
+- **Arquivo JAR instalado (declarado):** `createschematicchecker-3.30.63-6.0-neoforge-1.21.1.jar`
+- **Versão instalada declarada:** `3.30.63-6.0` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #202 (preservada).
+- **Categoria CurseForge / pasta:** Addons + Bug Fixes + Create.
+- **Função:** Validação e sanitização server-side de schematics Create; proteção contra dados malformados, duplicação e problemas de impressão.
+- **Atualização/Status:** `2.27.45-6.0` → `3.30.63-6.0`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** auditoria incremental das publicações identificadas; limites de changelog, metadata e procedência indicados abaixo; sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** Minecraft 1.21.1 / NeoForge, família Create 6.0; baseline Create 6.0.10 e TorqueAPI embutida, versão da nested dependency nova não lida. Testar regras novas/migradas, Copycats payments, Quark grates, Sable/Aeronautics, escaneamento retomável e concorrente, arquivos danificados, inventários, backups e comportamento fail-closed sem permitir bypass. Sem testes in-game.
+- **Fonte:** [publicação ou catálogo de referência](https://www.curseforge.com/minecraft/mc-mods/create-schematicchecker/files/9765447).
+- **Procedência:** solicitação expressa de atualização, fontes oficiais e, onde explicitado, corroboradores secundários; não atribuir hash/metadata da versão nova sem leitura do binário.
+
+## Auditoria incremental das publicações
+
+- 2.27.47 — 27/09, Release: parsing e sanitização de entries NBT/glue/belts malformed, normalização de track shapes, limite real de chain conveyors, wildcard em listas de IDs, detecção de uploads truncados; ajustes Fabric-only/build não extrapolados. Auditoria anterior já documenta commits oficiais; ficha 3.30.63 reproduz changelog cumulativo. Não localizada publicação separada 2.27.46 nem intermediária entre 2.27.47 e 3.30.63 para esta linha.
+- 3.30.63 — 23/11, Release: scan em lote retomável/deduplicado por hash e revisão; impede writeback de schematics não verificados ou cuja limpeza falhou; valida pagamentos de materiais Copycats preservando materiais compartilhados legítimos, filtra desconhecidos, repara layers e requirements; identifica resource IDs banidos sem colisões por substring; preserva frequências válidas de lectern/typewriter; repara tanques cortados vazios preservando grupos válidos, links/listas de crafters e stale members, belts e geometria de chain conveyor; trata entradas malformed não usadas na palette e dados vazios, descarta dados de chest não identificáveis sem apagar bloco, libera Quark grates nas regras default, notifica truncamento, corrige relatórios de whitelist/rejeições da fila e rotação concorrente de logs. Notas específicas Forge legado/Fabric não atribuídas ao alvo. Não inferir que toda forma de dupe foi bloqueada. Nome de versão mantém sufixo de compatibilidade Create 6.0.
+
+## Histórico documental preservado
+
+> Os dados abaixo descrevem o snapshot ou a auditoria na sua data original. Menções a versão física, atual, candidata, bloqueada, não instalada, hashes e requisitos anteriores são históricas; as propriedades vigentes acima prevalecem. A declaração atual não constitui teste de execução.
 
 > **Autoridade física atual — 24/09/2026.** `modlist(1).txt` contém **587 entradas top-level incluindo o modloader**; este item ocupa a ordem física **#202**: JAR `createschematicchecker-2.27.45-6.0-neoforge-1.21.1.jar`, mod id `createschematicchecker`, runtime `2.27.45-6.0`, SHA-1 `e617e3740470a0ffec23d5cd4ca06acf2a876673`.
 

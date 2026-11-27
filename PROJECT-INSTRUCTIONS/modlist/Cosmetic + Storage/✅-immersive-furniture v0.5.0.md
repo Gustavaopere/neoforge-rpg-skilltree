@@ -1,4 +1,30 @@
-# Immersive Furniture
+# Immersive Furniture — 0.5.0
+
+## Propriedades vigentes — 27/11/2026
+
+- **Mod:** Immersive Furniture
+- **Arquivo JAR instalado (declarado):** `immersive_furniture-neoforge-0.5.0-1.21.1.jar`
+- **Versão instalada declarada:** `0.5.0` — Release, Minecraft 1.21.1 / NeoForge.
+- **Ordem física histórica:** #328 (preservada).
+- **Categoria CurseForge / pasta:** Cosmetic + Storage.
+- **Função:** Furniture customizada com editor, biblioteca remota, texturas, sons, partículas, sitting/sleeping e estados configuráveis.
+- **Atualização/Status:** `0.3.3+1.21.1` → `0.5.0`.
+- **Estado no pack:** instalação declarada pelo usuário; JAR local/metadata não relidos.
+- **Estado da pesquisa:** auditoria incremental das publicações identificadas; limites de changelog, metadata e procedência indicados abaixo; sem homologação de runtime.
+- **Dependências / compatibilidade / riscos:** NeoForge 1.21.1, Client & Server; versão interna de sable-companion não verificada na nova build. Preservar JarJar apenas como dependência embutida. Testar mallet, solidez/collision/pathfinding e mobiliário em Sable, culling, assets lazy, editor/library, Dynamic Trees, persistência de texturas e saves. Não afirmar compatibilidade testada.
+- **Fonte:** [publicação ou catálogo de referência](https://www.curseforge.com/minecraft/mc-mods/immersive-furniture/files/9777712).
+- **Procedência:** solicitação expressa de atualização, fontes oficiais e, onde explicitado, corroboradores secundários; não atribuir hash/metadata da versão nova sem leitura do binário.
+
+## Auditoria incremental das publicações
+
+- 0.3.4 — 23/10, [arquivo 9299760](https://www.curseforge.com/minecraft/mc-mods/immersive-furniture/files/9299760): recuperação de cache, retry de downloads, concorrência, crash Dynamic Trees, camas em sublevels Sable, opções e limites de atlas, preservação de baked textures em autosave.
+- 0.4.0 — 05/11, [arquivo 9456983](https://www.curseforge.com/minecraft/mc-mods/immersive-furniture/files/9456983): busca de furniture similar, ordenação hot/popular, nome e tags para publicação, likes/data, colar links; grade e preview maior, flip XYZ; correção de flicker, botões, crashes com blocos modded e possível freeze perto de chunks descarregados.
+- 0.4.1 — 05/11, [arquivo 9457770](https://www.curseforge.com/minecraft/mc-mods/immersive-furniture/files/9457770): correções de crash genéricas, sem causa discriminada.
+- 0.5.0 — 23/11, Release: mallet desloca móveis rapidamente um pixel, corrige culling, autor menciona possível correção de crash sem causa, carregamento preguiçoso de assets para reduzir tempo de boot, móveis passam a ser considerados sólidos. Não inferir geometria de colisão específica, receitas do mallet ou ganho quantificado. Publicação chama versão 0.5.0 e filename usa -1.21.1 em vez de +1.21.1 da baseline; metadata interna nova não lida.
+
+## Histórico documental preservado
+
+> Os dados abaixo descrevem o snapshot ou a auditoria na sua data original. Menções a versão física, atual, candidata, bloqueada, não instalada, hashes e requisitos anteriores são históricas; as propriedades vigentes acima prevalecem. A declaração atual não constitui teste de execução.
 
 ## Propriedades do registro
 
